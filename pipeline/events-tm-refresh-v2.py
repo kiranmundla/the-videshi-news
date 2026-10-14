@@ -67,9 +67,16 @@ ARTIST_KEYWORDS = [
 # return results — TM matches literal event titles, so niche cultural terms
 # (kathak, qawwali, navratri, etc.) return 0. Those are covered by the
 # temple scraper (Phase 2) and Eventbrite/Sulekha instead.
+# 2026-10-14: Removed the bare generic keyword "comedy" (Kiran's call).
+# Searched state-by-state, it flooded the events table with mainstream
+# comedy-club lineups that carry no diaspora signal — e.g. 31 generic
+# Ticketmaster events within 50 mi of Morrisville, NC vs 1 genuinely
+# diaspora event. Diaspora comedy still arrives via ARTIST_KEYWORDS.
+# "yoga" and "meditation" deliberately STAY (Kiran, same day): diaspora-
+# adjacent wellness coverage is wanted, so their state sweeps continue.
 STATE_KEYWORDS = [
     "bollywood", "indian", "desi", "diwali", "holi", "yoga", "meditation",
-    "cricket", "comedy", "food festival", "film festival",
+    "cricket", "food festival", "film festival",
 ]
 STATES = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
           "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",

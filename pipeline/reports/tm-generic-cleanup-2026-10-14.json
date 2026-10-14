@@ -1,0 +1,4800 @@
+{
+ "generated": "2026-10-14",
+ "rule": "upcoming (date>=2026-10-14) source=ticketmaster events whose titles carry no diaspora signal (pipeline vocabulary: bollywood/indian/desi/diwali/holi/cricket/garba/navratri/hindu/temple/mandir/sikh/jain/eid/south asian + ARTIST_KEYWORDS; FALSE_POSITIVE_PATTERNS stripped before matching) AND no protected yoga/meditation term (Kiran 2026-10-14: yoga/meditation coverage stays)",
+ "total_upcoming_ticketmaster": 803,
+ "with_signal_kept": 125,
+ "protected_by_signal_family": {
+  "artist": 89,
+  "diaspora_vocab": 31,
+  "food_festival": 3,
+  "yoga": 1,
+  "film_festival": 1
+ },
+ "no_signal_deleted": 678,
+ "no_signal_by_state": {
+  "NC": 91,
+  "NJ": 49,
+  "LA": 45,
+  "AL": 44,
+  "WA": 42,
+  "IN": 41,
+  "NY": 40,
+  "IL": 39,
+  "WI": 35,
+  "OK": 35,
+  "DC": 33,
+  "IA": 32,
+  "WV": 22,
+  "KY": 21,
+  "HI": 21,
+  "CA": 21,
+  "ME": 18,
+  "ID": 9,
+  "NM": 7,
+  "MA": 4,
+  "ND": 4,
+  "NH": 3,
+  "AR": 3,
+  "PA": 3,
+  "TX": 2,
+  "FL": 2,
+  "OH": 2,
+  "MO": 2,
+  "NV": 1,
+  "GA": 1,
+  "TN": 1,
+  "MN": 1,
+  "NE": 1,
+  "SC": 1,
+  "WY": 1,
+  "UT": 1
+ },
+ "events": [
+  {
+   "id": "1bb30578-a9f6-4d18-ad1b-7495826f493f",
+   "title": "Oh, Mary!",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "df2bccb0-37d2-4d41-9112-0be842b6d716",
+   "title": "Digger: The IMAX Experience",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "14501cc7-108a-465a-b165-a13d9f547939",
+   "title": "Southern Nights Comedy Tour, Landon Bryant, Mary Ryan Brown",
+   "city": "Cary",
+   "state": "NC",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "ef0a5472-2904-4273-8078-1f9fa229d9b3",
+   "title": "Crescent Comedy Workshop",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "0df63bde-8a0c-46e8-a515-bdfdc694f87e",
+   "title": "Crescent Comedy Chaos",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "93c69af7-2476-4d9b-947b-9beb4b381d5a",
+   "title": "9 to 5",
+   "city": "Middletown",
+   "state": "NY",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "8e706580-9335-4883-ae45-675e19b0bd32",
+   "title": "School Girls; Or, the African Mean Girls Play",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "751fe1f9-ee35-43fd-a267-72846522083b",
+   "title": "The Play That Goes Wrong",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "f53f9058-b0f4-4545-a528-73400e4a11f9",
+   "title": "Josh & Aaron Do Improv (Feat. Hayden Johnson)",
+   "city": "Brooklyn",
+   "state": "NY",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "11a4b719-3216-41e2-94d3-d3b7814a696b",
+   "title": "Josh & Aaron Do Improv (Feat. Mary Beth Barone)",
+   "city": "Brooklyn",
+   "state": "NY",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "75f1bb51-e5b5-40b0-88ab-2b906775b2ba",
+   "title": "Rich Little at Laugh Factory Comedy Club",
+   "city": "Las Vegas",
+   "state": "NV",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "455d81dc-137e-4093-960a-72af2385d61d",
+   "title": "Nurse John: Against Medical Advice Tour",
+   "city": "Peoria",
+   "state": "IL",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "1717042f-9ce9-4ee9-9d35-003d162e0064",
+   "title": "Here's John Bishop",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "e9721f20-d16c-4a98-85f2-ad474ba81118",
+   "title": "School Girls; Or, the African Mean Girls Play",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "4bec6ce6-fcd7-4e7b-a6a4-61c7fa3c43c7",
+   "title": "Comedy Gumbeaux",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "f93d98af-5fed-4ec7-ad71-527a4e29c055",
+   "title": "Colin Mochrie & Brad Sherwood",
+   "city": "Anderson",
+   "state": "IN",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "1f01d8b6-5218-4ec4-890f-9485cf29b875",
+   "title": "Nurse Blake: But Did You Die? Comedy Tour",
+   "city": "Charleston",
+   "state": "WV",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "4a6b4641-d5cc-4f6b-a1e1-6de71671b7ae",
+   "title": "9 to 5",
+   "city": "Middletown",
+   "state": "NY",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "c2d92dc7-460e-4e72-9358-14a551e2c003",
+   "title": "The Play That Goes Wrong",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "032b9f73-a32f-4b0e-ac35-4c681b9699e1",
+   "title": "Tim Dillon",
+   "city": "West Nyack",
+   "state": "NY",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "ff32fdab-6b5e-4249-8122-9b8dc3c2d90b",
+   "title": "Arnez J",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "cb67ab21-7531-4468-a7c4-e3108d1496f8",
+   "title": "Aziz\u00a0Ansari:\u00a0Hypothetical Tour",
+   "city": "Troy",
+   "state": "NY",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "fcfa7c91-a5b0-498a-8d1a-728affbb0358",
+   "title": "Brad Williams: The Tall Tales Tour",
+   "city": "Fort Wayne",
+   "state": "IN",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "f53ca0e4-1b09-4a8b-94c5-8492636a5c40",
+   "title": "Chris Porter",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "b2ea6561-716b-4059-88f4-c97445a30788",
+   "title": "Becky Robinson: The Beasts In Me Tour",
+   "city": "Des Moines",
+   "state": "IA",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "31cb644f-c756-49d7-ba7d-6105e8c24bba",
+   "title": "Borgata Comedy Club",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "e4b517b2-5a18-4176-bae5-77eb7e9c167a",
+   "title": "Gus Constantellis",
+   "city": "Brooklyn",
+   "state": "NY",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "0b1e6b30-94e8-42e5-836b-2d087ca663e0",
+   "title": "Digger: The IMAX Experience",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "032946d1-efae-4eb8-8e92-b02d3e9cdb1e",
+   "title": "\"Weird Al\" Yankovic: Bigger & Weirder 2026 Tour",
+   "city": "Fort Wayne",
+   "state": "IN",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "31a043f0-6a9f-4246-9428-48a042b4e531",
+   "title": "Francesca Fiorentini and Matt Lieb",
+   "city": "Brooklyn",
+   "state": "NY",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "4b811a10-c7c3-45fa-b4d0-5775ab620c8b",
+   "title": "Daniel Tosh: My First Farewell Tour",
+   "city": "Wilmington",
+   "state": "NC",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "b5d9669c-5929-46c9-9bbb-2b3799386bf0",
+   "title": "Oh, Mary!",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "f16dc296-0b9b-4307-92f0-cf65156bbf06",
+   "title": "JOSH THOMAS: JIGGLE, JIGGLE",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-15"
+  },
+  {
+   "id": "75dc0322-81cc-432c-8fab-ef4a40968287",
+   "title": "The Rick Burgess Show Presents the \"Are You Ready Live Tour\"",
+   "city": "Birmingham",
+   "state": "AL",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "4a8f3bb7-ff5a-4dd8-a217-8fd181c2b1f9",
+   "title": "The Late Night Comedy Show",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "584a3e6e-d89f-4214-8054-015262a98cca",
+   "title": "Greg Fitzsimmons",
+   "city": "Batavia",
+   "state": "IL",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "4942fb79-44bb-412e-864c-8f35832b1a67",
+   "title": "KATHLEEN MADIGAN: FLYING CATS & MARCHING ARMADILLOS TOUR",
+   "city": "Hampton Beach",
+   "state": "NH",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "eb5b81b2-bed3-4811-a6b0-360e44aadac6",
+   "title": "Who's Next? Comedy Showcase",
+   "city": "Brooklyn",
+   "state": "NY",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "5984ce7b-fa4d-4171-9ef9-a0a312844a0b",
+   "title": "Charlotte Checkers vs. Hartford Wolf Pack",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "71c1d70c-9d2e-4c18-876b-878101eca5b4",
+   "title": "Comedy Teabag: A Dirty Comedy Show presented by Twisted Tea",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "9599217b-2807-41ae-bbb3-e685b2433d93",
+   "title": "Arnez J",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "b0542727-eaa6-4d4e-aa20-c374ec518c07",
+   "title": "Friends! The Musical Parody (New York)",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "66fe6d85-363a-4b28-8fa3-d1861a3de542",
+   "title": "Steve Trevi\u00f1o",
+   "city": "Verona",
+   "state": "NY",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "c0d91677-5165-4e00-b387-91e177b616e7",
+   "title": "Jared Freid: The Table For One Tour",
+   "city": "Huntington",
+   "state": "NY",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "7e799432-0e5e-42a0-9982-144a816cc4ad",
+   "title": "JOSH THOMAS: JIGGLE, JIGGLE",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "74024279-e956-4da4-9b2a-b4177f475172",
+   "title": "Oh, Mary!",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "feafc984-cbd5-4128-92ba-8191fd1d30b9",
+   "title": "Fred Armisen: Comedy For Musicians But Everyone Is Welcome",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "24b00300-c618-4619-b0ee-7072b885b6bf",
+   "title": "KATHY GRIFFIN: New Face, New Tour",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "6e71b1a6-eed3-423b-9a7a-d3a08435910c",
+   "title": "Tim Dillon",
+   "city": "West Nyack",
+   "state": "NY",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "bf4a4906-be0c-4a46-993a-5989713b4d36",
+   "title": "The Play That Goes Wrong",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "ad93a45e-9c86-4b6a-9254-72dc34e9293d",
+   "title": "School Girls; Or, the African Mean Girls Play",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "f1d287cc-dc84-45ad-a37c-4bb4900cd4f7",
+   "title": "Jimmy Dore at the Williams Center",
+   "city": "Rutherford",
+   "state": "NJ",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "2b852c2e-f579-4b69-b8e2-75cae3a89b50",
+   "title": "Feast A Da Funny",
+   "city": "Skokie",
+   "state": "IL",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "1192e5ac-e92d-4b21-ba37-c75919bbf796",
+   "title": "Brad Williams: The Tall Tales Tour",
+   "city": "Chicago",
+   "state": "IL",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "ef4a666e-912c-4e9a-a418-fc04fe1e3e90",
+   "title": "CHELSEA HANDLER: THE HIGH AND MIGHTY TOUR",
+   "city": "Boise",
+   "state": "ID",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "6b13aed1-b453-44a4-961a-d91f7f6fc03a",
+   "title": "Mike Epps Live | Official Caesars Ticket + Hotel Packages",
+   "city": "Bettendorf",
+   "state": "IA",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "16f3ea6d-3b0b-45bd-81e0-33e2a62dfc6c",
+   "title": "Mike Epps Live",
+   "city": "Bettendorf",
+   "state": "IA",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "a61f854b-7710-42d8-8292-e7494f4a9c86",
+   "title": "Mike Feeney",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "07bf0424-40c3-4828-8b41-7fec0b517fb1",
+   "title": "An Evening of Alton Brown",
+   "city": "Anderson",
+   "state": "IN",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "66a5fe37-d6b0-4633-b916-c7899b0f95ab",
+   "title": "Golden Girls: The Laughs Continue",
+   "city": "Charles Town",
+   "state": "WV",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "ced8ab79-b8bb-4f1a-b68e-fc0d0a6d2c7e",
+   "title": "The Comedy Club Presents Dinner and Laughs with The Real John King and Joey Zsa Zsa",
+   "city": "Wheeling",
+   "state": "WV",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "54e2aabc-99f3-4364-8030-efc0b4b3aa24",
+   "title": "Atsuko Okatsuka: The Big Bowl Tour",
+   "city": "Durham",
+   "state": "NC",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "5e5af5ec-eeca-4d85-8009-688cb1d3d32f",
+   "title": "Daniel Tosh: My First Farewell Tour",
+   "city": "Asheville",
+   "state": "NC",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "c22d4e5a-fcb0-4a86-ad7c-94eeeb95abe3",
+   "title": "Daniel Tosh: My First Farewell Tour",
+   "city": "Fayetteville",
+   "state": "NC",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "62faa24c-77d6-4f9d-aff5-508ccfe311a2",
+   "title": "David Nihill: Taking Tangents Tour",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "b5e0b847-4b3f-4b85-8145-a703e14e2a5f",
+   "title": "Jo Koy: Koy Meets World Tour",
+   "city": "Baton Rouge",
+   "state": "LA",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "220a6c05-055a-4890-9eed-8d0fdf5e6ad2",
+   "title": "Chris Porter",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "f56a5125-5843-4130-8a27-619cfd30d14b",
+   "title": "JOSH JOHNSON'S COMEDY BAND CAMP",
+   "city": "Madison",
+   "state": "WI",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "ba29e7b9-5d3c-45d1-aa29-2f2eb653471c",
+   "title": "\"Weird Al\" Yankovic: Bigger & Weirder 2026 Tour",
+   "city": "Green Bay",
+   "state": "WI",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "cff9eac0-f164-44a9-9779-6848c5646e17",
+   "title": "Amber Wallin presented by Laugh Life Comedy",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "780fcd55-c15f-4623-8f22-8449bf3e7066",
+   "title": "Brent Morin",
+   "city": "Schaumburg",
+   "state": "IL",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "89ff0490-7c4d-4444-9313-0f0e96b43817",
+   "title": "Work The Crowd: A Interactive Comedy Show Hosted By Ryan Rogers and Marcus Bond",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "cd18dd44-886e-49c2-88fc-f56c12bcac44",
+   "title": "Singfeld! A Musical About Nothing!",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "f54a8b2f-dfea-4889-ad8c-ede67d5dcd0e",
+   "title": "Greg Fitzsimmons",
+   "city": "Batavia",
+   "state": "IL",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "6ac0ddfb-3c6b-46ec-a58e-dde5b5fa5df0",
+   "title": "Sweetest Day Comedy Jam",
+   "city": "Chicago",
+   "state": "IL",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "11db5630-244b-4147-8540-3792ebb6d989",
+   "title": "Brent Morin",
+   "city": "Schaumburg",
+   "state": "IL",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "a18fb050-11c7-49af-9a7b-bb549f39077d",
+   "title": "Greg Gutfeld (MOVED TO PRAIRIE HOME ALLIANCE THEATER)",
+   "city": "Peoria",
+   "state": "IL",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "e49bd93c-3459-4dd2-a60d-aa24197987c0",
+   "title": "Ben Schwartz & Friends",
+   "city": "Chicago",
+   "state": "IL",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "b1c4dcd0-3101-4ecd-8988-52c52346984e",
+   "title": "The Play That Goes Wrong",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "d7828c59-0a39-4283-89a5-e030e502ebc7",
+   "title": "Magicspace Entertainment Presents An Evening Of Alton Brown",
+   "city": "Waukegan",
+   "state": "IL",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "71c5ea85-9639-4346-801b-f514047962dc",
+   "title": "Charlotte Checkers vs. Hartford Wolf Pack",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "6181bbee-848c-45a0-81fc-88ee9a619ede",
+   "title": "School Girls; Or, the African Mean Girls Play",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "4af6daa0-798d-4e5d-9d67-fe5417b65512",
+   "title": "Late Nite Catechism",
+   "city": "Utica",
+   "state": "NY",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "afea73c4-c8b1-4678-8f07-50a35409ee98",
+   "title": "Lewis Black",
+   "city": "Pocola",
+   "state": "OK",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "d0a1f16e-5ee2-48db-b59d-c92e4ab55da1",
+   "title": "Tim Dillon",
+   "city": "West Nyack",
+   "state": "NY",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "228fb54b-61df-4c12-a49b-128fda2708fc",
+   "title": "Jo Koy: Koy Meets World Tour",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "4c663ee2-d7ef-445d-a4cf-1683ebbb8a1c",
+   "title": "Oh, Mary!",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "52baf12d-3d1d-4eb2-a483-bdf2cc45b58d",
+   "title": "Ravi Gupta: Kal Ki Chinta Nahi Karta",
+   "city": "Queens",
+   "state": "NY",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "2f582626-0547-4e4d-a6cf-c9e0c637aec3",
+   "title": "JOSH THOMAS: JIGGLE, JIGGLE",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "79fe92d3-e435-4c34-89b9-478bd63e2955",
+   "title": "Funny Women of a Certain Age",
+   "city": "Middletown",
+   "state": "NY",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "4cc7d6ee-6d5c-430d-9b09-bb873e9a9fac",
+   "title": "Chris Porter",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "e03d9487-b772-492b-b1d3-adc58d256118",
+   "title": "KATHY GRIFFIN: New Face, New Tour",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "d07dfcc9-11a9-4347-86c6-03915f76485b",
+   "title": "Mike Feeney",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "5ce886af-9702-4f8f-bbb6-0874102a2f1e",
+   "title": "#IMOMSOHARD: The Crashing Out Tour",
+   "city": "Anderson",
+   "state": "IN",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "6f9db874-d0c9-4a75-a9de-7cfe0a79e4a8",
+   "title": "Chonda Pierce: GIRLS NIGHT! Pray. Laugh. Repeat.",
+   "city": "Ashland",
+   "state": "KY",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "113b665f-3554-4fb3-857f-4ea271f36e84",
+   "title": "Felipe Esparza- Laughter Will Save Us",
+   "city": "Albuquerque",
+   "state": "NM",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "b9657155-a05b-4b69-be26-8fee6d862dc1",
+   "title": "Bobby Collins LIVE",
+   "city": "Princeton",
+   "state": "NJ",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "fa5774eb-23c2-4c6a-a4b3-bab3124fc2ac",
+   "title": "Arnez J",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "fdc3d0fa-71bb-4392-94fe-9ace8e831c22",
+   "title": "\"Weird Al\" Yankovic: Bigger & Weirder 2026 Tour",
+   "city": "Milwaukee",
+   "state": "WI",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "699289ed-5802-4dc2-a038-0d7229860118",
+   "title": "Mario Adrion",
+   "city": "Raleigh",
+   "state": "NC",
+   "date": "2026-10-17"
+  },
+  {
+   "id": "4fcc3e29-60de-4283-a838-a5b2e395ea50",
+   "title": "Brad Williams: The Tall Tales Tour",
+   "city": "Ames",
+   "state": "IA",
+   "date": "2026-10-18"
+  },
+  {
+   "id": "28b6c6f7-2126-44a6-99f4-5ddbe68b6a75",
+   "title": "Alton Brown",
+   "city": "Joliet",
+   "state": "IL",
+   "date": "2026-10-18"
+  },
+  {
+   "id": "ad799701-281d-47ca-9521-f0f685f3aecd",
+   "title": "Fred Armisen: Comedy For Musicians But Everyone Is Welcome",
+   "city": "Evanston",
+   "state": "IL",
+   "date": "2026-10-18"
+  },
+  {
+   "id": "16e180ff-5cc3-4353-a0ce-4abc00a47f56",
+   "title": "Arnez J",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-18"
+  },
+  {
+   "id": "a95f8ee2-629a-42aa-95c5-e4bfe23997e4",
+   "title": "Gabriel Iglesias: The 1976 Tour",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-10-18"
+  },
+  {
+   "id": "a4c75ef3-c91e-4355-85b0-f21f152bbf54",
+   "title": "Katt Williams On Book Tour!",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-18"
+  },
+  {
+   "id": "855ba9bd-b27e-4ae5-88bc-e86e523597b9",
+   "title": "FOOS GONE WILD: The FOOS GONE WILD Tour 2026",
+   "city": "Chicago",
+   "state": "IL",
+   "date": "2026-10-18"
+  },
+  {
+   "id": "fd16eb05-7c11-477d-b294-4b9c9f04d4dd",
+   "title": "Dan and Phil: Hard Launch World Tour",
+   "city": "Englewood",
+   "state": "NJ",
+   "date": "2026-10-18"
+  },
+  {
+   "id": "37e43b89-9198-420e-b799-d87a976a3c19",
+   "title": "Lucas Zelnick",
+   "city": "Portland",
+   "state": "ME",
+   "date": "2026-10-18"
+  },
+  {
+   "id": "ed7db82b-ab43-421d-8b24-0f780bdd38d6",
+   "title": "Trish Suhr",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-10-18"
+  },
+  {
+   "id": "8006c01a-4eb8-4e64-b42f-0a7b142f84a9",
+   "title": "MICHAEL\u00a0BLAUSTEIN: THE TASTE ME TOUR: THE FINAL LEG",
+   "city": "Raleigh",
+   "state": "NC",
+   "date": "2026-10-18"
+  },
+  {
+   "id": "d5162b97-f6de-4a42-8a05-836657fcf29c",
+   "title": "Jo Koy: Koy Meets World Tour",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-10-18"
+  },
+  {
+   "id": "464a5356-c861-4219-9521-2f6538dba682",
+   "title": "Nurse Blake: But Did You Die? Comedy Tour",
+   "city": "Raleigh",
+   "state": "NC",
+   "date": "2026-10-19"
+  },
+  {
+   "id": "bfcab0a6-0c62-4c15-960c-9715778acdb2",
+   "title": "Local Comedy Showcase",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-10-19"
+  },
+  {
+   "id": "9d625d92-0fbb-4e43-9b27-301021aba93e",
+   "title": "Clue (Touring)",
+   "city": "Auburn University",
+   "state": "AL",
+   "date": "2026-10-19"
+  },
+  {
+   "id": "06c415f8-e2a6-444c-b64b-bdf4b8ea06e7",
+   "title": "Comedy Beast",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-10-20"
+  },
+  {
+   "id": "45c3ea21-fa2c-4803-bec0-ec3484a3a31b",
+   "title": "Soo Short Film Fest",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-10-20"
+  },
+  {
+   "id": "2ba27a91-978a-4c4e-8c89-e35b88883d16",
+   "title": "Aaron Branch - Ages 18+",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2026-10-20"
+  },
+  {
+   "id": "075045f8-efd5-458b-a0ca-9710470751a3",
+   "title": "Dan and Phil: Hard Launch World Tour",
+   "city": "Durham",
+   "state": "NC",
+   "date": "2026-10-20"
+  },
+  {
+   "id": "c2de1300-7491-4440-8965-4132a87dfb12",
+   "title": "Clue (Touring)",
+   "city": "Auburn University",
+   "state": "AL",
+   "date": "2026-10-20"
+  },
+  {
+   "id": "feb4c39a-d37f-4b2c-9c0f-bd927c7ed88e",
+   "title": "Jeff Dunham: Inappropriate Contact",
+   "city": "Rockford",
+   "state": "IL",
+   "date": "2026-10-21"
+  },
+  {
+   "id": "0923df78-a6ae-4631-962d-6275a6f8f900",
+   "title": "Jordan Jensen",
+   "city": "Charleston",
+   "state": "WV",
+   "date": "2026-10-21"
+  },
+  {
+   "id": "9fcdd010-2473-4281-8c7d-09c25d354118",
+   "title": "Casey Rocket",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2026-10-21"
+  },
+  {
+   "id": "5d208798-8235-4cbe-ae5a-a42c76dd0ffa",
+   "title": "Crescent Comedy Chaos",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-10-21"
+  },
+  {
+   "id": "04af735c-cda3-4003-b8d4-c723f61b5c0f",
+   "title": "Clue (Touring)",
+   "city": "Auburn University",
+   "state": "AL",
+   "date": "2026-10-21"
+  },
+  {
+   "id": "a0487885-c52d-4684-9b9a-b02a3fb3ecb1",
+   "title": "Crescent Comedy Workshop",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-10-21"
+  },
+  {
+   "id": "6b8fb4e5-c901-4a8b-9c4d-e6f9282ec139",
+   "title": "Adam Ray: WHO IS ME Tour",
+   "city": "Madison",
+   "state": "WI",
+   "date": "2026-10-21"
+  },
+  {
+   "id": "7dbc4850-c38c-4f53-9599-2fa451bcb706",
+   "title": "JOSH THOMAS: JIGGLE, JIGGLE",
+   "city": "Raleigh",
+   "state": "NC",
+   "date": "2026-10-21"
+  },
+  {
+   "id": "636435df-ab2a-4577-856a-9b0ed93a1326",
+   "title": "Dave Chappelle Karmageddon",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-10-21"
+  },
+  {
+   "id": "3adcff5d-f370-45de-99b2-ac573410d182",
+   "title": "Nurse John: Against Medical Advice Tour",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-10-22"
+  },
+  {
+   "id": "e758ceb5-3689-45c9-88bc-99c62b3bc436",
+   "title": "Matt Mathews: Not What I Ordered World Tour",
+   "city": "Peoria",
+   "state": "IL",
+   "date": "2026-10-22"
+  },
+  {
+   "id": "2c6edf7b-3e4a-4ee5-be1b-45dc370e1ba8",
+   "title": "Maddy Smith",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-22"
+  },
+  {
+   "id": "a02244b9-6c9a-4909-8c12-cab07c9dbf71",
+   "title": "Comedy Gumbeaux",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-10-22"
+  },
+  {
+   "id": "3b0b7e38-90e0-4421-b188-12c5e0195f00",
+   "title": "That One Mailman",
+   "city": "Raleigh",
+   "state": "NC",
+   "date": "2026-10-22"
+  },
+  {
+   "id": "fb99c1a2-7c6b-4600-840d-bcdc9fb30203",
+   "title": "Borgata Comedy Club",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-10-22"
+  },
+  {
+   "id": "58f1309b-9c11-4a49-be73-576c43931bd0",
+   "title": "Jeff Dunham Inappropriate Contact",
+   "city": "Waukegan",
+   "state": "IL",
+   "date": "2026-10-22"
+  },
+  {
+   "id": "a095c0fb-2ff6-44c5-ab07-0e0048764785",
+   "title": "Darren Fleet",
+   "city": "Newark",
+   "state": "NJ",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "fb1f4b91-525c-43b1-8471-ce66baf39aa1",
+   "title": "Leanne Morgan Official BJCC Ticket+ Hotel Packages",
+   "city": "Birmingham",
+   "state": "AL",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "ea382eba-105a-4d59-81f8-2c2579fbd88d",
+   "title": "Nanny - Maw (Comedy Show)",
+   "city": "Denham Springs",
+   "state": "LA",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "04e9b969-db93-4675-a974-80ae7a904534",
+   "title": "Harland Williams",
+   "city": "Batavia",
+   "state": "IL",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "3e873533-a329-4584-86e1-aa0dfd31f377",
+   "title": "Charlotte Checkers vs. Springfield Thunderbirds",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "1c36736b-c657-4861-98e0-f427f06f07b4",
+   "title": "Ian Bagg",
+   "city": "Schaumburg",
+   "state": "IL",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "9842e948-94bb-47d4-b003-14ca10494028",
+   "title": "Hocus Pocus",
+   "city": "Effingham",
+   "state": "IL",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "e745492c-bcc7-4772-abed-9fa0f329deec",
+   "title": "Bangor Comedy Festival- Festival Passes",
+   "city": "Bangor",
+   "state": "ME",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "568f3e4d-1d0d-4067-85e1-f80ee0d97a5d",
+   "title": "Brett Goldstein: Sex, Death & Small Talk",
+   "city": "Madison",
+   "state": "WI",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "f84738f3-a3ab-4cbd-81c9-cd6fd3a84bd5",
+   "title": "D.L. Hughley",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "93c05f6c-ee2b-4cf1-9043-8bcf0a3e0838",
+   "title": "Nateland Live: A Good Clean Comedy Show",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "c053603c-9c60-44d7-a4ef-1efa0fd40f73",
+   "title": "Stacy Kendro with NJ 101.5's Jill Myra",
+   "city": "Princeton",
+   "state": "NJ",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "75a9aadf-f15b-4e78-a161-930131375168",
+   "title": "Leslie Jones: I'm Hot Tour",
+   "city": "Charles Town",
+   "state": "WV",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "de47ad6c-8a36-47c9-b948-c1770e5eae8e",
+   "title": "Robby Hoffman: Live On Tour",
+   "city": "Durham",
+   "state": "NC",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "67cf4526-ab25-4e40-8e79-80e1c1abf80f",
+   "title": "Nikki Glaser: The Stunning Tour",
+   "city": "Greensboro",
+   "state": "NC",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "fedc94ff-f667-4fed-8ffc-0a0989b6f1af",
+   "title": "Robby Hoffman",
+   "city": "Durham",
+   "state": "NC",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "d9130241-8482-4e3e-8258-784119a5ccfb",
+   "title": "Spells & Slashers Double Feature",
+   "city": "Fort Wayne",
+   "state": "IN",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "2a3ad47c-38ca-420a-bc55-253d7b8ba074",
+   "title": "Matt Mathews:  Not What I Ordered World Tour",
+   "city": "Hammond",
+   "state": "IN",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "476c9d7c-bceb-446f-9b4d-2aad4182843f",
+   "title": "Matt Mathews | Official Caesars Ticket + Hotel Packages",
+   "city": "Hammond",
+   "state": "IN",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "64c32335-5c95-4f87-8d07-0e410bc17f75",
+   "title": "Signed To God: Sidhu Moosewala Hologram Experience",
+   "city": "Belmont Park",
+   "state": "NY",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "b91b6600-0638-4d83-b63f-e0e3d427ce10",
+   "title": "Leanne Morgan: THE TIME OF OUR LIVES TOUR",
+   "city": "Birmingham",
+   "state": "AL",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "b640bc23-e23f-410c-a1d0-bc2a90cb004d",
+   "title": "John Mulaney: Mister Whatever",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "e698383f-2bc6-4c05-b1cd-d1d753ee01d6",
+   "title": "Jerry Seinfeld",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "f989931e-93cf-4aad-9925-0aa7f4595775",
+   "title": "Atsuko Okatsuka: The Big Bowl Tour",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "2bb6ce42-7e63-45f8-8327-103ebb441254",
+   "title": "Maddy Smith",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "6aa36f23-4db6-4800-b7f0-9c2a12149f01",
+   "title": "Adam Ray: WHO IS ME Tour",
+   "city": "Chicago",
+   "state": "IL",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "68a843fc-5194-4102-9eff-64dbda242f7e",
+   "title": "Vinny Guadagnino",
+   "city": "Chicago",
+   "state": "IL",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "ad168039-2208-403b-b6af-fb6992249d13",
+   "title": "Montgomery Comedy Festival",
+   "city": "Montgomery",
+   "state": "AL",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "641a0b9f-a237-4caa-a5b9-6d4de21e04ba",
+   "title": "Laughs For Vets: Veterans Doing Comedy For Veterans",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "fe18e39d-f48d-4b91-8eae-80248d98483b",
+   "title": "Pat McGann",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "8f7002d1-c8cb-4ac4-a17e-f671ce416c5f",
+   "title": "Hocus Pocus",
+   "city": "Birmingham",
+   "state": "AL",
+   "date": "2026-10-23"
+  },
+  {
+   "id": "d5f72918-6ef7-4f1c-88dd-b1f9b5ff0789",
+   "title": "Pat McGann",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "e77e69a8-4554-4d95-8b9a-fe5909392cfa",
+   "title": "Brett Goldstein: Sex, Death & Small Talk",
+   "city": "DeKalb",
+   "state": "IL",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "47a3b14f-987a-4900-bf4c-b4566954e4b1",
+   "title": "Hannibal Buress -- Comedy Special Taping",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "8dbafe67-7b87-4998-8aab-56a9b9eb6a57",
+   "title": "Atsuko Okatsuka: The Big Bowl Tour",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "8ffc569d-c576-45fb-8d5f-fdd1dbcf2d85",
+   "title": "Maria Bamford",
+   "city": "Skokie",
+   "state": "IL",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "536701b6-175d-4545-9891-94e44b1b79f4",
+   "title": "Maddy Smith",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "00447114-b1ef-4596-9ba1-a13ceb530fae",
+   "title": "Brad Williams: The Tall Tales Tour",
+   "city": "Durham",
+   "state": "NC",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "d973e02b-2eb0-4053-95dd-5eeeffdb69f7",
+   "title": "Whose Live Anyway?",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "73a5f4f5-b332-46ca-b132-28b1b38664ad",
+   "title": "Bangor Comedy Festival- Jimmy Cash",
+   "city": "Bangor",
+   "state": "ME",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "88e0dcad-10d7-4e7a-a7a1-a6b558f55eed",
+   "title": "Bangor Comedy Festival- Festival Passes",
+   "city": "Bangor",
+   "state": "ME",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "0be78881-acb2-4fc2-871b-c98293b765a1",
+   "title": "Jerry Seinfeld",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "3fd9f230-04ed-462d-aa24-397613674c38",
+   "title": "Chris Covert: Drooling Pianos",
+   "city": "Red Bank",
+   "state": "NJ",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "f312bc22-26ac-4c0b-b300-a145345af0c5",
+   "title": "Brett Goldstein",
+   "city": "Dekalb",
+   "state": "IL",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "e8f8b8fe-6ce2-4e54-82ed-3a53e6cb7911",
+   "title": "Ali Siddiq: The Custom Fit Tour",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "c01b3a3e-cf86-415a-a8a8-8a25a23d610a",
+   "title": "D.L. Hughley",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "97094bf9-0d18-4e4b-a6ce-370d2fbae676",
+   "title": "Ian Bagg",
+   "city": "Schaumburg",
+   "state": "IL",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "3cd7ee06-9ba4-4faa-99b0-552445c0231d",
+   "title": "MOJO BROOKZZ: OUTTA POCKET TOUR",
+   "city": "Greensboro",
+   "state": "NC",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "6c7d6494-2b72-4253-a89f-36da29adcbdc",
+   "title": "Arkansas State Red Wolves Football vs. Georgia State Panthers Football",
+   "city": "Jonesboro",
+   "state": "AR",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "73ffdd98-f7aa-4ec4-9933-1a8b88383fdf",
+   "title": "Vinny Guadagnino",
+   "city": "Chicago",
+   "state": "IL",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "4960996b-b3b9-46a6-a7df-771060cd3605",
+   "title": "Kathleen Madigan: Flying Cats & Marching Armadillos 2026 Tour",
+   "city": "Charles Town",
+   "state": "WV",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "d4a1abb9-4751-4f9a-8072-86a15e0af80f",
+   "title": "Harland Williams",
+   "city": "Batavia",
+   "state": "IL",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "cc7394e7-8104-41fa-a4b7-4e257530bd5d",
+   "title": "Dave Chappelle Karmageddon",
+   "city": "Louisville",
+   "state": "KY",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "ba7ea233-d198-4210-ac3a-b3e31ab966da",
+   "title": "Clue Live On Stage!",
+   "city": "Baton Rouge",
+   "state": "LA",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "21c57bef-5964-4090-9563-7973d36e1ab2",
+   "title": "Whose Live Anyway?\u00a0| Official Caesars Ticket + Hotel Packages",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "9d7f79d9-8e12-41eb-bbfb-26841b75bde9",
+   "title": "Jared Freid Live! Special Taping",
+   "city": "Newark",
+   "state": "NJ",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "4cb56078-a656-48f8-9a99-4efd3f12edea",
+   "title": "Charlotte Checkers vs. Springfield Thunderbirds",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "3ade5112-9be2-4b8e-ad9c-6cdf1b76023b",
+   "title": "Grief Sucks: A One Man Show By KevOnStage",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-10-24"
+  },
+  {
+   "id": "d0463a9a-dfec-48b1-89af-a0e132b79cdb",
+   "title": "Jordan Jensen",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-25"
+  },
+  {
+   "id": "34a871b8-ea72-41e4-9706-8a73a44acf69",
+   "title": "Jaboukie Young-White",
+   "city": "Asheville",
+   "state": "NC",
+   "date": "2026-10-25"
+  },
+  {
+   "id": "bc86380e-7b63-4f30-bf29-8e674db28930",
+   "title": "Brett Goldstein: Sex, Death & Small Talk",
+   "city": "Chicago",
+   "state": "IL",
+   "date": "2026-10-25"
+  },
+  {
+   "id": "3c754376-f4e0-47e8-97a4-d303784dc75f",
+   "title": "Pat McGann",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-10-25"
+  },
+  {
+   "id": "9cea23f4-09bd-4df4-a721-05d8f7b31863",
+   "title": "Ian Bagg",
+   "city": "Schaumburg",
+   "state": "IL",
+   "date": "2026-10-25"
+  },
+  {
+   "id": "a2cc1baa-8e9e-482e-8123-e792ec172211",
+   "title": "Lions on Jeeps",
+   "city": "Skokie",
+   "state": "IL",
+   "date": "2026-10-25"
+  },
+  {
+   "id": "da8bc9f9-4133-449a-a8ea-77cab781d2f7",
+   "title": "A. R. Rahman",
+   "city": "Austin",
+   "state": "TX",
+   "date": "2026-10-27"
+  },
+  {
+   "id": "0435eab2-82fc-41de-9283-3f2b83f42172",
+   "title": "Comedy Beast",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-10-27"
+  },
+  {
+   "id": "f2a712e2-cceb-4e31-b817-282d8d4c9a3d",
+   "title": "Crescent Comedy Workshop",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-10-28"
+  },
+  {
+   "id": "998ba294-44b9-41d9-9881-bf40c95656bb",
+   "title": "William Shatner Live On-stage with Star Trek II: The Wrath of Khan",
+   "city": "Madison",
+   "state": "WI",
+   "date": "2026-10-28"
+  },
+  {
+   "id": "e1a68ea4-f046-481f-b5de-1e2114e97f81",
+   "title": "Joanne McNally - Pinotphile",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-10-28"
+  },
+  {
+   "id": "337df5ae-6b27-439a-a803-8c084f720e17",
+   "title": "Crescent Comedy Chaos",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-10-28"
+  },
+  {
+   "id": "578605e6-8919-4c8c-86f3-0af13db801ed",
+   "title": "Stoned vs. Drunk vs. Sober: A Standup Comedy Competition",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-10-28"
+  },
+  {
+   "id": "5d011973-5c21-4297-86e1-a9d124bb747f",
+   "title": "Nurse Blake: But Did You Die? Comedy Tour",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-10-29"
+  },
+  {
+   "id": "2bb23160-0cf9-4105-a0e1-f365ecf027d9",
+   "title": "A.R. Rahman Symphonic Experience",
+   "city": "Grand Prairie",
+   "state": "TX",
+   "date": "2026-10-29"
+  },
+  {
+   "id": "d0b4a16a-e98f-46c0-b3ae-defa86746cf7",
+   "title": "Daniel Sloss: BITTER  (Brand New Tour!)",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-10-29"
+  },
+  {
+   "id": "cd624bb9-3df9-4c24-ae9c-74e7b104a6cd",
+   "title": "Comedy Gumbeaux",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-10-29"
+  },
+  {
+   "id": "c92b96d0-e420-499d-b57d-211fb00f99c5",
+   "title": "Chicago Comedy Club",
+   "city": "Chicago",
+   "state": "IL",
+   "date": "2026-10-29"
+  },
+  {
+   "id": "a94accdb-4e89-4601-aa20-b960bbfe9679",
+   "title": "William Shatner Live On-stage with Star Trek II: The Wrath of Khan",
+   "city": "Joliet",
+   "state": "IL",
+   "date": "2026-10-29"
+  },
+  {
+   "id": "2f24c6bf-0347-41c1-b47c-56aaf0790767",
+   "title": "Bad Momz of Comedy",
+   "city": "Hobart",
+   "state": "IN",
+   "date": "2026-10-29"
+  },
+  {
+   "id": "963dddf8-0b66-4d31-bad5-c32f8fb44b11",
+   "title": "Gavin Adcock: The Day I Hang It Up Tour 2026",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-10-29"
+  },
+  {
+   "id": "fa7d373e-315b-47ab-8094-0b48af5be3ad",
+   "title": "Borgata Comedy Club",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-10-29"
+  },
+  {
+   "id": "0cdde0e9-c6a7-4432-959f-0981d0d92278",
+   "title": "Jon Bramnick NJ's Funniest Lawyer with Vinnie Brand",
+   "city": "Newark",
+   "state": "NJ",
+   "date": "2026-10-30"
+  },
+  {
+   "id": "9189168d-de99-481d-9a5b-a0a8e46333d9",
+   "title": "Lynne Koplitz",
+   "city": "Cary",
+   "state": "NC",
+   "date": "2026-10-30"
+  },
+  {
+   "id": "103a934d-da2e-44e7-9965-0cb95d563792",
+   "title": "Aries Spears",
+   "city": "Waukee",
+   "state": "IA",
+   "date": "2026-10-30"
+  },
+  {
+   "id": "2963ddcd-ac10-4758-9ca0-4e3c51f24b4f",
+   "title": "Amir K",
+   "city": "Schaumburg",
+   "state": "IL",
+   "date": "2026-10-30"
+  },
+  {
+   "id": "7a7827c2-51b2-45b2-afd2-0452cf7a7bd9",
+   "title": "William Shatner Live On-stage with Star Trek II: The Wrath of Khan",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-10-30"
+  },
+  {
+   "id": "5df655d2-db39-4602-96a2-edc8f10a6070",
+   "title": "Rocky Horror Live",
+   "city": "East Rutherford",
+   "state": "NJ",
+   "date": "2026-10-30"
+  },
+  {
+   "id": "8843e2ae-d46b-4762-b496-b5cedad4be54",
+   "title": "Motionless In White - The Sweat And Blood Tour",
+   "city": "Worcester",
+   "state": "MA",
+   "date": "2026-10-30"
+  },
+  {
+   "id": "91bf1636-75fb-4b8c-8540-d12ae23c40a7",
+   "title": "Don Lemon & DL Hughley: DL + DL 'Anything Goes'",
+   "city": "Chicago",
+   "state": "IL",
+   "date": "2026-10-30"
+  },
+  {
+   "id": "b728bcee-4526-4328-a483-adf26fb76702",
+   "title": "Lucy Darling: Halloween Spooktacular",
+   "city": "Greensboro",
+   "state": "NC",
+   "date": "2026-10-31"
+  },
+  {
+   "id": "e629ec8b-ff9a-4862-9243-f7a131d473af",
+   "title": "Lynne Koplitz",
+   "city": "Cary",
+   "state": "NC",
+   "date": "2026-10-31"
+  },
+  {
+   "id": "0c4256d8-89bf-4b6d-82ac-11e77fec22c6",
+   "title": "Motionless In White: The Sweat and Blood Tour",
+   "city": "Philadelphia",
+   "state": "PA",
+   "date": "2026-10-31"
+  },
+  {
+   "id": "407a3697-9b3b-47d1-bb33-67f968db22cf",
+   "title": "William Shatner Live On-stage with Star Trek II: The Wrath of Khan",
+   "city": "Louisville",
+   "state": "KY",
+   "date": "2026-10-31"
+  },
+  {
+   "id": "f9317417-c30a-4831-885c-b8e3f436b585",
+   "title": "Amir K",
+   "city": "Schaumburg",
+   "state": "IL",
+   "date": "2026-10-31"
+  },
+  {
+   "id": "8f6dc17d-eae6-496c-b7b0-51e3fb756e44",
+   "title": "James Tom Goes on a Mini-Tour, Casual Style",
+   "city": "Chicago",
+   "state": "IL",
+   "date": "2026-11-01"
+  },
+  {
+   "id": "3374eb0f-a647-44f5-9796-6150f3e3ff76",
+   "title": "Sunday Funniez Comedy Showcase",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-11-01"
+  },
+  {
+   "id": "22dd0fc2-7cda-4758-8e19-e924ca77d35e",
+   "title": "Motionless In White: The Sweat and Blood Tour",
+   "city": "Raleigh",
+   "state": "NC",
+   "date": "2026-11-03"
+  },
+  {
+   "id": "df0a264e-d72e-4c93-8c1b-66a533dbd61c",
+   "title": "Comedy Beast",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-03"
+  },
+  {
+   "id": "1e41c680-9f90-4a82-8652-8047282b451a",
+   "title": "A.R. Rahman: The Symphonic Experience",
+   "city": "Newark",
+   "state": "NJ",
+   "date": "2026-11-03"
+  },
+  {
+   "id": "5c47ac07-0e94-4202-a692-93cd046d2580",
+   "title": "Randy Feltface: Gimmick",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-11-04"
+  },
+  {
+   "id": "46225029-c87c-49a1-91c3-fd7f2c73f904",
+   "title": "A.R. Rahman: The Symphonic Experience",
+   "city": "Newark",
+   "state": "NJ",
+   "date": "2026-11-04"
+  },
+  {
+   "id": "6309d73f-3938-49a9-a4f4-e305de445728",
+   "title": "Doctors of Comedy",
+   "city": "Des Moines",
+   "state": "IA",
+   "date": "2026-11-04"
+  },
+  {
+   "id": "79919006-4a5f-4924-a14d-c32c064e3135",
+   "title": "Motionless In White: The Sweat and Blood Tour",
+   "city": "Port Wentworth",
+   "state": "GA",
+   "date": "2026-11-04"
+  },
+  {
+   "id": "04c9a527-6630-4417-bd3f-25718b309f35",
+   "title": "Golden Girls: The Laughs Continue",
+   "city": "Ashland",
+   "state": "KY",
+   "date": "2026-11-04"
+  },
+  {
+   "id": "294adfed-7f2e-4c29-a680-fa3dee5a93fa",
+   "title": "Melissa Villasenor",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-11-05"
+  },
+  {
+   "id": "c979e486-51ab-4e95-bfc7-c4fed2f86ab6",
+   "title": "Rodney Carrington",
+   "city": "Waukee",
+   "state": "IA",
+   "date": "2026-11-05"
+  },
+  {
+   "id": "f8df368c-ffe7-4950-bb9e-fe05eac884e1",
+   "title": "Joe List",
+   "city": "Raleigh",
+   "state": "NC",
+   "date": "2026-11-05"
+  },
+  {
+   "id": "b2882115-1c33-4095-aabc-b14bb3347e43",
+   "title": "Liza Treyger",
+   "city": "Cary",
+   "state": "NC",
+   "date": "2026-11-05"
+  },
+  {
+   "id": "aab51e32-3cd8-421a-af60-5f5d31b88c85",
+   "title": "Motionless In White: The Sweat and Blood Tour",
+   "city": "Orlando",
+   "state": "FL",
+   "date": "2026-11-05"
+  },
+  {
+   "id": "f452bb5a-4259-4707-aed8-704577f9dc82",
+   "title": "Marc Maron: Yammering into the Void Tour",
+   "city": "Portland",
+   "state": "ME",
+   "date": "2026-11-05"
+  },
+  {
+   "id": "31c9c4fd-070e-493b-90a6-af613bb67c27",
+   "title": "John Mulaney: Mister Whatever",
+   "city": "Bangor",
+   "state": "ME",
+   "date": "2026-11-05"
+  },
+  {
+   "id": "59062b83-86cc-420b-abce-baeb99f78d94",
+   "title": "Andrew Stanley",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-11-05"
+  },
+  {
+   "id": "c723ff63-e8ee-40f7-b830-95abf19bd502",
+   "title": "Golden Girls: The Laughs Continue",
+   "city": "Morgantown",
+   "state": "WV",
+   "date": "2026-11-05"
+  },
+  {
+   "id": "9ecabb8d-018a-4b8f-b6fa-8df5a5bb211a",
+   "title": "Anthony Jeselnik: Wrath of Man",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-05"
+  },
+  {
+   "id": "07a12da9-a01e-4e80-9e54-2299bf33fdcc",
+   "title": "Comedy Gumbeaux",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-05"
+  },
+  {
+   "id": "17547116-2fef-4416-8b4f-c3c03ecea9bf",
+   "title": "Brian Regan",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "1c1050a5-2b47-4ca6-8ec9-9c3d203a75b1",
+   "title": "Original Last Comic Standing Winner DAT PHAN",
+   "city": "Princeton",
+   "state": "NJ",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "08b1b95a-80eb-4916-a4bb-dd158bbd1496",
+   "title": "Mike Epps",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "c19eb0d2-1756-4299-b759-ba7f904686a1",
+   "title": "Melissa Villasenor",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "75d13396-2211-483a-9787-92a442303d6f",
+   "title": "Atlantic City Comedy",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "e190933d-4f28-4a80-96e8-6e7dc5ffa25d",
+   "title": "An Evening with Jon Stewart",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "bb1f8fdd-2cef-468a-aad3-bf7da9d9ee6c",
+   "title": "Bored Teachers \"Is It Friday Yet?!\" Comedy Tour",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "0a57d640-f585-4945-bc26-7e28b5aec836",
+   "title": "Bored Teachers | Official Caesars Ticket + Hotel Packages",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "ea733b41-4cee-4362-b395-2407671623d8",
+   "title": "Whitney Cummings: Big Baby Tour",
+   "city": "Charleston",
+   "state": "WV",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "e63a9e10-bed2-4462-9fe2-b3e015e8f947",
+   "title": "Maria Bamford",
+   "city": "Santa Fe",
+   "state": "NM",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "15ed1e5e-fd39-4cb4-8ffa-7a13f05586de",
+   "title": "Liza Treyger",
+   "city": "Cary",
+   "state": "NC",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "78f09c1e-e3bf-4ed5-8c36-18fd49a0eaf9",
+   "title": "Beacons club Presents - Signed To God world tour",
+   "city": "Oakland",
+   "state": "CA",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "b2b3cbe4-da51-4dcd-a945-ec1d619e7c51",
+   "title": "Joe List",
+   "city": "Raleigh",
+   "state": "NC",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "11c97731-239e-4c4a-92d0-c95251947b38",
+   "title": "Killers of Kill Tony",
+   "city": "Boise",
+   "state": "ID",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "e5ff182d-49a5-41fa-a2bd-df8fafc87631",
+   "title": "Lavell Crawford",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "666ee8e9-8c10-436a-b08f-238b2c7d1b47",
+   "title": "Leslie Jones: I'm Hot Tour",
+   "city": "Portland",
+   "state": "ME",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "65b2231b-31bf-4403-868b-c191ac378a63",
+   "title": "Charlie Berens: The Lost and Found Tour",
+   "city": "Birmingham",
+   "state": "AL",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "f3379434-df05-4a63-80f5-4dc670a1a625",
+   "title": "ZOLTAN KASZAS: WORLDWIDE(ish) TOUR",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "b513e47b-8725-41aa-8390-cef9520b835a",
+   "title": "Groove Merchants (21+ Event)",
+   "city": "Philadelphia",
+   "state": "PA",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "e3ab6965-37e6-4f12-a981-156cf2b0731f",
+   "title": "Charlotte Checkers vs. Wilkes Barre Scranton Penguins",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "ea87b8e3-79ba-4f49-90eb-d6f2c42e3d53",
+   "title": "UpDating",
+   "city": "Red Bank",
+   "state": "NJ",
+   "date": "2026-11-06"
+  },
+  {
+   "id": "9b99a8fd-28ee-46e8-8bd5-c2916d00e406",
+   "title": "Melissa Villasenor",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "cce1bf16-3519-4703-8d0e-a5abb5bed0fc",
+   "title": "Watch What Crappens: In The Mix Tour",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "99844d59-1537-4770-bf1a-d3efa235944c",
+   "title": "Brian Regan",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "80d20532-f2ec-4981-bc96-0ac8852e52c6",
+   "title": "Matt Mathews: Not What I Ordered World Tour",
+   "city": "Pikeville",
+   "state": "KY",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "aba7ac9c-9387-4ca2-a0ab-99f41a824d5c",
+   "title": "Justin Silva: Sorta Rican Tour",
+   "city": "Newark",
+   "state": "NJ",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "3f7f1c87-ea6a-485b-8cb0-7306a81a8e74",
+   "title": "Charlotte Checkers vs. Wilkes Barre Scranton Penguins",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "f3d7afc9-f4c4-4090-af75-5e2493f04298",
+   "title": "The Best of Steve Martin & Martin Short",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "abbda3ec-94dc-4d07-af2d-8fe818450825",
+   "title": "Don Lemon & DL Hughley: DL + DL 'Anything Goes'",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "86898379-16c0-4893-a5a1-0c560c70405c",
+   "title": "Motionless In White: The Sweat and Blood Tour",
+   "city": "Nashville",
+   "state": "TN",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "cf7b8ab5-ebda-4955-95f3-9e46742c95e8",
+   "title": "Arkansas State Red Wolves Football vs. Louisiana Monroe Warhawks Football",
+   "city": "Jonesboro",
+   "state": "AR",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "da22017a-dc79-4dde-af8e-3ee6409d36af",
+   "title": "Big Time Boxing Albuquerque",
+   "city": "Albuquerque",
+   "state": "NM",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "d9311e75-bad4-4cea-9e17-384985ceca5d",
+   "title": "Gary Owen: No Hard Feelings Tour",
+   "city": "Des Moines",
+   "state": "IA",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "e51ac75b-1310-47c7-8407-cdc0a24554ac",
+   "title": "Brincos Dieras",
+   "city": "Raleigh",
+   "state": "NC",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "fa58b064-5240-401c-b82f-8e8d69a59702",
+   "title": "Joe List",
+   "city": "Raleigh",
+   "state": "NC",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "4096784d-da84-4361-a29a-82de897de7ee",
+   "title": "Original Last Comic Standing Winner Dat Phan",
+   "city": "Princeton",
+   "state": "NJ",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "e6b4b55a-dfcd-4f2d-87d1-82d3fdda8015",
+   "title": "Phoebe Robinson - Feral & Fired Up!",
+   "city": "Madison",
+   "state": "WI",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "a3108a64-8ef6-4935-8947-00df500718af",
+   "title": "Dave Attell",
+   "city": "Madison",
+   "state": "WI",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "65c95292-c541-408e-991e-e36e00d2c32c",
+   "title": "Matt Rife: Stay Golden World Tour",
+   "city": "Milwaukee",
+   "state": "WI",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "6c3948aa-3290-44fa-8f00-1d2025c8046d",
+   "title": "Lavell Crawford",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-11-07"
+  },
+  {
+   "id": "519cc238-ea41-4cff-8340-14b2f97df12b",
+   "title": "Matt Rife: Stay Golden World Tour",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-11-08"
+  },
+  {
+   "id": "9c9e510d-568b-4218-9047-792d171704b3",
+   "title": "David Cross",
+   "city": "Fort Wayne",
+   "state": "IN",
+   "date": "2026-11-08"
+  },
+  {
+   "id": "8bd42043-3bc9-4574-acb9-520cd629e171",
+   "title": "Bert Kreischer: Permission to Party | Official Ticket + Hotel Packages",
+   "city": "Elkhart",
+   "state": "IN",
+   "date": "2026-11-08"
+  },
+  {
+   "id": "b1b1b020-ef22-4578-9f55-0e38a972e4a6",
+   "title": "BERT KREISCHER: PERMISSION TO PARTY",
+   "city": "Elkhart",
+   "state": "IN",
+   "date": "2026-11-08"
+  },
+  {
+   "id": "745f1265-75a9-41a6-a12c-2e27c3c1124a",
+   "title": "The Teacher\u2019s Lounge: A Comedy Show with Rigor with Gaspare Randazzo, Philip Lindsay and Andrea Forcum",
+   "city": "Cary",
+   "state": "NC",
+   "date": "2026-11-08"
+  },
+  {
+   "id": "7ee60d36-263f-4a4d-be06-6d24fa5e04af",
+   "title": "Anxiety Club Film Screening and Panel Discussion",
+   "city": "New York",
+   "state": "NY",
+   "date": "2026-11-08"
+  },
+  {
+   "id": "69d750aa-92e0-4498-89d8-0752ebdacf9c",
+   "title": "Billy Gardell",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-11-08"
+  },
+  {
+   "id": "fdb3b01e-dd77-430b-b769-452805cb2969",
+   "title": "Motionless In White: The Sweat and Blood Tour",
+   "city": "Peoria",
+   "state": "IL",
+   "date": "2026-11-08"
+  },
+  {
+   "id": "a14aa3f6-55a5-456d-864c-ee02ec4203fc",
+   "title": "Dustin Nickerson",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-11-08"
+  },
+  {
+   "id": "769d2b32-e410-4ba7-ba88-9bd045b545b2",
+   "title": "Amber Autry: Happy Holler Tour",
+   "city": "Birmingham",
+   "state": "AL",
+   "date": "2026-11-08"
+  },
+  {
+   "id": "109b59bf-365e-48a2-a0b9-d47d68953f53",
+   "title": "Lucy Darling: Simply Darling",
+   "city": "Newark",
+   "state": "NJ",
+   "date": "2026-11-08"
+  },
+  {
+   "id": "dfcf07c3-c217-4fa8-88fa-38f06e8c636c",
+   "title": "John Mulaney: Mister Whatever",
+   "city": "Hampton Beach",
+   "state": "NH",
+   "date": "2026-11-08"
+  },
+  {
+   "id": "cbe2137e-5298-4071-a816-507309435284",
+   "title": "Daniel Sloss: BITTER  (Brand New Tour!)",
+   "city": "Madison",
+   "state": "WI",
+   "date": "2026-11-09"
+  },
+  {
+   "id": "b3856074-5888-48ec-9c68-eeb8370ce96d",
+   "title": "Daniel Sloss: BITTER  (Brand New Tour!)",
+   "city": "Milwaukee",
+   "state": "WI",
+   "date": "2026-11-10"
+  },
+  {
+   "id": "26e6477f-cf7b-41f4-a3ba-d40fbc4dc0cf",
+   "title": "Comedy Beast",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-10"
+  },
+  {
+   "id": "7f3408fe-8125-4966-a7c1-87acd52dbbb7",
+   "title": "Motionless In White: The Sweat and Blood Tour",
+   "city": "Minneapolis",
+   "state": "MN",
+   "date": "2026-11-10"
+  },
+  {
+   "id": "095b045c-17c1-4659-839d-ebba7c470872",
+   "title": "Charlotte Checkers vs. Providence Bruins",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-11-10"
+  },
+  {
+   "id": "cc86be5a-e10f-4f1b-804c-8590bf95841d",
+   "title": "Nurse Blake: But Did You Die? Comedy Tour",
+   "city": "Dubuque",
+   "state": "IA",
+   "date": "2026-11-10"
+  },
+  {
+   "id": "ffa8e0a0-4c39-427f-a2ab-805c44ba0d1d",
+   "title": "Charlotte Checkers vs. Providence Bruins",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-11-11"
+  },
+  {
+   "id": "030986e7-f0be-44f3-b32f-e7ce18f9e613",
+   "title": "Stephen Lynch: The Me Tour",
+   "city": "Asheville",
+   "state": "NC",
+   "date": "2026-11-11"
+  },
+  {
+   "id": "e715e528-6fc4-4664-90d4-53ad4f226929",
+   "title": "Daniel Sloss: BITTER  (Brand New Tour!)",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-11-11"
+  },
+  {
+   "id": "0f74e189-3b96-4032-8b40-7b482b4b25ff",
+   "title": "Motionless In White: The Sweat and Blood Tour",
+   "city": "Omaha",
+   "state": "NE",
+   "date": "2026-11-11"
+  },
+  {
+   "id": "28fbae91-90c0-4299-af5b-9c3ce27b7c49",
+   "title": "Ari Matti",
+   "city": "Tulsa",
+   "state": "OK",
+   "date": "2026-11-12"
+  },
+  {
+   "id": "fd154692-cabe-42de-8fc0-4a83421a9140",
+   "title": "Bored Teachers: Is It Friday Yet?! | Official Ticket + Hotel Packages",
+   "city": "Elkhart",
+   "state": "IN",
+   "date": "2026-11-12"
+  },
+  {
+   "id": "36a56425-b5c5-4238-b468-c61661f0d69c",
+   "title": "Comedy Gumbeaux",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-12"
+  },
+  {
+   "id": "7a7c8065-eb29-4070-933f-cbcf5b58bbf5",
+   "title": "Bored Teachers: \"Is It Friday Yet?!\" Comedy Tour",
+   "city": "Elkhart",
+   "state": "IN",
+   "date": "2026-11-12"
+  },
+  {
+   "id": "bf75f392-16f1-4c54-b8e5-cb8fc44cff1b",
+   "title": "DeRay Davis",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-11-12"
+  },
+  {
+   "id": "03bc2532-e8f8-49d3-93f7-0231c6c2c5e5",
+   "title": "Matt Mathews",
+   "city": "Lake Charles",
+   "state": "LA",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "8c19f8e1-6180-4c7f-975c-28e6d43d511f",
+   "title": "Aries Spears",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "bf92c70f-287d-44d2-8909-d4e839868e61",
+   "title": "Comedy Shorts: 3 Short Shows, One Low Price",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "0f62bacd-2947-4fda-aa1c-57d2739142af",
+   "title": "Motionless In White: The Sweat and Blood Tour",
+   "city": "Milwaukee",
+   "state": "WI",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "085c04b5-c8f4-4afc-bcef-53a25023cf8d",
+   "title": "Emma Willmann",
+   "city": "Raleigh",
+   "state": "NC",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "333f3ccd-42d7-4127-a129-d3cdab0c4905",
+   "title": "Billy Gardell",
+   "city": "Cary",
+   "state": "NC",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "5651a6a4-b0fb-4845-a58c-50bc86388c9a",
+   "title": "KATHLEEN MADIGAN: FLYING CATS & MARCHING ARMADILLOS TOUR",
+   "city": "Durham",
+   "state": "NC",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "cb4bb1ab-318f-4202-b333-d54a697e74e9",
+   "title": "Wicked Funny Comedy Series : Featuring Adam Hatch and friends",
+   "city": "Old Town",
+   "state": "ME",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "157a9f00-0611-4731-a069-00854901d5fa",
+   "title": "Rodney Carrington",
+   "city": "Elizabeth",
+   "state": "IN",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "1b27803a-03e6-428a-b62a-f90e6f198257",
+   "title": "Ari Matti",
+   "city": "Tulsa",
+   "state": "OK",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "8d47759a-d4b5-416a-8da8-a7ecc0d3aa65",
+   "title": "T.J. Miller",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "73279c1b-2283-47b0-9dee-8ec6e7dc4c2b",
+   "title": "DeRay Davis",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "647ce2b0-3ced-47d8-be90-ef2f1573a882",
+   "title": "Rodney Carrington | Official Caesars Ticket + Hotel Packages",
+   "city": "Elizabeth",
+   "state": "IN",
+   "date": "2026-11-13"
+  },
+  {
+   "id": "a5ec30c5-79d6-457c-8472-37554af89a20",
+   "title": "Anthony Rodia: Insanely Funny Tour",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-11-14"
+  },
+  {
+   "id": "8e7da0a0-fd39-4828-87c2-a7c5c04241e7",
+   "title": "Matteo Lane: We Gotta Catch Up!",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-11-14"
+  },
+  {
+   "id": "88c98258-8d15-42d9-863f-295bc6866360",
+   "title": "Amber Autry: Happy Holler Tour",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-11-14"
+  },
+  {
+   "id": "2b69fa36-abc9-4123-ba68-9fced35d2e5c",
+   "title": "KATHLEEN MADIGAN: FLYING CATS & MARCHING ARMADILLOS TOUR",
+   "city": "Durham",
+   "state": "NC",
+   "date": "2026-11-14"
+  },
+  {
+   "id": "617a9e22-2cb0-4d4d-bbf5-6137273c2c2c",
+   "title": "Billy Gardell",
+   "city": "Cary",
+   "state": "NC",
+   "date": "2026-11-14"
+  },
+  {
+   "id": "ddf51683-6aaf-4a81-95f4-62d0b2db6b87",
+   "title": "Anger Management: Comedy Meets Therapy presented by Angry Orchard",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-14"
+  },
+  {
+   "id": "d2331b48-829d-4ac0-a940-12404527db4b",
+   "title": "Ahmed Al-kadri presented by Laugh Life Comedy",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-14"
+  },
+  {
+   "id": "bb0f9d54-ce33-4a88-acf0-6edde5c09a47",
+   "title": "Shaddy Feelgood: GOODMORNING!! 2 hosted by Kerwin Claiborne",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-14"
+  },
+  {
+   "id": "801148dc-653a-4161-96e4-f46279de1c38",
+   "title": "Coastal Carolina Chanticleers Football vs. Arkansas State Red Wolves Football",
+   "city": "Conway",
+   "state": "SC",
+   "date": "2026-11-14"
+  },
+  {
+   "id": "dc674375-0c9e-4d33-831a-d730202563ab",
+   "title": "Derrick Stroup: Running Hot Tour",
+   "city": "Des Moines",
+   "state": "IA",
+   "date": "2026-11-14"
+  },
+  {
+   "id": "1017ca38-6a11-4eb2-b801-a180210819fd",
+   "title": "T.J. Miller",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-11-14"
+  },
+  {
+   "id": "11ab0d5e-8abb-4cb7-8f35-fd27ed48173e",
+   "title": "Gabriel Iglesias: The 1976 Tour",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-11-14"
+  },
+  {
+   "id": "7c1026d5-becf-4637-8892-4e0b55a405aa",
+   "title": "Tri-Cities Wine Festival",
+   "city": "Kennewick",
+   "state": "WA",
+   "date": "2026-11-14"
+  },
+  {
+   "id": "9f9983b9-904d-4efe-bb8d-e6cea10331d2",
+   "title": "Daniel Sloss: BITTER (Brand New Tour!)",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-11-15"
+  },
+  {
+   "id": "aaf71692-79d5-4e84-8b53-70a90826bda4",
+   "title": "Billy Gardell",
+   "city": "Cary",
+   "state": "NC",
+   "date": "2026-11-15"
+  },
+  {
+   "id": "5b0f6649-3d71-4d29-a4d9-8e7cf6ed13b6",
+   "title": "Motionless In White: The Sweat and Blood Tour",
+   "city": "Albany",
+   "state": "NY",
+   "date": "2026-11-15"
+  },
+  {
+   "id": "6b1252ba-17d4-41f6-b909-1345c1ea3fff",
+   "title": "Anjelah Johnson-Reyes - Ages 18+",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2026-11-15"
+  },
+  {
+   "id": "e620f569-d99c-44c2-8961-a110df886593",
+   "title": "Leanne Morgan: THE TIME OF OUR LIVES TOUR",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2026-11-15"
+  },
+  {
+   "id": "654d05b8-9501-4690-9271-3b0dc55dd7ef",
+   "title": "Amber Autry: Happy Holler Tour",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-11-15"
+  },
+  {
+   "id": "dc672846-8919-464c-b907-86605ed837c2",
+   "title": "Randy Feltface: Gimmick",
+   "city": "Asheville",
+   "state": "NC",
+   "date": "2026-11-15"
+  },
+  {
+   "id": "ec69e908-a65d-4e9a-b6d7-ecdcf8717738",
+   "title": "Charlie Berens: The Lost and Found Tour",
+   "city": "Grand Forks",
+   "state": "ND",
+   "date": "2026-11-15"
+  },
+  {
+   "id": "dc57f865-2cee-4b46-b70f-c1507d85568d",
+   "title": "Gabriel Iglesias: The 1976 Tour",
+   "city": "Lexington",
+   "state": "KY",
+   "date": "2026-11-15"
+  },
+  {
+   "id": "40ed300e-474f-4ffc-bef1-48a15e0bde78",
+   "title": "Comedy Beast",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-17"
+  },
+  {
+   "id": "d934f9e9-504d-4ef5-996f-4ec3f11c2f69",
+   "title": "ALOK presented by Laugh Life Comedy",
+   "city": "Baton Rouge",
+   "state": "LA",
+   "date": "2026-11-17"
+  },
+  {
+   "id": "25350b05-4006-495e-87e4-373ece005ff2",
+   "title": "Motionless In White: The Sweat and Blood Tour",
+   "city": "Portland",
+   "state": "ME",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "294b7834-e0b3-4af6-b404-f8aef764b8fe",
+   "title": "ALOK",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "80d89584-54f5-4a24-ae5a-427b12fc68ed",
+   "title": "Daniel Sloss: BITTER  (Brand New Tour!)",
+   "city": "Durham",
+   "state": "NC",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "940334b4-131c-4978-8616-a8c5dd6867bc",
+   "title": "Nurse Blake: But Did You Die? Comedy Tour",
+   "city": "West Lafayette",
+   "state": "IN",
+   "date": "2026-11-18"
+  },
+  {
+   "id": "dfe85262-a446-41a4-b1b5-aa99d2703f76",
+   "title": "Marc Maron: Yammering into the Void Tour",
+   "city": "Madison",
+   "state": "WI",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "afda417e-9d7c-4c15-89c1-0e4c5a156619",
+   "title": "Robby Hoffman",
+   "city": "Newark",
+   "state": "NJ",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "8bf70d95-2b12-4d23-9210-d2bf5628905a",
+   "title": "Tiffany Haddish",
+   "city": "Cary",
+   "state": "NC",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "ed5bb75c-81a0-44b1-b7e6-896afc0e1458",
+   "title": "Don DC Curry",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "71407130-2508-4fca-a922-c90fc01ba059",
+   "title": "Please Don't Destroy: Live",
+   "city": "Durham",
+   "state": "NC",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "a1c231c1-4e37-4788-ba1b-de4e4d420efc",
+   "title": "Luenell",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "78be6b82-6f06-4b2b-8598-8a6953c29817",
+   "title": "Motionless In White: The Sweat and Blood Tour",
+   "city": "Newark",
+   "state": "NJ",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "056c3133-4eea-47a1-846c-42c15dd2b0d7",
+   "title": "Comedy Gumbeaux",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-19"
+  },
+  {
+   "id": "f59e7b75-be45-473a-8f85-b1734be6ebf8",
+   "title": "Brad Williams: The Tall Tales Tour",
+   "city": "Albuquerque",
+   "state": "NM",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "5b6d05ad-991c-452a-8193-f9300740d79e",
+   "title": "Comedy Teabag: A Dirty Comedy Show presented by Twisted Tea",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "3bc9f5fe-7e31-40b2-9b08-0f37c7422924",
+   "title": "Whose Live Anyway?",
+   "city": "Baton Rouge",
+   "state": "LA",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "5e3ab5a0-43e5-4eaf-ae0a-e6fdb7c05eb2",
+   "title": "Michael Blaustein: The Taste Me Tour - The Final Leg",
+   "city": "Baton Rouge",
+   "state": "LA",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "f60f7627-2989-4a08-959d-69c59643f4ea",
+   "title": "Dusty Deaton (Comedy Show)",
+   "city": "Denham Springs",
+   "state": "LA",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "4b1e7bb4-6d62-4974-a593-e32bfad705fd",
+   "title": "Work The Crowd: A Interactive Comedy Show Hosted By Ryan Rogers and Marcus Bond",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "6dee5d4d-c7b5-4d2e-ad66-9aef53a8abb9",
+   "title": "Preacher Lawson",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "9ca0464d-79d4-4c63-a477-6998411a8a60",
+   "title": "John Mulaney: Mister Whatever",
+   "city": "Durant",
+   "state": "OK",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "9764ece4-382e-44be-a86d-f51a8f8151b6",
+   "title": "Ilana Glazer Live!",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "7f6579c0-ad51-4ae7-b671-e9af74536299",
+   "title": "Mark Normand | Offical Caesars Ticket + Hotel Packages",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "b61e6d4f-63aa-4539-9ced-242cef94a51f",
+   "title": "Motionless In White: The Sweat and Blood Tour",
+   "city": "Pittsburgh",
+   "state": "PA",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "45147dbc-7cb5-428e-b8a6-5eed99728801",
+   "title": "Letters To Cleo (18+)",
+   "city": "Boston",
+   "state": "MA",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "6cfe6c3f-0409-4629-930d-1416d94714eb",
+   "title": "Letters To Cleo [TWO-DAY TICKET] (18+)",
+   "city": "Boston",
+   "state": "MA",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "3633bf05-74d6-40a1-aaf0-48014e4a514f",
+   "title": "Don DC Curry",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "b1cfbdca-4b83-4175-8a6e-5f09d12b11cc",
+   "title": "Truett Beasley: Comedy Hypnotist",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "2e2a512f-a4c4-44e1-8770-c264f624d0ce",
+   "title": "Masood Boomgaard",
+   "city": "Red Bank",
+   "state": "NJ",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "14fec9ca-6090-46a0-bc73-d1df2f19b7dd",
+   "title": "Matt McCusker: The Healing Frequency Tour",
+   "city": "Newark",
+   "state": "NJ",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "8410241b-ec7d-48d8-b928-7fc6657277aa",
+   "title": "Jo Koy Live",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "bc1dc563-c7cb-41a7-8ed3-80ce0d279801",
+   "title": "Leanne Morgan: THE TIME OF OUR LIVES TOUR",
+   "city": "Louisville",
+   "state": "KY",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "14441c27-8e2d-44e4-94c6-0b938db7df62",
+   "title": "Mark Normand",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "5bddd836-31f0-4bec-aed8-b047b9acb364",
+   "title": "A Night of Comedy with William Lee Martin",
+   "city": "Roswell",
+   "state": "NM",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "ecaa2724-928a-4677-ab57-373d2c13df9a",
+   "title": "Donnell Rawlings",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "2601d456-fd0c-4c92-b3ba-8acdf420cc44",
+   "title": "Tiffany Haddish",
+   "city": "Cary",
+   "state": "NC",
+   "date": "2026-11-20"
+  },
+  {
+   "id": "4772c50b-2003-430c-8f06-f9b98379d865",
+   "title": "Don DC Curry",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "3ca42fd2-b51c-4ae1-aa22-fd2e979192f8",
+   "title": "Patton Oswalt",
+   "city": "Atlantic City",
+   "state": "NJ",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "2ae88487-466c-46ab-aae1-b6a8ccd6d970",
+   "title": "Donnell Rawlings",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "32095314-eab2-4834-86e7-18cb3133210a",
+   "title": "Nurse John: Against Medical Advice Tour",
+   "city": "Madison",
+   "state": "WI",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "1bdcfeca-ca25-48b7-8eea-0e20f0f7eaec",
+   "title": "ZOLTAN KASZAS: WORLDWIDE(ish) TOUR",
+   "city": "Montclair",
+   "state": "NJ",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "c9ea95ba-e6a7-4405-bf67-235dc7d039aa",
+   "title": "Preacher Lawson",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "8aa63bba-1826-411c-9641-d9a12bc39149",
+   "title": "Chris Fleming Live",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "e049bb08-023b-48ed-8527-1c3a294d0987",
+   "title": "Nataly Aukar",
+   "city": "Newark",
+   "state": "NJ",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "84a7d1d8-4889-44af-a6af-2f51d2222327",
+   "title": "Trailer Trash Tammy: The Loose Lips Tour",
+   "city": "Bettendorf",
+   "state": "IA",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "e39b55c0-bc07-4836-a6b5-5dcf723dda2a",
+   "title": "Letters To Cleo (18+)",
+   "city": "Boston",
+   "state": "MA",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "51c5d266-fc2c-4c97-ba59-7a9526ccf844",
+   "title": "DO THE NEEDFUL / TRIPLETS OF GONZO / ZAKARY EXTRACT / TUNNEL",
+   "city": "Chicago",
+   "state": "IL",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "bd8c4723-2996-4669-b83b-ff0371ccea31",
+   "title": "Irene Tu",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "1a9576e5-7423-46f3-a581-04176afb9c49",
+   "title": "Trailer Trash Tammy | Official Caesars Ticket + Hotel Packages",
+   "city": "Bettendorf",
+   "state": "IA",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "36b6a218-516b-4912-9b01-37dd635798a1",
+   "title": "Charlie Berens: The Lost and Found Tour",
+   "city": "Fort Wayne",
+   "state": "IN",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "d29fb0bb-9801-4643-8bb3-959d9520df51",
+   "title": "Michelle Wolf - Best Job in the World",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-11-21"
+  },
+  {
+   "id": "16500b88-2db4-4e87-8863-5d76936cf44c",
+   "title": "Charlie Berens: The Lost and Found | Official Ticket + Hotel Packages",
+   "city": "Elkhart",
+   "state": "IN",
+   "date": "2026-11-22"
+  },
+  {
+   "id": "ff2f2f7b-b85c-42d7-98e2-677f53579934",
+   "title": "Charlie Berens: The Lost and Found Tour",
+   "city": "Elkhart",
+   "state": "IN",
+   "date": "2026-11-22"
+  },
+  {
+   "id": "51472a73-43e9-4a44-8fa3-b36ed7bc4fcc",
+   "title": "Maria Bamford",
+   "city": "Red Bank",
+   "state": "NJ",
+   "date": "2026-11-22"
+  },
+  {
+   "id": "d7516a7f-e356-48b2-ba35-ae45821dbcd4",
+   "title": "Donnell Rawlings",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-11-22"
+  },
+  {
+   "id": "16499521-0e3c-4eca-954a-887fc21b4f7d",
+   "title": "Don DC Curry",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-11-22"
+  },
+  {
+   "id": "fe10fea1-4952-470e-a344-cd572467a305",
+   "title": "Criminal Presents: DON'T WORRY WITH PHOEBE JUDGE",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-11-23"
+  },
+  {
+   "id": "ba2185b0-2412-41cc-b37f-1c769e8e4ca0",
+   "title": "Nurse Blake: But Did You Die? Comedy Tour",
+   "city": "Morgantown",
+   "state": "WV",
+   "date": "2026-11-23"
+  },
+  {
+   "id": "601bf2e5-bda1-46d1-b1ad-75949432d93b",
+   "title": "Comedy Beast",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-24"
+  },
+  {
+   "id": "fa635800-7797-42f4-aead-af8acb27afa4",
+   "title": "Nick Cannon Presents: Wild 'N Out Live - The Next Generation",
+   "city": "Birmingham",
+   "state": "AL",
+   "date": "2026-11-24"
+  },
+  {
+   "id": "087b94fc-72d4-4b01-a394-741a912bed86",
+   "title": "Wild 'N Out Live | Official BJCC Ticket + Hotel Packages",
+   "city": "Birmingham",
+   "state": "AL",
+   "date": "2026-11-24"
+  },
+  {
+   "id": "1324ded9-10d8-440b-9bab-4926b62b3848",
+   "title": "Kelly Kellz Pre-Thanksgiving Day Comedy Show",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-11-25"
+  },
+  {
+   "id": "d50cb963-82f0-40fb-b916-9b1ec03af294",
+   "title": "Comedy Gumbeaux",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-11-26"
+  },
+  {
+   "id": "8ed351c3-257b-4cd4-afbd-e06ba5d3a346",
+   "title": "Gary Owen: No Hard Feelings Tour",
+   "city": "Charles Town",
+   "state": "WV",
+   "date": "2026-11-27"
+  },
+  {
+   "id": "a3a9b95b-8a86-4d20-b40d-e4eb91e9fe99",
+   "title": "Ali Siddiq: The Custom Fit Tour",
+   "city": "Lake Charles",
+   "state": "LA",
+   "date": "2026-11-27"
+  },
+  {
+   "id": "71a36e3c-6b52-41b2-9c1e-32ade663d4f7",
+   "title": "Anthony Rodia",
+   "city": "Englewood",
+   "state": "NJ",
+   "date": "2026-11-27"
+  },
+  {
+   "id": "4fc18fe8-cc3a-4927-99bb-eace29b185ca",
+   "title": "Pete Lee",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-11-27"
+  },
+  {
+   "id": "a04d3abd-e125-4ad1-82b0-bdf0059d59b9",
+   "title": "Jo Koy: Koy Meets World Tour",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-11-27"
+  },
+  {
+   "id": "29a2f374-0752-4231-98bc-35480c5f8078",
+   "title": "Charlotte Checkers vs. Hershey Bears",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-11-27"
+  },
+  {
+   "id": "e81d3eaa-fc46-4469-93a6-7062c84ffdf0",
+   "title": "Thanksgiving Comedy Fest",
+   "city": "Newark",
+   "state": "NJ",
+   "date": "2026-11-28"
+  },
+  {
+   "id": "bd6ccc4f-e666-437c-ac16-af946bece7cd",
+   "title": "MOJO BROOKZZ: OUTTA POCKET TOUR",
+   "city": "Shreveport",
+   "state": "LA",
+   "date": "2026-11-28"
+  },
+  {
+   "id": "4183a7e2-2763-466b-a326-e21385082358",
+   "title": "Arkansas State Red Wolves Football vs. Troy University Trojans Football",
+   "city": "Jonesboro",
+   "state": "AR",
+   "date": "2026-11-28"
+  },
+  {
+   "id": "c175a37f-b3df-490f-92c1-dbf3c0e4b81b",
+   "title": "Charlotte Checkers vs. Hershey Bears",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-11-28"
+  },
+  {
+   "id": "f1db07ad-2181-4ae7-b70f-31e82d5ecbdf",
+   "title": "Pete Lee",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-11-28"
+  },
+  {
+   "id": "4565fd3d-b3ba-47fb-b23c-7c6a9916844b",
+   "title": "Jo Koy: Koy Meets World Tour",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-11-28"
+  },
+  {
+   "id": "33ca996f-af9d-4412-9601-d1ba6fa75ae0",
+   "title": "Chelcie Lynn",
+   "city": "Grant",
+   "state": "OK",
+   "date": "2026-11-28"
+  },
+  {
+   "id": "0bd87e11-f487-4886-9c48-7685ab7f37b2",
+   "title": "Christmas Together with Amy Grant, Michael W. Smith, and CeCe Winans",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-11-29"
+  },
+  {
+   "id": "1954fbf5-6589-4578-a45c-3e52de97be67",
+   "title": "Pete Lee",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-11-29"
+  },
+  {
+   "id": "ad9643a3-5403-4c9c-94bc-7ab0d1793912",
+   "title": "A Very Jenn & Mel Christmas Show",
+   "city": "Englewood",
+   "state": "NJ",
+   "date": "2026-11-29"
+  },
+  {
+   "id": "85cc77bf-a429-486d-b741-e4a582f65c0e",
+   "title": "Christmas Together with Amy Grant | Official Ticket + Hotel Packages",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-11-29"
+  },
+  {
+   "id": "14c17770-6855-4024-aadb-5ec761411cf7",
+   "title": "UpDating",
+   "city": "Boise",
+   "state": "ID",
+   "date": "2026-12-01"
+  },
+  {
+   "id": "9b8b1d1c-2870-4854-8623-b0cda83e9eb6",
+   "title": "Comedy Beast",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-12-01"
+  },
+  {
+   "id": "0354b1a3-6a3a-4355-838a-477ed6817fdc",
+   "title": "Comedy Gumbeaux",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-12-03"
+  },
+  {
+   "id": "447fddd7-930c-4e78-ac22-c33375ef8c5d",
+   "title": "Maria Bamford presented by Laugh Life Comedy (Late Show)",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-12-03"
+  },
+  {
+   "id": "66304dda-20af-463a-80aa-f7bd21d2f331",
+   "title": "Jeff Arcuri",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-12-03"
+  },
+  {
+   "id": "6f89e0c6-f275-4439-b735-ac3422f4f608",
+   "title": "SOLD OUT: Maria Bamford presented by Laugh Life Comedy",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-12-03"
+  },
+  {
+   "id": "06ff9ebd-f620-4b77-bd13-884b3e57547f",
+   "title": "Jim Breuer: Find The Funny",
+   "city": "Red Bank",
+   "state": "NJ",
+   "date": "2026-12-03"
+  },
+  {
+   "id": "06b8ac86-6178-420f-b4fc-07ee1de1851a",
+   "title": "Welcome To Night Vale: Murder Night In Blood Forest",
+   "city": "Portland",
+   "state": "ME",
+   "date": "2026-12-03"
+  },
+  {
+   "id": "ae071c23-3f56-4ccc-96e4-dfe48d32bb81",
+   "title": "Brian Regan",
+   "city": "Madison",
+   "state": "WI",
+   "date": "2026-12-03"
+  },
+  {
+   "id": "ae46b8aa-c297-40c9-92ba-55dec5d818ec",
+   "title": "Atsuko Okatsuka: The Big Bowl Tour",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-12-03"
+  },
+  {
+   "id": "798bc56b-3c22-4db2-afde-31b4da7cfb2c",
+   "title": "#IMOMSOHARD: The Crashing Out Tour!",
+   "city": "Sioux City",
+   "state": "IA",
+   "date": "2026-12-03"
+  },
+  {
+   "id": "57428e1e-4cf9-4467-b5ed-aeec44bdeed8",
+   "title": "Lil Mo Mozzarella",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-12-03"
+  },
+  {
+   "id": "7bbe0b12-7919-4d61-8858-2d1bf8b0c9f5",
+   "title": "Gary Delena Headlining at Catch A Rising Star-Princeton",
+   "city": "Princeton",
+   "state": "NJ",
+   "date": "2026-12-04"
+  },
+  {
+   "id": "f10e0dc9-13cf-4b39-9821-b01ce6e8290e",
+   "title": "Atsuko Okatsuka: The Big Bowl Tour",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-12-04"
+  },
+  {
+   "id": "7da88337-4da8-4886-8f2d-7b7cd376ded0",
+   "title": "Jeff Arcuri",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-12-04"
+  },
+  {
+   "id": "5b71c42a-f301-4e40-be94-bb1ab346e9bc",
+   "title": "Ali Siddiq | Official BJCC Ticket + Hotel Packages",
+   "city": "Birmingham",
+   "state": "AL",
+   "date": "2026-12-04"
+  },
+  {
+   "id": "ef88a361-7f8e-426d-9db2-1cd03f69854f",
+   "title": "Ali Siddiq: The Custom Fit Tour",
+   "city": "Birmingham",
+   "state": "AL",
+   "date": "2026-12-04"
+  },
+  {
+   "id": "792adf21-6758-4693-aec7-6fc9dab1cb87",
+   "title": "Charlotte Checkers vs. Colorado Eagles",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-12-04"
+  },
+  {
+   "id": "0afd9c43-6a19-49ae-92d0-1cbd06d2af22",
+   "title": "Tom Segura Live",
+   "city": "Charles Town",
+   "state": "WV",
+   "date": "2026-12-04"
+  },
+  {
+   "id": "be92302f-a884-4213-a884-9e70d5a8c780",
+   "title": "Dusty Slay: The Neighborhood Guy",
+   "city": "Des Moines",
+   "state": "IA",
+   "date": "2026-12-04"
+  },
+  {
+   "id": "60b064ba-cbcb-43ab-a7c7-c905b9ee2721",
+   "title": "Mojo Brookzz Outta Pocket Comedy Tour 2026 (18+)",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-12-04"
+  },
+  {
+   "id": "46e01769-3ece-421c-92aa-b9883a163f8c",
+   "title": "Lil Mo Mozzarella",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-12-04"
+  },
+  {
+   "id": "ad94ffe4-d4c9-40a2-af20-461bf4c2b91e",
+   "title": "Brett Goldstein: Sex, Death & Small Talk",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-12-04"
+  },
+  {
+   "id": "f2ee8773-b192-4add-af6d-36577aa956e5",
+   "title": "Jessica Kirson",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-12-04"
+  },
+  {
+   "id": "6ee25fdf-7ea7-43bd-96ce-ec52bdb01c8a",
+   "title": "Lil Mo Mozzarella",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-12-05"
+  },
+  {
+   "id": "016829e2-b3b3-4adf-88e6-681d5400f25d",
+   "title": "John Crist Live!",
+   "city": "Baton Rouge",
+   "state": "LA",
+   "date": "2026-12-05"
+  },
+  {
+   "id": "386f4a15-318c-40e5-b8c2-31c8712131f9",
+   "title": "Jessica Kirson",
+   "city": "Brookfield",
+   "state": "WI",
+   "date": "2026-12-05"
+  },
+  {
+   "id": "3ba3f7f2-e504-458c-b3a5-6606e5238872",
+   "title": "Charlotte Checkers vs. Colorado Eagles",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-12-05"
+  },
+  {
+   "id": "1d912017-c619-45ac-8d96-c29dec35b54a",
+   "title": "Ali Siddiq: The Custom Fit Tour",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-12-05"
+  },
+  {
+   "id": "48b3568c-9935-4320-ab3d-18cb5cb13b04",
+   "title": "Jeff Arcuri",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-12-05"
+  },
+  {
+   "id": "ec0678d7-3e9b-43fc-824a-c367aee2a0c4",
+   "title": "Bert Kreischer | Official Caesar Ticket + Hotel Packages",
+   "city": "Council Bluffs",
+   "state": "IA",
+   "date": "2026-12-06"
+  },
+  {
+   "id": "273bfa0b-4b93-4952-bd20-62f808d8e31a",
+   "title": "The Christi Show - Ages 18+",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2026-12-06"
+  },
+  {
+   "id": "773cbc83-faa9-4bab-8542-f8abe15de528",
+   "title": "Aries Spears",
+   "city": "Portland",
+   "state": "ME",
+   "date": "2026-12-06"
+  },
+  {
+   "id": "cfd07874-c026-4724-ae6d-71d41e655c68",
+   "title": "Becky Robinson's Holiday Spectacular",
+   "city": "Portland",
+   "state": "ME",
+   "date": "2026-12-06"
+  },
+  {
+   "id": "9975da55-6479-4285-bee5-45daf2ae9de5",
+   "title": "Demetri Martin: Standup Comedy for Christmas",
+   "city": "Washington",
+   "state": "DC",
+   "date": "2026-12-06"
+  },
+  {
+   "id": "18968841-8e56-495f-bcb2-709d04e8f96f",
+   "title": "BERT KREISCHER: PERMISSION TO PARTY",
+   "city": "Council Bluffs",
+   "state": "IA",
+   "date": "2026-12-06"
+  },
+  {
+   "id": "b8a3fccc-80d4-47f4-99ec-bcdf4d50c3ac",
+   "title": "Comedy Beast",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-12-08"
+  },
+  {
+   "id": "c0e6171f-92ba-4b58-a550-e1c6d7ca157e",
+   "title": "Charlotte Checkers vs. Wilkes Barre Scranton Penguins",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-12-08"
+  },
+  {
+   "id": "7496598f-8b2c-4ac7-958c-f4715004990a",
+   "title": "Charlotte Checkers vs. Wilkes Barre Scranton Penguins",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-12-09"
+  },
+  {
+   "id": "2da74a28-a910-4537-bafc-fef77a23aa9e",
+   "title": "Brian Posehn",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-12-10"
+  },
+  {
+   "id": "6bed4ca1-b0a2-4e5c-8342-a5e6cc5e0f9e",
+   "title": "Robby Hoffman",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2026-12-10"
+  },
+  {
+   "id": "4adb28bd-cda5-42af-b30c-08302acb4512",
+   "title": "The Arrival",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-12-10"
+  },
+  {
+   "id": "6a52e639-bed4-4c20-bcc1-af593bef2b4e",
+   "title": "Comedy Gumbeaux",
+   "city": "New Orleans",
+   "state": "LA",
+   "date": "2026-12-10"
+  },
+  {
+   "id": "cedcc1e3-20fd-448c-a5e0-40086c2594cd",
+   "title": "Will Burkart",
+   "city": "Huntsville",
+   "state": "AL",
+   "date": "2026-12-11"
+  },
+  {
+   "id": "a85da2a7-a65f-494c-88b8-598d7e522fcf",
+   "title": "Mo Amer",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-12-11"
+  },
+  {
+   "id": "aca147c4-b5e5-405e-b077-3015f9391173",
+   "title": "Comedy Shorts: 3 Short Shows, One Low Price",
+   "city": "Mobile",
+   "state": "AL",
+   "date": "2026-12-11"
+  },
+  {
+   "id": "bf1152dc-9c5d-4461-a8e6-bb608634563a",
+   "title": "Ari Matti",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-12-11"
+  },
+  {
+   "id": "e88c6a28-5ba2-4cd8-837f-98cc9c7d7957",
+   "title": "Laugh QC-Thursday Night Comedy Series starring Steve Hytner",
+   "city": "Davenport",
+   "state": "IA",
+   "date": "2026-12-11"
+  },
+  {
+   "id": "04698ff1-7b50-42d3-ab84-c7554f689dbb",
+   "title": "STEVE-O: CRASH & BURN (Ages 21 & Up)",
+   "city": "Sioux City",
+   "state": "IA",
+   "date": "2026-12-11"
+  },
+  {
+   "id": "224c38fe-5c74-40bf-bc2f-ae5b896f7510",
+   "title": "Michael Loftus - Ages 18+",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2026-12-12"
+  },
+  {
+   "id": "e2674665-b53e-476d-95b8-a8ac4b1c48a3",
+   "title": "Mo Amer",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-12-12"
+  },
+  {
+   "id": "bde556bb-d32e-4d3d-93a4-5c7208387e93",
+   "title": "Gary Owen | Official Caesars Ticket + Hotel Packages",
+   "city": "Hammond",
+   "state": "IN",
+   "date": "2026-12-12"
+  },
+  {
+   "id": "0fdabda7-602a-40c2-a6e9-58bdb2378156",
+   "title": "Gary Owen: No Hard Feelings Tour",
+   "city": "Hammond",
+   "state": "IN",
+   "date": "2026-12-12"
+  },
+  {
+   "id": "f1571885-a2a0-49ef-8f8e-7786bb44500c",
+   "title": "Ari Matti",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-12-12"
+  },
+  {
+   "id": "e8d5e298-db24-4b30-a8ec-bb4a91010540",
+   "title": "Michael Kosta: Big Dad Energy",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-12-12"
+  },
+  {
+   "id": "91fdcc5d-a328-414c-b994-06da275550a3",
+   "title": "Gary Owen | Official Caesar Ticket + Hotel Packages",
+   "city": "Hammond",
+   "state": "IN",
+   "date": "2026-12-12"
+  },
+  {
+   "id": "b30441ee-1915-4a7f-9130-1c08d794a3fe",
+   "title": "Big Jay Oakerson - Ages 18+",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2026-12-12"
+  },
+  {
+   "id": "9ff52227-3754-4167-b4ac-6da4bea70e36",
+   "title": "Ari Matti",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-12-13"
+  },
+  {
+   "id": "65282470-fe74-4412-baeb-b3cc2d65058e",
+   "title": "Nick Cannon Presents: Wild 'N Out Live - The Next Generation",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2026-12-15"
+  },
+  {
+   "id": "04dfd4bf-41d0-4ee3-a37b-9de28ed12c52",
+   "title": "John Mulaney: Mister Whatever",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-12-17"
+  },
+  {
+   "id": "d96053d4-7525-4e30-aac4-f498ba276fe9",
+   "title": "Tim Meadows",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2026-12-18"
+  },
+  {
+   "id": "4292c438-59e6-4a73-9011-3ee0452ddc22",
+   "title": "John Mulaney: Mister Whatever",
+   "city": "Kahului",
+   "state": "HI",
+   "date": "2026-12-18"
+  },
+  {
+   "id": "b8bd514d-ddf0-427f-beaf-b2443eb7ae70",
+   "title": "Tim Meadows",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2026-12-19"
+  },
+  {
+   "id": "202ccfbe-7dcb-4550-b6b4-b899380d3081",
+   "title": "Charlotte Checkers vs. Springfield Thunderbirds",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-12-19"
+  },
+  {
+   "id": "3aabc003-9d90-41f1-9050-b52a12e98978",
+   "title": "Charlotte Checkers vs. Springfield Thunderbirds",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-12-20"
+  },
+  {
+   "id": "0ec3222b-998e-497a-9238-4664589b26c5",
+   "title": "Liza Treyger",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-12-21"
+  },
+  {
+   "id": "0ce95d49-96bb-4447-8f89-2b4f4abab381",
+   "title": "Becky Robinson",
+   "city": "Pocola",
+   "state": "OK",
+   "date": "2026-12-26"
+  },
+  {
+   "id": "781c9214-1e76-4c28-b9a4-cc8f55dbd39b",
+   "title": "Nurse John: Against Medical Advice Tour",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-12-27"
+  },
+  {
+   "id": "698392b5-ec3b-41ce-bfb3-4d9f685ba1bd",
+   "title": "Matt Rife: Stay Golden World Tour",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2026-12-29"
+  },
+  {
+   "id": "5f0a5392-4a44-4b7a-abf2-0a9f4380305d",
+   "title": "Widespread Panic 2 Day Ticket - Cannot Be Split By Day",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-12-30"
+  },
+  {
+   "id": "e291037b-efd8-4dc1-9f10-aa6b98470213",
+   "title": "Widespread Panic",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-12-30"
+  },
+  {
+   "id": "d6e0a9d1-096e-4747-93d1-8478e007122a",
+   "title": "Brad Williams: The Tall Tales Tour",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2026-12-30"
+  },
+  {
+   "id": "24d8e1ea-1771-48a9-a10e-d1c8945ed340",
+   "title": "Widespread Panic",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2026-12-31"
+  },
+  {
+   "id": "7e45a7bf-ff08-49cd-b1bc-8dbd57d44e94",
+   "title": "Tom Segura Live",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2026-12-31"
+  },
+  {
+   "id": "9a33058c-6625-4b34-ad24-ccf8a4e5d7f9",
+   "title": "Aries Spears",
+   "city": "Louisville",
+   "state": "KY",
+   "date": "2026-12-31"
+  },
+  {
+   "id": "2845a985-f558-4e38-ad41-fb5dc111a16b",
+   "title": "Aries Spears",
+   "city": "Louisville",
+   "state": "KY",
+   "date": "2027-01-01"
+  },
+  {
+   "id": "37c93359-90d5-4b67-bb06-d62ce057b66a",
+   "title": "Aries Spears",
+   "city": "Louisville",
+   "state": "KY",
+   "date": "2027-01-02"
+  },
+  {
+   "id": "b5405d78-cd68-4ba7-a468-52a20e436113",
+   "title": "Bryan Callen",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2027-01-02"
+  },
+  {
+   "id": "54d208a7-aca1-4f06-952f-9b65b6e6654e",
+   "title": "Aries Spears",
+   "city": "Louisville",
+   "state": "KY",
+   "date": "2027-01-03"
+  },
+  {
+   "id": "780daf78-589d-4d89-9d01-de637a6f3a07",
+   "title": "Ashley Gavin",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2027-01-08"
+  },
+  {
+   "id": "cea39b78-9746-4bf7-acdc-cdae982361d1",
+   "title": "Charlotte Checkers vs. Lehigh Valley Phantoms",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-01-08"
+  },
+  {
+   "id": "2d41699b-3bc7-4f58-8cea-54deb607fdd2",
+   "title": "Corey Holcomb - Ages 18+",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2027-01-09"
+  },
+  {
+   "id": "14d28fbe-dc69-4529-8067-a9f92ae46859",
+   "title": "Charlotte Checkers vs. Lehigh Valley Phantoms",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-01-09"
+  },
+  {
+   "id": "36b0ff1f-291f-4d6f-9c0f-b81fd04af4a0",
+   "title": "Chris Fleming Live",
+   "city": "Indianapolis",
+   "state": "IN",
+   "date": "2027-01-14"
+  },
+  {
+   "id": "62960ce9-a931-4812-b643-67415752fe52",
+   "title": "GenX Takeover Comedy Tour",
+   "city": "Lexington",
+   "state": "KY",
+   "date": "2027-01-16"
+  },
+  {
+   "id": "4c0f5ae2-48e2-4a1d-90f8-2dc397d2fe1e",
+   "title": "Charlotte Checkers vs. Cleveland Monsters",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-01-16"
+  },
+  {
+   "id": "8a34d5c5-d312-42f8-9ab9-bf12ee9da2b6",
+   "title": "Atsuko Okatsuka: The Big Bowl Tour",
+   "city": "Portland",
+   "state": "ME",
+   "date": "2027-01-16"
+  },
+  {
+   "id": "f6dc95b5-7658-45e2-9cf9-9d7193c899dd",
+   "title": "Brad Williams: The Tall Tales Tour",
+   "city": "Waimea",
+   "state": "HI",
+   "date": "2027-01-17"
+  },
+  {
+   "id": "77776a27-e7dd-4e06-9cbc-707d271565bb",
+   "title": "Charlotte Checkers vs. Cleveland Monsters",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-01-17"
+  },
+  {
+   "id": "76a9615c-993d-4cb6-aff2-4db896e557c3",
+   "title": "Ryan Hamilton: Making Good Time",
+   "city": "Boise",
+   "state": "ID",
+   "date": "2027-01-22"
+  },
+  {
+   "id": "368caae1-b8d9-4d71-875c-08d725c1a205",
+   "title": "Brad Williams: The Big & Small Tour",
+   "city": "Portland",
+   "state": "ME",
+   "date": "2027-01-23"
+  },
+  {
+   "id": "c7d174dc-71e0-463b-bcf9-078ebbedbe23",
+   "title": "Tom Segura: Preposterous",
+   "city": "Durant",
+   "state": "OK",
+   "date": "2027-01-23"
+  },
+  {
+   "id": "4cec6aef-5d69-4bc5-b635-3a3054db03e1",
+   "title": "Peter Antoniou: Brain Teaser",
+   "city": "Lexington",
+   "state": "KY",
+   "date": "2027-01-24"
+  },
+  {
+   "id": "839e3c7a-602e-4aae-ac44-2408982d520a",
+   "title": "Brad Williams: The Big & Small Tour",
+   "city": "Concord",
+   "state": "NH",
+   "date": "2027-01-24"
+  },
+  {
+   "id": "5d267e8e-3c3d-4450-b424-e631473a97b8",
+   "title": "A. R. Rahman",
+   "city": "Cincinnati",
+   "state": "OH",
+   "date": "2027-01-25"
+  },
+  {
+   "id": "c992e5c9-4daf-404e-9cf3-ffb96ddf9f62",
+   "title": "Brad Williams: The Big & Small Tour",
+   "city": "Cheyenne",
+   "state": "WY",
+   "date": "2027-01-28"
+  },
+  {
+   "id": "e5da5b20-ea0a-404f-9cb5-a180fbd86edc",
+   "title": "The Best of Steve Martin & Martin Short",
+   "city": "Louisville",
+   "state": "KY",
+   "date": "2027-01-29"
+  },
+  {
+   "id": "e2893e6c-cf41-4816-97a5-fb9b0311313b",
+   "title": "Charlotte Checkers vs. Utica Comets",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-01-30"
+  },
+  {
+   "id": "8bf62c57-be4d-49f9-8756-f8996e44f0bb",
+   "title": "Charlotte Checkers vs. Utica Comets",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-01-31"
+  },
+  {
+   "id": "8a18e940-0e47-441b-b058-4c364e807479",
+   "title": "Charlotte Checkers vs. Providence Bruins",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-02-05"
+  },
+  {
+   "id": "a2b713cf-a6dc-4b5a-b8dd-39a1aa063c6e",
+   "title": "Jeff Dunham Inappropriate Contact",
+   "city": "Louisville",
+   "state": "KY",
+   "date": "2027-02-06"
+  },
+  {
+   "id": "8e62e90c-11c7-4242-87eb-a45cbe7757f0",
+   "title": "James \"Murr\" Murray: The Errors Tour (Ages 21 & Over)",
+   "city": "Sioux City",
+   "state": "IA",
+   "date": "2027-02-06"
+  },
+  {
+   "id": "8a00fede-bc68-40af-b666-daad35309e75",
+   "title": "Charlotte Checkers vs. Providence Bruins",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-02-06"
+  },
+  {
+   "id": "06696083-dff3-4038-a930-89dee06fdf22",
+   "title": "TAYLOR TOMLINSON: NOBODY ASKED YOU TO DO THAT",
+   "city": "Boise",
+   "state": "ID",
+   "date": "2027-02-07"
+  },
+  {
+   "id": "aedad84c-3a47-44ca-b2bc-45390ff4560d",
+   "title": "Bored Teachers: \"Is it Friday Yet?\" Comedy Tour",
+   "city": "Lexington",
+   "state": "KY",
+   "date": "2027-02-11"
+  },
+  {
+   "id": "c35463a4-5ca3-49c9-b4ec-a18d3e770b65",
+   "title": "Lovers & Legends",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-02-13"
+  },
+  {
+   "id": "737d46fc-c5a3-4fd3-92df-307a81943b6d",
+   "title": "Billy Gardell (Ages 21 & Over)",
+   "city": "Sioux City",
+   "state": "IA",
+   "date": "2027-02-13"
+  },
+  {
+   "id": "26bed9ce-c28a-49b1-b8e8-02875c4f38e6",
+   "title": "Tumua Das' How Tour",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2027-02-13"
+  },
+  {
+   "id": "eeea264e-c4dd-4c3e-9066-f6e840e2ed60",
+   "title": "Charlotte Checkers vs. Iowa Wild",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-02-16"
+  },
+  {
+   "id": "f60ec7d0-608b-46f6-8f7a-1978a4211dbf",
+   "title": "Charlotte Checkers vs. Iowa Wild",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-02-17"
+  },
+  {
+   "id": "17fe38eb-2d42-439c-b0f0-e997fb60dd5c",
+   "title": "Tiffany Haddish - Ages 18+",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2027-02-19"
+  },
+  {
+   "id": "f95ce225-0755-409c-8da7-0913874e8194",
+   "title": "Trae Crowder",
+   "city": "Lexington",
+   "state": "KY",
+   "date": "2027-02-19"
+  },
+  {
+   "id": "7f721717-35c5-4747-a4e5-8212c1eb9e05",
+   "title": "Charlotte Checkers vs. Toronto Marlies",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-02-20"
+  },
+  {
+   "id": "0db7e846-04d3-4189-9f06-09ac24ae1928",
+   "title": "Terry Harper Presents: Trae Crowder",
+   "city": "Owensboro",
+   "state": "KY",
+   "date": "2027-02-20"
+  },
+  {
+   "id": "c8708785-324a-47d1-b128-3d1ce777acb8",
+   "title": "Tiffany Haddish - Ages 18+",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2027-02-20"
+  },
+  {
+   "id": "9468a38a-932b-4989-9637-e469dacff275",
+   "title": "Bill Engvall \"Here's Your Sign, It Wasn't My Time!\"",
+   "city": "Grand Forks",
+   "state": "ND",
+   "date": "2027-02-21"
+  },
+  {
+   "id": "23281ae5-9901-4099-aa92-1804b3f4dbeb",
+   "title": "Bianca Del Rio: It Gets Bitter - World Comedy Tour",
+   "city": "Des Moines",
+   "state": "IA",
+   "date": "2027-02-21"
+  },
+  {
+   "id": "b2d056a1-c8d2-415f-9244-9bc49331b8ff",
+   "title": "Tiffany Haddish - Ages 18+",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2027-02-21"
+  },
+  {
+   "id": "a294a2c8-4249-49c1-bab3-9df25788754c",
+   "title": "Charlotte Checkers vs. Toronto Marlies",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-02-21"
+  },
+  {
+   "id": "4c43f1f4-ebd1-4f46-860e-2d8fa7b3e1a4",
+   "title": "Acts of Vengeance",
+   "city": "Huntington",
+   "state": "WV",
+   "date": "2027-02-24"
+  },
+  {
+   "id": "b90a254b-a00a-4659-a33f-990bbd9ce0c1",
+   "title": "Acts of Vengeance",
+   "city": "Huntington",
+   "state": "WV",
+   "date": "2027-02-25"
+  },
+  {
+   "id": "9664f09e-714f-4304-b86c-5283513e0871",
+   "title": "Dustin Nickerson",
+   "city": "Boise",
+   "state": "ID",
+   "date": "2027-02-26"
+  },
+  {
+   "id": "9a02e12c-07eb-4cdd-aa26-7de960339262",
+   "title": "Acts of Vengeance",
+   "city": "Huntington",
+   "state": "WV",
+   "date": "2027-02-26"
+  },
+  {
+   "id": "c6c4ca05-2e6d-442d-b627-8f40f33ececd",
+   "title": "Acts of Vengeance",
+   "city": "Huntington",
+   "state": "WV",
+   "date": "2027-02-27"
+  },
+  {
+   "id": "88e555b7-a0ff-4caa-b8ca-d6daf7ad81af",
+   "title": "BNP Paribas Open - Grounds Pass",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-02-28"
+  },
+  {
+   "id": "f98d5089-b506-4923-aab8-c300ab6805ae",
+   "title": "BNP Paribas Open - Grounds Pass",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-01"
+  },
+  {
+   "id": "79e7c40a-1e67-463f-8663-d0a3fc43a807",
+   "title": "BNP Paribas Open - Grounds Pass",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-02"
+  },
+  {
+   "id": "a58bf231-b533-4ee0-ab91-a5829127bbe1",
+   "title": "BNP Paribas Open: Session 2",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-03"
+  },
+  {
+   "id": "378e14f8-36ea-4b67-bca9-8a6d56e68f3e",
+   "title": "BNP Paribas Open - Stadium 2 - Session 1",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-03"
+  },
+  {
+   "id": "1736ddc2-6739-4ad0-a149-4532f5995b82",
+   "title": "BNP Paribas Open: Session 1",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-03"
+  },
+  {
+   "id": "49575d43-3eed-4de5-8952-55aacf25d6f1",
+   "title": "BNP Paribas Open: Stadium 3 - Session 1",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-03"
+  },
+  {
+   "id": "f63002f3-1bc0-41ab-ba37-b21824f8cbcb",
+   "title": "JOHN CLEESE: STILL NOT DEAD (YET) Celebrating the Holy Grail at 50",
+   "city": "Louisville",
+   "state": "KY",
+   "date": "2027-03-03"
+  },
+  {
+   "id": "e3d23b83-3a85-476d-821a-cae0023d2155",
+   "title": "BNP Paribas Open - Grounds Pass",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-03"
+  },
+  {
+   "id": "d4ebb01a-2e3f-4f84-918e-a73358fa3eee",
+   "title": "BNP Paribas Open - Grounds Pass",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-04"
+  },
+  {
+   "id": "1def7325-6e04-41c7-a267-bb157475e7c2",
+   "title": "BNP Paribas Open: Stadium 3 - Session 3",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-04"
+  },
+  {
+   "id": "5309d874-0a1c-4597-845f-d41207de0133",
+   "title": "BNP Paribas Open: Session 3",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-04"
+  },
+  {
+   "id": "78144c48-1ef5-4127-ad78-1168e760d453",
+   "title": "Jeff Arcuri",
+   "city": "Cedar Rapids",
+   "state": "IA",
+   "date": "2027-03-04"
+  },
+  {
+   "id": "b2d2da8d-0aa9-4c7f-8888-ee2419921634",
+   "title": "BNP Paribas Open: Session 4",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-04"
+  },
+  {
+   "id": "8ed6b9f7-5d4c-4524-8401-99ce4f5177ff",
+   "title": "BNP Paribas Open - Stadium 2 - Session 3",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-04"
+  },
+  {
+   "id": "e21792ee-92fd-4f40-8392-feb11155f7c6",
+   "title": "BNP Paribas Open - Stadium 2 - Session 5",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-05"
+  },
+  {
+   "id": "aa24e85c-08af-4124-b054-ee383abe7854",
+   "title": "Henry Cho: It's What I Do",
+   "city": "Boise",
+   "state": "ID",
+   "date": "2027-03-05"
+  },
+  {
+   "id": "c1cc95ca-7362-4b55-a13e-9d0220905c6a",
+   "title": "BNP Paribas Open: Session 6",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-05"
+  },
+  {
+   "id": "0a50dd07-1cbb-40cc-85f9-0e29543fe8f9",
+   "title": "BNP Paribas Open - Grounds Pass",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-05"
+  },
+  {
+   "id": "44b728ae-4eed-471f-89b5-7f52f83e435a",
+   "title": "BNP Paribas Open: Stadium 3 - Session 5",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-05"
+  },
+  {
+   "id": "2b37832a-617d-4b30-b0d8-3000b89559d3",
+   "title": "BNP Paribas Open: Session 5",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-05"
+  },
+  {
+   "id": "026b4805-1f41-4b3e-a34c-8d953568beb9",
+   "title": "Amber Autry",
+   "city": "Tulsa",
+   "state": "OK",
+   "date": "2027-03-05"
+  },
+  {
+   "id": "750ab267-470f-4311-b95f-48f490e7b5a4",
+   "title": "Carlos Mencia - The Liberated Tour (Ages 21 & Over)",
+   "city": "Sioux City",
+   "state": "IA",
+   "date": "2027-03-05"
+  },
+  {
+   "id": "ce9b6898-fba9-4118-80e6-e12de4e2f6e9",
+   "title": "Charlotte Checkers vs. Hershey Bears",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-03-06"
+  },
+  {
+   "id": "64fedb52-28e3-4c66-a718-8853b22927a1",
+   "title": "BNP Paribas Open: Session 7",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-06"
+  },
+  {
+   "id": "816d3791-d9fc-4a20-a440-32aad9a34248",
+   "title": "BNP Paribas Open: Stadium 3 - Session 7",
+   "city": "Indian Wells",
+   "state": "CA",
+   "date": "2027-03-06"
+  },
+  {
+   "id": "f56a62b8-f922-4965-a54b-6f7e0ed58053",
+   "title": "Ari Matti: Here To Stay Tour",
+   "city": "Portland",
+   "state": "ME",
+   "date": "2027-03-06"
+  },
+  {
+   "id": "67ace336-82de-4877-8998-31af34aa1b63",
+   "title": "Nursestankk - Carsen White - Ages 18+",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2027-03-06"
+  },
+  {
+   "id": "57216b03-8e7e-459c-a980-3c12c9776056",
+   "title": "Charlotte Checkers vs. Hershey Bears",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-03-07"
+  },
+  {
+   "id": "49e903af-56cc-472f-8e84-cb34947f9eb9",
+   "title": "Jeff Arcuri: The Road Trip Tour",
+   "city": "Des Moines",
+   "state": "IA",
+   "date": "2027-03-09"
+  },
+  {
+   "id": "156fadee-9a38-489a-93c9-3c9e436087f6",
+   "title": "Jeff Arcuri: The Road Trip Tour",
+   "city": "Des Moines",
+   "state": "IA",
+   "date": "2027-03-10"
+  },
+  {
+   "id": "c205e7c4-4b56-4270-be08-fcca945739ef",
+   "title": "John Cleese: Still Not Dead (Yet)",
+   "city": "Owensboro",
+   "state": "KY",
+   "date": "2027-03-12"
+  },
+  {
+   "id": "0c143d8c-dc6b-4b5e-a116-dd0da5ff2c5f",
+   "title": "Legends Of Laughter",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-03-13"
+  },
+  {
+   "id": "816f6035-67da-47cf-9926-dd3037234afe",
+   "title": "Jeff Arcuri",
+   "city": "Tulsa",
+   "state": "OK",
+   "date": "2027-03-13"
+  },
+  {
+   "id": "8d8fc445-205e-4cf6-88cb-6eca2b50ec15",
+   "title": "Peter Antoniou: Brain Teaser",
+   "city": "Boise",
+   "state": "ID",
+   "date": "2027-03-14"
+  },
+  {
+   "id": "5defda9f-a996-4294-8b73-81f47794e04d",
+   "title": "From Ashes to New - Reflections Tour 2027",
+   "city": "Cincinnati",
+   "state": "OH",
+   "date": "2027-03-16"
+  },
+  {
+   "id": "2e060449-4447-4b26-afb6-e4b164336786",
+   "title": "Aries Spears",
+   "city": "Tulsa",
+   "state": "OK",
+   "date": "2027-03-19"
+  },
+  {
+   "id": "84e8b41b-004c-4ba2-9401-8bff1ca32fd2",
+   "title": "Limited Edition Replica Game Ball from Spalding",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-03-20"
+  },
+  {
+   "id": "f375e577-4740-4f16-8253-aeb8798132d6",
+   "title": "Ultimate Fan Pass:30-min Exclusive On-court Access from 12:30pm-1:00pm",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-03-20"
+  },
+  {
+   "id": "c682e304-10c1-4062-b4c5-a63b616bb149",
+   "title": "Jeff Dunham Inappropriate Contact",
+   "city": "Sioux City",
+   "state": "IA",
+   "date": "2027-03-20"
+  },
+  {
+   "id": "b635944e-1f19-4261-9f7a-51779cfd0b84",
+   "title": "MVP Court Pass (Check In By 1:30PM)",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-03-20"
+  },
+  {
+   "id": "e88353e0-50ff-4710-bbe7-05341fa75ab0",
+   "title": "Harlem Globetrotters: Rivalry Tour Presented By Sprite",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-03-20"
+  },
+  {
+   "id": "b27a45ff-904f-413d-b1f1-e0a7341714b2",
+   "title": "Franco Escamilla- \"El Juicio\" Tour",
+   "city": "Albuquerque",
+   "state": "NM",
+   "date": "2027-03-20"
+  },
+  {
+   "id": "cbec72e5-b953-41e5-accf-7260caa2c5bd",
+   "title": "Aries Spears",
+   "city": "Tulsa",
+   "state": "OK",
+   "date": "2027-03-20"
+  },
+  {
+   "id": "432f7777-d71f-420a-b6dd-ed79086c937e",
+   "title": "Bored Teachers: \"Is It Friday Yet?!\" Comedy Tour",
+   "city": "Des Moines",
+   "state": "IA",
+   "date": "2027-03-21"
+  },
+  {
+   "id": "87ab5c5d-4ddd-4c85-80db-f775c429de7c",
+   "title": "David Koechner - Ages 18+",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2027-03-25"
+  },
+  {
+   "id": "cd09a418-bb03-4176-8473-a035b24ec740",
+   "title": "David Koechner - Ages 18+",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2027-03-26"
+  },
+  {
+   "id": "8dc45e94-0f48-428a-adcf-7e11621366c3",
+   "title": "Charlotte Checkers vs. Hartford Wolf Pack",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-03-26"
+  },
+  {
+   "id": "676f3f11-bdbd-45a2-b6d3-077767eec8ff",
+   "title": "Charlotte Checkers vs. Hartford Wolf Pack",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-03-27"
+  },
+  {
+   "id": "ba57ccd2-328c-4f47-a512-79d2a7a4c8cc",
+   "title": "David Koechner - Ages 18+",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2027-03-27"
+  },
+  {
+   "id": "a1212a0f-d5d6-45d5-9396-baa14c87b07d",
+   "title": "Charlotte Checkers vs. Lehigh Valley Phantoms",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-03-30"
+  },
+  {
+   "id": "36cb1545-de7a-48f9-bda3-b939a14268bd",
+   "title": "Charlotte Checkers vs. Lehigh Valley Phantoms",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-03-31"
+  },
+  {
+   "id": "2d759bfd-ea73-42e2-9205-e19cc2f491e5",
+   "title": "From\u00a0Ashes\u00a0to\u00a0New\u00a0- Reflections\u00a0Tour 2027",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-03-31"
+  },
+  {
+   "id": "96936cc4-d0fd-41c9-8e58-4753163d0594",
+   "title": "From Ashes to New - Reflections Tour 2027",
+   "city": "Salt Lake City",
+   "state": "UT",
+   "date": "2027-04-02"
+  },
+  {
+   "id": "525cd742-38ec-4b92-bf82-46a37b6eefa9",
+   "title": "Charlotte Checkers vs. Rochester Americans",
+   "city": "Charlotte",
+   "state": "NC",
+   "date": "2027-04-03"
+  },
+  {
+   "id": "36dc5c1a-4d3e-417c-9066-3d1b6d782eb5",
+   "title": "From Ashes to New - Reflections Tour 2027",
+   "city": "Kansas City",
+   "state": "MO",
+   "date": "2027-04-04"
+  },
+  {
+   "id": "c6a159f6-3809-47bf-b720-6bb659f42ea2",
+   "title": "From Ashes To New- Reflections Tour 2027",
+   "city": "Columbia",
+   "state": "MO",
+   "date": "2027-04-06"
+  },
+  {
+   "id": "b7101667-18b5-4399-8242-96826aa67922",
+   "title": "Spokane Indians vs. Hillsboro Hops",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-04-07"
+  },
+  {
+   "id": "1a3ce4fb-7a70-437a-af01-44fd2a1bd13d",
+   "title": "Spokane Indians vs. Hillsboro Hops",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-04-10"
+  },
+  {
+   "id": "28a24b7d-3c4c-4415-a199-c040df4f667a",
+   "title": "From Ashes To New",
+   "city": "Destin",
+   "state": "FL",
+   "date": "2027-04-11"
+  },
+  {
+   "id": "2c9e298a-8550-4a22-8c60-4f931e638934",
+   "title": "Aries Spears",
+   "city": "Oklahoma City",
+   "state": "OK",
+   "date": "2027-04-16"
+  },
+  {
+   "id": "eabd1c98-7474-4e5f-bcc2-1d364b4b9a02",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-04-20"
+  },
+  {
+   "id": "47ca0f35-c590-46ac-aea4-1b5bd6bf75ae",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-04-21"
+  },
+  {
+   "id": "92ed8550-8a32-4929-b3f6-848cbcafdd34",
+   "title": "Puffs",
+   "city": "Huntington",
+   "state": "WV",
+   "date": "2027-04-21"
+  },
+  {
+   "id": "b2b3abf7-4bd6-475b-868f-bb1fd04a9e1f",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-04-22"
+  },
+  {
+   "id": "8521208f-be62-462b-9d4e-031652415f2e",
+   "title": "Puffs",
+   "city": "Huntington",
+   "state": "WV",
+   "date": "2027-04-22"
+  },
+  {
+   "id": "9c8cfddc-d1c6-4e75-8936-78d261d7f771",
+   "title": "Connor Wood",
+   "city": "Boise",
+   "state": "ID",
+   "date": "2027-04-23"
+  },
+  {
+   "id": "745022dd-d937-44c2-a1ae-5ddbf3c80c51",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-04-23"
+  },
+  {
+   "id": "bd4c4132-b2fd-474c-bfe1-d3fcb5c2cda3",
+   "title": "Puffs",
+   "city": "Huntington",
+   "state": "WV",
+   "date": "2027-04-23"
+  },
+  {
+   "id": "d5b8ad35-ddb6-4854-a564-ef93b3c38490",
+   "title": "Puffs",
+   "city": "Huntington",
+   "state": "WV",
+   "date": "2027-04-24"
+  },
+  {
+   "id": "24a8a95f-9cfd-4db4-be2c-ade07a047883",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-04-24"
+  },
+  {
+   "id": "985f6687-653e-4a5d-a3f2-f498ee2ca340",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-04-25"
+  },
+  {
+   "id": "de532aae-b7d3-441e-9a8c-10322bed5552",
+   "title": "Puffs",
+   "city": "Huntington",
+   "state": "WV",
+   "date": "2027-04-25"
+  },
+  {
+   "id": "7c36784d-ee8b-47c7-8f33-680bd0a913e1",
+   "title": "Matt Mathews: Not What I Ordered World Tour",
+   "city": "Ames",
+   "state": "IA",
+   "date": "2027-04-29"
+  },
+  {
+   "id": "2bffaae9-6d37-4394-8150-8c3e3ea608e3",
+   "title": "Ari Matti: Here To Stay Tour",
+   "city": "Des Moines",
+   "state": "IA",
+   "date": "2027-04-30"
+  },
+  {
+   "id": "2038a57a-7ceb-49f5-bdf9-b8eae6732da5",
+   "title": "Amber Autry: Happy Holler Tour",
+   "city": "Des Moines",
+   "state": "IA",
+   "date": "2027-05-01"
+  },
+  {
+   "id": "20cda6bd-c793-4db4-809a-1c83df2dfc77",
+   "title": "Jo Koy: Koy Meets World Tour",
+   "city": "Rio Rancho",
+   "state": "NM",
+   "date": "2027-05-01"
+  },
+  {
+   "id": "5db83995-3906-4e49-9733-5b6d90abd549",
+   "title": "Rodney Carrington",
+   "city": "Charles Town",
+   "state": "WV",
+   "date": "2027-05-07"
+  },
+  {
+   "id": "ae08452d-5b46-4fbd-916d-a4aefd17ea15",
+   "title": "Maria Bamford",
+   "city": "Portland",
+   "state": "ME",
+   "date": "2027-05-09"
+  },
+  {
+   "id": "7956f7dc-9a56-49b2-950a-4930836f615b",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-05-12"
+  },
+  {
+   "id": "60ea4b77-9d1e-419f-b658-74522b21cf7a",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-05-13"
+  },
+  {
+   "id": "9a90c4ac-e8df-4c9f-acf3-9d4129673967",
+   "title": "Matt Mathews",
+   "city": "Paducah",
+   "state": "KY",
+   "date": "2027-05-13"
+  },
+  {
+   "id": "02e03fb0-22a6-4474-abaf-4aa66789c96a",
+   "title": "Jeff Arcuri: The Road Trip Tour",
+   "city": "Portland",
+   "state": "ME",
+   "date": "2027-05-14"
+  },
+  {
+   "id": "9cc83269-e0e7-48a4-bf56-4981418861af",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-05-14"
+  },
+  {
+   "id": "b4fd7744-ff5f-4bbb-9fad-1bb922f4e5fe",
+   "title": "Matt Mathews: Not What I Ordered World Tour",
+   "city": "Council Bluffs",
+   "state": "IA",
+   "date": "2027-05-15"
+  },
+  {
+   "id": "3368335d-24bc-4977-b7c4-df7dfa946446",
+   "title": "Matt Mathews | Official Caesars Ticket + Hotel Packages",
+   "city": "Council Bluffs",
+   "state": "IA",
+   "date": "2027-05-15"
+  },
+  {
+   "id": "31bf7613-747f-48f1-bbbf-d980a341a2bb",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-05-15"
+  },
+  {
+   "id": "278e18eb-eb6d-4cc4-adc0-a7311ae30e8e",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-05-16"
+  },
+  {
+   "id": "225fd6cd-a3f9-4238-a2f1-f4932c2a5d24",
+   "title": "Spokane Indians vs. Hillsboro Hops",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-05-18"
+  },
+  {
+   "id": "ce4622c4-dc17-4550-ab49-e1f66aa34aed",
+   "title": "Spokane Indians vs. Hillsboro Hops",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-05-19"
+  },
+  {
+   "id": "376041e8-d215-4ffc-9630-c92313a7e89e",
+   "title": "Brad Williams: The Big & Small Tour",
+   "city": "Charleston",
+   "state": "WV",
+   "date": "2027-05-20"
+  },
+  {
+   "id": "b5103c15-9c18-4272-ad59-feb5aa157871",
+   "title": "Spokane Indians vs. Hillsboro Hops",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-05-20"
+  },
+  {
+   "id": "58310059-fc21-40e1-bdeb-4e4ce6319ba9",
+   "title": "Spokane Indians vs. Hillsboro Hops",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-05-21"
+  },
+  {
+   "id": "826c1384-dac2-46b8-a71f-184782ef54e8",
+   "title": "A. R. Rahman",
+   "city": "New York",
+   "state": "NY",
+   "date": "2027-05-22"
+  },
+  {
+   "id": "da769814-008e-4e72-b0d7-7de8c94cd244",
+   "title": "Spokane Indians vs. Hillsboro Hops",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-05-23"
+  },
+  {
+   "id": "d8b1b231-4e09-413e-8f60-ac0e69ef4686",
+   "title": "Bianca Del Rio: It Gets Bitter - World Comedy Tour",
+   "city": "Portland",
+   "state": "ME",
+   "date": "2027-05-28"
+  },
+  {
+   "id": "a4e62998-b81e-4b41-989e-e0cb8974d654",
+   "title": "Spokane Indians vs. Eugene Emeralds",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-06-01"
+  },
+  {
+   "id": "dbb43120-bb51-46af-8e16-c4f294e84016",
+   "title": "Spokane Indians vs. Eugene Emeralds",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-06-02"
+  },
+  {
+   "id": "cc6bd74f-ecaf-4494-8684-72447ef5c65b",
+   "title": "Spokane Indians vs. Eugene Emeralds",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-06-06"
+  },
+  {
+   "id": "310fdaf9-84f9-4933-a43b-4fc8206cb553",
+   "title": "Spokane Indians vs. Tri-City Dust Devils",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-06-15"
+  },
+  {
+   "id": "194337b2-4736-4f84-b4e4-5742076f62e4",
+   "title": "Spokane Indians vs. Tri-City Dust Devils",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-06-16"
+  },
+  {
+   "id": "e326ac5e-a4fd-4303-bd5b-b4622bab7ce3",
+   "title": "Brad Williams: The Big & Small Tour",
+   "city": "Honolulu",
+   "state": "HI",
+   "date": "2027-06-26"
+  },
+  {
+   "id": "754ee9e7-f2ed-4022-ade8-d5a1f685072f",
+   "title": "Spokane Indians vs. Vancouver Canadians",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-07-02"
+  },
+  {
+   "id": "b3a25d7d-115c-4e0c-a3fc-4e62e6e91cad",
+   "title": "Spokane Indians vs. Vancouver Canadians",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-07-03"
+  },
+  {
+   "id": "8aefcf1d-bcaa-40ab-95b3-d3e66ae71e53",
+   "title": "Spokane Indians vs. Vancouver Canadians",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-07-04"
+  },
+  {
+   "id": "e838d722-17d0-4874-969b-66e8a6dbbae6",
+   "title": "Spokane Indians vs. Hillsboro Hops",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-07-10"
+  },
+  {
+   "id": "e2f8f677-0367-4299-b8f8-49dbad0dd640",
+   "title": "Spokane Indians vs. Hillsboro Hops",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-07-11"
+  },
+  {
+   "id": "2c444990-bc14-439b-abdc-e1c612073247",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-08-03"
+  },
+  {
+   "id": "5ae86208-0339-4c2e-8986-a289058c50f9",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-08-04"
+  },
+  {
+   "id": "0724b865-eda7-4cf6-808f-3ed83dbb7628",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-08-05"
+  },
+  {
+   "id": "6298039c-42b0-4cb3-9252-5d6a46ff31a9",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-08-06"
+  },
+  {
+   "id": "3ab155e2-6041-4e92-b081-926fd8036224",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-08-07"
+  },
+  {
+   "id": "b2b3e991-52d9-484c-a26c-12b269b9aeed",
+   "title": "Spokane Indians vs. Everett AquaSox",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-08-08"
+  },
+  {
+   "id": "1588bd85-efb5-4d78-90b1-461382a0fc7a",
+   "title": "Spokane Indians vs. Vancouver Canadians",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-08-24"
+  },
+  {
+   "id": "f99f1a33-1e27-4fa6-919f-1e46f657d185",
+   "title": "Spokane Indians vs. Vancouver Canadians",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-08-25"
+  },
+  {
+   "id": "0d2617d3-ef43-450d-8df6-752db1de1011",
+   "title": "Spokane Indians vs. Vancouver Canadians",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-08-26"
+  },
+  {
+   "id": "5bb5fa1d-aa05-4793-9067-5dd1c7b97ace",
+   "title": "Spokane Indians vs. Vancouver Canadians",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-08-27"
+  },
+  {
+   "id": "cc64fc11-48d8-45a3-9fb1-ae0713a15510",
+   "title": "Spokane Indians vs. Vancouver Canadians",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-08-28"
+  },
+  {
+   "id": "dd5e3602-dd1e-4a71-81ca-e6cd904f7d90",
+   "title": "Spokane Indians vs. Vancouver Canadians",
+   "city": "Spokane",
+   "state": "WA",
+   "date": "2027-08-29"
+  },
+  {
+   "id": "61413aa8-6eea-430f-9c4b-0f81a318f6f5",
+   "title": "Brad Williams: The Big & Small Tour",
+   "city": "Bismarck",
+   "state": "ND",
+   "date": "2027-09-19"
+  },
+  {
+   "id": "065d539c-10c9-4d55-a5a3-b3cdf5f678c3",
+   "title": "Brad Williams: The Big & Small Tour",
+   "city": "Bismarck",
+   "state": "ND",
+   "date": "2027-09-20"
+  }
+ ]
+}
