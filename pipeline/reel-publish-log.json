@@ -1,0 +1,17 @@
+[
+  {
+    "video_id": "2MrWgJOsprg",
+    "article_slug": "sukanya-chakrabarti-american-physical-society-fellow-dark-matter",
+    "article_id": "fe506b8a-7095-4034-8365-090b586cd418",
+    "title": "Astrophysicist Sukanya Chakrabarti Elected Fellow of American Physical Society #Shorts #DarkMatter",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-14T07:38:18.193804+00:00",
+    "video_path": "reel-samples/phase1/sukanya-chakrabarti-american-physical-society-fellow-dark-matter/output/sukanya-chakrabarti-american-physical-society-fellow-dark-matter.mp4",
+    "video_sha256": "0bd574ced16aea96bba812f8c106f8cba18b1a6ed505b03f38ce8fb9755a9144",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py",
+    "prebuilt_reels_id": "c236b952-ed9d-4de2-b33b-f266d3884960",
+    "write_back_note": "first write-back attempt failed (sb_write sent no body; PostgREST error object, no row created); payload PATCHed onto the diagnostic row after the fix, read-back verified 2026-10-14"
+  }
+]
