@@ -1,0 +1,14 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "article_slug": "dhs-final-rule-ends-540-day-ead-automatic-extension",
+  "name": "dhs-final-rule-ends-540-day-ead-automatic-extension",
+  "script": "reel-runs/2026-10-14-dhs-final-rule-ends-540-day-ead-automatic-extension/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000489
+  },
+  "detail": "no composition fits all scenes below the chin at the planner floors"
+}

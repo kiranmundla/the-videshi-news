@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 184,
-    "db_rows": 118,
-    "db_rows_with_yt_id": 88,
+    "channel_videos": 185,
+    "db_rows": 119,
+    "db_rows_with_yt_id": 89,
     "legacy_log_entries": 205,
-    "publish_log_entries": 2,
-    "in_sync": 73,
+    "publish_log_entries": 3,
+    "in_sync": 74,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 10,
     "ghost_db_rows": 14,
@@ -524,6 +524,13 @@
       "privacy": "public",
       "video_id": "2MrWgJOsprg",
       "record": "prebuilt_reels:c236b952-ed9d-4de2-b33b-f266d3884960"
+    },
+    {
+      "title": "DHS Proposes Ending Deference to Prior H-1B and L-1 Petition Approvals #Shorts #H1B",
+      "published_at": "2026-10-14T10:52:59Z",
+      "privacy": "public",
+      "video_id": "F65YQsTymGw",
+      "record": "prebuilt_reels:cecd5411-672e-4729-b616-f6f85448021c"
     }
   ],
   "unknown_legacy_logged": [
@@ -3401,5 +3408,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-10-14T08:55:06+00:00"
+  "generated_at": "2026-10-14T17:18:34+00:00"
 }

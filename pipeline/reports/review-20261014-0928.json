@@ -1,0 +1,191 @@
+[
+  {
+    "id": "d0ac924b-b23c-41a4-bb29-59256d4c8b82",
+    "headline": "UK Diaspora Protests Outside Indian High Commission in London Over Electoral Rol",
+    "slug": "uk-diaspora-protests-london-india-electoral-roll-revision-sir",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events leading to the protest, including when the electoral roll revision was announced and any relevant deadlines for public feedback or participation.",
+        "Provide a more detailed explanation of the Special Intensive Revision (SIR) process, including how it affects voters and why it is viewed as exclusionary by opposition parties.",
+        "Include a specific quote or statement from the protesting groups to provide direct attribution and insight into their motivations and concerns."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement from the Election Commission regarding the electoral roll revision to provide readers with the official perspective."
+      ]
+    }
+  },
+  {
+    "id": "a6af8d07-1407-41a9-ab63-9f42654403b9",
+    "headline": "Jailer 2 Opens October 15 Amid Revenue-Sharing Row, Rs 38 Crore Advance Bookings",
+    "slug": "jailer-2-box-office-advance-bookings-revenue-sharing-row-october-15",
+    "category": "entertainment",
+    "structural_issues": [
+      "Two embeds clustered within 200 chars of each other"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the revenue-sharing dispute by providing more context on the implications for the Hindi release. For example, what percentage are theatre owners willing to accept, and how does this compare to industry standards?",
+        "Include a brief background on the original Jailer film's performance to give readers context about why expectations for Jailer 2 are so high. This could include its box office success and critical reception.",
+        "Ensure that the timeline for the Hindi release is clearly stated, including any potential delays or changes due to the revenue-sharing dispute. This will help readers understand the urgency and implications of the situation.",
+        "Consider rephrasing the headline to make it more compelling and specific, such as 'Jailer 2 Set for October 15 Release Amid Controversial Revenue-Sharing Dispute and Rs 38 Crore in Advance Bookings'."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the film's official account or a notable film critic discussing the revenue-sharing dispute or the film's expectations to provide real-time reactions and insights."
+      ]
+    }
+  },
+  {
+    "id": "caf9b966-1d10-4c9d-91e6-31f02ac8e07c",
+    "headline": "India's Amrit Vats and Pakistan's Muhammad Yahya Win Junior Doubles Title in Dji",
+    "slug": "amrit-vats-muhammad-yahya-junior-doubles-title-djibouti-indo-pak-express",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Indo-Pak Express comparison by providing more context on how this new partnership could impact future relations or collaborations in sports between India and Pakistan.",
+        "Include a quote from Amrit Vats or a representative from the Indian Tennis Federation to provide a balanced perspective and enhance the article's completeness.",
+        "Correct the repetition of the match result in the second paragraph; it should be streamlined to avoid redundancy and improve clarity.",
+        "Add a brief mention of the ITF World Tennis Tour Juniors J30 tournament's significance in the context of junior tennis to provide readers with a better understanding of the achievement."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Pakistan Tennis Federation congratulating Muhammad Yahya to enhance the article's credibility and provide direct attribution."
+      ]
+    }
+  },
+  {
+    "id": "bec2a8e9-f390-4805-9349-8d92356396a5",
+    "headline": "The Indian-American Midterm Dilemma: A Community Pulled Between Prosperity and I",
+    "slug": "indian-american-voters-midterm-dilemma-trump-america",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline for the upcoming elections and the significance of the November 3 date mentioned, including what specific races are being referenced and their potential impact on the community.",
+        "Provide specific details about the immigration policies mentioned, such as what the $100,000 H-1B fee entails and how it affects applicants, as well as the implications of the PERM suspension and the end of automatic work-permit extensions for H-4 spouses.",
+        "Include a brief summary or context about the 'Samosa Caucus' and its importance to the Indian-American community, as well as the implications of its potential reduction in size."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or statement from a political figure or organization discussing the impact of immigration policies on Indian-Americans, or a poll result that highlights the shift in voting trends within the community."
+      ]
+    }
+  },
+  {
+    "id": "8f0de867-80a2-4c51-af62-797fc71e9181",
+    "headline": "Arizona DACA Renewals Now Take Five to Six Months as Delays Cost Jobs and Licenc",
+    "slug": "arizona-daca-renewal-delays-uncertainty-2026",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the wait times by providing specific dates for the changes mentioned, such as when the new biometrics requirements were implemented and how they correlate with the increase in wait times.",
+        "Include a direct quote from a USCIS representative or a relevant government official to provide an official perspective on the delays and the reasons behind them, enhancing attribution and credibility.",
+        "Add more context about the implications of the delays on DACA recipients, such as specific statistics on how many individuals are affected or the potential economic impact on Arizona's workforce.",
+        "Ensure that the article clearly states the current average processing time for DACA renewals, as well as the previous average for comparison, to provide readers with a clearer understanding of the extent of the delays."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Arizona Dream Act Coalition or USCIS that discusses the current situation or provides updates on DACA processing times."
+      ]
+    }
+  },
+  {
+    "id": "3a15663b-64dc-4ecc-9927-2c1fa02d78a6",
+    "headline": "Wipro Sees No Material Impact From US PERM Suspension, Citing 80% Local US Hirin",
+    "slug": "wipro-no-material-impact-us-perm-suspension-local-hiring",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the potential implications of the PERM suspension for employees at affected firms, including specific timelines for processing delays or potential impacts on their green card applications.",
+        "Include a brief explanation of what the PERM process entails for readers who may not be familiar with it, enhancing completeness and clarity.",
+        "Ensure that the attribution to The Hindu BusinessLine is clear and properly formatted, perhaps by including a direct quote or a clearer reference to the source of the information."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the US Department of Labor regarding the PERM suspension to provide readers with direct access to the announcement."
+      ]
+    }
+  },
+  {
+    "id": "416963c4-2433-4180-9322-24e70f5c5cc1",
+    "headline": "Indian IT Shares Surge as 'Anti-AI' Trade Lifts Nifty IT 2,000 Points in Two Day",
+    "slug": "nifty-it-surges-2000-points-anti-ai-trade-hcltech-results",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the IT index's performance by specifying the exact dates of the two-day surge to enhance clarity and context for readers unfamiliar with market movements.",
+        "Provide a brief explanation of what the 'anti-AI' trade entails, including specific factors contributing to investor sentiment, to ensure completeness and understanding for readers not well-versed in market terminology.",
+        "Include specific numerical data regarding the overall market capitalization changes or percentage increases of the Nifty IT index to give readers a clearer picture of the impact of this surge."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or market expert commenting on the 'anti-AI' trade or the recent performance of Indian IT stocks to provide real-time insights."
+      ]
+    }
+  },
+  {
+    "id": "57dc07e2-0542-46dc-b059-10384ce163ed",
+    "headline": "RBI Open to More Steps to Defend Rupee and Curb Forex Speculation, Governor Malh",
+    "slug": "rbi-open-more-steps-defend-rupee-curb-forex-speculation-malhotra",
+    "category": "markets-finance",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"India: RBI Rate Rise Explained | Protect Your EMI, Savings a\" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the RBI's actions by specifying the dates of the measures mentioned, such as when the special dollar window for oil firms was opened and when the curbs on derivative transactions were extended.",
+        "Include specific figures regarding the rupee's performance over the past week or month to provide context for its fluctuations and the significance of the recent gains.",
+        "Add a direct quote from the RBI Governor or another official to enhance attribution and provide a more personal touch to the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official RBI statement or tweet regarding the measures taken to curb forex speculation for direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "a59e7e7e-89e9-46cf-bfc0-38f2a5780a1d",
+    "headline": "Infosys AI Services Could Be Nearly Half Its Work in 2-3 Years, CEO Salil Parekh",
+    "slug": "infosys-ai-services-half-work-2-3-years-salil-parekh",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Clarify the timeline for the projected growth in AI services. Instead of stating 'within a few quarters,' provide specific months or quarters to enhance clarity for readers.",
+        "Include more context on how the growth of AI services will impact Infosys's overall business strategy and workforce beyond just the number of employees trained in AI. This could help readers understand the broader implications of this shift.",
+        "Ensure that the attribution to PTI and Storyboard18 is clear and consistent throughout the article, particularly in the context of the quotes from Salil Parekh."
+      ],
+      "embed_opportunities": [
+        "Embed the official Infosys tweet regarding Salil Parekh's statements or the Bloomberg New Economy Forum for direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "79a2cf42-1ced-4dea-97a8-022576d4a405",
+    "headline": "Russian Attack Kills at Least Six in Ukraine, Cuts Power to Over 500,000, Days A",
+    "slug": "russian-attack-ukraine-kills-six-cuts-power-kyiv-energy-ceasefire",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events: The article mentions an 'energy ceasefire' announced by US President Donald Trump, but does not provide a specific date for this announcement. Including the exact date would help readers understand the context better.",
+        "Provide more details on the casualties: While the article states that at least six people were killed, it would be beneficial to specify the locations of these casualties and any additional context about the victims, if available.",
+        "Include direct quotes from officials: The article references statements from President Zelenskyy and the Russian Defence Ministry, but it would enhance credibility and clarity to include direct quotes from these officials to provide a clearer picture of their positions."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Al Jazeera or another credible news source reporting on the attack to provide real-time updates and visuals."
+      ]
+    }
+  }
+]

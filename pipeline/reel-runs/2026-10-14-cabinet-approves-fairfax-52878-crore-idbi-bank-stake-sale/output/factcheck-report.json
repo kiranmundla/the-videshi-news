@@ -1,0 +1,255 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "cabinet-approves-fairfax-52878-crore-idbi-bank-stake-sale",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "FAIRFAX TO TAKE CONTROL OF IDBI BANK",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Fairfax will acquire control of IDBI Bank.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The Cabinet Committee on Economic Affairs has approved Fairfax Financial Holdings as strategic buyer of a 60.72% stake in IDBI Bank.",
+      "numbers": [
+        60.72
+      ],
+      "entities": [
+        "Cabinet Committee",
+        "Economic Affairs",
+        "Fairfax Financial Holdings",
+        "IDBI Bank"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Cabinet approved Fairfax as strategic buyer of 60.72% stake.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "60.72%",
+      "numbers": [
+        60.72
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "60.72% is the stake Fairfax will acquire.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Stake in IDBI Bank the Cabinet has approved Fairfax to acquire",
+      "numbers": [],
+      "entities": [
+        "IDBI Bank"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Cabinet approved Fairfax to acquire 60.72% stake.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "No specific 'BY THE NUMBERS' section mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "Rs 52,877.07 CRORE",
+      "numbers": [
+        52877.07,
+        528770700000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Value of Fairfax's bid is Rs 52,877.07 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Value of Fairfax's bid for the controlling stake in IDBI Bank",
+      "numbers": [],
+      "entities": [
+        "IDBI Bank"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Value of bid for controlling stake is Rs 52,877.07 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "30.48%",
+      "numbers": [
+        30.48
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Government stake being sold is 30.48%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Government stake being sold in IDBI Bank",
+      "numbers": [],
+      "entities": [
+        "IDBI Bank"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Government stake being sold is 30.48%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "30.24%",
+      "numbers": [
+        30.24
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "LIC stake being sold is 30.24%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "LIC stake being sold in IDBI Bank",
+      "numbers": [],
+      "entities": [
+        "IDBI Bank"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "LIC stake being sold is 30.24%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "The government says the deal will be the largest FDI ever in India's financial sector",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Government states deal will be largest FDI in financial sector.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The government and LIC will retain a combined 34% in the bank",
+      "numbers": [
+        34.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Government and LIC will retain a combined 34% in the bank.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Cabinet approval is not completion \u2014 Fairfax must present its credentials to the RBI under the fit-and-proper assessment.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Fairfax must present credentials to RBI for assessment.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Fairfax Financial Holdings",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "IDBI Bank",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Cabinet Committee on Economic Affairs",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000458
+  }
+}

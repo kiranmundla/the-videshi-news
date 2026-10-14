@@ -1492,5 +1492,16 @@
     "top_story_slug": "diwali-2026-singapore-ten-indian-restaurants-festive-feasts",
     "quick_hit_count": 5,
     "deadline_count": 7
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-14T13:58:26.584886+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 14, 2026",
+    "subscribers": 8,
+    "sent": 8,
+    "errors": 0,
+    "top_story_slug": "maharashtra-drought-305-talukas-farmers-rs-5000-diwali",
+    "quick_hit_count": 5,
+    "deadline_count": 7
   }
 ]

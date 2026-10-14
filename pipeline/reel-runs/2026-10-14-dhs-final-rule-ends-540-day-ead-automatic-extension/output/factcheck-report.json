@@ -1,0 +1,259 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "dhs-final-rule-ends-540-day-ead-automatic-extension",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "540-DAY WORK PERMIT EXTENSION ENDS",
+      "numbers": [
+        540.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the 540-day extension ends.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The Department of Homeland Security has issued a final rule making permanent the end of the automatic 540-day extension of work authorization for most EAD renewals.",
+      "numbers": [
+        540.0
+      ],
+      "entities": [
+        "Homeland Security"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms DHS's final rule on the 540-day extension.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "540 DAYS",
+      "numbers": [
+        540.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the 540-day extension.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Automatic EAD extension DHS has now ended for most renewals",
+      "numbers": [],
+      "entities": [
+        "Automatic EAD"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states DHS has ended the automatic EAD extension.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE STAKES",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article does not specify what 'the stakes' are.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "432,000",
+      "numbers": [
+        432000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article cites 432,000 pending work permit renewals.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Work permit renewals pending at USCIS for six months by June 30, 2026",
+      "numbers": [
+        30.0,
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article states 432,000 renewals were pending for six months.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "91,000",
+      "numbers": [
+        91000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions 91,000 renewals pending for over 18 months.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Renewals pending for over 18 months",
+      "numbers": [
+        18.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms 91,000 renewals pending for over 18 months.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "180 DAYS",
+      "numbers": [
+        180.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states renewals can be filed 180 days before expiry.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Earliest a renewal can be filed before the card expires",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the 180-day filing window before expiry.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "H-4 spouses of H-1B workers are among the EAD categories covered",
+      "numbers": [
+        1.0,
+        4.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article lists H-4 spouses as affected EAD categories.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "For most renewals, a pending case no longer extends work authorization past the card's expiration date",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states pending cases no longer extend work authorization.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "File on day 180 before expiry, because a pending renewal no longer lets you keep working after the card expires.",
+      "numbers": [
+        180.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article advises filing 180 days before expiry.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE STAKES",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Department of Homeland Security",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "USCIS",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "H-4",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000489
+  }
+}

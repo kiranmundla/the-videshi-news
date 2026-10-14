@@ -1,0 +1,35 @@
+{
+  "hook_line": "540-DAY WORK PERMIT EXTENSION ENDS",
+  "hook_stat": {
+    "big": "540 DAYS",
+    "eyebrow": "THE STAKES",
+    "sub": "Automatic EAD extension DHS has now ended for most renewals"
+  },
+  "stats": [
+    {
+      "big": "432,000",
+      "label": "Work permit renewals pending at USCIS for six months by June 30, 2026"
+    },
+    {
+      "big": "91,000",
+      "label": "Renewals pending for over 18 months"
+    },
+    {
+      "big": "180 DAYS",
+      "label": "Earliest a renewal can be filed before the card expires"
+    }
+  ],
+  "diaspora_bullets": [
+    "H-4 spouses of H-1B workers are among the EAD categories covered",
+    "For most renewals, a pending case no longer extends work authorization past the card's expiration date"
+  ],
+  "key_entities": [
+    "Department of Homeland Security",
+    "USCIS",
+    "H-4"
+  ],
+  "news_summary": "The Department of Homeland Security has issued a final rule making permanent the end of the automatic 540-day extension of work authorization for most EAD renewals.",
+  "payoff": "File on day 180 before expiry, because a pending renewal no longer lets you keep working after the card expires.",
+  "versus": "",
+  "story_mood": "tense"
+}

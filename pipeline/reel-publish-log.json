@@ -29,5 +29,18 @@
     "superseded": "2026-10-14T08:42:11.392818+00:00",
     "superseded_reason": "owner_deleted_in_studio",
     "superseded_note": "Owner deleted in Studio 2026-10-14 (music redo). Redo rendered with upbeat track pixabay-breaking-full.mp3; awaiting owner ear-approval before publish."
+  },
+  {
+    "video_id": "F65YQsTymGw",
+    "article_slug": "dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals",
+    "article_id": "adade7f6-90f2-4ed8-acc0-3137c4366136",
+    "title": "DHS Proposes Ending Deference to Prior H-1B and L-1 Petition Approvals #Shorts #H1B",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-14T10:47:28.660004+00:00",
+    "video_path": "reel-runs/2026-10-14-dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals/output-music-v2/dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals.mp4",
+    "video_sha256": "f3aaf46549bdc3d1a8a29f47d88f56d7b11378fb01262cacff2f6089f27869de",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

@@ -1,0 +1,14 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "article_slug": "cabinet-approves-fairfax-52878-crore-idbi-bank-stake-sale",
+  "name": "cabinet-approves-fairfax-52878-crore-idbi-bank-stake-sale",
+  "script": "reel-runs/2026-10-14-cabinet-approves-fairfax-52878-crore-idbi-bank-stake-sale/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000458
+  },
+  "detail": "no composition fits all scenes below the chin at the planner floors"
+}

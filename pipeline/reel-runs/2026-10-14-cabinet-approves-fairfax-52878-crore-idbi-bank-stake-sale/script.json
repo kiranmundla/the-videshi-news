@@ -1,0 +1,35 @@
+{
+  "hook_line": "FAIRFAX TO TAKE CONTROL OF IDBI BANK",
+  "hook_stat": {
+    "big": "60.72%",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Stake in IDBI Bank the Cabinet has approved Fairfax to acquire"
+  },
+  "stats": [
+    {
+      "big": "Rs 52,877.07 CRORE",
+      "label": "Value of Fairfax's bid for the controlling stake in IDBI Bank"
+    },
+    {
+      "big": "30.48%",
+      "label": "Government stake being sold in IDBI Bank"
+    },
+    {
+      "big": "30.24%",
+      "label": "LIC stake being sold in IDBI Bank"
+    }
+  ],
+  "diaspora_bullets": [
+    "The government says the deal will be the largest FDI ever in India's financial sector",
+    "The government and LIC will retain a combined 34% in the bank"
+  ],
+  "key_entities": [
+    "Fairfax Financial Holdings",
+    "IDBI Bank",
+    "Cabinet Committee on Economic Affairs"
+  ],
+  "news_summary": "The Cabinet Committee on Economic Affairs has approved Fairfax Financial Holdings as strategic buyer of a 60.72% stake in IDBI Bank.",
+  "payoff": "Cabinet approval is not completion \u2014 Fairfax must present its credentials to the RBI under the fit-and-proper assessment.",
+  "versus": "",
+  "story_mood": "tense"
+}

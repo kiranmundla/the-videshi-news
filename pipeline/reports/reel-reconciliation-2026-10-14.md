@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-10-14T08:55:06+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-10-14T17:18:34+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **184**
-- prebuilt_reels rows: 118 (88 with a yt_video_id)
+- Channel uploads (actual, via API): **185**
+- prebuilt_reels rows: 119 (89 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 2
-- **In sync** (channel video backed by a DB/publish-log record): **73**
+- Phase 2 publish-log entries: 3
+- **In sync** (channel video backed by a DB/publish-log record): **74**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 10
 - Ghost DB rows (yt_video_id not on channel): 14
@@ -272,7 +272,7 @@ _None._
 
 - row `cd31fd35-0ef2-4b97-ac09-678c9027a296` · slug dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals · yt_video_id `9MuNbawE8ac` · on channel: no
 
-## (d) In sync (73)
+## (d) In sync (74)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -347,4 +347,5 @@ _None._
 - `Cq-CwlUarOU` · public · 2026-07-14 · Satya Nadella Is Quietly Building Microsoft's Own AI Models. The Goal: Stop Paying OpenAI and Ant 🎙️ [prebuilt_reels:89fe716f-ffdc-44d2-956f-159e4835289c]
 - `YbpiTLVJWCA` · public · 2026-07-14 · Five Box Office Wars That Will Define the Second Half of 2026 🎵 [prebuilt_reels:30e3cac5-9362-4964-8065-f3acebd2760a]
 - `2MrWgJOsprg` · public · 2026-10-14 · Astrophysicist Sukanya Chakrabarti Elected Fellow of American Physical Society #Shorts #DarkMatter [prebuilt_reels:c236b952-ed9d-4de2-b33b-f266d3884960]
+- `F65YQsTymGw` · public · 2026-10-14 · DHS Proposes Ending Deference to Prior H-1B and L-1 Petition Approvals #Shorts #H1B [prebuilt_reels:cecd5411-672e-4729-b616-f6f85448021c]
 

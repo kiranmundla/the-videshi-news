@@ -58,5 +58,15 @@
     "quick_hit_count": 5,
     "deadline_count": 7,
     "chars": 2857
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-10-14T14:15:10.791622+00:00Z",
+    "subject": "WhatsApp digest \u2014 Oct 14 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "erode-turmeric-price-crosses-rs-22000-quintal-drought",
+    "quick_hit_count": 5,
+    "deadline_count": 7,
+    "chars": 2837
   }
 ]
