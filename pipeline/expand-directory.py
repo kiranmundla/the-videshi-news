@@ -518,6 +518,9 @@ def main():
 
     import places_budget
     places_budget.DAILY_LIMIT = args.daily_budget
+    # Budget allocation (2026-10-14): main expansion is capped at 70 of the
+    # shared 90/day so kids/Learn always keeps its 20 — see places_budget.py.
+    places_budget.set_consumer("directory")
 
     targets = STATE_CITIES
     if args.states:

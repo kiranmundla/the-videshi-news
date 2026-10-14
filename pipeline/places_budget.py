@@ -4,6 +4,18 @@ All directory scripts should call check_budget() before making a Places API call
 
 State file: pipeline/places-usage.json
 Resets daily at midnight UTC.
+
+Per-consumer allocations (added 2026-10-14, Kiran's directive): the shared
+90-call daily total is split so Learn/kids expansion is guaranteed a slice.
+expand-directory.py ran first and consumed all 90, starving
+expand-kids-places.py (0 calls/day for days). Now each expander registers
+itself via set_consumer() and gets a hard per-consumer cap inside the shared
+total: kids 20, directory 70. The guarantee is order-independent — directory
+can never touch the kids reserve. Once kids has had its turn for the day
+(mark_consumer_done), the directory cap is released to the full shared total
+so an unused kids allocation is not stranded when main runs after kids.
+Scripts that never call set_consumer() are bound only by the shared total,
+as before.
 """
 
 import json, os, time
@@ -19,14 +31,34 @@ DAILY_LIMIT = 90  # max Places API calls per day (across all scripts)
 # cap throttles the API. Conservative per Kiran's 2026-10-07 directive;
 # raise only if he approves higher spend.
 
+# Per-consumer daily caps within the shared DAILY_LIMIT total.
+CONSUMER_CAPS = {"kids": 20, "directory": 70}
+# The consumer whose finished turn releases its unused reserve to "directory".
+RESERVE_OWNER = "kids"
+
+_CONSUMER = None  # set per-process via set_consumer()
+
+def set_consumer(name):
+    """Register this process as a budget consumer (e.g. "kids", "directory").
+
+    Consumers named in CONSUMER_CAPS get a hard per-consumer daily cap on top
+    of the shared total. Unregistered processes keep the old behavior
+    (shared total only).
+    """
+    global _CONSUMER
+    _CONSUMER = name
+
 def _load():
     if not os.path.exists(STATE_FILE):
-        return {"date": "", "count": 0}
+        return {"date": "", "count": 0, "consumers": {}, "done": {}}
     try:
         with open(STATE_FILE) as f:
-            return json.load(f)
+            state = json.load(f)
     except Exception:
-        return {"date": "", "count": 0}
+        return {"date": "", "count": 0, "consumers": {}, "done": {}}
+    state.setdefault("consumers", {})
+    state.setdefault("done", {})
+    return state
 
 def _save(state):
     with open(STATE_FILE, "w") as f:
@@ -35,6 +67,13 @@ def _save(state):
 def _today():
     return datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
+def _current_state():
+    """Today's state; a stale date means a fresh day (nothing carries over)."""
+    state = _load()
+    if state["date"] != _today():
+        return {"date": _today(), "count": 0, "consumers": {}, "done": {}}
+    return state
+
 def get_usage():
     """Return (count_today, daily_limit)."""
     state = _load()
@@ -42,27 +81,60 @@ def get_usage():
         return 0, DAILY_LIMIT
     return state["count"], DAILY_LIMIT
 
+def get_consumer_usage(name):
+    """Calls recorded today for one consumer."""
+    return _current_state()["consumers"].get(name, 0)
+
+def consumer_done(name):
+    """True if the consumer has marked its turn complete today."""
+    return bool(_current_state()["done"].get(name))
+
+def mark_consumer_done(name):
+    """Mark a consumer's daily turn complete (releases its reserve)."""
+    state = _current_state()
+    state["done"][name] = True
+    _save(state)
+
+def _effective_cap(name, state):
+    """Hard daily cap for a consumer, or None if it has no allocation."""
+    cap = CONSUMER_CAPS.get(name)
+    if cap is None:
+        return None
+    if name == "directory" and state["done"].get(RESERVE_OWNER):
+        # Kids has had its turn: release any unused reserve to the main
+        # expander (the shared-total check in check_budget still binds).
+        return DAILY_LIMIT
+    return cap
+
 def check_budget(calls_needed=1):
     """
     Check if we have budget for `calls_needed` Places API calls today.
     Returns True if allowed, False if over budget.
     Does NOT increment the counter — call record_call() after a successful API call.
+    Enforces the shared daily total and, for registered consumers, their
+    per-consumer allocation cap.
     """
     state = _load()
     today = _today()
     if state["date"] != today:
-        state = {"date": today, "count": 0}
+        state = {"date": today, "count": 0, "consumers": {}, "done": {}}
         _save(state)
-    return (state["count"] + calls_needed) <= DAILY_LIMIT
+    if (state["count"] + calls_needed) > DAILY_LIMIT:
+        return False
+    if _CONSUMER is not None:
+        cap = _effective_cap(_CONSUMER, state)
+        if cap is not None and \
+                (state["consumers"].get(_CONSUMER, 0) + calls_needed) > cap:
+            return False
+    return True
 
 def record_call(n=1):
-    """Record n Places API calls made."""
-    state = _load()
-    today = _today()
-    if state["date"] != today:
-        state = {"date": today, "count": 0}
+    """Record n Places API calls made (shared total + this process's consumer)."""
+    state = _current_state()
     state["count"] += n
-    state["date"] = today
+    if _CONSUMER is not None:
+        state["consumers"][_CONSUMER] = state["consumers"].get(_CONSUMER, 0) + n
+    state["date"] = _today()
     _save(state)
     return state["count"]
 
