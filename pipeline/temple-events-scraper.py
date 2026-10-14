@@ -49,6 +49,9 @@ HEADERS = {
 
 DIR_FILE = os.path.join(os.path.dirname(__file__), "temple-directory.json")
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from event_geocode import geocode_venue
+
 
 def curl_get(url, timeout=25):
     cmd = ["curl", "-sSL", "--max-time", str(timeout), "-A", UA,
@@ -314,6 +317,23 @@ def get_existing_source_ids():
 def insert_events(events):
     if not events:
         return 0
+    # Geocode at insert time: coord-less events are invisible to the site's
+    # ZIP / near-me radius search. One Nominatim lookup per unique venue
+    # (cached in event_geocode); failures stay NULL and are logged.
+    venues = {(ev.get("venue_name", ""), ev.get("city", ""), ev.get("state", ""))
+              for ev in events}
+    coords = {}
+    for venue, city, state in sorted(venues):
+        lat, lon, level = geocode_venue(venue, city, state)
+        if lat is not None:
+            coords[(venue, city, state)] = (lat, lon)
+            print(f"    📍 {venue} ({city}, {state}): {level} → {lat:.4f},{lon:.4f}")
+        else:
+            print(f"    ⚠ Could not geocode venue: {venue} ({city}, {state}) — event coords stay NULL")
+    for ev in events:
+        c = coords.get((ev.get("venue_name", ""), ev.get("city", ""), ev.get("state", "")))
+        if c:
+            ev["latitude"], ev["longitude"] = c
     inserted = 0
     for ev in events:
         ev["updated_at"] = datetime.now(timezone.utc).isoformat()

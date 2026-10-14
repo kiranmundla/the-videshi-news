@@ -30,6 +30,7 @@ from datetime import datetime, date
 from html.parser import HTMLParser
 from urllib.parse import quote
 from event_dedup import content_fingerprint as compute_fingerprint, get_all_fingerprints
+from event_geocode import geocode_venue
 
 # ── Env ──────────────────────────────────────────────────────────────────────
 
@@ -353,6 +354,20 @@ def upsert_event(event, org, teacher, is_featured_source, source_url=None, og_im
 
     # Remove None values
     record = {k: v for k, v in record.items() if v is not None}
+
+    # Geocode at insert time: coord-less events are invisible to the site's
+    # ZIP / near-me radius search. Cached per venue in event_geocode; on
+    # failure the fields are simply omitted (coords stay NULL, never faked).
+    if city:
+        lat, lon, level = geocode_venue(event.get('venue_name'), city,
+                                        event.get('state'))
+        if lat is not None:
+            record['latitude'] = lat
+            record['longitude'] = lon
+        else:
+            print(f"  ⚠ Could not geocode: {event.get('venue_name')} "
+                  f"({city}, {event.get('state')}) — coords stay NULL",
+                  file=sys.stderr)
 
     payload = json.dumps(record)
 
