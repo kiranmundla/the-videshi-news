@@ -11,6 +11,7 @@ import json, os, re, subprocess, sys, time, hashlib, logging
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from indian_relevance import is_indian_business
 from places_budget import check_budget, record_call, budget_remaining  # daily cost guard
+from photo_rehost import rehost_raw_urls  # durable photos: never store live Google URLs
 import atexit as _atexit
 def _budget_report():
     u, l = __import__("places_budget").get_usage()
@@ -119,9 +120,14 @@ def google_search(query, page_token=None):
         params["pagetoken"] = page_token
     return curl_json(f"https://maps.googleapis.com/maps/api/place/textsearch/json?{urllib.parse.urlencode(params)}") or {"status": "ERROR", "results": []}
 
-def photo_urls(photos):
-    return [f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference={p['photo_reference']}&key={GKEY}"
-            for p in (photos or [])[:5] if p.get("photo_reference")]
+def photo_urls(photos, stem):
+    # 2026-10-14: these legacy photo_reference URLs are exactly the ones that
+    # rotted into Google's red-X placeholder (the screenshot doctors came
+    # from this path). Build the URLs only to download the bytes ONCE, then
+    # store the re-hosted copies from our directory-photos bucket.
+    raw = [f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photo_reference={p['photo_reference']}&key={GKEY}"
+           for p in (photos or [])[:5] if p.get("photo_reference")]
+    return rehost_raw_urls(raw, stem, max_photos=5)
 
 def fetch_existing_ids():
     ids = set()
@@ -181,7 +187,7 @@ def process(result, subcategory, seen):
         return None
 
     loc = result.get("geometry", {}).get("location", {})
-    pu = photo_urls(result.get("photos"))
+    pu = photo_urls(result.get("photos"), slugify(f"{name}-{city}", pid))
 
     spec_desc = {
         "Pediatrician": "pediatrics, providing comprehensive care for children and adolescents",

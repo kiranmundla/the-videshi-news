@@ -6,6 +6,7 @@ uploads to Supabase storage (permanent URLs), and updates the listing.
 """
 import os, sys, json, time, requests, hashlib
 from places_budget import check_budget, record_call, budget_remaining  # daily cost guard
+from photo_rehost import validate_photo_bytes  # reject Google's red-X placeholder bytes
 import atexit as _atexit
 def _budget_report():
     u, l = __import__("places_budget").get_usage()
@@ -173,6 +174,15 @@ def main():
                 img_bytes, ctype = download_photo(ref)
                 if not img_bytes:
                     print("❌ download failed")
+                    total_failed += 1
+                    time.sleep(SLEEP_BETWEEN)
+                    continue
+
+                # 2026-10-14: never store Google's stale-reference placeholder
+                # (100x100 red-X PNG) as a listing cover — a rejected photo
+                # leaves the listing imageless instead of fake-imaged.
+                if not validate_photo_bytes(img_bytes):
+                    print("❌ placeholder/invalid image — not stored")
                     total_failed += 1
                     time.sleep(SLEEP_BETWEEN)
                     continue

@@ -6,6 +6,7 @@ Searches Google Places API for Indian daycare/childcare centers across major US 
 
 import json, os, subprocess, time, re, hashlib
 from places_budget import check_budget, record_call, budget_remaining  # daily cost guard
+from photo_rehost import rehost_v1_photos  # durable photos: never store live Google URLs
 import atexit as _atexit
 def _budget_report():
     u, l = __import__("places_budget").get_usage()
@@ -236,13 +237,13 @@ def parse_place(place):
     if opening_hours and "weekdayDescriptions" in opening_hours:
         hours_data = opening_hours["weekdayDescriptions"]
     
-    # Get first photo URL
+    # Get first photo — re-hosted (2026-10-14: live Google media URLs rot
+    # into the red-X placeholder; store only our validated bucket copy).
     image_url = None
     photos = place.get("photos", [])
     if photos:
-        photo_name = photos[0].get("name", "")
-        if photo_name:
-            image_url = f"https://places.googleapis.com/v1/{photo_name}/media?maxWidthPx=800&key={API_KEY}"
+        hosted = rehost_v1_photos(photos, place_id, API_KEY, max_photos=1)
+        image_url = hosted[0] if hosted else None
     
     # Build slug
     slug_base = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")[:50]

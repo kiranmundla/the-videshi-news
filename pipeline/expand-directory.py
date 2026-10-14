@@ -17,6 +17,7 @@ from typing import Optional
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from indian_relevance import is_indian_business
 from places_budget import check_budget, record_call, budget_remaining  # daily cost guard
+from photo_rehost import rehost_v1_photos  # durable photos: never store live Google URLs
 import atexit as _atexit
 def _budget_report():
     u, l = __import__("places_budget").get_usage()
@@ -301,9 +302,12 @@ def google_search(query, page_token=None):
             "next_page_token": r.get("nextPageToken")}
 
 
-def photo_urls(photos):
-    return [f"https://places.googleapis.com/v1/{p['name']}/media?maxWidthPx=800&key={GKEY}"
-            for p in photos[:5] if p.get("name")]
+def photo_urls(photos, slug):
+    # 2026-10-14: was a list of LIVE v1 media URLs — those rot into Google's
+    # red-X placeholder. Now downloads + validates + re-hosts the bytes into
+    # our directory-photos bucket (photo_rehost.py) and returns OUR URLs.
+    # Photos that fail validation or exceed the daily budget are dropped.
+    return rehost_v1_photos(photos, slug, GKEY, max_photos=5)
 
 
 def categorize(types, fallback):
@@ -373,7 +377,8 @@ def process(result, cat, seen):
             return None
 
     loc = result.get("geometry", {}).get("location", {})
-    pu = photo_urls(result.get("photos", []))
+    slug = slugify(f"{name}-{p['city']}", pid)
+    pu = photo_urls(result.get("photos", []), slug)
 
     row = {
         "name": name,
@@ -382,7 +387,7 @@ def process(result, cat, seen):
         "city": p["city"],
         "state": p["state"],
         "zip": p["zip"],
-        "slug": slugify(f"{name}-{p['city']}", pid),
+        "slug": slug,
         "google_place_id": pid,
         "source": "google_places",
         "latitude": loc.get("lat"),

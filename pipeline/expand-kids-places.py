@@ -17,6 +17,7 @@ import importlib.util
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from indian_relevance import is_indian_business
 from places_budget import check_budget, record_call, budget_remaining
+from photo_rehost import rehost_v1_photos  # durable photos: never store live Google URLs
 import atexit as _atexit
 def _budget_report():
     u, l = __import__("places_budget").get_usage()
@@ -200,9 +201,12 @@ def google_search(query, page_token=None):
             "next_page_token": r.get("nextPageToken")}
 
 
-def photo_urls(photos):
-    return [f"https://places.googleapis.com/v1/{p['name']}/media?maxWidthPx=800&key={GKEY}"
-            for p in photos[:3] if p.get("name")]
+def photo_urls(photos, slug):
+    # 2026-10-14: was a LIVE v1 media URL stored as image_url — those rot
+    # into Google's red-X placeholder. Now downloads + validates + re-hosts
+    # the first photo into our directory-photos bucket (photo_rehost.py).
+    # Kids rows carry a single image_url, so only the cover is re-hosted.
+    return rehost_v1_photos(photos, slug, GKEY, max_photos=1)
 
 
 def fetch_existing_ids():
@@ -266,7 +270,7 @@ def process(result, cat, subcat, seen):
         return None
 
     loc = result.get("geometry", {}).get("location", {})
-    pu = photo_urls(result.get("photos", []))
+    pu = photo_urls(result.get("photos", []), slug)
 
     row = {
         "name": name,

@@ -14,6 +14,7 @@ import time
 import requests
 from typing import Optional
 from places_budget import check_budget, record_call, budget_remaining  # daily cost guard
+from photo_rehost import rehost_raw_urls  # durable photos: never store live Google URLs
 import atexit as _atexit
 def _budget_report():
     u, l = __import__("places_budget").get_usage()
@@ -244,6 +245,9 @@ def process_place(place: dict, category: str) -> Optional[dict]:
         ref = p.get("photo_reference")
         if ref:
             photos.append(get_photo_url(ref))
+    # 2026-10-14: live Google photo URLs rot into the red-X placeholder —
+    # download + validate + re-host the bytes, drop anything that fails.
+    photos = rehost_raw_urls(photos, result.get("place_id") or "seed", max_photos=3)
 
     # Opening hours
     hours = {}

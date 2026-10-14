@@ -6,6 +6,7 @@ Uses legacy Google Places API (Text Search + Place Details).
 
 import json, os, subprocess, time, re, hashlib, urllib.parse
 from places_budget import check_budget, record_call, budget_remaining  # daily cost guard
+from photo_rehost import rehost_raw_urls  # durable photos: never store live Google URLs
 import atexit as _atexit
 def _budget_report():
     u, l = __import__("places_budget").get_usage()
@@ -195,7 +196,11 @@ def build_listing(details_resp, place_id):
     if photos:
         ref = photos[0].get("photo_reference")
         if ref:
-            image_url = f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference={ref}&key={API_KEY}"
+            # 2026-10-14: re-host instead of storing the live legacy URL
+            # (this exact pattern rotted into the red-X placeholder).
+            raw = f"https://maps.googleapis.com/maps/api/place/photo?maxwidth=800&photoreference={ref}&key={API_KEY}"
+            hosted = rehost_raw_urls([raw], place_id, max_photos=1)
+            image_url = hosted[0] if hosted else None
     
     slug_base = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")[:50]
     slug = f"{slug_base}-{hashlib.md5(place_id.encode()).hexdigest()[:6]}"

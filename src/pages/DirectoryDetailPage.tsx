@@ -114,7 +114,7 @@ function PhotoGallery({ photos, name }: { photos: string[]; name: string }) {
               alt={`${name} — photo ${i + 1}`}
               style={{ width: "100%", height: 180, objectFit: "cover", display: "block", background: C.surface2 }}
               loading="lazy"
-              onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+              onError={(e) => { const wrap = (e.target as HTMLImageElement).parentElement; if (wrap) wrap.style.display = "none"; }}
             />
           </div>
         ))}
