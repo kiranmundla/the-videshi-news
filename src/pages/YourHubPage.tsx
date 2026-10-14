@@ -194,10 +194,15 @@ function resolveMetroNews(
   return null;
 }
 
-/** Human place for auto-detected coords (browser or IP): the nearest
- * cluster's label when within 100 mi — distance measured to the closest
- * of the cluster center and its member cities, the same rule the local
- * news resolution uses — else the IP city/region, else "Near You".
+/** Human place for auto-detected coords (browser or IP): the label of
+ * the cluster whose CENTER is nearest, when within 100 mi — else the
+ * IP city/region, else "Near You". The label deliberately uses center
+ * distance only, NOT the member-city distance resolveMetroNews uses:
+ * pooled buckets (e.g. Dublin pools the whole Tri-Valley incl. Newark)
+ * would otherwise steal the label from a standalone cluster — a reader
+ * in north Fremont was labeled "Dublin, CA" via member Newark even
+ * though Fremont is its own cluster (Kiran, 2026-10-14). News pooling
+ * is unaffected: resolveMetroNews still resolves by member distance.
  * Also returns the city/state to store alongside the label, in the
  * same shape the manual picker stores. */
 async function resolveAutoPlace(
@@ -208,11 +213,7 @@ async function resolveAutoPlace(
   const clusters = await loadClusters().catch(() => getCachedClusters());
   let best: { cluster: Cluster; dist: number } | null = null;
   for (const cl of clusters) {
-    let d = haversineMiles(lat, lon, cl.center.lat, cl.center.lon);
-    for (const mb of cl.members) {
-      const dm = haversineMiles(lat, lon, mb.lat, mb.lon);
-      if (dm < d) d = dm;
-    }
+    const d = haversineMiles(lat, lon, cl.center.lat, cl.center.lon);
     if (!best || d < best.dist) best = { cluster: cl, dist: d };
   }
   if (best && best.dist <= 100) {
