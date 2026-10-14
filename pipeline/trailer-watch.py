@@ -102,6 +102,40 @@ def parse_dt(s):
         return None
 
 
+_MONTH_NUM = {m: i + 1 for i, m in enumerate(
+    ["jan", "feb", "mar", "apr", "may", "jun",
+     "jul", "aug", "sep", "oct", "nov", "dec"])}
+_YEAR_RE = re.compile(r"\b(?:19|20)\d{2}\b")
+
+
+def resolve_release(release, ref_dt):
+    """Pin a bare 'Mon D' release to a full date: 'Dec 2' -> 'Dec 2, 2026'.
+
+    Uses the next occurrence of that month/day on/after the drop date (7-day
+    grace for just-released titles). Strings already carrying a year pass
+    through unchanged. The year matters: a card reading 'Jan 15' under an
+    October trailer means NEXT January (the River brief shipped 'Jan 15'
+    for a Jan 15, 2027 film)."""
+    if not release or _YEAR_RE.search(release):
+        return release
+    m = re.match(r"^([A-Za-z]{3,})\.?\s+(\d{1,2})(?:st|nd|rd|th)?$",
+                 release.strip())
+    if not m or ref_dt is None:
+        return release
+    mon = _MONTH_NUM.get(m.group(1)[:3].lower())
+    if not mon:
+        return release
+    day = int(m.group(2))
+    year = ref_dt.year
+    try:
+        cand = datetime(year, mon, day, tzinfo=timezone.utc)
+    except ValueError:
+        return release
+    if cand < ref_dt - timedelta(days=7):
+        year += 1
+    return f"{m.group(1)[:3].capitalize()} {day}, {year}"
+
+
 def _film_from_hashtag(segment):
     """'#EbhabeoPhireAshaJaye' -> 'Ebhabeo Phire Asha Jaye'.
 
@@ -239,6 +273,10 @@ def parse_description(desc):
         media_type = "Series"
     elif re.search(r"(?i)\bseason\s+\d+\b", text):
         media_type = "Series"
+    elif re.search(r"(?i)\bmovie\b", "\n".join(text.split("\n")[:3])):
+        # e.g. "Here's the Official Kannada Trailer of #418 movie" — the
+        # work calls itself a movie in its own opening lines.
+        media_type = "Movie"
     release = None
     m = re.search(
         r"(?i)\b(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|"
@@ -518,6 +556,20 @@ def build_brief_article(drops, channels_by_name):
     langs = sorted({v["lang"] for v in versions if v["lang"]})
 
     desc_line, media_type, release = parse_description(first.get("description", ""))
+    if not release:
+        # Release dates often live only in the video title ("Oct 23rd Rel",
+        # "| 15th October"). Description still wins when both have one.
+        _MON = r"(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*"
+        tm = re.search(rf"(?i)\b{_MON}\.?\s+(\d{{1,2}})(?:st|nd|rd|th)?\b", title)
+        if tm:
+            release = f"{tm.group(1)[:3].capitalize()} {tm.group(2)}"
+        else:
+            tm = re.search(rf"(?i)\b(\d{{1,2}})(?:st|nd|rd|th)?\s+{_MON}\b", title)
+            if tm:
+                release = f"{tm.group(2)[:3].capitalize()} {tm.group(1)}"
+    # Pin the year at build time so the card, takeaways and subheadline all
+    # carry the full date (see resolve_release).
+    release = resolve_release(release, pub)
     # Game trailers (e.g. a channel posting a gameplay trailer) are not films —
     # use game-appropriate language instead of "film's US release / theaters".
     is_game = bool(re.search(r"\bgameplay\b|\bgame\b", title, re.I))
@@ -619,6 +671,26 @@ def build_brief_article(drops, channels_by_name):
                  if v["lang"] else f"<b>{html.escape(v['channel'])}</b>")
         body += f"<p>{label}</p><youtube>{v['url']}</youtube>"
 
+    # Film-card completeness gate (2026-10-13): a brief whose card lacks a
+    # type, a full release date WITH year, or any director/cast credit is a
+    # thin stub — main() holds it instead of publishing. Games are exempt
+    # from the credit/type bar (they are not films) but still need a date.
+    has_credit = any(credits.get(k) for k in
+                     ("cast", "director", "host", "producer", "music"))
+    card_missing = []
+    if is_game:
+        if not release:
+            card_missing.append("release date")
+    else:
+        if not media_type:
+            card_missing.append("type")
+        if not release:
+            card_missing.append("release date")
+        elif not _YEAR_RE.search(release):
+            card_missing.append("release year")
+        if not has_credit:
+            card_missing.append("director/cast credit")
+
     thumb_vid = live_versions[0]["video_id"] if live_versions else versions[0]["video_id"]
     sub = f"Official {kind.lower()} for {film}"
     if release:
@@ -638,6 +710,10 @@ def build_brief_article(drops, channels_by_name):
         "image_caption": f"Still from the official {kind.lower()} of {film}.",
         "image_attribution": f"{html.escape(versions[0]['channel'])} / YouTube",
         "diaspora_angle": "US theatrical release tracking for diaspora audiences.",
+        # Gate metadata for main(); process_article builds an explicit row
+        # dict, so these extra keys never reach the insert payload.
+        "card_complete": not card_missing,
+        "card_missing": card_missing,
     }
 
 
@@ -655,6 +731,110 @@ def sb_check_slug(slug):
         return bool(json.loads(r.stdout))
     except Exception:
         return False
+
+
+def sb_fetch_published_briefs(limit=400):
+    """Recent published trailer/teaser briefs, for cross-run film matching.
+
+    The within-run grouping in main() cannot see last week's article, and
+    the exact-slug check cannot see that '#418 – The Last Warning Trailer
+    Out: Prashanth Neel Presents' is the same film as '#418 Trailer Out:
+    The Last Warning' — that gap published a duplicate #418 article on
+    2026-10-13. Matching is by film_key, computed from headlines here and
+    from video titles in main()."""
+    sb_url = os.environ.get("SUPABASE_URL", "")
+    sb_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+    if not sb_url or not sb_key:
+        return []
+    since = (datetime.now(timezone.utc) - timedelta(days=180)).isoformat()
+    q = ("select=id,slug,headline,body,sources&status=eq.published"
+         "&category=eq.entertainment"
+         f"&published_at=gte.{since}"
+         "&or=(headline.like.*Trailer%20Out*,headline.like.*Teaser%20Out*)"
+         f"&order=published_at.desc&limit={limit}")
+    r = subprocess.run(
+        ["curl", "-sS", "--max-time", "20",
+         f"{sb_url}/rest/v1/p2_articles?{q}",
+         "-H", f"apikey: {sb_key}", "-H", f"Authorization: Bearer {sb_key}"],
+        capture_output=True, text=True, timeout=25)
+    try:
+        rows = json.loads(r.stdout)
+        return rows if isinstance(rows, list) else []
+    except Exception:
+        return []
+
+
+def find_cross_run_match(key, briefs):
+    """The published brief for this film, or None.
+
+    Exact key match always counts. Prefix match (the within-run grouping
+    rule, for subtitle-extended keys) requires >=5 chars on the shorter
+    side, so a short numeric key like '418' can only match itself."""
+    if not key:
+        return None
+    for b in briefs:
+        bk = film_key(b.get("headline", ""))
+        if not bk:
+            continue
+        if bk == key:
+            return b
+        if min(len(bk), len(key)) >= 5 and \
+                (bk.startswith(key) or key.startswith(bk)):
+            return b
+    return None
+
+
+def sb_patch_article(article_id, payload):
+    sb_url = os.environ.get("SUPABASE_URL", "")
+    sb_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+    if not sb_url or not sb_key:
+        return False
+    r = subprocess.run(
+        ["curl", "-sS", "--max-time", "25", "-X", "PATCH",
+         f"{sb_url}/rest/v1/p2_articles?id=eq.{article_id}",
+         "-H", f"apikey: {sb_key}", "-H", f"Authorization: Bearer {sb_key}",
+         "-H", "Content-Type: application/json",
+         "-H", "Prefer: return=minimal",
+         "-d", json.dumps(payload)],
+        capture_output=True, text=True, timeout=30)
+    return r.returncode == 0
+
+
+def sb_merge_embeds(existing, drops, channels_by_name):
+    """Append embeds for drops not already in the published article's body.
+
+    New language versions land just before the related-coverage block when
+    one exists. Returns how many embeds were added (0 = nothing new, all
+    dead, or the PATCH failed)."""
+    body = existing.get("body") or ""
+    additions, new_sources = [], []
+    for d in drops:
+        vid = d["video_id"]
+        if vid in body or not _video_is_live(vid):
+            continue
+        t = unicodedata.normalize("NFKD", d["title"])
+        lang = extract_language(t)
+        ch = channels_by_name.get(d["channel"], {})
+        lang = lang or ch.get("language")
+        label = (f"<b>{html.escape(lang)}</b> \u2014 {html.escape(d['channel'])}"
+                 if lang else f"<b>{html.escape(d['channel'])}</b>")
+        url = f"https://www.youtube.com/watch?v={vid}"
+        additions.append(f"<p>{label}</p><youtube>{url}</youtube>")
+        new_sources.append({"name": d["channel"], "url": url})
+    if not additions:
+        return 0
+    marker = '<div class="related-coverage">'
+    if marker in body:
+        body = body.replace(marker, "".join(additions) + marker, 1)
+    else:
+        body = body + "".join(additions)
+    payload = {"body": body}
+    sources = existing.get("sources") or []
+    have = {s.get("url") for s in sources if isinstance(s, dict)}
+    merged = sources + [s for s in new_sources if s["url"] not in have]
+    if len(merged) != len(sources):
+        payload["sources"] = merged
+    return len(additions) if sb_patch_article(existing["id"], payload) else 0
 
 
 def main():
@@ -737,14 +917,37 @@ def main():
                     break
             if not placed:
                 groups.append([k, [d]])
+        # Cross-run guard: a film whose brief already published (an earlier
+        # run, possibly days ago) gets the new version MERGED into that
+        # article — never a second article for the same film.
+        published_briefs = sb_fetch_published_briefs()
+        merged_groups = 0
+        held = 0
         for key, drops in groups[:MAX_ARTICLES_PER_RUN]:
             art = build_brief_article(drops, channels_by_name)
+            existing = find_cross_run_match(key, published_briefs)
+            if existing:
+                added = sb_merge_embeds(existing, drops, channels_by_name)
+                print(f"  merged into published article ({existing['slug']}): "
+                      f"+{added} embed(s) — no new article")
+                merged_groups += 1
+                continue
             if sb_check_slug(art["slug"]):
                 print(f"  skip (slug exists): {art['slug']}")
                 continue
+            if not art.get("card_complete"):
+                # Thin-card hold: better no brief than a stub card with
+                # "Jan 15" and no year, or no credits at all. Logged loudly
+                # so the gap is visible in the run report.
+                print(f"  HOLD brief (incomplete film card — missing: "
+                      f"{', '.join(art.get('card_missing') or [])}): "
+                      f"{art['slug']}")
+                held += 1
+                continue
             ok = mod.process_article(art)
             articles_written += 1 if ok else 0
-        print(f"Brief articles inserted: {articles_written}/{min(len(groups), MAX_ARTICLES_PER_RUN)}")
+        print(f"Brief articles inserted: {articles_written}/{min(len(groups), MAX_ARTICLES_PER_RUN)}"
+              f" | merged into existing: {merged_groups} | held (thin card): {held}")
     elif majors:
         print(f"(dry run — {len(majors)} major drops would get brief articles with --write)")
     return 0
