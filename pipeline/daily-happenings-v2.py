@@ -567,6 +567,166 @@ def _supabase_search(pattern: str, cutoff: str) -> list[dict]:
         return []
 
 
+def _supabase_search_rows(pattern: str, cutoff: str, limit: int = 5) -> list[dict]:
+    """Like _supabase_search but also returns published_at (for ranking)."""
+    import urllib.parse
+    sb_url = os.environ.get("SUPABASE_URL", "")
+    sb_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+    if not sb_url or not sb_key:
+        return []
+    encoded_pattern = urllib.parse.quote(pattern, safe="*")
+    query_url = (
+        f"{sb_url}/rest/v1/p2_articles"
+        f"?select=slug,headline,published_at"
+        f"&status=eq.published"
+        f"&headline=ilike.{encoded_pattern}"
+        f"&published_at=gte.{cutoff}"
+        f"&order=published_at.desc"
+        f"&limit={limit}"
+    )
+    r = subprocess.run(
+        ["curl", "-s", "--max-time", "10", query_url,
+         "-H", f"apikey: {sb_key}", "-H", f"Authorization: Bearer {sb_key}"],
+        capture_output=True, text=True, timeout=15,
+    )
+    try:
+        rows = json.loads(r.stdout)
+        return rows if isinstance(rows, list) else []
+    except (json.JSONDecodeError, KeyError, IndexError):
+        return []
+
+
+# ── Earnings headline gate (2026-10-14) ─────────────────────────────────────
+# Incident: Morgan Stanley's Happening Today row linked to the Oct-13 roundup
+# "Bank Earnings Kick Off Mixed: JPMorgan Misses, Citi and Goldman Beat" —
+# an article with NO Morgan Stanley results (published before MS reported).
+# Root cause: match_articles' single-term fallback searched *morgan* and the
+# substring matched "JPMorgan" in the roundup headline. Rule from now on: an
+# earnings item may only link to an article whose HEADLINE names the company;
+# a roundup qualifies only for the companies its headline names. Matching is
+# token-based (word boundaries), never substring, so "morgan" inside
+# "JPMorgan" can never match Morgan Stanley again.
+
+_CORP_SUFFIX_TOKENS = {"inc", "corp", "corporation", "company", "co", "ltd",
+                       "plc", "sa", "nv", "lp", "llc"}
+_NAME_STOP_TOKENS = {"and", "the"}
+_GENERIC_NAME_TOKENS = {"bank", "of", "first", "national", "global", "capital",
+                        "financial", "services", "trust", "united", "american",
+                        "america", "group", "holdings", "bancorp"}
+
+
+def _company_name_tokens(name: str) -> list[str]:
+    """Tokenize a company name: lowercase alnum tokens, connectives and
+    trailing corporate suffixes dropped ('J P Morgan Chase & Co' ->
+    ['j', 'p', 'morgan', 'chase']; 'Bank of America Corporation' ->
+    ['bank', 'of', 'america'])."""
+    raw = re.findall(r"[a-z0-9]+", (name or "").lower().replace("&", " and "))
+    toks = [t for t in raw if t not in _NAME_STOP_TOKENS]
+    while toks and toks[-1] in _CORP_SUFFIX_TOKENS:
+        toks.pop()
+    return toks
+
+
+def _company_headline_forms(name: str) -> list[list[str]]:
+    """Acceptable headline forms for a company name, as token lists:
+    the full name; shorter prefixes that still contain a distinctive token
+    (e.g. ['j', 'p', 'morgan'] for JPMorgan Chase); and a suffix-stripped
+    variant of a single-token name ('citigroup' -> ['citi']). Prefixes made
+    only of generic words (['bank'], ['bank', 'of']) are NOT forms — they
+    would match any bank headline."""
+    toks = _company_name_tokens(name)
+    if not toks:
+        return []
+    forms = [toks]
+    for n in range(len(toks) - 1, 0, -1):
+        prefix = toks[:n]
+        if any(len(t) >= 4 and t not in _GENERIC_NAME_TOKENS for t in prefix):
+            forms.append(prefix)
+    if len(toks) == 1:
+        t = toks[0]
+        for suf in ("corporation", "holdings", "bancorp", "group", "corp",
+                    "company", "inc"):
+            if t.endswith(suf) and len(t) - len(suf) >= 4:
+                forms.append([t[: -len(suf)]])
+                break
+    seen, out = set(), []
+    for f in forms:
+        k = tuple(f)
+        if k not in seen:
+            seen.add(k)
+            out.append(f)
+    return out
+
+
+def headline_names_company(headline: str, company_name: str) -> bool:
+    """True only if the headline names the company: some accepted form's
+    tokens appear consecutively in the headline, or the form's concatenation
+    equals ONE whole headline token ('J P Morgan' -> token 'jpmorgan').
+    Whole-token equality is what keeps 'JPMorgan' from matching 'Morgan'."""
+    h_tokens = re.findall(r"[a-z0-9]+", (headline or "").lower())
+    if not h_tokens:
+        return False
+    h_set = set(h_tokens)
+    for form in _company_headline_forms(company_name):
+        if "".join(form) in h_set:
+            return True
+        n = len(form)
+        if n > 1 and any(h_tokens[i:i + n] == form
+                         for i in range(len(h_tokens) - n + 1)):
+            return True
+    return False
+
+
+def _company_from_label(label: str) -> str:
+    """'Bank of America Corporation Earnings' -> 'Bank of America Corporation'."""
+    name = (label or "").strip()
+    if name.lower().endswith(" earnings"):
+        name = name[: -len(" earnings")].strip()
+    return name
+
+
+# Tokens too common to search on alone (recall patterns only — precision is
+# headline_names_company's job). Deliberately smaller than
+# _GENERIC_NAME_TOKENS: 'america' must stay searchable or a name made only of
+# generic words ('Bank of America') fetches no candidates at all — that hole
+# fired a false RESULTS GAP for BAC on the pass's first live run (2026-10-14).
+_SEARCH_STOP_TOKENS = {"bank", "first", "national", "global", "capital",
+                       "financial", "services", "trust", "united", "group",
+                       "holdings", "bancorp"}
+
+
+def _company_search_patterns(name: str) -> list[str]:
+    """ILIKE patterns that fetch candidate articles for a company: each
+    searchable name token, the full name as a phrase, and each accepted
+    form's concatenation (catches squashed brand tokens like 'jpmorgan').
+    Precision comes from headline_names_company(); these only need recall."""
+    patterns = []
+    toks = _company_name_tokens(name)
+    for t in toks:
+        if len(t) >= 4 and t not in _SEARCH_STOP_TOKENS:
+            patterns.append(f"*{t}*")
+    if len(toks) > 1:
+        patterns.append("*" + " ".join(toks) + "*")
+    for form in _company_headline_forms(name):
+        c = "".join(form)
+        if len(c) >= 4:
+            patterns.append(f"*{c}*")
+    return list(dict.fromkeys(patterns))
+
+
+def _candidate_articles(patterns: list[str], cutoff: str) -> list[dict]:
+    """Fetch published-article candidates for a set of ILIKE patterns,
+    deduplicated and sorted newest first."""
+    seen, rows = set(), []
+    for p in patterns:
+        for r in _supabase_search_rows(p, cutoff):
+            if r.get("slug") and r["slug"] not in seen:
+                seen.add(r["slug"])
+                rows.append(r)
+    rows.sort(key=lambda r: r.get("published_at") or "", reverse=True)
+    return rows
+
+
 def match_articles(items: list[dict]) -> list[dict]:
     """Match happenings to recent Videshi articles or internal pages."""
     sb_url = os.environ.get("SUPABASE_URL", "")
@@ -591,6 +751,26 @@ def match_articles(items: list[dict]) -> list[dict]:
 
         # Festivals now get rich brief hub pages (context + nearby events)
         # via ensure_happening_briefs — no shortcut link here.
+
+        # ── Earnings headline gate (2026-10-14) ──────────────────────────
+        # Earnings items link ONLY to an article whose headline names the
+        # company (see headline_names_company above). The generic loose-term
+        # matching below is substring-based and matched "morgan" inside
+        # "JPMorgan", linking Morgan Stanley to a roundup with no MS results.
+        # If no headline-qualifying article exists, the item stays unlinked
+        # here and gets a preview brief instead; the results-repoint pass
+        # swaps the brief for real coverage once results are published.
+        if item.get("kind") == "earnings":
+            company = _company_from_label(item.get("label", ""))
+            candidates = _candidate_articles(
+                _company_search_patterns(company), cutoff)
+            hit = next((r for r in candidates
+                        if headline_names_company(r.get("headline", ""), company)),
+                       None)
+            if hit:
+                item["link"] = f"/articles/{hit['slug']}"
+                matched += 1
+            continue
 
         terms = item.get("search_terms", [])
         terms = [t for t in terms if t and len(t) >= 3]
@@ -1094,6 +1274,131 @@ def ensure_happening_briefs(items: list[dict], date: str, dry_run: bool = False)
     return items
 
 
+# ── Results repoint pass (2026-10-14) ──────────────────────────────────────
+# The morning run publishes a preview brief (happening-* stub) before a
+# company reports. Once the report window closes, Happening Today must move
+# from the stub to real results coverage — automatically, for every future
+# earnings day. On each run, this pass scans today's and yesterday's
+# earnings rows that still link to a happening-* stub:
+#   - report window passed + a published article whose HEADLINE names the
+#     company exists (published on/after the earnings date, stubs excluded)
+#     -> repoint the row to it and retire the stub to draft (superseded)
+#   - window passed >6h ago and no such article -> loud "⚠️ RESULTS GAP"
+#     line in the run output, so a missing-results day is never silent.
+# Incident that forced this: on 2026-10-14 the Bank of America row still
+# pointed at its pre-report stub hours after BAC reported, because nothing
+# ever revisited the link.
+
+def _sb_curl(method: str, path: str, payload: dict | None = None):
+    """Minimal Supabase REST helper via curl (urllib fails through the proxy)."""
+    sb_url = os.environ.get("SUPABASE_URL", "")
+    sb_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+    if not sb_url or not sb_key:
+        return None
+    cmd = ["curl", "-s", "--max-time", "15", "-X", method,
+           f"{sb_url}/rest/v1/{path}",
+           "-H", f"apikey: {sb_key}", "-H", f"Authorization: Bearer {sb_key}"]
+    if payload is not None:
+        cmd += ["-H", "Content-Type: application/json",
+                "-H", "Prefer: return=representation",
+                "-d", json.dumps(payload)]
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=20)
+    try:
+        return json.loads(r.stdout) if r.stdout.strip() else []
+    except json.JSONDecodeError:
+        return None
+
+
+def _report_window_end(row: dict):
+    """UTC datetime when a happening row's report window closes:
+    before-market reporters are done by ~13:00 UTC, after-hours by
+    ~21:00 UTC (from the row's detail slot); without slot info, fall back
+    to 21:00 UTC on the happening date."""
+    try:
+        day = datetime.strptime(row.get("date") or "", "%Y-%m-%d").replace(
+            tzinfo=timezone.utc)
+    except (ValueError, TypeError):
+        return None
+    detail = (row.get("detail") or "").lower()
+    if "before market" in detail or "pre-market" in detail:
+        return day + timedelta(hours=13)
+    return day + timedelta(hours=21)
+
+
+def _find_results_article(company: str, date_str: str):
+    """Newest published results article for a company, published on/after
+    the earnings date, whose headline names the company. Preview stubs
+    (happening-*) never qualify."""
+    cutoff = f"{date_str}T00:00:00"
+    for r in _candidate_articles(_company_search_patterns(company), cutoff):
+        slug = r.get("slug") or ""
+        if slug.startswith("happening-"):
+            continue
+        if headline_names_company(r.get("headline", ""), company):
+            return r
+    return None
+
+
+def results_repoint_pass(dry_run: bool = False, extra_rows: list | None = None) -> dict:
+    """Repoint stub-linked earnings rows to results coverage (see header).
+
+    extra_rows lets tests/callers inject synthetic happening rows (used with
+    dry_run for the guard proof); they are never written to the DB."""
+    now = datetime.now(timezone.utc)
+    today = today_pt()
+    yesterday = (datetime.strptime(today, "%Y-%m-%d")
+                 - timedelta(days=1)).strftime("%Y-%m-%d")
+    rows = _sb_curl(
+        "GET",
+        "daily_happenings?select=id,date,label,detail,link,category"
+        "&category=eq.markets&label=ilike.*earnings*"
+        "&link=like./articles/happening-*"
+        f"&date=in.({yesterday},{today})&order=date.asc") or []
+    rows = list(rows) + list(extra_rows or [])
+
+    repointed = gaps = pending = 0
+    for row in rows:
+        link = row.get("link") or ""
+        if not link.startswith("/articles/happening-"):
+            continue
+        stub_slug = link.rsplit("/", 1)[-1]
+        company = _company_from_label(row.get("label", ""))
+        window_end = _report_window_end(row)
+        if window_end is None or now < window_end:
+            pending += 1
+            continue
+        hit = _find_results_article(company, row.get("date") or today)
+        if hit:
+            new_link = f"/articles/{hit['slug']}"
+            if dry_run:
+                print(f"  🔁 [dry-run] would repoint '{row.get('label')}' "
+                      f"({row.get('date')}): {link} -> {new_link}; "
+                      f"stub {stub_slug} -> draft")
+            else:
+                if row.get("id"):
+                    _sb_curl("PATCH",
+                             f"daily_happenings?id=eq.{row['id']}",
+                             {"link": new_link})
+                _sb_curl("PATCH",
+                         f"p2_articles?slug=eq.{stub_slug}&status=eq.published",
+                         {"status": "draft"})
+                print(f"  🔁 RESULTS REPOINT: '{row.get('label')}' "
+                      f"({row.get('date')}) {link} -> {new_link}; "
+                      f"stub retired to draft")
+            repointed += 1
+        elif now > window_end + timedelta(hours=6):
+            print(f"  ⚠️ RESULTS GAP: {company} reported on {row.get('date')} "
+                  f"and the report window closed over 6h ago, but no published "
+                  f"results article names the company in its headline — "
+                  f"Happening Today still links to the preview stub {link}")
+            gaps += 1
+        else:
+            pending += 1
+    print(f"  Results repoint pass: {repointed} repointed, {gaps} gap(s), "
+          f"{pending} not yet due")
+    return {"repointed": repointed, "gaps": gaps, "pending": pending}
+
+
 # ── Supabase ops ─────────────────────────────────────────────────────────────
 
 def supabase_delete_today(date: str):
@@ -1148,7 +1453,15 @@ def main():
     parser = argparse.ArgumentParser(description="Populate daily happenings (v2 — real data)")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--date", type=str, default=None)
+    parser.add_argument("--repoint-only", action="store_true",
+                        help="Only run the results-repoint pass (stub -> "
+                             "results coverage) and exit")
     args = parser.parse_args()
+
+    if args.repoint_only:
+        print("🔁 Results repoint pass only")
+        results_repoint_pass(dry_run=args.dry_run)
+        return
 
     date = args.date or today_pt()
     weekday = datetime.strptime(date, "%Y-%m-%d").strftime("%A") if args.date else weekday_pt()
@@ -1204,6 +1517,8 @@ def main():
     all_items = ensure_happening_briefs(all_items, date, dry_run=args.dry_run)
 
     if args.dry_run:
+        print("\n  Repoint pass (dry-run):")
+        results_repoint_pass(dry_run=True)
         print("\n🏁 Dry run — no changes made.")
         for item in all_items:
             link_str = f"  → {item.get('link', '')}" if item.get("link") else ""
@@ -1226,6 +1541,12 @@ def main():
     else:
         print(f"❌ Insert may have failed", file=sys.stderr)
         sys.exit(1)
+
+    # Swap any stub links whose results are now published (today's rows were
+    # just rebuilt; yesterday's rows are covered here too) — see
+    # results_repoint_pass (2026-10-14).
+    print("  Running results repoint pass...")
+    results_repoint_pass()
 
 
 if __name__ == "__main__":
