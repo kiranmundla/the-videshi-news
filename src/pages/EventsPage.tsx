@@ -478,6 +478,13 @@ export default function EventsPage() {
   const [locationLabel, setLocationLabel] = useState<string>(() => {
     try { return sessionStorage.getItem("videshi_events_label") || ""; } catch { return ""; }
   });
+  /** Resolved place when results are driven by an entered zip code (null in near-me mode) */
+  const [zipPlace, setZipPlace] = useState<{ zip: string; city: string; state: string } | null>(() => {
+    try {
+      const saved = sessionStorage.getItem("videshi_events_zip");
+      return saved ? JSON.parse(saved) : null;
+    } catch { return null; }
+  });
   const { location: ipLocation } = useUserLocation();
 
   /* --- Persist coords in sessionStorage so back-nav doesn't re-prompt --- */
@@ -486,12 +493,18 @@ export default function EventsPage() {
       if (userCoords) {
         sessionStorage.setItem("videshi_events_coords", JSON.stringify(userCoords));
         sessionStorage.setItem("videshi_events_label", locationLabel);
+        if (zipPlace) {
+          sessionStorage.setItem("videshi_events_zip", JSON.stringify(zipPlace));
+        } else {
+          sessionStorage.removeItem("videshi_events_zip");
+        }
       } else {
         sessionStorage.removeItem("videshi_events_coords");
         sessionStorage.removeItem("videshi_events_label");
+        sessionStorage.removeItem("videshi_events_zip");
       }
     } catch { /* noop */ }
-  }, [userCoords, locationLabel]);
+  }, [userCoords, locationLabel, zipPlace]);
 
   /* --- Sync filters with URL --- */
   const rawCity = searchParams.get("city");
@@ -501,6 +514,7 @@ export default function EventsPage() {
     setNearMeActive(false);
     setUserCoords(null);
     setLocationLabel("");
+    setZipPlace(null);
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
       if (city && city !== DEFAULT_CITY) {
@@ -519,12 +533,20 @@ export default function EventsPage() {
       setNearMeActive(false);
       setUserCoords(null);
       setLocationLabel("");
+      setZipPlace(null);
       setCityFilter(DEFAULT_CITY);
       return;
     }
     setUserCoords({ lat: result.lat, lng: result.lng });
     setNearMeActive(true);
     setLocationLabel(result.label);
+    // Zip-driven results carry the resolved place; near-me clears it so
+    // headings/labels never keep a stale zip city after a mode switch.
+    if (result.source === "zip" && result.city && result.state) {
+      setZipPlace({ zip: result.zip || "", city: result.city, state: result.state });
+    } else {
+      setZipPlace(null);
+    }
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
       next.delete("city");
@@ -588,6 +610,7 @@ export default function EventsPage() {
           const coords = { lat: position.coords.latitude, lng: position.coords.longitude };
           setUserCoords(coords);
           setNearMeActive(true);
+          setZipPlace(null);
           setLocationLabel("📍 Near You");
           setSearchParams((prev) => {
             const next = new URLSearchParams(prev);
@@ -601,6 +624,7 @@ export default function EventsPage() {
             const coords = { lat: ipLocation.latitude, lng: ipLocation.longitude };
             setUserCoords(coords);
             setNearMeActive(true);
+            setZipPlace(null);
             setLocationLabel(ipLocation.city ? `📍 Near ${ipLocation.city}` : "📍 Near You");
             setSearchParams((prev) => {
               const next = new URLSearchParams(prev);
@@ -772,7 +796,11 @@ export default function EventsPage() {
   /* --- Summary text --- */
   const summaryParts: string[] = [];
   if (searchQuery) summaryParts.push(`matching "${searchQuery}"`);
-  if (nearMeActive) summaryParts.push("near you");
+  // "near you" only when results center on the visitor's own location;
+  // zip-driven results name the zip's resolved city instead.
+  if (nearMeActive) {
+    summaryParts.push(zipPlace ? `near ${zipPlace.city}, ${zipPlace.state}` : "near you");
+  }
   else if (cityFilter) summaryParts.push(`in ${cityFilter}`);
   if (categoryParam) summaryParts.push(`· ${categoryParam}`);
   if (effectiveDateFilter) {
@@ -783,6 +811,13 @@ export default function EventsPage() {
     summaryParts.push(`· ${labels[effectiveDateFilter] || effectiveDateFilter}`);
   }
   const summaryText = summaryParts.length > 0 ? " " + summaryParts.join(" ") : "";
+
+  /* --- Active location label (shown under the location controls) --- */
+  const locationDisplay = !nearMeActive
+    ? ""
+    : zipPlace
+      ? `📍 ${zipPlace.city}, ${zipPlace.state}${zipPlace.zip ? ` · ${zipPlace.zip}` : ""}`
+      : locationLabel;
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">
@@ -904,6 +939,11 @@ export default function EventsPage() {
           </div>
           </div>
         </div>
+
+        {/* Active location — makes clear which place the results are for */}
+        {nearMeActive && locationDisplay && (
+          <p className="text-xs text-muted-foreground -mt-3 mb-5">{locationDisplay}</p>
+        )}
 
         {/* Discovery: Time Cards (BookMyShow-style) */}
         <DiscoverySection

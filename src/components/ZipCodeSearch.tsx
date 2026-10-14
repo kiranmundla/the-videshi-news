@@ -8,6 +8,8 @@ export type LocationResult = {
   state: string;
   label: string; // e.g. "90210 — Beverly Hills, CA" or "📍 Near You"
   source: "zip" | "geolocation";
+  /** The entered zip code — only set when source === "zip" */
+  zip?: string;
 };
 
 type Props = {
@@ -43,6 +45,7 @@ export default function ZipCodeSearch({ onLocation, active, compact, className }
       state: info.state,
       label: `${cleaned} — ${info.city}, ${info.state}`,
       source: "zip",
+      zip: cleaned,
     });
   }, [zip, onLocation]);
 
