@@ -1,0 +1,269 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "aryash-shyam-14-writing-prize-global-essay-commendations",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "AT 14, HE WINS A NATIONAL PRIZE",
+      "numbers": [
+        14.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Aryash Shyam is 14 and won a national writing prize.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Aryash Shyam, 14, a ninth-grader in Pennsylvania's Lehigh Valley, has won a national writing prize for historical fiction and had all three of his John Locke essays shortlisted from 100,227 entries worldwide.",
+      "numbers": [
+        14.0,
+        100227.0
+      ],
+      "entities": [
+        "Aryash Shyam",
+        "Pennsylvania's Lehigh Valley",
+        "John Locke"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Claims about Aryash winning a national prize and essay shortlisting are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "100,227",
+      "numbers": [
+        100227.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The number of entries for the John Locke prize is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Entries worldwide in the John Locke Institute Global Essay Prize",
+      "numbers": [],
+      "entities": [
+        "John Locke Institute Global Essay Prize"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim about entries in the John Locke prize is accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "No specific section titled 'BY THE NUMBERS' exists in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$1,000",
+      "numbers": [
+        1000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$1,000 prize for the winning story is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Prize for his winning story in the American Writers Museum competition",
+      "numbers": [],
+      "entities": [
+        "American Writers Museum"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The prize amount for the American Writers Museum competition is accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "4",
+      "numbers": [
+        4.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Aryash is one of four middle-school winners of the competition.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Middle-school winners of the 2026 John Estey competition",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [
+        "John Estey"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The number of middle-school winners is correctly stated.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "3",
+      "numbers": [
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Aryash had three essays shortlisted for the John Locke prize.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Essays shortlisted for the John Locke Institute Global Essay Prize",
+      "numbers": [],
+      "entities": [
+        "John Locke Institute Global Essay Prize"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The number of shortlisted essays for the John Locke prize is accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "An Indian American ninth-grader from Pennsylvania's Lehigh Valley",
+      "numbers": [],
+      "entities": [
+        "Indian American",
+        "Pennsylvania's Lehigh Valley"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Aryash is identified as an Indian American ninth-grader from Lehigh Valley.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "He won first place in the high-school category of the American National Standards Institute Student Paper Competition",
+      "numbers": [],
+      "entities": [
+        "American National Standards Institute Student Paper Competition"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "He won first place in the ANSI Student Paper Competition.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Writing beyond his years \u2014 and his grade.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim about his writing achievements is accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Aryash Shyam",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "American Writers Museum",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "John Locke Institute Global Essay Prize",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Lehigh Valley",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000524
+  }
+}

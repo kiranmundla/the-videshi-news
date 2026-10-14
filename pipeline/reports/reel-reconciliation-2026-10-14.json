@@ -1,14 +1,15 @@
 {
   "counts": {
     "channel_videos": 184,
-    "db_rows": 117,
-    "db_rows_with_yt_id": 87,
+    "db_rows": 118,
+    "db_rows_with_yt_id": 88,
     "legacy_log_entries": 205,
-    "publish_log_entries": 1,
+    "publish_log_entries": 2,
     "in_sync": 73,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 10,
     "ghost_db_rows": 14,
+    "superseded_db_rows": 1,
     "public_without_db_record": 111,
     "phase2_uploads_now_public": 0
   },
@@ -519,8 +520,8 @@
     },
     {
       "title": "Astrophysicist Sukanya Chakrabarti Elected Fellow of American Physical Society #Shorts #DarkMatter",
-      "published_at": "2026-10-14T07:38:13Z",
-      "privacy": "unlisted",
+      "published_at": "2026-10-14T08:13:38Z",
+      "privacy": "public",
       "video_id": "2MrWgJOsprg",
       "record": "prebuilt_reels:c236b952-ed9d-4de2-b33b-f266d3884960"
     }
@@ -2015,6 +2016,16 @@
       "malformed_id": false
     }
   ],
+  "superseded_rows": [
+    {
+      "row_id": "cd31fd35-0ef2-4b97-ac09-678c9027a296",
+      "article_slug": "dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals",
+      "yt_video_id": "9MuNbawE8ac",
+      "status": "yt_posted",
+      "yt_posted_at": "2026-10-14T08:29:48.62629+00:00",
+      "on_channel": false
+    }
+  ],
   "public_without_db_record": [
     {
       "title": "Mammootty Skipped the Padma Bhushan Ceremony for a Kerala Doctorate #Shorts",
@@ -3390,5 +3401,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-10-14T07:39:24+00:00"
+  "generated_at": "2026-10-14T08:55:06+00:00"
 }

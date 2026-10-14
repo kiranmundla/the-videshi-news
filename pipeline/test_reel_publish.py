@@ -285,6 +285,130 @@ def t_reconcile_classification():
     assert ghosts["GHOST123456"]["malformed_id"] is False
 
 
+def t_superseded_records_do_not_block_republish():
+    # After an owner-delete + supersede, a redo of the same story must
+    # pass the duplicate check (both the DB row and the log entry carry
+    # superseded markers).
+    with tempfile.TemporaryDirectory() as tmp:
+        verdict_path, _ = make_reel_dir(tmp)
+        events = []
+        deps = fake_deps(
+            events,
+            db_rows=[{"id": "r-old", "yt_video_id": "OLD12345678",
+                      "status": "superseded"}],
+            publish_entries=[{"video_id": "OLD12345678",
+                              "article_slug": "test-article-slug",
+                              "uploaded_at": "2026-10-14T00:00:00Z",
+                              "superseded": "2026-10-14T01:00:00Z"}])
+        result = rp.publish(verdict_path, deps=deps)
+        assert result["video_id"] == "VID12345678", result
+
+
+def t_reconcile_superseded_is_not_a_ghost():
+    channel = {}
+    db_rows = [
+        {"id": "r9", "article_slug": "redo", "yt_video_id": "GONE1234567",
+         "status": "superseded", "yt_posted_at": "2026-10-14"},
+        {"id": "r10", "article_slug": "ghost", "yt_video_id": "GHOST123456",
+         "status": "ready", "yt_posted_at": "2026-07-01"},
+    ]
+    rep = rr.classify(channel, db_rows, {}, [])
+    c = rep["counts"]
+    assert c["ghost_db_rows"] == 1, c
+    assert c["superseded_db_rows"] == 1, c
+    assert rep["superseded_rows"][0]["row_id"] == "r9"
+    assert rep["superseded_rows"][0]["on_channel"] is False
+
+
+def _supersede_deps(events, entries, rows, exists):
+    def patch_row(row_id, payload):
+        events.append(("patch", row_id, payload))
+        return {"id": row_id, **payload}
+    return {
+        "get_token": lambda: "tok",
+        "video_exists": lambda token, vid: exists,
+        "publish_entries": lambda: entries,
+        "save_log": lambda e: events.append(("save_log", e)),
+        "db_rows": lambda vid: rows,
+        "patch_row": patch_row,
+    }
+
+
+def t_supersede_marks_both_ledgers():
+    entries = [{"video_id": "VID12345678", "article_slug": "s",
+                "uploaded_at": "2026-10-14T00:00:00Z"}]
+    rows = [{"id": "r9", "status": "yt_posted", "qa_notes": "gate=phase2"}]
+    events = []
+    out = rp.supersede_video("VID12345678", "redo with better music",
+                             deps=_supersede_deps(events, entries, rows,
+                                                  exists=False))
+    assert out["db_rows_superseded"] == ["r9"], out
+    assert out["status_fallback_marker_only"] is False, out
+    assert entries[0]["superseded"], entries
+    assert entries[0]["superseded_reason"] == "owner_deleted_in_studio"
+    assert entries[0]["superseded_note"] == "redo with better music"
+    # DB is patched BEFORE the log is saved (no half-marked ledgers)
+    kinds = [e[0] for e in events]
+    assert kinds.index("patch") < kinds.index("save_log"), events
+    kind, row_id, payload = next(e for e in events if e[0] == "patch")
+    assert row_id == "r9"
+    assert payload["status"] == "superseded"
+    assert "owner_deleted_in_studio" in payload["qa_notes"]
+    assert payload["qa_notes"].startswith("gate=phase2"), payload
+
+
+def t_supersede_status_check_falls_back_to_marker():
+    # The live prebuilt_reels_status_check rejects 'superseded' (proven
+    # 2026-10-14); supersede must fall back to the qa_notes marker and
+    # still complete both ledgers.
+    entries = [{"video_id": "VID12345678", "article_slug": "s",
+                "uploaded_at": "2026-10-14T00:00:00Z"}]
+    rows = [{"id": "r9", "status": "yt_posted", "qa_notes": "gate=phase2"}]
+    events = []
+
+    def patch_row(row_id, payload):
+        if "status" in payload:
+            raise rp.PublishFailed(
+                'new row violates check constraint '
+                '"prebuilt_reels_status_check"')
+        events.append(("patch", row_id, payload))
+        return {"id": row_id, **payload}
+
+    deps = _supersede_deps(events, entries, rows, exists=False)
+    deps["patch_row"] = patch_row
+    out = rp.supersede_video("VID12345678", "redo", deps=deps)
+    assert out["status_fallback_marker_only"] is True, out
+    kind, row_id, payload = next(e for e in events if e[0] == "patch")
+    assert "status" not in payload
+    assert "superseded=" in payload["qa_notes"]
+    assert rp.is_superseded_row(
+        {"status": "yt_posted", "qa_notes": payload["qa_notes"]})
+    assert entries[0]["superseded"], entries
+
+
+def t_marker_row_counts_as_superseded_everywhere():
+    row = {"id": "r7", "yt_video_id": "OLD12345678", "status": "yt_posted",
+           "qa_notes": "x; superseded=2026-10-14; reason=owner_deleted"}
+    assert rp.is_superseded_row(row)
+    reasons = rp.find_duplicates("s", "sha", [row], [], {})
+    assert reasons == [], reasons
+    rep = rr.classify({}, [row], {}, [])
+    assert rep["counts"]["superseded_db_rows"] == 1
+    assert rep["counts"]["ghost_db_rows"] == 0
+
+
+def t_supersede_refuses_live_video():
+    entries = [{"video_id": "VID12345678", "article_slug": "s"}]
+    events = []
+    expect_refused(
+        lambda: rp.supersede_video(
+            "VID12345678", "x",
+            deps=_supersede_deps(events, entries, [], exists=True)),
+        needle="still on the channel")
+    assert entries[0].get("superseded") is None
+    assert events == [], events
+
+
 def t_sb_write_actually_sends_the_body():
     # Regression: the first live write-back (2026-10-14) failed because
     # sb_write never passed the payload to curl — PostgREST got an empty
@@ -344,6 +468,16 @@ def main():
          t_public_verification_is_a_hard_failure),
         ("metadata from real Chakrabarti sample", t_metadata_from_real_sample),
         ("reconcile classification", t_reconcile_classification),
+        ("superseded records don't block republish",
+         t_superseded_records_do_not_block_republish),
+        ("reconcile: superseded is not a ghost",
+         t_reconcile_superseded_is_not_a_ghost),
+        ("supersede marks both ledgers", t_supersede_marks_both_ledgers),
+        ("supersede status-CHECK fallback to marker",
+         t_supersede_status_check_falls_back_to_marker),
+        ("qa_notes marker row = superseded everywhere",
+         t_marker_row_counts_as_superseded_everywhere),
+        ("supersede refuses a live video", t_supersede_refuses_live_video),
         ("sb_write sends the body (regression)", t_sb_write_actually_sends_the_body),
         ("write-back error object = clean failure",
          t_write_back_error_object_is_a_clean_failure),

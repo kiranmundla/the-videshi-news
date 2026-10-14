@@ -13,5 +13,21 @@
     "publisher": "reel_publish.py",
     "prebuilt_reels_id": "c236b952-ed9d-4de2-b33b-f266d3884960",
     "write_back_note": "first write-back attempt failed (sb_write sent no body; PostgREST error object, no row created); payload PATCHed onto the diagnostic row after the fix, read-back verified 2026-10-14"
+  },
+  {
+    "video_id": "9MuNbawE8ac",
+    "article_slug": "dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals",
+    "article_id": "adade7f6-90f2-4ed8-acc0-3137c4366136",
+    "title": "DHS Proposes Ending Deference to Prior H-1B and L-1 Petition Approvals #Shorts #H1B",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-14T08:29:48.626290+00:00",
+    "video_path": "reel-runs/2026-10-14-dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals/output/dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals.mp4",
+    "video_sha256": "936f5117b9bdfbbe7e5863d356303af7e67d0ff2cd3ece75b89d8d3f6fae13b4",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py",
+    "superseded": "2026-10-14T08:42:11.392818+00:00",
+    "superseded_reason": "owner_deleted_in_studio",
+    "superseded_note": "Owner deleted in Studio 2026-10-14 (music redo). Redo rendered with upbeat track pixabay-breaking-full.mp3; awaiting owner ear-approval before publish."
   }
 ]

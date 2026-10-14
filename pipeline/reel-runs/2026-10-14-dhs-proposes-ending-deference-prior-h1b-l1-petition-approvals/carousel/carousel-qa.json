@@ -1,0 +1,51 @@
+{
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "cards": [
+    {
+      "card": 1,
+      "dims_ok": true,
+      "text_bbox": [
+        64,
+        64,
+        1006,
+        1297
+      ],
+      "margins_ok": true,
+      "contrast_delta": 176.5,
+      "contrast_full": true,
+      "face_overlap_px": 0
+    },
+    {
+      "card": 2,
+      "dims_ok": true,
+      "text_bbox": [
+        72,
+        112,
+        1009,
+        1027
+      ],
+      "margins_ok": true,
+      "contrast_delta": 227.7,
+      "contrast_full": true,
+      "face_overlap_px": null
+    },
+    {
+      "card": 3,
+      "dims_ok": true,
+      "text_bbox": [
+        129,
+        313,
+        952,
+        1279
+      ],
+      "margins_ok": true,
+      "contrast_delta": 208.3,
+      "contrast_full": true,
+      "face_overlap_px": null
+    }
+  ],
+  "photo_ok": true
+}

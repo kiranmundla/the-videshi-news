@@ -1,0 +1,32 @@
+{
+  "photo": {
+    "url": null,
+    "width": 1280,
+    "height": 1920
+  },
+  "face": {
+    "method": "haar:haarcascade_frontalface_default.xml",
+    "box_source": [
+      1037,
+      598,
+      110,
+      110
+    ]
+  },
+  "cover": {
+    "face_box_card": [
+      875.0,
+      467.6,
+      92.8,
+      92.8
+    ],
+    "headline_size": 86,
+    "headline_lines": 4
+  },
+  "facts": {
+    "facts_bottom": 1132
+  },
+  "end": {
+    "headline_size": 60
+  }
+}

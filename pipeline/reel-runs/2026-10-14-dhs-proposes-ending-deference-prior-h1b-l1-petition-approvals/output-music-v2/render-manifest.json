@@ -1,0 +1,230 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals",
+  "article_slug": "dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals",
+  "article_id": "adade7f6-90f2-4ed8-acc0-3137c4366136",
+  "category": "Immigration",
+  "video": "reel-runs/2026-10-14-dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals/output-music-v2/dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Department_of_Homeland_Security_new_Headquarters_ceremony_%2832644743917%29.jpg/1280px-Department_of_Homeland_Security_new_Headquarters_ceremony_%2832644743917%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "local_path": "reel-runs/2026-10-14-dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals/output-music-v2/hero.jpg",
+    "width": 1280,
+    "height": 1920,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "haar:haarcascade_frontalface_default.xml",
+    "box_source": [
+      1037,
+      598,
+      110,
+      110
+    ],
+    "box_bg": [
+      837.0,
+      598.0,
+      110.0,
+      110.0
+    ],
+    "chin_bg": 708.0,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": 709.1,
+      "zone_top": 758,
+      "zone_h": 822,
+      "scale": 1.0,
+      "content_h": 254,
+      "block_top": 848,
+      "block_bottom": 1102,
+      "text_bbox": [
+        115,
+        848,
+        899,
+        1096
+      ],
+      "texts": [
+        "Immigration",
+        "H-1B EXTENSIONS FACE FRESH SCRUTINY"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": 710.6,
+      "zone_top": 759,
+      "zone_h": 821,
+      "scale": 1.0,
+      "content_h": 258,
+      "block_top": 849,
+      "block_bottom": 1107,
+      "text_bbox": [
+        134,
+        849,
+        873,
+        1110
+      ],
+      "texts": [
+        "What Happened",
+        "The Department of Homeland Security has proposed ending deference to prior approvals on Form I-129 petitions, so H-1B and L-1 extensions could face fresh adjudication."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": 712.2,
+      "zone_top": 761,
+      "zone_h": 819,
+      "scale": 1.0,
+      "content_h": 405,
+      "block_top": 851,
+      "block_bottom": 1256,
+      "text_bbox": [
+        107,
+        851,
+        918,
+        1262
+      ],
+      "texts": [
+        "THE STAKES",
+        "30 DAYS",
+        "Public comment window after Federal Register publication"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": 714.1,
+      "zone_top": 763,
+      "zone_h": 817,
+      "scale": 1.0,
+      "content_h": 520,
+      "block_top": 853,
+      "block_bottom": 1373,
+      "text_bbox": [
+        149,
+        853,
+        856,
+        1372
+      ],
+      "texts": [
+        "By The Numbers",
+        "I-129",
+        "The petition form whose prior approvals may lose deference",
+        "2021",
+        "Year deference was restored in guidance"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": 715.9,
+      "zone_top": 764,
+      "zone_h": 816,
+      "scale": 1.0,
+      "content_h": 322,
+      "block_top": 854,
+      "block_bottom": 1176,
+      "text_bbox": [
+        118,
+        854,
+        883,
+        1181
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Indian nationals make up a significant share of H-1B beneficiaries",
+        "Do not rely on a prior approval alone in an upcoming extension"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": 717.2,
+      "zone_top": 766,
+      "zone_h": 814,
+      "scale": 1.0,
+      "content_h": 312,
+      "block_top": 856,
+      "block_bottom": 1168,
+      "text_bbox": [
+        180,
+        856,
+        823,
+        1179
+      ],
+      "texts": [
+        "The Takeaway",
+        "Submit full evidence of eligibility in each filing.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "render_seconds": 357.5,
+  "mp4_bytes": 18192371
+}

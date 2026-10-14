@@ -169,6 +169,23 @@ rep, ok = carousel_render.carousel_factcheck(spec, ARTICLE,
 check("paraphrase is not passed off as a verbatim quote",
       rep["verbatim_quote"] is False)
 
+print("── carousel: quote-less spec (facts-led set; regression for the")
+print("          2026-10-14 DHS run's KeyError 'quote' crash)")
+spec_noq = {k: v for k, v in spec.items() if k != "quote"}
+rep, ok = carousel_render.carousel_factcheck(spec_noq, ARTICLE,
+                                             use_llm=False)
+check("quote-less spec: no crash, quote checks not applicable",
+      rep["quote_present"] is False and rep["verbatim_quote"] is None
+      and rep["speaker_grounded"] is None
+      and rep["role_grounded"] is None)
+check("quote-less spec passes on grounded text", ok is True,
+      str(rep.get("verdict")))
+spec_null = dict(spec_noq, quote=None)
+rep2, ok2 = carousel_render.carousel_factcheck(spec_null, ARTICLE,
+                                               use_llm=False)
+check("explicit quote=None handled like a missing quote",
+      rep2["quote_present"] is False and ok2 is True)
+
 print("── no fabricated QA anywhere in the new modules")
 import ast
 for mod in ("reel_renderer.py", "reel_factcheck.py", "reel_frame_qa.py",

@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "article_slug": "sukanya-chakrabarti-american-physical-society-fellow-dark-matter",
+  "name": "sukanya-chakrabarti-american-physical-society-fellow-dark-matter",
+  "script": "reel-samples/phase1/sukanya-chakrabarti-american-physical-society-fellow-dark-matter/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000482
+  },
+  "manifest": "reel-samples/phase1/sukanya-chakrabarti-american-physical-society-fellow-dark-matter/output-music-v2/render-manifest.json",
+  "video": "reel-samples/phase1/sukanya-chakrabarti-american-physical-society-fellow-dark-matter/output-music-v2/sukanya-chakrabarti-american-physical-society-fellow-dark-matter.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  }
+}

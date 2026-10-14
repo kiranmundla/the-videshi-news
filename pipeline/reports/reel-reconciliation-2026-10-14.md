@@ -1,17 +1,18 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-10-14T07:39:24+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-10-14T08:55:06+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
 - Channel uploads (actual, via API): **184**
-- prebuilt_reels rows: 117 (87 with a yt_video_id)
+- prebuilt_reels rows: 118 (88 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 1
+- Phase 2 publish-log entries: 2
 - **In sync** (channel video backed by a DB/publish-log record): **73**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 10
 - Ghost DB rows (yt_video_id not on channel): 14
+- Superseded DB rows (owner-deleted/replaced; not ghosts): 1
 - Public with no DB record: 111
 - Phase 2 uploads now public (manual flip expected): 0
 
@@ -267,6 +268,10 @@ Generated: 2026-10-14T07:39:24+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 
 _None._
 
+## (e) Superseded DB rows — owner-deleted or replaced (not ghosts) (1)
+
+- row `cd31fd35-0ef2-4b97-ac09-678c9027a296` · slug dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals · yt_video_id `9MuNbawE8ac` · on channel: no
+
 ## (d) In sync (73)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
@@ -341,5 +346,5 @@ _None._
 - `JYdFf19RVtw` · public · 2026-07-14 · Rupee Slides to One-Month Low as India's Trade Deficit Balloons to $30.43 Billion — What NRI Remit 🎵 [prebuilt_reels:e6d38716-51ab-4775-8f3a-2abe1d9907bb]
 - `Cq-CwlUarOU` · public · 2026-07-14 · Satya Nadella Is Quietly Building Microsoft's Own AI Models. The Goal: Stop Paying OpenAI and Ant 🎙️ [prebuilt_reels:89fe716f-ffdc-44d2-956f-159e4835289c]
 - `YbpiTLVJWCA` · public · 2026-07-14 · Five Box Office Wars That Will Define the Second Half of 2026 🎵 [prebuilt_reels:30e3cac5-9362-4964-8065-f3acebd2760a]
-- `2MrWgJOsprg` · unlisted · 2026-10-14 · Astrophysicist Sukanya Chakrabarti Elected Fellow of American Physical Society #Shorts #DarkMatter [prebuilt_reels:c236b952-ed9d-4de2-b33b-f266d3884960]
+- `2MrWgJOsprg` · public · 2026-10-14 · Astrophysicist Sukanya Chakrabarti Elected Fellow of American Physical Society #Shorts #DarkMatter [prebuilt_reels:c236b952-ed9d-4de2-b33b-f266d3884960]
 

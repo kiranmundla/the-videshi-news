@@ -37,8 +37,12 @@ import reel_factcheck
 import reel_frame_qa
 import reel_renderer
 
+# Fallback bed only — callers (the videshi-pulse-reels job) always pass
+# --music with a rotated upbeat collection track. The previous default,
+# anthemic-triumph-eternal-hope.mp3 (~66 BPM, sparse), was judged dull
+# by Kiran on 2026-10-14 and is excluded from the rotation pool.
 DEFAULT_MUSIC = (Path(__file__).resolve().parent / "music"
-                 / "anthemic-triumph-eternal-hope.mp3")
+                 / "pixabay-breaking-full.mp3")
 
 
 def download(url, dest):

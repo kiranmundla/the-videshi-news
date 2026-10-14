@@ -95,7 +95,7 @@ def fetch_channel_videos(token):
 
 def fetch_db_rows():
     return rp.sb_get("prebuilt_reels?select=id,article_slug,headline,status,"
-                     "yt_video_id,yt_posted_at,source,reel_format"
+                     "yt_video_id,yt_posted_at,source,reel_format,qa_notes"
                      "&order=created_at.asc")
 
 
@@ -144,8 +144,20 @@ def classify(channel, db_rows, legacy_log, publish_entries):
             public_no_record.append(rec)
 
     ghost_rows = []
+    superseded_rows = []
     for row in db_rows:
         vid = row.get("yt_video_id")
+        if rp.is_superseded_row(row):
+            # Owner-deleted / replaced uploads (marked via
+            # reel_publish.py --supersede): documented history, NOT
+            # ghosts, whether or not the video is still on the channel.
+            superseded_rows.append({
+                "row_id": row["id"], "article_slug": row.get("article_slug"),
+                "yt_video_id": vid, "status": row.get("status"),
+                "yt_posted_at": row.get("yt_posted_at"),
+                "on_channel": bool(vid and vid in channel),
+            })
+            continue
         if vid and vid not in channel:
             ghost_rows.append({
                 "row_id": row["id"], "article_slug": row.get("article_slug"),
@@ -165,6 +177,7 @@ def classify(channel, db_rows, legacy_log, publish_entries):
             "unknown_legacy_logged": len(unknown_legacy),
             "unknown_no_record": len(unknown_other),
             "ghost_db_rows": len(ghost_rows),
+            "superseded_db_rows": len(superseded_rows),
             "public_without_db_record": len(public_no_record),
             "phase2_uploads_now_public": len(phase2_now_public),
         },
@@ -172,6 +185,7 @@ def classify(channel, db_rows, legacy_log, publish_entries):
         "unknown_legacy_logged": unknown_legacy,
         "unknown_no_record": unknown_other,
         "ghost_db_rows": ghost_rows,
+        "superseded_rows": superseded_rows,
         "public_without_db_record": public_no_record,
         "phase2_uploads_now_public": phase2_now_public,
     }
@@ -199,6 +213,8 @@ def render_markdown(report, generated_at):
         f"- Unknown — legacy-logged only: {c['unknown_legacy_logged']}",
         f"- Unknown — no record anywhere: {c['unknown_no_record']}",
         f"- Ghost DB rows (yt_video_id not on channel): {c['ghost_db_rows']}",
+        f"- Superseded DB rows (owner-deleted/replaced; not ghosts): "
+        f"{c['superseded_db_rows']}",
         f"- Public with no DB record: {c['public_without_db_record']}",
         f"- Phase 2 uploads now public (manual flip expected): "
         f"{c['phase2_uploads_now_public']}",
@@ -237,6 +253,11 @@ def render_markdown(report, generated_at):
             report["phase2_uploads_now_public"],
             lambda r: f"- `{r['video_id']}` · {r['title']} "
                       f"(flip is Kiran's manual step; listed for visibility)")
+    section("(e) Superseded DB rows — owner-deleted or replaced (not ghosts)",
+            report["superseded_rows"],
+            lambda r: f"- row `{r['row_id']}` · slug {r['article_slug']} · "
+                      f"yt_video_id `{r['yt_video_id']}` · "
+                      f"on channel: {'yes' if r['on_channel'] else 'no'}")
     section("(d) In sync",
             report["in_sync"],
             lambda r: f"- `{r['video_id']}` · {r['privacy']} · "
@@ -273,6 +294,7 @@ def main(argv=None):
     print(f"Unknown (legacy log):  {c['unknown_legacy_logged']}")
     print(f"Unknown (no record):   {c['unknown_no_record']}")
     print(f"Ghost DB rows:         {c['ghost_db_rows']}")
+    print(f"Superseded DB rows:    {c['superseded_db_rows']}")
     print(f"Public, no DB record:  {c['public_without_db_record']}")
     print(f"Phase 2 now public:    {c['phase2_uploads_now_public']}")
     print(f"\nReports: {md_path}\n         {json_path}")

@@ -1,0 +1,135 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "DHS Proposes Ending Deference to Prior H-1B and L-1 Petition Approvals",
+        "numbers": [
+          1.0
+        ],
+        "entities": [
+          "DHS Proposes Ending Deference",
+          "Prior H-1B",
+          "L-1 Petition Approvals"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states DHS proposed ending deference to prior H-1B and L-1 approvals.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "A proposed rule would remove the requirement that USCIS defer to earlier I-129 approvals, exposing extensions and amendments to fresh adjudication.",
+        "numbers": [
+          129.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article explains the proposed rule removes USCIS's requirement to defer to earlier I-129 approvals.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The proposal would remove the requirement that USCIS defer to earlier I-129 approvals",
+        "numbers": [
+          129.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The proposal indeed removes the requirement for USCIS to defer to earlier I-129 approvals.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "DHS is inviting public comments for 30 days after the Federal Register publication on October 14",
+        "numbers": [
+          14.0,
+          30.0
+        ],
+        "entities": [
+          "Federal Register"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions DHS inviting public comments for 30 days after October 14 publication.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Indian nationals make up a significant share of H-1B beneficiaries, working in technology, engineering, healthcare and other specialized occupations",
+        "numbers": [
+          1.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Indian nationals make up a significant share of H-1B beneficiaries in various fields.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "DHS Proposes Ending Deference to Prior H-1B and L-1 Petition Approvals",
+        "numbers": [
+          1.0
+        ],
+        "entities": [
+          "DHS Proposes Ending Deference",
+          "Prior H-1B",
+          "L-1 Petition Approvals"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article reiterates the proposal to end deference to prior H-1B and L-1 petition approvals.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000378
+    }
+  },
+  "verdict": "pass"
+}

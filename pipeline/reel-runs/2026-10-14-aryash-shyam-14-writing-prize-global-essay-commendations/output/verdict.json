@@ -1,0 +1,14 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "article_slug": "aryash-shyam-14-writing-prize-global-essay-commendations",
+  "name": "aryash-shyam-14-writing-prize-global-essay-commendations",
+  "script": "reel-runs/2026-10-14-aryash-shyam-14-writing-prize-global-essay-commendations/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000524
+  },
+  "detail": "no composition fits all scenes below the chin at the planner floors"
+}

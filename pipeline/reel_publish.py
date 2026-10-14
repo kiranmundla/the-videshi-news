@@ -184,10 +184,14 @@ def load_publish_log():
     return []
 
 
+def save_publish_log(entries):
+    PUBLISH_LOG_PATH.write_text(json.dumps(entries, indent=2) + "\n")
+
+
 def append_publish_log(entry):
     entries = load_publish_log()
     entries.append(entry)
-    PUBLISH_LOG_PATH.write_text(json.dumps(entries, indent=2) + "\n")
+    save_publish_log(entries)
 
 
 def load_legacy_log():
@@ -227,15 +231,36 @@ def check_verdict(verdict):
     return problems
 
 
+def is_superseded_row(row):
+    """A prebuilt_reels row is superseded if its status says so OR its
+    qa_notes carry the `superseded=` marker. The marker form exists
+    because the live prebuilt_reels_status_check does not (yet) allow
+    the 'superseded' status value — see
+    pipeline/migrations/add-superseded-status.sql. supersede_video
+    writes the status when the schema allows it and the marker always,
+    so both forms must be honoured everywhere."""
+    if row.get("status") == "superseded":
+        return True
+    return "superseded=" in (row.get("qa_notes") or "")
+
+
 def find_duplicates(slug, video_sha256, db_rows, publish_entries, legacy_log):
-    """Return a list of duplicate reasons. Empty = safe to upload."""
+    """Return a list of duplicate reasons. Empty = safe to upload.
+
+    Superseded records never block: a video the channel owner deleted in
+    Studio (marked via supersede_video) is history, not a duplicate.
+    """
     reasons = []
     for row in db_rows:
+        if is_superseded_row(row):
+            continue
         if row.get("yt_video_id"):
             reasons.append(
                 f"prebuilt_reels row {row.get('id')} for this article already "
                 f"has yt_video_id={row['yt_video_id']}")
     for entry in publish_entries:
+        if entry.get("superseded"):
+            continue
         if entry.get("article_slug") == slug:
             reasons.append(
                 f"publish log already records this article as video "
@@ -420,6 +445,98 @@ def youtube_verify(token, video_id):
     return item["status"]["privacyStatus"], item["snippet"]["title"]
 
 
+def youtube_exists(token, video_id):
+    """True if the video is still visible on the channel via the API."""
+    data = curl_json(
+        ["https://www.googleapis.com/youtube/v3/videos"
+         f"?part=id&id={video_id}",
+         "-H", f"Authorization: Bearer {token}"])
+    return bool(data.get("items"))
+
+
+def db_rows_by_video(video_id):
+    return sb_get(f"prebuilt_reels?select=*&yt_video_id=eq.{video_id}")
+
+
+def supersede_video(video_id, note, deps=None):
+    """Mark a Phase 2 upload superseded after the channel owner deleted
+    the video in Studio (e.g. to redo it with a different music bed).
+
+    Ledger truth, kept in BOTH records:
+    * the reel-publish-log.json entry gains `superseded` (timestamp),
+      `superseded_reason` and `superseded_note` — find_duplicates ignores
+      superseded entries, so a redo of the same story may publish;
+    * the prebuilt_reels row keeps its yt_video_id (the upload DID
+      happen) and is marked superseded — status "superseded" when the
+      table's status CHECK allows it, otherwise the `superseded=`
+      marker in qa_notes (is_superseded_row honours both) — so
+      find_duplicates ignores it and reel_reconcile.py reports it as
+      superseded, not a ghost.
+
+    Refuses if the video is still on the channel: superseding a live
+    video would corrupt the duplicate guard. The DB is patched BEFORE
+    the log is saved, so a failure can never leave the log claiming a
+    supersede the DB doesn't show. Re-running after a partial failure
+    completes the unfinished side instead of refusing. deps injects
+    fakes for tests: {get_token, video_exists, db_rows, patch_row,
+    publish_entries, save_log}.
+    """
+    deps = deps or {}
+    token = (deps.get("get_token") or get_access_token)()
+    exists = (deps.get("video_exists") or youtube_exists)(token, video_id)
+    if exists:
+        raise PublishRefused(
+            f"video {video_id} is still on the channel — refusing to "
+            "supersede a live video. Delete it in Studio first.")
+    entries = (deps.get("publish_entries") or load_publish_log)()
+    entry = next((e for e in entries if e.get("video_id") == video_id), None)
+    if entry is None:
+        raise PublishFailed(
+            f"no publish-log entry for video {video_id}; nothing to supersede")
+    rows = (deps.get("db_rows") or db_rows_by_video)(video_id)
+    pending_rows = [r for r in rows if not is_superseded_row(r)]
+    if entry.get("superseded") and not pending_rows:
+        raise PublishRefused(f"video {video_id} is already superseded")
+    now_iso = entry.get("superseded") or datetime.now(
+        timezone.utc).isoformat()
+    marker = (f"superseded={now_iso}; reason=owner_deleted_in_studio; "
+              f"note={note}")
+    patched = []
+    status_fallback = False
+    for row in pending_rows:
+        notes = row.get("qa_notes") or ""
+        payload = {"status": "superseded",
+                   "qa_notes": (notes + "; " + marker) if notes else marker}
+        try:
+            (deps.get("patch_row") or db_write_back)(row["id"], payload)
+        except PublishFailed as e:
+            if "status_check" not in str(e) and "check constraint" not in str(e):
+                raise
+            # The live status CHECK rejects 'superseded' (the migration
+            # in pipeline/migrations/add-superseded-status.sql lifts
+            # this). Fall back to the qa_notes marker alone — the row
+            # keeps its historical status and is_superseded_row still
+            # recognises it everywhere it matters.
+            payload = {"qa_notes": payload["qa_notes"]}
+            (deps.get("patch_row") or db_write_back)(row["id"], payload)
+            status_fallback = True
+        patched.append(row["id"])
+    if deps.get("db_rows") is None:
+        for row in db_rows_by_video(video_id):
+            if row["id"] in patched and not is_superseded_row(row):
+                raise PublishFailed(
+                    f"supersede read-back mismatch for row {row['id']}")
+    if not entry.get("superseded"):
+        entry["superseded"] = now_iso
+        entry["superseded_reason"] = "owner_deleted_in_studio"
+        entry["superseded_note"] = note
+        (deps.get("save_log") or save_publish_log)(entries)
+    return {"video_id": video_id, "superseded_at": now_iso,
+            "article_slug": entry.get("article_slug"),
+            "db_rows_superseded": patched,
+            "status_fallback_marker_only": status_fallback}
+
+
 # ---------------------------------------------------------------- publish
 
 def resolve_inputs(verdict_path):
@@ -574,12 +691,35 @@ def publish(verdict_path, dry_run=False, deps=None):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[1])
-    ap.add_argument("--verdict", required=True,
+    ap.add_argument("--verdict",
                     help="path to a reel_produce.py verdict.json")
     ap.add_argument("--dry-run", action="store_true",
                     help="gate + duplicate checks + metadata only, no upload")
+    ap.add_argument("--supersede", metavar="VIDEO_ID",
+                    help="mark a Studio-deleted Phase 2 upload superseded "
+                         "in both ledgers so its story may be re-published "
+                         "(no upload happens)")
+    ap.add_argument("--note", default="",
+                    help="reason note recorded with --supersede")
     args = ap.parse_args(argv)
     load_env()
+    if args.supersede:
+        try:
+            result = supersede_video(
+                args.supersede,
+                args.note or "owner deleted the video in Studio")
+        except PublishRefused as e:
+            print(f"REFUSED — nothing was changed.\n{e}")
+            return REFUSED
+        except PublishFailed as e:
+            print(f"FAILED: {e}")
+            return FAILED
+        print(json.dumps(result, indent=2))
+        print("\nSUPERSEDED — the story may be re-published from a fresh "
+              "verdict; the old video stays in the ledgers as history.")
+        return 0
+    if not args.verdict:
+        ap.error("--verdict is required unless --supersede is given")
     try:
         result = publish(args.verdict, dry_run=args.dry_run)
     except PublishRefused as e:

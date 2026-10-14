@@ -317,29 +317,36 @@ def build_end(spec):
 
 # ── Fact-check for carousel text ────────────────────────────────────────────
 def carousel_factcheck(spec, article, use_llm=True):
-    """Verbatim quote check + the standard claim gate over all other
-    card text. Returns (report_dict, ok)."""
+    """Verbatim quote check (only when the spec carries a quote) + the
+    standard claim gate over all other card text. A quote-less spec is a
+    facts-led set: the quote checks are not applicable (None) and never
+    block. Returns (report_dict, ok)."""
     body_norm = reel_factcheck.norm_text(article.get("body") or "")
-    quote = spec["quote"]["text"]
-    verbatim = reel_factcheck.norm_text(quote) in body_norm
     art_norm = reel_factcheck.norm_text(
         " ".join([article.get("headline") or "",
                   article.get("subheadline") or "",
                   article.get("body") or ""]))
-    speaker_ok = reel_factcheck.entity_grounded(
-        spec["quote"]["speaker"], art_norm, article.get("body") or "")
-    # A role line is a composite ("Chair, University of X") that never
-    # appears verbatim — ground it per entity + per number instead.
-    role = spec["quote"]["role"]
-    role_ok = all(
-        reel_factcheck.entity_grounded(e, art_norm,
-                                       article.get("body") or "")
-        for e in reel_factcheck.extract_entities(role)) and \
-        reel_factcheck.extract_numbers(role) <= \
-        reel_factcheck.article_number_set(
-            " ".join([article.get("headline") or "",
-                      article.get("subheadline") or "",
-                      article.get("body") or ""]))
+    quote_spec = spec.get("quote") or {}
+    quote_present = bool(quote_spec.get("text"))
+    if quote_present:
+        verbatim = reel_factcheck.norm_text(
+            quote_spec["text"]) in body_norm
+        speaker_ok = reel_factcheck.entity_grounded(
+            quote_spec["speaker"], art_norm, article.get("body") or "")
+        # A role line is a composite ("Chair, University of X") that
+        # never appears verbatim — ground it per entity + per number.
+        role = quote_spec["role"]
+        role_ok = all(
+            reel_factcheck.entity_grounded(e, art_norm,
+                                           article.get("body") or "")
+            for e in reel_factcheck.extract_entities(role)) and \
+            reel_factcheck.extract_numbers(role) <= \
+            reel_factcheck.article_number_set(
+                " ".join([article.get("headline") or "",
+                          article.get("subheadline") or "",
+                          article.get("body") or ""]))
+    else:
+        verbatim = speaker_ok = role_ok = None
     cat_ok = spec["eyebrow"].strip().upper() == \
         (article.get("category") or "").replace("-", " ").upper()
     pseudo = {
@@ -347,15 +354,17 @@ def carousel_factcheck(spec, article, use_llm=True):
         "news_summary": spec["end"]["line"],
         "hook_stat": {"big": "", "sub": "", "eyebrow": ""},
         "stats": [{"big": "", "label": f} for f in spec["facts"]],
-        "diaspora_bullets": [spec["quote"]["speaker"],
-                             spec["quote"]["role"]],
+        "diaspora_bullets": ([quote_spec["speaker"], quote_spec["role"]]
+                             if quote_present else []),
         "payoff": spec["end"]["headline"],
         "key_entities": [],
     }
     gate = reel_factcheck.run_gate(pseudo, article, use_llm=use_llm)
-    ok = bool(verbatim and speaker_ok and role_ok and cat_ok
-              and gate["verdict"] == "pass")
-    report = {"verbatim_quote": verbatim, "speaker_grounded": speaker_ok,
+    quote_ok = (verbatim and speaker_ok and role_ok) if quote_present \
+        else True
+    ok = bool(quote_ok and cat_ok and gate["verdict"] == "pass")
+    report = {"quote_present": quote_present, "verbatim_quote": verbatim,
+              "speaker_grounded": speaker_ok,
               "role_grounded": role_ok, "eyebrow_is_category": cat_ok,
               "claim_gate": gate, "verdict": "pass" if ok else "fail"}
     return report, ok
@@ -472,7 +481,8 @@ def main():
     (outdir / "carousel-factcheck.json").write_text(json.dumps(fc,
                                                               indent=2))
     verdict["factcheck"] = {
-        "verdict": fc["verdict"], "verbatim_quote": fc["verbatim_quote"],
+        "verdict": fc["verdict"], "quote_present": fc["quote_present"],
+        "verbatim_quote": fc["verbatim_quote"],
         "speaker_grounded": fc["speaker_grounded"],
         "role_grounded": fc["role_grounded"],
         "eyebrow_is_category": fc["eyebrow_is_category"],
@@ -481,7 +491,9 @@ def main():
         verdict["stage"] = "factcheck"
         print("🚫 HELD at fact-check", file=sys.stderr)
         return finish(1)
-    print("   ✅ quote verbatim; all card text grounded")
+    print("   ✅ all card text grounded"
+          + ("; quote verbatim" if fc["quote_present"]
+             else "; facts-led set (no quote in spec)"))
 
     print("── render + gate 2/2: card QA")
     src = Image.open(args.hero).convert("RGB")
@@ -497,24 +509,31 @@ def main():
                           "height": src.height},
                 "face": {"method": method,
                          "box_source": [int(v) for v in face_src]}}
+    # Card set: cover → quote (only when the spec carries a verbatim
+    # quote) → facts → end. A quote-less spec yields a facts-led
+    # 3-card set — never an invented quote, never a crash.
+    built = []
     try:
         cover, ov1, m1 = build_cover(spec, enh, face_enh)
-        quote_c, ov2, m2 = build_quote(spec, enh, face_enh)
+        manifest["cover"] = m1
+        built.append((cover, ov1))
+        if spec.get("quote"):
+            quote_c, ov2, m2 = build_quote(spec, enh, face_enh)
+            manifest["quote"] = m2
+            built.append((quote_c, ov2))
         facts_c, ov3, m3 = build_facts(spec)
+        manifest["facts"] = m3
+        built.append((facts_c, ov3))
         end_c, ov4, m4 = build_end(spec)
+        manifest["end"] = m4
+        built.append((end_c, ov4))
     except TextFitError as e:
         verdict["stage"] = "render_fit"
         verdict["detail"] = str(e)
         print(f"🚫 HELD at render: {e}", file=sys.stderr)
         return finish(1)
-    manifest["cover"] = m1
-    manifest["quote"] = m2
-    manifest["facts"] = m3
-    manifest["end"] = m4
     cards, overlays = [], []
-    for i, (card, ov) in enumerate(
-            [(cover, ov1), (quote_c, ov2), (facts_c, ov3), (end_c, ov4)],
-            start=1):
+    for i, (card, ov) in enumerate(built, start=1):
         p = outdir / f"{args.stem}-{i}.png"
         card.save(p)
         ov.save(outdir / f"{args.stem}-{i}-overlay.png")

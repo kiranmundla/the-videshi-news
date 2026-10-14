@@ -818,6 +818,7 @@ def render_reel(script, hero_path, music_path, outdir, name,
         "safe_zone": {"x": [PANEL_X0, PANEL_X1], "top": TOP_SAFE,
                       "bottom": BOT_SAFE, "text_max_w": TEXT_MAX_W},
         "scenes": {k: plan["scenes"][k] for k, _, _ in BEATS},
+        "music": {"file": Path(music_path).name, "path": str(music_path)},
         "render_seconds": round(time.time() - t0, 1),
         "mp4_bytes": out_path.stat().st_size,
     }

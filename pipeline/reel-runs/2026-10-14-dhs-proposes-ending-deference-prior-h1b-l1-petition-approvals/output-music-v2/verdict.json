@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "article_slug": "dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals",
+  "name": "dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals",
+  "script": "reel-runs/2026-10-14-dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000495
+  },
+  "manifest": "reel-runs/2026-10-14-dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals/output-music-v2/render-manifest.json",
+  "video": "reel-runs/2026-10-14-dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals/output-music-v2/dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  }
+}
