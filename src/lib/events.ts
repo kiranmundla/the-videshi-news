@@ -27,6 +27,10 @@ export type EventItem = {
   audience: string | null;
   latitude: number | null;
   longitude: number | null;
+  /** Diaspora relevance tier (2 core / 1 friendly / 0 generic), computed
+      at build time by pipeline/prebuild-feeds.py into events.json.
+      Absent on the Supabase fallback path — treat missing as 0. */
+  desi_tier?: number | null;
   is_featured: boolean | null;
   venue_images: string[] | null;
   seatmap_url: string | null;
@@ -586,16 +590,16 @@ export function sortEventsByDistance(
   // Filter out events beyond 100 miles
   const nearby = withDist.filter((e) => (e.distanceMiles ?? 9999) <= 100);
 
-  // Primary sort: distance, secondary: date
+  // Diaspora-first ordering (Kiran, 2026-10-14): this sort is used only by
+  // geo modes (near-me / ZIP), where results rank by desi_tier first, then
+  // distance, then date. Ranking only — every event still shows.
   nearby.sort((a, b) => {
+    const tierComp = (b.desi_tier ?? 0) - (a.desi_tier ?? 0);
+    if (tierComp !== 0) return tierComp;
     const da = a.distanceMiles ?? 9999;
     const db = b.distanceMiles ?? 9999;
-    // If both within 20 miles of each other, sort by date first
-    if (Math.abs(da - db) < 3) {
-      const dateComp = a.date.localeCompare(b.date);
-      if (dateComp !== 0) return dateComp;
-    }
-    return da - db;
+    if (da !== db) return da - db;
+    return a.date.localeCompare(b.date);
   });
 
   return nearby;

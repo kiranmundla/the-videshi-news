@@ -1064,6 +1064,78 @@ def main():
     if len(deduped) < len(events):
         print(f"  ⚠ Removed {len(events) - len(deduped)} cross-source duplicate events")
     events = deduped
+
+    # Diaspora relevance tier (Kiran, 2026-10-14): geo result lists (Events
+    # near-me / ZIP mode, Your Hub weekend) rank diaspora relevance first
+    # and generic last — ranking only, never a filter; everything still
+    # shows. Tier 2 = diaspora-core, tier 1 = diaspora-friendly (yoga,
+    # meditation, food/film festivals — "somewhat diaspora friendly" per
+    # Kiran), tier 0 = everything else. This is the ONE vocabulary
+    # definition for the tier; it mirrors pipeline/events-tm-refresh-v2.py
+    # (ARTIST_KEYWORDS + FALSE_POSITIVE_PATTERNS) so ingest and ranking
+    # speak the same language.
+    _DESI_CORE_TERMS = [
+        "bollywood", "indian", "desi", "diwali", "holi", "garba", "navratri",
+        "hindu", "temple", "mandir", "sikh", "gurdwara", "jain", "eid",
+        "ramadan", "south asian", "bharatiya", "puja", "aarti", "bhajan",
+        "kirtan", "qawwali", "sufi", "ghazal", "kathak", "bharatanatyam",
+        "carnatic", "hindustani", "cricket", "punjabi", "gujarati", "tamil",
+        "telugu", "marathi", "bengali", "malayalam", "kannada", "urdu",
+        "hindi", "onam", "pongal", "vaisakhi", "durga", "ganesh",
+        "karva chauth", "rakhi",
+    ]
+    _DESI_FRIENDLY_TERMS = ["yoga", "meditation", "food festival", "film festival"]
+    _DESI_ARTISTS = [
+        "Diljit Dosanjh", "Shreya Ghoshal", "Sonu Nigam", "Arijit Singh",
+        "AR Rahman", "Atif Aslam", "Neha Kakkar", "Badshah", "AP Dhillon",
+        "Karan Aujla", "Armaan Malik", "Amit Trivedi", "Sunidhi Chauhan",
+        "Jubin Nautiyal", "Darshan Raval", "Nucleya", "Pritam",
+        "Vishal Shekhar", "Kumar Sanu", "Lucky Ali", "Shankar Ehsaan Loy",
+        "Salim Sulaiman", "Anirudh Ravichander", "Devi Sri Prasad",
+        "Anupam Roy", "Sid Sriram", "Anuv Jain", "Prateek Kuhad", "Ritviz",
+        "Divine", "Raja Kumari", "Zakir Hussain", "Ravi Shankar",
+        "Anoushka Shankar", "Ali Sethi", "Coke Studio", "Indian Ocean",
+        "Agnee", "Kailash Kher", "Sukhwinder Singh", "Mika Singh",
+        "Guru Randhawa", "Honey Singh", "B Praak", "Shubh", "Aditya Rikhari",
+        "Sidhu Moose Wala", "Zakir Khan", "Vir Das", "Kenny Sebastian",
+        "Anubhav Singh Bassi", "Zarna Garg", "Hasan Minhaj", "Aziz Ansari",
+        "Biswas Kalyan Rath", "Russell Peters", "Anuvab Pal", "Papa CJ",
+        "Atul Khatri", "Kanan Gill", "Abish Mathew",
+    ]
+    # "indian" place names must not fake a diaspora match — same patterns
+    # as FALSE_POSITIVE_PATTERNS in events-tm-refresh-v2.py.
+    _DESI_FP_PATTERNS = [
+        r"\bcasino\b", r"\bslot\b", r"\bpoker\b",
+        r"\bindian wells\b", r"\bindianapolis\b", r"\bindian motorcycle\b",
+        r"\bindian rocks\b", r"\bindian trail\b", r"\bindian river\b",
+        r"\bindian head\b", r"\bindian lake\b", r"\bindian mound\b",
+    ]
+
+    def _terms_re(terms):
+        return re.compile(r"\b(?:" + "|".join(re.escape(t) for t in terms) + r")\b")
+
+    _DESI_CORE_RE = _terms_re(_DESI_CORE_TERMS)
+    _DESI_FRIENDLY_RE = _terms_re(_DESI_FRIENDLY_TERMS)
+    _DESI_ARTIST_RE = _terms_re([a.lower() for a in _DESI_ARTISTS])
+
+    def _desi_tier(e):
+        if (e.get("source") or "") == "temple":
+            return 2
+        title = e.get("title") or ""
+        text = (title + " " + (e.get("description") or "")).lower()
+        # Neutralise false-positive phrases before matching so e.g.
+        # "Indianapolis" / "Indian River" can't score via "indian".
+        for pat in _DESI_FP_PATTERNS:
+            text = re.sub(pat, " ", text)
+        if _DESI_CORE_RE.search(text) or _DESI_ARTIST_RE.search(title.lower()):
+            return 2
+        if _DESI_FRIENDLY_RE.search(text):
+            return 1
+        return 0
+
+    for e in events:
+        e["desi_tier"] = _desi_tier(e)
+
     events_path = DATA_DIR / "events.json"
     events_path.write_text(json.dumps(events, ensure_ascii=False, separators=(",", ":")))
     print(f"  ✓ events.json ({len(events)} events)")

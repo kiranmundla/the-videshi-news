@@ -583,7 +583,11 @@ export default function YourHubPage() {
     let list = events.filter((e) => e.date >= friStr && e.date <= sunStr && e.date >= today);
     if (catSel) list = list.filter((e) => e.category === catSel);
     if (location) {
+      // Diaspora-first, then distance (Kiran, 2026-10-14) — same ordering
+      // as the Events page geo modes; desi_tier comes from events.json.
       list = [...list].sort((a, b) => {
+        const tierComp = (b.desi_tier ?? 0) - (a.desi_tier ?? 0);
+        if (tierComp !== 0) return tierComp;
         const da = distanceFor(a, location) ?? Infinity;
         const db = distanceFor(b, location) ?? Infinity;
         return da - db || a.date.localeCompare(b.date);
