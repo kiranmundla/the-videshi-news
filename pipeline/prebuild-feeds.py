@@ -221,6 +221,69 @@ def fetch_table(url: str, key: str, table: str, order: str = "id.asc",
     return all_rows
 
 
+def fetch_article_stamps(url: str, key: str) -> list[dict]:
+    """Fetch id/slug/updated_at for every published article (cheap — used
+    to find older articles edited since their JSON was last written)."""
+    return fetch_table(url, key, "p2_articles", order="id.asc",
+                       filters={"status": "eq.published"},
+                       select="id,slug,updated_at")
+
+
+def _parse_ts(ts) -> datetime | None:
+    """Parse a Supabase timestamp to an aware UTC datetime (None if bad)."""
+    if not ts:
+        return None
+    try:
+        return datetime.fromisoformat(str(ts).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def select_stale_article_ids(stamps: list[dict], articles_dir: Path,
+                             recent_ids: set) -> list[str]:
+    """IDs of published articles outside the recent window whose JSON must
+    be rebuilt: the DB row was updated after the JSON file was last
+    written (updated_at > file mtime), or the JSON file is missing
+    entirely. Without this, late edits to older articles (reviewer hero
+    nulls, enrichments, merges) update Supabase but never reach the site.
+    Articles in recent_ids are excluded — the recent fetch covers them."""
+    stale = []
+    for s in stamps:
+        aid = s.get("id")
+        slug = s.get("slug")
+        if not aid or aid in recent_ids:
+            continue
+        if not slug or slug == aid:
+            continue
+        path = articles_dir / f"{slug}.json"
+        if not path.exists():
+            stale.append(aid)
+            continue
+        upd = _parse_ts(s.get("updated_at"))
+        if upd is not None and upd.timestamp() > path.stat().st_mtime:
+            stale.append(aid)
+    return stale
+
+
+def fetch_articles_by_ids(url: str, key: str, ids: list[str]) -> list[dict]:
+    """Fetch full rows (with body) for specific article IDs, chunked so
+    the PostgREST `in.(...)` URL stays a sane length."""
+    headers = {"apikey": key, "Authorization": f"Bearer {key}"}
+    rows: list[dict] = []
+    for i in range(0, len(ids), 100):
+        chunk = ids[i:i + 100]
+        params = {
+            "select": P2_COLS,
+            "status": "eq.published",
+            "id": "in.(" + ",".join(chunk) + ")",
+        }
+        resp = _get_with_retry(f"{url}/rest/v1/p2_articles",
+                               headers=headers, params=params)
+        resp.raise_for_status()
+        rows.extend(resp.json())
+    return rows
+
+
 # ── Transform (mirrors mapRow in articles.ts) ────────────────────────
 
 def parse_sources(raw) -> list | None:
@@ -886,14 +949,31 @@ def main():
     except Exception as e:
         print(f"  WARN: build-movies.py error: {e}")
 
-    # 3. Build individual article pages (only recent articles — older ones keep existing JSONs)
+    # 3. Build individual article pages.
+    # Recent articles (published in the last 7 days) are always rebuilt.
+    # Older articles are ALSO rebuilt when their DB row was edited after
+    # their JSON was last written (updated_at > file mtime) or their JSON
+    # is missing entirely — otherwise late edits to old articles (reviewer
+    # hero nulls, enrichments, merges) silently never reach the live site.
     recent_cutoff = (now - timedelta(days=7)).isoformat()
     print(f"  Fetching recent articles with body (last 7 days)...")
     recent_raw = fetch_all_published(url, key, include_body=True, since=recent_cutoff)
     recent_articles = [map_row(r) for r in recent_raw]
+    recent_n = len(recent_articles)
 
-    print(f"  Building article JSONs ({len(recent_articles)} recent)...")
     ARTICLES_DIR.mkdir(parents=True, exist_ok=True)
+    recent_ids = {r["id"] for r in recent_raw}
+    stale_ids = select_stale_article_ids(fetch_article_stamps(url, key),
+                                         ARTICLES_DIR, recent_ids)
+    stale_n = 0
+    if stale_ids:
+        print(f"  Fetching {len(stale_ids)} older articles edited since their JSON was written (or JSON missing)...")
+        stale_rows = fetch_articles_by_ids(url, key, stale_ids)
+        stale_articles = [map_row(r) for r in stale_rows]
+        stale_n = len(stale_articles)
+        recent_articles = recent_articles + stale_articles
+
+    print(f"  Building article JSONs ({recent_n} recent + {stale_n} stale-updated)...")
 
     # Track all known slugs (from the full lightweight fetch) for stale cleanup
     all_slugs = set()
