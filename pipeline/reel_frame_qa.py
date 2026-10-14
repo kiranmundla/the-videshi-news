@@ -132,7 +132,23 @@ def clusters_in_zones(mask):
 
 
 def detect_face_in_frame(frame_rgb):
-    """Re-detect the face in the rendered frame. Returns box or None."""
+    """Re-detect the face in the rendered frame. Returns box or None.
+
+    Uses the SAME YuNet detector as the renderer (shared helper), so
+    QA measures overlap against the same face the layout protected —
+    and inherits YuNet's precision on architecture/textures, where
+    Haar false-positives. YuNet available but no face found -> None
+    (the caller falls back to the manifest-mapped box); Haar is
+    consulted only when YuNet itself is unavailable, mirroring the
+    renderer's fallback."""
+    from reel_renderer import yunet_faces
+    faces = yunet_faces(frame_rgb)
+    if faces is not None:
+        if not faces:
+            return None, "manifest-mapped"
+        fx, fy, fw, fh, score = max(faces, key=lambda f: f[2] * f[3])
+        return (int(fx), int(fy), int(fw), int(fh)), \
+            f"frame-yunet (score {score:.2f})"
     import cv2
     gray = cv2.cvtColor(frame_rgb, cv2.COLOR_RGB2GRAY)
     h, w = gray.shape[:2]
@@ -143,7 +159,8 @@ def detect_face_in_frame(frame_rgb):
         faces = cascade.detectMultiScale(gray, 1.1, 5, minSize=min_size)
         if len(faces) > 0:
             fx, fy, fw, fh = max(faces, key=lambda f: f[2] * f[3])
-            return (int(fx), int(fy), int(fw), int(fh)), f"frame-haar:{name}"
+            return (int(fx), int(fy), int(fw), int(fh)), \
+                f"frame-haar:{name} (yunet unavailable)"
     return None, "manifest-mapped"
 
 

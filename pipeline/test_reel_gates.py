@@ -186,6 +186,44 @@ rep2, ok2 = carousel_render.carousel_factcheck(spec_null, ARTICLE,
 check("explicit quote=None handled like a missing quote",
       rep2["quote_present"] is False and ok2 is True)
 
+print("── renderer: YuNet face detection (2026-10-14 building-FP")
+print("          regression — Haar 'face' in a bank wall vent held a reel)")
+import numpy as np
+check("YuNet model vendored in the repo (survives VM rebuilds)",
+      reel_renderer.YUNET_MODEL.exists())
+check("YuNet detector available at runtime",
+      reel_renderer.yunet_faces(np.zeros((64, 64, 3),
+                                         dtype=np.uint8)) is not None)
+BUILDING = Path(__file__).parent / "test-fixtures" \
+    / "idbi-bank-building.jpg"
+if not BUILDING.exists():  # fall back to the original run artifact
+    BUILDING = (Path(__file__).parent / "reel-runs"
+                / "2026-10-14-cabinet-approves-fairfax-52878-crore"
+                  "-idbi-bank-stake-sale" / "output" / "hero.jpg")
+if BUILDING.exists():
+    bimg = Image.open(BUILDING).convert("RGB")
+    check("YuNet: zero detections on the IDBI building photo",
+          reel_renderer.yunet_faces(np.array(bimg)) == [])
+    _, bmethod = reel_renderer.detect_face_box(bimg)
+    check("building photo takes the no-face path (Haar FP designed out)",
+          bmethod.startswith("focal-heuristic"), bmethod)
+else:
+    print("  (building fixture missing — FP regression checks skipped)")
+CHAK = (Path(__file__).parent / "reel-samples" / "phase1"
+        / "sukanya-chakrabarti-american-physical-society-fellow"
+          "-dark-matter" / "output" / "hero.jpg")
+if CHAK.exists():
+    cimg = Image.open(CHAK).convert("RGB")
+    cbox, cmethod = reel_renderer.detect_face_box(cimg)
+    # The approved Haar-era render recorded box (770,260,352,352):
+    # chin at 45.8% of the photo height. YuNet must still find the
+    # face, with a chin consistent with that approved placement.
+    chin_frac = (cbox[1] + cbox[3]) / cimg.height
+    check("real face still detected (Chakrabarti sample)",
+          cmethod.startswith("yunet"), cmethod)
+    check("chin consistent with the approved render (±6% of height)",
+          abs(chin_frac - 0.458) <= 0.06, f"chin={chin_frac:.3f}")
+
 print("── no fabricated QA anywhere in the new modules")
 import ast
 for mod in ("reel_renderer.py", "reel_factcheck.py", "reel_frame_qa.py",

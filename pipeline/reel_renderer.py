@@ -17,7 +17,8 @@ The recipe is LOCKED; this module implements it exactly:
   - NO localized scrim blob: legibility comes from a smooth full-frame
     vertical gradient deepening downward (alpha 0 above t=0.25, easing
     to 165/255 at the bottom, exponent 1.35).
-  - Face-aware placement (cv2 Haar, frontal -> profile, largest face;
+  - Face-aware placement (cv2 YuNet DNN, largest face; Haar cascades
+    only as the wholesale fallback when YuNet is unavailable;
     focal-point heuristic fallback, always reported): text zones start
     below the detected chin, mapped through the Ken Burns zoom.
   - FULL-RES article photo only. Sources below the floor
@@ -295,7 +296,73 @@ def enhance_raw(img):
     return img
 
 
-# ── Face detection (Haar cascades — same approach as focal_point.py) ────────
+# ── Face detection (YuNet DNN primary; Haar only if YuNet unavailable) ─────
+# Haar cascades false-positive on architecture/textures: on 2026-10-14
+# a bank-branch photo was LAYOUT-HELD by a Haar "face" found in a
+# concrete wall vent (chin at 63.5% blocked every text zone). Measured
+# on this pipeline's own photos, YuNet (official 2023mar model,
+# vendored below so VM rebuilds can't lose it) scores every genuine
+# face >= 0.90 and returns ZERO detections — even at a 0.3 threshold —
+# on the building / no-face photos where Haar fired. So while YuNet
+# is available it is the SOLE detector: Haar is never consulted on a
+# YuNet "no face" answer (that would reintroduce the false positive).
+# Haar survives only as the wholesale fallback when YuNet itself is
+# unavailable (model missing / FaceDetectorYN absent / inference
+# error) — i.e. exactly the pre-YuNet behavior. The face check is
+# never silently skipped: every path returns a box and names its
+# method.
+YUNET_MODEL = Path(__file__).resolve().parent / "assets" \
+    / "face_detection_yunet_2023mar.onnx"
+YUNET_SCORE_THRESHOLD = 0.6
+
+
+def yunet_faces(arr_rgb, score_threshold=YUNET_SCORE_THRESHOLD):
+    """Run YuNet on an RGB numpy image. Returns a list of
+    (x, y, w, h, score) in the array's own pixels — or None when
+    YuNet is unavailable (no cv2, no FaceDetectorYN, model missing
+    or unloadable, inference error). An empty list is a real,
+    usable answer: YuNet ran and found no face."""
+    try:
+        import cv2
+    except ImportError:
+        return None
+    if not hasattr(cv2, "FaceDetectorYN") or not YUNET_MODEL.exists():
+        return None
+    h, w = arr_rgb.shape[:2]
+    try:
+        det = cv2.FaceDetectorYN.create(
+            str(YUNET_MODEL), "", (w, h),
+            score_threshold=float(score_threshold),
+            nms_threshold=0.3, top_k=50)
+        _, faces = det.detect(arr_rgb)
+    except Exception:
+        return None
+    out = []
+    if faces is not None:
+        for f in faces:
+            out.append((float(f[0]), float(f[1]), float(f[2]),
+                        float(f[3]), float(f[14])))
+    return out
+
+
+def _haar_face_box(arr, cv2, scale):
+    """Legacy Haar path (frontal -> profile, largest face), in source
+    pixels. Used ONLY when YuNet is unavailable."""
+    gray = cv2.cvtColor(arr, cv2.COLOR_RGB2GRAY)
+    sh, sw = gray.shape[:2]
+    min_size = (int(sw * 0.04), int(sh * 0.04))
+    for cascade_name in ("haarcascade_frontalface_default.xml",
+                         "haarcascade_profileface.xml"):
+        cascade = cv2.CascadeClassifier(cv2.data.haarcascades + cascade_name)
+        faces = cascade.detectMultiScale(gray, scaleFactor=1.1,
+                                         minNeighbors=5, minSize=min_size)
+        if len(faces) > 0:
+            fx, fy, fw, fh = max(faces, key=lambda f: f[2] * f[3])
+            box = tuple(int(round(v / scale)) for v in (fx, fy, fw, fh))
+            return box, f"haar:{cascade_name} (yunet unavailable)"
+    return None
+
+
 def detect_face_box(src_img):
     """Detect the subject's face in the source image (PIL, RGB).
     Returns (box, method): box = (x, y, w, h) in SOURCE pixels of the
@@ -315,18 +382,21 @@ def detect_face_box(src_img):
     if max(h, w) > 800:
         scale = 800 / max(h, w)
         arr = cv2.resize(arr, (int(w * scale), int(h * scale)))
-    gray = cv2.cvtColor(arr, cv2.COLOR_RGB2GRAY)
-    sh, sw = gray.shape[:2]
-    min_size = (int(sw * 0.04), int(sh * 0.04))
-    for cascade_name in ("haarcascade_frontalface_default.xml",
-                         "haarcascade_profileface.xml"):
-        cascade = cv2.CascadeClassifier(cv2.data.haarcascades + cascade_name)
-        faces = cascade.detectMultiScale(gray, scaleFactor=1.1,
-                                         minNeighbors=5, minSize=min_size)
-        if len(faces) > 0:
-            fx, fy, fw, fh = max(faces, key=lambda f: f[2] * f[3])
+
+    faces = yunet_faces(arr)
+    if faces is not None:
+        if faces:
+            fx, fy, fw, fh, score = max(faces,
+                                        key=lambda f: f[2] * f[3])
             box = tuple(int(round(v / scale)) for v in (fx, fy, fw, fh))
-            return box, f"haar:{cascade_name}"
+            return box, f"yunet (score {score:.2f})"
+        # YuNet ran and found no face. Do NOT cross-check with Haar:
+        # its building/texture false positives are the bug this
+        # replaces. Go straight to the focal-point heuristic below.
+    else:
+        haar = _haar_face_box(arr, cv2, scale)
+        if haar is not None:
+            return haar
 
     # No face found — focal-point heuristic box (reported, not hidden).
     try:
