@@ -7,10 +7,16 @@ strip of circular headshots with names underneath.
 Photo sourcing is verified-only — a wrong photo is worse than no photo:
   1. person_images table (exact name match) — already identity-verified
   2. Wikipedia page-summary API — page title must match the name;
-     disambiguation pages rejected
+     disambiguation pages rejected; an exact-title page is ALSO rejected
+     when its own data proves it is a different person (see
+     _summary_identity_conflict: the title match alone is not identity
+     proof — "Beatrice Campbell" the Northern Irish stage actress,
+     1922–1979, is not the newcomer child actress in a 2027 film, and
+     her page thumbnail is literally her husband Nigel Patrick)
   3. Wikimedia Commons file search — filename must contain a name token;
      for AMBIGUOUS names (single-token, or Wikipedia says the name is a
-     disambiguation page) the filename must match the name EXACTLY —
+     disambiguation page, or the exact-title Wikipedia page is a
+     different person) the filename must match the name EXACTLY —
      "Atul_Kumar_MD" and "Mathew_Brady_1875" are different people and
      must fall back to initials, not headshots
 Otherwise the member renders as an initials circle. Never a guessed photo.
@@ -23,7 +29,9 @@ import json
 import os
 import re
 import subprocess
+import unicodedata
 import urllib.parse
+from datetime import datetime, timezone
 
 UA = "TheVideshi/1.0 (cast-strip; contact: pipeline@thevideshi.com)"
 
@@ -127,16 +135,161 @@ def _wiki_summary(name):
     return _wiki_summary_cache[key]
 
 
+def _fold(tok):
+    """Lowercase + strip diacritics so 'Mišel' and 'Misel' compare equal."""
+    return "".join(c for c in unicodedata.normalize("NFKD", tok.lower())
+                   if not unicodedata.combining(c))
+
+
+_YEAR_RE = r"(1[6-9]\d{2}|20\d{2})"
+# Words that commonly appear in image filenames without naming a person.
+# Used only to decide whether a filename positively names SOMEONE ELSE —
+# never as evidence FOR an identity.
+_FILENAME_STOPWORDS = {
+    "the", "and", "at", "in", "on", "of", "for", "with", "from", "by",
+    "film", "films", "movie", "festival", "cannes", "tiff", "sxsw",
+    "sundance", "berlinale", "venice", "premiere", "press", "conference",
+    "panel", "event", "events", "awards", "award", "red", "carpet",
+    "cropped", "crop", "portrait", "photo", "photograph", "image",
+    "img", "dsc", "pic", "still", "stills", "trailer", "official",
+    "actor", "actress",
+}
+
+
+def _image_names_other_person(url, name):
+    """True when an image filename positively names a DIFFERENT person.
+
+    Fires only when (a) NONE of the target's name tokens appear in the
+    filename, and (b) after stripping digits/years and generic words the
+    filename still holds >=2 name-like tokens — i.e. it reads as another
+    person's name ("Nigel_Patrick.jpg" on the Beatrice Campbell page).
+    Generic filenames ("DSC_4471.jpg", festival/press shots) carry no
+    such evidence and return False.
+    """
+    if not url:
+        return False
+    base = urllib.parse.unquote(url.rsplit("/", 1)[-1])
+    base = base.split("?")[0].split("#")[0]  # drop utm/query junk
+    base = re.sub(r"^\d+px-", "", base)  # thumbnail size prefix
+    base = re.sub(r"\.(jpe?g|png|webp|gif|tiff?)$", "", base, flags=re.I)
+    base = re.sub(r"\.(jpe?g|png|webp)$", "", base, flags=re.I)  # thumb ext
+    # Letter runs in any script (š, č, Hangul, ...) — a narrow Latin-1
+    # class would shred accented names into meaningless fragments.
+    toks = [_fold(t) for t in re.findall(r"[^\W\d_]+", base) if len(t) >= 3]
+    name_toks = {_fold(t) for t in name.lower().split() if len(t) > 2}
+    # Overlap = any exact token match, or a filename token that CONTAINS
+    # a name token (merged-name files: "PaulBettany-byPhilipRomano.jpg"
+    # is one token, but it plainly names Paul Bettany).
+    for tok in toks:
+        for ntok in name_toks:
+            if tok == ntok or (len(ntok) >= 4 and ntok in tok):
+                return False
+    cand = [t for t in toks if t not in _FILENAME_STOPWORDS]
+    return len(cand) >= 2
+
+
+def _bio_date_parentheticals(d, name):
+    """Parentheticals that carry the PAGE PERSON's life dates — and only
+    those. Two places qualify:
+
+      * the trailing parenthetical of the Wikidata short description
+        ("British actress (1922–1979)", "American actress (born 1949)")
+      * the lead parenthetical of the extract, immediately after the
+        person's name ("John Smith (3 May 1930 – 2 June 2020) was ...")
+
+    Other parentheticals in the extract are filmography/show dates
+    ("... Sex Education (2019–2023) ...") and must NEVER be read as
+    life dates — that misread is the exact false positive this guards.
+    """
+    out = []
+    desc = (d.get("description") or "").rstrip()
+    if desc.endswith(")"):
+        m = re.search(r"\(([^()]*)\)$", desc)
+        if m:
+            out.append(m.group(1))
+    extract = d.get("extract") or ""
+    title = (d.get("title") or "").replace("_", " ")
+    for who in (title, name):
+        if not who:
+            continue
+        m = re.match(re.escape(who) + r"\s*\(([^()]*)\)", extract)
+        if m:
+            out.append(m.group(1))
+            break
+    return out
+
+
+def _summary_identity_conflict(d, name, now_year=None):
+    """Positive evidence that a Wikipedia summary page is a DIFFERENT
+    person than the (living, working) cast member being looked up.
+
+    An exact page-title match is not identity proof: the page titled
+    "Beatrice Campbell" is a Northern Irish actress who died in 1979,
+    not the newcomer in an upcoming film. Reject ONLY on positive
+    evidence — a living actor with an old photo, or a page whose data
+    carries no dates at all, is left alone:
+
+      * the bio date parentheticals give a birth–death year range
+        ("British actress (1922–1979)") or a death note — the page's
+        person is deceased, so cannot be in a current production
+      * a recorded birth year makes the person implausibly old for a
+        new production (>105 years)
+      * the page's own thumbnail filename names a different person —
+        applied only when the page carries NO "(born ...)" living
+        marker: with one, a non-matching filename may be a character
+        still of the same actor, which is not identity evidence
+
+    Returns True on conflict, False otherwise (fall back to initials
+    when in doubt is handled by the caller treating True as no-photo).
+    """
+    if not d or not isinstance(d, dict):
+        return False
+    if d.get("type") == "disambiguation":
+        return False  # handled by the disambiguation path, not this one
+    if now_year is None:
+        now_year = datetime.now(timezone.utc).year
+    has_born_marker = False
+    for inner in _bio_date_parentheticals(d, name):
+        years = re.findall(_YEAR_RE, inner)
+        if len(years) >= 2 and re.search(r"[–—-]", inner):
+            return True  # birth–death range: page person is deceased
+        if re.search(r"\b(died|death|deceased)\b", inner, re.I):
+            return True
+        if years and re.search(r"\bborn\b", inner, re.I):
+            has_born_marker = True
+            if now_year - int(years[0]) > 105:
+                return True  # implausibly old for a current production
+    if has_born_marker:
+        # The page is anchored to a specific LIVING person whose name
+        # matches. A thumbnail filename that names no one matching may
+        # be a character still OF that actor (Lewis Tan's page photo is
+        # "Cole Young as depicted in Mortal Kombat II") — not evidence
+        # of a different person, so the filename check does not apply.
+        return False
+    thumb = (d.get("thumbnail") or {}).get("source")
+    orig = (d.get("originalimage") or {}).get("source")
+    if _image_names_other_person(thumb or orig, name):
+        return True
+    return False
+
+
 def _is_ambiguous(name):
     """True when the name could belong to several people.
 
     Single-token names (e.g. 'Mathew') and names whose Wikipedia page is
-    a disambiguation page (e.g. 'Atul Kumar') both qualify.
+    a disambiguation page (e.g. 'Atul Kumar') both qualify — as do names
+    whose exact-title Wikipedia page is provably a different person
+    (_summary_identity_conflict): other people with that name exist, so
+    Commons must not be trusted on a loose filename match either.
     """
     if len(name.split()) < 2:
         return True
     d = _wiki_summary(name)
-    return bool(d and isinstance(d, dict) and d.get("type") == "disambiguation")
+    if not d or not isinstance(d, dict):
+        return False
+    if d.get("type") == "disambiguation":
+        return True
+    return _summary_identity_conflict(d, name)
 
 
 def _wikipedia_lookup(name):
@@ -144,6 +297,11 @@ def _wikipedia_lookup(name):
     if not d or not isinstance(d, dict):
         return None
     if d.get("type") == "disambiguation":
+        return None
+    # Exact-title match is NOT identity proof: reject when the page's own
+    # data (death dates, implausible birth year, a thumbnail that names
+    # someone else) shows it is a different person.
+    if _summary_identity_conflict(d, name):
         return None
     page_title = re.sub(r"\s*\(.*?\)\s*", "", d.get("title", "")).strip()
     # Title must match the person name (allows middle names/initials either way)
