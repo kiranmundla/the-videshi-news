@@ -41,7 +41,13 @@ _BLOCK_RE = re.compile(
     r"#?shorts?\b|box[\s-]?office|collection|\bvs\.?\b|comparison|reaction|"
     r"review|interview|behind the scenes|\bbts\b|first look|mashup|tribute|"
     r"fancast|day\s*\d+|episode\s*\d+|song|audio|lyrical|"
-    r"trailer\s*launch|launch\s*event|launch\s*coverage|"
+    # 2026-10-14: extended trailer->(trailer|teaser) + launch->(launch|lunch)
+    # and added speech block. Lahari Music uploaded 6 "Speech at Haindava
+    # Teaser Launch" videos + a "Haindava Teaser Lunch Event Live" — all
+    # launch-event coverage, none the teaser itself — which slipped past the
+    # Oct-7 pattern (it only blocked "trailer launch") and reached the rail.
+    r"(trailer|teaser)\s*(launch|lunch)|launch\s*event|launch\s*coverage|"
+    r"\bspeech(es)?\b|"
     r"কেমন\s*লাগল|দর্শকদের|অনুরাগীদের|পৌঁছে|পুরো\s*team|কী\s*বলল|বিশেষ\s*কথা",
     re.IGNORECASE,
 )
@@ -50,7 +56,7 @@ _BLOCK_RE = re.compile(
 # (e.g. "Ranabaali Trailer launch Event LIVE | Vijay Deverakonda ..." produced
 # a 3/10 stub on 2026-10-07).
 _LIVE_EVENT_RE = re.compile(
-    r"\blive\b|livestream|launch event|press meet|success meet|pre-release event",
+    r"\blive\b|livestream|(launch|lunch)\s*event|press meet|success meet|pre-release event",
     re.IGNORECASE,
 )
 

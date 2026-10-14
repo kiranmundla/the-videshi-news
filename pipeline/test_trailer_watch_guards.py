@@ -153,5 +153,37 @@ added2 = sb_merge_embeds(existing, [old_drop, drop_418], CHANNELS)
 check("merge: re-run with everything embedded adds nothing, no PATCH",
       added2 == 0 and len(patches) == 1)
 
+# --------------------------------------- is_trailer: launch-event coverage
+# 2026-10-14: Lahari Music uploaded launch-event speeches whose titles say
+# "Teaser Launch" (and one "Teaser Lunch Event Live") — the Oct-7 block only
+# covered "trailer launch", so all 7 reached the trailers rail pool. Fixtures
+# are the exact titles from .state/trailer-watch-feed.json (purged same day).
+is_trailer = _ns["is_trailer"]
+LIVE_EVENT_RE = _ns["_LIVE_EVENT_RE"]
+HAINDAVA_BAD = [
+    "Producer Mahesh Chandu Speech at Haindava Teaser Launch | Bellamkonda Sai Sreenivas | Lahari Music",
+    "Production Designer Siva Kamesh Speech at Haindava Teaser Launch | Bellamkonda Sai Sreenivas",
+    "Hero Bellamkonda Sai Sreenivas Speech at Haindava Teaser Launch | Lahari Music",
+    "Haindava Teaser Lunch Event Live | Bellamkonda Sai Sreenivas, Samyuktha | Sam C.S. | Ludheer Byreddy",
+    "Production Designer Mallikarjun Speech at Haindava Teaser Launch | Bellamkonda Sai Sreenivas",
+    "Director Ludheer Byreddy Speech at Haindava Teaser Launch | Bellamkonda Sai Sreenivas | Lahari Music",
+    "Samyuktha Speech at Haindava Teaser Launch | Bellamkonda Sai Sreenivas | Lahari Music",
+]
+for i, t in enumerate(HAINDAVA_BAD, 1):
+    check(f"filter: Haindava launch-coverage #{i} is NOT a trailer",
+          is_trailer(t) is False)
+check("filter: 'Lunch Event Live' title is a live event (brief gate)",
+      bool(LIVE_EVENT_RE.search(HAINDAVA_BAD[3])))
+HAINDAVA_GOOD = ("Haindava Official Teaser | Bellamkonda Sai Sreenivas, "
+                 "Samyuktha | Sam C.S. | Ludheer Byreddy")
+check("filter: the real Haindava teaser still passes",
+      is_trailer(HAINDAVA_GOOD) is True)
+check("filter: Man with the Bag teaser still passes",
+      is_trailer("The Man with the Bag - Official Teaser | Prime Video India") is True)
+check("filter: #418 trailer still passes",
+      is_trailer(HOMBALE_TITLE) is True)
+check("filter: Narnia trailer still passes",
+      is_trailer("NARNIA: THE MAGICIAN\u2019S NEPHEW | Official Trailer | Netflix") is True)
+
 print(f"\n{total - fails}/{total} pass")
 sys.exit(1 if fails else 0)
