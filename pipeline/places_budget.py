@@ -16,6 +16,10 @@ can never touch the kids reserve. Once kids has had its turn for the day
 so an unused kids allocation is not stranded when main runs after kids.
 Scripts that never call set_consumer() are bound only by the shared total,
 as before.
+
+A third consumer, "photo_refresh" (cap 30), was added 2026-10-14 for the
+Sunday directory-photo refresh that gradually restores covers nulled in
+the directory-photo repair; see CONSUMER_CAPS below.
 """
 
 import json, os, time
@@ -32,7 +36,13 @@ DAILY_LIMIT = 90  # max Places API calls per day (across all scripts)
 # raise only if he approves higher spend.
 
 # Per-consumer daily caps within the shared DAILY_LIMIT total.
-CONSUMER_CAPS = {"kids": 20, "directory": 70}
+# photo_refresh (added 2026-10-14): the Sunday directory-photo refresh
+# restores covers nulled in the Oct-14 repair (~2 calls per cover: place
+# details + photo media). Cap 30 = at most ~15 covers per run, and because
+# it registers as a consumer it can never push the shared total past 90 or
+# eat the kids/directory allocations — it runs Sun 04:00, after the daily
+# 02:00 expansion, and simply spends whatever budget is left that day.
+CONSUMER_CAPS = {"kids": 20, "directory": 70, "photo_refresh": 30}
 # The consumer whose finished turn releases its unused reserve to "directory".
 RESERVE_OWNER = "kids"
 

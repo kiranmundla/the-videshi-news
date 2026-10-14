@@ -1,12 +1,34 @@
 #!/usr/bin/env python3
-"""Refresh expired Google Places photo references for directory listings.
+"""Refresh directory listing photos via fresh Places references.
 
-Fetches fresh photo_references via Places API, downloads the first photo,
-uploads to Supabase storage (permanent URLs), and updates the listing.
+Two queues, processed in order:
+  A) LEGACY — image_url is still a live maps.googleapis.com URL. Stale
+     references serve Google's red-X placeholder graphic, so these are
+     actively wrong covers.
+  B) RESTORE — google_place_id present but image_url IS NULL. The
+     2026-10-14 directory-photo repair nulled ~2,860 rotten legacy covers;
+     the old version of this script (selection = image_url LIKE
+     maps.googleapis.com) could never revisit them. Restored gradually
+     here, most-visible listings first (review_count, then rating).
+
+For each listing: fetch fresh photo references (Places API New, details
+call), then hand the first photo to photo_rehost.rehost_v1_photos, which
+downloads it, rejects Google's placeholder bytes, uploads to the
+directory-photos bucket, and returns OUR durable URL for image_url.
+Nothing is ever stored as a live Google URL; a failed/placeholder photo
+leaves the listing imageless and queued for a later run.
+
+Budget: every Places call goes through places_budget. This script
+registers as consumer "photo_refresh" (cap 30 calls/day inside the shared
+90/day total; ~2 calls per restored cover). It runs Sun 04:00, after the
+daily 02:00 expansion, and only spends leftover budget — check_budget
+stops the run cleanly when the day is spent, so kids (20) and directory
+expansion (70) are never starved.
 """
-import os, sys, json, time, requests, hashlib
-from places_budget import check_budget, record_call, budget_remaining  # daily cost guard
-from photo_rehost import validate_photo_bytes  # reject Google's red-X placeholder bytes
+import argparse, os, sys, time, requests
+from places_budget import (check_budget, record_call, budget_remaining,
+                           set_consumer, get_consumer_usage)
+from photo_rehost import rehost_v1_photos  # download + validate + bucket-upload
 import atexit as _atexit
 def _budget_report():
     u, l = __import__("places_budget").get_usage()
@@ -18,9 +40,9 @@ SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 GOOGLE_KEY   = os.environ["GOOGLE_PLACES_API_KEY"]
 BUCKET       = "directory-photos"
 HEADERS      = {"apikey": SUPABASE_KEY, "Authorization": f"Bearer {SUPABASE_KEY}"}
-
-BATCH_SIZE = 50
-SLEEP_BETWEEN = 0.3  # seconds between API calls
+SELECT       = "id,name,slug,google_place_id,image_url,rating,review_count"
+CANDIDATE_CAP = 1000  # ids fetched per queue; the budget stops runs far earlier
+SLEEP_BETWEEN = 0.3   # seconds between listings
 
 def ensure_bucket():
     """Create storage bucket if it doesn't exist."""
@@ -30,65 +52,57 @@ def ensure_bucket():
         timeout=10)
     if r.status_code in (200, 201):
         print(f"✅ Created bucket '{BUCKET}'")
-    elif r.status_code == 409:
+    elif r.status_code == 409 or "already exists" in r.text.lower():
+        # Supabase now answers HTTP 400 with a BucketAlreadyExists body.
         print(f"✅ Bucket '{BUCKET}' exists")
     else:
         print(f"⚠️  Bucket creation: {r.status_code} {r.text[:200]}")
 
-def get_fresh_photo_name(place_id):
-    """Get fresh photo resource name from Places API (New)."""
-    url = f"https://places.googleapis.com/v1/places/{place_id}"
-    r = requests.get(url, headers={
-        "X-Goog-Api-Key": GOOGLE_KEY,
-        "X-Goog-FieldMask": "photos",
-    }, timeout=15)
-    if r.status_code != 200:
-        return None
-    data = r.json()
-    photos = data.get("photos", [])
-    if not photos:
-        return None
-    return photos[0]["name"]  # e.g. "places/PLACE_ID/photos/PHOTO_REF"
+def _fetch_queue(extra_params, order):
+    """One candidate queue from directory_listings (retries twice)."""
+    params = {
+        "select": SELECT,
+        "google_place_id": "not.is.null",
+        "order": order,
+        "limit": str(CANDIDATE_CAP),
+    }
+    params.update(extra_params)
+    for attempt in range(3):
+        try:
+            r = requests.get(f"{SUPABASE_URL}/rest/v1/directory_listings",
+                headers=HEADERS, params=params, timeout=20)
+            if r.status_code == 200:
+                return r.json()
+            print(f"  ⚠️  Candidate fetch HTTP {r.status_code}: {r.text[:150]}")
+        except Exception as e:
+            print(f"  ⚠️  Candidate fetch retry {attempt+1}: {e}")
+        time.sleep(5 * (attempt + 1))
+    return []
 
-def download_photo(photo_name, max_width=800):
-    """Download photo bytes via Places API (New) media endpoint."""
-    url = f"https://places.googleapis.com/v1/{photo_name}/media"
-    r = requests.get(url, params={
-        "maxWidthPx": max_width,
-        "skipHttpRedirect": "true",
-    }, headers={
-        "X-Goog-Api-Key": GOOGLE_KEY,
-    }, timeout=15)
-    if r.status_code != 200:
-        return None, None
-    photo_uri = r.json().get("photoUri")
-    if not photo_uri:
-        return None, None
-    # Download the actual image from the URI
-    img_r = requests.get(photo_uri, timeout=15)
-    if img_r.status_code == 200 and img_r.headers.get("content-type", "").startswith("image"):
-        return img_r.content, img_r.headers["content-type"]
-    return None, None
+def fetch_candidates():
+    """Ordered (queue, listing) pairs: legacy first, then cover restores.
 
-def upload_to_supabase(listing_id, image_bytes, content_type):
-    """Upload image to Supabase storage, return public URL."""
-    ext = "jpg" if "jpeg" in content_type else content_type.split("/")[-1]
-    path = f"{listing_id}.{ext}"
-    
-    r = requests.post(
-        f"{SUPABASE_URL}/storage/v1/object/{BUCKET}/{path}",
-        headers={
-            **HEADERS,
-            "Content-Type": content_type,
-            "x-upsert": "true",
-        },
-        data=image_bytes,
-        timeout=15
-    )
-    if r.status_code in (200, 201):
-        return f"{SUPABASE_URL}/storage/v1/object/public/{BUCKET}/{path}"
-    print(f"    ⚠️  Upload failed: {r.status_code} {r.text[:200]}")
-    return None
+    Fetched once up front because fixing a row removes it from its queue —
+    offset pagination over the shrinking set would skip rows.
+    """
+    legacy = _fetch_queue({"image_url": "like.*maps.googleapis.com*"}, "id.asc")
+    restore = _fetch_queue({"image_url": "is.null"},
+                           "review_count.desc.nullslast,rating.desc.nullslast,id.asc")
+    return ([("legacy", row) for row in legacy] +
+            [("restore", row) for row in restore])
+
+def fetch_place_photos(place_id):
+    """Fresh photo dicts for a place (Places API New details). 1 Places call.
+
+    Returns the photos list (possibly empty), or None on HTTP failure."""
+    r = requests.get(f"https://places.googleapis.com/v1/places/{place_id}",
+        headers={"X-Goog-Api-Key": GOOGLE_KEY, "X-Goog-FieldMask": "photos"},
+        timeout=15)
+    record_call()
+    if r.status_code != 200:
+        print(f"details HTTP {r.status_code}", end=" ")
+        return None
+    return r.json().get("photos", [])
 
 def update_listing(listing_id, new_image_url):
     """Update listing's image_url in DB."""
@@ -101,116 +115,82 @@ def update_listing(listing_id, new_image_url):
     )
     return r.status_code in (200, 204)
 
-def main():
-    ensure_bucket()
-    
-    # Fetch listings with expired Google photo URLs
-    offset = 0
-    total_fixed = 0
-    total_failed = 0
-    total_skipped = 0
-    
-    while True:
-        for attempt in range(3):
-            try:
-                r = requests.get(f"{SUPABASE_URL}/rest/v1/directory_listings",
-                    headers=HEADERS,
-                    params={
-                        "select": "id,name,google_place_id,image_url",
-                        "google_place_id": "not.is.null",
-                        "image_url": "like.*maps.googleapis.com*",
-                        "order": "id",
-                        "limit": str(BATCH_SIZE),
-                        "offset": str(offset)
-                    },
-                    timeout=15)
-                listings = r.json()
-                break
-            except Exception as e:
-                if attempt < 2:
-                    print(f"  ⚠️  Batch fetch retry {attempt+1}: {e}")
-                    time.sleep(5 * (attempt + 1))
-                else:
-                    print(f"  ❌ Batch fetch failed after 3 tries: {e}")
-                    listings = None
-        
-        if listings is None:
-            # Skip this batch, try next
-            offset += BATCH_SIZE
-            if offset > 10000:  # safety cap
-                break
-            continue
-        if not listings:
-            break
-        
-        print(f"\n--- Batch at offset {offset}: {len(listings)} listings ---")
-        
-        for listing in listings:
-            lid = listing["id"]
-            name = listing["name"][:50]
-            place_id = listing["google_place_id"]
-            
-            if not place_id:
-                total_skipped += 1
-                continue
-            
-            # Already has a Supabase URL? Skip
-            if listing.get("image_url", "").startswith(SUPABASE_URL):
-                total_skipped += 1
-                continue
-            
-            print(f"  [{lid}] {name}...", end=" ", flush=True)
-            
-            try:
-                # Get fresh photo name
-                ref = get_fresh_photo_name(place_id)
-                if not ref:
-                    print("❌ no photos")
-                    total_failed += 1
-                    time.sleep(SLEEP_BETWEEN)
-                    continue
-                
-                # Download
-                img_bytes, ctype = download_photo(ref)
-                if not img_bytes:
-                    print("❌ download failed")
-                    total_failed += 1
-                    time.sleep(SLEEP_BETWEEN)
-                    continue
+def process_listing(listing):
+    """Restore one listing's cover through photo_rehost. True if fixed."""
+    lid = listing["id"]
+    print(f"  [{lid}] {listing['name'][:50]}...", end=" ", flush=True)
+    photos = fetch_place_photos(listing["google_place_id"])
+    if photos is None:
+        print("❌ details call failed")
+        return False
+    if not photos:
+        print("❌ place has no photos")
+        return False
+    # Download + placeholder-validate + bucket-upload; records its own
+    # budget call and returns [] on failure/placeholder/budget-block.
+    stem = listing.get("slug") or str(lid)
+    urls = rehost_v1_photos(photos, stem, GOOGLE_KEY, max_photos=1, use_budget=True)
+    if not urls:
+        print("❌ photo download/placeholder/budget — left imageless")
+        return False
+    if update_listing(lid, urls[0]):
+        print("✅ cover restored")
+        return True
+    print("❌ DB update failed")
+    return False
 
-                # 2026-10-14: never store Google's stale-reference placeholder
-                # (100x100 red-X PNG) as a listing cover — a rejected photo
-                # leaves the listing imageless instead of fake-imaged.
-                if not validate_photo_bytes(img_bytes):
-                    print("❌ placeholder/invalid image — not stored")
-                    total_failed += 1
-                    time.sleep(SLEEP_BETWEEN)
-                    continue
-                
-                # Upload to Supabase
-                pub_url = upload_to_supabase(lid, img_bytes, ctype)
-                if not pub_url:
-                    total_failed += 1
-                    time.sleep(SLEEP_BETWEEN)
-                    continue
-                
-                # Update DB
-                if update_listing(lid, pub_url):
-                    print(f"✅ {len(img_bytes)//1024}KB")
-                    total_fixed += 1
-                else:
-                    print("❌ DB update failed")
-                    total_failed += 1
-            except Exception as e:
-                print(f"❌ error: {e}")
-                total_failed += 1
-            
-            time.sleep(SLEEP_BETWEEN)
-        
-        offset += BATCH_SIZE
-    
+def main():
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--limit", type=int, default=None,
+                    help="max listings to process this run (default: until budget/selection exhausted)")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="print the candidate queues and exit (no Places calls, no writes)")
+    args = ap.parse_args()
+
+    set_consumer("photo_refresh")
+    candidates = fetch_candidates()
+    n_legacy = sum(1 for q, _ in candidates if q == "legacy")
+    n_restore = len(candidates) - n_legacy
+    print(f"Candidates: {n_legacy} legacy Google-URL covers, "
+          f"{n_restore} nulled covers with place_id (restore queue)")
+
+    if args.dry_run:
+        for q, row in candidates[:10]:
+            print(f"  [{q}] {row['name'][:60]} "
+                  f"(rating={row.get('rating')}, reviews={row.get('review_count')})")
+        print("Dry run — nothing processed.")
+        return
+
+    ensure_bucket()
+    fixed = failed = processed = 0
+    for queue, listing in candidates:
+        if args.limit is not None and processed >= args.limit:
+            print(f"--limit {args.limit} reached — stopping.")
+            break
+        # A listing costs up to 2 calls (details + media). If the shared
+        # day or this consumer's cap can't cover a full listing, stop
+        # cleanly; the rest stay queued for the next run.
+        if not check_budget(2):
+            print(f"Places budget stop after {processed} listings "
+                  f"({budget_remaining()} shared calls left today, "
+                  f"photo_refresh used {get_consumer_usage('photo_refresh')}). "
+                  f"Remaining candidates stay queued.")
+            break
+        processed += 1
+        try:
+            ok = process_listing(listing)
+        except Exception as e:
+            print(f"❌ error: {e}")
+            ok = False
+        if ok:
+            fixed += 1
+        else:
+            failed += 1
+        time.sleep(SLEEP_BETWEEN)
+
     print(f"\n{'='*50}")
-    print(f"Done! Fixed: {total_fixed}, Failed: {total_failed}, Skipped: {total_skipped}")
+    print(f"Done! Processed: {processed}, Fixed: {fixed}, Failed: {failed}, "
+          f"photo_refresh calls today: {get_consumer_usage('photo_refresh')}")
 
 if __name__ == "__main__":
     main()
