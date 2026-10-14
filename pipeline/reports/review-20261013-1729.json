@@ -1,0 +1,146 @@
+[
+  {
+    "id": "6f93d9f6-b1f9-4a04-9444-46a11e19b6f2",
+    "headline": "Wipro Says PERM Suspension Won't Materially Hurt Business, Cites 80% Local US Hi",
+    "slug": "wipro-perm-suspension-no-material-impact",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the potential impact on employees relying on pending PERM applications by providing specific numbers or examples, such as how many employees might be affected or the potential timeline for resolution.",
+        "Include a brief explanation of the PERM process for readers unfamiliar with immigration terminology, ensuring that the article is accessible to a broader audience.",
+        "Add a quote from a Wipro executive or a relevant expert to provide additional context and credibility to the company's claims about the impact of the suspension."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement from the US Department of Labor regarding the suspension of PERM applications for a more authoritative source on the issue."
+      ]
+    }
+  },
+  {
+    "id": "5fc07941-8759-45a3-bc3b-dea050512a35",
+    "headline": "India Rejects China's Objection on Ladakh Names: 'No Denial Can Change This Fact",
+    "slug": "india-china-ladakh-standard-names-mea",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the naming exercise by including specific details about how these names will be used in official documents or maps, and what implications this might have for local governance or military operations.",
+        "Provide a brief historical context regarding the territorial dispute between India and China over Ladakh to enhance reader understanding of the stakes involved in this naming exercise.",
+        "Include a quote or statement from a geopolitical expert or analyst to provide additional perspective on the implications of India's actions and China's response."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Ministry of External Affairs or a relevant government official to provide direct communication regarding the naming exercise."
+      ]
+    }
+  },
+  {
+    "id": "d9748780-b6dc-4879-8f74-3a1a44493ca6",
+    "headline": "Saudi Coalition Downs Three Drones North of Riyadh as Sanaa Operation Looms",
+    "slug": "saudi-coalition-drones-riyadh-sanaa-operation",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the dates of the attacks and the current situation regarding the airport closure. For example, specify that the airport closure has been extended to October 17 and provide context on how this affects air travel.",
+        "Include more details on the potential implications of the 'special operation' mentioned by the coalition. What does this mean for civilians in the area, and what actions should they take? Providing specific guidance would enhance the article's completeness.",
+        "Ensure that all statements attributed to officials, such as Maj. Gen. Turki Al-Maliki, are clearly sourced. For example, clarify whether the statements were made directly to the media or through official channels to enhance attribution.",
+        "Consider rephrasing the headline to make it more compelling and specific. For instance, 'Saudi Coalition Intercepts Drones Amid Escalating Houthi Threats and Airport Closures' could better capture the urgency and context of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the Saudi-led coalition regarding the drone interceptions and the evacuation warnings to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "71d05460-7afe-4c08-8712-1b6db4253575",
+    "headline": "Tilak Varma Finds a Different Kind of Fun in India's Hardest Batting Job",
+    "slug": "tilak-varma-middle-order-role-india-west-indies",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Tilak Varma's role change by providing specific statistics or examples of how his performance at No. 5 or 6 compares to his previous position at No. 3, including any relevant averages or strike rates.",
+        "Include a quote from a coach or teammate to provide additional context on Varma's adaptation to the middle-order role and its impact on the team's strategy.",
+        "Add a brief overview of the current series against West Indies, including the match context (e.g., series score, importance of the match) to give readers a clearer understanding of the stakes involved."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from ESPNcricinfo or Cricbuzz that highlights Varma's performance or the analysis of his role change in the team."
+      ]
+    }
+  },
+  {
+    "id": "d4242f8d-3347-450d-afb9-40c614f1c5f3",
+    "headline": "White House Asks Ambassador Kimberly Guilfoyle to Resign Over Misconduct Reports",
+    "slug": "kimberly-guilfoyle-resign-ambassador-greece",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events, particularly the timeline surrounding Guilfoyle's alleged misconduct and the White House's decision to ask for her resignation. This will help readers understand the context better.",
+        "Provide more details on the specific allegations against Guilfoyle, including the nature of the 'lavish gifts' and any other misconduct claims to give readers a fuller picture of the situation.",
+        "Include a direct quote from Guilfoyle or her legal team regarding the allegations to provide balance and ensure that her perspective is represented in the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official White House statement or press briefing video regarding Guilfoyle's resignation for authenticity and direct access to primary sources."
+      ]
+    }
+  },
+  {
+    "id": "a264a565-df32-4ead-a46a-d67a55c77cc2",
+    "headline": "Anthropic to Open Its Books to Investors as AI Lab Financials Drive the Tech Tra",
+    "slug": "anthropic-q3-financials-investors-ipo",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the public listing by specifying the expected date in November, if available, to provide readers with concrete information about when they might see the IPO.",
+        "Include a brief explanation of the significance of the revenue accounting question mentioned, as this could impact investor perception and valuation, which is crucial for understanding the financial implications of the report.",
+        "Add a quote or attribution from a financial analyst or industry expert regarding the implications of Anthropic's financial results to enhance credibility and provide expert insight."
+      ],
+      "embed_opportunities": [
+        "Embed the official SEC announcement or guidelines related to the S-1 filing process to provide readers with context about the IPO process."
+      ]
+    }
+  },
+  {
+    "id": "d1d9f9b8-3a8f-416b-903e-7ea6d70f842f",
+    "headline": "The Man with the Bag Teaser Out",
+    "slug": "the-man-with-the-bag-teaser-out",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Ensure the headline follows the 'Film Teaser/Trailer Out' format by including 'Teaser' in the title.",
+        "Clarify that the teaser was released on October 13, 2026, to avoid redundancy in the body."
+      ],
+      "embed_opportunities": [
+        "Consider embedding the YouTube link directly in the article for better accessibility."
+      ]
+    }
+  },
+  {
+    "id": "fd6c2169-2dac-4e3c-a84c-cb2caae304c9",
+    "headline": "#418 \u2013 The Last Warning Trailer Out: Prashanth Neel Presents",
+    "slug": "418-the-last-warning-trailer-out-prashanth-neel-presents",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Correct the headline format to match 'Film Teaser/Trailer Out' style.",
+        "Ensure the trailer drop date is clearly stated without repetition.",
+        "Clarify the source channel for the trailer."
+      ],
+      "embed_opportunities": [
+        "Consider adding social media embeds like Twitter or Instagram for broader engagement."
+      ]
+    }
+  }
+]
