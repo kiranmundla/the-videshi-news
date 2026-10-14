@@ -1,0 +1,204 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "sukanya-chakrabarti-american-physical-society-fellow-dark-matter",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "MAPPING THE INVISIBLE UNIVERSE",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Astrophysicist Sukanya Chakrabarti of the University of Alabama in Huntsville has been elected a Fellow of the American Physical Society for her work on dark matter.",
+      "numbers": [],
+      "entities": [
+        "Astrophysicist Sukanya Chakrabarti",
+        "American Physical Society"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "0.5%",
+      "numbers": [
+        0.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "APS Fellowship nominees are capped at one-half of 1% of members",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "APS Fellowship"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "2022",
+      "numbers": [
+        2022.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2022
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Joined UAH \u2014 and led a black hole discovery",
+      "numbers": [],
+      "entities": [
+        "Joined UAH"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "GAIA",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Mission behind her 2022 black hole discovery",
+      "numbers": [
+        2022.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2022
+        ]
+      },
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "An Indian-American scientist at the top of US physics",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Her measurements map dark matter by watching stars move",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Mapping the matter no one can see.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Sukanya Chakrabarti",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "American Physical Society",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "University of Alabama in Huntsville",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "dark matter",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": null,
+    "ran": false,
+    "error": null,
+    "cost_usd": 0.0
+  }
+}

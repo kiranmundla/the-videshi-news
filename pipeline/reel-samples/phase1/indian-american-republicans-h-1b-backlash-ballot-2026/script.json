@@ -1,0 +1,36 @@
+{
+  "key_entities": [
+    "Vivek Ramaswamy",
+    "H-1B",
+    "Indian-American Republicans"
+  ],
+  "hook_stat": {
+    "big": "9",
+    "sub": "Indian-American Republicans on November ballot",
+    "eyebrow": "ELECTIONS 2026"
+  },
+  "stats": [
+    {
+      "big": "$250,000",
+      "label": "H-1B violation fines proposed"
+    },
+    {
+      "big": "66%",
+      "label": "Indian Americans oppose $100,000 fee"
+    },
+    {
+      "big": "24%",
+      "label": "Trump's support among Indian-American men"
+    }
+  ],
+  "diaspora_bullets": [
+    "Check H-1B status with counsel",
+    "GOP backlash affects Indian-American voters"
+  ],
+  "story_mood": "tense",
+  "hook_line": "H-1B CRACKDOWN HITS ELECTIONS",
+  "news_summary": "Nine Indian-American Republicans are running for office while the GOP enforces stricter H-1B visa regulations amid a significant backlash from voters.",
+  "payoff": "GOP risks alienating Indian-American voters.",
+  "versus": null,
+  "v": "pulse2"
+}

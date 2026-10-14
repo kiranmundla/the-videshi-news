@@ -1,0 +1,230 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "sukanya-chakrabarti-american-physical-society-fellow-dark-matter",
+  "article_slug": "sukanya-chakrabarti-american-physical-society-fellow-dark-matter",
+  "article_id": "fe506b8a-7095-4034-8365-090b586cd418",
+  "category": "Nri World",
+  "video": "reel-samples/phase1/sukanya-chakrabarti-american-physical-society-fellow-dark-matter/output/sukanya-chakrabarti-american-physical-society-fellow-dark-matter.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://media.newswise.com/pio/articles/856425/6acd524dbf286_Sukanya_Chakrabarti_856425.jpg",
+    "local_path": "reel-samples/phase1/sukanya-chakrabarti-american-physical-society-fellow-dark-matter/output/hero.jpg",
+    "width": 2000,
+    "height": 1336,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "haar:haarcascade_frontalface_default.xml",
+    "box_source": [
+      770,
+      260,
+      352,
+      352
+    ],
+    "box_bg": [
+      287.6,
+      373.7,
+      505.9,
+      505.9
+    ],
+    "chin_bg": 879.5,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": 881.9,
+      "zone_top": 930,
+      "zone_h": 650,
+      "scale": 1.0,
+      "content_h": 274,
+      "block_top": 1020,
+      "block_bottom": 1294,
+      "text_bbox": [
+        120,
+        1020,
+        883,
+        1286
+      ],
+      "texts": [
+        "Nri World",
+        "MAPPING THE INVISIBLE UNIVERSE"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": 885.6,
+      "zone_top": 934,
+      "zone_h": 646,
+      "scale": 1.0,
+      "content_h": 266,
+      "block_top": 1024,
+      "block_bottom": 1290,
+      "text_bbox": [
+        121,
+        1024,
+        882,
+        1295
+      ],
+      "texts": [
+        "What Happened",
+        "Astrophysicist Sukanya Chakrabarti of the University of Alabama in Huntsville has been elected a Fellow of the American Physical Society for her work on dark matter."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": 889.2,
+      "zone_top": 938,
+      "zone_h": 642,
+      "scale": 1.0,
+      "content_h": 495,
+      "block_top": 1011,
+      "block_bottom": 1506,
+      "text_bbox": [
+        108,
+        1011,
+        891,
+        1503
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "0.5%",
+        "APS Fellowship nominees are capped at one-half of 1% of members"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": 893.5,
+      "zone_top": 942,
+      "zone_h": 638,
+      "scale": 1.0,
+      "content_h": 520,
+      "block_top": 1001,
+      "block_bottom": 1521,
+      "text_bbox": [
+        119,
+        1001,
+        886,
+        1520
+      ],
+      "texts": [
+        "By The Numbers",
+        "2022",
+        "Joined UAH \u2014 and led a black hole discovery",
+        "GAIA",
+        "Mission behind her 2022 black hole discovery"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": 897.7,
+      "zone_top": 946,
+      "zone_h": 634,
+      "scale": 1.0,
+      "content_h": 348,
+      "block_top": 1036,
+      "block_bottom": 1384,
+      "text_bbox": [
+        118,
+        1036,
+        890,
+        1390
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "An Indian-American scientist at the top of US physics",
+        "Her measurements map dark matter by watching stars move"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": 900.8,
+      "zone_top": 949,
+      "zone_h": 631,
+      "scale": 1.0,
+      "content_h": 312,
+      "block_top": 1039,
+      "block_bottom": 1351,
+      "text_bbox": [
+        130,
+        1039,
+        875,
+        1362
+      ],
+      "texts": [
+        "The Takeaway",
+        "Mapping the matter no one can see.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "render_seconds": 392.0,
+  "mp4_bytes": 11289837
+}

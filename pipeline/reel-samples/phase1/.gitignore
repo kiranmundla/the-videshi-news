@@ -1,0 +1,5 @@
+# Phase 1 sample binaries stay local (paths are in verdict.json / README).
+# Committed evidence: JSON reports, manifests, overlays, frame JPGs, carousel PNGs.
+*.mp4
+*/output/qa/frames/*.png
+*/output/hero.*

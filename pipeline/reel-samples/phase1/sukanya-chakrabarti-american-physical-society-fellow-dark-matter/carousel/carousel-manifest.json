@@ -1,0 +1,37 @@
+{
+  "photo": {
+    "url": "https://media.newswise.com/pio/articles/856425/6acd524dbf286_Sukanya_Chakrabarti_856425.jpg",
+    "width": 2000,
+    "height": 1336
+  },
+  "face": {
+    "method": "haar:haarcascade_frontalface_default.xml",
+    "box_source": [
+      770,
+      260,
+      352,
+      352
+    ]
+  },
+  "cover": {
+    "face_box_card": [
+      363.1,
+      262.7,
+      355.7,
+      355.7
+    ],
+    "headline_size": 84,
+    "headline_lines": 4
+  },
+  "quote": {
+    "quote_size": 64,
+    "quote_lines": 6,
+    "text_bottom": 840
+  },
+  "facts": {
+    "facts_bottom": 1187
+  },
+  "end": {
+    "headline_size": 60
+  }
+}

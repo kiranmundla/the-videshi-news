@@ -1,0 +1,235 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "cracker-prices-rise-15-20-percent-diwali-sivakasi-production-falls",
+  "article_slug": "cracker-prices-rise-15-20-percent-diwali-sivakasi-production-falls",
+  "article_id": "8bee14cc-e461-4800-9afc-cc7c4b6058a7",
+  "category": "Food",
+  "video": "reel-samples/phase1/cracker-prices-rise-15-20-percent-diwali-sivakasi-production-falls/output/cracker-prices-rise-15-20-percent-diwali-sivakasi-production-falls.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Diwali_Fireworks%2C_Gurgaon.jpg/1280px-Diwali_Fireworks%2C_Gurgaon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "local_path": "reel-samples/phase1/cracker-prices-rise-15-20-percent-diwali-sivakasi-production-falls/output/hero.jpg",
+    "width": 1280,
+    "height": 853,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "focal-heuristic (no face detected)",
+    "box_source": [
+      449,
+      325,
+      716,
+      341
+    ],
+    "box_bg": [
+      378.8,
+      274.2,
+      604.1,
+      287.7
+    ],
+    "chin_bg": 561.9,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "fit",
+    "rejected": [
+      {
+        "branch": "cover",
+        "failed_scene": "hook"
+      }
+    ],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": 561.8,
+      "zone_top": 610,
+      "zone_h": 970,
+      "scale": 1.0,
+      "content_h": 254,
+      "block_top": 700,
+      "block_bottom": 954,
+      "text_bbox": [
+        110,
+        700,
+        893,
+        948
+      ],
+      "texts": [
+        "Food",
+        "DIWALI CRACKERS COST MORE THIS YEAR"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": 561.7,
+      "zone_top": 610,
+      "zone_h": 970,
+      "scale": 1.0,
+      "content_h": 330,
+      "block_top": 700,
+      "block_bottom": 1030,
+      "text_bbox": [
+        118,
+        700,
+        888,
+        1035
+      ],
+      "texts": [
+        "What Happened",
+        "Firecracker prices will rise 15% to 20% this Diwali as production falls in Sivakasi, India's fireworks hub, on a shortage of labour."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": 561.5,
+      "zone_top": 610,
+      "zone_h": 970,
+      "scale": 1.0,
+      "content_h": 566,
+      "block_top": 700,
+      "block_bottom": 1266,
+      "text_bbox": [
+        116,
+        700,
+        873,
+        1272
+      ],
+      "texts": [
+        "THE PRICE TAG",
+        "25%",
+        "Production drop at one Sivakasi factory this year"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": 561.3,
+      "zone_top": 610,
+      "zone_h": 970,
+      "scale": 1.0,
+      "content_h": 475,
+      "block_top": 700,
+      "block_bottom": 1175,
+      "text_bbox": [
+        136,
+        700,
+        871,
+        1174
+      ],
+      "texts": [
+        "By The Numbers",
+        "15-20%",
+        "Higher cracker prices this Diwali",
+        "70-75",
+        "Workers per unit, down from 100-120"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": 561.1,
+      "zone_top": 610,
+      "zone_h": 970,
+      "scale": 1.0,
+      "content_h": 348,
+      "block_top": 700,
+      "block_bottom": 1048,
+      "text_bbox": [
+        118,
+        700,
+        878,
+        1053
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Imported stock at Indian stores in the US may sell out early",
+        "Check local fireworks rules before you buy"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": 561.0,
+      "zone_top": 609,
+      "zone_h": 971,
+      "scale": 1.0,
+      "content_h": 312,
+      "block_top": 699,
+      "block_bottom": 1011,
+      "text_bbox": [
+        145,
+        699,
+        860,
+        1022
+      ],
+      "texts": [
+        "The Takeaway",
+        "Same Diwali sparkle \u2014 about a fifth more money.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "render_seconds": 296.2,
+  "mp4_bytes": 6539323
+}

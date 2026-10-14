@@ -1,0 +1,21 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "article_slug": "sukanya-chakrabarti-american-physical-society-fellow-dark-matter",
+  "name": "sukanya-chakrabarti-american-physical-society-fellow-dark-matter",
+  "script": "reel-samples/phase1/sukanya-chakrabarti-american-physical-society-fellow-dark-matter/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000481
+  },
+  "manifest": "reel-samples/phase1/sukanya-chakrabarti-american-physical-society-fellow-dark-matter/output/render-manifest.json",
+  "video": "reel-samples/phase1/sukanya-chakrabarti-american-physical-society-fellow-dark-matter/output/sukanya-chakrabarti-american-physical-society-fellow-dark-matter.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "note": "Driver run passed fact-check and render; its frame-QA step used the pre-correction face-overlap counting, which counted bright facial features (teeth/eye whites adjacent to dark pixels) as text (~230 px inside the detected face box on every beat). QA methodology corrected in reel_frame_qa.py (text-free background-plate differencing; tolerance and score formula unchanged) and re-run standalone against the same MP4 + manifest: 10.0/10 PASS (qa-report.json in this dir). Fact-check also re-verified after the thousands-separator tokenizer fix in reel_factcheck.py. Verdict assembled from the three gate reports."
+}

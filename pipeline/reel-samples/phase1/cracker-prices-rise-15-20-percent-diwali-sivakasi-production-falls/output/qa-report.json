@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-samples/phase1/cracker-prices-rise-15-20-percent-diwali-sivakasi-production-falls/output/cracker-prices-rise-15-20-percent-diwali-sivakasi-production-falls.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1280,
+        853
+      ],
+      "manifest_dims": [
+        1280,
+        853
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 6963.8,
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Diwali_Fireworks%2C_Gurgaon.jpg/1280px-Diwali_Fireworks%2C_Gurgaon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-samples/phase1/cracker-prices-rise-15-20-percent-diwali-sivakasi-production-falls/output/qa/frames/frame-hook.png",
+      "text_px_detected": 25825,
+      "edge": {
+        "pass": true,
+        "offending_px": 5,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          378,
+          273,
+          607,
+          289
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 17.4,
+        "delta": 236.7
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-samples/phase1/cracker-prices-rise-15-20-percent-diwali-sivakasi-production-falls/output/qa/frames/frame-news.png",
+      "text_px_detected": 32991,
+      "edge": {
+        "pass": true,
+        "offending_px": 26,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          377,
+          270,
+          613,
+          292
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 16.0,
+        "delta": 237.4
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-samples/phase1/cracker-prices-rise-15-20-percent-diwali-sivakasi-production-falls/output/qa/frames/frame-hero.png",
+      "text_px_detected": 37327,
+      "edge": {
+        "pass": true,
+        "offending_px": 27,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          375,
+          266,
+          620,
+          295
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 171.3,
+        "bg_luminance": 15.0,
+        "delta": 156.3
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-samples/phase1/cracker-prices-rise-15-20-percent-diwali-sivakasi-production-falls/output/qa/frames/frame-grid.png",
+      "text_px_detected": 31396,
+      "edge": {
+        "pass": true,
+        "offending_px": 20,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          373,
+          262,
+          628,
+          299
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 251.4,
+        "bg_luminance": 15.4,
+        "delta": 236.1
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-samples/phase1/cracker-prices-rise-15-20-percent-diwali-sivakasi-production-falls/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 30254,
+      "edge": {
+        "pass": true,
+        "offending_px": 37,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          370,
+          258,
+          636,
+          303
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 16.0,
+        "delta": 237.8
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-samples/phase1/cracker-prices-rise-15-20-percent-diwali-sivakasi-production-falls/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 25891,
+      "edge": {
+        "pass": true,
+        "offending_px": 35,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          368,
+          255,
+          643,
+          306
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 16.2,
+        "delta": 237.2
+      }
+    }
+  ]
+}

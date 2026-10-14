@@ -1,0 +1,17 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "sukanya-chakrabarti-american-physical-society-fellow-dark-matter",
+  "name": "sukanya-chakrabarti-american-physical-society-fellow-dark-matter",
+  "script": "reel-samples/phase1/negative-wrong-fact/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "news_summary",
+      "hook_stat.big",
+      "stats[0].big"
+    ],
+    "llm_cost_usd": 0.000483
+  }
+}

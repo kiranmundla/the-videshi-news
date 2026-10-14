@@ -1,0 +1,25 @@
+{
+  "kind": "carousel",
+  "article_slug": "sukanya-chakrabarti-american-physical-society-fellow-dark-matter",
+  "status": "ready",
+  "stage": "complete",
+  "factcheck": {
+    "verdict": "pass",
+    "verbatim_quote": true,
+    "speaker_grounded": true,
+    "role_grounded": true,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000405
+  },
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "cards": [
+    "reel-samples/phase1/sukanya-chakrabarti-american-physical-society-fellow-dark-matter/carousel/carousel-sukanya-chakrabarti-american-physical-society-fellow-dark-matter-1.png",
+    "reel-samples/phase1/sukanya-chakrabarti-american-physical-society-fellow-dark-matter/carousel/carousel-sukanya-chakrabarti-american-physical-society-fellow-dark-matter-2.png",
+    "reel-samples/phase1/sukanya-chakrabarti-american-physical-society-fellow-dark-matter/carousel/carousel-sukanya-chakrabarti-american-physical-society-fellow-dark-matter-3.png",
+    "reel-samples/phase1/sukanya-chakrabarti-american-physical-society-fellow-dark-matter/carousel/carousel-sukanya-chakrabarti-american-physical-society-fellow-dark-matter-4.png"
+  ]
+}

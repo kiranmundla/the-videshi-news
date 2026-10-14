@@ -1,0 +1,193 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "cracker-prices-rise-15-20-percent-diwali-sivakasi-production-falls",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "DIWALI CRACKERS COST MORE THIS YEAR",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Firecracker prices will rise 15% to 20% this Diwali as production falls in Sivakasi, India's fireworks hub, on a shortage of labour.",
+      "numbers": [
+        15.0,
+        20.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "25%",
+      "numbers": [
+        25.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Production drop at one Sivakasi factory this year",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE PRICE TAG",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "15-20%",
+      "numbers": [
+        15.0,
+        20.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Higher cracker prices this Diwali",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "70-75",
+      "numbers": [
+        70.0,
+        75.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Workers per unit, down from 100-120",
+      "numbers": [
+        100.0,
+        120.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Imported stock at Indian stores in the US may sell out early",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Check local fireworks rules before you buy",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Same Diwali sparkle \u2014 about a fifth more money.",
+      "numbers": [],
+      "entities": [
+        "Same Diwali"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "verdicts": {
+        "deterministic": "pass"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE PRICE TAG",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Sivakasi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Diwali",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Udhayraj Fireworks",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": null,
+    "ran": false,
+    "error": null,
+    "cost_usd": 0.0
+  }
+}

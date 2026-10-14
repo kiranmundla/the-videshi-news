@@ -1,0 +1,169 @@
+{
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": false,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "sukanya-chakrabarti-american-physical-society-fellow-dark-matter",
+    "verdict": "fail",
+    "held_claims": [
+      "diaspora_bullets[1]"
+    ],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Sukanya Chakrabarti, Elected Fellow of the American Physical Society",
+        "numbers": [],
+        "entities": [
+          "Sukanya Chakrabarti Elected Fellow",
+          "American Physical Society"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Chakrabarti was elected Fellow of the American Physical Society.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The UAH professor maps dark matter by measuring the tiny accelerations it produces in stars and pulsars.",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "She maps dark matter by measuring tiny accelerations in stars and pulsars.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "APS Fellowship nominees are capped at one-half of 1% of the Society's members each year",
+        "numbers": [
+          1.0
+        ],
+        "entities": [
+          "APS Fellowship"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "APS Fellowship nominees are capped at one-half of 1% of members each year.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Joined UAH in 2022 \u2014 the same year she led the first stellar-mass black hole discovery around a Sun-like star, from the Gaia mission",
+        "numbers": [
+          2022.0
+        ],
+        "entities": [
+          "Joined UAH"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2022
+          ]
+        },
+        "llm_reason": "She joined UAH in 2022 and led the first stellar-mass black hole discovery that year.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Her method tracks tiny accelerations in pulsars, stars and eclipsing binaries to map dark-matter clumps in the Milky Way",
+        "numbers": [],
+        "entities": [
+          "Milky Way"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Her method tracks tiny accelerations in pulsars, stars, and binaries to map dark-matter clumps.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Dr. Sukanya Chakrabarti",
+        "numbers": [],
+        "entities": [
+          "Dr Sukanya Chakrabarti"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Dr. Sukanya Chakrabarti is mentioned in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Pei-Ling Chan Endowed Chair, University of Alabama in Huntsville",
+        "numbers": [],
+        "entities": [
+          "Pei-Ling Chan Endowed Chair University"
+        ],
+        "deterministic": "fail",
+        "detail": {
+          "ungrounded_entities": [
+            "Pei-Ling Chan Endowed Chair University"
+          ]
+        },
+        "llm_reason": "She holds the Pei-Ling Chan Endowed Chair at UAH.",
+        "verdicts": {
+          "deterministic": "fail",
+          "llm": "supported"
+        },
+        "verdict": "fail"
+      },
+      {
+        "field": "payoff",
+        "text": "Indian-American Astrophysicist Sukanya Chakrabarti Elected Fellow of American Physical Society",
+        "numbers": [],
+        "entities": [
+          "Indian-American Astrophysicist Sukanya Chakrabarti Elected Fellow",
+          "American Physical Society"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Chakrabarti was elected Fellow of the American Physical Society.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000405
+    }
+  },
+  "verdict": "fail"
+}

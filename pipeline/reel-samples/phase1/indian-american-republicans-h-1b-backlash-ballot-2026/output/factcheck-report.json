@@ -1,0 +1,261 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "indian-american-republicans-h-1b-backlash-ballot-2026",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "H-1B CRACKDOWN HITS ELECTIONS",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses the impact of H-1B visa regulations on elections.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Nine Indian-American Republicans are running for office while the GOP enforces stricter H-1B visa regulations amid a significant backlash from voters.",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "Nine Indian-American Republicans"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Nine Indian-American Republicans are running while facing backlash over H-1B regulations.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "9",
+      "numbers": [
+        9.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states at least nine Indian-American Republicans are on the ballot.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Indian-American Republicans on November ballot",
+      "numbers": [],
+      "entities": [
+        "Indian-American Republicans"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Nine Indian-American Republicans are confirmed to be on the November ballot.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "ELECTIONS 2026",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article refers to elections in 2024, not 2026.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$250,000",
+      "numbers": [
+        250000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions proposed fines of up to $250,000 for H-1B violations.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "H-1B violation fines proposed",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses proposed fines for H-1B violations.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "66%",
+      "numbers": [
+        66.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states that 66% of Indian Americans oppose the $100,000 fee.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Indian Americans oppose $100,000 fee",
+      "numbers": [
+        100000.0
+      ],
+      "entities": [
+        "Indian Americans"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms 66% of Indian Americans oppose the $100,000 fee.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "24%",
+      "numbers": [
+        24.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Trump's support among Indian-American men has fallen to 24%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Trump's support among Indian-American men",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Trump's support among Indian-American men aged 18-39 is 24%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Check H-1B status with counsel",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "Check H-1B"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article advises checking H-1B status with immigration counsel.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "GOP backlash affects Indian-American voters",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses the GOP backlash affecting Indian-American voters.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "GOP risks alienating Indian-American voters.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article suggests the GOP risks alienating Indian-American voters.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "ELECTIONS 2026",
+    "ok": true,
+    "detail": "ELECTIONS <grounded year>"
+  },
+  "key_entities": [
+    {
+      "entity": "Vivek Ramaswamy",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "H-1B",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Indian-American Republicans",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000589
+  }
+}

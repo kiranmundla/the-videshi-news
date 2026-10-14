@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "indian-american-republicans-h-1b-backlash-ballot-2026",
+  "article_slug": "indian-american-republicans-h-1b-backlash-ballot-2026",
+  "article_id": "ca5a7968-ab9f-4258-b0eb-d3b613e94b41",
+  "category": "Immigration",
+  "video": "reel-samples/phase1/indian-american-republicans-h-1b-backlash-ballot-2026/output/indian-american-republicans-h-1b-backlash-ballot-2026.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Vivek_Ramaswamy_%2855241367373%29_%28cropped%29.jpg",
+    "local_path": "reel-samples/phase1/indian-american-republicans-h-1b-backlash-ballot-2026/output/hero.jpg",
+    "width": 2348,
+    "height": 3128,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "haar:haarcascade_frontalface_default.xml",
+    "box_source": [
+      618,
+      610,
+      1333,
+      1333
+    ],
+    "box_bg": [
+      284.3,
+      280.6,
+      613.1,
+      613.1
+    ],
+    "chin_bg": 893.7,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "fit",
+    "rejected": [
+      {
+        "branch": "cover",
+        "failed_scene": "grid"
+      }
+    ],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": 896.3,
+      "zone_top": 945,
+      "zone_h": 635,
+      "scale": 1.0,
+      "content_h": 284,
+      "block_top": 1035,
+      "block_bottom": 1319,
+      "text_bbox": [
+        128,
+        1035,
+        881,
+        1311
+      ],
+      "texts": [
+        "Immigration",
+        "H-1B CRACKDOWN HITS ELECTIONS"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": 900.1,
+      "zone_top": 949,
+      "zone_h": 631,
+      "scale": 1.0,
+      "content_h": 286,
+      "block_top": 1039,
+      "block_bottom": 1325,
+      "text_bbox": [
+        121,
+        1039,
+        881,
+        1330
+      ],
+      "texts": [
+        "What Happened",
+        "Nine Indian-American Republicans are running for office while the GOP enforces stricter H-1B visa regulations amid a significant backlash from voters."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": 903.9,
+      "zone_top": 952,
+      "zone_h": 628,
+      "scale": 1.0,
+      "content_h": 562,
+      "block_top": 985,
+      "block_bottom": 1547,
+      "text_bbox": [
+        122,
+        985,
+        883,
+        1543
+      ],
+      "texts": [
+        "ELECTIONS 2026",
+        "9",
+        "Indian-American Republicans on November ballot"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": 908.3,
+      "zone_top": 957,
+      "zone_h": 623,
+      "scale": 0.925,
+      "content_h": 621,
+      "block_top": 958,
+      "block_bottom": 1579,
+      "text_bbox": [
+        126,
+        958,
+        879,
+        1578
+      ],
+      "texts": [
+        "By The Numbers",
+        "$250,000",
+        "H-1B violation fines proposed",
+        "66%",
+        "Indian Americans oppose $100,000 fee",
+        "24%",
+        "Trump's support among Indian-American men"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": 912.8,
+      "zone_top": 961,
+      "zone_h": 619,
+      "scale": 1.0,
+      "content_h": 348,
+      "block_top": 1051,
+      "block_bottom": 1399,
+      "text_bbox": [
+        118,
+        1051,
+        794,
+        1395
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Check H-1B status with counsel",
+        "GOP backlash affects Indian-American voters"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": 916.0,
+      "zone_top": 964,
+      "zone_h": 616,
+      "scale": 1.0,
+      "content_h": 312,
+      "block_top": 1054,
+      "block_bottom": 1366,
+      "text_bbox": [
+        165,
+        1054,
+        839,
+        1377
+      ],
+      "texts": [
+        "The Takeaway",
+        "GOP risks alienating Indian-American voters.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "render_seconds": 383.5,
+  "mp4_bytes": 11861481
+}
