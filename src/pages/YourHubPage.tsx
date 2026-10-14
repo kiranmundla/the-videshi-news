@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
@@ -16,6 +16,7 @@ import {
   type HubLocation,
 } from "@/hooks/useHubLocation";
 import { lookupZip } from "@/lib/geo";
+import { useUserLocation, type UserLocation } from "@/hooks/useUserLocation";
 import { DEADLINES, type Deadline } from "@/data/deadlines";
 import { fetchKidsDeadlines } from "@/lib/kidsPrograms";
 
@@ -191,6 +192,40 @@ function resolveMetroNews(
     return { label: best.label, items: localNews[best.label] };
   }
   return null;
+}
+
+/** Human place for auto-detected coords (browser or IP): the nearest
+ * cluster's label when within 100 mi — distance measured to the closest
+ * of the cluster center and its member cities, the same rule the local
+ * news resolution uses — else the IP city/region, else "Near You".
+ * Also returns the city/state to store alongside the label, in the
+ * same shape the manual picker stores. */
+async function resolveAutoPlace(
+  lat: number,
+  lon: number,
+  ip: UserLocation | null,
+): Promise<{ label: string; city: string; state: string }> {
+  const clusters = await loadClusters().catch(() => getCachedClusters());
+  let best: { cluster: Cluster; dist: number } | null = null;
+  for (const cl of clusters) {
+    let d = haversineMiles(lat, lon, cl.center.lat, cl.center.lon);
+    for (const mb of cl.members) {
+      const dm = haversineMiles(lat, lon, mb.lat, mb.lon);
+      if (dm < d) d = dm;
+    }
+    if (!best || d < best.dist) best = { cluster: cl, dist: d };
+  }
+  if (best && best.dist <= 100) {
+    return { label: best.cluster.label, city: best.cluster.anchor, state: best.cluster.state };
+  }
+  if (ip?.city) {
+    return {
+      label: ip.region ? `${ip.city}, ${ip.region}` : ip.city,
+      city: ip.city,
+      state: ip.region ?? "",
+    };
+  }
+  return { label: "Near You", city: "", state: "" };
 }
 
 /* ── Location setup ── */
@@ -415,10 +450,10 @@ function LocationSetup({
 
 export default function YourHubPage() {
   const { location, setLocation, clearLocation, isSet } = useHubLocation();
+  const { location: ipLocation } = useUserLocation();
   const [events, setEvents] = useState<EventItem[]>([]);
   const [loaded, setLoaded] = useState(false);
   const [catSel, setCatSel] = useState<string | null>(null);
-  const [geoTried, setGeoTried] = useState(false);
   const [localNews, setLocalNews] = useState<Record<string, LocalNewsItem[]>>({});
   const [clusters, setClusters] = useState<Cluster[]>(() => getCachedClusters());
 
@@ -468,28 +503,60 @@ export default function YourHubPage() {
       .catch(() => {});
   }, []);
 
-  /* Auto-request geolocation on page land (like the events page).
-     If the user declines, the manual setup panel below is the fallback. */
+  /* Auto-detect location on page land, mirroring the events page:
+     browser geolocation prompt first; on denial / unavailable /
+     timeout, fall back to the IP location from useUserLocation;
+     only if that also yields nothing does the manual LocationSetup
+     panel below remain. Runs only when no location is stored — a
+     returning user is never re-prompted — and a location the user
+     picks manually while the prompt is pending is never overwritten. */
+  const locationRef = useRef(location);
   useEffect(() => {
-    if (isSet || geoTried || !navigator.geolocation) return;
-    setGeoTried(true);
+    locationRef.current = location;
+  }, [location]);
+  const ipRef = useRef(ipLocation);
+  useEffect(() => {
+    ipRef.current = ipLocation;
+  }, [ipLocation]);
+
+  const applyAutoLocation = useCallback(
+    (lat: number, lon: number, ip: UserLocation | null) => {
+      if (locationRef.current) return;
+      void resolveAutoPlace(lat, lon, ip).then((place) => {
+        if (locationRef.current) return;
+        setLocation({ city: place.city, state: place.state, lat, lon, label: place.label });
+      });
+    },
+    [setLocation],
+  );
+
+  const geoPendingRef = useRef(false);
+  useEffect(() => {
+    if (isSet) return;
+    if (!navigator.geolocation) {
+      // No browser ask possible — the IP location is the only source.
+      if (ipLocation) {
+        applyAutoLocation(ipLocation.latitude, ipLocation.longitude, ipLocation);
+      }
+      return;
+    }
+    if (geoPendingRef.current) return;
+    geoPendingRef.current = true;
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        setLocation({
-          city: "",
-          state: "",
-          lat: pos.coords.latitude,
-          lon: pos.coords.longitude,
-          label: "Near You",
-        });
+        geoPendingRef.current = false;
+        applyAutoLocation(pos.coords.latitude, pos.coords.longitude, ipRef.current);
       },
       () => {
-        /* denied — LocationSetup panel handles it */
+        geoPendingRef.current = false;
+        const ip = ipRef.current;
+        if (ip) applyAutoLocation(ip.latitude, ip.longitude, ip);
+        /* no IP location either — LocationSetup panel is the fallback */
       },
       { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSet, geoTried]);
+  }, [isSet, ipLocation]);
 
   useEffect(() => {
     fetch("/data/events.json")
@@ -602,8 +669,8 @@ export default function YourHubPage() {
         {/* ── This Weekend ── */}
         <section className="mb-10">
           <SectionHead
-            title="This Weekend Near You"
-            sub={location ? `${location.label} · ${weekendLabel}` : weekendLabel}
+            title={location ? `This Weekend Near ${location.label}` : "This Weekend Near You"}
+            sub={weekendLabel}
           />
           {!isSet && (
             <p className="text-[12px] text-muted-foreground mb-3">
