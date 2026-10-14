@@ -659,13 +659,9 @@ export default function YourHubPage() {
             </p>
           </div>
           {isSet && location && (
-            <button
-              onClick={clearLocation}
-              className="flex-shrink-0 mt-1 px-3 py-1.5 rounded-full border border-border text-[12px] font-semibold text-muted-foreground hover:border-[#0B1D3A]/40 whitespace-nowrap"
-              title="Change your location"
-            >
-              {location.label} · change
-            </button>
+            <span className="flex-shrink-0 mt-1 px-3 py-1.5 rounded-full border border-border text-[12px] font-semibold text-muted-foreground whitespace-nowrap">
+              {location.label}
+            </span>
           )}
         </div>
 
@@ -980,6 +976,20 @@ export default function YourHubPage() {
             Browse all events →
           </Link>
         </p>
+
+        {isSet && location && (
+          <p className="mt-6 text-center">
+            <button
+              onClick={() => {
+                clearLocation();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="text-[12px] text-muted-foreground underline-offset-2 hover:underline hover:text-foreground"
+            >
+              Change location
+            </button>
+          </p>
+        )}
       </main>
 
       <SiteFooter />
