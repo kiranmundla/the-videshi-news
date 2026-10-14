@@ -1140,6 +1140,49 @@ def main():
     events_path.write_text(json.dumps(events, ensure_ascii=False, separators=(",", ":")))
     print(f"  ✓ events.json ({len(events)} events)")
 
+    # 5a. Build per-event detail JSONs (public/data/events/{slug}.json).
+    # Event detail pages used to download the entire events.json (~5 MB)
+    # just to find one event (getEventBySlug's first step); one small
+    # file per event lets Vercel's CDN serve the record directly — the
+    # same pattern as articles/{slug}.json. Content is the exact record
+    # emitted into events.json above, so the two paths can't diverge.
+    EVENTS_DIR = DATA_DIR / "events"
+    EVENTS_DIR.mkdir(parents=True, exist_ok=True)
+    ev_written = ev_skipped = 0
+    ev_slugs = set()
+    for e in events:
+        slug = e.get("slug")
+        if not slug:
+            continue
+        # Only simple URL-safe slugs become filenames (event links are
+        # built as /events/{slug}); anything exotic keeps resolving
+        # through the Supabase fallback in getEventBySlug.
+        if not re.fullmatch(r"[A-Za-z0-9._-]+", slug) or ".." in slug:
+            continue
+        if slug in ev_slugs:
+            continue  # first occurrence wins, matching events.json find()
+        ev_slugs.add(slug)
+        epath = EVENTS_DIR / f"{slug}.json"
+        content = json.dumps(e, ensure_ascii=False, separators=(",", ":"))
+        # Skip write if file already exists with identical content
+        if epath.exists():
+            try:
+                if epath.read_text() == content:
+                    ev_skipped += 1
+                    continue
+            except Exception:
+                pass
+        epath.write_text(content)
+        ev_written += 1
+    # Remove per-event JSONs for events no longer in events.json
+    # (mirrors the article stale cleanup above).
+    ev_removed = 0
+    for existing in EVENTS_DIR.glob("*.json"):
+        if existing.stem not in ev_slugs:
+            existing.unlink()
+            ev_removed += 1
+    print(f"  ✓ {ev_written} event detail JSONs written, {ev_skipped} unchanged, {ev_removed} stale removed")
+
     # 5b. Build slim events-homepage.json (only fields the homepage strip needs, all upcoming)
     today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     upcoming = [e for e in events if e.get("date", "") >= today_str]

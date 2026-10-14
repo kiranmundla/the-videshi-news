@@ -296,22 +296,32 @@ export async function getEvents(
 }
 
 /**
- * Fetch a single event by slug.
- * Tries DB slug column first, then falls back to computing slug from title+date.
+ * Fetch a single event by slug (or id).
+ *
+ * Lookup order, fastest first:
+ *   1. Per-event static JSON (/data/events/{slug}.json) — one small
+ *      CDN-cached file per event, built by pipeline/prebuild-feeds.py.
+ *      (This replaces the old first step, which downloaded the entire
+ *      ~5 MB events.json just to find one record.)
+ *   2. Supabase slug lookup.
+ *   3. Supabase id lookup (covers events linked by id instead of slug).
+ *   4. Full events.json cache search — last resort only, preserving the
+ *      legacy behaviour for anything the steps above miss (e.g. events
+ *      whose slug isn't a simple URL-safe filename).
+ * A 404 from step 1 falls through silently.
  */
 export async function getEventBySlug(slug: string): Promise<EventItem | null> {
-  // Try static JSON first
-  const cached = await loadEventsCache();
-  if (cached) {
-    // Direct slug match
-    const direct = cached.find((e) => e.slug === slug);
-    if (direct) return direct;
-    // ID match (events linked by id instead of slug)
-    const byId = cached.find((e) => e.id === slug);
-    if (byId) return byId;
+  // 1. Per-event static JSON (same pattern as /data/articles/{slug}.json)
+  try {
+    const res = await fetch(`/data/events/${slug}.json`);
+    if (res.ok) {
+      return (await res.json()) as EventItem;
+    }
+  } catch {
+    // Network error — fall through to Supabase
   }
 
-  // Supabase — try direct slug lookup first
+  // 2. Supabase — direct slug lookup
   const { data: directMatch } = await supabase
     .from("events")
     .select(EVENT_COLS)
@@ -322,7 +332,7 @@ export async function getEventBySlug(slug: string): Promise<EventItem | null> {
     return directMatch[0] as EventItem;
   }
 
-  // Try by id
+  // 3. Supabase — try by id
   const { data: idMatch } = await supabase
     .from("events")
     .select(EVENT_COLS)
@@ -331,6 +341,17 @@ export async function getEventBySlug(slug: string): Promise<EventItem | null> {
 
   if (idMatch && idMatch.length > 0) {
     return idMatch[0] as EventItem;
+  }
+
+  // 4. Last resort: search the full static events.json cache
+  const cached = await loadEventsCache();
+  if (cached) {
+    // Direct slug match
+    const direct = cached.find((e) => e.slug === slug);
+    if (direct) return direct;
+    // ID match
+    const byId = cached.find((e) => e.id === slug);
+    if (byId) return byId;
   }
 
   return null;
