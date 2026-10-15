@@ -1,0 +1,102 @@
+{
+  "generated_at": "2026-10-15T16:01:37Z",
+  "as_of": "2026-10-15",
+  "market": "international",
+  "band": {
+    "id": "intl-1wk",
+    "label": "~1-week trips",
+    "center_days": 7,
+    "min_days": 5,
+    "max_days": 9
+  },
+  "months_ahead": 3,
+  "routes": {
+    "SFO-SYD": {
+      "origin": "SFO",
+      "destination": "SYD",
+      "origin_metro": "Bay Area",
+      "dest_metro": "Sydney",
+      "band": "intl-1wk",
+      "calendar": [
+        {
+          "date_range": "2026-10-21 \u2192 2026-10-27",
+          "dep_date": "2026-10-21",
+          "ret_date": "2026-10-27",
+          "duration_days": 6,
+          "band": "intl-1wk",
+          "price_min": 1132,
+          "price_max": 1704,
+          "cheapest_airline": "Philippine Airlines",
+          "num_samples": 4,
+          "fetched_as_of": "2026-10-15",
+          "cache_samples": 0,
+          "year": 2026,
+          "month": 10,
+          "route": "SFO-SYD",
+          "origin_metro": "Bay Area",
+          "dest_metro": "Sydney",
+          "cheapest_month": true
+        },
+        {
+          "date_range": "2026-11-24 \u2192 2026-12-02",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-02",
+          "duration_days": 8,
+          "band": "intl-1wk",
+          "price_min": 1586,
+          "price_max": 2106,
+          "cheapest_airline": "Philippine Airlines",
+          "num_samples": 2,
+          "fetched_as_of": "2026-10-15",
+          "cache_samples": 0,
+          "year": 2026,
+          "month": 11,
+          "route": "SFO-SYD",
+          "origin_metro": "Bay Area",
+          "dest_metro": "Sydney"
+        },
+        {
+          "date_range": "2026-12-08 \u2192 2026-12-14",
+          "dep_date": "2026-12-08",
+          "ret_date": "2026-12-14",
+          "duration_days": 6,
+          "band": "intl-1wk",
+          "price_min": 2257,
+          "price_max": 3201,
+          "cheapest_airline": "ANA",
+          "num_samples": 3,
+          "fetched_as_of": "2026-10-15",
+          "cache_samples": 0,
+          "year": 2026,
+          "month": 12,
+          "route": "SFO-SYD",
+          "origin_metro": "Bay Area",
+          "dest_metro": "Sydney"
+        }
+      ],
+      "cheapest_overall": {
+        "year": 2026,
+        "month": 10,
+        "band": "intl-1wk",
+        "duration_days": 6,
+        "price_min": 1132,
+        "date_range": "2026-10-21 \u2192 2026-10-27"
+      },
+      "destination_slug": "australia"
+    }
+  },
+  "biggest_drops": [],
+  "festival_seasons": [],
+  "spec": {
+    "max_stops": 1,
+    "trip_type": "round-trip",
+    "pricing": "per-person",
+    "cabin": "economy",
+    "min_checked_bags": 2,
+    "note": "Excludes basic economy. Prices are snapshots, not live."
+  },
+  "cadence": "weekly",
+  "indicative": true,
+  "fetched_as_of_oldest": "2026-10-15",
+  "fetched_as_of_newest": "2026-10-15"
+}
