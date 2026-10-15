@@ -200,3 +200,32 @@ export async function lookupZip(zip: string): Promise<ZipInfo | null> {
   const db = await loadZipCodes();
   return db[zip] || null;
 }
+
+/** Reverse-resolve coordinates to the nearest zip's place. Scans the
+ * local zip database (41k entries — a few ms) and returns the closest
+ * entry when it is within `maxMiles` (default 100). This is how a raw
+ * browser/IP position becomes a human "City, ST" without any external
+ * reverse-geocoding call. Returns null when the database can't load or
+ * nothing is close enough. */
+export async function nearestZipPlace(
+  lat: number,
+  lng: number,
+  maxMiles = 100,
+): Promise<ZipInfo | null> {
+  try {
+    const db = await loadZipCodes();
+    let best: ZipInfo | null = null;
+    let bestDist = Infinity;
+    for (const zip in db) {
+      const info = db[zip];
+      const d = getDistanceMiles(lat, lng, info.lat, info.lng);
+      if (d < bestDist) {
+        bestDist = d;
+        best = info;
+      }
+    }
+    return best && bestDist <= maxMiles ? best : null;
+  } catch {
+    return null;
+  }
+}

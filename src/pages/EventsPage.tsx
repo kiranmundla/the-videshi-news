@@ -26,7 +26,7 @@ import {
   type DateFilterKey,
   type ParsedSearch,
 } from "@/lib/smartSearch";
-import { formatDistance } from "@/lib/geo";
+import { formatDistance, nearestZipPlace } from "@/lib/geo";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 import EventCard from "@/components/EventCard";
@@ -625,7 +625,11 @@ export default function EventsPage() {
             setUserCoords(coords);
             setNearMeActive(true);
             setZipPlace(null);
-            setLocationLabel(ipLocation.city ? `📍 Near ${ipLocation.city}` : "📍 Near You");
+            setLocationLabel(
+              ipLocation.city
+                ? `📍 ${ipLocation.city}${ipLocation.region ? `, ${ipLocation.region}` : ""}`
+                : "📍 Near You",
+            );
             setSearchParams((prev) => {
               const next = new URLSearchParams(prev);
               next.delete("city");
@@ -641,6 +645,27 @@ export default function EventsPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ipLocation]);
+
+  /* --- Upgrade a generic near-me label to the actual city ---
+     The browser-geo path above (and labels restored from
+     sessionStorage) start as "📍 Near You" because raw coords carry
+     no city. Whenever near-me is active with coords and the label is
+     still generic, reverse-resolve the city from the coords (local
+     zip database) and name it — "📍 Fremont, CA", not "📍 Near You".
+     Zip mode is untouched: zipPlace drives its labels (01c51913). */
+  useEffect(() => {
+    if (!nearMeActive || !userCoords || zipPlace) return;
+    if (locationLabel && locationLabel !== "📍 Near You") return;
+    let cancelled = false;
+    void nearestZipPlace(userCoords.lat, userCoords.lng).then((place) => {
+      if (!cancelled && place) {
+        setLocationLabel(`📍 ${place.city}, ${place.state}`);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [nearMeActive, userCoords, zipPlace, locationLabel]);
 
   /* --- Client-side smart filter (location + date + search, NO category) --- */
   const applySmartFilters = useCallback(

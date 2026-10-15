@@ -1,12 +1,12 @@
 import { useState, useCallback } from "react";
-import { lookupZip, type ZipInfo } from "@/lib/geo";
+import { lookupZip, nearestZipPlace, type ZipInfo } from "@/lib/geo";
 
 export type LocationResult = {
   lat: number;
   lng: number;
   city: string;
   state: string;
-  label: string; // e.g. "90210 — Beverly Hills, CA" or "📍 Near You"
+  label: string; // e.g. "90210 — Beverly Hills, CA" or "📍 Fremont, CA"
   source: "zip" | "geolocation";
   /** The entered zip code — only set when source === "zip" */
   zip?: string;
@@ -63,15 +63,22 @@ export default function ZipCodeSearch({ onLocation, active, compact, className }
     setError(null);
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        setGeoLoading(false);
-        setZip("");
-        onLocation({
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
-          city: "",
-          state: "",
-          label: "📍 Near You",
-          source: "geolocation",
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+        // Name the actual city (reverse-resolved from the local zip
+        // database) instead of a bare "📍 Near You" — "Near You" is
+        // only the fallback when the coords resolve to nothing.
+        void nearestZipPlace(lat, lng).then((place) => {
+          setGeoLoading(false);
+          setZip("");
+          onLocation({
+            lat,
+            lng,
+            city: place?.city ?? "",
+            state: place?.state ?? "",
+            label: place ? `📍 ${place.city}, ${place.state}` : "📍 Near You",
+            source: "geolocation",
+          });
         });
       },
       () => {

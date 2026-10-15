@@ -11,6 +11,7 @@ import {
   haversineMiles,
   loadClusters,
   getCachedClusters,
+  resolvePlaceLabel,
   type Cluster,
   type ClusterMember,
   type HubLocation,
@@ -194,40 +195,17 @@ function resolveMetroNews(
   return null;
 }
 
-/** Human place for auto-detected coords (browser or IP): the label of
- * the cluster whose CENTER is nearest, when within 100 mi — else the
- * IP city/region, else "Near You". The label deliberately uses center
- * distance only, NOT the member-city distance resolveMetroNews uses:
- * pooled buckets (e.g. Dublin pools the whole Tri-Valley incl. Newark)
- * would otherwise steal the label from a standalone cluster — a reader
- * in north Fremont was labeled "Dublin, CA" via member Newark even
- * though Fremont is its own cluster (Kiran, 2026-10-14). News pooling
- * is unaffected: resolveMetroNews still resolves by member distance.
- * Also returns the city/state to store alongside the label, in the
- * same shape the manual picker stores. */
-async function resolveAutoPlace(
-  lat: number,
-  lon: number,
-  ip: UserLocation | null,
-): Promise<{ label: string; city: string; state: string }> {
-  const clusters = await loadClusters().catch(() => getCachedClusters());
-  let best: { cluster: Cluster; dist: number } | null = null;
-  for (const cl of clusters) {
-    const d = haversineMiles(lat, lon, cl.center.lat, cl.center.lon);
-    if (!best || d < best.dist) best = { cluster: cl, dist: d };
-  }
-  if (best && best.dist <= 100) {
-    return { label: best.cluster.label, city: best.cluster.anchor, state: best.cluster.state };
-  }
-  if (ip?.city) {
-    return {
-      label: ip.region ? `${ip.city}, ${ip.region}` : ip.city,
-      city: ip.city,
-      state: ip.region ?? "",
-    };
-  }
-  return { label: "Near You", city: "", state: "" };
-}
+/** Human place for auto-detected coords (browser or IP) — the shared
+ * resolver in useHubLocation (resolvePlaceLabel): nearest cluster
+ * CENTER within 100 mi, else nearest cluster member city, else the
+ * IP city/region, else a zip-database reverse lookup. The label
+ * deliberately prefers center distance over the member-city distance
+ * resolveMetroNews uses: pooled buckets (e.g. Dublin pools the whole
+ * Tri-Valley incl. Newark) would otherwise steal the label from a
+ * standalone cluster — a reader in north Fremont was labeled
+ * "Dublin, CA" via member Newark even though Fremont is its own
+ * cluster (Kiran, 2026-10-14). News pooling is unaffected:
+ * resolveMetroNews still resolves by member distance. */
 
 /* ── Location setup ── */
 function LocationSetup({
@@ -283,13 +261,20 @@ function LocationSetup({
     setGeoError(null);
     navigator.geolocation.getCurrentPosition(
       (pos) => {
-        setGeoLoading(false);
-        onDone({
-          city: "Current location",
-          state: "",
-          lat: pos.coords.latitude,
-          lon: pos.coords.longitude,
-          label: "Current location",
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+        // Resolve the real city for the label — this button used to
+        // store the generic "Current location", which then stuck
+        // forever (stored records are never re-prompted).
+        void resolvePlaceLabel(lat, lon, null).then((place) => {
+          setGeoLoading(false);
+          onDone({
+            city: place.city,
+            state: place.state,
+            lat,
+            lon,
+            label: place.label,
+          });
         });
       },
       () => {
@@ -523,7 +508,7 @@ export default function YourHubPage() {
   const applyAutoLocation = useCallback(
     (lat: number, lon: number, ip: UserLocation | null) => {
       if (locationRef.current) return;
-      void resolveAutoPlace(lat, lon, ip).then((place) => {
+      void resolvePlaceLabel(lat, lon, ip).then((place) => {
         if (locationRef.current) return;
         setLocation({ city: place.city, state: place.state, lat, lon, label: place.label });
       });

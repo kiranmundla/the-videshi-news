@@ -1,4 +1,5 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
+import { nearestZipPlace } from "@/lib/geo";
 
 export interface HubLocation {
   city: string;
@@ -146,6 +147,92 @@ export function getCachedClusters(): Cluster[] {
   return clustersCache ?? FALLBACK_CLUSTERS;
 }
 
+/** Labels that carry no place information. Records carrying one of
+ * these alongside real coordinates are legacy artifacts: the Hub's
+ * original auto-detect (pre-Oct-2026) stored "Near You" unconditionally
+ * with the detected coords, and the LocationSetup "Use my location"
+ * button stored "Current location". Because a stored record is sticky
+ * (never re-prompted), those labels survived every later fix — Kiran
+ * hit one on the vercel.app origin, whose localStorage is separate
+ * from thevideshi.com (2026-10-14). They are healed on load by
+ * useHubLocation via resolvePlaceLabel. */
+const GENERIC_HUB_LABELS = new Set(["near you", "current location"]);
+
+export function isGenericHubLabel(label: string | null | undefined): boolean {
+  if (!label) return true;
+  return GENERIC_HUB_LABELS.has(label.trim().toLowerCase());
+}
+
+export interface ResolvedPlace {
+  label: string;
+  city: string;
+  state: string;
+}
+
+/** Resolve a human place label for raw coordinates. Fallback order —
+ * a generic label is the LAST resort, never the default:
+ *   1. Nearest cluster CENTER within 100 mi → the cluster's label.
+ *      Center distance, NOT member distance (see the note in
+ *      YourHubPage's resolveMetroNews: pooled buckets would steal
+ *      labels from standalone clusters).
+ *   2. Nearest cluster MEMBER city within 100 mi → "City, ST" of
+ *      that member (covers places a pooled bucket reaches but no
+ *      center is near).
+ *   3. IP-derived city/region, when the caller has it.
+ *   4. Reverse-resolve via the local zip database (nearestZipPlace).
+ *   5. "Near You" — only when nothing above resolves. Callers only
+ *      invoke this WITH coordinates, so a generic result means the
+ *      coords are outside every dataset we carry (e.g. non-US).
+ * Never throws. */
+export async function resolvePlaceLabel(
+  lat: number,
+  lon: number,
+  ip?: { city?: string; region?: string } | null,
+): Promise<ResolvedPlace> {
+  try {
+    const clusters = await loadClusters().catch(() => getCachedClusters());
+    let bestCenter: { cluster: Cluster; dist: number } | null = null;
+    let bestMember: { member: ClusterMember; dist: number } | null = null;
+    for (const cl of clusters) {
+      const dc = haversineMiles(lat, lon, cl.center.lat, cl.center.lon);
+      if (!bestCenter || dc < bestCenter.dist) {
+        bestCenter = { cluster: cl, dist: dc };
+      }
+      for (const mb of cl.members) {
+        const dm = haversineMiles(lat, lon, mb.lat, mb.lon);
+        if (!bestMember || dm < bestMember.dist) {
+          bestMember = { member: mb, dist: dm };
+        }
+      }
+    }
+    if (bestCenter && bestCenter.dist <= 100) {
+      return {
+        label: bestCenter.cluster.label,
+        city: bestCenter.cluster.anchor,
+        state: bestCenter.cluster.state,
+      };
+    }
+    if (bestMember && bestMember.dist <= 100) {
+      const mb = bestMember.member;
+      return { label: `${mb.name}, ${mb.state}`, city: mb.name, state: mb.state };
+    }
+  } catch {
+    /* clusters unavailable — fall through to IP / zip resolution */
+  }
+  if (ip?.city) {
+    return {
+      label: ip.region ? `${ip.city}, ${ip.region}` : ip.city,
+      city: ip.city,
+      state: ip.region ?? "",
+    };
+  }
+  const place = await nearestZipPlace(lat, lon, 100).catch(() => null);
+  if (place) {
+    return { label: `${place.city}, ${place.state}`, city: place.city, state: place.state };
+  }
+  return { label: "Near You", city: "", state: "" };
+}
+
 /**
  * User-chosen hub location, persisted in localStorage.
  * Unlike the transient IP-geo hook, this is an explicit user setting —
@@ -162,6 +249,36 @@ export function useHubLocation() {
     }
     setLocationState(loc);
   }, []);
+
+  /* Self-heal legacy generic labels: a stored record whose label is
+   * "Near You" / "Current location" but which carries real coords gets
+   * its label re-resolved from those coords, once, and the healed
+   * record is written back — so every surface that renders the label
+   * (Hub chip, weekend heading, homepage banner) shows the real city
+   * without the reader re-picking their location. Coords, and the
+   * reader's explicit setting itself, are never touched. */
+  const healTriedRef = useRef(false);
+  useEffect(() => {
+    if (healTriedRef.current || !location) return;
+    if (!isGenericHubLabel(location.label)) return;
+    if (typeof location.lat !== "number" || typeof location.lon !== "number") return;
+    healTriedRef.current = true;
+    let cancelled = false;
+    void resolvePlaceLabel(location.lat, location.lon, null)
+      .then((place) => {
+        if (cancelled || isGenericHubLabel(place.label)) return;
+        setLocation({
+          ...location,
+          label: place.label,
+          city: place.city || location.city,
+          state: place.state || location.state,
+        });
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [location, setLocation]);
 
   const clearLocation = useCallback(() => {
     try {
