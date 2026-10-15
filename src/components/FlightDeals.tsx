@@ -90,10 +90,13 @@ const DEFAULT_ROUTES = ["SFO-DEL", "JFK-DEL", "ORD-DEL", "DFW-HYD", "SEA-DEL"];
 
 function detectOrigin(available: string[]): string {
   try {
-    const hub = localStorage.getItem("videshi-hub-location");
+    // The canonical location record (useHubLocation) — this used to
+    // read a legacy "videshi-hub-location" key that no code writes,
+    // so the hub-based origin never matched (2026-10-14 unification).
+    const hub = localStorage.getItem("videshi-user-location");
     if (hub) {
       const parsed = JSON.parse(hub);
-      const label = `${parsed.metro || ""} ${parsed.city || ""}`.toLowerCase();
+      const label = `${parsed.label || ""} ${parsed.city || ""}`.toLowerCase();
       for (const [metro, airport] of Object.entries(METRO_AIRPORTS)) {
         if (label.includes(metro)) {
           const match = available.find((r) => r.startsWith(airport + "-"));

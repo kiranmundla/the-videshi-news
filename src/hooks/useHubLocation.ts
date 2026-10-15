@@ -12,7 +12,35 @@ export interface HubLocation {
 
 const STORAGE_KEY = "videshi-user-location";
 
-function readStored(): HubLocation | null {
+/** The Hub record is the site's ONE canonical location (2026-10-14
+ * unification): useUserLocation resolves through it, so every surface
+ * (Hub, homepage banner, Events strip, Events/Directory/Kids near-me)
+ * agrees on a single place. This event is dispatched on every write
+ * so other mounted hooks re-read the record immediately; the
+ * `storage` event covers other tabs. */
+export const HUB_LOCATION_CHANGED_EVENT = "videshi-hub-location-changed";
+
+function notifyHubLocationChanged() {
+  try {
+    window.dispatchEvent(new Event(HUB_LOCATION_CHANGED_EVENT));
+  } catch {
+    /* non-browser context — ignore */
+  }
+}
+
+/** Write the canonical record + notify listeners. The single write
+ * path for this store: useHubLocation's setLocation and
+ * useUserLocation's precise-fix write-through both go through here. */
+export function setStoredHubLocation(loc: HubLocation) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(loc));
+  } catch {
+    /* quota exceeded — ignore */
+  }
+  notifyHubLocationChanged();
+}
+
+export function getStoredHubLocation(): HubLocation | null {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
@@ -239,15 +267,24 @@ export async function resolvePlaceLabel(
  * it never expires and is only changed by the user.
  */
 export function useHubLocation() {
-  const [location, setLocationState] = useState<HubLocation | null>(readStored);
+  const [location, setLocationState] = useState<HubLocation | null>(getStoredHubLocation);
 
   const setLocation = useCallback((loc: HubLocation) => {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(loc));
-    } catch {
-      /* quota exceeded — ignore */
-    }
+    setStoredHubLocation(loc);
     setLocationState(loc);
+  }, []);
+
+  /* Stay in sync with writes that bypass this hook instance — the
+   * unified useUserLocation writes precise fixes through to this
+   * record, and other tabs can change it too. */
+  useEffect(() => {
+    const reread = () => setLocationState(getStoredHubLocation());
+    window.addEventListener(HUB_LOCATION_CHANGED_EVENT, reread);
+    window.addEventListener("storage", reread);
+    return () => {
+      window.removeEventListener(HUB_LOCATION_CHANGED_EVENT, reread);
+      window.removeEventListener("storage", reread);
+    };
   }, []);
 
   /* Self-heal legacy generic labels: a stored record whose label is
@@ -287,6 +324,7 @@ export function useHubLocation() {
       /* ignore */
     }
     setLocationState(null);
+    notifyHubLocationChanged();
   }, []);
 
   return { location, setLocation, clearLocation, isSet: location !== null };
