@@ -36,7 +36,13 @@ Usage:
   python3 flight-deals.py --all --samples 3          (denser sampling)
   python3 flight-deals.py --all --resume             (skip searches that
         already have a fresh cached response; finish an interrupted run
-        spending requests only on the missing searches)
+        spending requests only on the missing searches. Resume runs
+        process routes with cells MISSING from the current snapshot
+        first — a run that dies at the provider limit advances the
+        unfinished tail instead of re-verifying finished routes — and
+        the cache TTL defaults to 48h so responses survive the daily
+        boundary. Cells completed from cache keep their true fetch
+        date in `fetched_as_of` (snapshot + history), never today's.)
 
 Rate-limit etiquette (honor the provider's own signals, never circumvent):
 a response carrying the per-user limit WITH a retry_after is honored —
@@ -146,7 +152,14 @@ ABORTED = False
 ABORT_REASON = None
 CACHE_MODE = False
 RESUME_MODE = False
-RESUME_TTL_S = 24 * 3600  # cached responses younger than this are reusable
+# Cached responses younger than this are reusable by --resume. 48h = two
+# daily cycles: a response fetched on day N must still be reusable when
+# day N+1's run reaches it (the job cadence is 24h, and a long run plus
+# rate-limit pauses can push reuse past the 24h mark — at 24h the cache
+# expired exactly when the tail routes needed it, starving them forever).
+# Prices served from cache are honestly dated via each cell's
+# fetched_as_of, so the longer TTL never masquerades as fresh data.
+RESUME_TTL_S = 48 * 3600
 RESUMED_COUNT = 0
 ATTEMPTED = {}  # route_key -> searches with a cache file present (cache mode)
 COMPLETED_ROUTES = []
@@ -272,6 +285,18 @@ def cached_ok_offers(origin, dest, dep_date, ret_date):
     if not data.get("ok"):
         return None
     return data.get("offers", [])
+
+
+def cached_fetched_date(origin, dest, dep_date, ret_date):
+    """ISO date a cached raw response was actually fetched (its file
+    mtime), or None if there is no cache file. Provenance for
+    cache-served cells: their prices are as of THIS date, not the
+    date of the run that reused them."""
+    tmp = cache_file_path(origin, dest, dep_date, ret_date)
+    try:
+        return date.fromtimestamp(tmp.stat().st_mtime).isoformat()
+    except Exception:
+        return None
 
 
 def write_run_state(status):
@@ -488,6 +513,81 @@ def planned_search_keys(routes, durations, months, samples, min_date):
     return keys
 
 
+# ── Resume ordering: incomplete routes first ─────────────────────────
+# Stall pattern fixed here (2026-10-15): routes were always processed
+# in fixed tier order, so when the provider's per-user limit aborted a
+# run mid-matrix it always died at the same place (EWR-BOM, route 9 of
+# 12) and the tail routes NEVER completed, while finished routes were
+# re-verified every day. On --resume runs the work is now ordered by
+# need: routes with cells missing go first.
+
+def cell_id(route_key, year, month, weeks):
+    """Cell identity, same format as the run state's cells_completed."""
+    return f"{route_key}:{year:04d}-{month:02d}:{weeks}w"
+
+
+def load_json_file(path):
+    try:
+        return json.loads(Path(path).read_text())
+    except Exception:
+        return None
+
+
+def snapshot_cell_ids(snapshot):
+    """Cell ids present in a flight-deals.json snapshot dict."""
+    ids = set()
+    for route_key, r in ((snapshot or {}).get("routes") or {}).items():
+        by_weeks = r.get("calendars_by_weeks") or {}
+        if by_weeks:
+            for wk, cal in by_weeks.items():
+                for cell in cal or []:
+                    ids.add(cell_id(route_key, cell["year"], cell["month"],
+                                    int(wk)))
+        else:  # older snapshots: only the primary-weeks calendar exists
+            for cell in r.get("calendar") or []:
+                ids.add(cell_id(route_key, cell["year"], cell["month"],
+                                cell.get("weeks", PRIMARY_WEEKS)))
+    return ids
+
+
+def prev_run_cell_ids():
+    """Cell ids the previous invocation completed (run state file).
+    These count as done for ORDERING even when that run aborted before
+    writing a snapshot — the work is backed by cached raw responses and
+    completes for free on resume. (The run state's routes_completed is
+    NOT used: cache-salvage runs list routes they later drop.)"""
+    state = load_json_file(RUN_STATE_FILE) or {}
+    return set(state.get("cells_completed") or [])
+
+
+def planned_cell_ids(route_key, durations, months):
+    return {cell_id(route_key, y, m, w)
+            for w in durations for (y, m) in months}
+
+
+def order_routes_incomplete_first(routes, durations, months,
+                                  snapshot=None, prev_cells=None):
+    """Order routes for a --resume run: incomplete routes first.
+
+    A route's missing cells = planned cells absent from BOTH the
+    current snapshot and the previous run's completed cells. Routes
+    with missing cells come first, most-missing first (never-completed
+    routes ahead of nearly-finished ones), ties in original tier
+    order; fully-covered routes follow in original order to be
+    re-verified with whatever request budget remains.
+    Returns [(route, missing_count), ...] in processing order.
+    """
+    have = snapshot_cell_ids(snapshot) | set(prev_cells or [])
+    decorated = []
+    for idx, route in enumerate(routes):
+        route_key = f"{route[0]}-{route[1]}"
+        missing = planned_cell_ids(route_key, durations, months) - have
+        decorated.append((0 if missing else 1, -len(missing), idx,
+                          route, len(missing)))
+    decorated.sort(key=lambda t: (t[0], t[1], t[2]))
+    return [(t[3], t[4]) for t in decorated]
+
+
 def find_cheapest_window(origin, dest, year, month, weeks, samples, min_date,
                          sleep_s):
     """
@@ -505,12 +605,25 @@ def find_cheapest_window(origin, dest, year, month, weeks, samples, min_date,
         ret = dep + timedelta(days=trip_days)
         dep_str, ret_str = dep.isoformat(), ret.isoformat()
         print(f"    Searching {origin}→{dest} {dep_str} → {ret_str}...")
+        # Provenance for this sample: live searches are fetched today;
+        # cache-served samples keep the date the response was fetched.
+        sample_fetched = date.today().isoformat()
+        sample_from_cache = False
         if CACHE_MODE:
             offers = cache_search(origin, dest, dep_str, ret_str)
+            if offers:
+                sample_from_cache = True
+                sample_fetched = (cached_fetched_date(origin, dest,
+                                                      dep_str, ret_str)
+                                  or sample_fetched)
         elif RESUME_MODE:
             offers = cached_ok_offers(origin, dest, dep_str, ret_str)
             if offers is not None:
                 RESUMED_COUNT += 1
+                sample_from_cache = True
+                sample_fetched = (cached_fetched_date(origin, dest,
+                                                      dep_str, ret_str)
+                                  or sample_fetched)
                 print("    ↩  fresh cached response reused (resume) — "
                       "no request spent")
             else:
@@ -532,6 +645,8 @@ def find_cheapest_window(origin, dest, year, month, weeks, samples, min_date,
             "p25_price": prices[p25_idx],
             "num_offers": len(qualifying),
             "cheapest_airline": min(qualifying, key=lambda q: q["price"])["airline"],
+            "fetched_as_of": sample_fetched,
+            "from_cache": sample_from_cache,
         })
         if sleep_s:
             time.sleep(sleep_s)
@@ -549,6 +664,12 @@ def find_cheapest_window(origin, dest, year, month, weeks, samples, min_date,
         "price_max": round(max(r["p25_price"] for r in results)),
         "cheapest_airline": best["cheapest_airline"],
         "num_samples": len(results),
+        # Honest freshness: the OLDEST fetch date among the samples this
+        # cell aggregates. Live-only cells carry today's date; a cell
+        # completed (partly) from cached responses is dated by its
+        # oldest cached sample, never silently by the reuse date.
+        "fetched_as_of": min(r["fetched_as_of"] for r in results),
+        "cache_samples": sum(1 for r in results if r["from_cache"]),
         "year": year,
         "month": month,
         "weeks": weeks,
@@ -727,9 +848,11 @@ def main():
                         help="Live run, but reuse fresh cached responses "
                              "for searches already completed (no request "
                              "spent on them). Finishes an interrupted run.")
-    parser.add_argument("--resume-ttl-hours", type=float, default=24,
+    parser.add_argument("--resume-ttl-hours", type=float, default=48,
                         help="Max age of a cached response for --resume "
-                             "reuse (default 24h)")
+                             "reuse (default 48h — spans the daily "
+                             "boundary; cache-served cells keep their "
+                             "true fetched_as_of date)")
     parser.add_argument("--max-pauses", type=int, default=10,
                         help="Max rate-limit pauses per run (default 10)")
     parser.add_argument("--max-pause-wait-min", type=float, default=20,
@@ -778,6 +901,22 @@ def main():
               f"(e.g. --tier 1) or raise the cap.",
               file=sys.stderr)
         sys.exit(2)
+
+    if RESUME_MODE:
+        # Incomplete routes first (see order_routes_incomplete_first):
+        # if the provider limit kills this run too, the requests it did
+        # spend went to the unfinished tail, not to re-verifying routes
+        # that are already fully covered.
+        snapshot = load_json_file(OUTPUT_FILE)
+        ordered = order_routes_incomplete_first(
+            routes, durations, months, snapshot, prev_run_cell_ids())
+        routes = [r for r, _missing in ordered]
+        todo = [(f"{r[0]}-{r[1]}", m) for r, m in ordered if m]
+        if todo:
+            print("RESUME ORDER: routes with missing cells first — "
+                  + ", ".join(f"{rk} ({m} cells missing)"
+                              for rk, m in todo)
+                  + "; fully-covered routes are re-verified afterwards")
 
     all_data = {
         "generated_at": None,
@@ -881,6 +1020,15 @@ def main():
         sys.exit(1)
 
     all_data["generated_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    # Fetch window of the prices in this snapshot. as_of stays the run
+    # date (existing convention); these two fields expose the true
+    # oldest/newest price fetch so a snapshot partly served from cache
+    # never claims all its prices were fetched on as_of.
+    fetched_dates = sorted(c["fetched_as_of"] for c in all_cells
+                           if c.get("fetched_as_of"))
+    if fetched_dates:
+        all_data["fetched_as_of_oldest"] = fetched_dates[0]
+        all_data["fetched_as_of_newest"] = fetched_dates[-1]
 
     # History: seed from the old output (once), then compare, then append.
     history = load_history()
@@ -916,7 +1064,11 @@ def main():
     for cell in all_cells:
         lines.append(json.dumps({
             "observed_at": now_iso,
-            "as_of": today.isoformat(),
+            # The record's as_of dates the PRICE: the day its offers
+            # were actually fetched (a cache-served cell keeps its
+            # original fetch date), so drop detection never compares
+            # prices under a false date.
+            "as_of": cell.get("fetched_as_of") or today.isoformat(),
             "source": run_source,
             "route": cell["route"],
             "origin": cell["route"].split("-")[0],
