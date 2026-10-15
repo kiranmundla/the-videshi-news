@@ -238,7 +238,7 @@ function PlanTripBlock() {
           className="inline-block mt-3 text-[13px] font-semibold hover:underline"
           style={{ color: "#A32D2F" }}
         >
-          {deal ? "See the holiday planner & all fares →" : "See fares & the holiday planner →"}
+          {deal ? "See all fares →" : "See fares →"}
         </Link>
       </div>
     </section>

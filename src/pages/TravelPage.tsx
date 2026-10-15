@@ -10,7 +10,6 @@ import TrendingDestinations from "@/components/TrendingDestinations";
 import {
   BookByUrgencyStrip,
   DestinationsByMonth,
-  InIndiaStrip,
 } from "@/components/TravelPlannerSections";
 import {
   REGIONS,
@@ -285,8 +284,11 @@ export default function TravelPage() {
                 destination fare lines) ──────────────────────── */}
             <FlightDeals />
 
-            {/* ── While You're in India ──────────────────────── */}
-            <InIndiaStrip />
+            {/* ── "While You're in India" strip REMOVED 2026-10-15
+                (Kiran: drop within-India coverage for now, focus on
+                USA-outbound international travel). The InIndiaStrip
+                component and planner data stay in place, parked —
+                restoring is re-adding this render + its import. ── */}
 
             {/* ── Destinations by Month (demoted + slimmed) ──── */}
             <DestinationsByMonth />
