@@ -10,7 +10,6 @@
     "eligible_for_picks": "False = second-tier US destination deferred from curated picks/trending (Kiran 2026-10-14 tiering); the record and its guide remain in the full index."
   },
   "trending_now": [
-    "karnataka",
     "australia",
     "bali",
     "cabo",
@@ -23,6 +22,7 @@
     "iceland",
     "italy",
     "japan",
+    "karnataka",
     "kashmir",
     "kenya",
     "kerala",
@@ -61,9 +61,9 @@
   ],
   "best_by_month": {
     "1": [
-      "karnataka",
       "cabo",
       "egypt",
+      "karnataka",
       "kenya",
       "kerala",
       "northeast-india",
@@ -93,10 +93,10 @@
       "vietnam"
     ],
     "2": [
-      "karnataka",
       "cabo",
       "egypt",
       "iceland",
+      "karnataka",
       "kenya",
       "kerala",
       "northeast-india",
@@ -157,11 +157,11 @@
       "dominican-republic",
       "new-zealand",
       "sri-lanka",
-      "karnataka",
       "bali",
       "france",
       "hawaii",
       "italy",
+      "karnataka",
       "kashmir",
       "kenya",
       "spain",
@@ -348,10 +348,10 @@
       "singapore",
       "south-africa",
       "switzerland",
-      "karnataka",
       "cabo",
       "egypt",
       "japan",
+      "karnataka",
       "kerala",
       "northeast-india",
       "oman",
@@ -361,7 +361,6 @@
       "scandinavia"
     ],
     "10": [
-      "karnataka",
       "australia",
       "bali",
       "cabo",
@@ -374,6 +373,7 @@
       "iceland",
       "italy",
       "japan",
+      "karnataka",
       "kashmir",
       "kenya",
       "kerala",
@@ -403,13 +403,13 @@
       "vietnam"
     ],
     "11": [
-      "karnataka",
       "australia",
       "cabo",
       "egypt",
       "hawaii",
       "himachal-pradesh",
       "japan",
+      "karnataka",
       "kerala",
       "northeast-india",
       "oman",
@@ -448,10 +448,10 @@
       "sri-lanka"
     ],
     "12": [
-      "karnataka",
       "cabo",
       "egypt",
       "hawaii",
+      "karnataka",
       "kerala",
       "northeast-india",
       "oman",
@@ -2721,7 +2721,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 68,
+        "score": 65,
         "max_score": 100,
         "components": [
           {
@@ -2738,9 +2738,9 @@
           },
           {
             "id": "fare_drop",
-            "points": 3,
+            "points": 0,
             "max": 30,
-            "reason": "Fares down 1.8% on SFO-BLR ($1249 \u2192 $1226) vs 2026-10-15"
+            "reason": "Fare route tracked, no notable drop right now"
           }
         ]
       }
