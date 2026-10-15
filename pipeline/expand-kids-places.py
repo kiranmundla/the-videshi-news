@@ -281,6 +281,7 @@ def process(result, cat, subcat, seen):
         "state": p["state"],
         "zip_code": p["zip"],
         "slug": slug,
+        "google_place_id": pid,
         "source": "google_places",
         "latitude": loc.get("lat"),
         "longitude": loc.get("lng"),
