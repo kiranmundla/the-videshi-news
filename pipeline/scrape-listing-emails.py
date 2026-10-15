@@ -38,6 +38,11 @@ GARBAGE_DOMAINS = {
     'sentry.io', 'sentry.wixpress.com', 'schema.org',
 }
 
+# Domain suffixes that are never a business inbox: error-tracking ingest
+# endpoints (Sentry DSNs live on hosts like o123.ingest.us.sentry.io,
+# whose exact subdomains change per project, so match the suffix).
+GARBAGE_DOMAIN_SUFFIXES = ('.sentry.io',)
+
 
 def is_garbage_domain(domain):
     """True for known garbage domains, incl. Wix Sentry DSN trap addresses.
@@ -47,12 +52,23 @@ def is_garbage_domain(domain):
     """
     if domain in GARBAGE_DOMAINS:
         return True
+    if domain.startswith('example.'):
+        return True  # any @example.* placeholder domain, any TLD
+    if domain.endswith(GARBAGE_DOMAIN_SUFFIXES):
+        return True
+    if '.ingest.' in f'.{domain}':
+        return True  # telemetry/ingest subdomains on any provider
     if domain.endswith('.wixpress.com') and domain.split('.')[0].startswith('sentry'):
         return True
     return False
 GARBAGE_LOCAL = re.compile(
     r'^(noreply|no-reply|donotreply|do-not-reply|mailer-daemon|postmaster|abuse|spam)'
     r'(@|$)', re.IGNORECASE)
+# Template placeholder local parts (email@email.com, your@email.com,
+# name@email.com …) — form/template filler, never a real inbox.
+PLACEHOLDER_LOCAL = re.compile(
+    r'^(e-?mail|your|your-?name|your-?e-?mail|name|example|sample|placeholder)$',
+    re.IGNORECASE)
 IMAGE_EXT = re.compile(r'\.(png|jpe?g|gif|webp|svg|ico|bmp)$', re.IGNORECASE)
 
 # Preferred generic inboxes, in order
@@ -132,6 +148,8 @@ def extract_emails(html):
         if is_garbage_domain(domain):
             continue
         if GARBAGE_LOCAL.match(email):
+            continue
+        if PLACEHOLDER_LOCAL.match(local):
             continue
         if IMAGE_EXT.search(email):
             continue
