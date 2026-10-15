@@ -448,8 +448,12 @@ export default function FlightDeals() {
 
       {/* ── India metros rail — every metro from this origin. The
           rail cards are THE route selector (audit item 20): the old
-          chip row duplicated this job with codes only. ─────────── */}
-      {railFares.length > 1 && (
+          chip row duplicated this job with codes only. Renders even
+          for a single-fare origin (BOS/IAD/ATL have only their daily
+          DEL route until their weekly-grid pairs fill) — the rail is
+          the only selector, so gating it on >1 left those origins
+          with no heading and no way to pick the route. ──────────── */}
+      {railFares.length >= 1 && (
         <div className="mb-6">
           <h3 className="font-serif text-base font-bold text-foreground mb-1">
             From {origin} — cheapest to each India metro
