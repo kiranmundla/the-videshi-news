@@ -1,0 +1,5143 @@
+{
+  "generated_at": "2026-10-15",
+  "current_month": 10,
+  "current_year": 2026,
+  "destination_count": 50,
+  "legend": {
+    "season_fit_by_month": "2 = in best season, 1 = shoulder (adjacent month), 0 = off season",
+    "trending": "Sum of labeled components; max_score shows what was computable \u2014 a null fare_drop component means no fare route is tracked, not a zero fare.",
+    "cheapest_month": "Only set from real flight-deals fare data; null everywhere else by design."
+  },
+  "trending_now": [
+    "australia",
+    "bali",
+    "cabo",
+    "egypt",
+    "fiji",
+    "france",
+    "greece",
+    "hawaii",
+    "himachal-pradesh",
+    "iceland",
+    "italy",
+    "japan",
+    "karnataka",
+    "kashmir",
+    "kenya",
+    "kerala",
+    "northeast-india",
+    "oman",
+    "portugal",
+    "rajasthan",
+    "spain",
+    "national-parks",
+    "uttarakhand",
+    "morocco",
+    "new-york-city",
+    "abu-dhabi",
+    "banff",
+    "dubai",
+    "florida",
+    "goa",
+    "jamaica",
+    "london",
+    "maldives",
+    "mexico",
+    "puerto-vallarta",
+    "riviera-maya",
+    "singapore",
+    "south-africa",
+    "switzerland",
+    "tamil-nadu",
+    "thailand",
+    "vietnam",
+    "alaska",
+    "aruba",
+    "bahamas",
+    "cancun",
+    "dominican-republic",
+    "new-zealand",
+    "scandinavia",
+    "sri-lanka"
+  ],
+  "best_by_month": {
+    "1": [
+      "cabo",
+      "egypt",
+      "karnataka",
+      "kenya",
+      "kerala",
+      "northeast-india",
+      "oman",
+      "rajasthan",
+      "abu-dhabi",
+      "banff",
+      "dubai",
+      "florida",
+      "goa",
+      "jamaica",
+      "maldives",
+      "mexico",
+      "puerto-vallarta",
+      "riviera-maya",
+      "switzerland",
+      "tamil-nadu",
+      "thailand",
+      "aruba",
+      "bahamas",
+      "cancun",
+      "dominican-republic",
+      "new-zealand",
+      "sri-lanka",
+      "hawaii",
+      "iceland",
+      "singapore",
+      "vietnam"
+    ],
+    "2": [
+      "cabo",
+      "egypt",
+      "iceland",
+      "karnataka",
+      "kenya",
+      "kerala",
+      "northeast-india",
+      "oman",
+      "rajasthan",
+      "abu-dhabi",
+      "banff",
+      "dubai",
+      "florida",
+      "goa",
+      "jamaica",
+      "maldives",
+      "mexico",
+      "puerto-vallarta",
+      "riviera-maya",
+      "singapore",
+      "switzerland",
+      "tamil-nadu",
+      "thailand",
+      "vietnam",
+      "aruba",
+      "bahamas",
+      "cancun",
+      "dominican-republic",
+      "new-zealand",
+      "sri-lanka",
+      "australia",
+      "himachal-pradesh",
+      "japan",
+      "uttarakhand",
+      "morocco"
+    ],
+    "3": [
+      "australia",
+      "cabo",
+      "egypt",
+      "himachal-pradesh",
+      "iceland",
+      "japan",
+      "kerala",
+      "northeast-india",
+      "oman",
+      "rajasthan",
+      "uttarakhand",
+      "morocco",
+      "abu-dhabi",
+      "dubai",
+      "florida",
+      "jamaica",
+      "maldives",
+      "mexico",
+      "puerto-vallarta",
+      "riviera-maya",
+      "singapore",
+      "thailand",
+      "vietnam",
+      "aruba",
+      "bahamas",
+      "cancun",
+      "dominican-republic",
+      "new-zealand",
+      "sri-lanka",
+      "bali",
+      "france",
+      "hawaii",
+      "italy",
+      "karnataka",
+      "kashmir",
+      "kenya",
+      "spain",
+      "new-york-city",
+      "banff",
+      "goa",
+      "london",
+      "switzerland",
+      "tamil-nadu"
+    ],
+    "4": [
+      "australia",
+      "bali",
+      "cabo",
+      "egypt",
+      "france",
+      "hawaii",
+      "himachal-pradesh",
+      "italy",
+      "japan",
+      "kashmir",
+      "northeast-india",
+      "spain",
+      "uttarakhand",
+      "morocco",
+      "new-york-city",
+      "florida",
+      "jamaica",
+      "london",
+      "maldives",
+      "mexico",
+      "puerto-vallarta",
+      "riviera-maya",
+      "singapore",
+      "vietnam",
+      "aruba",
+      "bahamas",
+      "cancun",
+      "dominican-republic",
+      "fiji",
+      "greece",
+      "iceland",
+      "kerala",
+      "oman",
+      "portugal",
+      "rajasthan",
+      "national-parks",
+      "abu-dhabi",
+      "dubai",
+      "south-africa",
+      "thailand",
+      "new-zealand",
+      "scandinavia",
+      "sri-lanka"
+    ],
+    "5": [
+      "australia",
+      "bali",
+      "cabo",
+      "fiji",
+      "france",
+      "greece",
+      "hawaii",
+      "himachal-pradesh",
+      "italy",
+      "japan",
+      "kashmir",
+      "portugal",
+      "spain",
+      "national-parks",
+      "uttarakhand",
+      "morocco",
+      "new-york-city",
+      "london",
+      "mexico",
+      "south-africa",
+      "scandinavia",
+      "egypt",
+      "iceland",
+      "northeast-india",
+      "banff",
+      "florida",
+      "jamaica",
+      "maldives",
+      "puerto-vallarta",
+      "riviera-maya",
+      "singapore",
+      "switzerland",
+      "vietnam",
+      "alaska",
+      "aruba",
+      "bahamas",
+      "cancun",
+      "dominican-republic"
+    ],
+    "6": [
+      "bali",
+      "fiji",
+      "france",
+      "greece",
+      "hawaii",
+      "himachal-pradesh",
+      "iceland",
+      "italy",
+      "kashmir",
+      "portugal",
+      "spain",
+      "national-parks",
+      "uttarakhand",
+      "new-york-city",
+      "banff",
+      "london",
+      "singapore",
+      "south-africa",
+      "switzerland",
+      "alaska",
+      "scandinavia",
+      "australia",
+      "cabo",
+      "japan",
+      "kenya",
+      "morocco",
+      "mexico"
+    ],
+    "7": [
+      "bali",
+      "fiji",
+      "greece",
+      "iceland",
+      "kashmir",
+      "kenya",
+      "banff",
+      "london",
+      "singapore",
+      "south-africa",
+      "switzerland",
+      "alaska",
+      "scandinavia",
+      "france",
+      "hawaii",
+      "himachal-pradesh",
+      "italy",
+      "portugal",
+      "spain",
+      "national-parks",
+      "uttarakhand",
+      "new-york-city"
+    ],
+    "8": [
+      "bali",
+      "fiji",
+      "iceland",
+      "kashmir",
+      "kenya",
+      "banff",
+      "south-africa",
+      "switzerland",
+      "alaska",
+      "scandinavia",
+      "australia",
+      "france",
+      "greece",
+      "hawaii",
+      "himachal-pradesh",
+      "italy",
+      "portugal",
+      "spain",
+      "national-parks",
+      "uttarakhand",
+      "new-york-city",
+      "london",
+      "singapore"
+    ],
+    "9": [
+      "australia",
+      "bali",
+      "fiji",
+      "france",
+      "greece",
+      "hawaii",
+      "himachal-pradesh",
+      "iceland",
+      "italy",
+      "kashmir",
+      "kenya",
+      "portugal",
+      "spain",
+      "national-parks",
+      "uttarakhand",
+      "new-york-city",
+      "banff",
+      "london",
+      "singapore",
+      "south-africa",
+      "switzerland",
+      "cabo",
+      "egypt",
+      "japan",
+      "karnataka",
+      "kerala",
+      "northeast-india",
+      "oman",
+      "rajasthan",
+      "morocco",
+      "alaska",
+      "scandinavia"
+    ],
+    "10": [
+      "australia",
+      "bali",
+      "cabo",
+      "egypt",
+      "fiji",
+      "france",
+      "greece",
+      "hawaii",
+      "himachal-pradesh",
+      "iceland",
+      "italy",
+      "japan",
+      "karnataka",
+      "kashmir",
+      "kenya",
+      "kerala",
+      "northeast-india",
+      "oman",
+      "portugal",
+      "rajasthan",
+      "spain",
+      "national-parks",
+      "uttarakhand",
+      "morocco",
+      "new-york-city",
+      "abu-dhabi",
+      "banff",
+      "dubai",
+      "florida",
+      "goa",
+      "jamaica",
+      "london",
+      "maldives",
+      "mexico",
+      "puerto-vallarta",
+      "riviera-maya",
+      "singapore",
+      "south-africa",
+      "switzerland",
+      "tamil-nadu",
+      "thailand",
+      "vietnam"
+    ],
+    "11": [
+      "australia",
+      "cabo",
+      "egypt",
+      "hawaii",
+      "himachal-pradesh",
+      "japan",
+      "karnataka",
+      "kerala",
+      "northeast-india",
+      "oman",
+      "rajasthan",
+      "uttarakhand",
+      "morocco",
+      "new-york-city",
+      "abu-dhabi",
+      "dubai",
+      "florida",
+      "goa",
+      "jamaica",
+      "maldives",
+      "mexico",
+      "puerto-vallarta",
+      "riviera-maya",
+      "tamil-nadu",
+      "thailand",
+      "vietnam",
+      "bali",
+      "fiji",
+      "france",
+      "greece",
+      "iceland",
+      "italy",
+      "kashmir",
+      "kenya",
+      "portugal",
+      "spain",
+      "national-parks",
+      "banff",
+      "switzerland",
+      "aruba",
+      "bahamas",
+      "cancun",
+      "dominican-republic",
+      "new-zealand",
+      "sri-lanka"
+    ],
+    "12": [
+      "cabo",
+      "egypt",
+      "hawaii",
+      "karnataka",
+      "kerala",
+      "northeast-india",
+      "oman",
+      "rajasthan",
+      "abu-dhabi",
+      "banff",
+      "dubai",
+      "florida",
+      "goa",
+      "jamaica",
+      "maldives",
+      "mexico",
+      "puerto-vallarta",
+      "riviera-maya",
+      "switzerland",
+      "tamil-nadu",
+      "thailand",
+      "vietnam",
+      "aruba",
+      "bahamas",
+      "cancun",
+      "dominican-republic",
+      "new-zealand",
+      "sri-lanka",
+      "australia",
+      "himachal-pradesh",
+      "japan",
+      "kenya",
+      "uttarakhand",
+      "morocco",
+      "new-york-city"
+    ]
+  },
+  "destinations": [
+    {
+      "slug": "abu-dhabi",
+      "name": "Abu Dhabi",
+      "guide_url": "/travel/abu-dhabi",
+      "group": "international",
+      "region": "Middle East",
+      "best_months": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "peak_months": [
+        12,
+        1
+      ],
+      "season_note": "Winter sun season; summers are extremely hot.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Sheikh Zayed Grand Mosque",
+          "snippet": "The crown jewel of Abu Dhabi and one of the world's largest mosques. The white marble facade, 82 domes, and 1,000 columns are staggering."
+        },
+        {
+          "title": "Louvre Abu Dhabi, Saadiyat Island",
+          "snippet": "Jean Nouvel's masterpiece \u2014 a \"rain of light\" dome sheltering galleries that trace human civilization from ancient Mesopotamia to contemporary art."
+        },
+        {
+          "title": "Yas Island Theme Parks",
+          "snippet": "Abu Dhabi's entertainment mega-complex includes **Ferrari World** (home to Formula Rossa, the world's fastest roller coaster at 240 km/h \u2014 tickets AED 395/$108), **Warner Bros."
+        },
+        {
+          "title": "Desert Safari with Dune Bashing",
+          "snippet": "The quintessential Gulf experience. A 4x4 picks you up from your hotel for an afternoon of dune bashing in the Al Khatim desert, followed by a traditional Bedouin camp dinner with shisha, henna pai\u2026"
+        },
+        {
+          "title": "The Corniche & Heritage Village",
+          "snippet": "Abu Dhabi's waterfront promenade stretches 8 km along the coast with manicured gardens, cycling paths, and public beaches."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 1,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 1,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "alaska",
+      "name": "Alaska",
+      "guide_url": "/travel/alaska",
+      "group": "usa",
+      "region": "US \u2014 Alaska",
+      "best_months": [
+        6,
+        7,
+        8
+      ],
+      "peak_months": [
+        7
+      ],
+      "season_note": "Midnight-sun summer; cruise season. Aurora viewing is Sep\u2013Mar.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Glacier Bay National Park",
+          "snippet": "Accessible primarily by cruise ship or small charter boat, Glacier Bay is the crown jewel of Alaska tourism. Watch massive tidewater glaciers calve icebergs into the sea from the deck of your ship."
+        },
+        {
+          "title": "Denali National Park",
+          "snippet": "Home to Denali (Mount McKinley), the tallest peak in North America at 20,310 feet. The park road extends 92 miles into wilderness, but private vehicles can only drive the first 15 miles."
+        },
+        {
+          "title": "Kenai Fjords National Park, Seward",
+          "snippet": "Take the Major Marine Tours 6-hour cruise ($200/adult, $130/child) from Seward to see humpback whales, orcas, sea otters, puffins, and the Exit Glacier. The wildlife is almost guaranteed in summer."
+        },
+        {
+          "title": "Mendenhall Glacier, Juneau",
+          "snippet": "One of the most accessible glaciers in Alaska, just 12 miles from downtown Juneau. Hike the moderate Trail of Time (2.4 miles round trip) to the glacier viewing area."
+        },
+        {
+          "title": "Inside Passage Cruise",
+          "snippet": "A 7-day cruise through Alaska's Inside Passage \u2014 typically Seattle/Vancouver to Juneau, Skagway, Ketchikan, and Glacier Bay \u2014 is the most popular way to see Alaska."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 1,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 1,
+        "10": 0,
+        "11": 0,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 15,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 10,
+            "max": 50,
+            "reason": "Off season this month"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 5,
+            "max": 20,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "aruba",
+      "name": "Aruba",
+      "guide_url": "/travel/aruba",
+      "group": "international",
+      "region": "Mexico & Caribbean",
+      "best_months": [
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "peak_months": [
+        12,
+        2
+      ],
+      "season_note": "Outside the hurricane belt \u2014 reliably dry and breezy most of the year.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Eagle Beach",
+          "snippet": "Consistently voted one of the top ten beaches in the world, and it earns it. The sand is powder-white, the water is calm and impossibly blue, and the beach is wide enough that it never feels crowde\u2026"
+        },
+        {
+          "title": "Arikok National Park",
+          "snippet": "This rugged desert landscape covering nearly 20% of the island is Aruba's wild side."
+        },
+        {
+          "title": "Snorkeling at Arashi Beach & Antilla Shipwreck",
+          "snippet": "Arashi Beach, at the island's northern tip, has excellent shore snorkeling with sea turtles and tropical fish in shallow, calm water."
+        },
+        {
+          "title": "California Lighthouse & Alto Vista Chapel",
+          "snippet": "The California Lighthouse at the island's northwest tip offers sweeping views and gorgeous sunsets."
+        },
+        {
+          "title": "Downtown Oranjestad",
+          "snippet": "The capital city is a charming mix of pastel-colored Dutch colonial buildings, duty-free shopping, and waterfront restaurants."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 1,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 15,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 10,
+            "max": 50,
+            "reason": "Off season this month"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 5,
+            "max": 20,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "australia",
+      "name": "Australia",
+      "guide_url": "/travel/australia",
+      "group": "international",
+      "region": "Oceania",
+      "best_months": [
+        9,
+        10,
+        11,
+        3,
+        4,
+        5
+      ],
+      "peak_months": [
+        12,
+        1
+      ],
+      "season_note": "Southern-hemisphere spring/autumn are the sweet spots for Sydney & Melbourne.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Great Barrier Reef, Queensland",
+          "snippet": "The largest living structure on earth stretches over 2,300 km. Snorkel or dive from Cairns or the Whitsunday Islands. Take a scenic helicopter flight for the aerial perspective."
+        },
+        {
+          "title": "Sydney Harbour: Opera House & Bridge",
+          "snippet": "Walk across the Harbour Bridge or climb it (BridgeClimb, $200\u2013350 AUD). Take a ferry to Manly Beach. Watch a performance at the Opera House \u2014 the building is more impressive inside than out."
+        },
+        {
+          "title": "Great Ocean Road, Victoria",
+          "snippet": "One of the world's greatest coastal drives. The Twelve Apostles limestone stacks, Loch Ard Gorge, and the surf town of Torquay are the highlights."
+        },
+        {
+          "title": "Uluru (Ayers Rock), Northern Territory",
+          "snippet": "The sacred red monolith at sunrise or sunset is a spiritual experience. Climbing is now prohibited (and was always culturally inappropriate)."
+        },
+        {
+          "title": "Melbourne: Coffee, Laneways & Cricket",
+          "snippet": "Melbourne is Australia's culture and food capital. Explore the street-art-covered laneways, drink flat whites in hidden caf\u00e9s, and watch cricket at the MCG \u2014 the cathedral of the sport."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 1,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 1,
+        "7": 0,
+        "8": 1,
+        "9": 2,
+        "10": 2,
+        "11": 2,
+        "12": 1
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "bahamas",
+      "name": "Bahamas",
+      "guide_url": "/travel/bahamas",
+      "group": "international",
+      "region": "Mexico & Caribbean",
+      "best_months": [
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "peak_months": [
+        12,
+        3
+      ],
+      "season_note": "Dry season; hurricane risk peaks Aug\u2013Oct.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Atlantis Aquaventure Water Park, Paradise Island",
+          "snippet": "The centerpiece of any Bahamas family trip. Over 20 million gallons of water, the Leap of Faith slide that drops you through a shark-filled lagoon, and a mile-long lazy river system."
+        },
+        {
+          "title": "Swimming Pigs at Big Major Cay, Exumas",
+          "snippet": "Yes, the pigs are real, and yes, they will swim right up to your boat. You will need a day trip from Nassau via a charter flight to Staniel Cay (about $350\u2013500 round trip per person) or a full-day \u2026"
+        },
+        {
+          "title": "Thunderball Grotto, Exumas",
+          "snippet": "This underwater cave, made famous by the James Bond film, is a snorkeling paradise. Schools of tropical fish swirl through shafts of sunlight inside the grotto."
+        },
+        {
+          "title": "Pink Sands Beach, Harbour Island",
+          "snippet": "A three-mile stretch of genuinely pink sand caused by crushed foraminifera shells. It is quieter and more exclusive than Nassau."
+        },
+        {
+          "title": "Fish Fry at Arawak Cay, Nassau",
+          "snippet": "Skip the overpriced resort restaurants for at least one meal and head to Arawak Cay, a strip of local shacks serving conch fritters, cracked conch, and fresh grouper. A full meal runs $15\u201325."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 1,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 15,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 10,
+            "max": 50,
+            "reason": "Off season this month"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 5,
+            "max": 20,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "bali",
+      "name": "Bali",
+      "guide_url": "/travel/bali",
+      "group": "international",
+      "region": "Southeast Asia",
+      "best_months": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "peak_months": [
+        7,
+        8,
+        12
+      ],
+      "season_note": "Dry season Apr\u2013Oct; rainy season Nov\u2013Mar (mornings usually clear).",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Uluwatu Temple at Sunset",
+          "snippet": "Perched on a 70-metre cliff above the Indian Ocean, this 11th-century sea temple hosts a nightly Kecak fire dance as the sun drops. The setting is theatrically perfect."
+        },
+        {
+          "title": "Ubud Rice Terraces & Monkey Forest",
+          "snippet": "Tegallalang's cascading rice terraces are Bali's most iconic landscape. Walk through in the early morning before the Instagram crowds arrive."
+        },
+        {
+          "title": "Mount Batur Sunrise Trek",
+          "snippet": "A pre-dawn hike to the summit of an active volcano. You start at 3 AM and reach the crater rim by sunrise, where your guide cooks eggs in volcanic steam."
+        },
+        {
+          "title": "Seminyak Beach Clubs",
+          "snippet": "Potato Head, Ku De Ta, and La Brisa define Bali's stylish daytime scene. Infinity pools, DJs, cocktails, and Balinese-fusion cuisine against an ocean backdrop."
+        },
+        {
+          "title": "Tirta Empul Water Temple, Tampaksiring",
+          "snippet": "A holy spring temple where Balinese Hindus come for ritual purification. Visitors can participate \u2014 wear a sarong, follow the sequence of fountains, and immerse yourself in spring water that has be\u2026"
+        }
+      ],
+      "photo_count": 12,
+      "hero_image": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-1.jpg",
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 0,
+        "3": 1,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 2,
+        "11": 1,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "banff",
+      "name": "Banff",
+      "guide_url": "/travel/banff",
+      "group": "international",
+      "region": "Canada",
+      "best_months": [
+        1,
+        2,
+        6,
+        7,
+        8,
+        9,
+        12
+      ],
+      "peak_months": [
+        7,
+        12
+      ],
+      "season_note": "Two seasons: summer lakes (Jun\u2013Sep) and ski season (Dec\u2013Mar).",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Lake Louise",
+          "snippet": "The most photographed lake in Canada, and for good reason. The milky turquoise water is colored by glacial rock flour \u2014 the finer the summer sunlight, the more vivid the blue."
+        },
+        {
+          "title": "Moraine Lake",
+          "snippet": "Many travelers say Moraine Lake is even more stunning than Lake Louise. The Valley of the Ten Peaks reflected in the impossibly blue water is the scene from the old Canadian $20 bill."
+        },
+        {
+          "title": "Icefields Parkway (Highway 93)",
+          "snippet": "The 144-mile drive from Lake Louise to Jasper is routinely called the most scenic highway in the world. Glaciers, waterfalls, and wildlife at every turn."
+        },
+        {
+          "title": "Columbia Icefield Skywalk & Glacier Adventure",
+          "snippet": "Step onto a glass-floored observation platform jutting 100 feet over the Sunwapta Valley, then ride a massive Ice Explorer bus onto the Athabasca Glacier itself. The combo ticket is C$120/adult."
+        },
+        {
+          "title": "Johnston Canyon",
+          "snippet": "A 3.4-mile hike along a canyon trail with catwalks bolted to cliff faces above rushing water. The Lower Falls (1.1 km) is easy for all ages; the Upper Falls (2.7 km) is moderate."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 1,
+        "4": 0,
+        "5": 1,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 1,
+        "11": 1,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cabo",
+      "name": "Cabo",
+      "guide_url": "/travel/cabo",
+      "group": "international",
+      "region": "Mexico & Caribbean",
+      "best_months": [
+        10,
+        11,
+        12,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "peak_months": [
+        12,
+        3
+      ],
+      "season_note": "Whale season Dec\u2013Apr; late summer is hot with storm risk.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "El Arco de Cabo San Lucas",
+          "snippet": "The iconic rock arch at the tip of the Baja Peninsula where the Pacific meets the Sea of Cortez. Take a glass-bottom boat or water taxi from Medano Beach for $15\u201320 per person."
+        },
+        {
+          "title": "Snorkeling at Chileno Bay",
+          "snippet": "Cabo's best easily accessible snorkeling spot, with calm, clear water and abundant tropical fish. The bay is protected, so it's ideal even for beginners."
+        },
+        {
+          "title": "Whale Watching (December\u2013April)",
+          "snippet": "Humpback and grey whales migrate through the Sea of Cortez every winter, and Cabo is one of the best places on Earth to see them up close."
+        },
+        {
+          "title": "Sunset Dinner Cruise",
+          "snippet": "Multiple operators run sunset cruises along the arch and coastline. The CaboRey catamaran offers an open bar and decent dinner for around $95\u2013120 per person."
+        },
+        {
+          "title": "Medano Beach Day",
+          "snippet": "Cabo's main swimmable beach is a scene unto itself. Rent a daybed at Mango Deck or The Office for $30\u201350 (redeemable on food and drinks). Jet ski rentals run $60\u201380 for 30 minutes."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 1,
+        "7": 0,
+        "8": 0,
+        "9": 1,
+        "10": 2,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "cancun",
+      "name": "Cancun",
+      "guide_url": "/travel/cancun",
+      "group": "international",
+      "region": "Mexico & Caribbean",
+      "best_months": [
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "peak_months": [
+        12,
+        3
+      ],
+      "season_note": "Dry season; avoid the Jun\u2013Oct hurricane window where possible.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Chich\u00e9n Itz\u00e1 Day Trip",
+          "snippet": "One of the New Seven Wonders of the World is a 2.5-hour drive from Canc\u00fan. The pyramid of Kukulk\u00e1n is spectacular. Go with a guided tour that departs at 6 AM to arrive before the crowds and the heat."
+        },
+        {
+          "title": "Cenote Swimming",
+          "snippet": "The Yucat\u00e1n Peninsula has over 6,000 cenotes \u2014 natural limestone sinkholes filled with crystal-clear freshwater. Gran Cenote near Tulum and Cenote Ik Kil near Chich\u00e9n Itz\u00e1 are the most famous."
+        },
+        {
+          "title": "Isla Mujeres",
+          "snippet": "A 15-minute ferry from Canc\u00fan's Hotel Zone takes you to this laid-back island. Rent a golf cart, drive to Punta Sur cliffs, and eat fresh ceviche at Playa Norte \u2014 consistently ranked among the worl\u2026"
+        },
+        {
+          "title": "Tulum Ruins",
+          "snippet": "Mayan ruins perched on a cliff above the Caribbean Sea. The only major Mayan site on the coast. Arrive at 8 AM when gates open, then walk down to the beach below the ruins for a swim."
+        },
+        {
+          "title": "Underwater Museum (MUSA)",
+          "snippet": "Over 500 life-size sculptures submerged in the Caribbean. Snorkel or scuba dive among the installations \u2014 it is art, marine conservation, and adventure in one."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 1,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 15,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 10,
+            "max": 50,
+            "reason": "Off season this month"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 5,
+            "max": 20,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "dominican-republic",
+      "name": "Dominican Republic",
+      "guide_url": "/travel/dominican-republic",
+      "group": "international",
+      "region": "Mexico & Caribbean",
+      "best_months": [
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "peak_months": [
+        12,
+        2
+      ],
+      "season_note": "Dry season Dec\u2013Apr; whale season in Saman\u00e1 is Jan\u2013Mar.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Punta Cana Beach Day",
+          "snippet": "B\u00e1varo Beach and Playa Macao are the headliners, consistently ranked among the Caribbean's finest."
+        },
+        {
+          "title": "Zona Colonial, Santo Domingo",
+          "snippet": "A day trip worth every minute of the 2.5-hour drive from Punta Cana. The oldest cathedral in the Americas (Catedral Primada de Am\u00e9rica, 1512), the Alc\u00e1zar de Col\u00f3n (Columbus's son's palace), and th\u2026"
+        },
+        {
+          "title": "Saman\u00e1 Whale Watching (January\u2013March)",
+          "snippet": "Every winter, thousands of humpback whales migrate to the Bay of Saman\u00e1 to breed and calve. This is one of the most reliable whale-watching experiences in the world."
+        },
+        {
+          "title": "Scape Park at Cap Cana",
+          "snippet": "An adventure park about 15 minutes from most Punta Cana resorts featuring cenote-like freshwater lagoons (the Hoyo Azul is a stunning natural sinkhole), ziplines over the jungle, cultural experiences,."
+        },
+        {
+          "title": "Catamaran Snorkeling Tour",
+          "snippet": "Multiple operators run half-day catamaran trips from Punta Cana to the natural pools of the Caribbean \u2014 shallow, calm areas where you can stand waist-deep in the ocean, drink rum punch, and snorkel am."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 1,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 15,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 10,
+            "max": 50,
+            "reason": "Off season this month"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 5,
+            "max": 20,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "dubai",
+      "name": "Dubai",
+      "guide_url": "/travel/dubai",
+      "group": "international",
+      "region": "Middle East",
+      "best_months": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "peak_months": [
+        12,
+        1,
+        2
+      ],
+      "season_note": "Winter is peak \u2014 outdoor weather, festivals, highest prices.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Burj Khalifa, Downtown Dubai",
+          "snippet": "Book the \"At the Top\" ticket for the 124th floor, or splurge on the 148th floor SKY lounge. Go at sunset for the best photos."
+        },
+        {
+          "title": "Old Dubai: Gold Souk & Spice Souk",
+          "snippet": "Cross Dubai Creek on a traditional abra boat for one dirham and step into the oldest part of the city. The Gold Souk is the world's largest \u2014 prices are competitive and bargaining is expected."
+        },
+        {
+          "title": "Desert Safari",
+          "snippet": "The quintessential Dubai experience. A 4x4 dune-bashing ride followed by a BBQ dinner under the stars with belly dancing, henna, and shisha."
+        },
+        {
+          "title": "Dubai Marina & JBR Walk",
+          "snippet": "The Marina skyline at night is Dubai at its most photogenic. JBR (Jumeirah Beach Residence) has a public beach, waterfront dining, and Ain Dubai \u2014 the world's largest observation wheel."
+        },
+        {
+          "title": "Global Village",
+          "snippet": "Open October through April, this massive outdoor theme park has pavilions from 90+ countries. The India Pavilion is always the loudest and most fun. Street food from every continent for under 20 AED."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 1,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 1,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "egypt",
+      "name": "Egypt",
+      "guide_url": "/travel/egypt",
+      "group": "international",
+      "region": "North Africa & Middle East",
+      "best_months": [
+        10,
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "peak_months": [
+        12,
+        2
+      ],
+      "season_note": "Cool season for the Nile valley; summers are fiercely hot.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Pyramids of Giza & the Sphinx",
+          "snippet": "No amount of photos prepares you for the scale. The Great Pyramid stands 481 feet tall and was the tallest structure on earth for 3,800 years."
+        },
+        {
+          "title": "Grand Egyptian Museum (GEM)",
+          "snippet": "The newly opened museum near Giza houses over 100,000 artifacts, including the complete Tutankhamun collection \u2014 all 5,000+ items from his tomb, most never before displayed."
+        },
+        {
+          "title": "Luxor \u2014 Valley of the Kings & Karnak Temple",
+          "snippet": "Luxor is the world's greatest open-air museum. On the West Bank, the Valley of the Kings holds 63 royal tombs \u2014 your basic ticket (EGP 600/$12) includes entry to three tombs."
+        },
+        {
+          "title": "Nile River Cruise (Luxor to Aswan)",
+          "snippet": "A 3\u20134 night cruise between Luxor and Aswan is the classic Egypt experience. The ship docks at temples along the way \u2014 Edfu (the best-preserved temple in Egypt), Kom Ombo (a double temple on a Nile \u2026"
+        },
+        {
+          "title": "Abu Simbel",
+          "snippet": "Ramesses II's colossal temple, carved into a cliff face, with four 66-foot seated statues of the pharaoh guarding the entrance."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 1,
+        "10": 2,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "fiji",
+      "name": "Fiji",
+      "guide_url": "/travel/fiji",
+      "group": "international",
+      "region": "Oceania",
+      "best_months": [
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "peak_months": [
+        7
+      ],
+      "season_note": "Dry season May\u2013Oct; cyclone season is Nov\u2013Apr.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Nadi & the Sri Siva Subramaniya Temple",
+          "snippet": "The largest Hindu temple in the Southern Hemisphere sits right in downtown Nadi, painted in vivid Dravidian colours. Free entry."
+        },
+        {
+          "title": "Yasawa Islands",
+          "snippet": "A chain of volcanic islands with crystal water, dramatic cliffs, and almost no crowds. Take the Yasawa Flyer catamaran from Denarau ($130 round trip) to reach barefoot luxury resorts."
+        },
+        {
+          "title": "Coral Coast Snorkelling & Diving",
+          "snippet": "Fiji is the soft coral capital of the world. The Great Astrolabe Reef near Kadavu is one of the largest barrier reefs on earth. Beginner-friendly dives start at $150 for two tanks."
+        },
+        {
+          "title": "Sigatoka Sand Dunes & Heritage Trail",
+          "snippet": "Fiji's first national park, with archaeological sites dating back 2,600 years. The dunes themselves are hauntingly beautiful at sunset."
+        },
+        {
+          "title": "Suva \u2014 The Capital",
+          "snippet": "Skip the resort bubble for a day and explore Suva. The Fiji Museum covers both indigenous Fijian and Indo-Fijian history, including the indenture period. The municipal market is enormous."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 1,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 2,
+        "11": 1,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "florida",
+      "name": "Florida",
+      "guide_url": "/travel/florida",
+      "group": "usa",
+      "region": "US \u2014 Southeast",
+      "best_months": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "peak_months": [
+        12,
+        3
+      ],
+      "season_note": "Dry, mild winter\u2013spring; summer is hot, humid and hurricane-prone.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Walt Disney World, Orlando",
+          "snippet": "The gold standard of family vacations. With four theme parks, two water parks, and Disney Springs, you need a minimum of four days to cover the highlights."
+        },
+        {
+          "title": "Kennedy Space Center, Cape Canaveral",
+          "snippet": "An absolute must for families with curious kids. The Space Shuttle Atlantis exhibit is jaw-dropping, and the bus tour to Launch Complex 39 where Apollo missions launched gives you chills."
+        },
+        {
+          "title": "The Florida Keys & Key West",
+          "snippet": "Drive the Overseas Highway from Miami to Key West, 113 miles of bridges and islands over turquoise water. It is one of America's most scenic drives."
+        },
+        {
+          "title": "Everglades Airboat Tour",
+          "snippet": "An airboat ride through the River of Grass is unlike anything else in the US. You will see alligators, herons, and cypress swamps from just feet away."
+        },
+        {
+          "title": "Miami Beach & South Beach",
+          "snippet": "Walk the Art Deco Historic District on Ocean Drive, swim at South Beach, and explore Wynwood Walls for street art. For Indian families, head to Deccan Spice or Ghee Indian Kitchen in Miami proper."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 1,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "france",
+      "name": "France",
+      "guide_url": "/travel/france",
+      "group": "international",
+      "region": "Europe",
+      "best_months": [
+        4,
+        5,
+        6,
+        9,
+        10
+      ],
+      "peak_months": [
+        6,
+        7
+      ],
+      "season_note": "Late spring and early autumn beat the August crowds and closures.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Eiffel Tower & Seine River Cruise",
+          "snippet": "The Eiffel Tower at night, when it sparkles on the hour, is genuinely magical. Skip the summit queue \u2014 the second floor view is nearly identical."
+        },
+        {
+          "title": "Louvre Museum",
+          "snippet": "The world's largest and most visited museum. Do not try to see everything \u2014 focus on the Mona Lisa wing (Italian Renaissance), Winged Victory, and the Egyptian antiquities. Budget 3\u20134 hours minimum."
+        },
+        {
+          "title": "Provence: Lavender Fields & Villages",
+          "snippet": "Visit in late June through mid-July when the lavender is in peak bloom. The Luberon villages \u2014 Gordes, Roussillon, Bonnieux \u2014 are achingly beautiful."
+        },
+        {
+          "title": "Mont Saint-Michel",
+          "snippet": "A medieval abbey on a tidal island in Normandy. It looks like a fantasy painting and is one of France's most visited landmarks. Go at high tide when the island is completely surrounded by water."
+        },
+        {
+          "title": "French Riviera: Nice, Monaco & Cannes",
+          "snippet": "The Promenade des Anglais in Nice, the Casino de Monte-Carlo in Monaco, and the Croisette in Cannes \u2014 the C\u00f4te d'Azur is European glamour distilled."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 0,
+        "3": 1,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "10": 2,
+        "11": 1,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "goa",
+      "name": "Goa",
+      "guide_url": "/travel/goa",
+      "group": "india",
+      "region": "India \u2014 West Coast",
+      "best_months": [
+        11,
+        12,
+        1,
+        2
+      ],
+      "peak_months": [
+        12,
+        1
+      ],
+      "season_note": "Dry, sunny winter season; monsoon (Jun\u2013Sep) shuts most beach shacks.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Old Goa Churches",
+          "snippet": "The Basilica of Bom Jesus, a UNESCO World Heritage Site, holds the remains of St. Francis Xavier. Se Cathedral next door is the largest church in Asia."
+        },
+        {
+          "title": "Palolem Beach, South Goa",
+          "snippet": "A crescent of sand lined with colourful beach huts and coconut palms. South Goa is quieter, cleaner, and more family-friendly than the north."
+        },
+        {
+          "title": "Fontainhas Latin Quarter, Panaji",
+          "snippet": "Narrow streets lined with pastel-painted Portuguese houses, art galleries, and bakeries selling bebinca. Walking through Fontainhas feels like Lisbon transplanted to the tropics."
+        },
+        {
+          "title": "Dudhsagar Falls",
+          "snippet": "A four-tiered waterfall plunging 310 metres through lush jungle on the Goa-Karnataka border. Best visited during monsoon (July\u2013September) when the falls are at full force."
+        },
+        {
+          "title": "Saturday Night Market, Arpora",
+          "snippet": "A sprawling bazaar with live music, international food stalls, handicraft vendors, and a party atmosphere. It runs only on Saturdays from November to April."
+        }
+      ],
+      "photo_count": 12,
+      "hero_image": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/goa-1.jpg",
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 1,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 1,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "greece",
+      "name": "Greece",
+      "guide_url": "/travel/greece",
+      "group": "international",
+      "region": "Europe",
+      "best_months": [
+        5,
+        6,
+        7,
+        9,
+        10
+      ],
+      "peak_months": [
+        7,
+        8
+      ],
+      "season_note": "Islands are best late May\u2013early Oct; July\u2013August is peak-price.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Santorini Sunset at Oia",
+          "snippet": "Position yourself at the castle ruins in Oia by 6 PM. The sunset here is objectively one of the best in the world. Stay in a cave hotel in Fira or Oia for the full caldera view."
+        },
+        {
+          "title": "Athens: Acropolis & Parthenon",
+          "snippet": "The Acropolis is to Greece what the Taj Mahal is to India \u2014 the one thing you cannot skip. Visit at opening (8 AM) or late afternoon to avoid midday heat."
+        },
+        {
+          "title": "Mykonos: Beaches & Little Venice",
+          "snippet": "The party island of Greece, but also genuinely beautiful. Little Venice's waterfront bars at sunset, the iconic windmills, and Paradise Beach are the highlights."
+        },
+        {
+          "title": "Meteora Monasteries",
+          "snippet": "Six Byzantine monasteries perched on towering rock pillars in central Greece. Less visited than the islands but equally jaw-dropping. A day trip from Kalabaka \u2014 hire a driver or join a sunrise tour."
+        },
+        {
+          "title": "Crete: Samaria Gorge & Elafonisi Beach",
+          "snippet": "Greece's largest island has its own mountain range, its own cuisine, and Europe's longest gorge hike (16 km)."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 1,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 1,
+        "9": 2,
+        "10": 2,
+        "11": 1,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "hawaii",
+      "name": "Hawaii",
+      "guide_url": "/travel/hawaii",
+      "group": "usa",
+      "region": "US \u2014 Hawaii",
+      "best_months": [
+        4,
+        5,
+        6,
+        9,
+        10,
+        11,
+        12
+      ],
+      "peak_months": [
+        12,
+        7
+      ],
+      "season_note": "Great most of the year; whale season Dec\u2013Apr, surf peaks in winter.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "N\u0101 Pali Coast, Kauai",
+          "snippet": "By boat, helicopter, or the Kalalau Trail, the N\u0101 Pali Coast is Hawaii's most dramatic scenery. Towering emerald cliffs plunging into sapphire ocean."
+        },
+        {
+          "title": "Haleakal\u0101 Sunrise, Maui",
+          "snippet": "Watch the sunrise from 10,023 feet above the clouds inside a dormant volcanic crater. Reserve a spot in advance (required by the National Park Service)."
+        },
+        {
+          "title": "Waikiki Beach & Diamond Head, Oahu",
+          "snippet": "The most famous beach in the Pacific. Waikiki is perfect for families \u2014 gentle waves, warm water, and surfing lessons everywhere."
+        },
+        {
+          "title": "Volcanoes National Park, Big Island",
+          "snippet": "Walk across a live volcanic landscape. The K\u012blauea caldera, steam vents, and lava tubes are otherworldly."
+        },
+        {
+          "title": "Snorkelling at Molokini Crater, Maui",
+          "snippet": "A partially submerged volcanic crater forms a natural crescent that shelters some of the clearest water in Hawaii. Visibility can reach 150 feet."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 1,
+        "2": 0,
+        "3": 1,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "10": 2,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "himachal-pradesh",
+      "name": "Himachal Pradesh",
+      "guide_url": "/travel/himachal-pradesh",
+      "group": "india",
+      "region": "India \u2014 Himalayas",
+      "best_months": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11
+      ],
+      "peak_months": [
+        5,
+        6
+      ],
+      "season_note": "Spring and autumn are clearest; avoid Jul\u2013Aug monsoon landslides.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Rohtang Pass & Atal Tunnel",
+          "snippet": "The 10-km Atal Tunnel (opened 2020) connects Manali to Lahaul-Spiti, making what was once a dangerous seasonal road into a year-round route."
+        },
+        {
+          "title": "Old Manali & Solang Valley",
+          "snippet": "Old Manali has evolved from a backpacker village into a vibrant caf\u00e9 and culture scene. Solang Valley offers paragliding, zorbing, and skiing in winter. The Beas River runs through everything."
+        },
+        {
+          "title": "McLeod Ganj & Tsuglagkhang Complex",
+          "snippet": "Visit the Dalai Lama's residence and the Tibetan museum. The Bhagsu Waterfall trail is an easy 45-minute walk."
+        },
+        {
+          "title": "Shimla Ridge & Mall Road",
+          "snippet": "The former summer capital of British India still carries that colonial charm. Walk the Ridge at sunset, visit Christ Church, and take the heritage toy train from Kalka to Shimla \u2014 a UNESCO World He\u2026"
+        },
+        {
+          "title": "Kasol & Kheerganga Trek",
+          "snippet": "The Parvati Valley draws both adventure seekers and those looking for solitude. Kasol is the base camp. The Kheerganga trek (12 km one way) ends at natural hot springs at 3,050 metres."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 1,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "10": 2,
+        "11": 2,
+        "12": 1
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "iceland",
+      "name": "Iceland",
+      "guide_url": "/travel/iceland",
+      "group": "international",
+      "region": "Europe",
+      "best_months": [
+        2,
+        3,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "peak_months": [
+        7
+      ],
+      "season_note": "Summer for the full ring road; Sep\u2013Oct and Feb\u2013Mar for auroras with daylight.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "The Golden Circle",
+          "snippet": "This 300-kilometre loop from Reykjavik covers the three essentials: Thingvellir National Park (where the Eurasian and North American plates meet), the Geysir geothermal area (where Strokkur erupts eve."
+        },
+        {
+          "title": "Blue Lagoon",
+          "snippet": "The milky-blue geothermal pool set in a black lava field is Iceland's most famous image. The Comfort package starts at $75 (includes entry, silica mud mask, and one drink)."
+        },
+        {
+          "title": "South Coast Waterfalls & Black Sand Beach",
+          "snippet": "Drive the Ring Road south from Reykjavik to hit Seljalandsfoss (walk behind it), Sk\u00f3gafoss (climb the 527 steps beside it), and Reynisfjara black sand beach with its hexagonal basalt columns."
+        },
+        {
+          "title": "Glacier Hiking on S\u00f3lheimaj\u00f6kull",
+          "snippet": "Walk on an actual glacier tongue with crampons and an ice axe. Guided tours run about $85\u2013100 for 3 hours. No experience needed, but you must be reasonably fit."
+        },
+        {
+          "title": "Northern Lights (September\u2013March)",
+          "snippet": "Reykjavik's light pollution is manageable but driving 30 minutes outside the city dramatically improves visibility. Guided tours run $60\u201380 and include hot chocolate and blankets."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 1,
+        "2": 2,
+        "3": 2,
+        "4": 1,
+        "5": 1,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 2,
+        "11": 1,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "italy",
+      "name": "Italy",
+      "guide_url": "/travel/italy",
+      "group": "international",
+      "region": "Europe",
+      "best_months": [
+        4,
+        5,
+        6,
+        9,
+        10
+      ],
+      "peak_months": [
+        6,
+        7,
+        8
+      ],
+      "season_note": "Shoulder months have the weather without the peak crowds.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Rome: Colosseum, Vatican & Trastevere",
+          "snippet": "The Colosseum, Roman Forum, and Palatine Hill are a single ticket. Book skip-the-line at the Vatican \u2014 the Sistine Chapel is overwhelming in person."
+        },
+        {
+          "title": "Florence: Uffizi & Duomo",
+          "snippet": "The Uffizi Gallery houses Botticelli's Birth of Venus and the greatest collection of Renaissance art on earth. Climb the Duomo for panoramic views."
+        },
+        {
+          "title": "Venice: Grand Canal & St. Mark's",
+          "snippet": "Take the vaporetto (water bus) down the Grand Canal instead of an overpriced gondola. Visit St. Mark's Basilica early to avoid queues."
+        },
+        {
+          "title": "Amalfi Coast Drive",
+          "snippet": "Rent a car or take the SITA bus from Sorrento to Amalfi via Positano. The cliffside road is terrifying and magnificent. Stop in Ravello for the gardens and views. Eat fresh seafood in Amalfi town."
+        },
+        {
+          "title": "Cinque Terre Coastal Walk",
+          "snippet": "Five colourful fishing villages connected by cliffside hiking trails along the Ligurian coast. The Monterosso-to-Vernazza trail is the best. Take the train between villages when legs give out."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 0,
+        "3": 1,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "10": 2,
+        "11": 1,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "jamaica",
+      "name": "Jamaica",
+      "guide_url": "/travel/jamaica",
+      "group": "international",
+      "region": "Mexico & Caribbean",
+      "best_months": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "peak_months": [
+        12,
+        3
+      ],
+      "season_note": "Dry season Nov\u2013Apr; rains build from May.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Dunn's River Falls, Ocho Rios",
+          "snippet": "A 600-foot terraced waterfall that you climb from bottom to top, hand-in-hand with other climbers, while water cascades around you. It is exactly as exhilarating as it sounds."
+        },
+        {
+          "title": "Bob Marley Museum, Kingston",
+          "snippet": "The former home and recording studio of Bob Marley, now a museum that traces his life from Trenchtown to global icon."
+        },
+        {
+          "title": "Blue Mountain Coffee Tour",
+          "snippet": "Jamaica's Blue Mountains produce some of the world's most expensive coffee, and a visit to a working plantation is a highlight."
+        },
+        {
+          "title": "Seven Mile Beach, Negril",
+          "snippet": "One of the Caribbean's most celebrated stretches of sand \u2014 actually closer to four miles, but who's counting. The water is calm, warm, and impossibly turquoise."
+        },
+        {
+          "title": "Martha Brae River Rafting",
+          "snippet": "A 3-mile raft ride down the Martha Brae River on a 30-foot bamboo raft poled by a local guide. The trip takes about 90 minutes and costs $65\u201375 per person (two per raft)."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 1,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "japan",
+      "name": "Japan",
+      "guide_url": "/travel/japan",
+      "group": "international",
+      "region": "East Asia",
+      "best_months": [
+        3,
+        4,
+        5,
+        10,
+        11
+      ],
+      "peak_months": [
+        4,
+        11
+      ],
+      "season_note": "Cherry blossom (late Mar\u2013Apr) and autumn colours (Nov) are the peaks.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Tokyo: Shibuya, Shinjuku & Senso-ji",
+          "snippet": "Watch the world's busiest intersection at Shibuya Crossing from the Starbucks above. Explore Shinjuku's neon-lit alleys and Golden Gai's tiny six-seat bars."
+        },
+        {
+          "title": "Kyoto: Fushimi Inari & Arashiyama",
+          "snippet": "Ten thousand vermillion torii gates winding up Mount Inari is Japan's most photographed sight. Arashiyama's bamboo grove and the golden Kinkaku-ji temple are equally mandatory."
+        },
+        {
+          "title": "Osaka: Street Food Capital",
+          "snippet": "D\u014dtonbori is Japan's greatest food street. Takoyaki (octopus balls), okonomiyaki (savoury pancakes), and gyoza are all must-eats."
+        },
+        {
+          "title": "Hiroshima Peace Memorial & Miyajima Island",
+          "snippet": "The Peace Memorial Museum is sobering and essential. Combine with a ferry to Miyajima Island to see the floating torii gate of Itsukushima Shrine \u2014 one of Japan's most iconic images."
+        },
+        {
+          "title": "Mount Fuji & Hakone",
+          "snippet": "On a clear day, Mount Fuji from Hakone's Lake Ashi is the quintessential Japan photo."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 1,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 1,
+        "7": 0,
+        "8": 0,
+        "9": 1,
+        "10": 2,
+        "11": 2,
+        "12": 1
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "karnataka",
+      "name": "Karnataka",
+      "guide_url": "/travel/karnataka",
+      "group": "india",
+      "region": "India \u2014 South",
+      "best_months": [
+        10,
+        11,
+        12,
+        1,
+        2
+      ],
+      "peak_months": [
+        12
+      ],
+      "season_note": "Bengaluru is mild year-round; Hampi and Coorg shine Oct\u2013Feb.",
+      "cheapest_month": {
+        "month": 3,
+        "year": 2027,
+        "price_min": 948,
+        "route": "SFO-BLR",
+        "weeks": 2,
+        "source": "fare data"
+      },
+      "fare_from": {
+        "price_min": 948,
+        "route": "SFO-BLR",
+        "origin_metro": "Bay Area",
+        "dest_metro": "Bengaluru",
+        "date_range": "2027-03-09 \u2192 2027-03-23",
+        "weeks": 2,
+        "as_of": "2026-10-15"
+      },
+      "highlights": [
+        {
+          "title": "Hampi \u2014 The Ruined Empire",
+          "snippet": "Wandering through the boulder-strewn ruins of the Vijayanagara Empire is a genuinely surreal experience."
+        },
+        {
+          "title": "Mysore Palace at Night",
+          "snippet": "Visit the palace during the day for the interiors, but come back on a Sunday evening (or during Dasara) when 100,000 light bulbs illuminate the fa\u00e7ade. Entry is \u20b9200 for adults."
+        },
+        {
+          "title": "Coorg Coffee Estate Stays",
+          "snippet": "Stay at a working coffee plantation in Madikeri or Kushalnagar and wake up to the smell of arabica drying in the sun."
+        },
+        {
+          "title": "Gokarna Beach Trek",
+          "snippet": "Skip the overcrowded Goa beaches and head to Gokarna instead. The cliff trail from Kudle Beach to Half Moon Beach to Paradise Beach is one of India's best coastal hikes \u2014 roughly 3 hours, moderate \u2026"
+        },
+        {
+          "title": "Murdeshwar & Murudeshwar Temple",
+          "snippet": "The 123-foot Shiva statue overlooking the Arabian Sea is dramatic even by Indian standards. Take the elevator up the 20-story Raja Gopura for panoramic views (\u20b920)."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 1,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 1,
+        "10": 2,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "tracked",
+        "guide_highlights": 5,
+        "notes": []
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 100,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": 0,
+            "max": 30,
+            "reason": "Fare route tracked, no notable drop right now"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "kashmir",
+      "name": "Kashmir",
+      "guide_url": "/travel/kashmir",
+      "group": "india",
+      "region": "India \u2014 Himalayas",
+      "best_months": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "peak_months": [
+        5,
+        6
+      ],
+      "season_note": "Spring blossom to autumn chinar colours; houseboats Apr\u2013Oct.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Dal Lake Houseboat Stay, Srinagar",
+          "snippet": "Spend at least two nights on a heritage houseboat. The Deluxe and Heritage categories feature carved walnut wood interiors, four-course Wazwan dinners on the boat, and shikara rides to the floating\u2026"
+        },
+        {
+          "title": "Gulmarg Gondola",
+          "snippet": "One of the highest cable cars in the world. The first phase takes you to Kongdori, the second to 3,950 metres \u2014 where in winter you ski, and in summer you walk through wildflower meadows with Nanga\u2026"
+        },
+        {
+          "title": "Pahalgam & Betaab Valley",
+          "snippet": "Named after the Sunny Deol film, Betaab Valley is absurdly photogenic. Pahalgam is also the base camp for the Amarnath Yatra. River rafting on the Lidder River is excellent April through June."
+        },
+        {
+          "title": "Mughal Gardens, Srinagar",
+          "snippet": "Shalimar Bagh, Nishat Bagh, and Chashme Shahi are the three great Mughal gardens. Visit all three in a single morning \u2014 they are minutes apart."
+        },
+        {
+          "title": "Sonamarg & Thajiwas Glacier",
+          "snippet": "The \"Meadow of Gold\" sits at 2,740 metres and serves as the gateway to Ladakh via the Zoji La pass. A pony ride to Thajiwas Glacier takes 90 minutes and the glacier is accessible even in summer."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 0,
+        "3": 1,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 2,
+        "11": 1,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "kenya",
+      "name": "Kenya",
+      "guide_url": "/travel/kenya",
+      "group": "international",
+      "region": "Africa",
+      "best_months": [
+        1,
+        2,
+        7,
+        8,
+        9,
+        10
+      ],
+      "peak_months": [
+        8
+      ],
+      "season_note": "Great Migration in the Maasai Mara Jul\u2013Oct; dry Jan\u2013Feb is also excellent.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Masai Mara National Reserve (Great Migration)",
+          "snippet": "The centerpiece of any Kenya safari. From July to October, over 1.5 million wildebeest and 200,000 zebra cross from Tanzania's Serengeti into the Mara, facing crocodile-infested river crossings tha\u2026"
+        },
+        {
+          "title": "Amboseli National Park",
+          "snippet": "Famous for its iconic view of elephants with Mount Kilimanjaro as a backdrop. Amboseli has the largest free-ranging elephant herds in Kenya \u2014 families of 50+ elephants moving through the savanna ar\u2026"
+        },
+        {
+          "title": "Nairobi National Park",
+          "snippet": "The only national park in the world inside a capital city. Lions, rhinos, giraffes, and buffalo roam against the backdrop of Nairobi's skyline \u2014 a surreal juxtaposition."
+        },
+        {
+          "title": "David Sheldrick Wildlife Trust, Nairobi",
+          "snippet": "Visit the world's most successful orphan elephant rescue program. Every morning at 11 AM, baby elephants are brought out for feeding and mud-bathing while keepers explain each orphan's rescue story."
+        },
+        {
+          "title": "Lake Nakuru National Park",
+          "snippet": "Once famous for its millions of flamingos (numbers have fluctuated due to water levels), Lake Nakuru remains excellent for rhino sightings \u2014 both black and white rhino are protected here."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 1,
+        "4": 0,
+        "5": 0,
+        "6": 1,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 2,
+        "11": 1,
+        "12": 1
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "kerala",
+      "name": "Kerala",
+      "guide_url": "/travel/kerala",
+      "group": "india",
+      "region": "India \u2014 South",
+      "best_months": [
+        10,
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "peak_months": [
+        12,
+        1
+      ],
+      "season_note": "Post-monsoon green and cool; peak over Christmas\u2013New Year.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Alleppey Houseboat, Backwaters",
+          "snippet": "Glide through Kerala's famous backwater canals on a traditional kettuvallam. Book a two-bedroom boat with a private cook who will prepare fresh karimeen (pearl spot fish) and appam."
+        },
+        {
+          "title": "Munnar Tea Plantations",
+          "snippet": "Rolling emerald hills carpeted in tea bushes as far as the eye can see. Visit the Tata Tea Museum, then hike to Top Station for panoramic views."
+        },
+        {
+          "title": "Periyar Wildlife Sanctuary, Thekkady",
+          "snippet": "Spot wild elephants from a bamboo raft on Periyar Lake. The border-hiking trail with a tribal guide is the best way to see the forest up close."
+        },
+        {
+          "title": "Fort Kochi Heritage Walk",
+          "snippet": "Portuguese churches, Dutch cemeteries, Chinese fishing nets, Jewish synagogues, and spice warehouses, all within walking distance."
+        },
+        {
+          "title": "Varkala Cliff Beach",
+          "snippet": "Red laterite cliffs dropping straight to the Arabian Sea. Far less commercial than Goa, with excellent seafood shacks along the cliff edge. The Janardanaswamy Temple nearby is over 2,000 years old."
+        }
+      ],
+      "photo_count": 12,
+      "hero_image": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-1.jpg",
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 1,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 1,
+        "10": 2,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "london",
+      "name": "London",
+      "guide_url": "/travel/london",
+      "group": "international",
+      "region": "Europe",
+      "best_months": [
+        4,
+        5,
+        6,
+        7,
+        9
+      ],
+      "peak_months": [
+        7,
+        12
+      ],
+      "season_note": "Late spring to early autumn; long June evenings are the highlight.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Southall & Brick Lane",
+          "snippet": "London's two great Indian neighbourhoods offer different flavours. Southall in West London is Punjabi Britain \u2014 gold shops, gurdwaras, and some of the best butter chicken outside Chandni Chowk."
+        },
+        {
+          "title": "British Museum & V&A",
+          "snippet": "The British Museum's South Asian galleries hold Gandharan Buddhas, Mughal miniatures, and the Amaravati marbles."
+        },
+        {
+          "title": "West End Theatre",
+          "snippet": "London's theatre scene rivals Broadway at half the price. Day-of-show tickets at the TKTS booth in Leicester Square run \u00a320\u201340 for major productions."
+        },
+        {
+          "title": "Borough Market & Dishoom",
+          "snippet": "Borough Market is London's great food hall, perfect for Saturday morning grazing. Then book Dishoom, the Bombay-caf\u00e9-inspired restaurant that has become a London institution."
+        },
+        {
+          "title": "Day Trip to Oxford or Bath",
+          "snippet": "Both are 90 minutes by train from Paddington. Oxford offers the university colleges, Bodleian Library, and Ashmolean Museum."
+        }
+      ],
+      "photo_count": 12,
+      "hero_image": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-1.jpg",
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 0,
+        "3": 1,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 1,
+        "9": 2,
+        "10": 1,
+        "11": 0,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "maldives",
+      "name": "Maldives",
+      "guide_url": "/travel/maldives",
+      "group": "international",
+      "region": "Indian Ocean",
+      "best_months": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "peak_months": [
+        12,
+        1,
+        2
+      ],
+      "season_note": "Dry northeast-monsoon season; best visibility for diving Jan\u2013Mar.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Overwater Villa Stay",
+          "snippet": "The defining Maldives experience. Glass floors to watch reef sharks glide beneath you, private decks with direct ocean access, and sunsets that look digitally enhanced."
+        },
+        {
+          "title": "Snorkelling with Manta Rays, Baa Atoll",
+          "snippet": "UNESCO Biosphere Reserve where manta rays gather between June and November. Hanifaru Bay is the single best manta snorkelling site on earth."
+        },
+        {
+          "title": "Mal\u00e9 Fish Market & Hukuru Miskiiy",
+          "snippet": "Skip the resort bubble for a morning. Mal\u00e9's fish market at dawn is a sensory explosion."
+        },
+        {
+          "title": "Sunset Dolphin Cruise",
+          "snippet": "Nearly every resort offers an evening dhoni cruise to spot spinner dolphins. They travel in pods of fifty or more, leaping and spinning alongside the boat."
+        },
+        {
+          "title": "Private Sandbank Picnic",
+          "snippet": "Your resort can arrange a transfer to an uninhabited sandbank \u2014 literally a strip of white sand in open ocean with a cooler of champagne and a snorkel set."
+        }
+      ],
+      "photo_count": 12,
+      "hero_image": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-1.jpg",
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 1,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "mexico",
+      "name": "Mexico",
+      "guide_url": "/travel/mexico",
+      "group": "international",
+      "region": "Mexico & Caribbean",
+      "best_months": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "peak_months": [
+        11,
+        12
+      ],
+      "season_note": "Mexico City is best Mar\u2013May and for Day of the Dead (early Nov).",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Mexico City Historic Centre & Teotihuac\u00e1n",
+          "snippet": "The Z\u00f3calo, one of the world's largest public squares, anchors a colonial centre built on Aztec ruins. The Templo Mayor excavation sits next to the cathedral."
+        },
+        {
+          "title": "Oaxaca Food & Mezcal",
+          "snippet": "Mexico's culinary capital. Take a cooking class to learn mole negro (a sauce with 30+ ingredients), eat tlayudas at the Mercado 20 de Noviembre, and visit a mezcal distillery in the surrounding val\u2026"
+        },
+        {
+          "title": "Chich\u00e9n Itz\u00e1 & Cenotes, Yucat\u00e1n",
+          "snippet": "The great Maya pyramid of Kukulk\u00e1n is one of the New Seven Wonders of the World. Visit early morning to beat tour buses. Afterward, swim in a cenote \u2014 Ik Kil and Suytun are nearby."
+        },
+        {
+          "title": "Tulum Beach Ruins",
+          "snippet": "The only major Maya ruin overlooking the Caribbean Sea. The clifftop temples against turquoise water is one of Mexico's most photographed scenes."
+        },
+        {
+          "title": "San Miguel de Allende",
+          "snippet": "A colonial hill town that Cond\u00e9 Nast Traveler readers have repeatedly voted the world's best city. Cobblestone streets, Baroque churches, rooftop bars, and a thriving expat art scene."
+        }
+      ],
+      "photo_count": 12,
+      "hero_image": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-1.jpg",
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 1,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 1,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "morocco",
+      "name": "Morocco",
+      "guide_url": "/travel/morocco",
+      "group": "international",
+      "region": "North Africa & Middle East",
+      "best_months": [
+        3,
+        4,
+        5,
+        10,
+        11
+      ],
+      "peak_months": [
+        4,
+        10
+      ],
+      "season_note": "Spring and autumn; the Sahara is best Oct\u2013Apr.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Jemaa el-Fnaa, Marrakech",
+          "snippet": "The most famous public square in Africa comes alive at dusk: snake charmers, henna artists, acrobats, storytellers, and rows of food stalls serving everything from snail soup to fresh-squeezed orange ."
+        },
+        {
+          "title": "Fez Medina (Fes el-Bali)",
+          "snippet": "The world's largest car-free urban area, a 1,200-year-old labyrinth of 9,000 streets where donkeys are still the primary mode of transport."
+        },
+        {
+          "title": "Sahara Desert \u2014 Merzouga & Erg Chebbi",
+          "snippet": "A night in the Sahara is a rite of passage. Ride a camel into the Erg Chebbi dunes at sunset, dine under the stars at a desert camp, and wake to a sunrise that paints the sand in shades of pink, go\u2026"
+        },
+        {
+          "title": "Chefchaouen \u2014 The Blue Pearl",
+          "snippet": "A mountain town in the Rif where every building, alley, and staircase is painted in shades of blue."
+        },
+        {
+          "title": "Hassan II Mosque, Casablanca",
+          "snippet": "The third-largest mosque in the world, built on a promontory over the Atlantic Ocean. The minaret is 210 meters tall \u2014 the tallest religious structure in the world."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 1,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 1,
+        "7": 0,
+        "8": 0,
+        "9": 1,
+        "10": 2,
+        "11": 2,
+        "12": 1
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 58,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 20,
+            "reason": "Peak demand month \u2014 expect top prices and crowds"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "national-parks",
+      "name": "US National Parks",
+      "guide_url": "/travel/national-parks",
+      "group": "usa",
+      "region": "US \u2014 National Parks",
+      "best_months": [
+        5,
+        6,
+        9,
+        10
+      ],
+      "peak_months": [
+        7
+      ],
+      "season_note": "Shoulder months beat the summer crowds at most major parks.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Grand Canyon South Rim, Arizona",
+          "snippet": "The first time you see it, your brain genuinely cannot process the scale. Arrive at Mather Point for sunrise \u2014 it is 15 steps from the parking lot and the canyon explodes in orange and gold."
+        },
+        {
+          "title": "Yellowstone, Wyoming/Montana",
+          "snippet": "Old Faithful erupts every 90 minutes and is worth the wait, but the real magic is the Grand Prismatic Spring \u2014 a 370-foot hot spring in psychedelic blues, oranges, and greens."
+        },
+        {
+          "title": "Zion National Park, Utah",
+          "snippet": "The Narrows hike takes you ankle-to-waist-deep through the Virgin River between 1,000-foot canyon walls. Rent water shoes and a walking stick at Zion Outfitter near the entrance ($30)."
+        },
+        {
+          "title": "Yosemite, California",
+          "snippet": "Half Dome and El Capitan are the headliners, but Yosemite Valley in spring, when the waterfalls are at full force, is nature at its most dramatic."
+        },
+        {
+          "title": "Glacier National Park, Montana",
+          "snippet": "Going-to-the-Sun Road is the most spectacular drive in America \u2014 50 miles of hairpin turns along cliff edges with glacial lakes below. The road is only fully open mid-June through mid-October."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 1,
+        "5": 2,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "10": 2,
+        "11": 1,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "new-york-city",
+      "name": "New York City",
+      "guide_url": "/travel/new-york-city",
+      "group": "usa",
+      "region": "US \u2014 East Coast",
+      "best_months": [
+        4,
+        5,
+        6,
+        9,
+        10,
+        11
+      ],
+      "peak_months": [
+        10,
+        12
+      ],
+      "season_note": "Spring and autumn are peak NYC \u2014 foliage mid-Oct to early Nov.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Jackson Heights Food Crawl, Queens",
+          "snippet": "Start at 74th Street and Roosevelt Avenue and eat your way through the subcontinent. Samosas at Raja Sweets, chaat at Kabab King, dosas at Chennai Garden, and momos at Lhasa Fast Food."
+        },
+        {
+          "title": "Statue of Liberty & Ellis Island",
+          "snippet": "Reserve pedestal or crown access tickets well in advance at statuecruises.com ($24 for pedestal, $24.50 for crown)."
+        },
+        {
+          "title": "Central Park",
+          "snippet": "The park is 843 acres and deserves more than a quick walk-through. Rent a rowboat at the Loeb Boathouse ($20/hour), visit the Bethesda Fountain, walk through the Ramble (the forested section), and \u2026"
+        },
+        {
+          "title": "The Metropolitan Museum of Art",
+          "snippet": "One of the greatest museums on Earth. The admission is technically \"suggested\" ($30) but you can pay what you wish if you are a New York State resident."
+        },
+        {
+          "title": "Broadway Show",
+          "snippet": "A quintessential New York experience. Full-price tickets run $100\u2013300, but the TKTS booth in Times Square sells same-day tickets at 20\u201350% off \u2014 arrive by 2 PM for matinee shows or 6 PM for evening."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 0,
+        "3": 1,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "10": 2,
+        "11": 2,
+        "12": 1
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 58,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 20,
+            "reason": "Peak demand month \u2014 expect top prices and crowds"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "new-zealand",
+      "name": "New Zealand",
+      "guide_url": "/travel/new-zealand",
+      "group": "international",
+      "region": "Oceania",
+      "best_months": [
+        12,
+        1,
+        2,
+        3
+      ],
+      "peak_months": [
+        12,
+        1
+      ],
+      "season_note": "Southern summer Dec\u2013Feb; March is quieter with settled weather.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Milford Sound Cruise, Fiordland",
+          "snippet": "Sheer granite walls rising 1,200 metres from dark fjord waters, waterfalls tumbling from hanging valleys, and dolphins riding the bow wave."
+        },
+        {
+          "title": "Tongariro Alpine Crossing",
+          "snippet": "A 19.4-kilometre day hike across volcanic terrain \u2014 emerald crater lakes, red craters, steaming vents, and views stretching to both coasts."
+        },
+        {
+          "title": "Queenstown Adventure",
+          "snippet": "The self-proclaimed adventure capital of the world. Bungee jumping at Kawarau Bridge (the original commercial site), jet boating through Shotover Canyon, and skiing at Remarkables or Coronet Peak i\u2026"
+        },
+        {
+          "title": "Rotorua Geothermal & M\u0101ori Culture",
+          "snippet": "Boiling mud pools, erupting geysers, and sulphurous steam vents at Te Puia and Wai-O-Tapu."
+        },
+        {
+          "title": "Abel Tasman Coastal Track, South Island",
+          "snippet": "Golden sand beaches, turquoise coves, and native bush accessible only by foot or water taxi."
+        }
+      ],
+      "photo_count": 12,
+      "hero_image": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-1.jpg",
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 1,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 1,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 15,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 10,
+            "max": 50,
+            "reason": "Off season this month"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 5,
+            "max": 20,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "northeast-india",
+      "name": "Northeast India",
+      "guide_url": "/travel/northeast-india",
+      "group": "india",
+      "region": "India \u2014 Northeast",
+      "best_months": [
+        10,
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "peak_months": [
+        12
+      ],
+      "season_note": "Dry season; Hornbill Festival in early December.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Living Root Bridges, Meghalaya",
+          "snippet": "The double-decker root bridge at Nongriat village near Cherrapunji requires a 3,500-step descent (and ascent), but it is one of India's most extraordinary sights \u2014 a bridge grown from the aerial roots."
+        },
+        {
+          "title": "Kaziranga National Park, Assam",
+          "snippet": "Home to two-thirds of the world's one-horned rhinoceros population, Kaziranga is India's answer to an African safari but without the price tag."
+        },
+        {
+          "title": "Gangtok & Tsomgo Lake, Sikkim",
+          "snippet": "Gangtok is a beautifully maintained hill town with sweeping views of Kanchenjunga, the world's third-highest peak."
+        },
+        {
+          "title": "Tawang Monastery, Arunachal Pradesh",
+          "snippet": "The second-largest Buddhist monastery in the world after Lhasa's Potala Palace sits at 10,000 feet in the remote western corner of Arunachal Pradesh."
+        },
+        {
+          "title": "Mawlynnong & Dawki, Meghalaya",
+          "snippet": "Mawlynnong was declared Asia's cleanest village, and it genuinely lives up to the title."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 1,
+        "10": 2,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "oman",
+      "name": "Oman",
+      "guide_url": "/travel/oman",
+      "group": "international",
+      "region": "Middle East",
+      "best_months": [
+        10,
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "peak_months": [
+        12
+      ],
+      "season_note": "Cool season for wadis and desert camps; Salalah's khareef is Jun\u2013Aug.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Sultan Qaboos Grand Mosque, Muscat",
+          "snippet": "One of the most beautiful mosques in the world, and one of the few in the Gulf open to non-Muslim visitors (Saturday\u2013Thursday, 8 AM\u201311 AM)."
+        },
+        {
+          "title": "Wadi Shab",
+          "snippet": "A stunning canyon hike that ends at an emerald pool fed by a waterfall hidden inside a cave."
+        },
+        {
+          "title": "Musandam Peninsula (Dhow Cruise)",
+          "snippet": "Often called the \"Norway of Arabia,\" Musandam's limestone fjords (khors) plunge into deep blue water."
+        },
+        {
+          "title": "Nizwa Fort & Souq",
+          "snippet": "The cultural heart of interior Oman, Nizwa was once the capital. The 17th-century fort has a massive round tower with views across the date palm oasis."
+        },
+        {
+          "title": "Jebel Akhdar (Green Mountain)",
+          "snippet": "A 2,000-meter-high plateau in the Al Hajar mountains, known for rose gardens, terraced orchards, and a cool climate that defies Gulf expectations."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 1,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 1,
+        "10": 2,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "portugal",
+      "name": "Portugal",
+      "guide_url": "/travel/portugal",
+      "group": "international",
+      "region": "Europe",
+      "best_months": [
+        5,
+        6,
+        9,
+        10
+      ],
+      "peak_months": [
+        7,
+        8
+      ],
+      "season_note": "May\u2013Jun and Sep\u2013Oct are warm, bright and less crowded.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Tram 28 Through Alfama, Lisbon",
+          "snippet": "This iconic yellow tram rattles through Lisbon's oldest neighbourhood, past the S\u00e9 Cathedral and through streets so narrow you could touch the buildings on both sides."
+        },
+        {
+          "title": "Past\u00e9is de Bel\u00e9m",
+          "snippet": "The original past\u00e9is de nata (custard tarts) have been made from a secret recipe since 1837. The factory caf\u00e9 in Bel\u00e9m serves over 20,000 tarts daily."
+        },
+        {
+          "title": "Douro Valley Wine Tour from Porto",
+          "snippet": "The terraced vineyards along the Douro River are a UNESCO World Heritage Site. Book a full-day tour from Porto that includes a river cruise, two winery tastings, and lunch for around \u20ac80\u2013120 per pe\u2026"
+        },
+        {
+          "title": "Sintra Day Trip",
+          "snippet": "The Pena Palace looks like a Disney castle painted by a Rajasthani artist \u2014 electric yellow and deep red against green forest hills."
+        },
+        {
+          "title": "Algarve Beaches",
+          "snippet": "The southern coast has sea caves, golden cliffs, and turquoise water that rivals the Maldives. Praia da Marinha and Benagil Cave are the headliners."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 1,
+        "5": 2,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "10": 2,
+        "11": 1,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "puerto-vallarta",
+      "name": "Puerto Vallarta",
+      "guide_url": "/travel/puerto-vallarta",
+      "group": "international",
+      "region": "Mexico & Caribbean",
+      "best_months": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "peak_months": [
+        12,
+        2
+      ],
+      "season_note": "Dry season; whale watching Dec\u2013Mar in Banderas Bay.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Malec\u00f3n Boardwalk",
+          "snippet": "PV's soul lives along this mile-long seaside promenade stretching from the Hotel Zone to the Romantic Zone. Walk it at sunset when the light hits the ocean and the street performers come out."
+        },
+        {
+          "title": "Marietas Islands",
+          "snippet": "A protected national park about 45 minutes by boat from PV, famous for the Hidden Beach (Playa del Amor) \u2014 a beach inside a collapsed volcanic crater accessible by swimming through a short tunnel."
+        },
+        {
+          "title": "Zona Rom\u00e1ntica Food Tour",
+          "snippet": "Puerto Vallarta's Romantic Zone south of the R\u00edo Cuale is the culinary heart of the city. Skip the resort restaurants and eat where locals eat."
+        },
+        {
+          "title": "Whale Watching (December\u2013March)",
+          "snippet": "The Banderas Bay is a breeding ground for humpback whales, and PV is one of the best launch points in the Pacific."
+        },
+        {
+          "title": "Los Arcos Marine Park Snorkeling",
+          "snippet": "A cluster of dramatic granite rock formations rising from the sea, about 15 minutes south of PV by boat. The snorkeling is excellent \u2014 clear water, diverse marine life, and underwater caves."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 1,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "rajasthan",
+      "name": "Rajasthan",
+      "guide_url": "/travel/rajasthan",
+      "group": "india",
+      "region": "India \u2014 West",
+      "best_months": [
+        10,
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "peak_months": [
+        12,
+        1,
+        2
+      ],
+      "season_note": "Desert winter is the season \u2014 summers are dangerously hot.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Amber Fort, Jaipur",
+          "snippet": "Ascend this hilltop fortress by jeep or on foot. The Sheesh Mahal (Mirror Palace) alone is worth the trip."
+        },
+        {
+          "title": "Mehrangarh Fort, Jodhpur",
+          "snippet": "Looming 400 feet above the Blue City, this is arguably India's most impressive fort. The audio guide, narrated by a former maharaja, is exceptional."
+        },
+        {
+          "title": "Lake Pichola Sunset, Udaipur",
+          "snippet": "Take a boat ride during golden hour. The City Palace reflected in the water, Aravalli hills behind, is the most photographed scene in Rajasthan."
+        },
+        {
+          "title": "Jaisalmer Desert Safari",
+          "snippet": "Spend a night at a luxury desert camp in the Thar. Camel rides, traditional Rajasthani folk music under the stars, and a silence so complete it recalibrates your urban brain."
+        },
+        {
+          "title": "Pushkar Bazaar & Brahma Temple",
+          "snippet": "One of the holiest towns in India and home to the only Brahma temple in the world. The lakeside ghats at dawn are profoundly peaceful."
+        }
+      ],
+      "photo_count": 12,
+      "hero_image": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/rajasthan-1.jpg",
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 1,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 1,
+        "10": 2,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "riviera-maya",
+      "name": "Riviera Maya",
+      "guide_url": "/travel/riviera-maya",
+      "group": "international",
+      "region": "Mexico & Caribbean",
+      "best_months": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "peak_months": [
+        12,
+        3
+      ],
+      "season_note": "Dry season Nov\u2013Apr; sargassum is worst in summer.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Tulum Ruins",
+          "snippet": "A 13th-century Mayan fortress perched on a cliff overlooking the Caribbean. The ruins themselves take about an hour to explore, but the real draw is the setting \u2014 turquoise sea below, iguanas sunba\u2026"
+        },
+        {
+          "title": "Cenote Hopping",
+          "snippet": "The Yucat\u00e1n Peninsula sits on a limestone shelf riddled with thousands of cenotes."
+        },
+        {
+          "title": "Xcaret Eco-Archaeological Park",
+          "snippet": "A full-day experience combining an underground river float, snorkeling in a natural inlet, a butterfly pavilion, an aviary, Mayan ruins, and an evening show featuring traditional Mexican music and dan."
+        },
+        {
+          "title": "Chich\u00e9n Itz\u00e1 Day Trip",
+          "snippet": "One of the New Seven Wonders of the World, and about a 2.5-hour drive from most Riviera Maya resorts."
+        },
+        {
+          "title": "Akumal Beach Sea Turtle Snorkeling",
+          "snippet": "Akumal Bay is one of the few places where you can reliably swim alongside wild sea turtles in shallow water."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 1,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "scandinavia",
+      "name": "Scandinavia",
+      "guide_url": "/travel/scandinavia",
+      "group": "international",
+      "region": "Europe",
+      "best_months": [
+        5,
+        6,
+        7,
+        8
+      ],
+      "peak_months": [
+        7
+      ],
+      "season_note": "Midnight-sun summers; aurora season runs Sep\u2013Mar.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Norwegian Fjords Cruise",
+          "snippet": "The Norway in a Nutshell tour from Bergen covers N\u00e6r\u00f8yfjord (UNESCO) and Sognefjord in a single day via train, bus, and ferry."
+        },
+        {
+          "title": "Nyhavn & Tivoli Gardens, Copenhagen",
+          "snippet": "Nyhavn's candy-coloured townhouses along the canal are Instagram perfection. Walk from here to Tivoli Gardens, the world's second-oldest amusement park (opened 1843)."
+        },
+        {
+          "title": "Stockholm's Gamla Stan",
+          "snippet": "The old town dates to the 13th century. Walk the narrow M\u00e5rten Trotzigs Gr\u00e4nd (barely 90 cm wide), visit the Royal Palace (free exterior, $20 interior), and eat at Tradition \u2014 a restaurant serving \u2026"
+        },
+        {
+          "title": "Northern Lights in Troms\u00f8, Norway",
+          "snippet": "Troms\u00f8 is the most accessible aurora viewing spot in the world, reachable by direct flights from Oslo and Stockholm. Season runs September through March."
+        },
+        {
+          "title": "ABBA Museum & Vasa Museum, Stockholm",
+          "snippet": "The ABBA Museum is interactive and surprisingly moving, even if you think you don't care about Swedish pop ($28 entry)."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 1,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 1,
+        "10": 0,
+        "11": 0,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 15,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 10,
+            "max": 50,
+            "reason": "Off season this month"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 5,
+            "max": 20,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "singapore",
+      "name": "Singapore",
+      "guide_url": "/travel/singapore",
+      "group": "international",
+      "region": "Southeast Asia",
+      "best_months": [
+        2,
+        3,
+        4,
+        6,
+        7,
+        9
+      ],
+      "peak_months": [
+        9,
+        12
+      ],
+      "season_note": "Near-equatorial: visit anytime; F1 (Sep) and year-end spike prices.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Gardens by the Bay & Supertree Grove",
+          "snippet": "The Supertree light show at 7:45 PM and 8:45 PM is free and spectacular. The Cloud Forest dome and Flower Dome are worth the entry fee. Budget two hours minimum."
+        },
+        {
+          "title": "Marina Bay Sands & Merlion Park",
+          "snippet": "The rooftop infinity pool is hotel-guests-only, but the SkyPark observation deck is open to all. Walk along the Helix Bridge to Merlion Park for the classic Singapore photo."
+        },
+        {
+          "title": "Hawker Centers",
+          "snippet": "Singapore's hawker centres are UNESCO-recognised. Maxwell Food Centre (near Chinatown) for Hainanese chicken rice, Lau Pa Sat for satay street at night, and Tekka Centre in Little India for the bes\u2026"
+        },
+        {
+          "title": "Sentosa Island",
+          "snippet": "Universal Studios, Adventure Cove Waterpark, the S.E.A. Aquarium, and Siloso Beach packed into one island. Perfect for families with kids. Take the free Sentosa Express monorail from VivoCity mall."
+        },
+        {
+          "title": "Little India & Sri Veeramakaliamman Temple",
+          "snippet": "Walk through the colourful streets of Serangoon Road. Visit the temple, eat at Komala Vilas or Banana Leaf Apolo (legendary fish head curry), and stock up on spices, sarees, and gold at Mustafa Cen\u2026"
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 1,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 2,
+        "7": 2,
+        "8": 1,
+        "9": 2,
+        "10": 1,
+        "11": 0,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "south-africa",
+      "name": "South Africa",
+      "guide_url": "/travel/south-africa",
+      "group": "international",
+      "region": "Africa",
+      "best_months": [
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "peak_months": [
+        8,
+        12
+      ],
+      "season_note": "Dry-season safari May\u2013Sep; Cape Town is best Nov\u2013Mar (see guide).",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Kruger National Park (Self-Drive Safari)",
+          "snippet": "Unlike East African parks where you must hire an expensive guide, Kruger lets you drive your own rental car through the bush."
+        },
+        {
+          "title": "Table Mountain, Cape Town",
+          "snippet": "Take the rotating cable car to the 1,085-meter summit for panoramic views of Cape Town, Robben Island, and the Atlantic. Tickets are R440 ($24) return \u2014 book online to skip the queue."
+        },
+        {
+          "title": "Robben Island",
+          "snippet": "The prison where Nelson Mandela spent 18 of his 27 years of imprisonment. Tours are led by former political prisoners, making this one of the most powerful museum experiences in the world."
+        },
+        {
+          "title": "Cape Winelands \u2014 Stellenbosch & Franschhoek",
+          "snippet": "World-class wine estates just 45 minutes from Cape Town. Stellenbosch has over 200 wineries; Franschhoek is the culinary capital. Wine tastings run R80\u2013150 ($5\u20138) for 5\u20136 wines."
+        },
+        {
+          "title": "The Garden Route",
+          "snippet": "Drive from Cape Town to Port Elizabeth along one of the world's great coastal roads."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 1,
+        "5": 2,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 1,
+        "11": 0,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "spain",
+      "name": "Spain",
+      "guide_url": "/travel/spain",
+      "group": "international",
+      "region": "Europe",
+      "best_months": [
+        4,
+        5,
+        6,
+        9,
+        10
+      ],
+      "peak_months": [
+        7,
+        8
+      ],
+      "season_note": "Spring and autumn; August is hot and crowded on the coasts.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Sagrada Familia, Barcelona",
+          "snippet": "Gaud\u00ed's unfinished masterpiece has been under construction since 1882 and is targeted for completion around 2026."
+        },
+        {
+          "title": "The Alhambra, Granada",
+          "snippet": "A Moorish palace complex that rivals the Taj Mahal for sheer architectural beauty."
+        },
+        {
+          "title": "Prado Museum, Madrid",
+          "snippet": "One of the world's greatest art museums, housing Vel\u00e1zquez's Las Meninas, Goya's Black Paintings, and Bosch's Garden of Earthly Delights."
+        },
+        {
+          "title": "La Rambla & Gothic Quarter, Barcelona",
+          "snippet": "Barcelona's most famous boulevard runs from Pla\u00e7a de Catalunya to the waterfront. The adjoining Gothic Quarter (Barri G\u00f2tic) is a labyrinth of medieval streets, hidden plazas, and tiny tapas bars."
+        },
+        {
+          "title": "Flamenco in Seville",
+          "snippet": "An authentic tablao (flamenco venue) in Seville is visceral in a way that no video can capture."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 0,
+        "3": 1,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "10": 2,
+        "11": 1,
+        "12": 0
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "sri-lanka",
+      "name": "Sri Lanka",
+      "guide_url": "/travel/sri-lanka",
+      "group": "international",
+      "region": "Indian Ocean",
+      "best_months": [
+        12,
+        1,
+        2,
+        3
+      ],
+      "peak_months": [
+        12,
+        1
+      ],
+      "season_note": "West/south coasts and hill country are at their best Dec\u2013Mar.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Sigiriya Rock Fortress",
+          "snippet": "A fifth-century palace built atop a 200-metre volcanic plug, surrounded by landscaped gardens and frescoed caves. The climb is steep but manageable."
+        },
+        {
+          "title": "Train from Kandy to Ella",
+          "snippet": "Routinely listed among the world's most scenic rail journeys. Seven hours through tea plantations, waterfalls, and cloud forest."
+        },
+        {
+          "title": "Galle Fort",
+          "snippet": "A walled Dutch colonial fort on the southwest coast, now filled with boutique hotels, caf\u00e9s, and galleries. Walk the ramparts at sunset."
+        },
+        {
+          "title": "Yala National Park Safari",
+          "snippet": "The highest density of leopards anywhere on earth. Morning jeep safaris offer excellent chances of sighting. Yala also has elephants, sloth bears, and crocodiles."
+        },
+        {
+          "title": "Jaffna & the North",
+          "snippet": "Still undervisited since the civil war ended in 2009, Jaffna offers Tamil Hindu culture, Nallur Kandaswamy Kovil, and extraordinary seafood \u2014 the Jaffna crab curry is legendary."
+        }
+      ],
+      "photo_count": 12,
+      "hero_image": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-1.jpg",
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 1,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 1,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 15,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 10,
+            "max": 50,
+            "reason": "Off season this month"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 5,
+            "max": 20,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "switzerland",
+      "name": "Switzerland",
+      "guide_url": "/travel/switzerland",
+      "group": "international",
+      "region": "Europe",
+      "best_months": [
+        1,
+        2,
+        6,
+        7,
+        8,
+        9,
+        12
+      ],
+      "peak_months": [
+        7,
+        12
+      ],
+      "season_note": "Summer hiking (Jun\u2013Sep) and ski season (Dec\u2013Mar).",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Jungfraujoch, Top of Europe",
+          "snippet": "A cogwheel railway climbs to 3,454 metres through the Eiger's interior. The observation deck offers views across the Aletsch Glacier. Yes, the \"Bollywood platform\" with Hindi signs is real."
+        },
+        {
+          "title": "Lake Lucerne Boat Cruise",
+          "snippet": "A paddle steamer across Switzerland's most beautiful lake, ringed by mountains. Combine it with the Mount Pilatus golden round trip \u2014 boat, cogwheel train, cable car, and panorama gondola in a loop."
+        },
+        {
+          "title": "Interlaken Adventure Sports",
+          "snippet": "The adventure capital of Europe. Paragliding over the lake with Alpine peaks behind you is a life-changing 15 minutes. Also available: canyoning, skydiving, bungee jumping, and river rafting."
+        },
+        {
+          "title": "Zermatt & the Matterhorn",
+          "snippet": "The iconic pyramid-shaped peak is Switzerland's calling card. Zermatt is car-free and postcard-perfect."
+        },
+        {
+          "title": "Grindelwald First Cliff Walk",
+          "snippet": "A metal walkway bolted into a cliff face 2,000 metres above the valley floor. The First Flyer zip line (800 metres long) and the First Glider (eagle-eye chairlift) add adrenaline."
+        }
+      ],
+      "photo_count": 12,
+      "hero_image": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-1.jpg",
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 1,
+        "4": 0,
+        "5": 1,
+        "6": 2,
+        "7": 2,
+        "8": 2,
+        "9": 2,
+        "10": 1,
+        "11": 1,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "tamil-nadu",
+      "name": "Tamil Nadu",
+      "guide_url": "/travel/tamil-nadu",
+      "group": "india",
+      "region": "India \u2014 South",
+      "best_months": [
+        11,
+        12,
+        1,
+        2
+      ],
+      "peak_months": [
+        1
+      ],
+      "season_note": "Coolest months; Pongal in mid-January. Coastal rain peaks Oct\u2013Dec.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Meenakshi Amman Temple, Madurai",
+          "snippet": "This is not just a temple; it is a small city. The four towering gopurams (gateway towers) covered in thousands of brightly painted stucco figures are the defining image of Tamil Nadu."
+        },
+        {
+          "title": "Mahabalipuram (Mamallapuram) Shore Temples",
+          "snippet": "A UNESCO World Heritage Site where 7th-century Pallava rock-cut temples meet the Bay of Bengal."
+        },
+        {
+          "title": "Brihadeeswarar Temple, Thanjavur",
+          "snippet": "Built by Raja Raja Chola I over a thousand years ago, this UNESCO temple's 216-foot vimana (tower) was the tallest structure in India when completed."
+        },
+        {
+          "title": "Pondicherry (Puducherry)",
+          "snippet": "A former French colony that still feels convincingly Mediterranean on certain streets."
+        },
+        {
+          "title": "Rameswaram & Pamban Bridge",
+          "snippet": "One of the Char Dham pilgrimage sites and the closest point in India to Sri Lanka."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 1,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 1,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "thailand",
+      "name": "Thailand",
+      "guide_url": "/travel/thailand",
+      "group": "international",
+      "region": "Southeast Asia",
+      "best_months": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "peak_months": [
+        12,
+        1
+      ],
+      "season_note": "Cool, dry season; Songkran in mid-April.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Grand Palace & Wat Pho, Bangkok",
+          "snippet": "The Grand Palace complex is Thailand's equivalent of the Taj Mahal \u2014 non-negotiable. Arrive at 8:30 AM when the gates open to beat tour groups."
+        },
+        {
+          "title": "Chiang Mai Night Bazaar & Temples",
+          "snippet": "The old city has over 300 temples within its moated walls. Doi Suthep at sunset is magnificent."
+        },
+        {
+          "title": "Phi Phi Islands Day Trip",
+          "snippet": "Take the speedboat from Phuket or Krabi. Maya Bay is open again after its environmental recovery. Snorkelling here rivals anything in Southeast Asia. Go early to avoid the midday crowds."
+        },
+        {
+          "title": "Floating Markets, Bangkok",
+          "snippet": "Damnoen Saduak is the famous one, but Amphawa (open weekends) is more authentic and less touristy. Go in the morning, eat pad thai from a boat, and take the firefly tour at dusk."
+        },
+        {
+          "title": "Elephant Nature Park, Chiang Mai",
+          "snippet": "Skip the riding camps. This ethical sanctuary lets you feed, bathe, and walk with rescued elephants. Book the full-day experience at least two weeks in advance \u2014 it sells out."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 1,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 1,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "uttarakhand",
+      "name": "Uttarakhand",
+      "guide_url": "/travel/uttarakhand",
+      "group": "india",
+      "region": "India \u2014 Himalayas",
+      "best_months": [
+        3,
+        4,
+        5,
+        6,
+        9,
+        10,
+        11
+      ],
+      "peak_months": [
+        5,
+        6
+      ],
+      "season_note": "Char Dham season May\u2013Jun and Sep\u2013Oct; winters are bitter at altitude.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Ganga Aarti at Triveni Ghat, Rishikesh",
+          "snippet": "Every evening at sunset, priests perform an elaborate fire ceremony on the banks of the Ganges. The chanting, the bells, the floating diyas on the water \u2014 it is one of India's most moving rituals."
+        },
+        {
+          "title": "Whitewater Rafting on the Ganges",
+          "snippet": "Rishikesh is India's rafting capital, with rapids ranging from Grade I to Grade IV between Shivpuri and the Lakshman Jhula stretch."
+        },
+        {
+          "title": "Jim Corbett National Park",
+          "snippet": "India's oldest national park and one of the best places to spot a Bengal tiger in the wild."
+        },
+        {
+          "title": "Char Dham Yatra",
+          "snippet": "The full circuit \u2014 Yamunotri, Gangotri, Kedarnath, Badrinath \u2014 takes 10\u201312 days and is one of Hinduism's most sacred pilgrimages."
+        },
+        {
+          "title": "Mussoorie & Landour",
+          "snippet": "The Queen of the Hills retains its Raj-era charm, especially in Landour, the quieter cantonment area above Mussoorie where Ruskin Bond still lives."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 0,
+        "2": 1,
+        "3": 2,
+        "4": 2,
+        "5": 2,
+        "6": 2,
+        "7": 1,
+        "8": 1,
+        "9": 2,
+        "10": 2,
+        "11": 2,
+        "12": 1
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 65,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 50,
+            "max": 50,
+            "reason": "In its best season right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 15,
+            "max": 20,
+            "reason": "In season without peak-month demand"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    },
+    {
+      "slug": "vietnam",
+      "name": "Vietnam",
+      "guide_url": "/travel/vietnam",
+      "group": "international",
+      "region": "Southeast Asia",
+      "best_months": [
+        11,
+        12,
+        2,
+        3,
+        4
+      ],
+      "peak_months": [
+        12
+      ],
+      "season_note": "Drier months overall \u2014 the country spans three climate zones.",
+      "cheapest_month": null,
+      "fare_from": null,
+      "highlights": [
+        {
+          "title": "Ha Long Bay Overnight Cruise",
+          "snippet": "Take a two-day, one-night junk boat cruise through 1,600 limestone karsts rising from emerald water. Kayak through sea caves, swim at hidden beaches, and wake up to mist-covered islands."
+        },
+        {
+          "title": "Hoi An Ancient Town",
+          "snippet": "A UNESCO World Heritage Site with Japanese bridges, Chinese temples, and French colonial architecture. Get clothes custom-tailored in 24 hours \u2014 Hoi An is famous for it."
+        },
+        {
+          "title": "Hanoi Old Quarter & Street Food",
+          "snippet": "The 36 streets of Hanoi's Old Quarter are organised by trade \u2014 silk street, silver street, paper street."
+        },
+        {
+          "title": "Ho Chi Minh City: War Remnants Museum & Cu Chi Tunnels",
+          "snippet": "Regardless of your politics, these are profoundly moving. The War Remnants Museum should be a mandatory stop."
+        },
+        {
+          "title": "Ninh Binh: Tam Coc Boat Ride",
+          "snippet": "Called \"Ha Long Bay on land,\" the Tam Coc boat ride through rice paddies and limestone caves is ethereally beautiful. Less touristy than Ha Long and just 90 minutes from Hanoi."
+        }
+      ],
+      "photo_count": 0,
+      "hero_image": null,
+      "season_fit_by_month": {
+        "1": 1,
+        "2": 2,
+        "3": 2,
+        "4": 2,
+        "5": 1,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 1,
+        "11": 2,
+        "12": 2
+      },
+      "data_quality": {
+        "fare_data": "none",
+        "guide_highlights": 5,
+        "notes": [
+          "No flight-deals route tracked yet \u2014 fare fields are null by design"
+        ]
+      },
+      "trending": {
+        "month": 10,
+        "year": 2026,
+        "score": 50,
+        "max_score": 70,
+        "components": [
+          {
+            "id": "season_fit",
+            "points": 30,
+            "max": 50,
+            "reason": "Shoulder season \u2014 season is starting/ending"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 20,
+            "max": 20,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
+          },
+          {
+            "id": "fare_drop",
+            "points": null,
+            "max": 30,
+            "reason": "No fare route tracked for this destination yet"
+          }
+        ]
+      }
+    }
+  ]
+}
