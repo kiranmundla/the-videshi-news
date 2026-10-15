@@ -108,6 +108,27 @@ const destination_facts = {
 };
 
 /* ------------------------------------------------------------------ */
+/* Destination tiering (Kiran, 2026-10-14)                            */
+/* Curated picks feature international + in-India destinations plus  */
+/* TOP-TIER US destinations only. Second-tier US destinations are    */
+/* deferred: their guides stay in the full All Destinations index,   */
+/* but they are NOT pick-eligible here. Kiran's named top tier:      */
+/* Hawaii, Alaska, Yellowstone — Yellowstone is covered by the       */
+/* national-parks guide (Yellowstone, Grand Canyon & Yosemite).      */
+/* Deferred US guides today: florida, new-york-city.                 */
+/* ------------------------------------------------------------------ */
+const TOP_TIER_US = new Set(["hawaii", "alaska", "national-parks"]);
+
+function assertPickEligible(pick) {
+  if (pick.group === "usa" && !TOP_TIER_US.has(pick.key)) {
+    throw new Error(
+      `Pick "${pick.key}" is a second-tier US destination — not pick-eligible ` +
+      `(top-tier US: ${[...TOP_TIER_US].join(", ")}). See the tiering note above.`
+    );
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /* Destinations by month — Nov 2026 → Apr 2027                        */
 /* group: "india" | "usa" | "international"                           */
 /* ------------------------------------------------------------------ */
@@ -133,7 +154,7 @@ const months = [
       { key: "new-zealand", group: "international", why: "Southern-hemisphere summer — long days and peak hiking in Fiordland and the Southern Alps." },
       { key: "goa", group: "india", why: "Peak season — Christmas and New Year on the beach, India's biggest party week." },
       { key: "sri-lanka", group: "international", why: "The west and south coasts enter their dry season — Galle and Mirissa at their best." },
-      { key: "florida", group: "usa", why: "Mild, dry winter — theme parks and beaches without the summer humidity and storms." },
+      { key: "dubai", group: "international", why: "Winter peak — mid-70s and sunny every day, prime desert-safari season, and the outdoor festival calendar is in full swing." },
     ],
   },
   {
@@ -199,6 +220,9 @@ const in_india = [
   { key: "karnataka", blurb: "Hampi's ruins, Mysore's palace and the coffee hills of Coorg." },
   { key: "uttarakhand", blurb: "Rishikesh, the Char Dham trailheads and front-row Himalayan views." },
 ];
+
+// Tiering enforcement — every future rebuild keeps the scope (see note above).
+for (const m of months) m.picks.forEach(assertPickEligible);
 
 const data = {
   generated_at: new Date().toISOString(),

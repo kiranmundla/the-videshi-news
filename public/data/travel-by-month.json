@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15T03:58:59.201Z",
+  "generated_at": "2026-10-15T04:27:48.896Z",
   "source": "scripts/build-travel-data.mjs (curated)",
   "holiday_windows": [
     {
@@ -218,9 +218,9 @@
           "why": "The west and south coasts enter their dry season — Galle and Mirissa at their best."
         },
         {
-          "key": "florida",
-          "group": "usa",
-          "why": "Mild, dry winter — theme parks and beaches without the summer humidity and storms."
+          "key": "dubai",
+          "group": "international",
+          "why": "Winter peak — mid-70s and sunny every day, prime desert-safari season, and the outdoor festival calendar is in full swing."
         }
       ]
     },

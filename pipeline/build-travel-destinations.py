@@ -27,6 +27,13 @@ per destination so the frontend can rank "best in <month>"
 deterministically, plus precomputed trending_now / best_by_month slug
 rankings.
 
+Destination tiering (Kiran, 2026-10-14): curated picks and the
+trending/best-by-month rankings feature international + in-India
+destinations plus TOP-TIER US destinations only (TOP_TIER_US below).
+Second-tier US destinations are deferred — their records stay in the
+output (guides remain in the full All Destinations index) flagged
+eligible_for_picks=False, but they never appear in the rankings.
+
 Usage:
   python3 build-travel-destinations.py            (write JSON)
   python3 build-travel-destinations.py --dry-run  (print summary only)
@@ -53,6 +60,19 @@ ROUTE_MAP = {
                   "LAX-BLR", "SEA-BLR", "EWR-BLR", "IAD-BLR",
                   "ATL-BLR", "BOS-BLR"],
 }
+
+# Destination tiering (Kiran, 2026-10-14): US destinations are eligible
+# for curated picks / trending rankings ONLY if top-tier. Kiran's named
+# top tier: Hawaii, Alaska, Yellowstone — Yellowstone is covered by the
+# national-parks guide (Yellowstone, Grand Canyon & Yosemite), so that
+# guide is the top-tier US entry. Deferred (second-tier) US guides
+# today: florida, new-york-city.
+TOP_TIER_US = {"hawaii", "alaska", "national-parks"}
+
+
+def pick_eligible(slug, group):
+    """Curated-pick eligibility under the destination tiering scope."""
+    return group != "usa" or slug in TOP_TIER_US
 
 NAME_OVERRIDES = {
     "abu-dhabi": "Abu Dhabi",
@@ -363,6 +383,7 @@ def main():
             "name": NAME_OVERRIDES.get(slug, slug.replace("-", " ").title()),
             "guide_url": f"/travel/{slug}",
             "group": group,
+            "eligible_for_picks": pick_eligible(slug, group),
             "region": region,
             "best_months": best_months,
             "peak_months": peak_months,
@@ -389,19 +410,26 @@ def main():
         if len(highlights) < 3:
             rec["data_quality"]["notes"].append(
                 "Guide has fewer than 3 structured highlights to mine")
+        if not rec["eligible_for_picks"]:
+            rec["data_quality"]["notes"].append(
+                "Second-tier US destination (Kiran 2026-10-14 tiering): "
+                "guide stays in the full index, excluded from curated "
+                "picks and trending rankings for now")
         rec["trending"] = trending_for(rec, today.month, today.year, drop)
         records.append(rec)
 
     if missing_meta:
         print(f"⚠ Guides with no metadata (skipped): {missing_meta}", file=sys.stderr)
 
-    # Deterministic rankings for the frontend.
+    # Deterministic rankings for the frontend — pick-eligible records
+    # only (tiering scope above); ineligible records stay in the file.
+    eligible = [r for r in records if r["eligible_for_picks"]]
     trending_now = [r["slug"] for r in sorted(
-        records, key=lambda r: (-r["trending"]["score"], r["name"]))]
+        eligible, key=lambda r: (-r["trending"]["score"], r["name"]))]
     best_by_month = {}
     for m in range(1, 13):
         ranked = sorted(
-            records,
+            eligible,
             key=lambda r: (-r["season_fit_by_month"][str(m)],
                            -r["trending"]["score"], r["name"]))
         best_by_month[str(m)] = [r["slug"] for r in ranked
@@ -416,6 +444,7 @@ def main():
             "season_fit_by_month": "2 = in best season, 1 = shoulder (adjacent month), 0 = off season",
             "trending": "Sum of labeled components; max_score shows what was computable — a null fare_drop component means no fare route is tracked, not a zero fare.",
             "cheapest_month": "Only set from real flight-deals fare data; null everywhere else by design.",
+            "eligible_for_picks": "False = second-tier US destination deferred from curated picks/trending (Kiran 2026-10-14 tiering); the record and its guide remain in the full index.",
         },
         "trending_now": trending_now,
         "best_by_month": best_by_month,
