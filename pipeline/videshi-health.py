@@ -1209,7 +1209,12 @@ def check_broken_article_links(fix=False):
                   # article URL verified live via search the same day — pure
                   # bot-block, not broken links
                   "miningweekly.com", "ftnnews.com", "watchdoq.com",
-                  "healthandfamily.in", "computerweekly.com")
+                  "healthandfamily.in", "computerweekly.com",
+                  # 2026-10-15 12:00 health run: CDC 403, Finimize 405,
+                  # MarketWatch 401 to our server egress; all three article
+                  # URLs verified loading fully in a browser the same day —
+                  # pure bot-block, not broken links
+                  "cdc.gov", "finimize.com", "marketwatch.com")
 
     try:
         resp = requests.get(
