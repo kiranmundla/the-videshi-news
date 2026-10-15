@@ -136,9 +136,7 @@ export default function TrendingDestinations() {
         )}
       </div>
       <p className="text-sm text-foreground/55 mb-5 max-w-2xl leading-relaxed">
-        Trending now — {monthLabel}. Ranked by our destination tracker on
-        season fit, value and fare movement; every card shows why it made the
-        list.
+        Trending now — {monthLabel}.
       </p>
 
       <div
@@ -155,7 +153,11 @@ export default function TrendingDestinations() {
         {cards.map((dest, i) => {
           const galleryPhoto = galleries?.[dest.slug]?.photos?.[0];
           const image = dest.hero_image || galleryPhoto?.src || null;
-          const chips = reasonChips(dest);
+          /* ONE reason chip per card (audit item 13): when every card
+             carries the same two chips they differentiate nothing.
+             reasonChips builds in priority order (season, off-peak,
+             fare drop), so the first is the strongest signal. */
+          const chips = reasonChips(dest).slice(0, 1);
           const best = fmtBestMonths(dest.best_months);
           return (
             <Link
@@ -194,7 +196,6 @@ export default function TrendingDestinations() {
                       <h3 className="font-serif font-bold text-[15px] leading-tight group-hover:text-primary transition-colors">
                         {dest.name}
                       </h3>
-                      <p className="text-[11px] text-foreground/50 leading-tight mt-0.5">{dest.region}</p>
                     </div>
                     <ChevronRight className="h-4 w-4 text-foreground/20 group-hover:text-primary transition-colors flex-shrink-0 mt-0.5" />
                   </div>
@@ -227,12 +228,12 @@ export default function TrendingDestinations() {
 
                   {dest.fare_from && (
                     <p className="mt-auto pt-1 text-[11px] font-semibold text-[#7a5c14] dark:text-[#D4A843]">
-                      ✈️ {dest.fare_from.route} from ${dest.fare_from.price_min.toLocaleString()}
+                      ✈️ {dest.fare_from.route.replace("-", " → ")} from ${dest.fare_from.price_min.toLocaleString()}
                       <span className="block text-[10px] font-normal text-foreground/40">
                         {dest.fare_from.date_range} ·{" "}
                         {dest.fare_from.cadence === "weekly"
-                          ? `indicative · checked weekly · ${fmtAsOf(dest.fare_from.as_of)}`
-                          : `fares checked ${fmtAsOf(dest.fare_from.as_of)}`}
+                          ? `Checked weekly · ${fmtAsOf(dest.fare_from.as_of)}`
+                          : `Checked ${fmtAsOf(dest.fare_from.as_of)}`}
                       </span>
                     </p>
                   )}

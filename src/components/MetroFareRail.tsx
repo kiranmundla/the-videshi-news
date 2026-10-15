@@ -10,9 +10,11 @@ import {
 /* India Metros rail — the "India Metros Scroll" (Kiran, 2026-10-15). */
 /* One card per Indian metro with a real fare from the reader's       */
 /* origin: daily-core routes show their daily check date, weekly-grid */
-/* routes are stamped "checked weekly · <date>" — each card carries   */
+/* routes are stamped "Checked weekly · <date>" — each card carries   */
 /* its OWN fare's freshness, never a neighbour's. Metros without a    */
-/* fare from this origin are simply absent (no placeholders).         */
+/* fare from this origin are simply absent (no placeholders). The     */
+/* old "Weekly grid" pill is gone (audit item 9): the stamp already   */
+/* says "Checked weekly".                                             */
 /*                                                                    */
 /* Scroll signal = the counter pill + the next-card peek, the same    */
 /* pattern as the trending rails — NO edge-fade overlays (Kiran       */
@@ -49,7 +51,7 @@ function MetroCardBody({ fare }: { fare: MetroFare }) {
         {fmtRange(fare.entry.dep_date, fare.entry.ret_date)} ·{" "}
         {tripLengthLabel(fare.entry)}
         <br />
-        {fare.entry.cheapest_airline} · round-trip
+        {fare.entry.cheapest_airline}
       </div>
       <div className="text-[10px] text-foreground/45 mt-1.5">
         {fare.checkedLabel}
@@ -156,11 +158,6 @@ export default function MetroFareRail({
               style={{ scrollSnapAlign: "start" }}
             >
               <MetroCardBody fare={fare} />
-              {fare.source === "weekly" && (
-                <span className="inline-block mt-2 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#D4A843]/20 text-[#7a5c14] dark:text-[#D4A843]">
-                  Weekly grid
-                </span>
-              )}
             </button>
           ),
         )}
