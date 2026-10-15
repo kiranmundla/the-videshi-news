@@ -857,33 +857,10 @@ def search_youtube(query, max_results=5, published_after_days=60):
         return []
 
 
-_YT_SKIP_TITLE_WORDS = {
-    "compilation", "top 10", "top 5", "top 20", "meme", "memes", "funny",
-    "prank", "reaction video", "fan edit", "whatsapp status",
-    "#shorts", "tiktok", "roast", "exposed", "scam",
-    # Music / entertainment junk
-    "official audio", "official video", "music video", "lyrics", "lyric video",
-    "audio only", "full album", "mixtape", "beat", "instrumental", "karaoke",
-    "remix", "cover song", "dance cover", "fan cam", "fancam",
-    # Other irrelevant content types
-    "unboxing", "haul", "asmr", "mukbang", "gameplay", "walkthrough",
-    "let's play", "speedrun", "tutorial makeup",
-    # Pirate-bait (2026-10-12) — hard gate also lives in
-    # embed_placement.youtube_embed_reject_reason; these are belt-and-braces.
-    "full movie", "full film", "watch online", "free download",
-}
-
-# Non-Latin script ranges (Devanagari, Telugu, Tamil, Bengali, Kannada, Malayalam,
-# Gujarati, Gurmukhi, Arabic, Thai, CJK, etc.)
-import unicodedata as _ud
-
-def _is_non_english_title(title: str) -> bool:
-    """Return True if >25% of alpha chars are non-Latin script."""
-    alpha_chars = [c for c in title if c.isalpha()]
-    if len(alpha_chars) < 3:
-        return False
-    non_latin = sum(1 for c in alpha_chars if _ud.category(c).startswith('L') and ord(c) > 0x024F)
-    return (non_latin / len(alpha_chars)) > 0.25
+# Canonical YouTube gate + scorer live in embed_placement.py, shared with
+# enrich-articles.py (2026-10-15 unification — the forked copies here had
+# diverged, and the weaker fork let junk embeds through). Do NOT re-fork.
+from embed_placement import is_non_english_title as _is_non_english_title
 
 
 def _check_yt_video_language(video_ids: list) -> dict:
@@ -917,60 +894,8 @@ def _check_yt_video_language(video_ids: list) -> dict:
         return {}
 
 
-def score_youtube_result(result, entity_name, keywords):
-    """Score YouTube result for relevance."""
-    title_lower = result["title"].lower()
-    channel_lower = result["channelTitle"].lower()
-    entity_lower = entity_name.lower()
-    entity_parts = [p for p in entity_lower.split() if len(p) > 2]
-
-    score = 0
-    if entity_lower in title_lower:
-        score += 4
-    elif all(p in title_lower for p in entity_parts):
-        score += 3
-    if entity_lower in channel_lower:
-        score += 3
-    elif any(p in channel_lower for p in entity_parts if p not in {"the", "of", "in"}):
-        score += 1
-
-    kw_hits = sum(1 for kw in keywords if kw in title_lower)
-    score += kw_hits * 1.5
-
-    for skip_word in _YT_SKIP_TITLE_WORDS:
-        if skip_word in title_lower:
-            score -= 5
-
-    # "official" bonus — but NOT for music content (official audio/video/music)
-    _music_official = {"official audio", "official music", "official video", "official mv"}
-    is_music_official = any(mo in title_lower for mo in _music_official)
-    if not is_music_official:
-        official_words = {"official", "press conference", "interview", "statement",
-                          "announcement", "keynote", "launch", "podcast", "speech"}
-        for ow in official_words:
-            if ow in title_lower:
-                score += 1
-                break
-
-    # Channel relevance penalty — if channel has zero overlap with entity or keywords,
-    # it's likely an unrelated channel (random music, gaming, etc.)
-    _channel_words = set(re.findall(r'[a-z]{3,}', channel_lower))
-    _entity_words = set(re.findall(r'[a-z]{3,}', entity_lower))
-    _all_relevant = _entity_words | set(keywords)
-    if _channel_words and not (_channel_words & _all_relevant):
-        score -= 2
-
-    try:
-        pub = datetime.fromisoformat(result["publishedAt"].replace("Z", "+00:00"))
-        days_old = (datetime.now(timezone.utc) - pub).days
-        if days_old <= 3:
-            score += 2
-        elif days_old <= 7:
-            score += 1
-    except:
-        pass
-
-    return score
+# score_youtube_result: canonical version lives in embed_placement.py
+# (imported at call sites below). Removed the forked copy 2026-10-15.
 
 
 def enrich_youtube(article, registry):
@@ -1017,13 +942,16 @@ def enrich_youtube(article, registry):
         if not results:
             continue
 
-        # ── Official-source / pirate-bait gate (2026-10-12) ──
-        # Reject pirate-bait titles outright, and require trailer/teaser
-        # videos to come from an official channel (trailer-channels.json).
+        # ── Shared embed gate (2026-10-12; hardened 2026-10-15) ──
+        # Reject pirate-bait titles outright, require trailer/teaser
+        # videos to come from an official channel (trailer-channels.json),
+        # reject first-person/review/vlog rants, and require topical
+        # overlap with the article headline.
         from embed_placement import youtube_embed_reject_reason
         gated = []
         for r in results:
-            reason = youtube_embed_reject_reason(r["title"], r["channelTitle"])
+            reason = youtube_embed_reject_reason(r["title"], r["channelTitle"],
+                                                 headline=headline)
             if reason:
                 print(f"     YT rejected: \"{r['title'][:60]}\" — {reason}")
             else:
@@ -1052,14 +980,15 @@ def enrich_youtube(article, registry):
         if not results:
             continue
 
+        # Canonical acceptance: shared gate + score >= 6 (>= 8 for
+        # single-word entity names) AND >= 2 keyword matches in title.
+        from embed_placement import youtube_embed_accept
         for r in results:
-            s = score_youtube_result(r, name, keywords)
-            # Require >= 6 AND at least 2 keyword matches beyond entity name
-            # Single-word entity names (Google, Apple, Meta) are too generic — require >= 8
-            title_lower = r["title"].lower()
-            kw_hits = sum(1 for kw in keywords if kw in title_lower)
-            min_score = 8 if len(name.split()) == 1 else 6
-            if s >= min_score and kw_hits >= 2 and (best_yt is None or s > best_yt["score"]):
+            s, reason = youtube_embed_accept(r, name, keywords, headline=headline)
+            if reason:
+                print(f"     YT rejected: \"{r['title'][:60]}\" — {reason}")
+                continue
+            if best_yt is None or s > best_yt["score"]:
                 best_yt = {
                     "url": f"https://youtube.com/watch?v={r['videoId']}",
                     "title": r["title"],

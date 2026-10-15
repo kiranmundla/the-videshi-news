@@ -224,6 +224,42 @@ def fetch_google_cse(query, cc_only=True):
     return None, None
 
 
+def _verify_trailer_candidate(vid):
+    """Verify a trailer candidate's real title + channel via oEmbed and run
+    the shared embed guard (embed_placement.youtube_embed_reject_reason).
+
+    Returns (title, author) if embeddable, else None. Fails CLOSED: this
+    path exists to find OFFICIAL trailers, so an unverifiable or
+    guard-rejected candidate is not embeddable. Mirrors
+    media-sources._verify_official_trailer (2026-10-12); extended to this
+    path 2026-10-15 — fetch_youtube_trailer previously embedded the first
+    scrape result with no verification at all.
+    """
+    try:
+        r = requests.get(
+            "https://www.youtube.com/oembed",
+            params={"url": f"https://www.youtube.com/watch?v={vid}", "format": "json"},
+            timeout=10,
+        )
+        if r.status_code != 200:
+            return None
+        data = r.json()
+        title, author = data.get("title", ""), data.get("author_name", "")
+    except Exception:
+        return None
+    if not title:
+        return None
+    try:
+        from embed_placement import youtube_embed_reject_reason
+        reason = youtube_embed_reject_reason(title, author)
+    except Exception:
+        reason = None
+    if reason:
+        print(f"  ✗ Trailer candidate rejected: {vid} — {reason} (\"{title[:60]}\")")
+        return None
+    return title, author
+
+
 def fetch_youtube_trailer(query):
     """Search YouTube for a trailer via page scrape."""
     try:
@@ -243,20 +279,25 @@ def fetch_youtube_trailer(query):
                 results.append({"id": vid, "title": title})
             if len(results) >= 5:
                 break
-        # Prefer trailer/official
-        for item in results:
-            tl = item["title"].lower()
-            if "trailer" in tl or "official" in tl:
+        # Prefer trailer/official-titled candidates, but EVERY candidate is
+        # verified via oEmbed + the shared embed guard before embedding —
+        # an unverifiable or non-official trailer is worse than none.
+        ordered = sorted(
+            range(len(results)),
+            key=lambda i: 0 if ("trailer" in results[i]["title"].lower()
+                                or "official" in results[i]["title"].lower()) else 1,
+        )
+        for i in ordered:
+            item = results[i]
+            verified = _verify_trailer_candidate(item["id"])
+            if verified:
+                title, author = verified
                 yt = f"https://youtube.com/watch?v={item['id']}"
-                print(f"  ✓ YouTube trailer: {yt} ({item['title'][:60]})")
+                print(f"  ✓ YouTube trailer: {yt} ({title[:60]}) [{author}]")
                 return yt
-        if results:
-            yt = f"https://youtube.com/watch?v={results[0]['id']}"
-            print(f"  ✓ YouTube video: {yt} ({results[0]['title'][:60]})")
-            return yt
     except Exception as e:
         print(f"  ⚠ YouTube error [{query}]: {e}")
-    print(f"  ✗ YouTube [{query}]: no video found")
+    print(f"  ✗ YouTube [{query}]: no verifiable official trailer found")
     return None
 
 
