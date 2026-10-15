@@ -40,6 +40,42 @@ def snap_with(route_key, fetched):
     return {"routes": {route_key: {"calendar": cal}}}
 
 
+class TestAttemptOutcome(unittest.TestCase):
+    """The 2026-10-15 first-fill bug: routes whose searches never
+    genuinely ran (rate-wall abort on the first search; a --from-cache
+    walk over missing files) were stamped no_fares and rested for a
+    week. no_fares must require a complete, failure-free search set."""
+
+    CELL = {"year": 2026, "month": 11, "fetched_as_of": "2026-10-15"}
+
+    def outcome(self, calendar, attempted, failed, planned=12,
+                aborted=False):
+        return fd.metros_attempt_outcome(calendar, attempted, failed,
+                                         planned, aborted)
+
+    def test_genuine_no_fares(self):
+        self.assertEqual(self.outcome([], 12, 0), "no_fares")
+
+    def test_abort_is_never_no_fares(self):
+        self.assertEqual(self.outcome([], 1, 1, aborted=True),
+                         "attempted")
+        self.assertEqual(self.outcome([self.CELL], 12, 0, aborted=True),
+                         "attempted")
+
+    def test_partial_searches_are_attempted_not_no_fares(self):
+        self.assertEqual(self.outcome([], 11, 0), "attempted")
+        self.assertEqual(self.outcome([], 0, 0), "attempted")
+
+    def test_failed_searches_block_no_fares(self):
+        self.assertEqual(self.outcome([], 12, 1), "attempted")
+
+    def test_cells_outcomes(self):
+        self.assertEqual(self.outcome([self.CELL], 12, 0), "cells")
+        # Cells computed but some searches failed: the route may be
+        # missing a month — still owed, not settled.
+        self.assertEqual(self.outcome([self.CELL], 12, 2), "attempted")
+
+
 class TestGridShape(unittest.TestCase):
     def test_38_grid_pairs(self):
         self.assertEqual(len(fd.METROS_ROUTES), 38)

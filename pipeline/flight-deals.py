@@ -258,6 +258,19 @@ RESUME_MODE = False
 RESUME_TTL_S = 48 * 3600
 RESUMED_COUNT = 0
 ATTEMPTED = {}  # route_key -> searches with a cache file present (cache mode)
+# Per-route search accounting for the CURRENT process, used by the
+# metros grid to stamp honest attempt outcomes: route_key ->
+# {"attempted": searches that produced a response (live, resumed or
+# replayed), "failed": searches that errored / were rate-limited}.
+ROUTE_SEARCH_STATS = {}
+
+
+def note_route_search(route_key, failed=False):
+    stats = ROUTE_SEARCH_STATS.setdefault(
+        route_key, {"attempted": 0, "failed": 0})
+    stats["attempted"] += 1
+    if failed:
+        stats["failed"] += 1
 COMPLETED_ROUTES = []
 COMPLETED_CELLS = []  # "ROUTE:YYYY-MM:<band-id>" per finished calendar cell
 RUN_STATE_FILE = STATE_DIR / "flight-deals-run-state.json"
@@ -501,10 +514,15 @@ def cache_search(origin, dest, dep_date, ret_date):
         data = json.loads(tmp.read_text())
     except Exception:
         FAILED_COUNT += 1
+        note_route_search(route_key, failed=True)
         return []
     if not data.get("ok"):
+        # The saved response is a FAILED live search — it counts as an
+        # attempt but never as evidence for a no-fare conclusion.
         FAILED_COUNT += 1
+        note_route_search(route_key, failed=True)
         return []
+    note_route_search(route_key)
     return data.get("offers", [])
 
 
@@ -800,15 +818,40 @@ def save_metros_state(state, path=None):
         pass
 
 
-def record_metros_attempt(route_key, calendar, today_iso, path=None):
+def metros_attempt_outcome(calendar, attempted, failed, planned,
+                           aborted):
+    """Honest outcome for one grid route's attempt.
+
+    "no_fares" is a CLAIM — the route was genuinely searched end to
+    end and nothing qualified — so it requires every planned search
+    to have produced a response and none to have failed. Anything
+    interrupted (provider abort) or incomplete (searches missing or
+    failed) is "attempted": still owed, retried by the next slice,
+    never rested for a week as if it had been searched. (First-fill
+    bug, 2026-10-15: routes whose first search hit the rate wall —
+    and routes merely walked by a --from-cache salvage — were stamped
+    no_fares without a single genuine search.)"""
+    if aborted:
+        return "attempted"
+    if calendar:
+        return "cells" if failed == 0 else "attempted"
+    if planned and attempted >= planned and failed == 0:
+        return "no_fares"
+    return "attempted"
+
+
+def record_metros_attempt(route_key, calendar, today_iso, outcome=None,
+                          path=None):
     """Persist one route attempt. Called per route as it completes,
-    so an abort mid-run never loses the finished routes' records."""
+    so an abort mid-run never loses the finished routes' records.
+    `outcome` comes from metros_attempt_outcome in the runner; the
+    None default (legacy derive) exists only for older callers."""
     state = load_metros_state(path)
     newest = max((c.get("fetched_as_of") or "" for c in calendar),
                  default="")
     state["routes"][route_key] = {
         "last_attempt": today_iso,
-        "outcome": "cells" if calendar else "no_fares",
+        "outcome": outcome or ("cells" if calendar else "no_fares"),
         "cells": len(calendar),
         "newest_fetched": newest or None,
     }
@@ -920,6 +963,7 @@ def find_cheapest_window(origin, dest, year, month, band, dep_samples,
             sample_fetched = date.today().isoformat()
             sample_from_cache = False
             if CACHE_MODE:
+                # cache_search keeps the route search stats itself.
                 offers = cache_search(origin, dest, dep_str, ret_str)
                 if offers:
                     sample_from_cache = True
@@ -929,6 +973,7 @@ def find_cheapest_window(origin, dest, year, month, band, dep_samples,
                 offers = cached_ok_offers(origin, dest, dep_str, ret_str)
                 if offers is not None:
                     RESUMED_COUNT += 1
+                    note_route_search(f"{origin}-{dest}")
                     sample_from_cache = True
                     sample_fetched = (cached_fetched_date(
                         origin, dest, dep_str, ret_str) or sample_fetched)
@@ -937,8 +982,12 @@ def find_cheapest_window(origin, dest, year, month, band, dep_samples,
                 else:
                     offers = run_duffel_search(origin, dest, dep_str,
                                                ret_str)
+                    note_route_search(f"{origin}-{dest}",
+                                        failed=offers is None)
             else:
                 offers = run_duffel_search(origin, dest, dep_str, ret_str)
+                note_route_search(f"{origin}-{dest}",
+                                  failed=offers is None)
             if not offers:
                 continue
             qualifying = filter_qualifying_offers(offers)
@@ -1354,6 +1403,7 @@ def main():
         if ABORTED:
             break
         route_key = f"{origin}-{dest}"
+        ROUTE_SEARCH_STATS[route_key] = {"attempted": 0, "failed": 0}
         print(f"\n✈️  {route_key} ({origin_metro} → {dest_metro})")
         calendar = []
         for (y, m) in months:
@@ -1393,8 +1443,17 @@ def main():
         write_run_state("aborted" if ABORTED else "running")
         if args.metros:
             # Per-route, immediately: the record must survive an abort
-            # later in this same invocation.
-            record_metros_attempt(route_key, calendar, today.isoformat())
+            # later in this same invocation. The outcome is computed
+            # from this route's real search accounting — an aborted or
+            # partially-searched route is "attempted" (still owed),
+            # never "no_fares".
+            stats = ROUTE_SEARCH_STATS.get(
+                route_key, {"attempted": 0, "failed": 0})
+            outcome = metros_attempt_outcome(
+                calendar, stats["attempted"], stats["failed"],
+                len(months) * args.samples * len(duration_days), ABORTED)
+            record_metros_attempt(route_key, calendar,
+                                  today.isoformat(), outcome=outcome)
 
     if CACHE_MODE:
         planned_per_route = len(months) * args.samples * len(duration_days)
