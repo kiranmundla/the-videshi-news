@@ -12,8 +12,6 @@ import ImmigrationStrip from "@/components/homepage/ImmigrationStrip";
 import NewsletterCTA from "@/components/homepage/NewsletterCTA";
 import LeadListSection from "@/components/homepage/LeadListSection";
 import RibbonSection from "@/components/homepage/RibbonSection";
-import IndiaNewsGrid from "@/components/homepage/IndiaNewsGrid";
-import NewsGrid from "@/components/homepage/NewsGrid";
 import VoicesSection from "@/components/homepage/VoicesSection";
 import EventsStrip from "@/components/homepage/EventsStrip";
 import { useUserLocation } from "@/hooks/useUserLocation";
@@ -129,50 +127,6 @@ function HomeCategoryNav({ selected, onSelect }: { selected: string; onSelect: (
         ))}
       </div>
     </div>
-  );
-}
-
-/* ── Entertainment Vertical Grid ── */
-function EntertainmentGrid({ articles }: { articles: Article[] }) {
-  const [visibleCount, setVisibleCount] = useState(6);
-  if (articles.length === 0) return null;
-
-  // Trim to multiples of 3 for clean grid rows
-  const fullCount = Math.floor(Math.min(visibleCount, articles.length) / 3) * 3;
-  const shown = articles.slice(0, fullCount || Math.min(articles.length, 3));
-  const hasMore = articles.length > visibleCount;
-
-  return (
-    <section className="mb-14">
-      <div className="container">
-        <div
-          className="flex items-center mb-5 pb-2.5"
-          style={{ borderBottom: "3px solid #AD1457" }}
-        >
-          <h2
-            className="text-[13px] font-bold tracking-[2px] uppercase"
-            style={{ color: "#0B1D3A" }}
-          >
-            Entertainment
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-10 items-start">
-          {shown.map((a) => (
-            <ArticleCard key={a.id} article={a} variant="card" />
-          ))}
-        </div>
-        {hasMore && (
-          <div className="flex justify-center mt-8">
-            <button
-              onClick={() => setVisibleCount((v) => v + 6)}
-              className="text-[11px] font-bold tracking-[0.12em] uppercase text-foreground/60 border border-rule px-8 py-2.5 hover:border-foreground/40 hover:text-foreground/80 bg-transparent transition-colors"
-            >
-              MORE STORIES
-            </button>
-          </div>
-        )}
-      </div>
-    </section>
   );
 }
 
@@ -700,32 +654,42 @@ export default function IndexV2() {
         <TweetScroll category="technology" />
         </LazyMount>
 
-        {/* 11. Entertainment (vertical grid) */}
+        {/* 11. Entertainment (lead + list — same style as Technology, 2026-10-14) */}
 <LazyMount>
         <SponsoredBanner />
-        <EntertainmentGrid articles={layout.entertainment} />
+        <LeadListSection
+          title="Entertainment"
+          borderColor="#AD1457"
+          categorySlug="entertainment"
+          articles={layout.entertainment}
+          listCount={5}
+        />
         <MoviesRail />
         <StreamingPicks />
         <TrailersRail />
         <FridayLaughs />
         </LazyMount>
 
-        {/* 12. India News + Trending Sidebar */}
+        {/* 12. India News (lead + list — same style as Technology, 2026-10-14) */}
 <LazyMount>
-        <IndiaNewsGrid
+        <LeadListSection
+          title="India News"
+          borderColor="#0B1D3A"
+          categorySlug="news"
           articles={layout.news}
+          listCount={7}
         />
         <TweetScroll category="news" label="India News" />
         </LazyMount>
 
-        {/* 13. World News (3-col grid) */}
+        {/* 13. World News (lead + list — same style as Technology, 2026-10-14) */}
 <LazyMount>
-        <NewsGrid
+        <LeadListSection
           title="World News"
           borderColor="#1565C0"
           categorySlug="nri-world"
           articles={layout.nriWorld}
-          columns={3}
+          listCount={7}
         />
         <TweetScroll category="world-leaders" label="World Leaders" />
         </LazyMount>

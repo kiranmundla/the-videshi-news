@@ -19,14 +19,98 @@ function timeAgo(iso: string): string {
   return formatShortDate(iso);
 }
 
+/* Lead card — large image (omitted entirely when the article has no valid
+   image, so an imageless lead degrades to label + headline + excerpt with no
+   empty hero block), headline, excerpt, read time/age. Shared by
+   LeadListSection (homepage sections) and CategoryPage (lead+compact
+   categories) so both surfaces render the identical card. */
+export function LeadArticleCard({ article, borderColor }: { article: Article; borderColor: string }) {
+  const hasLeadImage = isValidImage(article.hero_image_url);
+  const rt = (article as any).reading_time ?? 5;
+  return (
+    <Link to={`/articles/${article.slug}`} className="group block">
+      {hasLeadImage && (
+        <div
+          className="w-full bg-neutral-100 dark:bg-neutral-800 overflow-hidden rounded-lg mb-3.5 aspect-[16/9] md:aspect-[4/3]"
+        >
+          <HeroImage zoomable={false}
+            src={article.hero_image_url}
+            alt={article.title}
+            loading="lazy"
+            focalX={article.focal_x}
+            focalY={article.focal_y}
+            className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
+          />
+        </div>
+      )}
+      <p
+        className="text-[11px] font-bold tracking-[1.2px] uppercase mb-1.5"
+        style={{ color: borderColor }}
+      >
+        {categoryLabel(article.category)}
+      </p>
+      <h3 className="font-serif text-[22px] font-extrabold leading-[1.25] mb-2 group-hover:text-primary transition-colors">
+        {article.title}
+      </h3>
+      {article.excerpt && (
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-1.5">
+          {article.excerpt}
+        </p>
+      )}
+      <p className="text-xs text-muted-foreground">
+        {rt} min read · {timeAgo(article.published_at)}
+      </p>
+    </Link>
+  );
+}
+
+/* Compact row — small square thumbnail left (omitted when imageless, text
+   takes the full width), category label + headline + age right. Shared by
+   LeadListSection and CategoryPage. */
+export function CompactArticleRow({ article, borderColor }: { article: Article; borderColor: string }) {
+  const img = isValidImage(article.hero_image_url);
+  return (
+    <Link
+      to={`/articles/${article.slug}`}
+      className="group flex gap-3.5 py-3.5 border-b last:border-b-0 hover:bg-neutral-50 transition-colors rounded"
+      style={{ borderColor: "hsl(var(--rule))" }}
+    >
+      {img && (
+        <div className="w-[72px] min-w-[72px] h-[72px] bg-neutral-100 rounded overflow-hidden">
+          <HeroImage zoomable={false}
+            src={article.hero_image_url}
+            alt={article.title}
+            loading="lazy"
+            focalX={article.focal_x}
+            focalY={article.focal_y}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      )}
+      <div className="flex-1 min-w-0">
+        <p
+          className="text-[10px] font-bold tracking-[1.2px] uppercase mb-1"
+          style={{ color: borderColor }}
+        >
+          {categoryLabel(article.category)}
+        </p>
+        <h4 className="font-serif text-[15px] font-bold leading-snug group-hover:text-primary transition-colors line-clamp-2">
+          {article.title}
+        </h4>
+        <p className="text-xs text-muted-foreground mt-1">
+          {timeAgo(article.published_at)}
+        </p>
+      </div>
+    </Link>
+  );
+}
+
 export default function LeadListSection({ title, borderColor, categorySlug, articles, listCount = 5 }: Props) {
   if (articles.length === 0) return null;
 
   const [lead, ...rest] = articles;
   const list = rest.slice(0, listCount);
   const hasMore = rest.length > listCount;
-  const hasLeadImage = isValidImage(lead.hero_image_url);
-  const rt = (lead as any).reading_time ?? 5;
 
   return (
     <section className="mb-14">
@@ -50,80 +134,13 @@ export default function LeadListSection({ title, borderColor, categorySlug, arti
         {/* Lead + list grid */}
         <div className="grid grid-cols-1 md:grid-cols-[5fr_3fr] gap-8 items-start">
           {/* Lead card */}
-          <Link to={`/articles/${lead.slug}`} className="group block">
-            {hasLeadImage && (
-              <div
-                className="w-full bg-neutral-100 dark:bg-neutral-800 overflow-hidden rounded-lg mb-3.5 aspect-[16/9] md:aspect-[4/3]"
-              >
-                <HeroImage zoomable={false}
-                  src={lead.hero_image_url}
-                  alt={lead.title}
-                  loading="lazy"
-                  focalX={lead.focal_x}
-                  focalY={lead.focal_y}
-                  className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-500"
-                />
-              </div>
-            )}
-            <p
-              className="text-[11px] font-bold tracking-[1.2px] uppercase mb-1.5"
-              style={{ color: borderColor }}
-            >
-              {categoryLabel(lead.category)}
-            </p>
-            <h3 className="font-serif text-[22px] font-extrabold leading-[1.25] mb-2 group-hover:text-primary transition-colors">
-              {lead.title}
-            </h3>
-            {lead.excerpt && (
-              <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-1.5">
-                {lead.excerpt}
-              </p>
-            )}
-            <p className="text-xs text-muted-foreground">
-              {rt} min read · {timeAgo(lead.published_at)}
-            </p>
-          </Link>
+          <LeadArticleCard article={lead} borderColor={borderColor} />
 
           {/* List stack */}
           <div className="flex flex-col">
-            {list.map((a, i) => {
-              const img = isValidImage(a.hero_image_url);
-              return (
-                <Link
-                  key={a.id}
-                  to={`/articles/${a.slug}`}
-                  className="group flex gap-3.5 py-3.5 border-b last:border-b-0 hover:bg-neutral-50 transition-colors rounded"
-                  style={{ borderColor: "hsl(var(--rule))" }}
-                >
-                  {img && (
-                    <div className="w-[72px] min-w-[72px] h-[72px] bg-neutral-100 rounded overflow-hidden">
-                      <HeroImage zoomable={false}
-                        src={a.hero_image_url}
-                        alt={a.title}
-                        loading="lazy"
-                        focalX={a.focal_x}
-                        focalY={a.focal_y}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
-                  <div className="flex-1 min-w-0">
-                    <p
-                      className="text-[10px] font-bold tracking-[1.2px] uppercase mb-1"
-                      style={{ color: borderColor }}
-                    >
-                      {categoryLabel(a.category)}
-                    </p>
-                    <h4 className="font-serif text-[15px] font-bold leading-snug group-hover:text-primary transition-colors line-clamp-2">
-                      {a.title}
-                    </h4>
-                    <p className="text-xs text-muted-foreground mt-1">
-                      {timeAgo(a.published_at)}
-                    </p>
-                  </div>
-                </Link>
-              );
-            })}
+            {list.map((a) => (
+              <CompactArticleRow key={a.id} article={a} borderColor={borderColor} />
+            ))}
           </div>
         </div>
 

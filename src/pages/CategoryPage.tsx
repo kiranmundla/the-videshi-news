@@ -11,6 +11,7 @@ import TechBuzz from "@/components/TechBuzz";
 import WorldCupTracker from "@/components/WorldCupTracker";
 // import CelebrityBuzz from "@/components/CelebrityBuzz"; // temporarily hidden
 import LoadMoreButton from "@/components/LoadMoreButton";
+import { LeadArticleCard, CompactArticleRow } from "@/components/homepage/LeadListSection";
 import UpcomingTechEvents from "@/components/homepage/UpcomingTechEvents";
 import RemittanceTracker from "@/components/RemittanceTracker";
 import AILeaderboard from "@/components/AILeaderboard";
@@ -20,6 +21,16 @@ import { getCategoryBySlug } from "@/lib/categories";
 import NotFound from "@/pages/NotFound";
 
 const PAGE_SIZE = 18;
+
+/* Categories rendered lead + compact-row style (same components as the
+   homepage Technology/Lifestyle sections) instead of the stacked-card grid —
+   Kiran 2026-10-14: the big-image cards took too much vertical space.
+   Value = the section accent color used for card labels. */
+const LEAD_LIST_CATEGORY_COLORS: Record<string, string> = {
+  entertainment: "#AD1457",
+  news: "#C62828",
+  "nri-world": "#1565C0",
+};
 
 export default function CategoryPage() {
   const { category = "" } = useParams();
@@ -234,29 +245,65 @@ export default function CategoryPage() {
             )}
             {def.slug === "technology" && <UpcomingTechEvents />}
             {def.slug === "markets-finance" && <RemittanceTracker />}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-10 gap-y-8 md:gap-y-16">
-              {(() => {
-                const SUBS_MAP: Record<string, string[]> = {
-                  bollywood: ["bollywood"],
-                  hollywood: ["hollywood"],
-                  "south-cinema": ["tamil cinema", "tollywood", "kollywood", "mollywood", "south indian cinema", "telugu cinema", "malayalam cinema", "kannada cinema"],
-                  streaming: ["streaming", "ott", "netflix", "prime video", "disney+", "apple tv", "hotstar"],
-                  "box-office": ["box office", "box-office"],
-                };
-                const filtered = subFilter === "all" || def?.slug !== "entertainment"
-                  ? articles
-                  : articles.filter((a) => {
-                      const articleTags = ((a as any).tags || []).map((t: string) => t.toLowerCase().trim());
-                      const matchTags = SUBS_MAP[subFilter] || [];
-                      return articleTags.some((t: string) => matchTags.includes(t));
-                    });
-                return filtered.map((a, i) => (
-                  <div key={a.id} className={i >= fadeFrom ? "animate-fade-in" : ""}>
-                    <ArticleCard article={a} variant="card" hideCategory isKeyUpdate={keyUpdateSlugs.has(a.slug)} />
+            {(() => {
+              const SUBS_MAP: Record<string, string[]> = {
+                bollywood: ["bollywood"],
+                hollywood: ["hollywood"],
+                "south-cinema": ["tamil cinema", "tollywood", "kollywood", "mollywood", "south indian cinema", "telugu cinema", "malayalam cinema", "kannada cinema"],
+                streaming: ["streaming", "ott", "netflix", "prime video", "disney+", "apple tv", "hotstar"],
+                "box-office": ["box office", "box-office"],
+              };
+              const filtered = subFilter === "all" || def?.slug !== "entertainment"
+                ? articles
+                : articles.filter((a) => {
+                    const articleTags = ((a as any).tags || []).map((t: string) => t.toLowerCase().trim());
+                    const matchTags = SUBS_MAP[subFilter] || [];
+                    return articleTags.some((t: string) => matchTags.includes(t));
+                  });
+
+              /* Lead + compact rows for entertainment / India (news) / World
+                 (nri-world): first article is the lead card, next 6 rows sit
+                 beside it on desktop, the rest flow into a 2-column row grid;
+                 Load more appends further rows. */
+              const leadColor = LEAD_LIST_CATEGORY_COLORS[def.slug];
+              if (leadColor) {
+                if (filtered.length === 0) {
+                  return <p className="py-10 text-center text-muted-foreground">No stories in this topic yet.</p>;
+                }
+                const [lead, ...rest] = filtered;
+                const sideRows = rest.slice(0, 6);
+                const belowRows = rest.slice(6);
+                return (
+                  <div>
+                    <div className="grid grid-cols-1 md:grid-cols-[5fr_3fr] gap-8 items-start">
+                      <LeadArticleCard article={lead} borderColor={leadColor} />
+                      <div className="flex flex-col">
+                        {sideRows.map((a) => (
+                          <CompactArticleRow key={a.id} article={a} borderColor={leadColor} />
+                        ))}
+                      </div>
+                    </div>
+                    {belowRows.length > 0 && (
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-10 mt-2">
+                        {belowRows.map((a) => (
+                          <CompactArticleRow key={a.id} article={a} borderColor={leadColor} />
+                        ))}
+                      </div>
+                    )}
                   </div>
-                ));
-              })()}
-            </div>
+                );
+              }
+
+              return (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 md:gap-x-10 gap-y-8 md:gap-y-16">
+                  {filtered.map((a, i) => (
+                    <div key={a.id} className={i >= fadeFrom ? "animate-fade-in" : ""}>
+                      <ArticleCard article={a} variant="card" hideCategory isKeyUpdate={keyUpdateSlugs.has(a.slug)} />
+                    </div>
+                  ))}
+                </div>
+              );
+            })()}
 
             <LoadMoreButton
               onClick={loadMore}
