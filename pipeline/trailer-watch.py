@@ -9,6 +9,10 @@
   the trailers rail by prebuild-feeds.py).
 - With --write: generates brief "teaser out" articles for tier-1 (major)
   channels and inserts them via v3-batch-insert.process_article.
+- Briefs held by the film-card completeness gate are NOT discarded: they
+  are queued in pipeline/.state/trailer-watch-held.json and retried on
+  every subsequent run (with any newer drops for the same film merged in)
+  until they publish or age out after HELD_MAX_DAYS.
 
 First run: videos older than 3 days are marked seen without action, so only
 recent drops surface. Subsequent runs: only genuinely new uploads.
@@ -26,6 +30,10 @@ PIPE = os.path.expanduser("~/workspace/the-videshi-news/pipeline")
 STATE = os.path.join(PIPE, ".state")
 SEEN_PATH = os.path.join(STATE, "trailer-watch-seen.json")
 FEED_PATH = os.path.join(STATE, "trailer-watch-feed.json")
+HELD_PATH = os.path.join(STATE, "trailer-watch-held.json")
+# A held brief retries every run; after this many days it is declared
+# terminal (loudly, in the run report) instead of being retried forever.
+HELD_MAX_DAYS = 14
 CHANNELS_PATH = os.path.join(PIPE, "trailer-channels.json")
 
 WRITE = "--write" in sys.argv
@@ -212,6 +220,9 @@ def split_film_title(title):
         cand = re.sub(r"\s*[-\u2013\u2014:|]\s*$", "", m.group(1)).strip()
     else:
         cand = re.sub(r"\s*[-\u2013\u2014:|]\s*$", "", seg0).strip()
+    # '- NEW TRAILER' suffix branding: "RAMAYANA: RISE OF A LEGEND - NEW
+    # TRAILER" leaves a dangling "- New" on the film name.
+    cand = re.sub(r"(?i)\s*[-\u2013\u2014]\s*new\s*$", "", cand).strip()
     film = clean_film_name(cand) or seg0
     # Strip a hyphen-joined descriptor the subtitle extractor identifies:
     # 'Hanuman Ansh - A Powerful Divine Story' -> 'Hanuman Ansh'.
@@ -264,6 +275,46 @@ def extract_subtitle(title):
     return ""
 
 
+_MONTH_ALT = (r"jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|"
+              r"jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|"
+              r"oct(?:ober)?|nov(?:ember)?|dec(?:ember)?")
+_DATE_MF_RE = re.compile(
+    rf"(?i)\b({_MONTH_ALT})\s+(\d{{1,2}})(?:st|nd|rd|th)?\b")
+_DATE_DF_RE = re.compile(
+    rf"(?i)\b(\d{{1,2}})(?:st|nd|rd|th)?\s+({_MONTH_ALT})\b")
+
+
+def _is_teaser_announced_date(text, pos):
+    """True when the date at `pos` is announced as the TEASER/TRAILER's own
+    date, not the work's release date — e.g. 'Aakasamlo Oka Tara Teaser on
+    October 17th' or '#AOTTeaser introduces you to its world on October
+    17th'. Such a date must never land on the card as the release date;
+    the matcher skips it and keeps looking for a real release date.
+    Fail-closed: a false positive costs a hold, never a wrong date."""
+    window = text[max(0, pos - 90):pos]
+    window = window[window.rfind("\n") + 1:]
+    return bool(re.search(r"(?i)(teaser|trailer)[^.\n]{0,70}?\bon\s*$",
+                          window))
+
+
+def _find_release_date(text):
+    """First plausible release date in `text`, 'Mon D' form or None.
+
+    Accepts month-first ('November 5') and day-first ('23 October' —
+    Netflix India's house style) dates, in text order, skipping any date
+    announced as the teaser/trailer's own drop date."""
+    cands = []
+    for m in _DATE_MF_RE.finditer(text):
+        cands.append((m.start(), m.group(1), m.group(2)))
+    for m in _DATE_DF_RE.finditer(text):
+        cands.append((m.start(), m.group(2), m.group(1)))
+    for pos, mon, day in sorted(cands):
+        if _is_teaser_announced_date(text, pos):
+            continue
+        return f"{mon[:3].capitalize()} {day}"
+    return None
+
+
 def parse_description(desc):
     """Extract (clean_line, media_type, release_date) from a video description.
 
@@ -284,13 +335,18 @@ def parse_description(desc):
         # e.g. "Here's the Official Kannada Trailer of #418 movie" — the
         # work calls itself a movie in its own opening lines.
         media_type = "Movie"
-    release = None
-    m = re.search(
-        r"(?i)\b(jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|"
-        r"jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|"
-        r"dec(?:ember)?)\s+(\d{1,2})(?:st|nd|rd|th)?\b", text)
-    if m:
-        release = f"{m.group(1)[:3].capitalize()} {m.group(2)}"
+    elif re.search(r"(?im)^\s*(?:movie|film)\s*:", text):
+        # Credit-block label, e.g. Geetha Arts' "Movie: Aakasamlo Oka Tara"
+        # sitting below the opening lines — the production's own label.
+        media_type = "Movie"
+    elif re.search(r"(?i)\bin theatres\b|\bin theaters\b", text):
+        # A theatrical release is a film (Sony: "exclusively in theatres").
+        media_type = "Movie"
+    elif re.search(r"(?i)\b(?:the|this) film (?:is|follows|stars|tells|"
+                   r"chronicles|releases|opens|hits|arrives)\b", text):
+        # Narrative self-reference: "The film is produced by ..."
+        media_type = "Movie"
+    release = _find_release_date(text)
     clean = re.sub(r"https?://\S+", "", first)
     clean = re.sub(r"#\w+", "", clean)
     clean = re.sub(r"[^\x00-\x7F\u201c\u201d\u2018\u2019\u2014\u2013\u2026\u20b9]", "", clean)
@@ -436,6 +492,16 @@ def _video_is_live(video_id):
         return False
 
 
+def _trim_credit_tail(value):
+    """Cut a prose credit capture at its non-name tail: '& Others',
+    ', only on Netflix', ', on 23 October' would otherwise validate as
+    'names' in _clean_names."""
+    value = re.split(
+        r"(?i)\s*&\s*others?\b|,\s*only\s+on\b|,\s*on\s+(?=\d)|\s+only\s+on\b",
+        value, maxsplit=1)[0]
+    return value.strip(" ,;")
+
+
 # separators that split one line into independent "Label: value" segments
 _SEG_SPLIT = re.compile(
     r"\s*[|;]\s*|\.\s+(?=(?:star\s*cast|starcast|starring|featuring|"
@@ -496,9 +562,33 @@ def extract_credits(desc):
                 m = re.search(
                     r"(?i)\bstarring\s*[:\-–—]?\s+([A-Z][^.\n|;]{1,150})", seg)
                 if m and "cast" not in credits:
-                    v = _clean_names(m.group(1))
+                    v = _clean_names(_trim_credit_tail(m.group(1)))
                     if v:
                         credits["cast"] = v
+    # Prose-credit fallback (2026-10-15): Netflix India and studio
+    # descriptions state credits mid-sentence with no labels or colons —
+    # "Watch Gajab Raat, directed by Neeraj Pandey, staring Manoj
+    # Bajpayee, Nushrratt Bharuccha & Others, on 23 October, only on
+    # Netflix" (note the house typo "staring") and Sony's "It stars
+    # Ranbir Kapoor, Yash and Sai Pallavi." Only fills fields the formal
+    # parsing above left empty; values still pass _clean_names.
+    if "director" not in credits:
+        m = re.search(
+            r"(?i)\bdirected by\s+([A-Z][A-Za-z .'\-]{1,42}?)"
+            r"(?=\s*[,;]|\s+and\s|\s+starring\b|\s+staring\b|\s+stars\b|"
+            r"\s+on\s|\s+only\s|\s*$)", text)
+        if m:
+            v = _clean_names(m.group(1))
+            if v and "," not in v:
+                credits["director"] = v
+    if "cast" not in credits:
+        m = re.search(
+            r"(?i)\b(?:starring|staring|stars)\s+"
+            r"([A-Z][^.\n|;]{1,180})", text)
+        if m:
+            v = _clean_names(_trim_credit_tail(m.group(1)))
+            if v:
+                credits["cast"] = v
     return credits
 
 
@@ -521,6 +611,81 @@ def film_key(title):
     film, _ = split_film_title(t)
     key = re.sub(r"[^a-z0-9]+", "", clean_film_name(film).lower())
     return key or re.sub(r"[^a-z0-9]+", "", t.lower())[:40]
+
+
+_NETFLIX_TITLE_RE = re.compile(r"netflix\.com/title/(\d+)")
+
+
+def _curl_browser(url, timeout=30):
+    """curl with a browser UA — Netflix serves a login wall to bot UAs."""
+    r = subprocess.run(
+        ["curl", "-sS", "--max-time", str(timeout),
+         "-A", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+               "AppleWebKit/537.36 (KHTML, like Gecko) "
+               "Chrome/126.0 Safari/537.36", url],
+        capture_output=True, text=True, timeout=timeout + 10)
+    return r.stdout if r.returncode == 0 else ""
+
+
+def _unescape_js(s):
+    def _rep(m):
+        try:
+            return chr(int(m.group(1), 16))
+        except Exception:
+            return m.group(0)
+    s = re.sub(r"\\x([0-9a-fA-F]{2})", _rep, s)
+    return re.sub(r"\\u([0-9a-fA-F]{4})", _rep, s)
+
+
+def netflix_title_completion(drops):
+    """Verified completion from the official Netflix title page.
+
+    Netflix India's trailer descriptions are prose-minimal (STEPS carried
+    no type and no credits at all), but they link the title's own page
+    (netflix.com/title/<id>), whose embedded model states the title's
+    type and cast — the platform is the authoritative source for its own
+    catalogue. Extraction is anchored to the block whose topLevelVideoId
+    equals the id from the description URL; anything else on the page
+    (recommendation rails share the markup) is never read. Fail-closed:
+    no anchor, no match, no fetch -> {} and the brief stays held.
+    Returns {media_type, cast, director} with only verified fields.
+    """
+    if os.environ.get("TRAILER_WATCH_NO_NETFLIX_COMPLETION"):
+        return {}
+    tid = None
+    for d in drops:
+        m = _NETFLIX_TITLE_RE.search(d.get("description", "") or "")
+        if m:
+            tid = m.group(1)
+            break
+    if not tid:
+        return {}
+    try:
+        page = _curl_browser(f"https://www.netflix.com/title/{tid}")
+    except Exception:
+        return {}
+    if not page:
+        return {}
+    anchor = page.find(f'"topLevelVideoId":{tid}')
+    if anchor < 0:
+        return {}
+    window = page[anchor:anchor + 6000]
+    out = {}
+    m = re.search(r'"type":"(Movie|TVSeries)"', window)
+    if m:
+        out["media_type"] = "Movie" if m.group(1) == "Movie" else "Series"
+    for role, key in (("actors", "cast"), ("directors", "director")):
+        m = re.search(rf'"{role}":\[(.*?)\]', window, re.S)
+        if not m:
+            continue
+        names = [_unescape_js(n).strip()
+                 for n in re.findall(r'"name":"([^"]+)"', m.group(1))]
+        names = [n for n in names if n]
+        if names:
+            v = _clean_names(", ".join(names[:6]))
+            if v:
+                out[key] = v
+    return out
 
 
 def build_brief_article(drops, channels_by_name):
@@ -566,14 +731,8 @@ def build_brief_article(drops, channels_by_name):
     if not release:
         # Release dates often live only in the video title ("Oct 23rd Rel",
         # "| 15th October"). Description still wins when both have one.
-        _MON = r"(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*"
-        tm = re.search(rf"(?i)\b{_MON}\.?\s+(\d{{1,2}})(?:st|nd|rd|th)?\b", title)
-        if tm:
-            release = f"{tm.group(1)[:3].capitalize()} {tm.group(2)}"
-        else:
-            tm = re.search(rf"(?i)\b(\d{{1,2}})(?:st|nd|rd|th)?\s+{_MON}\b", title)
-            if tm:
-                release = f"{tm.group(2)[:3].capitalize()} {tm.group(1)}"
+        # Same matcher: day-first allowed, teaser-announced dates skipped.
+        release = _find_release_date(title)
     # Pin the year at build time so the card, takeaways and subheadline all
     # carry the full date (see resolve_release).
     release = resolve_release(release, pub)
@@ -598,6 +757,35 @@ def build_brief_article(drops, channels_by_name):
         more = extract_credits(d.get("description", ""))
         for k, v in more.items():
             credits.setdefault(k, v)
+
+    # Type/release may live only in another language version's
+    # description (the primary drop is picked by title length, not by
+    # description richness) — fill still-missing fields from the other
+    # drops, same official sources, before consulting anything external.
+    if not media_type or not release:
+        for d in drops:
+            if d is first:
+                continue
+            _, mt2, rel2 = parse_description(d.get("description", ""))
+            if not media_type and mt2:
+                media_type = mt2
+            if not release and rel2:
+                release = resolve_release(rel2, pub)
+            if media_type and release:
+                break
+
+    # Verified completion (2026-10-15): when the gate would still fail on
+    # type or credits, consult the platform's own title page — currently
+    # Netflix, whose title URL is printed in the drop's own description.
+    if not media_type or not any(credits.get(k) for k in
+                                 ("cast", "director", "host",
+                                  "producer", "music")):
+        completion = netflix_title_completion(drops)
+        if not media_type and completion.get("media_type"):
+            media_type = completion["media_type"]
+        for k in ("cast", "director"):
+            if k not in credits and completion.get(k):
+                credits[k] = completion[k]
 
     main_ch = channels_by_name.get(first["channel"], {})
     takeaways = [
@@ -906,6 +1094,107 @@ def sb_merge_embeds(existing, drops, channels_by_name):
     return len(additions) if sb_patch_article(existing["id"], payload) else 0
 
 
+# ------------------------------------------------------------- held queue
+# A brief held by the film-card gate used to be DISCARDED: the drops were
+# already marked seen, so no later run ever reconsidered the film — four
+# tier-1 drops in a row vanished this way on 2026-10-15 (Aakasamlo Oka
+# Tara, Gajab Raat, STEPS, Ramayana). Held briefs now persist in
+# trailer-watch-held.json (full drop records, incl. descriptions) and are
+# retried every run: parser/completion improvements apply retroactively,
+# channels edit descriptions, and a later drop for the same film unions
+# into the queued entry. Entries expire loudly after HELD_MAX_DAYS.
+
+def load_held():
+    h = load_json(HELD_PATH, {})
+    return h if isinstance(h, dict) else {}
+
+
+def save_held(held):
+    with open(HELD_PATH, "w") as f:
+        json.dump(held, f, ensure_ascii=False, indent=1)
+
+
+def _same_film_key(a, b):
+    """Within-run grouping rule: prefix match in either direction."""
+    return bool(a) and bool(b) and (a.startswith(b) or b.startswith(a))
+
+
+def _held_entry_for(held, key):
+    for qk, entry in held.items():
+        if _same_film_key(qk, key):
+            return qk, entry
+    return None, None
+
+
+def queue_hold(held, key, drops, missing, now_iso,
+               first_held_at=None, attempts=0):
+    held[key] = {
+        "drops": drops,
+        "first_held_at": first_held_at or now_iso,
+        "last_attempt_at": now_iso,
+        "attempts": attempts,
+        "last_missing": missing,
+    }
+
+
+def dequeue_film(held, key):
+    for qk in [k for k in held if _same_film_key(k, key)]:
+        held.pop(qk, None)
+
+
+def merge_held_into_groups(groups, held):
+    """Combine fresh groups with the held queue into one work list.
+
+    Queued drops union into a matching fresh group (more descriptions =
+    more completion chances); queue-only films become retry groups and
+    go FIRST (oldest stories first). `held` is not mutated — the caller
+    applies outcomes."""
+    work = [[k, list(drops)] for k, drops in groups]
+    retries = []
+    for qk, entry in held.items():
+        qdrops = entry.get("drops") or []
+        if not qdrops:
+            continue
+        for w in work:
+            if _same_film_key(w[0], qk):
+                have = {d["video_id"] for d in w[1]}
+                w[1].extend(d for d in qdrops if d["video_id"] not in have)
+                if len(qk) > len(w[0]):
+                    w[0] = qk
+                break
+        else:
+            retries.append([qk, list(qdrops)])
+    return retries + work
+
+
+def attempt_brief(key, drops, channels_by_name, published_briefs, insert_fn):
+    """One brief attempt for a film group.
+
+    Returns (outcome, art): 'published' | 'merged' | 'skip' | 'held' |
+    'failed'. The film-card gate itself is unchanged (2026-10-13): a
+    brief whose card lacks a type, a full release date with year, or any
+    director/cast credit is held, never published as a thin stub."""
+    art = build_brief_article(drops, channels_by_name)
+    existing = find_cross_run_match(key, published_briefs)
+    if existing:
+        added = sb_merge_embeds(existing, drops, channels_by_name)
+        print(f"  merged into published article ({existing['slug']}): "
+              f"+{added} embed(s) — no new article")
+        return "merged", art
+    if sb_check_slug(art["slug"]):
+        print(f"  skip (slug exists): {art['slug']}")
+        return "skip", art
+    if not art.get("card_complete"):
+        print(f"  HOLD brief (incomplete film card — missing: "
+              f"{', '.join(art.get('card_missing') or [])}): "
+              f"{art['slug']}")
+        return "held", art
+    if insert_fn(art):
+        return "published", art
+    print(f"  insert failed (will retry from queue): {art['slug']}")
+    return "failed", art
+
+
 def main():
     os.makedirs(STATE, exist_ok=True)
     cfg = load_json(CHANNELS_PATH, {})
@@ -961,7 +1250,8 @@ def main():
         print(f"  [{'MAJOR' if d['tier']==1 else 'rail '} ] {d['channel']}: {d['title'][:80]}")
 
     articles_written = 0
-    if WRITE and majors:
+    held_queue = load_held() if WRITE else {}
+    if WRITE and (majors or held_queue):
         # Import the batch inserter's per-article processor
         sys.path.insert(0, PIPE)
         import importlib.util
@@ -986,37 +1276,69 @@ def main():
                     break
             if not placed:
                 groups.append([k, [d]])
+        # Held briefs from earlier runs join the work list (pure retries
+        # first; queued drops union into matching fresh groups) — a run
+        # with zero new drops still works the queue.
+        work = merge_held_into_groups(groups, held_queue)
         # Cross-run guard: a film whose brief already published (an earlier
         # run, possibly days ago) gets the new version MERGED into that
         # article — never a second article for the same film.
         published_briefs = sb_fetch_published_briefs()
         merged_groups = 0
-        held = 0
-        for key, drops in groups[:MAX_ARTICLES_PER_RUN]:
-            art = build_brief_article(drops, channels_by_name)
-            existing = find_cross_run_match(key, published_briefs)
-            if existing:
-                added = sb_merge_embeds(existing, drops, channels_by_name)
-                print(f"  merged into published article ({existing['slug']}): "
-                      f"+{added} embed(s) — no new article")
+        held_count = 0
+        expired = 0
+        retried = 0
+        now = datetime.now(timezone.utc)
+        now_iso = now.isoformat()
+        for idx, (key, drops) in enumerate(work):
+            old_qk, old_entry = _held_entry_for(held_queue, key)
+            if old_qk and old_qk != key:
+                held_queue.pop(old_qk, None)
+            if idx >= MAX_ARTICLES_PER_RUN:
+                # Beyond this run's cap: stay queued for the next run
+                # instead of being discarded (drops are already 'seen').
+                queue_hold(held_queue, key, drops,
+                           (old_entry or {}).get("last_missing")
+                           or ["deferred: run article cap"],
+                           now_iso,
+                           first_held_at=(old_entry or {}).get(
+                               "first_held_at"),
+                           attempts=(old_entry or {}).get("attempts", 0))
+                continue
+            if old_entry is not None:
+                retried += 1
+            outcome, art = attempt_brief(key, drops, channels_by_name,
+                                         published_briefs,
+                                         mod.process_article)
+            if outcome == "published":
+                articles_written += 1
+                dequeue_film(held_queue, key)
+            elif outcome == "merged":
                 merged_groups += 1
-                continue
-            if sb_check_slug(art["slug"]):
-                print(f"  skip (slug exists): {art['slug']}")
-                continue
-            if not art.get("card_complete"):
-                # Thin-card hold: better no brief than a stub card with
-                # "Jan 15" and no year, or no credits at all. Logged loudly
-                # so the gap is visible in the run report.
-                print(f"  HOLD brief (incomplete film card — missing: "
-                      f"{', '.join(art.get('card_missing') or [])}): "
-                      f"{art['slug']}")
-                held += 1
-                continue
-            ok = mod.process_article(art)
-            articles_written += 1 if ok else 0
-        print(f"Brief articles inserted: {articles_written}/{min(len(groups), MAX_ARTICLES_PER_RUN)}"
-              f" | merged into existing: {merged_groups} | held (thin card): {held}")
+                dequeue_film(held_queue, key)
+            elif outcome == "skip":
+                dequeue_film(held_queue, key)
+            else:  # held / failed -> (re)queue, or expire loudly
+                first_held = (old_entry or {}).get("first_held_at") or now_iso
+                attempts = (old_entry or {}).get("attempts", 0) + 1
+                held_since = parse_dt(first_held)
+                age_days = (now - held_since).days if held_since else 0
+                missing = art.get("card_missing") or ["insert failed"]
+                if age_days >= HELD_MAX_DAYS:
+                    dequeue_film(held_queue, key)
+                    expired += 1
+                    print(f"  ⚠️ HELD-EXPIRED (held {age_days}d, still "
+                          f"missing: {', '.join(missing)}): {art['slug']} "
+                          f"— brief will not be published")
+                else:
+                    queue_hold(held_queue, key, drops, missing, now_iso,
+                               first_held_at=first_held, attempts=attempts)
+                    held_count += 1
+        save_held(held_queue)
+        print(f"Brief articles inserted: {articles_written}/{min(len(work), MAX_ARTICLES_PER_RUN)}"
+              f" | merged into existing: {merged_groups} | held (thin card): {held_count}"
+              f" | retried from queue: {retried} | held expired: {expired}"
+              f" | queue size: {len(held_queue)}")
     elif majors:
         print(f"(dry run — {len(majors)} major drops would get brief articles with --write)")
     return 0
