@@ -44,6 +44,10 @@ Usage:
   python3 flight-deals.py --all --samples 3          (denser dep sampling)
   python3 flight-deals.py --intl                     (weekly international matrix)
   python3 flight-deals.py --intl --route SFO-SYD     (single intl route)
+  python3 flight-deals.py --metros                   (daily slice of the
+        India metros grid: the 38 origin x metro pairs the daily core
+        does not cover, refreshed on a weekly rhythm — see
+        select_metros_slice; separate flight-deals-metros.json)
   python3 flight-deals.py --all --resume             (skip searches that
         already have a fresh cached response; finish an interrupted run
         spending requests only on the missing searches. Resume runs
@@ -129,6 +133,42 @@ INTL_ROUTES = [(o, d, om, dm)
                for o, om in INTL_ORIGINS]
 INTL_AIRPORT_SLUG = {d: slug for d, _dm, slug in INTL_DESTINATIONS}
 
+# India metros grid (weekly cadence via daily slices — Kiran,
+# 2026-10-15, "India Metros Scroll"): the full 10-origin x 5-metro
+# India grid the daily core does NOT cover. The core's 12 routes stay
+# daily; these 38 pairs refresh on a weekly rhythm through a small
+# daily slice (see select_metros_slice), so the week's ~456 searches
+# never hit the provider's per-user wall in one sitting. Same India
+# band semantics as the core (BAND_INDIA); the output is a SEPARATE
+# snapshot labelled weekly / indicative, and the frontend merges it
+# UNDER the daily data (daily wins per route — see lib/flightDeals.ts).
+METROS_ORIGINS = [
+    ("SFO", "Bay Area"),
+    ("LAX", "Los Angeles"),
+    ("SEA", "Seattle"),
+    ("JFK", "New York"),
+    ("EWR", "New York"),
+    ("ORD", "Chicago"),
+    ("DFW", "Dallas"),
+    ("IAD", "Washington DC"),
+    ("ATL", "Atlanta"),
+    ("BOS", "Boston"),
+]
+METROS_DESTS = [
+    ("DEL", "Delhi"),
+    ("BOM", "Mumbai"),
+    ("BLR", "Bengaluru"),
+    ("HYD", "Hyderabad"),
+    ("CCU", "Kolkata"),
+]
+CORE_ROUTE_KEYS = {f"{o}-{d}" for o, d, _om, _dm in ALL_ROUTES}
+METROS_ROUTES = [(o, d, om, dm)
+                 for o, om in METROS_ORIGINS
+                 for d, dm in METROS_DESTS
+                 if f"{o}-{d}" not in CORE_ROUTE_KEYS]
+METROS_SLICE_SIZE = 6      # routes per daily slice (~72 searches)
+METROS_REFRESH_DAYS = 7    # weekly rhythm: data staleness / no-fare rest
+
 DATA_DIR = Path.home() / "workspace" / "the-videshi-news" / "public" / "data"
 STATE_DIR = Path.home() / "workspace" / "the-videshi-news" / "pipeline" / ".state"
 OUTPUT_FILE = DATA_DIR / "flight-deals.json"
@@ -136,6 +176,10 @@ HISTORY_FILE = STATE_DIR / "flight-deals-history.jsonl"
 INTL_OUTPUT_FILE = DATA_DIR / "flight-deals-intl.json"
 INTL_HISTORY_FILE = STATE_DIR / "flight-deals-intl-history.jsonl"
 INTL_RUN_STATE_FILE = STATE_DIR / "flight-deals-intl-run-state.json"
+METROS_OUTPUT_FILE = DATA_DIR / "flight-deals-metros.json"
+METROS_HISTORY_FILE = STATE_DIR / "flight-deals-metros-history.jsonl"
+METROS_RUN_STATE_FILE = STATE_DIR / "flight-deals-metros-run-state.json"
+METROS_STATE_FILE = STATE_DIR / "flight-deals-metros-state.json"
 
 MIN_LEAD_DAYS = 2          # earliest departure = today + 2 days
 MIDWEEK = (1, 2, 3)        # Tue, Wed, Thu (date.weekday(): Mon=0)
@@ -651,6 +695,123 @@ def order_routes_incomplete_first(routes, band, months,
     return [(t[3], t[4]) for t in decorated]
 
 
+# ── Metros grid: slice state + due selection ─────────────────────────
+# The slice state is the grid's durable memory. It lives in
+# pipeline/.state (on-disk, survives VM restarts — unlike the /tmp
+# response cache), and records every route ATTEMPT with its outcome,
+# so confirmed no-fare routes rest instead of being re-burned daily,
+# and a route whose cells were computed but lost to an aborted write
+# is recognised as still owed (its cached responses make the retry
+# nearly free under --resume).
+
+def load_metros_state(path=None):
+    state = load_json_file(path or METROS_STATE_FILE)
+    if not isinstance(state, dict) \
+            or not isinstance(state.get("routes"), dict):
+        return {"routes": {}}
+    return state
+
+
+def save_metros_state(state, path=None):
+    try:
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        (path or METROS_STATE_FILE).write_text(json.dumps(state, indent=2))
+    except Exception:
+        pass
+
+
+def record_metros_attempt(route_key, calendar, today_iso, path=None):
+    """Persist one route attempt. Called per route as it completes,
+    so an abort mid-run never loses the finished routes' records."""
+    state = load_metros_state(path)
+    newest = max((c.get("fetched_as_of") or "" for c in calendar),
+                 default="")
+    state["routes"][route_key] = {
+        "last_attempt": today_iso,
+        "outcome": "cells" if calendar else "no_fares",
+        "cells": len(calendar),
+        "newest_fetched": newest or None,
+    }
+    state["updated_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    save_metros_state(state, path)
+
+
+def snapshot_route_freshness(snapshot):
+    """route_key -> newest fetched_as_of among its snapshot cells
+    (None when the route is absent or its calendar is empty)."""
+    out = {}
+    for route_key, r in ((snapshot or {}).get("routes") or {}).items():
+        dates = [c.get("fetched_as_of") for c in (r.get("calendar") or [])
+                 if c.get("fetched_as_of")]
+        out[route_key] = max(dates) if dates else None
+    return out
+
+
+def _days_between(iso_a, iso_b):
+    try:
+        return (date.fromisoformat(iso_b) - date.fromisoformat(iso_a)).days
+    except Exception:
+        return None
+
+
+def metros_route_due(route_key, freshness, record, today, fill=False):
+    """(due, sort_key) for one grid route.
+
+    A route is SATISFIED only by cells in the snapshot: an attempt
+    that computed cells but never landed in a written snapshot
+    (aborted run) leaves the route due — --resume replays its cached
+    responses for free. A no-fare outcome rests the route for
+    METROS_REFRESH_DAYS so confirmed-empty pairs are not re-burned
+    daily; in fill mode only a SAME-DAY no-fare result rests it
+    (older empties are retried — the rolling window has moved).
+    Sort order: never-attempted first, then owed/no-data routes by
+    oldest attempt, then stale-data routes by oldest data.
+    """
+    today_iso = today.isoformat()
+    newest = freshness.get(route_key)
+    last_attempt = (record or {}).get("last_attempt")
+    outcome = (record or {}).get("outcome")
+    if newest:
+        age = _days_between(newest, today_iso)
+        if age is not None and age < METROS_REFRESH_DAYS:
+            return (False, None)
+        return (True, (2, newest))  # stale data — refresh
+    if outcome == "no_fares" and last_attempt:
+        if fill:
+            if last_attempt == today_iso:
+                return (False, None)
+        else:
+            age = _days_between(last_attempt, today_iso)
+            if age is not None and age < METROS_REFRESH_DAYS:
+                return (False, None)
+        return (True, (1, last_attempt))
+    if last_attempt:
+        # Attempted with cells, but nothing reached the snapshot —
+        # the write was aborted; still owed.
+        return (True, (1, last_attempt))
+    return (True, (0, ""))  # never attempted
+
+
+def select_metros_slice(routes, snapshot, state, today, slice_size,
+                        fill=False):
+    """The due subset of the metros grid for one invocation, in work
+    order (see metros_route_due). slice_size None/0 = every due route."""
+    freshness = snapshot_route_freshness(snapshot)
+    records = (state or {}).get("routes") or {}
+    due = []
+    for idx, route in enumerate(routes):
+        route_key = f"{route[0]}-{route[1]}"
+        is_due, sort_key = metros_route_due(
+            route_key, freshness, records.get(route_key), today, fill=fill)
+        if is_due:
+            due.append((sort_key, idx, route))
+    due.sort(key=lambda t: (t[0], t[1]))
+    picked = [r for _sk, _i, r in due]
+    if slice_size:
+        picked = picked[:slice_size]
+    return picked
+
+
 def find_cheapest_window(origin, dest, year, month, band, dep_samples,
                          duration_days, min_date, sleep_s):
     """
@@ -887,7 +1048,8 @@ def flag_cheapest(calendar):
 # ── Main ─────────────────────────────────────────────────────────────
 
 def resolve_routes(args):
-    pool = INTL_ROUTES if args.intl else ALL_ROUTES
+    pool = INTL_ROUTES if args.intl else \
+        METROS_ROUTES if args.metros else ALL_ROUTES
     if args.route:
         parts = args.route.split("-")
         if len(parts) != 2:
@@ -900,6 +1062,8 @@ def resolve_routes(args):
                  metro[3] if metro else parts[1])]
     if args.intl:
         return INTL_ROUTES
+    if args.metros:
+        return METROS_ROUTES
     if args.tier == "1":
         return TIER1_ROUTES
     if args.tier == "2":
@@ -916,6 +1080,19 @@ def main():
                         help="International matrix (weekly): top non-India "
                              "destinations x 5 origins, ~1-week band, "
                              "separate output/history/run-state files")
+    parser.add_argument("--metros", action="store_true",
+                        help="India metros grid (weekly cadence via daily "
+                             "slices): the 38 origin x metro pairs the "
+                             "daily core does not cover, India band, "
+                             "separate output/history/run-state files")
+    parser.add_argument("--metros-slice", type=int,
+                        default=METROS_SLICE_SIZE,
+                        help="Max grid routes per --metros invocation "
+                             "(default 6 ≈ 72 searches; 0 = all due)")
+    parser.add_argument("--metros-fill", action="store_true",
+                        help="First-fill mode for --metros: every route "
+                             "missing snapshot cells stays due until it "
+                             "produces data or a same-day no-fare result")
     parser.add_argument("--months", type=int, default=3,
                         help="Months ahead to search (default 3 — "
                              "Phase 1 scope, Kiran 2026-10-15)")
@@ -957,19 +1134,31 @@ def main():
     RESUME_TTL_S = args.resume_ttl_hours * 3600
     PAUSES.max_pauses = args.max_pauses
     PAUSES.max_total_wait_s = args.max_pause_wait_min * 60
+    if args.metros and not CACHE_MODE:
+        # Grid runs always resume: slices and provider aborts lean on
+        # the response cache, so a route whose snapshot write was
+        # aborted completes for free on the next slice.
+        RESUME_MODE = True
 
-    if not (args.all or args.tier or args.route or args.intl):
-        print("Specify --all, --tier, --route, or --intl", file=sys.stderr)
+    if not (args.all or args.tier or args.route or args.intl
+            or args.metros):
+        print("Specify --all, --tier, --route, --intl, or --metros",
+              file=sys.stderr)
         sys.exit(1)
 
-    # Market selection: the two matrices share the engine but never
-    # share files — the weekly intl run must not touch the daily India
-    # snapshot, history, or run state.
+    # Market selection: the matrices share the engine but never share
+    # files — the weekly intl run and the metros grid slices must not
+    # touch the daily India snapshot, history, or run state.
     if args.intl:
         band = BAND_INTL
         OUTPUT_FILE = INTL_OUTPUT_FILE
         HISTORY_FILE = INTL_HISTORY_FILE
         RUN_STATE_FILE = INTL_RUN_STATE_FILE
+    elif args.metros:
+        band = BAND_INDIA
+        OUTPUT_FILE = METROS_OUTPUT_FILE
+        HISTORY_FILE = METROS_HISTORY_FILE
+        RUN_STATE_FILE = METROS_RUN_STATE_FILE
     else:
         band = BAND_INDIA
     duration_days = sample_durations(band, args.duration_samples)
@@ -978,6 +1167,21 @@ def main():
     today = date.today()
     min_date = today + timedelta(days=MIN_LEAD_DAYS)
     months = rolling_months(args.months, min_date)
+
+    if args.metros and not args.route:
+        # Daily-slice selection: only the routes the grid still owes
+        # (see select_metros_slice) are worked this invocation.
+        grid_snapshot = load_json_file(OUTPUT_FILE)
+        grid_state = load_metros_state()
+        routes = select_metros_slice(
+            routes, grid_snapshot, grid_state, today,
+            args.metros_slice or None, fill=args.metros_fill)
+        if not routes:
+            print("Metros grid: no routes due (grid is fresh or "
+                  "resting). Nothing to do.")
+            return
+        print("Metros slice: "
+              + ", ".join(f"{o}-{d}" for o, d, _om, _dm in routes))
 
     estimate = (len(routes) * len(months) * args.samples
                 * len(duration_days))
@@ -1025,7 +1229,8 @@ def main():
     all_data = {
         "generated_at": None,
         "as_of": today.isoformat(),
-        "market": "international" if args.intl else "india",
+        "market": ("international" if args.intl
+                   else "india-metros" if args.metros else "india"),
         "band": band,
         "months_ahead": len(months),
         "routes": {},
@@ -1040,7 +1245,7 @@ def main():
             "note": "Excludes basic economy. Prices are snapshots, not live.",
         },
     }
-    if args.intl:
+    if args.intl or args.metros:
         # Honest cadence labelling, in the data itself: these fares are
         # checked weekly at reduced depth — indicative, not a calendar.
         all_data["cadence"] = "weekly"
@@ -1088,6 +1293,10 @@ def main():
                 INTL_AIRPORT_SLUG.get(dest)
         COMPLETED_ROUTES.append(route_key)
         write_run_state("aborted" if ABORTED else "running")
+        if args.metros:
+            # Per-route, immediately: the record must survive an abort
+            # later in this same invocation.
+            record_metros_attempt(route_key, calendar, today.isoformat())
 
     if CACHE_MODE:
         planned_per_route = len(months) * args.samples * len(duration_days)
@@ -1189,9 +1398,11 @@ def main():
         fh.write("\n".join(lines) + "\n")
     print(f"📜 History: appended {len(lines)} lines to {HISTORY_FILE.name}")
 
-    # Write output. Single-route runs merge into the existing file.
+    # Write output. Single-route runs merge into the existing file;
+    # metros slice runs merge too — a slice must never shrink the
+    # grid snapshot to just the routes it worked today.
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    if args.route and OUTPUT_FILE.exists():
+    if (args.route or args.metros) and OUTPUT_FILE.exists():
         existing = json.loads(OUTPUT_FILE.read_text())
         existing["routes"].update(all_data["routes"])
         existing["generated_at"] = all_data["generated_at"]
@@ -1201,9 +1412,21 @@ def main():
         existing["months_ahead"] = all_data["months_ahead"]
         existing["biggest_drops"] = all_data["biggest_drops"]
         existing["festival_seasons"] = all_data["festival_seasons"]
-        if args.intl:
+        if args.intl or args.metros:
             existing["cadence"] = "weekly"
             existing["indicative"] = True
+        if args.metros:
+            # The fetch window must span the MERGED snapshot, not
+            # just today's slice — a slice's dates must never make
+            # last week's routes look freshly fetched (or vice versa).
+            merged_dates = sorted(
+                c["fetched_as_of"]
+                for r in existing["routes"].values()
+                for c in (r.get("calendar") or [])
+                if c.get("fetched_as_of"))
+            if merged_dates:
+                existing["fetched_as_of_oldest"] = merged_dates[0]
+                existing["fetched_as_of_newest"] = merged_dates[-1]
         all_data = existing
 
     OUTPUT_FILE.write_text(json.dumps(all_data, indent=2))

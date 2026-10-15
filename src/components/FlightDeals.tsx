@@ -17,6 +17,7 @@ import {
   DEFAULT_ROUTES,
   airlineBookingUrl,
   cheapestIntlFare,
+  dealRouteSource,
   detectHubOrigin,
   detectHubRoute,
   fmtDate,
@@ -25,12 +26,17 @@ import {
   googleFlightsUrl,
   loadFlightDeals,
   loadIntlFlightDeals,
+  loadMetrosFlightDeals,
+  mergeDealRoutes,
+  metroFaresForOrigin,
   tripLengthLabel,
   type CalendarEntry,
   type FestivalSeason,
   type FlightDealsData,
   type IntlDealsData,
+  type MetrosDealsData,
 } from "@/lib/flightDeals";
+import MetroFareRail from "@/components/MetroFareRail";
 import {
   loadDestinations,
   selectTrendingCards,
@@ -366,27 +372,61 @@ function DestinationFareLines() {
 
 export default function FlightDeals() {
   const [data, setData] = useState<FlightDealsData | null>(null);
+  const [metros, setMetros] = useState<MetrosDealsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [routeKey, setRouteKey] = useState<string>("");
 
   useEffect(() => {
-    loadFlightDeals().then((d) => {
-      setData(d);
-      if (d) {
-        // One pool everywhere (§B audit fix): detection runs over ALL
-        // routes in the snapshot — the old code pre-filtered to
-        // DEFAULT_ROUTES, so e.g. an Atlanta reader with an ATL-DEL
-        // route in the data silently got a default city's fares.
-        const keys = Object.keys(d.routes);
-        const fallback =
-          DEFAULT_ROUTES.find((k) => keys.includes(k)) ?? keys[0] ?? "";
-        setRouteKey(detectHubRoute(keys) ?? fallback);
-      }
-      setLoading(false);
-    });
+    Promise.all([loadFlightDeals(), loadMetrosFlightDeals()]).then(
+      ([d, m]) => {
+        setData(d);
+        setMetros(m);
+        if (d) {
+          // One pool everywhere (§B audit fix): detection runs over ALL
+          // routes in the snapshot — the old code pre-filtered to
+          // DEFAULT_ROUTES, so e.g. an Atlanta reader with an ATL-DEL
+          // route in the data silently got a default city's fares.
+          const keys = Object.keys(d.routes);
+          const fallback =
+            DEFAULT_ROUTES.find((k) => keys.includes(k)) ?? keys[0] ?? "";
+          setRouteKey(detectHubRoute(keys) ?? fallback);
+        }
+        setLoading(false);
+      },
+    );
   }, []);
 
-  const route = data?.routes[routeKey];
+  /* The calendar can show any MERGED route: the daily 12 plus the
+   * weekly metros grid's 38, merged with daily winning per route.
+   * The route pills stay the daily core (the curated corridors); the
+   * metros rail below is how grid routes are reached. */
+  const mergedRoutes = useMemo(
+    () => mergeDealRoutes(data, metros),
+    [data, metros],
+  );
+  const route = mergedRoutes[routeKey];
+  const routeSource = data ? dealRouteSource(routeKey, data) : "daily";
+  const routeAsOf = useMemo(() => {
+    if (!route) return null;
+    const dates = (route.calendar ?? [])
+      .map((e) => e.fetched_as_of)
+      .filter((d): d is string => !!d)
+      .sort();
+    return (
+      dates[dates.length - 1] ??
+      (routeSource === "daily" ? data?.as_of : metros?.as_of) ??
+      null
+    );
+  }, [route, routeSource, data, metros]);
+
+  /* Metros rail for the selected route's origin (merged data). */
+  const railFares = useMemo(
+    () =>
+      route
+        ? metroFaresForOrigin(data, metros, route.origin)
+        : [],
+    [data, metros, route],
+  );
 
   /* Band model: every cell is the single ~3-week band, so no duration
    * filter — upcoming trips only; snapshot windows whose departure has
@@ -474,8 +514,30 @@ export default function FlightDeals() {
       </div>
 
       <p className="text-[12px] text-foreground/45 mb-4 -mt-2">
-        {route.origin_metro} → {route.dest_metro} · {bandLabel} ({bandRange}) · per person · fares as of {fmtDateLong(data.as_of)}
+        {route.origin_metro} → {route.dest_metro} · {bandLabel} ({bandRange}) · per person ·{" "}
+        {routeSource === "weekly" ? "checked weekly · " : ""}fares as of{" "}
+        {fmtDateLong(routeAsOf ?? data.as_of)}
       </p>
+
+      {/* ── India metros rail — every metro from this origin ── */}
+      {railFares.length > 1 && (
+        <div className="mb-6">
+          <h3 className="font-serif text-lg font-bold text-foreground mb-1">
+            From {route.origin} — cheapest to each India metro
+          </h3>
+          <p className="text-[12px] text-foreground/50 mb-3">
+            Tap a metro to see its calendar. Delhi, Mumbai, Bengaluru,
+            Hyderabad and Kolkata — daily-checked routes and the weekly
+            grid together, each card stamped with its own check date.
+          </p>
+          <MetroFareRail
+            fares={railFares}
+            variant="travel"
+            selectedRouteKey={routeKey}
+            onSelect={setRouteKey}
+          />
+        </div>
+      )}
 
       {/* ── Cheapest-month spotlight ───────────────────────── */}
       {cheapest && (
@@ -502,7 +564,7 @@ export default function FlightDeals() {
         <div className="text-center py-12 bg-card border border-border rounded-2xl">
           <Plane className="h-8 w-8 text-foreground/20 mx-auto mb-3" />
           <p className="text-foreground/50 text-sm px-4">
-            This route's snapshot windows (checked {fmtDateLong(data.as_of)}) have all departed.
+            This route's snapshot windows (checked {fmtDateLong(routeAsOf ?? data.as_of)}) have all departed.
             <br />
             Fresh fares are on the way — meanwhile, try another route above.
           </p>

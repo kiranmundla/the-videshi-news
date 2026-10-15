@@ -22,15 +22,14 @@ import { useUserLocation, type UserLocation } from "@/hooks/useUserLocation";
 import { DEADLINES, type Deadline } from "@/data/deadlines";
 import { fetchKidsDeadlines } from "@/lib/kidsPrograms";
 import {
-  cheapestFare,
-  detectHubRoute,
-  fmtDateLong,
+  detectMetrosOrigin,
   fmtRange,
   loadFlightDeals,
-  tripLengthLabel,
-  type CalendarEntry,
-  type RouteData,
+  loadMetrosFlightDeals,
+  metroFaresForOrigin,
+  type MetroFare,
 } from "@/lib/flightDeals";
+import MetroFareRail from "@/components/MetroFareRail";
 import {
   loadTravelPlanner,
   nextHolidayWindow,
@@ -148,34 +147,34 @@ function distanceFor(e: EventItem, loc: HubLocation | null): number | null {
 }
 
 /* ── Plan a Trip ──
-   The deal leads: the cheapest India fare from the reader's own airport
-   (Hub location → route in the deals snapshot) is the headline. When the
-   snapshot has no route for their metro — or no upcoming fares — the
-   block falls back to the next holiday window alone; a fare is never
-   invented or borrowed from another city. */
+   The India Metros rail leads (Kiran, 2026-10-15): one card per major
+   Indian metro with a real fare from the reader's own airport — daily
+   core routes stamped with their own check date, weekly-grid routes
+   stamped "checked weekly". Metros without a fare from their origin
+   don't appear. When no origin resolves — or no fares exist yet —
+   the block falls back to the next holiday window alone; a fare is
+   never invented or borrowed from another city. */
 function PlanTripBlock() {
-  const [deal, setDeal] = useState<{ route: RouteData; entry: CalendarEntry; asOf: string } | null>(null);
+  const [fares, setFares] = useState<MetroFare[]>([]);
+  const [origin, setOrigin] = useState<string | null>(null);
   const [win, setWin] = useState<HolidayWindow | null>(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    Promise.all([loadFlightDeals(), loadTravelPlanner()])
-      .then(([deals, planner]) => {
+    Promise.all([loadFlightDeals(), loadMetrosFlightDeals(), loadTravelPlanner()])
+      .then(([deals, metros, planner]) => {
         if (planner) setWin(nextHolidayWindow(planner, todayStr()));
-        if (deals) {
-          const rk = detectHubRoute(Object.keys(deals.routes));
-          if (rk) {
-            const route = deals.routes[rk];
-            const c = cheapestFare(route, 6);
-            if (c) setDeal({ route, entry: c.entry, asOf: deals.as_of });
-          }
+        const o = detectMetrosOrigin(deals, metros);
+        if (o) {
+          setOrigin(o);
+          setFares(metroFaresForOrigin(deals, metros, o));
         }
         setLoaded(true);
       })
       .catch(() => setLoaded(true));
   }, []);
 
-  if (!loaded || (!deal && !win)) return null;
+  if (!loaded || (!fares.length && !win)) return null;
 
   const today = todayStr();
   const bookByNote = win
@@ -190,29 +189,20 @@ function PlanTripBlock() {
     <section className="mb-10">
       <SectionHead
         title="Plan a Trip"
-        sub={deal ? `from ${deal.route.origin}` : "holiday windows & fares"}
+        sub={origin ? `from ${origin}` : "holiday windows & fares"}
       />
       <div className="bg-card border border-border rounded-lg p-4 md:p-5">
-        {deal ? (
+        {fares.length ? (
           <>
-            <div className="flex items-baseline gap-2 flex-wrap">
+            <div className="flex items-baseline gap-2 flex-wrap mb-2">
               <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-green-100 text-green-800">
-                Deal
+                Deals
               </span>
               <span className="text-[13px] font-semibold text-muted-foreground">
-                {deal.route.origin} → {deal.route.destination} from
+                {origin} → India · cheapest ~3-week fares by metro
               </span>
             </div>
-            <div className="flex items-end justify-between gap-3 mt-1.5">
-              <span className="text-[2rem] font-black leading-none" style={{ color: "#0B1D3A" }}>
-                ${deal.entry.price_min.toLocaleString()}
-              </span>
-              <span className="text-[11px] text-muted-foreground text-right">
-                {fmtRange(deal.entry.dep_date, deal.entry.ret_date)} · {tripLengthLabel(deal.entry)}
-                <br />
-                per person round-trip · fares checked {fmtDateLong(deal.asOf)}
-              </span>
-            </div>
+            <MetroFareRail fares={fares} variant="hub" />
           </>
         ) : (
           win && (
@@ -226,7 +216,7 @@ function PlanTripBlock() {
             </>
           )
         )}
-        {deal && win && (
+        {fares.length > 0 && win && (
           <p className="text-[12px] text-muted-foreground mt-3">
             🗓️ Next holiday window: <strong className="text-foreground/80">{win.name}</strong> ·{" "}
             {fmtRange(win.start, win.end)}
@@ -238,7 +228,7 @@ function PlanTripBlock() {
           className="inline-block mt-3 text-[13px] font-semibold hover:underline"
           style={{ color: "#A32D2F" }}
         >
-          {deal ? "See all fares →" : "See fares →"}
+          {fares.length ? "See all fares →" : "See fares →"}
         </Link>
       </div>
     </section>
