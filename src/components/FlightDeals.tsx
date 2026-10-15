@@ -1,9 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
 import {
   Plane,
   CalendarDays,
-  Bell,
   ExternalLink,
   ShieldCheck,
   Luggage,
@@ -11,21 +9,17 @@ import {
   ChevronRight,
   ChevronDown,
   Sparkles,
-  BadgePercent,
-  ArrowRight,
 } from "lucide-react";
 import {
   airlineBookingUrl,
-  cheapestIntlFare,
   dealRouteSource,
-  detectHubOrigin,
   detectHubRoute,
+  festivalAdvice,
   fmtDate,
   fmtDateLong,
   futureEntries,
   googleFlightsUrl,
   loadFlightDeals,
-  loadIntlFlightDeals,
   loadMetrosFlightDeals,
   mergeDealRoutes,
   metroFaresForOrigin,
@@ -34,15 +28,9 @@ import {
   type FestivalSeason,
   type FlightDealsData,
   type RouteData,
-  type IntlDealsData,
   type MetrosDealsData,
 } from "@/lib/flightDeals";
 import MetroFareRail from "@/components/MetroFareRail";
-import {
-  loadDestinations,
-  selectTrendingCards,
-  type TrendingDestination,
-} from "@/lib/trendingDestinations";
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                            */
@@ -59,11 +47,6 @@ function seasonForEntry(entry: CalendarEntry, seasons: FestivalSeason[]): Festiv
     if (dep >= lo && dep <= hi) return s;
   }
   return null;
-}
-
-function monthLabel(entry: CalendarEntry): string {
-  const d = new Date(entry.dep_date + "T12:00:00");
-  return d.toLocaleDateString("en-US", { month: "long", year: "numeric" });
 }
 
 /** Booking links for a fare (Kiran's decision, 2026-10-15): the
@@ -156,7 +139,7 @@ function PriceCard({
             </span>
           </div>
           <div className="text-[11px] text-foreground/45 mt-0.5">
-            {tripLengthLabel(entry)} · {fmtDateLong(entry.dep_date)}
+            {tripLengthLabel(entry)}
           </div>
         </div>
         <div className="text-right flex-shrink-0">
@@ -164,13 +147,12 @@ function PriceCard({
             <span className="text-[13px] font-semibold text-foreground/45 mr-1">from</span>
             ${entry.price_min.toLocaleString()}
           </div>
-          <div className="text-[11px] text-foreground/45">per person round-trip</div>
         </div>
       </div>
 
       <div className="flex items-center gap-1.5 mt-3 text-[12px] text-foreground/55">
         <Plane className="h-3.5 w-3.5 text-foreground/35" />
-        <span className="truncate">{entry.cheapest_airline} · max 1 stop · 2 checked bags</span>
+        <span className="truncate">{entry.cheapest_airline}</span>
       </div>
 
       {entry.change_vs_prev && entry.change_vs_prev.delta > 0 && (
@@ -182,7 +164,7 @@ function PriceCard({
 
       {season && (
         <div className="mt-3 text-[12px] bg-amber-500/10 border border-amber-500/20 rounded-xl px-3 py-2 text-foreground/75">
-          {season.note} · Book {season.book_by_months} months ahead for best fares
+          {festivalAdvice(entry, season)}
         </div>
       )}
 
@@ -217,164 +199,15 @@ function PriceCard({
 }
 
 /* ------------------------------------------------------------------ */
-/* Per-destination fare lines                                         */
-/*                                                                    */
-/* One line per trending destination that has real fare data: India   */
-/* destinations from the daily matrix (own-metro routes only — the    */
-/* destinations builder attaches them), international destinations    */
-/* from the weekly matrix, preferring the reader's own origin         */
-/* airport. Destinations without data simply don't appear — a fare   */
-/* is never borrowed from another destination.                        */
-/* ------------------------------------------------------------------ */
-
-const INTL_AIRPORT_BY_SLUG: Record<string, string> = {
-  australia: "SYD",
-  bali: "DPS",
-  cabo: "SJD",
-  egypt: "CAI",
-  fiji: "NAN",
-  france: "CDG",
-  greece: "ATH",
-  hawaii: "HNL",
-};
-
-type FareLine = {
-  slug: string;
-  name: string;
-  guideUrl: string;
-  routeLabel: string;
-  price: number;
-  datesLabel: string;
-  lengthLabel: string;
-  cadenceLabel: string;
-  gfUrl: string;
-};
-
-function buildFareLines(
-  cards: TrendingDestination[],
-  intl: IntlDealsData | null,
-): FareLine[] {
-  const lines: FareLine[] = [];
-  const intlOrigins = intl
-    ? [...new Set(Object.values(intl.routes).map((r) => r.origin))]
-    : [];
-  const preferredOrigin = intlOrigins.length
-    ? detectHubOrigin(intlOrigins)
-    : null;
-  for (const d of cards) {
-    const airport = INTL_AIRPORT_BY_SLUG[d.slug];
-    if (airport) {
-      if (!intl) continue;
-      const hit = cheapestIntlFare(intl, airport, preferredOrigin);
-      if (!hit) continue;
-      const [dep, ret] = [hit.entry.dep_date, hit.entry.ret_date];
-      lines.push({
-        slug: d.slug,
-        name: d.name,
-        guideUrl: d.guide_url,
-        routeLabel: `${hit.route.origin} → ${hit.route.destination} · ${hit.route.dest_metro}`,
-        price: hit.entry.price_min,
-        datesLabel: `${fmtDate(dep)} → ${fmtDate(ret)}`,
-        lengthLabel: tripLengthLabel(hit.entry),
-        cadenceLabel: `Indicative · checked weekly · fares as of ${fmtDateLong(intl.as_of)}`,
-        gfUrl: googleFlightsUrl(hit.route.origin, hit.route.destination, dep, ret),
-      });
-    } else if (d.fare_from) {
-      const f = d.fare_from;
-      const [o, dst] = f.route.split("-");
-      const [dep, ret] = f.date_range.split(" → ");
-      lines.push({
-        slug: d.slug,
-        name: d.name,
-        guideUrl: d.guide_url,
-        routeLabel: `${f.route} · ${f.dest_metro}`,
-        price: f.price_min,
-        datesLabel: `${fmtDate(dep)} → ${fmtDate(ret)}`,
-        lengthLabel: f.duration_days
-          ? `${f.duration_days}-day trip`
-          : f.weeks
-            ? `${f.weeks}-week trip`
-            : "round trip",
-        cadenceLabel: `Fares checked ${fmtDateLong(f.as_of)}`,
-        gfUrl: googleFlightsUrl(o, dst, dep, ret),
-      });
-    }
-  }
-  return lines;
-}
-
-function DestinationFareLines() {
-  const [lines, setLines] = useState<FareLine[]>([]);
-  useEffect(() => {
-    let alive = true;
-    Promise.all([loadDestinations(), loadIntlFlightDeals()]).then(
-      ([destData, intl]) => {
-        if (!alive || !destData) return;
-        setLines(buildFareLines(selectTrendingCards(destData, 8), intl));
-      },
-    );
-    return () => {
-      alive = false;
-    };
-  }, []);
-
-  if (!lines.length) return null;
-  return (
-    <div className="mt-8">
-      <h3 className="font-serif text-xl font-bold text-foreground mb-1">
-        Fares to top destinations
-      </h3>
-      <p className="text-[12px] text-foreground/50 mb-4">
-        Cheapest upcoming fares for the destinations trending above — from
-        your nearest airport where we track it.
-      </p>
-      <div className="divide-y divide-border border border-border rounded-2xl bg-card overflow-hidden">
-        {lines.map((l) => (
-          <div
-            key={l.slug}
-            className="flex items-center gap-3 px-4 py-3 hover:bg-foreground/[0.02]"
-          >
-            <div className="min-w-0 flex-1">
-              <Link
-                to={l.guideUrl}
-                className="text-[14px] font-semibold text-foreground hover:text-primary truncate block"
-              >
-                {l.name}
-              </Link>
-              <div className="text-[11px] text-foreground/50 truncate">
-                {l.routeLabel} · {l.cadenceLabel}
-              </div>
-            </div>
-            <a
-              href={l.gfUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-right flex-shrink-0 group"
-              title="See these dates on Google Flights"
-            >
-              <div className="text-[15px] font-bold text-foreground group-hover:text-primary">
-                <span className="text-[11px] font-semibold text-foreground/45 mr-0.5">from</span>
-                ${l.price.toLocaleString()}
-              </div>
-              <div className="text-[11px] text-foreground/50">
-                {l.datesLabel} · {l.lengthLabel}
-              </div>
-            </a>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ */
 /* Origin slicing (Kiran, 2026-10-15)                                 */
 /*                                                                    */
 /* The chip row used to list every daily route in raw file order —    */
 /* EWR → BOM beside SFO → DEL, origins mixed with no reader logic.    */
-/* Now ONE origin drives the whole section (rail, chips, calendar):   */
-/* the dropdown defaults to the reader's Hub-location origin, and     */
-/* changing it re-slices everything.                                 */
+/* Now ONE origin drives the whole section (rail, calendar): the      */
+/* dropdown defaults to the reader's Hub-location origin, and         */
+/* changing it re-slices everything. The route chips themselves are  */
+/* GONE (holistic audit item 20): the metros rail cards are the one   */
+/* route selector — same job, strictly more information.              */
 /* ------------------------------------------------------------------ */
 
 /** Dropdown labels for the tracked origin airports (code — city).
@@ -478,8 +311,7 @@ export default function FlightDeals() {
 
   /* The calendar can show any MERGED route: the daily 12 plus the
    * weekly metros grid's routes, merged with daily winning per route.
-   * The route pills are the SELECTED origin's routes from this pool;
-   * the metros rail below navigates the same slice. */
+   * The metros rail below is the route selector for this pool. */
   const mergedRoutes = useMemo(
     () => mergeDealRoutes(data, metros),
     [data, metros],
@@ -498,20 +330,6 @@ export default function FlightDeals() {
       .map(([code, city]) => ({ code, city }))
       .sort((a, b) => a.city.localeCompare(b.city));
   }, [mergedRoutes]);
-
-  /* Chips = ONLY the selected origin's destination routes,
-   * destination A–Z (stable as prices move). */
-  const originRouteKeys = useMemo(
-    () =>
-      Object.keys(mergedRoutes)
-        .filter((k) => mergedRoutes[k].origin === origin)
-        .sort((a, b) =>
-          mergedRoutes[a].destination.localeCompare(
-            mergedRoutes[b].destination,
-          ),
-        ),
-    [mergedRoutes, origin],
-  );
 
   const selectOrigin = (next: string) => {
     setOrigin(next);
@@ -576,26 +394,24 @@ export default function FlightDeals() {
     <section className="mb-12" id="flight-deals">
       {/* ── Section header — compact (Kiran, 2026-10-15: the giant
           navy banner heading was too big; the page's standard small
-          section header is enough. The "Fares checked" honesty stamp
-          survives as the gold pill.) ──────────────────────────── */}
+          section header is enough). No global check-date pill
+          (audit item 22): freshness renders per card, in the two
+          standard stamp formats only. ─────────────────────────── */}
       <div className="mb-6">
         <div className="flex items-center gap-2 mb-2 flex-wrap">
           <span className="text-xl">✈️</span>
           <h2 className="font-serif text-xl font-bold">Cheapest Fares</h2>
-          <span className="text-[11px] font-bold text-[#0B1D3A] bg-[#D4A843] px-2.5 py-0.5 rounded-full ml-1">
-            Fares checked {fmtDateLong(data.as_of)}
-          </span>
         </div>
         <p className="text-sm text-foreground/55 leading-relaxed">
-          Real round-trip fares from US metros to India for {bandLabel} over
-          the next 3 months.
+          Round-trip fares from US metros to India — {bandLabel} ({bandRange}),
+          next 3 months.
         </p>
       </div>
 
       {/* ── Origin dropdown — defaults to the reader's Hub-location
           origin; when no location is stored it shows SFO and says
-          "Default" plainly. Changing it re-slices the rail, the
-          route chips and the calendar to that origin. ──────────── */}
+          "Default" plainly. Changing it re-slices the rail and the
+          calendar to that origin. ──────────────────────────────── */}
       <div className="flex items-center gap-2.5 mb-4 flex-wrap">
         <label
           htmlFor="fares-origin"
@@ -630,42 +446,16 @@ export default function FlightDeals() {
         )}
       </div>
 
-      {/* ── Route selector — only the selected origin's routes ── */}
-      <div className="flex gap-2 overflow-x-auto pb-1 mb-5" style={{ WebkitOverflowScrolling: "touch" }}>
-        {originRouteKeys.map((rk) => {
-          const r = mergedRoutes[rk];
-          return (
-            <button
-              key={rk}
-              onClick={() => setRouteKey(rk)}
-              className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold border transition-colors ${
-                routeKey === rk
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "border-rule text-foreground/75 hover:text-primary hover:border-primary"
-              }`}
-            >
-              {r.origin} → {r.destination}
-            </button>
-          );
-        })}
-      </div>
-
-      <p className="text-[12px] text-foreground/45 mb-4 -mt-2">
-        {route.origin_metro} → {route.dest_metro} · {bandLabel} ({bandRange}) · per person ·{" "}
-        {routeSource === "weekly" ? "checked weekly · " : ""}fares as of{" "}
-        {fmtDateLong(routeAsOf ?? data.as_of)}
-      </p>
-
-      {/* ── India metros rail — every metro from this origin ── */}
+      {/* ── India metros rail — every metro from this origin. The
+          rail cards are THE route selector (audit item 20): the old
+          chip row duplicated this job with codes only. ─────────── */}
       {railFares.length > 1 && (
         <div className="mb-6">
-          <h3 className="font-serif text-lg font-bold text-foreground mb-1">
+          <h3 className="font-serif text-base font-bold text-foreground mb-1">
             From {origin} — cheapest to each India metro
           </h3>
           <p className="text-[12px] text-foreground/50 mb-3">
-            Tap a metro to see its calendar. Delhi, Mumbai, Bengaluru,
-            Hyderabad and Kolkata — daily-checked routes and the weekly
-            grid together, each card stamped with its own check date.
+            Tap a metro to see its calendar.
           </p>
           <MetroFareRail
             fares={railFares}
@@ -676,25 +466,10 @@ export default function FlightDeals() {
         </div>
       )}
 
-      {/* ── Cheapest-month spotlight ───────────────────────── */}
-      {cheapest && (
-        <div className="mb-5 relative overflow-hidden rounded-2xl border border-emerald-500/40 bg-emerald-500/[0.07] px-5 py-4">
-          <div className="flex items-center gap-3 flex-wrap">
-            <span className="inline-flex items-center gap-1.5 bg-emerald-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">
-              <BadgePercent className="h-3.5 w-3.5" /> Best deal
-            </span>
-            <p className="text-[15px] text-foreground/85">
-              Cheapest from <strong>{route.origin}</strong>:{" "}
-              <strong className="text-emerald-700 dark:text-emerald-400">{monthLabel(cheapest)}</strong>
-              {" "}— {bandLabel} from{" "}
-              <strong className="text-emerald-700 dark:text-emerald-400">${cheapest.price_min.toLocaleString()}</strong>
-              <span className="text-foreground/50">
-                {" "}({fmtDate(cheapest.dep_date)} → {fmtDate(cheapest.ret_date)} · {cheapest.cheapest_airline})
-              </span>
-            </p>
-          </div>
-        </div>
-      )}
+      {/* ── Best Deal spotlight REMOVED (audit item 3): it rendered
+          the selected route's cheapest fare a third time — metro
+          card above, price card #1 below. The calendar's first card
+          already leads with that fare. ─────────────────────────── */}
 
       {/* ── Price cards ────────────────────────────────────── */}
       {entries.length === 0 ? (
@@ -703,7 +478,7 @@ export default function FlightDeals() {
           <p className="text-foreground/50 text-sm px-4">
             This route's snapshot windows (checked {fmtDateLong(routeAsOf ?? data.as_of)}) have all departed.
             <br />
-            Fresh fares are on the way — meanwhile, try another route above.
+            Fresh fares are on the way — meanwhile, try another metro above.
           </p>
         </div>
       ) : (
@@ -730,47 +505,32 @@ export default function FlightDeals() {
         </p>
       </div>
 
-      {/* ── Per-destination fare lines ─────────────────────── */}
-      <DestinationFareLines />
+      {/* ── Per-destination fare lines REMOVED (audit item 2): the
+          block repeated the trending cards' fare lines; per-
+          destination fares belong on the destination pages. ────── */}
 
-      {/* ── Trust footer ───────────────────────────────────── */}
+      {/* ── Trust footer — ONE paragraph (audit item 11): the fare
+          spec (round-trip, per person, economy, max 1 stop, 2 bags)
+          is stated here once instead of on every card. ─────────── */}
       <div className="mt-4 rounded-2xl border border-border bg-foreground/[0.02] px-5 py-4">
         <div className="flex items-start gap-2.5">
           <ShieldCheck className="h-4 w-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
-          <div className="text-[12px] text-foreground/55 leading-relaxed">
-            <p className="font-semibold text-foreground/75 mb-1">Our pricing promise</p>
-            <ul className="space-y-1 list-none">
-              <li>· Prices checked {fmtDateLong(data.as_of)} — fares change frequently, always verify before booking.</li>
-              <li>· Festival-aware pricing — fares reflect holiday demand, which is why December costs more.</li>
-              <li>· Cheapest fare we found for each window, shown as a from-price — other dates in the window can cost more.</li>
-              <li>· 2 checked bags included — basic economy fares excluded.</li>
-              <li>· Max 1 stop. Economy cabin. Per-person round-trip.</li>
-              <li>
-                · We link to Google Flights and airlines directly —{" "}
-                <span className="font-medium text-foreground/70">no sketchy booking sites, no hidden commissions.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Alert CTA ──────────────────────────────────────── */}
-      <div className="mt-4 flex items-center justify-between bg-primary/[0.06] border border-primary/20 rounded-2xl px-5 py-4">
-        <div className="flex items-center gap-3">
-          <Bell className="h-5 w-5 text-primary flex-shrink-0" />
-          <p className="text-[13px] text-foreground/75">
-            Want a ping when {route.origin} → {route.destination} drops?
+          <p className="text-[12px] text-foreground/55 leading-relaxed">
+            <span className="font-semibold text-foreground/75">Our pricing promise</span>
+            {" "}— Cheapest fare we found for each window, shown as a from-price;
+            other dates can cost more. All fares: round-trip, per person,
+            economy, max 1 stop, 2 checked bags included. Prices checked{" "}
+            {fmtDateLong(data.as_of)} — fares change, verify before booking.
+            We link to airlines directly and Google Flights — no hidden
+            commissions.
           </p>
         </div>
-        <span className="text-[11px] font-semibold text-primary bg-primary/10 px-3 py-1.5 rounded-full whitespace-nowrap">
-          Coming soon
-        </span>
       </div>
 
-      <p className="mt-4 text-[12px] text-foreground/40 flex items-center gap-1">
-        Planning beyond India? See the destination guides below
-        <ArrowRight className="h-3.5 w-3.5" />
-      </p>
+      {/* ── Fare-alert box REMOVED (audit item 1): a "Coming soon"
+          promise of a feature that doesn't exist is not a control.
+          The "Planning beyond India?" transition line is removed
+          with it (audit item 4) — the guides heading follows. ──── */}
     </section>
   );
 }
