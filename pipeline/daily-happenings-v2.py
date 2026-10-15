@@ -147,6 +147,101 @@ def _sport_detail(event: dict) -> str:
         parts.append(country)
     return ", ".join(parts)[:120] if parts else None
 
+# ── Sports sources (≥2-source gate, Kiran 2026-10-14) ──────────────────────
+# A sports brief's legitimate provenance is (1) the feed it came from — the
+# event's own TheSportsDB page (URL format verified live 2026-10-14: HTTP 200,
+# page title is the exact event) — plus (2) the competition's OFFICIAL
+# fixtures/schedule page. Every official URL below was verified live on
+# 2026-10-14 (curl: HTTP 200 and page title/content checked; for JS-app
+# shells — FIFA, MLC — the route was confirmed inside the official app's
+# own JS bundle). Competitions whose official page could NOT be verified
+# are deliberately ABSENT, so their briefs stay suppressed by the gate in
+# ensure_happening_briefs() rather than publishing with one source:
+#   - UEFA Champions League / UEFA Euro: uefa.com is unreachable from
+#     this environment (connection fails outright, retried) — unverifiable.
+#   - Copa América: copaamerica.com has no live fixtures/matches page
+#     between editions (every candidate route returns a real 404).
+#   - Indian Super League (Mohun Bagan / East Bengal club matches):
+#     indiansuperleague.com returns 404 for every probed path.
+#   - India soccer (AIFF): the-aiff.com returns 404 for every probed
+#     fixtures/national-team path.
+#   - FIFA Women's World Cup: different tournament path than the men's
+#     schedule page below; not yet verified.
+# Add a competition only after verifying its official page the same way.
+
+def _sports_official_source(event: dict, sport: str) -> dict | None:
+    """The competition's official fixtures/schedule page for an event,
+    or None when no verified official page covers it (brief then stays
+    suppressed — feed provenance alone is one source)."""
+    league = (event.get("strLeague") or "").lower()
+    name = (event.get("strEvent") or "").lower()
+    text = f"{name} {league}"
+    home = (event.get("strHomeTeam") or "").lower()
+    away = (event.get("strAwayTeam") or "").lower()
+
+    if sport == "cricket":
+        if "indian premier league" in text or re.search(r"\bipl\b", text):
+            return {"name": "IPL — Official Fixtures",
+                    "url": "https://www.iplt20.com/matches/fixtures"}
+        if "major league cricket" in text or re.search(r"\bmlc\b", text):
+            return {"name": "Major League Cricket — Official Fixtures",
+                    "url": "https://www.majorleaguecricket.com/fixtures"}
+        if "asia cup" in text:
+            return {"name": "Asian Cricket Council — Official Matches",
+                    "url": "https://www.asiancricket.org/matches"}
+        if ("icc" in text or "world cup" in text or "champions trophy" in text
+                or "world test" in text):
+            return {"name": "ICC — Official Fixtures & Results",
+                    "url": "https://www.icc-cricket.com/fixtures-results"}
+        if "india" in home or "india" in away:
+            # Bilateral internationals: India's board publishes the fixtures.
+            return {"name": "BCCI — Official Fixtures",
+                    "url": "https://www.bcci.tv/fixtures"}
+        return None
+
+    if sport == "soccer":
+        if "world cup" in text and "women" not in text:
+            return {"name": "FIFA World Cup — Official Match Schedule",
+                    "url": "https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026/match-schedule"}
+        # Champions League / Euro (UEFA — unverifiable), Copa América (no
+        # live fixtures page), India soccer (AIFF — unverifiable): no
+        # verified official page, so no second source.
+        return None
+
+    if sport == "tennis":
+        if "wimbledon" in text:
+            return {"name": "Wimbledon — Official Schedule",
+                    "url": "https://www.wimbledon.com/en_GB/scores/schedule.html"}
+        if "us open" in text:
+            return {"name": "US Open — Official Schedule",
+                    "url": "https://www.usopen.org/en_US/scores/schedule.html"}
+        if "australian open" in text:
+            return {"name": "Australian Open — Official Match Schedule",
+                    "url": "https://ausopen.com/schedule"}
+        if "roland garros" in text or "french open" in text:
+            return {"name": "Roland-Garros — Official Order of Play",
+                    "url": "https://www.rolandgarros.com/en-us/order-of-play"}
+        return None
+
+    return None
+
+
+def _sports_sources(event: dict, sport: str) -> list[dict]:
+    """Provenance for a sports item: the TheSportsDB event page (the feed)
+    plus the competition's verified official page when one covers it."""
+    sources = []
+    event_id = event.get("idEvent")
+    if event_id:
+        sources.append({
+            "name": "TheSportsDB — Event Details",
+            "url": f"https://www.thesportsdb.com/event/{event_id}",
+        })
+    official = _sports_official_source(event, sport)
+    if official:
+        sources.append(official)
+    return sources
+
+
 def get_sports(date: str) -> list[dict]:
     """Fetch sports events from TheSportsDB."""
     items = []
@@ -161,6 +256,8 @@ def get_sports(date: str) -> list[dict]:
                     "label": _format_sport_label(e),
                     "detail": _sport_detail(e),
                     "category": "sports",
+                    "league": e.get("strLeague"),
+                    "sources": _sports_sources(e, "cricket"),
                     "start_time_utc": e.get("strTimestamp"),
                     "search_terms": [
                         _clean_team_name(e.get("strHomeTeam")),
@@ -178,6 +275,8 @@ def get_sports(date: str) -> list[dict]:
                     "label": _format_sport_label(e),
                     "detail": _sport_detail(e),
                     "category": "sports",
+                    "league": e.get("strLeague"),
+                    "sources": _sports_sources(e, "soccer"),
                     "start_time_utc": e.get("strTimestamp"),
                     "search_terms": [
                         _clean_team_name(e.get("strHomeTeam")),
@@ -195,6 +294,8 @@ def get_sports(date: str) -> list[dict]:
                     "label": _format_sport_label(e),
                     "detail": _sport_detail(e),
                     "category": "sports",
+                    "league": e.get("strLeague"),
+                    "sources": _sports_sources(e, "tennis"),
                     "start_time_utc": e.get("strTimestamp"),
                     "search_terms": [],
                 })
@@ -462,6 +563,20 @@ US_MARKET_HOLIDAYS_2026 = {
     "2026-11-26", "2026-12-25",
 }
 
+# Official exchange holiday calendars — the canonical sources for a
+# market-holiday brief under the ≥2-source gate (Kiran, 2026-10-14). Both
+# verified live on 2026-10-14 (curl HTTP 200; titles "Holidays & Trading
+# Hours" for NYSE and "US & Nordic Stock Market Schedule" for Nasdaq).
+# The holiday determination itself is deterministic (the static calendar
+# above), so the two exchanges' own published calendars are the brief's
+# provenance — no feed source is claimed.
+MARKET_HOLIDAY_SOURCES = [
+    {"name": "NYSE — Holidays & Trading Hours",
+     "url": "https://www.nyse.com/markets/hours-calendars"},
+    {"name": "Nasdaq — U.S. Stock Market Holiday Schedule",
+     "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule"},
+]
+
 def get_market_status(date: str) -> list[dict]:
     """Only show market status when it's notable (holiday closure)."""
     try:
@@ -476,6 +591,7 @@ def get_market_status(date: str) -> list[dict]:
             "label": "US Stock Markets Closed (Holiday)",
             "detail": "NYSE, Nasdaq",
             "category": "markets",
+            "sources": [dict(s) for s in MARKET_HOLIDAY_SOURCES],
             "start_time_utc": None,
             "search_terms": [],
         }]
@@ -521,6 +637,197 @@ FESTIVALS_2026 = {
     "2026-11-26": ("🦃", "Thanksgiving", "thanksgiving"),
 }
 
+# Verified reference sources per festival (≥2-source gate, Kiran
+# 2026-10-14) — same pattern as EARNINGS_IR_URLS: every URL below was
+# verified live on 2026-10-14 via curl (HTTP 200 AND the fetched page
+# title confirms it is about that festival). Keyed by the festival
+# keyword from FESTIVALS_2026. A festival with no entry here gets no
+# sources and its brief is suppressed by the gate — add entries only
+# after verifying both pages the same way.
+FESTIVAL_SOURCES = {
+    # Makar Sankranti / Pongal
+    "pongal": [
+        {"name": "Pongal — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Pongal_(festival)"},
+        {"name": "Makar Sankranti — DrikPanchang",
+         "url": "https://www.drikpanchang.com/hindu-festivals/makar-sankranti/makar-sankranti.html"},
+    ],
+    "republic day": [
+        {"name": "Republic Day (India) — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Republic_Day_(India)"},
+        {"name": "Delhi Republic Day Parade — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Delhi_Republic_Day_parade"},
+    ],
+    "holi": [
+        {"name": "Holi — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Holi"},
+        {"name": "Holika Dahan — DrikPanchang",
+         "url": "https://www.drikpanchang.com/hindu-festivals/holi/holika-dahan.html"},
+    ],
+    # Ugadi / Gudi Padwa
+    "ugadi": [
+        {"name": "Ugadi — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Ugadi"},
+        {"name": "Gudi Padwa — DrikPanchang",
+         "url": "https://www.drikpanchang.com/hindu-festivals/gudi-padwa/gudi-padwa.html"},
+    ],
+    "ram navami": [
+        {"name": "Rama Navami — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Rama_Navami"},
+        {"name": "Rama Navami — DrikPanchang",
+         "url": "https://www.drikpanchang.com/hindu-festivals/rama-navami/rama-navami.html"},
+    ],
+    # Baisakhi / Tamil New Year (Puthandu)
+    "baisakhi": [
+        {"name": "Vaisakhi — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Vaisakhi"},
+        {"name": "Puthandu (Tamil New Year) — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Puthandu"},
+    ],
+    "buddha purnima": [
+        {"name": "Vesak — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Vesak"},
+        {"name": "Vesak — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/Vesak"},
+    ],
+    "eid": [
+        {"name": "Eid al-Adha — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Eid_al-Adha"},
+        {"name": "Eid al-Adha — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/Eid-al-Adha"},
+    ],
+    "muharram": [
+        {"name": "Muharram — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Muharram"},
+        {"name": "Muharram — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/Muharram"},
+    ],
+    "independence day": [
+        {"name": "Independence Day (India) — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Independence_Day_(India)"},
+        {"name": "Independence Day (India) — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/Independence-Day-Indian-holiday"},
+    ],
+    "raksha bandhan": [
+        {"name": "Raksha Bandhan — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Raksha_Bandhan"},
+        {"name": "Rakhi — DrikPanchang",
+         "url": "https://www.drikpanchang.com/hindu-festivals/rakhi/rakhi.html"},
+    ],
+    "janmashtami": [
+        {"name": "Krishna Janmashtami — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Krishna_Janmashtami"},
+        {"name": "Krishna Janmashtami — DrikPanchang",
+         "url": "https://www.drikpanchang.com/hindu-festivals/krishna-janmashtami/krishna-janmashtami.html"},
+    ],
+    "teachers day": [
+        {"name": "Teachers' Day — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Teachers%27_Day"},
+        {"name": "National Teachers Awards — Ministry of Education, Govt. of India",
+         "url": "https://nationalawardstoteachers.education.gov.in/"},
+    ],
+    "ganesh": [
+        {"name": "Ganesh Chaturthi — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Ganesh_Chaturthi"},
+        {"name": "Ganesh Chaturthi — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/Ganesh-Chaturthi"},
+    ],
+    "milad": [
+        {"name": "Mawlid — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Mawlid"},
+        {"name": "Mawlid — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/Mawlid"},
+    ],
+    "navratri": [
+        {"name": "Navaratri — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Navaratri"},
+        {"name": "Navratri — DrikPanchang",
+         "url": "https://www.drikpanchang.com/hindu-festivals/navratri/navratri.html"},
+    ],
+    "dussehra": [
+        {"name": "Vijayadashami — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Vijayadashami"},
+        {"name": "Dussehra — DrikPanchang",
+         "url": "https://www.drikpanchang.com/hindu-festivals/dussehra/dussehra.html"},
+    ],
+    "diwali": [
+        {"name": "Diwali — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Diwali"},
+        {"name": "Diwali — DrikPanchang",
+         "url": "https://www.drikpanchang.com/hindu-festivals/diwali/diwali.html"},
+    ],
+    "bhai dooj": [
+        {"name": "Bhai Dooj — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Bhai_Dooj"},
+        {"name": "Bhai Dooj — DrikPanchang",
+         "url": "https://www.drikpanchang.com/festivals/bhai-dooj/bhai-dooj-date-time.html"},
+    ],
+    "guru nanak": [
+        {"name": "Guru Nanak Gurpurab — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Guru_Nanak_Gurpurab"},
+        {"name": "Guru Nanak — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/biography/Guru-Nanak"},
+    ],
+    "christmas": [
+        {"name": "Christmas — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Christmas"},
+        {"name": "Christmas — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/Christmas"},
+    ],
+    "new year": [
+        {"name": "New Year's Day — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/New_Year%27s_Day"},
+        {"name": "New Year Festival — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/New-Year-festival"},
+    ],
+    "martin luther king": [
+        {"name": "Martin Luther King Jr. Day — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Martin_Luther_King_Jr._Day"},
+        {"name": "Martin Luther King, Jr., Day — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/Martin-Luther-King-Jr-Day"},
+    ],
+    "presidents day": [
+        {"name": "Presidents' Day — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Presidents%27_Day"},
+        {"name": "Presidents' Day — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/Presidents-Day"},
+    ],
+    "memorial day": [
+        {"name": "Memorial Day — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Memorial_Day"},
+        {"name": "Memorial Day — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/Memorial-Day"},
+    ],
+    "juneteenth": [
+        {"name": "Juneteenth — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Juneteenth"},
+        {"name": "Juneteenth — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/Juneteenth"},
+    ],
+    "july 4th": [
+        {"name": "Independence Day (United States) — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Independence_Day_(United_States)"},
+        {"name": "Independence Day — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/Independence-Day-United-States-holiday"},
+    ],
+    # en.wikipedia.org/wiki/Labor_Day currently lands on the international
+    # "Labour Day" article (title verified 2026-10-14), so the US pair is
+    # Britannica's US-specific Labor Day article + USA.gov's official
+    # federal-holidays listing.
+    "labor day": [
+        {"name": "Labor Day — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/Labor-Day"},
+        {"name": "American Holidays — USA.gov",
+         "url": "https://www.usa.gov/holidays"},
+    ],
+    "thanksgiving": [
+        {"name": "Thanksgiving (United States) — Wikipedia",
+         "url": "https://en.wikipedia.org/wiki/Thanksgiving_(United_States)"},
+        {"name": "Thanksgiving Day — Encyclopaedia Britannica",
+         "url": "https://www.britannica.com/topic/Thanksgiving-Day"},
+    ],
+}
+
 def get_festivals(date: str) -> list[dict]:
     """Check if today is a festival or holiday."""
     items = []
@@ -534,6 +841,10 @@ def get_festivals(date: str) -> list[dict]:
             "start_time_utc": None,
             "search_terms": [],
             "festival_key": keyword,
+            # Verified reference sources for the ≥2-source gate; a
+            # festival missing from FESTIVAL_SOURCES gets [] and its
+            # brief is suppressed rather than published source-less.
+            "sources": [dict(s) for s in FESTIVAL_SOURCES.get(keyword, [])],
         })
     print(f"  Festivals: {len(items)}")
     return items
@@ -1241,7 +1552,10 @@ def ensure_happening_briefs(items: list[dict], date: str, dry_run: bool = False)
         # ── ≥2-source gate (earnings 2026-10-13; ALL briefs 2026-10-14) ──
         # Kiran (2026-10-14): the ≥2-source rule covers every new article,
         # happenings briefs included. Sources are the item's own verified
-        # provenance (earnings: Nasdaq calendar + verified IR page) plus
+        # provenance (earnings: Nasdaq calendar + verified IR page;
+        # festivals: FESTIVAL_SOURCES reference pages; market holidays:
+        # the NYSE + Nasdaq official calendars; sports: the TheSportsDB
+        # event page + the competition's verified official page) plus
         # any the generator attached (movie briefs: official trailer +
         # showtimes/ticketing page). A brief that cannot reach 2
         # legitimate sources is suppressed — the happening stays unlinked

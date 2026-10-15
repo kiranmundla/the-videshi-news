@@ -10,6 +10,12 @@ Covers the fix for source-less, under-length earnings previews:
   without 2 verified sources too (no word floor for them). The earnings
   cases above are unchanged from the 2026-10-13 spec.
 - get_earnings() attaches kind/symbol/sources (Nasdaq calendar + verified IR)
+- 2026-10-14 (Kiran): the brief types that were suppressed for lack of a
+  legitimate second source got verified provenance — festivals
+  (FESTIVAL_SOURCES, case I), market holidays (NYSE + Nasdaq official
+  calendars, case J), sports (TheSportsDB event page + the competition's
+  verified official page, case K). Competitions without a verified
+  official page (UEFA events, Copa América, ISL, AIFF) stay suppressed.
 
 Run: python3 -u test_happenings_earnings_gate.py   (no network, no publishing)
 """
@@ -253,6 +259,131 @@ check("stub article PATCHed to draft",
           and p[2] == {"status": "draft"} for p in patches), f"patches={patches}")
 check("no PATCH for the gap company",
       not any("globex" in p[1] for p in patches))
+
+print("I. festival sources — FESTIVAL_SOURCES covers every calendar keyword; Dussehra brief assembles")
+missing = [kw for (_, _, kw) in dh.FESTIVALS_2026.values()
+           if len(dh.source_gate.valid_sources(dh.FESTIVAL_SOURCES.get(kw, []))) < 2]
+check("every FESTIVALS_2026 keyword has >= 2 gate-valid sources", not missing,
+      f"missing={missing}")
+dus = dh.get_festivals("2026-10-20")
+check("Dussehra item exists for 2026-10-20", len(dus) == 1)
+if dus:
+    check("Dussehra item carries 2 gate-valid sources",
+          len(dh.source_gate.valid_sources(dus[0].get("sources"))) == 2,
+          f"sources={dus[0].get('sources')}")
+    # End-to-end with stubbed GPT/insert: the brief that WOULD be inserted
+    # carries the sources and the item links (nothing is published).
+    fest_inserts = []
+    dh._brief_exists = lambda slug: False
+    dh._generate_festival_brief = lambda it, date, key: {
+        "headline": "H", "subheadline": "S", "body_html": LONG_BODY,
+        "key_takeaways": ["a", "b"], "tags": ["happening-brief", "festival"]}
+    dh._insert_brief = lambda row: fest_inserts.append(row) or True
+    fest_item = dict(dus[0])
+    dh.ensure_happening_briefs([fest_item], "2026-10-20")
+    check("Dussehra brief inserted once (stubbed)", len(fest_inserts) == 1)
+    if fest_inserts:
+        check("inserted row carries >= 2 sources",
+              len(fest_inserts[0].get("sources") or []) >= 2)
+    check("Dussehra item linked", bool(fest_item.get("link")))
+
+print("J. market-holiday sources — get_market_status attaches the two exchange calendars")
+mh = dh.get_market_status("2026-11-26")  # Thanksgiving Day 2026, a Thursday
+check("holiday item produced", len(mh) == 1)
+if mh:
+    check("2 gate-valid sources attached",
+          len(dh.source_gate.valid_sources(mh[0].get("sources"))) == 2,
+          f"sources={mh[0].get('sources')}")
+    urls = {s["url"] for s in mh[0].get("sources") or []}
+    check("sources are the NYSE + Nasdaq calendar pages",
+          urls == {"https://www.nyse.com/markets/hours-calendars",
+                   "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule"},
+          f"urls={urls}")
+    inserts, item, n = run_case([SHORT_BODY], mh[0])
+    check("market-holiday brief inserted with sources", len(inserts) == 1)
+    check("item linked", bool(item.get("link")))
+
+print("K. sports sources — verified official page = 2 sources; unverified competition stays suppressed")
+SPORT_PAYLOADS = {
+    "Cricket": {"events": [
+        {"strEvent": "Mumbai Indians vs Chennai Super Kings",
+         "strLeague": "Indian Premier League", "idLeague": "4460",
+         "idEvent": "2001", "strHomeTeam": "Mumbai Indians",
+         "strAwayTeam": "Chennai Super Kings", "strVenue": "Wankhede",
+         "strCity": "Mumbai", "strCountry": "India",
+         "strTimestamp": "2026-10-14T14:00:00"},
+        {"strEvent": "India Cricket vs West Indies Cricket",
+         "strLeague": "Twenty20 International Series", "idLeague": "4979",
+         "idEvent": "2002", "strHomeTeam": "India Cricket",
+         "strAwayTeam": "West Indies Cricket", "strVenue": "Eden Gardens",
+         "strCity": "Kolkata", "strCountry": "India",
+         "strTimestamp": "2026-10-14T13:30:00"},
+    ]},
+    "Soccer": {"events": [
+        {"strEvent": "Real Madrid vs Liverpool",
+         "strLeague": "UEFA Champions League", "idLeague": "4480",
+         "idEvent": "2003", "strHomeTeam": "Real Madrid",
+         "strAwayTeam": "Liverpool", "strVenue": "Bernabeu",
+         "strCity": "Madrid", "strCountry": "Spain",
+         "strTimestamp": "2026-10-14T19:00:00"},
+        {"strEvent": "Spain vs Argentina",
+         "strLeague": "FIFA World Cup", "idLeague": "4429",
+         "idEvent": "2004", "strHomeTeam": "Spain",
+         "strAwayTeam": "Argentina", "strVenue": "MetLife Stadium",
+         "strCity": "New Jersey", "strCountry": "USA",
+         "strTimestamp": "2026-10-14T19:00:00"},
+    ]},
+    "Tennis": {"events": [
+        {"strEvent": "Wimbledon Men's Singles Final",
+         "strLeague": "ATP World Tour", "idLeague": "4464",
+         "idEvent": "2005", "strHomeTeam": "", "strAwayTeam": "",
+         "strVenue": "All England Club", "strCity": "London",
+         "strCountry": "England", "strTimestamp": "2026-10-14T13:00:00"},
+    ]},
+}
+
+
+def fake_sports_json(url, headers=None):
+    for sport, payload in SPORT_PAYLOADS.items():
+        if f"s={sport}" in url:
+            return payload
+    return None
+
+
+dh.curl_json = fake_sports_json
+sport_items = dh.get_sports("2026-10-14")
+by_label = {i["label"]: i for i in sport_items}
+ipl = by_label.get("Mumbai Indians vs Chennai Super Kings", {})
+check("IPL item has 2 gate-valid sources",
+      len(dh.source_gate.valid_sources(ipl.get("sources"))) == 2,
+      f"sources={ipl.get('sources')}")
+check("IPL source 2 is the official IPL fixtures page",
+      any("iplt20.com" in (s.get("url") or "") for s in ipl.get("sources") or []))
+india = by_label.get("India Cricket vs West Indies Cricket", {})
+check("India bilateral has 2 sources (TheSportsDB + BCCI)",
+      len(dh.source_gate.valid_sources(india.get("sources"))) == 2
+      and any("bcci.tv" in (s.get("url") or "") for s in india.get("sources") or []),
+      f"sources={india.get('sources')}")
+ucl = by_label.get("Real Madrid vs Liverpool", {})
+check("UCL item has ONLY the feed source (UEFA unverified)",
+      len(dh.source_gate.valid_sources(ucl.get("sources"))) == 1,
+      f"sources={ucl.get('sources')}")
+wc = by_label.get("Spain vs Argentina", {})
+check("FIFA World Cup item has 2 sources",
+      len(dh.source_gate.valid_sources(wc.get("sources"))) == 2
+      and any("fifa.com" in (s.get("url") or "") for s in wc.get("sources") or []),
+      f"sources={wc.get('sources')}")
+wim = by_label.get("Wimbledon Men's Singles Final", {})
+check("Wimbledon item has 2 sources",
+      len(dh.source_gate.valid_sources(wim.get("sources"))) == 2
+      and any("wimbledon.com" in (s.get("url") or "") for s in wim.get("sources") or []),
+      f"sources={wim.get('sources')}")
+inserts, item, n = run_case([LONG_BODY], ucl)
+check("UCL brief suppressed by the gate (1 source)", len(inserts) == 0)
+check("UCL item left unlinked", not item.get("link"))
+inserts, item, n = run_case([LONG_BODY], ipl)
+check("IPL brief inserted with sources", len(inserts) == 1)
+check("IPL item linked", bool(item.get("link")))
 
 print()
 if FAILURES:
