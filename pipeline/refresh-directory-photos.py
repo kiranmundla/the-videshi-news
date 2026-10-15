@@ -5,6 +5,11 @@ Two queues, processed in order:
   A) LEGACY — image_url is still a live maps.googleapis.com URL. Stale
      references serve Google's red-X placeholder graphic, so these are
      actively wrong covers.
+  C) V1 — image_url is a live places.googleapis.com media URL (168 rows
+     left from before the 2026-10-14 photo_rehost wiring; all have place
+     IDs). Working today (v1 resource names are durable) but the same
+     third-party dependency the rehost eliminated — converted to bucket
+     URLs here, ahead of the NULL-restore queue.
   B) RESTORE — google_place_id present but image_url IS NULL. The
      2026-10-14 directory-photo repair nulled ~2,860 rotten legacy covers;
      the old version of this script (selection = image_url LIKE
@@ -86,9 +91,11 @@ def fetch_candidates():
     offset pagination over the shrinking set would skip rows.
     """
     legacy = _fetch_queue({"image_url": "like.*maps.googleapis.com*"}, "id.asc")
+    v1 = _fetch_queue({"image_url": "like.*places.googleapis.com*"}, "id.asc")
     restore = _fetch_queue({"image_url": "is.null"},
                            "review_count.desc.nullslast,rating.desc.nullslast,id.asc")
     return ([("legacy", row) for row in legacy] +
+            [("v1", row) for row in v1] +
             [("restore", row) for row in restore])
 
 def fetch_place_photos(place_id):

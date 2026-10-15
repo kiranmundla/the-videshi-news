@@ -125,7 +125,13 @@ def parse_address(raw: str) -> dict:
         st = re.match(r"([A-Z]{2})\b", parts[2])
         if st:
             out["state"] = st.group(1)
-        z = re.search(r"(\d{5}(?:-\d{4})?)", raw)
+        # ZIP only when it follows a state code ("…, FL 34711") — the old
+        # whole-string search matched the first 5-digit run anywhere, so
+        # 270 listings got their STREET NUMBER stored as ZIP (2026-10-14
+        # audit; e.g. "15020 Johns Lake Rd" -> zip "15020"). Most
+        # muslimguide rows carry no ZIP at all; empty is honest.
+        z = re.search(r"\b[A-Z]{2}\s+(\d{5}(?:-\d{4})?)\b", raw) or \
+            re.search(r"(\d{5}(?:-\d{4})?)\s*$", raw)
         if z:
             out["zip"] = z.group(1)
     return out

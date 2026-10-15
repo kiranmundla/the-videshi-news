@@ -83,6 +83,23 @@ _DUBLIN_OH_RX = (
     r"|\bDublin\b(?=.{0,80}\b(?:Ohio|Columbus|\bOH\b))"
     r"|\b(?:Ohio|Columbus)\b.{0,80}\bDublin\b"
 )
+# Raleigh, NC: two of its pooled names are traps on their own. "Durham"
+# is also the English county-cricket side (Ben Stokes' Durham matched
+# Raleigh in the 2026-10-14 audit), and "Apex" is a common English word
+# ("the apex court" — a Kerala Waqf story matched via its excerpt).
+# Neither stays a plain alias in clusters.json; both match only with
+# North Carolina context nearby (or as the Durham Bulls, the NC team).
+_NC_CONTEXT = r"(?:North Carolina|Raleigh|Cary|Morrisville|Research Triangle|\bNC\b)"
+_RALEIGH_NC_RX = (
+    r"\bDurham,?\s+(?:NC|N\.C\.)\b"
+    r"|\bDurham Bulls\b"
+    r"|\bDurham\b(?=.{0,60}\b" + _NC_CONTEXT + r"\b)"
+    r"|\b" + _NC_CONTEXT + r"\b.{0,60}\bDurham\b"
+    r"|\bApex,?\s+(?:NC|N\.C\.)\b"
+    r"|\bApex\b(?=.{0,60}\b" + _NC_CONTEXT + r"\b)"
+    r"|\b" + _NC_CONTEXT + r"\b.{0,60}\bApex\b"
+)
+
 # Fishers, IN vs "fishers" the occupation: the town matches at title
 # start, after in/at/near, or with Indiana context nearby. The occupation
 # ("What Changes for Fishers") is blocked in cluster_blocked().
@@ -98,6 +115,7 @@ _PROFILE_RX = {
     "portland_or": _PORTLAND_RX,
     "dublin_ca": _DUBLIN_CA_RX,
     "dublin_oh": _DUBLIN_OH_RX,
+    "raleigh_nc": _RALEIGH_NC_RX,
     "fishers_in": _FISHERS_RX,
     # san_jose / orange_county profiles affect blocking only (below);
     # their names match plainly.
@@ -404,8 +422,24 @@ def main():
     # keep PER_METRO most recent per cluster (our articles first on ties)
     out = {}
     total = 0
+    # Recency caps (2026-10-14 audit): the article scan had NO age window,
+    # so any old article naming a place stayed in its bucket forever —
+    # median bucket age was 26.5 days and a 93-day-old story was still
+    # being presented as Fremont local news. RSS is windowed at fetch
+    # (14d; 30d fallback), so cap rss at 30d and our articles at 45d here,
+    # at the single choke point. Undated items are kept (can't prove stale).
+    _now = datetime.now(timezone.utc)
+    _CAPS = {"rss": 30, "article": 45}
+    def _too_old(i: dict) -> bool:
+        raw = i.get("published_at") or ""
+        try:
+            dt = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+        except Exception:
+            return False
+        return (_now - dt).days > _CAPS.get(i.get("kind") or "", 45)
     for label, items in matches.items():
-        items = [i for i in items if i.get("slug") or i.get("url")]
+        items = [i for i in items
+                 if (i.get("slug") or i.get("url")) and not _too_old(i)]
         items.sort(
             key=lambda x: (
                 x["published_at"],

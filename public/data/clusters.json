@@ -3128,8 +3128,6 @@
     "Raleigh",
     "Cary",
     "Morrisville",
-    "Apex",
-    "Durham",
     "Holly Springs",
     "Research Triangle"
    ],
@@ -3201,8 +3199,10 @@
      "lon": -79.078
     }
    ],
-   "block": [],
-   "context_guard": null,
+   "block": [
+    "county championship"
+   ],
+   "context_guard": "raleigh_nc",
    "source_ranks": [
     14
    ]

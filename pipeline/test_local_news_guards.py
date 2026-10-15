@@ -56,6 +56,15 @@ CASES = [
     ("indianapolis-in", "Deep-Sea Fishers Protest New Catch Limits", False),
     ("indianapolis-in", "Fishers Approves Diwali Celebration at Nickel Plate", True),
     ("indianapolis-in", "New Hindu Temple Planned in Fishers, Indiana", True),
+    # ── 2026-10-14 audit: Raleigh, NC vs Durham (England cricket) + "apex" the word ──
+    ("raleigh-nc", "Mayank Agarwal Joins Ben Stokes' Durham for County Championship Push", False),
+    ("raleigh-nc", "Ben Stokes Hits Match-Winning Century for Durham in First Game Since England Retirement", False),
+    ("raleigh-nc", "Supreme Court Removes Government Supervision Over Kerala Waqf Board The apex court deleted the direction", False),
+    ("raleigh-nc", "New Hindu Temple Opens in Durham, NC", True),
+    ("raleigh-nc", "Durham Bulls Announce Diwali Night at the Ballpark", True),
+    ("raleigh-nc", "Apex Friendship Festival Draws Families From Across North Carolina", True),
+    ("raleigh-nc", "Diwali Celebration Lights Up Downtown Raleigh", True),
+    ("raleigh-nc", "Indian Street Food Festival Comes to Cary This Weekend", True),
     # ── Phase 1: Washington DC vs Washington state ────────────────────
     ("washington-dc", "Washington State Approves New Capital Gains Tax", False),
     ("washington-dc", "Washington, D.C. Hosts Diwali Reception at Capitol", True),

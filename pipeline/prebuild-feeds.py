@@ -1050,8 +1050,12 @@ def main():
             return "".join(c for c in (s or "").lower() if c.isalnum() or c == " ")
         # NOTE: must not reuse the name `key` here — it shadows main()'s
         # Supabase API key and the directory fetch below 401s (2026-10-07).
+        # City is ALWAYS part of the key (2026-10-14 audit): chain venues
+        # share one venue_name across cities — 6 BAPS mandirs' Diwali on
+        # 2026-11-08 collapsed to a single listing when the key was
+        # title+date+venue alone, hiding 22 temple events from the site.
         evt_key = (_norm(e.get("title")), e.get("date") or "",
-                   _norm(e.get("venue_name") or e.get("city")))
+                   _norm(e.get("venue_name")), _norm(e.get("city")))
         if evt_key in _seen:
             prev = _seen[evt_key]
             rank = lambda r: _SOURCE_RANK.get(r.get("source"), 9)
@@ -1119,7 +1123,12 @@ def main():
     _DESI_ARTIST_RE = _terms_re([a.lower() for a in _DESI_ARTISTS])
 
     def _desi_tier(e):
-        if (e.get("source") or "") == "temple":
+        # Dedicated temple scrapers (temple, BAPS, ISKCON) are
+        # diaspora-core by construction — their event titles often
+        # carry no vocabulary word ("HH Mahant Swami Maharaj's
+        # Birthday - Mahila Celebration"), so source alone decides.
+        # (2026-10-14 audit: 69 BAPS/ISKCON events sat at tier 0.)
+        if (e.get("source") or "") in ("temple", "baps", "iskcon"):
             return 2
         title = e.get("title") or ""
         text = (title + " " + (e.get("description") or "")).lower()

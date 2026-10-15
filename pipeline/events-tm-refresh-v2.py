@@ -178,8 +178,15 @@ def event_to_row(evt):
     date = dates.get("localDate", "") or evt.get("date", "")
     tm_time = dates.get("localTime", "") or evt.get("time", "")
 
-    # Ticket URL
-    ticket_url = evt.get("url", "")
+    # Ticket URL. Some Discovery results omit `url` (the Z7r9jZ1A… id
+    # family) — fall back to TM's canonical event URL built from the
+    # event's own id (sibling rows in our data prove the pattern:
+    # tm_Z7r9jZ1A7-ku0 -> /event/Z7r9jZ1A7-ku0). 2026-10-14 audit found
+    # 26 upcoming TM events with empty ticket_url; update_existing_events
+    # PATCHes ticket_url per refresh, so this heals them on the next run.
+    ticket_url = evt.get("url", "") or (
+        f"https://www.ticketmaster.com/event/{tm_id}" if tm_id else ""
+    )
 
     # Price
     price_ranges = evt.get("priceRanges", [])
