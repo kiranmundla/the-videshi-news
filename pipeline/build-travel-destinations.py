@@ -37,6 +37,11 @@ eligible_for_picks=False, but they never appear in the rankings.
 Usage:
   python3 build-travel-destinations.py            (write JSON)
   python3 build-travel-destinations.py --dry-run  (print summary only)
+
+Also writes a SHADOW trending ranking (pilot, 2026-10-15) to
+pipeline/.state/trending-shadow.json using the rebalanced weights and
+the search-interest signal — see write_shadow(). Live output above is
+never affected by it.
 """
 
 import argparse
@@ -349,6 +354,165 @@ def trending_for(rec, month, year, drop):
     }
 
 
+# ── Shadow trending (pilot, 2026-10-15) ─────────────────────────────
+# Rebalanced score from research/actual-trending-data-2026-10-15.md §4:
+# season 40 / search_interest 30 / fare 20 / value 10, computed from
+# pipeline/.state/search-interest.json (fetch-search-interest.py).
+# SHADOW ONLY: writes pipeline/.state/trending-shadow.json and NEVER
+# touches the live records, scores or trending_now. The daily
+# flight-deals job runs this same script — the shadow step is wrapped
+# so it cannot break or alter the live build.
+SEARCH_INTEREST_FILE = REPO / "pipeline" / ".state" / "search-interest.json"
+SHADOW_FILE = REPO / "pipeline" / ".state" / "trending-shadow.json"
+
+
+def _momentum_points(momentum, scale):
+    """Map a momentum fraction onto `scale` points (half scale = flat).
+
+    -50% or worse -> 0; flat -> scale/2; +50% or better -> scale.
+    """
+    frac = min(1.0, max(0.0, 0.5 + momentum))
+    return round(scale * frac)
+
+
+def shadow_search_component(rec, search_entry, wiki_levels):
+    """search_interest (0-30) for one destination, or a null component.
+
+    15 pts level + 15 pts momentum. Google Trends is preferred; while
+    it has no data, Wikimedia pageviews feed BOTH halves (its absolute
+    counts give a real level, log-normalized across this run's cohort).
+    With Trends momentum only, momentum stretches across both halves
+    until anchored level data exists — marked in the reason either way.
+    """
+    if not search_entry:
+        return {"id": "search_interest", "points": None, "max": 30,
+                "reason": "No search-interest data yet"}, None, None, None
+    trends = search_entry.get("trends") or {}
+    blended = trends.get("blended_momentum")
+    if blended is not None:
+        pts = _momentum_points(blended, 30)
+        return ({"id": "search_interest", "points": pts, "max": 30,
+                 "reason": (f"Search interest momentum {blended:+.0%} "
+                            f"(US/IN blend, Google Trends)")},
+                "google-trends", None, blended)
+    wiki = search_entry.get("wiki") or {}
+    momentum = wiki.get("momentum")
+    if momentum is not None:
+        mom_pts = _momentum_points(momentum, 15)
+        level_pts = 0
+        recent_mean = wiki.get("recent_mean")
+        if recent_mean and wiki_levels:
+            import math
+            lo, hi = wiki_levels
+            if hi > lo and recent_mean > 0:
+                level_pts = round(15 * (math.log(recent_mean) - lo) / (hi - lo))
+        return ({"id": "search_interest", "points": level_pts + mom_pts,
+                 "max": 30,
+                 "reason": (f"Wikipedia attention {momentum:+.0%} vs prior "
+                            f"quarter ({recent_mean:,.0f} views/day)")},
+                "wikimedia", recent_mean, momentum)
+    return {"id": "search_interest", "points": None, "max": 30,
+            "reason": "No search-interest data yet"}, None, None, None
+
+
+def build_shadow_ranking(records, search_data):
+    """Shadow ranking for pick-eligible records. Pure: mutates nothing."""
+    import math
+    entries = (search_data or {}).get("destinations") or {}
+    wiki_means = [e["wiki"]["recent_mean"] for e in entries.values()
+                  if e.get("wiki") and e["wiki"].get("recent_mean")]
+    wiki_levels = None
+    if len(wiki_means) >= 2:
+        logs = [math.log(v) for v in wiki_means if v > 0]
+        if logs:
+            wiki_levels = (min(logs), max(logs))
+
+    shadow = []
+    for rec in records:
+        if not rec["eligible_for_picks"]:
+            continue
+        live = {c["id"]: c for c in rec["trending"]["components"]}
+        comps = []
+        season_pts = round(live["season_fit"]["points"] * 40 / 50)
+        comps.append({"id": "season_fit", "points": season_pts, "max": 40,
+                      "reason": live["season_fit"]["reason"]})
+        search_comp, signal, level, momentum = shadow_search_component(
+            rec, entries.get(rec["slug"]), wiki_levels)
+        comps.append(search_comp)
+        fare_live = live["fare_drop"]
+        if fare_live["points"] is None:
+            comps.append({"id": "fare_drop", "points": None, "max": 20,
+                          "reason": fare_live["reason"]})
+        else:
+            comps.append({"id": "fare_drop",
+                          "points": round(fare_live["points"] * 20 / 30),
+                          "max": 20, "reason": fare_live["reason"]})
+        comps.append({"id": "offpeak_value",
+                      "points": round(live["offpeak_value"]["points"] * 10 / 20),
+                      "max": 10, "reason": live["offpeak_value"]["reason"]})
+        scored = [c for c in comps if c["points"] is not None]
+        shadow.append({
+            "slug": rec["slug"],
+            "name": rec["name"],
+            "score": sum(c["points"] for c in scored),
+            "max_score": sum(c["max"] for c in scored),
+            "components": comps,
+            "signal_source": signal,
+            "has_fare_data": rec["fare_from"] is not None,
+            "search_level": level,
+            "search_momentum": momentum,
+        })
+
+    def sort_key(s):
+        # Ties: (1) has fare data, (2) has search data, (3) higher search
+        # level (falling back to momentum), (4) name — last resort only.
+        lvl = s["search_level"] if s["search_level"] is not None \
+            else s["search_momentum"]
+        return (-s["score"],
+                0 if s["has_fare_data"] else 1,
+                0 if s["signal_source"] else 1,
+                -(lvl if lvl is not None else 0),
+                s["name"])
+
+    shadow.sort(key=sort_key)
+    top8 = shadow[:8]
+    boundary = top8[-1]["score"] if top8 else None
+    stats = {
+        "top8": [s["slug"] for s in top8],
+        "distinct_scores_in_top8": len({s["score"] for s in top8}),
+        "largest_tie_group_in_top8": max(
+            (sum(1 for s in top8 if s["score"] == sc) for sc in
+             {s["score"] for s in top8}), default=0),
+        "tied_at_top8_boundary": sum(
+            1 for s in shadow if boundary is not None
+            and s["score"] == boundary),
+        "shadow_with_search_data": sum(1 for s in shadow if s["signal_source"]),
+    }
+    return shadow, stats
+
+
+def write_shadow(records):
+    """Compute + write the shadow ranking. Never raises into the build."""
+    search_data = None
+    if SEARCH_INTEREST_FILE.exists():
+        search_data = json.loads(SEARCH_INTEREST_FILE.read_text())
+    ranking, stats = build_shadow_ranking(records, search_data)
+    out = {
+        "generated_at": date.today().isoformat(),
+        "mode": "SHADOW — live trending_now is NOT affected by this file",
+        "weights": {"season_fit": 40, "search_interest": 30,
+                    "fare_drop": 20, "offpeak_value": 10},
+        "tie_break": "score desc, has fare data, has search data, "
+                     "search level/momentum desc, name (last resort)",
+        "search_interest_as_of": (search_data or {}).get("generated_at"),
+        "stats": stats,
+        "ranking": ranking,
+    }
+    SHADOW_FILE.write_text(json.dumps(out, indent=2))
+    print(f"   Shadow trending (pilot): {', '.join(stats['top8'][:5])} "
+          f"[{stats['shadow_with_search_data']} with search data]")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Build travel-destinations.json")
     parser.add_argument("--dry-run", action="store_true")
@@ -460,6 +624,13 @@ def main():
     OUTPUT_FILE.write_text(json.dumps(out, indent=2))
     print(f"✅ Wrote {OUTPUT_FILE} ({len(records)} destinations)")
     print(f"   Trending now: {', '.join(trending_now[:5])}")
+
+    # Shadow trending pilot — must never break or alter the live build.
+    try:
+        write_shadow(records)
+    except Exception as e:
+        print(f"⚠ Shadow trending skipped (live build unaffected): {e}",
+              file=sys.stderr)
 
 
 if __name__ == "__main__":
