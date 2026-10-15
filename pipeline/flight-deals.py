@@ -34,10 +34,23 @@ Usage:
   python3 flight-deals.py --route SFO-DEL            (single route, all durations)
   python3 flight-deals.py --all --dry-run            (search + print, no writes)
   python3 flight-deals.py --all --samples 3          (denser sampling)
+  python3 flight-deals.py --all --resume             (skip searches that
+        already have a fresh cached response; finish an interrupted run
+        spending requests only on the missing searches)
+
+Rate-limit etiquette (honor the provider's own signals, never circumvent):
+a response carrying the per-user limit WITH a retry_after is honored —
+the run pauses for the stated duration (plus small jitter) and resumes
+the SAME run, up to a bounded pause budget (default: max 10 pauses or
+20 minutes of total waiting per invocation). A hard 429 WITHOUT a
+retry_after signal, an auth error, or an exhausted pause budget aborts
+the run: nothing is written (existing flight-deals.json stays intact)
+and the exit code is non-zero.
 """
 
 import argparse
 import json
+import random
 import subprocess
 import sys
 import time
@@ -129,9 +142,157 @@ FESTIVAL_SEASONS = [
 
 REQUEST_COUNT = 0
 FAILED_COUNT = 0
-RATE_LIMITED = False
+ABORTED = False
+ABORT_REASON = None
 CACHE_MODE = False
+RESUME_MODE = False
+RESUME_TTL_S = 24 * 3600  # cached responses younger than this are reusable
+RESUMED_COUNT = 0
 ATTEMPTED = {}  # route_key -> searches with a cache file present (cache mode)
+COMPLETED_ROUTES = []
+COMPLETED_CELLS = []  # "ROUTE:YYYY-MM:Ww" per finished calendar cell
+RUN_STATE_FILE = STATE_DIR / "flight-deals-run-state.json"
+
+# Injectable for tests.
+SLEEP_FN = time.sleep
+JITTER_FN = lambda: random.uniform(0, 5)  # noqa: E731
+
+
+class PauseBudget:
+    """Bounded rate-limit pause budget for one invocation.
+
+    A pause is allowed only while BOTH bounds hold: fewer than
+    max_pauses pauses taken AND cumulative wait (including the new
+    pause) within max_total_wait_s.
+    """
+
+    def __init__(self, max_pauses=10, max_total_wait_s=1200):
+        self.max_pauses = max_pauses
+        self.max_total_wait_s = max_total_wait_s
+        self.pauses_taken = 0
+        self.total_wait_s = 0.0
+
+    def try_consume(self, wait_s):
+        if self.pauses_taken >= self.max_pauses:
+            return False
+        if self.total_wait_s + wait_s > self.max_total_wait_s:
+            return False
+        self.pauses_taken += 1
+        self.total_wait_s += wait_s
+        return True
+
+
+PAUSES = PauseBudget()
+
+
+def _set_abort(reason):
+    global ABORTED, ABORT_REASON
+    if not ABORTED:
+        ABORTED = True
+        ABORT_REASON = reason
+        print(f"  🛑 Aborting run: {reason}", file=sys.stderr)
+
+
+def _parse_retry_after(data):
+    """Seconds from a payload's retry_after field, or None."""
+    if not isinstance(data, dict):
+        return None
+    raw = data.get("retry_after")
+    if raw is None:
+        return None
+    try:
+        secs = float(raw)
+    except (TypeError, ValueError):
+        return None
+    return secs if secs > 0 else None
+
+
+def classify_duffel_result(data, returncode, stderr_text):
+    """Classify one Duffel attempt. Returns (kind, info):
+
+      ("ok", offers)     — payload ok:true
+      ("pause", seconds) — per-user limit WITH retry_after: honor + resume
+      ("abort", reason)  — hard 429 without retry_after, or auth error
+      ("fail", reason)   — any other failed search (non-fatal, as before)
+    """
+    if isinstance(data, dict) and data.get("ok"):
+        return ("ok", data.get("offers", []))
+
+    err_text = ""
+    status = None
+    if isinstance(data, dict):
+        resp = data.get("response")
+        if isinstance(resp, dict):
+            err_text = str(resp.get("error") or "")
+        if not err_text:
+            err_text = str(data.get("error") or data.get("message") or "")
+        status = data.get("status")
+    blob = (json.dumps(data)[:400] if data is not None else "")
+    combined = f"{err_text} {blob} {(stderr_text or '')[:300]}"
+    low = combined.lower()
+
+    is_limit = (status == 429 or "429" in combined or "rate_limit" in low
+                or "rate limit" in low or "per-user" in low)
+    if is_limit:
+        retry = _parse_retry_after(data)
+        if retry:
+            return ("pause", retry)
+        return ("abort", "Duffel 429 without a retry_after signal "
+                         "(hard rate limit)")
+
+    if isinstance(data, dict):
+        return ("fail", f"search not ok: {json.dumps(data)[:200]}")
+    err_low = (stderr_text or "").lower()
+    if ("401" in err_low or "403" in err_low or "unauthor" in err_low
+            or "auth" in err_low):
+        return ("abort", f"Duffel auth/permission error: "
+                         f"{(stderr_text or '')[:200]}")
+    return ("fail", f"search failed (rc={returncode}): "
+                    f"{(stderr_text or '')[:200]}")
+
+
+def cache_file_path(origin, dest, dep_date, ret_date):
+    return Path(f"/tmp/duffel-{origin}{dest}-{dep_date}-{ret_date}.json")
+
+
+def cached_ok_offers(origin, dest, dep_date, ret_date):
+    """Offers from a FRESH ok:true cached response for this exact search,
+    or None when there is no reusable cache (missing, stale, unparseable,
+    or a saved error). This is the persisted per-search completion state
+    that --resume builds on: a completed search is never re-spent."""
+    tmp = cache_file_path(origin, dest, dep_date, ret_date)
+    if not tmp.exists():
+        return None
+    try:
+        if time.time() - tmp.stat().st_mtime > RESUME_TTL_S:
+            return None
+        data = json.loads(tmp.read_text())
+    except Exception:
+        return None
+    if not data.get("ok"):
+        return None
+    return data.get("offers", [])
+
+
+def write_run_state(status):
+    """Persist run progress (routes/cells completed, pauses, counts) so
+    an interrupted invocation leaves a resumable, inspectable record."""
+    try:
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        RUN_STATE_FILE.write_text(json.dumps({
+            "updated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "status": status,
+            "abort_reason": ABORT_REASON,
+            "requests_made": REQUEST_COUNT,
+            "requests_resumed_from_cache": RESUMED_COUNT,
+            "failed": FAILED_COUNT,
+            "pauses_taken": PAUSES.pauses_taken,
+            "pause_wait_s": round(PAUSES.total_wait_s, 1),
+            "routes_completed": list(COMPLETED_ROUTES),
+            "cells_completed": sorted(COMPLETED_CELLS),
+        }, indent=2))
+    except Exception:
+        pass
 
 
 def cache_search(origin, dest, dep_date, ret_date):
@@ -157,13 +318,11 @@ def cache_search(origin, dest, dep_date, ret_date):
     return data.get("offers", [])
 
 
-def run_duffel_search(origin, dest, dep_date, ret_date, limit=100):
-    """Run Duffel search and return offers list. Returns None on failure.
-
-    Counts every request. A 429 sets RATE_LIMITED and aborts the run —
-    per the Duffel connector rules, a rate limit ends calls for the task.
-    """
-    global REQUEST_COUNT, FAILED_COUNT, RATE_LIMITED
+def _duffel_search_once(origin, dest, dep_date, ret_date, limit=100):
+    """One Duffel CLI attempt; returns classify_duffel_result(...).
+    REQUEST_COUNT increments per real provider attempt (retries after a
+    pause are real requests and are counted as such)."""
+    global REQUEST_COUNT
     REQUEST_COUNT += 1
     cmd = [
         "duffel", "search",
@@ -178,37 +337,63 @@ def run_duffel_search(origin, dest, dep_date, ret_date, limit=100):
         "--compact",
     ]
     # Write to temp file (don't pipe, per connector instructions).
-    # Ret date in the name: durations share dep dates.
-    tmp = Path(f"/tmp/duffel-{origin}{dest}-{dep_date}-{ret_date}.json")
+    # Ret date in the name: durations share dep dates. The file doubles
+    # as the persisted raw-response cache that --resume reuses.
+    tmp = cache_file_path(origin, dest, dep_date, ret_date)
     try:
         with open(tmp, "w") as fh:
             result = subprocess.run(cmd, stdout=fh, stderr=subprocess.PIPE,
                                     timeout=180)
     except subprocess.TimeoutExpired:
-        FAILED_COUNT += 1
-        print("  ❌ Duffel search timed out", file=sys.stderr)
-        return None
-    if result.returncode != 0:
-        FAILED_COUNT += 1
-        err = result.stderr.decode()[:300]
-        if "429" in err:
-            RATE_LIMITED = True
-        print(f"  ❌ Duffel search failed: {err}", file=sys.stderr)
-        return None
+        return ("fail", "Duffel search timed out")
+    stderr_text = (result.stderr.decode(errors="replace")
+                   if result.stderr else "")
+    data = None
     try:
         data = json.loads(tmp.read_text())
-    except Exception as e:
-        FAILED_COUNT += 1
-        print(f"  ❌ JSON parse failed: {e}", file=sys.stderr)
-        return None
-    if not data.get("ok"):
-        FAILED_COUNT += 1
-        blob = json.dumps(data)[:300]
-        if "429" in blob or "rate_limit" in blob:
-            RATE_LIMITED = True
-        print(f"  ❌ Search not ok: {blob}", file=sys.stderr)
-        return None
-    return data.get("offers", [])
+    except Exception:
+        data = None
+    return classify_duffel_result(data, result.returncode, stderr_text)
+
+
+def run_duffel_search(origin, dest, dep_date, ret_date, limit=100):
+    """Run a Duffel search and return the offers list (None on failure).
+
+    Rate-limit etiquette: a per-user limit carrying retry_after pauses
+    the run for the stated duration (+ jitter) and retries the SAME
+    search, bounded by PAUSES (max pauses / max total wait). A hard 429
+    without retry_after, an auth error, or an exhausted pause budget
+    aborts the whole run (nothing is written by main()).
+    """
+    global FAILED_COUNT
+    while True:
+        kind, info = _duffel_search_once(origin, dest, dep_date, ret_date,
+                                         limit)
+        if kind == "ok":
+            return info
+        if kind == "fail":
+            FAILED_COUNT += 1
+            print(f"  ❌ {info}", file=sys.stderr)
+            return None
+        if kind == "abort":
+            FAILED_COUNT += 1
+            _set_abort(info)
+            return None
+        # kind == "pause": provider asked us to wait `info` seconds.
+        wait = info + JITTER_FN()
+        if not PAUSES.try_consume(wait):
+            FAILED_COUNT += 1
+            _set_abort(
+                f"pause budget exhausted ({PAUSES.pauses_taken} pauses, "
+                f"{PAUSES.total_wait_s:.0f}s waited) and the provider is "
+                f"still rate-limiting")
+            return None
+        print(f"  ⏸  Duffel per-user limit — pausing {wait:.0f}s "
+              f"(pause {PAUSES.pauses_taken}/{PAUSES.max_pauses}, waited "
+              f"{PAUSES.total_wait_s:.0f}s of {PAUSES.max_total_wait_s}s "
+              f"budget), then resuming the same search",
+              file=sys.stderr)
+        SLEEP_FN(wait)
 
 
 def filter_qualifying_offers(offers):
@@ -288,6 +473,21 @@ def rolling_months(months_ahead, min_date):
     return out
 
 
+def planned_search_keys(routes, durations, months, samples, min_date):
+    """Every (origin, dest, dep_str, ret_str) a run with these settings
+    would search — mirrors find_cheapest_window's sampling exactly, so
+    --resume can count how many searches still need live requests."""
+    keys = []
+    for origin, dest, _om, _dm in routes:
+        for weeks in durations:
+            for (y, m) in months:
+                for dep in sample_departures(y, m, samples, min_date):
+                    ret = dep + timedelta(days=weeks * 7)
+                    keys.append((origin, dest, dep.isoformat(),
+                                 ret.isoformat()))
+    return keys
+
+
 def find_cheapest_window(origin, dest, year, month, weeks, samples, min_date,
                          sleep_s):
     """
@@ -295,17 +495,28 @@ def find_cheapest_window(origin, dest, year, month, weeks, samples, min_date,
     Samples `samples` midweek departure dates spread across the month.
     Returns a calendar cell dict, or None if no qualifying offers found.
     """
+    global RESUMED_COUNT
     trip_days = weeks * 7
     dep_dates = sample_departures(year, month, samples, min_date)
     results = []
     for dep in dep_dates:
-        if RATE_LIMITED:
+        if ABORTED:
             break
         ret = dep + timedelta(days=trip_days)
         dep_str, ret_str = dep.isoformat(), ret.isoformat()
         print(f"    Searching {origin}→{dest} {dep_str} → {ret_str}...")
-        offers = (cache_search(origin, dest, dep_str, ret_str) if CACHE_MODE
-                  else run_duffel_search(origin, dest, dep_str, ret_str))
+        if CACHE_MODE:
+            offers = cache_search(origin, dest, dep_str, ret_str)
+        elif RESUME_MODE:
+            offers = cached_ok_offers(origin, dest, dep_str, ret_str)
+            if offers is not None:
+                RESUMED_COUNT += 1
+                print("    ↩  fresh cached response reused (resume) — "
+                      "no request spent")
+            else:
+                offers = run_duffel_search(origin, dest, dep_str, ret_str)
+        else:
+            offers = run_duffel_search(origin, dest, dep_str, ret_str)
         if not offers:
             continue
         qualifying = filter_qualifying_offers(offers)
@@ -512,10 +723,26 @@ def main():
                         help="Replay saved Duffel responses from /tmp "
                              "(no API calls). Only routes whose planned "
                              "searches were all attempted are kept.")
+    parser.add_argument("--resume", action="store_true",
+                        help="Live run, but reuse fresh cached responses "
+                             "for searches already completed (no request "
+                             "spent on them). Finishes an interrupted run.")
+    parser.add_argument("--resume-ttl-hours", type=float, default=24,
+                        help="Max age of a cached response for --resume "
+                             "reuse (default 24h)")
+    parser.add_argument("--max-pauses", type=int, default=10,
+                        help="Max rate-limit pauses per run (default 10)")
+    parser.add_argument("--max-pause-wait-min", type=float, default=20,
+                        help="Max total minutes spent paused per run "
+                             "(default 20)")
     args = parser.parse_args()
 
-    global CACHE_MODE
+    global CACHE_MODE, RESUME_MODE, RESUME_TTL_S
     CACHE_MODE = args.from_cache
+    RESUME_MODE = args.resume and not args.from_cache
+    RESUME_TTL_S = args.resume_ttl_hours * 3600
+    PAUSES.max_pauses = args.max_pauses
+    PAUSES.max_total_wait_s = args.max_pause_wait_min * 60
 
     if not (args.all or args.tier or args.route):
         print("Specify --all, --tier, or --route", file=sys.stderr)
@@ -535,9 +762,20 @@ def main():
     print(f"Months: {[(y, m) for y, m in months]} | earliest departure {min_date}")
     if CACHE_MODE:
         print("CACHE MODE: replaying saved responses, no Duffel calls.")
-    if estimate > args.max_requests and not CACHE_MODE:
-        print(f"❌ Plan exceeds --max-requests {args.max_requests}; "
-              f"narrow the matrix (e.g. --tier 1) or raise the cap.",
+    live_needed = estimate
+    if RESUME_MODE:
+        planned = planned_search_keys(routes, durations, months,
+                                      args.samples, min_date)
+        cached_ready = sum(1 for k in planned
+                           if cached_ok_offers(*k) is not None)
+        live_needed = len(planned) - cached_ready
+        print(f"RESUME: {cached_ready}/{len(planned)} planned searches "
+              f"already have fresh cached responses; ~{live_needed} live "
+              f"searches needed")
+    if live_needed > args.max_requests and not CACHE_MODE:
+        print(f"❌ Plan needs ~{live_needed} live requests, exceeding "
+              f"--max-requests {args.max_requests}; narrow the matrix "
+              f"(e.g. --tier 1) or raise the cap.",
               file=sys.stderr)
         sys.exit(2)
 
@@ -561,19 +799,19 @@ def main():
 
     all_cells = []  # every calendar cell this run, with route context
     for origin, dest, origin_metro, dest_metro in routes:
-        if RATE_LIMITED:
+        if ABORTED:
             break
         route_key = f"{origin}-{dest}"
         print(f"\n✈️  {route_key} ({origin_metro} → {dest_metro})")
         calendars_by_weeks = {}
         route_cheapest = []
         for weeks in durations:
-            if RATE_LIMITED:
+            if ABORTED:
                 break
             print(f"  Duration: {weeks} weeks")
             calendar = []
             for (y, m) in months:
-                if RATE_LIMITED:
+                if ABORTED:
                     break
                 print(f"  📅 {y}-{m:02d} ({weeks} weeks)...")
                 cell = find_cheapest_window(origin, dest, y, m, weeks,
@@ -591,6 +829,9 @@ def main():
                 cell["origin_metro"] = origin_metro
                 cell["dest_metro"] = dest_metro
                 all_cells.append(cell)
+                COMPLETED_CELLS.append(
+                    f"{route_key}:{cell['year']}-{cell['month']:02d}:"
+                    f"{weeks}w")
             print(f"  ✅ {len(calendar)} months of data ({weeks}w)")
 
         primary = calendars_by_weeks.get(str(PRIMARY_WEEKS), [])
@@ -606,6 +847,8 @@ def main():
             "calendars_by_weeks": calendars_by_weeks,
             "cheapest_overall": cheapest_overall,
         }
+        COMPLETED_ROUTES.append(route_key)
+        write_run_state("aborted" if ABORTED else "running")
 
     if CACHE_MODE:
         planned_per_route = len(durations) * len(months) * args.samples
@@ -621,9 +864,15 @@ def main():
 
     print(f"\n{'Cache reads' if CACHE_MODE else 'Duffel requests made'}: "
           f"{REQUEST_COUNT} (failed: {FAILED_COUNT})")
-    if RATE_LIMITED:
-        print("❌ Aborted: Duffel rate limit (429). No files written — "
+    if RESUME_MODE:
+        print(f"Searches served from cache (resume): {RESUMED_COUNT}")
+    if PAUSES.pauses_taken:
+        print(f"Rate-limit pauses taken: {PAUSES.pauses_taken} "
+              f"({PAUSES.total_wait_s:.0f}s total wait)")
+    if ABORTED:
+        print(f"❌ Aborted: {ABORT_REASON}. No files written — "
               "existing flight-deals.json left untouched.", file=sys.stderr)
+        write_run_state("aborted")
         sys.exit(3)
 
     if not all_cells:
@@ -660,7 +909,9 @@ def main():
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     now_iso = all_data["generated_at"]
     run_source = ("flight-deals.py --from-cache (salvaged live run)"
-                  if CACHE_MODE else "flight-deals.py")
+                  if CACHE_MODE else
+                  "flight-deals.py --resume" if RESUME_MODE
+                  else "flight-deals.py")
     lines = [json.dumps(s) for s in seeds]
     for cell in all_cells:
         lines.append(json.dumps({
@@ -699,6 +950,7 @@ def main():
 
     OUTPUT_FILE.write_text(json.dumps(all_data, indent=2))
     print(f"✅ Wrote {OUTPUT_FILE}")
+    write_run_state("complete")
 
 
 if __name__ == "__main__":
