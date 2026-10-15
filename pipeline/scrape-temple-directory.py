@@ -18,6 +18,7 @@ Run: python3 -u pipeline/scrape-temple-directory.py [--dry-run] [--no-insert]
 Writes: inserts into directory_listings, category='Religious Services',
         source='scrape-temple-directory'.
 """
+import html as html_lib
 import json
 import os
 import re
@@ -50,6 +51,13 @@ TRADITIONS = [
     ("Shakti", ["durga", "kali", "meenakshi", "mariamman", "ambaji"]),
     ("Jain", ["jain"]),
 ]
+
+
+def clean(s: str) -> str:
+    """Decode HTML entities in scraped text (2026-10-14 audit N1: names
+    like 'Paranitya Narasimha Ashram and Temple&#91;82&#93;' were stored
+    raw and rendered literally on the site)."""
+    return html_lib.unescape(s or "")
 
 
 def infer_tradition(name: str) -> str:
@@ -87,7 +95,7 @@ def parse_lokgeets(html: str) -> list[dict]:
     temples = []
     parts = re.split(r'<h3 class="wp-block-heading">([^<]+)</h3>', html)
     for i in range(1, len(parts), 2):
-        state = parts[i].strip()
+        state = clean(parts[i].strip())
         content = parts[i + 1] if i + 1 < len(parts) else ""
         for m in re.finditer(
             r"<strong>([^<]+)</strong><br>\s*Address:\s*([^<]+?)<br>\s*"
@@ -95,9 +103,9 @@ def parse_lokgeets(html: str) -> list[dict]:
             r'(?:Google Maps:.*?<a href="([^"]+)"[^>]*>)?',
             content,
         ):
-            name = re.sub(r"\s+", " ", m.group(1)).strip()
-            addr = re.sub(r"\s+", " ", m.group(2)).strip()
-            phone = re.sub(r"\s+", " ", (m.group(3) or "")).strip()
+            name = clean(re.sub(r"\s+", " ", m.group(1)).strip())
+            addr = clean(re.sub(r"\s+", " ", m.group(2)).strip())
+            phone = clean(re.sub(r"\s+", " ", (m.group(3) or "")).strip())
             maps = m.group(4) or ""
             temples.append(
                 {
@@ -138,12 +146,12 @@ def fetch_wikipedia_temples() -> list[dict]:
     html = data.get("parse", {}).get("text", {}).get("*", "")
     temples = []
     for sec in re.finditer(r"<h3[^>]*>([^<]+)</h3>(.*?)(?=<h3|$)", html, re.S):
-        state = re.sub(r"<[^>]+>", "", sec.group(1)).strip()
+        state = clean(re.sub(r"<[^>]+>", "", sec.group(1)).strip())
         for row in re.finditer(r"<tr>(.*?)</tr>", sec.group(2), re.S):
             cells = re.findall(r"<td[^>]*>(.*?)</td>", row.group(1), re.S)
             if len(cells) >= 2:
-                name = re.sub(r"\[\d+\]", "", re.sub(r"<[^>]+>", "", cells[0])).strip()
-                loc = re.sub(r"<[^>]+>", "", cells[1]).strip()
+                name = clean(re.sub(r"\[\d+\]", "", re.sub(r"<[^>]+>", "", cells[0])).strip())
+                loc = clean(re.sub(r"<[^>]+>", "", cells[1]).strip())
                 city = re.split(r"\d+\s*°", loc)[0].strip(" ,")
                 if name and city and len(name) > 3:
                     temples.append(

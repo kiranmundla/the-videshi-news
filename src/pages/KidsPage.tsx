@@ -6,6 +6,7 @@ import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 import { useUserLocation } from "@/hooks/useUserLocation";
+import { nearestZipPlace } from "@/lib/geo";
 import { fetchKidsArticles, type Article } from "@/lib/articles";
 import { categoryLabel } from "@/lib/categoryLabels";
 import {
@@ -586,9 +587,34 @@ export default function KidsPage() {
     if (ipLocation) {
       setUserCoords({ lat: ipLocation.latitude, lng: ipLocation.longitude });
       setNearMeActive(true);
-      setLocationLabel(ipLocation.city ? `📍 Near ${ipLocation.city}` : "📍 Near You");
+      setLocationLabel(
+        ipLocation.city
+          ? `📍 ${ipLocation.city}${ipLocation.region ? `, ${ipLocation.region}` : ""}`
+          : "📍 Near You",
+      );
     }
   }, [ipLocation]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  /* --- Upgrade a generic near-me label to the actual city ---
+     When IP geo yields coords but no city, the label starts as
+     "📍 Near You". Whenever near-me is active with coords and the
+     label is still generic, reverse-resolve the city from the coords
+     (local zip database) and name it — "📍 Fremont, CA", not
+     "📍 Near You". Same pattern as EventsPage (cfa43d03). The
+     ZipCodeSearch path is untouched: it supplies its own city label. */
+  useEffect(() => {
+    if (!nearMeActive || !userCoords) return;
+    if (locationLabel && locationLabel !== "📍 Near You") return;
+    let cancelled = false;
+    void nearestZipPlace(userCoords.lat, userCoords.lng).then((place) => {
+      if (!cancelled && place) {
+        setLocationLabel(`📍 ${place.city}, ${place.state}`);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [nearMeActive, userCoords, locationLabel]);
 
   /* ---- local UI state ---- */
   const [showAllPlaces, setShowAllPlaces] = useState(false);

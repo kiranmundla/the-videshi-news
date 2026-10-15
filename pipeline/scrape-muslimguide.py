@@ -14,6 +14,7 @@ Run: python3 -u pipeline/scrape-muslimguide.py [--dry-run] [--no-insert]
 Writes: inserts into directory_listings, category='Religious Services',
         source='scrape-muslimguide'.
 """
+import html as html_lib
 import json
 import os
 import re
@@ -99,6 +100,12 @@ US_STATES = {
 }
 
 
+def clean(s: str) -> str:
+    """Decode HTML entities in scraped text (2026-10-14 audit N1: names
+    like 'Masjid Nu&#039;man' were stored raw and rendered literally)."""
+    return html_lib.unescape(s or "")
+
+
 def parse_listings(html: str) -> list[dict]:
     """Parse listing-item blocks: detail URL, title, address."""
     out = []
@@ -110,8 +117,8 @@ def parse_listings(html: str) -> list[dict]:
         html, re.S,
     ):
         url, name, addr = m.group(1).strip(), m.group(2).strip(), m.group(3).strip()
-        out.append({"url": url, "name": re.sub(r"\s+", " ", name),
-                    "raw_address": re.sub(r"\s+", " ", addr)})
+        out.append({"url": url, "name": clean(re.sub(r"\s+", " ", name)),
+                    "raw_address": clean(re.sub(r"\s+", " ", addr))})
     return out
 
 
