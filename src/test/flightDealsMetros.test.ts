@@ -15,8 +15,9 @@ import {
  * daily core doesn't cover. The rules under test:
  *  - daily data WINS over grid data for the same route;
  *  - a metro with no upcoming fare is omitted — never a placeholder;
- *  - grid fares are labelled "checked weekly · <the cell's own date>",
- *    daily fares "fares checked <the cell's own date>". */
+ *  - grid fares are labelled "Checked weekly · <the cell's own date>",
+ *    daily fares "Checked <the cell's own date>" (the two standard
+ *    stamp formats, holistic audit item 22, 2026-10-15). */
 
 function entry(price: number, dep = "2026-11-10", fetched = "2026-10-15"): CalendarEntry {
   return {
@@ -148,7 +149,7 @@ describe("metroFaresForOrigin", () => {
     });
     const fares = metroFaresForOrigin(null, metros, "SFO");
     expect(fares[0].source).toBe("weekly");
-    expect(fares[0].checkedLabel).toBe("checked weekly · Oct 12, 2026");
+    expect(fares[0].checkedLabel).toBe("Checked weekly · Oct 12, 2026");
   });
 
   it("labels daily fares with the cell's own fetch date", () => {
@@ -156,7 +157,7 @@ describe("metroFaresForOrigin", () => {
       "SFO-DEL": route("SFO", "DEL", [entry(1300, "2026-11-10", "2026-10-15")]),
     });
     const fares = metroFaresForOrigin(daily, null, "SFO");
-    expect(fares[0].checkedLabel).toBe("fares checked Oct 15, 2026");
+    expect(fares[0].checkedLabel).toBe("Checked Oct 15, 2026");
   });
 
   it("picks the cheapest upcoming entry in the 3-month window", () => {

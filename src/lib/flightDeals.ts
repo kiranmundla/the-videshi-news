@@ -535,12 +535,19 @@ export function festivalAdvice(
   const dep = new Date(entry.dep_date + "T12:00:00");
   const bookBy = new Date(dep);
   bookBy.setMonth(bookBy.getMonth() - season.book_by_months);
+  // Compare calendar dates, not instants: on the book-by date itself
+  // the departure is already inside the window.
+  const bookByStart = new Date(
+    bookBy.getFullYear(),
+    bookBy.getMonth(),
+    bookBy.getDate(),
+  );
   const todayStart = new Date(
     today.getFullYear(),
     today.getMonth(),
     today.getDate(),
   );
-  if (todayStart >= bookBy) return season.note;
+  if (todayStart >= bookByStart) return season.note;
   return `${season.note} · Book ${season.book_by_months} months ahead for best fares`;
 }
 

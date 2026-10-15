@@ -1,5 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { airlineBookingUrl, googleFlightsUrl } from "@/lib/flightDeals";
+import {
+  airlineBookingUrl,
+  festivalAdvice,
+  googleFlightsUrl,
+  type CalendarEntry,
+  type FestivalSeason,
+} from "@/lib/flightDeals";
 
 /* Airline direct-booking links (Kiran's strategy, locked 2026-10-15):
  * airline-direct is PRIMARY only where a prefilled format is VERIFIED;
@@ -87,5 +93,44 @@ describe("googleFlightsUrl — the permanent compare link", () => {
     expect(url).toContain("https://www.google.com/travel/flights?q=");
     expect(url).toContain(encodeURIComponent("Flights to DEL from JFK on 2026-11-24 through 2026-12-16"));
     expect(url).toContain("curr=USD");
+  });
+});
+
+/* Festival advice template (holistic audit item 16, 2026-10-15): the
+ * "Book N months ahead" clause rendered unconditionally, so every
+ * live card carried book-by advice whose window had already passed.
+ * The clause now survives only while it is still actionable. */
+describe("festivalAdvice — book-ahead clause suppression", () => {
+  const season = {
+    note: "Long-weekend trips",
+    book_by_months: 2,
+  } as FestivalSeason;
+  const entryOn = (dep: string) => ({ dep_date: dep }) as CalendarEntry;
+  const TODAY = new Date(2026, 9, 15); // Oct 15, 2026
+
+  it("keeps the clause while the book-by window is still open", () => {
+    // Departs Mar 24, 2027; book-by deadline Jan 24, 2027 — ahead.
+    expect(festivalAdvice(entryOn("2027-03-24"), season, TODAY)).toBe(
+      "Long-weekend trips · Book 2 months ahead for best fares",
+    );
+  });
+
+  it("suppresses the clause once the departure is inside the window", () => {
+    // The audit's live Thanksgiving card: departs Nov 24, 2026,
+    // book-by deadline Sep 24, 2026 — already passed on Oct 15.
+    expect(festivalAdvice(entryOn("2026-11-24"), season, TODAY)).toBe(
+      "Long-weekend trips",
+    );
+  });
+
+  it("suppresses on the deadline day itself, keeps it the day before", () => {
+    const onDeadline = new Date(2026, 8, 24); // Sep 24, 2026
+    const dayBefore = new Date(2026, 8, 23);
+    expect(festivalAdvice(entryOn("2026-11-24"), season, onDeadline)).toBe(
+      "Long-weekend trips",
+    );
+    expect(festivalAdvice(entryOn("2026-11-24"), season, dayBefore)).toBe(
+      "Long-weekend trips · Book 2 months ahead for best fares",
+    );
   });
 });
