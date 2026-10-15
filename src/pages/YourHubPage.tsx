@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
 import HubStrip from "@/components/homepage/HubStrip";
+import HubTrendingStrip from "@/components/HubTrendingStrip";
 import SiteFooter from "@/components/SiteFooter";
 import type { EventItem } from "@/lib/events";
 import EventCard from "@/components/EventCard";
@@ -886,6 +887,10 @@ export default function YourHubPage() {
 
         {/* ── Plan a Trip ── */}
         <PlanTripBlock />
+
+        {/* ── Trending Destinations (teaser of the /travel rail; its
+               summary row is the always-rendered Hub → /travel link) ── */}
+        <HubTrendingStrip />
 
         {/* ── Deadlines ── */}
         <section className="mb-10">
