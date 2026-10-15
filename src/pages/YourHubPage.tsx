@@ -249,6 +249,8 @@ function LocationSetup({
       lat: member?.lat ?? cl.center.lat,
       lon: member?.lon ?? cl.center.lon,
       label: cl.label,
+      // A deliberate pick — the sticky-record refresh never overrides it.
+      source: "manual",
     });
   };
 
@@ -274,6 +276,8 @@ function LocationSetup({
             lat,
             lon,
             label: place.label,
+            // A measured device fix — refreshable when the device moves.
+            source: "geolocation",
           });
         });
       },
@@ -304,6 +308,9 @@ function LocationSetup({
           lat: info.lat,
           lon: info.lng,
           label: `${info.city}, ${info.state}`,
+          // The reader typed this place deliberately — treat it like
+          // a manual pick, never auto-refreshed away.
+          source: "manual",
         });
         return;
       }
@@ -318,6 +325,7 @@ function LocationSetup({
         lat: parseFloat(place.latitude),
         lon: parseFloat(place.longitude),
         label: `${place["place name"]}, ${place["state abbreviation"]}`,
+        source: "manual",
       });
     } catch {
       setZipError("Couldn't find that zip — check it and try again.");
@@ -506,11 +514,25 @@ export default function YourHubPage() {
   }, [ipLocation]);
 
   const applyAutoLocation = useCallback(
-    (lat: number, lon: number, ip: UserLocation | null) => {
+    (
+      lat: number,
+      lon: number,
+      ip: UserLocation | null,
+      source: "geolocation" | "ip",
+    ) => {
       if (locationRef.current) return;
       void resolvePlaceLabel(lat, lon, ip).then((place) => {
         if (locationRef.current) return;
-        setLocation({ city: place.city, state: place.state, lat, lon, label: place.label });
+        setLocation({
+          city: place.city,
+          state: place.state,
+          lat,
+          lon,
+          label: place.label,
+          // Auto-detected — the sticky-record refresh may follow the
+          // device when it materially moves (manual picks never do).
+          source,
+        });
       });
     },
     [setLocation],
@@ -522,7 +544,12 @@ export default function YourHubPage() {
     if (!navigator.geolocation) {
       // No browser ask possible — the IP location is the only source.
       if (ipLocation) {
-        applyAutoLocation(ipLocation.latitude, ipLocation.longitude, ipLocation);
+        applyAutoLocation(
+          ipLocation.latitude,
+          ipLocation.longitude,
+          ipLocation,
+          ipLocation.source === "browser" ? "geolocation" : "ip",
+        );
       }
       return;
     }
@@ -531,12 +558,24 @@ export default function YourHubPage() {
     navigator.geolocation.getCurrentPosition(
       (pos) => {
         geoPendingRef.current = false;
-        applyAutoLocation(pos.coords.latitude, pos.coords.longitude, ipRef.current);
+        applyAutoLocation(
+          pos.coords.latitude,
+          pos.coords.longitude,
+          ipRef.current,
+          "geolocation",
+        );
       },
       () => {
         geoPendingRef.current = false;
         const ip = ipRef.current;
-        if (ip) applyAutoLocation(ip.latitude, ip.longitude, ip);
+        if (ip) {
+          applyAutoLocation(
+            ip.latitude,
+            ip.longitude,
+            ip,
+            ip.source === "browser" ? "geolocation" : "ip",
+          );
+        }
         /* no IP location either — LocationSetup panel is the fallback */
       },
       { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },

@@ -283,6 +283,9 @@ export function useUserLocation() {
           lat: merged.latitude,
           lon: merged.longitude,
           label: place.label,
+          // A measured device fix — an auto record, so the Hub's
+          // sticky-record refresh may follow later travel.
+          source: "geolocation",
         };
         setStoredHubLocation(hubRecord);
       } catch {

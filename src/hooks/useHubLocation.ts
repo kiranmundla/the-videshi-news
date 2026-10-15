@@ -1,6 +1,19 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { nearestZipPlace } from "@/lib/geo";
 
+/** How a Hub record got its coordinates:
+ *  - "manual": the reader deliberately chose the place (metro picker
+ *    or ZIP entry). NEVER auto-overwritten — it is an explicit setting.
+ *  - "geolocation": a precise device fix (browser geolocation, via the
+ *    setup button, the Hub page-land detect, or the unified geo hook's
+ *    write-through). Auto records may be refreshed when the device has
+ *    clearly moved — see maybeRefreshHubLocation.
+ *  - "ip": a coarse IP estimate stored by the page-land fallback.
+ *    Also auto — a later precise fix should refine it.
+ * Records written before 2026-10-14 carry no source; classifyHubRecord
+ * reconstructs their class from the picker signature. */
+export type HubLocationSource = "manual" | "geolocation" | "ip";
+
 export interface HubLocation {
   city: string;
   state: string;
@@ -8,6 +21,10 @@ export interface HubLocation {
   lon: number;
   /** Display label, e.g. "San Jose, CA" */
   label: string;
+  /** Provenance — see HubLocationSource. Absent on legacy records. */
+  source?: HubLocationSource;
+  /** Epoch ms when this record was written. */
+  setAt?: number;
 }
 
 const STORAGE_KEY = "videshi-user-location";
@@ -33,7 +50,9 @@ function notifyHubLocationChanged() {
  * useUserLocation's precise-fix write-through both go through here. */
 export function setStoredHubLocation(loc: HubLocation) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(loc));
+    const stamped: HubLocation =
+      typeof loc.setAt === "number" ? loc : { ...loc, setAt: Date.now() };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(stamped));
   } catch {
     /* quota exceeded — ignore */
   }
@@ -261,10 +280,219 @@ export async function resolvePlaceLabel(
   return { label: "Near You", city: "", state: "" };
 }
 
+/* ------------------------------------------------------------------ */
+/* Sticky-record refresh (2026-10-14, Kiran's Fremont→Dublin report)   */
+/*                                                                     */
+/* The Hub record never expired, so a record that was itself AUTO-     */
+/* detected kept pointing at the old city forever after the reader    */
+/* travelled: Events/Directory re-detect per visit and showed Dublin,  */
+/* while Your Hub and the homepage banner kept saying Fremont with     */
+/* distances computed from Fremont. The fix: an auto record refreshes  */
+/* when a PRECISE position is available without prompting and the      */
+/* device has materially moved. A manual pick is an explicit user      */
+/* setting and is never auto-overwritten.                              */
+/* ------------------------------------------------------------------ */
+
+/** Classify a stored record as a deliberate manual pick or an
+ * auto-detected fix. An explicit `source` field (written since
+ * 2026-10-14) wins. Legacy records carry no source, so reconstruct:
+ * the metro picker is the ONLY writer that stores coordinates copied
+ * verbatim from the cluster table (a center or a member city) under
+ * that cluster's label — the picker signature. Every auto path (page-
+ * land detect, "Use my location", the geo hook's write-through, the
+ * IP fallback) stores MEASURED coordinates, which essentially never
+ * coincide exactly with table values, so a legacy record without the
+ * picker signature is auto. Legacy ZIP entries also classify as auto:
+ * their centroid coords are indistinguishable from measured ones —
+ * ZIP submits are tagged "manual" at write time going forward. */
+export function classifyHubRecord(
+  loc: HubLocation,
+  clusters: Cluster[],
+): "manual" | "auto" {
+  if (loc.source) return loc.source === "manual" ? "manual" : "auto";
+  for (const cl of clusters) {
+    if (loc.label !== cl.label) continue;
+    if (loc.lat === cl.center.lat && loc.lon === cl.center.lon) return "manual";
+    for (const mb of cl.members) {
+      if (loc.lat === mb.lat && loc.lon === mb.lon) return "manual";
+    }
+  }
+  return "auto";
+}
+
+/* The transient geo cache (owned by useUserLocation). Read directly
+ * here rather than imported — useUserLocation already imports this
+ * module, and a back-import would create a cycle. Key + TTL mirror
+ * useUserLocation's STORAGE_KEY / STORAGE_TTL. */
+const GEO_CACHE_KEY = "videshi_user_geo";
+const GEO_CACHE_TTL_MS = 1000 * 60 * 60; // 1 hour, same as useUserLocation
+
+export interface PreciseFix {
+  lat: number;
+  lon: number;
+}
+
+/** A fresh PRECISE fix from the transient geo cache, or null. Only
+ * browser-geolocation entries count: an IP estimate is too coarse to
+ * override a stored precise fix, so it never triggers a rewrite. */
+export function getFreshPreciseGeoFix(): PreciseFix | null {
+  try {
+    const raw = localStorage.getItem(GEO_CACHE_KEY);
+    if (!raw) return null;
+    const { ts, loc } = JSON.parse(raw);
+    if (!loc || typeof ts !== "number" || Date.now() - ts > GEO_CACHE_TTL_MS) {
+      return null;
+    }
+    if (loc.source !== "browser") return null;
+    if (typeof loc.latitude !== "number" || typeof loc.longitude !== "number") {
+      return null;
+    }
+    return { lat: loc.latitude, lon: loc.longitude };
+  } catch {
+    return null;
+  }
+}
+
+/** A precise fix from the browser WITHOUT ever prompting: only asks
+ * for a position when geolocation permission is already 'granted'.
+ * When the Permissions API is unavailable the no-prompt guarantee
+ * can't be verified, so it conservatively returns null. */
+export async function getGrantedGeolocationFix(
+  timeoutMs = 4000,
+): Promise<PreciseFix | null> {
+  try {
+    if (typeof navigator === "undefined" || !navigator.geolocation) return null;
+    if (!navigator.permissions?.query) return null;
+    let state: PermissionState;
+    try {
+      const status = await navigator.permissions.query({
+        name: "geolocation" as PermissionName,
+      });
+      state = status.state;
+    } catch {
+      return null;
+    }
+    if (state !== "granted") return null;
+    return await new Promise<PreciseFix | null>((resolve) => {
+      navigator.geolocation.getCurrentPosition(
+        (pos) =>
+          resolve({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
+        () => resolve(null),
+        { enableHighAccuracy: false, timeout: timeoutMs, maximumAge: 60000 },
+      );
+    });
+  } catch {
+    return null;
+  }
+}
+
+/** Nearest cluster by CENTER within maxMiles (same center rule as
+ * resolvePlaceLabel), or null when no center is close enough. */
+export function nearestClusterId(
+  lat: number,
+  lon: number,
+  clusters: Cluster[],
+  maxMiles = 100,
+): string | null {
+  let best: { id: string; dist: number } | null = null;
+  for (const cl of clusters) {
+    const d = haversineMiles(lat, lon, cl.center.lat, cl.center.lon);
+    if (!best || d < best.dist) best = { id: cl.id, dist: d };
+  }
+  return best && best.dist <= maxMiles ? best.id : null;
+}
+
+/** Minimum move (miles) that counts as "the device travelled", when
+ * the resolved cluster doesn't already say so. */
+export const HUB_REFRESH_MIN_DISTANCE_MILES = 5;
+
+/** Materially different = the resolved cluster changed, or the fix is
+ * more than HUB_REFRESH_MIN_DISTANCE_MILES from the stored coords.
+ * A ~1 mi move inside the same cluster is not material — no churn. */
+export function isMateriallyDifferentLocation(
+  stored: HubLocation,
+  fix: PreciseFix,
+  clusters: Cluster[],
+): boolean {
+  if (haversineMiles(stored.lat, stored.lon, fix.lat, fix.lon) >
+    HUB_REFRESH_MIN_DISTANCE_MILES) {
+    return true;
+  }
+  const a = nearestClusterId(stored.lat, stored.lon, clusters);
+  const b = nearestClusterId(fix.lat, fix.lon, clusters);
+  return a !== null && b !== null && a !== b;
+}
+
+export interface HubRefreshDeps {
+  getStored?: () => HubLocation | null;
+  getCacheFix?: () => PreciseFix | null;
+  getGrantedFix?: () => Promise<PreciseFix | null>;
+  loadClustersFn?: () => Promise<Cluster[]>;
+  write?: (loc: HubLocation) => void;
+  resolveLabel?: typeof resolvePlaceLabel;
+  now?: () => number;
+}
+
+/** One refresh attempt against the stored record. Returns the new
+ * record when a rewrite happened, else null. Rules:
+ *  - no stored record → nothing (the setup flows own creation);
+ *  - manual record → never touched;
+ *  - no fresh precise fix available without prompting → nothing;
+ *  - fix not materially different → nothing (no churn);
+ *  - otherwise rewrite coords + label via resolvePlaceLabel and the
+ *    canonical write path (which also fires the live-sync events, so
+ *    every mounted surface updates at once). The rewritten record is
+ *    itself 'geolocation'-sourced, so a later genuine move refreshes
+ *    again. */
+export async function maybeRefreshHubLocation(
+  deps: HubRefreshDeps = {},
+): Promise<HubLocation | null> {
+  const stored = (deps.getStored ?? getStoredHubLocation)();
+  if (!stored) return null;
+  const clusters = await (deps.loadClustersFn ?? loadClusters)().catch(
+    () => getCachedClusters(),
+  );
+  if (classifyHubRecord(stored, clusters) === "manual") return null;
+  const fix =
+    (deps.getCacheFix ?? getFreshPreciseGeoFix)() ??
+    (await (deps.getGrantedFix ?? getGrantedGeolocationFix)());
+  if (!fix) return null;
+  if (!isMateriallyDifferentLocation(stored, fix, clusters)) return null;
+  const place = await (deps.resolveLabel ?? resolvePlaceLabel)(
+    fix.lat,
+    fix.lon,
+    null,
+  );
+  const next: HubLocation = {
+    city: place.city || stored.city,
+    state: place.state || stored.state,
+    lat: fix.lat,
+    lon: fix.lon,
+    label: place.label,
+    source: "geolocation",
+    setAt: (deps.now ?? Date.now)(),
+  };
+  (deps.write ?? setStoredHubLocation)(next);
+  return next;
+}
+
+/* At most one refresh attempt per page load, shared by every mounted
+ * useHubLocation instance (Hub page, homepage banner, FlightDeals). */
+let hubRefreshAttempt: Promise<HubLocation | null> | null = null;
+
+export function refreshHubLocationOnce(): Promise<HubLocation | null> {
+  if (!hubRefreshAttempt) {
+    hubRefreshAttempt = maybeRefreshHubLocation().catch(() => null);
+  }
+  return hubRefreshAttempt;
+}
+
 /**
- * User-chosen hub location, persisted in localStorage.
- * Unlike the transient IP-geo hook, this is an explicit user setting —
- * it never expires and is only changed by the user.
+ * The canonical hub location, persisted in localStorage. It never
+ * expires. A MANUAL pick is an explicit user setting and is only
+ * changed by the user; an AUTO-detected record (browser/IP) refreshes
+ * itself when the device materially moves — see the refresh block
+ * above.
  */
 export function useHubLocation() {
   const [location, setLocationState] = useState<HubLocation | null>(getStoredHubLocation);
@@ -287,13 +515,33 @@ export function useHubLocation() {
     };
   }, []);
 
+  /* Sticky-record refresh: an AUTO-detected record follows the device
+   * when it has materially moved and a precise fix is available
+   * without prompting (see maybeRefreshHubLocation). Runs once per
+   * page load via the shared module guard, so the Hub page and the
+   * homepage banner both get it without double geolocation calls.
+   * The write goes through the canonical path, whose change event
+   * re-reads every mounted instance — state is set directly here too
+   * so this instance updates even if the write raced its listener. */
+  useEffect(() => {
+    let cancelled = false;
+    void refreshHubLocationOnce().then((next) => {
+      if (!cancelled && next) setLocationState(next);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   /* Self-heal legacy generic labels: a stored record whose label is
    * "Near You" / "Current location" but which carries real coords gets
    * its label re-resolved from those coords, once, and the healed
    * record is written back — so every surface that renders the label
    * (Hub chip, weekend heading, homepage banner) shows the real city
    * without the reader re-picking their location. Coords, and the
-   * reader's explicit setting itself, are never touched. */
+   * reader's explicit setting itself, are never touched. The healed
+   * fields merge onto the FRESHEST stored record, so a refresh write
+   * that landed while the label was resolving is never clobbered. */
   const healTriedRef = useRef(false);
   useEffect(() => {
     if (healTriedRef.current || !location) return;
@@ -304,11 +552,12 @@ export function useHubLocation() {
     void resolvePlaceLabel(location.lat, location.lon, null)
       .then((place) => {
         if (cancelled || isGenericHubLabel(place.label)) return;
+        const base = getStoredHubLocation() ?? location;
         setLocation({
-          ...location,
+          ...base,
           label: place.label,
-          city: place.city || location.city,
-          state: place.state || location.state,
+          city: place.city || base.city,
+          state: place.state || base.state,
         });
       })
       .catch(() => {});
