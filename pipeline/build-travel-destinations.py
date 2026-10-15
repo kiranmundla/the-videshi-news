@@ -55,7 +55,23 @@ REPO = Path.home() / "workspace" / "the-videshi-news"
 GUIDES_DIR = REPO / "public" / "data" / "travel-guides"
 GALLERIES_FILE = REPO / "public" / "data" / "travel-galleries.json"
 DEALS_FILE = REPO / "public" / "data" / "flight-deals.json"
+INTL_DEALS_FILE = REPO / "public" / "data" / "flight-deals-intl.json"
 OUTPUT_FILE = REPO / "public" / "data" / "travel-destinations.json"
+
+# International matrix destinations (flight-deals.py --intl, weekly):
+# slug -> arrival airport. Same conservative rule as ROUTE_MAP: the
+# fare shown must be FOR that destination (US->SYD is an Australia
+# fare; US->CDG is a France fare).
+INTL_AIRPORT_MAP = {
+    "australia": "SYD",
+    "bali": "DPS",
+    "cabo": "SJD",
+    "egypt": "CAI",
+    "fiji": "NAN",
+    "france": "CDG",
+    "greece": "ATH",
+    "hawaii": "HNL",
+}
 
 # Which flight-deals routes genuinely serve a guide destination.
 # Deliberately conservative: the fare must be FOR that destination.
@@ -236,12 +252,56 @@ def mine_highlights(md_text, limit=5):
     return out
 
 
-def destination_fares(slug, deals):
+def route_cells(r):
+    """All calendar cells of a deals route (band-model `calendar`,
+    plus legacy `calendars_by_weeks` for pre-2026-10-15 snapshots)."""
+    cells = list(r.get("calendar") or [])
+    for cal in (r.get("calendars_by_weeks") or {}).values():
+        cells.extend(cal or [])
+    return cells
+
+
+def intl_destination_fares(slug, intl_deals):
+    """fare_from from the WEEKLY international matrix, or None.
+
+    These fares are indicative (checked weekly at reduced depth) and
+    the record says so — the rail card renders the cadence label.
+    """
+    airport = INTL_AIRPORT_MAP.get(slug)
+    if not airport or not intl_deals:
+        return None
+    fare_from = None
+    for rk, r in (intl_deals.get("routes") or {}).items():
+        if r.get("destination") != airport:
+            continue
+        co = r.get("cheapest_overall")
+        if co and (fare_from is None
+                   or co["price_min"] < fare_from["price_min"]):
+            fare_from = {
+                "price_min": co["price_min"],
+                "route": rk,
+                "origin_metro": r.get("origin_metro"),
+                "dest_metro": r.get("dest_metro"),
+                "date_range": co["date_range"],
+                "duration_days": co.get("duration_days"),
+                "as_of": intl_deals.get("as_of"),
+                "cadence": "weekly",
+                "indicative": True,
+            }
+    return fare_from
+
+
+def destination_fares(slug, deals, intl_deals=None):
     """fare_from + cheapest_month for a destination, from real deals data.
 
     Returns (fare_from, cheapest_month). Both None when no tracked route
     serves this destination or the route has no fare data yet.
+    India destinations read the daily India matrix (own-metro routes
+    only, per ROUTE_MAP); international destinations read the weekly
+    intl matrix (INTL_AIRPORT_MAP).
     """
+    if slug in INTL_AIRPORT_MAP:
+        return intl_destination_fares(slug, intl_deals), None
     route_keys = ROUTE_MAP.get(slug)
     if not route_keys or not deals:
         return None, None
@@ -260,17 +320,20 @@ def destination_fares(slug, deals):
                 "origin_metro": r.get("origin_metro"),
                 "dest_metro": r.get("dest_metro"),
                 "date_range": co["date_range"],
-                "weeks": co["weeks"],
+                "duration_days": co.get("duration_days"),
+                "weeks": co.get("weeks"),
                 "as_of": deals.get("as_of"),
+                "cadence": "daily",
             }
-        for weeks, cal in (r.get("calendars_by_weeks") or {}).items():
-            for cell in cal:
-                if cell.get("cheapest_month"):
-                    cand = {"month": cell["month"], "year": cell["year"],
-                            "price_min": cell["price_min"], "route": rk,
-                            "weeks": int(weeks), "source": "fare data"}
-                    if cheapest is None or cand["price_min"] < cheapest["price_min"]:
-                        cheapest = cand
+        for cell in route_cells(r):
+            if cell.get("cheapest_month"):
+                cand = {"month": cell["month"], "year": cell["year"],
+                        "price_min": cell["price_min"], "route": rk,
+                        "duration_days": cell.get("duration_days"),
+                        "weeks": cell.get("weeks"),
+                        "source": "fare data"}
+                if cheapest is None or cand["price_min"] < cheapest["price_min"]:
+                    cheapest = cand
     return fare_from, cheapest
 
 
@@ -288,15 +351,14 @@ def destination_drop(slug, deals):
         r = routes.get(rk)
         if not r:
             continue
-        for cal in (r.get("calendars_by_weeks") or {}).values():
-            for cell in cal:
-                ch = cell.get("change_vs_prev") or {}
-                if ch.get("delta", 0) > 0 and (best is None or
-                                              ch["delta_pct"] > best["drop_pct"]):
-                    best = {"route": rk, "drop_pct": ch["delta_pct"],
-                            "drop_abs": ch["delta"], "was": ch["prev_price_min"],
-                            "now": cell["price_min"],
-                            "baseline_as_of": ch.get("prev_as_of")}
+        for cell in route_cells(r):
+            ch = cell.get("change_vs_prev") or {}
+            if ch.get("delta", 0) > 0 and (best is None or
+                                          ch["delta_pct"] > best["drop_pct"]):
+                best = {"route": rk, "drop_pct": ch["delta_pct"],
+                        "drop_abs": ch["delta"], "was": ch["prev_price_min"],
+                        "now": cell["price_min"],
+                        "baseline_as_of": ch.get("prev_as_of")}
     return best
 
 
@@ -525,6 +587,9 @@ def main():
     deals = None
     if DEALS_FILE.exists():
         deals = json.loads(DEALS_FILE.read_text())
+    intl_deals = None
+    if INTL_DEALS_FILE.exists():
+        intl_deals = json.loads(INTL_DEALS_FILE.read_text())
 
     records = []
     missing_meta = []
@@ -539,7 +604,8 @@ def main():
         highlights = mine_highlights(text)
         gal = galleries.get(slug) or {}
         photos = gal.get("photos") or []
-        fare_from, cheapest_month = destination_fares(slug, deals)
+        fare_from, cheapest_month = destination_fares(slug, deals,
+                                                      intl_deals)
         drop = destination_drop(slug, deals)
 
         rec = {

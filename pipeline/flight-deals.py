@@ -11,16 +11,24 @@ Specs (Kiran's decisions):
 - Max 1 stop (no 2+ stops)
 - Round-trip, per person, economy
 - Exclude basic economy — only fares with 2+ checked bags
-- Duration: 2/3/4 weeks for India routes (never 1 week — research)
 - Discovery only: honest price ranges with as-of timestamps,
   direct links, no affiliates
 - Departure sampling defaults to Tue/Wed/Thu (cheapest days to fly)
 
-Coverage: Tier-1 + Tier-2 India routes (research/diaspora-travel-patterns.md)
-x next 6 months rolling x durations 2/3/4 weeks. Sampling is deliberately
-sparse (default 2 midweek departure dates per month/duration cell) so a
-full run stays within a sane Duffel request budget:
-  12 routes x 3 durations x 6 months x 2 samples = 432 requests max.
+Scope (Kiran, 2026-10-15 — Travel Phase 1: get one thing right, expand
+later): rolling next 3 months, ONE duration band per market instead of
+the old 2/3/4-week grid:
+- India matrix (default): ~3-week trips — durations sampled inside
+  19-23 days; the cell value is the cheapest fare found in the band
+  and the cell reports the winning trip's actual dates + duration.
+  12 routes x 3 months x 2 departure samples x 2 duration samples
+  = 144 requests max — inside the observed daily provider ceiling
+  (~283 requests before the 2026-10-15 run aborted at the old scope).
+- International matrix (--intl, weekly): top non-India destinations
+  (SYD/DPS/SJD/CAI/NAN/CDG/ATH/HNL) x 5 origins, ~1-week trips
+  (5-9 days), same sampling shape = 480 requests max per week. Writes
+  a SEPARATE snapshot (flight-deals-intl.json) labelled weekly /
+  indicative; the daily India job never touches it.
 
 History: every run appends one JSON line per route/month/duration cell
 to pipeline/.state/flight-deals-history.jsonl. Drops are computed vs the
@@ -29,11 +37,13 @@ previous snapshot for the same cell, and vs the trailing average once
 first baseline honestly (baseline_as_of is carried on every drop).
 
 Usage:
-  python3 flight-deals.py --all                      (full Tier-1+2 matrix)
+  python3 flight-deals.py --all                      (full Tier-1+2 India matrix)
   python3 flight-deals.py --tier 1                   (Tier-1 only)
-  python3 flight-deals.py --route SFO-DEL            (single route, all durations)
+  python3 flight-deals.py --route SFO-DEL            (single India route)
   python3 flight-deals.py --all --dry-run            (search + print, no writes)
-  python3 flight-deals.py --all --samples 3          (denser sampling)
+  python3 flight-deals.py --all --samples 3          (denser dep sampling)
+  python3 flight-deals.py --intl                     (weekly international matrix)
+  python3 flight-deals.py --intl --route SFO-SYD     (single intl route)
   python3 flight-deals.py --all --resume             (skip searches that
         already have a fresh cached response; finish an interrupted run
         spending requests only on the missing searches. Resume runs
@@ -84,13 +94,48 @@ TIER2_ROUTES = [
 ]
 
 ALL_ROUTES = TIER1_ROUTES + TIER2_ROUTES
-INDIA_DURATIONS = [2, 3, 4]
-PRIMARY_WEEKS = 3  # calendar kept at routes[key]["calendar"] for back-compat
+
+# Duration bands (Kiran, 2026-10-15): one band per market. The band is
+# sampled at 2 durations spread across [min_days, max_days]; the cell
+# keeps the cheapest fare found and reports its actual duration_days.
+BAND_INDIA = {"id": "in-3wk", "label": "~3-week trips", "center_days": 21,
+              "min_days": 19, "max_days": 23}
+BAND_INTL = {"id": "intl-1wk", "label": "~1-week trips", "center_days": 7,
+             "min_days": 5, "max_days": 9}
+
+# International matrix (weekly, Phase 1): the current trending top-8
+# non-India destinations x 5 diaspora-metro origins. Destination-major
+# order (trending rank) so an interrupted run works the list in the
+# order readers care about. Slugs are travel-destinations.json ids.
+INTL_ORIGINS = [
+    ("SFO", "Bay Area"),
+    ("LAX", "Los Angeles"),
+    ("JFK", "New York"),
+    ("ORD", "Chicago"),
+    ("DFW", "Dallas"),
+]
+INTL_DESTINATIONS = [  # (airport, metro, destination slug)
+    ("SYD", "Sydney", "australia"),
+    ("DPS", "Bali", "bali"),
+    ("SJD", "Cabo", "cabo"),
+    ("CAI", "Cairo", "egypt"),
+    ("NAN", "Nadi", "fiji"),
+    ("CDG", "Paris", "france"),
+    ("ATH", "Athens", "greece"),
+    ("HNL", "Honolulu", "hawaii"),
+]
+INTL_ROUTES = [(o, d, om, dm)
+               for d, dm, _slug in INTL_DESTINATIONS
+               for o, om in INTL_ORIGINS]
+INTL_AIRPORT_SLUG = {d: slug for d, _dm, slug in INTL_DESTINATIONS}
 
 DATA_DIR = Path.home() / "workspace" / "the-videshi-news" / "public" / "data"
 STATE_DIR = Path.home() / "workspace" / "the-videshi-news" / "pipeline" / ".state"
 OUTPUT_FILE = DATA_DIR / "flight-deals.json"
 HISTORY_FILE = STATE_DIR / "flight-deals-history.jsonl"
+INTL_OUTPUT_FILE = DATA_DIR / "flight-deals-intl.json"
+INTL_HISTORY_FILE = STATE_DIR / "flight-deals-intl-history.jsonl"
+INTL_RUN_STATE_FILE = STATE_DIR / "flight-deals-intl-run-state.json"
 
 MIN_LEAD_DAYS = 2          # earliest departure = today + 2 days
 MIDWEEK = (1, 2, 3)        # Tue, Wed, Thu (date.weekday(): Mon=0)
@@ -163,7 +208,7 @@ RESUME_TTL_S = 48 * 3600
 RESUMED_COUNT = 0
 ATTEMPTED = {}  # route_key -> searches with a cache file present (cache mode)
 COMPLETED_ROUTES = []
-COMPLETED_CELLS = []  # "ROUTE:YYYY-MM:Ww" per finished calendar cell
+COMPLETED_CELLS = []  # "ROUTE:YYYY-MM:<band-id>" per finished calendar cell
 RUN_STATE_FILE = STATE_DIR / "flight-deals-run-state.json"
 
 # Injectable for tests.
@@ -498,16 +543,28 @@ def rolling_months(months_ahead, min_date):
     return out
 
 
-def planned_search_keys(routes, durations, months, samples, min_date):
+def sample_durations(band, samples):
+    """Pick `samples` trip durations (days) spread across the band —
+    same middle-of-each-slice spread as sample_departures. India band
+    (19-23d, 2 samples) -> [20, 22]; intl band (5-9d) -> [6, 8]."""
+    days = list(range(band["min_days"], band["max_days"] + 1))
+    if len(days) <= samples:
+        return days
+    return [days[(2 * i + 1) * len(days) // (2 * samples)]
+            for i in range(samples)]
+
+
+def planned_search_keys(routes, band, months, dep_samples, duration_days,
+                        min_date):
     """Every (origin, dest, dep_str, ret_str) a run with these settings
     would search — mirrors find_cheapest_window's sampling exactly, so
     --resume can count how many searches still need live requests."""
     keys = []
     for origin, dest, _om, _dm in routes:
-        for weeks in durations:
-            for (y, m) in months:
-                for dep in sample_departures(y, m, samples, min_date):
-                    ret = dep + timedelta(days=weeks * 7)
+        for (y, m) in months:
+            for dep in sample_departures(y, m, dep_samples, min_date):
+                for days in duration_days:
+                    ret = dep + timedelta(days=days)
                     keys.append((origin, dest, dep.isoformat(),
                                  ret.isoformat()))
     return keys
@@ -521,9 +578,9 @@ def planned_search_keys(routes, durations, months, samples, min_date):
 # re-verified every day. On --resume runs the work is now ordered by
 # need: routes with cells missing go first.
 
-def cell_id(route_key, year, month, weeks):
+def cell_id(route_key, year, month, band_id):
     """Cell identity, same format as the run state's cells_completed."""
-    return f"{route_key}:{year:04d}-{month:02d}:{weeks}w"
+    return f"{route_key}:{year:04d}-{month:02d}:{band_id}"
 
 
 def load_json_file(path):
@@ -534,19 +591,26 @@ def load_json_file(path):
 
 
 def snapshot_cell_ids(snapshot):
-    """Cell ids present in a flight-deals.json snapshot dict."""
+    """Cell ids present in a flight-deals.json snapshot dict.
+
+    Band-model cells carry `band`. Legacy cells (pre-2026-10-15
+    snapshots) carry `weeks` instead — they map to a "legacy-<n>w" id
+    that never equals a planned band cell, so a legacy snapshot simply
+    reads as fully missing for ordering (every route is fresh work
+    under the new scope, which is true: the dates/durations changed).
+    """
     ids = set()
     for route_key, r in ((snapshot or {}).get("routes") or {}).items():
-        by_weeks = r.get("calendars_by_weeks") or {}
-        if by_weeks:
-            for wk, cal in by_weeks.items():
-                for cell in cal or []:
-                    ids.add(cell_id(route_key, cell["year"], cell["month"],
-                                    int(wk)))
-        else:  # older snapshots: only the primary-weeks calendar exists
-            for cell in r.get("calendar") or []:
+        calendars = []
+        if r.get("calendar"):
+            calendars.append(r["calendar"])
+        for cal in (r.get("calendars_by_weeks") or {}).values():
+            calendars.append(cal or [])
+        for cal in calendars:
+            for cell in cal:
+                band = cell.get("band") or f"legacy-{cell.get('weeks')}w"
                 ids.add(cell_id(route_key, cell["year"], cell["month"],
-                                cell.get("weeks", PRIMARY_WEEKS)))
+                                band))
     return ids
 
 
@@ -560,12 +624,11 @@ def prev_run_cell_ids():
     return set(state.get("cells_completed") or [])
 
 
-def planned_cell_ids(route_key, durations, months):
-    return {cell_id(route_key, y, m, w)
-            for w in durations for (y, m) in months}
+def planned_cell_ids(route_key, band, months):
+    return {cell_id(route_key, y, m, band["id"]) for (y, m) in months}
 
 
-def order_routes_incomplete_first(routes, durations, months,
+def order_routes_incomplete_first(routes, band, months,
                                   snapshot=None, prev_cells=None):
     """Order routes for a --resume run: incomplete routes first.
 
@@ -581,75 +644,82 @@ def order_routes_incomplete_first(routes, durations, months,
     decorated = []
     for idx, route in enumerate(routes):
         route_key = f"{route[0]}-{route[1]}"
-        missing = planned_cell_ids(route_key, durations, months) - have
+        missing = planned_cell_ids(route_key, band, months) - have
         decorated.append((0 if missing else 1, -len(missing), idx,
                           route, len(missing)))
     decorated.sort(key=lambda t: (t[0], t[1], t[2]))
     return [(t[3], t[4]) for t in decorated]
 
 
-def find_cheapest_window(origin, dest, year, month, weeks, samples, min_date,
-                         sleep_s):
+def find_cheapest_window(origin, dest, year, month, band, dep_samples,
+                         duration_days, min_date, sleep_s):
     """
-    Find the cheapest trip window in a given month for `weeks` duration.
-    Samples `samples` midweek departure dates spread across the month.
+    Find the cheapest trip in a given month within the duration band.
+    Samples `dep_samples` midweek departure dates spread across the
+    month x each duration in `duration_days` (the band's sampled
+    durations). The cell value is the cheapest fare found; the cell
+    reports the winning trip's actual dep/ret dates + duration_days.
     Returns a calendar cell dict, or None if no qualifying offers found.
     """
     global RESUMED_COUNT
-    trip_days = weeks * 7
-    dep_dates = sample_departures(year, month, samples, min_date)
+    dep_dates = sample_departures(year, month, dep_samples, min_date)
     results = []
     for dep in dep_dates:
         if ABORTED:
             break
-        ret = dep + timedelta(days=trip_days)
-        dep_str, ret_str = dep.isoformat(), ret.isoformat()
-        print(f"    Searching {origin}→{dest} {dep_str} → {ret_str}...")
-        # Provenance for this sample: live searches are fetched today;
-        # cache-served samples keep the date the response was fetched.
-        sample_fetched = date.today().isoformat()
-        sample_from_cache = False
-        if CACHE_MODE:
-            offers = cache_search(origin, dest, dep_str, ret_str)
-            if offers:
-                sample_from_cache = True
-                sample_fetched = (cached_fetched_date(origin, dest,
-                                                      dep_str, ret_str)
-                                  or sample_fetched)
-        elif RESUME_MODE:
-            offers = cached_ok_offers(origin, dest, dep_str, ret_str)
-            if offers is not None:
-                RESUMED_COUNT += 1
-                sample_from_cache = True
-                sample_fetched = (cached_fetched_date(origin, dest,
-                                                      dep_str, ret_str)
-                                  or sample_fetched)
-                print("    ↩  fresh cached response reused (resume) — "
-                      "no request spent")
+        for days in duration_days:
+            if ABORTED:
+                break
+            ret = dep + timedelta(days=days)
+            dep_str, ret_str = dep.isoformat(), ret.isoformat()
+            print(f"    Searching {origin}→{dest} {dep_str} → {ret_str} "
+                  f"({days}d)...")
+            # Provenance for this sample: live searches are fetched
+            # today; cache-served samples keep the response's fetch date.
+            sample_fetched = date.today().isoformat()
+            sample_from_cache = False
+            if CACHE_MODE:
+                offers = cache_search(origin, dest, dep_str, ret_str)
+                if offers:
+                    sample_from_cache = True
+                    sample_fetched = (cached_fetched_date(
+                        origin, dest, dep_str, ret_str) or sample_fetched)
+            elif RESUME_MODE:
+                offers = cached_ok_offers(origin, dest, dep_str, ret_str)
+                if offers is not None:
+                    RESUMED_COUNT += 1
+                    sample_from_cache = True
+                    sample_fetched = (cached_fetched_date(
+                        origin, dest, dep_str, ret_str) or sample_fetched)
+                    print("    ↩  fresh cached response reused (resume) — "
+                          "no request spent")
+                else:
+                    offers = run_duffel_search(origin, dest, dep_str,
+                                               ret_str)
             else:
                 offers = run_duffel_search(origin, dest, dep_str, ret_str)
-        else:
-            offers = run_duffel_search(origin, dest, dep_str, ret_str)
-        if not offers:
-            continue
-        qualifying = filter_qualifying_offers(offers)
-        if not qualifying:
-            print("    ⚠ No 2-bag offers found")
-            continue
-        prices = sorted(q["price"] for q in qualifying)
-        p25_idx = max(0, int(len(prices) * 0.25) - 1)
-        results.append({
-            "dep": dep_str,
-            "ret": ret_str,
-            "min_price": prices[0],
-            "p25_price": prices[p25_idx],
-            "num_offers": len(qualifying),
-            "cheapest_airline": min(qualifying, key=lambda q: q["price"])["airline"],
-            "fetched_as_of": sample_fetched,
-            "from_cache": sample_from_cache,
-        })
-        if sleep_s:
-            time.sleep(sleep_s)
+            if not offers:
+                continue
+            qualifying = filter_qualifying_offers(offers)
+            if not qualifying:
+                print("    ⚠ No 2-bag offers found")
+                continue
+            prices = sorted(q["price"] for q in qualifying)
+            p25_idx = max(0, int(len(prices) * 0.25) - 1)
+            results.append({
+                "dep": dep_str,
+                "ret": ret_str,
+                "duration_days": days,
+                "min_price": prices[0],
+                "p25_price": prices[p25_idx],
+                "num_offers": len(qualifying),
+                "cheapest_airline": min(
+                    qualifying, key=lambda q: q["price"])["airline"],
+                "fetched_as_of": sample_fetched,
+                "from_cache": sample_from_cache,
+            })
+            if sleep_s:
+                time.sleep(sleep_s)
 
     if not results:
         return None
@@ -660,6 +730,8 @@ def find_cheapest_window(origin, dest, year, month, weeks, samples, min_date,
         "date_range": f"{best['dep']} → {best['ret']}",
         "dep_date": best["dep"],
         "ret_date": best["ret"],
+        "duration_days": best["duration_days"],
+        "band": band["id"],
         "price_min": round(min(all_mins)),
         "price_max": round(max(r["p25_price"] for r in results)),
         "cheapest_airline": best["cheapest_airline"],
@@ -672,14 +744,19 @@ def find_cheapest_window(origin, dest, year, month, weeks, samples, min_date,
         "cache_samples": sum(1 for r in results if r["from_cache"]),
         "year": year,
         "month": month,
-        "weeks": weeks,
     }
 
 
 # ── History / fare-drop detection ────────────────────────────────────
 
 def cell_key(rec):
-    return (rec["route"], rec["year"], rec["month"], rec["weeks"])
+    """History identity. Band-model records key on the band id; legacy
+    records (pre-2026-10-15, keyed by exact weeks) get a legacy key so
+    they never compare against band cells — a band minimum over 19-23
+    days is not like-for-like with a fixed 21-day price, so drops
+    honestly restart at the scope change."""
+    band = rec.get("band") or f"legacy-{rec.get('weeks')}w"
+    return (rec["route"], rec["year"], rec["month"], band)
 
 
 def load_history():
@@ -723,7 +800,9 @@ def seed_history_from_output():
                 "destination": r.get("destination"),
                 "year": cell["year"],
                 "month": cell["month"],
-                "weeks": cell["weeks"],
+                "band": cell.get("band"),
+                "weeks": cell.get("weeks"),
+                "duration_days": cell.get("duration_days"),
                 "dep_date": cell["dep_date"],
                 "ret_date": cell["ret_date"],
                 "price_min": cell["price_min"],
@@ -777,7 +856,8 @@ def compute_changes(cells, history):
                 "dest_metro": cell.get("dest_metro"),
                 "year": cell["year"],
                 "month": cell["month"],
-                "weeks": cell["weeks"],
+                "band": cell.get("band"),
+                "duration_days": cell.get("duration_days"),
                 "date_range": cell["date_range"],
                 "was": prev["price_min"],
                 "now": cell["price_min"],
@@ -791,13 +871,15 @@ def compute_changes(cells, history):
 
 
 def flag_cheapest(calendar):
-    """Flag the cheapest-month cell within one route+duration calendar."""
+    """Flag the cheapest-month cell within one route's band calendar."""
     if not calendar:
         return None
     best = min(calendar, key=lambda c: c["price_min"])
     best["cheapest_month"] = True
     return {
-        "year": best["year"], "month": best["month"], "weeks": best["weeks"],
+        "year": best["year"], "month": best["month"],
+        "band": best.get("band"),
+        "duration_days": best.get("duration_days"),
         "price_min": best["price_min"], "date_range": best["date_range"],
     }
 
@@ -805,15 +887,19 @@ def flag_cheapest(calendar):
 # ── Main ─────────────────────────────────────────────────────────────
 
 def resolve_routes(args):
+    pool = INTL_ROUTES if args.intl else ALL_ROUTES
     if args.route:
         parts = args.route.split("-")
         if len(parts) != 2:
             print("Route must be like SFO-DEL", file=sys.stderr)
             sys.exit(1)
-        metro = next((r for r in ALL_ROUTES if r[0] == parts[0] and r[1] == parts[1]), None)
+        metro = next((r for r in pool
+                      if r[0] == parts[0] and r[1] == parts[1]), None)
         return [(parts[0], parts[1],
                  metro[2] if metro else parts[0],
                  metro[3] if metro else parts[1])]
+    if args.intl:
+        return INTL_ROUTES
     if args.tier == "1":
         return TIER1_ROUTES
     if args.tier == "2":
@@ -824,16 +910,20 @@ def resolve_routes(args):
 def main():
     parser = argparse.ArgumentParser(description="Fetch flight deal prices via Duffel (Phase B)")
     parser.add_argument("--route", help="Single route like SFO-DEL")
-    parser.add_argument("--all", action="store_true", help="All Tier-1 + Tier-2 routes")
-    parser.add_argument("--tier", choices=["1", "2"], help="Only this tier")
-    parser.add_argument("--durations", default="2,3,4",
-                        help="Comma-separated trip durations in weeks (default 2,3,4)")
-    parser.add_argument("--weeks", type=int, choices=[2, 3, 4],
-                        help="Legacy: single duration")
-    parser.add_argument("--months", type=int, default=6,
-                        help="Months ahead to search (default 6)")
+    parser.add_argument("--all", action="store_true", help="All Tier-1 + Tier-2 India routes")
+    parser.add_argument("--tier", choices=["1", "2"], help="Only this tier (India matrix)")
+    parser.add_argument("--intl", action="store_true",
+                        help="International matrix (weekly): top non-India "
+                             "destinations x 5 origins, ~1-week band, "
+                             "separate output/history/run-state files")
+    parser.add_argument("--months", type=int, default=3,
+                        help="Months ahead to search (default 3 — "
+                             "Phase 1 scope, Kiran 2026-10-15)")
     parser.add_argument("--samples", type=int, default=2,
-                        help="Departure dates sampled per month/duration (default 2)")
+                        help="Departure dates sampled per month (default 2)")
+    parser.add_argument("--duration-samples", type=int, default=2,
+                        help="Durations sampled inside the band per "
+                             "departure date (default 2)")
     parser.add_argument("--max-requests", type=int, default=600,
                         help="Abort if the planned matrix exceeds this many Duffel requests")
     parser.add_argument("--sleep", type=float, default=0.5,
@@ -861,34 +951,48 @@ def main():
     args = parser.parse_args()
 
     global CACHE_MODE, RESUME_MODE, RESUME_TTL_S
+    global OUTPUT_FILE, HISTORY_FILE, RUN_STATE_FILE
     CACHE_MODE = args.from_cache
     RESUME_MODE = args.resume and not args.from_cache
     RESUME_TTL_S = args.resume_ttl_hours * 3600
     PAUSES.max_pauses = args.max_pauses
     PAUSES.max_total_wait_s = args.max_pause_wait_min * 60
 
-    if not (args.all or args.tier or args.route):
-        print("Specify --all, --tier, or --route", file=sys.stderr)
+    if not (args.all or args.tier or args.route or args.intl):
+        print("Specify --all, --tier, --route, or --intl", file=sys.stderr)
         sys.exit(1)
 
-    durations = [args.weeks] if args.weeks else [
-        int(x) for x in args.durations.split(",") if x.strip()]
+    # Market selection: the two matrices share the engine but never
+    # share files — the weekly intl run must not touch the daily India
+    # snapshot, history, or run state.
+    if args.intl:
+        band = BAND_INTL
+        OUTPUT_FILE = INTL_OUTPUT_FILE
+        HISTORY_FILE = INTL_HISTORY_FILE
+        RUN_STATE_FILE = INTL_RUN_STATE_FILE
+    else:
+        band = BAND_INDIA
+    duration_days = sample_durations(band, args.duration_samples)
+
     routes = resolve_routes(args)
     today = date.today()
     min_date = today + timedelta(days=MIN_LEAD_DAYS)
     months = rolling_months(args.months, min_date)
 
-    estimate = len(routes) * len(durations) * len(months) * args.samples
-    print(f"Plan: {len(routes)} routes x {len(durations)} durations "
-          f"x {len(months)} months x {args.samples} samples "
+    estimate = (len(routes) * len(months) * args.samples
+                * len(duration_days))
+    print(f"Plan: {len(routes)} routes x {len(months)} months "
+          f"x {args.samples} departure samples x {len(duration_days)} "
+          f"durations {duration_days} (band {band['id']}: "
+          f"{band['min_days']}-{band['max_days']} days) "
           f"= up to {estimate} Duffel requests")
     print(f"Months: {[(y, m) for y, m in months]} | earliest departure {min_date}")
     if CACHE_MODE:
         print("CACHE MODE: replaying saved responses, no Duffel calls.")
     live_needed = estimate
     if RESUME_MODE:
-        planned = planned_search_keys(routes, durations, months,
-                                      args.samples, min_date)
+        planned = planned_search_keys(routes, band, months, args.samples,
+                                      duration_days, min_date)
         cached_ready = sum(1 for k in planned
                            if cached_ok_offers(*k) is not None)
         live_needed = len(planned) - cached_ready
@@ -909,7 +1013,7 @@ def main():
         # that are already fully covered.
         snapshot = load_json_file(OUTPUT_FILE)
         ordered = order_routes_incomplete_first(
-            routes, durations, months, snapshot, prev_run_cell_ids())
+            routes, band, months, snapshot, prev_run_cell_ids())
         routes = [r for r, _missing in ordered]
         todo = [(f"{r[0]}-{r[1]}", m) for r, m in ordered if m]
         if todo:
@@ -921,11 +1025,12 @@ def main():
     all_data = {
         "generated_at": None,
         "as_of": today.isoformat(),
-        "weeks": PRIMARY_WEEKS,
-        "durations": durations,
+        "market": "international" if args.intl else "india",
+        "band": band,
+        "months_ahead": len(months),
         "routes": {},
         "biggest_drops": [],
-        "festival_seasons": FESTIVAL_SEASONS,
+        "festival_seasons": [] if args.intl else FESTIVAL_SEASONS,
         "spec": {
             "max_stops": 1,
             "trip_type": "round-trip",
@@ -935,6 +1040,11 @@ def main():
             "note": "Excludes basic economy. Prices are snapshots, not live.",
         },
     }
+    if args.intl:
+        # Honest cadence labelling, in the data itself: these fares are
+        # checked weekly at reduced depth — indicative, not a calendar.
+        all_data["cadence"] = "weekly"
+        all_data["indicative"] = True
 
     all_cells = []  # every calendar cell this run, with route context
     for origin, dest, origin_metro, dest_metro in routes:
@@ -942,55 +1052,45 @@ def main():
             break
         route_key = f"{origin}-{dest}"
         print(f"\n✈️  {route_key} ({origin_metro} → {dest_metro})")
-        calendars_by_weeks = {}
-        route_cheapest = []
-        for weeks in durations:
+        calendar = []
+        for (y, m) in months:
             if ABORTED:
                 break
-            print(f"  Duration: {weeks} weeks")
-            calendar = []
-            for (y, m) in months:
-                if ABORTED:
-                    break
-                print(f"  📅 {y}-{m:02d} ({weeks} weeks)...")
-                cell = find_cheapest_window(origin, dest, y, m, weeks,
-                                             args.samples, min_date, args.sleep)
-                if cell:
-                    calendar.append(cell)
-                else:
-                    print(f"  ⚠ No data for {y}-{m:02d} ({weeks}w)")
-            cheapest = flag_cheapest(calendar)
-            if cheapest:
-                route_cheapest.append(cheapest)
-            calendars_by_weeks[str(weeks)] = calendar
-            for cell in calendar:
-                cell["route"] = route_key
-                cell["origin_metro"] = origin_metro
-                cell["dest_metro"] = dest_metro
-                all_cells.append(cell)
-                COMPLETED_CELLS.append(
-                    f"{route_key}:{cell['year']}-{cell['month']:02d}:"
-                    f"{weeks}w")
-            print(f"  ✅ {len(calendar)} months of data ({weeks}w)")
+            print(f"  📅 {y}-{m:02d} ({band['label']})...")
+            cell = find_cheapest_window(origin, dest, y, m, band,
+                                         args.samples, duration_days,
+                                         min_date, args.sleep)
+            if cell:
+                calendar.append(cell)
+            else:
+                print(f"  ⚠ No data for {y}-{m:02d} ({band['id']})")
+        for cell in calendar:
+            cell["route"] = route_key
+            cell["origin_metro"] = origin_metro
+            cell["dest_metro"] = dest_metro
+            all_cells.append(cell)
+            COMPLETED_CELLS.append(
+                f"{route_key}:{cell['year']}-{cell['month']:02d}:"
+                f"{band['id']}")
+        print(f"  ✅ {len(calendar)} months of data ({band['id']})")
 
-        primary = calendars_by_weeks.get(str(PRIMARY_WEEKS), [])
-        cheapest_overall = (min(route_cheapest, key=lambda c: c["price_min"])
-                            if route_cheapest else None)
         all_data["routes"][route_key] = {
             "origin": origin,
             "destination": dest,
             "origin_metro": origin_metro,
             "dest_metro": dest_metro,
-            "weeks": PRIMARY_WEEKS,
-            "calendar": primary,
-            "calendars_by_weeks": calendars_by_weeks,
-            "cheapest_overall": cheapest_overall,
+            "band": band["id"],
+            "calendar": calendar,
+            "cheapest_overall": flag_cheapest(calendar),
         }
+        if args.intl:
+            all_data["routes"][route_key]["destination_slug"] = \
+                INTL_AIRPORT_SLUG.get(dest)
         COMPLETED_ROUTES.append(route_key)
         write_run_state("aborted" if ABORTED else "running")
 
     if CACHE_MODE:
-        planned_per_route = len(durations) * len(months) * args.samples
+        planned_per_route = len(months) * args.samples * len(duration_days)
         kept = []
         for rk in list(all_data["routes"]):
             if ATTEMPTED.get(rk, 0) >= planned_per_route:
@@ -1044,7 +1144,8 @@ def main():
     all_data["biggest_drops"] = drops[:12]
     print(f"Notable drops vs previous snapshot: {len(drops)}")
     for d in drops[:12]:
-        print(f"  ↓ {d['route']} {d['year']}-{d['month']:02d} ({d['weeks']}w): "
+        print(f"  ↓ {d['route']} {d['year']}-{d['month']:02d} "
+              f"({d.get('duration_days')}d, {d.get('band')}): "
               f"${d['was']} → ${d['now']} (-${d['drop_abs']}, -{d['drop_pct']}%) "
               f"baseline {d['baseline_as_of']}")
 
@@ -1075,7 +1176,8 @@ def main():
             "destination": cell["route"].split("-")[1],
             "year": cell["year"],
             "month": cell["month"],
-            "weeks": cell["weeks"],
+            "band": cell.get("band"),
+            "duration_days": cell.get("duration_days"),
             "dep_date": cell["dep_date"],
             "ret_date": cell["ret_date"],
             "price_min": cell["price_min"],
@@ -1094,10 +1196,14 @@ def main():
         existing["routes"].update(all_data["routes"])
         existing["generated_at"] = all_data["generated_at"]
         existing["as_of"] = all_data["as_of"]
-        existing["durations"] = sorted(set(
-            (existing.get("durations") or []) + durations))
+        existing["market"] = all_data["market"]
+        existing["band"] = all_data["band"]
+        existing["months_ahead"] = all_data["months_ahead"]
         existing["biggest_drops"] = all_data["biggest_drops"]
-        existing["festival_seasons"] = FESTIVAL_SEASONS
+        existing["festival_seasons"] = all_data["festival_seasons"]
+        if args.intl:
+            existing["cadence"] = "weekly"
+            existing["indicative"] = True
         all_data = existing
 
     OUTPUT_FILE.write_text(json.dumps(all_data, indent=2))

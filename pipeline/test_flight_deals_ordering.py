@@ -7,6 +7,10 @@ IAD-DEL / ATL-DEL / BOS-DEL at the provider limit), the resume cache
 TTL must span the daily boundary, and cells served from cache must
 keep their true fetch date (fetched_as_of), never the reuse date.
 
+Updated 2026-10-15 for the Phase 1 band scope: cells are keyed by
+(route, year, month, band) — one cell per route/month under the
+single-band model (3 months x 1 band = 3 cells per route).
+
 All Duffel responses are mocked or replayed from hand-written cache
 files — these tests make NO provider calls.
 Run: python3 pipeline/test_flight_deals_ordering.py
@@ -25,15 +29,14 @@ spec = importlib.util.spec_from_file_location(
 fd = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(fd)
 
-DURATIONS = [2, 3, 4]
-MONTHS = [(2026, 10), (2026, 11), (2026, 12),
-          (2027, 1), (2027, 2), (2027, 3)]
+BAND = fd.BAND_INDIA
+MONTHS = [(2026, 11), (2026, 12), (2027, 1)]  # rolling 3-month scope
 FINISHED = ["SFO-DEL", "SFO-BLR", "JFK-DEL", "JFK-BOM", "ORD-DEL",
             "DFW-HYD", "LAX-DEL", "SEA-DEL"]  # the 8 routes that complete
 
 
-def route_cells(route_key, durations=DURATIONS, months=MONTHS):
-    return fd.planned_cell_ids(route_key, durations, months)
+def route_cells(route_key, band=BAND, months=MONTHS):
+    return fd.planned_cell_ids(route_key, band, months)
 
 
 def snapshot_with(cells_by_route):
@@ -41,31 +44,38 @@ def snapshot_with(cells_by_route):
     routes = {}
     for route_key, ids in cells_by_route.items():
         origin, dest = route_key.split("-")
-        by_weeks = {}
-        for cid in ids:
-            _rk, ym, wk = cid.split(":")
+        calendar = []
+        for cid in sorted(ids):
+            _rk, ym, band = cid.split(":")
             y, m = (int(x) for x in ym.split("-"))
-            by_weeks.setdefault(wk.rstrip("w"), []).append(
-                {"year": y, "month": m})
+            calendar.append({"year": y, "month": m, "band": band})
         routes[route_key] = {
             "origin": origin, "destination": dest,
-            "calendar": by_weeks.get(str(fd.PRIMARY_WEEKS), []),
-            "calendars_by_weeks": by_weeks,
+            "band": BAND["id"],
+            "calendar": calendar,
         }
     return {"routes": routes}
 
 
 class TestSnapshotCellIds(unittest.TestCase):
-    def test_calendars_by_weeks(self):
+    def test_band_calendar(self):
         snap = snapshot_with({"SFO-DEL": route_cells("SFO-DEL")})
         self.assertEqual(fd.snapshot_cell_ids(snap),
                          route_cells("SFO-DEL"))
 
-    def test_primary_calendar_fallback(self):
+    def test_legacy_weeks_cells_never_match_band_cells(self):
+        # A pre-band snapshot (cells keyed by weeks, in the old
+        # calendars_by_weeks shape) must NOT count as covering band
+        # cells — the scope changed, so every route is fresh work.
         snap = {"routes": {"SFO-DEL": {
-            "calendar": [{"year": 2026, "month": 11, "weeks": 3}]}}}
-        self.assertEqual(fd.snapshot_cell_ids(snap),
-                         {"SFO-DEL:2026-11:3w"})
+            "origin": "SFO", "destination": "DEL",
+            "calendar": [{"year": 2026, "month": 11, "weeks": 3}],
+            "calendars_by_weeks": {
+                "3": [{"year": 2026, "month": 11, "weeks": 3}]},
+        }}}
+        ids = fd.snapshot_cell_ids(snap)
+        self.assertEqual(ids, {"SFO-DEL:2026-11:legacy-3w"})
+        self.assertTrue(ids.isdisjoint(route_cells("SFO-DEL")))
 
     def test_empty_and_none(self):
         self.assertEqual(fd.snapshot_cell_ids(None), set())
@@ -75,23 +85,23 @@ class TestSnapshotCellIds(unittest.TestCase):
 class TestIncompleteFirstOrdering(unittest.TestCase):
     def setUp(self):
         cells = {rk: route_cells(rk) for rk in FINISHED}
-        # EWR-BOM mirrors reality: only Oct + Nov at 2w ever landed.
-        cells["EWR-BOM"] = {"EWR-BOM:2026-10:2w", "EWR-BOM:2026-11:2w"}
+        # EWR-BOM mirrors reality: only one band cell ever landed.
+        cells["EWR-BOM"] = {"EWR-BOM:2026-11:in-3wk"}
         self.snapshot = snapshot_with(cells)
 
     def ordered_keys(self, snapshot, prev=None):
         ordered = fd.order_routes_incomplete_first(
-            fd.ALL_ROUTES, DURATIONS, MONTHS, snapshot, prev)
+            fd.ALL_ROUTES, BAND, MONTHS, snapshot, prev)
         return [(f"{r[0]}-{r[1]}", m) for r, m in ordered]
 
     def test_never_completed_routes_go_first(self):
         keys = self.ordered_keys(self.snapshot)
         first_four = [rk for rk, _m in keys[:4]]
-        # 18 missing each, original tier order among ties.
+        # 3 missing each, original tier order among ties.
         self.assertEqual(first_four,
                          ["IAD-DEL", "ATL-DEL", "BOS-DEL", "EWR-BOM"])
-        self.assertEqual([m for _rk, m in keys[:3]], [18, 18, 18])
-        self.assertEqual(keys[3], ("EWR-BOM", 16))
+        self.assertEqual([m for _rk, m in keys[:3]], [3, 3, 3])
+        self.assertEqual(keys[3], ("EWR-BOM", 2))
         # The 8 finished routes follow, original order, 0 missing.
         self.assertEqual([rk for rk, _m in keys[4:]], FINISHED)
         self.assertTrue(all(m == 0 for _rk, m in keys[4:]))
@@ -109,7 +119,7 @@ class TestIncompleteFirstOrdering(unittest.TestCase):
         keys = self.ordered_keys(None)
         self.assertEqual([rk for rk, _m in keys],
                          [f"{o}-{d}" for o, d, _a, _b in fd.ALL_ROUTES])
-        self.assertTrue(all(m == 18 for _rk, m in keys))
+        self.assertTrue(all(m == 3 for _rk, m in keys))
 
     def test_complete_snapshot_keeps_tier_order(self):
         full = snapshot_with({f"{o}-{d}": route_cells(f"{o}-{d}")
@@ -135,7 +145,7 @@ QUALIFYING_OFFER = {
 
 
 class TestFetchedAsOfProvenance(unittest.TestCase):
-    YEAR, MONTH, WEEKS = 2099, 1, 3
+    YEAR, MONTH = 2099, 1
 
     def setUp(self):
         self._saved = (fd.CACHE_MODE, fd.RESUME_MODE, fd.RESUME_TTL_S,
@@ -143,10 +153,13 @@ class TestFetchedAsOfProvenance(unittest.TestCase):
         fd.ABORTED = False
         fd.CACHE_MODE = False
         fd.RESUME_MODE = False
+        # One departure sample, one duration sample: the band's center.
+        self.durations = fd.sample_durations(BAND, 1)
+        assert self.durations == [21]
         dep = fd.sample_departures(self.YEAR, self.MONTH, 1,
                                    date(self.YEAR, self.MONTH, 1))[0]
         self.dep = dep
-        self.ret = dep + timedelta(days=self.WEEKS * 7)
+        self.ret = dep + timedelta(days=21)
         self.cache_file = fd.cache_file_path("TST", "TST",
                                              dep.isoformat(),
                                              self.ret.isoformat())
@@ -159,7 +172,7 @@ class TestFetchedAsOfProvenance(unittest.TestCase):
 
     def find_cell(self):
         return fd.find_cheapest_window(
-            "TST", "TST", self.YEAR, self.MONTH, self.WEEKS, 1,
+            "TST", "TST", self.YEAR, self.MONTH, BAND, 1, self.durations,
             date(self.YEAR, self.MONTH, 1), 0)
 
     def test_live_cell_dated_today(self):
@@ -168,6 +181,8 @@ class TestFetchedAsOfProvenance(unittest.TestCase):
         self.assertIsNotNone(cell)
         self.assertEqual(cell["fetched_as_of"], date.today().isoformat())
         self.assertEqual(cell["cache_samples"], 0)
+        self.assertEqual(cell["duration_days"], 21)
+        self.assertEqual(cell["band"], BAND["id"])
 
     def test_cache_served_cell_keeps_fetch_date(self):
         # A response fetched 30h ago (beyond the old 24h TTL, within
