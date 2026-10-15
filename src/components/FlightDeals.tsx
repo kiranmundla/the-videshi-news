@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from "react";
-import { Link } from "react-router-dom";
 import {
   Plane,
   CalendarDays,
@@ -10,130 +9,24 @@ import {
   Info,
   ChevronRight,
   Sparkles,
+  BadgePercent,
 } from "lucide-react";
-
-/* ------------------------------------------------------------------ */
-/* Types                                                              */
-/* ------------------------------------------------------------------ */
-
-type CalendarEntry = {
-  date_range: string;
-  dep_date: string;
-  ret_date: string;
-  price_min: number;
-  price_max: number;
-  cheapest_airline: string;
-  num_samples: number;
-  year: number;
-  month: number;
-  weeks: number;
-};
-
-type RouteData = {
-  origin: string;
-  destination: string;
-  origin_metro: string;
-  dest_metro: string;
-  weeks: number;
-  calendar: CalendarEntry[];
-};
-
-type FestivalSeason = {
-  id: string;
-  name: string;
-  emoji: string;
-  start: [number, number, number];
-  end: [number, number, number];
-  book_by_months: number;
-  note: string;
-};
-
-type FlightDealsData = {
-  generated_at: string;
-  as_of: string;
-  weeks: number;
-  routes: Record<string, RouteData>;
-  festival_seasons: FestivalSeason[];
-  spec: {
-    max_stops: number;
-    trip_type: string;
-    pricing: string;
-    cabin: string;
-    min_checked_bags: number;
-    note: string;
-  };
-};
-
-/* ------------------------------------------------------------------ */
-/* Metro → airport mapping (auto-detect from Your Hub location)        */
-/* ------------------------------------------------------------------ */
-
-const METRO_AIRPORTS: Record<string, string> = {
-  "bay area": "SFO",
-  "san francisco": "SFO",
-  "san jose": "SFO",
-  "new york": "JFK",
-  "nyc": "JFK",
-  "new jersey": "EWR",
-  "chicago": "ORD",
-  "dallas": "DFW",
-  "fort worth": "DFW",
-  "seattle": "SEA",
-  "los angeles": "LAX",
-  "houston": "IAH",
-  "boston": "BOS",
-  "atlanta": "ATL",
-  "washington": "IAD",
-};
-
-const DEFAULT_ROUTES = ["SFO-DEL", "JFK-DEL", "ORD-DEL", "DFW-HYD", "SEA-DEL"];
-
-function detectOrigin(available: string[]): string {
-  try {
-    // The canonical location record (useHubLocation) — this used to
-    // read a legacy "videshi-hub-location" key that no code writes,
-    // so the hub-based origin never matched (2026-10-14 unification).
-    const hub = localStorage.getItem("videshi-user-location");
-    if (hub) {
-      const parsed = JSON.parse(hub);
-      const label = `${parsed.label || ""} ${parsed.city || ""}`.toLowerCase();
-      for (const [metro, airport] of Object.entries(METRO_AIRPORTS)) {
-        if (label.includes(metro)) {
-          const match = available.find((r) => r.startsWith(airport + "-"));
-          if (match) return match;
-        }
-      }
-    }
-  } catch {
-    /* fall through */
-  }
-  return available[0] || DEFAULT_ROUTES[0];
-}
+import {
+  DEFAULT_ROUTES,
+  detectHubRoute,
+  fmtDate,
+  fmtDateLong,
+  futureEntries,
+  googleFlightsUrl,
+  loadFlightDeals,
+  type CalendarEntry,
+  type FestivalSeason,
+  type FlightDealsData,
+} from "@/lib/flightDeals";
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                            */
 /* ------------------------------------------------------------------ */
-
-function fmtDate(iso: string): string {
-  const d = new Date(iso + "T12:00:00");
-  return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-}
-
-function fmtDateLong(iso: string): string {
-  const d = new Date(iso + "T12:00:00");
-  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-}
-
-function googleFlightsUrl(origin: string, dest: string, dep: string, ret: string): string {
-  // Google Flights deep link with pre-filled dates (no affiliate)
-  const depFmt = dep.replace(/-/g, "");
-  const retFmt = ret.replace(/-/g, "");
-  return (
-    `https://www.google.com/travel/flights?q=` +
-    encodeURIComponent(`Flights to ${dest} from ${origin} on ${dep} through ${ret}`) +
-    `&curr=USD`
-  );
-}
 
 function seasonForEntry(entry: CalendarEntry, seasons: FestivalSeason[]): FestivalSeason | null {
   const dep = new Date(entry.dep_date + "T12:00:00");
@@ -146,6 +39,11 @@ function seasonForEntry(entry: CalendarEntry, seasons: FestivalSeason[]): Festiv
     if (dep >= lo && dep <= hi) return s;
   }
   return null;
+}
+
+function monthLabel(entry: CalendarEntry): string {
+  const d = new Date(entry.dep_date + "T12:00:00");
+  return d.toLocaleDateString("en-US", { month: "long", year: "numeric" });
 }
 
 /* ------------------------------------------------------------------ */
@@ -259,28 +157,32 @@ export default function FlightDeals() {
   const [weeks, setWeeks] = useState<number>(3);
 
   useEffect(() => {
-    fetch("/data/flight-deals.json")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((d: FlightDealsData | null) => {
-        setData(d);
-        if (d) {
-          const keys = Object.keys(d.routes);
-          const preferred = keys.filter((k) => DEFAULT_ROUTES.includes(k));
-          const pool = preferred.length ? preferred : keys;
-          setRouteKey(detectOrigin(pool));
-          setWeeks(d.weeks || 3);
-        }
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    loadFlightDeals().then((d) => {
+      setData(d);
+      if (d) {
+        const keys = Object.keys(d.routes);
+        const preferred = keys.filter((k) => DEFAULT_ROUTES.includes(k));
+        const pool = preferred.length ? preferred : keys;
+        setRouteKey(detectHubRoute(pool) ?? pool[0] ?? "");
+        setWeeks(d.weeks || 3);
+      }
+      setLoading(false);
+    });
   }, []);
 
   const route = data?.routes[routeKey];
 
-  const bestMin = useMemo(() => {
-    if (!route?.calendar.length) return null;
-    return Math.min(...route.calendar.map((c) => c.price_min));
-  }, [route]);
+  /* Only upcoming trips at the chosen duration — snapshot windows whose
+   * departure has passed are dropped so stale prices never pose as current. */
+  const entries = useMemo(() => {
+    if (!route) return [];
+    return futureEntries(route).filter((e) => e.weeks === weeks);
+  }, [route, weeks]);
+
+  const cheapest = useMemo(() => {
+    if (!entries.length) return null;
+    return entries.reduce((a, b) => (b.price_min < a.price_min ? b : a));
+  }, [entries]);
 
   if (loading) {
     return (
@@ -295,6 +197,7 @@ export default function FlightDeals() {
   if (!data || !route) return null;
 
   const availableRoutes = Object.keys(data.routes);
+  const routeHasFuture = futureEntries(route).length > 0;
 
   return (
     <section className="mb-12" id="flight-deals">
@@ -311,11 +214,13 @@ export default function FlightDeals() {
         <div className="absolute bottom-0 left-1/4 w-56 h-56 bg-amber-400/10 rounded-full blur-3xl" />
 
         <div className="relative z-10 max-w-3xl">
-          <div className="flex items-center gap-2 mb-3">
+          <div className="flex items-center gap-2 mb-3 flex-wrap">
             <span className="text-xs font-bold uppercase tracking-widest text-sky-300 bg-sky-500/15 px-3 py-1 rounded-full flex items-center gap-1.5">
               <Plane className="h-3.5 w-3.5" /> Flight Deals
             </span>
-            <span className="text-[11px] text-white/40">as of {data.as_of}</span>
+            <span className="text-[11px] font-bold text-[#0B1D3A] bg-[#D4A843] px-3 py-1 rounded-full">
+              Fares checked {fmtDateLong(data.as_of)}
+            </span>
           </div>
           <h2 className="font-serif text-3xl md:text-4xl font-bold tracking-tight leading-tight text-white">
             When's the cheapest time<br />to fly home?
@@ -365,29 +270,59 @@ export default function FlightDeals() {
       </div>
 
       <p className="text-[12px] text-foreground/45 mb-4 -mt-2">
-        {route.origin_metro} → {route.dest_metro} · {weeks}-week trips · per person
+        {route.origin_metro} → {route.dest_metro} · {weeks}-week trips · per person · fares as of {fmtDateLong(data.as_of)}
       </p>
 
+      {/* ── Cheapest-month spotlight ───────────────────────── */}
+      {cheapest && (
+        <div className="mb-5 relative overflow-hidden rounded-2xl border border-emerald-500/40 bg-emerald-500/[0.07] px-5 py-4">
+          <div className="flex items-center gap-3 flex-wrap">
+            <span className="inline-flex items-center gap-1.5 bg-emerald-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+              <BadgePercent className="h-3.5 w-3.5" /> Best deal
+            </span>
+            <p className="text-[15px] text-foreground/85">
+              Cheapest from <strong>{route.origin}</strong>:{" "}
+              <strong className="text-emerald-700 dark:text-emerald-400">{monthLabel(cheapest)}</strong>
+              {" "}— {weeks}-week trips from{" "}
+              <strong className="text-emerald-700 dark:text-emerald-400">${cheapest.price_min.toLocaleString()}</strong>
+              <span className="text-foreground/50">
+                {" "}({fmtDate(cheapest.dep_date)} → {fmtDate(cheapest.ret_date)} · {cheapest.cheapest_airline})
+              </span>
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* ── Price cards ────────────────────────────────────── */}
-      {route.calendar.length === 0 ? (
+      {entries.length === 0 ? (
         <div className="text-center py-12 bg-card border border-border rounded-2xl">
           <Plane className="h-8 w-8 text-foreground/20 mx-auto mb-3" />
-          <p className="text-foreground/50 text-sm">
-            No {weeks}-week fares found for this route yet.
-            <br />
-            Prices refresh daily — check back soon.
+          <p className="text-foreground/50 text-sm px-4">
+            {routeHasFuture ? (
+              <>
+                No {weeks}-week fares on this route in the current snapshot.
+                <br />
+                Try a different trip length — or check back after the next fare refresh.
+              </>
+            ) : (
+              <>
+                This route's snapshot windows (checked {fmtDateLong(data.as_of)}) have all departed.
+                <br />
+                Fresh fares are on the way — meanwhile, try another route above.
+              </>
+            )}
           </p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {route.calendar.map((entry) => (
+          {entries.map((entry) => (
             <PriceCard
               key={`${entry.dep_date}-${entry.ret_date}`}
               entry={entry}
               origin={route.origin}
               dest={route.destination}
               season={seasonForEntry(entry, data.festival_seasons)}
-              isBest={bestMin !== null && entry.price_min === bestMin}
+              isBest={cheapest !== null && entry.price_min === cheapest.price_min && entry.dep_date === cheapest.dep_date}
             />
           ))}
         </div>
@@ -409,7 +344,7 @@ export default function FlightDeals() {
           <div className="text-[12px] text-foreground/55 leading-relaxed">
             <p className="font-semibold text-foreground/75 mb-1">Our pricing promise</p>
             <ul className="space-y-1 list-none">
-              <li>· Prices checked {data.as_of} — fares change frequently, always verify before booking.</li>
+              <li>· Prices checked {fmtDateLong(data.as_of)} — fares change frequently, always verify before booking.</li>
               <li>· Ranges shown ($890–$950), never fake-precise single numbers.</li>
               <li>· 2 checked bags included — basic economy fares excluded.</li>
               <li>· Max 1 stop. Economy cabin. Per-person round-trip.</li>

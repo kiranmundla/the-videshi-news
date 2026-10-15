@@ -7,6 +7,11 @@ import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import FlightDeals from "@/components/FlightDeals";
 import {
+  DestinationsByMonth,
+  HolidayPlanner,
+  InIndiaStrip,
+} from "@/components/TravelPlannerSections";
+import {
   REGIONS,
   DESTINATIONS,
   VISA_DASHBOARD_BY_STATUS,
@@ -198,8 +203,28 @@ function DestinationCard({ dest, holderStatus }: { dest: Destination; holderStat
 /* ------------------------------------------------------------------ */
 /* Main TravelPage                                                    */
 /* ------------------------------------------------------------------ */
+const DESTINATION_GROUPS: { key: string; heading: string; blurb: string; match: (d: Destination) => boolean }[] = [
+  {
+    key: "india",
+    heading: "🇮🇳 In India",
+    blurb: "Side trips and slow travel once you've landed — every state guide we publish.",
+    match: (d) => d.region === "india",
+  },
+  {
+    key: "usa-canada",
+    heading: "🇺🇸 USA & Canada",
+    blurb: "Weekends and road trips from home base.",
+    match: (d) => d.region === "usa-canada",
+  },
+  {
+    key: "international",
+    heading: "🌍 International",
+    blurb: "The big trips — with visa notes for every passport status below.",
+    match: (d) => d.region !== "india" && d.region !== "usa-canada",
+  },
+];
+
 export default function TravelPage() {
-  const [selectedRegion, setSelectedRegion] = useState("all");
   const [holderStatus, setHolderStatus] = useState<VisaHolderStatus>("indian-passport");
   const [news, setNews] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -211,15 +236,11 @@ export default function TravelPage() {
     });
   }, []);
 
-  const filteredDests = selectedRegion === "all"
-    ? DESTINATIONS
-    : DESTINATIONS.filter((d) => d.region === selectedRegion);
-
   return (
     <>
       <Helmet>
-        <title>Travel Hub — Destinations, Visa Guide & News | The Videshi</title>
-        <meta name="description" content="Explore destinations, visa requirements for Indian passport holders, US citizens, and Green Card holders. Travel news for the global Indian diaspora." />
+        <title>Travel Hub — Holiday Planner, Flight Deals, Destinations & Visa Guide | The Videshi</title>
+        <meta name="description" content="Plan the trip home and the next getaway: holiday travel windows with book-by dates, real US–India fare snapshots, best destinations by month, 49 diaspora guides, and visa quick-reference for Indian passport holders, US citizens, and Green Card holders." />
         <meta property="og:title" content="Travel Hub — The Videshi" />
         <meta property="og:description" content="Destinations, visa quick-reference, and travel news for NRIs and the Indian diaspora." />
         <meta property="og:type" content="website" />
@@ -264,11 +285,17 @@ export default function TravelPage() {
           </div>
         ) : (
           <>
-            {/* ── Flight Deals ───────────────────────────────── */}
+            {/* ── Holiday Planner (lead) ─────────────────────── */}
+            <HolidayPlanner />
+
+            {/* ── Destinations by Month ──────────────────────── */}
+            <DestinationsByMonth />
+
+            {/* ── Flight Deals / India Price Calendar ────────── */}
             <FlightDeals />
 
-            {/* ── Travel News Strip ──────────────────────────── */}
-            <TravelNewsStrip news={news} />
+            {/* ── While You're in India ──────────────────────── */}
+            <InIndiaStrip />
 
             {/* ── Holder Status Toggle (page-level) ──────────── */}
             <section className="mb-6">
@@ -296,49 +323,43 @@ export default function TravelPage() {
             {/* ── Visa Dashboard ─────────────────────────────── */}
             <VisaDashboard activeTab={holderStatus} />
 
-            {/* ── Destinations by Region ──────────────────────── */}
-            <section className="mb-12">
-              <div className="flex items-center gap-2">
-                  <span className="text-xl">🗺️</span>
-                  <h2 className="font-serif text-xl font-bold">Destinations</h2>
-                </div>
-
-              {/* Region pills */}
-              <style>{`.region-pills::-webkit-scrollbar { display: none; }`}</style>
-              <div
-                className="region-pills flex gap-2 overflow-x-auto pb-4 -mx-1 px-1"
-                style={{
-                  scrollbarWidth: "none",
-                  msOverflowStyle: "none",
-                  WebkitOverflowScrolling: "touch",
-                } as React.CSSProperties}
-              >
-                {REGIONS.map((r) => (
-                  <button
-                    key={r.key}
-                    onClick={() => setSelectedRegion(r.key)}
-                    className={`smallcaps shrink-0 px-3 py-1.5 border rounded-full transition-colors text-sm font-medium ${
-                      selectedRegion === r.key
-                        ? "bg-primary text-primary-foreground border-primary"
-                        : "border-rule text-foreground/80 hover:text-primary hover:border-primary"
-                    }`}
-                  >
-                    {r.emoji} {r.label}
-                  </button>
-                ))}
+            {/* ── All Destinations index ──────────────────────── */}
+            <section className="mb-12" id="destinations">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-xl">🗺️</span>
+                <h2 className="font-serif text-xl font-bold">All Destinations</h2>
               </div>
+              <p className="text-sm text-foreground/55 mb-6 max-w-2xl leading-relaxed">
+                Every guide we publish — {DESTINATIONS.length} destinations, one
+                travel home. Visa badges update with the “traveling as” choice above.
+              </p>
 
-              {/* Destination grid */}
-              <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
-                {filteredDests.map((d) => (
-                  <DestinationCard key={d.key} dest={d} holderStatus={holderStatus} />
-                ))}
-              </div>
-
-              {filteredDests.length === 0 && (
-                <p className="text-center text-foreground/40 py-12">No destinations in this region yet.</p>
-              )}
+              {DESTINATION_GROUPS.map((group) => {
+                const dests = DESTINATIONS.filter(group.match);
+                if (!dests.length) return null;
+                return (
+                  <div key={group.key} className="mb-8">
+                    <h3 className="font-serif text-base font-bold mb-1">
+                      {group.heading}
+                      <span className="text-foreground/40 font-sans text-xs font-semibold ml-2">
+                        {dests.length} guides
+                      </span>
+                    </h3>
+                    <p className="text-[12px] text-foreground/45 mb-3">{group.blurb}</p>
+                    <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                      {dests.map((d) => (
+                        <DestinationCard key={d.key} dest={d} holderStatus={holderStatus} />
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
             </section>
+
+            {/* ── Travel News Strip ──────────────────────────── */}
+            <div id="travel-news" className="scroll-mt-24">
+              <TravelNewsStrip news={news} />
+            </div>
 
             {/* ── Travel Agent CTA ───────────────────────────── */}
             <section className="mb-12">

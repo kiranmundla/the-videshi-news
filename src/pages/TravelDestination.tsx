@@ -6,6 +6,8 @@ import type { ReactNode } from "react";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import PhotoScrollStrip from "@/components/PhotoScrollStrip";
+import { DESTINATIONS as LIB_DESTINATIONS } from "@/lib/travel";
+import { loadTravelPlanner, type TravelPlannerData } from "@/lib/travelPlanner";
 
 /* ─── destination metadata ─── */
 interface DestMeta {
@@ -26,7 +28,7 @@ function childrenToText(node: ReactNode): string {
   return "";
 }
 
-const DESTINATIONS: Record<string, DestMeta> = {
+const GUIDE_META: Record<string, DestMeta> = {
   rajasthan:    { title: "Rajasthan",       bestMonths: "Oct – Mar",          budget: "$30–150/day", flights: "Delhi, Jaipur direct",       visa: "Indian passport: no visa" },
   kerala:       { title: "Kerala",          bestMonths: "Sep – Mar",          budget: "$25–120/day", flights: "Kochi, Trivandrum direct",   visa: "Indian passport: no visa" },
   goa:          { title: "Goa",             bestMonths: "Nov – Feb",          budget: "$20–100/day", flights: "Goa/Dabolim direct",         visa: "Indian passport: no visa" },
@@ -51,6 +53,33 @@ const DESTINATIONS: Record<string, DestMeta> = {
   france:       { title: "France",          bestMonths: "Apr – Jun, Sep – Oct",budget: "$70–250/day", flights: "Paris direct from US",      visa: "Schengen visa required" },
   japan:        { title: "Japan",           bestMonths: "Mar – May, Oct – Nov",budget: "$70–200/day", flights: "Tokyo nonstop from US",     visa: "Visa-free (90 days)" },
 };
+
+/* Unified destination meta — one travel system, no orphaned guides.
+ * Hand-written entries above win; every other destination in lib/travel
+ * gets derived meta (label, best months, budget, visa note), so all 50
+ * guide pages render through this one template. */
+const REGION_OVERRIDES: Record<string, string> = { mexico: "mexico-caribbean" };
+
+type DestMetaFull = DestMeta & { region: string };
+
+const DESTINATIONS: Record<string, DestMetaFull> = (() => {
+  const out: Record<string, DestMetaFull> = {};
+  for (const d of LIB_DESTINATIONS) {
+    const hand = GUIDE_META[d.key];
+    out[d.key] = {
+      title: hand?.title ?? d.label,
+      bestMonths: hand?.bestMonths ?? d.bestMonths,
+      budget: hand?.budget ?? d.budget,
+      flights: hand?.flights ?? "See “Getting There” in the guide",
+      visa: hand?.visa ?? d.visa["indian-passport"].note,
+      region: d.region,
+    };
+  }
+  for (const [k, m] of Object.entries(GUIDE_META)) {
+    if (!out[k]) out[k] = { ...m, region: REGION_OVERRIDES[k] ?? "international" };
+  }
+  return out;
+})();
 
 const DEST_KEYS = Object.keys(DESTINATIONS);
 
@@ -127,9 +156,26 @@ export default function TravelDestination() {
 
   const sections = useMemo(() => (body ? extractSections(body) : []), [body]);
 
+  /* Related destinations: same region/group first (lib/travel regions),
+   * filled out with other guides if the group is small. Template-level —
+   * every guide gets real relatives, not random picks. */
   const otherDestinations = useMemo(() => {
-    return DEST_KEYS.filter((k) => k !== destination).sort(() => Math.random() - 0.5).slice(0, 3);
+    const region = DESTINATIONS[destination]?.region;
+    const same = DEST_KEYS.filter((k) => k !== destination && DESTINATIONS[k].region === region);
+    const rest = DEST_KEYS.filter((k) => k !== destination && DESTINATIONS[k].region !== region);
+    return [...same, ...rest].slice(0, 3);
   }, [destination]);
+
+  /* Planner facts for this destination (cheapest month / best season /
+   * months it is featured in) from the shared travel-by-month data. */
+  const [planner, setPlanner] = useState<TravelPlannerData | null>(null);
+  useEffect(() => {
+    loadTravelPlanner().then(setPlanner);
+  }, []);
+  const destFact = planner?.destination_facts[destination] ?? null;
+  const featuredIn = planner
+    ? planner.months.filter((m) => m.picks.some((p) => p.key === destination)).map((m) => m.label)
+    : [];
 
   /* ─── 404 ─── */
   if (!meta && !loading) {
@@ -235,6 +281,27 @@ export default function TravelDestination() {
               <div className="text-sm text-stone-700 font-medium">{fact.value}</div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* ─── Planner band — guides are the depth layer of /travel ─── */}
+      <div className="container mt-5">
+        <div className="rounded-lg overflow-hidden" style={{ backgroundColor: "#0B1D3A" }}>
+          <Link to="/travel#holiday-planner" className="block px-5 pt-4 pb-1 no-underline">
+            <span className="text-[15px] font-bold text-white">✈️ Plan this trip</span>
+            <span className="block text-[12px] text-white/65 mt-0.5">
+              Fares, holiday windows &amp; best months — in the Travel planner →
+            </span>
+          </Link>
+          {destFact ? (
+            <div className="px-5 pb-4 pt-2 flex flex-wrap gap-x-5 gap-y-1 text-[12px] text-white/80">
+              <span>💰 <strong className="text-white">Cheapest:</strong> {destFact.cheapest_month}</span>
+              <span>🗓️ <strong className="text-white">Best season:</strong> {destFact.best_season}</span>
+              {featuredIn.length > 0 && <span>⭐ Featured in: {featuredIn.join(", ")}</span>}
+            </div>
+          ) : (
+            <div className="pb-3" />
+          )}
         </div>
       </div>
 
@@ -359,6 +426,20 @@ export default function TravelDestination() {
             ))}
           </div>
 
+          <div className="mb-7 rounded-lg p-5" style={{ backgroundColor: "#0B1D3A" }}>
+            <h3 className="font-serif text-sm font-bold mb-2 text-white uppercase tracking-wider">Plan This Trip</h3>
+            <p className="text-[13px] text-white/65 leading-relaxed mb-3">
+              Holiday windows, book-by dates and fare snapshots — the planner
+              behind every guide.
+            </p>
+            <Link to="/travel#holiday-planner" className="block text-[13px] font-bold text-[#D4A843] no-underline hover:underline">
+              Open the Travel planner →
+            </Link>
+            <Link to="/travel#travel-news" className="block mt-2 text-[13px] text-white/75 no-underline hover:underline">
+              Latest travel news →
+            </Link>
+          </div>
+
           <div className="mb-7 rounded-lg p-10 border-2 border-dashed border-stone-200 text-center">
             <p className="text-stone-300 text-xs uppercase tracking-widest m-0">Advertisement</p>
           </div>
@@ -380,7 +461,7 @@ export default function TravelDestination() {
       {otherDestinations.length > 0 && (
         <div className="container mt-12 pb-10">
           <div className="border-t border-stone-200 pt-7">
-            <h2 className="font-serif text-[22px] font-bold mb-5 text-stone-800">Explore More Destinations</h2>
+            <h2 className="font-serif text-[22px] font-bold mb-5 text-stone-800">Related Destinations</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {otherDestinations.map((k) => {
                 const destMeta = DESTINATIONS[k];

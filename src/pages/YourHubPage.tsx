@@ -20,6 +20,20 @@ import { lookupZip } from "@/lib/geo";
 import { useUserLocation, type UserLocation } from "@/hooks/useUserLocation";
 import { DEADLINES, type Deadline } from "@/data/deadlines";
 import { fetchKidsDeadlines } from "@/lib/kidsPrograms";
+import {
+  cheapestFare,
+  detectHubRoute,
+  fmtDateLong,
+  fmtRange,
+  loadFlightDeals,
+  type CalendarEntry,
+  type RouteData,
+} from "@/lib/flightDeals";
+import {
+  loadTravelPlanner,
+  nextHolidayWindow,
+  type HolidayWindow,
+} from "@/lib/travelPlanner";
 
 /* ── Festival spotlight data (dates verified 2026-10-06) ── */
 const FESTIVALS = [
@@ -129,6 +143,104 @@ function SectionHead({ title, sub }: { title: string; sub?: string }) {
 function distanceFor(e: EventItem, loc: HubLocation | null): number | null {
   if (!loc || e.latitude == null || e.longitude == null) return null;
   return haversineMiles(loc.lat, loc.lon, e.latitude, e.longitude);
+}
+
+/* ── Plan a Trip ──
+   The deal leads: the cheapest India fare from the reader's own airport
+   (Hub location → route in the deals snapshot) is the headline. When the
+   snapshot has no route for their metro — or no upcoming fares — the
+   block falls back to the next holiday window alone; a fare is never
+   invented or borrowed from another city. */
+function PlanTripBlock() {
+  const [deal, setDeal] = useState<{ route: RouteData; entry: CalendarEntry; asOf: string } | null>(null);
+  const [win, setWin] = useState<HolidayWindow | null>(null);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    Promise.all([loadFlightDeals(), loadTravelPlanner()])
+      .then(([deals, planner]) => {
+        if (planner) setWin(nextHolidayWindow(planner, todayStr()));
+        if (deals) {
+          const rk = detectHubRoute(Object.keys(deals.routes));
+          if (rk) {
+            const route = deals.routes[rk];
+            const c = cheapestFare(route, 6);
+            if (c) setDeal({ route, entry: c.entry, asOf: deals.as_of });
+          }
+        }
+        setLoaded(true);
+      })
+      .catch(() => setLoaded(true));
+  }, []);
+
+  if (!loaded || (!deal && !win)) return null;
+
+  const today = todayStr();
+  const bookByNote = win
+    ? win.book_by >= today
+      ? `Book by ${fmtDate(win.book_by)} for best fares`
+      : win.peak
+        ? "Book-by date passed — fares climb from here"
+        : null
+    : null;
+
+  return (
+    <section className="mb-10">
+      <SectionHead
+        title="Plan a Trip"
+        sub={deal ? `from ${deal.route.origin}` : "holiday windows & fares"}
+      />
+      <div className="bg-card border border-border rounded-lg p-4 md:p-5">
+        {deal ? (
+          <>
+            <div className="flex items-baseline gap-2 flex-wrap">
+              <span className="text-[11px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-green-100 text-green-800">
+                Deal
+              </span>
+              <span className="text-[13px] font-semibold text-muted-foreground">
+                {deal.route.origin} → {deal.route.destination} from
+              </span>
+            </div>
+            <div className="flex items-end justify-between gap-3 mt-1.5">
+              <span className="text-[2rem] font-black leading-none" style={{ color: "#0B1D3A" }}>
+                ${deal.entry.price_min.toLocaleString()}
+              </span>
+              <span className="text-[11px] text-muted-foreground text-right">
+                {fmtRange(deal.entry.dep_date, deal.entry.ret_date)} · {deal.entry.weeks}-week trip
+                <br />
+                per person round-trip · fares checked {fmtDateLong(deal.asOf)}
+              </span>
+            </div>
+          </>
+        ) : (
+          win && (
+            <>
+              <div className="text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                Next holiday window
+              </div>
+              <div className="text-xl font-black mt-1" style={{ color: "#0B1D3A" }}>
+                {win.emoji} {win.name} · {fmtRange(win.start, win.end)}
+              </div>
+            </>
+          )
+        )}
+        {deal && win && (
+          <p className="text-[12px] text-muted-foreground mt-3">
+            🗓️ Next holiday window: <strong className="text-foreground/80">{win.name}</strong> ·{" "}
+            {fmtRange(win.start, win.end)}
+            {bookByNote ? ` · ${bookByNote}` : ""}
+          </p>
+        )}
+        <Link
+          to="/travel"
+          className="inline-block mt-3 text-[13px] font-semibold hover:underline"
+          style={{ color: "#A32D2F" }}
+        >
+          {deal ? "See the holiday planner & all fares →" : "See fares & the holiday planner →"}
+        </Link>
+      </div>
+    </section>
+  );
 }
 
 interface LocalNewsItem {
@@ -771,6 +883,9 @@ export default function YourHubPage() {
             </>
           )}
         </section>
+
+        {/* ── Plan a Trip ── */}
+        <PlanTripBlock />
 
         {/* ── Deadlines ── */}
         <section className="mb-10">
