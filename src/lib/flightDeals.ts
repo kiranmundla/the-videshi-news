@@ -269,6 +269,16 @@ export function googleFlightsUrl(origin: string, dest: string, dep: string, ret:
 /* contract (originCity/destinationCity IATA, MM/DD/YYYY dates,        */
 /* tripType=ROUND_TRIP, paxCount, cabinFareClass=MAIN): see            */
 /* research/travel-page-restructure-2026-10-15.md §D.                  */
+/*                                                                     */
+/* JetBlue — verified 2026-10-15 (link-check pass #1) by rendering the */
+/* constructed URL and inspecting the landing: JFK→DEL               */
+/* 2026-11-24→2026-12-16 (a live fare cell) landed on JetBlue's        */
+/* "Select Flights" results carrying the route, the dates and          */
+/* "1 Traveler"; JFK→LHR 2026-11-12→2026-11-19 corroborated. The       */
+/* contract is adults/children/infants — do NOT "simplify" it to a    */
+/* passengers=/fareType= variant: that variant parses the route but    */
+/* searches with 0 travelers and lands on an empty results page.       */
+/* Evidence: research/airline-link-check-2026-10-15.md.                */
 /* ------------------------------------------------------------------ */
 
 function mmddyyyy(iso: string): string {
@@ -286,6 +296,11 @@ export const AIRLINE_LINK_TEMPLATES: Record<
     `&originCity=${origin}&destinationCity=${dest}` +
     `&departureDate=${mmddyyyy(dep)}&returnDate=${mmddyyyy(ret)}` +
     "&paxCount=1&searchByCabin=true&cabinFareClass=MAIN&deltaOnlySearch=false",
+  jetblue: (origin, dest, dep, ret) =>
+    "https://www.jetblue.com/booking/flights" +
+    `?from=${origin}&to=${dest}&depart=${dep}&return=${ret}` +
+    "&isMultiCity=false&noOfRoute=1&adults=1&children=0&infants=0" +
+    "&roundTripFaresFlag=false&sharedMarket=false&usePoints=false",
 };
 
 /** Direct booking URL on the airline's own site for this fare, or
