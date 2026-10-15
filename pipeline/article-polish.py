@@ -99,6 +99,201 @@ def extract_images(body):
     return images
 
 
+# ── Timeline date guard (extractive-only) ─────────────────────────────
+# 2026-10-15: the polish LLM invented timeline dates for the Saudi-court
+# article (2023 dates + a dramatic title on a 2026 story). Prompt rules
+# alone did not stop it, so timeline cards are now validated
+# deterministically before they are saved: every calendar date a timeline
+# entry asserts — in its `date` field or inside its event text — must
+# appear in, or be directly derivable from, the article body:
+#   full (y,m,d) : exact full date in body, OR body has that month-day and
+#                  the year is printed in the body / is the publication year
+#   month-year   : exact month+year in body, OR the month is mentioned in
+#                  the body and the year is the publication year
+#   month-day    : that month-day appears in the body (incl. inside a
+#                  stated day range such as "17 to 22 October")
+#   year         : printed in the body, or the publication year
+#   year-range   : the range appears in the body ("2015-2019",
+#                  "between 2015 and 2019", "from 2015 to 2019")
+# Entries failing the guard are dropped; a timeline left with <2 entries
+# is dropped entirely. Non-date labels ("Within 90 days") assert no
+# calendar date and are out of scope for this guard.
+
+_TL_MONTHS = {
+    "january": 1, "jan": 1, "february": 2, "feb": 2, "march": 3, "mar": 3,
+    "april": 4, "apr": 4, "may": 5, "june": 6, "jun": 6, "july": 7, "jul": 7,
+    "august": 8, "aug": 8, "september": 9, "sep": 9, "sept": 9,
+    "october": 10, "oct": 10, "november": 11, "nov": 11,
+    "december": 12, "dec": 12,
+}
+_TL_M = r"(January|February|March|April|May|June|July|August|September|October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)\.?"
+_TL_FULL1 = re.compile(_TL_M + r"\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{4})", re.I)
+_TL_FULL2 = re.compile(r"(\d{1,2})(?:st|nd|rd|th)?\s+" + _TL_M + r",?\s+(\d{4})", re.I)
+_TL_ISO = re.compile(r"\b(\d{4})-(\d{2})-(\d{2})\b")
+_TL_MY = re.compile(_TL_M + r"\s+(\d{4})", re.I)
+_TL_MD1 = re.compile(_TL_M + r"\s+(\d{1,2})(?:st|nd|rd|th)?\b(?!\s*,?\s*\d{4})", re.I)
+_TL_MD2 = re.compile(r"(\d{1,2})(?:st|nd|rd|th)?\s+" + _TL_M + r"\b(?!,?\s*\d{4})", re.I)
+_TL_MDRANGE = re.compile(_TL_M + r"\s+(\d{1,2})\s*[-–—]\s*(\d{1,2})\b", re.I)
+_TL_MDRANGE2 = re.compile(r"(\d{1,2})\s*(?:to|and|[-–—])\s*(\d{1,2})\s+" + _TL_M + r"\b", re.I)
+_TL_RANGE = re.compile(r"\b(\d{4})\s*[-–—]\s*(\d{4}|\d{2})\b")
+_TL_YEAR = re.compile(r"\b(19\d{2}|20\d{2})\b")
+_TL_MONTHNAME = re.compile(r"\b(January|February|March|April|May|June|July|August|September|October|November|December)\b", re.I)
+
+
+def _tl_mo(name):
+    return _TL_MONTHS[name.lower().rstrip(".")]
+
+
+def _tl_body_facts(body_text):
+    """All date facts literally present in the (plain-text) article body."""
+    full, month_year, md, years, ranges, bare_months = set(), set(), set(), set(), set(), set()
+    for m in _TL_FULL1.finditer(body_text):
+        mo, d, y = _tl_mo(m.group(1)), int(m.group(2)), int(m.group(3))
+        full.add((y, mo, d)); month_year.add((y, mo)); md.add((mo, d))
+    for m in _TL_FULL2.finditer(body_text):
+        d, mo, y = int(m.group(1)), _tl_mo(m.group(2)), int(m.group(3))
+        full.add((y, mo, d)); month_year.add((y, mo)); md.add((mo, d))
+    for m in _TL_ISO.finditer(body_text):
+        y, mo, d = int(m.group(1)), int(m.group(2)), int(m.group(3))
+        full.add((y, mo, d)); month_year.add((y, mo)); md.add((mo, d))
+    for m in _TL_MY.finditer(body_text):
+        month_year.add((int(m.group(2)), _tl_mo(m.group(1))))
+    for m in _TL_MD1.finditer(body_text):
+        md.add((_tl_mo(m.group(1)), int(m.group(2))))
+    for m in _TL_MD2.finditer(body_text):
+        md.add((_tl_mo(m.group(2)), int(m.group(1))))
+    for m in _TL_MDRANGE.finditer(body_text):
+        mo, d1, d2 = _tl_mo(m.group(1)), int(m.group(2)), int(m.group(3))
+        for d in range(min(d1, d2), max(d1, d2) + 1):
+            md.add((mo, d))
+    for m in _TL_MDRANGE2.finditer(body_text):
+        d1, d2, mo = int(m.group(1)), int(m.group(2)), _tl_mo(m.group(3))
+        for d in range(min(d1, d2), max(d1, d2) + 1):
+            md.add((mo, d))
+    for m in _TL_RANGE.finditer(body_text):
+        y1 = int(m.group(1)); y2 = int(m.group(2))
+        if y2 < 100:
+            y2 = (y1 // 100) * 100 + y2
+        ranges.add((y1, y2))
+    for m in re.finditer(r"\b(?:between|from)\s+(\d{4})\s+(?:and|to)\s+(\d{4})\b", body_text, re.I):
+        ranges.add((int(m.group(1)), int(m.group(2))))
+    for m in _TL_YEAR.finditer(body_text):
+        years.add(int(m.group(1)))
+    for m in _TL_MONTHNAME.finditer(body_text):
+        bare_months.add(_TL_MONTHS[m.group(1).lower()])
+    years |= {y for (y, _, _) in full} | {y for (y, _) in month_year}
+    return {"full": full, "month_year": month_year, "md": md, "years": years,
+            "ranges": ranges, "bare_months": bare_months}
+
+
+def _tl_parse_date(date_str):
+    """Parse a timeline entry's date string into spec tuples:
+    ('range', y1, y2) | ('full', y, m, d) | ('my', y, m) |
+    ('md', m, d) | ('year', y). [] = no calendar date (a label)."""
+    s = (date_str or "").strip()
+    if not s:
+        return []
+    rm = _TL_RANGE.search(s)
+    if rm and not _TL_ISO.search(s):
+        y1 = int(rm.group(1)); y2 = int(rm.group(2))
+        if y2 < 100:
+            y2 = (y1 // 100) * 100 + y2
+        return [("range", y1, y2)]
+    m = _TL_FULL1.search(s)
+    if m:
+        return [("full", int(m.group(3)), _tl_mo(m.group(1)), int(m.group(2)))]
+    m = _TL_FULL2.search(s)
+    if m:
+        return [("full", int(m.group(3)), _tl_mo(m.group(2)), int(m.group(1)))]
+    m = _TL_ISO.search(s)
+    if m:
+        return [("full", int(m.group(1)), int(m.group(2)), int(m.group(3)))]
+    m = _TL_MDRANGE.search(s)
+    if m:
+        return [("md", _tl_mo(m.group(1)), int(m.group(2))),
+                ("md", _tl_mo(m.group(1)), int(m.group(3)))]
+    m = _TL_MY.search(s)
+    if m:
+        return [("my", int(m.group(2)), _tl_mo(m.group(1)))]
+    m = _TL_MD1.search(s)
+    if m:
+        return [("md", _tl_mo(m.group(1)), int(m.group(2)))]
+    m = _TL_MD2.search(s)
+    if m:
+        return [("md", _tl_mo(m.group(2)), int(m.group(1)))]
+    ym = _TL_YEAR.search(s)
+    if ym:
+        return [("year", int(ym.group(1)))]
+    return []
+
+
+def _tl_spec_supported(spec, facts, pub_year):
+    kind = spec[0]
+    if kind == "range":
+        return (spec[1], spec[2]) in facts["ranges"]
+    if kind == "full":
+        _, y, m, d = spec
+        return ((y, m, d) in facts["full"]
+                or ((m, d) in facts["md"] and (y in facts["years"] or y == pub_year)))
+    if kind == "my":
+        _, y, m = spec
+        return ((y, m) in facts["month_year"]
+                or (m in facts["bare_months"] and y == pub_year))
+    if kind == "md":
+        return (spec[1], spec[2]) in facts["md"]
+    if kind == "year":
+        return spec[1] in facts["years"] or spec[1] == pub_year
+    return False
+
+
+def _tl_item_unsupported(item, facts, pub_year):
+    """Unsupported date descriptors for one timeline item — checks the
+    `date` field AND explicit dates written inside the event text."""
+    bad = []
+    dstr = str(item.get("date", "") or "")
+    for sp in _tl_parse_date(dstr):
+        if not _tl_spec_supported(sp, facts, pub_year):
+            bad.append(dstr)
+    ev = str(item.get("event", "") or item.get("text", "") or "")
+    ev_specs = []
+    for rx in (_TL_FULL1, _TL_FULL2, _TL_ISO, _TL_MY, _TL_RANGE):
+        for m in rx.finditer(ev):
+            ev_specs.extend(_tl_parse_date(m.group(0)))
+    for m in _TL_YEAR.finditer(ev):
+        ev_specs.append(("year", int(m.group(1))))
+    for sp in ev_specs:
+        if not _tl_spec_supported(sp, facts, pub_year):
+            bad.append(f"event-date:{sp}")
+    return bad
+
+
+def guard_timeline_cards(cards, body_text, pub_year):
+    """Filter generated cards: drop timeline entries whose dates are not
+    supported by the article body; drop a timeline card left with <2
+    entries. Returns (kept_cards, dropped_descriptions)."""
+    facts = _tl_body_facts(body_text)
+    kept, dropped = [], []
+    for card in cards:
+        if not (isinstance(card, dict) and card.get("card_type") == "timeline"):
+            kept.append(card)
+            continue
+        items = []
+        for it in card.get("items") or []:
+            bad = _tl_item_unsupported(it, facts, pub_year)
+            if bad:
+                dropped.append(f"{card.get('card_title')!r}: {it.get('date')!r} "
+                               f"({'; '.join(map(str, bad))})")
+            else:
+                items.append(it)
+        if len(items) >= 2:
+            card = dict(card, items=items)
+            kept.append(card)
+        else:
+            dropped.append(f"{card.get('card_title')!r}: whole card dropped "
+                           f"(only {len(items)} supported entr{'y' if len(items) == 1 else 'ies'} left)")
+    return kept, dropped
+
+
 PROMPT = """You are a senior news editor and data journalist at The Videshi, an Indian diaspora news site. Do THREE things in ONE response:
 
 ## 1. KEY TAKEAWAYS
@@ -108,10 +303,10 @@ PROMPT = """You are a senior news editor and data journalist at The Videshi, an 
 0-3 structured data cards from the article's facts/numbers. Each card is a rich visual summary. Types:
 - "stat_grid": hero_stat (value, label, optional trend "↑ 317%") + 2-4 items (value, label)
 - "comparison": 3-6 items (name, value, numeric_value) sorted desc
-- "timeline": 3-6 items (date, event) chronological
+- "timeline": 3-6 items (date, event) chronological. EXTRACTIVE ONLY: copy each date exactly as the article states it. Never infer a year the article does not print with that month/day, never convert relative references ("in September", "late June", "three weeks later") into specific calendar dates, and never date an event from background knowledge. If the article explicitly dates fewer than 3 events, do NOT emit a timeline card. A timeline card_title must be a plain factual label (e.g. "Timeline of Events") — never an invented dramatic headline.
 - "highlights": 3-5 items (text, optional stat)
 Each card: card_title (punchy, NOT the headline), card_type, items, placement_hint ("after_lead"/"mid_article"/"before_conclusion"), optional source_note.
-Every number MUST come from the article. If no meaningful stats exist, return empty array.
+Every number MUST come from the article. Every DATE must likewise appear in the article text. If no meaningful stats exist, return empty array.
 
 ## 3. PROOFREAD
 - Grammar errors only: subject-verb, tense, missing articles, repeated words, broken HTML
@@ -280,6 +475,20 @@ def apply_polish(article, result, dry_run=False):
     if cards and isinstance(cards, list):
         valid = [c for c in cards
                  if isinstance(c, dict) and c.get("card_title") and c.get("card_type") and c.get("items")]
+        # Timeline guard: never save a timeline entry whose dates are not
+        # in the article body (extractive-only; see guard_timeline_cards).
+        if valid:
+            guard_body = re.sub(r'<[^>]+>', ' ', article.get("body", "") or "")
+            guard_body = re.sub(r'\s+', ' ', guard_body).strip()
+            try:
+                pub_year = int(str(article.get("published_at") or "")[:4])
+            except ValueError:
+                pub_year = datetime.now(timezone.utc).year
+            valid, tl_dropped = guard_timeline_cards(valid, guard_body, pub_year)
+            for d in tl_dropped:
+                print(f"     ⚠ timeline guard dropped: {d}")
+            if tl_dropped:
+                changes.append(f"timeline guard dropped {len(tl_dropped)}")
         if valid or keep:
             updates["data_cards"] = keep + valid
             changes.append(f"{len(valid)} cards ({', '.join(c['card_type'] for c in valid)})"
