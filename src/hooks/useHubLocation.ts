@@ -293,28 +293,50 @@ export async function resolvePlaceLabel(
 /* setting and is never auto-overwritten.                              */
 /* ------------------------------------------------------------------ */
 
-/** Classify a stored record as a deliberate manual pick or an
- * auto-detected fix. An explicit `source` field (written since
- * 2026-10-14) wins. Legacy records carry no source, so reconstruct:
- * the metro picker is the ONLY writer that stores coordinates copied
- * verbatim from the cluster table (a center or a member city) under
- * that cluster's label — the picker signature. Every auto path (page-
- * land detect, "Use my location", the geo hook's write-through, the
- * IP fallback) stores MEASURED coordinates, which essentially never
- * coincide exactly with table values, so a legacy record without the
- * picker signature is auto. Legacy ZIP entries also classify as auto:
- * their centroid coords are indistinguishable from measured ones —
- * ZIP submits are tagged "manual" at write time going forward. */
+/** How strongly a stored record's provenance is established:
+ *  - "manual": an EXPLICIT source of "manual" — written since
+ *    2026-10-14 by the metro picker or a ZIP submit, i.e. the reader
+ *    demonstrably chose the place. Never auto-overwritten, no
+ *    exceptions.
+ *  - "inferred-manual": NO source field, but label + coordinates
+ *    match the picker signature below. Only an INFERENCE — and a
+ *    fallible one: the picker is not the only writer that can
+ *    produce it. The IP fallback stores the coordinates /api/geo
+ *    returns, which are the IP database's city CENTROID, and the
+ *    cluster table's centers are those same centroids (Fremont's
+ *    center, 37.5485/-121.9886, is the standard IP-geo centroid for
+ *    Fremont); resolvePlaceLabel then labels such a record with the
+ *    cluster's label. A legacy IP-written record is therefore
+ *    byte-identical to a legacy picker pick. An inference must not
+ *    lock a reader's location forever: the refresh may correct an
+ *    inferred-manual record when a fresh PRECISE fix materially
+ *    disagrees — and the correction stamps an explicit source, so
+ *    the record's class is unambiguous from then on. (Kiran's stuck
+ *    "Fremont, CA", 2026-10-15: a pre-provenance record matching
+ *    this signature was treated as a deliberate pick and could
+ *    never refresh.)
+ *  - "auto": an explicit geolocation/ip source, or a legacy record
+ *    without the picker signature — every auto writer (page-land
+ *    detect, "Use my location", the geo hook's write-through)
+ *    stores MEASURED coordinates, which essentially never coincide
+ *    exactly with table values. Legacy ZIP entries also classify
+ *    as auto: their centroid coords are indistinguishable from
+ *    measured ones — ZIP submits are tagged "manual" at write
+ *    time going forward. */
+export type HubRecordClass = "manual" | "inferred-manual" | "auto";
+
 export function classifyHubRecord(
   loc: HubLocation,
   clusters: Cluster[],
-): "manual" | "auto" {
+): HubRecordClass {
   if (loc.source) return loc.source === "manual" ? "manual" : "auto";
   for (const cl of clusters) {
     if (loc.label !== cl.label) continue;
-    if (loc.lat === cl.center.lat && loc.lon === cl.center.lon) return "manual";
+    if (loc.lat === cl.center.lat && loc.lon === cl.center.lon) {
+      return "inferred-manual";
+    }
     for (const mb of cl.members) {
-      if (loc.lat === mb.lat && loc.lon === mb.lon) return "manual";
+      if (loc.lat === mb.lat && loc.lon === mb.lon) return "inferred-manual";
     }
   }
   return "auto";
@@ -436,7 +458,11 @@ export interface HubRefreshDeps {
 /** One refresh attempt against the stored record. Returns the new
  * record when a rewrite happened, else null. Rules:
  *  - no stored record → nothing (the setup flows own creation);
- *  - manual record → never touched;
+ *  - explicit-manual record → never touched;
+ *  - inferred-manual record (legacy picker signature, no explicit
+ *    source) → correctable, but held to the SAME bar as an auto
+ *    record: only a fresh precise fix that materially disagrees —
+ *    never an IP estimate, never a prompt;
  *  - no fresh precise fix available without prompting → nothing;
  *  - fix not materially different → nothing (no churn);
  *  - otherwise rewrite coords + label via resolvePlaceLabel and the

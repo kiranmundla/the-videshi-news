@@ -17,7 +17,26 @@ import {
  * refreshes from a fresh precise fix (never a prompt, never an IP
  * estimate) when the device materially moved; a MANUAL pick never
  * moves. Clusters are the built-in fallback table (Fremont and Dublin
- * are standalone clusters there, exactly as in the real table). */
+ * are standalone clusters there, exactly as in the real table).
+ *
+ * 2026-10-15 follow-up — the bug recurred on the HOMEPAGE banner:
+ * Kiran's record predates provenance tagging (no `source` field) and
+ * its coords are the Fremont cluster CENTER — byte-identical to a
+ * legacy picker pick, so the classifier called it "manual" and the
+ * refresh skipped it forever. But /api/geo returns IP-database city
+ * CENTROIDS and the cluster centers are those same centroids, so a
+ * legacy IP-written record wears the picker signature without the
+ * reader ever picking anything. The rule now: only an EXPLICIT
+ * source of "manual" is a hard lock; an INFERRED-manual legacy
+ * record is correctable by a fresh precise fix under the same
+ * materiality bar as an auto record.
+ *
+ * Both surfaces named in the reports — the homepage banner
+ * (YourHubBanner) and /your-hub (YourHubPage) — mount the same
+ * useHubLocation hook, whose refresh effect runs the shared
+ * refreshHubLocationOnce -> maybeRefreshHubLocation. The cases below
+ * exercise that one function, so they cover the homepage path and
+ * the Hub-page path alike; there is no forked copy to test. */
 
 const CLUSTERS = FALLBACK_CLUSTERS;
 
@@ -74,18 +93,19 @@ describe("classifyHubRecord — provenance", () => {
     ).toBe("auto");
   });
 
-  it("legacy picker pick (cluster-center coords + cluster label) is manual", () => {
+  it("legacy picker signature (cluster-center coords + cluster label) is only INFERRED manual", () => {
     const pick: HubLocation = {
       city: "Fremont",
       state: "CA",
-      lat: 37.5485, // fremont-ca center, verbatim from the table
+      lat: 37.5485, // fremont-ca center, verbatim from the table —
+      // also the IP-geo centroid for Fremont, which is the ambiguity
       lon: -121.9886,
       label: "Fremont, CA",
     };
-    expect(classifyHubRecord(pick, CLUSTERS)).toBe("manual");
+    expect(classifyHubRecord(pick, CLUSTERS)).toBe("inferred-manual");
   });
 
-  it("legacy member pick (member coords + cluster label) is manual", () => {
+  it("legacy member signature (member coords + cluster label) is only INFERRED manual", () => {
     const pick: HubLocation = {
       city: "San Ramon",
       state: "CA",
@@ -93,7 +113,7 @@ describe("classifyHubRecord — provenance", () => {
       lon: -121.978,
       label: "Dublin, CA",
     };
-    expect(classifyHubRecord(pick, CLUSTERS)).toBe("manual");
+    expect(classifyHubRecord(pick, CLUSTERS)).toBe("inferred-manual");
   });
 
   it("legacy measured coords (Kiran's Fremont record) are auto", () => {
@@ -157,15 +177,66 @@ describe("maybeRefreshHubLocation", () => {
     expect(writes).toHaveLength(0);
   });
 
-  it("(b2) legacy picker pick + Dublin fix -> unchanged", async () => {
-    const pick: HubLocation = {
+  it("(b2) legacy inferred-manual Fremont + Dublin fix -> corrected to Dublin (the 2026-10-15 recurrence)", async () => {
+    // Kiran's stuck record: no source field, Fremont cluster-center
+    // coords + cluster label — the exact shape a legacy IP-written
+    // record takes, misread as a deliberate pick until 2026-10-15.
+    const stuck: HubLocation = {
       city: "Fremont",
       state: "CA",
       lat: 37.5485,
       lon: -121.9886,
       label: "Fremont, CA",
     };
-    const { result, writes } = await runRefresh(pick, DUBLIN_FIX);
+    const { result, writes } = await runRefresh(stuck, DUBLIN_FIX);
+    expect(writes).toHaveLength(1);
+    expect(result).not.toBeNull();
+    expect(result!.label).toBe("Dublin, CA");
+    expect(result!.city).toBe("Dublin");
+    expect(result!.lat).toBe(DUBLIN_FIX.lat);
+    expect(result!.lon).toBe(DUBLIN_FIX.lon);
+    // The correction stamps an explicit provenance, so the record's
+    // class is unambiguous from now on.
+    expect(result!.source).toBe("geolocation");
+  });
+
+  it("(b3) EXPLICIT manual Fremont (picker-written, source tagged) + Dublin fix -> stays Fremont", async () => {
+    const manual: HubLocation = {
+      city: "Fremont",
+      state: "CA",
+      lat: 37.5485, // same coords as (b2) — the explicit source is the difference
+      lon: -121.9886,
+      label: "Fremont, CA",
+      source: "manual",
+    };
+    const { result, writes } = await runRefresh(manual, DUBLIN_FIX);
+    expect(result).toBeNull();
+    expect(writes).toHaveLength(0);
+  });
+
+  it("(b4) inferred-manual Fremont + NO precise fix -> unchanged (an inference alone never moves a record)", async () => {
+    const stuck: HubLocation = {
+      city: "Fremont",
+      state: "CA",
+      lat: 37.5485,
+      lon: -121.9886,
+      label: "Fremont, CA",
+    };
+    const { result, writes } = await runRefresh(stuck, null);
+    expect(result).toBeNull();
+    expect(writes).toHaveLength(0);
+  });
+
+  it("(b5) inferred-manual Fremont + fix ~1 mi away, same cluster -> no churn", async () => {
+    const stuck: HubLocation = {
+      city: "Fremont",
+      state: "CA",
+      lat: 37.5485,
+      lon: -121.9886,
+      label: "Fremont, CA",
+    };
+    const nearFix = { lat: 37.562, lon: -121.9886 }; // ~0.9 mi north, still Fremont
+    const { result, writes } = await runRefresh(stuck, nearFix);
     expect(result).toBeNull();
     expect(writes).toHaveLength(0);
   });
