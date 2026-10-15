@@ -23,15 +23,21 @@ name in the TITLE — a Google query hit alone is not proof a story is
 about the place — and near-identical headlines across outlets are
 deduped to one slot.
 
+Fetches run as curl subprocesses with hard whole-transfer timeouts,
+under a per-cluster and a global RSS budget; a cluster whose fetch
+phase doesn't complete keeps its RSS items from the previous output
+(carry-over), and an early own-articles write lands before the RSS
+phase — a slow or killed run degrades, it never vanishes (2026-10-15).
+
 Run: python3 -u pipeline/build-local-news.py [--no-rss]
 """
 import json
 import os
 import re
+import subprocess
 import sys
 import time
 import urllib.parse
-import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
@@ -239,6 +245,22 @@ RSS_KEEP_RX = re.compile(
 )
 RSS_DELAY_S = 2
 
+# --- Fetch hardening (2026-10-15) -------------------------------------
+# The 2026-10-15 06:15 enricher run lost its local-news refresh: 196+
+# sequential RSS fetches, each bounded only by urllib's 20s
+# per-socket-op timeout, no per-cluster or global budget, and output
+# written only at the very end. Even healthy, the RSS phase takes
+# ~12 min (measured); under proxy/Google latency it crawls past the
+# caller's patience (~20 of 47 clusters), gets killed, and — writing
+# nothing until the end — leaves the previous file untouched.
+# Budgets below bound the worst case: RSS phase <= GLOBAL_RSS_BUDGET_S,
+# any one cluster <= CLUSTER_RSS_BUDGET_S, any one fetch <=
+# FETCH_MAX_TIME_S end to end (curl --max-time, not per-op).
+FETCH_CONNECT_TIMEOUT_S = 10
+FETCH_MAX_TIME_S = 15
+CLUSTER_RSS_BUDGET_S = 90
+GLOBAL_RSS_BUDGET_S = 900
+
 STATE_NAMES = {
     "NY": "New York", "CA": "California", "IL": "Illinois", "TX": "Texas",
     "WA": "Washington", "MA": "Massachusetts", "GA": "Georgia", "DC": "Washington DC",
@@ -250,12 +272,39 @@ STATE_NAMES = {
 }
 
 
+def _fetch_bytes(url: str, max_time: int) -> bytes:
+    """GET via curl subprocess with a hard whole-transfer deadline.
+
+    Pipeline convention is curl for external fetches: urllib/requests
+    are unreliable through this proxy, and urllib's timeout bounds each
+    socket operation — not the whole transfer — so a slow response can
+    hold the run hostage far past the nominal timeout. curl's
+    --max-time bounds connect + transfer end to end. Raises on failure.
+    """
+    proc = subprocess.run(
+        [
+            "curl", "-sS", "--fail",
+            "--connect-timeout", str(FETCH_CONNECT_TIMEOUT_S),
+            "--max-time", str(max_time),
+            "-A", "Mozilla/5.0",
+            url,
+        ],
+        capture_output=True,
+        timeout=max_time + 15,
+    )
+    if proc.returncode != 0:
+        err = (proc.stderr or b"").decode("utf-8", "replace").strip().splitlines()
+        raise RuntimeError(err[0] if err else f"curl exit {proc.returncode}")
+    return proc.stdout
+
+
 def fetch_gnews_rss(
     city: str,
     days: int = 14,
     state: str | None = None,
     cluster: dict | None = None,
     rx: re.Pattern | None = None,
+    max_time: int = FETCH_MAX_TIME_S,
 ) -> list[dict]:
     """Fetch Google News RSS for one query city, filtered for desi
     relevance and gated on the cluster's title pattern + blocklist."""
@@ -267,10 +316,8 @@ def fetch_gnews_rss(
         {"q": q, "hl": "en-US", "gl": "US", "ceid": "US:en"}
     )
     url = f"{GNEWS_RSS}?{params}"
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     try:
-        with urllib.request.urlopen(req, timeout=20) as resp:
-            raw = resp.read()
+        raw = _fetch_bytes(url, max_time)
     except Exception as e:
         print(f"  [rss] {city}: fetch failed ({e})", flush=True)
         return []
@@ -329,6 +376,96 @@ def fetch_gnews_rss(
     return items
 
 
+def load_previous_rss() -> dict[str, list[dict]]:
+    """The previous output's RSS items per cluster label — the
+    carry-over source for clusters whose fetch phase doesn't complete
+    this run. Own articles are NOT carried: the article scan is
+    authoritative and re-derived every run."""
+    try:
+        with open(OUT_PATH, encoding="utf-8") as fh:
+            metros = json.load(fh).get("metros") or {}
+    except Exception:
+        return {}
+    return {
+        label: [i for i in items if i.get("kind") == "rss"]
+        for label, items in metros.items()
+    }
+
+
+def shape_output(
+    matches: dict[str, list[dict]],
+    rss_fresh: dict[str, list[dict]],
+    rss_done: set,
+    carried_rss: dict[str, list[dict]],
+) -> tuple[dict, int]:
+    """Merge own articles with RSS per cluster — fresh RSS where the
+    cluster's fetch phase completed, carried-over RSS where it didn't —
+    and shape to the PER_METRO most recent. Returns (out, total)."""
+    merged = {}
+    for label, own_items in matches.items():
+        rss_items = (
+            rss_fresh.get(label, [])
+            if label in rss_done
+            else carried_rss.get(label, [])
+        )
+        merged[label] = list(own_items) + list(rss_items)
+
+    # keep PER_METRO most recent per cluster (our articles first on ties)
+    out = {}
+    total = 0
+    # Recency caps (2026-10-14 audit): the article scan had NO age window,
+    # so any old article naming a place stayed in its bucket forever —
+    # median bucket age was 26.5 days and a 93-day-old story was still
+    # being presented as Fremont local news. RSS is windowed at fetch
+    # (14d; 30d fallback), so cap rss at 30d and our articles at 45d here,
+    # at the single choke point. Undated items are kept (can't prove stale).
+    _now = datetime.now(timezone.utc)
+    _CAPS = {"rss": 30, "article": 45}
+    def _too_old(i: dict) -> bool:
+        raw = i.get("published_at") or ""
+        try:
+            dt = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
+        except Exception:
+            return False
+        return (_now - dt).days > _CAPS.get(i.get("kind") or "", 45)
+    for label, items in merged.items():
+        items = [i for i in items
+                 if (i.get("slug") or i.get("url")) and not _too_old(i)]
+        items.sort(
+            key=lambda x: (
+                x["published_at"],
+                0 if x.get("kind") == "article" else 1,
+            ),
+            reverse=True,
+        )
+        # Cross-source near-dedup: the same wire story from 4 outlets is
+        # ONE local story, not 4 slots (2026-10-13 Costa Rica flood).
+        deduped: list[dict] = []
+        for it in items:
+            if any(
+                titles_too_similar(it.get("title") or "", k.get("title") or "")
+                for k in deduped
+            ):
+                continue
+            deduped.append(it)
+        out[label] = deduped[:PER_METRO]
+        total += len(out[label])
+    return out, total
+
+
+def write_output(out: dict) -> None:
+    """Atomic write: a kill mid-write must never leave a truncated
+    local-news.json behind."""
+    payload = {
+        "built_at": datetime.now(timezone.utc).isoformat(),
+        "metros": out,
+    }
+    tmp_path = OUT_PATH + ".tmp"
+    with open(tmp_path, "w", encoding="utf-8") as fh:
+        json.dump(payload, fh, ensure_ascii=False)
+    os.replace(tmp_path, OUT_PATH)
+
+
 def main():
     no_rss = "--no-rss" in sys.argv
     clusters = load_clusters()
@@ -372,100 +509,120 @@ def main():
     # V2: Google News RSS per cluster (external breadth), pooling the
     # cluster's query cities. Each item must still name the cluster in
     # its title (the pattern includes every pooled city + aliases).
+    # A cluster's RSS counts as refreshed only if its whole fetch phase
+    # completes inside the budgets; otherwise its previous RSS items
+    # carry over (see shape_output) instead of the cluster going stale
+    # or the run stalling.
+    carried_rss: dict[str, list[dict]] = {} if no_rss else load_previous_rss()
+    rss_fresh: dict[str, list[dict]] = {}
+    rss_done: set = set()
     rss_counts: dict[str, int] = {}
     if not no_rss:
+        # Early write (own articles + carried-over RSS): if this
+        # process is killed during the slow RSS phase, the file on disk
+        # is still a valid refresh, not last run's stale copy.
+        _early_out, _ = shape_output(matches, rss_fresh, rss_done, carried_rss)
+        write_output(_early_out)
+        print(
+            "[local-news] early write done (own articles + carried-over "
+            "RSS); fetching fresh RSS…",
+            flush=True,
+        )
+
+        rss_started = time.monotonic()
         for cluster, rx in compiled:
             label = cluster["label"]
-            rss_items: list[dict] = []
-            seen_links: set = set()
-            for qi, qcity in enumerate(cluster["query_cities"]):
-                if qi:
-                    time.sleep(RSS_DELAY_S)
-                for r in fetch_gnews_rss(qcity, cluster=cluster, rx=rx):
-                    if r["url"] not in seen_links:
-                        seen_links.add(r["url"])
-                        rss_items.append(r)
-            # dedup against our own titles (case-insensitive containment)
-            own_titles = {i["title"].lower() for i in matches[label]}
-            fresh = [
-                r
-                for r in rss_items
-                if r["title"].lower() not in own_titles
-                and not any(
-                    r["title"].lower() in t or t in r["title"].lower()
-                    for t in own_titles
+            if time.monotonic() - rss_started > GLOBAL_RSS_BUDGET_S:
+                print(
+                    f"  [rss] {label}: skipped — global RSS budget "
+                    f"({GLOBAL_RSS_BUDGET_S}s) exhausted; previous RSS "
+                    "carried over",
+                    flush=True,
                 )
-            ]
-            # Fallback for thin clusters: wider window + state-level query.
-            # "Right and complete" means no cluster left empty or single-item.
-            state = cluster["state"]
-            if len(matches[label]) + len(fresh) < 3 and state in STATE_NAMES:
-                time.sleep(RSS_DELAY_S)
-                wide = fetch_gnews_rss(
-                    cluster["anchor"], days=30, state=STATE_NAMES[state],
-                    cluster=cluster, rx=rx,
-                )
-                have_titles = own_titles | {r["title"].lower() for r in fresh}
-                for r in wide:
-                    tl = r["title"].lower()
-                    if tl not in have_titles and not any(
-                        tl in t or t in tl for t in have_titles
+                continue
+            cluster_started = time.monotonic()
+            try:
+                rss_items: list[dict] = []
+                seen_links: set = set()
+                budget_hit = False
+                for qi, qcity in enumerate(cluster["query_cities"]):
+                    if qi:
+                        time.sleep(RSS_DELAY_S)
+                    left = CLUSTER_RSS_BUDGET_S - (
+                        time.monotonic() - cluster_started
+                    )
+                    if left <= 2:
+                        budget_hit = True
+                        break
+                    mt = max(3, min(FETCH_MAX_TIME_S, int(left)))
+                    for r in fetch_gnews_rss(
+                        qcity, cluster=cluster, rx=rx, max_time=mt
                     ):
-                        fresh.append(r)
-                        have_titles.add(tl)
-                print(f"  [rss] {label}: fallback wide+state added", flush=True)
-            matches[label].extend(fresh)
-            rss_counts[label] = len(fresh)
-            print(f"  [rss] {label}: {len(fresh)} kept", flush=True)
+                        if r["url"] not in seen_links:
+                            seen_links.add(r["url"])
+                            rss_items.append(r)
+                # dedup against our own titles (case-insensitive containment)
+                own_titles = {i["title"].lower() for i in matches[label]}
+                fresh = [
+                    r
+                    for r in rss_items
+                    if r["title"].lower() not in own_titles
+                    and not any(
+                        r["title"].lower() in t or t in r["title"].lower()
+                        for t in own_titles
+                    )
+                ]
+                # Fallback for thin clusters: wider window + state-level
+                # query. "Right and complete" means no cluster left empty
+                # or single-item — but only while budget remains.
+                state = cluster["state"]
+                left = CLUSTER_RSS_BUDGET_S - (
+                    time.monotonic() - cluster_started
+                )
+                if (
+                    not budget_hit
+                    and len(matches[label]) + len(fresh) < 3
+                    and state in STATE_NAMES
+                    and left > 2
+                    and time.monotonic() - rss_started <= GLOBAL_RSS_BUDGET_S
+                ):
+                    time.sleep(RSS_DELAY_S)
+                    wide = fetch_gnews_rss(
+                        cluster["anchor"], days=30, state=STATE_NAMES[state],
+                        cluster=cluster, rx=rx,
+                        max_time=max(3, min(FETCH_MAX_TIME_S, int(left))),
+                    )
+                    have_titles = own_titles | {r["title"].lower() for r in fresh}
+                    for r in wide:
+                        tl = r["title"].lower()
+                        if tl not in have_titles and not any(
+                            tl in t or t in tl for t in have_titles
+                        ):
+                            fresh.append(r)
+                            have_titles.add(tl)
+                    print(f"  [rss] {label}: fallback wide+state added", flush=True)
+                if budget_hit:
+                    print(
+                        f"  [rss] {label}: cluster RSS budget "
+                        f"({CLUSTER_RSS_BUDGET_S}s) exhausted — previous "
+                        "RSS carried over",
+                        flush=True,
+                    )
+                else:
+                    rss_fresh[label] = fresh
+                    rss_done.add(label)
+                    rss_counts[label] = len(fresh)
+                    print(f"  [rss] {label}: {len(fresh)} kept", flush=True)
+            except Exception as e:
+                print(
+                    f"  [rss] {label}: cluster failed ({e}) — previous "
+                    "RSS carried over",
+                    flush=True,
+                )
             time.sleep(RSS_DELAY_S)
 
-    # keep PER_METRO most recent per cluster (our articles first on ties)
-    out = {}
-    total = 0
-    # Recency caps (2026-10-14 audit): the article scan had NO age window,
-    # so any old article naming a place stayed in its bucket forever —
-    # median bucket age was 26.5 days and a 93-day-old story was still
-    # being presented as Fremont local news. RSS is windowed at fetch
-    # (14d; 30d fallback), so cap rss at 30d and our articles at 45d here,
-    # at the single choke point. Undated items are kept (can't prove stale).
-    _now = datetime.now(timezone.utc)
-    _CAPS = {"rss": 30, "article": 45}
-    def _too_old(i: dict) -> bool:
-        raw = i.get("published_at") or ""
-        try:
-            dt = datetime.fromisoformat(str(raw).replace("Z", "+00:00"))
-        except Exception:
-            return False
-        return (_now - dt).days > _CAPS.get(i.get("kind") or "", 45)
-    for label, items in matches.items():
-        items = [i for i in items
-                 if (i.get("slug") or i.get("url")) and not _too_old(i)]
-        items.sort(
-            key=lambda x: (
-                x["published_at"],
-                0 if x.get("kind") == "article" else 1,
-            ),
-            reverse=True,
-        )
-        # Cross-source near-dedup: the same wire story from 4 outlets is
-        # ONE local story, not 4 slots (2026-10-13 Costa Rica flood).
-        deduped: list[dict] = []
-        for it in items:
-            if any(
-                titles_too_similar(it.get("title") or "", k.get("title") or "")
-                for k in deduped
-            ):
-                continue
-            deduped.append(it)
-        out[label] = deduped[:PER_METRO]
-        total += len(out[label])
-
-    payload = {
-        "built_at": datetime.now(timezone.utc).isoformat(),
-        "metros": out,
-    }
-    with open(OUT_PATH, "w", encoding="utf-8") as fh:
-        json.dump(payload, fh, ensure_ascii=False)
+    out, total = shape_output(matches, rss_fresh, rss_done, carried_rss)
+    write_output(out)
     print(f"scanned={scanned} clusters={len(out)} total_matches={total} -> {OUT_PATH}")
 
     # coverage summary
@@ -473,6 +630,11 @@ def main():
     print(f"clusters_with_news={len(out) - len(empty)}/{len(out)}")
     if empty:
         print("empty: " + ", ".join(empty))
+    if not no_rss:
+        carried = [c["label"] for c in clusters if c["label"] not in rss_done]
+        if carried:
+            print(
+                f"rss_carried_over={len(carried)}: " + ", ".join(carried))
 
 
 if __name__ == "__main__":
