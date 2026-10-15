@@ -1,0 +1,187 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "railway-employees-78-day-diwali-bonus-cabinet",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Cabinet Clears 78-Day Diwali Bonus for 11.4 Lakh Railway Employees",
+        "numbers": [
+          11.4,
+          78.0,
+          1140000.0
+        ],
+        "entities": [
+          "Cabinet Clears",
+          "Diwali Bonus",
+          "Lakh Railway Employees"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The cabinet approved the bonus for 11.4 lakh railway employees.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The Rs 2,009.61 crore Productivity Linked Bonus pays up to Rs 17,951 per eligible employee ahead of the festival season.",
+        "numbers": [
+          2009.61,
+          17951.0,
+          20096100000.0
+        ],
+        "entities": [
+          "Productivity Linked Bonus"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The bonus is Rs 2,009.61 crore and pays up to Rs 17,951.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The bonus equal to 78 days' wages covers about 11,40,770 non-gazetted railway employees at a total cost of Rs 2,009.61 crore",
+        "numbers": [
+          78.0,
+          2009.61,
+          1140770.0,
+          20096100000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The bonus covers about 11,40,770 employees at a cost of Rs 2,009.61 crore.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Each eligible employee will receive up to Rs 17,951, set by a notional salary ceiling of Rs 7,000 a month",
+        "numbers": [
+          7000.0,
+          17951.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Each eligible employee receives up to Rs 17,951 based on a Rs 7,000 ceiling.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Indian Railways loaded 1,670 million tonnes of freight and carried nearly 7.41 billion passengers in 2025-26",
+        "numbers": [
+          7.41,
+          26.0,
+          1670.0,
+          2025.0,
+          1670000000.0,
+          7410000000.0
+        ],
+        "entities": [
+          "Indian Railways"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2025
+          ]
+        },
+        "llm_reason": "Indian Railways loaded 1,670 million tonnes and carried 7.41 billion passengers.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Ashwini Vaishnaw",
+        "numbers": [],
+        "entities": [
+          "Ashwini Vaishnaw"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Ashwini Vaishnaw is mentioned as the railway minister.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Union Railway Minister",
+        "numbers": [],
+        "entities": [
+          "Union Railway Minister"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Ashwini Vaishnaw is identified as the Union Railway Minister.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Cabinet Clears 78-Day Diwali Bonus for 11.4 Lakh Railway Employees",
+        "numbers": [
+          11.4,
+          78.0,
+          1140000.0
+        ],
+        "entities": [
+          "Cabinet Clears",
+          "Diwali Bonus",
+          "Lakh Railway Employees"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The cabinet cleared the bonus for 11.4 lakh railway employees.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000401
+    }
+  },
+  "verdict": "pass"
+}

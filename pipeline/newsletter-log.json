@@ -1503,5 +1503,16 @@
     "top_story_slug": "maharashtra-drought-305-talukas-farmers-rs-5000-diwali",
     "quick_hit_count": 5,
     "deadline_count": 7
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-15T13:58:18.057610+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 15, 2026",
+    "subscribers": 9,
+    "sent": 8,
+    "errors": 1,
+    "top_story_slug": "air-india-delhi-osaka-non-stop-flights-february-2027",
+    "quick_hit_count": 5,
+    "deadline_count": 7
   }
 ]

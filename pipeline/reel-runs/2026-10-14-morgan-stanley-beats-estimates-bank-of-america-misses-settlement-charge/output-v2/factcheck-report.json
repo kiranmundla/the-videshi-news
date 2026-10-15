@@ -1,0 +1,265 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "MORGAN STANLEY BEATS, BANK OF AMERICA MISSES",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Morgan Stanley beat estimates while Bank of America missed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Morgan Stanley beat estimates on both lines, while Bank of America missed after a $1.2 billion settlement charge cut its reported earnings.",
+      "numbers": [
+        1.2,
+        1200000000.0
+      ],
+      "entities": [
+        "Morgan Stanley"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Morgan Stanley beat estimates; Bank of America missed due to settlement charge.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$1.2 BILLION",
+      "numbers": [
+        1.2,
+        1200000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$1.2 billion settlement charge is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Bank of America settlement charge behind its earnings miss",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The settlement charge is cited as the reason for Bank of America's earnings miss.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "No specific 'BY THE NUMBERS' section is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$3.03",
+      "numbers": [
+        3.03
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Morgan Stanley's earnings per share of $3.03 is stated.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Morgan Stanley earnings per share beat the $2.83 expected",
+      "numbers": [
+        2.83
+      ],
+      "entities": [
+        "Morgan Stanley"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Morgan Stanley's EPS beat the expected $2.83.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$20.34 BILLION",
+      "numbers": [
+        20.34,
+        20340000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Morgan Stanley's revenue of $20.34 billion is reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Morgan Stanley revenue, against $19.74 billion expected",
+      "numbers": [
+        19.74,
+        19740000000.0
+      ],
+      "entities": [
+        "Morgan Stanley"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Morgan Stanley's revenue exceeded the expected $19.74 billion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "41%",
+      "numbers": [
+        41.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Equity trading revenue jumped 41% as stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Jump in equity trading revenue to $5.80 billion",
+      "numbers": [
+        5.8,
+        5800000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Equity trading revenue reached $5.80 billion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Bank of America net interest income rose 8% to $16.4 billion",
+      "numbers": [
+        8.0,
+        16.4,
+        16400000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Bank of America's net interest income rose 8% to $16.4 billion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Bank of America returned $8.3 billion in dividends and buybacks",
+      "numbers": [
+        8.3,
+        8300000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Bank of America returned $8.3 billion in dividends and buybacks.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Morgan Stanley posted the cleanest beat among the largest U.S. banks.",
+      "numbers": [],
+      "entities": [
+        "Morgan Stanley"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Morgan Stanley posted the cleanest beat among U.S. banks.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Morgan Stanley",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Bank of America",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ted Pick",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000586
+  }
+}

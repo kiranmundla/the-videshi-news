@@ -1,0 +1,213 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "india-bank-deposits-hit-record-3-trillion-dollar-scheme",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA'S BANK DEPOSITS HIT A RECORD",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states India's bank deposits hit a record.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "India's banking system deposits reached about 284 trillion rupees, or $2.99 trillion, in the second half of September.",
+      "numbers": [
+        2.99,
+        284.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Deposits reached about 284 trillion rupees or $2.99 trillion in late September.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$2.99 TRILLION",
+      "numbers": [
+        2.99
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$2.99 trillion is mentioned as the record amount.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Banking system deposits in the second half of September",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Deposits in the second half of September are confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article does not mention a specific section titled 'BY THE NUMBERS.'",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$133 BILLION",
+      "numbers": [
+        133.0,
+        133000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$133 billion is cited as inflows from the dollar swap window.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Inflows drawn by the discounted dollar swap window",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states inflows were drawn by the discounted dollar swap window.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "8.4%",
+      "numbers": [
+        8.4
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions a rise of 8.4% above the March-end level.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Above the March-end level at September-end",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The 8.4% increase is confirmed as above the March-end level.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "New NRI dollar deposits under those terms are no longer available",
+      "numbers": [],
+      "entities": [
+        "New NRI"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states new NRI dollar deposits under those terms are no longer available.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "CareEdge Ratings expects term deposit rates to face upward pressure",
+      "numbers": [],
+      "entities": [
+        "CareEdge Ratings"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "CareEdge Ratings' expectation of upward pressure on term deposit rates is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The discounted dollar swap window closed on August 31, a month early.",
+      "numbers": [
+        31.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the dollar swap window closed on August 31, a month early.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Reserve Bank of India",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "CareEdge Ratings",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000487
+  }
+}

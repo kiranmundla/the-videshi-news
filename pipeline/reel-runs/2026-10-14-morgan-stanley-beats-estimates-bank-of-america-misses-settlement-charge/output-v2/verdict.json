@@ -1,0 +1,14 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "article_slug": "morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge",
+  "name": "morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge",
+  "script": "reel-runs/2026-10-14-morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000586
+  },
+  "detail": "no composition fits all scenes below the chin at the planner floors"
+}

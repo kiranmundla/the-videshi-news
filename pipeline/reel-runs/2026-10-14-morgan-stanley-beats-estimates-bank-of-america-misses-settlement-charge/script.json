@@ -1,0 +1,35 @@
+{
+  "hook_line": "MORGAN STANLEY BEATS, BANK OF AMERICA MISSES",
+  "hook_stat": {
+    "big": "$1.2 BILLION",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Bank of America settlement charge behind its earnings miss"
+  },
+  "stats": [
+    {
+      "big": "$3.03",
+      "label": "Morgan Stanley earnings per share beat the $2.83 expected"
+    },
+    {
+      "big": "$20.34 BILLION",
+      "label": "Morgan Stanley revenue, against $19.74 billion expected"
+    },
+    {
+      "big": "41%",
+      "label": "Jump in equity trading revenue to $5.80 billion"
+    }
+  ],
+  "diaspora_bullets": [
+    "Bank of America net interest income rose 8% to $16.4 billion",
+    "Bank of America returned $8.3 billion in dividends and buybacks"
+  ],
+  "key_entities": [
+    "Morgan Stanley",
+    "Bank of America",
+    "Ted Pick"
+  ],
+  "news_summary": "Morgan Stanley beat estimates on both lines, while Bank of America missed after a $1.2 billion settlement charge cut its reported earnings.",
+  "payoff": "Morgan Stanley posted the cleanest beat among the largest U.S. banks.",
+  "versus": "",
+  "story_mood": "tense"
+}

@@ -1,0 +1,189 @@
+[
+  {
+    "id": "3c22ad30-f8ab-467b-afa1-dede4b279b32",
+    "headline": "Santner Sets Out His Plan to Contain India's Power Hitters in T20 Series",
+    "slug": "santner-plan-india-power-hitters-new-zealand-t20-series",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the series by explicitly stating the dates of all matches in the T20I series, as well as the ODIs, to provide readers with a complete understanding of the schedule.",
+        "Include a quote or statement from a relevant Indian player or coach to provide balance and additional context to Santner's comments, enhancing the completeness of the article.",
+        "Provide more context on the significance of the series, such as its implications for rankings or player selection for upcoming tournaments, to give readers a clearer understanding of why this series matters."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the New Zealand cricket team's official account regarding the series or Santner's comments to enhance the article's credibility and engagement."
+      ]
+    }
+  },
+  {
+    "id": "6b8fe887-4aa3-4e0b-82ae-14c2d563b955",
+    "headline": "Bengaluru Startup Unveils Static Prototype of AI-Piloted Fighter With Planned 1,",
+    "slug": "flying-wedge-fwd-supreme-ai-fighter-prototype",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the certification steps planned in the next two months. Specify what the next milestones are and their expected dates to provide readers with a clearer understanding of the project's timeline.",
+        "Include a direct quote from a company representative or a defense official regarding the significance of this prototype for India's defense capabilities. This would enhance attribution and provide a more personal touch to the reporting.",
+        "Provide context on how this development fits into the broader landscape of India's defense technology advancements. For instance, mention any recent similar projects or how this compares to existing technologies in the market.",
+        "Correct the redundancy in the first paragraph where the company name and the prototype name are mentioned twice. Streamlining this information will improve clarity and readability."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Ministry of Defence or Flying Wedge Defence & Aerospace regarding the unveiling of the prototype to provide readers with direct access to official statements."
+      ]
+    }
+  },
+  {
+    "id": "c1332617-6c8c-4cff-89e9-49868890bf57",
+    "headline": "Chennai-Born Congresswoman Pramila Jayapal Backs India Protests Over Voter Roll ",
+    "slug": "pramila-jayapal-backs-india-protests-voter-roll-deletions",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the electoral roll deletions by specifying when the SIR phases began and when they are expected to conclude, as this information is crucial for understanding the urgency of the situation.",
+        "Provide a clearer explanation of the claims and objections process mentioned, including specific steps or deadlines for individuals who may want to contest their removal from the voter rolls.",
+        "Include a quote or statement from the Election Commission or relevant authorities to provide a balanced perspective on the situation and counter any claims made by Jayapal."
+      ],
+      "embed_opportunities": [
+        "Embed the official Election Commission of India tweet or statement regarding the Special Intensive Revision of electoral rolls to provide readers with direct information from the source."
+      ]
+    }
+  },
+  {
+    "id": "d0700284-19d0-4634-9fe2-dd6f0183724c",
+    "headline": "From Chennai to Japan, Rajinikanth Fans Turn Jailer 2 Opening Into a Festival",
+    "slug": "rajinikanth-jailer-2-fans-celebrate-chennai-japan-dubai",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the film's release date, October 15, by providing context on its importance in Rajinikanth's career or the film industry. This could enhance the reader's understanding of why this event is noteworthy.",
+        "Include specific box office projections or early ticket sales figures to give readers a sense of the film's anticipated success, which would provide a clearer picture of its impact.",
+        "Add quotes from fans or film critics to provide a more personal touch and varied perspectives on the film's reception. This would enhance the article's completeness and depth."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Rajinikanth or a fan account showcasing the celebrations or fan reactions to the film's release."
+      ]
+    }
+  },
+  {
+    "id": "64f8b412-cdba-49b0-aaa9-a5de6f46af08",
+    "headline": "Chinese Parts Are Fuelling Houthi Bid to Build Missiles That Reach Israel, Saudi",
+    "slug": "chinese-parts-houthi-missile-kheibar-shekan-report",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the shipments were intercepted and when the Yemeni authorities provided the information to CAR. This will enhance the article's completeness and timeliness.",
+        "Include specific details about the implications of the missile range, such as the strategic impact on regional security or potential responses from Israel and Saudi Arabia. This will provide readers with a clearer understanding of the stakes involved.",
+        "Ensure that all sources are clearly attributed. For example, specify which details are from the CAR report versus those from the Wall Street Journal or Bloomberg to enhance accuracy and transparency."
+      ],
+      "embed_opportunities": [
+        "Embed the official Conflict Armament Research report or a relevant tweet from them to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "9e128286-a9b3-47ba-a444-65e75e02d3b2",
+    "headline": "Bengaluru's October Table: Bar Find Residency, a Bengali Feast and a New Lucknow",
+    "slug": "bengaluru-october-food-guide-bar-find-amar-khamar-sehn",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the start and end dates of the Bar Find residency in the headline for immediate reader understanding.",
+        "Include more specific details about the Bengali feast at The Oberoi, such as the date, time, and cost of the event, to provide readers with actionable information.",
+        "Add a quote or statement from the chef at Bar Find or The Oberoi to enhance attribution and provide a personal touch to the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from The Hindu's October food guide to provide readers with a visual reference to the food calendar mentioned."
+      ]
+    }
+  },
+  {
+    "id": "ec01ce2c-9251-490e-8733-6ba9d0d38bfa",
+    "headline": "Jio Platforms Files for India's Biggest IPO as Groww Profit Jumps 54%",
+    "slug": "jio-platforms-biggest-ipo-groww-q2-profit-54-percent",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the IPO by providing context on how it compares to previous IPOs in terms of market impact or investor interest, which would enhance completeness.",
+        "Include a brief explanation of what a red herring prospectus is for readers who may not be familiar with IPO terminology, improving clarity.",
+        "Add a quote from a financial analyst or expert regarding the implications of Jio's IPO for the market, which would enhance attribution and depth."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Jio Platforms or Reliance Industries announcing the IPO for real-time updates and credibility."
+      ]
+    }
+  },
+  {
+    "id": "6f213136-a05d-4f60-878d-6fddc1629463",
+    "headline": "Two Ships Sink Near Strait of Hormuz as Attacks on Vessels Intensify",
+    "slug": "two-ships-sink-strait-hormuz-gfs-pride-cape-dao",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events regarding the Cape Dao, including the date of the projectile attack and the timeline leading to its reported sinking. This will provide readers with a clearer understanding of the sequence of incidents.",
+        "Include specific details about the nature of the attacks, such as the type of projectiles used or the suspected perpetrators, to enhance the context and depth of the reporting.",
+        "Provide a brief overview of the implications of these attacks on global oil and gas prices, including any recent trends or forecasts, to give readers a sense of urgency and relevance to the situation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a relevant maritime authority or news outlet that provides real-time updates on the situation or reactions from international stakeholders."
+      ]
+    }
+  },
+  {
+    "id": "2b543572-eb30-49c4-9cf1-6438ea314d53",
+    "headline": "Flying Home for Diwali and Chhath: 72% of Travellers Say Fares Are Higher This Y",
+    "slug": "diwali-chhath-airfares-72-percent-paying-more-festive-surge",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the year referenced in the survey results; it states 'more than in 2025,' which is likely a typographical error and should refer to 2023. This could confuse readers.",
+        "Include a brief explanation of how the survey was conducted and its sample size to enhance credibility and context. While the article mentions the number of respondents, it does not specify how the survey was distributed or conducted.",
+        "Add a comparison to last year's fares for the same routes to provide readers with a clearer perspective on the fare increases and their impact.",
+        "Specify the expected fare reductions after November 20 with concrete examples or ranges to help readers plan their travel effectively."
+      ],
+      "embed_opportunities": [
+        "Embed the official LocalCircles survey results or a relevant tweet from LocalCircles to provide direct access to the source of the data."
+      ]
+    }
+  },
+  {
+    "id": "7fc536e7-7443-41a7-9c0c-fada580598ed",
+    "headline": "India Asks UN Rights Office for Report on Pakistan's Actions in PoK",
+    "slug": "india-un-ohchr-report-pakistan-pok-swarup",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding when India expects the UN human rights office to issue the report. Providing a specific date or timeframe would enhance the completeness of the article.",
+        "Include direct quotes or paraphrased statements from the UN High Commissioner for Human Rights to provide a balanced perspective and enhance attribution.",
+        "Explain the significance of the accusations of 'extreme selectivity' made by India against the OHCHR. Providing context on previous instances or reactions from the OHCHR would improve clarity and depth.",
+        "Ensure the article concludes with a summary of the implications of India's request on international relations or human rights discussions, which would provide a clearer takeaway for readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official UN Human Rights Office's tweet or statement regarding their stance on the situation in Pakistan-occupied Kashmir for additional context."
+      ]
+    }
+  }
+]

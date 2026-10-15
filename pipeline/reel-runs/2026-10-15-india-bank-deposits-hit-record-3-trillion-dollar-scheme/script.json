@@ -1,0 +1,30 @@
+{
+  "hook_line": "INDIA'S BANK DEPOSITS HIT A RECORD",
+  "hook_stat": {
+    "big": "$2.99 TRILLION",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Banking system deposits in the second half of September"
+  },
+  "stats": [
+    {
+      "big": "$133 BILLION",
+      "label": "Inflows drawn by the discounted dollar swap window"
+    },
+    {
+      "big": "8.4%",
+      "label": "Above the March-end level at September-end"
+    }
+  ],
+  "diaspora_bullets": [
+    "New NRI dollar deposits under those terms are no longer available",
+    "CareEdge Ratings expects term deposit rates to face upward pressure"
+  ],
+  "key_entities": [
+    "Reserve Bank of India",
+    "CareEdge Ratings"
+  ],
+  "news_summary": "India's banking system deposits reached about 284 trillion rupees, or $2.99 trillion, in the second half of September.",
+  "payoff": "The discounted dollar swap window closed on August 31, a month early.",
+  "versus": "",
+  "story_mood": "tense"
+}

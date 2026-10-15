@@ -1,0 +1,241 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "railway-employees-78-day-diwali-bonus-cabinet",
+  "article_slug": "railway-employees-78-day-diwali-bonus-cabinet",
+  "article_id": "0f1780ee-e3e0-4e26-afd9-37eb9310d34e",
+  "category": "News",
+  "video": "reel-runs/2026-10-14-railway-employees-78-day-diwali-bonus-cabinet/output/railway-employees-78-day-diwali-bonus-cabinet.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://images.thedailyjagran.com/images/2026/10/14/template/image/Railway-1791976370414.webp",
+    "local_path": "reel-runs/2026-10-14-railway-employees-78-day-diwali-bonus-cabinet/output/hero.webp",
+    "width": 1200,
+    "height": 650,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "focal-heuristic (no face detected)",
+    "box_source": [
+      176,
+      261,
+      672,
+      260
+    ],
+    "box_bg": [
+      158.4,
+      234.9,
+      604.8,
+      234.0
+    ],
+    "chin_bg": 468.9,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "fit",
+    "rejected": [
+      {
+        "branch": "cover",
+        "failed_scene": "hook"
+      }
+    ],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": 468.0,
+      "zone_top": 517,
+      "zone_h": 1063,
+      "scale": 1.0,
+      "content_h": 254,
+      "block_top": 607,
+      "block_bottom": 861,
+      "text_bbox": [
+        117,
+        607,
+        900,
+        855
+      ],
+      "texts": [
+        "News",
+        "78-DAY DIWALI BONUS FOR RAILWAY STAFF"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": 466.8,
+      "zone_top": 515,
+      "zone_h": 1065,
+      "scale": 1.0,
+      "content_h": 286,
+      "block_top": 605,
+      "block_bottom": 891,
+      "text_bbox": [
+        118,
+        605,
+        886,
+        896
+      ],
+      "texts": [
+        "What Happened",
+        "More than 11.4 lakh railway employees will receive a bonus equal to 78 days' wages after the Union Cabinet approved the Productivity Linked Bonus."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": 465.5,
+      "zone_top": 514,
+      "zone_h": 1066,
+      "scale": 1.0,
+      "content_h": 379,
+      "block_top": 604,
+      "block_bottom": 983,
+      "text_bbox": [
+        109,
+        604,
+        891,
+        988
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "11.4 LAKH",
+        "Railway employees to get a bonus equal to 78 days' wages"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": 464.0,
+      "zone_top": 512,
+      "zone_h": 1068,
+      "scale": 1.0,
+      "content_h": 736,
+      "block_top": 602,
+      "block_bottom": 1338,
+      "text_bbox": [
+        145,
+        602,
+        865,
+        1337
+      ],
+      "texts": [
+        "By The Numbers",
+        "Rs 2,009.61 CRORE",
+        "Total cost of the Productivity Linked Bonus payout",
+        "Rs 17,951",
+        "Maximum bonus payable to an eligible employee",
+        "7.41 BILLION",
+        "Passengers carried by Indian Railways in 2025-26"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": 462.5,
+      "zone_top": 511,
+      "zone_h": 1069,
+      "scale": 1.0,
+      "content_h": 318,
+      "block_top": 601,
+      "block_bottom": 919,
+      "text_bbox": [
+        118,
+        601,
+        868,
+        924
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Track maintainers, loco pilots and station masters are among those covered",
+        "Millions of families have a relative on the railway payroll"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": 461.4,
+      "zone_top": 510,
+      "zone_h": 1070,
+      "scale": 1.0,
+      "content_h": 302,
+      "block_top": 600,
+      "block_bottom": 902,
+      "text_bbox": [
+        110,
+        600,
+        892,
+        913
+      ],
+      "texts": [
+        "The Takeaway",
+        "The salary ceiling unions want raised was not changed.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "emotional-inspiring-inspiring-uplifting.mp3",
+    "path": "music/emotional-inspiring-inspiring-uplifting.mp3"
+  },
+  "render_seconds": 327.4,
+  "mp4_bytes": 11664382
+}

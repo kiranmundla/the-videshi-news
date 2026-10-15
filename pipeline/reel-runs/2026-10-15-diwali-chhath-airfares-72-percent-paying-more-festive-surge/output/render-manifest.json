@@ -1,0 +1,239 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "diwali-chhath-airfares-72-percent-paying-more-festive-surge",
+  "article_slug": "diwali-chhath-airfares-72-percent-paying-more-festive-surge",
+  "article_id": "2b543572-eb30-49c4-9cf1-6438ea314d53",
+  "category": "Travel",
+  "video": "reel-runs/2026-10-15-diwali-chhath-airfares-72-percent-paying-more-festive-surge/output/diwali-chhath-airfares-72-percent-paying-more-festive-surge.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202610/airfares-high-india-chhath-durga-puja-diwali-holiday-season-indigo-atf-fuel-high-aviation-ministry-133126158-16x9_0.jpg?VersionId=uVq_iHTKIVy9o3jkp_nQk4s21zEPOPAc",
+    "local_path": "reel-runs/2026-10-15-diwali-chhath-airfares-72-percent-paying-more-festive-surge/output/hero.jpg",
+    "width": 1200,
+    "height": 675,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "yunet (score 0.63)",
+    "box_source": [
+      534,
+      365,
+      100,
+      157
+    ],
+    "box_bg": [
+      480.6,
+      328.5,
+      90.0,
+      141.3
+    ],
+    "chin_bg": 469.8,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "fit",
+    "rejected": [
+      {
+        "branch": "cover",
+        "failed_scene": "hook"
+      }
+    ],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": 469.0,
+      "zone_top": 517,
+      "zone_h": 1063,
+      "scale": 1.0,
+      "content_h": 270,
+      "block_top": 607,
+      "block_bottom": 877,
+      "text_bbox": [
+        114,
+        607,
+        901,
+        869
+      ],
+      "texts": [
+        "Travel",
+        "DIWALI AND CHHATH FARES ARE UP"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": 467.7,
+      "zone_top": 516,
+      "zone_h": 1064,
+      "scale": 1.0,
+      "content_h": 338,
+      "block_top": 606,
+      "block_bottom": 944,
+      "text_bbox": [
+        111,
+        606,
+        891,
+        949
+      ],
+      "texts": [
+        "What Happened",
+        "A LocalCircles survey found 72% of travellers flying home for Diwali and Chhath are paying more for flights than in 2025."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": 466.4,
+      "zone_top": 515,
+      "zone_h": 1065,
+      "scale": 1.0,
+      "content_h": 532,
+      "block_top": 605,
+      "block_bottom": 1137,
+      "text_bbox": [
+        120,
+        605,
+        881,
+        1142
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "72%",
+        "Of travellers flying home for the festivals are paying more than in 2025"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": 464.9,
+      "zone_top": 513,
+      "zone_h": 1067,
+      "scale": 1.0,
+      "content_h": 475,
+      "block_top": 603,
+      "block_bottom": 1078,
+      "text_bbox": [
+        145,
+        603,
+        862,
+        1077
+      ],
+      "texts": [
+        "By The Numbers",
+        "54%",
+        "Paying over 50% extra",
+        "19,993",
+        "Travellers surveyed across 277 districts"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": 463.4,
+      "zone_top": 512,
+      "zone_h": 1068,
+      "scale": 1.0,
+      "content_h": 348,
+      "block_top": 602,
+      "block_bottom": 950,
+      "text_bbox": [
+        118,
+        602,
+        885,
+        946
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Return legs from Bihar after the rush are far cheaper",
+        "Fares are expected to ease after November 20"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": 462.4,
+      "zone_top": 511,
+      "zone_h": 1069,
+      "scale": 1.0,
+      "content_h": 312,
+      "block_top": 601,
+      "block_bottom": 913,
+      "text_bbox": [
+        131,
+        601,
+        878,
+        924
+      ],
+      "texts": [
+        "The Takeaway",
+        "Fares are expected to ease after November 20.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "indian-classical-diwali-festival.mp3",
+    "path": "music/indian-classical-diwali-festival.mp3"
+  },
+  "render_seconds": 387.8,
+  "mp4_bytes": 15279931
+}

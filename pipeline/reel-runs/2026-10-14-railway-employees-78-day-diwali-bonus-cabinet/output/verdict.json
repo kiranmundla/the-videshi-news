@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "article_slug": "railway-employees-78-day-diwali-bonus-cabinet",
+  "name": "railway-employees-78-day-diwali-bonus-cabinet",
+  "script": "reel-runs/2026-10-14-railway-employees-78-day-diwali-bonus-cabinet/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000475
+  },
+  "manifest": "reel-runs/2026-10-14-railway-employees-78-day-diwali-bonus-cabinet/output/render-manifest.json",
+  "video": "reel-runs/2026-10-14-railway-employees-78-day-diwali-bonus-cabinet/output/railway-employees-78-day-diwali-bonus-cabinet.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  }
+}

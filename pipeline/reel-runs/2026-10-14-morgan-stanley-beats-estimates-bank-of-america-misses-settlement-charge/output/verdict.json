@@ -1,0 +1,16 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa_error",
+  "article_slug": "morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge",
+  "name": "morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge",
+  "script": "reel-runs/2026-10-14-morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000607
+  },
+  "manifest": "reel-runs/2026-10-14-morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge/output/render-manifest.json",
+  "video": "reel-runs/2026-10-14-morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge/output/morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge.mp4",
+  "detail": "No module named 'cv2'"
+}

@@ -1,0 +1,22 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "article_slug": "diwali-chhath-airfares-72-percent-paying-more-festive-surge",
+  "name": "diwali-chhath-airfares-72-percent-paying-more-festive-surge",
+  "script": "reel-runs/2026-10-15-diwali-chhath-airfares-72-percent-paying-more-festive-surge/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000497
+  },
+  "manifest": "reel-runs/2026-10-15-diwali-chhath-airfares-72-percent-paying-more-festive-surge/output/render-manifest.json",
+  "video": "reel-runs/2026-10-15-diwali-chhath-airfares-72-percent-paying-more-festive-surge/output/diwali-chhath-airfares-72-percent-paying-more-festive-surge.mp4",
+  "qa": {
+    "score": 8.0,
+    "passed": false,
+    "failing_checks": [
+      "face_overlap:diaspora"
+    ]
+  }
+}

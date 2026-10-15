@@ -1,0 +1,262 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "railway-employees-78-day-diwali-bonus-cabinet",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "78-DAY DIWALI BONUS FOR RAILWAY STAFF",
+      "numbers": [
+        78.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states a 78-day bonus for railway staff.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "More than 11.4 lakh railway employees will receive a bonus equal to 78 days' wages after the Union Cabinet approved the Productivity Linked Bonus.",
+      "numbers": [
+        11.4,
+        78.0,
+        1140000.0
+      ],
+      "entities": [
+        "Union Cabinet",
+        "Productivity Linked Bonus"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "More than 11.4 lakh employees will receive the bonus as approved.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "11.4 LAKH",
+      "numbers": [
+        11.4,
+        1140000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions 11.4 lakh railway employees.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Railway employees to get a bonus equal to 78 days' wages",
+      "numbers": [
+        78.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The bonus is equal to 78 days' wages for employees.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "No specific section titled 'BY THE NUMBERS' is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "Rs 2,009.61 CRORE",
+      "numbers": [
+        2009.61,
+        20096100000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Total cost of the bonus payout is Rs 2,009.61 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Total cost of the Productivity Linked Bonus payout",
+      "numbers": [],
+      "entities": [
+        "Productivity Linked Bonus"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the total cost of the Productivity Linked Bonus.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "Rs 17,951",
+      "numbers": [
+        17951.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Maximum bonus payable is Rs 17,951 as per the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Maximum bonus payable to an eligible employee",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Rs 17,951 as the maximum bonus.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "7.41 BILLION",
+      "numbers": [
+        7.41,
+        7410000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 7.41 billion passengers were carried.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Passengers carried by Indian Railways in 2025-26",
+      "numbers": [
+        26.0,
+        2025.0
+      ],
+      "entities": [
+        "Indian Railways"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "Passengers carried by Indian Railways in 2025-26 is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Track maintainers, loco pilots and station masters are among those covered",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Track maintainers, loco pilots, and station masters are mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Millions of families have a relative on the railway payroll",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states millions have relatives on the railway payroll.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The salary ceiling unions want raised was not changed.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The salary ceiling unions want raised was not changed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Union Cabinet",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Indian Railways",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ashwini Vaishnaw",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000475
+  }
+}

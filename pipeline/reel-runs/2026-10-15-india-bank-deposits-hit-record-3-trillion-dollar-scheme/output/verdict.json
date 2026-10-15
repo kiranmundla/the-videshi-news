@@ -1,0 +1,14 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render_photo_floor",
+  "article_slug": "india-bank-deposits-hit-record-3-trillion-dollar-scheme",
+  "name": "india-bank-deposits-hit-record-3-trillion-dollar-scheme",
+  "script": "reel-runs/2026-10-15-india-bank-deposits-hit-record-3-trillion-dollar-scheme/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000487
+  },
+  "detail": "photo 506x683 below full-res floor 1080x600 \u2014 refusing to upscale a thumbnail-grade source"
+}

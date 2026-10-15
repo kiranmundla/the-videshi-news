@@ -1,0 +1,31 @@
+{
+  "hook_line": "DIWALI AND CHHATH FARES ARE UP",
+  "hook_stat": {
+    "big": "72%",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Of travellers flying home for the festivals are paying more than in 2025"
+  },
+  "stats": [
+    {
+      "big": "54%",
+      "label": "Paying over 50% extra"
+    },
+    {
+      "big": "19,993",
+      "label": "Travellers surveyed across 277 districts"
+    }
+  ],
+  "diaspora_bullets": [
+    "Return legs from Bihar after the rush are far cheaper",
+    "Fares are expected to ease after November 20"
+  ],
+  "key_entities": [
+    "LocalCircles",
+    "Patna",
+    "Bihar"
+  ],
+  "news_summary": "A LocalCircles survey found 72% of travellers flying home for Diwali and Chhath are paying more for flights than in 2025.",
+  "payoff": "Fares are expected to ease after November 20.",
+  "versus": "",
+  "story_mood": "practical"
+}

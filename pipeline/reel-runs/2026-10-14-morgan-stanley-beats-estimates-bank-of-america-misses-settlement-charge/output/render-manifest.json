@@ -1,0 +1,236 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge",
+  "article_slug": "morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge",
+  "article_id": "13e22541-c349-466d-ab96-7d2c960e29d9",
+  "category": "Markets Finance",
+  "video": "reel-runs/2026-10-14-morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge/output/morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/1585_Broadway_-_Morgan_Stanley_Building_%2855283615766%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "local_path": "reel-runs/2026-10-14-morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge/output/hero.jpg",
+    "width": 2919,
+    "height": 5189,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "static-fallback (cv2 unavailable)",
+    "box_source": [
+      642,
+      518,
+      1634,
+      2075
+    ],
+    "box_bg": [
+      237.5,
+      191.7,
+      604.6,
+      767.8
+    ],
+    "chin_bg": 959.4,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": 962.5,
+      "zone_top": 1011,
+      "zone_h": 569,
+      "scale": 1.0,
+      "content_h": 230,
+      "block_top": 1101,
+      "block_bottom": 1331,
+      "text_bbox": [
+        118,
+        1101,
+        892,
+        1327
+      ],
+      "texts": [
+        "Markets Finance",
+        "MORGAN STANLEY BEATS, BANK OF AMERICA MISSES"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": 967.1,
+      "zone_top": 1016,
+      "zone_h": 564,
+      "scale": 1.0,
+      "content_h": 310,
+      "block_top": 1106,
+      "block_bottom": 1416,
+      "text_bbox": [
+        119,
+        1106,
+        887,
+        1420
+      ],
+      "texts": [
+        "What Happened",
+        "Morgan Stanley beat estimates on both lines, while Bank of America missed after a $1.2 billion settlement charge cut its reported earnings."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": 971.7,
+      "zone_top": 1020,
+      "zone_h": 560,
+      "scale": 1.0,
+      "content_h": 342,
+      "block_top": 1110,
+      "block_bottom": 1452,
+      "text_bbox": [
+        107,
+        1110,
+        892,
+        1458
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "$1.2 BILLION",
+        "Bank of America settlement charge behind its earnings miss"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": 977.1,
+      "zone_top": 1026,
+      "zone_h": 554,
+      "scale": 0.75,
+      "content_h": 545,
+      "block_top": 1030,
+      "block_bottom": 1575,
+      "text_bbox": [
+        119,
+        1030,
+        892,
+        1579
+      ],
+      "texts": [
+        "By The Numbers",
+        "$3.03",
+        "Morgan Stanley earnings per share beat the $2.83 expected",
+        "$20.34 BILLION",
+        "Morgan Stanley revenue, against $19.74 billion expected",
+        "41%",
+        "Jump in equity trading revenue to $5.80 billion"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": 982.5,
+      "zone_top": 1031,
+      "zone_h": 549,
+      "scale": 1.0,
+      "content_h": 338,
+      "block_top": 1121,
+      "block_bottom": 1459,
+      "text_bbox": [
+        118,
+        1121,
+        884,
+        1463
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Bank of America net interest income rose 8% to $16.4 billion",
+        "Bank of America returned $8.3 billion in dividends and buybacks"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": 986.3,
+      "zone_top": 1035,
+      "zone_h": 545,
+      "scale": 1.0,
+      "content_h": 278,
+      "block_top": 1125,
+      "block_bottom": 1403,
+      "text_bbox": [
+        129,
+        1125,
+        876,
+        1414
+      ],
+      "texts": [
+        "The Takeaway",
+        "Morgan Stanley posted the cleanest beat among the largest U.S. banks.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "breaking-news-background.mp3",
+    "path": "music/breaking-news-background.mp3"
+  },
+  "render_seconds": 370.2,
+  "mp4_bytes": 24302269
+}

@@ -42,5 +42,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "l2Kt9NQJhfc",
+    "article_slug": "railway-employees-78-day-diwali-bonus-cabinet",
+    "article_id": "0f1780ee-e3e0-4e26-afd9-37eb9310d34e",
+    "title": "Cabinet Clears 78-Day Diwali Bonus for 11.4 Lakh Railway Employees #Shorts #News",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-15T05:25:52.344245+00:00",
+    "video_path": "reel-runs/2026-10-14-railway-employees-78-day-diwali-bonus-cabinet/output/railway-employees-78-day-diwali-bonus-cabinet.mp4",
+    "video_sha256": "73598de1ff6236e7dd619393ceeab17252a79edd12a9869dcf751e7efcba9f4c",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

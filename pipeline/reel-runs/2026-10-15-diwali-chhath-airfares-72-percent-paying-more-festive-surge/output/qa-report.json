@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-15-diwali-chhath-airfares-72-percent-paying-more-festive-surge/output/diwali-chhath-airfares-72-percent-paying-more-festive-surge.mp4",
+  "qa_passed": false,
+  "qa_score": 8.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "face_overlap:diaspora"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1200,
+        675
+      ],
+      "manifest_dims": [
+        1200,
+        675
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 7223.0,
+      "url": "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202610/airfares-high-india-chhath-durga-puja-diwali-holiday-season-indigo-atf-fuel-high-aviation-ministry-133126158-16x9_0.jpg?VersionId=uVq_iHTKIVy9o3jkp_nQk4s21zEPOPAc"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-15-diwali-chhath-airfares-72-percent-paying-more-festive-surge/output/qa/frames/frame-hook.png",
+      "text_px_detected": 23260,
+      "edge": {
+        "pass": true,
+        "offending_px": 40,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          480,
+          328,
+          90,
+          142
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 27.7,
+        "delta": 226.4
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-15-diwali-chhath-airfares-72-percent-paying-more-festive-surge/output/qa/frames/frame-news.png",
+      "text_px_detected": 32769,
+      "edge": {
+        "pass": true,
+        "offending_px": 499,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          480,
+          325,
+          91,
+          143
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 26.2,
+        "delta": 227.6
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-15-diwali-chhath-airfares-72-percent-paying-more-festive-surge/output/qa/frames/frame-hero.png",
+      "text_px_detected": 31573,
+      "edge": {
+        "pass": true,
+        "offending_px": 439,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          479,
+          322,
+          92,
+          145
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 170.8,
+        "bg_luminance": 22.7,
+        "delta": 148.1
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-15-diwali-chhath-airfares-72-percent-paying-more-festive-surge/output/qa/frames/frame-grid.png",
+      "text_px_detected": 28480,
+      "edge": {
+        "pass": true,
+        "offending_px": 210,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          478,
+          319,
+          94,
+          147
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 248.9,
+        "bg_luminance": 22.2,
+        "delta": 226.7
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-15-diwali-chhath-airfares-72-percent-paying-more-festive-surge/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 27097,
+      "edge": {
+        "pass": true,
+        "offending_px": 752,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": false,
+        "method": "frame-yunet (score 0.72)",
+        "box": [
+          532,
+          508,
+          559,
+          584
+        ],
+        "overlap_px": 4144
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 26.3,
+        "delta": 227.5
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-15-diwali-chhath-airfares-72-percent-paying-more-festive-surge/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 24239,
+      "edge": {
+        "pass": true,
+        "offending_px": 524,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.71)",
+        "box": [
+          476,
+          306,
+          102,
+          145
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 22.2,
+        "delta": 231.3
+      }
+    }
+  ]
+}
