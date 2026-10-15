@@ -697,17 +697,21 @@ _TRAILER_BLOCK_RE = re.compile(
     re.IGNORECASE,
 )
 # Official channels whose uploads we trust as genuine trailers.
-# Single source of truth: pipeline/trailer-channels.json (polled by trailer-watch.py).
-# Falls back to the legacy hardcoded set if the file is missing.
+# Primary source: pipeline/trailer-channels.json (polled by trailer-watch.py),
+# UNIONED with the curated alias set below. The alias set matters because
+# YouTube's oEmbed author_name is the channel's live display name, which can
+# differ from our config label — config "Sony Pictures" vs oEmbed "Sony
+# Pictures Entertainment" kept the Ghost Soldier brief's video out of the
+# article-sourced rail on 2026-10-14 (it only entered via the watch-feed
+# path, unlinked). Exact membership only — no fuzzy matching.
 def _load_official_trailer_channels():
+    names = set()
     try:
         cfg = json.loads((REPO_ROOT / "pipeline" / "trailer-channels.json").read_text())
         names = {c["name"].strip().lower() for c in cfg.get("channels", []) if c.get("name")}
-        if names:
-            return names
     except Exception:
-        pass
-    return {
+        names = set()
+    return names | {
         "t-series", "yash raj films", "yrf", "yrf music", "dharma productions",
         "dharma movies", "sony music india", "sony pictures entertainment",
         "balaji motion pictures", "zee music company", "eros now", "pen movies",
