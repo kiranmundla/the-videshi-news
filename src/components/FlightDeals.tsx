@@ -9,12 +9,12 @@ import {
   Luggage,
   Info,
   ChevronRight,
+  ChevronDown,
   Sparkles,
   BadgePercent,
   ArrowRight,
 } from "lucide-react";
 import {
-  DEFAULT_ROUTES,
   airlineBookingUrl,
   cheapestIntlFare,
   dealRouteSource,
@@ -33,6 +33,7 @@ import {
   type CalendarEntry,
   type FestivalSeason,
   type FlightDealsData,
+  type RouteData,
   type IntlDealsData,
   type MetrosDealsData,
 } from "@/lib/flightDeals";
@@ -367,6 +368,60 @@ function DestinationFareLines() {
 }
 
 /* ------------------------------------------------------------------ */
+/* Origin slicing (Kiran, 2026-10-15)                                 */
+/*                                                                    */
+/* The chip row used to list every daily route in raw file order —    */
+/* EWR → BOM beside SFO → DEL, origins mixed with no reader logic.    */
+/* Now ONE origin drives the whole section (rail, chips, calendar):   */
+/* the dropdown defaults to the reader's Hub-location origin, and     */
+/* changing it re-slices everything.                                 */
+/* ------------------------------------------------------------------ */
+
+/** Dropdown labels for the tracked origin airports (code — city).
+ *  Unknown codes fall back to the route's own origin_metro. */
+const ORIGIN_CITY_LABELS: Record<string, string> = {
+  SFO: "San Francisco Bay Area",
+  LAX: "Los Angeles",
+  SEA: "Seattle",
+  JFK: "New York (JFK)",
+  EWR: "Newark / New Jersey",
+  ORD: "Chicago",
+  DFW: "Dallas–Fort Worth",
+  IAH: "Houston",
+  IAD: "Washington, DC",
+  ATL: "Atlanta",
+  BOS: "Boston",
+};
+
+function cheapestUpcomingPrice(route: RouteData): number | null {
+  const es = futureEntries(route);
+  if (!es.length) return null;
+  return Math.min(...es.map((e) => e.price_min));
+}
+
+/** Default route when an origin is (re)selected: the origin's route
+ *  with the cheapest upcoming fare; ties (and no-fare routes) fall
+ *  back to route-key A–Z so the choice is always deterministic. */
+function defaultRouteForOrigin(
+  routes: Record<string, RouteData>,
+  origin: string,
+): string {
+  const keys = Object.keys(routes)
+    .filter((k) => routes[k].origin === origin)
+    .sort();
+  let best = keys[0] ?? "";
+  let bestPrice = Infinity;
+  for (const k of keys) {
+    const p = cheapestUpcomingPrice(routes[k]);
+    if (p !== null && p < bestPrice) {
+      bestPrice = p;
+      best = k;
+    }
+  }
+  return best;
+}
+
+/* ------------------------------------------------------------------ */
 /* Main FlightDeals section — the Cheapest Fares hub                  */
 /* ------------------------------------------------------------------ */
 
@@ -375,6 +430,14 @@ export default function FlightDeals() {
   const [metros, setMetros] = useState<MetrosDealsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [routeKey, setRouteKey] = useState<string>("");
+  /* The selected origin airport + how it was arrived at. "detected" =
+   * the reader's stored Hub location; "default" = no location stored,
+   * so SFO is shown and labelled as the default, never as "yours";
+   * "picked" = the reader chose it in the dropdown. */
+  const [origin, setOrigin] = useState<string>("");
+  const [originNote, setOriginNote] = useState<
+    "detected" | "default" | "picked"
+  >("default");
 
   useEffect(() => {
     Promise.all([loadFlightDeals(), loadMetrosFlightDeals()]).then(
@@ -382,14 +445,31 @@ export default function FlightDeals() {
         setData(d);
         setMetros(m);
         if (d) {
-          // One pool everywhere (§B audit fix): detection runs over ALL
-          // routes in the snapshot — the old code pre-filtered to
-          // DEFAULT_ROUTES, so e.g. an Atlanta reader with an ATL-DEL
-          // route in the data silently got a default city's fares.
-          const keys = Object.keys(d.routes);
-          const fallback =
-            DEFAULT_ROUTES.find((k) => keys.includes(k)) ?? keys[0] ?? "";
-          setRouteKey(detectHubRoute(keys) ?? fallback);
+          // One pool everywhere (§B audit fix): detection runs over the
+          // COMBINED pool (daily ∪ weekly grid) — pre-filtering to a
+          // subset made some readers silently get a default city's
+          // fares. The detected route also fixes the initial origin.
+          const merged = mergeDealRoutes(d, m);
+          const keys = Object.keys(merged);
+          const detectedRoute = detectHubRoute(keys);
+          const detectedOrigin = detectedRoute
+            ? detectedRoute.split("-")[0]
+            : null;
+          const originsPresent = [
+            ...new Set(keys.map((k) => merged[k].origin)),
+          ];
+          const initialOrigin =
+            detectedOrigin ??
+            (originsPresent.includes("SFO")
+              ? "SFO"
+              : (originsPresent.sort()[0] ?? ""));
+          setOrigin(initialOrigin);
+          setOriginNote(detectedOrigin ? "detected" : "default");
+          setRouteKey(
+            detectedRoute && detectedOrigin === initialOrigin
+              ? detectedRoute
+              : defaultRouteForOrigin(merged, initialOrigin),
+          );
         }
         setLoading(false);
       },
@@ -397,13 +477,47 @@ export default function FlightDeals() {
   }, []);
 
   /* The calendar can show any MERGED route: the daily 12 plus the
-   * weekly metros grid's 38, merged with daily winning per route.
-   * The route pills stay the daily core (the curated corridors); the
-   * metros rail below is how grid routes are reached. */
+   * weekly metros grid's routes, merged with daily winning per route.
+   * The route pills are the SELECTED origin's routes from this pool;
+   * the metros rail below navigates the same slice. */
   const mergedRoutes = useMemo(
     () => mergeDealRoutes(data, metros),
     [data, metros],
   );
+
+  /* Dropdown options: every origin present in the merged pool,
+   * labelled "CODE — City", ordered by city name. */
+  const originOptions = useMemo(() => {
+    const byCode = new Map<string, string>();
+    for (const r of Object.values(mergedRoutes)) {
+      if (!byCode.has(r.origin)) {
+        byCode.set(r.origin, ORIGIN_CITY_LABELS[r.origin] ?? r.origin_metro);
+      }
+    }
+    return [...byCode.entries()]
+      .map(([code, city]) => ({ code, city }))
+      .sort((a, b) => a.city.localeCompare(b.city));
+  }, [mergedRoutes]);
+
+  /* Chips = ONLY the selected origin's destination routes,
+   * destination A–Z (stable as prices move). */
+  const originRouteKeys = useMemo(
+    () =>
+      Object.keys(mergedRoutes)
+        .filter((k) => mergedRoutes[k].origin === origin)
+        .sort((a, b) =>
+          mergedRoutes[a].destination.localeCompare(
+            mergedRoutes[b].destination,
+          ),
+        ),
+    [mergedRoutes, origin],
+  );
+
+  const selectOrigin = (next: string) => {
+    setOrigin(next);
+    setOriginNote("picked");
+    setRouteKey(defaultRouteForOrigin(mergedRoutes, next));
+  };
   const route = mergedRoutes[routeKey];
   const routeSource = data ? dealRouteSource(routeKey, data) : "daily";
   const routeAsOf = useMemo(() => {
@@ -419,13 +533,13 @@ export default function FlightDeals() {
     );
   }, [route, routeSource, data, metros]);
 
-  /* Metros rail for the selected route's origin (merged data). */
+  /* Metros rail for the selected origin (merged data). */
   const railFares = useMemo(
     () =>
-      route
-        ? metroFaresForOrigin(data, metros, route.origin)
+      origin
+        ? metroFaresForOrigin(data, metros, origin)
         : [],
-    [data, metros, route],
+    [data, metros, origin],
   );
 
   /* Band model: every cell is the single ~3-week band, so no duration
@@ -453,7 +567,6 @@ export default function FlightDeals() {
 
   if (!data || !route) return null;
 
-  const availableRoutes = Object.keys(data.routes);
   const bandLabel = data.band?.label ?? "~3-week trips";
   const bandRange = data.band
     ? `${data.band.min_days}–${data.band.max_days} days`
@@ -461,42 +574,66 @@ export default function FlightDeals() {
 
   return (
     <section className="mb-12" id="flight-deals">
-      {/* ── Section header ─────────────────────────────────── */}
-      <div className="relative mb-6 -mx-4 px-4 py-10 md:py-12 rounded-2xl overflow-hidden bg-gradient-to-br from-[#0b1d3a] via-[#12294d] to-[#1a3a5c]">
-        <div
-          className="absolute inset-0 opacity-[0.07]"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40h80M40 0v80' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E\")",
-          }}
-        />
-        <div className="absolute -top-10 right-10 w-72 h-72 bg-sky-400/15 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-1/4 w-56 h-56 bg-amber-400/10 rounded-full blur-3xl" />
-
-        <div className="relative z-10 max-w-3xl">
-          <div className="flex items-center gap-2 mb-3 flex-wrap">
-            <span className="text-xs font-bold uppercase tracking-widest text-sky-300 bg-sky-500/15 px-3 py-1 rounded-full flex items-center gap-1.5">
-              <Plane className="h-3.5 w-3.5" /> Cheapest Fares
-            </span>
-            <span className="text-[11px] font-bold text-[#0B1D3A] bg-[#D4A843] px-3 py-1 rounded-full">
-              Fares checked {fmtDateLong(data.as_of)}
-            </span>
-          </div>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold tracking-tight leading-tight text-white">
-            When's the cheapest time<br />to fly home?
-          </h2>
-          <p className="text-white/65 mt-3 text-[15px] md:text-base max-w-xl leading-relaxed">
-            Real round-trip fares from US metros to India for {bandLabel} over
-            the next 3 months — with festival-aware pricing, so you know{" "}
-            <em>why</em> December costs more.
-          </p>
+      {/* ── Section header — compact (Kiran, 2026-10-15: the giant
+          navy banner heading was too big; the page's standard small
+          section header is enough. The "Fares checked" honesty stamp
+          survives as the gold pill.) ──────────────────────────── */}
+      <div className="mb-6">
+        <div className="flex items-center gap-2 mb-2 flex-wrap">
+          <span className="text-xl">✈️</span>
+          <h2 className="font-serif text-xl font-bold">Cheapest Fares</h2>
+          <span className="text-[11px] font-bold text-[#0B1D3A] bg-[#D4A843] px-2.5 py-0.5 rounded-full ml-1">
+            Fares checked {fmtDateLong(data.as_of)}
+          </span>
         </div>
+        <p className="text-sm text-foreground/55 leading-relaxed">
+          Real round-trip fares from US metros to India for {bandLabel} over
+          the next 3 months.
+        </p>
       </div>
 
-      {/* ── Route selector ─────────────────────────────────── */}
+      {/* ── Origin dropdown — defaults to the reader's Hub-location
+          origin; when no location is stored it shows SFO and says
+          "Default" plainly. Changing it re-slices the rail, the
+          route chips and the calendar to that origin. ──────────── */}
+      <div className="flex items-center gap-2.5 mb-4 flex-wrap">
+        <label
+          htmlFor="fares-origin"
+          className="text-[12px] font-bold uppercase tracking-wider text-foreground/50"
+        >
+          Flying from
+        </label>
+        <div className="relative">
+          <select
+            id="fares-origin"
+            value={origin}
+            onChange={(e) => selectOrigin(e.target.value)}
+            className="appearance-none bg-card border border-rule rounded-full pl-4 pr-9 py-2 text-sm font-semibold text-foreground hover:border-primary focus:outline-none focus:border-primary cursor-pointer"
+          >
+            {originOptions.map((o) => (
+              <option key={o.code} value={o.code}>
+                {o.code} — {o.city}
+              </option>
+            ))}
+          </select>
+          <ChevronDown className="h-4 w-4 text-foreground/40 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+        </div>
+        {originNote === "detected" && (
+          <span className="text-[11px] text-foreground/40">
+            Set from your location
+          </span>
+        )}
+        {originNote === "default" && (
+          <span className="text-[11px] text-foreground/40">
+            Default airport — pick yours
+          </span>
+        )}
+      </div>
+
+      {/* ── Route selector — only the selected origin's routes ── */}
       <div className="flex gap-2 overflow-x-auto pb-1 mb-5" style={{ WebkitOverflowScrolling: "touch" }}>
-        {availableRoutes.map((rk) => {
-          const r = data.routes[rk];
+        {originRouteKeys.map((rk) => {
+          const r = mergedRoutes[rk];
           return (
             <button
               key={rk}
@@ -523,7 +660,7 @@ export default function FlightDeals() {
       {railFares.length > 1 && (
         <div className="mb-6">
           <h3 className="font-serif text-lg font-bold text-foreground mb-1">
-            From {route.origin} — cheapest to each India metro
+            From {origin} — cheapest to each India metro
           </h3>
           <p className="text-[12px] text-foreground/50 mb-3">
             Tap a metro to see its calendar. Delhi, Mumbai, Bengaluru,
@@ -604,6 +741,7 @@ export default function FlightDeals() {
             <p className="font-semibold text-foreground/75 mb-1">Our pricing promise</p>
             <ul className="space-y-1 list-none">
               <li>· Prices checked {fmtDateLong(data.as_of)} — fares change frequently, always verify before booking.</li>
+              <li>· Festival-aware pricing — fares reflect holiday demand, which is why December costs more.</li>
               <li>· Cheapest fare we found for each window, shown as a from-price — other dates in the window can cost more.</li>
               <li>· 2 checked bags included — basic economy fares excluded.</li>
               <li>· Max 1 stop. Economy cabin. Per-person round-trip.</li>
