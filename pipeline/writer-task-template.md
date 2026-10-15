@@ -11,6 +11,7 @@ set -a; source ~/workspace/.env.supabase; source ~/workspace/.env.openai; source
 - Open 2-3 source URLs via browser_open (Google News RSS URLs redirect to actual articles)
 - Cross-reference multiple sources for facts
 - If source_urls are empty, use browser_search with the title to find articles
+- **≥2-SOURCE GATE (mandatory, Kiran 2026-10-14):** the finished article's `sources` array must contain at least 2 legitimate sources — distinct pages you actually read, as `{"name": "<publication>", "url": "<specific page URL>"}`. Homepages don't count; duplicates count once. The inserter hard-refuses fewer than 2 (article HELD, not published). Never pad with an irrelevant or fabricated source; if a second legitimate source doesn't exist, skip the candidate and report why.
 
 ### Step 2: Write the Article
 Follow these rules exactly:
@@ -64,7 +65,7 @@ curl -sS "$SUPABASE_URL/rest/v1/p2_articles" \
     "category": "...",
     "vertical": "same as category",
     "tags": ["tag1","tag2","tag3"],
-    "sources": ["url1","url2"],
+    "sources": [{"name": "Publication Name", "url": "https://specific-article-url"}, {"name": "Second Source", "url": "https://second-article-url"}],
     "image_url": null,
     "image_caption": null,
     "image_attribution": null,

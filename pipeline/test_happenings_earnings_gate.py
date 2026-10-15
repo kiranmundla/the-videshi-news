@@ -5,7 +5,10 @@ Covers the fix for source-less, under-length earnings previews:
 - earnings brief with < 2 sources is suppressed
 - earnings brief under the 200-word floor is suppressed after one expansion retry
 - earnings brief meeting both bars is inserted WITH sources + word_count
-- non-earnings briefs are unaffected (no sources required, no word floor)
+- non-earnings briefs: UPDATED 2026-10-14 — Kiran extended the ≥2-source
+  gate to ALL new articles, so non-earnings briefs are now suppressed
+  without 2 verified sources too (no word floor for them). The earnings
+  cases above are unchanged from the 2026-10-13 spec.
 - get_earnings() attaches kind/symbol/sources (Nasdaq calendar + verified IR)
 
 Run: python3 -u test_happenings_earnings_gate.py   (no network, no publishing)
@@ -91,11 +94,23 @@ inserts, item, n = run_case([LONG_BODY], earnings_item(TWO_SOURCES[:1]))
 check("suppressed (no insert)", len(inserts) == 0)
 check("item left unlinked", not item.get("link"))
 
-print("D. non-earnings markets item, short body -> inserted as before (no regression)")
+print("D. non-earnings markets item, NO sources -> suppressed (≥2-source gate, 2026-10-14)")
 plain = {"label": "US Stock Markets Closed (Holiday)", "detail": "NYSE, Nasdaq",
          "category": "markets", "search_terms": [], "emoji": "🏛️", "start_time_utc": None}
 inserts, item, n = run_case([SHORT_BODY], plain)
+check("suppressed (no insert)", len(inserts) == 0)
+check("item left unlinked", not item.get("link"))
+
+print("D2. non-earnings item WITH 2 item sources -> inserted, sources attached, no word floor")
+plain2 = dict(plain, sources=[
+    {"name": "NYSE Holiday Calendar", "url": "https://www.nyse.com/markets/hours-calendars"},
+    {"name": "Nasdaq Trading Calendar", "url": "https://www.nasdaq.com/market-activity/stock-market-holiday-schedule"},
+])
+inserts, item, n = run_case([SHORT_BODY], plain2)
 check("inserted once", len(inserts) == 1)
+if inserts:
+    check("row carries the 2 sources", len(inserts[0].get("sources") or []) == 2)
+    check("no word_count imposed on non-earnings", "word_count" not in inserts[0])
 check("item linked", bool(item.get("link")))
 
 print("E. get_earnings() attaches kind/sources from the Nasdaq payload")

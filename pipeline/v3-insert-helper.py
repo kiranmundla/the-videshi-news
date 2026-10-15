@@ -43,6 +43,17 @@ def upload_image(local_path, slug):
 
 def insert_article(article_data):
     """Insert article into p2_articles."""
+    # ≥2-source publish gate (Kiran, approved 2026-10-14): refuse to
+    # insert a published/review article with fewer than 2 legitimate
+    # sources. Drafts are exempt (they are not published). See
+    # pipeline/source_gate.py.
+    if article_data.get("status") != "draft":
+        import source_gate
+        _gate_reason = source_gate.gate_failure(article_data.get("sources"))
+        if _gate_reason is not None:
+            print(f"🚫 HELD by ≥2-source gate — NOT inserted: "
+                  f"{article_data.get('headline')} — {_gate_reason}")
+            return None
     result = supabase_req("POST", "/rest/v1/p2_articles", article_data)
     if result and isinstance(result, list) and len(result) > 0:
         return result[0]

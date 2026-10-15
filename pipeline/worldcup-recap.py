@@ -948,6 +948,14 @@ def check_duplicate(slug):
 
 def publish_article(article):
     """Publish article to Supabase p2_articles."""
+    # ≥2-source publish gate (Kiran, approved 2026-10-14). See
+    # pipeline/source_gate.py.
+    import source_gate
+    _gate_reason = source_gate.gate_failure(article.get("sources"))
+    if _gate_reason is not None:
+        raise source_gate.SourceGateError(
+            f"HELD by ≥2-source gate — NOT published: "
+            f"{article.get('headline', '')[:60]} — {_gate_reason}")
     import requests as req
     r = req.post(
         f"{SB_URL}/rest/v1/p2_articles",

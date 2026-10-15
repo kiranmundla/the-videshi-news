@@ -21,6 +21,7 @@ Usage:
 
 import argparse
 import hashlib
+import html
 import json
 import os
 import re
@@ -197,6 +198,12 @@ def fetch_existing_fingerprints():
 
 def upsert_event(record):
     """Upsert a single event to Supabase. Returns True on success."""
+    # Decode HTML entities centrally (2026-10-14 audit N1: an ISKCON
+    # title reached the DB with a literal '&nbsp;' — the per-parser
+    # cleanup only hand-replaced 4 entities). All parsers funnel here.
+    for f in ("title", "venue_name"):
+        if record.get(f):
+            record[f] = html.unescape(record[f]).strip()
     payload = json.dumps(record)
     url = f"https://{SB_HOST}/rest/v1/events?on_conflict=source,source_id"
 

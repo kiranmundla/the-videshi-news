@@ -89,6 +89,14 @@ def upload_to_supabase(local_path, slug):
 
 def publish_article(article):
     """Publish one article to p2_articles."""
+    # ≥2-source publish gate (Kiran, approved 2026-10-14). See
+    # pipeline/source_gate.py.
+    import source_gate
+    _gate_reason = source_gate.gate_failure(article.get("sources"))
+    if _gate_reason is not None:
+        print(f"  🚫 HELD by ≥2-source gate — NOT published: "
+              f"{article.get('headline', '')[:60]} — {_gate_reason}")
+        return None
     now = datetime.now(timezone.utc).isoformat()
     slug = article["slug"]
     

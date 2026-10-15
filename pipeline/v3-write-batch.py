@@ -506,7 +506,16 @@ for i, art in enumerate(articles):
     
     # Remove None values
     article_data = {k: v for k, v in article_data.items() if v is not None}
-    
+
+    # ≥2-source publish gate (Kiran, approved 2026-10-14). See
+    # pipeline/source_gate.py.
+    import source_gate
+    _gate_reason = source_gate.gate_failure(article_data.get("sources"))
+    if _gate_reason is not None:
+        print(f"  🚫 HELD by ≥2-source gate — NOT published: "
+              f"{art['headline'][:60]} — {_gate_reason}")
+        continue
+
     result = supabase_post("p2_articles", article_data)
     
     if result and isinstance(result, list) and len(result) > 0:

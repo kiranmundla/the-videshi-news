@@ -255,19 +255,39 @@ def check_stale_publishing():
 # ─── Check 3: Stuck in review ─────────────────────────────────────────────────
 
 def check_stuck_review(fix=False):
-    """Articles in 'review' status for >1h — auto-publish on fix."""
+    """Articles in 'review' status for >1h — auto-publish on fix.
+
+    ≥2-source gate (Kiran, 2026-10-14): this auto-publish is a publish
+    event, so only rows carrying >= 2 legitimate sources are promoted.
+    Rows failing the gate stay in 'review' and are reported under
+    "held_source_gate" — they must gain a real second source (or be
+    drafted by an editor), never a padded one. See source_gate.py.
+    (Before this gate, the bulk PATCH below promoted EVERY review row,
+    including any with 0-1 sources.)"""
+    import source_gate
     stuck = sb_get("p2_articles",
-        "status=eq.review&select=id,headline,created_at&limit=50")
+        "status=eq.review&select=id,headline,created_at,sources&limit=50")
     fixed = 0
+    held = []
     if fix and stuck:
         now = utc_iso()
-        result = sb_patch("p2_articles", "status=eq.review",
-            {"status": "published", "published_at": now})
-        fixed = len(result) if isinstance(result, list) else 0
+        for a in stuck:
+            _reason = source_gate.gate_failure(a.get("sources"))
+            if _reason is not None:
+                held.append({"id": a["id"], "headline": a["headline"][:80],
+                             "reason": _reason})
+                print(f"  🚫 stuck_review: HELD '{a['headline'][:70]}' "
+                      f"in review — {_reason}")
+                continue
+            result = sb_patch("p2_articles", f"id=eq.{a['id']}",
+                {"status": "published", "published_at": now})
+            if isinstance(result, list) and result:
+                fixed += 1
     return {
         "check": "stuck_review",
         "count": len(stuck),
         "fixed": fixed,
+        "held_source_gate": held,
         "headlines": [a["headline"][:80] for a in stuck[:5]],
     }
 

@@ -6,6 +6,9 @@ Requires: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY (set -a; source .env.supabase)
 """
 import json, os, sys, glob, subprocess, datetime, re
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import source_gate  # ≥2-source publish gate (Kiran, 2026-10-14)
+
 DRAFT_DIR = os.path.expanduser("~/workspace/the-videshi-news/pipeline/.state/writer-drafts")
 SB = os.environ["SUPABASE_URL"].rstrip("/")
 KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
@@ -39,6 +42,15 @@ def main():
             continue
         payload = dict(d)
         payload["published_at"] = now
+        # ≥2-source publish gate (Kiran, approved 2026-10-14): this script
+        # publishes drafts as live articles, so a draft with fewer than 2
+        # legitimate sources is HELD (left in the drafts dir, reported in
+        # FAILED). See pipeline/source_gate.py.
+        _gate_reason = source_gate.gate_failure(payload.get("sources"))
+        if _gate_reason is not None:
+            print(f"🚫 HELD by ≥2-source gate: {payload['slug']} — {_gate_reason}")
+            failed.append(payload["slug"])
+            continue
         # check existing slug
         ex = curl_json(f"{SB}/rest/v1/p2_articles?select=id&slug=eq.{payload['slug']}&limit=1")
         if ex:

@@ -201,7 +201,16 @@ def process_article(article):
     print(f"\n{'='*60}")
     print(f"Processing: {article['headline']}")
     print(f"  Category: {article['category']}")
-    
+
+    # ≥2-source publish gate (Kiran, approved 2026-10-14): refuse before
+    # any image/network work. This is also trailer-watch.py's insert path
+    # for trailer briefs. See pipeline/source_gate.py.
+    import source_gate
+    _gate_reason = source_gate.gate_failure(article.get("sources"))
+    if _gate_reason is not None:
+        print(f"  🚫 HELD by ≥2-source gate — NOT inserted: {_gate_reason}")
+        return False
+
     # Image sourcing
     image_url = None
     image_caption = article.get("image_caption", "")

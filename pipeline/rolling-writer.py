@@ -838,7 +838,11 @@ Return a single JSON object with all these fields."""
         "vertical": result.get('vertical', 'general'),
         "tags": result.get('tags', []) or [],
         "slug": slug,
-        "sources": json.dumps(result.get('sources', [{"name": "The Videshi", "url": "https://thevideshi.com"}])),
+        # No fabricated fallback source (removed 2026-10-14): a missing
+        # sources list used to default to a self-citation, which is not
+        # a source. The ≥2-source gate in insert_article() holds the
+        # article instead. (≥2-source gate: Kiran, 2026-10-14.)
+        "sources": json.dumps(result.get('sources') or []),
         "diaspora_angle": result.get('diaspora_angle', ''),
         "article_type": result.get('article_type', 'report'),
         "newsworthiness": min(30, max(1, result.get('newsworthiness', 15))),
@@ -920,6 +924,17 @@ from image_sourcer import source_hero_image
 
 def insert_article(article):
     """Insert article into p2_articles via REST API."""
+    # ≥2-source publish gate (Kiran, approved 2026-10-14): these articles
+    # enter as 'review' and are auto-published by videshi-health once
+    # stuck >1h, so the gate applies HERE, at creation — an article that
+    # can never pass is held (topic stays unwritten) instead of entering
+    # the review queue. See pipeline/source_gate.py.
+    import source_gate
+    _gate_reason = source_gate.gate_failure(article.get("sources"))
+    if _gate_reason is not None:
+        print(f"  🚫 HELD by ≥2-source gate — NOT inserted: "
+              f"{article.get('headline', '')[:70]} — {_gate_reason}")
+        return None
     # Clean up internal fields not in DB
     db_article = {k: v for k, v in article.items()
                   if k not in ('image_search_query', 'image_must_show', 'image_entities')}

@@ -14,7 +14,17 @@ def main():
         if r not in article:
             print(f"ERROR: Missing required field: {r}", file=sys.stderr)
             sys.exit(1)
-    
+
+    # ≥2-source publish gate (Kiran, approved 2026-10-14). See
+    # pipeline/source_gate.py.
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import source_gate
+    _gate_reason = source_gate.gate_failure(article.get('sources'))
+    if _gate_reason is not None:
+        print(f"🚫 HELD by ≥2-source gate — NOT inserted: {article.get('headline')}", file=sys.stderr)
+        print(f"   {_gate_reason}", file=sys.stderr)
+        sys.exit(2)
+
     # Set defaults
     article.setdefault('vertical', article['category'])
     article.setdefault('image_url', None)

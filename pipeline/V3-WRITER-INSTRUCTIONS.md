@@ -48,6 +48,8 @@ If the candidate has `source_urls`: read 2-4 of them via `browser_open` to get a
 
 Cross-reference multiple sources — never rewrite a single wire story.
 
+**⚠️ ≥2-SOURCE GATE (mandatory, Kiran 2026-10-14):** Every article — every category, every type, no exceptions — must carry **at least 2 legitimate sources** in its `sources` array: distinct pages you actually read, each as `{"name": "<publication>", "url": "<specific article/page URL>"}`. A publication's homepage is NOT a source; the same URL twice counts once. The inserter (`v3-insert-article.py`) enforces this with a hard gate (shared `source_gate.py`): an article with fewer than 2 valid sources is **HELD — not inserted, topic not marked published** (exit code 2). If a candidate genuinely has only one readable source, find a second legitimate one (another outlet's coverage, the official release/statement, the regulator's page) or SKIP the candidate and say why in your report. **Never pad** with an irrelevant, duplicate, or fabricated source to satisfy the count — a held article is recoverable, a fake source is a trust violation.
+
 ### 3c. Write the article — PROFESSIONAL JOURNALISM STANDARD
 
 You are writing for The Videshi, a professional news publication for the Indian diaspora. Write like a senior journalist at Reuters, Bloomberg, or The Economist. Every article must include these structural elements:
@@ -170,7 +172,7 @@ If the sourcer returns no image, leave `image_url` as null. A missing image is a
 ### 3e. Insert into p2_articles
 Insert with `status="published"`. Required fields:
 - `headline`, `subheadline` (1-2 sentence summary for display below headline and on cards — NOT the key takeaways), `body` (HTML), `slug`, `category`, `vertical` (same as category)
-- `tags` (array), `sources` (array of source URLs used)
+- `tags` (array), `sources` (**≥2** legitimate sources as `{"name", "url"}` objects — see the ≥2-SOURCE GATE in 3b; the inserter refuses fewer)
 - `image_url`, `image_caption`, `image_attribution`
 - `word_count`, `diaspora_angle` (1-sentence summary)
 - `topic_id` (from candidate JSON)

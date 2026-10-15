@@ -301,6 +301,7 @@ Each article should be HTML with this structure:
 For Indian films, add a note on the diaspora angle — is it available dubbed/subtitled, does it require cultural context, how does it compare to the director's/star's previous work.
 
 CRITICAL RULES:
+- SOURCES: "sources" MUST list at least 2 DISTINCT outlets with the real URLs of the actual review pages from the search results (different pages — the same URL twice counts once, and an outlet's homepage is not a source). If the search results contain fewer than 2 real review sources for a movie, return it with "skip": true and a skip_reason instead of writing the review.
 - ONLY quote real reviews from the search results below. NEVER fabricate a quote.
 - Attribute EVERY quote to the specific outlet and reviewer if named.
 - If you can't find enough real quotes, use indirect summaries: "Critics at Variety praised..." rather than fake direct quotes.
@@ -421,16 +422,17 @@ def publish_article(article_data, movie_data):
     tags = article_data.get("tags", [])
     diaspora_angle = article_data.get("diaspora_angle", "")
 
-    # Format sources as URL strings (matching existing article format)
-    sources_raw = article_data.get("sources", [])
-    sources = []
-    for s in sources_raw:
-        if isinstance(s, dict):
-            url = s.get("url", "")
-            if url:
-                sources.append(url)
-        elif isinstance(s, str):
-            sources.append(s)
+    # Sources: normalize to {name, url} dicts (the corpus-canonical
+    # format) and enforce the ≥2-source publish gate (Kiran, 2026-10-14).
+    # A review synthesized from a single outlet is held, not published —
+    # supply more review sources or skip the film. Never pad.
+    import source_gate
+    sources = source_gate.valid_sources(article_data.get("sources", []))
+    if len(sources) < source_gate.MIN_SOURCES:
+        print(f"    🚫 REFUSING to publish review '{headline}': "
+              f"{len(sources)} valid source(s), need >={source_gate.MIN_SOURCES} "
+              f"(≥2-source gate). Widen the review search or skip this film.")
+        return None
 
     # Get poster from theater data for image_url
     poster_url = movie_data.get("poster_url", "")

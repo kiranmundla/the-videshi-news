@@ -578,6 +578,15 @@ for i, art in enumerate(articles):
         "published_at": NOW,
     }
 
+    # ≥2-source publish gate (Kiran, approved 2026-10-14). See
+    # pipeline/source_gate.py.
+    import source_gate
+    _gate_reason = source_gate.gate_failure(payload.get("sources"))
+    if _gate_reason is not None:
+        print(f"  🚫 HELD by ≥2-source gate — NOT inserted: "
+              f"{art['headline'][:60]} — {_gate_reason}", flush=True)
+        continue
+
     # Insert
     print(f"  Inserting article ({word_count} words)...", flush=True)
     result = supabase_post("p2_articles", payload)

@@ -28,6 +28,9 @@ import subprocess
 import sys
 from datetime import datetime, timezone, timedelta
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import source_gate  # ≥2-source publish gate (Kiran, 2026-10-14)
+
 PT = timezone(timedelta(hours=-7))  # PDT
 
 def today_pt():
@@ -1141,12 +1144,30 @@ def _generate_movie_brief(item: dict, date: str, api_key: str) -> dict | None:
         body += (f'<p><a href="/movies/{m["slug"]}">More about this film →</a></p>')
 
     title_tag = re.sub(r"[^a-z0-9]+", "-", (m.get("title") or "").lower()).strip("-")
+
+    # Legitimate sources for the ≥2-source gate (2026-10-14): the official
+    # trailer (already embedded in the body when found) and the film's
+    # showtimes/ticketing page from the movie data. Nothing else is
+    # claimed — if both are absent the gate suppresses the brief.
+    brief_sources = []
+    if trailer_id:
+        brief_sources.append({
+            "name": "Official Trailer — YouTube",
+            "url": f"https://www.youtube.com/watch?v={trailer_id}",
+        })
+    if m.get("ticket_url"):
+        brief_sources.append({
+            "name": "Showtimes & Tickets",
+            "url": m["ticket_url"],
+        })
+
     return {
         "headline": art.get("headline", item.get("label", ""))[:150],
         "subheadline": art.get("subheadline", ""),
         "body_html": body,
         "key_takeaways": art.get("key_takeaways", [])[:3],
         "tags": ["happening-brief", "movies"] + ([title_tag] if title_tag else []),
+        "sources": brief_sources,
     }
 
 def _word_count(html: str) -> int:
@@ -1154,6 +1175,13 @@ def _word_count(html: str) -> int:
     return len(re.sub(r"<[^>]+>", " ", html or "").split())
 
 def _insert_brief(article: dict) -> bool:
+    # ≥2-source gate backstop (2026-10-14): never POST a published brief
+    # that fails the gate, whatever the caller did upstream.
+    if article.get("status") == "published":
+        _reason = source_gate.gate_failure(article.get("sources"))
+        if _reason is not None:
+            print(f"  🚫 _insert_brief refused '{article.get('slug')}': {_reason}")
+            return False
     sb_url = os.environ["SUPABASE_URL"]
     sb_key = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
     r = subprocess.run(
@@ -1210,21 +1238,35 @@ def ensure_happening_briefs(items: list[dict], date: str, dry_run: bool = False)
             print(f"  ⚠️  brief generation failed for '{item.get('label')}' — left unlinked")
             continue
 
-        # ── Earnings gate (2026-10-13) ──────────────────────────────────
-        # Earnings briefs must meet the same standard as writer articles:
-        # >= 2 attached sources and the 200-word floor from the brief spec.
-        # If either can't be met honestly, suppress the brief (leave the
-        # happening unlinked) rather than publishing a source-less stub.
+        # ── ≥2-source gate (earnings 2026-10-13; ALL briefs 2026-10-14) ──
+        # Kiran (2026-10-14): the ≥2-source rule covers every new article,
+        # happenings briefs included. Sources are the item's own verified
+        # provenance (earnings: Nasdaq calendar + verified IR page) plus
+        # any the generator attached (movie briefs: official trailer +
+        # showtimes/ticketing page). A brief that cannot reach 2
+        # legitimate sources is suppressed — the happening stays unlinked
+        # — rather than published as a source-less stub. Never padded.
+        # Earnings briefs ADDITIONALLY keep their 200-word floor with one
+        # expansion retry (unchanged from 2026-10-13).
         is_earnings = item.get("kind") == "earnings"
-        brief_sources = []
+        brief_sources = [s for s in item.get("sources", [])
+                         if isinstance(s, dict) and s.get("url")]
+        # Generator-attached sources are merged ONLY for movie briefs,
+        # where _generate_movie_brief builds them deterministically in
+        # code (trailer + ticket page) — never from LLM output.
+        if category == "entertainment":
+            for _s in art.get("sources") or []:
+                if isinstance(_s, dict) and _s.get("url") and \
+                        _s["url"] not in {x["url"] for x in brief_sources}:
+                    brief_sources.append(_s)
+        _valid_sources = source_gate.valid_sources(brief_sources)
+        if len(_valid_sources) < source_gate.MIN_SOURCES:
+            print(f"  🚫 brief suppressed for '{item.get('label')}': "
+                  f"{len(_valid_sources)} verified source(s), need "
+                  f"{source_gate.MIN_SOURCES} (≥2-source gate)")
+            continue
         brief_words = 0
         if is_earnings:
-            brief_sources = [s for s in item.get("sources", [])
-                             if isinstance(s, dict) and s.get("url")]
-            if len(brief_sources) < EARNINGS_MIN_SOURCES:
-                print(f"  🚫 earnings brief suppressed for '{item.get('label')}': "
-                      f"{len(brief_sources)} verified source(s), need {EARNINGS_MIN_SOURCES}")
-                continue
             brief_words = _word_count(art.get("body_html", ""))
             if brief_words < EARNINGS_BRIEF_MIN_WORDS:
                 retry = dict(item, expand_brief=True, prev_words=brief_words)
@@ -1260,8 +1302,8 @@ def ensure_happening_briefs(items: list[dict], date: str, dry_run: bool = False)
             "published_at": now,
             "created_at": now,
         }
+        row["sources"] = brief_sources
         if is_earnings:
-            row["sources"] = brief_sources
             row["word_count"] = brief_words
         if _insert_brief(row):
             item["link"] = f"/articles/{slug}"

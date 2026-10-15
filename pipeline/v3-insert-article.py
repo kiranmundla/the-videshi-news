@@ -133,9 +133,26 @@ def main():
     
     with open(sys.argv[1]) as f:
         article = json.load(f)
-    
+
+    # ≥2-source publish gate (Kiran, approved 2026-10-14): no article may
+    # be published with fewer than 2 legitimate sources. The staged JSON
+    # stays on disk and the topic is NOT marked published — supply a
+    # second legitimate source and re-run. Never pad with an irrelevant
+    # or fabricated source. See pipeline/source_gate.py.
+    import source_gate
+    normalized_sources = normalize_sources(article.get('sources', []))
+    _gate_reason = source_gate.gate_failure(normalized_sources)
+    if _gate_reason is not None:
+        print(f"🚫 HELD by ≥2-source gate — NOT inserted: "
+              f"{article.get('headline')}", file=sys.stderr)
+        print(f"   {_gate_reason}", file=sys.stderr)
+        print("   Add a second legitimate source to the staged JSON and "
+              "re-run. Do NOT pad with an irrelevant source.",
+              file=sys.stderr)
+        sys.exit(2)
+
     now = datetime.now(timezone.utc).isoformat()
-    
+
     # Insert article
     insert_data = {
         'headline': article['headline'],
@@ -145,7 +162,7 @@ def main():
         'category': article['category'],
         'vertical': article.get('vertical', article['category']),
         'tags': article.get('tags', []),
-        'sources': normalize_sources(article.get('sources', [])),
+        'sources': normalized_sources,
         'image_url': article.get('image_url') or None,
         'image_caption': article.get('image_caption', ''),
         'image_attribution': article.get('image_attribution', ''),

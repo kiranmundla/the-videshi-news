@@ -43,7 +43,16 @@ def main():
     
     with open(sys.argv[1]) as f:
         article = json.load(f)
-    
+
+    # ≥2-source publish gate (Kiran, approved 2026-10-14) — same rule as
+    # v3-insert-article.py. See pipeline/source_gate.py.
+    import source_gate
+    _gate_reason = source_gate.gate_failure(article.get('sources'))
+    if _gate_reason is not None:
+        print(f"🚫 HELD by ≥2-source gate — NOT inserted: {article.get('headline')}")
+        print(f"   {_gate_reason}")
+        sys.exit(2)
+
     from datetime import datetime, timezone
     now = datetime.now(timezone.utc).isoformat()
     

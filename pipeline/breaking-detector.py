@@ -467,10 +467,12 @@ Return JSON with these exact fields:
 
     slug = generate_slug(result["headline"])
 
-    # Build sources JSON
-    article_sources = sources if sources else [
-        {"name": "Breaking Wire", "url": "https://www.reuters.com"}
-    ]
+    # Build sources JSON. No fabricated fallback (removed 2026-10-14):
+    # a missing sources list used to default to a "Breaking Wire"
+    # citation of the Reuters HOMEPAGE — a source the article never
+    # used. The ≥2-source gate in insert_article() now holds such
+    # articles instead. (≥2-source gate: Kiran, 2026-10-14.)
+    article_sources = sources or []
 
     article = {
         "headline": result["headline"],
@@ -504,6 +506,15 @@ Return JSON with these exact fields:
 
 def insert_article(article):
     """Insert article into Supabase."""
+    # ≥2-source publish gate (Kiran, approved 2026-10-14): these articles
+    # enter as 'review' and are auto-published by videshi-health once
+    # stuck >1h, so the gate applies at creation. See source_gate.py.
+    import source_gate
+    _gate_reason = source_gate.gate_failure(article.get("sources"))
+    if _gate_reason is not None:
+        print(f"  🚫 HELD by ≥2-source gate — NOT inserted: "
+              f"{article.get('headline', '')[:70]} — {_gate_reason}")
+        return None
     url = f"{SUPABASE_URL}/rest/v1/p2_articles"
     result = curl_json(url, method="POST", data=article, headers=HEADERS, timeout=30)
     if result and isinstance(result, list) and result:
