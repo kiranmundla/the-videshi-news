@@ -48,7 +48,7 @@ import argparse
 import json
 import re
 import sys
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 
 REPO = Path.home() / "workspace" / "the-videshi-news"
@@ -252,6 +252,21 @@ def mine_highlights(md_text, limit=5):
     return out
 
 
+def reader_date_range(iso_range):
+    """'2026-10-21 → 2026-10-27' -> 'Oct 21 → Oct 27'.
+
+    fare_from.date_range is rendered verbatim on destination cards;
+    ISO dates must never reach readers (holistic audit item 23,
+    2026-10-15). Falls back to the input on an unexpected shape."""
+    try:
+        dep, ret = [p.strip() for p in (iso_range or "").split("→")]
+        d1 = datetime.strptime(dep, "%Y-%m-%d")
+        d2 = datetime.strptime(ret, "%Y-%m-%d")
+        return f"{d1.strftime('%b')} {d1.day} → {d2.strftime('%b')} {d2.day}"
+    except Exception:
+        return iso_range
+
+
 def route_cells(r):
     """All calendar cells of a deals route (band-model `calendar`,
     plus legacy `calendars_by_weeks` for pre-2026-10-15 snapshots)."""
@@ -282,7 +297,7 @@ def intl_destination_fares(slug, intl_deals):
                 "route": rk,
                 "origin_metro": r.get("origin_metro"),
                 "dest_metro": r.get("dest_metro"),
-                "date_range": co["date_range"],
+                "date_range": reader_date_range(co.get("date_range")),
                 "duration_days": co.get("duration_days"),
                 "as_of": intl_deals.get("as_of"),
                 "cadence": "weekly",
@@ -319,7 +334,7 @@ def destination_fares(slug, deals, intl_deals=None):
                 "route": rk,
                 "origin_metro": r.get("origin_metro"),
                 "dest_metro": r.get("dest_metro"),
-                "date_range": co["date_range"],
+                "date_range": reader_date_range(co.get("date_range")),
                 "duration_days": co.get("duration_days"),
                 "weeks": co.get("weeks"),
                 "as_of": deals.get("as_of"),
