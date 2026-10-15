@@ -1,0 +1,61 @@
+[
+  {
+    "id": "932887ca-c844-4643-8e46-d80bbd0ccf34",
+    "headline": "Ghost Soldier Trailer Out: Jim Caviezel",
+    "slug": "ghost-soldier-trailer-out-jim-caviezel",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "The headline should include 'Trailer' instead of just 'Trailer Out: Jim Caviezel' to match the format.",
+        "The drop date should be stated more clearly in the headline or body to avoid confusion.",
+        "Ensure that the trailer embed is placed prominently within the article for better visibility."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "99ef92ec-3ead-4f96-b510-f0d89dcd52bf",
+    "headline": "The Greatest Trailer Out: Jaalen Best as Muhammad Ali",
+    "slug": "the-greatest-trailer-out-jaalen-best-as-muhammad-ali",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 3,
+      "suggestions": [
+        "Correct the headline to follow the 'Film Teaser/Trailer Out' format.",
+        "Ensure the film name is accurate; the title should be 'The Greatest' not 'The Greatest Trailer'.",
+        "Include the correct embed for the trailer instead of just mentioning it.",
+        "Remove any unnecessary fluff and focus on the essential details."
+      ],
+      "embed_opportunities": [
+        "Embed the official trailer from YouTube directly in the article."
+      ]
+    }
+  },
+  {
+    "id": "9f820edc-3819-41ee-9104-6056a31a5c71",
+    "headline": "Enna Vilai Trailer Out: Karunas, Nimisha Sajayan",
+    "slug": "enna-vilai-trailer-out-karunas-nimisha-sajayan",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Change the headline to 'Enna Vilai Trailer Out' to match the format.",
+        "Ensure the trailer drop date is clearly stated as October 14, 2026, in the body.",
+        "Clarify that the trailer is available on Netflix India."
+      ],
+      "embed_opportunities": [
+        "Consider adding a Tweet or Instagram embed to enhance engagement."
+      ]
+    }
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "13e22541-c349-466d-ab96-7d2c960e29d9",
+    "headline": "Morgan Stanley Beats Estimates as Bank of America Misses on $1.2 Billion Settlem",
+    "slug": "morgan-stanley-beats-estimates-bank-of-america-misses-settlement-charge",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the impact of Bank of America's $1.2 billion settlement on its overall financial health, providing specific figures on how this affects future earnings or shareholder returns.",
+        "Include a brief explanation of what the $1.2 billion settlement entails for readers who may not be familiar with the context of the anti-money-laundering issues.",
+        "Add a comparison of stock performance for both banks over the past month to give readers a clearer picture of market reactions beyond just the immediate post-earnings report."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Bank of America or Morgan Stanley that highlights their earnings results or the implications of the settlement for added context."
+      ]
+    }
+  }
+]

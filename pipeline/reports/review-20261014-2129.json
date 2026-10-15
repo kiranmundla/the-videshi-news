@@ -1,0 +1,134 @@
+[
+  {
+    "id": "03a88ecd-cb0e-4ee4-bd3b-852d891157cd",
+    "headline": "Himalayan Floods Test Whether India China Nepal Can Share Warnings",
+    "slug": "himalayan-floods-india-china-nepal-share-warnings",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the rock-and-ice collapse occurred in relation to the disaster's impact. This will help readers understand the sequence of events leading to the flooding.",
+        "Provide more context on the proposed trilateral Himalayan Climate Resilience Mechanism, including any specific actions that have been taken or are planned, and how this could impact future disaster preparedness.",
+        "Include a direct quote from a relevant authority or expert on the implications of the disaster and the proposed cooperation between the three countries. This would enhance the article's attribution and provide a human element to the reporting.",
+        "Ensure that the financial estimates are consistent and clear throughout the article. For instance, the initial mention of recovery costs at $4.77 billion should be clearly linked to the earlier figure of $2.69 billion for financial damage to avoid confusion."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or statement from Nepal's Prime Minister regarding the proposed trilateral cooperation for disaster management to provide readers with direct insight into the government's stance."
+      ]
+    }
+  },
+  {
+    "id": "6d21e278-1cc4-476e-8c1e-9f70e633ea82",
+    "headline": "US Firm Reflect Orbital Buys Two Skyroot Launches After Vikram-1 Success",
+    "slug": "skyroot-reflect-orbital-two-launches-vikram-1-us-contract",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the expected launch dates for the Vikram-1 and Vikram-1U missions, even if they are tentative.",
+        "Provide more context about the significance of the Vikram-1's success in July 2026 and how it impacts the commercial launch landscape, particularly for Skyroot Aerospace.",
+        "Include a brief explanation of the implications of the deal for the space industry, such as how it addresses the current launch capacity shortage mentioned by Ben Nowack.",
+        "Ensure that the quote from Ben Nowack is complete and not cut off at the end, as it currently ends abruptly with 'Nowack said the company was recently li'."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "06e457f8-a810-4085-bb3f-f22647f7017e",
+    "headline": "Indian American Philanthropists in Dallas Reaffirm Local Giving Amid Divisive Rh",
+    "slug": "indian-american-philanthropists-dallas-reaffirm-local-giving",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Ensure all statements are attributed to specific individuals or organizations to enhance credibility. For example, include quotes from leaders at the summit to provide firsthand perspectives.",
+        "Provide more context about the recent racially charged rhetoric mentioned in the article to clarify why the statement was made and its significance.",
+        "Include specific examples of local nonprofits or initiatives that have benefited from Indian American philanthropy to illustrate the impact of their giving.",
+        "Clarify the relationship between the summit and the statement issued, possibly by including details about discussions or resolutions made during the event."
+      ],
+      "embed_opportunities": [
+        "Consider embedding a video or audio clip from the summit to provide a more dynamic representation of the event.",
+        "Embed social media posts from attendees or organizers to showcase real-time reactions and engagement during the summit."
+      ]
+    }
+  },
+  {
+    "id": "d58cbe3d-0513-46b3-898a-d75badce40d8",
+    "headline": "Samson Hits 100 T20I Sixes as West Indies Level Series in Hyderabad Thriller",
+    "slug": "samson-100-t20i-sixes-west-indies-level-series-hyderabad",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the match outcome for the series by including the current series standings and implications for the final match in Bengaluru on October 17.",
+        "Provide more context on Sanju Samson's achievement of reaching 100 sixes in T20 internationals, such as how this compares to other players in the format and any relevant statistics about his performance in the series.",
+        "Include quotes from players or coaches to enhance the narrative and provide insights into the match dynamics and player performances."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ICC or a relevant sports news outlet highlighting Samson's milestone or the match result."
+      ]
+    }
+  },
+  {
+    "id": "e7a575dc-9d83-45da-8cf7-ba2a38b3940a",
+    "headline": "Nvidia's Jensen Huang Says He Would Cut Off Customers Building Unsafe AI",
+    "slug": "nvidia-jensen-huang-cut-off-customers-unsafe-ai",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of Huang's statements by including the date of the interview and any relevant upcoming events related to Nvidia or AI safety discussions.",
+        "Provide more context on the implications of Huang's statements regarding AI safety, such as what constitutes 'unsafe AI' and the potential consequences for developers if Nvidia were to cut off supplies.",
+        "Include a brief overview of Nvidia's role in the AI industry, particularly how its chips are used and the significance of its position in the ongoing safety debate.",
+        "Add a quote or specific data point from the AI safety research that Nvidia is funding, to give readers a clearer understanding of what the $250 million donation aims to achieve."
+      ],
+      "embed_opportunities": [
+        "Embed the official Bloomberg interview clip with Jensen Huang for readers to access the full context of his remarks."
+      ]
+    }
+  },
+  {
+    "id": "66d9684d-8105-4da5-ae0e-db00128ebda5",
+    "headline": "London's Diwali on the Square Returns October 25 With 200 Dancers",
+    "slug": "london-diwali-on-the-square-2026-october-25-trafalgar",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the event by correcting it to October 25, 2026, as it currently states 'Sunday, October 25' without the year, which could lead to confusion.",
+        "Include more specific details about the food stalls, such as examples of dishes that will be available, to enhance completeness and provide readers with a clearer expectation.",
+        "Add a quote from Mayor Sadiq Khan or an event organizer to enhance attribution and provide a personal touch to the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official Mayor of London tweet announcing the event to provide readers with direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "29341850-ee2a-4443-9790-8cfba76907da",
+    "headline": "Peter Nagy, Gallerist Who Put Indian Contemporary Art on World Map, Dies at 67",
+    "slug": "peter-nagy-nature-morte-founder-dies-67-indian-contemporary-art",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events surrounding Nagy's death. Include the exact date of his passing and any relevant details about the illness he suffered from, if available.",
+        "Provide more context on Nagy's impact on the Indian contemporary art scene. This could include specific exhibitions or milestones that highlight his contributions beyond just naming artists he supported.",
+        "Ensure consistency in the article by avoiding repetitive phrases. For example, the phrase 'Nature Morte' appears multiple times in close proximity; consider rephrasing to improve flow.",
+        "Add a quote from a notable figure in the art world or a statement from Nature Morte to provide a personal touch and further validate Nagy's influence."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Nature Morte or a prominent figure in the art community expressing condolences or reflecting on Nagy's legacy."
+      ]
+    }
+  }
+]
