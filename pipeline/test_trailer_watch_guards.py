@@ -185,5 +185,23 @@ check("filter: #418 trailer still passes",
 check("filter: Narnia trailer still passes",
       is_trailer("NARNIA: THE MAGICIAN\u2019S NEPHEW | Official Trailer | Netflix") is True)
 
+# --------------------------------------- published-briefs query encoding
+# 2026-10-14: sb_fetch_published_briefs hand-built its PostgREST query and
+# embedded the ISO since-timestamp raw; its '+00:00' decoded as a space,
+# PostgREST returned HTTP 400 (Postgres 22007), and the error object was
+# silently read as "no briefs" — the cross-run duplicate guard was inert
+# in production. The query builder must round-trip every value intact.
+from urllib.parse import parse_qs
+
+build_q = _ns["_published_briefs_query"]
+SINCE_ISO = "2026-04-18T02:12:01.150201+00:00"
+qs = parse_qs(build_q(SINCE_ISO, 400))
+check("query: published_at survives URL round-trip ('+00:00' intact)",
+      qs.get("published_at") == [f"gte.{SINCE_ISO}"])
+check("query: or-filter survives URL round-trip",
+      qs.get("or") == ["(headline.like.*Trailer Out*,headline.like.*Teaser Out*)"])
+check("query: no raw '+' anywhere in the built query string",
+      "+" not in build_q(SINCE_ISO, 400))
+
 print(f"\n{total - fails}/{total} pass")
 sys.exit(1 if fails else 0)

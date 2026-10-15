@@ -15,6 +15,7 @@ recent drops surface. Subsequent runs: only genuinely new uploads.
 """
 import json, os, re, sys, subprocess, html, unicodedata
 from datetime import datetime, timezone, timedelta
+from urllib.parse import urlencode, quote
 from xml.etree import ElementTree as ET
 try:
     from cast_strip import render_cast_strip_block
@@ -762,6 +763,39 @@ def sb_check_slug(slug):
         return False
 
 
+def _published_briefs_query(since_iso, limit):
+    """Query string for sb_fetch_published_briefs, fully URL-encoded.
+
+    2026-10-14: the old hand-built query embedded the ISO timestamp raw,
+    and its '+00:00' suffix decoded as a SPACE in the query string —
+    PostgREST rejected the timestamp (Postgres 22007, HTTP 400) and
+    returned an error OBJECT, which the caller silently treated as "no
+    briefs", leaving the cross-run duplicate guard inert in production.
+    Every value is now urlencode()d so no character can break it again."""
+    return urlencode([
+        ("select", "id,slug,headline,body,sources"),
+        ("status", "eq.published"),
+        ("category", "eq.entertainment"),
+        ("published_at", f"gte.{since_iso}"),
+        ("or", "(headline.like.*Trailer Out*,headline.like.*Teaser Out*)"),
+        ("order", "published_at.desc"),
+        ("limit", str(limit)),
+    ], quote_via=quote)
+
+
+def _guard_inert(reason):
+    """Loud warning when the cross-run duplicate guard cannot run.
+
+    A silently-empty guard looks exactly like "no duplicates exist" —
+    that failure mode shipped the duplicate #418 brief on 2026-10-13's
+    class of bug. Print to stdout AND stderr so no run report can miss
+    that this run had NO cross-run duplicate protection."""
+    msg = (f"  ⚠️⚠️ CROSS-RUN DUPLICATE GUARD INERT: {reason} — "
+           "proceeding WITHOUT protection against duplicate briefs")
+    print(msg)
+    print(msg, file=sys.stderr)
+
+
 def sb_fetch_published_briefs(limit=400):
     """Recent published trailer/teaser briefs, for cross-run film matching.
 
@@ -774,23 +808,29 @@ def sb_fetch_published_briefs(limit=400):
     sb_url = os.environ.get("SUPABASE_URL", "")
     sb_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
     if not sb_url or not sb_key:
+        _guard_inert("SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY not set")
         return []
     since = (datetime.now(timezone.utc) - timedelta(days=180)).isoformat()
-    q = ("select=id,slug,headline,body,sources&status=eq.published"
-         "&category=eq.entertainment"
-         f"&published_at=gte.{since}"
-         "&or=(headline.like.*Trailer%20Out*,headline.like.*Teaser%20Out*)"
-         f"&order=published_at.desc&limit={limit}")
+    q = _published_briefs_query(since, limit)
     r = subprocess.run(
         ["curl", "-sS", "--max-time", "20",
          f"{sb_url}/rest/v1/p2_articles?{q}",
          "-H", f"apikey: {sb_key}", "-H", f"Authorization: Bearer {sb_key}"],
         capture_output=True, text=True, timeout=25)
+    if r.returncode != 0:
+        _guard_inert(f"curl failed (exit {r.returncode}): "
+                     f"{r.stderr.strip()[:200]}")
+        return []
     try:
         rows = json.loads(r.stdout)
-        return rows if isinstance(rows, list) else []
-    except Exception:
+    except Exception as e:
+        _guard_inert(f"unparseable Supabase response: {e}")
         return []
+    if not isinstance(rows, list):
+        detail = rows.get("message") if isinstance(rows, dict) else str(rows)[:200]
+        _guard_inert(f"Supabase returned a non-list response: {detail}")
+        return []
+    return rows
 
 
 def find_cross_run_match(key, briefs):
