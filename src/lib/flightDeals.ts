@@ -246,7 +246,7 @@ export function fmtRange(start: string, end: string): string {
     day: "numeric",
     ...(sameYear ? {} : { year: "numeric" }),
   });
-  return `${sTxt} – ${eTxt}`;
+  return `${sTxt} → ${eTxt}`;
 }
 
 export function googleFlightsUrl(origin: string, dest: string, dep: string, ret: string): string {
@@ -458,8 +458,9 @@ export type MetroFare = {
   route: RouteData;
   entry: CalendarEntry;
   source: "daily" | "weekly";
-  /** Honest per-fare freshness, e.g. "fares checked Oct 15, 2026"
-   *  (daily) or "checked weekly · Oct 15, 2026" (grid). Built from
+  /** Honest per-fare freshness, in the page's two standard stamp
+   *  formats (audit item 22, 2026-10-15): "Checked Oct 15, 2026"
+   *  (daily) or "Checked weekly · Oct 15, 2026" (grid). Built from
    *  the winning cell's own fetched_as_of, never the file's date. */
   checkedLabel: string;
 };
@@ -492,8 +493,8 @@ export function metroFaresForOrigin(
       source,
       checkedLabel: checked
         ? source === "daily"
-          ? `fares checked ${fmtDateLong(checked)}`
-          : `checked weekly · ${fmtDateLong(checked)}`
+          ? `Checked ${fmtDateLong(checked)}`
+          : `Checked weekly · ${fmtDateLong(checked)}`
         : "",
     });
   }
@@ -516,6 +517,31 @@ export function tripLengthLabel(entry: CalendarEntry): string {
   if (entry.duration_days) return `${entry.duration_days}-day trip`;
   if (entry.weeks) return `${entry.weeks}-week trip`;
   return "round trip";
+}
+
+/** Festival advice for a price card (holistic audit item 16,
+ * 2026-10-15 — fixes the template, not the instances): the
+ * "Book N months ahead for best fares" clause is appended ONLY while
+ * that advice is still actionable. Once the departure is inside the
+ * book-by window (today is past departure − book_by_months), the
+ * clause is expired advice and is suppressed; the season note alone
+ * renders. Book-by messaging otherwise belongs to the urgency strip,
+ * which computes the window state correctly. */
+export function festivalAdvice(
+  entry: CalendarEntry,
+  season: FestivalSeason,
+  today: Date = new Date(),
+): string {
+  const dep = new Date(entry.dep_date + "T12:00:00");
+  const bookBy = new Date(dep);
+  bookBy.setMonth(bookBy.getMonth() - season.book_by_months);
+  const todayStart = new Date(
+    today.getFullYear(),
+    today.getMonth(),
+    today.getDate(),
+  );
+  if (todayStart >= bookBy) return season.note;
+  return `${season.note} · Book ${season.book_by_months} months ahead for best fares`;
 }
 
 /** Cheapest fare departing within the next `months` months. */

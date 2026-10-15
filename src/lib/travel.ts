@@ -357,6 +357,21 @@ export function visaBadgeLabel(status: VisaStatus): string {
   }
 }
 
+/* Notes that merely restate the badge (holistic audit item 10,
+ * 2026-10-15): the badge already says it, so destination index cards
+ * print the note only when it adds a condition, a duration, or a
+ * mechanism beyond the badge (ILP, transit exception, ETA, …). */
+const RESTATING_VISA_NOTES = new Set([
+  "No visa needed",
+  "No visa (Indian citizen)",
+  "Domestic — no visa",
+  "e-Visa required for India",
+]);
+
+export function visaNoteAddsInfo(info: VisaInfo): boolean {
+  return !!info.note && !RESTATING_VISA_NOTES.has(info.note.trim());
+}
+
 /* ------------------------------------------------------------------ */
 /* Data fetching                                                      */
 /* ------------------------------------------------------------------ */
