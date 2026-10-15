@@ -6,6 +6,7 @@ import Masthead from "@/components/Masthead";
 import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import FlightDeals from "@/components/FlightDeals";
+import TrendingDestinations from "@/components/TrendingDestinations";
 import {
   DestinationsByMonth,
   HolidayPlanner,
@@ -285,7 +286,10 @@ export default function TravelPage() {
           </div>
         ) : (
           <>
-            {/* ── Holiday Planner (lead) ─────────────────────── */}
+            {/* ── Top Destinations to Visit (trending rail) ──── */}
+            <TrendingDestinations />
+
+            {/* ── Holiday Planner ────────────────────────────── */}
             <HolidayPlanner />
 
             {/* ── Destinations by Month ──────────────────────── */}
