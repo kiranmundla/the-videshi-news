@@ -7,10 +7,7 @@ import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import FlightDeals from "@/components/FlightDeals";
 import TrendingDestinations from "@/components/TrendingDestinations";
-import {
-  BookByUrgencyStrip,
-  DestinationsByMonth,
-} from "@/components/TravelPlannerSections";
+import { BookByUrgencyStrip } from "@/components/TravelPlannerSections";
 import {
   REGIONS,
   DESTINATIONS,
@@ -290,8 +287,14 @@ export default function TravelPage() {
                 component and planner data stay in place, parked —
                 restoring is re-adding this render + its import. ── */}
 
-            {/* ── Destinations by Month (demoted + slimmed) ──── */}
-            <DestinationsByMonth />
+            {/* ── "Best Places to Go — by Month" REMOVED 2026-10-15
+                (Kiran: "Park it entirely, no filter" — no slimmed
+                month-filter salvage). The DestinationsByMonth
+                component stays in TravelPlannerSections.tsx, parked —
+                restoring is re-adding this render + its import.
+                The travel-by-month data pipeline keeps running
+                untouched: its season data feeds the trending score
+                and the "In season now" card tags. ── */}
 
             {/* ── Holder Status Toggle (page-level) ──────────── */}
             <section className="mb-6">

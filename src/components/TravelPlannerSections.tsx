@@ -79,7 +79,13 @@ export function BookByUrgencyStrip() {
 }
 
 /* ================================================================== */
-/* Destinations by Month                                              */
+/* Destinations by Month — PARKED 2026-10-15 (Kiran)                  */
+/*                                                                    */
+/* Not rendered anywhere: the "Best Places to Go — by Month" section  */
+/* was removed from /travel entirely ("park it entirely, no          */
+/* filter"). Kept intact for a possible later return — restore by    */
+/* re-adding the render + import in TravelPage.tsx. The underlying   */
+/* travel-by-month data still feeds trending + season tags.           */
 /* ================================================================== */
 
 export function DestinationsByMonth() {
