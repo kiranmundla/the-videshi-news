@@ -19,7 +19,7 @@ import { ChevronRight } from "lucide-react";
 /* regeneration lands first. International + India are all eligible.  */
 /* ------------------------------------------------------------------ */
 
-const TOP_TIER_USA = new Set(["hawaii", "alaska", "yellowstone"]);
+const TOP_TIER_USA = new Set(["hawaii", "alaska", "national-parks"]);
 const MAX_CARDS = 8;
 const GAP = 16;
 

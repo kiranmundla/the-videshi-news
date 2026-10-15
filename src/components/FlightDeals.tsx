@@ -97,7 +97,8 @@ function PriceCard({
         </div>
         <div className="text-right flex-shrink-0">
           <div className={`text-xl font-bold tracking-tight ${isBest ? "text-emerald-600 dark:text-emerald-400" : "text-foreground"}`}>
-            ${entry.price_min.toLocaleString()}–${entry.price_max.toLocaleString()}
+            <span className="text-[13px] font-semibold text-foreground/45 mr-1">from</span>
+            ${entry.price_min.toLocaleString()}
           </div>
           <div className="text-[11px] text-foreground/45">per person round-trip</div>
         </div>
@@ -345,7 +346,7 @@ export default function FlightDeals() {
             <p className="font-semibold text-foreground/75 mb-1">Our pricing promise</p>
             <ul className="space-y-1 list-none">
               <li>· Prices checked {fmtDateLong(data.as_of)} — fares change frequently, always verify before booking.</li>
-              <li>· Ranges shown ($890–$950), never fake-precise single numbers.</li>
+              <li>· Cheapest fare we found for each window, shown as a from-price — other dates in the window can cost more.</li>
               <li>· 2 checked bags included — basic economy fares excluded.</li>
               <li>· Max 1 stop. Economy cabin. Per-person round-trip.</li>
               <li>

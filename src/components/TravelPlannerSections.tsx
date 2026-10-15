@@ -88,7 +88,7 @@ export function HolidayPlanner() {
                 <div className="mt-3 bg-emerald-500/10 border border-emerald-500/25 rounded-xl px-3 py-2">
                   <div className="flex items-center gap-1.5 text-[13px] font-bold text-emerald-700 dark:text-emerald-400">
                     <Plane className="h-3.5 w-3.5" />
-                    {route.origin} → {route.destination}: ${fare.price_min.toLocaleString()}–${fare.price_max.toLocaleString()}
+                    {route.origin} → {route.destination}: from ${fare.price_min.toLocaleString()}
                   </div>
                   <div className="text-[11px] text-foreground/50 mt-0.5">
                     {fare.weeks}-week trip {fmtRange(fare.dep_date, fare.ret_date)} · per person · fares checked {deals.as_of}
