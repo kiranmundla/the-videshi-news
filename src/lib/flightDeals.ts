@@ -381,6 +381,125 @@ export function cheapestIntlFare(
   return null;
 }
 
+/* ------------------------------------------------------------------ */
+/* India metros grid (flight-deals-metros.json) — the weekly grid     */
+/* behind the India Metros Scroll (Kiran, 2026-10-15). The daily      */
+/* core covers 12 routes; the grid's 38 pairs (incl. CCU from every   */
+/* origin) refresh weekly through daily slices. Merged UNDER the      */
+/* daily data: for any route present in both, the DAILY fare wins.    */
+/* Grid fares carry their own check date and a "checked weekly"       */
+/* label — never the daily snapshot's date.                           */
+/* ------------------------------------------------------------------ */
+
+export const INDIA_METROS: { code: string; name: string }[] = [
+  { code: "DEL", name: "Delhi" },
+  { code: "BOM", name: "Mumbai" },
+  { code: "BLR", name: "Bengaluru" },
+  { code: "HYD", name: "Hyderabad" },
+  { code: "CCU", name: "Kolkata" },
+];
+
+/** Weekly metros grid data (public/data/flight-deals-metros.json). */
+export type MetrosDealsData = {
+  generated_at: string;
+  as_of: string;
+  cadence?: string;
+  indicative?: boolean;
+  band?: FareBand;
+  routes: Record<string, RouteData>;
+};
+
+let metrosCache: Promise<MetrosDealsData | null> | null = null;
+export function loadMetrosFlightDeals(): Promise<MetrosDealsData | null> {
+  if (!metrosCache) {
+    metrosCache = fetch("/data/flight-deals-metros.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null);
+  }
+  return metrosCache;
+}
+
+/** Merge the grid under the daily snapshot: same route key in both →
+ *  the daily route wins (fresher, fuller cadence). */
+export function mergeDealRoutes(
+  daily: FlightDealsData | null,
+  metros: MetrosDealsData | null,
+): Record<string, RouteData> {
+  return { ...(metros?.routes ?? {}), ...(daily?.routes ?? {}) };
+}
+
+/** Where a merged route's data came from. */
+export function dealRouteSource(
+  routeKey: string,
+  daily: FlightDealsData | null,
+): "daily" | "weekly" {
+  return daily?.routes[routeKey] ? "daily" : "weekly";
+}
+
+/** The reader's origin airport, resolved against the COMBINED route
+ *  pool (daily ∪ grid) — the grid gives every tracked origin all five
+ *  metros, so origin resolution must see both files. Null when no Hub
+ *  location is stored. */
+export function detectMetrosOrigin(
+  daily: FlightDealsData | null,
+  metros: MetrosDealsData | null,
+): string | null {
+  const keys = Object.keys(mergeDealRoutes(daily, metros));
+  if (!keys.length) return null;
+  const rk = detectHubRoute(keys);
+  return rk ? rk.split("-")[0] : null;
+}
+
+export type MetroFare = {
+  /** Destination airport code (DEL/BOM/BLR/HYD/CCU). */
+  metro: string;
+  metroName: string;
+  routeKey: string;
+  route: RouteData;
+  entry: CalendarEntry;
+  source: "daily" | "weekly";
+  /** Honest per-fare freshness, e.g. "fares checked Oct 15, 2026"
+   *  (daily) or "checked weekly · Oct 15, 2026" (grid). Built from
+   *  the winning cell's own fetched_as_of, never the file's date. */
+  checkedLabel: string;
+};
+
+/** One fare per India metro for `origin`, in canonical metro order.
+ *  Metros whose route has no upcoming fare are OMITTED — the rail
+ *  shows real fares only, never a placeholder or a borrowed route. */
+export function metroFaresForOrigin(
+  daily: FlightDealsData | null,
+  metros: MetrosDealsData | null,
+  origin: string,
+): MetroFare[] {
+  const out: MetroFare[] = [];
+  for (const { code, name } of INDIA_METROS) {
+    const routeKey = `${origin}-${code}`;
+    const dailyRoute = daily?.routes[routeKey];
+    const route = dailyRoute ?? metros?.routes[routeKey];
+    if (!route) continue;
+    const c = cheapestFare(route, 3);
+    if (!c) continue;
+    const source = dailyRoute ? "daily" : "weekly";
+    const checked = c.entry.fetched_as_of ??
+      (source === "daily" ? daily?.as_of : metros?.as_of);
+    out.push({
+      metro: code,
+      metroName: name,
+      routeKey,
+      route,
+      entry: c.entry,
+      source,
+      checkedLabel: checked
+        ? source === "daily"
+          ? `fares checked ${fmtDateLong(checked)}`
+          : `checked weekly · ${fmtDateLong(checked)}`
+        : "",
+    });
+  }
+  return out;
+}
+
 /** Entries still bookable: departure today or later. Stale snapshot
  *  windows are dropped at render so old prices never pose as current. */
 export function futureEntries(route: RouteData, from: string = todayStr()): CalendarEntry[] {
