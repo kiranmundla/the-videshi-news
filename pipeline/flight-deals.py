@@ -59,7 +59,13 @@ Usage:
         date in `fetched_as_of` (snapshot + history), never today's.)
 
 Rate-limit etiquette (honor the provider's own signals, never circumvent):
-a response carrying the per-user limit WITH a retry_after is honored —
+live searches are PACED — a minimum interval between live request
+starts (default 7s ≈ 8.6/min, headroom under Duffel's published
+10-requests/60s search limit; --pace-seconds or DUFFEL_PACE_SECONDS,
+0 disables) is the PRIMARY defense, so runs spread their requests
+instead of bursting into the per-user throttle whose retry_after
+escalates to 3600s. Cache replays are never paced. As BACKSTOP, a
+response carrying the per-user limit WITH a retry_after is honored —
 the run pauses for the stated duration (plus small jitter) and resumes
 the SAME run, up to a bounded pause budget (default: max 10 pauses or
 20 minutes of total waiting per invocation). A hard 429 WITHOUT a
@@ -70,6 +76,7 @@ and the exit code is non-zero.
 
 import argparse
 import json
+import os
 import random
 import subprocess
 import sys
@@ -257,6 +264,7 @@ RUN_STATE_FILE = STATE_DIR / "flight-deals-run-state.json"
 
 # Injectable for tests.
 SLEEP_FN = time.sleep
+NOW_FN = time.monotonic
 JITTER_FN = lambda: random.uniform(0, 5)  # noqa: E731
 
 
@@ -285,6 +293,71 @@ class PauseBudget:
 
 
 PAUSES = PauseBudget()
+
+# Pacing (Kiran, 2026-10-15: "Let's pace our queries"). Duffel's
+# published search limit is 10 requests/60s; 7s between live request
+# starts caps us at ~8.6/min sustained — real headroom, not riding
+# the line — and removes the burst pattern that trips the per-user
+# throttle with its escalating retry_after. The interval is between
+# request STARTS: a search that itself takes >= the interval adds no
+# wait at all, so slow provider days pace themselves.
+DEFAULT_PACE_SECONDS = 7.0
+
+
+class Pacer:
+    """Minimum spacing between LIVE Duffel request starts.
+
+    Every real provider attempt passes through wait() exactly once
+    (in _duffel_search_once — the single choke point shared by the
+    daily, --intl and --metros modes). Cache replays never reach it:
+    cached work stays free AND instant. The PauseBudget etiquette is
+    untouched and remains the backstop for when the provider
+    throttles anyway.
+    """
+
+    def __init__(self, interval_s=DEFAULT_PACE_SECONDS):
+        self.interval_s = max(0.0, float(interval_s))
+        self.last_start = None
+        self.requests = 0       # live attempts that passed through
+        self.total_wait_s = 0.0
+
+    def wait(self):
+        """Sleep until >= interval since the previous live request
+        start, then stamp this request's start. Returns the seconds
+        waited (0 for the first request, and when pacing is off)."""
+        now = NOW_FN()
+        waited = 0.0
+        if self.interval_s > 0 and self.last_start is not None:
+            shortfall = self.interval_s - (now - self.last_start)
+            if shortfall > 0:
+                SLEEP_FN(shortfall)
+                waited = shortfall
+                now = NOW_FN()
+        self.last_start = now
+        self.requests += 1
+        self.total_wait_s += waited
+        return waited
+
+
+PACER = Pacer()
+
+
+def resolve_pace_seconds(cli_value):
+    """Pacing interval resolution: --pace-seconds beats the
+    DUFFEL_PACE_SECONDS env var beats DEFAULT_PACE_SECONDS. An
+    unparseable env value is ignored (with a warning) rather than
+    crashing a scheduled run."""
+    if cli_value is not None:
+        return float(cli_value)
+    raw = os.environ.get("DUFFEL_PACE_SECONDS")
+    if raw:
+        try:
+            return float(raw)
+        except ValueError:
+            print(f"  ⚠ DUFFEL_PACE_SECONDS={raw!r} is not a number; "
+                  f"using the {DEFAULT_PACE_SECONDS:g}s default",
+                  file=sys.stderr)
+    return DEFAULT_PACE_SECONDS
 
 
 def _set_abort(reason):
@@ -402,6 +475,9 @@ def write_run_state(status):
             "failed": FAILED_COUNT,
             "pauses_taken": PAUSES.pauses_taken,
             "pause_wait_s": round(PAUSES.total_wait_s, 1),
+            "pace_interval_s": PACER.interval_s,
+            "paced_requests": PACER.requests,
+            "pace_wait_s": round(PACER.total_wait_s, 1),
             "routes_completed": list(COMPLETED_ROUTES),
             "cells_completed": sorted(COMPLETED_CELLS),
         }, indent=2))
@@ -435,8 +511,12 @@ def cache_search(origin, dest, dep_date, ret_date):
 def _duffel_search_once(origin, dest, dep_date, ret_date, limit=100):
     """One Duffel CLI attempt; returns classify_duffel_result(...).
     REQUEST_COUNT increments per real provider attempt (retries after a
-    pause are real requests and are counted as such)."""
+    pause are real requests and are counted as such). This is the single
+    choke point for live requests in every mode, so pacing hooks in
+    here: PACER.wait() spaces this attempt's start from the previous
+    live attempt's start. Cache paths never call this function."""
     global REQUEST_COUNT
+    PACER.wait()
     REQUEST_COUNT += 1
     cmd = [
         "duffel", "search",
@@ -1105,6 +1185,12 @@ def main():
                         help="Abort if the planned matrix exceeds this many Duffel requests")
     parser.add_argument("--sleep", type=float, default=0.5,
                         help="Seconds to sleep between searches (default 0.5)")
+    parser.add_argument("--pace-seconds", type=float, default=None,
+                        help="Minimum seconds between live Duffel "
+                             "request starts — the pacing interval "
+                             "(default: DUFFEL_PACE_SECONDS env var, "
+                             "else 7; 0 disables pacing). Cache "
+                             "replays are never paced.")
     parser.add_argument("--dry-run", action="store_true",
                         help="Print results without writing files")
     parser.add_argument("--from-cache", action="store_true",
@@ -1129,11 +1215,16 @@ def main():
 
     global CACHE_MODE, RESUME_MODE, RESUME_TTL_S
     global OUTPUT_FILE, HISTORY_FILE, RUN_STATE_FILE
+    global PACER
     CACHE_MODE = args.from_cache
     RESUME_MODE = args.resume and not args.from_cache
     RESUME_TTL_S = args.resume_ttl_hours * 3600
     PAUSES.max_pauses = args.max_pauses
     PAUSES.max_total_wait_s = args.max_pause_wait_min * 60
+    pace_seconds = resolve_pace_seconds(args.pace_seconds)
+    if pace_seconds < 0:
+        parser.error("--pace-seconds must be >= 0")
+    PACER = Pacer(pace_seconds)
     if args.metros and not CACHE_MODE:
         # Grid runs always resume: slices and provider aborts lean on
         # the response cache, so a route whose snapshot write was
@@ -1193,6 +1284,13 @@ def main():
     print(f"Months: {[(y, m) for y, m in months]} | earliest departure {min_date}")
     if CACHE_MODE:
         print("CACHE MODE: replaying saved responses, no Duffel calls.")
+    elif PACER.interval_s > 0:
+        print(f"Pacing: live Duffel requests spaced "
+              f">= {PACER.interval_s:g}s apart (minimum interval "
+              f"between request starts; cache replays are never paced)")
+    else:
+        print("Pacing: OFF (pace interval 0) — live requests fire "
+              "back-to-back; the pause budget is the only defense")
     live_needed = estimate
     if RESUME_MODE:
         planned = planned_search_keys(routes, band, months, args.samples,
@@ -1317,6 +1415,10 @@ def main():
     if PAUSES.pauses_taken:
         print(f"Rate-limit pauses taken: {PAUSES.pauses_taken} "
               f"({PAUSES.total_wait_s:.0f}s total wait)")
+    if not CACHE_MODE:
+        print(f"Pacing: {PACER.requests} live requests paced at "
+              f">= {PACER.interval_s:g}s spacing "
+              f"({PACER.total_wait_s:.0f}s total pacing wait)")
     if ABORTED:
         print(f"❌ Aborted: {ABORT_REASON}. No files written — "
               "existing flight-deals.json left untouched.", file=sys.stderr)
