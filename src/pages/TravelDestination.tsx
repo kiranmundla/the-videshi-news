@@ -284,13 +284,13 @@ export default function TravelDestination() {
         </div>
       </div>
 
-      {/* ─── Planner band — guides are the depth layer of /travel ─── */}
+      {/* ─── Travel Hub band — guides are the depth layer of /travel ─── */}
       <div className="container mt-5">
         <div className="rounded-lg overflow-hidden" style={{ backgroundColor: "#0B1D3A" }}>
-          <Link to="/travel#holiday-planner" className="block px-5 pt-4 pb-1 no-underline">
+          <Link to="/travel#flight-deals" className="block px-5 pt-4 pb-1 no-underline">
             <span className="text-[15px] font-bold text-white">✈️ Plan this trip</span>
             <span className="block text-[12px] text-white/65 mt-0.5">
-              Fares, holiday windows &amp; best months — in the Travel planner →
+              Cheapest fares, best months &amp; book-by dates — in the Travel Hub →
             </span>
           </Link>
           {destFact ? (
@@ -429,11 +429,11 @@ export default function TravelDestination() {
           <div className="mb-7 rounded-lg p-5" style={{ backgroundColor: "#0B1D3A" }}>
             <h3 className="font-serif text-sm font-bold mb-2 text-white uppercase tracking-wider">Plan This Trip</h3>
             <p className="text-[13px] text-white/65 leading-relaxed mb-3">
-              Holiday windows, book-by dates and fare snapshots — the planner
-              behind every guide.
+              Book-by dates and fare snapshots for every destination — in the
+              Travel Hub.
             </p>
-            <Link to="/travel#holiday-planner" className="block text-[13px] font-bold text-[#D4A843] no-underline hover:underline">
-              Open the Travel planner →
+            <Link to="/travel#flight-deals" className="block text-[13px] font-bold text-[#D4A843] no-underline hover:underline">
+              See fares in the Travel Hub →
             </Link>
             <Link to="/travel#travel-news" className="block mt-2 text-[13px] text-white/75 no-underline hover:underline">
               Latest travel news →
