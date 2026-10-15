@@ -252,33 +252,21 @@ export default function TravelPage() {
       <CategoryPills />
 
       <main className="container py-8">
-        {/* ── Hero ─────────────────────────────────────────── */}
-        <section className="relative mb-10 -mx-4 px-4 py-12 md:py-16 rounded-2xl overflow-hidden bg-[#1a2e1a] border border-[#2a4a2a]/40">
-          <div
-            className="absolute inset-0 opacity-[0.06]"
-            style={{
-              backgroundImage:
-                "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
-            }}
-          />
-          <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-amber-500/8 rounded-full blur-3xl" />
-
-          <div className="relative z-10 max-w-3xl">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-xs font-bold uppercase tracking-widest text-emerald-300 bg-emerald-500/15 px-3 py-1 rounded-full">
-                ✈️ Travel Hub
-              </span>
-            </div>
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white">
-              Explore the World,<br />
-              <span className="text-emerald-400">NRI Style.</span>
-            </h1>
-            <p className="text-white/70 mt-4 text-lg md:text-xl max-w-2xl leading-relaxed">
-              Destinations, visa requirements, and travel news — curated for the Indian diaspora. Know before you go.
-            </p>
-          </div>
-        </section>
+        {/* ── Header — minimal (Kiran, 2026-10-15: the giant green
+            "Explore the World" hero block was too big; a slim title
+            row is enough — the trending rail is the first real
+            section). Navy/gold idiom, no banner block. ─────────── */}
+        <header className="mb-8">
+          <span className="inline-block text-[11px] font-bold uppercase tracking-[2px] px-2.5 py-1 rounded-full bg-[#D4A843]/20 text-[#7a5c14] dark:text-[#D4A843]">
+            ✈️ Travel Hub
+          </span>
+          <h1 className="font-serif text-[26px] md:text-3xl font-bold tracking-tight leading-tight mt-2.5" style={{ color: "#0B1D3A" }}>
+            Explore the World, <span style={{ color: "#A32D2F" }}>NRI Style.</span>
+          </h1>
+          <p className="text-sm text-foreground/55 mt-1.5 max-w-2xl leading-relaxed">
+            Destinations, visa requirements, and travel news — curated for the Indian diaspora. Know before you go.
+          </p>
+        </header>
 
         {loading ? (
           <div className="flex items-center justify-center py-20">

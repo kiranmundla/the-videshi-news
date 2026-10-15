@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import {
+  useTrendingDestinations,
+  type TrendingDestination,
+} from "@/lib/trendingDestinations";
 
 /* ------------------------------------------------------------------ */
 /* Hub Trending Destinations strip — the daily-glance teaser of the   */
-/* /travel TrendingDestinations rail. Same data (the destination      */
-/* tracker, public/data/travel-destinations.json), same rules:        */
-/*                                                                    */
-/* Tiering (Kiran, 2026-10-14): USA-group destinations are eligible   */
-/* only if top-tier — hawaii, alaska, national-parks (the Yellowstone */
-/* / Grand Canyon / Yosemite guide). The dataset's eligible_for_picks */
-/* flag (commit 3d9da3ea7) is authoritative where present; the slug   */
-/* allowlist is the fallback. International + India are all eligible. */
+/* /travel TrendingDestinations rail. Ordering and eligibility come   */
+/* from src/lib/trendingDestinations — the ONE selection              */
+/* implementation both surfaces share — so this strip's 5 cards are   */
+/* always the strict prefix of the /travel rail's 8, and a card's      */
+/* badge is its rank in that single list on both surfaces.            */
 /*                                                                    */
 /* Floor requirement (Kiran, 2026-10-14): the Hub → /travel link must */
 /* not depend on data. The section shell and the labeled summary row  */
@@ -20,65 +20,7 @@ import { ChevronRight } from "lucide-react";
 /* the tracker data.                                                  */
 /* ------------------------------------------------------------------ */
 
-const TOP_TIER_USA = new Set(["hawaii", "alaska", "national-parks"]);
 const MAX_CARDS = 5;
-
-type TrendingComponent = {
-  id: string;
-  points: number | null;
-  max: number;
-  reason: string;
-};
-
-type TrendingDestination = {
-  slug: string;
-  name: string;
-  guide_url: string;
-  group: "india" | "usa" | "international";
-  region: string;
-  hero_image: string | null;
-  trending: {
-    score: number;
-    max_score: number;
-    components: TrendingComponent[];
-  };
-  eligible_for_picks?: boolean;
-};
-
-type DestinationsData = {
-  current_month: number;
-  current_year: number;
-  trending_now: string[];
-  destinations: TrendingDestination[];
-};
-
-type GalleryData = Record<string, { photos: { src: string; caption: string }[] }>;
-
-let destCache: Promise<DestinationsData | null> | null = null;
-function loadDestinations(): Promise<DestinationsData | null> {
-  if (!destCache) {
-    destCache = fetch("/data/travel-destinations.json")
-      .then((r) => (r.ok ? r.json() : null))
-      .catch(() => null);
-  }
-  return destCache;
-}
-
-let galleryCache: Promise<GalleryData | null> | null = null;
-function loadGalleries(): Promise<GalleryData | null> {
-  if (!galleryCache) {
-    galleryCache = fetch("/data/travel-galleries.json")
-      .then((r) => (r.ok ? r.json() : null))
-      .catch(() => null);
-  }
-  return galleryCache;
-}
-
-function isEligible(d: TrendingDestination): boolean {
-  if (typeof d.eligible_for_picks === "boolean") return d.eligible_for_picks;
-  if (d.group === "usa") return TOP_TIER_USA.has(d.slug);
-  return true;
-}
 
 /* The single why-trending chip: the record's top labeled reason. A fare
    drop is the most actionable signal and earns the chip whenever its
@@ -111,27 +53,7 @@ const MONTH_LONG = [
 ];
 
 export default function HubTrendingStrip() {
-  const [data, setData] = useState<DestinationsData | null>(null);
-  const [galleries, setGalleries] = useState<GalleryData | null>(null);
-
-  useEffect(() => {
-    let alive = true;
-    loadDestinations().then((d) => {
-      if (alive) setData(d);
-    });
-    loadGalleries().then((g) => {
-      if (alive) setGalleries(g);
-    });
-    return () => {
-      alive = false;
-    };
-  }, []);
-
-  const bySlug = new Map((data?.destinations ?? []).map((d) => [d.slug, d]));
-  const cards = (data?.trending_now ?? [])
-    .map((slug) => bySlug.get(slug))
-    .filter((d): d is TrendingDestination => !!d && isEligible(d))
-    .slice(0, MAX_CARDS);
+  const { data, galleries, cards } = useTrendingDestinations(MAX_CARDS);
 
   const sub = data
     ? `trending in ${MONTH_LONG[(data.current_month ?? 1) - 1] ?? ""} ${data.current_year}`
