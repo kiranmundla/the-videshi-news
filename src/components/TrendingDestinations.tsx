@@ -229,7 +229,10 @@ export default function TrendingDestinations() {
                     <p className="mt-auto pt-1 text-[11px] font-semibold text-[#7a5c14] dark:text-[#D4A843]">
                       ✈️ {dest.fare_from.route} from ${dest.fare_from.price_min.toLocaleString()}
                       <span className="block text-[10px] font-normal text-foreground/40">
-                        {dest.fare_from.date_range} · fares checked {fmtAsOf(dest.fare_from.as_of)}
+                        {dest.fare_from.date_range} ·{" "}
+                        {dest.fare_from.cadence === "weekly"
+                          ? `indicative · checked weekly · ${fmtAsOf(dest.fare_from.as_of)}`
+                          : `fares checked ${fmtAsOf(dest.fare_from.as_of)}`}
                       </span>
                     </p>
                   )}

@@ -781,7 +781,17 @@
       ],
       "season_note": "Southern-hemisphere spring/autumn are the sweet spots for Sydney & Melbourne.",
       "cheapest_month": null,
-      "fare_from": null,
+      "fare_from": {
+        "price_min": 1132,
+        "route": "SFO-SYD",
+        "origin_metro": "Bay Area",
+        "dest_metro": "Sydney",
+        "date_range": "2026-10-21 \u2192 2026-10-27",
+        "duration_days": 6,
+        "as_of": "2026-10-15",
+        "cadence": "weekly",
+        "indicative": true
+      },
       "highlights": [
         {
           "title": "Great Barrier Reef, Queensland",
@@ -821,7 +831,7 @@
         "12": 1
       },
       "data_quality": {
-        "fare_data": "none",
+        "fare_data": "tracked",
         "guide_highlights": 5,
         "notes": [
           "No flight-deals route tracked yet \u2014 fare fields are null by design"
@@ -2659,21 +2669,24 @@
       ],
       "season_note": "Bengaluru is mild year-round; Hampi and Coorg shine Oct\u2013Feb.",
       "cheapest_month": {
-        "month": 3,
-        "year": 2027,
-        "price_min": 948,
+        "month": 10,
+        "year": 2026,
+        "price_min": 1243,
         "route": "SFO-BLR",
-        "weeks": 2,
+        "duration_days": 20,
+        "weeks": null,
         "source": "fare data"
       },
       "fare_from": {
-        "price_min": 948,
+        "price_min": 1243,
         "route": "SFO-BLR",
         "origin_metro": "Bay Area",
         "dest_metro": "Bengaluru",
-        "date_range": "2027-03-09 \u2192 2027-03-23",
-        "weeks": 2,
-        "as_of": "2026-10-15"
+        "date_range": "2026-10-21 \u2192 2026-11-10",
+        "duration_days": 20,
+        "weeks": null,
+        "as_of": "2026-10-15",
+        "cadence": "daily"
       },
       "highlights": [
         {

@@ -43,8 +43,14 @@ export type FareFrom = {
   origin_metro: string;
   dest_metro: string;
   date_range: string;
-  weeks: number;
+  /** Band model (2026-10-15): actual trip length of the fare. */
+  duration_days?: number;
+  /** Legacy pre-band field. */
+  weeks?: number;
   as_of: string;
+  /** "daily" (India matrix) | "weekly" (intl matrix, indicative). */
+  cadence?: string;
+  indicative?: boolean;
 } | null;
 
 export type TrendingDestination = {

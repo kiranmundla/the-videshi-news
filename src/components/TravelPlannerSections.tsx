@@ -1,125 +1,80 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { CalendarDays, ChevronRight, Plane, Sparkles } from "lucide-react";
+import { ChevronRight, Sparkles } from "lucide-react";
 import { DESTINATIONS } from "@/lib/travel";
-import {
-  detectHubRoute,
-  fareForWindow,
-  fmtDateLong,
-  fmtRange,
-  loadFlightDeals,
-  todayStr,
-  type FlightDealsData,
-} from "@/lib/flightDeals";
+import { fmtDate, fmtRange, todayStr } from "@/lib/flightDeals";
 import {
   GROUP_LABELS,
   loadTravelPlanner,
+  type HolidayWindow,
   type TravelPlannerData,
 } from "@/lib/travelPlanner";
 
 const destByKey = new Map(DESTINATIONS.map((d) => [d.key, d]));
 
 /* ================================================================== */
-/* Holiday Planner — the lead section                                 */
+/* Book-by urgency strip — the Holiday Planner's survivor             */
+/*                                                                    */
+/* Kiran's call (2026-10-15): the full Holiday Planner section was    */
+/* removed; its one load-bearing fact — the next holiday window and   */
+/* its book-by deadline — survives as this one-line strip directly    */
+/* under the page header, same pattern as the Hub Plan-a-Trip line.   */
+/* A window whose book-by passed only shows when it's a peak window   */
+/* ("fares climb from here"); a passed non-peak window defers to the  */
+/* following window. No qualifying window → the strip renders         */
+/* nothing rather than a stale deadline.                            */
 /* ================================================================== */
 
-export function HolidayPlanner() {
+function pickUrgencyWindow(
+  data: TravelPlannerData,
+  today: string,
+): HolidayWindow | null {
+  for (const w of data.holiday_windows) {
+    if (w.end < today) continue;
+    if (w.book_by >= today) return w;
+    if (w.peak) return w;
+  }
+  return null;
+}
+
+export function BookByUrgencyStrip() {
   const [planner, setPlanner] = useState<TravelPlannerData | null>(null);
-  const [deals, setDeals] = useState<FlightDealsData | null>(null);
-  const [routeKey, setRouteKey] = useState<string | null>(null);
 
   useEffect(() => {
     loadTravelPlanner().then(setPlanner);
-    loadFlightDeals().then((d) => {
-      setDeals(d);
-      if (d) setRouteKey(detectHubRoute(Object.keys(d.routes)));
-    });
   }, []);
 
   const today = todayStr();
-  const windows = useMemo(
-    () => (planner ? planner.holiday_windows.filter((w) => w.end >= today) : []),
+  const win = useMemo(
+    () => (planner ? pickUrgencyWindow(planner, today) : null),
     [planner, today],
   );
-  const route = routeKey && deals ? deals.routes[routeKey] : null;
 
-  if (!planner || windows.length === 0) return null;
+  if (!win) return null;
+
+  const note =
+    win.book_by >= today
+      ? `Book by ${fmtDate(win.book_by)} for best fares`
+      : "Best-fare window passed — fares climb from here";
 
   return (
-    <section className="mb-12" id="holiday-planner">
-      <div className="flex items-center gap-2 mb-2">
-        <span className="text-xl">🗓️</span>
-        <h2 className="font-serif text-xl font-bold">Holiday Planner</h2>
-      </div>
-      <p className="text-sm text-foreground/55 mb-5 max-w-2xl leading-relaxed">
-        The windows everyone travels in — best dates and the book-by deadline
-        for each{route ? `, with live snapshot fares from ${route.origin}` : ""}.
-        Fares punish waiting on peak windows; the deadline is the point.
-      </p>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-        {windows.map((w) => {
-          const fare = route ? fareForWindow(route, w.start, w.end) : null;
-          const bookByFuture = w.book_by >= today;
-          return (
-            <div
-              key={w.id}
-              className="bg-card border border-border rounded-2xl p-5 flex flex-col hover:border-primary/40 transition-all duration-200 hover:shadow-lg hover:shadow-primary/5"
-            >
-              <div className="flex items-center justify-between gap-2 mb-2">
-                <h3 className="font-serif font-bold text-base flex items-center gap-2">
-                  <span className="text-xl">{w.emoji}</span> {w.name}
-                </h3>
-                {w.peak && (
-                  <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-700 dark:text-amber-400">
-                    Peak fares
-                  </span>
-                )}
-              </div>
-              <div className="flex items-center gap-1.5 text-sm font-semibold text-foreground/85">
-                <CalendarDays className="h-4 w-4 text-foreground/40" />
-                {fmtRange(w.start, w.end)}
-              </div>
-              <p className="text-[13px] text-foreground/55 leading-relaxed mt-2 flex-1">
-                {w.note}
-              </p>
-
-              {fare && route && deals && (
-                <div className="mt-3 bg-emerald-500/10 border border-emerald-500/25 rounded-xl px-3 py-2">
-                  <div className="flex items-center gap-1.5 text-[13px] font-bold text-emerald-700 dark:text-emerald-400">
-                    <Plane className="h-3.5 w-3.5" />
-                    {route.origin} → {route.destination}: from ${fare.price_min.toLocaleString()}
-                  </div>
-                  <div className="text-[11px] text-foreground/50 mt-0.5">
-                    {fare.weeks}-week trip {fmtRange(fare.dep_date, fare.ret_date)} · per person · fares checked {deals.as_of}
-                  </div>
-                </div>
-              )}
-
-              <div className="mt-3">
-                {bookByFuture ? (
-                  <span className="inline-block text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#D4A843]/20 text-[#7a5c14] dark:text-[#D4A843]">
-                    Book by {fmtDateLong(w.book_by)} for best fares
-                  </span>
-                ) : w.peak ? (
-                  <span className="inline-block text-[11px] font-bold px-2.5 py-1 rounded-full bg-[#A32D2F]/10 text-[#A32D2F]">
-                    Best-fare window passed — book now, fares climb from here
-                  </span>
-                ) : (
-                  <span className="inline-block text-[11px] font-bold px-2.5 py-1 rounded-full bg-foreground/8 text-foreground/60">
-                    Moderate season — book ~2 months out
-                  </span>
-                )}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      <a href="#flight-deals" className="inline-flex items-center gap-1 mt-4 text-[13px] font-semibold text-primary hover:underline">
-        See month-by-month fares to India <ChevronRight className="h-3.5 w-3.5" />
+    <div className="mb-8 -mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-xl border border-[#D4A843]/40 bg-[#D4A843]/10 px-4 py-2.5 text-[13px]">
+      <span className="text-foreground/70">🗓️ Next holiday window:</span>
+      <strong className="text-foreground/90">
+        {win.emoji} {win.name}
+      </strong>
+      <span className="text-foreground/60">{fmtRange(win.start, win.end)}</span>
+      <span className="text-foreground/40">·</span>
+      <span className={win.book_by >= today ? "text-foreground/75" : "font-semibold text-[#A32D2F]"}>
+        {note}
+      </span>
+      <a
+        href="#flight-deals"
+        className="ml-auto font-semibold text-primary hover:underline whitespace-nowrap"
+      >
+        See fares ↓
       </a>
-    </section>
+    </div>
   );
 }
 
@@ -148,15 +103,10 @@ export function DestinationsByMonth() {
 
   return (
     <section className="mb-12" id="by-month">
-      <div className="flex items-center gap-2 mb-2">
+      <div className="flex items-center gap-2 mb-4">
         <span className="text-xl">🌍</span>
         <h2 className="font-serif text-xl font-bold">Best Places to Go — by Month</h2>
       </div>
-      <p className="text-sm text-foreground/55 mb-5 max-w-2xl leading-relaxed">
-        Flexible dates? This is your section. Where each place is at its best —
-        and when it's cheapest — month by month, across the US, the world, and
-        India itself.
-      </p>
 
       <style>{`.month-pills::-webkit-scrollbar { display: none; }`}</style>
       <div

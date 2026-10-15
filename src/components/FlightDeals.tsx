@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
+import { Link } from "react-router-dom";
 import {
   Plane,
   CalendarDays,
@@ -10,19 +11,31 @@ import {
   ChevronRight,
   Sparkles,
   BadgePercent,
+  ArrowRight,
 } from "lucide-react";
 import {
   DEFAULT_ROUTES,
+  airlineBookingUrl,
+  cheapestIntlFare,
+  detectHubOrigin,
   detectHubRoute,
   fmtDate,
   fmtDateLong,
   futureEntries,
   googleFlightsUrl,
   loadFlightDeals,
+  loadIntlFlightDeals,
+  tripLengthLabel,
   type CalendarEntry,
   type FestivalSeason,
   type FlightDealsData,
+  type IntlDealsData,
 } from "@/lib/flightDeals";
+import {
+  loadDestinations,
+  selectTrendingCards,
+  type TrendingDestination,
+} from "@/lib/trendingDestinations";
 
 /* ------------------------------------------------------------------ */
 /* Helpers                                                            */
@@ -46,6 +59,51 @@ function monthLabel(entry: CalendarEntry): string {
   return d.toLocaleDateString("en-US", { month: "long", year: "numeric" });
 }
 
+/** Booking links for a fare (Kiran's decision, 2026-10-15): the
+ *  airline's own deep link is primary ONLY when the carrier has a
+ *  verified template; "Compare on Google Flights" is always present.
+ *  No template → Google Flights only. Never a bare homepage. */
+function BookingLinks({
+  entry,
+  origin,
+  dest,
+}: {
+  entry: CalendarEntry;
+  origin: string;
+  dest: string;
+}) {
+  const gfUrl = googleFlightsUrl(origin, dest, entry.dep_date, entry.ret_date);
+  const airlineUrl = airlineBookingUrl(
+    entry.cheapest_airline,
+    origin,
+    dest,
+    entry.dep_date,
+    entry.ret_date,
+  );
+  return (
+    <div className="flex flex-col gap-1.5 mt-1">
+      {airlineUrl && (
+        <a
+          href={airlineUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:underline"
+        >
+          Book on {entry.cheapest_airline} <ExternalLink className="h-3.5 w-3.5" />
+        </a>
+      )}
+      <a
+        href={gfUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:underline"
+      >
+        Compare on Google Flights <ExternalLink className="h-3.5 w-3.5" />
+      </a>
+    </div>
+  );
+}
+
 /* ------------------------------------------------------------------ */
 /* Price card                                                         */
 /* ------------------------------------------------------------------ */
@@ -64,7 +122,6 @@ function PriceCard({
   isBest: boolean;
 }) {
   const [expanded, setExpanded] = useState(false);
-  const gfUrl = googleFlightsUrl(origin, dest, entry.dep_date, entry.ret_date);
 
   return (
     <div
@@ -92,7 +149,7 @@ function PriceCard({
             </span>
           </div>
           <div className="text-[11px] text-foreground/45 mt-0.5">
-            {entry.weeks} weeks · {fmtDateLong(entry.dep_date)}
+            {tripLengthLabel(entry)} · {fmtDateLong(entry.dep_date)}
           </div>
         </div>
         <div className="text-right flex-shrink-0">
@@ -108,6 +165,13 @@ function PriceCard({
         <Plane className="h-3.5 w-3.5 text-foreground/35" />
         <span className="truncate">{entry.cheapest_airline} · max 1 stop · 2 checked bags</span>
       </div>
+
+      {entry.change_vs_prev && entry.change_vs_prev.delta > 0 && (
+        <div className="mt-3 text-[12px] bg-emerald-500/10 border border-emerald-500/25 rounded-xl px-3 py-2 text-emerald-700 dark:text-emerald-300 font-medium">
+          ↓ ${entry.change_vs_prev.delta.toLocaleString()} cheaper than the fare
+          checked {entry.change_vs_prev.prev_as_of ? fmtDateLong(entry.change_vs_prev.prev_as_of) : "previously"}
+        </div>
+      )}
 
       {season && (
         <div className="mt-3 text-[12px] bg-amber-500/10 border border-amber-500/20 rounded-xl px-3 py-2 text-foreground/75">
@@ -125,14 +189,12 @@ function PriceCard({
             <ShieldCheck className="h-3.5 w-3.5" />
             Prices are snapshots and change frequently — verify before booking
           </div>
-          <a
-            href={gfUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:underline mt-1"
-          >
-            Search these dates on Google Flights <ExternalLink className="h-3.5 w-3.5" />
-          </a>
+          {entry.fetched_as_of && (
+            <div className="text-[12px] text-foreground/50">
+              This fare was checked {fmtDateLong(entry.fetched_as_of)}.
+            </div>
+          )}
+          <BookingLinks entry={entry} origin={origin} dest={dest} />
         </div>
       )}
 
@@ -140,7 +202,7 @@ function PriceCard({
         onClick={() => setExpanded(!expanded)}
         className="mt-3 text-[12px] font-medium text-primary/80 hover:text-primary flex items-center gap-1"
       >
-        {expanded ? "Show less" : "Details & booking link"}
+        {expanded ? "Show less" : "Details & booking links"}
         <ChevronRight className={`h-3.5 w-3.5 transition-transform ${expanded ? "rotate-90" : ""}`} />
       </button>
     </div>
@@ -148,24 +210,177 @@ function PriceCard({
 }
 
 /* ------------------------------------------------------------------ */
-/* Main FlightDeals section                                           */
+/* Per-destination fare lines                                         */
+/*                                                                    */
+/* One line per trending destination that has real fare data: India   */
+/* destinations from the daily matrix (own-metro routes only — the    */
+/* destinations builder attaches them), international destinations    */
+/* from the weekly matrix, preferring the reader's own origin         */
+/* airport. Destinations without data simply don't appear — a fare   */
+/* is never borrowed from another destination.                        */
+/* ------------------------------------------------------------------ */
+
+const INTL_AIRPORT_BY_SLUG: Record<string, string> = {
+  australia: "SYD",
+  bali: "DPS",
+  cabo: "SJD",
+  egypt: "CAI",
+  fiji: "NAN",
+  france: "CDG",
+  greece: "ATH",
+  hawaii: "HNL",
+};
+
+type FareLine = {
+  slug: string;
+  name: string;
+  guideUrl: string;
+  routeLabel: string;
+  price: number;
+  datesLabel: string;
+  lengthLabel: string;
+  cadenceLabel: string;
+  gfUrl: string;
+};
+
+function buildFareLines(
+  cards: TrendingDestination[],
+  intl: IntlDealsData | null,
+): FareLine[] {
+  const lines: FareLine[] = [];
+  const intlOrigins = intl
+    ? [...new Set(Object.values(intl.routes).map((r) => r.origin))]
+    : [];
+  const preferredOrigin = intlOrigins.length
+    ? detectHubOrigin(intlOrigins)
+    : null;
+  for (const d of cards) {
+    const airport = INTL_AIRPORT_BY_SLUG[d.slug];
+    if (airport) {
+      if (!intl) continue;
+      const hit = cheapestIntlFare(intl, airport, preferredOrigin);
+      if (!hit) continue;
+      const [dep, ret] = [hit.entry.dep_date, hit.entry.ret_date];
+      lines.push({
+        slug: d.slug,
+        name: d.name,
+        guideUrl: d.guide_url,
+        routeLabel: `${hit.route.origin} → ${hit.route.destination} · ${hit.route.dest_metro}`,
+        price: hit.entry.price_min,
+        datesLabel: `${fmtDate(dep)} → ${fmtDate(ret)}`,
+        lengthLabel: tripLengthLabel(hit.entry),
+        cadenceLabel: `Indicative · checked weekly · fares as of ${fmtDateLong(intl.as_of)}`,
+        gfUrl: googleFlightsUrl(hit.route.origin, hit.route.destination, dep, ret),
+      });
+    } else if (d.fare_from) {
+      const f = d.fare_from;
+      const [o, dst] = f.route.split("-");
+      const [dep, ret] = f.date_range.split(" → ");
+      lines.push({
+        slug: d.slug,
+        name: d.name,
+        guideUrl: d.guide_url,
+        routeLabel: `${f.route} · ${f.dest_metro}`,
+        price: f.price_min,
+        datesLabel: `${fmtDate(dep)} → ${fmtDate(ret)}`,
+        lengthLabel: f.duration_days
+          ? `${f.duration_days}-day trip`
+          : f.weeks
+            ? `${f.weeks}-week trip`
+            : "round trip",
+        cadenceLabel: `Fares checked ${fmtDateLong(f.as_of)}`,
+        gfUrl: googleFlightsUrl(o, dst, dep, ret),
+      });
+    }
+  }
+  return lines;
+}
+
+function DestinationFareLines() {
+  const [lines, setLines] = useState<FareLine[]>([]);
+  useEffect(() => {
+    let alive = true;
+    Promise.all([loadDestinations(), loadIntlFlightDeals()]).then(
+      ([destData, intl]) => {
+        if (!alive || !destData) return;
+        setLines(buildFareLines(selectTrendingCards(destData, 8), intl));
+      },
+    );
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  if (!lines.length) return null;
+  return (
+    <div className="mt-8">
+      <h3 className="font-serif text-xl font-bold text-foreground mb-1">
+        Fares to top destinations
+      </h3>
+      <p className="text-[12px] text-foreground/50 mb-4">
+        Cheapest upcoming fares for the destinations trending above — from
+        your nearest airport where we track it.
+      </p>
+      <div className="divide-y divide-border border border-border rounded-2xl bg-card overflow-hidden">
+        {lines.map((l) => (
+          <div
+            key={l.slug}
+            className="flex items-center gap-3 px-4 py-3 hover:bg-foreground/[0.02]"
+          >
+            <div className="min-w-0 flex-1">
+              <Link
+                to={l.guideUrl}
+                className="text-[14px] font-semibold text-foreground hover:text-primary truncate block"
+              >
+                {l.name}
+              </Link>
+              <div className="text-[11px] text-foreground/50 truncate">
+                {l.routeLabel} · {l.cadenceLabel}
+              </div>
+            </div>
+            <a
+              href={l.gfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-right flex-shrink-0 group"
+              title="See these dates on Google Flights"
+            >
+              <div className="text-[15px] font-bold text-foreground group-hover:text-primary">
+                <span className="text-[11px] font-semibold text-foreground/45 mr-0.5">from</span>
+                ${l.price.toLocaleString()}
+              </div>
+              <div className="text-[11px] text-foreground/50">
+                {l.datesLabel} · {l.lengthLabel}
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Main FlightDeals section — the Cheapest Fares hub                  */
 /* ------------------------------------------------------------------ */
 
 export default function FlightDeals() {
   const [data, setData] = useState<FlightDealsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [routeKey, setRouteKey] = useState<string>("");
-  const [weeks, setWeeks] = useState<number>(3);
 
   useEffect(() => {
     loadFlightDeals().then((d) => {
       setData(d);
       if (d) {
+        // One pool everywhere (§B audit fix): detection runs over ALL
+        // routes in the snapshot — the old code pre-filtered to
+        // DEFAULT_ROUTES, so e.g. an Atlanta reader with an ATL-DEL
+        // route in the data silently got a default city's fares.
         const keys = Object.keys(d.routes);
-        const preferred = keys.filter((k) => DEFAULT_ROUTES.includes(k));
-        const pool = preferred.length ? preferred : keys;
-        setRouteKey(detectHubRoute(pool) ?? pool[0] ?? "");
-        setWeeks(d.weeks || 3);
+        const fallback =
+          DEFAULT_ROUTES.find((k) => keys.includes(k)) ?? keys[0] ?? "";
+        setRouteKey(detectHubRoute(keys) ?? fallback);
       }
       setLoading(false);
     });
@@ -173,12 +388,13 @@ export default function FlightDeals() {
 
   const route = data?.routes[routeKey];
 
-  /* Only upcoming trips at the chosen duration — snapshot windows whose
-   * departure has passed are dropped so stale prices never pose as current. */
+  /* Band model: every cell is the single ~3-week band, so no duration
+   * filter — upcoming trips only; snapshot windows whose departure has
+   * passed are dropped so stale prices never pose as current. */
   const entries = useMemo(() => {
     if (!route) return [];
-    return futureEntries(route).filter((e) => e.weeks === weeks);
-  }, [route, weeks]);
+    return futureEntries(route);
+  }, [route]);
 
   const cheapest = useMemo(() => {
     if (!entries.length) return null;
@@ -198,7 +414,10 @@ export default function FlightDeals() {
   if (!data || !route) return null;
 
   const availableRoutes = Object.keys(data.routes);
-  const routeHasFuture = futureEntries(route).length > 0;
+  const bandLabel = data.band?.label ?? "~3-week trips";
+  const bandRange = data.band
+    ? `${data.band.min_days}–${data.band.max_days} days`
+    : "19–23 days";
 
   return (
     <section className="mb-12" id="flight-deals">
@@ -217,7 +436,7 @@ export default function FlightDeals() {
         <div className="relative z-10 max-w-3xl">
           <div className="flex items-center gap-2 mb-3 flex-wrap">
             <span className="text-xs font-bold uppercase tracking-widest text-sky-300 bg-sky-500/15 px-3 py-1 rounded-full flex items-center gap-1.5">
-              <Plane className="h-3.5 w-3.5" /> Flight Deals
+              <Plane className="h-3.5 w-3.5" /> Cheapest Fares
             </span>
             <span className="text-[11px] font-bold text-[#0B1D3A] bg-[#D4A843] px-3 py-1 rounded-full">
               Fares checked {fmtDateLong(data.as_of)}
@@ -227,51 +446,35 @@ export default function FlightDeals() {
             When's the cheapest time<br />to fly home?
           </h2>
           <p className="text-white/65 mt-3 text-[15px] md:text-base max-w-xl leading-relaxed">
-            Real round-trip fares from US metros to India — with festival-aware
-            pricing, so you know <em>why</em> December costs more.
+            Real round-trip fares from US metros to India for {bandLabel} over
+            the next 3 months — with festival-aware pricing, so you know{" "}
+            <em>why</em> December costs more.
           </p>
         </div>
       </div>
 
-      {/* ── Route + duration selectors ─────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-5">
-        <div className="flex gap-2 overflow-x-auto pb-1" style={{ WebkitOverflowScrolling: "touch" }}>
-          {availableRoutes.map((rk) => {
-            const r = data.routes[rk];
-            return (
-              <button
-                key={rk}
-                onClick={() => setRouteKey(rk)}
-                className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold border transition-colors ${
-                  routeKey === rk
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "border-rule text-foreground/75 hover:text-primary hover:border-primary"
-                }`}
-              >
-                {r.origin} → {r.destination}
-              </button>
-            );
-          })}
-        </div>
-        <div className="flex gap-2 sm:ml-auto">
-          {[2, 3, 4].map((w) => (
+      {/* ── Route selector ─────────────────────────────────── */}
+      <div className="flex gap-2 overflow-x-auto pb-1 mb-5" style={{ WebkitOverflowScrolling: "touch" }}>
+        {availableRoutes.map((rk) => {
+          const r = data.routes[rk];
+          return (
             <button
-              key={w}
-              onClick={() => setWeeks(w)}
-              className={`whitespace-nowrap px-3.5 py-2 rounded-full text-[13px] font-semibold border transition-colors ${
-                weeks === w
-                  ? "bg-foreground text-background border-foreground"
-                  : "border-rule text-foreground/70 hover:border-foreground/50"
+              key={rk}
+              onClick={() => setRouteKey(rk)}
+              className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold border transition-colors ${
+                routeKey === rk
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "border-rule text-foreground/75 hover:text-primary hover:border-primary"
               }`}
             >
-              {w} weeks
+              {r.origin} → {r.destination}
             </button>
-          ))}
-        </div>
+          );
+        })}
       </div>
 
       <p className="text-[12px] text-foreground/45 mb-4 -mt-2">
-        {route.origin_metro} → {route.dest_metro} · {weeks}-week trips · per person · fares as of {fmtDateLong(data.as_of)}
+        {route.origin_metro} → {route.dest_metro} · {bandLabel} ({bandRange}) · per person · fares as of {fmtDateLong(data.as_of)}
       </p>
 
       {/* ── Cheapest-month spotlight ───────────────────────── */}
@@ -284,7 +487,7 @@ export default function FlightDeals() {
             <p className="text-[15px] text-foreground/85">
               Cheapest from <strong>{route.origin}</strong>:{" "}
               <strong className="text-emerald-700 dark:text-emerald-400">{monthLabel(cheapest)}</strong>
-              {" "}— {weeks}-week trips from{" "}
+              {" "}— {bandLabel} from{" "}
               <strong className="text-emerald-700 dark:text-emerald-400">${cheapest.price_min.toLocaleString()}</strong>
               <span className="text-foreground/50">
                 {" "}({fmtDate(cheapest.dep_date)} → {fmtDate(cheapest.ret_date)} · {cheapest.cheapest_airline})
@@ -299,19 +502,9 @@ export default function FlightDeals() {
         <div className="text-center py-12 bg-card border border-border rounded-2xl">
           <Plane className="h-8 w-8 text-foreground/20 mx-auto mb-3" />
           <p className="text-foreground/50 text-sm px-4">
-            {routeHasFuture ? (
-              <>
-                No {weeks}-week fares on this route in the current snapshot.
-                <br />
-                Try a different trip length — or check back after the next fare refresh.
-              </>
-            ) : (
-              <>
-                This route's snapshot windows (checked {fmtDateLong(data.as_of)}) have all departed.
-                <br />
-                Fresh fares are on the way — meanwhile, try another route above.
-              </>
-            )}
+            This route's snapshot windows (checked {fmtDateLong(data.as_of)}) have all departed.
+            <br />
+            Fresh fares are on the way — meanwhile, try another route above.
           </p>
         </div>
       ) : (
@@ -337,6 +530,9 @@ export default function FlightDeals() {
           are typically $80–$220 cheaper than Fri/Sun on US–India routes.
         </p>
       </div>
+
+      {/* ── Per-destination fare lines ─────────────────────── */}
+      <DestinationFareLines />
 
       {/* ── Trust footer ───────────────────────────────────── */}
       <div className="mt-4 rounded-2xl border border-border bg-foreground/[0.02] px-5 py-4">
@@ -370,6 +566,11 @@ export default function FlightDeals() {
           Coming soon
         </span>
       </div>
+
+      <p className="mt-4 text-[12px] text-foreground/40 flex items-center gap-1">
+        Planning beyond India? See the destination guides below
+        <ArrowRight className="h-3.5 w-3.5" />
+      </p>
     </section>
   );
 }

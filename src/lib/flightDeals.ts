@@ -1,8 +1,9 @@
 /* ------------------------------------------------------------------ */
 /* Flight deals — shared types, metro→airport detection, helpers.     */
-/* Data: public/data/flight-deals.json (real Duffel fare snapshots).   */
-/* Used by FlightDeals (price calendar), HolidayPlanner and the       */
-/* Your Hub "Plan a trip" block — one mapping, one source of truth.   */
+/* Data: public/data/flight-deals.json (real Duffel fare snapshots)   */
+/* + flight-deals-intl.json (weekly matrix). Used by FlightDeals       */
+/* (Cheapest Fares hub) and the Your Hub "Plan a trip" block — one     */
+/* mapping, one source of truth.                                       */
 /* ------------------------------------------------------------------ */
 
 export type CalendarEntry = {
@@ -15,16 +16,55 @@ export type CalendarEntry = {
   num_samples: number;
   year: number;
   month: number;
-  weeks: number;
+  /** Band model (2026-10-15): the winning trip's actual duration. */
+  duration_days?: number;
+  /** Band id ("in-3wk" | "intl-1wk") the cell was sampled under. */
+  band?: string;
+  /** Legacy pre-band field; absent in new snapshots. */
+  weeks?: number;
+  /** Honest per-cell freshness (oldest fetch among the cell's samples). */
+  fetched_as_of?: string;
+  cheapest_month?: boolean;
+  change_vs_prev?: {
+    prev_price_min: number;
+    prev_as_of: string | null;
+    delta: number; // positive = price dropped
+    delta_pct: number;
+  };
 };
+
+export type FareBand = {
+  id: string;
+  label: string;
+  center_days: number;
+  min_days: number;
+  max_days: number;
+};
+
+export type CheapestOverall = {
+  year: number;
+  month: number;
+  band?: string;
+  duration_days?: number;
+  weeks?: number;
+  price_min: number;
+  date_range: string;
+} | null;
 
 export type RouteData = {
   origin: string;
   destination: string;
   origin_metro: string;
   dest_metro: string;
-  weeks: number;
+  /** Band id this route's calendar was sampled under. */
+  band?: string;
+  /** Legacy pre-band field; absent in new snapshots. */
+  weeks?: number;
   calendar: CalendarEntry[];
+  calendars_by_weeks?: Record<string, CalendarEntry[]>;
+  cheapest_overall?: CheapestOverall;
+  /** Intl matrix: travel-destinations.json slug for this route. */
+  destination_slug?: string;
 };
 
 export type FestivalSeason = {
@@ -40,7 +80,11 @@ export type FestivalSeason = {
 export type FlightDealsData = {
   generated_at: string;
   as_of: string;
-  weeks: number;
+  market?: string;
+  band?: FareBand;
+  months_ahead?: number;
+  /** Legacy pre-band field; absent in new snapshots. */
+  weeks?: number;
   routes: Record<string, RouteData>;
   festival_seasons: FestivalSeason[];
   spec: {
@@ -53,11 +97,26 @@ export type FlightDealsData = {
   };
 };
 
-/* Metro → airport mapping (auto-detect from Your Hub location) */
+/* Metro → airport mapping (auto-detect from Your Hub location).
+   Substring-matched against the Hub record's label/city (longest keys
+   win by insertion order below is NOT relied on — detectHubRoute also
+   falls back to nearest-airport by coordinates). The Tri-Valley /
+   East Bay keys were the 2026-10-15 audit gap: the site's own home
+   reader (Dublin, CA) matched nothing and silently got SFO-DEL by
+   default instead of by detection. */
 export const METRO_AIRPORTS: Record<string, string> = {
   "bay area": "SFO",
   "san francisco": "SFO",
   "san jose": "SFO",
+  "dublin": "SFO",
+  "tri-valley": "SFO",
+  "pleasanton": "SFO",
+  "livermore": "SFO",
+  "san ramon": "SFO",
+  "fremont": "SFO",
+  "hayward": "SFO",
+  "oakland": "SFO",
+  "east bay": "SFO",
   "new york": "JFK",
   "nyc": "JFK",
   "new jersey": "EWR",
@@ -71,6 +130,41 @@ export const METRO_AIRPORTS: Record<string, string> = {
   "atlanta": "ATL",
   "washington": "IAD",
 };
+
+/** Coordinates of the tracked origin airports — the lat/lon fallback
+ *  for Hub records whose label/city matches no metro key (e.g. a bare
+ *  town name). Nearest airport among the routes actually in the data
+ *  wins; no distance cap — it only breaks the tie the label couldn't. */
+export const AIRPORT_COORDS: Record<string, [number, number]> = {
+  SFO: [37.6213, -122.379],
+  LAX: [33.9416, -118.4085],
+  SEA: [47.4502, -122.3088],
+  JFK: [40.6413, -73.7781],
+  EWR: [40.6895, -74.1745],
+  ORD: [41.9742, -87.9073],
+  DFW: [32.8998, -97.0403],
+  IAH: [29.9902, -95.3368],
+  IAD: [38.9531, -77.4565],
+  ATL: [33.6407, -84.4277],
+  BOS: [42.3656, -71.0096],
+};
+
+function haversineMiles(
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number,
+): number {
+  const R = 3958.8;
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
 
 export const DEFAULT_ROUTES = ["SFO-DEL", "JFK-DEL", "ORD-DEL", "DFW-HYD", "SEA-DEL"];
 
@@ -90,11 +184,41 @@ export function detectHubRoute(available: string[]): string | null {
           if (match) return match;
         }
       }
+      // Fallback: nearest tracked origin airport to the Hub record's
+      // coordinates (records carry lat/lon). Only origins present in
+      // the data are candidates — detection can never invent a route.
+      const lat = Number(parsed.lat);
+      const lon = Number(parsed.lon);
+      if (Number.isFinite(lat) && Number.isFinite(lon)) {
+        const origins = [
+          ...new Set(available.map((r) => r.split("-")[0])),
+        ].filter((a) => AIRPORT_COORDS[a]);
+        let best: { airport: string; miles: number } | null = null;
+        for (const airport of origins) {
+          const [alat, alon] = AIRPORT_COORDS[airport];
+          const miles = haversineMiles(lat, lon, alat, alon);
+          if (!best || miles < best.miles) best = { airport, miles };
+        }
+        if (best) {
+          const match = available.find((r) =>
+            r.startsWith(best!.airport + "-"),
+          );
+          if (match) return match;
+        }
+      }
     }
   } catch {
     /* no stored location */
   }
   return null;
+}
+
+/** The user's detected origin airport (from the Hub record), without
+ *  binding to a specific destination — for fare lists that span
+ *  markets (India + international). Null when no location is stored. */
+export function detectHubOrigin(airports: string[]): string | null {
+  const route = detectHubRoute(airports.map((a) => `${a}-XXX`));
+  return route ? route.split("-")[0] : null;
 }
 
 export function todayStr(): string {
@@ -133,6 +257,56 @@ export function googleFlightsUrl(origin: string, dest: string, dep: string, ret:
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* Airline direct-booking links (Kiran's decision, 2026-10-15): only  */
+/* VERIFIED deep-link templates ship. A template is verified when its  */
+/* parameter contract was confirmed against the carrier's own flight- */
+/* search URL structure (docs + observed live search URLs) — never a  */
+/* bare homepage dressed as a booking link. Carriers without a         */
+/* verified template get the Google Flights compare link only.        */
+/*                                                                     */
+/* Delta — verified 2026-10-15 against delta.com's search parameter    */
+/* contract (originCity/destinationCity IATA, MM/DD/YYYY dates,        */
+/* tripType=ROUND_TRIP, paxCount, cabinFareClass=MAIN): see            */
+/* research/travel-page-restructure-2026-10-15.md §D.                  */
+/* ------------------------------------------------------------------ */
+
+function mmddyyyy(iso: string): string {
+  const [y, m, d] = iso.split("-");
+  return `${m}/${d}/${y}`;
+}
+
+export const AIRLINE_LINK_TEMPLATES: Record<
+  string,
+  (origin: string, dest: string, dep: string, ret: string) => string
+> = {
+  delta: (origin, dest, dep, ret) =>
+    "https://www.delta.com/flightsearch/search?action=findFlights" +
+    "&tripType=ROUND_TRIP&priceSchedule=price" +
+    `&originCity=${origin}&destinationCity=${dest}` +
+    `&departureDate=${mmddyyyy(dep)}&returnDate=${mmddyyyy(ret)}` +
+    "&paxCount=1&searchByCabin=true&cabinFareClass=MAIN&deltaOnlySearch=false",
+};
+
+/** Direct booking URL on the airline's own site for this fare, or
+ *  null when the airline has no verified template. Callers render the
+ *  returned link as primary and Google Flights as the compare link;
+ *  on null, Google Flights is the only link (honest — see header). */
+export function airlineBookingUrl(
+  airline: string | null | undefined,
+  origin: string,
+  dest: string,
+  dep: string,
+  ret: string,
+): string | null {
+  if (!airline) return null;
+  const name = airline.toLowerCase();
+  for (const [key, build] of Object.entries(AIRLINE_LINK_TEMPLATES)) {
+    if (name.includes(key)) return build(origin, dest, dep, ret);
+  }
+  return null;
+}
+
 let dealsCache: Promise<FlightDealsData | null> | null = null;
 export function loadFlightDeals(): Promise<FlightDealsData | null> {
   if (!dealsCache) {
@@ -143,10 +317,71 @@ export function loadFlightDeals(): Promise<FlightDealsData | null> {
   return dealsCache;
 }
 
+/** Weekly international matrix (public/data/flight-deals-intl.json). */
+export type IntlDealsData = {
+  generated_at: string;
+  as_of: string;
+  cadence?: string;
+  indicative?: boolean;
+  band?: FareBand;
+  routes: Record<string, RouteData>;
+  biggest_drops?: unknown[];
+};
+
+let intlCache: Promise<IntlDealsData | null> | null = null;
+export function loadIntlFlightDeals(): Promise<IntlDealsData | null> {
+  if (!intlCache) {
+    intlCache = fetch("/data/flight-deals-intl.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null);
+  }
+  return intlCache;
+}
+
+/** Cheapest upcoming fare to a destination airport in the intl matrix.
+ *  Prefers the reader's own origin airport (from their Hub location)
+ *  when that route exists; otherwise the cheapest origin overall.
+ *  Returns null when the destination has no data — never borrowed. */
+export function cheapestIntlFare(
+  data: IntlDealsData,
+  destAirport: string,
+  preferredOrigin?: string | null,
+): { route: RouteData; entry: CalendarEntry } | null {
+  const candidates = Object.values(data.routes).filter(
+    (r) => r.destination === destAirport,
+  );
+  const pools = preferredOrigin
+    ? [candidates.filter((r) => r.origin === preferredOrigin), candidates]
+    : [candidates];
+  for (const pool of pools) {
+    let best: { route: RouteData; entry: CalendarEntry } | null = null;
+    for (const route of pool) {
+      const c = cheapestFare(route, 3);
+      if (c && (!best || c.entry.price_min < best.entry.price_min)) {
+        best = { route, entry: c.entry };
+      }
+    }
+    if (best) return best;
+  }
+  return null;
+}
+
 /** Entries still bookable: departure today or later. Stale snapshot
  *  windows are dropped at render so old prices never pose as current. */
 export function futureEntries(route: RouteData, from: string = todayStr()): CalendarEntry[] {
-  return route.calendar.filter((e) => e.dep_date >= from);
+  const cal =
+    route.calendar && route.calendar.length
+      ? route.calendar
+      : (route.calendars_by_weeks?.[String(route.weeks ?? 3)] ?? []);
+  return cal.filter((e) => e.dep_date >= from);
+}
+
+/** Human label for a fare cell's trip length under the band model:
+ *  "21-day trip" from the actual duration; legacy weeks as fallback. */
+export function tripLengthLabel(entry: CalendarEntry): string {
+  if (entry.duration_days) return `${entry.duration_days}-day trip`;
+  if (entry.weeks) return `${entry.weeks}-week trip`;
+  return "round trip";
 }
 
 /** Cheapest fare departing within the next `months` months. */

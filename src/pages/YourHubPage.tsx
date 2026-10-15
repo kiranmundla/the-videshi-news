@@ -27,6 +27,7 @@ import {
   fmtDateLong,
   fmtRange,
   loadFlightDeals,
+  tripLengthLabel,
   type CalendarEntry,
   type RouteData,
 } from "@/lib/flightDeals";
@@ -207,7 +208,7 @@ function PlanTripBlock() {
                 ${deal.entry.price_min.toLocaleString()}
               </span>
               <span className="text-[11px] text-muted-foreground text-right">
-                {fmtRange(deal.entry.dep_date, deal.entry.ret_date)} · {deal.entry.weeks}-week trip
+                {fmtRange(deal.entry.dep_date, deal.entry.ret_date)} · {tripLengthLabel(deal.entry)}
                 <br />
                 per person round-trip · fares checked {fmtDateLong(deal.asOf)}
               </span>

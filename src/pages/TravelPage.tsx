@@ -8,8 +8,8 @@ import SiteFooter from "@/components/SiteFooter";
 import FlightDeals from "@/components/FlightDeals";
 import TrendingDestinations from "@/components/TrendingDestinations";
 import {
+  BookByUrgencyStrip,
   DestinationsByMonth,
-  HolidayPlanner,
   InIndiaStrip,
 } from "@/components/TravelPlannerSections";
 import {
@@ -240,8 +240,8 @@ export default function TravelPage() {
   return (
     <>
       <Helmet>
-        <title>Travel Hub — Holiday Planner, Flight Deals, Destinations & Visa Guide | The Videshi</title>
-        <meta name="description" content="Plan the trip home and the next getaway: holiday travel windows with book-by dates, real US–India fare snapshots, best destinations by month, 49 diaspora guides, and visa quick-reference for Indian passport holders, US citizens, and Green Card holders." />
+        <title>Travel Hub — Cheapest Fares, Top Destinations & Visa Guide | The Videshi</title>
+        <meta name="description" content="Plan the trip home and the next getaway: the next holiday window with its book-by deadline, real US–India fare snapshots, cheapest fares to top destinations, best destinations by month, 50 diaspora guides, and visa quick-reference for Indian passport holders, US citizens, and Green Card holders." />
         <meta property="og:title" content="Travel Hub — The Videshi" />
         <meta property="og:description" content="Destinations, visa quick-reference, and travel news for NRIs and the Indian diaspora." />
         <meta property="og:type" content="website" />
@@ -274,20 +274,22 @@ export default function TravelPage() {
           </div>
         ) : (
           <>
+            {/* ── Book-by urgency strip (the Holiday Planner's
+                book-by deadline, one line — Kiran, 2026-10-15) ── */}
+            <BookByUrgencyStrip />
+
             {/* ── Top Destinations to Visit (trending rail) ──── */}
             <TrendingDestinations />
 
-            {/* ── Holiday Planner ────────────────────────────── */}
-            <HolidayPlanner />
-
-            {/* ── Destinations by Month ──────────────────────── */}
-            <DestinationsByMonth />
-
-            {/* ── Flight Deals / India Price Calendar ────────── */}
+            {/* ── Cheapest Fares hub (India calendar + per-
+                destination fare lines) ──────────────────────── */}
             <FlightDeals />
 
             {/* ── While You're in India ──────────────────────── */}
             <InIndiaStrip />
+
+            {/* ── Destinations by Month (demoted + slimmed) ──── */}
+            <DestinationsByMonth />
 
             {/* ── Holder Status Toggle (page-level) ──────────── */}
             <section className="mb-6">
