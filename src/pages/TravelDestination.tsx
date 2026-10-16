@@ -6,6 +6,7 @@ import type { ReactNode } from "react";
 import Masthead from "@/components/Masthead";
 import SiteFooter from "@/components/SiteFooter";
 import PhotoScrollStrip from "@/components/PhotoScrollStrip";
+import DestinationFareModule from "@/components/DestinationFareModule";
 import { DESTINATIONS as LIB_DESTINATIONS } from "@/lib/travel";
 import { loadTravelPlanner, type TravelPlannerData } from "@/lib/travelPlanner";
 
@@ -284,26 +285,19 @@ export default function TravelDestination() {
         </div>
       </div>
 
-      {/* ─── Travel Hub band — guides are the depth layer of /travel ─── */}
-      <div className="container mt-5">
-        <div className="rounded-lg overflow-hidden" style={{ backgroundColor: "#0B1D3A" }}>
-          <Link to="/travel#flight-deals" className="block px-5 pt-4 pb-1 no-underline">
-            <span className="text-[15px] font-bold text-white">✈️ Plan this trip</span>
-            <span className="block text-[12px] text-white/65 mt-0.5">
-              Cheapest fares, best months &amp; book-by dates — in the Travel Hub →
-            </span>
-          </Link>
-          {destFact ? (
-            <div className="px-5 pb-4 pt-2 flex flex-wrap gap-x-5 gap-y-1 text-[12px] text-white/80">
-              <span>💰 <strong className="text-white">Cheapest:</strong> {destFact.cheapest_month}</span>
-              <span>🗓️ <strong className="text-white">Best season:</strong> {destFact.best_season}</span>
-              {featuredIn.length > 0 && <span>⭐ Featured in: {featuredIn.join(", ")}</span>}
-            </div>
-          ) : (
-            <div className="pb-3" />
-          )}
-        </div>
-      </div>
+      {/* ─── Fare module (Phase 2) — replaces the navy "Plan this
+          trip" band: real tracked fares + booking links where this
+          destination's class has them, planner facts + a labelled
+          Google Flights search link where it doesn't. The planner
+          facts the band carried live in the module's header. ─── */}
+      <DestinationFareModule
+        key={destination}
+        slug={destination}
+        title={meta.title}
+        indiaTrip={meta.region === "india"}
+        destFact={destFact}
+        featuredIn={featuredIn}
+      />
 
       {/* ─── Photo Gallery Strip ─── */}
       {galleryPhotos.length > 0 && (
@@ -426,19 +420,9 @@ export default function TravelDestination() {
             ))}
           </div>
 
-          <div className="mb-7 rounded-lg p-5" style={{ backgroundColor: "#0B1D3A" }}>
-            <h3 className="font-serif text-sm font-bold mb-2 text-white uppercase tracking-wider">Plan This Trip</h3>
-            <p className="text-[13px] text-white/65 leading-relaxed mb-3">
-              Book-by dates and fare snapshots for every destination — in the
-              Travel Hub.
-            </p>
-            <Link to="/travel#flight-deals" className="block text-[13px] font-bold text-[#D4A843] no-underline hover:underline">
-              See fares in the Travel Hub →
-            </Link>
-            <Link to="/travel#travel-news" className="block mt-2 text-[13px] text-white/75 no-underline hover:underline">
-              Latest travel news →
-            </Link>
-          </div>
+          {/* Sidebar "Plan This Trip" box REMOVED (Phase 2): it
+              duplicated the band the fare module replaced — fares
+              live in the module in the main column now. */}
 
           <div className="mb-7 rounded-lg p-10 border-2 border-dashed border-stone-200 text-center">
             <p className="text-stone-300 text-xs uppercase tracking-widest m-0">Advertisement</p>
