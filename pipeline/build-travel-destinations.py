@@ -569,14 +569,19 @@ def india_card_trending(best_months, peak_months, month, year, deals,
     }
 
 
-def build_india_card(records, deals, metros_deals, today):
+def build_india_card(records, deals, metros_deals, today, galleries=None):
     """The India country card for the trending rail (see block comment
     above). Returns None when there are no India records to derive
     from. NOT a destination record: it stays out of `destinations`,
-    `trending_now` and `best_by_month`, and destination_count."""
+    `trending_now` and `best_by_month`, and destination_count. The
+    hero photo comes from the dedicated "india" gallery entry in
+    travel-galleries.json (the Taj Mahal, added 2026-10-15 when every
+    scroll card gained a real photo) — there is no india guide whose
+    record could carry it."""
     india_records = [r for r in records if r["group"] == "india"]
     if not india_records:
         return None
+    india_photos = ((galleries or {}).get("india") or {}).get("photos") or []
     best_months = _majority_months(india_records, "best_months")
     peak_months = _majority_months(india_records, "peak_months")
     return {
@@ -597,8 +602,8 @@ def build_india_card(records, deals, metros_deals, today):
             "snippet": ("State guides for the trip home — Goa, Kerala, "
                         "Karnataka, Rajasthan, Kashmir and more, one tap below."),
         }],
-        "photo_count": 0,
-        "hero_image": None,
+        "photo_count": len(india_photos),
+        "hero_image": india_photos[0]["src"] if india_photos else None,
         "trending": india_card_trending(best_months, peak_months,
                                         today.month, today.year,
                                         deals, metros_deals),
@@ -882,7 +887,8 @@ def main():
         # Country card for the /travel trending rail (Kiran, 2026-10-15)
         # — separate from `destinations` on purpose: it is not a guide,
         # not ranked, and destination_count stays the guide count.
-        "india_card": build_india_card(records, deals, metros_deals, today),
+        "india_card": build_india_card(records, deals, metros_deals, today,
+                                       galleries),
     }
 
     if args.dry_run:

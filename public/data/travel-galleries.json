@@ -1630,5 +1630,317 @@
         }
       ]
     }
+  },
+  "abu-dhabi": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/abu-dhabi-1.jpg",
+        "caption": "Sheikh Zayed Grand Mosque, Abu Dhabi \u00b7 Wikimedia Commons \u00b7 CC BY 2.0"
+      }
+    ]
+  },
+  "alaska": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/alaska-1.jpg",
+        "caption": "Denali National Park, Alaska \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "aruba": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/aruba-1.jpg",
+        "caption": "Eagle Beach, Aruba \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "australia": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/australia-1.jpg",
+        "caption": "Sydney Opera House and Harbour Bridge at dusk \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "bahamas": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bahamas-1.jpg",
+        "caption": "Nassau Harbour Lighthouse, Bahamas \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "banff": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/banff-1.jpg",
+        "caption": "Moraine Lake, Banff National Park \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "cabo": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/cabo-1.jpg",
+        "caption": "El Arco, Cabo San Lucas \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "cancun": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/cancun-1.jpg",
+        "caption": "Canc\u00fan beach, Mexico \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "dominican-republic": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/dominican-republic-1.jpg",
+        "caption": "Punta Cana beach, Dominican Republic \u00b7 Wikimedia Commons \u00b7 CC BY-SA 3.0"
+      }
+    ]
+  },
+  "dubai": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/dubai-1.jpg",
+        "caption": "Burj Khalifa, Dubai \u00b7 Wikimedia Commons \u00b7 CC BY-SA 2.0"
+      }
+    ]
+  },
+  "egypt": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/egypt-1.jpg",
+        "caption": "Pyramids of Giza \u00b7 Wikimedia Commons \u00b7 CC BY-SA 2.0"
+      }
+    ]
+  },
+  "fiji": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/fiji-1.jpg",
+        "caption": "Beachcomber Island, Mamanuca Islands, Fiji \u00b7 Wikimedia Commons \u00b7 CC BY-SA 3.0"
+      }
+    ]
+  },
+  "france": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/france-1.jpg",
+        "caption": "Eiffel Tower, Paris \u00b7 Wikimedia Commons \u00b7 CC BY-SA 3.0"
+      }
+    ]
+  },
+  "greece": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/greece-1.jpg",
+        "caption": "Blue domes of Oia, Santorini \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "hawaii": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/hawaii-1.jpg",
+        "caption": "Waikiki and Diamond Head, Honolulu \u00b7 Wikimedia Commons \u00b7 CC BY-SA 2.0"
+      }
+    ]
+  },
+  "himachal-pradesh": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/himachal-pradesh-1.jpg",
+        "caption": "Key Monastery, Spiti Valley \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "iceland": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/iceland-1.jpg",
+        "caption": "Kirkjufell, Iceland \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "india": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/india-1.jpg",
+        "caption": "Taj Mahal, Agra \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "italy": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/italy-1.jpg",
+        "caption": "Colosseum, Rome \u00b7 Wikimedia Commons \u00b7 CC BY-SA 2.5"
+      }
+    ]
+  },
+  "japan": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/japan-1.jpg",
+        "caption": "Chureito Pagoda and Mount Fuji \u00b7 Wikimedia Commons \u00b7 CC BY 4.0"
+      }
+    ]
+  },
+  "karnataka": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/karnataka-1.jpg",
+        "caption": "Stone Chariot, Hampi \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "kashmir": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kashmir-1.jpg",
+        "caption": "Houseboats on Dal Lake, Srinagar \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "kenya": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kenya-1.jpg",
+        "caption": "Elephants in Amboseli with Mount Kilimanjaro, Kenya \u00b7 Wikimedia Commons \u00b7 CC BY 4.0"
+      }
+    ]
+  },
+  "morocco": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/morocco-1.jpg",
+        "caption": "Chefchaouen, the blue city, Morocco \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "national-parks": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/national-parks-1.jpg",
+        "caption": "Grand Canyon from Hopi Point \u00b7 Wikimedia Commons \u00b7 CC BY-SA 3.0"
+      }
+    ]
+  },
+  "northeast-india": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/northeast-india-1.jpg",
+        "caption": "Living root bridge, Meghalaya \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "oman": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-1.jpg",
+        "caption": "Muttrah Corniche, Muscat \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "portugal": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/portugal-1.jpg",
+        "caption": "Tram 28, Lisbon \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "puerto-vallarta": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/puerto-vallarta-1.jpg",
+        "caption": "Our Lady of Guadalupe Church, Puerto Vallarta \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "riviera-maya": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/riviera-maya-1.jpg",
+        "caption": "Tulum ruins, Riviera Maya \u00b7 Wikimedia Commons \u00b7 CC BY 2.0"
+      }
+    ]
+  },
+  "scandinavia": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/scandinavia-1.jpg",
+        "caption": "Geirangerfjord, Norway \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "singapore": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/singapore-1.jpg",
+        "caption": "Marina Bay at dusk, Singapore \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "south-africa": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/south-africa-1.jpg",
+        "caption": "Table Mountain over the V&A Waterfront, Cape Town \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
+  },
+  "spain": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/spain-1.jpg",
+        "caption": "The Alhambra, Granada \u00b7 Wikimedia Commons \u00b7 Public domain"
+      }
+    ]
+  },
+  "tamil-nadu": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/tamil-nadu-1.jpg",
+        "caption": "Meenakshi Temple gopurams, Madurai \u00b7 Wikimedia Commons \u00b7 CC BY-SA 3.0"
+      }
+    ]
+  },
+  "thailand": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/thailand-1.jpg",
+        "caption": "Maya Bay, Ko Phi Phi \u00b7 Wikimedia Commons \u00b7 CC BY-SA 3.0"
+      }
+    ]
+  },
+  "uttarakhand": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/uttarakhand-1.jpg",
+        "caption": "Kedarnath Temple, Uttarakhand \u00b7 Wikimedia Commons \u00b7 Public domain"
+      }
+    ]
+  },
+  "vietnam": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/vietnam-1.jpg",
+        "caption": "Ha Long Bay, Vietnam \u00b7 Wikimedia Commons \u00b7 CC BY 4.0"
+      }
+    ]
+  },
+  "jamaica": {
+    "photos": [
+      {
+        "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/jamaica-1.jpg",
+        "caption": "Dunn's River Falls, Ocho Rios, Jamaica \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+      }
+    ]
   }
 }
