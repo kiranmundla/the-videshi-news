@@ -82,8 +82,8 @@ export type DestinationsData = {
       Emitted separately by the builder (build_india_card): NOT a
       destination record, NOT in trending_now, carries NO rank. The
       /travel rail appends it after the ranked cards with no badge;
-      it links to the on-page India Destinations section. The Hub
-      strip does not render it. Null when no India data exists. */
+      it links to /travel/india, India's own destination page. The
+      Hub strip does not render it. Null when no India data exists. */
   india_card?: TrendingDestination | null;
 };
 

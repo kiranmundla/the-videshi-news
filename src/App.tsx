@@ -32,6 +32,7 @@ const SearchPage = React.lazy(() => import("./pages/SearchPage.tsx"));
 const Privacy = React.lazy(() => import("./pages/Privacy.tsx"));
 const Terms = React.lazy(() => import("./pages/Terms.tsx"));
 const TravelPage = React.lazy(() => import("./pages/TravelPage.tsx"));
+const TravelIndiaPage = React.lazy(() => import("./pages/TravelIndiaPage.tsx"));
 const TravelDestination = React.lazy(() => import("./pages/TravelDestination.tsx"));
 const VisaListPage = React.lazy(() => import("./pages/VisaListPage.tsx"));
 const LinksPage = React.lazy(() => import("./pages/LinksPage.tsx"));
@@ -173,6 +174,7 @@ const App = () => (
               <Route path="/movies/:slug" element={<MovieDetailPage />} />
               <Route path="/watch/:slug" element={<WatchRedirect />} />
               <Route path="/travel" element={<TravelPage />} />
+              <Route path="/travel/india" element={<TravelIndiaPage />} />
               <Route path="/travel/visa-list/:status/:category" element={<VisaListPage />} />
               <Route path="/travel/:destination" element={<TravelDestination />} />
               <Route path="/events" element={<EventsPage />} />

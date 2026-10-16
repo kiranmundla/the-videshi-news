@@ -434,12 +434,16 @@ def trending_for(rec, month, year, drop):
 
 # ── India country card for the /travel trending rail ────────────────
 # Kiran (2026-10-15): India belongs in the "Top Destinations" scroll
-# like Australia/Bali — but there is NO /travel/india country page and
-# India has NO trending rank. The rail APPENDS this card after the
-# data-ranked cards; it carries no "#N Trending" badge, is never in
+# like Australia/Bali — but India has NO trending rank (it is not a
+# guide record). The rail APPENDS this card after the data-ranked
+# cards; it carries no "#N Trending" badge, is never in
 # trending_now / best_by_month, and its score never influences any
-# ranking. The card links to the on-page India Destinations section
-# (the 9 state guides), not to a guide page.
+# ranking. The card links to /travel/india — India's destination
+# page (metro fares hub + the 9 state guides), NOT a guide page:
+# there is no travel-guides/india.md and no index record. (The card
+# first linked to the on-page India Destinations section; Kiran
+# reversed the no-page call at 20:21 — "India should get its own
+# page" — and the fares hub moved onto that page with it.)
 #
 # Everything on the card is derived from real data at build time:
 #   - best/peak months: months a MAJORITY of the 9 India state records
@@ -578,7 +582,7 @@ def build_india_card(records, deals, metros_deals, today):
     return {
         "slug": "india",
         "name": "India",
-        "guide_url": "/travel#india-destinations",
+        "guide_url": "/travel/india",
         "group": "india",
         "eligible_for_picks": False,
         "region": "Asia",

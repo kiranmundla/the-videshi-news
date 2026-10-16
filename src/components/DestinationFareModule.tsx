@@ -346,7 +346,7 @@ export default function DestinationFareModule({
               included. Fares are snapshots and change — verify before
               booking.{" "}
               <Link
-                to="/travel#flight-deals"
+                to="/travel/india#flight-deals"
                 className="font-semibold text-primary hover:underline"
               >
                 See all fares in the Travel Hub →
@@ -396,7 +396,7 @@ export default function DestinationFareModule({
             </p>
             <p className="text-[12px] text-foreground/50 leading-relaxed mt-3">
               <Link
-                to="/travel#flight-deals"
+                to="/travel/india#flight-deals"
                 className="font-semibold text-primary hover:underline"
               >
                 See tracked fares in the Travel Hub →

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import {
   useTrendingDestinations,
@@ -19,15 +19,17 @@ import {
 /* block — never an invented image.                                   */
 /*                                                                    */
 /* INDIA CARD (Kiran, 2026-10-15): India belongs in this scroll, but  */
-/* it has no trending rank and no country page. The builder emits it  */
-/* separately (data.india_card — derived best months, a real fare     */
-/* line, the same season-chip math); this rail APPENDS it after the  */
-/* ranked cards with NO "#N Trending" badge (badges render only for  */
-/* slugs in trending_now, so ranks can never be implied or shifted), */
-/* and it links to the on-page India Destinations section            */
-/* (/travel#india-destinations) instead of a guide page. The Hub      */
-/* strip does not render it — its cards stay a strict prefix of the  */
-/* ranking, as before.                                                */
+/* it has no trending rank. The builder emits it separately           */
+/* (data.india_card — derived best months, a real fare line, the      */
+/* same season-chip math); this rail APPENDS it after the ranked      */
+/* cards with NO "#N Trending" badge (badges render only for slugs    */
+/* in trending_now, so ranks can never be implied or shifted), and    */
+/* it links to India's own destination page, /travel/india, exactly   */
+/* like every other card links to its page (Kiran, 2026-10-15 20:21:  */
+/* "India should get its own page" — the card first linked to the     */
+/* on-page India Destinations section; the page superseded that).     */
+/* The Hub strip does not render it — its cards stay a strict prefix  */
+/* of the ranking, as before.                                         */
 /*                                                                    */
 /* Card geometry deliberately matches the Hub strip (Kiran,           */
 /* 2026-10-15: the Hub's compact cards are the preferred size for     */
@@ -102,8 +104,6 @@ export default function TrendingDestinations() {
   const { data, galleries, cards } = useTrendingDestinations(MAX_CARDS);
   const scrollRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  const { pathname } = useLocation();
 
   /* Ranked cards first, India card appended last (see header note).
      railCards is what the rail renders, counts and scroll-clamps. */
@@ -183,19 +183,9 @@ export default function TrendingDestinations() {
         {railCards.map((dest, i) => {
           const galleryPhoto = galleries?.[dest.slug]?.photos?.[0];
           const image = dest.hero_image || galleryPhoto?.src || null;
-          const isIndiaCard = dest.slug === "india";
-          /* India card click: on /travel, smooth-scroll to the India
-             Destinations section and set the hash (react-router does
-             not scroll to hashes on its own). Off /travel, the Link
-             navigates to /travel#india-destinations as usual. */
-          const handleIndiaClick = (e: React.MouseEvent) => {
-            if (pathname !== "/travel") return;
-            const el = document.getElementById("india-destinations");
-            if (!el) return;
-            e.preventDefault();
-            el.scrollIntoView({ behavior: "smooth", block: "start" });
-            window.history.pushState(null, "", "#india-destinations");
-          };
+          /* Every card — India included — is a plain Link to its
+             destination page (dest.guide_url); the India card's is
+             /travel/india, emitted by the builder. */
           /* ONE reason chip per card (audit item 13): when every card
              carries the same two chips they differentiate nothing.
              reasonChips builds in priority order (season, off-peak,
@@ -206,7 +196,6 @@ export default function TrendingDestinations() {
             <Link
               key={dest.slug}
               to={dest.guide_url}
-              onClick={isIndiaCard ? handleIndiaClick : undefined}
               className="block group flex-shrink-0 w-[200px]"
               style={{ scrollSnapAlign: "start" }}
             >

@@ -138,7 +138,7 @@ export default function MetroFareRail({
           variant === "hub" ? (
             <Link
               key={fare.routeKey}
-              to="/travel#flight-deals"
+              to="/travel/india#flight-deals"
               className={`block flex-shrink-0 bg-card border border-border rounded-lg hover:border-primary/40 transition-colors ${cardCls}`}
               style={{ scrollSnapAlign: "start" }}
             >

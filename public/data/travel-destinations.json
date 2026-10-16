@@ -5189,7 +5189,7 @@
   "india_card": {
     "slug": "india",
     "name": "India",
-    "guide_url": "/travel#india-destinations",
+    "guide_url": "/travel/india",
     "group": "india",
     "eligible_for_picks": false,
     "region": "Asia",
