@@ -36,6 +36,10 @@ EMAIL_RE = re.compile(r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}')
 GARBAGE_DOMAINS = {
     'example.com', 'example.org', 'example.net', 'test.com',
     'sentry.io', 'sentry.wixpress.com', 'schema.org',
+    # Template/demo placeholders seen in the wild 2026-10-16:
+    # user@domain.com (website-template filler) and team@latofonts.com
+    # (font-demo page footer) were written to real listings.
+    'domain.com', 'yourdomain.com', 'your-domain.com', 'latofonts.com',
 }
 
 # Domain suffixes that are never a business inbox: error-tracking ingest
@@ -54,6 +58,8 @@ def is_garbage_domain(domain):
         return True
     if domain.startswith('example.'):
         return True  # any @example.* placeholder domain, any TLD
+    if domain.startswith('domain.'):
+        return True  # bare domain.<tld> is template filler, any TLD
     if domain.endswith(GARBAGE_DOMAIN_SUFFIXES):
         return True
     if '.ingest.' in f'.{domain}':
@@ -67,7 +73,8 @@ GARBAGE_LOCAL = re.compile(
 # Template placeholder local parts (email@email.com, your@email.com,
 # name@email.com …) — form/template filler, never a real inbox.
 PLACEHOLDER_LOCAL = re.compile(
-    r'^(e-?mail|your|your-?name|your-?e-?mail|name|example|sample|placeholder)$',
+    r'^(e-?mail|your|your-?name|your-?e-?mail|name|example|sample|placeholder'
+    r'|user|user-?name)$',
     re.IGNORECASE)
 IMAGE_EXT = re.compile(r'\.(png|jpe?g|gif|webp|svg|ico|bmp)$', re.IGNORECASE)
 
