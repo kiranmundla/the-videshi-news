@@ -1,0 +1,14 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "article_slug": "air-india-forms-cost-cutting-team-after-record-2-3-billion-loss",
+  "name": "air-india-forms-cost-cutting-team-after-record-2-3-billion-loss",
+  "script": "reel-runs/2026-10-15-air-india-forms-cost-cutting-team-after-record-2-3-billion-loss/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000529
+  },
+  "detail": "no composition fits all scenes below the chin at the planner floors"
+}

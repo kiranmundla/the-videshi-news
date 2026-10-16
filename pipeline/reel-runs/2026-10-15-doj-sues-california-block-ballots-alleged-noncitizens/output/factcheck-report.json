@@ -1,0 +1,262 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "doj-sues-california-block-ballots-alleged-noncitizens",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "DOJ SUES CALIFORNIA OVER 20,000 BALLOTS",
+      "numbers": [
+        20000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "DOJ sued California regarding 20,000 ballots.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The Justice Department sued California on October 15 to block the counting of mail ballots from more than 20,000 voters the administration alleges are likely noncitizens, until their citizenship is verified.",
+      "numbers": [
+        15.0,
+        20000.0
+      ],
+      "entities": [
+        "Justice Department"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Details of the lawsuit match the article's content.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "20,000",
+      "numbers": [
+        20000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The number 20,000 is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Mail ballots the Justice Department wants set aside until citizenship is verified",
+      "numbers": [],
+      "entities": [
+        "Justice Department"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states ballots are to be set aside until verification.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "ON THE BALLOT",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "No specific mention of 'ON THE BALLOT' in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "48 HOURS",
+      "numbers": [
+        48.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions a 48-hour deadline.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Deadline the Justice Department gave California before filing suit",
+      "numbers": [],
+      "entities": [
+        "Justice Department"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The deadline given by DOJ is detailed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "26",
+      "numbers": [
+        26.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the department lost 26 cases.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Voter-roll cases the department has lost, without winning one",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the number of lost voter-roll cases.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "129",
+      "numbers": [
+        129.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "129 prosecutions for noncitizen voting are mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Prosecutions for noncitizen voting since 1996, a Reuters investigation found",
+      "numbers": [
+        1996.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          1996
+        ]
+      },
+      "llm_reason": "The article cites 129 prosecutions since 1996.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Most Indian-American voters are naturalized citizens, the group advocates say is most at risk of being wrongly flagged",
+      "numbers": [],
+      "entities": [
+        "Most Indian-American"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states most Indian-American voters are naturalized.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Your ballot is not cancelled by this lawsuit \u2014 answer any county verification notice promptly",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article advises that ballots are not cancelled.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "A judge in Los Angeles must now decide whether to grant emergency relief, with voting already under way.",
+      "numbers": [],
+      "entities": [
+        "Los Angeles"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions a judge's decision is pending.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "ON THE BALLOT",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Justice Department",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "California",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Shirley Weber",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Gavin Newsom",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000492
+  }
+}

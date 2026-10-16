@@ -1,0 +1,262 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "air-india-forms-cost-cutting-team-after-record-2-3-billion-loss",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "AIR INDIA FORMS COST-CUTTING TEAM AFTER RECORD LOSS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states Air India formed a cost-cutting team after a record loss.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Air India has set up a cross-functional cost-cutting team and tightened spending approvals after posting a record $2.3 billion loss for the fiscal year ended March.",
+      "numbers": [
+        2.3,
+        2300000000.0
+      ],
+      "entities": [
+        "Air India"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms the formation of a cost-cutting team after a $2.3 billion loss.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$2.3 BILLION",
+      "numbers": [
+        2.3,
+        2300000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$2.3 billion loss is explicitly mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Air India's loss for the fiscal year ended March \u2014 its largest yet",
+      "numbers": [],
+      "entities": [
+        "Air India's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this loss is the largest yet for Air India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article does not contain a section labeled 'BY THE NUMBERS.'",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "6",
+      "numbers": [
+        6.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Air India operates six Airbus A350-900 aircraft.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Airbus A350-900 aircraft in the fleet, whose engine maintenance costs are under review",
+      "numbers": [
+        350.0,
+        900.0
+      ],
+      "entities": [
+        "Airbus A350-900"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states maintenance costs for A350 engines are under review.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "25.1%",
+      "numbers": [
+        25.1
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Singapore Airlines holds a 25.1% stake in Air India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Singapore Airlines' stake in Air India",
+      "numbers": [],
+      "entities": [
+        "Singapore Airlines'",
+        "Air India"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Singapore Airlines' stake in Air India is 25.1%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "35%",
+      "numbers": [
+        35.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions cargo capacity usage is flagged at 35%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Of cargo capacity in use, flagged by the chief executive",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the chief executive flagged 35% cargo capacity in use.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Airspace closures have forced diversions and capacity cuts on long-haul routes between India, North America and Europe",
+      "numbers": [],
+      "entities": [
+        "North America"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses airspace closures affecting long-haul routes.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "No route cuts were announced in this step \u2014 but check your booking, as deferred deliveries can change schedules",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article advises checking bookings due to potential schedule changes.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Equity terms with Tata Sons and Singapore Airlines, and maintenance and delivery talks, will determine the pace of the turnaround.",
+      "numbers": [],
+      "entities": [
+        "Tata Sons",
+        "Singapore Airlines"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states equity terms and maintenance talks will affect turnaround pace.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Air India",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Tewolde Gebremariam",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Tata Sons",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Singapore Airlines",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000529
+  }
+}

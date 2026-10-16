@@ -1,0 +1,192 @@
+[
+  {
+    "id": "77498024-953c-4d59-909b-e7261d6fa101",
+    "headline": "Fibremaxing With Indian Food: Dal and Millets Beat Imported Powders",
+    "slug": "fibremaxing-indian-food-dal-millets-fibre-trend",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the source of the fibre intake statistics mentioned in the article. While the CDC is referenced, a direct citation or link to the specific guidelines would enhance credibility and allow readers to verify the information easily.",
+        "Include specific examples of how much fibre is in common Indian foods mentioned, such as the grams of fibre in a cup of dal or a serving of millets. This would provide concrete takeaways for readers looking to increase their fibre intake.",
+        "Add a brief section on potential health benefits of increasing fibre intake, such as improved digestion or reduced risk of chronic diseases, to provide context on why this trend is important."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or post from a nutrition expert or dietitian discussing the benefits of fibre or the 'fibremaxing' trend to provide authoritative support for the claims made in the article."
+      ]
+    }
+  },
+  {
+    "id": "7ab6f23a-30a1-42fc-83e8-d2d40e0f33fb",
+    "headline": "AI Test Agents Read Indian Firms' Live Data Undetected, CERT-In Warns",
+    "slug": "cert-in-ai-agents-accessed-indian-firms-live-systems",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific actions organizations should take in response to the advisory by including concrete deadlines for implementing security measures, such as a timeline for rotating credentials or enforcing security protocols.",
+        "Provide more context about the potential consequences of these breaches for affected organizations, such as legal implications or potential fines, to enhance completeness.",
+        "Include a brief summary of the types of organizations affected (e.g., sectors or sizes) to give readers a better understanding of the scope of the issue."
+      ],
+      "embed_opportunities": [
+        "Embed the official CERT-In advisory document or a link to it for readers to access the full details directly."
+      ]
+    }
+  },
+  {
+    "id": "8b97ea66-2387-4a27-8970-2031685ea4be",
+    "headline": "Indians Took 70% of H-1B Approvals as New-Employment Approvals Fell",
+    "slug": "indians-70-percent-h1b-approvals-initial-approvals-fell-fy2025",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the fiscal year for the data presented. For example, explicitly state that fiscal 2025 refers to the period from October 1, 2024, to September 30, 2025, to avoid confusion.",
+        "Include a brief explanation of the implications of the declining new employment approvals for potential H-1B applicants. For instance, discuss how this trend may affect job opportunities or the competitiveness of the H-1B visa process.",
+        "Add a direct quote from a USCIS official or an immigration expert to provide authoritative context on the significance of these statistics and their impact on the H-1B program.",
+        "Provide a clearer breakdown of the types of computer-related jobs that are most commonly approved, as this could help readers understand which sectors are thriving within the H-1B framework."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS announcement or tweet regarding the H-1B approvals to provide readers with direct access to the source of the data."
+      ]
+    }
+  },
+  {
+    "id": "fce693cd-985c-4250-9162-44574603a1a3",
+    "headline": "Ashwin Says Dropping Kuldeep Against West Indies Lacked Common Sense",
+    "slug": "ashwin-kuldeep-yadav-exclusion-common-sense-west-indies",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the fourth T20I match more prominently at the beginning of the article to enhance clarity for readers unfamiliar with the series schedule.",
+        "Include a direct quote from Ashwin's YouTube channel to provide clearer attribution and enhance the credibility of the statements made about Kuldeep's exclusion.",
+        "Add a brief context about the significance of the series being tied 2-2 and the implications of the upcoming decider match, which would provide completeness to the narrative."
+      ],
+      "embed_opportunities": [
+        "Embed the official highlights or key moments from the fourth T20I match to provide readers with a visual context of the match performance."
+      ]
+    }
+  },
+  {
+    "id": "fab72ff5-b8fc-446a-bfe0-343925cac542",
+    "headline": "India's Restaurant Sector Bets on Niche Cuisines Over Generic Menus",
+    "slug": "india-restaurant-sector-niche-culinary-revolution",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the statistics mentioned, such as the specific reports from Swiggy and Kearney, to enhance attribution and credibility. Include direct citations or links to the reports for readers who want to verify the data.",
+        "Provide specific examples of successful niche restaurants or concepts that have emerged in India to illustrate the trend and offer context to the claims made by Pulkit Arora.",
+        "Include a brief explanation of what constitutes a 'niche cuisine' and how it differs from mainstream options to improve clarity for readers unfamiliar with the terminology."
+      ],
+      "embed_opportunities": [
+        "Embed the Swiggy and Kearney report or a relevant tweet summarizing their findings on the growth of niche cuisines in India's restaurant sector."
+      ]
+    }
+  },
+  {
+    "id": "58e617f0-8912-4a3a-a365-47e228ee29df",
+    "headline": "He Found India at Auckland Diwali; a Decade Later He Runs the Festival",
+    "slug": "auckland-diwali-festival-arnav-taode-runs-it-2026",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the dates for the festival in the opening paragraph to avoid confusion. Currently, the article mentions the dates as October 31 and November 1, 2026, but it should be clear that these dates are for the upcoming festival in the context of the current year.",
+        "Include specific details about the types of vegetarian food and workshops available at the festival. This would enhance reader utility by providing a clearer picture of what attendees can expect.",
+        "Add a quote from Auckland Council or another official source to strengthen the attribution and provide a more authoritative perspective on the festival's significance.",
+        "Mention any potential impacts of the festival on local traffic or public transport in more detail, especially since road closures and detours are mentioned. This could include specific streets affected or alternative routes for attendees."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from the official Auckland Council account announcing the festival, which would provide readers with direct access to official information and updates."
+      ]
+    }
+  },
+  {
+    "id": "40952f88-f453-4c1f-9760-9602c5a70897",
+    "headline": "Mira Nair's Diwali Dinner in New York Doubles as Writers' Fundraiser",
+    "slug": "mira-nair-diwali-dinner-new-york-passerine-writers-fundraiser",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the fundraising aspect by including specific details about how much money was raised or the fundraising goal for the Asian American Writers' Workshop.",
+        "Provide more context about the 'bubbling youth democracy movement' in India, including specific examples or recent events that illustrate this movement, to enhance reader understanding.",
+        "Include a quote from Mira Nair or another prominent guest to add depth and personal insight into the significance of the event.",
+        "Ensure that the article consistently attributes information to sources, such as confirming the details from The New York Times and Amitava Kumar's account."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post from Mira Nair or the Asian American Writers' Workshop to visually connect readers with the event and its purpose."
+      ]
+    }
+  },
+  {
+    "id": "10cfe92f-e3e3-42c7-b358-8dba6f2352e2",
+    "headline": "Google Boosts News and Link Visibility in AI Mode as Publisher Traffic Falls",
+    "slug": "google-boosts-news-link-visibility-ai-mode",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the changes by specifying when the new features will be implemented. For instance, include exact dates or a timeframe for when users can expect to see the updates in their search results.",
+        "Provide more context around the 40% traffic loss statistic. Include details about how this compares to previous years or what specific factors may have contributed to this decline, as this would help readers understand the significance of the change.",
+        "Ensure that the attribution for the Chartbeat data is clear and direct. Instead of saying 'Chartbeat data cited by Google coverage,' specify the source of the data more clearly, such as 'According to data from Chartbeat, cited in Google's announcement.'",
+        "Reorganize the content to improve clarity. Consider starting with a brief summary of the key changes before diving into the details, which would help readers grasp the main points quickly."
+      ],
+      "embed_opportunities": [
+        "Embed the official Google announcement or a relevant tweet from Google's official account to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "093ab4a1-3552-4c4d-9a9e-f2f3bf08f12f",
+    "headline": "India Urges Middle East De-escalation, Condemns Attacks on Ships and Civilians",
+    "slug": "india-middle-east-de-escalation-condemns-attacks-ships-civilians",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the attacks on Riyadh airport occurred and the date of the UN Security Council meeting to provide context for the urgency of India's response.",
+        "Include direct quotes from India's Permanent Representative P. Harish to enhance attribution and provide readers with a clearer understanding of India's stance.",
+        "Add more details about the implications of the attacks on Indian citizens and workers in the region, such as potential safety measures or government advisories for Indian nationals in the Middle East."
+      ],
+      "embed_opportunities": [
+        "Embed the official UN Security Council statement or summary of the meeting to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "0a24cd06-6d08-4f07-9bcd-bfb5e4c01c25",
+    "headline": "Modi to Visit Canada December 11-12 to Advance Trade and Strategic Ties",
+    "slug": "modi-visit-canada-december-11-12-trade-cepa",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the Comprehensive Economic Partnership Agreement (CEPA) negotiations by specifying any deadlines or key milestones that readers should be aware of, such as when the agreement is expected to be finalized or when negotiations will resume.",
+        "Provide more context on the significance of the CAD 70 billion trade target by 2030. For example, include current trade figures or how this target compares to previous years to give readers a clearer understanding of the ambition behind the agreement.",
+        "Ensure that all statements are clearly attributed to their sources. For instance, the mention of the High Commissioner Christopher Cooter should include a direct quote or paraphrase to enhance credibility and clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement from the High Commission of India regarding Modi's visit for direct access to primary information."
+      ]
+    }
+  }
+]
