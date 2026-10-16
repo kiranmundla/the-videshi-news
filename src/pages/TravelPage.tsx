@@ -202,10 +202,15 @@ function DestinationCard({ dest, holderStatus }: { dest: Destination; holderStat
 /* ------------------------------------------------------------------ */
 /* Main TravelPage                                                    */
 /* ------------------------------------------------------------------ */
+/* Group order is deliberate (Kiran, 2026-10-15): NO India country
+   page — the India state destinations sit directly below the
+   Cheapest Fares hub (India group first in this index, which follows
+   the fares hub + toggle), one click through to each state page.
+   The other groups keep their relative order after it. */
 const DESTINATION_GROUPS: { key: string; heading: string; blurb: string; match: (d: Destination) => boolean }[] = [
   {
     key: "india",
-    heading: "🇮🇳 In India",
+    heading: "🇮🇳 India Destinations",
     blurb: "Flying to India — state guides for the trip home.",
     match: (d) => d.region === "india",
   },
