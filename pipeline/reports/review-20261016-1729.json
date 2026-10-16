@@ -1,0 +1,195 @@
+[
+  {
+    "id": "6d65b86e-1f5f-46a9-9f91-93c2a44e1157",
+    "headline": "Vercel Says Jev Is Its Fastest-Adopted AI Model Ever, Reaching 35% of Paid Teams",
+    "slug": "vercel-jev-fastest-adopted-ai-model",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the adoption rates by providing context on how they compare to industry standards or previous models beyond just the immediate competition. This could help readers understand the broader implications of Jev's success.",
+        "Include a brief explanation of what the implications of the token usage and spend percentages mean for teams using the model. For example, how does the lower token usage impact costs for developers?",
+        "Add a direct quote from a Vercel representative or an industry expert to provide attribution and enhance credibility regarding the model's performance and its implications for users."
+      ],
+      "embed_opportunities": [
+        "Embed the official Vercel tweet that discusses the launch and performance of Jev to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "a005cb48-e478-4133-83ae-d200701136c2",
+    "headline": "Ocasio-Cortez Transfers $1 Million to El-Sayed in Michigan Senate Race's Final S",
+    "slug": "ocasio-cortez-million-el-sayed-michigan-senate",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the $1 million transfer by providing context on how it compares to typical campaign contributions, as this would help readers understand the magnitude of the donation.",
+        "Include specific details about the timeline of the Michigan Senate race, such as key upcoming dates for voters or campaign events, to enhance the urgency and relevance of the article.",
+        "Add a quote from a political analyst or expert to provide additional context on the implications of Ocasio-Cortez's support for El-Sayed and the potential impact on the Senate race."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Alexandria Ocasio-Cortez announcing the transfer or her campaign activities to provide direct access to her statements and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "ce8c87d3-3839-4034-b055-7f6422894641",
+    "headline": "NRI Capital Gains: When the Basic Exemption Limit Can \u2014 and Cannot \u2014 Cut Your Ta",
+    "slug": "nri-capital-gains-basic-exemption-limit-guide",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Clarify the distinction between long-term and short-term capital gains with specific examples to enhance understanding.",
+        "Include direct quotes from tax experts or financial advisors to strengthen attribution and provide authoritative perspectives on the topic.",
+        "Add a brief overview of the implications of these tax rules for NRIs in practical terms, such as potential financial consequences or common pitfalls to avoid.",
+        "Ensure that all technical terms are clearly defined for readers who may not be familiar with tax jargon, improving overall clarity."
+      ],
+      "embed_opportunities": [
+        "Consider embedding a relevant infographic that visually explains the tax implications for NRIs regarding capital gains and the basic exemption limit.",
+        "Include a link to a video or webinar featuring tax experts discussing NRI tax planning strategies, which would enhance engagement and provide additional resources for readers."
+      ],
+      "rubric_violation": true
+    }
+  },
+  {
+    "id": "69abdf6b-53bc-495d-8211-04e15006abb4",
+    "headline": "National Mammography Day: Four Screening Myths That Keep Women From Getting Chec",
+    "slug": "national-mammography-day-screening-myths",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the statistics regarding breast cancer screening; for example, specify the source of the claim that screening mammograms miss about 20% of breast cancers present at the time. This would enhance accuracy and attribution.",
+        "Include specific guidelines or recommendations for when women should start getting screened, such as the exact age or frequency of screenings, to provide concrete action steps for readers.",
+        "Provide a brief context on the significance of National Mammography Day and its history to enhance completeness and give readers a better understanding of its importance."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a health organization or breast cancer awareness group that promotes National Mammography Day or discusses the importance of screening."
+      ]
+    }
+  },
+  {
+    "id": "b7a99803-995f-4be2-a12c-6c46b1663e3e",
+    "headline": "FBI 'Most Wanted Fraudster' Manjit Bedi Returned From India in $600,000 SNAP Cas",
+    "slug": "manjit-singh-bedi-snap-fraud-returned-from-india",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events, particularly the dates of the alleged fraud and the timeline of Bedi's indictment and flight to India, as there seems to be a discrepancy with the years mentioned (March 2024 to June 2025) which may confuse readers.",
+        "Include a specific quote from the Justice Department or the FBI regarding the implications of Bedi's arrest for future cases to provide more context on the significance of this case.",
+        "Add details about the potential penalties Bedi faces if convicted, including specific sentencing guidelines, to give readers a clearer understanding of the consequences of his actions."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the FBI or Justice Department announcing Bedi's return to the U.S. for a more authoritative source on the case."
+      ]
+    }
+  },
+  {
+    "id": "80227651-8b42-420d-8788-be6235edf76e",
+    "headline": "He Asked Followers for Diwali Sweets. They Sent a \u20b91.69 Lakh TV \u2014 on Cash-on-Del",
+    "slug": "madurai-influencer-veeramani-diwali-sweets-cod-prank",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the impact on delivery workers by providing specific examples or quotes from affected riders to enhance the human element of the story.",
+        "Include a brief explanation of cash-on-delivery (COD) policies in India to give readers context on how this situation could occur and the implications for consumers and delivery services.",
+        "Add a timeline of events to help readers understand the sequence of actions taken by Veeramani and the resulting deliveries, which would improve clarity and completeness."
+      ],
+      "embed_opportunities": [
+        "Embed Veeramani's video appeal to provide a direct source and visual context for the situation."
+      ]
+    }
+  },
+  {
+    "id": "1304d953-3ca7-42f2-b69f-28c2f4f27651",
+    "headline": "Jailer 2 Nears \u20b9100 Crore India Net After \u20b9125 Crore Worldwide Opening",
+    "slug": "jailer-2-box-office-day-2-india-net",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for achieving the \u20b9100 crore milestone by specifying the exact day and time it is projected to be reached, as this would provide readers with a concrete expectation.",
+        "Include a brief comparison of Jailer 2's performance against other recent Tamil film releases to give context on its success and market position.",
+        "Provide more details on the budget implications, such as how long Jailer 2 needs to run to break even or become profitable, which would enhance the financial context for readers."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a film industry analyst or box office tracker that discusses the significance of Jailer 2's opening numbers."
+      ]
+    }
+  },
+  {
+    "id": "52e2041a-bfff-4017-aaca-87580abcc361",
+    "headline": "Gill and Iyer to Share ODI Captaincy as India Name Squads for New Zealand Tour",
+    "slug": "india-squads-new-zealand-tour-gill-iyer-captaincy",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for Rishabh Pant's fitness clearance. Include specific dates or a statement from the BCCI regarding when a decision will be made.",
+        "Provide more context on the significance of the split captaincy for the upcoming ODI World Cup. A brief explanation of how this could impact team dynamics or strategy would enhance the article's depth.",
+        "Ensure that the information about the ODI and Test squad selections is attributed correctly. For example, clarify that the details about the squads come from the BCCI's official announcement to enhance credibility.",
+        "Add a brief summary of the previous performances of Gill and Iyer as captains, if available, to give readers insight into their leadership capabilities."
+      ],
+      "embed_opportunities": [
+        "Embed the official BCCI announcement or a relevant tweet regarding the squad selections for direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "968e0ecb-f2e8-407c-ac48-1a0f2a43837f",
+    "headline": "India's Antibiotic Crisis Is a Failure of Hospital Care, Not Just Overuse",
+    "slug": "india-antibiotic-resistance-crisis-hospital-care-icmr-study",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the study: The article mentions the study analyzed patients between April 2022 and April 2025, which implies it is ongoing. This could confuse readers. Specify if the findings are preliminary or if the study is still in progress.",
+        "Provide more context on the implications of the mortality rates: While the article mentions mortality rates for resistant infections, it would be beneficial to explain what these figures mean in terms of public health impact or comparison to global standards.",
+        "Include a direct quote or attribution from a key researcher or health authority to enhance credibility and provide expert insight on the findings."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or statement from the Indian Council of Medical Research (ICMR) regarding the study's findings or antibiotic resistance in India."
+      ]
+    }
+  },
+  {
+    "id": "33346ef8-664a-4cae-b7f2-d43f020440f0",
+    "headline": "Democrats Spend $163 Million Making Trump the Face of the Midterms",
+    "slug": "democrats-163-million-trump-midterm-ads",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of the spending by specifying the date range more clearly. For example, state that the $163 million was spent from September 1 to the present date, and mention the current date explicitly.",
+        "Provide more context on the significance of the November 3 election date. Explain how the control of Congress impacts immigration enforcement and visa policy, particularly for Indian American families, to enhance completeness.",
+        "Include direct quotes or attribution from Democratic or Republican strategists regarding their advertising strategies to improve attribution and provide a more balanced perspective.",
+        "Add specific examples of how Democratic ads are framing issues related to Trump, such as mentioning particular ads or their content, to enhance clarity and depth."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Democratic National Committee or a relevant political figure discussing the advertising strategy to provide real-time context."
+      ]
+    }
+  }
+]

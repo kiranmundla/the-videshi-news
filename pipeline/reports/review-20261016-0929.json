@@ -1,0 +1,193 @@
+[
+  {
+    "id": "b37ca3df-73b9-486e-897f-c9f1e35cd9d5",
+    "headline": "Delhi High Court Seeks FSSAI Response on Non-Dairy Products Sold as Paneer",
+    "slug": "delhi-high-court-fssai-non-dairy-paneer-plea",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the court's decision for consumers, such as potential changes in labeling or enforcement timelines, to provide a clearer takeaway for readers.",
+        "Include specific examples of non-dairy products that have been sold as paneer to enhance understanding of the issue.",
+        "Add a quote from a relevant authority or expert on food safety to provide additional context and credibility to the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from FSSAI or the Delhi High Court regarding the case for real-time updates and official statements."
+      ]
+    }
+  },
+  {
+    "id": "94fd817c-9632-4471-a15a-d8d4d264f69e",
+    "headline": "Supreme Court Quashes Yes Bank's Rs 8,415 Crore AT-1 Write-Off; Shares Slide",
+    "slug": "supreme-court-quashes-yes-bank-at1-write-off-shares-slide",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the Supreme Court's ruling for bondholders by providing specific details on how the restoration of the bonds will affect their financial situation, including any potential timelines for receiving payments or further actions they may need to take.",
+        "Include a brief explanation of the legal context surrounding the write-off, specifically what led to the Supreme Court's decision and how it impacts the regulatory framework governing AT-1 bonds in India.",
+        "Provide a more detailed breakdown of the share price movement, including the closing price after the ruling and any analyst commentary on the future outlook for Yes Bank shares, to give readers a clearer understanding of market reactions.",
+        "Add a quote from a legal expert or financial analyst to provide authoritative insight into the significance of the ruling and its potential long-term effects on the banking sector."
+      ],
+      "embed_opportunities": [
+        "Embed the official Supreme Court ruling or a relevant tweet from the Supreme Court or a financial news outlet summarizing the decision."
+      ]
+    }
+  },
+  {
+    "id": "673aa15c-cd2f-4b62-a6e8-000e63296467",
+    "headline": "Indian Mutual Funds Halt Bulk Gold ETF Subscriptions Ahead of Festive Season",
+    "slug": "mutual-funds-halt-gold-etf-subscriptions-festive-season",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the reason for the halt in subscriptions. While the article mentions a nudge from SEBI, it should provide more context on why SEBI intervened and the implications of this intervention for investors.",
+        "Include specific dates for when the restrictions will be lifted or if there is any indication of how long the halt will last. This would provide readers with a clearer understanding of the timeline.",
+        "Add a brief explanation of what the implications are for investors who are currently holding these funds. For example, will they be able to sell or redeem their investments without penalty during this period?",
+        "Ensure the article maintains a consistent structure. The section 'What Exactly Has Stopped' could be better integrated into the main body to improve the flow and clarity of information."
+      ],
+      "embed_opportunities": [
+        "Embed the official SEBI statement or relevant regulatory notice regarding the halt in subscriptions to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "8ab0844d-2bc0-48b1-8ccf-2663a846f451",
+    "headline": "Chennai's Kolu Displays Go Beyond Tradition, From Ayodhya Temple to a 47.8-Foot ",
+    "slug": "chennai-kolu-displays-new-themes-navaratri-2026",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the record attempt by providing context on previous records and why this attempt is noteworthy. For example, include details about the previous record holders and their displays to enhance the reader's understanding of the achievement.",
+        "Include specific details about the daily poojas and cultural programs at the SPR India display, such as times or types of activities, to give readers a clearer picture of what to expect if they visit.",
+        "Add a quote or attribution from a participant or organizer at the SPR display to provide a personal touch and enhance the article's credibility."
+      ],
+      "embed_opportunities": [
+        "Embed a video or images of the kolu displays to visually engage readers and provide a better sense of scale and creativity involved in the displays."
+      ]
+    }
+  },
+  {
+    "id": "cb2f10db-33b3-4057-88e0-04c30f020340",
+    "headline": "Rishi Sunak Returns to Delhi's Bengali Sweet House for Aloo Tikki and Rasmalai W",
+    "slug": "rishi-sunak-bengali-sweet-house-aloo-tikki-rasmalai-sudha-murty",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of Sunak's visits to the Bengali Sweet House by correcting the year mentioned in the article; it states '2025' which is in the future and should likely be '2022' or '2023'.",
+        "Include specific quotes from Rishi Sunak or Sudha Murty about their experience at the sweet shop to enhance attribution and provide a personal touch to the article.",
+        "Provide context on the significance of the Bloomberg New Economy Forum and Sunak's meeting with Modi to give readers a better understanding of the trip's importance beyond the food aspect."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from Sudha Murty or Swati Maliwal that captures their experience at the sweet shop, which could provide a visual element and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "33bd2b86-6877-42c4-b501-204d9dc3b6ef",
+    "headline": "Ankita Bhandari's Parents Detained at India Gate Over Governor Appointment Prote",
+    "slug": "ankita-bhandari-parents-detained-india-gate-governor-protest",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events, particularly the date of the alleged murder and the timeline of the investigation, to provide readers with a clearer context of the situation.",
+        "Include specific quotes from the parents or the detained Congress MPs to add depth and personal perspective to the article.",
+        "Provide more background on the allegations against Dushyant Kumar Gautam, including details about the 'VIP' angle mentioned, to enhance understanding of why this appointment is controversial."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the Delhi Police regarding the detention to provide an authoritative perspective on the incident."
+      ]
+    }
+  },
+  {
+    "id": "8d081d45-4be2-4f83-860d-3e1ff90baffc",
+    "headline": "Supreme Court Declines Urgent Curb on CJP Tiranga March as Police Offer 11-Perso",
+    "slug": "cjp-tiranga-march-supreme-court-police-11-person-event",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the Supreme Court's decision by providing specific details on what the next steps are for both the CJP and the police. For example, outline what the symbolic event for 11 people entails and any restrictions that may apply.",
+        "Include a brief background on the Cockroach Janta Party (CJP) and the context of the protest to help readers understand the significance of the 'Lehra Do Tiranga' gathering and the reasons behind the police's actions.",
+        "Add a quote from a representative of the Delhi Police regarding their stance on the protest and the reasons for the prohibitory orders. This would enhance the article's completeness by providing multiple perspectives on the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official Supreme Court ruling or statement regarding the case to provide readers with direct access to the legal context."
+      ]
+    }
+  },
+  {
+    "id": "3f0a812b-285e-4f1b-9acf-1db7ca9c3a0b",
+    "headline": "TIFR Scientist Ankona Datta Wins James Hoeschele Award for Biological Inorganic ",
+    "slug": "ankona-datta-tifr-james-hoeschele-asbic-award",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the award by providing more context on the impact of Datta's research in biological inorganic chemistry, particularly how it contributes to advancements in medical or environmental fields.",
+        "Include a direct quote from Professor Datta or a representative from the Asian Society of Biological Inorganic Chemistry to enhance attribution and provide a personal touch to the article.",
+        "Correct the repetition of information regarding the award in the first and second paragraphs to improve clarity and flow. The second mention of Datta winning the award could be streamlined or omitted.",
+        "Add a brief mention of the upcoming AsBIC conference where Datta will deliver her award lecture, including the date and location, to provide readers with a concrete takeaway."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from the Asian Society of Biological Inorganic Chemistry regarding the award to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "d23f35a4-2e4e-4cc1-bfc1-2f0a66e6e248",
+    "headline": "Wipro to Acquire 20% Stake in Insurance AI Startup FLARRE.AI; Shares Rise About ",
+    "slug": "wipro-acquires-20-percent-stake-flarre-ai-insurance",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the financial details of the acquisition, such as the total monetary value of the 20% stake in FLARRE.AI, to provide readers with a clearer understanding of the transaction's scale.",
+        "Include a brief background on Wipro's previous investments or acquisitions in the AI or insurance sectors to give context to this deal and its significance.",
+        "Add a quote from a Wipro executive or an industry expert regarding the implications of this acquisition for Wipro's strategy or the insurance technology landscape, enhancing the article's depth and authority."
+      ],
+      "embed_opportunities": [
+        "Embed the official Wipro announcement or regulatory filing regarding the acquisition for direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "78d67a4b-1b49-4ac1-8987-cbf3c35d4695",
+    "headline": "Jailer 2 Posts $1.4 Million North America Premiere, Kollywood's Fourth-Biggest",
+    "slug": "jailer-2-north-america-premiere-1-4-million-fourth-biggest",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the source of the $1.4 million figure by providing a direct quote or link to the original report from Koimoi, ensuring proper attribution and enhancing credibility.",
+        "Include a brief context about the significance of Rajinikanth's films in North America, such as historical performance or audience demographics, to provide readers with a clearer understanding of the achievement.",
+        "Add specific numbers regarding ticket prices or average earnings per show to give readers a better sense of the film's financial performance and its implications for future releases."
+      ],
+      "embed_opportunities": [
+        "Embed the official Koimoi tweet or post regarding the premiere figures to provide direct access to the source of information and enhance the article's credibility."
+      ]
+    }
+  }
+]

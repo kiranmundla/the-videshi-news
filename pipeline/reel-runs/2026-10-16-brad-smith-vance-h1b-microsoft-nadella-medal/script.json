@@ -1,0 +1,37 @@
+{
+  "hook_line": "MICROSOFT HITS BACK OVER H-1B",
+  "hook_stat": {
+    "big": "9,000",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "US-born workers Microsoft hired last year, Smith says"
+  },
+  "stats": [
+    {
+      "big": "80%",
+      "label": "of the company's roughly 6,000 H-1B filings were extensions or status changes"
+    },
+    {
+      "big": "5 of 6",
+      "label": "medalists honoured by Trump had come to the US as immigrants"
+    },
+    {
+      "big": "180 days",
+      "label": "maximum PERM suspension allowed during a fraud investigation"
+    }
+  ],
+  "diaspora_bullets": [
+    "PERM green-card filings are frozen at eight employers, including Infosys, TCS, Wipro and HCLTech",
+    "Indian professionals at the eight firms face frozen green-card timelines"
+  ],
+  "key_entities": [
+    "Brad Smith",
+    "Satya Nadella",
+    "Microsoft",
+    "H-1B",
+    "PERM"
+  ],
+  "news_summary": "Microsoft president Brad Smith rebutted the administration's H-1B case, saying Microsoft hired more than 9,000 US-born workers last year while PERM filings at eight employers stay suspended.",
+  "payoff": "None of the eight companies has been charged, and their PERM filings remain frozen.",
+  "versus": "",
+  "story_mood": "tense"
+}

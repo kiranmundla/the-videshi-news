@@ -1,0 +1,35 @@
+{
+  "hook_line": "GREEN CARD LOTTERY ORDERED REOPENED",
+  "hook_stat": {
+    "big": "55,000",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "immigrant visas the lottery makes available each year"
+  },
+  "stats": [
+    {
+      "big": "30 days",
+      "label": "minimum registration window the court order requires"
+    },
+    {
+      "big": "October 18",
+      "label": "date registration must open by, under the injunction"
+    },
+    {
+      "big": "1990",
+      "label": "year Congress created the Diversity Visa program"
+    }
+  ],
+  "diaspora_bullets": [
+    "Enter only through the official dvprogram.state.gov portal - do not pay any third-party site",
+    "India-born applicants generally do not qualify directly, but a spouse or parent born in an eligible country can sometimes provide an alternative"
+  ],
+  "key_entities": [
+    "Jinsook Ohta",
+    "State Department",
+    "Diversity Visa program"
+  ],
+  "news_summary": "A federal judge in California ordered the State Department to reinstate the fiscal 2027 Diversity Visa lottery, which makes up to 55,000 immigrant visas available each year.",
+  "payoff": "Registration had not yet opened as of October 16, and no official dates had been announced.",
+  "versus": "",
+  "story_mood": "practical"
+}

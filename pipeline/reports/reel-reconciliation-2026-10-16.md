@@ -1,6 +1,6 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-10-16T05:13:35+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-10-16T17:12:47+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 

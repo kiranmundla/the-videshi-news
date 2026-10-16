@@ -1,0 +1,256 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "brad-smith-vance-h1b-microsoft-nadella-medal",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "MICROSOFT HITS BACK OVER H-1B",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Microsoft's response to H-1B issues is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Microsoft president Brad Smith rebutted the administration's H-1B case, saying Microsoft hired more than 9,000 US-born workers last year while PERM filings at eight employers stay suspended.",
+      "numbers": [
+        1.0,
+        9000.0
+      ],
+      "entities": [
+        "Brad Smith"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Smith's rebuttal and hiring numbers are accurately summarized.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "9,000",
+      "numbers": [
+        9000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The number 9,000 is directly stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "US-born workers Microsoft hired last year, Smith says",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim about US-born workers hired is supported by Smith's statement.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The label 'BY THE NUMBERS' is not mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "80%",
+      "numbers": [
+        80.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "80% of H-1B filings being extensions is stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "of the company's roughly 6,000 H-1B filings were extensions or status changes",
+      "numbers": [
+        1.0,
+        6000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim about extensions or status changes is directly supported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "5 of 6",
+      "numbers": [
+        5.0,
+        6.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states five of six medalists were immigrants.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "medalists honoured by Trump had come to the US as immigrants",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim about medalists being immigrants is directly supported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "180 days",
+      "numbers": [
+        180.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The maximum suspension period of 180 days is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "maximum PERM suspension allowed during a fraud investigation",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim about PERM suspension during fraud investigations is supported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "PERM green-card filings are frozen at eight employers, including Infosys, TCS, Wipro and HCLTech",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article lists the eight employers, including Infosys, TCS, Wipro, and HCLTech.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Indian professionals at the eight firms face frozen green-card timelines",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The impact on Indian professionals' green-card timelines is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "None of the eight companies has been charged, and their PERM filings remain frozen.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states that no companies have been charged and filings remain frozen.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Brad Smith",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Satya Nadella",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Microsoft",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "H-1B",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "PERM",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00053
+  }
+}

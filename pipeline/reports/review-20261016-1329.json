@@ -1,0 +1,188 @@
+[
+  {
+    "id": "00028b06-0afb-46a4-8561-292972067a0c",
+    "headline": "Court Orders State Department to Reopen 55,000-Visa Green Card Lottery",
+    "slug": "court-orders-reopen-55000-green-card-lottery-dv2027",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by explicitly stating the registration dates as October 18 to November 19, 2023, in the opening paragraph to enhance clarity for readers.",
+        "Include a brief explanation of the implications of the ruling for potential applicants, such as what steps they need to take to prepare for registration, including any specific eligibility criteria they should be aware of.",
+        "Provide a direct quote from Judge Jinsook Ohta's ruling or a representative from the State Department to strengthen attribution and add authority to the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official State Department tweet or announcement regarding the reopening of the Diversity Visa lottery for fiscal 2027 to provide readers with direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "3b1fa34b-3461-4b35-a9e9-e21d32ae5943",
+    "headline": "Lawmakers Say Anti-India Hate Is Turning Violent After Illinois Temple Plot",
+    "slug": "lawmakers-anti-india-hate-violence-illinois-temple-plot",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events related to the alleged plot, including when it was foiled and any relevant dates that could provide context for the urgency of the situation.",
+        "Include specific statistics or data on the rise of anti-Indian hate crimes or incidents, beyond the 240% increase in hate speech mentioned, to provide a clearer picture of the broader implications.",
+        "Ensure that all quotes are accurately attributed to their sources, particularly the quote from Senator Schumer, which should be directly linked to the original post on X for verification."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the Congressional Asian Pacific American Caucus regarding the rise in anti-South Asian hate speech for additional context."
+      ]
+    }
+  },
+  {
+    "id": "65564cbc-09b5-43eb-9462-920113bfd9ec",
+    "headline": "Indian American Cancer Researcher Rachna Shroff Dies at 47 After Terminal Diagno",
+    "slug": "rachna-shroff-dies-47-cancer-researcher-arizona",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of Dr. Shroff's diagnosis and death by explicitly stating the dates in a more structured manner, such as 'Dr. Rachna Shroff was diagnosed in May 2023 and passed away on October 11, 2023, with the University of Arizona confirming her death on October 12.' This would enhance clarity and completeness.",
+        "Include a brief statement about the significance of Dr. Shroff's work and its impact on cancer research, particularly in the context of pancreatic and bile duct cancers, to provide readers with a deeper understanding of her contributions and legacy.",
+        "Add a quote from a colleague or a representative from the University of Arizona to provide additional attribution and context regarding her impact on the field of oncology."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the American Society of Clinical Oncology (ASCO) expressing condolences or highlighting Dr. Shroff's contributions to cancer research to enhance the article's credibility and emotional impact."
+      ]
+    }
+  },
+  {
+    "id": "877ec0bb-9296-49ae-b8a8-e19b596260d2",
+    "headline": "Bengaluru-Born Astronomer Ramya Anche to Lead NASA's $20 Million PUFFINS Mission",
+    "slug": "bengaluru-born-ramya-anche-lead-nasa-puffins-mission",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the PUFFINS mission by providing specific dates for key milestones, such as the expected launch date in 2030 and any significant development phases leading up to it.",
+        "Include a quote from a NASA representative or additional sources to strengthen the attribution and provide a broader perspective on the significance of the PUFFINS mission.",
+        "Add context about the implications of the research on interstellar dust and how it may impact future astrophysics studies, which would enhance the completeness of the article."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant NASA tweet or announcement about the PUFFINS mission to provide official context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "5d355ce5-92ac-4eef-97c4-8ca4f021423a",
+    "headline": "Tonbo Imaging IPO Draws Strong Demand Despite Weaker FY26 Earnings",
+    "slug": "tonbo-imaging-ipo-subscription-day-2-gmp-valuation",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the weaker FY26 earnings in relation to the strong demand for the IPO. A brief analysis or expert opinion could help readers understand the implications of this discrepancy.",
+        "Include a direct quote from a company representative or financial analyst regarding the IPO's performance or the market's reaction to the earnings report to enhance attribution and credibility.",
+        "Provide a clearer breakdown of the grey market premium and its implications for potential investors, including how it might affect their returns if they participate in the IPO."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from Tonbo Imaging regarding their IPO for direct access to company information."
+      ]
+    }
+  },
+  {
+    "id": "db0c53af-0109-4675-be4f-edb3f854361a",
+    "headline": "EPFO Extends September PF Filing Deadline to October 31",
+    "slug": "epfo-september-pf-ecr-deadline-extended-october-31",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the circular issued by EPFO to avoid confusion about the timeline of the extension. Currently, it mentions the circular date but does not specify when it was released relative to the original deadline.",
+        "Include specific details on how employees can verify their EPF passbook and what steps they should take if they find discrepancies. This would provide actionable guidance for readers.",
+        "Add a brief explanation of the implications of the wage ceiling increase from Rs 15,000 to Rs 25,000, such as how it affects contributions and benefits for employees. This context would enhance reader understanding."
+      ],
+      "embed_opportunities": [
+        "Embed the official EPFO tweet or circular regarding the deadline extension to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "bcce4460-f795-49fd-9d38-4d90a5cbed54",
+    "headline": "Yuzvendra Chahal Says Rehab Followed Drinking That Crossed All Limits",
+    "slug": "yuzvendra-chahal-rehab-alcohol-addiction-divorce-podcast",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events, particularly the dates related to his divorce and the rehabilitation stay, to avoid confusion for readers.",
+        "Include direct quotes from Chahal to enhance attribution and provide a more personal touch to his experiences, making the article more engaging.",
+        "Provide context on the impact of alcohol on athletes, which could help readers understand the significance of Chahal's experience in a broader context."
+      ],
+      "embed_opportunities": [
+        "Embed a clip from the Baith & Bol podcast where Chahal discusses his experiences, allowing readers to hear his story directly."
+      ]
+    }
+  },
+  {
+    "id": "d34e7b65-e596-4b9a-a894-bc4dcdbe73ce",
+    "headline": "Paul & Mike and Tata Starbucks Turn Coffee Into Diwali Chocolate",
+    "slug": "paul-mike-tata-starbucks-diwali-chocolate-collection",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the availability of the products by specifying the duration of the limited-edition sale or any specific end date, as this would provide readers with actionable information.",
+        "Include a brief mention of where the select Starbucks stores are located, as this would help readers know where they can find the products.",
+        "Add a quote or statement from a representative of Paul & Mike to provide additional attribution and perspective on the collaboration, enhancing the completeness of the article.",
+        "Ensure that the article maintains a consistent tone and structure; consider breaking up longer sentences for better clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from TATA Starbucks or Paul & Mike announcing the collaboration to provide readers with direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "103e8035-c07e-4aa1-a6a7-c2d18ddc9816",
+    "headline": "Indian Embassy in UAE Warns Against Agencies Promising Jobs and Residency Visas",
+    "slug": "indian-embassy-uae-warns-agencies-promising-jobs-residency-visas",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the action steps by including specific details about what information to verify with the destination country's embassy, such as links to official websites or contact information for relevant departments.",
+        "Provide a brief explanation of the potential consequences of biometric data misuse mentioned in the article, as this is a critical aspect that readers may want to understand better.",
+        "Include a quote or statement from a relevant authority or expert on the issue of fraudulent agencies to enhance credibility and provide additional context."
+      ],
+      "embed_opportunities": [
+        "Embed the official advisory tweet from the Indian Embassy in Abu Dhabi or the Consulate General in Dubai for direct access to the warning and further information."
+      ]
+    }
+  },
+  {
+    "id": "348295e7-99ee-491c-a5c0-c6c7ff39ad91",
+    "headline": "Apple HomeView Puts Siri AI on a Shared Screen in the Home",
+    "slug": "apple-homeview-siri-ai-shared-home-display-299",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the availability details by including specific launch dates for each of the eight markets mentioned, rather than just stating 'on sale November 13'.",
+        "Provide more context on the limitations of Siri AI on the HomeView, particularly what specific functionalities require a paired iPhone or iPad, to enhance reader understanding.",
+        "Include a brief comparison with similar products in the market to give readers a clearer perspective on how HomeView stands out or falls short.",
+        "Add a quote or statement from a tech analyst or industry expert regarding the potential impact of HomeView on the smart home market to provide additional insight."
+      ],
+      "embed_opportunities": [
+        "Embed the official Apple announcement or promotional video related to HomeView to enhance credibility and provide visual context."
+      ]
+    }
+  }
+]

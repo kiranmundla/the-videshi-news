@@ -78,5 +78,15 @@
     "quick_hit_count": 5,
     "deadline_count": 7,
     "chars": 2692
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-10-16T14:15:09.226466+00:00Z",
+    "subject": "WhatsApp digest \u2014 Oct 16 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "tonbo-imaging-ipo-subscription-day-2-gmp-valuation",
+    "quick_hit_count": 5,
+    "deadline_count": 2,
+    "chars": 2469
   }
 ]

@@ -1,0 +1,255 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "court-orders-reopen-55000-green-card-lottery-dv2027",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "GREEN CARD LOTTERY ORDERED REOPENED",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "A federal judge ordered the lottery to be reopened.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "A federal judge in California ordered the State Department to reinstate the fiscal 2027 Diversity Visa lottery, which makes up to 55,000 immigrant visas available each year.",
+      "numbers": [
+        2027.0,
+        55000.0
+      ],
+      "entities": [
+        "State Department",
+        "Diversity Visa"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article states the judge ordered reinstatement of the lottery for 55,000 visas.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "55,000",
+      "numbers": [
+        55000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions 55,000 visas available through the lottery.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "immigrant visas the lottery makes available each year",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The lottery makes 55,000 immigrant visas available each year.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "No specific section labeled 'BY THE NUMBERS' exists in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "30 days",
+      "numbers": [
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The court order requires a minimum registration window of 30 days.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "minimum registration window the court order requires",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the court order requires a minimum registration window of 30 days.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "October 18",
+      "numbers": [
+        18.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The registration must open by October 18 according to the injunction.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "date registration must open by, under the injunction",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies October 18 as the date registration must open.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "1990",
+      "numbers": [
+        1990.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          1990
+        ]
+      },
+      "llm_reason": "The Diversity Visa program was created by Congress in 1990.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "year Congress created the Diversity Visa program",
+      "numbers": [],
+      "entities": [
+        "Diversity Visa"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Congress created the Diversity Visa program in 1990.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Enter only through the official dvprogram.state.gov portal - do not pay any third-party site",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article advises to enter only through the official portal.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "India-born applicants generally do not qualify directly, but a spouse or parent born in an eligible country can sometimes provide an alternative",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article explains India-born applicants may qualify through spouses or parents.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Registration had not yet opened as of October 16, and no official dates had been announced.",
+      "numbers": [
+        16.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms registration had not opened as of October 16.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Jinsook Ohta",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "State Department",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Diversity Visa program",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000545
+  }
+}
