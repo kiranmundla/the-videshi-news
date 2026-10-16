@@ -17,33 +17,28 @@ import {
 import type { Destination, VisaHolderStatus } from "@/lib/travel";
 
 /* ------------------------------------------------------------------ */
-/* Travel News Strip                                                  */
+/* Travel News List                                                   */
 /* ------------------------------------------------------------------ */
+/* VERTICAL stacked list (Kiran, 2026-10-15 20:42: "Let's make news
+   articles vertical instead") — full-width cards stacked top to
+   bottom, same card idiom and fields as the old horizontal rail
+   (image, date, headline, excerpt, /articles/<slug> links), all
+   articles received. No horizontal scroll, no scroll-snap. */
 function TravelNewsStrip({ news }: { news: any[] }) {
   if (!news.length) return null;
   return (
     <section className="mb-12">
       <SectionHead kicker="Stay current" title="Latest Travel News" />
-      <style>{`.travel-news-strip::-webkit-scrollbar { display: none; }`}</style>
-      <div
-        className="travel-news-strip flex gap-4 overflow-x-auto pb-4"
-        style={{
-          scrollSnapType: "x mandatory",
-          WebkitOverflowScrolling: "touch",
-          scrollbarWidth: "none",
-          msOverflowStyle: "none",
-        } as React.CSSProperties}
-      >
+      <div className="flex flex-col gap-4">
         {news.map((article: any) => (
           <Link
             key={article.id}
             to={`/articles/${article.slug}`}
-            className="block group flex-shrink-0"
-            style={{ width: "280px", scrollSnapAlign: "start" }}
+            className="block group"
           >
-            <article className="bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-200 hover:shadow-lg h-full">
+            <article className="bg-card border border-border rounded-xl overflow-hidden hover:border-primary/40 transition-all duration-200 hover:shadow-lg">
               {article.image_url && (
-                <div className="h-36 overflow-hidden">
+                <div className="aspect-[16/9] overflow-hidden">
                   <img
                     src={article.image_url}
                     alt=""
@@ -129,20 +124,14 @@ function VisaDashboard({
 /* ------------------------------------------------------------------ */
 /* Main TravelPage                                                    */
 /* ------------------------------------------------------------------ */
-/* Group order is deliberate (Kiran, 2026-10-15): the India state
-   destinations are the first group of this index (which follows the
-   travel articles), one click through to each state page. India
-   itself is a destination like any other, with its own page at
-   /travel/india (the metro fares hub + these state cards) — the
-   states stay listed here as destinations in their own right. The
-   other groups keep their relative order after it. */
+/* Index groups (Kiran, 2026-10-15 20:42): the India state
+   destinations LEFT this index — they live on India's own page,
+   /travel/india (metro fares hub + the 9 state cards + their own
+   passport toggle) — so /travel's All Destinations index is USA &
+   Canada + International only. The international match still
+   excludes region "india" so the states can never leak back in
+   here via the catch-all. */
 const DESTINATION_GROUPS: { key: string; heading: string; blurb: string; match: (d: Destination) => boolean }[] = [
-  {
-    key: "india",
-    heading: "🇮🇳 India Destinations",
-    blurb: "Flying to India — state guides for the trip home.",
-    match: (d) => d.region === "india",
-  },
   {
     key: "usa-canada",
     heading: "🇺🇸 USA & Canada",
@@ -161,6 +150,15 @@ export default function TravelPage() {
   const [holderStatus, setHolderStatus] = useState<VisaHolderStatus>("indian-passport");
   const [news, setNews] = useState<any[]>([]);
 
+  /* The heading count is what the index actually renders (the sum
+     over the groups below), never DESTINATIONS.length — the full
+     record list still contains the 9 India states, which render
+     on /travel/india instead (Kiran, 2026-10-15 20:42). */
+  const indexGuideCount = DESTINATION_GROUPS.reduce(
+    (n, g) => n + DESTINATIONS.filter(g.match).length,
+    0,
+  );
+
   /* UN-GATED (relook Phase 0 / "zippy" bar, 2026-10-15): the page
      used to render NOTHING until this Supabase news query resolved —
      the bottom-of-page news section held the deals hostage behind a
@@ -173,8 +171,8 @@ export default function TravelPage() {
     });
   }, []);
 
-  /* Hash deep-links (e.g. /travel#india-destinations): react-router
-     does not scroll to a hash on navigation, so do it here once the
+  /* Hash deep-links (e.g. /travel#travel-news): react-router does
+     not scroll to a hash on navigation, so do it here once the
      page has mounted. Two attempts — sections above the index load
      async and can shift the target's position after the first
      scroll. (The fares hub's #flight-deals anchor lives on the
@@ -195,8 +193,8 @@ export default function TravelPage() {
   return (
     <>
       <Helmet>
-        <title>Travel Hub — Top Destinations, 49 Guides & Visa Guide | The Videshi</title>
-        <meta name="description" content="Plan the trip home and the next getaway: top destinations, 49 diaspora travel guides with visa notes for your passport status, and the latest travel news for Indian passport holders, US citizens, and Green Card holders." />
+        <title>{`Travel Hub — Top Destinations, ${indexGuideCount} Guides & Visa Guide | The Videshi`}</title>
+        <meta name="description" content={`Plan the trip home and the next getaway: top destinations, ${indexGuideCount} diaspora travel guides with visa notes for your passport status, and the latest travel news for Indian passport holders, US citizens, and Green Card holders.`} />
         <meta property="og:title" content="Travel Hub — The Videshi" />
         <meta property="og:description" content="Destinations, visa quick-reference, and travel news for NRIs and the Indian diaspora." />
         <meta property="og:type" content="website" />
@@ -276,15 +274,17 @@ export default function TravelPage() {
             this section's CONTROL BAR (redesign brief #4): a
             light bordered strip directly under the section
             header, directly above the guide cards whose visa
-            badges it drives (India Destinations first). The
-            count lives in the heading (audit item 6); the
-            groups carry their own counts. The toggle renders
-            via the shared TravelerToggle component — the India
-            page carries the same control over its state cards. ── */}
+            badges it drives. The count lives in the heading
+            (audit item 6) and counts only what renders here —
+            the 9 India states moved to /travel/india (Kiran,
+            2026-10-15 20:42); the groups carry their own
+            counts. The toggle renders via the shared
+            TravelerToggle component — the India page carries
+            the same control over its state cards. ──────────── */}
         <section className="mb-12" id="destinations">
           <SectionHead
             kicker="Plan the trip"
-            title={`All Destinations · ${DESTINATIONS.length} guides`}
+            title={`All Destinations · ${indexGuideCount} guides`}
           />
 
           <TravelerToggle holderStatus={holderStatus} onChange={setHolderStatus} />
@@ -293,16 +293,7 @@ export default function TravelPage() {
             const dests = DESTINATIONS.filter(group.match);
             if (!dests.length) return null;
             return (
-              <div
-                key={group.key}
-                className="mb-8 scroll-mt-24"
-                /* Deep-link anchor for the India group. The
-                   trending rail's India card linked here until
-                   India got its own page (Kiran, 2026-10-15
-                   20:21) — it now goes to /travel/india; the
-                   anchor stays for existing links. */
-                id={group.key === "india" ? "india-destinations" : undefined}
-              >
+              <div key={group.key} className="mb-8 scroll-mt-24">
                 <h3 className="font-serif text-base font-bold mb-1">
                   {group.heading}
                   <span className="text-foreground/40 font-sans text-xs font-semibold ml-2">
