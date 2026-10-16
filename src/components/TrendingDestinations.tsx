@@ -59,16 +59,23 @@ const MAX_CARDS = 8;
 /* Short chip labels for the tracker's positive signals only. The full
    reason sentence rides along as the chip's title so nothing is hidden:
    fare_drop earns a chip only when its points are actually positive —
-   a tracked route with no drop (0) or no route at all (null) gets none. */
+   a tracked route with no drop (0) or no route at all (null) gets none.
+   Thresholds are RATIOS of each component's max, not raw points: the
+   2026-10-15 real-signal flip reweighted the components (season 50→40,
+   value 20→10, fare 30→20, plus search_interest 30), and the India
+   card still emits the legacy weights — ratios keep both correct. */
 function reasonChips(d: TrendingDestination): { label: string; title: string }[] {
   const chips: { label: string; title: string }[] = [];
   for (const c of d.trending.components) {
     if (c.points == null) continue;
-    if (c.id === "season_fit" && c.points >= 40) {
+    const ratio = c.max > 0 ? c.points / c.max : 0;
+    if (c.id === "season_fit" && ratio >= 0.8) {
       chips.push({ label: "In season now", title: c.reason });
-    } else if (c.id === "season_fit" && c.points >= 25) {
+    } else if (c.id === "season_fit" && ratio >= 0.5) {
       chips.push({ label: "Shoulder season", title: c.reason });
-    } else if (c.id === "offpeak_value" && c.points >= 15) {
+    } else if (c.id === "search_interest" && ratio >= 2 / 3) {
+      chips.push({ label: "Traveler interest", title: c.reason });
+    } else if (c.id === "offpeak_value" && ratio >= 0.75) {
       chips.push({ label: "Off-peak value", title: c.reason });
     } else if (c.id === "fare_drop" && c.points > 0) {
       chips.push({ label: "Fare dropped", title: c.reason });
@@ -159,7 +166,8 @@ export default function TrendingDestinations() {
         <span className="absolute left-0 -bottom-px h-[2px] w-10 bg-[#D4A843]" />
       </div>
       <p className="text-sm text-foreground/55 mb-5 max-w-2xl leading-relaxed">
-        Trending now — {monthLabel}.
+        Trending now — {monthLabel}. Ranked by season fit, rising traveler
+        interest and off-peak value — updated weekly.
       </p>
 
       <div
@@ -180,8 +188,9 @@ export default function TrendingDestinations() {
              /travel/india, emitted by the builder. */
           /* ONE reason chip per card (audit item 13): when every card
              carries the same two chips they differentiate nothing.
-             reasonChips builds in priority order (season, off-peak,
-             fare drop), so the first is the strongest signal. */
+             reasonChips builds in priority order (season, traveler
+             interest, fare drop, off-peak), so the first is the
+             strongest signal. */
           const chips = reasonChips(dest).slice(0, 1);
           const best = fmtBestMonths(dest.best_months);
           return (

@@ -5,231 +5,231 @@
   "destination_count": 50,
   "legend": {
     "season_fit_by_month": "2 = in best season, 1 = shoulder (adjacent month), 0 = off season",
-    "trending": "Sum of labeled components; max_score shows what was computable \u2014 a null fare_drop component means no fare route is tracked, not a zero fare.",
+    "trending": "Sum of labeled components (season 40 / search interest 30 / fare 20 / value 10); max_score shows what was computable \u2014 a null component means that signal is not tracked for the destination yet, not a zero.",
     "cheapest_month": "Only set from real flight-deals fare data; null everywhere else by design.",
     "eligible_for_picks": "False = second-tier US destination deferred from curated picks/trending (Kiran 2026-10-14 tiering); the record and its guide remain in the full index."
   },
   "trending_now": [
-    "australia",
-    "bali",
-    "cabo",
-    "egypt",
-    "fiji",
-    "france",
-    "greece",
-    "hawaii",
-    "himachal-pradesh",
-    "iceland",
-    "italy",
     "japan",
-    "karnataka",
-    "kashmir",
-    "kenya",
-    "kerala",
-    "northeast-india",
     "oman",
+    "france",
+    "italy",
+    "fiji",
+    "greece",
+    "kerala",
+    "australia",
     "portugal",
-    "rajasthan",
-    "spain",
+    "egypt",
+    "bali",
+    "kenya",
     "national-parks",
+    "karnataka",
+    "hawaii",
+    "iceland",
+    "spain",
+    "rajasthan",
+    "himachal-pradesh",
     "uttarakhand",
+    "kashmir",
+    "northeast-india",
+    "cabo",
+    "singapore",
     "morocco",
     "abu-dhabi",
-    "banff",
-    "dubai",
-    "goa",
-    "jamaica",
-    "london",
-    "maldives",
     "mexico",
-    "puerto-vallarta",
-    "riviera-maya",
-    "singapore",
+    "london",
+    "vietnam",
     "south-africa",
+    "thailand",
+    "dubai",
+    "maldives",
+    "jamaica",
+    "goa",
     "switzerland",
     "tamil-nadu",
-    "thailand",
-    "vietnam",
-    "alaska",
-    "aruba",
-    "bahamas",
-    "cancun",
-    "dominican-republic",
+    "puerto-vallarta",
+    "banff",
+    "riviera-maya",
     "new-zealand",
+    "sri-lanka",
+    "alaska",
+    "dominican-republic",
+    "bahamas",
+    "aruba",
     "scandinavia",
-    "sri-lanka"
+    "cancun"
   ],
   "best_by_month": {
     "1": [
-      "cabo",
-      "egypt",
-      "karnataka",
-      "kenya",
-      "kerala",
-      "northeast-india",
       "oman",
+      "kerala",
+      "egypt",
+      "kenya",
+      "karnataka",
       "rajasthan",
+      "northeast-india",
+      "cabo",
       "abu-dhabi",
-      "banff",
+      "mexico",
       "dubai",
+      "thailand",
       "goa",
       "jamaica",
       "maldives",
-      "mexico",
-      "puerto-vallarta",
-      "riviera-maya",
       "switzerland",
       "tamil-nadu",
-      "thailand",
+      "puerto-vallarta",
+      "banff",
+      "riviera-maya",
+      "new-zealand",
+      "sri-lanka",
+      "dominican-republic",
       "aruba",
       "bahamas",
       "cancun",
-      "dominican-republic",
-      "new-zealand",
-      "sri-lanka",
       "hawaii",
       "iceland",
       "singapore",
       "vietnam"
     ],
     "2": [
-      "cabo",
+      "oman",
+      "kerala",
       "egypt",
+      "kenya",
       "iceland",
       "karnataka",
-      "kenya",
-      "kerala",
-      "northeast-india",
-      "oman",
       "rajasthan",
+      "northeast-india",
+      "cabo",
+      "singapore",
       "abu-dhabi",
-      "banff",
+      "mexico",
+      "vietnam",
       "dubai",
+      "thailand",
       "goa",
       "jamaica",
       "maldives",
-      "mexico",
-      "puerto-vallarta",
-      "riviera-maya",
-      "singapore",
       "switzerland",
       "tamil-nadu",
-      "thailand",
-      "vietnam",
+      "puerto-vallarta",
+      "banff",
+      "riviera-maya",
+      "new-zealand",
+      "sri-lanka",
+      "dominican-republic",
       "aruba",
       "bahamas",
       "cancun",
-      "dominican-republic",
-      "new-zealand",
-      "sri-lanka",
+      "japan",
       "australia",
       "himachal-pradesh",
-      "japan",
       "uttarakhand",
       "morocco"
     ],
     "3": [
-      "australia",
-      "cabo",
-      "egypt",
-      "himachal-pradesh",
-      "iceland",
       "japan",
-      "kerala",
-      "northeast-india",
       "oman",
+      "kerala",
+      "australia",
+      "egypt",
+      "iceland",
+      "himachal-pradesh",
       "rajasthan",
       "uttarakhand",
-      "morocco",
+      "northeast-india",
+      "cabo",
+      "singapore",
       "abu-dhabi",
+      "morocco",
+      "mexico",
+      "vietnam",
       "dubai",
+      "thailand",
       "jamaica",
       "maldives",
-      "mexico",
       "puerto-vallarta",
       "riviera-maya",
-      "singapore",
-      "thailand",
-      "vietnam",
-      "aruba",
-      "bahamas",
-      "cancun",
-      "dominican-republic",
       "new-zealand",
       "sri-lanka",
-      "bali",
-      "france",
-      "hawaii",
-      "italy",
-      "karnataka",
-      "kashmir",
-      "kenya",
-      "spain",
-      "banff",
-      "goa",
-      "london",
-      "switzerland",
-      "tamil-nadu"
-    ],
-    "4": [
-      "australia",
-      "bali",
-      "cabo",
-      "egypt",
-      "france",
-      "hawaii",
-      "himachal-pradesh",
-      "italy",
-      "japan",
-      "kashmir",
-      "northeast-india",
-      "spain",
-      "uttarakhand",
-      "morocco",
-      "jamaica",
-      "london",
-      "maldives",
-      "mexico",
-      "puerto-vallarta",
-      "riviera-maya",
-      "singapore",
-      "vietnam",
+      "dominican-republic",
       "aruba",
       "bahamas",
       "cancun",
+      "france",
+      "italy",
+      "bali",
+      "kenya",
+      "hawaii",
+      "karnataka",
+      "spain",
+      "kashmir",
+      "london",
+      "goa",
+      "switzerland",
+      "tamil-nadu",
+      "banff"
+    ],
+    "4": [
+      "japan",
+      "france",
+      "italy",
+      "australia",
+      "bali",
+      "egypt",
+      "hawaii",
+      "himachal-pradesh",
+      "spain",
+      "uttarakhand",
+      "kashmir",
+      "northeast-india",
+      "cabo",
+      "singapore",
+      "morocco",
+      "london",
+      "mexico",
+      "vietnam",
+      "jamaica",
+      "maldives",
+      "puerto-vallarta",
+      "riviera-maya",
       "dominican-republic",
+      "aruba",
+      "bahamas",
+      "cancun",
+      "oman",
       "fiji",
       "greece",
-      "iceland",
       "kerala",
-      "oman",
       "portugal",
-      "rajasthan",
       "national-parks",
+      "iceland",
+      "rajasthan",
       "abu-dhabi",
       "dubai",
       "south-africa",
       "thailand",
       "new-zealand",
-      "scandinavia",
-      "sri-lanka"
+      "sri-lanka",
+      "scandinavia"
     ],
     "5": [
+      "japan",
+      "france",
+      "fiji",
+      "italy",
+      "greece",
       "australia",
       "bali",
-      "cabo",
-      "fiji",
-      "france",
-      "greece",
+      "portugal",
+      "national-parks",
       "hawaii",
       "himachal-pradesh",
-      "italy",
-      "japan",
-      "kashmir",
-      "portugal",
       "spain",
-      "national-parks",
       "uttarakhand",
+      "kashmir",
+      "cabo",
       "morocco",
       "london",
       "mexico",
@@ -238,247 +238,247 @@
       "egypt",
       "iceland",
       "northeast-india",
-      "banff",
+      "singapore",
+      "vietnam",
       "jamaica",
       "maldives",
-      "puerto-vallarta",
-      "riviera-maya",
-      "singapore",
       "switzerland",
-      "vietnam",
+      "puerto-vallarta",
+      "banff",
+      "riviera-maya",
       "alaska",
+      "dominican-republic",
       "aruba",
       "bahamas",
-      "cancun",
-      "dominican-republic"
+      "cancun"
     ],
     "6": [
-      "bali",
-      "fiji",
       "france",
-      "greece",
-      "hawaii",
-      "himachal-pradesh",
-      "iceland",
+      "fiji",
       "italy",
-      "kashmir",
+      "greece",
+      "bali",
       "portugal",
-      "spain",
       "national-parks",
+      "hawaii",
+      "iceland",
+      "himachal-pradesh",
+      "spain",
       "uttarakhand",
-      "banff",
-      "london",
+      "kashmir",
       "singapore",
+      "london",
       "south-africa",
       "switzerland",
+      "banff",
       "alaska",
       "scandinavia",
-      "australia",
-      "cabo",
       "japan",
+      "australia",
       "kenya",
+      "cabo",
       "morocco",
       "mexico"
     ],
     "7": [
-      "bali",
       "fiji",
       "greece",
+      "bali",
+      "kenya",
       "iceland",
       "kashmir",
-      "kenya",
-      "banff",
-      "london",
       "singapore",
+      "london",
       "south-africa",
       "switzerland",
+      "banff",
       "alaska",
       "scandinavia",
       "france",
-      "hawaii",
-      "himachal-pradesh",
       "italy",
       "portugal",
-      "spain",
       "national-parks",
+      "hawaii",
+      "himachal-pradesh",
+      "spain",
       "uttarakhand"
     ],
     "8": [
-      "bali",
       "fiji",
+      "bali",
+      "kenya",
       "iceland",
       "kashmir",
-      "kenya",
-      "banff",
       "south-africa",
       "switzerland",
+      "banff",
       "alaska",
       "scandinavia",
-      "australia",
       "france",
+      "italy",
       "greece",
+      "australia",
+      "portugal",
+      "national-parks",
       "hawaii",
       "himachal-pradesh",
-      "italy",
-      "portugal",
       "spain",
-      "national-parks",
       "uttarakhand",
-      "london",
-      "singapore"
+      "singapore",
+      "london"
     ],
     "9": [
+      "france",
+      "fiji",
+      "italy",
+      "greece",
       "australia",
       "bali",
-      "fiji",
-      "france",
-      "greece",
-      "hawaii",
-      "himachal-pradesh",
-      "iceland",
-      "italy",
-      "kashmir",
       "kenya",
       "portugal",
-      "spain",
       "national-parks",
+      "hawaii",
+      "iceland",
+      "himachal-pradesh",
+      "spain",
       "uttarakhand",
-      "banff",
-      "london",
+      "kashmir",
       "singapore",
+      "london",
       "south-africa",
       "switzerland",
-      "cabo",
-      "egypt",
+      "banff",
       "japan",
-      "karnataka",
-      "kerala",
-      "northeast-india",
       "oman",
+      "kerala",
+      "egypt",
+      "karnataka",
       "rajasthan",
+      "northeast-india",
+      "cabo",
       "morocco",
       "alaska",
       "scandinavia"
     ],
     "10": [
+      "japan",
+      "oman",
+      "france",
+      "fiji",
+      "italy",
+      "greece",
+      "kerala",
       "australia",
       "bali",
-      "cabo",
       "egypt",
-      "fiji",
-      "france",
-      "greece",
-      "hawaii",
-      "himachal-pradesh",
-      "iceland",
-      "italy",
-      "japan",
-      "karnataka",
-      "kashmir",
       "kenya",
-      "kerala",
-      "northeast-india",
-      "oman",
       "portugal",
+      "national-parks",
+      "hawaii",
+      "iceland",
+      "karnataka",
+      "himachal-pradesh",
       "rajasthan",
       "spain",
-      "national-parks",
       "uttarakhand",
+      "kashmir",
+      "northeast-india",
+      "cabo",
       "morocco",
+      "singapore",
       "abu-dhabi",
-      "banff",
+      "london",
+      "mexico",
+      "vietnam",
       "dubai",
+      "south-africa",
+      "thailand",
       "goa",
       "jamaica",
-      "london",
       "maldives",
-      "mexico",
-      "puerto-vallarta",
-      "riviera-maya",
-      "singapore",
-      "south-africa",
       "switzerland",
       "tamil-nadu",
-      "thailand",
-      "vietnam"
+      "puerto-vallarta",
+      "banff",
+      "riviera-maya"
     ],
     "11": [
+      "japan",
+      "oman",
+      "kerala",
       "australia",
-      "cabo",
       "egypt",
       "hawaii",
-      "himachal-pradesh",
-      "japan",
       "karnataka",
-      "kerala",
-      "northeast-india",
-      "oman",
+      "himachal-pradesh",
       "rajasthan",
       "uttarakhand",
-      "morocco",
+      "northeast-india",
+      "cabo",
       "abu-dhabi",
+      "morocco",
+      "mexico",
+      "vietnam",
       "dubai",
+      "thailand",
       "goa",
       "jamaica",
       "maldives",
-      "mexico",
+      "tamil-nadu",
       "puerto-vallarta",
       "riviera-maya",
-      "tamil-nadu",
-      "thailand",
-      "vietnam",
-      "bali",
-      "fiji",
       "france",
-      "greece",
-      "iceland",
+      "fiji",
       "italy",
-      "kashmir",
+      "greece",
+      "bali",
       "kenya",
       "portugal",
-      "spain",
       "national-parks",
-      "banff",
+      "iceland",
+      "spain",
+      "kashmir",
       "switzerland",
+      "banff",
+      "new-zealand",
+      "sri-lanka",
+      "dominican-republic",
       "aruba",
       "bahamas",
-      "cancun",
-      "dominican-republic",
-      "new-zealand",
-      "sri-lanka"
+      "cancun"
     ],
     "12": [
-      "cabo",
+      "oman",
+      "kerala",
       "egypt",
       "hawaii",
       "karnataka",
-      "kerala",
-      "northeast-india",
-      "oman",
       "rajasthan",
+      "northeast-india",
+      "cabo",
       "abu-dhabi",
-      "banff",
+      "mexico",
+      "vietnam",
       "dubai",
+      "thailand",
       "goa",
       "jamaica",
       "maldives",
-      "mexico",
-      "puerto-vallarta",
-      "riviera-maya",
       "switzerland",
       "tamil-nadu",
-      "thailand",
-      "vietnam",
+      "puerto-vallarta",
+      "banff",
+      "riviera-maya",
+      "new-zealand",
+      "sri-lanka",
+      "dominican-republic",
       "aruba",
       "bahamas",
       "cancun",
-      "dominican-republic",
-      "new-zealand",
-      "sri-lanka",
-      "australia",
-      "himachal-pradesh",
       "japan",
+      "australia",
       "kenya",
+      "himachal-pradesh",
       "uttarakhand",
       "morocco"
     ]
@@ -553,26 +553,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 56,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
-            "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "id": "search_interest",
+            "points": 22,
+            "max": 30,
+            "reason": "Wikipedia attention +33% vs prior quarter (2,210 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -643,26 +649,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 15,
-        "max_score": 70,
+        "score": 28,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 10,
-            "max": 50,
+            "points": 8,
+            "max": 40,
             "reason": "Off season this month"
           },
           {
-            "id": "offpeak_value",
-            "points": 5,
-            "max": 20,
-            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+            "id": "search_interest",
+            "points": 18,
+            "max": 30,
+            "reason": "Wikipedia attention -3% vs prior quarter (4,363 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 2,
+            "max": 10,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
           }
         ]
       }
@@ -736,26 +748,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 15,
-        "max_score": 70,
+        "score": 27,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 10,
-            "max": 50,
+            "points": 8,
+            "max": 40,
             "reason": "Off season this month"
           },
           {
-            "id": "offpeak_value",
-            "points": 5,
-            "max": 20,
-            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+            "id": "search_interest",
+            "points": 17,
+            "max": 30,
+            "reason": "Wikipedia attention -5% vs prior quarter (2,697 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 2,
+            "max": 10,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
           }
         ]
       }
@@ -841,25 +859,31 @@
         "month": 10,
         "year": 2026,
         "score": 65,
-        "max_score": 70,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 17,
+            "max": 30,
+            "reason": "Wikipedia attention -30% vs prior quarter (9,930 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -933,26 +957,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 15,
-        "max_score": 70,
+        "score": 27,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 10,
-            "max": 50,
+            "points": 8,
+            "max": 40,
             "reason": "Off season this month"
           },
           {
-            "id": "offpeak_value",
-            "points": 5,
-            "max": 20,
-            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+            "id": "search_interest",
+            "points": 17,
+            "max": 30,
+            "reason": "Wikipedia attention -6% vs prior quarter (3,023 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 2,
+            "max": 10,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
           }
         ]
       }
@@ -1030,25 +1060,31 @@
         "month": 10,
         "year": 2026,
         "score": 65,
-        "max_score": 70,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 17,
+            "max": 30,
+            "reason": "Wikipedia attention -3% vs prior quarter (3,116 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -1124,26 +1160,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 42,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
-            "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "id": "search_interest",
+            "points": 8,
+            "max": 30,
+            "reason": "Wikipedia attention -17% vs prior quarter (395 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -1220,26 +1262,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 59,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 11,
+            "max": 30,
+            "reason": "Wikipedia attention -5% vs prior quarter (559 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -1313,26 +1361,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 15,
-        "max_score": 70,
+        "score": 22,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 10,
-            "max": 50,
+            "points": 8,
+            "max": 40,
             "reason": "Off season this month"
           },
           {
-            "id": "offpeak_value",
-            "points": 5,
-            "max": 20,
-            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+            "id": "search_interest",
+            "points": 12,
+            "max": 30,
+            "reason": "Wikipedia attention -5% vs prior quarter (696 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 2,
+            "max": 10,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
           }
         ]
       }
@@ -1406,26 +1460,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 15,
-        "max_score": 70,
+        "score": 28,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 10,
-            "max": 50,
+            "points": 8,
+            "max": 40,
             "reason": "Off season this month"
           },
           {
-            "id": "offpeak_value",
-            "points": 5,
-            "max": 20,
-            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+            "id": "search_interest",
+            "points": 18,
+            "max": 30,
+            "reason": "Wikipedia attention -1% vs prior quarter (3,901 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 2,
+            "max": 10,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
           }
         ]
       }
@@ -1500,26 +1560,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 53,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
-            "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "id": "search_interest",
+            "points": 19,
+            "max": 30,
+            "reason": "Wikipedia attention +6% vs prior quarter (3,656 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -1596,25 +1662,31 @@
         "month": 10,
         "year": 2026,
         "score": 65,
-        "max_score": 70,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 17,
+            "max": 30,
+            "reason": "Wikipedia attention -14% vs prior quarter (5,884 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -1688,26 +1760,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 67,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 19,
+            "max": 30,
+            "reason": "Wikipedia attention +4% vs prior quarter (3,849 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -1783,26 +1861,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 52,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
-            "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "id": "search_interest",
+            "points": 18,
+            "max": 30,
+            "reason": "Wikipedia attention -1% vs prior quarter (3,476 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -1876,26 +1960,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 69,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 21,
+            "max": 30,
+            "reason": "Wikipedia attention -7% vs prior quarter (9,146 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -1968,26 +2058,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 51,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
-            "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "id": "search_interest",
+            "points": 17,
+            "max": 30,
+            "reason": "Wikipedia attention +4% vs prior quarter (2,101 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -2061,26 +2157,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 66,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 18,
+            "max": 30,
+            "reason": "Wikipedia attention -8% vs prior quarter (5,112 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -2156,26 +2258,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 63,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
+            "id": "search_interest",
             "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "max": 30,
+            "reason": "Wikipedia attention -29% vs prior quarter (5,565 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -2251,26 +2359,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 62,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 14,
+            "max": 30,
+            "reason": "Wikipedia attention -3% vs prior quarter (1,184 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -2345,26 +2459,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 63,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
+            "id": "search_interest",
             "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "max": 30,
+            "reason": "Wikipedia attention -26% vs prior quarter (4,427 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -2439,26 +2559,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 67,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 19,
+            "max": 30,
+            "reason": "Wikipedia attention -9% vs prior quarter (6,547 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -2533,26 +2659,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 51,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
-            "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "id": "search_interest",
+            "points": 17,
+            "max": 30,
+            "reason": "Wikipedia attention -1% vs prior quarter (3,343 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -2626,26 +2758,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 71,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 23,
+            "max": 30,
+            "reason": "Wikipedia attention +1% vs prior quarter (10,415 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -2734,26 +2872,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
+        "score": 63,
         "max_score": 100,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
+            "id": "search_interest",
             "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "max": 30,
+            "reason": "Wikipedia attention -5% vs prior quarter (1,844 views/day)"
           },
           {
             "id": "fare_drop",
             "points": 0,
-            "max": 30,
+            "max": 20,
             "reason": "Fare route tracked, no notable drop right now"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -2829,26 +2973,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 60,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 12,
+            "max": 30,
+            "reason": "Wikipedia attention -18% vs prior quarter (1,446 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -2923,25 +3073,31 @@
         "month": 10,
         "year": 2026,
         "score": 65,
-        "max_score": 70,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 17,
+            "max": 30,
+            "reason": "Wikipedia attention -2% vs prior quarter (3,039 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -3016,26 +3172,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 66,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 18,
+            "max": 30,
+            "reason": "Wikipedia attention +5% vs prior quarter (3,218 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -3109,26 +3271,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 54,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
+            "id": "search_interest",
             "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "max": 30,
+            "reason": "Wikipedia attention -1% vs prior quarter (7,100 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -3204,26 +3372,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 51,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
-            "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "id": "search_interest",
+            "points": 17,
+            "max": 30,
+            "reason": "Wikipedia attention -7% vs prior quarter (4,006 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -3299,26 +3473,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 54,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
+            "id": "search_interest",
             "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "max": 30,
+            "reason": "Wikipedia attention -11% vs prior quarter (7,849 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -3392,26 +3572,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 58,
-        "max_score": 70,
+        "score": 56,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 8,
-            "max": 20,
-            "reason": "Peak demand month \u2014 expect top prices and crowds"
+            "id": "search_interest",
+            "points": 12,
+            "max": 30,
+            "reason": "Wikipedia attention -64% vs prior quarter (5,450 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 4,
+            "max": 10,
+            "reason": "Peak demand month \u2014 expect top prices and crowds"
           }
         ]
       }
@@ -3483,26 +3669,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 64,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 16,
+            "max": 30,
+            "reason": "Wikipedia attention -11% vs prior quarter (3,306 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -3578,26 +3770,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 58,
-        "max_score": 70,
+        "score": 67,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 8,
-            "max": 20,
-            "reason": "Peak demand month \u2014 expect top prices and crowds"
+            "id": "search_interest",
+            "points": 23,
+            "max": 30,
+            "reason": "Wikipedia attention +1% vs prior quarter (11,660 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 4,
+            "max": 10,
+            "reason": "Peak demand month \u2014 expect top prices and crowds"
           }
         ]
       }
@@ -3670,26 +3868,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 15,
-        "max_score": 70,
+        "score": 30,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 10,
-            "max": 50,
+            "points": 8,
+            "max": 40,
             "reason": "Off season this month"
           },
           {
-            "id": "offpeak_value",
-            "points": 5,
-            "max": 20,
-            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+            "id": "search_interest",
+            "points": 20,
+            "max": 30,
+            "reason": "Wikipedia attention -3% vs prior quarter (7,064 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 2,
+            "max": 10,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
           }
         ]
       }
@@ -3764,26 +3968,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 60,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 12,
+            "max": 30,
+            "reason": "Wikipedia attention -6% vs prior quarter (793 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -3857,26 +4067,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 70,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 22,
+            "max": 30,
+            "reason": "Wikipedia attention +15% vs prior quarter (5,059 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -3950,25 +4166,31 @@
         "month": 10,
         "year": 2026,
         "score": 65,
-        "max_score": 70,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 17,
+            "max": 30,
+            "reason": "Wikipedia attention -20% vs prior quarter (6,845 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -4043,26 +4265,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 48,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
-            "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "id": "search_interest",
+            "points": 14,
+            "max": 30,
+            "reason": "Wikipedia attention +16% vs prior quarter (643 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -4138,26 +4366,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 62,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 14,
+            "max": 30,
+            "reason": "Wikipedia attention -12% vs prior quarter (1,690 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -4232,26 +4466,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 42,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
-            "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "id": "search_interest",
+            "points": 8,
+            "max": 30,
+            "reason": "Wikipedia attention +2% vs prior quarter (200 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -4323,26 +4563,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 15,
-        "max_score": 70,
+        "score": 23,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 10,
-            "max": 50,
+            "points": 8,
+            "max": 40,
             "reason": "Off season this month"
           },
           {
-            "id": "offpeak_value",
-            "points": 5,
-            "max": 20,
-            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+            "id": "search_interest",
+            "points": 13,
+            "max": 30,
+            "reason": "Wikipedia attention -17% vs prior quarter (1,630 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 2,
+            "max": 10,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
           }
         ]
       }
@@ -4417,26 +4663,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 58,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
-            "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "id": "search_interest",
+            "points": 24,
+            "max": 30,
+            "reason": "Wikipedia attention +7% vs prior quarter (11,241 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -4510,26 +4762,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 53,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
-            "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "id": "search_interest",
+            "points": 19,
+            "max": 30,
+            "reason": "Wikipedia attention -9% vs prior quarter (6,943 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -4603,26 +4861,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 62,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 14,
+            "max": 30,
+            "reason": "Wikipedia attention -46% vs prior quarter (7,598 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -4695,26 +4959,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 15,
-        "max_score": 70,
+        "score": 29,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 10,
-            "max": 50,
+            "points": 8,
+            "max": 40,
             "reason": "Off season this month"
           },
           {
-            "id": "offpeak_value",
-            "points": 5,
-            "max": 20,
-            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
+            "id": "search_interest",
+            "points": 19,
+            "max": 30,
+            "reason": "Wikipedia attention -4% vs prior quarter (5,649 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 2,
+            "max": 10,
+            "reason": "Off season \u2014 cheapest, but conditions are a compromise"
           }
         ]
       }
@@ -4791,25 +5061,31 @@
         "month": 10,
         "year": 2026,
         "score": 50,
-        "max_score": 70,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
-            "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "id": "search_interest",
+            "points": 16,
+            "max": 30,
+            "reason": "Wikipedia attention -27% vs prior quarter (5,965 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -4882,25 +5158,31 @@
         "month": 10,
         "year": 2026,
         "score": 50,
-        "max_score": 70,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
-            "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "id": "search_interest",
+            "points": 16,
+            "max": 30,
+            "reason": "Wikipedia attention -6% vs prior quarter (2,376 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -4974,26 +5256,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 53,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
-            "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "id": "search_interest",
+            "points": 19,
+            "max": 30,
+            "reason": "Wikipedia attention -0% vs prior quarter (5,409 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }
@@ -5069,26 +5357,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
-        "max_score": 70,
+        "score": 61,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 50,
-            "max": 50,
+            "points": 40,
+            "max": 40,
             "reason": "In its best season right now"
           },
           {
-            "id": "offpeak_value",
-            "points": 15,
-            "max": 20,
-            "reason": "In season without peak-month demand"
+            "id": "search_interest",
+            "points": 13,
+            "max": 30,
+            "reason": "Wikipedia attention -4% vs prior quarter (1,079 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 8,
+            "max": 10,
+            "reason": "In season without peak-month demand"
           }
         ]
       }
@@ -5161,26 +5455,32 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 50,
-        "max_score": 70,
+        "score": 54,
+        "max_score": 80,
         "components": [
           {
             "id": "season_fit",
-            "points": 30,
-            "max": 50,
+            "points": 24,
+            "max": 40,
             "reason": "Shoulder season \u2014 season is starting/ending"
           },
           {
-            "id": "offpeak_value",
+            "id": "search_interest",
             "points": 20,
-            "max": 20,
-            "reason": "Shoulder season: good conditions, lower demand and prices"
+            "max": 30,
+            "reason": "Wikipedia attention -0% vs prior quarter (6,320 views/day)"
           },
           {
             "id": "fare_drop",
             "points": null,
-            "max": 30,
+            "max": 20,
             "reason": "No fare route tracked for this destination yet"
+          },
+          {
+            "id": "offpeak_value",
+            "points": 10,
+            "max": 10,
+            "reason": "Shoulder season: good conditions, lower demand and prices"
           }
         ]
       }

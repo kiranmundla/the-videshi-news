@@ -50,6 +50,7 @@ export const REGIONS: Region[] = [
   { key: "all", label: "All", emoji: "🌍" },
   { key: "india", label: "India", emoji: "🇮🇳" },
   { key: "southeast-asia", label: "Southeast Asia", emoji: "🌏" },
+  { key: "east-asia", label: "East Asia", emoji: "🌏" },
   { key: "mexico-caribbean", label: "Mexico & Caribbean", emoji: "🌴" },
   { key: "europe", label: "Europe", emoji: "🇪🇺" },
   { key: "usa-canada", label: "USA & Canada", emoji: "🇺🇸" },
@@ -110,7 +111,7 @@ export const DESTINATIONS: Destination[] = [
     visa: v(["voa","Free 30-day VOA for all"],["voa","Free 30-day VOA"],["voa","Free 30-day VOA"]), hasGuide: true },
   { key: "singapore", image: "/images/destinations/singapore.jpg", label: "Singapore", region: "southeast-asia", description: "Gardens, hawker food & futurism", bestMonths: "Year-round", budget: "$60–200/day",
     visa: v(["visa-required","Visa required (96h transit w/ US visa)"],["visa-free","90-day visa-free"],["visa-required","Visa required; GC doesn't help"]), hasGuide: true },
-  { key: "japan", image: "/images/destinations/japan.jpg", label: "Japan", region: "southeast-asia", description: "Cherry blossoms, sushi & ancient temples", bestMonths: "Mar – May, Oct – Nov", budget: "$70–200/day",
+  { key: "japan", image: "/images/destinations/japan.jpg", label: "Japan", region: "east-asia", description: "Cherry blossoms, sushi & ancient temples", bestMonths: "Mar – May, Oct – Nov", budget: "$70–200/day",
     visa: v(["visa-required","Visa required (US visa doesn't help)"],["visa-free","90-day visa-free"],["visa-required","Visa required; GC doesn't help"]), hasGuide: true },
 
   // ── Mexico & Caribbean ─────────────────────────────────────────────

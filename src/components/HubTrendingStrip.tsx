@@ -26,7 +26,11 @@ const MAX_CARDS = 5;
    drop is the most actionable signal and earns the chip whenever its
    points are genuinely positive (a tracked route with no drop scores 0,
    an untracked one null — neither gets the chip). Otherwise the
-   strongest season signal wins. The full reason sentence is the title. */
+   strongest season signal wins, then strong traveler interest. The
+   full reason sentence is the title. Thresholds are RATIOS of each
+   component's max — the 2026-10-15 real-signal flip reweighted the
+   components (season 40 / search interest 30 / fare 20 / value 10);
+   same rule as the /travel rail's reasonChips. */
 function topReason(d: TrendingDestination): { label: string; title: string } | null {
   const byId = new Map(d.trending.components.map((c) => [c.id, c]));
   const fare = byId.get("fare_drop");
@@ -34,14 +38,21 @@ function topReason(d: TrendingDestination): { label: string; title: string } | n
     return { label: "Fare dropped", title: fare.reason };
   }
   const season = byId.get("season_fit");
-  if (season && season.points != null && season.points >= 40) {
-    return { label: "In season now", title: season.reason };
+  if (season && season.points != null && season.max > 0) {
+    const r = season.points / season.max;
+    if (r >= 0.8) {
+      return { label: "In season now", title: season.reason };
+    }
+    if (r >= 0.5) {
+      return { label: "Shoulder season", title: season.reason };
+    }
   }
-  if (season && season.points != null && season.points >= 25) {
-    return { label: "Shoulder season", title: season.reason };
+  const search = byId.get("search_interest");
+  if (search && search.points != null && search.max > 0 && search.points / search.max >= 2 / 3) {
+    return { label: "Traveler interest", title: search.reason };
   }
   const offpeak = byId.get("offpeak_value");
-  if (offpeak && offpeak.points != null && offpeak.points >= 15) {
+  if (offpeak && offpeak.points != null && offpeak.max > 0 && offpeak.points / offpeak.max >= 0.75) {
     return { label: "Off-peak value", title: offpeak.reason };
   }
   return null;

@@ -14,13 +14,27 @@ guide destination (public/data/travel-guides/*.md), joining:
     route actually serves it. Otherwise those fields are null and the
     record says so — accuracy over coverage (Kiran's bar).
 
-Trending score (for the CURRENT month) is transparent: three labeled
+Trending score (for the CURRENT month) is transparent: four labeled
 components with per-component reasons, never a black-box number:
-  - season_fit     (0-50)  current month in best months / shoulder / off
-  - fare_drop      (0-30)  a notable drop exists on the mapped route
-  - offpeak_value  (0-20)  shoulder-season value vs peak-demand pricing
-Components that can't be computed (no fare route tracked) are null and
-listed in data_quality, and the score reports its own max possible.
+  - season_fit      (0-40)  current month in best months / shoulder / off
+  - search_interest (0-30)  real traveler-interest signal — Wikimedia
+                            pageview level + momentum today; Google
+                            Trends (Apify) takes over when its token
+                            lands (fetch-search-interest.py)
+  - fare_drop       (0-20)  a notable drop exists on the mapped route
+  - offpeak_value   (0-10)  shoulder-season value vs peak-demand pricing
+Components that can't be computed (no fare route tracked, no search
+data yet) are null and listed in data_quality, and the score reports
+its own max possible.
+
+LIVE since 2026-10-15 (Kiran: "Flip to real trending now, with those
+conditions"): these real-signal weights replaced the original
+season-50 / fare-30 / value-20 formula, whose components were so flat
+(4 distinct scores across 48 eligible destinations, fare_drop null
+for 47 of them) that the ranking degenerated to a 23-way tie broken
+alphabetically. trending_for() still computes the base components at
+the legacy weights; compute_live_ranking() rescales them and adds
+search_interest. See research/trending-order-japan-2026-10-15.md.
 
 Also emits season_fit_by_month (2 = in season, 1 = shoulder, 0 = off)
 per destination so the frontend can rank "best in <month>"
@@ -38,10 +52,12 @@ Usage:
   python3 build-travel-destinations.py            (write JSON)
   python3 build-travel-destinations.py --dry-run  (print summary only)
 
-Also writes a SHADOW trending ranking (pilot, 2026-10-15) to
-pipeline/.state/trending-shadow.json using the rebalanced weights and
-the search-interest signal — see write_shadow(). Live output above is
-never affected by it.
+Also writes a post-flip REVIEW artifact to
+pipeline/.state/trending-shadow.json (the pilot-era filename, kept so
+the weekly job's log history stays continuous): the LEGACY pre-flip
+ranking next to the live stats — see write_legacy_comparison(). It is
+a read-only comparison for the 2026-11-09 review checkpoint; live
+output is never affected by it.
 """
 
 import argparse
@@ -379,7 +395,11 @@ def destination_drop(slug, deals):
 
 
 def trending_for(rec, month, year, drop):
-    """Transparent trending score for `month` with labeled components."""
+    """Base components at the LEGACY weights (season 50 / fare 30 /
+    value 20). compute_live_ranking() rescales these into the live
+    real-signal score; the legacy values also feed the review
+    comparison artifact, so these weights must not change without
+    updating both."""
     best = rec["best_months"]
     peak = rec["peak_months"]
     fit = season_fit(month, best)
@@ -618,15 +638,20 @@ def build_india_card(records, deals, metros_deals, today, galleries=None):
     }
 
 
-# ── Shadow trending (pilot, 2026-10-15) ─────────────────────────────
-# Rebalanced score from research/actual-trending-data-2026-10-15.md §4:
+# ── Live trending (real-signal flip, 2026-10-15) ────────────────────
+# Weights from research/actual-trending-data-2026-10-15.md §4, flipped
+# LIVE by Kiran 2026-10-15 ("Flip to real trending now, with those
+# conditions" — brief: research/trending-order-japan-2026-10-15.md):
 # season 40 / search_interest 30 / fare 20 / value 10, computed from
 # pipeline/.state/search-interest.json (fetch-search-interest.py).
-# SHADOW ONLY: writes pipeline/.state/trending-shadow.json and NEVER
-# touches the live records, scores or trending_now. The daily
-# flight-deals job runs this same script — the shadow step is wrapped
-# so it cannot break or alter the live build.
+# trending_for() above still produces the base components at the
+# legacy weights; compute_live_ranking() rescales them and adds the
+# search component. The legacy ranking is still computed every build
+# and written next to the live one (write_legacy_comparison) — the
+# 2026-11-09 review checkpoint reads it, and a revert is one commit.
 SEARCH_INTEREST_FILE = REPO / "pipeline" / ".state" / "search-interest.json"
+# Pilot-era filename kept on purpose: the weekly search-interest job's
+# log history references it; contents are now the legacy comparison.
 SHADOW_FILE = REPO / "pipeline" / ".state" / "trending-shadow.json"
 
 
@@ -639,7 +664,7 @@ def _momentum_points(momentum, scale):
     return round(scale * frac)
 
 
-def shadow_search_component(rec, search_entry, wiki_levels):
+def search_interest_component(rec, search_entry, wiki_levels):
     """search_interest (0-30) for one destination, or a null component.
 
     15 pts level + 15 pts momentum. Google Trends is preferred; while
@@ -647,6 +672,8 @@ def shadow_search_component(rec, search_entry, wiki_levels):
     counts give a real level, log-normalized across this run's cohort).
     With Trends momentum only, momentum stretches across both halves
     until anchored level data exists — marked in the reason either way.
+    Reasons name the actual signal (Wikipedia attention is interest,
+    not searches) — the rail's copy follows the same honesty rule.
     """
     if not search_entry:
         return {"id": "search_interest", "points": None, "max": 30,
@@ -679,8 +706,27 @@ def shadow_search_component(rec, search_entry, wiki_levels):
             "reason": "No search-interest data yet"}, None, None, None
 
 
-def build_shadow_ranking(records, search_data):
-    """Shadow ranking for pick-eligible records. Pure: mutates nothing."""
+def _trending_sort_key(s):
+    # Ties: (1) has fare data, (2) has search data, (3) higher search
+    # level (falling back to momentum), (4) name — last resort only.
+    lvl = s["search_level"] if s["search_level"] is not None \
+        else s["search_momentum"]
+    return (-s["score"],
+            0 if s["has_fare_data"] else 1,
+            0 if s["signal_source"] else 1,
+            -(lvl if lvl is not None else 0),
+            s["name"])
+
+
+def compute_live_ranking(records, search_data):
+    """LIVE trending: rescale base components + add search_interest.
+
+    Pure: mutates nothing. `records` must carry the BASE (legacy-weight)
+    components in rec["trending"] — see trending_for(). Returns
+    (live_by_slug, ranking, stats): live_by_slug maps every record's
+    slug to its live trending dict; ranking is the pick-eligible
+    entries in live order; stats describes the live top 8 (tie health
+    for the weekly job and the Nov 9 review checkpoint)."""
     import math
     entries = (search_data or {}).get("destinations") or {}
     wiki_means = [e["wiki"]["recent_mean"] for e in entries.values()
@@ -691,55 +737,52 @@ def build_shadow_ranking(records, search_data):
         if logs:
             wiki_levels = (min(logs), max(logs))
 
-    shadow = []
+    live_by_slug = {}
+    ranking = []
     for rec in records:
-        if not rec["eligible_for_picks"]:
-            continue
-        live = {c["id"]: c for c in rec["trending"]["components"]}
+        base = {c["id"]: c for c in rec["trending"]["components"]}
         comps = []
-        season_pts = round(live["season_fit"]["points"] * 40 / 50)
+        season_pts = round(base["season_fit"]["points"] * 40 / 50)
         comps.append({"id": "season_fit", "points": season_pts, "max": 40,
-                      "reason": live["season_fit"]["reason"]})
-        search_comp, signal, level, momentum = shadow_search_component(
+                      "reason": base["season_fit"]["reason"]})
+        search_comp, signal, level, momentum = search_interest_component(
             rec, entries.get(rec["slug"]), wiki_levels)
         comps.append(search_comp)
-        fare_live = live["fare_drop"]
-        if fare_live["points"] is None:
+        fare_base = base["fare_drop"]
+        if fare_base["points"] is None:
             comps.append({"id": "fare_drop", "points": None, "max": 20,
-                          "reason": fare_live["reason"]})
+                          "reason": fare_base["reason"]})
         else:
             comps.append({"id": "fare_drop",
-                          "points": round(fare_live["points"] * 20 / 30),
-                          "max": 20, "reason": fare_live["reason"]})
+                          "points": round(fare_base["points"] * 20 / 30),
+                          "max": 20, "reason": fare_base["reason"]})
         comps.append({"id": "offpeak_value",
-                      "points": round(live["offpeak_value"]["points"] * 10 / 20),
-                      "max": 10, "reason": live["offpeak_value"]["reason"]})
+                      "points": round(base["offpeak_value"]["points"] * 10 / 20),
+                      "max": 10, "reason": base["offpeak_value"]["reason"]})
         scored = [c for c in comps if c["points"] is not None]
-        shadow.append({
-            "slug": rec["slug"],
-            "name": rec["name"],
+        trending = {
+            "month": rec["trending"].get("month"),
+            "year": rec["trending"].get("year"),
             "score": sum(c["points"] for c in scored),
             "max_score": sum(c["max"] for c in scored),
             "components": comps,
-            "signal_source": signal,
-            "has_fare_data": rec["fare_from"] is not None,
-            "search_level": level,
-            "search_momentum": momentum,
-        })
+        }
+        live_by_slug[rec["slug"]] = trending
+        if rec["eligible_for_picks"]:
+            ranking.append({
+                "slug": rec["slug"],
+                "name": rec["name"],
+                "score": trending["score"],
+                "max_score": trending["max_score"],
+                "components": comps,
+                "signal_source": signal,
+                "has_fare_data": rec["fare_from"] is not None,
+                "search_level": level,
+                "search_momentum": momentum,
+            })
 
-    def sort_key(s):
-        # Ties: (1) has fare data, (2) has search data, (3) higher search
-        # level (falling back to momentum), (4) name — last resort only.
-        lvl = s["search_level"] if s["search_level"] is not None \
-            else s["search_momentum"]
-        return (-s["score"],
-                0 if s["has_fare_data"] else 1,
-                0 if s["signal_source"] else 1,
-                -(lvl if lvl is not None else 0),
-                s["name"])
-
-    shadow.sort(key=sort_key)
-    top8 = shadow[:8]
+    ranking.sort(key=_trending_sort_key)
+    top8 = ranking[:8]
     boundary = top8[-1]["score"] if top8 else None
     stats = {
         "top8": [s["slug"] for s in top8],
@@ -748,33 +791,59 @@ def build_shadow_ranking(records, search_data):
             (sum(1 for s in top8 if s["score"] == sc) for sc in
              {s["score"] for s in top8}), default=0),
         "tied_at_top8_boundary": sum(
-            1 for s in shadow if boundary is not None
+            1 for s in ranking if boundary is not None
             and s["score"] == boundary),
-        "shadow_with_search_data": sum(1 for s in shadow if s["signal_source"]),
+        "with_search_data": sum(1 for s in ranking if s["signal_source"]),
     }
-    return shadow, stats
+    return live_by_slug, ranking, stats
 
 
-def write_shadow(records):
-    """Compute + write the shadow ranking. Never raises into the build."""
-    search_data = None
-    if SEARCH_INTEREST_FILE.exists():
-        search_data = json.loads(SEARCH_INTEREST_FILE.read_text())
-    ranking, stats = build_shadow_ranking(records, search_data)
+def build_legacy_ranking(records, legacy_by_slug):
+    """The PRE-FLIP ranking (legacy weights, score desc then name) over
+    pick-eligible records — what the rail would have shown without the
+    2026-10-15 flip. Kept for the Nov 9 review / regression watch."""
+    legacy = []
+    for rec in records:
+        if not rec["eligible_for_picks"]:
+            continue
+        t = legacy_by_slug[rec["slug"]]
+        legacy.append({"slug": rec["slug"], "name": rec["name"],
+                       "score": t["score"], "max_score": t["max_score"],
+                       "components": t["components"]})
+    legacy.sort(key=lambda e: (-e["score"], e["name"]))
+    return legacy
+
+
+def write_legacy_comparison(records, legacy_by_slug, live_stats,
+                            search_data):
+    """Write the post-flip review artifact. Caller wraps in try —
+    it must never break or alter the live build."""
+    legacy = build_legacy_ranking(records, legacy_by_slug)
+    legacy_top8 = [e["slug"] for e in legacy[:8]]
     out = {
         "generated_at": date.today().isoformat(),
-        "mode": "SHADOW — live trending_now is NOT affected by this file",
-        "weights": {"season_fit": 40, "search_interest": 30,
-                    "fare_drop": 20, "offpeak_value": 10},
-        "tie_break": "score desc, has fare data, has search data, "
-                     "search level/momentum desc, name (last resort)",
+        "mode": ("POST-FLIP REVIEW — live trending_now uses the "
+                 "real-signal formula (flip 2026-10-15); this file "
+                 "keeps the LEGACY pre-flip ranking for the "
+                 "2026-11-09 review checkpoint / regression watch"),
+        "live_weights": {"season_fit": 40, "search_interest": 30,
+                         "fare_drop": 20, "offpeak_value": 10},
+        "legacy_weights": {"season_fit": 50, "fare_drop": 30,
+                           "offpeak_value": 20},
+        "tie_break": ("live: score desc, has fare data, has search "
+                      "data, search level/momentum desc, name (last "
+                      "resort). legacy: score desc, name"),
         "search_interest_as_of": (search_data or {}).get("generated_at"),
-        "stats": stats,
-        "ranking": ranking,
+        "stats": live_stats,
+        "legacy_top8": legacy_top8,
+        "top8_overlap_with_legacy": len(
+            set(live_stats["top8"]) & set(legacy_top8)),
+        "legacy_ranking": legacy,
     }
     SHADOW_FILE.write_text(json.dumps(out, indent=2))
-    print(f"   Shadow trending (pilot): {', '.join(stats['top8'][:5])} "
-          f"[{stats['shadow_with_search_data']} with search data]")
+    print(f"   Legacy comparison (review): legacy top8 "
+          f"{', '.join(legacy_top8[:5])} · overlap with live "
+          f"{out['top8_overlap_with_legacy']}/8")
 
 
 def main():
@@ -795,6 +864,9 @@ def main():
     intl_deals = None
     if INTL_DEALS_FILE.exists():
         intl_deals = json.loads(INTL_DEALS_FILE.read_text())
+    search_data = None
+    if SEARCH_INTEREST_FILE.exists():
+        search_data = json.loads(SEARCH_INTEREST_FILE.read_text())
 
     records = []
     missing_meta = []
@@ -856,11 +928,18 @@ def main():
     if missing_meta:
         print(f"⚠ Guides with no metadata (skipped): {missing_meta}", file=sys.stderr)
 
-    # Deterministic rankings for the frontend — pick-eligible records
-    # only (tiering scope above); ineligible records stay in the file.
+    # LIVE trending (real-signal flip, Kiran 2026-10-15): rescale the
+    # base components into the live weights + search_interest, then
+    # rank pick-eligible records by the documented key. Ineligible
+    # records stay in the file with their live scores; they just never
+    # enter the rankings (tiering scope above).
+    legacy_by_slug = {r["slug"]: r["trending"] for r in records}
+    live_by_slug, live_ranking, live_stats = compute_live_ranking(
+        records, search_data)
+    for r in records:
+        r["trending"] = live_by_slug[r["slug"]]
     eligible = [r for r in records if r["eligible_for_picks"]]
-    trending_now = [r["slug"] for r in sorted(
-        eligible, key=lambda r: (-r["trending"]["score"], r["name"]))]
+    trending_now = [e["slug"] for e in live_ranking]
     best_by_month = {}
     for m in range(1, 13):
         ranked = sorted(
@@ -877,7 +956,7 @@ def main():
         "destination_count": len(records),
         "legend": {
             "season_fit_by_month": "2 = in best season, 1 = shoulder (adjacent month), 0 = off season",
-            "trending": "Sum of labeled components; max_score shows what was computable — a null fare_drop component means no fare route is tracked, not a zero fare.",
+            "trending": "Sum of labeled components (season 40 / search interest 30 / fare 20 / value 10); max_score shows what was computable — a null component means that signal is not tracked for the destination yet, not a zero.",
             "cheapest_month": "Only set from real flight-deals fare data; null everywhere else by design.",
             "eligible_for_picks": "False = second-tier US destination deferred from curated picks/trending (Kiran 2026-10-14 tiering); the record and its guide remain in the full index.",
         },
@@ -901,11 +980,13 @@ def main():
     print(f"✅ Wrote {OUTPUT_FILE} ({len(records)} destinations)")
     print(f"   Trending now: {', '.join(trending_now[:5])}")
 
-    # Shadow trending pilot — must never break or alter the live build.
+    # Post-flip review artifact (legacy comparison) — must never
+    # break or alter the live build.
     try:
-        write_shadow(records)
+        write_legacy_comparison(records, legacy_by_slug, live_stats,
+                                search_data)
     except Exception as e:
-        print(f"⚠ Shadow trending skipped (live build unaffected): {e}",
+        print(f"⚠ Legacy comparison skipped (live build unaffected): {e}",
               file=sys.stderr)
 
 
