@@ -7,7 +7,6 @@ import CategoryPills from "@/components/CategoryPills";
 import SiteFooter from "@/components/SiteFooter";
 import FlightDeals from "@/components/FlightDeals";
 import TrendingDestinations from "@/components/TrendingDestinations";
-import { BookByUrgencyStrip } from "@/components/TravelPlannerSections";
 import {
   REGIONS,
   DESTINATIONS,
@@ -244,11 +243,30 @@ export default function TravelPage() {
     });
   }, []);
 
+  /* Hash deep-links (e.g. /travel#india-destinations from the
+     trending rail's India card, /travel#flight-deals from
+     destination pages): react-router does not scroll to a hash on
+     navigation, so do it here once the page has mounted. Two
+     attempts — the fares hub above the index loads async and can
+     shift the target's position after the first scroll. */
+  useEffect(() => {
+    const id = window.location.hash.replace("#", "");
+    if (!id) return;
+    const timers = [300, 1400].map((ms) =>
+      window.setTimeout(() => {
+        document
+          .getElementById(id)
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, ms),
+    );
+    return () => timers.forEach((t) => window.clearTimeout(t));
+  }, []);
+
   return (
     <>
       <Helmet>
         <title>Travel Hub — Cheapest Fares, Top Destinations & Visa Guide | The Videshi</title>
-        <meta name="description" content="Plan the trip home and the next getaway: the next holiday window with its book-by deadline, real US–India fare snapshots, cheapest fares to top destinations, 49 diaspora travel guides, and visa quick-reference for Indian passport holders, US citizens, and Green Card holders." />
+        <meta name="description" content="Plan the trip home and the next getaway: real US–India fare snapshots, cheapest fares to top destinations, 49 diaspora travel guides, and visa quick-reference for Indian passport holders, US citizens, and Green Card holders." />
         <meta property="og:title" content="Travel Hub — The Videshi" />
         <meta property="og:description" content="Destinations, visa quick-reference, and travel news for NRIs and the Indian diaspora." />
         <meta property="og:type" content="website" />
@@ -275,9 +293,13 @@ export default function TravelPage() {
               the three nouns merely named the sections below. */}
         </header>
 
-        {/* ── Book-by urgency strip (the Holiday Planner's
-            book-by deadline, one line — Kiran, 2026-10-15) ── */}
-        <BookByUrgencyStrip />
+        {/* ── Book-by urgency strip REMOVED 2026-10-15
+            (Kiran: "Remove this holiday window section here
+            as well" — the last Holiday Planner remnant on
+            /travel). The BookByUrgencyStrip component and
+            planner data stay in TravelPlannerSections.tsx /
+            lib, parked — restoring is re-adding this render
+            + its import. ── */}
 
         {/* ── Top Destinations to Visit (trending rail) ──── */}
         <TrendingDestinations />
@@ -340,7 +362,13 @@ export default function TravelPage() {
             const dests = DESTINATIONS.filter(group.match);
             if (!dests.length) return null;
             return (
-              <div key={group.key} className="mb-8">
+              <div
+                key={group.key}
+                className="mb-8 scroll-mt-24"
+                /* The trending rail's India card links here
+                   (/travel#india-destinations, Kiran 2026-10-15). */
+                id={group.key === "india" ? "india-destinations" : undefined}
+              >
                 <h3 className="font-serif text-base font-bold mb-1">
                   {group.heading}
                   <span className="text-foreground/40 font-sans text-xs font-semibold ml-2">
