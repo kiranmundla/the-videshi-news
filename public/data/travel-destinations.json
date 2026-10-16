@@ -2823,7 +2823,7 @@
         "date_range": "Oct 21 \u2192 Nov 10",
         "duration_days": 20,
         "weeks": null,
-        "as_of": "2026-10-15",
+        "as_of": "2026-10-16",
         "cadence": "daily"
       },
       "highlights": [
@@ -5528,7 +5528,7 @@
     "trending": {
       "month": 10,
       "year": 2026,
-      "score": 65,
+      "score": 95,
       "max_score": 100,
       "components": [
         {
@@ -5545,9 +5545,9 @@
         },
         {
           "id": "fare_drop",
-          "points": 0,
+          "points": 30,
           "max": 30,
-          "reason": "Fare routes tracked, no notable drop right now"
+          "reason": "Fares down 19.9% on SEA-DEL ($1551 \u2192 $1242) vs 2026-10-15"
         }
       ]
     },
