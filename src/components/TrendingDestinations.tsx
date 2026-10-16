@@ -11,31 +11,36 @@ import {
 /*                                                                    */
 /* Ordering comes from src/lib/trendingDestinations (the ONE          */
 /* selection implementation shared with the Your Hub strip): the      */
-/* rail renders the tracker's trending_now ranking, badge = position, */
-/* and its first 5 cards are exactly the Hub's 5. The tracker labels  */
-/* its own score reasons; those render as chips. Hero photos come     */
-/* from the tracker's hero_image, falling back to the guide           */
-/* galleries; destinations without a real photo get a navy monogram   */
-/* block — never an invented image.                                   */
+/* rail renders the tracker's trending_now ranking — a card's badge   */
+/* is its position IN THE RANKING, read from the ranked list itself,  */
+/* never from its slot in this rail — and the ranked selection's      */
+/* first 5 are exactly the Hub's 5. The tracker labels its own score  */
+/* reasons; those render as chips. Hero photos come from the          */
+/* tracker's hero_image, falling back to the guide galleries;         */
+/* destinations without a real photo get a navy monogram block —      */
+/* never an invented image.                                           */
 /*                                                                    */
 /* INDIA CARD (Kiran, 2026-10-15): India belongs in this scroll, but  */
 /* it has no trending rank. The builder emits it separately           */
 /* (data.india_card — derived best months, a real fare line, the      */
-/* same season-chip math); this rail APPENDS it after the ranked      */
-/* cards with NO "#N Trending" badge (badges render only for slugs    */
-/* in trending_now, so ranks can never be implied or shifted), and    */
-/* it links to India's own destination page, /travel/india, exactly   */
-/* like every other card links to its page (Kiran, 2026-10-15 20:21:  */
-/* "India should get its own page" — the card first linked to the     */
-/* on-page India Destinations section; the page superseded that).     */
-/* The Hub strip does not render it — its cards stay a strict prefix  */
-/* of the ranking, as before.                                         */
+/* same season-chip math). Placement is editorial: the card was       */
+/* appended after the ranked cards at first; Kiran then directed      */
+/* (2026-10-15 20:38: "Let's make India first in scroll") that it     */
+/* renders FIRST in this rail. First slot is NOT a rank claim — the   */
+/* card carries NO "#N Trending" badge (badges render only for slugs  */
+/* in the ranked list, numbered by ranking position), so no rank is  */
+/* implied and none shifts. It links to India's own destination       */
+/* page, /travel/india, exactly like every other card links to its    */
+/* page (Kiran, 2026-10-15 20:21: "India should get its own page" —    */
+/* the card first linked to the on-page India Destinations section;   */
+/* the page superseded that). The Hub strip does not render it — its  */
+/* cards stay a strict prefix of the ranking, as before.              */
 /*                                                                    */
 /* Card geometry deliberately matches the Hub strip (Kiran,           */
 /* 2026-10-15: the Hub's compact cards are the preferred size for     */
 /* scroll rails): 200px wide, 96px image, same padding/typography.    */
 /*                                                                    */
-/* Scroll signal: the counter pill (n / 8) + the peek of the next     */
+/* Scroll signal: the counter pill (n / total) + the peek of the next */
 /* card. There is intentionally NO edge-fade overlay — the previous   */
 /* full-height white gradients washed over card images and text and   */
 /* read as "cloudiness" (Kiran, 2026-10-15); the Hub renders the      */
@@ -105,11 +110,15 @@ export default function TrendingDestinations() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  /* Ranked cards first, India card appended last (see header note).
-     railCards is what the rail renders, counts and scroll-clamps. */
+  /* India card FIRST (editorial placement, Kiran 2026-10-15 20:38),
+     then the ranked cards in ranking order (see header note).
+     railCards is what the rail renders, counts and scroll-clamps.
+     rankBySlug numbers the ranked cards by their position in the
+     ranked list itself, so India's first slot can never shift a
+     badge: Australia keeps "#1 Trending" from the second slot. */
   const indiaCard = data?.india_card ?? null;
-  const railCards = indiaCard ? [...cards, indiaCard] : cards;
-  const rankedSlugs = new Set(data?.trending_now ?? []);
+  const railCards = indiaCard ? [indiaCard, ...cards] : cards;
+  const rankBySlug = new Map(cards.map((c, idx) => [c.slug, idx + 1]));
 
   const updateScrollState = useCallback(() => {
     const el = scrollRef.current;
@@ -180,7 +189,7 @@ export default function TrendingDestinations() {
         } as React.CSSProperties}
       >
         <style>{`.trending-rail::-webkit-scrollbar { display: none; }`}</style>
-        {railCards.map((dest, i) => {
+        {railCards.map((dest) => {
           const galleryPhoto = galleries?.[dest.slug]?.photos?.[0];
           const image = dest.hero_image || galleryPhoto?.src || null;
           /* Every card — India included — is a plain Link to its
@@ -218,13 +227,14 @@ export default function TrendingDestinations() {
                       </span>
                     </div>
                   )}
-                  {/* Rank badge ONLY for ranked cards: the badge is the
-                      card's position in trending_now. The appended
-                      India card is not in trending_now and gets none —
-                      no implied rank, no shifted numbers. */}
-                  {rankedSlugs.has(dest.slug) && (
+                  {/* Rank badge ONLY for ranked cards, numbered by
+                      position in the ranked list (rankBySlug) — NOT by
+                      rail slot, so the India card's first slot leaves
+                      every badge untouched. India is not in the ranked
+                      list and gets none — no implied rank. */}
+                  {rankBySlug.has(dest.slug) && (
                     <span className="absolute top-1.5 left-1.5 text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-black/55 text-white backdrop-blur-sm">
-                      #{i + 1} Trending
+                      #{rankBySlug.get(dest.slug)} Trending
                     </span>
                   )}
                 </div>

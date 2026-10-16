@@ -81,9 +81,11 @@ export type DestinationsData = {
   /** India country card for the /travel rail (Kiran, 2026-10-15).
       Emitted separately by the builder (build_india_card): NOT a
       destination record, NOT in trending_now, carries NO rank. The
-      /travel rail appends it after the ranked cards with no badge;
-      it links to /travel/india, India's own destination page. The
-      Hub strip does not render it. Null when no India data exists. */
+      /travel rail renders it FIRST (editorial placement, Kiran
+      2026-10-15 20:38) with no badge — first slot is not a rank;
+      ranked cards keep their ranking-numbered badges. It links to
+      /travel/india, India's own destination page. The Hub strip
+      does not render it. Null when no India data exists. */
   india_card?: TrendingDestination | null;
 };
 
