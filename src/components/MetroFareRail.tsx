@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   fmtRange,
   tripLengthLabel,
   type MetroFare,
 } from "@/lib/flightDeals";
+import { useRailCounter } from "@/lib/useRailCounter";
 
 /* ------------------------------------------------------------------ */
 /* India Metros rail — the "India Metros Scroll" (Kiran, 2026-10-15). */
@@ -20,12 +20,17 @@ import {
 /* pattern as the trending rails — NO edge-fade overlays (Kiran       */
 /* called the white fade "cloudiness" and had it removed, 2026-10-15).*/
 /*                                                                    */
+/* Scroll mechanics match the Hub trending strip — a plain overflow   */
+/* scroll with NO scroll-snap, counter via useRailCounter (shared     */
+/* with TrendingDestinations; rAF-coalesced, step measured once,       */
+/* state only on index change). The old mandatory-snap + per-event    */
+/* setState/offsetWidth pattern felt grabby on this rail too          */
+/* (Kiran, 2026-10-15) — see src/lib/useRailCounter.ts.               */
+/*                                                                    */
 /* Variants: "hub" — compact cards inside the Your Hub Plan a Trip     */
 /* block, each linking to /travel; "travel" — selectable cards in the */
 /* Cheapest Fares hub that switch the calendar below to that route.   */
 /* ------------------------------------------------------------------ */
-
-const GAP = 12;
 
 function MetroCardBody({ fare }: { fare: MetroFare }) {
   return (
@@ -71,35 +76,7 @@ export default function MetroFareRail({
   onSelect?: (routeKey: string) => void;
   selectedRouteKey?: string;
 }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const updateScrollState = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const first = el.children[0] as HTMLElement | undefined;
-    const step = first ? first.offsetWidth + GAP : el.clientWidth * 0.75;
-    if (step > 0) {
-      setCurrentIndex(
-        Math.min(
-          fares.length - 1,
-          Math.max(0, Math.round(el.scrollLeft / step)),
-        ),
-      );
-    }
-  }, [fares.length]);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    updateScrollState();
-    el.addEventListener("scroll", updateScrollState, { passive: true });
-    window.addEventListener("resize", updateScrollState);
-    return () => {
-      el.removeEventListener("scroll", updateScrollState);
-      window.removeEventListener("resize", updateScrollState);
-    };
-  }, [fares.length, updateScrollState]);
+  const { scrollRef, currentIndex } = useRailCounter(fares.length);
 
   if (!fares.length) return null;
 
@@ -126,7 +103,6 @@ export default function MetroFareRail({
         className="metros-rail flex gap-3 overflow-x-auto pb-1"
         style={
           {
-            scrollSnapType: "x mandatory",
             WebkitOverflowScrolling: "touch",
             scrollbarWidth: "none",
             msOverflowStyle: "none",
@@ -140,7 +116,6 @@ export default function MetroFareRail({
               key={fare.routeKey}
               to="/travel/india#flight-deals"
               className={`block flex-shrink-0 bg-card border border-border rounded-lg hover:border-primary/40 transition-colors ${cardCls}`}
-              style={{ scrollSnapAlign: "start" }}
             >
               <MetroCardBody fare={fare} />
             </Link>
@@ -155,7 +130,6 @@ export default function MetroFareRail({
                   ? "border-primary ring-1 ring-primary/50"
                   : "border-border hover:border-primary/40"
               }`}
-              style={{ scrollSnapAlign: "start" }}
             >
               <MetroCardBody fare={fare} />
             </button>

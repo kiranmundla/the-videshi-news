@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import {
   useTrendingDestinations,
   type TrendingDestination,
 } from "@/lib/trendingDestinations";
+import { useRailCounter } from "@/lib/useRailCounter";
 
 /* ------------------------------------------------------------------ */
 /* Trending Destinations rail — the first section on /travel.         */
@@ -45,10 +45,16 @@ import {
 /* full-height white gradients washed over card images and text and   */
 /* read as "cloudiness" (Kiran, 2026-10-15); the Hub renders the      */
 /* same data cleanly without them.                                    */
+/*                                                                    */
+/* Scroll mechanics match the Hub strip exactly — a plain overflow    */
+/* scroll with NO scroll-snap, and the counter runs through           */
+/* useRailCounter (rAF-coalesced, step measured once, state only on   */
+/* index change). The previous mandatory-snap + per-scroll-event      */
+/* setState/offsetWidth pattern felt grabby next to the Hub strip     */
+/* (Kiran, 2026-10-15) — see src/lib/useRailCounter.ts.               */
 /* ------------------------------------------------------------------ */
 
 const MAX_CARDS = 8;
-const GAP = 12;
 
 /* Short chip labels for the tracker's positive signals only. The full
    reason sentence rides along as the chip's title so nothing is hidden:
@@ -107,8 +113,6 @@ function fmtAsOf(iso: string): string {
 
 export default function TrendingDestinations() {
   const { data, galleries, cards } = useTrendingDestinations(MAX_CARDS);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
 
   /* India card FIRST (editorial placement, Kiran 2026-10-15 20:38),
      then the ranked cards in ranking order (see header note).
@@ -120,27 +124,7 @@ export default function TrendingDestinations() {
   const railCards = indiaCard ? [indiaCard, ...cards] : cards;
   const rankBySlug = new Map(cards.map((c, idx) => [c.slug, idx + 1]));
 
-  const updateScrollState = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    const first = el.children[0] as HTMLElement | undefined;
-    const step = first ? first.offsetWidth + GAP : el.clientWidth * 0.75;
-    if (step > 0) {
-      setCurrentIndex(Math.min(railCards.length - 1, Math.max(0, Math.round(el.scrollLeft / step))));
-    }
-  }, [railCards.length]);
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    updateScrollState();
-    el.addEventListener("scroll", updateScrollState, { passive: true });
-    window.addEventListener("resize", updateScrollState);
-    return () => {
-      el.removeEventListener("scroll", updateScrollState);
-      window.removeEventListener("resize", updateScrollState);
-    };
-  }, [railCards.length, updateScrollState]);
+  const { scrollRef, currentIndex } = useRailCounter(railCards.length);
 
   if (!data || cards.length === 0) return null;
 
@@ -182,7 +166,6 @@ export default function TrendingDestinations() {
         ref={scrollRef}
         className="trending-rail flex gap-3 overflow-x-auto pb-2"
         style={{
-          scrollSnapType: "x mandatory",
           WebkitOverflowScrolling: "touch",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
@@ -206,7 +189,6 @@ export default function TrendingDestinations() {
               key={dest.slug}
               to={dest.guide_url}
               className="block group flex-shrink-0 w-[200px]"
-              style={{ scrollSnapAlign: "start" }}
             >
               <article className="bg-card border border-border rounded-lg overflow-hidden hover:border-primary/40 transition-all duration-200 hover:shadow-md h-full flex flex-col">
                 <div className="relative h-24 overflow-hidden flex-shrink-0">
