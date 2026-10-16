@@ -78,6 +78,13 @@ export type DestinationsData = {
   current_year: number;
   trending_now: string[];
   destinations: TrendingDestination[];
+  /** India country card for the /travel rail (Kiran, 2026-10-15).
+      Emitted separately by the builder (build_india_card): NOT a
+      destination record, NOT in trending_now, carries NO rank. The
+      /travel rail appends it after the ranked cards with no badge;
+      it links to the on-page India Destinations section. The Hub
+      strip does not render it. Null when no India data exists. */
+  india_card?: TrendingDestination | null;
 };
 
 export type GalleryData = Record<

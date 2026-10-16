@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-15",
+  "generated_at": "2026-10-16",
   "current_month": 10,
   "current_year": 2026,
   "destination_count": 50,
@@ -5185,5 +5185,77 @@
         ]
       }
     }
-  ]
+  ],
+  "india_card": {
+    "slug": "india",
+    "name": "India",
+    "guide_url": "/travel#india-destinations",
+    "group": "india",
+    "eligible_for_picks": false,
+    "region": "Asia",
+    "best_months": [
+      1,
+      2,
+      3,
+      10,
+      11,
+      12
+    ],
+    "peak_months": [
+      12
+    ],
+    "season_note": "The winter core (Oct\u2013Mar) suits most of India; Kashmir and the Himalayas run spring to autumn.",
+    "cheapest_month": null,
+    "fare_from": {
+      "price_min": 1144,
+      "route": "SFO-BOM",
+      "origin_metro": "Bay Area",
+      "dest_metro": "Mumbai",
+      "date_range": "Oct 28 \u2192 Nov 17",
+      "duration_days": 20,
+      "as_of": "2026-10-15",
+      "cadence": "weekly",
+      "indicative": true
+    },
+    "highlights": [
+      {
+        "title": "Delhi, Mumbai, Bengaluru, Hyderabad & Kolkata gateways",
+        "snippet": "State guides for the trip home \u2014 Goa, Kerala, Karnataka, Rajasthan, Kashmir and more, one tap below."
+      }
+    ],
+    "photo_count": 0,
+    "hero_image": null,
+    "trending": {
+      "month": 10,
+      "year": 2026,
+      "score": 65,
+      "max_score": 100,
+      "components": [
+        {
+          "id": "season_fit",
+          "points": 50,
+          "max": 50,
+          "reason": "In its best season right now"
+        },
+        {
+          "id": "offpeak_value",
+          "points": 15,
+          "max": 20,
+          "reason": "In season without peak-month demand"
+        },
+        {
+          "id": "fare_drop",
+          "points": 0,
+          "max": 30,
+          "reason": "Fare routes tracked, no notable drop right now"
+        }
+      ]
+    },
+    "data_quality": {
+      "fare_data": "tracked",
+      "notes": [
+        "Country card for the trending rail (Kiran, 2026-10-15): derived from the India state records and the fare matrices; carries no trending rank and links to the on-page India Destinations section, not a guide."
+      ]
+    }
+  }
 }

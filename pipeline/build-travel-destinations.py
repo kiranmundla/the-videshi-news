@@ -55,6 +55,7 @@ REPO = Path.home() / "workspace" / "the-videshi-news"
 GUIDES_DIR = REPO / "public" / "data" / "travel-guides"
 GALLERIES_FILE = REPO / "public" / "data" / "travel-galleries.json"
 DEALS_FILE = REPO / "public" / "data" / "flight-deals.json"
+METROS_DEALS_FILE = REPO / "public" / "data" / "flight-deals-metros.json"
 INTL_DEALS_FILE = REPO / "public" / "data" / "flight-deals-intl.json"
 OUTPUT_FILE = REPO / "public" / "data" / "travel-destinations.json"
 
@@ -431,6 +432,183 @@ def trending_for(rec, month, year, drop):
     }
 
 
+# ── India country card for the /travel trending rail ────────────────
+# Kiran (2026-10-15): India belongs in the "Top Destinations" scroll
+# like Australia/Bali — but there is NO /travel/india country page and
+# India has NO trending rank. The rail APPENDS this card after the
+# data-ranked cards; it carries no "#N Trending" badge, is never in
+# trending_now / best_by_month, and its score never influences any
+# ranking. The card links to the on-page India Destinations section
+# (the 9 state guides), not to a guide page.
+#
+# Everything on the card is derived from real data at build time:
+#   - best/peak months: months a MAJORITY of the 9 India state records
+#     list as best/peak (the winter core — Oct–Mar today).
+#   - fare_from: cheapest tracked fare from the rail's anchor origin
+#     (ANCHOR_ORIGIN — the site default the other cards' fare lines
+#     use) to ANY of the five India metros, across the daily matrix
+#     (flight-deals.json, cadence "daily") and the weekly metros grid
+#     (flight-deals-metros.json, cadence "weekly"). The winning file's
+#     cadence + as_of ride along so the stamp stays honest.
+#   - season components: the same season_fit math as trending_for(),
+#     computed on the derived months — the "In season now" chip is
+#     earned by the data or not shown at all.
+INDIA_METROS = {"DEL", "BOM", "BLR", "HYD", "CCU"}
+INDIA_CARD_ORIGIN = "SFO"
+
+
+def _majority_months(records, field):
+    counts = {}
+    for r in records:
+        for m in r[field]:
+            counts[m] = counts.get(m, 0) + 1
+    return sorted(m for m, c in counts.items() if c * 2 > len(records))
+
+
+def india_card_fare(deals, metros_deals):
+    """Cheapest ANCHOR_ORIGIN -> India-metro fare across both matrices."""
+    best = None
+    for source, cadence in ((deals, "daily"), (metros_deals, "weekly")):
+        if not source:
+            continue
+        for rk, r in (source.get("routes") or {}).items():
+            if r.get("origin") != INDIA_CARD_ORIGIN:
+                continue
+            if r.get("destination") not in INDIA_METROS:
+                continue
+            co = r.get("cheapest_overall")
+            if not co:
+                continue
+            if best is None or co["price_min"] < best["price_min"]:
+                best = {
+                    "price_min": co["price_min"],
+                    "route": rk,
+                    "origin_metro": r.get("origin_metro"),
+                    "dest_metro": r.get("dest_metro"),
+                    "date_range": reader_date_range(co.get("date_range")),
+                    "duration_days": co.get("duration_days"),
+                    "as_of": source.get("as_of"),
+                    "cadence": cadence,
+                }
+                if cadence == "weekly":
+                    best["indicative"] = True
+    return best
+
+
+def india_card_trending(best_months, peak_months, month, year, deals,
+                        metros_deals):
+    """Season/value components for the India card — same labeled math
+    as trending_for(), computed on the derived country months. The
+    fare_drop component scans both matrices' biggest_drops plus the
+    daily cells' change_vs_prev for India-metro routes."""
+    fit = season_fit(month, best_months)
+    components = []
+    if fit == 2:
+        components.append({"id": "season_fit", "points": 50, "max": 50,
+                           "reason": "In its best season right now"})
+    elif fit == 1:
+        components.append({"id": "season_fit", "points": 30, "max": 50,
+                           "reason": "Shoulder season — season is starting/ending"})
+    else:
+        components.append({"id": "season_fit", "points": 10, "max": 50,
+                           "reason": "Off season this month"})
+
+    if fit == 1:
+        value_pts, value_reason = 20, "Shoulder season: good conditions, lower demand and prices"
+    elif fit == 2 and month in peak_months:
+        value_pts, value_reason = 8, "Peak demand month — expect top prices and crowds"
+    elif fit == 2:
+        value_pts, value_reason = 15, "In season without peak-month demand"
+    else:
+        value_pts, value_reason = 5, "Off season — cheapest, but conditions are a compromise"
+    components.append({"id": "offpeak_value", "points": value_pts, "max": 20,
+                       "reason": value_reason})
+
+    drop = None
+    for source in (deals, metros_deals):
+        if not source:
+            continue
+        for d in source.get("biggest_drops") or []:
+            rk = d.get("route") or ""
+            if rk.split("-")[-1] in INDIA_METROS and (
+                    drop is None or d["drop_pct"] > drop["drop_pct"]):
+                drop = d
+    if drop is None and deals:
+        for rk, r in (deals.get("routes") or {}).items():
+            if r.get("destination") not in INDIA_METROS:
+                continue
+            for cell in route_cells(r):
+                ch = cell.get("change_vs_prev") or {}
+                if ch.get("delta", 0) > 0 and (
+                        drop is None or ch["delta_pct"] > drop["drop_pct"]):
+                    drop = {"route": rk, "drop_pct": ch["delta_pct"],
+                            "drop_abs": ch["delta"], "was": ch["prev_price_min"],
+                            "now": cell["price_min"],
+                            "baseline_as_of": ch.get("prev_as_of")}
+    if drop:
+        components.append({
+            "id": "fare_drop",
+            "points": min(30, round(drop["drop_pct"] * 1.5)), "max": 30,
+            "reason": (f"Fares down {drop['drop_pct']}% on {drop['route']} "
+                       f"(${drop['was']} → ${drop['now']}) vs {drop['baseline_as_of']}")})
+    else:
+        components.append({"id": "fare_drop", "points": 0, "max": 30,
+                           "reason": "Fare routes tracked, no notable drop right now"})
+
+    scored = [c for c in components if c["points"] is not None]
+    return {
+        "month": month,
+        "year": year,
+        "score": sum(c["points"] for c in scored),
+        "max_score": sum(c["max"] for c in scored),
+        "components": components,
+    }
+
+
+def build_india_card(records, deals, metros_deals, today):
+    """The India country card for the trending rail (see block comment
+    above). Returns None when there are no India records to derive
+    from. NOT a destination record: it stays out of `destinations`,
+    `trending_now` and `best_by_month`, and destination_count."""
+    india_records = [r for r in records if r["group"] == "india"]
+    if not india_records:
+        return None
+    best_months = _majority_months(india_records, "best_months")
+    peak_months = _majority_months(india_records, "peak_months")
+    return {
+        "slug": "india",
+        "name": "India",
+        "guide_url": "/travel#india-destinations",
+        "group": "india",
+        "eligible_for_picks": False,
+        "region": "Asia",
+        "best_months": best_months,
+        "peak_months": peak_months,
+        "season_note": ("The winter core (Oct–Mar) suits most of India; "
+                        "Kashmir and the Himalayas run spring to autumn."),
+        "cheapest_month": None,
+        "fare_from": india_card_fare(deals, metros_deals),
+        "highlights": [{
+            "title": "Delhi, Mumbai, Bengaluru, Hyderabad & Kolkata gateways",
+            "snippet": ("State guides for the trip home — Goa, Kerala, "
+                        "Karnataka, Rajasthan, Kashmir and more, one tap below."),
+        }],
+        "photo_count": 0,
+        "hero_image": None,
+        "trending": india_card_trending(best_months, peak_months,
+                                        today.month, today.year,
+                                        deals, metros_deals),
+        "data_quality": {
+            "fare_data": "tracked",
+            "notes": ["Country card for the trending rail (Kiran, "
+                      "2026-10-15): derived from the India state records "
+                      "and the fare matrices; carries no trending rank "
+                      "and links to the on-page India Destinations "
+                      "section, not a guide."],
+        },
+    }
+
+
 # ── Shadow trending (pilot, 2026-10-15) ─────────────────────────────
 # Rebalanced score from research/actual-trending-data-2026-10-15.md §4:
 # season 40 / search_interest 30 / fare 20 / value 10, computed from
@@ -602,6 +780,9 @@ def main():
     deals = None
     if DEALS_FILE.exists():
         deals = json.loads(DEALS_FILE.read_text())
+    metros_deals = None
+    if METROS_DEALS_FILE.exists():
+        metros_deals = json.loads(METROS_DEALS_FILE.read_text())
     intl_deals = None
     if INTL_DEALS_FILE.exists():
         intl_deals = json.loads(INTL_DEALS_FILE.read_text())
@@ -694,6 +875,10 @@ def main():
         "trending_now": trending_now,
         "best_by_month": best_by_month,
         "destinations": records,
+        # Country card for the /travel trending rail (Kiran, 2026-10-15)
+        # — separate from `destinations` on purpose: it is not a guide,
+        # not ranked, and destination_count stays the guide count.
+        "india_card": build_india_card(records, deals, metros_deals, today),
     }
 
     if args.dry_run:

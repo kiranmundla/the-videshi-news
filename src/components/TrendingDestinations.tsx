@@ -18,6 +18,17 @@ import {
 /* galleries; destinations without a real photo get a navy monogram   */
 /* block — never an invented image.                                   */
 /*                                                                    */
+/* INDIA CARD (Kiran, 2026-10-15): India belongs in this scroll, but  */
+/* it has no trending rank and no country page. The builder emits it  */
+/* separately (data.india_card — derived best months, a real fare     */
+/* line, the same season-chip math); this rail APPENDS it after the  */
+/* ranked cards with NO "#N Trending" badge (badges render only for  */
+/* slugs in trending_now, so ranks can never be implied or shifted), */
+/* and it links to the on-page India Destinations section            */
+/* (/travel#india-destinations) instead of a guide page. The Hub      */
+/* strip does not render it — its cards stay a strict prefix of the  */
+/* ranking, as before.                                                */
+/*                                                                    */
 /* Card geometry deliberately matches the Hub strip (Kiran,           */
 /* 2026-10-15: the Hub's compact cards are the preferred size for     */
 /* scroll rails): 200px wide, 96px image, same padding/typography.    */
@@ -92,15 +103,21 @@ export default function TrendingDestinations() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  /* Ranked cards first, India card appended last (see header note).
+     railCards is what the rail renders, counts and scroll-clamps. */
+  const indiaCard = data?.india_card ?? null;
+  const railCards = indiaCard ? [...cards, indiaCard] : cards;
+  const rankedSlugs = new Set(data?.trending_now ?? []);
+
   const updateScrollState = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
     const first = el.children[0] as HTMLElement | undefined;
     const step = first ? first.offsetWidth + GAP : el.clientWidth * 0.75;
     if (step > 0) {
-      setCurrentIndex(Math.min(cards.length - 1, Math.max(0, Math.round(el.scrollLeft / step))));
+      setCurrentIndex(Math.min(railCards.length - 1, Math.max(0, Math.round(el.scrollLeft / step))));
     }
-  }, [cards.length]);
+  }, [railCards.length]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -112,7 +129,7 @@ export default function TrendingDestinations() {
       el.removeEventListener("scroll", updateScrollState);
       window.removeEventListener("resize", updateScrollState);
     };
-  }, [cards.length, updateScrollState]);
+  }, [railCards.length, updateScrollState]);
 
   if (!data || cards.length === 0) return null;
 
@@ -150,9 +167,22 @@ export default function TrendingDestinations() {
         } as React.CSSProperties}
       >
         <style>{`.trending-rail::-webkit-scrollbar { display: none; }`}</style>
-        {cards.map((dest, i) => {
+        {railCards.map((dest, i) => {
           const galleryPhoto = galleries?.[dest.slug]?.photos?.[0];
           const image = dest.hero_image || galleryPhoto?.src || null;
+          const isIndiaCard = dest.slug === "india";
+          /* India card click: on /travel, smooth-scroll to the India
+             Destinations section and set the hash (react-router does
+             not scroll to hashes on its own). Off /travel, the Link
+             navigates to /travel#india-destinations as usual. */
+          const handleIndiaClick = (e: React.MouseEvent) => {
+            if (window.location.pathname !== "/travel") return;
+            const el = document.getElementById("india-destinations");
+            if (!el) return;
+            e.preventDefault();
+            el.scrollIntoView({ behavior: "smooth", block: "start" });
+            window.history.pushState(null, "", "#india-destinations");
+          };
           /* ONE reason chip per card (audit item 13): when every card
              carries the same two chips they differentiate nothing.
              reasonChips builds in priority order (season, off-peak,
@@ -163,6 +193,7 @@ export default function TrendingDestinations() {
             <Link
               key={dest.slug}
               to={dest.guide_url}
+              onClick={isIndiaCard ? handleIndiaClick : undefined}
               className="block group flex-shrink-0 w-[200px]"
               style={{ scrollSnapAlign: "start" }}
             >
@@ -185,9 +216,15 @@ export default function TrendingDestinations() {
                       </span>
                     </div>
                   )}
-                  <span className="absolute top-1.5 left-1.5 text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-black/55 text-white backdrop-blur-sm">
-                    #{i + 1} Trending
-                  </span>
+                  {/* Rank badge ONLY for ranked cards: the badge is the
+                      card's position in trending_now. The appended
+                      India card is not in trending_now and gets none —
+                      no implied rank, no shifted numbers. */}
+                  {rankedSlugs.has(dest.slug) && (
+                    <span className="absolute top-1.5 left-1.5 text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-black/55 text-white backdrop-blur-sm">
+                      #{i + 1} Trending
+                    </span>
+                  )}
                 </div>
 
                 <div className="p-3 flex flex-col gap-1.5 flex-1">
