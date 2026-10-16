@@ -576,3 +576,69 @@ export function fareForWindow(
   if (!matches.length) return null;
   return matches.reduce((a, b) => (b.price_min < a.price_min ? b : a));
 }
+
+/* ------------------------------------------------------------------ */
+/* Shared fare-UI pieces (Phase 2, 2026-10-15): the /travel fares hub */
+/* and the destination-page fare module must agree on origin labels,  */
+/* festival matching and the reader's chosen origin — one copy here,  */
+/* imported by both, so the two surfaces can never drift.             */
+/* ------------------------------------------------------------------ */
+
+/** Dropdown labels for the tracked origin airports (code — city).
+ *  Unknown codes fall back to the route's own origin_metro. */
+export const ORIGIN_CITY_LABELS: Record<string, string> = {
+  SFO: "San Francisco Bay Area",
+  LAX: "Los Angeles",
+  SEA: "Seattle",
+  JFK: "New York (JFK)",
+  EWR: "Newark / New Jersey",
+  ORD: "Chicago",
+  DFW: "Dallas–Fort Worth",
+  IAH: "Houston",
+  IAD: "Washington, DC",
+  ATL: "Atlanta",
+  BOS: "Boston",
+};
+
+/** The festival season a fare cell belongs to, if any: the cell's
+ *  departure falls within the season window ±10 days. */
+export function seasonForEntry(
+  entry: CalendarEntry,
+  seasons: FestivalSeason[],
+): FestivalSeason | null {
+  const dep = new Date(entry.dep_date + "T12:00:00");
+  for (const s of seasons) {
+    const start = new Date(s.start[0], s.start[1] - 1, s.start[2]);
+    const end = new Date(s.end[0], s.end[1] - 1, s.end[2]);
+    const lo = new Date(start);
+    lo.setDate(lo.getDate() - 10);
+    const hi = new Date(end);
+    hi.setDate(hi.getDate() + 10);
+    if (dep >= lo && dep <= hi) return s;
+  }
+  return null;
+}
+
+/* The reader's explicit fares origin — written whenever they pick an
+ * origin in the /travel hub dropdown OR a destination-page module,
+ * read by both. It is a preference, not a location: the Hub location
+ * record (detectHubOrigin) still supplies the default when no pick
+ * exists, and a pick only ever applies where that origin actually
+ * has the fares being shown. */
+export const FARES_ORIGIN_STORAGE_KEY = "videshi-fares-origin";
+
+export function readFaresOriginPref(): string | null {
+  try {
+    return localStorage.getItem(FARES_ORIGIN_STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+export function writeFaresOriginPref(origin: string): void {
+  try {
+    localStorage.setItem(FARES_ORIGIN_STORAGE_KEY, origin);
+  } catch {
+    /* storage unavailable — the pick still applies to this view */
+  }
+}

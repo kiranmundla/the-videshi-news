@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from "react";
 import {
   Plane,
   CalendarDays,
-  ExternalLink,
   ShieldCheck,
   Luggage,
   Info,
@@ -11,19 +10,21 @@ import {
   Sparkles,
 } from "lucide-react";
 import {
-  airlineBookingUrl,
+  ORIGIN_CITY_LABELS,
   dealRouteSource,
   detectHubRoute,
   festivalAdvice,
   fmtDate,
   fmtDateLong,
   futureEntries,
-  googleFlightsUrl,
   loadFlightDeals,
   loadMetrosFlightDeals,
   mergeDealRoutes,
   metroFaresForOrigin,
+  readFaresOriginPref,
+  seasonForEntry,
   tripLengthLabel,
+  writeFaresOriginPref,
   type CalendarEntry,
   type FestivalSeason,
   type FlightDealsData,
@@ -31,68 +32,12 @@ import {
   type MetrosDealsData,
 } from "@/lib/flightDeals";
 import MetroFareRail from "@/components/MetroFareRail";
+import BookingLinks from "@/components/BookingLinks";
 
-/* ------------------------------------------------------------------ */
-/* Helpers                                                            */
-/* ------------------------------------------------------------------ */
-
-function seasonForEntry(entry: CalendarEntry, seasons: FestivalSeason[]): FestivalSeason | null {
-  const dep = new Date(entry.dep_date + "T12:00:00");
-  for (const s of seasons) {
-    const start = new Date(s.start[0], s.start[1] - 1, s.start[2]);
-    const end = new Date(s.end[0], s.end[1] - 1, s.end[2]);
-    // Entry overlaps season if dep is within ±10 days of season window
-    const lo = new Date(start); lo.setDate(lo.getDate() - 10);
-    const hi = new Date(end); hi.setDate(hi.getDate() + 10);
-    if (dep >= lo && dep <= hi) return s;
-  }
-  return null;
-}
-
-/** Booking links for a fare (Kiran's decision, 2026-10-15): the
- *  airline's own deep link is primary ONLY when the carrier has a
- *  verified template; "Compare on Google Flights" is always present.
- *  No template → Google Flights only. Never a bare homepage. */
-function BookingLinks({
-  entry,
-  origin,
-  dest,
-}: {
-  entry: CalendarEntry;
-  origin: string;
-  dest: string;
-}) {
-  const gfUrl = googleFlightsUrl(origin, dest, entry.dep_date, entry.ret_date);
-  const airlineUrl = airlineBookingUrl(
-    entry.cheapest_airline,
-    origin,
-    dest,
-    entry.dep_date,
-    entry.ret_date,
-  );
-  return (
-    <div className="flex flex-col gap-1.5 mt-1">
-      {airlineUrl && (
-        <a
-          href={airlineUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:underline"
-        >
-          Book on {entry.cheapest_airline} <ExternalLink className="h-3.5 w-3.5" />
-        </a>
-      )}
-      <a
-        href={gfUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-primary hover:underline"
-      >
-        Compare on Google Flights <ExternalLink className="h-3.5 w-3.5" />
-      </a>
-    </div>
-  );
-}
+/* Helpers shared with the destination-page fare module (Phase 2):
+ * seasonForEntry + ORIGIN_CITY_LABELS live in lib/flightDeals.ts and
+ * BookingLinks in components/BookingLinks.tsx — one copy each, so the
+ * hub and the destination pages can never drift apart. */
 
 /* ------------------------------------------------------------------ */
 /* Price card                                                         */
@@ -210,22 +155,6 @@ function PriceCard({
 /* route selector — same job, strictly more information.              */
 /* ------------------------------------------------------------------ */
 
-/** Dropdown labels for the tracked origin airports (code — city).
- *  Unknown codes fall back to the route's own origin_metro. */
-const ORIGIN_CITY_LABELS: Record<string, string> = {
-  SFO: "San Francisco Bay Area",
-  LAX: "Los Angeles",
-  SEA: "Seattle",
-  JFK: "New York (JFK)",
-  EWR: "Newark / New Jersey",
-  ORD: "Chicago",
-  DFW: "Dallas–Fort Worth",
-  IAH: "Houston",
-  IAD: "Washington, DC",
-  ATL: "Atlanta",
-  BOS: "Boston",
-};
-
 function cheapestUpcomingPrice(route: RouteData): number | null {
   const es = futureEntries(route);
   if (!es.length) return null;
@@ -291,13 +220,26 @@ export default function FlightDeals() {
           const originsPresent = [
             ...new Set(keys.map((k) => merged[k].origin)),
           ];
+          /* The reader's stored fares preference (written here and
+           * by the destination-page fare module — one shared pick)
+           * wins when it names an origin this pool actually has;
+           * otherwise the Hub-location detection, then the plain
+           * SFO default, exactly as before. */
+          const storedOrigin = readFaresOriginPref();
+          const useStored =
+            storedOrigin && originsPresent.includes(storedOrigin)
+              ? storedOrigin
+              : null;
           const initialOrigin =
+            useStored ??
             detectedOrigin ??
             (originsPresent.includes("SFO")
               ? "SFO"
               : (originsPresent.sort()[0] ?? ""));
           setOrigin(initialOrigin);
-          setOriginNote(detectedOrigin ? "detected" : "default");
+          setOriginNote(
+            useStored ? "picked" : detectedOrigin ? "detected" : "default",
+          );
           setRouteKey(
             detectedRoute && detectedOrigin === initialOrigin
               ? detectedRoute
@@ -334,6 +276,7 @@ export default function FlightDeals() {
   const selectOrigin = (next: string) => {
     setOrigin(next);
     setOriginNote("picked");
+    writeFaresOriginPref(next);
     setRouteKey(defaultRouteForOrigin(mergedRoutes, next));
   };
   const route = mergedRoutes[routeKey];
