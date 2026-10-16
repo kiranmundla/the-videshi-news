@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import {
   useTrendingDestinations,
@@ -103,6 +103,8 @@ export default function TrendingDestinations() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const { pathname } = useLocation();
+
   /* Ranked cards first, India card appended last (see header note).
      railCards is what the rail renders, counts and scroll-clamps. */
   const indiaCard = data?.india_card ?? null;
@@ -187,7 +189,7 @@ export default function TrendingDestinations() {
              not scroll to hashes on its own). Off /travel, the Link
              navigates to /travel#india-destinations as usual. */
           const handleIndiaClick = (e: React.MouseEvent) => {
-            if (window.location.pathname !== "/travel") return;
+            if (pathname !== "/travel") return;
             const el = document.getElementById("india-destinations");
             if (!el) return;
             e.preventDefault();
