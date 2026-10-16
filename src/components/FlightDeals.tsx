@@ -318,7 +318,7 @@ export default function FlightDeals() {
 
   if (loading) {
     return (
-      <section className="mb-12">
+      <section className="mb-0">
         <div className="flex items-center justify-center py-16">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary" />
         </div>
@@ -334,18 +334,25 @@ export default function FlightDeals() {
     : "19–23 days";
 
   return (
-    <section className="mb-12" id="flight-deals">
-      {/* ── Section header — compact (Kiran, 2026-10-15: the giant
-          navy banner heading was too big; the page's standard small
-          section header is enough). No global check-date pill
-          (audit item 22): freshness renders per card, in the two
-          standard stamp formats only. ─────────────────────────── */}
+    <section className="mb-0" id="flight-deals">
+      {/* ── Section header — redesign header system (Kiran approved
+          mockup, 2026-10-15): gold kicker, serif navy title, hairline
+          with a gold tick, like every /travel section. The section
+          itself carries no bottom margin — TravelPage wraps it in
+          the cream fares panel, which owns the spacing. No global
+          check-date pill (audit item 22): freshness renders per
+          card, in the two standard stamp formats only. ─────────── */}
       <div className="mb-6">
-        <div className="flex items-center gap-2 mb-2 flex-wrap">
-          <span className="text-xl">✈️</span>
-          <h2 className="font-serif text-xl font-bold">Cheapest Fares</h2>
+        <div className="relative border-b border-[#0B1D3A]/10 pb-3">
+          <p className="text-[11px] font-bold uppercase tracking-[2px] text-[#7a5c14] mb-1">
+            Fly for less
+          </p>
+          <h2 className="font-serif text-xl font-bold leading-none" style={{ color: "#0B1D3A" }}>
+            Cheapest Fares
+          </h2>
+          <span className="absolute left-0 -bottom-px h-[2px] w-10 bg-[#D4A843]" />
         </div>
-        <p className="text-sm text-foreground/55 leading-relaxed">
+        <p className="text-sm text-foreground/55 leading-relaxed mt-3">
           Round-trip fares from US metros to India — {bandLabel} ({bandRange}),
           next 3 months.
         </p>

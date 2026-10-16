@@ -137,20 +137,31 @@ export default function TrendingDestinations() {
 
   return (
     <section className="mb-12" id="trending-destinations">
-      <div className="flex items-center justify-between gap-2 mb-2">
-        <div className="flex items-center gap-2">
-          <span className="text-xl">🔥</span>
-          <h2 className="font-serif text-xl font-bold">Top Destinations to Visit</h2>
+      {/* Section header — redesign header system (Kiran approved
+          mockup, 2026-10-15): gold kicker, serif navy title, hairline
+          with a gold tick; the counter pill keeps its place at the
+          title's right. Same treatment on every /travel section. */}
+      <div className="relative border-b border-rule pb-3 mb-3">
+        <div className="flex items-end justify-between gap-2">
+          <div>
+            <p className="text-[11px] font-bold uppercase tracking-[2px] text-[#7a5c14] dark:text-[#D4A843] mb-1">
+              Where to go
+            </p>
+            <h2 className="font-serif text-xl font-bold leading-none" style={{ color: "#0B1D3A" }}>
+              Top Destinations to Visit
+            </h2>
+          </div>
+          {railCards.length > 1 && (
+            <span
+              aria-hidden
+              className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-foreground/5 text-foreground/50"
+              style={{ fontVariantNumeric: "tabular-nums" }}
+            >
+              {currentIndex + 1} / {railCards.length}
+            </span>
+          )}
         </div>
-        {cards.length > 1 && (
-          <span
-            aria-hidden
-            className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-foreground/5 text-foreground/50"
-            style={{ fontVariantNumeric: "tabular-nums" }}
-          >
-            {currentIndex + 1} / {cards.length}
-          </span>
-        )}
+        <span className="absolute left-0 -bottom-px h-[2px] w-10 bg-[#D4A843]" />
       </div>
       <p className="text-sm text-foreground/55 mb-5 max-w-2xl leading-relaxed">
         Trending now — {monthLabel}.

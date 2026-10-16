@@ -20,18 +20,51 @@ import {
 import type { Destination, VisaHolderStatus } from "@/lib/travel";
 
 /* ------------------------------------------------------------------ */
+/* Section header system — the redesign's one treatment for every     */
+/* /travel section (Kiran approved mockup, 2026-10-15): gold kicker,  */
+/* serif navy title, hairline with a gold tick. TrendingDestinations  */
+/* and FlightDeals render the same treatment inline (the rail needs   */
+/* its counter pill in the title row; the fares header sits inside    */
+/* the cream panel, so its hairline is navy-tinted).                  */
+/* ------------------------------------------------------------------ */
+function SectionHead({
+  kicker,
+  title,
+  sub,
+}: {
+  kicker: string;
+  title: string;
+  sub?: string;
+}) {
+  return (
+    <div className="mb-5">
+      <div className="relative border-b border-rule pb-3">
+        <p className="text-[11px] font-bold uppercase tracking-[2px] text-[#7a5c14] dark:text-[#D4A843] mb-1">
+          {kicker}
+        </p>
+        <h2
+          className="font-serif text-xl font-bold leading-none"
+          style={{ color: "#0B1D3A" }}
+        >
+          {title}
+        </h2>
+        <span className="absolute left-0 -bottom-px h-[2px] w-10 bg-[#D4A843]" />
+      </div>
+      {sub && (
+        <p className="text-sm text-foreground/55 leading-relaxed mt-3">{sub}</p>
+      )}
+    </div>
+  );
+}
+
+/* ------------------------------------------------------------------ */
 /* Travel News Strip                                                  */
 /* ------------------------------------------------------------------ */
 function TravelNewsStrip({ news }: { news: any[] }) {
   if (!news.length) return null;
   return (
     <section className="mb-12">
-      <div className="flex items-center justify-between mb-5">
-        <div className="flex items-center gap-2">
-          <span className="text-xl">📰</span>
-          <h2 className="font-serif text-xl font-bold">Latest Travel News</h2>
-        </div>
-      </div>
+      <SectionHead kicker="Stay current" title="Latest Travel News" />
       <style>{`.travel-news-strip::-webkit-scrollbar { display: none; }`}</style>
       <div
         className="travel-news-strip flex gap-4 overflow-x-auto pb-4"
@@ -98,10 +131,7 @@ function VisaDashboard({
 
   return (
     <section className="mb-12">
-      <div className="flex items-center gap-2 mb-4">
-        <span className="text-xl">🛂</span>
-        <h2 className="font-serif text-xl font-bold">Visa Quick Reference</h2>
-      </div>
+      <SectionHead kicker="Before you fly" title="Visa Quick Reference" />
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
         {cards.map((card) => (
@@ -202,10 +232,10 @@ function DestinationCard({ dest, holderStatus }: { dest: Destination; holderStat
 /* Main TravelPage                                                    */
 /* ------------------------------------------------------------------ */
 /* Group order is deliberate (Kiran, 2026-10-15): NO India country
-   page — the India state destinations sit directly below the
-   Cheapest Fares hub (India group first in this index, which follows
-   the fares hub + toggle), one click through to each state page.
-   The other groups keep their relative order after it. */
+   page — the India state destinations are the first group of this
+   index (which follows the fares hub and the travel articles in the
+   redesign order), one click through to each state page. The other
+   groups keep their relative order after it. */
 const DESTINATION_GROUPS: { key: string; heading: string; blurb: string; match: (d: Destination) => boolean }[] = [
   {
     key: "india",
@@ -276,12 +306,12 @@ export default function TravelPage() {
       <Masthead />
       <CategoryPills />
 
-      <main className="container py-8">
+      <main className="container py-6">
         {/* ── Header — minimal (Kiran, 2026-10-15: the giant green
             "Explore the World" hero block was too big; a slim title
-            row is enough — the trending rail is the first real
-            section). Navy/gold idiom, no banner block. ─────────── */}
-        <header className="mb-8">
+            row is enough — the destinations scroll opens the page).
+            Navy/gold idiom, no banner block. ──────────────────── */}
+        <header className="mb-6">
           <span className="inline-block text-[11px] font-bold uppercase tracking-[2px] px-2.5 py-1 rounded-full bg-[#D4A843]/20 text-[#7a5c14] dark:text-[#D4A843]">
             ✈️ Travel Hub
           </span>
@@ -301,12 +331,28 @@ export default function TravelPage() {
             lib, parked — restoring is re-adding this render
             + its import. ── */}
 
-        {/* ── Top Destinations to Visit (trending rail) ──── */}
+        {/* ── 1 · Top Destinations to Visit — the destinations
+            scroll OPENS the page (redesign brief #1, Kiran
+            approved mockup 2026-10-15), India card included.
+            NO holiday-window urgency strip anywhere on the
+            page — removed entirely at Kiran's word 19:50. ───── */}
         <TrendingDestinations />
 
-        {/* ── Cheapest Fares hub (origin dropdown + metros rail
-            + price calendar) ──────────────────────────────── */}
-        <FlightDeals />
+        {/* ── 2 · Cheapest Fares — the deals engine in the cream
+            panel that marks it as the page's working tool
+            (redesign brief #2). Opens directly with its header
+            + origin dropdown; the panel owns the section's
+            bottom spacing (FlightDeals renders mb-0 inside). ── */}
+        <div className="rounded-[24px] border border-[#D4A843]/30 bg-[#FBF6EA] px-4 py-5 sm:px-6 mb-12">
+          <FlightDeals />
+        </div>
+
+        {/* ── 3 · Travel articles — moved up from the bottom of
+            the old page (redesign brief #3). Still un-gated:
+            the strip fills this slot when its data lands. ──── */}
+        <div id="travel-news" className="scroll-mt-24">
+          <TravelNewsStrip news={news} />
+        </div>
 
         {/* ── "While You're in India" strip REMOVED 2026-10-15
             (Kiran: drop within-India coverage for now, focus on
@@ -323,40 +369,40 @@ export default function TravelPage() {
             untouched: its season data feeds the trending score
             and the "In season now" card tags. ── */}
 
-        {/* ── Holder Status Toggle — sits directly above the All
-            Destinations index whose visa badges it drives (visa
-            placement, approved 2026-10-15). Its caption is a plain
-            label, not a section heading (audit item 21). ─────── */}
-        <section className="mb-4">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-lg">🧳</span>
-            <p className="text-sm font-semibold">I'm traveling as</p>
-          </div>
-          <div className="flex gap-2 overflow-x-auto" style={{ WebkitOverflowScrolling: "touch" }}>
-            {VISA_TABS.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setHolderStatus(tab)}
-                className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold border transition-colors ${
-                  holderStatus === tab
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "border-rule text-foreground/80 hover:text-primary hover:border-primary"
-                }`}
-              >
-                {VISA_TAB_SHORT[tab]}
-              </button>
-            ))}
-          </div>
-        </section>
-
-        {/* ── All Destinations index ──────────────────────── */}
+        {/* ── 4 · All Destinations index — the passport toggle is
+            this section's CONTROL BAR (redesign brief #4): a
+            light bordered strip directly under the section
+            header, directly above the guide cards whose visa
+            badges it drives (India Destinations first). The
+            count lives in the heading (audit item 6); the
+            groups carry their own counts. ───────────────────── */}
         <section className="mb-12" id="destinations">
-          <div className="flex items-center gap-2 mb-6">
-            <span className="text-xl">🗺️</span>
-            <h2 className="font-serif text-xl font-bold">All Destinations · {DESTINATIONS.length} guides</h2>
+          <SectionHead
+            kicker="Plan the trip"
+            title={`All Destinations · ${DESTINATIONS.length} guides`}
+          />
+
+          <div className="bg-foreground/[0.02] border border-border rounded-2xl px-4 py-3 mb-7">
+            <div className="flex items-center gap-2 mb-2.5">
+              <span className="text-lg">🧳</span>
+              <p className="text-sm font-semibold">I'm traveling as</p>
+            </div>
+            <div className="flex gap-2 overflow-x-auto" style={{ WebkitOverflowScrolling: "touch" }}>
+              {VISA_TABS.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setHolderStatus(tab)}
+                  className={`whitespace-nowrap px-4 py-2 rounded-full text-sm font-semibold border transition-colors ${
+                    holderStatus === tab
+                      ? "bg-primary text-primary-foreground border-primary"
+                      : "border-rule text-foreground/80 hover:text-primary hover:border-primary bg-card"
+                  }`}
+                >
+                  {VISA_TAB_SHORT[tab]}
+                </button>
+              ))}
+            </div>
           </div>
-          {/* Intro paragraph DELETED (audit item 6): the count lives
-              in the heading; the groups carry their own counts. */}
 
           {DESTINATION_GROUPS.map((group) => {
             const dests = DESTINATIONS.filter(group.match);
@@ -386,17 +432,13 @@ export default function TravelPage() {
           })}
         </section>
 
-        {/* ── Visa Quick Reference — below the index it serves
-            (visa placement, approved 2026-10-15) ────────────── */}
+        {/* ── 5 · Visa Quick Reference — below the index it
+            serves (redesign brief #4). Travel news moved up to
+            position 3 in the redesign; it no longer sits here. ── */}
         <VisaDashboard activeTab={holderStatus} />
 
-        {/* ── Travel News Strip ──────────────────────────── */}
-        <div id="travel-news" className="scroll-mt-24">
-          <TravelNewsStrip news={news} />
-        </div>
-
-        {/* ── Travel Agent CTA — navy/gold like the rest of the
-            page, heading at the 20px section standard (audit
+        {/* ── 6 · Travel Agent CTA — navy/gold like the rest of
+            the page, heading at the 20px section standard (audit
             items 21 + Q2 as decided, 2026-10-15) ────────────── */}
         <section className="mb-12">
           <div className="relative p-8 bg-[#0B1D3A] rounded-2xl border border-[#D4A843]/40 text-center overflow-hidden">
