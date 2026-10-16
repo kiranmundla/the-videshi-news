@@ -179,21 +179,26 @@ def circle_photo(enh, face_enh, diameter=300):
 
 
 # ── Card builders: each returns (card_img, text_overlay_img) ────────────────
-def build_cover(spec, enh, face_enh):
+def build_cover(spec, enh, face_enh, has_face=True):
     card, face_card = cover_crop(enh, face_enh)
     card = gradient_card(card.convert("RGB"))
     ov = Image.new("RGBA", (CW, CH), (0, 0, 0, 0))
     d = ImageDraw.Draw(ov)
     pill(d, MARGIN, 64, spec["eyebrow"])
-    # Headline: serif display, bottom-anchored, must clear the chin.
+    # Headline: serif display, bottom-anchored, must clear the chin —
+    # but only when a real face was detected. No face means no chin
+    # constraint (Kiran's call, 2026-10-16, same fix as the reel
+    # planner in 247dcc48c): face_card is then only a focal anchor
+    # for the crop, and treating its bottom as a chin shrank/held
+    # faceless covers for a person who isn't there.
     f, lines, sz = fit_serif(spec["cover_headline"], SERIF_BOLD, 86,
                              CONTENT_W, 4, min_size=40)
     lh = int(sz * 1.16)
     block_h = lh * len(lines)
     bottom = CH - 78
     top = bottom - block_h
-    chin = face_card[1] + face_card[3]
-    if top < chin + 44:
+    chin = (face_card[1] + face_card[3]) if has_face else None
+    if chin is not None and top < chin + 44:
         # Tighten: shrink until the block clears the chin or bottoms out.
         while sz > 40 and top < chin + 44:
             sz -= 4
@@ -410,7 +415,16 @@ def run_card_qa(cards, overlays, manifest):
         contrast_full = delta >= 50
         contrast_marks += 1 if contrast_full else 0
         face_overlap = None
-        if i == 1 and manifest.get("cover", {}).get("face_box_card"):
+        # A focal-heuristic anchor box is NOT a face (2026-10-16,
+        # mirroring reel_frame_qa): the overlap check applies only
+        # when the manifest records a real detected face. Older
+        # manifests predate has_face, so derive it from the method.
+        _face_info = manifest.get("face", {})
+        manifest_has_face = _face_info.get(
+            "has_face",
+            str(_face_info.get("method", "")).startswith(("yunet", "haar")))
+        if i == 1 and manifest_has_face and \
+                manifest.get("cover", {}).get("face_box_card"):
             fx, fy, fw, fh = manifest["cover"]["face_box_card"]
             region = np.zeros_like(mask)
             region[int(fy):int(fy + fh), int(fx):int(fx + fw)] = True
@@ -503,18 +517,23 @@ def main():
         print(f"🚫 HELD: photo below floor", file=sys.stderr)
         return finish(1)
     face_src, method = detect_face_box(src)
+    # has_face mirrors reel_renderer: only a real detector hit
+    # (yunet/haar) creates a chin/overlap constraint; the focal
+    # heuristic and static fallbacks are crop anchors only.
+    has_face = str(method).startswith(("yunet", "haar"))
     enh = enhance_raw(src)
     face_enh = tuple(v * 2 for v in face_src)
     manifest = {"photo": {"url": args.photo_url, "width": src.width,
                           "height": src.height},
-                "face": {"method": method,
+                "face": {"method": method, "has_face": has_face,
                          "box_source": [int(v) for v in face_src]}}
     # Card set: cover → quote (only when the spec carries a verbatim
     # quote) → facts → end. A quote-less spec yields a facts-led
     # 3-card set — never an invented quote, never a crash.
     built = []
     try:
-        cover, ov1, m1 = build_cover(spec, enh, face_enh)
+        cover, ov1, m1 = build_cover(spec, enh, face_enh,
+                                     has_face=has_face)
         manifest["cover"] = m1
         built.append((cover, ov1))
         if spec.get("quote"):
