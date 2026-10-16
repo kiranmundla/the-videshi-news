@@ -235,6 +235,15 @@ def run_qa(video, manifest_path, outdir):
     # Per-beat pixel checks.
     beats = []
     face_bg = manifest["face"]["box_bg"]
+    # The manifest box is a real face only when a detector found one.
+    # A focal-heuristic/static anchor box is NOT a face (2026-10-16):
+    # falling back to it made QA fail faceless reels for "overlapping"
+    # a person who isn't there. Older manifests predate has_face, so
+    # derive it from the detection method.
+    _face_info = manifest.get("face", {})
+    manifest_has_face = _face_info.get(
+        "has_face",
+        str(_face_info.get("method", "")).startswith(("yunet", "haar")))
     for key, sc in manifest["scenes"].items():
         t = sc["start"] + sc["duration"] / 2.0
         frame_png = frames_dir / f"frame-{key}.png"
@@ -256,28 +265,34 @@ def run_qa(video, manifest_path, outdir):
 
         # (b) face overlap.
         fbox, fmethod = detect_face_in_frame(frame)
-        if fbox is None:
+        if fbox is None and manifest_has_face:
             z = zoom_at(t, TOTAL)
             fx, fy, fw, fh = face_bg
             fbox = (round(bg_to_out_x(fx, z)), round(bg_to_out_y(fy, z)),
                     round(fw * z), round(fh * z))
-        fx, fy, fw, fh = fbox
-        face_region = np.zeros_like(mask)
-        face_region[max(fy, 0):fy + fh, max(fx, 0):fx + fw] = True
-        # Count only pixels that can actually be text: glyph cores
-        # (a) survive a 3x3 erosion — painted glyphs are fat, while
-        # plate-misalignment filaments along high-frequency photo
-        # detail (firework spark edges) are 1-2 px and vanish — and
-        # (b) lie within the renderer's painted region dilated 40 px:
-        # text cannot exist anywhere else, so pixels out there are
-        # plate artifacts by construction. The pixels counted are
-        # still measured from the rendered frame itself.
-        mask_er = cv2.erode(mask.astype(np.uint8),
-                            np.ones((3, 3), np.uint8)) > 0
-        exp_zone = cv2.dilate(exp.astype(np.uint8),
-                              np.ones((81, 81), np.uint8)) > 0
-        overlap_px = int((mask_er & exp_zone & face_region).sum())
-        face_ok = overlap_px <= FACE_OVERLAP_TOL
+        if fbox is None:
+            # No face in the rendered frame and none in the manifest:
+            # nothing to protect — the check passes by construction.
+            fbox, fmethod = (0, 0, 0, 0), "no-face"
+            overlap_px, face_ok = 0, True
+        else:
+            fx, fy, fw, fh = fbox
+            face_region = np.zeros_like(mask)
+            face_region[max(fy, 0):fy + fh, max(fx, 0):fx + fw] = True
+            # Count only pixels that can actually be text: glyph cores
+            # (a) survive a 3x3 erosion — painted glyphs are fat, while
+            # plate-misalignment filaments along high-frequency photo
+            # detail (firework spark edges) are 1-2 px and vanish — and
+            # (b) lie within the renderer's painted region dilated
+            # 40 px: text cannot exist anywhere else, so pixels out
+            # there are plate artifacts by construction. The pixels
+            # counted are still measured from the rendered frame.
+            mask_er = cv2.erode(mask.astype(np.uint8),
+                                np.ones((3, 3), np.uint8)) > 0
+            exp_zone = cv2.dilate(exp.astype(np.uint8),
+                                  np.ones((81, 81), np.uint8)) > 0
+            overlap_px = int((mask_er & exp_zone & face_region).sum())
+            face_ok = overlap_px <= FACE_OVERLAP_TOL
 
         # (c) contrast: detected text within the expected region vs the
         # background ring around it.

@@ -90,6 +90,11 @@ STROKE_FILL = (7, 11, 20, 255)   # dark outline painted around glyphs
 
 # ── Face-aware placement ────────────────────────────────────────────────────
 FACE_MARGIN = 48                 # px gap between chin and text-zone top
+NO_FACE_ZONE_TOP = int(H * 0.40)  # 768 — no-face reels: the text band
+# starts here, in the gradient-engaged lower frame where every
+# passing face reel also lives. NOT the top safe bound: measured
+# 2026-10-16, top-band text on a bright faceless photo failed frame
+# QA contrast on 5 of 6 scenes (the gradient only deepens downward).
 COVER_MIN_SCALE = 0.50           # v6 planner floor for cover-fill
 FIT_MIN_SCALE = 0.45             # hard floor in the fallback composition
 ZOOM_MAX = 0.07                  # Ken Burns zoom range (matches ffmpeg)
@@ -589,8 +594,15 @@ def measure_stat_grid(stats, s, category):
 def measure_diaspora(stats, s, category):
     items = []
     for b in stats["diaspora_bullets"]:
+        # max_lines=3 (raised from 2 on 2026-10-16): measured — the
+        # script generator's bullets run up to ~140 chars and cannot
+        # fit 2 lines at MIN_FONT in 716px at ANY scale, so the
+        # 2-line cap rejected stories outright and the hold was
+        # misreported as a chin failure. 3 lines keeps real measured
+        # metrics + the MIN_FONT floor; the zone/floor fit in
+        # plan_layout still decides whether the scene fits.
         f, lines, sz = fit_block(b, 600, S(47, s), max_w=TEXT_MAX_W - 56,
-                                 max_lines=2)
+                                 max_lines=3)
         items.append((f, lines, line_h(sz, 1.26)))
     gap, bgap = G(30, s), G(20, s)
     content_h = 62 + gap + sum(i[2] * len(i[1]) for i in items) \
@@ -696,28 +708,64 @@ BEATS = [  # (builder key, start, duration) — the locked 6-beat Pulse arc
 TOTAL = 35.0
 
 
-def plan_layout(stats, category, face_bg, branch):
+def plan_layout(stats, category, face_bg, branch, has_face=True):
     """Given the face box in background coords, compute each scene's
     text zone (below the chin, mapped through the Ken Burns zoom at
     the scene's end) and try to fit every scene. Returns a plan dict;
-    plan['failed_scene'] is set when a scene cannot fit."""
-    chin_bg = face_bg[1] + face_bg[3]
+    plan['failed_scene'] + plan['fail_reason'] are set when a scene
+    cannot fit.
+
+    has_face=False means the detector ran and found NO face — the
+    box is only a focal anchor for the crop. There is no chin to
+    protect, so no chin constraint applies (Kiran's call,
+    2026-10-16): zones start at NO_FACE_ZONE_TOP, the recipe's
+    standard lower band. Before this, the focal box's bottom was
+    treated as a chin and a low focal point (79.6% on a faceless
+    lottery graphic) blocked every scene."""
+    chin_bg = (face_bg[1] + face_bg[3]) if has_face else None
     floor = COVER_MIN_SCALE if branch == "cover" else FIT_MIN_SCALE
-    plan = {"branch": branch, "chin_bg": round(chin_bg, 1), "scenes": {}}
+    plan = {"branch": branch,
+            "chin_bg": round(chin_bg, 1) if chin_bg is not None else None,
+            "scenes": {}}
     for key, start, dur in BEATS:
         z = zoom_at(start + dur, TOTAL)
-        chin_out = bg_to_out_y(chin_bg, z)
-        zone_top = max(TOP_SAFE, math.ceil(chin_out) + FACE_MARGIN)
+        if has_face:
+            chin_out = bg_to_out_y(chin_bg, z)
+            zone_top = max(TOP_SAFE, math.ceil(chin_out) + FACE_MARGIN)
+        else:
+            chin_out = None
+            zone_top = NO_FACE_ZONE_TOP
         zone_h = BOT_SAFE - zone_top
         fit = fit_scene(key, stats, category, zone_h, floor)
         if fit is None:
             plan["failed_scene"] = key
+            # Diagnose honestly: probe with an unbounded zone at the
+            # floor scale. Still None = the scene's text cannot fit
+            # at the minimum scale at ANY height — a text-length
+            # failure, not a chin failure. (Before 2026-10-16 every
+            # hold was reported as "below the chin", which masked
+            # over-long diaspora bullets entirely.)
+            probe = fit_scene(key, stats, category, 100000, floor)
+            if probe is None:
+                plan["fail_reason"] = (
+                    f"scene '{key}' text cannot fit at the minimum "
+                    f"scale in any zone (text too long)")
+            elif has_face:
+                plan["fail_reason"] = (
+                    f"scene '{key}' cannot fit below the chin at "
+                    f"scale >= {floor}")
+            else:
+                plan["fail_reason"] = (
+                    f"scene '{key}' cannot fit the safe zone at "
+                    f"scale >= {floor}")
             return plan
         s, content_h, painter = fit
         shift = min(90, max(0, (zone_h - content_h) // 2))
         plan["scenes"][key] = {
             "start": start, "duration": dur,
-            "zoom_at_end": round(z, 4), "chin_out": round(chin_out, 1),
+            "zoom_at_end": round(z, 4),
+            "chin_out": (round(chin_out, 1)
+                         if chin_out is not None else None),
             "zone_top": zone_top, "zone_h": zone_h, "scale": s,
             "content_h": content_h, "block_top": zone_top + shift,
             "block_bottom": zone_top + shift + content_h,
@@ -757,11 +805,20 @@ def render_reel(script, hero_path, music_path, outdir, name,
         f"(floor {MIN_PHOTO_W}x{MIN_PHOTO_H} ✓)")
 
     # 1. Detect the face in the source photo (method reported).
+    #    Only a real detector hit (YuNet, or Haar when YuNet is
+    #    unavailable) creates a chin constraint. The focal-heuristic
+    #    and static fallbacks return an anchor box for the crop —
+    #    there is no face, so there is no chin (2026-10-16 fix).
     face_src, method = detect_face_box(src)
-    log(f"  🔍 face detection: method={method} "
-        f"box(x={face_src[0]}, y={face_src[1]}, w={face_src[2]}, "
-        f"h={face_src[3]}); chin at "
-        f"{(face_src[1] + face_src[3]) / src.height:.1%} of height")
+    has_face = method.startswith(("yunet", "haar"))
+    if has_face:
+        log(f"  🔍 face detection: method={method} "
+            f"box(x={face_src[0]}, y={face_src[1]}, w={face_src[2]}, "
+            f"h={face_src[3]}); chin at "
+            f"{(face_src[1] + face_src[3]) / src.height:.1%} of height")
+    else:
+        log(f"  🔍 face detection: method={method} — no face; focal "
+            f"anchor only, NO chin constraint")
 
     # 2. Enhance (geometry-preserving); map face box through the 2x.
     enh = enhance_raw(src)
@@ -775,20 +832,22 @@ def render_reel(script, hero_path, music_path, outdir, name,
     for branch, composer in (("cover", compose_cover),
                              ("fit", compose_fit)):
         cand_bg, cand_face_bg = composer(enh, face_enh)
-        cand_plan = plan_layout(script, category, cand_face_bg, branch)
+        cand_plan = plan_layout(script, category, cand_face_bg, branch,
+                                has_face=has_face)
         if "failed_scene" not in cand_plan:
             plan, bg = cand_plan, cand_bg
             plan["face_bg"] = [round(v, 1) for v in cand_face_bg]
             break
         rejected.append({"branch": branch,
-                         "failed_scene": cand_plan["failed_scene"]})
-        log(f"  ↩ composition '{branch}' rejected: scene "
-            f"'{cand_plan['failed_scene']}' cannot fit below the chin "
-            f"at scale >= "
-            f"{COVER_MIN_SCALE if branch == 'cover' else FIT_MIN_SCALE}")
+                         "failed_scene": cand_plan["failed_scene"],
+                         "reason": cand_plan.get("fail_reason", "")})
+        log(f"  ↩ composition '{branch}' rejected: "
+            f"{cand_plan.get('fail_reason', cand_plan['failed_scene'])}")
     if plan is None:
-        raise TextFitError("no composition fits all scenes below the "
-                           "chin at the planner floors")
+        reasons = "; ".join(f"{r['branch']}: {r['reason']}"
+                            for r in rejected)
+        raise TextFitError("no composition fits all scenes at the "
+                           f"planner floors — {reasons}")
     log(f"  🖼  composition: {plan['branch']}")
 
     # 4. Gradient over the composed background, then per-scene overlays.
@@ -868,6 +927,7 @@ def render_reel(script, hero_path, music_path, outdir, name,
         },
         "face": {
             "method": method,
+            "has_face": has_face,
             "box_source": [int(v) for v in face_src],
             "box_bg": plan["face_bg"],
             "chin_bg": plan["chin_bg"],
