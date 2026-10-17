@@ -248,7 +248,7 @@ export default function DestinationFareModule({
     cls === "A"
       ? INDIA_DESTINATION_METRO[slug]
       : cls === "B"
-        ? INTL_DESTINATION_AIRPORT[slug].code
+        ? INTL_DESTINATION_AIRPORT[slug].codes.join(" / ")
         : "";
   const destCity =
     cls === "A"

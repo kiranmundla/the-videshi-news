@@ -76,18 +76,24 @@ INTL_DEALS_FILE = REPO / "public" / "data" / "flight-deals-intl.json"
 OUTPUT_FILE = REPO / "public" / "data" / "travel-destinations.json"
 
 # International matrix destinations (flight-deals.py --intl, weekly):
-# slug -> arrival airport. Same conservative rule as ROUTE_MAP: the
-# fare shown must be FOR that destination (US->SYD is an Australia
-# fare; US->CDG is a France fare).
+# slug -> arrival airport(s). Same conservative rule as ROUTE_MAP:
+# the fare shown must be FOR that destination (US->SYD is an
+# Australia fare; US->CDG is a France fare). Tokyo is a LIST — the
+# matrix searches HND and NRT separately (exact-airport matching)
+# and the cheapest cell across both wins. japan/oman/italy added
+# 2026-10-16 with the matrix expansion to the rail's full top set.
 INTL_AIRPORT_MAP = {
-    "australia": "SYD",
-    "bali": "DPS",
-    "cabo": "SJD",
-    "egypt": "CAI",
-    "fiji": "NAN",
-    "france": "CDG",
-    "greece": "ATH",
-    "hawaii": "HNL",
+    "japan": ["HND", "NRT"],
+    "oman": ["MCT"],
+    "france": ["CDG"],
+    "italy": ["FCO"],
+    "fiji": ["NAN"],
+    "greece": ["ATH"],
+    "australia": ["SYD"],
+    "egypt": ["CAI"],
+    "bali": ["DPS"],
+    "hawaii": ["HNL"],
+    "cabo": ["SJD"],
 }
 
 # Which flight-deals routes genuinely serve a guide destination.
@@ -299,12 +305,12 @@ def intl_destination_fares(slug, intl_deals):
     These fares are indicative (checked weekly at reduced depth) and
     the record says so — the rail card renders the cadence label.
     """
-    airport = INTL_AIRPORT_MAP.get(slug)
-    if not airport or not intl_deals:
+    airports = INTL_AIRPORT_MAP.get(slug)
+    if not airports or not intl_deals:
         return None
     fare_from = None
     for rk, r in (intl_deals.get("routes") or {}).items():
-        if r.get("destination") != airport:
+        if r.get("destination") not in airports:
             continue
         co = r.get("cheapest_overall")
         if co and (fare_from is None

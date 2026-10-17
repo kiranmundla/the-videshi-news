@@ -25,8 +25,9 @@ the old 2/3/4-week grid:
   = 144 requests max — inside the observed daily provider ceiling
   (~283 requests before the 2026-10-15 run aborted at the old scope).
 - International matrix (--intl, weekly): top non-India destinations
-  (TYO/MCT/CDG/FCO/NAN/ATH/SYD/CAI/DPS/HNL/SJD) x 5 origins, ~1-week
-  trips (5-9 days), same sampling shape = 660 requests max per week,
+  (HND+NRT/MCT/CDG/FCO/NAN/ATH/SYD/CAI/DPS/HNL/SJD) x 5 origins,
+  ~1-week trips (5-9 days), same sampling shape = 720 requests max
+  per week,
   run sliced per destination across the week (single-route runs
   merge into the snapshot). Writes
   a SEPARATE snapshot (flight-deals-intl.json) labelled weekly /
@@ -123,10 +124,10 @@ BAND_INTL = {"id": "intl-1wk", "label": "~1-week trips", "center_days": 7,
 # (Kiran): the original top-8 list predated the real-signal trending
 # flip and missed the rail's top — Tokyo (japan #1), Muscat (oman #2)
 # and Rome (italy #4) added; Bali/Cabo/Egypt/Hawaii kept at Kiran's
-# word. 11 destinations x 5 origins x 3 months x 2 samples x 2
-# durations = 660 requests per full sweep — run as per-destination
-# route batches (single-route runs merge) sliced across the week,
-# never as one run.
+# word. 11 destinations (12 airport entries — Tokyo is HND + NRT)
+# x 5 origins x 3 months x 2 samples x 2 durations = 720 requests
+# per full sweep — run as per-destination route batches
+# (single-route runs merge) sliced across the week, never as one run.
 INTL_ORIGINS = [
     ("SFO", "Bay Area"),
     ("LAX", "Los Angeles"),
@@ -135,7 +136,13 @@ INTL_ORIGINS = [
     ("DFW", "Dallas"),
 ]
 INTL_DESTINATIONS = [  # (airport, metro, destination slug)
-    ("TYO", "Tokyo", "japan"),
+    # Tokyo is TWO airports: the Duffel CLI matches exact airport
+    # codes only, so the TYO metro code returns offers that its own
+    # exact-match filter then excludes (150/150 excluded in the
+    # 2026-10-16 probe). HND + NRT both map to slug "japan"; the
+    # consumers merge them per origin (cheapest cell wins).
+    ("HND", "Tokyo", "japan"),
+    ("NRT", "Tokyo", "japan"),
     ("MCT", "Muscat", "oman"),
     ("CDG", "Paris", "france"),
     ("FCO", "Rome", "italy"),

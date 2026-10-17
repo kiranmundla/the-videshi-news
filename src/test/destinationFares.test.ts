@@ -166,6 +166,20 @@ describe("resolveIntlFares (class B)", () => {
     expect(resolveIntlFares("bali", intl)).toEqual([]);
     expect(resolveIntlFares("australia", null)).toEqual([]);
   });
+
+  it("merges a multi-airport destination per origin, cheapest airport wins", () => {
+    const tokyo = intlData({
+      "SFO-HND": route("SFO", "HND", [entry(890, "2026-10-21", "2026-10-27")], "japan"),
+      "SFO-NRT": route("SFO", "NRT", [entry(940, "2026-10-21", "2026-10-27")], "japan"),
+      "LAX-HND": route("LAX", "HND", [entry(990, "2026-10-21", "2026-10-27")], "japan"),
+      "LAX-NRT": route("LAX", "NRT", [entry(870, "2026-10-21", "2026-10-27")], "japan"),
+    });
+    const fares = resolveIntlFares("japan", tokyo);
+    expect(fares).toHaveLength(2);
+    const byOrigin = Object.fromEntries(fares.map((f) => [f.origin, f.routeKey]));
+    expect(byOrigin["SFO"]).toBe("SFO-HND");
+    expect(byOrigin["LAX"]).toBe("LAX-NRT");
+  });
 });
 
 describe("cheapestOrigin", () => {

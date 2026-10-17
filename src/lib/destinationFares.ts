@@ -45,25 +45,29 @@ export const INDIA_DESTINATION_METRO: Record<string, string> = {
   karnataka: "BLR",
 };
 
-/** Class B: destination slug → its airport in the weekly intl matrix. */
+/** Class B: destination slug → its airport(s) in the weekly intl
+ *  matrix. `codes` is a list because a destination can be served by
+ *  more than one searched airport — Tokyo is HND + NRT (the Duffel
+ *  CLI matches exact airport codes; the TYO metro code yields no
+ *  usable offers). Fares from every listed airport merge per origin.
+ *  japan/oman/italy added 2026-10-16 when the intl matrix expanded
+ *  to the rail's full top set (Kiran) — without a map entry a guide
+ *  resolves as fallback even when its fares exist in the data. */
 export const INTL_DESTINATION_AIRPORT: Record<
   string,
-  { code: string; city: string }
+  { codes: string[]; city: string }
 > = {
-  /* japan/oman/italy added 2026-10-16 when the intl matrix expanded
-     to the rail's full top set (Kiran) — without a map entry a guide
-     resolves as fallback even when its fares exist in the data. */
-  japan: { code: "TYO", city: "Tokyo" },
-  oman: { code: "MCT", city: "Muscat" },
-  france: { code: "CDG", city: "Paris" },
-  italy: { code: "FCO", city: "Rome" },
-  fiji: { code: "NAN", city: "Nadi" },
-  greece: { code: "ATH", city: "Athens" },
-  australia: { code: "SYD", city: "Sydney" },
-  egypt: { code: "CAI", city: "Cairo" },
-  bali: { code: "DPS", city: "Denpasar (Bali)" },
-  hawaii: { code: "HNL", city: "Honolulu" },
-  cabo: { code: "SJD", city: "Los Cabos" },
+  japan: { codes: ["HND", "NRT"], city: "Tokyo" },
+  oman: { codes: ["MCT"], city: "Muscat" },
+  france: { codes: ["CDG"], city: "Paris" },
+  italy: { codes: ["FCO"], city: "Rome" },
+  fiji: { codes: ["NAN"], city: "Nadi" },
+  greece: { codes: ["ATH"], city: "Athens" },
+  australia: { codes: ["SYD"], city: "Sydney" },
+  egypt: { codes: ["CAI"], city: "Cairo" },
+  bali: { codes: ["DPS"], city: "Denpasar (Bali)" },
+  hawaii: { codes: ["HNL"], city: "Honolulu" },
+  cabo: { codes: ["SJD"], city: "Los Cabos" },
 };
 
 export type DestinationFareClass = "A" | "B" | "fallback";
@@ -153,25 +157,33 @@ export function resolveIndiaFares(
   return out;
 }
 
-/** Class B fares: every origin's route to the destination's airport
- *  in the weekly intl matrix. Routes carry a destination_slug; when
- *  present it must match — an airport shared by two guides never
- *  leaks one destination's fares onto the other's page. */
+/** Class B fares: every origin's route to the destination's
+ *  airport(s) in the weekly intl matrix, ONE entry per origin. A
+ *  multi-airport destination (Tokyo: HND + NRT) merges here: the
+ *  origin keeps whichever airport's route has the cheaper cheapest
+ *  cell — the honest "cheapest fare from your city to Tokyo".
+ *  Routes carry a destination_slug; when present it must match —
+ *  an airport shared by two guides never leaks one destination's
+ *  fares onto the other's page. */
 export function resolveIntlFares(
   slug: string,
   intl: IntlDealsData | null,
 ): DestinationOriginFare[] {
   const airport = INTL_DESTINATION_AIRPORT[slug];
   if (!airport || !intl) return [];
-  const out: DestinationOriginFare[] = [];
+  const byOrigin = new Map<string, DestinationOriginFare>();
   for (const key of Object.keys(intl.routes).sort()) {
     const route = intl.routes[key];
-    if (route.destination !== airport.code) continue;
+    if (!airport.codes.includes(route.destination)) continue;
     if (route.destination_slug && route.destination_slug !== slug) continue;
     const fare = toOriginFare(key, route, "weekly", intl.as_of);
-    if (fare) out.push(fare);
+    if (!fare) continue;
+    const prev = byOrigin.get(fare.origin);
+    if (!prev || fare.cheapest.price_min < prev.cheapest.price_min) {
+      byOrigin.set(fare.origin, fare);
+    }
   }
-  return out;
+  return [...byOrigin.values()];
 }
 
 /** The cheapest-fare origin among resolved fares. Ties break to the
