@@ -133,10 +133,24 @@ def curl_json(url, data=None, headers=None, timeout=60):
     cmd = ["curl", "-sS", "--max-time", str(timeout), url]
     for h in (headers or []):
         cmd.extend(["-H", h])
+    tmp = None
     if data is not None:
-        cmd.extend(["-d", json.dumps(data)])
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout + 10)
-    return json.loads(r.stdout)
+        # Spool the body through a file: vision payloads carry a base64
+        # image (~1 MB), which blows past the OS per-argument size limit
+        # when passed inline with -d.
+        import tempfile
+        tmp = tempfile.NamedTemporaryFile(
+            "w", suffix=".json", delete=False, dir="/tmp")
+        tmp.write(json.dumps(data))
+        tmp.close()
+        cmd.extend(["-d", f"@{tmp.name}"])
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True,
+                           timeout=timeout + 10)
+        return json.loads(r.stdout)
+    finally:
+        if tmp:
+            os.unlink(tmp.name)
 
 
 def gpt_script(category):
@@ -209,7 +223,7 @@ def build_image_prompt(script, category):
 CHARACTERS (keep consistent across all 4 panels):
 {char_block}
 
-SCENES (illustrate each, NO text, NO words, NO letters anywhere in the image — leave the top 15% of each panel as clear sky/background space for dialogue bubbles to be added later):
+SCENES (illustrate each, NO text, NO words, NO letters anywhere in the image — leave the top 20% of each panel as clear sky/background space for dialogue bubbles to be added later, and keep every character's head and face below that top band):
 {scenes}
 
 SETTING DETAILS: Bay Area apartment interior and/or office; SF skyline or Transamerica Pyramid visible through a window in at least one panel; small Indian touches (potted plant, framed family photo, steel dabba containers).
@@ -274,6 +288,116 @@ def _rounded(draw, box, radius, fill, outline=None, width=1):
                            outline=outline, width=width)
 
 
+def locate_faces(src_path, W, H):
+    """Locate character faces in the raw 2x2 artwork with GPT-4o-mini
+    vision. The compositor used to drop every speech bubble at a fixed
+    top-of-panel slot; the art model doesn't reliably honor the
+    'clear top band' prompt instruction, so bubbles landed on faces
+    (2026-10-16 strip: panel 1's bubble covered Raj's face). Haar
+    cascades are too noisy on cartoon art to place bubbles by, so the
+    vision model returns panel-relative face boxes and deterministic
+    code picks the slot. Returns {panel_no: [(x0,y0,x1,y1), ...]} in
+    absolute pixels; {} on any failure (caller falls back to top)."""
+    import base64
+    import io
+    key = os.environ.get("OPENAI_API_KEY", "")
+    if not key:
+        print("  ⚠ locate_faces: no OPENAI_API_KEY — bubbles default to top")
+        return {}
+    # One vision call PER PANEL CROP: whole-grid grounding from
+    # gpt-4o-mini snaps to a coarse grid and lands ~30% too low
+    # (measured on the 2026-10-16 strip); a single-panel crop is an
+    # easy localization task and comes back accurate.
+    from PIL import Image
+    img = Image.open(src_path).convert("RGB")
+    pw, ph = W // 2, H // 2
+    prompt = (
+        "This image is ONE panel of a comic strip. List every cartoon "
+        "character's HEAD (hair to chin, one tight box per head). "
+        "Ignore faces shown on phone screens and in framed photos. "
+        "Reply with JSON only, no other text: "
+        '{"faces": [{"x0":0.0,"y0":0.0,"x1":0.0,"y1":0.0}]} '
+        "Coordinates are fractions (0 to 1) of THIS image "
+        "(x right, y down). Empty list if there are no heads."
+    )
+    faces = {}
+    for i in range(4):
+        px, py = (i % 2) * pw, (i // 2) * ph
+        crop = img.crop((px, py, px + pw, py + ph))
+        buf = io.BytesIO()
+        crop.save(buf, "JPEG", quality=88)
+        b64 = base64.b64encode(buf.getvalue()).decode()
+        try:
+            resp = curl_json(
+                "https://api.openai.com/v1/chat/completions",
+                data={
+                    "model": "gpt-4o-mini",
+                    "messages": [{
+                        "role": "user",
+                        "content": [
+                            {"type": "text", "text": prompt},
+                            {"type": "image_url", "image_url": {
+                                "url": f"data:image/jpeg;base64,{b64}"}},
+                        ],
+                    }],
+                    "temperature": 0,
+                    "max_tokens": 400,
+                },
+                headers=[f"Authorization: Bearer {key}",
+                         "Content-Type: application/json"],
+                timeout=120,
+            )
+            text = resp["choices"][0]["message"]["content"].strip()
+            text = re.sub(r"^```(?:json)?\s*", "", text)
+            text = re.sub(r"\s*```$", "", text)
+            boxes = json.loads(text).get("faces", [])
+        except Exception as e:
+            print(f"  ⚠ locate_faces panel {i + 1} failed ({e}) — "
+                  "that panel's bubble defaults to top")
+            continue
+        abs_boxes = []
+        for b in boxes if isinstance(boxes, list) else []:
+            try:
+                x0 = px + float(b["x0"]) * pw
+                y0 = py + float(b["y0"]) * ph
+                x1 = px + float(b["x1"]) * pw
+                y1 = py + float(b["y1"]) * ph
+            except (KeyError, TypeError, ValueError):
+                continue
+            if x1 > x0 + 8 and y1 > y0 + 8:
+                abs_boxes.append((x0, y0, x1, y1))
+        if abs_boxes:
+            faces[i + 1] = abs_boxes
+    return faces
+
+
+def pick_bubble_y(py, ph, bubble_h, bx0, bubble_w, faces):
+    """Choose the bubble's top y for one panel: the candidate slot
+    (top / just below a face / bottom) whose rect overlaps the fewest
+    face pixels. Faces are inflated 10px — a near-touch reads as a
+    cover-up. Preference order breaks ties: top, below-face, bottom."""
+    cands = [("top", py + 14)]
+    for (fx0, fy0, fx1, fy1) in faces:
+        cands.append(("below-face", int(fy1) + 10))
+    cands.append(("bottom", py + ph - bubble_h - 14))
+
+    def overlap(by0):
+        total = 0.0
+        for (fx0, fy0, fx1, fy1) in faces:
+            ix = max(0, min(bx0 + bubble_w, fx1 + 10) - max(bx0, fx0 - 10))
+            iy = max(0, min(by0 + bubble_h, fy1 + 10) - max(by0, fy0 - 10))
+            total += ix * iy
+        return total
+
+    best = None
+    for name, y in cands:
+        y = max(py + 8, min(y, py + ph - bubble_h - 8))
+        ov = overlap(y)
+        if best is None or ov < best[2] - 1:
+            best = (name, y, ov)
+    return best  # (slot_name, by0, overlap_px2)
+
+
 def composite(script, src_path, out_path):
     """Overlay header, panel numbers, speech bubbles, and the yellow
     punchline banner onto the 4-panel artwork."""
@@ -306,6 +430,7 @@ def composite(script, src_path, out_path):
               fill=line_c, width=3)
 
     # ── Speech bubbles + panel numbers ──
+    faces_by_panel = locate_faces(src_path, W, H)
     name_font = _font(max(14, int(W * 0.011)))
     dlg_font = _font(max(16, int(W * 0.0135)))
     num_font = _font(max(18, int(W * 0.016)))
@@ -348,20 +473,30 @@ def composite(script, src_path, out_path):
         bubble_w = min(bubble_w, max_tw)
         bubble_h = total_h
 
-        # Bubble position: top-center of panel, below the number badge area
+        # Bubble position: horizontally centered; vertically the
+        # face-free slot (top by default, below a face or bottom when
+        # the top band is occupied — a bubble must never cover a face)
         bx0 = px + (pw - bubble_w) // 2
-        by0 = py + 14
         # Keep clear of the badge on panel left
         if bx0 < px + 60:
             bx0 = px + 60
+        faces = faces_by_panel.get(p["panel"], [])
+        slot, by0, ov = pick_bubble_y(py, ph, bubble_h, bx0, bubble_w, faces)
+        print(f"  Panel {p['panel']}: {len(faces)} face(s) located; "
+              f"bubble slot={slot} (face overlap {int(ov)}px²)")
         _rounded(draw, [bx0, by0, bx0 + bubble_w, by0 + bubble_h],
                  radius=14, fill=(255, 255, 255),
                  outline=(30, 30, 30), width=2)
-        # Bubble tail
+        # Bubble tail — points up when the bubble sits in the lower half
         cx = bx0 + bubble_w // 2
-        draw.polygon([(cx - 10, by0 + bubble_h - 2), (cx + 10, by0 + bubble_h - 2),
-                      (cx, by0 + bubble_h + 14)], fill=(255, 255, 255),
-                     outline=(30, 30, 30))
+        if by0 + bubble_h // 2 > py + ph // 2:
+            draw.polygon([(cx - 10, by0 + 2), (cx + 10, by0 + 2),
+                          (cx, by0 - 14)], fill=(255, 255, 255),
+                         outline=(30, 30, 30))
+        else:
+            draw.polygon([(cx - 10, by0 + bubble_h - 2), (cx + 10, by0 + bubble_h - 2),
+                          (cx, by0 + bubble_h + 14)], fill=(255, 255, 255),
+                         outline=(30, 30, 30))
 
         y = by0 + 12
         for wl in rendered:
