@@ -45,6 +45,12 @@ CASES = [
     ("Vijaynagar'er Hirey | Official Teaser | Prosenjit Chatterjee | hoichoi",
      "Vijaynagar'er Hirey",
      "Vijaynagar'er Hirey \u2013 Prosenjit Chatterjee Teaser Out"),
+    # bug fix 2026-10-17: numbered announcement ('Trailer 2 : ...') keyed
+    # the film as 'trailer2ramayana...' so the cross-run merge into the
+    # published brief never fired and the drop sat in the held queue
+    ("Trailer 2 : Ramayana: Rise of a Legend | Ranbir Kapoor | Yash | Sai Pallavi | Sunny Deol",
+     "Ramayana: Rise of a Legend",
+     "Ramayana: Rise of a Legend Trailer Out: Ranbir Kapoor"),
 ]
 
 

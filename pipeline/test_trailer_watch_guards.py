@@ -203,5 +203,112 @@ check("query: or-filter survives URL round-trip",
 check("query: no raw '+' anywhere in the built query string",
       "+" not in build_q(SINCE_ISO, 400))
 
+# --------------------------------- series type inference (2026-10-17)
+# Chaar Yaar held on 'type': its ONLY series marker was the '#webseries'
+# hashtag in the Prime description (boilerplate says "original series"
+# on film drops too, so the bare word is never read). Fixtures are
+# trimmed copies of the real held drops (.state/trailer-watch-held.json).
+parse_description = _ns["parse_description"]
+CHAAR_DESC = (
+    "Prime Video India Presents \n"
+    "Chaar Yaar Official Trailer\n"
+    "Starring Purav Jha, Naman Jain, Saqib Ayub, Prayrak Mehta, "
+    "Sikandar Kher, Sai Tamhankar\n"
+    "Directed by Vinay Waikul\n\n"
+    "Official Release Date - October 23, 2026 on Prime Video India\n\n"
+    "#chaaryaar #puravjha #trailer #officialtrailer #webseries "
+    "#primevideoindia")
+check("type: '#webseries' hashtag infers Series (Chaar Yaar)",
+      parse_description(CHAAR_DESC)[1] == "Series")
+check("type: 'web series' prose infers Series",
+      parse_description("The web series returns this fall.")[1] == "Series")
+check("type: episode count infers Series",
+      parse_description("The show drops 8 episodes this fall.")[1] == "Series")
+check("type: hyphenated episode adjective infers Series",
+      parse_description("An eight-episode crime saga.")[1] == "Series")
+check("type: Prime boilerplate 'original series' does NOT infer Series",
+      parse_description("Original movies like Maja Ma; original series "
+                        "like Mirzapur, only on Prime.")[1] is None)
+
+CHANNELS2 = dict(CHANNELS)
+CHANNELS2["Geetha Arts"] = {"language": "Telugu", "industry": "film"}
+CHANNELS2["Netflix India"] = {"language": "English", "industry": "streamer"}
+# Hermetic: Akka must complete via trailer-verified.json, not the live
+# Netflix page (unreachable from this server in production too).
+_ns["netflix_title_completion"] = lambda drops: {}
+
+chaar_drop = {
+    "video_id": "WZdXyU1fatY",
+    "title": "Chaar Yaar - Official Trailer | @Puravjha_, Naman Jain, "
+             "Saqib Ayub, Prayrak Mehta | Prime Video IN",
+    "published": "2026-10-16T06:30:03+00:00",
+    "description": CHAAR_DESC,
+    "channel": "Prime Video India",
+}
+art = build_brief_article([chaar_drop], CHANNELS2)
+check("gate: Chaar Yaar (series via hashtag) passes the gate",
+      art["card_complete"] is True and art["card_missing"] == [])
+check("gate: Chaar Yaar card type is Series",
+      '<div class="vdc-stat-val">Series</div>' in art["body"])
+check("gate: Chaar Yaar card release is Oct 23, 2026",
+      '<div class="vdc-stat-val">Oct 23, 2026</div>' in art["body"])
+
+# ------------------------------ verified completion (2026-10-17)
+AOT_DESC = (
+    "Movie: Aakasamlo Oka Tara\n"
+    "Starring: Dulquer Salmaan, Satvika Veeravalli, Shruti Haasan\n\n"
+    "Director - Pavan Sadineni\n"
+    "Music Director - G V Prakash Kumar")
+aot_drop = {
+    "video_id": "h3ElWvu31dc",
+    "title": "Aakasamlo Oka Tara - Teaser | Dulquer Salmaan | Satvika | "
+             "Shruti Haasan |GV Prakash | Pavan Sadineni",
+    "published": "2026-10-17T05:30:03+00:00",
+    "description": AOT_DESC,
+    "channel": "Geetha Arts",
+}
+art = build_brief_article([aot_drop], CHANNELS2)
+check("control: AOT still types as Movie (series rules do not misfire)",
+      '<div class="vdc-stat-val">Movie</div>' in art["body"])
+check("gate: AOT passes via verified release date (Nov 20, 2026)",
+      art["card_complete"] is True and
+      '<div class="vdc-stat-val">Nov 20, 2026</div>' in art["body"])
+
+AKKA_DESC = (
+    "Ab chalega beheno ka shaasan\n\n"
+    "Watch Akka, starring Keerthy Suresh, Radhika Apte, Tanvi Azmi & "
+    "more, out 30 October, only on Netflix.\n\n"
+    "Watch on Netflix: https://www.netflix.com/title/81772076")
+akka_drop = {
+    "video_id": "d1zge_JMIIU",
+    "title": "Akka | Official Teaser | Keerthy Suresh, Radhika Apte | "
+             "Netflix India",
+    "published": "2026-10-17T05:30:00+00:00",
+    "description": AKKA_DESC,
+    "channel": "Netflix India",
+}
+art = build_brief_article([akka_drop], CHANNELS2)
+check("gate: Akka passes via verified type/director (Series, Oct 30, 2026)",
+      art["card_complete"] is True and
+      '<div class="vdc-stat-val">Series</div>' in art["body"] and
+      '<div class="vdc-stat-val">Oct 30, 2026</div>' in art["body"] and
+      '<div class="vdc-stat-val">Dharmaraj Shetty</div>' in art["body"])
+
+# ------------------------------ 'Trailer 2' cross-run key (2026-10-17)
+check("key: 'Trailer 2 :' keys to the film, not 'trailer2...'",
+      film_key("Trailer 2 : Ramayana: Rise of a Legend | Ranbir Kapoor")
+      == "ramayanariseofalegend")
+# (The published headline keys to the prefix 'ramayana' — the
+# subtitle-strip treats 'Rise of a Legend' as a suffix descriptor —
+# and find_cross_run_match's >=5-char prefix rule is the contract
+# that joins the two; the merge check below pins that behaviour.)
+check("merge: cross-run match finds the Ramayana brief for Trailer 2",
+      find_cross_run_match(
+          film_key("Trailer 2 : Ramayana: Rise of a Legend | "
+                   "Ranbir Kapoor"),
+          [{"headline": "RAMAYANA \u2013 RISE OF A LEGEND Trailer Out",
+            "slug": "ramayana-rise-of-a-legend-trailer-out",
+            "id": "x", "body": "", "sources": []}]) is not None)
+
 print(f"\n{total - fails}/{total} pass")
 sys.exit(1 if fails else 0)

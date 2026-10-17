@@ -204,9 +204,23 @@ check("brief: Ramayana release pinned (Nov 5, 2026)",
       '<div class="vdc-stat-val">Nov 5, 2026</div>' in art["body"])
 
 art = build_brief_article([AAKA_DROP], CHANNELS)
-check("brief: Aakasamlo stays held — only date is the teaser's own",
-      art["card_complete"] is False
-      and art["card_missing"] == ["release date"])
+check("brief: Aakasamlo completes via verified date (2026-10-17 registry)",
+      art["card_complete"] is True)
+check("brief: verified date is the release date, never the teaser's own",
+      '<div class="vdc-stat-val">Nov 20, 2026</div>' in art["body"]
+      and "Oct 17, 2026" not in art["body"])
+
+# Same-shaped brief for a film with NO registry entry stays held: the
+# verified completion is fail-closed, not a blanket date pass. (This
+# unregistered twin drives the held-queue scenario below.)
+AAKA_UNREG_DROP = dict(
+    AAKA_DROP,
+    title=("Meghamala Teaser on October 17th | Dulquer Salmaan | "
+           "#AOTTeaser | GV Prakash Kumar"))
+art_unreg = build_brief_article([AAKA_UNREG_DROP], CHANNELS)
+check("brief: unregistered film stays held — only date is the teaser's own",
+      art_unreg["card_complete"] is False
+      and art_unreg["card_missing"] == ["release date"])
 
 # ------------------------------------------------------- held queue
 _ns["sb_check_slug"] = lambda slug: False
@@ -214,38 +228,38 @@ _ns["sb_fetch_published_briefs"] = lambda limit=400: []
 inserted = []
 attempt_brief_fn = attempt_brief
 
-# Run 1: Aakasamlo held -> outcome 'held'
-outcome, art = attempt_brief_fn("aakasamlookatara", [AAKA_DROP], CHANNELS,
+# Run 1: unregistered film held -> outcome 'held'
+outcome, art = attempt_brief_fn("meghamala", [AAKA_UNREG_DROP], CHANNELS,
                                 [], lambda a: inserted.append(a) or True)
 check("queue: incomplete brief outcome is 'held'", outcome == "held")
 
 # Queue bookkeeping round-trip
 held = {}
-queue_hold(held, "aakasamlookatara", [AAKA_DROP], art["card_missing"],
+queue_hold(held, "meghamala", [AAKA_UNREG_DROP], art["card_missing"],
            "2026-10-15T10:11:00+00:00", attempts=1)
 check("queue: hold persisted with missing fields + attempts",
-      held["aakasamlookatara"]["last_missing"] == ["release date"]
-      and held["aakasamlookatara"]["attempts"] == 1)
+      held["meghamala"]["last_missing"] == ["release date"]
+      and held["meghamala"]["attempts"] == 1)
 
 # A later drop for the same film (the real teaser, WITH a release date)
 # unions into the queued entry.
-teaser_drop = dict(AAKA_DROP, video_id="teaserReal1",
-                   title="Aakasamlo Oka Tara Official Teaser | Dulquer Salmaan",
+teaser_drop = dict(AAKA_UNREG_DROP, video_id="teaserReal1",
+                   title="Meghamala Official Teaser | Dulquer Salmaan",
                    description=AAKA_DESC + "\nIn Cinemas December 25, 2026.")
 work = merge_held_into_groups([], held)
 check("queue: queue-only film becomes a retry group",
-      len(work) == 1 and work[0][0] == "aakasamlookatara")
-work2 = merge_held_into_groups([["aakasamlookatara", [teaser_drop]]], held)
+      len(work) == 1 and work[0][0] == "meghamala")
+work2 = merge_held_into_groups([["meghamala", [teaser_drop]]], held)
 check("queue: fresh drop unions with queued drops (2 versions)",
       len(work2) == 1 and len(work2[0][1]) == 2)
 
 # NOTE: at this point `attempt_brief`, etc. still refer to the exec'd
 # namespace's functions — the completion stub above serves them.
-outcome, art = attempt_brief_fn("aakasamlookatara", work2[0][1], CHANNELS,
+outcome, art = attempt_brief_fn("meghamala", work2[0][1], CHANNELS,
                                 [], lambda a: inserted.append(a) or True)
 check("queue: retry with completed card publishes", outcome == "published")
 check("queue: insert was called exactly once", len(inserted) == 1)
-dequeue_film(held, "aakasamlookatara")
+dequeue_film(held, "meghamala")
 check("queue: published film dequeued", held == {})
 
 # Insert failure is retryable, not terminal

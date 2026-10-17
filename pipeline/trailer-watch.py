@@ -31,6 +31,7 @@ STATE = os.path.join(PIPE, ".state")
 SEEN_PATH = os.path.join(STATE, "trailer-watch-seen.json")
 FEED_PATH = os.path.join(STATE, "trailer-watch-feed.json")
 HELD_PATH = os.path.join(STATE, "trailer-watch-held.json")
+VERIFIED_PATH = os.path.join(PIPE, "trailer-verified.json")
 # A held brief retries every run; after this many days it is declared
 # terminal (loudly, in the run report) instead of being retried forever.
 HELD_MAX_DAYS = 14
@@ -187,8 +188,12 @@ def split_film_title(title):
     parts = re.split(r"\s*[|]\s*", title)
     seg0 = parts[0].strip() if parts else ""
 
-    # Announcement-first: 'Official Trailer - Birangana 2 | Sandipta Sen'
-    m = re.match(r"(?i)^(?:official\s+)?(?:teaser|trailer)\s*[-\u2013\u2014:]\s*(.+)$", seg0)
+    # Announcement-first: 'Official Trailer - Birangana 2 | Sandipta Sen'.
+    # The optional number covers 'Trailer 2 : Ramayana: Rise of a Legend'
+    # (2026-10-17): without it the film keyed as 'trailer2ramayana...',
+    # never matched the published brief, and the Trailer 2 drop sat in
+    # the held queue instead of merging into the existing article.
+    m = re.match(r"(?i)^(?:official\s+)?(?:teaser|trailer)(?:\s+\d+)?\s*[-\u2013\u2014:]\s*(.+)$", seg0)
     if m:
         seg0 = m.group(1).strip()
 
@@ -330,6 +335,18 @@ def parse_description(desc):
     elif re.search(r"(?i)\blimited\s+series\b", text):
         media_type = "Series"
     elif re.search(r"(?i)\bseason\s+\d+\b", text):
+        media_type = "Series"
+    elif re.search(r"(?i)#webseries\b|\bweb\s+series\b", text):
+        # Explicit web-series self-label, prose or hashtag. Prime's
+        # Chaar Yaar trailer carried ONLY '#webseries' in its hashtag
+        # block and held for a missing type (2026-10-16). Streamer
+        # boilerplate says "original series" on film drops too, so the
+        # bare word 'series' is never read — only this explicit label.
+        media_type = "Series"
+    elif re.search(r"(?i)\b\d+\s+episodes?\b|\b\w+-episodes?\b|"
+                   r"\ball\s+episodes\b", text):
+        # Episode language: "8 episodes", "eight-episode series",
+        # "all episodes streaming now" — a film has no episodes.
         media_type = "Series"
     elif re.search(r"(?i)\bmovie\b", "\n".join(text.split("\n")[:3])):
         # e.g. "Here's the Official Kannada Trailer of #418 movie" — the
@@ -688,6 +705,37 @@ def netflix_title_completion(drops):
     return out
 
 
+def verified_completion(drops):
+    """Editorially verified card facts from trailer-verified.json.
+
+    Some card facts appear in NO official description: Aakasamlo Oka
+    Tara's teasers never print its release date, and Netflix India's
+    Akka teaser names no director and never calls itself a series.
+    Facts verified against trade press are registered in
+    trailer-verified.json, keyed by film_key with the source noted in
+    the entry, and applied by build_brief_article ONLY to fields the
+    description/platform parsing left empty — the same contract as
+    netflix_title_completion. An entry applies when ANY drop in the
+    group keys to it (the AOT Tamil/Malayalam teasers key to 'aot',
+    the Telugu teaser to the full title; both are registered).
+    Fail-closed: no file, no entry -> {} and the brief stays held.
+    Returns a subset of {media_type, release, cast, director,
+    producer} with only registered fields."""
+    reg = load_json(VERIFIED_PATH, {})
+    if not isinstance(reg, dict):
+        return {}
+    for d in drops:
+        entry = reg.get(film_key(d.get("title", "")))
+        if isinstance(entry, dict):
+            out = {k: entry[k] for k in
+                   ("media_type", "release", "cast", "director",
+                    "producer")
+                   if entry.get(k)}
+            if out:
+                return out
+    return {}
+
+
 def build_brief_article(drops, channels_by_name):
     """One article per film; every language version listed with its own embed."""
     # Primary = most descriptive title (some channels post stub titles like
@@ -774,6 +822,12 @@ def build_brief_article(drops, channels_by_name):
             if media_type and release:
                 break
 
+    # Strong series markers in the video TITLE itself ('... Web Series
+    # Official Trailer') — parse_description only reads descriptions.
+    if not media_type and re.search(r"(?i)#webseries\b|\bweb\s+series\b",
+                                    title):
+        media_type = "Series"
+
     # Verified completion (2026-10-15): when the gate would still fail on
     # type or credits, consult the platform's own title page — currently
     # Netflix, whose title URL is printed in the drop's own description.
@@ -786,6 +840,21 @@ def build_brief_article(drops, channels_by_name):
         for k in ("cast", "director"):
             if k not in credits and completion.get(k):
                 credits[k] = completion[k]
+
+    # Editorially verified completion (2026-10-17): facts verified in
+    # trade press that no official description states and the platform
+    # page cannot supply from this server (see verified_completion).
+    if not media_type or not release or not any(
+            credits.get(k) for k in ("cast", "director", "host",
+                                    "producer", "music")):
+        vcomp = verified_completion(drops)
+        if not media_type and vcomp.get("media_type"):
+            media_type = vcomp["media_type"]
+        if not release and vcomp.get("release"):
+            release = resolve_release(vcomp["release"], pub)
+        for k in ("cast", "director", "producer"):
+            if k not in credits and vcomp.get(k):
+                credits[k] = vcomp[k]
 
     main_ch = channels_by_name.get(first["channel"], {})
     takeaways = [
@@ -946,9 +1015,13 @@ def sb_check_slug(slug):
          "-H", f"apikey: {sb_key}", "-H", f"Authorization: Bearer {sb_key}"],
         capture_output=True, text=True, timeout=20)
     try:
-        return bool(json.loads(r.stdout))
+        rows = json.loads(r.stdout)
     except Exception:
         return False
+    # An error OBJECT (denied/failed request) is truthy — only a list
+    # answer counts (2026-10-17: a policy-denied response parsed as
+    # 'slug exists' would silently skip publishable briefs).
+    return isinstance(rows, list) and bool(rows)
 
 
 def _published_briefs_query(since_iso, limit):
@@ -1052,9 +1125,19 @@ def sb_patch_article(article_id, payload):
          "-H", f"apikey: {sb_key}", "-H", f"Authorization: Bearer {sb_key}",
          "-H", "Content-Type: application/json",
          "-H", "Prefer: return=minimal",
-         "-d", json.dumps(payload)],
+         "-d", json.dumps(payload),
+         "-w", "\n%{http_code}"],
         capture_output=True, text=True, timeout=30)
-    return r.returncode == 0
+    # curl exits 0 on HTTP error statuses — a denied PATCH (403 from a
+    # proxy/policy layer) used to read as success and sb_merge_embeds
+    # reported embeds merged that never landed (2026-10-17). Require
+    # a real 2xx.
+    if r.returncode != 0:
+        return False
+    try:
+        return 200 <= int(r.stdout.strip().splitlines()[-1]) < 300
+    except Exception:
+        return False
 
 
 def sb_merge_embeds(existing, drops, channels_by_name):
