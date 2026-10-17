@@ -408,6 +408,34 @@ export async function getGrantedGeolocationFix(
   }
 }
 
+/** A FRESH precise fix for page-load auto-detection: maximumAge 0,
+ * so the browser must produce a current position or error — never
+ * a cached one. (The 2026-10-16 Directory bug, Kiran's catch: the
+ * page's own auto-detect accepted maximumAge 300000 and latched a
+ * stale Fremont fix on a device sitting in Dublin; the manual pin,
+ * which leaves maximumAge at its 0 default, got Dublin instantly.
+ * Every auto-detect-on-load call site uses this helper so the
+ * stale latch cannot come back.) Resolves null on any failure —
+ * callers fall back to IP geo as before. NOTE: unlike
+ * getGrantedGeolocationFix this CAN surface a permission prompt;
+ * it is only for surfaces that already request geolocation on
+ * load. */
+export function getFreshGeolocationFix(
+  timeoutMs = 8000,
+): Promise<PreciseFix | null> {
+  return new Promise((resolve) => {
+    if (typeof navigator === "undefined" || !navigator.geolocation) {
+      return resolve(null);
+    }
+    navigator.geolocation.getCurrentPosition(
+      (pos) =>
+        resolve({ lat: pos.coords.latitude, lon: pos.coords.longitude }),
+      () => resolve(null),
+      { enableHighAccuracy: false, timeout: timeoutMs, maximumAge: 0 },
+    );
+  });
+}
+
 /** Nearest cluster by CENTER within maxMiles (same center rule as
  * resolvePlaceLabel), or null when no center is close enough. */
 export function nearestClusterId(

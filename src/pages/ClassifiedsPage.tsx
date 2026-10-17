@@ -22,6 +22,7 @@ import {
 import { CITY_GROUPS } from "@/lib/events";
 import { getCityCoords, getDistanceMiles, formatDistance } from "@/lib/geo";
 import { useUserLocation } from "@/hooks/useUserLocation";
+import { getFreshGeolocationFix } from "@/hooks/useHubLocation";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 
 /* ------------------------------------------------------------------ */
@@ -243,22 +244,25 @@ export default function ClassifiedsPage() {
     setCity(null);
   }, []);
 
+  /* Fresh fix only (getFreshGeolocationFix, maximumAge 0) — the
+     old call's maximumAge 300000 could latch a stale cached city
+     (Fremont shown in Dublin; Kiran, 2026-10-16). */
   useEffect(() => {
-    if (!userCoords && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserCoords({ lat: position.coords.latitude, lng: position.coords.longitude });
-          setNearMeActive(true);
-        },
-        () => {
-          if (ipLocation) {
-            setUserCoords({ lat: ipLocation.latitude, lng: ipLocation.longitude });
-            setNearMeActive(true);
-          }
-        },
-        { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
-      );
-    }
+    if (userCoords) return;
+    let cancelled = false;
+    void getFreshGeolocationFix().then((fix) => {
+      if (cancelled) return;
+      if (fix) {
+        setUserCoords({ lat: fix.lat, lng: fix.lon });
+        setNearMeActive(true);
+      } else if (ipLocation) {
+        setUserCoords({ lat: ipLocation.latitude, lng: ipLocation.longitude });
+        setNearMeActive(true);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ipLocation]);
 

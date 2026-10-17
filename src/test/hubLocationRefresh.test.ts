@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import {
   FALLBACK_CLUSTERS,
   classifyHubRecord,
+  getFreshGeolocationFix,
   getFreshPreciseGeoFix,
   getGrantedGeolocationFix,
   isMateriallyDifferentLocation,
@@ -328,5 +329,47 @@ describe("getGrantedGeolocationFix — never prompts", () => {
       lat: 37.708,
       lon: -121.928,
     });
+  });
+});
+
+describe("getFreshGeolocationFix — never a stale cached position", () => {
+  it("requests maximumAge 0 and resolves the fresh position", async () => {
+    let seenOptions: PositionOptions | undefined;
+    Object.defineProperty(window.navigator, "geolocation", {
+      configurable: true,
+      value: {
+        getCurrentPosition: (
+          ok: PositionCallback,
+          _err: PositionErrorCallback,
+          options?: PositionOptions,
+        ) => {
+          seenOptions = options;
+          ok({
+            coords: { latitude: 37.702, longitude: -121.935 },
+          } as GeolocationPosition);
+        },
+      },
+    });
+    await expect(getFreshGeolocationFix()).resolves.toEqual({
+      lat: 37.702,
+      lon: -121.935,
+    });
+    /* The regression guard for the 2026-10-16 Fremont latch: an
+       auto-detect that accepts a cached position (maximumAge
+       300000) can pin "near you" to a city the reader has left. */
+    expect(seenOptions?.maximumAge).toBe(0);
+  });
+
+  it("resolves null when the browser errors (denied / timeout)", async () => {
+    Object.defineProperty(window.navigator, "geolocation", {
+      configurable: true,
+      value: {
+        getCurrentPosition: (
+          _ok: PositionCallback,
+          err: PositionErrorCallback,
+        ) => err({ code: 3 } as GeolocationPositionError),
+      },
+    });
+    await expect(getFreshGeolocationFix()).resolves.toBeNull();
   });
 });

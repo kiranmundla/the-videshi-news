@@ -28,6 +28,7 @@ import {
 } from "@/lib/smartSearch";
 import { formatDistance, nearestZipPlace } from "@/lib/geo";
 import { useUserLocation } from "@/hooks/useUserLocation";
+import { getFreshGeolocationFix } from "@/hooks/useHubLocation";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 import EventCard from "@/components/EventCard";
 
@@ -601,48 +602,53 @@ export default function EventsPage() {
 
   const PAGE_SIZE = 30;
 
-  /* --- Auto-request geolocation on page load --- */
+  /* --- Auto-request geolocation on page load ---
+     Fresh fix only (getFreshGeolocationFix, maximumAge 0): the
+     old call accepted a cached position up to 5 minutes old,
+     which on iOS can be far staler — it latched Fremont on a
+     device sitting in Dublin until the pin was tapped (Kiran,
+     2026-10-16; same fix as Directory). */
   useEffect(() => {
     if (rawCity) return;
-    if (!nearMeActive && !userCoords && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const coords = { lat: position.coords.latitude, lng: position.coords.longitude };
-          setUserCoords(coords);
-          setNearMeActive(true);
-          setZipPlace(null);
-          setLocationLabel("📍 Near You");
-          setSearchParams((prev) => {
-            const next = new URLSearchParams(prev);
-            next.delete("city");
-            next.set("nearme", "1");
-            return next;
-          }, { replace: true });
-        },
-        () => {
-          if (ipLocation) {
-            const coords = { lat: ipLocation.latitude, lng: ipLocation.longitude };
-            setUserCoords(coords);
-            setNearMeActive(true);
-            setZipPlace(null);
-            setLocationLabel(
-              ipLocation.city
-                ? `📍 ${ipLocation.city}${ipLocation.region ? `, ${ipLocation.region}` : ""}`
-                : "📍 Near You",
-            );
-            setSearchParams((prev) => {
-              const next = new URLSearchParams(prev);
-              next.delete("city");
-              next.set("nearme", "1");
-              return next;
-            }, { replace: true });
-          } else {
-            setNearMeActive(false);
-          }
-        },
-        { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
-      );
-    }
+    if (nearMeActive || userCoords) return;
+    let cancelled = false;
+    void getFreshGeolocationFix().then((fix) => {
+      if (cancelled) return;
+      if (fix) {
+        const coords = { lat: fix.lat, lng: fix.lon };
+        setUserCoords(coords);
+        setNearMeActive(true);
+        setZipPlace(null);
+        setLocationLabel("📍 Near You");
+        setSearchParams((prev) => {
+          const next = new URLSearchParams(prev);
+          next.delete("city");
+          next.set("nearme", "1");
+          return next;
+        }, { replace: true });
+      } else if (ipLocation) {
+        const coords = { lat: ipLocation.latitude, lng: ipLocation.longitude };
+        setUserCoords(coords);
+        setNearMeActive(true);
+        setZipPlace(null);
+        setLocationLabel(
+          ipLocation.city
+            ? `📍 ${ipLocation.city}${ipLocation.region ? `, ${ipLocation.region}` : ""}`
+            : "📍 Near You",
+        );
+        setSearchParams((prev) => {
+          const next = new URLSearchParams(prev);
+          next.delete("city");
+          next.set("nearme", "1");
+          return next;
+        }, { replace: true });
+      } else {
+        setNearMeActive(false);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ipLocation]);
 

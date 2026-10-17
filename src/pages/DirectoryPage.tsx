@@ -20,6 +20,12 @@ import {
 import { CITY_GROUPS } from "@/lib/events";
 import { formatDistance } from "@/lib/geo";
 import { useUserLocation } from "@/hooks/useUserLocation";
+import {
+  useHubLocation,
+  getFreshGeolocationFix,
+  setStoredHubLocation,
+  resolvePlaceLabel,
+} from "@/hooks/useHubLocation";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 
 const DEFAULT_CITY = "Bay Area";
@@ -371,6 +377,14 @@ export default function DirectoryPage() {
   const [nearMeActive, setNearMeActive] = useState(false);
   const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
   const { location: ipLocation } = useUserLocation();
+  /* The canonical location record — the same one Your Hub and
+     Events read (useHubLocation self-refreshes it when the device
+     moves and live-syncs writes from any surface). Directory seeds
+     near-me from it below. locationTouchedRef marks an explicit
+     choice made on THIS page (pin / ZIP / city), which then wins
+     over the record for the rest of the session. */
+  const { location: hubLocation } = useHubLocation();
+  const locationTouchedRef = useRef(false);
 
   /* --- Sync filters with URL --- */
   const rawCity = searchParams.get("city");
@@ -379,6 +393,7 @@ export default function DirectoryPage() {
   const subcategoryFilter = searchParams.get("subcategory") || null;
 
   const setCityFilter = useCallback((city: string | null) => {
+    locationTouchedRef.current = true;
     setNearMeActive(false);
     setUserCoords(null);
     setSearchParams((prev) => {
@@ -395,6 +410,7 @@ export default function DirectoryPage() {
 
   /* --- Location handler (from ZipCodeSearch) --- */
   const handleLocation = useCallback((result: LocationResult | null) => {
+    locationTouchedRef.current = true;
     if (!result) {
       setNearMeActive(false);
       setUserCoords(null);
@@ -409,6 +425,22 @@ export default function DirectoryPage() {
       next.set("nearme", "1");
       return next;
     }, { replace: true });
+    /* Write the explicit choice back to the canonical record so
+       Hub / Events / Directory stay in sync. A ZIP pick is a
+       manual setting (never auto-overwritten); a pin fix is
+       geolocation-sourced (refreshable when the device moves).
+       Clearing near-me (result null) is page-local and leaves the
+       record alone. */
+    if (result.city) {
+      setStoredHubLocation({
+        city: result.city,
+        state: result.state,
+        lat: result.lat,
+        lon: result.lng,
+        label: `${result.city}, ${result.state}`,
+        source: result.source === "zip" ? "manual" : "geolocation",
+      });
+    }
   }, [setCityFilter, setSearchParams]);
 
   const setCategoryFilter = useCallback((cat: string | null) => {
@@ -454,43 +486,84 @@ export default function DirectoryPage() {
     }, { replace: true });
   }, [setSearchParams]);
 
-  /* --- Auto-request geolocation on page load --- */
+  /* --- Seed near-me from the canonical Hub record ---
+     This page used to run its own geolocation latch and never
+     reconciled with the rest of the site: its auto-detect
+     accepted a cached position up to 5 minutes old
+     (maximumAge 300000), which on iOS can be far staler — the
+     reader was shown Fremont while sitting in Dublin, and only
+     tapping the pin (a fresh fix) corrected it (Kiran's catch,
+     2026-10-16). Now Directory seeds from the SAME record Your
+     Hub uses — which self-refreshes when the device materially
+     moves — and follows record updates live, until the reader
+     makes an explicit choice on this page. An explicit ?city=
+     link always wins. */
+  const seededFromRecordRef = useRef<string | null>(null);
   useEffect(() => {
-    if (rawCity) return;
-    if (!nearMeActive && !userCoords && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const coords = { lat: position.coords.latitude, lng: position.coords.longitude };
-          setUserCoords(coords);
-          setNearMeActive(true);
-          setSearchParams((prev) => {
-            const next = new URLSearchParams(prev);
-            next.delete("city");
-            next.set("nearme", "1");
-            return next;
-          }, { replace: true });
-        },
-        () => {
-          // Denied or error → fall back to Vercel IP geo
-          if (ipLocation) {
-            const coords = { lat: ipLocation.latitude, lng: ipLocation.longitude };
-            setUserCoords(coords);
-            setNearMeActive(true);
-            setSearchParams((prev) => {
-              const next = new URLSearchParams(prev);
-              next.delete("city");
-              next.set("nearme", "1");
-              return next;
-            }, { replace: true });
-          } else {
-            setNearMeActive(false);
-          }
-        },
-        { enableHighAccuracy: false, timeout: 8000, maximumAge: 300000 },
-      );
-    }
+    if (rawCity || locationTouchedRef.current || !hubLocation) return;
+    const key = `${hubLocation.lat},${hubLocation.lon}`;
+    if (seededFromRecordRef.current === key) return;
+    seededFromRecordRef.current = key;
+    setUserCoords({ lat: hubLocation.lat, lng: hubLocation.lon });
+    setNearMeActive(true);
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.delete("city");
+      next.set("nearme", "1");
+      return next;
+    }, { replace: true });
+  }, [hubLocation, rawCity, setSearchParams]);
+
+  /* --- First-run detection: only when the site has NO canonical
+     record yet. Fresh fix or nothing — a stale cached position is
+     never latched (getFreshGeolocationFix). A precise fix is
+     written to the canonical record so every surface agrees; the
+     IP fallback stays transient and never creates the record. */
+  useEffect(() => {
+    if (rawCity || hubLocation || nearMeActive || userCoords) return;
+    let cancelled = false;
+    void getFreshGeolocationFix().then(async (fix) => {
+      if (cancelled) return;
+      if (fix) {
+        setUserCoords({ lat: fix.lat, lng: fix.lon });
+        setNearMeActive(true);
+        setSearchParams((prev) => {
+          const next = new URLSearchParams(prev);
+          next.delete("city");
+          next.set("nearme", "1");
+          return next;
+        }, { replace: true });
+        const place = await resolvePlaceLabel(fix.lat, fix.lon, null).catch(
+          () => null,
+        );
+        if (place && !cancelled) {
+          setStoredHubLocation({
+            city: place.city || "",
+            state: place.state || "",
+            lat: fix.lat,
+            lon: fix.lon,
+            label: place.label,
+            source: "geolocation",
+          });
+        }
+      } else if (ipLocation) {
+        // Denied / no fix → fall back to Vercel IP geo (transient)
+        const coords = { lat: ipLocation.latitude, lng: ipLocation.longitude };
+        setUserCoords(coords);
+        setNearMeActive(true);
+        setSearchParams((prev) => {
+          const next = new URLSearchParams(prev);
+          next.delete("city");
+          next.set("nearme", "1");
+          return next;
+        }, { replace: true });
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ipLocation]);
+  }, [ipLocation, hubLocation]);
 
   /* --- Fetch listings --- */
   useEffect(() => {
