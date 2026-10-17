@@ -397,10 +397,12 @@ NASDAQ_EARNINGS_CALENDAR_URL = "https://www.nasdaq.com/market-activity/earnings?
 
 # Investor-relations pages for watchlist companies. Every URL verified live on
 # 2026-10-13 (HTTP 200 via curl, or rendered in a real browser where the site
-# bot-blocks curl). ABBV, CAT and CMCSA are intentionally ABSENT: their IR URLs
-# could not be verified, so the source gate in ensure_happening_briefs()
-# suppresses their earnings briefs rather than publishing with an unverified
-# or missing second source. Add new entries only after verifying the URL.
+# bot-blocks curl). A ticker with no verified IR URL stays ABSENT, so the
+# source gate in ensure_happening_briefs() suppresses its earnings briefs
+# rather than publishing with an unverified or missing second source.
+# ABBV, CAT and CMCSA were absent from 2026-10-13 (unverifiable then) until
+# 2026-10-17, when all three rendered live in a real browser and were added.
+# Add new entries only after verifying the URL.
 EARNINGS_IR_URLS = {
     "AAPL": "https://investor.apple.com/",
     "GOOGL": "https://abc.xyz/investor/",
@@ -450,6 +452,7 @@ EARNINGS_IR_URLS = {
     "PFE": "https://www.pfizer.com/about/investors",
     "LLY": "https://investor.lilly.com/",
     "MRK": "https://www.merck.com/investor-relations/",
+    "ABBV": "https://investors.abbvie.com/",
     "V": "https://investor.visa.com/",
     "MA": "https://investor.mastercard.com/",
     "XOM": "https://investor.exxonmobil.com/",
@@ -457,6 +460,7 @@ EARNINGS_IR_URLS = {
     "BA": "https://investors.boeing.com/",
     "HON": "https://investor.honeywell.com/",
     "GE": "https://www.geaerospace.com/investor-relations",
+    "CAT": "https://investors.caterpillar.com/",
     "T": "https://investors.att.com/",
     "VZ": "https://www.verizon.com/about/investors/",
     "TMUS": "https://investor.t-mobile.com/",
@@ -464,6 +468,7 @@ EARNINGS_IR_URLS = {
     "NEE": "https://www.investor.nexteraenergy.com/",
     "HCA": "https://investor.hcahealthcare.com/",
     "CHTR": "https://ir.charter.com/",
+    "CMCSA": "https://www.cmcsa.com/",
     "BKNG": "https://ir.bookingholdings.com/",
     "MMM": "https://investors.3m.com/",
 }
