@@ -800,13 +800,13 @@
       "season_note": "Southern-hemisphere spring/autumn are the sweet spots for Sydney & Melbourne.",
       "cheapest_month": null,
       "fare_from": {
-        "price_min": 1132,
-        "route": "SFO-SYD",
-        "origin_metro": "Bay Area",
+        "price_min": 980,
+        "route": "LAX-SYD",
+        "origin_metro": "Los Angeles",
         "dest_metro": "Sydney",
-        "date_range": "Oct 21 \u2192 Oct 27",
+        "date_range": "Oct 28 \u2192 Nov 3",
         "duration_days": 6,
-        "as_of": "2026-10-16",
+        "as_of": "2026-10-17",
         "cadence": "weekly",
         "indicative": true
       },
@@ -1711,7 +1711,17 @@
       ],
       "season_note": "Dry season May\u2013Oct; cyclone season is Nov\u2013Apr.",
       "cheapest_month": null,
-      "fare_from": null,
+      "fare_from": {
+        "price_min": 1144,
+        "route": "LAX-NAN",
+        "origin_metro": "Los Angeles",
+        "dest_metro": "Nadi",
+        "date_range": "Oct 28 \u2192 Nov 3",
+        "duration_days": 6,
+        "as_of": "2026-10-17",
+        "cadence": "weekly",
+        "indicative": true
+      },
       "highlights": [
         {
           "title": "Nadi & the Sri Siva Subramaniya Temple",
@@ -1751,7 +1761,7 @@
         "12": 0
       },
       "data_quality": {
-        "fare_data": "none",
+        "fare_data": "tracked",
         "guide_highlights": 5,
         "notes": [
           "No flight-deals route tracked yet \u2014 fare fields are null by design"
@@ -1918,7 +1928,7 @@
         "dest_metro": "Paris",
         "date_range": "Nov 10 \u2192 Nov 16",
         "duration_days": 6,
-        "as_of": "2026-10-16",
+        "as_of": "2026-10-17",
         "cadence": "weekly",
         "indicative": true
       },
@@ -2118,7 +2128,17 @@
       ],
       "season_note": "Islands are best late May\u2013early Oct; July\u2013August is peak-price.",
       "cheapest_month": null,
-      "fare_from": null,
+      "fare_from": {
+        "price_min": 1105,
+        "route": "ORD-ATH",
+        "origin_metro": "Chicago",
+        "dest_metro": "Athens",
+        "date_range": "Oct 21 \u2192 Oct 27",
+        "duration_days": 6,
+        "as_of": "2026-10-17",
+        "cadence": "weekly",
+        "indicative": true
+      },
       "highlights": [
         {
           "title": "Santorini Sunset at Oia",
@@ -2158,7 +2178,7 @@
         "12": 0
       },
       "data_quality": {
-        "fare_data": "none",
+        "fare_data": "tracked",
         "guide_highlights": 5,
         "notes": [
           "No flight-deals route tracked yet \u2014 fare fields are null by design"
@@ -2520,7 +2540,17 @@
       ],
       "season_note": "Shoulder months have the weather without the peak crowds.",
       "cheapest_month": null,
-      "fare_from": null,
+      "fare_from": {
+        "price_min": 770,
+        "route": "LAX-FCO",
+        "origin_metro": "Los Angeles",
+        "dest_metro": "Rome",
+        "date_range": "Dec 8 \u2192 Dec 14",
+        "duration_days": 6,
+        "as_of": "2026-10-17",
+        "cadence": "weekly",
+        "indicative": true
+      },
       "highlights": [
         {
           "title": "Rome: Colosseum, Vatican & Trastevere",
@@ -2560,7 +2590,7 @@
         "12": 0
       },
       "data_quality": {
-        "fare_data": "none",
+        "fare_data": "tracked",
         "guide_highlights": 5,
         "notes": [
           "No flight-deals route tracked yet \u2014 fare fields are null by design"
@@ -2726,7 +2756,7 @@
         "dest_metro": "Tokyo",
         "date_range": "Dec 8 \u2192 Dec 16",
         "duration_days": 8,
-        "as_of": "2026-10-16",
+        "as_of": "2026-10-17",
         "cadence": "weekly",
         "indicative": true
       },
@@ -4045,7 +4075,7 @@
         "dest_metro": "Muscat",
         "date_range": "Oct 28 \u2192 Nov 5",
         "duration_days": 8,
-        "as_of": "2026-10-16",
+        "as_of": "2026-10-17",
         "cadence": "weekly",
         "indicative": true
       },
