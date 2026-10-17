@@ -203,6 +203,16 @@ def find_opening_movies():
                 release_dt = datetime.strptime(release_str, "%Y-%m-%d").date()
                 if release_dt in (today_dt, yesterday_dt, tomorrow_dt):
                     is_opening = True
+                elif yesterday_dt - timedelta(days=6) <= release_dt < yesterday_dt:
+                    # Catch-up (added 2026-10-16): a film released earlier
+                    # this week that was missing from the roster on its
+                    # release day must still get its review once the roster
+                    # is repaired. This is exactly how Jailer 2 (opened
+                    # Thu 2026-10-15 while absent from now-in-theaters.json)
+                    # slipped past the ±1-day window. already_reviewed()
+                    # in Step 2 remains the guard against re-reviewing
+                    # films already covered.
+                    is_opening = True
             except ValueError:
                 pass
 
