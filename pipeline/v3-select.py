@@ -258,6 +258,27 @@ CATEGORY_PATTERNS = {
     ],
 }
 
+# Subject-rule guard for the keyword fallback (Kiran, 2026-10-16):
+# a diaspora trigger word (NRI, diaspora, expat) must not pull an
+# INDIA-SUBJECT story into nri-world — an Indian state name or an
+# Indian government/institution marker means India is the actor.
+# A person descriptor (Indian-American / Indian-origin) still wins:
+# that marks a diaspora person in a foreign role → nri-world.
+_INDIA_SUBJECT_MARKERS = [
+    r'\bchief minister\b', r'\bprime minister\b', r'\blok sabha\b',
+    r'\brajya sabha\b', r'\brbi\b', r'\bsebi\b', r'\bepfo\b', r'\baadhaar\b',
+    r'\biit\b', r'\bnew delhi\b', r'\bmodi\b',
+    r'\bandhra pradesh\b', r'\barunachal\b', r'\bassam\b', r'\bbihar\b',
+    r'\bchhattisgarh\b', r'\bgujarat\b', r'\bharyana\b', r'\bhimachal\b',
+    r'\bjharkhand\b', r'\bkarnataka\b', r'\bkerala\b', r'\bmadhya pradesh\b',
+    r'\bmaharashtra\b', r'\bmanipur\b', r'\bmeghalaya\b', r'\bmizoram\b',
+    r'\bnagaland\b', r'\bodisha\b', r'\bpunjab\b', r'\brajasthan\b',
+    r'\bsikkim\b', r'\btamil nadu\b', r'\btelangana\b', r'\btripura\b',
+    r'\buttar pradesh\b', r'\buttarakhand\b', r'\bwest bengal\b',
+    r'\bjammu\b', r'\bkashmir\b', r'\bladakh\b', r'\bpuducherry\b',
+]
+_DIASPORA_PERSON_MARKERS = [r'\bindian.?american\b', r'\bindian.?origin\b']
+
 def detect_category(title, description=""):
     """Fast keyword category detection. Returns best category or 'news'."""
     text = (title + " " + description).lower()
@@ -267,7 +288,15 @@ def detect_category(title, description=""):
         if hits:
             scores[cat] = hits
     if scores:
-        return max(scores, key=scores.get)
+        winner = max(scores, key=scores.get)
+        if winner == "nri-world":
+            person = any(re.search(p, text, re.IGNORECASE)
+                         for p in _DIASPORA_PERSON_MARKERS)
+            india_subject = any(re.search(p, text, re.IGNORECASE)
+                                for p in _INDIA_SUBJECT_MARKERS)
+            if india_subject and not person:
+                return "news"
+        return winner
     return "news"
 
 
@@ -520,9 +549,10 @@ Also assign the best category for each topic:
 immigration, technology, entertainment, sports, markets-finance, food, travel, lifestyle-health, nri-world, news
 
 CATEGORY RULES — prevent common misclassification:
-- "news" = India domestic politics & government, major geopolitics (wars, diplomacy, summits, UN), India-US/UK bilateral relations, major crime/justice, national security, disasters, elections, major policy changes that don't fit a specific category. Use "news" for big-picture stories — if it would be on the front page of a newspaper, it's probably "news."
-- "nri-world" = stories specifically about diaspora life, NRI achievements, community events, cultural identity abroad, Indian-origin people in foreign countries, diaspora organizations. NOT a catch-all for India stories.
-- When in doubt between "news" and "nri-world": if the story is about India or geopolitics, use "news". If it's about Indians living abroad or diaspora-specific issues, use "nri-world".
+- THE SUBJECT RULE for "news" vs "nri-world" (Kiran's taxonomy, 2026-10-16): ask WHO the story is about — India itself, or the world outside India?
+- "news" (the site's INDIA tab) = INDIA IS THE SUBJECT. The story happens in India, OR India / the Indian government / an Indian state government / Indian institutions (courts, RBI, ministries, IITs, Indian agencies) are the actor — wherever they act (Modi at the UN, Jaishankar in the UAE = news), OR India is the DIRECT OBJECT of a foreign action (US tariffs imposed ON India, sanctions ON India, a ruling against India = news). India merely having stakes in a foreign event does NOT make India the subject — a US election's implications for India is nri-world (the subject is the US election), and Indian victims in a foreign incident are nri-world unless an Indian authority is acting in the story. An Indian state government's policy is news even when its beneficiaries are NRIs (a Kerala CM's NRI-welfare policy = news — the actor is an Indian government).
+- "nri-world" (the site's WORLD tab) = EVERYTHING OUTSIDE INDIA. Diaspora life abroad (Indian-origin people/communities in foreign countries, diaspora organizations, cultural identity abroad) AND general world news — US/global politics, wars not involving India, foreign crime/disasters — whether or not it touches India. A person of Indian origin acting in a FOREIGN role is nri-world (a US congresswoman of Indian origin = nri-world; she is a US official). A private Indian citizen abroad in a personal story (a crime victim, a jailed tourist) is nri-world; the Indian GOVERNMENT acting on their behalf (a minister announcing seafarers' rescue) is news.
+- NOTHING defaults to "news". A big foreign story with no India subject is "nri-world", never "news" just because it is important. When in doubt between "news" and "nri-world", name the subject in your reason: if the subject is India/Indian-state actors, "news"; if the subject is a foreign actor, a diaspora person/community, or a foreign place, "nri-world".
 - "box office" = entertainment (NOT immigration, even though it contains "office")
 - "ICE" = immigration ONLY when referring to Immigration and Customs Enforcement. "ice cream", "icy conditions" = NOT immigration
 - "OPT" = immigration ONLY when referring to Optional Practical Training. "opt out", "opted", "option" = NOT immigration
@@ -1386,17 +1416,14 @@ def main():
             capped_ids.append(c["topic_id"])
             topic_statuses[c["topic_id"]] = "rejected"
 
-    # ── Step 5b: News starvation guard ────────────────────────────────────────
-    # If no "news" candidates were selected, promote the highest-scoring
-    # nri-world candidate to "news" so the homepage carousel stays fresh.
+    # ── Step 5b: News starvation note (NO re-tagging) ────────────────────────
+    # This guard used to promote the best nri-world candidate to "news"
+    # when no news candidates were selected. Removed 2026-10-16: under
+    # the subject rule (see CATEGORY RULES) a World story relabelled as
+    # India corrupts the tabs — the exact mix-up Kiran flagged. An empty
+    # news slate is reported, never papered over with a foreign story.
     if cat_counts.get("news", 0) == 0:
-        nri_in_balanced = [c for c in balanced if c["category"] == "nri-world"]
-        if nri_in_balanced:
-            best_nri = max(nri_in_balanced, key=lambda c: c.get("llm_score", 0))
-            best_nri["category"] = "news"
-            cat_counts["news"] = 1
-            cat_counts["nri-world"] = cat_counts.get("nri-world", 1) - 1
-            print(f"  ⚠ No news candidates — promoted nri-world → news: {best_nri['title'][:70]}")
+        print("  ⚠ No news candidates selected this run (no re-tagging — subject rule)")
 
     # ── Step 6: Final LLM dedup on capped candidates ─────────────────────────
     if len(balanced) > 1 and (OPENAI_KEY or GOOGLE_AI_KEY):

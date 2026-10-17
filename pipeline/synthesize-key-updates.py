@@ -48,8 +48,8 @@ CATEGORY_PROMPTS = {
     },
     "news": {
         "slug": "news",
-        "focus": "major India-US diplomatic developments, significant political changes affecting diaspora, trade agreements, defense deals, major incidents involving Indian nationals abroad, bilateral relations shifts",
-        "examples": "India-US trade deal signed, PM Modi visits Washington, Major hate crime against Indian student, India joins new international alliance"
+        "focus": "INDIA-SUBJECT developments (the subject rule, Kiran 2026-10-16): Indian government / state government / institutional actions and policy, domestic Indian politics and major domestic events, India as actor abroad (PM or ministers on foreign visits, India's positions at summits), India as the affected party (tariffs on India, rulings involving India), bilateral relations where India is a party. A state government's policy counts even when its beneficiaries are NRIs",
+        "examples": "India-US trade deal signed, PM Modi visits Washington, EPFO wage ceiling raised, Kerala CM announces NRI welfare policy, India joins new international alliance"
     },
     "markets-finance": {
         "slug": "markets-finance",
@@ -68,8 +68,8 @@ CATEGORY_PROMPTS = {
     },
     "nri-world": {
         "slug": "nri-world",
-        "focus": "notable NRI achievements, diaspora community milestones, Indian-origin political appointments, cultural events, community incidents, diaspora organization developments",
-        "examples": "Indian-American appointed federal judge, Desi community raises $10M for charity, Indian-origin student wins national science fair"
+        "focus": "WORLD developments — everything outside India (the subject rule, Kiran 2026-10-16): notable NRI/diaspora achievements and community milestones abroad, Indian-origin people acting in foreign roles (a US congresswoman of Indian origin), diaspora cultural events and community incidents abroad, AND significant general world developments (foreign politics, conflicts not involving India, major foreign events) whether or not they touch India",
+        "examples": "Indian-American appointed federal judge, Desi community raises $10M for charity, Indian-origin student wins national science fair, US midterm spending crosses $160M"
     },
 }
 

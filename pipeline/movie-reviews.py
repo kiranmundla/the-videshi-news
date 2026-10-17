@@ -23,6 +23,15 @@ THEATERS_JSON = REPO / "public" / "data" / "now-in-theaters.json"
 
 DRY_RUN = "--dry-run" in sys.argv
 
+# --regenerate "Movie Title": delete the title's existing published
+# review, then run the normal flow restricted to that title. Exists
+# for repairing defective reviews in place (same slug regenerates).
+REGENERATE = None
+if "--regenerate" in sys.argv:
+    _i = sys.argv.index("--regenerate")
+    if _i + 1 < len(sys.argv):
+        REGENERATE = sys.argv[_i + 1]
+
 NOW = datetime.now(timezone.utc)
 TODAY = NOW.strftime("%Y-%m-%d")
 
@@ -131,6 +140,40 @@ def sb_insert(table, data):
         "Prefer": "return=representation",
     }, timeout=20)
     return result
+
+
+def sb_delete(table, row_id):
+    """DELETE one row by id. Used only by --regenerate (repair flow)."""
+    url = f"{SB_URL}/rest/v1/{table}?id=eq.{row_id}"
+    r = subprocess.run(
+        ["curl", "-s", "-X", "DELETE", url,
+         "-H", f"apikey: {SB_KEY}",
+         "-H", f"Authorization: Bearer {SB_KEY}"],
+        capture_output=True, text=True, timeout=30)
+    return r.returncode == 0
+
+
+def find_published_review_rows(movie_title):
+    """Published review rows matching a movie title (same matching
+    rule as already_reviewed, but returns the rows)."""
+    results = sb_get("p2_articles", {
+        "select": "id,headline,slug",
+        "status": "eq.published",
+        "slug": "like.*review*",
+        "limit": "50",
+    })
+    if not results or not isinstance(results, list):
+        return []
+    title_words = [w for w in movie_title.lower().split()
+                   if len(w) > 2 and w not in ('the', 'and', 'for')]
+    rows = []
+    for r in results:
+        slug = (r.get("slug") or "").lower()
+        headline = (r.get("headline") or "").lower()
+        word_matches = sum(1 for w in title_words if w in slug or w in headline)
+        if word_matches >= min(2, len(title_words)):
+            rows.append(r)
+    return rows
 
 
 # ── Web search ────────────────────────────────────────────────────────────────
@@ -255,9 +298,12 @@ def already_reviewed(movie_title):
 
 
 # ── Step 3: GPT-4o-mini review synthesis ─────────────────────────────────────
-def synthesize_reviews(movies_with_reviews):
+def _synthesize_call(movies_with_reviews, extra_instruction=""):
     """
-    Single GPT-4o-mini call to synthesize review roundup articles for all movies.
+    One GPT-4o-mini call for the given movies. Callers pass ONE movie
+    at a time (see synthesize_reviews): batching several films into a
+    single call with a shared token cap produced 172-word stubs
+    against the 700–900-word format bar (2026-10-16, Jailer 2).
     Returns list of article dicts.
     """
     if not OPENAI_KEY:
@@ -302,6 +348,7 @@ Each article should be HTML with this structure:
    - star_rating: overall rating out of 5 (half-star increments like 3.5)
    - category_ratings: exactly these four keys — "Story", "Direction", "Climax", "Performances" — each out of 5 (half-star increments), based on what critics specifically said about each aspect
    - rating_consensus: editorial paragraph summarizing the consensus
+   Word budget per section: Opening 120-180 words; "The consensus" 120-180; "What's praised" 200-280; "What's criticized" 120-180; "What this means for you" 80-120. Total 700-900 words. A draft under 600 words is a failed draft and will be rejected — write to the full budget in one pass.
 3. Body sections (use narrative prose with specific examples, not just bullet fragments):
    - "<h2>The consensus</h2>" — 1-2 paragraphs: X published critic reviews average Y/5. Where do most land? Is there a split (e.g. Indian critics vs Western)? What's the through-line?
    - "<h2>What's praised</h2>" — 2-3 paragraphs with SPECIFICS: which performance, which scene, which technical achievement. Quote critics by name.
@@ -349,6 +396,7 @@ Return JSON:
 
 If search results contain too little review data for a movie (no actual reviews found), return it with "skip": true and "skip_reason": "explanation".
 
+{extra_instruction}
 MOVIES AND THEIR REVIEW DATA:
 {movies_block}
 """
@@ -357,7 +405,7 @@ MOVIES AND THEIR REVIEW DATA:
         "model": "gpt-4o-mini",
         "messages": [{"role": "user", "content": prompt}],
         "response_format": {"type": "json_object"},
-        "max_tokens": 6000,
+        "max_tokens": 4500,
         "temperature": 0.3,
     }
 
@@ -389,6 +437,65 @@ MOVIES AND THEIR REVIEW DATA:
     except (json.JSONDecodeError, KeyError, IndexError) as e:
         print(f"  ❌ Failed to parse GPT response: {e}")
         return []
+
+
+# Minimum publishable length. The format bar (Kiran, 2026-10-09) is
+# 700–900 words; 600 is the floor below which a "review" is a stub.
+MIN_REVIEW_WORDS = 600
+
+def _word_count(html):
+    text = re.sub(r"<[^>]+>", " ", html or "")
+    return len(text.split())
+
+def synthesize_reviews(movies_with_reviews):
+    """
+    Per-film synthesis with a length floor. Each movie gets its OWN
+    GPT call (a shared batched call starved every article — the
+    2026-10-16 Jailer 2 run produced 172-word stubs against the
+    700–900-word bar). A draft under MIN_REVIEW_WORDS is retried
+    once with an explicit expansion instruction; a draft still
+    under the floor is returned as a skip — a missing review is
+    better than a thin one, and the next run retries the film.
+    Returns a list aligned 1:1 with movies_with_reviews.
+    """
+    articles = []
+    for movie, review_text in movies_with_reviews:
+        title = movie.get("title", "Unknown")
+        got = _synthesize_call([(movie, review_text)])
+        article = got[0] if got else {
+            "title": title, "skip": True,
+            "skip_reason": "synthesis call returned nothing",
+        }
+        if not article.get("skip"):
+            words = _word_count(article.get("body_html", ""))
+            print(f"    📝 {title}: draft {words} words")
+            for attempt in (1, 2):
+                if words >= MIN_REVIEW_WORDS:
+                    break
+                note = (
+                    f"IMPORTANT: A previous draft of the {title} review came out at "
+                    f"only {words} words. That is a stub, not a review, and it will "
+                    f"be rejected. Write the FULL 700–900 words, hitting every "
+                    f"section budget: Opening 120-180 words; The consensus 120-180; "
+                    f"What's praised 200-280; What's criticized 120-180; What this "
+                    f"means for you 80-120. Expand with specific critic detail — "
+                    f"named reviewers, outlets, scenes, comparisons — drawn only "
+                    f"from the review data below."
+                )
+                got = _synthesize_call([(movie, review_text)],
+                                       extra_instruction=note)
+                if got and not got[0].get("skip"):
+                    article = got[0]
+                    words = _word_count(article.get("body_html", ""))
+                    print(f"    📝 {title}: retry {attempt} draft {words} words")
+            if words < MIN_REVIEW_WORDS:
+                article = {
+                    "title": title, "skip": True,
+                    "skip_reason": (f"synthesis under length floor after "
+                                    f"retries ({words} words < {MIN_REVIEW_WORDS})"),
+                }
+        articles.append(article)
+    return articles
 
 
 # ── Step 4: Publish to Supabase ──────────────────────────────────────────────
@@ -641,6 +748,22 @@ def main():
     for m in opening:
         indian_flag = " 🇮🇳" if m.get("is_indian") else ""
         print(f"  🎬 {m['title']} ({m.get('release_date', '?')}){indian_flag} — {m.get('genre', '')}")
+
+    # ── Regenerate mode: restrict to one title, delete its old review ──
+    if REGENERATE:
+        opening = [m for m in opening
+                   if m["title"].lower() == REGENERATE.lower()]
+        if not opening:
+            print(f"  ❌ --regenerate: '{REGENERATE}' is not in the current opening window")
+            return
+        for r in find_published_review_rows(REGENERATE):
+            if DRY_RUN:
+                print(f"    📋 [DRY RUN] Would delete existing review: {r.get('slug')}")
+            elif sb_delete("p2_articles", r["id"]):
+                print(f"    🗑 Deleted existing review: {r.get('slug')}")
+            else:
+                print(f"    ❌ Failed to delete existing review: {r.get('slug')}")
+                return
 
     # Step 2: Dedup check
     print(f"\n── Step 2: Checking for existing reviews ──")
