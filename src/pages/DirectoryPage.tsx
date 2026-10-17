@@ -376,6 +376,10 @@ export default function DirectoryPage() {
   /* --- Geolocation / zip code state --- */
   const [nearMeActive, setNearMeActive] = useState(false);
   const [userCoords, setUserCoords] = useState<{ lat: number; lng: number } | null>(null);
+  /** Resolved place when results are driven by an entered zip code
+      (null in near-me mode) — same pattern as EventsPage, so summary
+      headings can name the zip's city instead of a generic "near you". */
+  const [zipPlace, setZipPlace] = useState<{ zip: string; city: string; state: string } | null>(null);
   const { location: ipLocation } = useUserLocation();
   /* The canonical location record — the same one Your Hub and
      Events read (useHubLocation self-refreshes it when the device
@@ -396,6 +400,7 @@ export default function DirectoryPage() {
     locationTouchedRef.current = true;
     setNearMeActive(false);
     setUserCoords(null);
+    setZipPlace(null);
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
       if (city && city !== DEFAULT_CITY) {
@@ -414,11 +419,19 @@ export default function DirectoryPage() {
     if (!result) {
       setNearMeActive(false);
       setUserCoords(null);
+      setZipPlace(null);
       setCityFilter(DEFAULT_CITY);
       return;
     }
     setUserCoords({ lat: result.lat, lng: result.lng });
     setNearMeActive(true);
+    // Zip-driven results carry the resolved place; near-me (pin) clears
+    // it so headings never keep a stale zip city after a mode switch.
+    if (result.source === "zip" && result.city && result.state) {
+      setZipPlace({ zip: result.zip || "", city: result.city, state: result.state });
+    } else {
+      setZipPlace(null);
+    }
     setSearchParams((prev) => {
       const next = new URLSearchParams(prev);
       next.delete("city");
@@ -621,7 +634,11 @@ export default function DirectoryPage() {
   /* --- Summary text --- */
   const summaryParts: string[] = [];
   if (searchQuery) summaryParts.push(`matching "${searchQuery}"`);
-  if (nearMeActive) summaryParts.push("near you");
+  // "near you" only when results center on the visitor's own location;
+  // zip-driven results name the zip's resolved city instead.
+  if (nearMeActive) {
+    summaryParts.push(zipPlace ? `near ${zipPlace.city}, ${zipPlace.state}` : "near you");
+  }
   else if (cityFilter) summaryParts.push(`in ${cityFilter}`);
   if (categoryFilter) summaryParts.push(`· ${categoryFilter}`);
   if (subcategoryFilter) summaryParts.push(`· ${subcategoryFilter}`);
