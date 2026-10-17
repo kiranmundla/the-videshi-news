@@ -6,8 +6,14 @@ import { Link, useNavigate } from "react-router-dom";
    reviews, and box office figures into one horizontal scroll.
    Each card shows poster, title, our star rating (if reviewed),
    and box office numbers (if available). Tapping goes to the
-   review article if one exists, otherwise the movie detail page.
-   Renders nothing when empty. */
+   review article if one exists, otherwise the movie detail page
+   (poster, cast, brief, and the trailer for unreleased films).
+
+   There is deliberately NO trailers rail on the homepage
+   (Kiran, 2026-10-16): this Movies section covers everything —
+   unreleased films carry an "Opens <date>" label and their brief
+   page holds the trailer; once a review publishes, the same card
+   links the review instead. Renders nothing when empty. */
 
 interface Movie {
   title: string;
@@ -192,7 +198,7 @@ export default function MoviesRail() {
   if (!data) return null;
 
   return (
-    <section className="mb-6">
+    <section className="mb-14">
       <div className="container">
         <div
           className="flex items-center justify-between mb-5 pb-2.5"
