@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
@@ -42,6 +42,19 @@ export default function CategoryPage() {
   const [fadeFrom, setFadeFrom] = useState(0);
   const [keyUpdateSlugs, setKeyUpdateSlugs] = useState<Set<string>>(new Set());
   const [subFilter, setSubFilter] = useState("all");
+  /* Load-more cursors. The static pool is only a ~7-day recency slice
+     (27 lifestyle articles vs 368 published), so "show more" must walk the
+     full Supabase archive. The old code used articles.length as the archive
+     offset — mixing a score-ordered pool with chronological offsets — and
+     killed hasMore whenever dedupe shrank a batch below PAGE_SIZE, so the
+     button died after a page or two with hundreds of articles unshown.
+     These refs track the archive walk exactly: cursor = rows consumed,
+     buffer = fetched-but-unshown rows, done = archive's last page seen,
+     poolShown = pool articles already displayed. */
+  const poolShown = useRef(0);
+  const archiveCursor = useRef(0);
+  const archiveBuffer = useRef<Article[]>([]);
+  const archiveDone = useRef(false);
 
   useEffect(() => {
     if (!def?.hasPipeline) {
@@ -54,6 +67,10 @@ export default function CategoryPage() {
     setHasMore(true);
     setFadeFrom(0);
     setSubFilter("all");
+    poolShown.current = 0;
+    archiveCursor.current = 0;
+    archiveBuffer.current = [];
+    archiveDone.current = false;
 
     // Fetch key update slugs for highlighting
     if (def?.slug) {
@@ -75,7 +92,9 @@ export default function CategoryPage() {
       .then((data) => {
         const items: Article[] = data.articles ?? [];
         applyArticles(items.slice(0, PAGE_SIZE));
-        // Static pool might not have everything — always allow load-more via Supabase
+        poolShown.current = Math.min(PAGE_SIZE, items.length);
+        // Static pool is only a recency slice — load-more continues from
+        // the pool remainder, then walks the full archive (see loadMore).
         setHasMore(true);
         // Store full list for loadMore without hitting Supabase
         (window as any).__categoryPool = { slug: def.slug, articles: items };
@@ -95,35 +114,72 @@ export default function CategoryPage() {
     if (!def?.hasPipeline || loadingMore || !hasMore) return;
     setLoadingMore(true);
     try {
-      // Try loading more from cached static pool first
+      const seen = new Set(articles.map((a) => a.id));
+      let next: Article[] = [];
+      const take = (list: Article[]) => {
+        for (const a of list) {
+          if (next.length >= PAGE_SIZE) break;
+          if (!seen.has(a.id)) {
+            seen.add(a.id);
+            next.push(a);
+          }
+        }
+      };
+
+      // 1) Remainder of the static pool (instant, no network).
       const pool = (window as any).__categoryPool;
-      let next: Article[];
-      if (pool?.slug === def.slug && pool.articles.length > articles.length) {
-        next = pool.articles.slice(articles.length, articles.length + PAGE_SIZE);
-      } else {
-        next = [];
-      }
-      // Pool exhausted mid-batch (or fully): continue through the full
-      // archive (no recency cutoff). De-dupe in case the archive overlaps
-      // the static pool (articles published after the last feed build).
-      if (next.length < PAGE_SIZE) {
-        const archiveNext = await getCategoryArchive(
-          def.slug,
-          PAGE_SIZE - next.length,
-          articles.length + next.length
+      if (pool?.slug === def.slug && poolShown.current < pool.articles.length) {
+        const slice = pool.articles.slice(
+          poolShown.current,
+          poolShown.current + PAGE_SIZE
         );
-        const seen = new Set([
-          ...articles.map((a) => a.id),
-          ...next.map((a) => a.id),
-        ]);
-        next = next.concat(archiveNext.filter((a) => !seen.has(a.id)));
+        poolShown.current += slice.length;
+        take(slice);
       }
-      if (next.length < PAGE_SIZE) setHasMore(false);
-      setFadeFrom(articles.length);
-      setArticles((prev) => [...prev, ...next]);
+
+      // 2) Buffered archive rows fetched by an earlier click.
+      if (next.length < PAGE_SIZE && archiveBuffer.current.length > 0) {
+        const buf = archiveBuffer.current;
+        archiveBuffer.current = [];
+        take(buf);
+        archiveBuffer.current = buf.filter((a) => !next.includes(a));
+      }
+
+      // 3) Walk the full archive (no recency cutoff) with an exact cursor,
+      //    buffering any surplus for the next click. Each fetch is one light
+      //    range query of list columns — the initial page load is untouched.
+      while (next.length < PAGE_SIZE && !archiveDone.current) {
+        const rows = await getCategoryArchive(
+          def.slug,
+          PAGE_SIZE,
+          archiveCursor.current
+        );
+        if (rows.length === 0) {
+          archiveDone.current = true;
+          break;
+        }
+        archiveCursor.current += rows.length;
+        if (rows.length < PAGE_SIZE) archiveDone.current = true;
+        take(rows);
+        const surplus = rows.filter((a) => !next.includes(a) && !articles.some((x) => x.id === a.id));
+        if (surplus.length > 0) archiveBuffer.current.push(...surplus);
+      }
+
+      const poolLeft =
+        pool?.slug === def.slug && poolShown.current < pool.articles.length;
+      if (!poolLeft && archiveBuffer.current.length === 0 && archiveDone.current) {
+        setHasMore(false);
+      }
+      if (next.length > 0) {
+        setFadeFrom(articles.length);
+        setArticles((prev) => [...prev, ...next]);
+      } else {
+        setHasMore(false);
+      }
     } catch (err) {
       console.error("[CategoryPage] loadMore failed", err);
-      setHasMore(false);
+      // Keep hasMore on transient errors so the reader can retry the click
+      // instead of hitting a false "all caught up".
     }
     setLoadingMore(false);
   };
