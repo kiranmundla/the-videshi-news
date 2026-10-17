@@ -222,7 +222,7 @@ def main():
 
     # Sort: now-playing first (Indian first, then by release date desc), then reviewed, then box-office-only
     def sort_key(m):
-        status_order = {"now_playing": 0, "coming_soon": 1, "reviewed": 2, "box_office": 3}
+        status_order = {"now_playing": 0, "opening": 0, "coming_soon": 1, "reviewed": 2, "box_office": 3}
         s = status_order.get(m.get("status"), 4)
         indian = 0 if m.get("is_indian") else 1
         rd = m.get("release_date") or ""
@@ -230,8 +230,8 @@ def main():
 
     movies.sort(key=sort_key)
     # For now_playing, reverse release date (newest first) — handle separately
-    now_playing = [m for m in movies if m.get("status") in ("now_playing", "coming_soon")]
-    others = [m for m in movies if m.get("status") not in ("now_playing", "coming_soon")]
+    now_playing = [m for m in movies if m.get("status") in ("now_playing", "opening", "coming_soon")]
+    others = [m for m in movies if m.get("status") not in ("now_playing", "opening", "coming_soon")]
     now_playing.sort(key=lambda m: (
         0 if m.get("is_indian") else 1,
         m.get("release_date") or "",
