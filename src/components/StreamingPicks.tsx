@@ -252,7 +252,7 @@ export default function StreamingPicks() {
         </span>
       </div>
 
-      <ScrollWrap className="pl-4 gap-3.5">
+      <ScrollWrap className="gap-3.5">
         {data.picks.map((pick) => (
           <PosterCard
             key={pick.slug}
