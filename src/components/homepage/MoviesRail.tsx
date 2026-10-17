@@ -22,6 +22,7 @@ interface Movie {
   ticket_url: string | null;
   review_slug: string | null;
   star_rating: number | null;
+  rating: string | null;
   india_net_crore: number | null;
   worldwide_gross_crore: number | null;
   verdict: string | null;
@@ -76,6 +77,20 @@ function MovieCard({ movie }: { movie: Movie }) {
 
   const indiaNet = fmtCr(movie.india_net_crore);
   const worldwide = fmtCr(movie.worldwide_gross_crore);
+  // Unreleased films: their detail page is poster + cast + trailer until
+  // release day, so the card itself must say the film isn't out yet.
+  const opensLabel =
+    movie.status === "coming_soon"
+      ? movie.rating?.startsWith("Opens")
+        ? movie.rating
+        : movie.release_date
+          ? "Opens " +
+            new Date(movie.release_date + "T12:00:00").toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+            })
+          : null
+      : null;
 
   return (
     <div
@@ -123,6 +138,17 @@ function MovieCard({ movie }: { movie: Movie }) {
       <p className="mt-2 font-serif font-bold text-[0.95rem] leading-snug line-clamp-1 group-hover:text-primary transition-colors">
         {movie.title}
       </p>
+      {/* Unreleased label */}
+      {opensLabel && (
+        <p className="mt-1">
+          <span
+            className="inline-block text-[10px] font-bold uppercase tracking-wide px-1.5 py-0.5 rounded"
+            style={{ background: "rgba(212,168,67,0.20)", color: "#7c5f14" }}
+          >
+            {opensLabel}
+          </span>
+        </p>
+      )}
       {/* Rating */}
       {movie.star_rating !== null && movie.star_rating !== undefined && (
         <div className="mt-1">
