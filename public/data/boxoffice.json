@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-10-12T16:07:56.820456+00:00",
+ "generated_at": "2026-10-17T00:58:18.257540+00:00",
  "week_of": "Oct 12 – Oct 18, 2026",
- "as_of": "2026-10-11",
+ "as_of": "2026-10-16",
  "films": [
   {
    "title": "Hanuman Ansh",
@@ -60,6 +60,26 @@
     {
      "name": "Sacnilk",
      "url": "https://www.sacnilk.com/movie/bethlehem_kudumba_unit_2026"
+    }
+   ]
+  },
+  {
+   "title": "Jailer 2",
+   "language": "Tamil",
+   "release_date": "2026-10-15",
+   "india_net_crore": 95.3,
+   "worldwide_gross_crore": 209.1,
+   "budget_crore": 300,
+   "verdict": null,
+   "poster_url": "https://upload.wikimedia.org/wikipedia/en/d/dc/Jailer_2_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "sources": [
+    {
+     "name": "Sacnilk",
+     "url": "https://www.sacnilk.com/quicknews/Jailer_2_2026_Box_Office_Collection_Day_2"
+    },
+    {
+     "name": "Sacnilk (movie page)",
+     "url": "https://www.sacnilk.com/movie/Jailer_2_2026"
     }
    ]
   },

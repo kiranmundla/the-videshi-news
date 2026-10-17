@@ -609,7 +609,8 @@
           "name": "Mohanlal",
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Kerala_School_Kalolsavam_2026_day_5_Mohanlal_%28277%29_%28cropped%29.jpg/300px-Kerala_School_Kalolsavam_2026_day_5_Mohanlal_%28277%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
-      ]
+      ],
+      "review_slug": "jailer-2-review-roundup-critics"
     },
     {
       "cast": [
@@ -644,7 +645,8 @@
           "name": "Arnold Vosloo",
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Arnold_Vosloo_2009.jpg/300px-Arnold_Vosloo_2009.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
-      ]
+      ],
+      "review_slug": "ranabaali-review-roundup-critics"
     },
     {
       "cast": [
@@ -684,7 +686,8 @@
           "name": "Sikandar Kher",
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Sikander_Kher_promoting_Tere_Bin_Laden_2_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
         }
-      ]
+      ],
+      "review_slug": "prahaar-review-roundup-critics"
     }
   ],
   "week_of": "Oct 12 – Oct 18, 2026"
