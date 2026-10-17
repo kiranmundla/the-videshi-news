@@ -1268,6 +1268,20 @@ def check_broken_article_links(fix=False):
             try:
                 r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"},
                                  timeout=8, allow_redirects=True)
+                if r.status_code == 406:
+                    # 406 = the server rejects THIS request signature
+                    # (ModSecurity-style), not the page. Retry once with a
+                    # full browser UA before judging — left-horizons.com and
+                    # sunvillasamachar.com 406'd the bare UA on 2026-10-17
+                    # while returning 200 to a real browser UA.
+                    time.sleep(1)
+                    r = requests.get(
+                        url,
+                        headers={
+                            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
+                            "Accept": "text/html,application/xhtml+xml",
+                        },
+                        timeout=8, allow_redirects=True)
                 if r.status_code >= 400 and any(d in url for d in RETRY_ONCE):
                     time.sleep(3)
                     r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"},
