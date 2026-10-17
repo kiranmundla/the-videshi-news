@@ -1845,7 +1845,109 @@
         "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-1.jpg",
         "caption": "Muttrah Corniche, Muscat \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
       }
-    ]
+    ],
+    "experiences": {
+      "Sultan Qaboos Grand Mosque": [
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-sultan-qaboos-mosque-1.jpg",
+          "caption": "Sultan Qaboos Grand Mosque, Muscat \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-sultan-qaboos-mosque-2.jpg",
+          "caption": "Main prayer hall and Swarovski chandelier, Sultan Qaboos Grand Mosque \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-sultan-qaboos-mosque-3.jpg",
+          "caption": "Courtyard arcades, Sultan Qaboos Grand Mosque \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-sultan-qaboos-mosque-4.jpg",
+          "caption": "Minaret and gardens, Sultan Qaboos Grand Mosque \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+        }
+      ],
+      "Wadi Shab": [
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-wadi-shab-1.jpg",
+          "caption": "Emerald pool in the Wadi Shab canyon \u00b7 Wikimedia Commons \u00b7 CC BY-SA 2.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-wadi-shab-2.jpg",
+          "caption": "Date palms by a Wadi Shab pool \u00b7 Wikimedia Commons \u00b7 CC BY-SA 2.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-wadi-shab-3.jpg",
+          "caption": "The Wadi Shab canyon \u00b7 Wikimedia Commons \u00b7 CC BY-SA 2.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-wadi-shab-4.jpg",
+          "caption": "Ferry boats at the Wadi Shab trailhead \u00b7 Wikimedia Commons \u00b7 CC BY-SA 2.0"
+        }
+      ],
+      "Musandam": [
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-musandam-1.jpg",
+          "caption": "Dhow cruising Khor Ash Sham fjord, Musandam \u00b7 Wikimedia Commons \u00b7 CC BY 2.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-musandam-2.jpg",
+          "caption": "Limestone fjords of the Musandam Peninsula \u00b7 Wikimedia Commons \u00b7 CC BY 2.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-musandam-3.jpg",
+          "caption": "Dhow cruise off Khasab, Musandam \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-musandam-4.jpg",
+          "caption": "Musandam fjord panorama \u00b7 Wikimedia Commons \u00b7 CC BY 2.0"
+        }
+      ],
+      "Nizwa Fort": [
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-nizwa-fort-1.jpg",
+          "caption": "Nizwa Fort and the palm oasis at dusk \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-nizwa-fort-2.jpg",
+          "caption": "Battlements of Nizwa Fort \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-nizwa-fort-3.jpg",
+          "caption": "Nizwa old town and the Friday Mosque, from Nizwa Fort \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-nizwa-fort-4.jpg",
+          "caption": "Inside the walls of Nizwa Fort \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+        }
+      ],
+      "Jebel Akhdar": [
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-jebel-akhdar-1.jpg",
+          "caption": "Terraced village of Al Aqr, Jebel Akhdar \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-jebel-akhdar-2.jpg",
+          "caption": "Cliffside village and terraces, Jebel Akhdar \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-jebel-akhdar-3.jpg",
+          "caption": "Sunrise over Jebel Akhdar, Al Hajar Mountains \u00b7 Wikimedia Commons \u00b7 CC BY 2.0"
+        }
+      ],
+      "Ras Al Jinz": [
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-ras-al-jinz-1.jpg",
+          "caption": "Green turtle at dawn on Ras Al Jinz beach \u00b7 Wikimedia Commons \u00b7 CC BY 3.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-ras-al-jinz-2.jpg",
+          "caption": "Green turtle laying eggs at Ras Al Jinz \u00b7 Wikimedia Commons \u00b7 CC BY-SA 2.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/oman-exp-ras-al-jinz-3.jpg",
+          "caption": "Green turtle hatchling at Ras Al Jinz \u00b7 Wikimedia Commons \u00b7 CC BY 3.0"
+        }
+      ]
+    }
   },
   "portugal": {
     "photos": [
