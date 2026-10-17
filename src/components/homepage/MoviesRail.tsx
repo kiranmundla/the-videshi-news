@@ -192,7 +192,7 @@ export default function MoviesRail() {
   if (!data) return null;
 
   return (
-    <section className="mb-14">
+    <section className="mb-6">
       <div className="container">
         <div
           className="flex items-center justify-between mb-5 pb-2.5"

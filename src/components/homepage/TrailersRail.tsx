@@ -87,18 +87,56 @@ function TrailerPlayer({ videoId, title, thumbnail }: { videoId: string; title: 
   );
 }
 
+/* ── Dedupe vs the Movies rail ────────────────────
+   This row lives inside the Movies section and must never repeat a film
+   the poster rail already shows (Ranabaali and Ramayana appeared in both
+   until 2026-10-16). A trailer counts as a duplicate when its film's full
+   title appears in the video title, or when the franchise head (title
+   text before the colon) matches the trailer's own lead segment —
+   "Ramayana: Part 1" vs "RAMAYANA: RISE OF A LEGEND - NEW TRAILER". */
+function normTitle(s: string): string {
+  return s.toLowerCase().replace(/[^a-z0-9 ]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function trailerMatchesMovie(trailerTitle: string, movieTitle: string): boolean {
+  const tNorm = normTitle(trailerTitle);
+  const mNorm = normTitle(movieTitle);
+  if (mNorm.length >= 4 && tNorm.includes(mNorm)) return true;
+  const mHead = normTitle(movieTitle.split(":")[0]);
+  if (mHead.length < 4) return false;
+  const segment = trailerTitle.split("|")[0].split(" - ")[0];
+  const tHead = normTitle(segment.split(":")[0]);
+  return tHead === mHead;
+}
+
 export default function TrailersRail() {
   const [trailers, setTrailers] = useState<Trailer[]>([]);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    fetch("/data/trailers.json")
-      .then((r) => {
-        if (!r.ok) throw new Error(r.statusText);
-        return r.json();
-      })
-      .then((d) => {
-        if (d?.trailers?.length) setTrailers(d.trailers.slice(0, 12));
+    // Load the Movies rail's titles first so duplicates can be dropped;
+    // if that fetch fails, fall back to showing trailers unfiltered.
+    fetch("/data/movies.json")
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null)
+      .then((moviesData) => {
+        const movieTitles: string[] = (moviesData?.movies ?? []).map(
+          (m: { title: string }) => m.title,
+        );
+        return fetch("/data/trailers.json")
+          .then((r) => {
+            if (!r.ok) throw new Error(r.statusText);
+            return r.json();
+          })
+          .then((d) => {
+            if (d?.trailers?.length) {
+              const fresh = d.trailers.filter(
+                (t: Trailer) =>
+                  !movieTitles.some((mt) => trailerMatchesMovie(t.title, mt)),
+              );
+              setTrailers(fresh.slice(0, 12));
+            }
+          });
       })
       .catch(() => {});
   }, []);
@@ -145,19 +183,17 @@ export default function TrailersRail() {
 
   return (
     <>
-      <section className="mb-14">
+      {/* Sub-row of the Movies section (consolidated 2026-10-16) — the
+          homepage carries two movie sections: Movies (posters + this
+          trailers row) and What to Watch This Week. */}
+      <div className="mb-14">
         <div className="container">
-          <div
-            className="flex items-center mb-5 pb-2.5"
-            style={{ borderBottom: "3px solid #A32D2F" }}
+          <p
+            className="text-[11px] font-bold tracking-[2px] uppercase mb-3"
+            style={{ color: "#0B1D3A", borderLeft: "3px solid #A32D2F", paddingLeft: 8 }}
           >
-            <h2
-              className="text-[13px] font-bold tracking-[2px] uppercase"
-              style={{ color: "#0B1D3A" }}
-            >
-              Latest Trailers
-            </h2>
-          </div>
+            Latest Trailers
+          </p>
           <div className="flex gap-5 overflow-x-auto pb-2 -mx-1 px-1">
             {trailers.map((t, idx) => (
               <div
@@ -199,7 +235,7 @@ export default function TrailersRail() {
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
       <Lightbox
         open={selectedIndex !== null}

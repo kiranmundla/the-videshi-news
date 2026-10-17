@@ -690,8 +690,8 @@ export default function IndexV2() {
           listCount={5}
         />
         <MoviesRail />
-        <StreamingPicks />
         <TrailersRail />
+        <StreamingPicks />
         <FridayLaughs />
         </LazyMount>
 
