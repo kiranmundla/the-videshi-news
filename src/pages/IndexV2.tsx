@@ -772,15 +772,15 @@ export default function IndexV2() {
         </LazyMount>
         )}
 
-        {/* 18. Food (horizontal ribbon — landscape) */}
+        {/* 18. Food (lead + list — vertical, same style as Lifestyle & Health, 2026-10-17) */}
         {layout.food.length > 0 && (
 <LazyMount>
-          <RibbonSection
+          <LeadListSection
             title="Food"
             borderColor="#BF360C"
             categorySlug="food"
             articles={layout.food}
-            aspectRatio="landscape"
+            listCount={6}
           />
         </LazyMount>
         )}
