@@ -135,7 +135,10 @@ check("source 1 is Nasdaq calendar w/ date",
       (jpm.get("sources") or [{}])[0].get("url", "").endswith("date=2026-10-14"))
 check("source 2 is JPM IR", (jpm.get("sources") or [{}, {}])[1].get("url") == dh.EARNINGS_IR_URLS["JPM"])
 abbv = by_symbol.get("ABBV", {})
-check("ABBV has only the calendar source (IR unverified)", len(abbv.get("sources") or []) == 1)
+# ABBV's IR URL was browser-verified and added to EARNINGS_IR_URLS on
+# 2026-10-17 (it was the unverified control case before that).
+check("ABBV has 2 sources", len(abbv.get("sources") or []) == 2)
+check("source 2 is ABBV IR", (abbv.get("sources") or [{}, {}])[1].get("url") == dh.EARNINGS_IR_URLS["ABBV"])
 
 print("F. headline_names_company — the 2026-10-14 JPMorgan/Morgan trap")
 ROUNDUP = "Bank Earnings Kick Off Mixed: JPMorgan Misses, Citi and Goldman Beat"
