@@ -543,7 +543,7 @@
       }
     ],
     "experiences": {
-      "Snorkeling": [
+      "Snorkelling": [
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-snorkeling-1.jpg",
           "caption": "Coral reef snorkeling"
@@ -707,7 +707,7 @@
       }
     ],
     "experiences": {
-      "Kandy Ella Train": [
+      "Kandy to Ella": [
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-exp-kandy-ella-train-1.jpg",
           "caption": "Blue train through tea country"
@@ -773,7 +773,7 @@
           "caption": "Scenic view of Galle Lighthouse amidst palm trees in Sri Lanka under a clear sky."
         }
       ],
-      "Yala Safari": [
+      "Yala National Park": [
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-exp-yala-safari-1.jpg",
           "caption": "Yala leopard safari"
@@ -1519,7 +1519,7 @@
       }
     ],
     "experiences": {
-      "Chichen Itza": [
+      "Chich\u00e9n Itz\u00e1": [
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-chichen-itza-1.jpg",
           "caption": "El Castillo pyramid"
@@ -1539,31 +1539,7 @@
         {
           "src": "https://images.pexels.com/photos/11212909/pexels-photo-11212909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
           "caption": "Explore the grandeur of the Pyramid of Kukulkan, a striking Mayan architectural wonder in Chichen Itza."
-        }
-      ],
-      "Tulum Ruins": [
-        {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-tulum-ruins-1.jpg",
-          "caption": "Tulum clifftop ruins"
         },
-        {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-tulum-ruins-2.jpg",
-          "caption": "Tulum beach temple"
-        },
-        {
-          "src": "https://images.pexels.com/photos/12174627/pexels-photo-12174627.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Scenic view of Tulum's tropical beach with palm trees and ruins, perfect vacation spot."
-        },
-        {
-          "src": "https://images.pexels.com/photos/32865198/pexels-photo-32865198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Stunning coastal view of Tulum Ruins with turquoise ocean and lush greenery."
-        },
-        {
-          "src": "https://images.pexels.com/photos/27638882/pexels-photo-27638882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Stunning beach view at Tulum, Mexico featuring turquoise waters and ancient ruins."
-        }
-      ],
-      "Cenotes": [
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-cenotes-1.jpg",
           "caption": "Swimming in a cenote"
@@ -1583,6 +1559,28 @@
         {
           "src": "https://images.pexels.com/photos/33667438/pexels-photo-33667438.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
           "caption": "Swimmers enjoying a clear water cenote amidst lush greenery in Playa del Carmen, Mexico."
+        }
+      ],
+      "Tulum": [
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-tulum-ruins-1.jpg",
+          "caption": "Tulum clifftop ruins"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-tulum-ruins-2.jpg",
+          "caption": "Tulum beach temple"
+        },
+        {
+          "src": "https://images.pexels.com/photos/12174627/pexels-photo-12174627.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Scenic view of Tulum's tropical beach with palm trees and ruins, perfect vacation spot."
+        },
+        {
+          "src": "https://images.pexels.com/photos/32865198/pexels-photo-32865198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning coastal view of Tulum Ruins with turquoise ocean and lush greenery."
+        },
+        {
+          "src": "https://images.pexels.com/photos/27638882/pexels-photo-27638882.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "caption": "Stunning beach view at Tulum, Mexico featuring turquoise waters and ancient ruins."
         }
       ],
       "Mexico City": [
@@ -2513,7 +2511,21 @@
           "caption": "The Grand Egyptian Museum building, Giza \u00b7 Wikimedia Commons \u00b7 CC0"
         }
       ],
-      "Valley of the Kings": [
+      "Nile River Cruise": [
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/egypt-exp-nile-cruise-1.jpg",
+          "caption": "The Sun Ray Nile cruise ship docked at Aswan \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/egypt-exp-nile-cruise-2.jpg",
+          "caption": "Nile cruise ships sailing between Edfu and Kom Ombo \u00b7 Wikimedia Commons \u00b7 CC BY-SA 3.0"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/egypt-exp-nile-cruise-3.jpg",
+          "caption": "A felucca sailing the Nile at Aswan \u00b7 Wikimedia Commons \u00b7 CC BY 3.0"
+        }
+      ],
+      "Luxor": [
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/egypt-exp-valley-of-the-kings-karnak-1.jpg",
           "caption": "The Valley of the Kings from above, Luxor \u00b7 Wikimedia Commons \u00b7 CC BY 4.0"
@@ -2529,20 +2541,6 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/egypt-exp-valley-of-the-kings-karnak-4.jpg",
           "caption": "Columns and ruins at Karnak Temple, Luxor \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
-        }
-      ],
-      "Nile River Cruise": [
-        {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/egypt-exp-nile-cruise-1.jpg",
-          "caption": "The Sun Ray Nile cruise ship docked at Aswan \u00b7 Wikimedia Commons \u00b7 CC BY-SA 4.0"
-        },
-        {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/egypt-exp-nile-cruise-2.jpg",
-          "caption": "Nile cruise ships sailing between Edfu and Kom Ombo \u00b7 Wikimedia Commons \u00b7 CC BY-SA 3.0"
-        },
-        {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/egypt-exp-nile-cruise-3.jpg",
-          "caption": "A felucca sailing the Nile at Aswan \u00b7 Wikimedia Commons \u00b7 CC BY 3.0"
         }
       ],
       "Abu Simbel": [
