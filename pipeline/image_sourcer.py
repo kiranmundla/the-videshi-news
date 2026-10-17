@@ -12,6 +12,8 @@ Priority order:
   3.5. YouTube thumbnail (specific, recent)
   3.6. Official source (government / company press pages — curated allowlist)
   3.7. PR Newswire India (press-approved images)
+  3.8. Person profile (subject's own institutional profile page —
+       exact-name alt verified; named-person articles, before Wikipedia)
   4. Wikipedia person image
   5. Wikimedia Commons search
   6. Pexels fallback
@@ -1973,6 +1975,665 @@ def headline_person_name(headline):
     return None
 
 
+# ── Source 3.8: Person profile (subject's own institutional profile) ─────────
+# Added 2026-10-17 after the Ramya Anche failure: her article and reel shipped
+# with a generic NASA HQ building photo from the Wikipedia fallback because
+# the chain had no step for the named person's OWN institutional profile
+# photo. Her verified portrait was on her Steward Observatory profile page
+# (astro.arizona.edu/person/ramya-anche, img alt exactly "Ramya Anche",
+# 3024×4032) the whole time — no step ever looked there.
+#
+# This step runs BEFORE Wikipedia for named-person articles. It finds the
+# subject's official profile page (university/faculty profile, agency or
+# company bio, team/org profile) and accepts ONLY a portrait whose alt
+# text (or figcaption) EXACTLY matches the person's name (normalized; a
+# trailing credential suffix like ", MD" / ", PhD" is stripped before
+# comparing). Search is Brave (Bing ignores site:/quoted queries from
+# this box — measured 2026-10-17). Candidate pages come from, in order:
+# site-search on INSTITUTIONAL domains derived from the article's own
+# sources (.edu/.gov/.mil/.org source hosts only), general search
+# (institutional TLDs, or profile-shaped paths on other official domains,
+# never news-article paths), and conventional /person/<slug>-style URL
+# guesses on the derived domains.
+#
+# Identity gates, all mandatory (hardened after the first dry run caught
+# an EssentiallySports photo of Minjee Lee alt-texted "Min Woo Lee"):
+# exact-name alt/caption; the page must be ABOUT the person (name in
+# <title> or name slug in the URL path); non-institutional pages must
+# also share a distinctive headline word (namesake screen); standard
+# hero floors (≥800px wide — CMS full-size variants are tried when the
+# rendered derivative is too small); group photos rejected when face
+# detection is available. Anything short of all that is rejected,
+# because a wrong photo is worse than no photo. Verified portraits are
+# uploaded to Supabase storage and cached in person_images (source 3)
+# so repeat stories reuse them.
+
+_PROFILE_MISS_CACHE_PATH = os.path.join(SCRIPT_DIR, ".state", "person-profile-miss.json")
+_PROFILE_MISS_TTL_SECS = 3 * 24 * 3600
+
+# Trailing credential tokens allowed after an exact name in a profile alt
+# ("Rachna Shroff, MD" → "Rachna Shroff"). Nothing else may follow the name.
+_PROFILE_CREDENTIAL_TOKENS = {
+    "md", "phd", "do", "mph", "mpp", "ms", "ma", "bs", "ba", "mba",
+    "facp", "facc", "face", "esq", "jd", "rn", "dds", "dmd", "scd", "drph",
+}
+
+# URL path fragments that mark a page as a person/profile page.
+_PROFILE_PATH_TOKENS = (
+    "/person/", "/people/", "/faculty", "/profile", "/profiles/",
+    "/staff/", "/team/", "/bio/", "/bios/", "/directory/", "/player",
+    "/roster/", "/member/", "/experts/", "/doctor", "/physician",
+    "/scientist", "/researcher", "/author", "/speaker",
+)
+
+# Domains that are never a person's institutional profile (news/social/wiki).
+_PROFILE_EXCLUDED_DOMAINS = {
+    "facebook.com", "instagram.com", "twitter.com", "x.com", "youtube.com",
+    "linkedin.com", "wikipedia.org", "wikimedia.org", "tiktok.com",
+    "reddit.com", "bing.com", "google.com", "duckduckgo.com",
+    # Profile aggregators — not the person's institution; namesake traps
+    # (a ResearchGate "Min Woo Lee" is a materials scientist, not the golfer)
+    "researchgate.net", "academia.edu", "zoominfo.com",
+    "ndtv.com", "indianexpress.com", "thehindu.com", "hindustantimes.com",
+    "timesofindia.indiatimes.com", "theguardian.com", "nytimes.com",
+    "washingtonpost.com", "bbc.com", "bbc.co.uk", "cnn.com", "reuters.com",
+    "apnews.com", "aljazeera.com", "livemint.com", "moneycontrol.com",
+    "firstpost.com", "theprint.in", "scroll.in", "thewire.in", "news18.com",
+    "cnbc.com", "bloomberg.com", "espncricinfo.com", "cricbuzz.com",
+}
+
+# Tokens that disqualify a capitalized headline window as a person's name in
+# the mid-headline scan: professions/titles, org words, nationality
+# adjectives, extra headline verbs. A false candidate costs one search at
+# most — the exact-name alt gate downstream can never let a wrong photo in.
+_PROFILE_SCAN_BAD_TOKENS = (
+    _HEADLINE_TITLE_WORDS | _HEADLINE_PREFIX_WORDS
+    | _HEADLINE_NONNAME_FIRST_WORDS | _HEADLINE_COLLECTIVE_WORDS
+    | _HEADLINE_COMMON_VERB_WORDS | _HEADLINE_DETERMINER_WORDS
+    | {
+        "inc", "corp", "ltd", "llc", "co", "university", "college",
+        "institute", "school", "hospital", "department", "ministry",
+        "association", "foundation", "council", "commission", "agency",
+        "bureau", "services", "solutions", "industries", "enterprises",
+        "airlines", "airways", "motors", "pharma", "capital", "partners",
+        "ventures", "network", "news", "times", "post", "journal",
+        "gazette", "tribune", "herald", "express", "global", "national",
+        "international",
+        "american", "british", "canadian", "australian", "african",
+        "asian", "european", "mexican", "pakistani", "bangladeshi",
+        "nepali", "lankan", "korean", "chinese", "japanese", "russian",
+        "researcher", "astronomer", "scientist", "golfer", "player",
+        "coach", "actor", "actress", "singer", "lawyer", "judge",
+        "officer", "chief", "director", "professor", "doctor", "engineer",
+        "founder", "author", "artist", "chef", "expert", "official",
+        "minister", "senator", "governor", "mayor", "captain",
+        "withdraws", "withdraw", "returned", "returns", "killed", "dead",
+        "arrested", "charged", "sentenced", "convicted", "never",
+        "wanted", "fraudster", "fugitive", "suspect", "victim",
+        # Headline verbs/role nouns/topic nouns seen in the 2026-10-17
+        # no-image batch — none of these is ever part of a person's name
+        "are", "is", "say", "says", "claiming", "claims", "promising",
+        "promises", "warns", "warning", "turning", "rewriting",
+        "triggers", "trigger", "alter", "backdate", "husband", "wife",
+        "murder", "jobs", "visas", "diagnosis", "spasms", "illness",
+        "mission", "million", "case", "plot", "violent", "document",
+        "rules", "heroines", "lawmakers", "temple", "immigration",
+        "lead", "leads", "older", "hate", "citizenship", "false", "claim",
+        "illinois", "california", "texas", "florida", "ohio", "georgia",
+        "arizona", "nevada", "oregon", "colorado", "virginia",
+    }
+)
+
+
+def _norm_person_name(s):
+    """Normalize a name/alt for comparison: lowercase, letters+spaces only."""
+    s = (s or "").lower()
+    s = re.sub(r"[^a-z\s]", " ", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def _profile_alt_matches(alt_text, person_name):
+    """Identity gate: alt/caption must be EXACTLY the person's name
+    (normalized), allowing only trailing credential tokens (MD, PhD, …)."""
+    n = _norm_person_name(alt_text)
+    t = _norm_person_name(person_name)
+    if not n or not t:
+        return False
+    if n == t:
+        return True
+    nt, tt = n.split(), t.split()
+    while len(nt) > len(tt) and nt[-1] in _PROFILE_CREDENTIAL_TOKENS:
+        nt.pop()
+    return " ".join(nt) == t
+
+
+def _registrable_domain(host):
+    """news.arizona.edu → arizona.edu (with common two-part suffix handling)."""
+    host = (host or "").lower().split(":")[0].replace("www.", "")
+    parts = [p for p in host.split(".") if p]
+    if len(parts) <= 2:
+        return host
+    if parts[-2] in ("co", "com", "org", "net", "gov", "ac") and \
+            parts[-1] in ("uk", "in", "au", "nz", "za", "jp", "br"):
+        return ".".join(parts[-3:])
+    return ".".join(parts[-2:])
+
+
+def _looks_like_person_name(name):
+    """Shape check for writer-provided entities: 2–4 capitalized tokens,
+    no org/title tokens. Deliberately stricter than the headline scan."""
+    if not isinstance(name, str):
+        return False
+    toks = [t.strip(".,'’") for t in name.split()]
+    if not (2 <= len(toks) <= 4):
+        return False
+    for t in toks:
+        if not t:
+            return False
+        if t.lower() in _PROFILE_SCAN_BAD_TOKENS:
+            return False
+        if t.isupper() and len(t) > 1:
+            return False  # acronym token (NASA, FBI) — not a name part
+        if not (t[0].isupper() or t.lower() in ("van", "von", "de", "der", "bin", "al")):
+            return False
+    return True
+
+
+def _headline_name_scan(headline):
+    """Find candidate person names mid-headline ("... Astronomer Ramya
+    Anche to Lead ...", "... Researcher Rachna Shroff Dies ...") where
+    headline_person_name() — which only reads the lead — returns None.
+
+    Generates 2–3 token capitalized windows, latest-in-run first (a name
+    usually ends its capitalized run, right before the verb). Windows
+    containing a bad token are dropped. False candidates are harmless:
+    each costs one search and the exact-name alt gate decides.
+    """
+    tokens = re.findall(r"[A-Za-z][A-Za-z.'’-]*", headline or "")
+    runs, run = [], []
+    for t in tokens:
+        base = re.sub(r"['’]s$|['’]$", "", t).rstrip(".")
+        if t[:1].isupper() and base.lower() not in _HEADLINE_COMMON_VERB_WORDS \
+                and not (t.isupper() and len(t) <= 5):
+            run.append(base)
+        else:
+            if len(run) >= 2:
+                runs.append(run)
+            run = []
+    if len(run) >= 2:
+        runs.append(run)
+    out = []
+    for run in runs:
+        windows = []
+        for start in range(len(run) - 2, -1, -1):
+            windows.append(run[start:start + 2])
+            if start + 3 <= len(run):
+                windows.append(run[start:start + 3])
+        for w in windows:
+            if any(tok.lower() in _PROFILE_SCAN_BAD_TOKENS for tok in w):
+                continue
+            name = " ".join(w)
+            if name not in out:
+                out.append(name)
+    return out
+
+
+def _person_name_candidates(article):
+    """Ordered candidate names for the profile lookup:
+    headline lead → writer entities → mid-headline scan. Capped at 6."""
+    names = []
+
+    def _add(n):
+        n = re.sub(r"['’]s$", "", (n or "").strip())
+        if n and n.lower() not in {x.lower() for x in names} and 3 <= len(n) <= 42:
+            names.append(n)
+
+    lead = headline_person_name(article.get("headline", ""))
+    if lead:
+        _add(lead)
+    for e in (article.get("image_entities") or [])[:4]:
+        if _looks_like_person_name(e):
+            _add(e)
+    for n in _headline_name_scan(article.get("headline", "")):
+        _add(n)
+    return names[:6]
+
+
+def _brave_search_links(query, max_results=10):
+    """Web search via Brave Search HTML (no API key), result URLs in rank
+    order. Search route measured 2026-10-17: Bing (RSS and HTML) ignores
+    site:/quoted queries from this box and returns loose single-term
+    matches (a site:arizona.edu query for an astronomer returned a film
+    actress's pages), while Brave honors both operators and ranked the
+    real Steward Observatory profile #2 for "Ramya Anche" arizona.
+    Honors site: restrictions, so it serves both the derived-domain and
+    general searches below."""
+    try:
+        q = urllib.parse.quote(query)
+        url = f"https://search.brave.com/search?q={q}"
+        result = _safe_run(
+            ["curl", "-sSL", "--max-time", "15",
+             "-A", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+             url],
+            capture_output=True, text=True, timeout=20,
+        )
+        links = re.findall(r'href="(https?://[^"]+)"', result.stdout or "")
+        out = []
+        for link in links:
+            try:
+                parsed = urllib.parse.urlparse(link)
+            except Exception:
+                continue
+            if _registrable_domain(parsed.netloc) == "brave.com":
+                continue
+            if parsed.path.lower().endswith(
+                    (".css", ".js", ".png", ".jpg", ".svg", ".ico", ".woff2")):
+                continue
+            if link not in out:
+                out.append(link)
+            if len(out) >= max_results:
+                break
+        return out
+    except Exception as e:
+        print(f"    ⚠ person-profile search error: {e}")
+        return []
+
+
+def _profile_page_candidates(person_name, article):
+    """Candidate official profile pages for a person, best first:
+    (1) site-search on non-news domains derived from the article's own
+        sources (a UA News source → search arizona.edu), then
+    (2) general web search, filtered to institutional domains (.edu/.gov/
+        .org/.mil) or strongly profile-shaped URLs on other official
+        domains (e.g. a tour's /player/ page)."""
+    pages = []
+
+    def _add(u):
+        if u and u not in pages:
+            pages.append(u)
+
+    # (1) Domains derived from the article's own sources
+    src_urls = []
+    raw_sources = article.get("sources") or []
+    if isinstance(raw_sources, str):
+        try:
+            raw_sources = json.loads(raw_sources)
+        except Exception:
+            raw_sources = []
+    if isinstance(raw_sources, list):
+        for src in raw_sources:
+            if isinstance(src, str) and src.startswith("http"):
+                src_urls.append(src)
+            elif isinstance(src, dict) and str(src.get("url", "")).startswith("http"):
+                src_urls.append(src["url"])
+    if article.get("topic_id"):
+        try:
+            for u in fetch_source_urls(article["topic_id"]):
+                if u not in src_urls:
+                    src_urls.append(u)
+        except Exception:
+            pass
+    derived = []
+    for u in src_urls:
+        try:
+            parsed_u = urllib.parse.urlparse(u)
+            host = parsed_u.netloc.lower()
+            dom = _registrable_domain(host)
+        except Exception:
+            continue
+        # INSTITUTIONAL GATE for derived domains (hardened 2026-10-17):
+        # only .edu/.gov/.mil/.org source hosts make their registrable
+        # domain "the subject's institution". A .com news source must NOT
+        # qualify — in the first dry run, an EssentiallySports article
+        # about Minjee Lee carried an image alt-texted "Min Woo Lee" (her
+        # brother), and the derived-domain path let that page in. Alt text
+        # on content-farm pages is not identity verification.
+        if not host.endswith((".edu", ".gov", ".mil", ".org")):
+            continue
+        if dom and dom not in derived and dom not in _PROFILE_EXCLUDED_DOMAINS:
+            derived.append(dom)
+    for dom in derived[:2]:
+        for link in _brave_search_links(f'site:{dom} "{person_name}"'):
+            _add(link)
+
+    # (2) General web search
+    for query in (f'"{person_name}" profile', f'"{person_name}" faculty profile'):
+        for link in _brave_search_links(query, max_results=10):
+            try:
+                parsed = urllib.parse.urlparse(link)
+            except Exception:
+                continue
+            dom = _registrable_domain(parsed.netloc)
+            if dom in _PROFILE_EXCLUDED_DOMAINS:
+                continue
+            tld_ok = parsed.netloc.lower().endswith(
+                (".edu", ".gov", ".org", ".mil"))
+            path = parsed.path.lower()
+            if not tld_ok:
+                # Non-institutional domains qualify ONLY via a profile-
+                # shaped path (a tour's /player/ page, a team's /roster/
+                # page) — and never via a news-article path, whose image
+                # alt text is written for a different story (the Minjee
+                # Lee near-miss above arrived on a /golf-news-… path).
+                if re.search(r"/news/|[-_]news[-_.\/]|/article|/stor(y|ies)/|"
+                             r"/(19|20)\d{2}/\d{1,2}/", path):
+                    continue
+                if not any(tok in path for tok in _PROFILE_PATH_TOKENS):
+                    continue
+            _add(link)
+        if len(pages) >= 8:
+            break
+
+    # (3) Last resort: conventional profile-URL patterns on the derived
+    # institutional domains (…/person/<name-slug> is the UA pattern that
+    # held Ramya Anche's portrait). Tried last; a 404 simply yields no
+    # exact-name image and the lookup moves on.
+    slug = re.sub(r"[^a-z0-9]+", "-", person_name.lower()).strip("-")
+    for dom in derived[:2]:
+        for host in (dom, f"www.{dom}"):
+            for pat in ("/person/", "/people/", "/faculty/", "/profile/"):
+                _add(f"https://{host}{pat}{slug}")
+    return pages[:10]
+
+
+def _portrait_url_variants(url):
+    """Full-size variants of a CMS-styled portrait URL. Profile pages often
+    render a styled derivative below the hero floor (measured 2026-10-17:
+    Arizona's Drupal served the 760px 'az_medium' derivative while the
+    3024×4032 original sat at the style-stripped path). Variants:
+    the URL itself, the Drupal style-stripped original
+    (/styles/<style>/public/ → /), and the WordPress size-suffix-stripped
+    original (-<w>x<h> before the extension)."""
+    out = [url]
+    stripped = re.sub(r"/styles/[^/]+/public/", "/", url)
+    if stripped != url:
+        out.append(stripped)
+    wp = re.sub(r"-\d{2,4}x\d{2,4}(\.[a-zA-Z0-9]+)(\?.*)?$", r"\1\2", url)
+    if wp != url:
+        out.append(wp)
+    return out
+
+
+def _is_logo_filename(img_url):
+    """Narrow logo check for profile portraits. The og:image generic guard
+    is NOT reused here: its directory-segment patterns false-positive on
+    standard CMS paths (Drupal's /sites/default/files/ tripped it on the
+    verified Ramya Anche portrait). The exact-name alt is the identity
+    gate; this only screens out obvious non-portrait files."""
+    try:
+        fname = urllib.parse.urlparse(img_url).path.rsplit("/", 1)[-1].lower()
+    except Exception:
+        fname = (img_url or "").lower()
+    return any(x in fname for x in
+               ("logo", "icon", "favicon", "sprite", "placeholder"))
+
+
+def _extract_exact_name_portrait(page_url, person_name, context_words=None):
+    """Fetch a profile page and find an <img> whose alt EXACTLY matches the
+    person's name (or a <figure> whose figcaption does).
+    Returns (image_url_variants, site_name, fetched_ok, page_title,
+    topical_ok) — variants are the matched src plus its full-size CMS
+    variants, best-evidence first. topical_ok reports whether the page's
+    visible text shares a distinctive headline word (namesake screen for
+    non-institutional pages); it is True when no context words were given."""
+    try:
+        result = _safe_run(
+            ["curl", "-sSL", "--max-time", "15", "-A", UA, page_url],
+            capture_output=True, text=True, timeout=20,
+        )
+        html = result.stdout or ""
+    except Exception:
+        return None, None, False, None, True
+    if not html:
+        return None, None, False, None, True
+
+    import html as _html_mod
+    site_name = None
+    m = re.search(r'property=["\']og:site_name["\'][^>]+content=["\']([^"\']+)["\']',
+                  html, re.IGNORECASE)
+    if m:
+        site_name = _html_mod.unescape(m.group(1).strip()) or None
+    page_title = None
+    mt = re.search(r"<title[^>]*>(.*?)</title>", html, re.IGNORECASE | re.DOTALL)
+    if mt:
+        page_title = _html_mod.unescape(
+            re.sub(r"<[^>]+>", " ", mt.group(1))).strip() or None
+    # Topical corroboration: does the page's visible text share any
+    # distinctive headline word (excluding the person's own name tokens)?
+    topical_ok = True
+    if context_words:
+        visible = re.sub(r"<(script|style)\b.*?</\1>", " ", html,
+                         flags=re.IGNORECASE | re.DOTALL)
+        visible = _html_mod.unescape(re.sub(r"<[^>]+>", " ", visible)).lower()
+        topical_ok = any(w in visible for w in context_words)
+
+    def _attr(tag, name):
+        mm = re.search(name + r'\s*=\s*"([^"]*)"', tag, re.IGNORECASE) or \
+            re.search(name + r"\s*=\s*'([^']*)'", tag, re.IGNORECASE)
+        return _html_mod.unescape(mm.group(1).strip()) if mm else ""
+
+    def _img_variants(tag):
+        urls = []
+        src = _attr(tag, "src") or _attr(tag, "data-src") or _attr(tag, "data-lazy-src")
+        if src and not src.startswith("data:"):
+            urls.append(urllib.parse.urljoin(page_url, src))
+        srcset = _attr(tag, "srcset")
+        if srcset:
+            for part in srcset.split(","):
+                u = part.strip().split(" ")[0]
+                if u and not u.startswith("data:"):
+                    urls.append(urllib.parse.urljoin(page_url, u))
+        variants = []
+        for u in urls:
+            for v in _portrait_url_variants(u):
+                if v not in variants:
+                    variants.append(v)
+        return variants
+
+    for m in re.finditer(r"<img\b[^>]*>", html, re.IGNORECASE):
+        tag = m.group(0)
+        if _profile_alt_matches(_attr(tag, "alt"), person_name):
+            variants = _img_variants(tag)
+            if variants:
+                return variants, site_name, True, page_title, topical_ok
+    # figcaption fallback: figure whose caption is exactly the name
+    for fm in re.finditer(r"<figure\b.*?</figure>", html, re.IGNORECASE | re.DOTALL):
+        block = fm.group(0)
+        cap = re.search(r"<figcaption[^>]*>(.*?)</figcaption>", block,
+                        re.IGNORECASE | re.DOTALL)
+        if cap:
+            cap_text = re.sub(r"<[^>]+>", " ", cap.group(1))
+            if _profile_alt_matches(cap_text, person_name):
+                im = re.search(r"<img\b[^>]*>", block, re.IGNORECASE)
+                if im:
+                    variants = _img_variants(im.group(0))
+                    if variants:
+                        return variants, site_name, True, page_title, topical_ok
+    return None, site_name, True, page_title, topical_ok
+
+
+def _count_faces(img_bytes):
+    """Haar face count for the group-photo gate. -1 = detection unavailable
+    (cv2 missing) — the exact-name alt gate still applies on its own."""
+    try:
+        import cv2
+        import numpy as np
+        nparr = np.frombuffer(img_bytes, np.uint8)
+        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        if img is None:
+            return -1
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        cascade = cv2.CascadeClassifier(
+            cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+        faces = cascade.detectMultiScale(
+            gray, scaleFactor=1.1, minNeighbors=5,
+            minSize=(int(gray.shape[1] * 0.04), int(gray.shape[0] * 0.04)))
+        return len(faces)
+    except Exception:
+        return -1
+
+
+def _profile_miss_fresh(person_lower):
+    try:
+        with open(_PROFILE_MISS_CACHE_PATH) as f:
+            cache = json.load(f)
+        ts = cache.get(person_lower, {}).get("ts", 0)
+        return (time.time() - ts) < _PROFILE_MISS_TTL_SECS
+    except Exception:
+        return False
+
+
+def _profile_record_miss(person_lower):
+    try:
+        cache = {}
+        if os.path.exists(_PROFILE_MISS_CACHE_PATH):
+            with open(_PROFILE_MISS_CACHE_PATH) as f:
+                cache = json.load(f)
+        cache[person_lower] = {"ts": time.time()}
+        os.makedirs(os.path.dirname(_PROFILE_MISS_CACHE_PATH), exist_ok=True)
+        with open(_PROFILE_MISS_CACHE_PATH, "w") as f:
+            json.dump(cache, f)
+    except Exception:
+        pass
+
+
+def _cache_person_profile_image(person_name, image_url, attribution,
+                                source_url, w, h):
+    """Insert a verified profile portrait into person_images (source 3)
+    so repeat stories reuse it. Skips if the person is already cached."""
+    if not SUPABASE_URL or not SUPABASE_KEY:
+        return
+    try:
+        if fetch_cached_person_image(person_name):
+            return
+        # NOTE: person_name_lower is a GENERATED column — never insert it.
+        payload = {
+            "person_name": person_name,
+            "image_url": image_url,
+            "orientation": "portrait" if h >= w else "landscape",
+            "license": "institutional profile",
+            "attribution": attribution,
+            "source_url": source_url,
+            "img_w": w,
+            "img_h": h,
+            "use_count": 0,
+        }
+        r = _safe_run(
+            ["curl", "-sS", "--max-time", "15", "-X", "POST",
+             f"{SUPABASE_URL}/rest/v1/person_images",
+             "-H", f"apikey: {SUPABASE_KEY}",
+             "-H", f"Authorization: Bearer {SUPABASE_KEY}",
+             "-H", "Content-Type: application/json",
+             "-H", "Prefer: return=minimal",
+             "-d", json.dumps(payload)],
+            capture_output=True, text=True, timeout=20,
+        )
+        if r.returncode == 0 and '"code"' not in (r.stdout or ""):
+            print(f"    💾 person-profile: cached '{person_name}' in person_images")
+        else:
+            print(f"    ⚠ person-profile cache insert rejected: {(r.stdout or '')[:160]}")
+    except Exception as e:
+        print(f"    ⚠ person-profile cache insert failed: {e}")
+
+
+def fetch_person_profile_image(article):
+    """Source 3.8: the named subject's own institutional profile portrait.
+
+    Finds the subject's official profile page, accepts only an exact-name
+    alt/caption portrait that clears the standard hero gates (≥800px wide,
+    not a group photo when face detection is available, not a generic/
+    logo image), uploads it to Supabase storage, and caches it in
+    person_images.
+
+    Returns (image_url, attribution, person_name) or (None, None, None).
+    Returning None is a correct outcome — null beats a wrong photo.
+    """
+    names = _person_name_candidates(article)
+    if not names:
+        return None, None, None
+    # Distinctive headline words for the namesake screen (the person's own
+    # name tokens are subtracted per-candidate inside the loop).
+    headline_words = {
+        w for w in re.findall(r"[a-z]{4,}", (article.get("headline") or "").lower())
+    } - _COMMONS_STOP
+    for name in names:
+        ctx_words = headline_words - set(_norm_person_name(name).split())
+        if _profile_miss_fresh(name.lower()):
+            print(f"    ⊘ person-profile: '{name}' recently missed, skipping")
+            continue
+        print(f"    🎓 person-profile: looking up '{name}'")
+        pages = _profile_page_candidates(name, article)
+        fetched_any = False
+        hit = None
+        name_slug = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+        for page_url in pages[:8]:
+            variants, site_name, fetched, page_title, topical_ok = \
+                _extract_exact_name_portrait(page_url, name, ctx_words)
+            fetched_any = fetched_any or fetched
+            if not variants:
+                continue
+            # Page-about-person check: the page itself must be ABOUT this
+            # person — their name in the <title> or their name slug in the
+            # URL path. An exact-name alt on a page about someone else
+            # (a sibling, a namesake) is not identity verification.
+            title_ok = page_title and \
+                _norm_person_name(name) in _norm_person_name(page_title)
+            slug_ok = name_slug in urllib.parse.urlparse(page_url).path.lower()
+            if not title_ok and not slug_ok:
+                print(f"    ⊘ person-profile: page not about '{name}' "
+                      f"(title/path check) — {page_url[:56]}")
+                continue
+            # Namesake screen for NON-institutional pages: an institutional
+            # domain (.edu/.gov/.mil/.org) is itself the corroboration,
+            # but a profile-shaped page anywhere else must also share a
+            # distinctive headline word — a same-named stranger's profile
+            # (different field, different life) shares none.
+            page_host = urllib.parse.urlparse(page_url).netloc.lower()
+            if not page_host.endswith((".edu", ".gov", ".mil", ".org")) \
+                    and ctx_words and not topical_ok:
+                print(f"    ⊘ person-profile: no topical corroboration on "
+                      f"non-institutional page — {page_url[:56]}")
+                continue
+            for img_url in variants:
+                if _is_logo_filename(img_url):
+                    continue
+                ok, ctype, vw = verify_image_url(img_url)  # 800px hero floor
+                if not ok:
+                    continue
+                raw = download_image(img_url)
+                if not raw:
+                    continue
+                pw, ph = get_image_dimensions(raw)
+                if pw < 800:
+                    continue
+                faces = _count_faces(raw)
+                if faces >= 2:
+                    print(f"    ⊘ person-profile: '{name}' image has {faces} faces (group photo), skipping")
+                    continue
+                attribution = site_name or _registrable_domain(
+                    urllib.parse.urlparse(page_url).netloc)
+                # Upload to our storage so the hero survives the institution
+                # redesigning its site; fall back to the source URL if the
+                # upload fails (it was verified reachable above).
+                slug_name = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
+                fname = f"person-images/{slug_name}-{int(time.time())}.jpg"
+                uploaded = upload_to_supabase(compress_image(raw), fname)
+                final_url = uploaded or img_url
+                _cache_person_profile_image(name, final_url, attribution,
+                                            page_url, pw, ph)
+                print(f"    ✓ person-profile: '{name}' ← {page_url[:64]}")
+                hit = (final_url, attribution, name)
+                break
+            if hit:
+                break
+            print(f"    ⊘ person-profile: '{name}' exact-name portrait(s) failed verification/size floor on {page_url[:50]}")
+        if hit:
+            return hit
+        if fetched_any:
+            _profile_record_miss(name.lower())
+    return None, None, None
+
+
 # ── Image Quality Scoring (2026-10-11) ────────────────────────────────────
 # Kiran's directive: "pick the best, not the first." Instead of taking the
 # first image that passes validation, collect candidates from multiple
@@ -1988,6 +2649,7 @@ _SOURCE_REPUTATION = {
     "brand_official": 100,   # Brand's own site — professional product photography
     "official_source": 95,   # Government/company press — professional, copyright-safe
     "person_cache": 90,      # Curated media library — human-verified
+    "person_profile": 88,    # Subject's own institutional profile — exact-name alt verified
     "prnewswire": 85,        # Press-approved wire images — professional
     "wikipedia": 75,         # Identity-verified, variable recency
     "wikipedia_headline_guard": 75,
@@ -2210,6 +2872,22 @@ def _collect_hero_candidates(article, used_images=None):
                 pass
         return results
 
+    def _try_person_profile():
+        results = []
+        try:
+            pp_url, pp_attr, pp_name = fetch_person_profile_image(article)
+            if pp_url and pp_url not in used:
+                results.append({
+                    "img_url": pp_url,
+                    "attribution": pp_attr or "Official Profile",
+                    "source_name": "person_profile",
+                    "upload_date": None,
+                    "person_name": pp_name,
+                })
+        except Exception as e:
+            print(f"    ⚠ person-profile source failed: {e}")
+        return results
+
     def _try_brand():
         results = []
         try:
@@ -2259,11 +2937,12 @@ def _collect_hero_candidates(article, used_images=None):
         return results
 
     # Run fast sources in parallel (I/O-bound curl subprocesses)
-    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as ex:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=7) as ex:
         future_map = {
             ex.submit(_try_og): "og",
             ex.submit(_try_person_cache): "cache",
             ex.submit(_try_youtube): "youtube",
+            ex.submit(_try_person_profile): "person_profile",
             ex.submit(_try_brand): "brand",
             ex.submit(_try_wikipedia): "wikipedia",
             ex.submit(_try_commons): "commons",
@@ -2347,9 +3026,9 @@ def source_hero_image(article, used_images=None):
     Returns:
         (final_url, attribution, caption, source_name) or (None, None, None, None)
         source_name is one of: og:image, rss_thumbnail, person_cache,
-        youtube_thumbnail, official_source, prnewswire, wikipedia,
-        commons_search, wikipedia_headline_guard, pexels — or None when no
-        image was found.
+        person_profile, youtube_thumbnail, official_source, prnewswire,
+        wikipedia, commons_search, wikipedia_headline_guard, pexels — or
+        None when no image was found.
     """
     headline = article.get("headline", "")
     slug = article.get("slug", "unknown")
@@ -2378,7 +3057,7 @@ def source_hero_image(article, used_images=None):
     # Commons relevance check is not an identity check).
     person = headline_person_name(headline)
     _IDENTITY_SAFE = {
-        "person_cache", "wikipedia", "wikipedia_headline_guard",
+        "person_cache", "person_profile", "wikipedia", "wikipedia_headline_guard",
         "youtube_thumbnail", "og:image", "brand_official", "official_source",
     }
     if person:
@@ -2388,6 +3067,19 @@ def source_hero_image(article, used_images=None):
         if dropped:
             print(f"    🛡  Named-person filter: dropped {dropped} non-identity-verified candidates")
 
+    # ── Person-profile precedence (2026-10-17) ────────────────────────────
+    # An exact-name-verified portrait from the subject's own institutional
+    # profile outranks Wikipedia outright: the Ramya Anche article shipped
+    # a NASA HQ building photo from the Wikipedia fallback (scored on size/
+    # aspect) while her verified portrait sat on her university profile.
+    # When the profile step verified a portrait, Wikipedia candidates are
+    # dropped so scoring can never resurrect that failure mode.
+    if any(c["source_name"] == "person_profile" for c in candidates):
+        before = len(candidates)
+        candidates = [c for c in candidates if c["source_name"] != "wikipedia"]
+        if len(candidates) < before:
+            print(f"    🎓 person-profile precedence: dropped {before - len(candidates)} Wikipedia candidate(s)")
+
     # ── Phase 3: Score, rank, and try winners ─────────────────────────────
     ranked = _score_and_rank_candidates(candidates, headline)
 
@@ -2396,6 +3088,7 @@ def source_hero_image(article, used_images=None):
     source_name = None
     raw_bytes = None
     w, h = 0, 0
+    winner_person = None
 
     for cand, score, cw, ch, cbytes in ranked:
         # Near-square gate for publisher images (likely logos/placeholders)
@@ -2407,6 +3100,7 @@ def source_hero_image(article, used_images=None):
         img_url = cand["img_url"]
         attribution = cand["attribution"]
         source_name = cand["source_name"]
+        winner_person = cand.get("person_name")
         raw_bytes = cbytes
         w, h = cw, ch
         print(f"    ✓ Selected: {source_name} (score {score}) → {img_url[:60]}")
@@ -2559,6 +3253,10 @@ def source_hero_image(article, used_images=None):
         # sourced a city skyline, and the mismatch went live).
         alt = pexels_alt.strip().rstrip(".")
         caption = alt[0].upper() + alt[1:] + " (file photo)"
+    elif source_name == "person_profile" and winner_person:
+        # Factual, plain: the verified subject's name (photo is their
+        # institutional profile portrait).
+        caption = winner_person
     elif entities and len(entities) > 0 and isinstance(entities[0], str):
         caption = entities[0]
     
