@@ -94,6 +94,39 @@ def main():
                 "hero_image_url": a.get("hero_image_url"),
             }
 
+    # Second pass: alias-match reviews whose title differs from the roster
+    # title for the same film (franchise numbering vs subtitle — the review
+    # desk's "Drishyam 3" vs the roster's "Drishyam: The Conclusion" never
+    # exact-matched, so the card lost its review link and rating). A review
+    # re-keys to a theater film only when its core tokens (minus stopwords
+    # and sequel numerals) form a prefix of the film's core tokens or vice
+    # versa AND exactly one theater film qualifies. Ambiguity is logged,
+    # never guessed.
+    _STOP = {"the", "a", "an"}
+    _NUM = re.compile(r"^\d+$|^(ii|iii|iv|v|vi|vii|viii|ix|x)$")
+
+    def core_tokens(norm_key):
+        return tuple(t for t in norm_key.split()
+                     if t not in _STOP and not _NUM.match(t))
+
+    theater_keys = {normalize_title(m.get("title", "")) for m in theater_movies}
+    for key in list(review_by_title):
+        if key in theater_keys:
+            continue
+        rc = core_tokens(key)
+        if not rc:
+            continue
+        cands = []
+        for tk in theater_keys:
+            tc = core_tokens(tk)
+            if tc[:len(rc)] == rc or rc[:len(tc)] == tc:
+                cands.append(tk)
+        if len(cands) == 1 and cands[0] not in review_by_title:
+            review_by_title[cands[0]] = review_by_title.pop(key)
+            print(f"  ↔ review alias: '{key}' → '{cands[0]}'")
+        elif len(cands) > 1:
+            print(f"  ⚠ review alias ambiguous for '{key}': {cands}")
+
     # Build unified movies list
     movies = []
     matched_reviews = set()

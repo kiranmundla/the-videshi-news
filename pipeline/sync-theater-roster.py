@@ -49,7 +49,7 @@ PAST_DAYS, FUTURE_DAYS = 21, 60
 
 
 def curl(url, headers=None, timeout=30):
-    cmd = ["curl", "-s", "-A", UA]
+    cmd = ["curl", "-sL", "-A", UA]
     for k, v in (headers or {}).items():
         cmd += ["-H", f"{k}: {v}"]
     cmd.append(url)
@@ -100,7 +100,9 @@ def parse_list(html, language, year):
                 continue
             link = cells[i].find("a", href=True) if i < len(cells) else None
             bluelink = bool(link) and "/wiki/" in link.get("href", "") \
-                and not link.get("href", "").startswith("/wiki/List_of")
+                and not link.get("href", "").startswith("/wiki/List_of") \
+                and "redlink" not in link.get("href", "") \
+                and "action=edit" not in link.get("href", "")
             cast = [c.strip() for c in re.split(r",", cast_cell) if c.strip()][:3]
             try:
                 rel = date(year, month, day)
@@ -108,7 +110,8 @@ def parse_list(html, language, year):
                 continue
             films.append({"title": title, "director": director, "cast": cast,
                           "language": language, "release_date": rel.isoformat(),
-                          "bluelink": bluelink})
+                          "bluelink": bluelink,
+                          "wiki": link.get("href") if link else None})
     return films
 
 
@@ -175,6 +178,55 @@ def headline_covers(headlines, title):
     return False
 
 
+_STREAMING_PLATFORMS = ("netflix", "amazon prime video", "prime video",
+                        "jiohotstar", "disney+ hotstar", "zee5", "sonyliv",
+                        "apple tv+")
+
+
+def streaming_premiere(f):
+    """Wikipedia's year lists mix theatrical and direct-to-streaming
+    premieres, and a streaming premiere's trailer/coverage fires the same
+    admission signals (Reporting Live on Netflix and Don't Be Shy on Prime
+    Video were rostered as theater releases on 2026-10-16, complete with
+    'showtimes near me' ticket links). Detect the premiere from the film's
+    own article via any of: an infobox 'Distributed by <platform>', a
+    'released/premiered on <platform>' statement in the lead, or an
+    explicit direct-to-streaming description. The list's link can be a
+    redlink or a differently-suffixed title, so fall back to the common
+    article-title variants. Returns the platform name or None."""
+    from bs4 import BeautifulSoup
+    urls = []
+    href = f.get("wiki") or ""
+    if href:
+        clean = href.split("?")[0]
+        urls.append(clean if clean.startswith("http")
+                    else "https://en.wikipedia.org" + clean)
+    year = (f.get("release_date") or "")[:4]
+    for t in (f"{f['title']} ({year} film)", f"{f['title']} (film)", f["title"]):
+        u = "https://en.wikipedia.org/wiki/" + quote(t.replace(" ", "_"))
+        if u not in urls:
+            urls.append(u)
+    for u in urls:
+        html = curl(u, timeout=30)
+        if not html:
+            continue
+        text = BeautifulSoup(html, "html.parser").get_text(" ", strip=True)
+        if len(text) < 4000:
+            continue  # redirect stub / missing page — try the next variant
+        low = text.lower()
+        if "direct-to-streaming" in low or "direct to streaming" in low:
+            return "streaming"
+        head, lead = low[:4000], low[:9000]
+        for p in _STREAMING_PLATFORMS:
+            if re.search(r"distributed by\s+" + re.escape(p) + r"\b", head):
+                return p
+            if re.search(r"(released|premiered|debuted)[^.]{0,80}?\b"
+                         + re.escape(p) + r"\b", lead):
+                return p
+        return None  # a real article with no streaming signal: theatrical
+    return None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--apply", action="store_true")
@@ -207,7 +259,7 @@ def main():
         print(f"📋 {lang}: {len(films)} dated releases parsed")
         found.extend(films)
 
-    admitted, candidates, already = [], [], 0
+    admitted, candidates, ott, already = [], [], [], 0
     for f in found:
         rel = date.fromisoformat(f["release_date"])
         if not (lo <= rel <= hi):
@@ -218,6 +270,10 @@ def main():
         in_trailer = bool(title_variants(f["title"]) & trailer_titles)
         in_news = headline_covers(headlines, f["title"])
         if f["bluelink"] and (in_trailer or in_news):
+            plat = streaming_premiere(f)
+            if plat:
+                ott.append((f, plat))
+                continue
             f["signal"] = "trailer" if in_trailer else "news"
             admitted.append(f)
         else:
@@ -228,6 +284,9 @@ def main():
     for f in admitted:
         print(f"  ➕ {f['release_date']} {f['title']} ({f['language']}) "
               f"dir. {f['director']} — via {f['signal']}")
+    for f, plat in ott:
+        print(f"  ⏭ {f['release_date']} {f['title']} ({f['language']}) "
+              f"— streaming premiere ({plat}), not a theater release")
     near_lo, near_hi = today - timedelta(days=30), today + timedelta(days=30)
     shown = 0
     for f in candidates:
