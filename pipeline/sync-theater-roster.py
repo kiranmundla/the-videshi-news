@@ -347,6 +347,26 @@ def main():
             m["release_date"] = hit["release_date"]
             refreshed.append(m["title"])
 
+    # Status roll: a coming_soon film whose date has arrived is released —
+    # roll it forward by the same ±3-day rule used for new entries. Without
+    # this, released films sat as coming_soon forever (The Paradise was
+    # still 'coming_soon' three weeks after its Sep 24 release).
+    rolled = []
+    for m in roster.get("movies", []):
+        if m.get("status") != "coming_soon" or not m.get("release_date"):
+            continue
+        try:
+            rel = date.fromisoformat(m["release_date"])
+        except ValueError:
+            continue
+        if rel > today + timedelta(days=3):
+            continue
+        new_status = "opening" if rel >= today - timedelta(days=3) else "now_playing"
+        print(f"  🔄 {m['title']}: coming_soon → {new_status} "
+              f"(released {m['release_date']})")
+        m["status"] = new_status
+        rolled.append(m["title"])
+
     # Aging: retire stale, unreviewed entries
     retire = []
     kept = []
@@ -372,7 +392,7 @@ def main():
         print("🚨 ROSTER FRESHNESS ALARM: no release within ±21 days on the roster "
               "— the release calendar sync needs a human look.")
 
-    if args.apply and (new_entries or retire or refreshed):
+    if args.apply and (new_entries or retire or refreshed or rolled):
         ROSTER.with_suffix(".json.bak").write_text(ROSTER.read_text())
         roster["movies"] = sorted(final, key=lambda m: m.get("release_date", ""))
         ROSTER.write_text(json.dumps(roster, indent=2, ensure_ascii=False))
