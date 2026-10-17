@@ -1,8 +1,28 @@
 {
- "generated_at": "2026-10-17T00:58:18.257540+00:00",
+ "generated_at": "2026-10-17T04:55:07.324682+00:00",
  "week_of": "Oct 12 – Oct 18, 2026",
  "as_of": "2026-10-16",
  "films": [
+  {
+   "title": "Drishyam: The Conclusion",
+   "language": "Hindi",
+   "release_date": "2026-10-02",
+   "india_net_crore": 336.0,
+   "worldwide_gross_crore": 520.15,
+   "budget_crore": 110,
+   "verdict": "Blockbuster",
+   "poster_url": "https://upload.wikimedia.org/wikipedia/en/d/d9/Drishyam-_The_Conclusion_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "sources": [
+    {
+     "name": "Sacnilk",
+     "url": "https://www.sacnilk.com/quicknews/drishyam_3_hindi_2026_Box_Office_Collection_Day_15"
+    },
+    {
+     "name": "Koimoi",
+     "url": "https://www.koimoi.com/box-office/drishyam-3-worldwide-box-office-vijay-salgaonkars-royal-entry-into-the-400-crore-club-beats-singham-again-to-become-ajay-devgns-highest-grossing-film-ever/"
+    }
+   ]
+  },
   {
    "title": "Hanuman Ansh",
    "language": "Hindi",
@@ -124,6 +144,26 @@
    ]
   },
   {
+   "title": "The Vvaan: Force of the Forrest",
+   "language": "Hindi",
+   "release_date": "2026-09-25",
+   "india_net_crore": 69.74,
+   "worldwide_gross_crore": 90.79,
+   "budget_crore": 80,
+   "verdict": "Average",
+   "poster_url": "https://upload.wikimedia.org/wikipedia/en/f/f1/The_Vvaan_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "sources": [
+    {
+     "name": "Sacnilk",
+     "url": "https://www.sacnilk.com/news/Vvan_2026_Box_Office_Collection_Day_Wise_Worldwide"
+    },
+    {
+     "name": "IWMBuzz",
+     "url": "https://www.iwmbuzz.com/movies/news-movies/the-vvaan-box-office-collection-day-18-sidharth-malhotras-film-drops-to-just-e282b935-lakh-net/2026/10/13"
+    }
+   ]
+  },
+  {
    "title": "Vibe",
    "language": "Hindi",
    "release_date": "2026-09-18",
@@ -144,6 +184,46 @@
    ]
   },
   {
+   "title": "Ranabaali",
+   "language": "Telugu",
+   "release_date": "2026-10-16",
+   "india_net_crore": 9.25,
+   "worldwide_gross_crore": 16.5,
+   "budget_crore": 120,
+   "verdict": null,
+   "poster_url": null,
+   "sources": [
+    {
+     "name": "Filmibeat (Sacnilk)",
+     "url": "https://www.filmibeat.com/telugu/news/2026/ranabaali-box-office-collection-day-1-vijay-deverakonda-rashmika-film-crosses-16-crore-worldwide-534931.html"
+    },
+    {
+     "name": "Sacnilk",
+     "url": "https://www.sacnilk.com/news/vijay-deverakondas-ranabaali-grosses-over-16-cr-worldwide-enters-his-top-5-openers-despite-trailing-career-best-kingdom-on-day-1"
+    }
+   ]
+  },
+  {
+   "title": "Dorothy",
+   "language": "Tamil",
+   "release_date": "2026-09-25",
+   "india_net_crore": 13.3,
+   "worldwide_gross_crore": 15.8,
+   "budget_crore": null,
+   "verdict": null,
+   "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/22/Dorothy_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "sources": [
+    {
+     "name": "Cinema Express (Sacnilk)",
+     "url": "https://www.cinemaexpress.com/tamil/news/2026/Oct/09/upendra-on-dorothy-hats-off-to-karthik-subbaraj-for-directing-it-with-conviction"
+    },
+    {
+     "name": "TrackTollywood",
+     "url": "https://tracktollywood.com/movies/dorothy/"
+    }
+   ]
+  },
+  {
    "title": "Daayra",
    "language": "Hindi",
    "release_date": "2026-09-18",
@@ -160,6 +240,26 @@
     {
      "name": "Koimoi",
      "url": "https://www.koimoi.com/box-office/daayra-box-office-closing-collection-kareena-kapoor-prithviraj-sukumarans-film-wraps-up-below-12-crore/"
+    }
+   ]
+  },
+  {
+   "title": "Prahaar",
+   "language": "Hindi",
+   "release_date": "2026-10-16",
+   "india_net_crore": 2.35,
+   "worldwide_gross_crore": 3.52,
+   "budget_crore": null,
+   "verdict": null,
+   "poster_url": null,
+   "sources": [
+    {
+     "name": "Times of Bengal (Sacnilk)",
+     "url": "https://www.thetimesofbengal.com/entertainment/prahaar-box-office-collection-day-1-rajkummar-raos-film-on-ujjwal-nikam-opens-at-rs-2-35-crore-india-net/"
+    },
+    {
+     "name": "Filmibeat",
+     "url": "https://www.filmibeat.com/bollywood/box-office/2026/prahaar-box-office-collection-hit-or-flop-budget-records-everything-to-know-about-rajkummars-film-534927.html"
     }
    ]
   }
