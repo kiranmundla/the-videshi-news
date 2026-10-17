@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-16",
+  "generated_at": "2026-10-17",
   "current_month": 10,
   "current_year": 2026,
   "destination_count": 50,
@@ -2843,7 +2843,7 @@
         "date_range": "Oct 21 \u2192 Nov 10",
         "duration_days": 20,
         "weeks": null,
-        "as_of": "2026-10-16",
+        "as_of": "2026-10-17",
         "cadence": "daily"
       },
       "highlights": [
@@ -5558,7 +5558,7 @@
     "trending": {
       "month": 10,
       "year": 2026,
-      "score": 95,
+      "score": 80,
       "max_score": 100,
       "components": [
         {
@@ -5575,9 +5575,9 @@
         },
         {
           "id": "fare_drop",
-          "points": 30,
+          "points": 15,
           "max": 30,
-          "reason": "Fares down 19.9% on SEA-DEL ($1551 \u2192 $1242) vs 2026-10-15"
+          "reason": "Fares down 9.8% on ATL-DEL ($2244 \u2192 $2024) vs 2026-10-16"
         }
       ]
     },
