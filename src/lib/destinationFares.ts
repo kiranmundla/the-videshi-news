@@ -50,14 +50,20 @@ export const INTL_DESTINATION_AIRPORT: Record<
   string,
   { code: string; city: string }
 > = {
-  australia: { code: "SYD", city: "Sydney" },
-  bali: { code: "DPS", city: "Denpasar (Bali)" },
-  cabo: { code: "SJD", city: "Los Cabos" },
-  egypt: { code: "CAI", city: "Cairo" },
-  fiji: { code: "NAN", city: "Nadi" },
+  /* japan/oman/italy added 2026-10-16 when the intl matrix expanded
+     to the rail's full top set (Kiran) — without a map entry a guide
+     resolves as fallback even when its fares exist in the data. */
+  japan: { code: "TYO", city: "Tokyo" },
+  oman: { code: "MCT", city: "Muscat" },
   france: { code: "CDG", city: "Paris" },
+  italy: { code: "FCO", city: "Rome" },
+  fiji: { code: "NAN", city: "Nadi" },
   greece: { code: "ATH", city: "Athens" },
+  australia: { code: "SYD", city: "Sydney" },
+  egypt: { code: "CAI", city: "Cairo" },
+  bali: { code: "DPS", city: "Denpasar (Bali)" },
   hawaii: { code: "HNL", city: "Honolulu" },
+  cabo: { code: "SJD", city: "Los Cabos" },
 };
 
 export type DestinationFareClass = "A" | "B" | "fallback";

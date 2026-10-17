@@ -25,8 +25,10 @@ the old 2/3/4-week grid:
   = 144 requests max — inside the observed daily provider ceiling
   (~283 requests before the 2026-10-15 run aborted at the old scope).
 - International matrix (--intl, weekly): top non-India destinations
-  (SYD/DPS/SJD/CAI/NAN/CDG/ATH/HNL) x 5 origins, ~1-week trips
-  (5-9 days), same sampling shape = 480 requests max per week. Writes
+  (TYO/MCT/CDG/FCO/NAN/ATH/SYD/CAI/DPS/HNL/SJD) x 5 origins, ~1-week
+  trips (5-9 days), same sampling shape = 660 requests max per week,
+  run sliced per destination across the week (single-route runs
+  merge into the snapshot). Writes
   a SEPARATE snapshot (flight-deals-intl.json) labelled weekly /
   indicative; the daily India job never touches it.
 
@@ -114,10 +116,17 @@ BAND_INDIA = {"id": "in-3wk", "label": "~3-week trips", "center_days": 21,
 BAND_INTL = {"id": "intl-1wk", "label": "~1-week trips", "center_days": 7,
              "min_days": 5, "max_days": 9}
 
-# International matrix (weekly, Phase 1): the current trending top-8
-# non-India destinations x 5 diaspora-metro origins. Destination-major
-# order (trending rank) so an interrupted run works the list in the
-# order readers care about. Slugs are travel-destinations.json ids.
+# International matrix (weekly): the trending top destinations x 5
+# diaspora-metro origins. Destination-major order (trending rank) so
+# an interrupted run works the list in the order readers care about.
+# Slugs are travel-destinations.json ids. Expanded 2026-10-16
+# (Kiran): the original top-8 list predated the real-signal trending
+# flip and missed the rail's top — Tokyo (japan #1), Muscat (oman #2)
+# and Rome (italy #4) added; Bali/Cabo/Egypt/Hawaii kept at Kiran's
+# word. 11 destinations x 5 origins x 3 months x 2 samples x 2
+# durations = 660 requests per full sweep — run as per-destination
+# route batches (single-route runs merge) sliced across the week,
+# never as one run.
 INTL_ORIGINS = [
     ("SFO", "Bay Area"),
     ("LAX", "Los Angeles"),
@@ -126,14 +135,17 @@ INTL_ORIGINS = [
     ("DFW", "Dallas"),
 ]
 INTL_DESTINATIONS = [  # (airport, metro, destination slug)
-    ("SYD", "Sydney", "australia"),
-    ("DPS", "Bali", "bali"),
-    ("SJD", "Cabo", "cabo"),
-    ("CAI", "Cairo", "egypt"),
-    ("NAN", "Nadi", "fiji"),
+    ("TYO", "Tokyo", "japan"),
+    ("MCT", "Muscat", "oman"),
     ("CDG", "Paris", "france"),
+    ("FCO", "Rome", "italy"),
+    ("NAN", "Nadi", "fiji"),
     ("ATH", "Athens", "greece"),
+    ("SYD", "Sydney", "australia"),
+    ("CAI", "Cairo", "egypt"),
+    ("DPS", "Bali", "bali"),
     ("HNL", "Honolulu", "hawaii"),
+    ("SJD", "Cabo", "cabo"),
 ]
 INTL_ROUTES = [(o, d, om, dm)
                for d, dm, _slug in INTL_DESTINATIONS

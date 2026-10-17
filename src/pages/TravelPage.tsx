@@ -146,7 +146,13 @@ const DESTINATION_GROUPS: { key: string; heading: string; blurb: string; match: 
   },
 ];
 
-export default function TravelPage() {
+/* The ENTIRE travel section as one block — /travel renders it
+   between its Masthead and footer, and the homepage renders the
+   SAME block in place when the Travel tab is picked (Kiran,
+   2026-10-16: "include the entire travel section stuff here when
+   user clicks travel option"). One implementation, two homes —
+   never fork the sections. */
+export function TravelPageContent() {
   const [holderStatus, setHolderStatus] = useState<VisaHolderStatus>("indian-passport");
   const [news, setNews] = useState<any[]>([]);
 
@@ -191,20 +197,7 @@ export default function TravelPage() {
   }, []);
 
   return (
-    <>
-      <Helmet>
-        <title>{`Travel Hub — Top Destinations, ${indexGuideCount} Guides & Visa Guide | The Videshi`}</title>
-        <meta name="description" content={`Plan the trip home and the next getaway: top destinations, ${indexGuideCount} diaspora travel guides with visa notes for your passport status, and the latest travel news for Indian passport holders, US citizens, and Green Card holders.`} />
-        <meta property="og:title" content="Travel Hub — The Videshi" />
-        <meta property="og:description" content="Destinations, visa quick-reference, and travel news for NRIs and the Indian diaspora." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.thevideshi.com/travel" />
-              <link rel="canonical" href="https://www.thevideshi.com/travel" />
-      </Helmet>
-      <Masthead />
-      <CategoryPills />
-
-      <main className="container py-6">
+    <main className="container py-6">
         {/* ── Header — minimal (Kiran, 2026-10-15: the giant green
             "Explore the World" hero block was too big; a slim title
             row is enough — the destinations scroll opens the page).
@@ -337,7 +330,29 @@ export default function TravelPage() {
             </div>
           </div>
         </section>
-      </main>
+    </main>
+  );
+}
+
+export default function TravelPage() {
+  const indexGuideCount = DESTINATION_GROUPS.reduce(
+    (n, g) => n + DESTINATIONS.filter(g.match).length,
+    0,
+  );
+  return (
+    <>
+      <Helmet>
+        <title>{`Travel Hub — Top Destinations, ${indexGuideCount} Guides & Visa Guide | The Videshi`}</title>
+        <meta name="description" content={`Plan the trip home and the next getaway: top destinations, ${indexGuideCount} diaspora travel guides with visa notes for your passport status, and the latest travel news for Indian passport holders, US citizens, and Green Card holders.`} />
+        <meta property="og:title" content="Travel Hub — The Videshi" />
+        <meta property="og:description" content="Destinations, visa quick-reference, and travel news for NRIs and the Indian diaspora." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.thevideshi.com/travel" />
+        <link rel="canonical" href="https://www.thevideshi.com/travel" />
+      </Helmet>
+      <Masthead />
+      <CategoryPills />
+      <TravelPageContent />
       <SiteFooter />
     </>
   );

@@ -104,7 +104,12 @@ describe("destinationFareClass", () => {
     expect(destinationFareClass("goa")).toBe("fallback");
     expect(destinationFareClass("kerala")).toBe("fallback");
     expect(destinationFareClass("rajasthan")).toBe("fallback");
-    expect(destinationFareClass("japan")).toBe("fallback");
+    /* japan/oman/italy joined class B 2026-10-16 with the intl
+       matrix expansion; portugal stays a genuine fallback slug. */
+    expect(destinationFareClass("japan")).toBe("B");
+    expect(destinationFareClass("oman")).toBe("B");
+    expect(destinationFareClass("italy")).toBe("B");
+    expect(destinationFareClass("portugal")).toBe("fallback");
   });
 });
 

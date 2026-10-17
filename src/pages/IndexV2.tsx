@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Masthead from "@/components/Masthead";
@@ -41,6 +41,14 @@ import KeyUpdatesSection from "@/components/KeyUpdatesSection";
 import ArticleCard from "@/components/ArticleCard";
 import CategorySubTopics, { hasSubTopics } from "@/components/homepage/CategorySubTopics";
 import SponsoredBanner from "@/components/SponsoredBanner";
+
+/* The homepage Travel tab renders the ENTIRE travel section in
+   place (Kiran, 2026-10-16) — the same TravelPageContent block the
+   /travel route renders. Lazy: the homepage only pays for it when
+   a reader actually opens the Travel tab. */
+const TravelPageContent = lazy(() =>
+  import("@/pages/TravelPage").then((m) => ({ default: m.TravelPageContent })),
+);
 import "@/components/homepage/homepage-v2.css";
 
 import {
@@ -109,7 +117,13 @@ const HOME_CATEGORIES = [
   { slug: "lifestyle-health", label: "Lifestyle", path: "/lifestyle-health" },
   { slug: "travel", label: "Travel", path: "/travel" },
   { slug: "food", label: "Food", path: "/food" },
+  /* Cars tab PARKED 2026-10-16 (Kiran): the tab filtered articles
+     by a "cars" category the writers never produce, so it always
+     showed "No articles yet." The /cars pages (guides, compare,
+     lease deals) stay live for direct visits — only this homepage
+     tab is hidden. Restore = re-add the entry below.
   { slug: "cars", label: "Cars", path: "/cars" },
+  */
 ];
 
 function HomeCategoryNav({ selected, onSelect }: { selected: string; onSelect: (slug: string) => void }) {
@@ -552,6 +566,16 @@ export default function IndexV2() {
         </div>
 
         {selectedCategory ? (
+          selectedCategory === "travel" ? (
+            /* ── Travel tab = the ENTIRE travel section in place
+               (Kiran, 2026-10-16): destinations scroll, travel
+               news, the full guide index, visa quick reference and
+               the agent CTA — identical to /travel, no separate
+               article-grid view for this tab. ── */
+            <Suspense fallback={<div className="container py-12 text-center text-muted-foreground">Loading…</div>}>
+              <TravelPageContent />
+            </Suspense>
+          ) : (
           /* ── Category-filtered view ── */
           <>
             <KeyUpdatesSection category={selectedCategory} />
@@ -579,6 +603,7 @@ export default function IndexV2() {
               </section>
             )}
           </>
+          )
         ) : (
           /* ── Full homepage view ── */
           <>
