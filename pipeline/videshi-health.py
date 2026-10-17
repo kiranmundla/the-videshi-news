@@ -1214,7 +1214,28 @@ def check_broken_article_links(fix=False):
                   # MarketWatch 401 to our server egress; all three article
                   # URLs verified loading fully in a browser the same day —
                   # pure bot-block, not broken links
-                  "cdc.gov", "finimize.com", "marketwatch.com")
+                  "cdc.gov", "finimize.com", "marketwatch.com",
+                  # 2026-10-16 20:00 health run: cbo.gov 403, barrons.com 401,
+                  # politicalwire.com 403, freep.com 402 to our server egress;
+                  # all four URLs verified loading fully in a browser the same
+                  # evening (CBO Monthly Budget Review PDF, Barron's bank-stocks
+                  # live-coverage card, PoliticalWire AOC/El-Sayed post, Freep
+                  # AOC Michigan UP tour story) — pure bot-block/paywall codes,
+                  # not broken links
+                  "cbo.gov", "barrons.com", "politicalwire.com", "freep.com")
+    # IP-blocked from this server (2026-10-17): hdfcsky.com returns 404 for
+    # EVERY page from this egress — an IP-based block masquerading as 404,
+    # provably-live pages included; ndtv.com returns 403 bot-block from this
+    # server while its pages are live for readers. A 4xx from this box proves
+    # nothing for these domains: still fetch, but classify failures as
+    # "unverifiable — needs out-of-band check", never as broken, and keep
+    # them out of the broken count/alert.
+    UNVERIFIABLE = ("hdfcsky.com", "ndtv.com")
+    # Recheck-once domains (2026-10-17): a single 4xx from these can be
+    # transient — nutritioninsight.com 404'd once on 2026-10-17, then
+    # returned 200 on repeat fetches. Retry once after a short delay
+    # before declaring the link dead.
+    RETRY_ONCE = ("nutritioninsight.com",)
 
     try:
         resp = requests.get(
@@ -1235,6 +1256,7 @@ def check_broken_article_links(fix=False):
 
     seen_urls = set()
     broken = []
+    unverifiable = []  # 4xx from a domain this server can't verify (see above)
     for a in articles:
         for url in href_re.findall(a.get("body", "") or ""):
             if any(d in url for d in SKIP) or any(d in url for d in BOTBLOCKED) \
@@ -1246,9 +1268,17 @@ def check_broken_article_links(fix=False):
             try:
                 r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"},
                                  timeout=8, allow_redirects=True)
+                if r.status_code >= 400 and any(d in url for d in RETRY_ONCE):
+                    time.sleep(3)
+                    r = requests.get(url, headers={"User-Agent": "Mozilla/5.0"},
+                                     timeout=8, allow_redirects=True)
                 if r.status_code >= 400:
-                    broken.append({"slug": a["slug"], "url": url,
-                                   "status": r.status_code})
+                    entry = {"slug": a["slug"], "url": url,
+                             "status": r.status_code}
+                    if any(d in url for d in UNVERIFIABLE):
+                        unverifiable.append(entry)
+                    else:
+                        broken.append(entry)
             except Exception:
                 pass  # transient — not proof of broken, skip silently
         if len(seen_urls) > 60:
@@ -1259,6 +1289,8 @@ def check_broken_article_links(fix=False):
         "articles_checked": len(articles),
         "urls_checked": len(seen_urls),
         "broken": broken,
+        "unverifiable": unverifiable,
+        "unverifiable_count": len(unverifiable),
         "count": len(broken),
         "alert": len(broken) > 0,
     }
