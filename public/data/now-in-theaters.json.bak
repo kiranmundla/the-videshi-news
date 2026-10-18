@@ -4,48 +4,6 @@
   "movies": [
     {
       "cast": [
-        "Shobhinaw Satyaa",
-        "Chandan Anand",
-        "Purnima Tiwari",
-        "Vihaan Shedge"
-      ],
-      "director": "Vishal Chaturvedi",
-      "genre": "Devotional, Drama",
-      "is_indian": true,
-      "language": "Hindi",
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/0e/Official_poster_for_the_Hanuman_Ansh_%282026%29_film.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "₹271.88 Cr India (Day 45)",
-      "rating_source": "India box office",
-      "release_date": "2026-08-07",
-      "slug": "hanuman-ansh",
-      "status": "now_playing",
-      "ticket_url": "https://www.google.com/search?q=Hanuman+Ansh+movie+showtimes+near+me",
-      "title": "Hanuman Ansh",
-      "trailer_url": "https://www.youtube.com/watch?v=YpGhCA2X3gU",
-      "why_watch": "The box-office miracle of the year refuses to leave: ₹271.88 Cr India in 45 days — a ₹2 Cr devotional now running at 151x its budget and the third-highest Hindi grosser of 2026. It even out-grossed Daayra and Vibe in its SEVENTH weekend (₹28.5 Cr). Neem Karoli Baba's story is the kind of theatrical phenomenon money can't buy. Still running, sequel confirmed.",
-      "year": 2026,
-      "cast_details": [
-        {
-          "name": "Shobhinaw Satyaa",
-          "photo_url": ""
-        },
-        {
-          "name": "Chandan Anand",
-          "photo_url": ""
-        },
-        {
-          "name": "Purnima Tiwari",
-          "photo_url": ""
-        },
-        {
-          "name": "Vihaan Shedge",
-          "photo_url": ""
-        }
-      ],
-      "fandango_url": "https://www.fandango.com/hanuman-ansh-2026-247186/movie-overview"
-    },
-    {
-      "cast": [
         "Nivin Pauly",
         "Mamitha Baiju",
         "Sangeeth Prathap",
