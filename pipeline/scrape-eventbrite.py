@@ -175,7 +175,7 @@ RELEVANCE_KEYWORDS = {
     "south asian", "bhangra", "garba", "dandiya", "navratri", "diwali",
     "holi", "ganesh", "durga", "puja", "pongal", "onam", "eid",
     "biryani", "curry", "naan", "chapati", "samosa", "chai",
-    "yoga", "meditation", "ayurveda", "vedic", "mandir", "temple",
+    "ayurveda", "vedic", "mandir", "temple",
     "sitar", "tabla", "raga", "carnatic", "hindustani", "kathak",
     "bharatanatyam", "kuchipudi", "odissi", "classical dance",
     "cricket", "kabaddi", "ipl",
@@ -192,7 +192,6 @@ RELEVANCE_KEYWORDS = {
     "wedding expo", "bridal show", "matrimonial",
     "film festival", "indian cinema",
     "tennis ball cricket", "badminton", "volleyball tournament",
-    "wellness expo", "wellness festival",
     "india day", "parade",
     "immigration", "h-1b", "h1b", "green card", "visa workshop",
     "investment seminar", "real estate seminar",
@@ -205,10 +204,24 @@ RELEVANCE_KEYWORDS = {
     "vaisakhi", "lohri", "ugadi",
 }
 
+# Weak terms (2026-10-18): generic wellness vocabulary is NOT a diaspora
+# signal on its own — bare "yoga"/"meditation" searches return every class
+# in a state, and generic listings pass if these terms alone count as
+# relevance (same hole fixed in scrape-allevents.py). A weak term passes
+# ONLY alongside a real diaspora signal.
+WEAK_RELEVANCE_KEYWORDS = {"yoga", "meditation", "wellness expo", "wellness festival"}
+WEAK_TERM_SIGNALS = RELEVANCE_KEYWORDS | {"hindu", "mantra"}
+
+
 def is_relevant(event_name: str, event_summary: str = "") -> bool:
     """Check if event is likely Indian/South Asian diaspora related."""
     text = (event_name + " " + (event_summary or "")).lower()
-    return any(kw in text for kw in RELEVANCE_KEYWORDS)
+    if any(kw in text for kw in RELEVANCE_KEYWORDS):
+        return True
+    # Weak wellness terms pass only with a diaspora co-signal
+    if any(w in text for w in WEAK_RELEVANCE_KEYWORDS):
+        return any(s in text for s in WEAK_TERM_SIGNALS)
+    return False
 
 
 # ── HTML parsing ──────────────────────────────────────────────────────────

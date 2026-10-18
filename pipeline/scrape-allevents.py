@@ -273,7 +273,7 @@ RELEVANCE_KEYWORDS = [
     "navratri", "pongal", "onam", "eid", "iftar", "sikh", "gurdwara",
     "temple", "carnatic", "hindustani", "bharatanatyam", "kathak",
     "kuchipudi", "biryani", "curry", "samosa", "masala",
-    "yoga", "ayurveda", "vedic", "sanskrit", "mehndi", "sangeet",
+    "ayurveda", "vedic", "sanskrit", "mehndi", "sangeet",
     "diaspora", "nri", "cricket", "kabaddi",
     # Exhibitions & Roadshows (2026-10-18) — touring merchants
     "dubai property", "property expo", "property roadshow",
@@ -282,6 +282,16 @@ RELEVANCE_KEYWORDS = [
     "kirtan", "bhajan", "puja", "pooja", "chai",
     "rangoli", "kolam",
     "tech meetup", "startup", "networking", "professional",
+]
+
+# Weak terms (2026-10-18): generic wellness vocabulary is NOT a diaspora
+# signal on its own — a bare "yoga" search on AllEvents returns every yoga
+# class in the city, and generic listings (coffee-shop yoga, Halloween
+# story-flow yoga, wellness fairs) were ingested as diaspora events.
+# A weak term passes ONLY alongside a real diaspora signal.
+WEAK_RELEVANCE_KEYWORDS = ["yoga", "meditation"]
+WEAK_TERM_SIGNALS = RELEVANCE_KEYWORDS + [
+    "hindu", "mantra", "iskcon", "mandir",
 ]
 
 FALSE_POSITIVE_PATTERNS = [
@@ -311,6 +321,9 @@ def is_relevant(title: str, description: str = "") -> bool:
     for kw in RELEVANCE_KEYWORDS:
         if kw in text:
             return True
+    # Weak wellness terms pass only with a diaspora co-signal
+    if any(w in text for w in WEAK_RELEVANCE_KEYWORDS):
+        return any(s in text for s in WEAK_TERM_SIGNALS)
     return False
 
 
