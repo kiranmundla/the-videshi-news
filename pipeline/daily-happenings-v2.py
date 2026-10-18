@@ -247,7 +247,7 @@ def get_sports(date: str) -> list[dict]:
     items = []
     
     # Cricket
-    data = curl_json(f"https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d={date}&s=Cricket")
+    data = curl_json(f"https://www.thesportsdb.com/api/v1/json/123/eventsday.php?d={date}&s=Cricket")
     if data and data.get("events"):
         for e in data["events"]:
             if _is_relevant_cricket(e):
@@ -266,7 +266,7 @@ def get_sports(date: str) -> list[dict]:
                 })
     
     # Soccer — only FIFA/Champions League/major tournaments
-    data = curl_json(f"https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d={date}&s=Soccer")
+    data = curl_json(f"https://www.thesportsdb.com/api/v1/json/123/eventsday.php?d={date}&s=Soccer")
     if data and data.get("events"):
         for e in data["events"]:
             if _is_relevant_soccer(e):
@@ -285,7 +285,7 @@ def get_sports(date: str) -> list[dict]:
                 })
     
     # Tennis — only Grand Slams
-    data = curl_json(f"https://www.thesportsdb.com/api/v1/json/3/eventsday.php?d={date}&s=Tennis")
+    data = curl_json(f"https://www.thesportsdb.com/api/v1/json/123/eventsday.php?d={date}&s=Tennis")
     if data and data.get("events"):
         for e in data["events"]:
             if _is_relevant_tennis(e):
