@@ -18,10 +18,10 @@
     "greece",
     "kerala",
     "australia",
-    "karnataka",
-    "portugal",
     "egypt",
     "bali",
+    "karnataka",
+    "portugal",
     "kenya",
     "national-parks",
     "hawaii",
@@ -806,7 +806,7 @@
         "dest_metro": "Sydney",
         "date_range": "Oct 28 \u2192 Nov 3",
         "duration_days": 6,
-        "as_of": "2026-10-17",
+        "as_of": "2026-10-18",
         "cadence": "weekly",
         "indicative": true
       },
@@ -1010,7 +1010,17 @@
       ],
       "season_note": "Dry season Apr\u2013Oct; rainy season Nov\u2013Mar (mornings usually clear).",
       "cheapest_month": null,
-      "fare_from": null,
+      "fare_from": {
+        "price_min": 792,
+        "route": "LAX-DPS",
+        "origin_metro": "Los Angeles",
+        "dest_metro": "Bali",
+        "date_range": "Oct 28 \u2192 Nov 5",
+        "duration_days": 8,
+        "as_of": "2026-10-18",
+        "cadence": "weekly",
+        "indicative": true
+      },
       "highlights": [
         {
           "title": "Uluwatu Temple at Sunset",
@@ -1050,7 +1060,7 @@
         "12": 0
       },
       "data_quality": {
-        "fare_data": "none",
+        "fare_data": "tracked",
         "guide_highlights": 5,
         "notes": [
           "No flight-deals route tracked yet \u2014 fare fields are null by design"
@@ -1612,7 +1622,17 @@
       ],
       "season_note": "Cool season for the Nile valley; summers are fiercely hot.",
       "cheapest_month": null,
-      "fare_from": null,
+      "fare_from": {
+        "price_min": 642,
+        "route": "LAX-CAI",
+        "origin_metro": "Los Angeles",
+        "dest_metro": "Cairo",
+        "date_range": "Nov 10 \u2192 Nov 16",
+        "duration_days": 6,
+        "as_of": "2026-10-18",
+        "cadence": "weekly",
+        "indicative": true
+      },
       "highlights": [
         {
           "title": "Pyramids of Giza & the Sphinx",
@@ -1652,7 +1672,7 @@
         "12": 2
       },
       "data_quality": {
-        "fare_data": "none",
+        "fare_data": "tracked",
         "guide_highlights": 5,
         "notes": [
           "No flight-deals route tracked yet \u2014 fare fields are null by design"
@@ -1718,7 +1738,7 @@
         "dest_metro": "Nadi",
         "date_range": "Oct 28 \u2192 Nov 3",
         "duration_days": 6,
-        "as_of": "2026-10-17",
+        "as_of": "2026-10-18",
         "cadence": "weekly",
         "indicative": true
       },
@@ -1928,7 +1948,7 @@
         "dest_metro": "Paris",
         "date_range": "Nov 10 \u2192 Nov 16",
         "duration_days": 6,
-        "as_of": "2026-10-17",
+        "as_of": "2026-10-18",
         "cadence": "weekly",
         "indicative": true
       },
@@ -2135,7 +2155,7 @@
         "dest_metro": "Athens",
         "date_range": "Oct 21 \u2192 Oct 27",
         "duration_days": 6,
-        "as_of": "2026-10-17",
+        "as_of": "2026-10-18",
         "cadence": "weekly",
         "indicative": true
       },
@@ -2547,7 +2567,7 @@
         "dest_metro": "Rome",
         "date_range": "Dec 8 \u2192 Dec 14",
         "duration_days": 6,
-        "as_of": "2026-10-17",
+        "as_of": "2026-10-18",
         "cadence": "weekly",
         "indicative": true
       },
@@ -2756,7 +2776,7 @@
         "dest_metro": "Tokyo",
         "date_range": "Dec 8 \u2192 Dec 16",
         "duration_days": 8,
-        "as_of": "2026-10-17",
+        "as_of": "2026-10-18",
         "cadence": "weekly",
         "indicative": true
       },
@@ -4075,7 +4095,7 @@
         "dest_metro": "Muscat",
         "date_range": "Oct 28 \u2192 Nov 5",
         "duration_days": 8,
-        "as_of": "2026-10-17",
+        "as_of": "2026-10-18",
         "cadence": "weekly",
         "indicative": true
       },
