@@ -92,6 +92,50 @@ def curl_post(url, data, timeout=30):
         return 0, ""
 
 
+STATE_NAME_TO_ABBR = {
+    "Alabama": "AL", "Alaska": "AK", "Arizona": "AZ", "Arkansas": "AR",
+    "California": "CA", "Colorado": "CO", "Connecticut": "CT",
+    "Delaware": "DE", "Florida": "FL", "Georgia": "GA", "Hawaii": "HI",
+    "Idaho": "ID", "Illinois": "IL", "Indiana": "IN", "Iowa": "IA",
+    "Kansas": "KS", "Kentucky": "KY", "Louisiana": "LA", "Maine": "ME",
+    "Maryland": "MD", "Massachusetts": "MA", "Michigan": "MI",
+    "Minnesota": "MN", "Mississippi": "MS", "Missouri": "MO",
+    "Montana": "MT", "Nebraska": "NE", "Nevada": "NV",
+    "New Hampshire": "NH", "New Jersey": "NJ", "New Mexico": "NM",
+    "New York": "NY", "North Carolina": "NC", "North Dakota": "ND",
+    "Ohio": "OH", "Oklahoma": "OK", "Oregon": "OR", "Pennsylvania": "PA",
+    "Rhode Island": "RI", "South Carolina": "SC", "South Dakota": "SD",
+    "Tennessee": "TN", "Texas": "TX", "Utah": "UT", "Vermont": "VT",
+    "Virginia": "VA", "Washington": "WA", "West Virginia": "WV",
+    "Wisconsin": "WI", "Wyoming": "WY", "District of Columbia": "DC",
+}
+
+
+def extract_page_city_state(html):
+    """hindutemples.info pages state the temple's real city in their
+    og:description: '<Name> in <City>, <State Name>. Address: ...'.
+    Many directory entries (41-city expansion, 2026-10-10) carry no
+    city/state fields — without this, their events insert with empty
+    city/state and are invisible to every city feed. Returns
+    (city, state_abbr) or ('', '')."""
+    # Temple names can themselves contain " in <City>" ("Sri
+    # Guruvayurappan Temple in Dallas in Carrollton, Texas. Address:")
+    # — a greedy name group makes the LAST " in " the city boundary.
+    tag = re.search(
+        r'property="og:description"\s+content="([^"]+)"', html)
+    if not tag:
+        return "", ""
+    m = re.match(
+        r"(.+) in ([A-Z][A-Za-z .-]+),\s+([A-Z][A-Za-z ]+)\.\s+Address:",
+        tag.group(1),
+    )
+    if not m:
+        return "", ""
+    city, state_name = m.group(2), m.group(3)
+    abbr = STATE_NAME_TO_ABBR.get(state_name.strip(), "")
+    return (city.strip(), abbr) if abbr else ("", "")
+
+
 def slugify(text):
     s = text.lower().strip()
     s = re.sub(r"[^\w\s-]", "", s)
@@ -239,8 +283,13 @@ def parse_hindutemples_info_events(html, temple):
         # Skip past events
         if start_date < datetime.now(timezone.utc).strftime("%Y-%m-%d"):
             continue
+        # Temple name MUST be part of the id: festival+date+city alone
+        # collides across temples in the same city (Houston's Jalaram and
+        # Guruvayurappan temples share every festival sid, so whichever
+        # temple scraped first permanently blocked the other's events).
         sid = hashlib.md5(
-            f"hindutemples_{name}_{start_date}_{temple['city']}".encode()
+            f"hindutemples_{temple['name']}_{name}_{start_date}_"
+            f"{temple['city']}".encode()
         ).hexdigest()[:16]
         events.append({
             "title": f"{name} at {temple['name']}",
@@ -251,7 +300,8 @@ def parse_hindutemples_info_events(html, temple):
             "ticket_url": temple.get("website") or temple.get("events_url"),
             "source": "temple",
             "source_id": f"temple_{sid}",
-            "slug": slugify(f"{name}-{temple['city']}-{start_date}"),
+            "slug": slugify(
+                f"{name}-{temple['name']}-{temple['city']}-{start_date}"),
             "category": "Spiritual",
             "description": desc,
         })
@@ -272,6 +322,13 @@ def scrape_temple(temple):
         if status != 200 or not html:
             print(f"  ⚠ {temple['name']}: fetch failed ({status})")
             return []
+        # Directory entries without city/state: recover both from the
+        # page itself (og:description states the temple's real city).
+        if not temple.get("city") or not temple.get("state"):
+            city, state = extract_page_city_state(html)
+            if city and state:
+                temple = {**temple, "city": city, "state": state}
+                print(f"     (city/state from page: {city}, {state})")
         events = parse_hindutemples_info_events(html, temple)
         print(f"  ✓ {temple['name']}: {len(events)} festivals")
         return events
@@ -384,6 +441,39 @@ def main():
 
     existing = get_existing_source_ids()
     new = [e for e in unique if e["source_id"] not in existing]
+
+    # Secondary dedupe on title+date+city: the hindutemples source_id
+    # hash gained the temple name (2026-10-18), so events inserted
+    # under the old colliding hash look "new" by id — never re-insert
+    # a row the table already carries under another id.
+    cmd = ["curl", "-sS", "--max-time", "20",
+           f"{REST}/events?select=title,date,city&source=eq.temple"
+           "&limit=5000",
+           "-H", f"apikey: {SB_KEY}",
+           "-H", f"Authorization: Bearer {SB_KEY}"]
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=25)
+        existing_tdc = {
+            (e["title"].strip().lower(), e["date"],
+             (e.get("city") or "").strip().lower())
+            for e in json.loads(r.stdout)
+        }
+    except Exception:
+        existing_tdc = set()
+    before = len(new)
+    new = [e for e in new
+           if (e["title"].strip().lower(), e["date"],
+               (e.get("city") or "").strip().lower()) not in existing_tdc]
+    if before != len(new):
+        print(f"  Title+date+city dedupe skipped {before - len(new)} more")
+
+    # Never insert an event with no city/state: it is invisible to
+    # every city feed and pollutes the table.
+    located = [e for e in new if e.get("city") and e.get("state")]
+    if len(located) != len(new):
+        print(f"  ⚠ Dropped {len(new) - len(located)} events with "
+              "empty city/state")
+    new = located
     print(f"  New: {len(new)} (skipping {len(unique) - len(new)} existing)")
 
     inserted = insert_events(new)
