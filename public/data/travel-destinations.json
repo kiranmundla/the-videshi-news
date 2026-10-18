@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-17",
+  "generated_at": "2026-10-18",
   "current_month": 10,
   "current_year": 2026,
   "destination_count": 50,
@@ -18,12 +18,12 @@
     "greece",
     "kerala",
     "australia",
+    "karnataka",
     "portugal",
     "egypt",
     "bali",
     "kenya",
     "national-parks",
-    "karnataka",
     "hawaii",
     "iceland",
     "spain",
@@ -64,8 +64,8 @@
       "oman",
       "kerala",
       "egypt",
-      "kenya",
       "karnataka",
+      "kenya",
       "rajasthan",
       "northeast-india",
       "cabo",
@@ -96,9 +96,9 @@
       "oman",
       "kerala",
       "egypt",
+      "karnataka",
       "kenya",
       "iceland",
-      "karnataka",
       "rajasthan",
       "northeast-india",
       "cabo",
@@ -160,9 +160,9 @@
       "france",
       "italy",
       "bali",
+      "karnataka",
       "kenya",
       "hawaii",
-      "karnataka",
       "spain",
       "kashmir",
       "london",
@@ -371,12 +371,12 @@
       "australia",
       "bali",
       "egypt",
+      "karnataka",
       "kenya",
       "portugal",
       "national-parks",
       "hawaii",
       "iceland",
-      "karnataka",
       "himachal-pradesh",
       "rajasthan",
       "spain",
@@ -408,8 +408,8 @@
       "kerala",
       "australia",
       "egypt",
-      "hawaii",
       "karnataka",
+      "hawaii",
       "himachal-pradesh",
       "rajasthan",
       "uttarakhand",
@@ -451,8 +451,8 @@
       "oman",
       "kerala",
       "egypt",
-      "hawaii",
       "karnataka",
+      "hawaii",
       "rajasthan",
       "northeast-india",
       "cabo",
@@ -2873,7 +2873,7 @@
         "date_range": "Oct 21 \u2192 Nov 10",
         "duration_days": 20,
         "weeks": null,
-        "as_of": "2026-10-17",
+        "as_of": "2026-10-18",
         "cadence": "daily"
       },
       "highlights": [
@@ -2922,7 +2922,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 63,
+        "score": 65,
         "max_score": 100,
         "components": [
           {
@@ -2939,9 +2939,9 @@
           },
           {
             "id": "fare_drop",
-            "points": 0,
+            "points": 2,
             "max": 20,
-            "reason": "Fare route tracked, no notable drop right now"
+            "reason": "Fares down 1.8% on SFO-BLR ($2246 \u2192 $2205) vs 2026-10-17"
           },
           {
             "id": "offpeak_value",
@@ -5588,7 +5588,7 @@
     "trending": {
       "month": 10,
       "year": 2026,
-      "score": 80,
+      "score": 90,
       "max_score": 100,
       "components": [
         {
@@ -5605,9 +5605,9 @@
         },
         {
           "id": "fare_drop",
-          "points": 15,
+          "points": 25,
           "max": 30,
-          "reason": "Fares down 9.8% on ATL-DEL ($2244 \u2192 $2024) vs 2026-10-16"
+          "reason": "Fares down 16.6% on JFK-DEL ($1359 \u2192 $1134) vs 2026-10-17"
         }
       ]
     },
