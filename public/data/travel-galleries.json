@@ -65,10 +65,6 @@
           "caption": "A breathtaking aerial view of Amber Fort, Jaipur with Maota Lake and scenic surroundings."
         },
         {
-          "src": "https://images.pexels.com/photos/18881274/pexels-photo-18881274.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Historic Jaigarh Fort with rugged hills and impressive walls in Jaipur, India."
-        },
-        {
           "src": "https://images.pexels.com/photos/31446118/pexels-photo-31446118.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
           "caption": "Stunning architectural detail of Amber Fort in Jaipur, showcasing intricate design."
         }
@@ -389,16 +385,8 @@
           "caption": "Se Cathedral, Goa"
         },
         {
-          "src": "https://images.pexels.com/photos/32979177/pexels-photo-32979177.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Detailed view of a crucifixion statue in a historic church in \u00c1vila, Spain."
-        },
-        {
           "src": "https://images.pexels.com/photos/26795671/pexels-photo-26795671.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
           "caption": "Low angle view of an old brick building in Goa showcasing historical architecture."
-        },
-        {
-          "src": "https://images.pexels.com/photos/30605639/pexels-photo-30605639.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "A detailed statue depicting Jesus carrying the cross, symbolizing a key biblical moment."
         }
       ],
       "Palolem Beach": [
@@ -453,18 +441,6 @@
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/goa-exp-dudhsagar-falls-2.jpg",
           "caption": "Dudhsagar railway bridge"
-        },
-        {
-          "src": "https://images.pexels.com/photos/29067614/pexels-photo-29067614.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "A beautiful waterfall cascading through a dense forest, creating a serene nature scene."
-        },
-        {
-          "src": "https://images.pexels.com/photos/33889675/pexels-photo-33889675.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Breathtaking view of cascading waterfalls amidst dense greenery in Chamarajnagar, India."
-        },
-        {
-          "src": "https://images.pexels.com/photos/28824190/pexels-photo-28824190.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Powerful waterfall cascading amidst dense greenery and rocky terrain."
         }
       ],
       "Fontainhas": [
@@ -477,16 +453,8 @@
           "caption": "Portuguese heritage, Goa"
         },
         {
-          "src": "https://images.pexels.com/photos/5909775/pexels-photo-5909775.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Cityscape of aged shabby buildings with cracks on walls and transport in tropical country"
-        },
-        {
           "src": "https://images.pexels.com/photos/11438873/pexels-photo-11438873.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
           "caption": "A woman in an orange dress joyfully runs down a colorful street in Panaji, India."
-        },
-        {
-          "src": "https://images.pexels.com/photos/35333488/pexels-photo-35333488.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Beautiful view of Se Cathedral, a historic landmark in Old Goa, under a bright blue sky."
         }
       ]
     }
@@ -1081,12 +1049,8 @@
           "caption": "Great Court, British Museum"
         },
         {
-          "src": "https://images.pexels.com/photos/31376442/pexels-photo-31376442.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Panoramic view of Manchester Central Library's stunning reading room with grand dome and vintage architecture."
-        },
-        {
           "src": "https://images.pexels.com/photos/11793538/pexels-photo-11793538.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "British Museum \u2014 Photo by Jakob Schlothane"
+          "caption": "National Art Library inside the V&A Museum, London \u2014 Photo by Jakob Schlothane"
         },
         {
           "src": "https://images.pexels.com/photos/35551877/pexels-photo-35551877.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
@@ -1109,10 +1073,6 @@
         {
           "src": "https://images.pexels.com/photos/15112830/pexels-photo-15112830.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
           "caption": "Capturing London's urban vibe with graffiti and umbrellas on a rainy street."
-        },
-        {
-          "src": "https://images.pexels.com/photos/1022929/pexels-photo-1022929.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Colorful graffiti art on a brick wall in London, Ontario, featuring abstract designs and bold colors."
         }
       ],
       "Neasden Temple": [
@@ -1206,11 +1166,11 @@
         },
         {
           "src": "https://images.pexels.com/photos/5210434/pexels-photo-5210434.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Aged house in snowy mounts under blue cloudless sky in winter in daylight"
+          "caption": "The Sphinx Observatory and station buildings at Jungfraujoch, Switzerland."
         },
         {
           "src": "https://images.pexels.com/photos/5210437/pexels-photo-5210437.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Old building and observation tower on snowy mount under blue cloudless sky in wintertime"
+          "caption": "Jungfraujoch station and the Sphinx Observatory, with the Aletsch Glacier beyond, Switzerland."
         }
       ],
       "Lake Lucerne": [
