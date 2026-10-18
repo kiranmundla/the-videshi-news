@@ -688,7 +688,7 @@ export async function getAllUpcomingEvents(
 export const EVENT_CATEGORIES = [
   "Cultural", "Music", "Food", "Sports", "Community",
   "Festival", "Comedy", "Dance", "Religious", "Education",
-  "Competition", "Other",
+  "Competition", "Exhibitions & Roadshows", "Other",
 ];
 
 export function formatEventDate(dateStr: string, endDateStr?: string | null): string {

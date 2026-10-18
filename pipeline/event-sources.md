@@ -169,3 +169,70 @@ site:simplydesi.us san jose events
 "5K run {city} {month} 2026"
 "garba {city} 2026"
 ```
+
+## Exhibitions & Roadshows (added 2026-10-18 — Kiran's one-stop-shop directive)
+
+Touring merchants from India/Dubai visiting US cities are covered as
+events with category **"Exhibitions & Roadshows"** (diaspora-core,
+desi_tier 2 by category in prebuild-feeds.py). Scope: Dubai/India
+property roadshows & expos, Indian jewelry exhibition tours, Indian /
+South Asian bridal expos. Every listing needs a real registration/info
+URL and a future date; venues are often announced late or shared only
+with registered guests — say so in venue_name rather than guessing.
+
+Automated capture (wired 2026-10-18):
+- scrape-eventbrite.py: SEARCH_TERMS + RELEVANCE_KEYWORDS gained
+  dubai-property / india-property-expo / nri-property-show /
+  property-roadshow / jewelry-exhibition / jewellery-exhibition /
+  bridal-expo terms; titles matching roadshow/expo terms are
+  categorized "Exhibitions & Roadshows" (roadshow_category()).
+- scrape-allevents.py: KEYWORDS + RELEVANCE_KEYWORDS extended the
+  same way; CATEGORY_RULES checks the roadshow rule FIRST.
+- scrape-sulekha-events.py: CATEGORY_KEYWORDS checks roadshow terms
+  first.
+- Aggregator to sweep in weekly events research: 10times
+  (10times.com — search "Dubai property expo" / "India property"
+  + US cities).
+
+Organizer calendars to check manually each weekly run (they announce
+in waves; most stops appear 4–8 weeks out):
+- Allegiance Real Estate roadshows (DAMAC's main US roadshow partner):
+  https://www.aredxb.com/roadshows — US stops confirmed Oct 2026:
+  New Jersey Nov 14, New York Nov 15, 2026 (seeded).
+- India Property Expo America (NRI Nivesh):
+  https://www.indiapropertyexpousa.com/ — 2026 tour: SF Bay Area
+  Oct 3–4, NY/NJ Oct 10–11, Dallas & Houston Oct 17–18, Chicago
+  Oct 24–25, Seattle Nov 7–8, Atlanta Nov 14–15 (last three seeded).
+- SOBHA NRI Property Show / SOBHA USA Property Fest:
+  https://www.sobha.com/blog/sobha-india-property-expo-dallas-santa-clara-us-nri/
+  and https://sobhapropertyfest.in/ — 2026 US stops (Dallas Oct 3–4,
+  Santa Clara Oct 10–11) were already past at wiring time; watch for
+  the next tour announcement.
+- Dubai Property Expo USA (Bright Realty International):
+  https://www.dubaipropertyexpousa.com/ — NY / LA / Miami / SF listed
+  "coming soon" with no dates as of 2026-10-18; seed when dated.
+- Dubai Luxury Property Show (One Investments):
+  https://www.dubailuxurypropertyshow.com/ — US city pages exist
+  (Houston, Chicago, New York) but no dated shows published as of
+  2026-10-18; seed when dated.
+- Cresco Real Estate (Dubai brokerage touring the US): Newport Beach
+  stop at Pendry Newport Beach reported in trade press 2026-10-03
+  with no date/registration page — unverifiable; watch
+  crescorealestate.com for an events page.
+- Jewelry tours: Tanishq USA exhibitions (tanishq.com — Bay Area
+  Premium Jewelry Exhibition, Cupertino, ran Sep 18–20, 2026);
+  also watch Malabar Gold & Diamonds and Joyalukkas US pages.
+- Bridal: MyShadi Bridal Expo (myshadibridalexpo.com — site stale,
+  no current dates as of 2026-10-18); watch Eventbrite "bridal expo"
+  results via the wired search terms.
+
+STATUS 2026-10-18: the 5 seeded stops (DAMAC NJ + NY; India Property
+Expo Chicago/Seattle/Atlanta) sit in category "Other" for now — the
+events_category_check constraint does not yet include "Exhibitions &
+Roadshows" and no Supabase access token was available on the box to
+apply DDL. Migration is written (pipeline/migration-events-roadshows-category.sql).
+Once applied, flip the seeds with:
+  python3 pipeline/seed-roadshow-events.py "Exhibitions & Roadshows"
+Frontend maps, EVENT_CATEGORIES lists, prebuild desi_tier rule and the
+scraper categorization already key off the real category name, so the
+flip is data-only.

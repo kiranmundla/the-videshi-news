@@ -108,6 +108,11 @@ KEYWORDS = [
     "indian",
     "bollywood",
     "desi",
+    # Exhibitions & Roadshows (2026-10-18) — touring merchants
+    "dubai-property",
+    "india-property-expo",
+    "property-roadshow",
+    "bridal-expo",
     "tamil",
     "telugu",
     "punjabi",
@@ -213,6 +218,14 @@ CITIES = [
 
 # Category rules
 CATEGORY_RULES = [
+    # Exhibitions & Roadshows FIRST (2026-10-18) — touring merchants
+    # (Dubai/India property, jewelry, bridal) before generic rules can
+    # claim them ("expo"/"show" would otherwise hit Entertainment/Community)
+    ("Exhibitions & Roadshows", ["roadshow", "property expo", "property show",
+                     "property exhibition", "real estate expo",
+                     "jewellery exhibition", "jewelry exhibition",
+                     "jewellery expo", "jewelry expo",
+                     "bridal expo", "bridal show", "wedding expo"]),
     # Spiritual/Religious FIRST — yoga, meditation, etc. should never be Education
     ("Religious",   ["temple", "gurdwara", "mosque", "puja", "pooja", "havan",
                      "kirtan", "bhajan", "aarti", "satsang", "prayer",
@@ -262,6 +275,10 @@ RELEVANCE_KEYWORDS = [
     "kuchipudi", "biryani", "curry", "samosa", "masala",
     "yoga", "ayurveda", "vedic", "sanskrit", "mehndi", "sangeet",
     "diaspora", "nri", "cricket", "kabaddi",
+    # Exhibitions & Roadshows (2026-10-18) — touring merchants
+    "dubai property", "property expo", "property roadshow",
+    "jewelry exhibition", "jewellery exhibition", "bridal expo",
+    "damac", "emaar", "sobha",
     "kirtan", "bhajan", "puja", "pooja", "chai",
     "rangoli", "kolam",
     "tech meetup", "startup", "networking", "professional",

@@ -158,6 +158,11 @@ SEARCH_TERMS = [
     # Professional & educational
     "immigration-workshop", "h1b-seminar", "green-card-workshop",
     "real-estate-seminar", "investment-seminar",
+    # Exhibitions & Roadshows (2026-10-18) — touring merchants: Dubai/India
+    # property expos, jewelry exhibitions, bridal shows
+    "dubai-property", "india-property-expo", "nri-property-show",
+    "property-roadshow", "jewelry-exhibition", "jewellery-exhibition",
+    "bridal-expo",
     # Literary
     "indian-author", "jaipur-literature",
 ]
@@ -191,6 +196,10 @@ RELEVANCE_KEYWORDS = {
     "india day", "parade",
     "immigration", "h-1b", "h1b", "green card", "visa workshop",
     "investment seminar", "real estate seminar",
+    # Added 2026-10-18: Exhibitions & Roadshows — touring merchants
+    "dubai property", "property expo", "property roadshow",
+    "jewelry exhibition", "jewellery exhibition", "bridal expo",
+    "damac", "emaar", "sobha",
     "literature festival", "book reading", "author talk",
     "dj night", "club night", "desi party",
     "vaisakhi", "lohri", "ugadi",
@@ -293,7 +302,8 @@ from event_dedup import content_fingerprint
 def map_category(tags: list) -> str:
     """Map Eventbrite tags to our event categories.
     Allowed DB values: Comedy, Community, Competition, Cultural, Dance,
-    Festival, Food, Music, Religious, Sports, Entertainment, Education, Other
+    Festival, Food, Music, Religious, Sports, Entertainment, Education,
+    Exhibitions & Roadshows (title-matched in roadshow_category), Other
     """
     tag_names = {t.get("display_name", "").lower() for t in (tags or [])}
     if tag_names & {"music", "concert", "performing arts", "dj / dance"}:
@@ -325,6 +335,25 @@ def map_category(tags: list) -> str:
     if tag_names & {"festival"}:
         return "Festival"
     return "Cultural"  # default for Indian events
+
+
+# Exhibitions & Roadshows (2026-10-18): touring merchants — Dubai/India
+# property expos, jewelry exhibitions, bridal shows — are categorized by
+# title, not Eventbrite tags (a property roadshow carries "business" tags
+# and would otherwise land in Community).
+ROADSHOW_TITLE_TERMS = (
+    "roadshow", "property expo", "property show", "property exhibition",
+    "real estate expo", "jewellery exhibition", "jewelry exhibition",
+    "jewellery expo", "jewelry expo", "bridal expo", "bridal show",
+    "wedding expo",
+)
+
+
+def roadshow_category(name: str) -> str | None:
+    t = (name or "").lower()
+    if any(term in t for term in ROADSHOW_TITLE_TERMS):
+        return "Exhibitions & Roadshows"
+    return None
 
 
 def parse_event(e: dict, state_abbr: str) -> dict | None:
@@ -379,7 +408,7 @@ def parse_event(e: dict, state_abbr: str) -> dict | None:
 
     slug = make_slug(name, event_city or "unknown", start_date, event_id)
     fp = content_fingerprint(name, start_date, event_city or "unknown")
-    category = map_category(e.get("tags", []))
+    category = roadshow_category(name) or map_category(e.get("tags", []))
 
     # Full description from search data (often empty; backfill script enriches later)
     full_desc = (e.get("full_description") or "").strip()

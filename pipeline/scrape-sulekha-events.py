@@ -141,6 +141,11 @@ def extract_event_jsons(html: str) -> list:
 
 
 CATEGORY_KEYWORDS = [
+    # Exhibitions & Roadshows first (2026-10-18) — touring merchants
+    (("roadshow", "property expo", "property show", "property exhibition",
+      "real estate expo", "jewellery exhibition", "jewelry exhibition",
+      "jewellery expo", "jewelry expo", "bridal expo", "bridal show",
+      "wedding expo"), "Exhibitions & Roadshows"),
     (("comedy", "standup", "stand-up", "hasya"), "Comedy"),
     (("garba", "dandiya", "navratri", "diwali", "holi", "eid", "christmas",
       "festival", "mela", "utsav", "celebration"), "Festival"),

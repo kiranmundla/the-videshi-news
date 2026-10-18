@@ -1134,6 +1134,14 @@ def main():
         # (2026-10-14 audit: 69 BAPS/ISKCON events sat at tier 0.)
         if (e.get("source") or "") in ("temple", "baps", "iskcon"):
             return 2
+        # Exhibitions & Roadshows (2026-10-18, Kiran's one-stop-shop
+        # directive): touring merchants — Dubai/India property expos,
+        # jewelry exhibitions, bridal shows — come to US cities FOR the
+        # diaspora/NRI audience, so the category alone is diaspora-core
+        # even when a title carries no vocabulary word ("DAMAC Dubai
+        # Property Roadshow" has none).
+        if (e.get("category") or "") == "Exhibitions & Roadshows":
+            return 2
         title = e.get("title") or ""
         text = (title + " " + (e.get("description") or "")).lower()
         # Neutralise false-positive phrases before matching so e.g.

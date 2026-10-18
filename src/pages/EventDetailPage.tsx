@@ -21,7 +21,7 @@ const CAT_EMOJI: Record<string, string> = {
   Community: "🤝", Festival: "🪔", Comedy: "😂", Dance: "💃",
   Religious: "🙏", Education: "🎓", Competition: "🏆",
   Spiritual: "🙏", Shopping: "🛍️", Entertainment: "🎬",
-  Technology: "💻", Other: "📌",
+  Technology: "💻", "Exhibitions & Roadshows": "🏢", Other: "📌",
 };
 
 const SOURCE_NAMES: Record<string, string> = {
@@ -133,6 +133,7 @@ const CAT_FALLBACK_IMG: Record<string, string> = {
   Technology: "/images/events/technology.jpg",
   Shopping: "/images/events/cultural.jpg",
   Spiritual: "/images/events/religious.jpg",
+  "Exhibitions & Roadshows": "/images/events/community.jpg",
   Other: "/images/events/other.jpg",
 };
 

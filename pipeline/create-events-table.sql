@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS events (
   venue_name TEXT,
   city TEXT NOT NULL,
   state TEXT,
-  category TEXT CHECK (category IN ('Cultural', 'Music', 'Food', 'Sports', 'Community', 'Festival', 'Comedy', 'Dance', 'Religious', 'Education', 'Competition', 'Other')),
+  category TEXT CHECK (category IN ('Cultural', 'Music', 'Food', 'Sports', 'Community', 'Festival', 'Comedy', 'Dance', 'Religious', 'Education', 'Competition', 'Entertainment', 'Shopping', 'Spiritual', 'Technology', 'Exhibitions & Roadshows', 'Other')),
   description TEXT,
   image_url TEXT,
   ticket_url TEXT,

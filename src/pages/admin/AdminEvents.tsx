@@ -20,6 +20,7 @@ const PAGE_SIZE = 25;
 const EVENT_CATEGORIES = [
   "Cultural", "Festival", "Music", "Dance", "Food", "Religious",
   "Networking", "Sports", "Comedy", "Theater", "Workshop", "Community",
+  "Exhibitions & Roadshows",
 ];
 
 type EventRow = {
