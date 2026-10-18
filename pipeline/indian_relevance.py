@@ -61,6 +61,14 @@ INDIAN_CULTURAL_WORDS = {
     "bollywood","mehndi","mehendi","rangoli","sangeet",
     "shaadi","lehenga","saree","sari","salwar","kurta","sherwani","dupatta",
     "ayurveda","ayurvedic","panchkarma","panchakarma",
+    # Yoga/meditation traditions + orgs whose Places names carry none of
+    # the words above (added 2026-10-18: every one of these failed the
+    # gate, so "Indian yoga class" sweeps inserted ~0 — the names are
+    # distinctly Indian tradition/org proper names, like "iskcon";
+    # generic studio branding — CorePower, YogaWorks, prana/shakti —
+    # still correctly fails)
+    "sivananda","yogananda","kundalini","isha yoga","art of living",
+    "brahma kumaris","heartfulness",
     "bharat","hindustan","swadeshi",
     "tamil","telugu","kannada","malayalam","bengali","marathi","gujarati",
     "punjabi","rajasthani","sindhi","nepali",
@@ -160,6 +168,9 @@ if __name__ == "__main__":
         ("Shaadi 'R' Us", "Event Venues"),
         ("Bagichaa", "Catering & Food"),
         ("SOL Yoga Fort Lauderdale", "Yoga & Wellness"),
+        ("Art of Living Yoga & Meditation Center", "Yoga & Wellness"),
+        ("Sivananda Yoga Center", "Yoga & Wellness"),
+        ("CorePower Yoga", "Yoga & Wellness"),
         ("Ayurvedashram", "Doctors & Healthcare"),
         ("Rashmi Satyadeo, CPA", "Tax & Accounting"),
         ("CORE954 Lagree Fitness", "Yoga & Wellness"),

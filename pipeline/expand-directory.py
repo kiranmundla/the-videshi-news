@@ -166,8 +166,14 @@ SEARCH_QUERIES = [
     ("Hindu temple", "Religious Services"),
     ("Gurudwara Sikh temple", "Religious Services"),
     ("Jain temple", "Religious Services"),
-    # Yoga
+    # Yoga — the generic query finds traditionally-named studios
+    # (ayurveda/vedanta/ashram names) in big metros, but the big Indian
+    # yoga orgs brand without any Indian keyword in the name, so they
+    # get dedicated queries like Bharatanatyam does for Education
+    # (added 2026-10-18; gate keywords added in indian_relevance.py)
     ("Indian yoga class", "Yoga & Wellness"),
+    ("Art of Living yoga", "Yoga & Wellness"),
+    ("Isha yoga center", "Yoga & Wellness"),
     # Salons
     ("mehndi artist", "Beauty & Grooming"),
     ("Indian beauty salon threading", "Beauty & Grooming"),
@@ -213,7 +219,7 @@ TYPE_TO_CATEGORY = {
     "beauty_salon": "Beauty & Grooming", "hair_care": "Beauty & Grooming",
     "spa": "Beauty & Grooming",
     "accounting": "Tax & Accounting",
-    "gym": "Yoga & Wellness",
+    "gym": "Yoga & Wellness", "yoga_studio": "Yoga & Wellness",
     "school": "Education & Tutoring", "university": "Education & Tutoring",
     "plumber": "Home Services", "electrician": "Home Services",
     "roofing_contractor": "Home Services", "moving_company": "Home Services",
