@@ -255,6 +255,31 @@ def get_existing_slugs():
         return {e["slug"] for e in r.json() if e.get("slug")}
     return set()
 
+def show_key(row):
+    """Identity of a physical show: normalized title + date + time +
+    street-address stem. Ticketmaster lists the same show twice under
+    venue-name variants — its own "Improv Comedy Club- Houston" vs
+    TicketWeb's "Houston Improv" — with DIFFERENT event ids, so the
+    source_id dedupe above can never catch the pair (Desi Banks,
+    Houston, 2026-11-08 7:30 PM landed in the table twice). Rows with
+    no parseable street address get an empty stem and are not matched
+    on this key (too weak to call a dupe)."""
+    title = re.sub(r"[^a-z0-9]+", " ", (row.get("title") or "").lower()).strip()
+    addr = (row.get("street_address") or "").lower()
+    m = re.match(r"\s*(\d+)\s+([a-z]+)", addr)
+    stem = f"{m.group(1)} {m.group(2)}" if m else ""
+    return (title, row.get("date") or "", (row.get("time") or "").strip().upper(), stem)
+
+def get_existing_show_keys():
+    """Show keys of TM rows already in the table."""
+    r = requests.get(
+        f"{REST}/events?select=title,date,time,street_address&source=eq.ticketmaster",
+        headers=HEADERS, timeout=15,
+    )
+    if r.status_code == 200:
+        return {show_key(e) for e in r.json() if show_key(e)[3]}
+    return set()
+
 def insert_events(rows, existing_slugs):
     """Insert events one batch at a time, handling slug conflicts."""
     if not rows:
@@ -371,6 +396,22 @@ def main():
     # Split into new vs existing
     new_rows = [r for r in all_rows if r["source_id"] not in existing_source_ids]
     update_rows = [r for r in all_rows if r["source_id"] in existing_source_ids]
+
+    # Venue-variant guard: drop "new" rows that are the same physical
+    # show as a TM row already in the table (or earlier in this batch)
+    # under the other venue naming. When both variants arrive in one
+    # run, the ticketmaster.com listing wins.
+    existing_show_keys = get_existing_show_keys()
+    kept_new, seen_show_keys = [], set()
+    for row in sorted(new_rows, key=lambda r: 0 if "ticketmaster.com" in (r.get("ticket_url") or "") else 1):
+        k = show_key(row)
+        if k[3] and (k in existing_show_keys or k in seen_show_keys):
+            print(f"  Venue-variant dupe skipped: {row['title'][:40]} @ {row.get('venue_name')}")
+            continue
+        if k[3]:
+            seen_show_keys.add(k)
+        kept_new.append(row)
+    new_rows = kept_new
 
     print(f"  New events to insert: {len(new_rows)}")
     print(f"  Existing events to update: {len(update_rows)}")

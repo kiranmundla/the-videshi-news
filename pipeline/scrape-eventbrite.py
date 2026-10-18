@@ -204,23 +204,68 @@ RELEVANCE_KEYWORDS = {
     "vaisakhi", "lohri", "ugadi",
 }
 
-# Weak terms (2026-10-18): generic wellness vocabulary is NOT a diaspora
-# signal on its own — bare "yoga"/"meditation" searches return every class
-# in a state, and generic listings pass if these terms alone count as
-# relevance (same hole fixed in scrape-allevents.py). A weak term passes
-# ONLY alongside a real diaspora signal.
-WEAK_RELEVANCE_KEYWORDS = {"yoga", "meditation", "wellness expo", "wellness festival"}
+# Weak terms (2026-10-18, tightened same day): generic wellness vocabulary
+# is NOT a diaspora signal on its own — bare "yoga"/"meditation" searches
+# return every class in a state, and generic listings pass if these terms
+# alone count as relevance (same hole fixed in scrape-allevents.py). A
+# title built on a weak term passes ONLY with a diaspora signal in the
+# TITLE itself or a recognized Indian-org signal. Description text can no
+# longer rescue it: the first version of this rule still scanned
+# title+summary together, and generic rows leaked through incidental
+# description substrings — "desi" inside "designed", a metaphorical
+# "temple".
+WEAK_RELEVANCE_KEYWORDS = {"yoga", "meditation", "wellness", "pilates"}
 WEAK_TERM_SIGNALS = RELEVANCE_KEYWORDS | {"hindu", "mantra"}
+
+# Recognized Indian-org / tradition signals: a weak-term event carried by
+# one of these is a diaspora event even if its title is generic ("Sunrise
+# Yoga" hosted by ISKCON). Searched over title + summary.
+ORG_SIGNALS = [
+    "iskcon", "baps", "chinmaya", "art of living", "brahma kumaris",
+    "ashram",
+    "raja yoga", "rajayoga", "kundalini", "sivananda", "sahaja yoga",
+    "isha foundation", "isha yoga", "sri sathya sai", "sai baba",
+    "hindu temple", "hindu mandir", "hindu society", "hindu cultural",
+    "hindu sangam", "vishwa hindu", "mandir", "ramakrishna mission",
+    "vivekananda vedanta", "sadhguru", "sri sri ravi shankar",
+    "india cultural center", "indian cultural center",
+    "cultural center of india", "hindu temple of",
+]
+
+# Short keywords that collide with ordinary English as substrings —
+# "desi" in "designed", "holi" in "holiday", "chai" in "chair", "ipl" in
+# "diploma", "dosa" in "dosage". These match on word boundaries only,
+# everywhere the gate checks them.
+_BOUNDARY_KEYWORDS = {"desi", "holi", "chai", "eid", "ipl", "dosa", "isha", "naan"}
+
+
+def _kw_hit(kw: str, text: str) -> bool:
+    if kw in _BOUNDARY_KEYWORDS:
+        return re.search(r"\b" + re.escape(kw) + r"\b", text) is not None
+    return kw in text
+
+
+def _any_hit(keywords, text: str) -> bool:
+    return any(_kw_hit(kw, text) for kw in keywords)
 
 
 def is_relevant(event_name: str, event_summary: str = "") -> bool:
     """Check if event is likely Indian/South Asian diaspora related."""
-    text = (event_name + " " + (event_summary or "")).lower()
-    if any(kw in text for kw in RELEVANCE_KEYWORDS):
+    t = (event_name or "").lower()
+    text = t + " " + (event_summary or "").lower()
+    # Weak-term title: diaspora signal must be in the TITLE, or a
+    # recognized Indian org must carry the event. Incidental summary
+    # keywords never rescue a generic wellness title.
+    if any(w in t for w in WEAK_RELEVANCE_KEYWORDS):
+        if _any_hit(WEAK_TERM_SIGNALS, t):
+            return True
+        return _any_hit(ORG_SIGNALS, text)
+    if _any_hit(RELEVANCE_KEYWORDS, text):
         return True
-    # Weak wellness terms pass only with a diaspora co-signal
+    # Weak term only in the summary: same bar — an org signal must
+    # carry it; summary keywords alone are not enough.
     if any(w in text for w in WEAK_RELEVANCE_KEYWORDS):
-        return any(s in text for s in WEAK_TERM_SIGNALS)
+        return _any_hit(ORG_SIGNALS, text)
     return False
 
 
