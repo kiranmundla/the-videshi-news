@@ -1,5 +1,9 @@
 import { useState, useCallback, type RefObject } from "react";
-import { lookupZip, nearestZipPlace, type ZipInfo } from "@/lib/geo";
+import { lookupZip, type ZipInfo } from "@/lib/geo";
+import {
+  resolvePlaceLabel,
+  isGenericHubLabel,
+} from "@/hooks/useHubLocation";
 
 export type LocationResult = {
   lat: number;
@@ -70,18 +74,25 @@ export default function ZipCodeSearch({ onLocation, active, compact, className, 
       (pos) => {
         const lat = pos.coords.latitude;
         const lng = pos.coords.longitude;
-        // Name the actual city (reverse-resolved from the local zip
-        // database) instead of a bare "📍 Near You" — "Near You" is
-        // only the fallback when the coords resolve to nothing.
-        void nearestZipPlace(lat, lng).then((place) => {
+        // Name the actual city through the SHARED resolver
+        // (resolvePlaceLabel — cluster-aware, the Hub's chain; the
+        // ZIP database is its last step), not nearestZipPlace alone:
+        // at city borders the two disagreed — coords in San Ramon
+        // named "San Ramon, CA" here while the Hub record for the
+        // same point said "Dublin, CA" (Kiran, 2026-10-18). One
+        // chain now, so a pin fix prints the same city on every
+        // surface. "📍 Near You" is only the fallback when the
+        // chain resolves to no nameable place.
+        void resolvePlaceLabel(lat, lng, null).then((place) => {
+          const named = !isGenericHubLabel(place.label);
           setGeoLoading(false);
           setZip("");
           onLocation({
             lat,
             lng,
-            city: place?.city ?? "",
-            state: place?.state ?? "",
-            label: place ? `📍 ${place.city}, ${place.state}` : "📍 Near You",
+            city: named ? place.city : "",
+            state: named ? place.state : "",
+            label: named ? `📍 ${place.label}` : "📍 Near You",
             source: "geolocation",
           });
         });

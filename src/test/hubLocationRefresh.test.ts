@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import {
   FALLBACK_CLUSTERS,
   classifyHubRecord,
+  convergeHubLocationWithFix,
   dismissHubLocationSuggestion,
   getAnyBrowserGeoFix,
   getDismissedHubSuggestions,
@@ -15,7 +16,9 @@ import {
   isTripwireDifferentLocation,
   maybeRefreshHubLocation,
   maybeSuggestHubLocation,
+  resolveEffectivePlaceName,
   type HubLocation,
+  type HubRefreshDeps,
   type IpGeoFix,
 } from "@/hooks/useHubLocation";
 
@@ -743,5 +746,185 @@ describe("suggestion dismissals — persisted per city", () => {
       now: () => NOW,
     });
     expect(s).toBeNull();
+  });
+});
+
+/* ------------------------------------------------------------------ */
+/* Label consistency + one effective location (2026-10-18, Kiran).    */
+/*                                                                    */
+/* His screenshots, same phone, same minute: Events showed            */
+/* "📍 San Ramon, CA" while Directory said "500 listings near you"    */
+/* over Dublin listings. San Ramon is a MEMBER of the Dublin cluster  */
+/* in the canonical table, so the Hub chain (resolvePlaceLabel)       */
+/* names coords there "Dublin, CA" — while Events' old label upgrade  */
+/* used nearestZipPlace and named the same point "San Ramon, CA",     */
+/* and Events' fresh GPS fix never wrote through to the record at     */
+/* all. The cases below pin the convergence: one resolver for the     */
+/* name (resolveEffectivePlaceName — Directory's summary, the Events  */
+/* and Kids label upgrades all call it), and one write-through for    */
+/* a fresh fix (convergeHubLocationWithFix — Events' auto-detect).    */
+/* ------------------------------------------------------------------ */
+
+/** San Ramon member coords, verbatim from the Dublin cluster in
+ * FALLBACK_CLUSTERS — the exact point of Kiran's screenshot. */
+const SAN_RAMON = { lat: 37.7799, lon: -121.978 };
+
+describe("resolveEffectivePlaceName — one name for one point", () => {
+  it("San Ramon coords name Dublin, CA through the real shared chain (the screenshot case)", async () => {
+    // No stored record: the chain decides. The nearest cluster
+    // CENTER is Dublin's (~5 mi) — San Ramon is its member — so the
+    // Hub's chain names this point Dublin. nearestZipPlace, the old
+    // Events resolver, would have said "San Ramon, CA".
+    const place = await resolveEffectivePlaceName(SAN_RAMON.lat, SAN_RAMON.lon, {
+      getStored: () => null,
+    });
+    expect(place.label).toBe("Dublin, CA");
+    expect(place.city).toBe("Dublin");
+    expect(place.state).toBe("CA");
+  });
+
+  it("same coords -> same city on every surface: record-name path and chain path agree", async () => {
+    // The record a first visit writes from a San Ramon fix carries
+    // the chain's name. Directory seeds its center FROM the record
+    // (record-name path); an IP-only visitor resolves the same
+    // coords through the chain. Both must print the same city.
+    const record: HubLocation = {
+      city: "Dublin",
+      state: "CA",
+      lat: SAN_RAMON.lat,
+      lon: SAN_RAMON.lon,
+      label: "Dublin, CA",
+      source: "geolocation",
+    };
+    const viaRecord = await resolveEffectivePlaceName(SAN_RAMON.lat, SAN_RAMON.lon, {
+      getStored: () => record,
+    });
+    const viaChain = await resolveEffectivePlaceName(SAN_RAMON.lat, SAN_RAMON.lon, {
+      getStored: () => null,
+    });
+    expect(viaRecord.label).toBe("Dublin, CA");
+    expect(viaChain.label).toBe(viaRecord.label);
+  });
+
+  it("coords equal to the record's -> the record's own name wins (manual pick keeps its exact name)", async () => {
+    // A manual pick of San Ramon itself: the record's name is the
+    // reader's chosen name and must print verbatim, even though the
+    // chain would call the point by its cluster name.
+    const manual: HubLocation = {
+      city: "San Ramon",
+      state: "CA",
+      lat: SAN_RAMON.lat,
+      lon: SAN_RAMON.lon,
+      label: "San Ramon, CA",
+      source: "manual",
+    };
+    let chainCalls = 0;
+    const place = await resolveEffectivePlaceName(SAN_RAMON.lat, SAN_RAMON.lon, {
+      getStored: () => manual,
+      resolveLabel: async () => {
+        chainCalls += 1;
+        return { label: "Dublin, CA", city: "Dublin", state: "CA" };
+      },
+    });
+    expect(place.label).toBe("San Ramon, CA");
+    expect(chainCalls).toBe(0);
+  });
+
+  it("coords different from the record's -> the shared chain names them", async () => {
+    const place = await resolveEffectivePlaceName(SAN_RAMON.lat, SAN_RAMON.lon, {
+      getStored: () => KIRAN_FREMONT,
+      resolveLabel: async () => ({ label: "Dublin, CA", city: "Dublin", state: "CA" }),
+    });
+    expect(place.label).toBe("Dublin, CA");
+  });
+
+  it("a generic-labeled record never supplies the name — the chain still runs (heal path)", async () => {
+    const generic: HubLocation = {
+      city: "",
+      state: "",
+      lat: SAN_RAMON.lat,
+      lon: SAN_RAMON.lon,
+      label: "Near You",
+      source: "geolocation",
+    };
+    const place = await resolveEffectivePlaceName(SAN_RAMON.lat, SAN_RAMON.lon, {
+      getStored: () => generic,
+      resolveLabel: async () => ({ label: "Dublin, CA", city: "Dublin", state: "CA" }),
+    });
+    expect(place.label).toBe("Dublin, CA");
+  });
+});
+
+async function runConverge(
+  stored: HubLocation | null,
+  fix: { lat: number; lon: number },
+  resolveLabel?: HubRefreshDeps["resolveLabel"],
+) {
+  const writes: HubLocation[] = [];
+  const result = await convergeHubLocationWithFix(fix, {
+    getStored: () => stored,
+    loadClustersFn: async () => CLUSTERS,
+    write: (loc) => writes.push(loc),
+    now: () => 1_700_000_000_000,
+    ...(resolveLabel ? { resolveLabel } : {}),
+  });
+  return { result, writes };
+}
+
+describe("convergeHubLocationWithFix — Events' fresh fix joins the record", () => {
+  it("no record yet -> CREATES one from the fix (a first-ever Events visit sets the site's location)", async () => {
+    const { result, writes } = await runConverge(null, DUBLIN_FIX, async () => ({
+      label: "Dublin, CA",
+      city: "Dublin",
+      state: "CA",
+    }));
+    expect(writes).toHaveLength(1);
+    expect(result).not.toBeNull();
+    expect(result!.lat).toBe(DUBLIN_FIX.lat);
+    expect(result!.lon).toBe(DUBLIN_FIX.lon);
+    expect(result!.label).toBe("Dublin, CA");
+    expect(result!.source).toBe("geolocation");
+    expect(result!.setAt).toBe(1_700_000_000_000);
+    expect(writes[0]).toEqual(result);
+  });
+
+  it("creation names the fix through the real chain: a San Ramon fix creates a 'Dublin, CA' record", async () => {
+    const { result, writes } = await runConverge(null, SAN_RAMON);
+    expect(writes).toHaveLength(1);
+    expect(result!.label).toBe("Dublin, CA");
+    expect(result!.city).toBe("Dublin");
+    expect(result!.lat).toBe(SAN_RAMON.lat);
+    expect(result!.lon).toBe(SAN_RAMON.lon);
+  });
+
+  it("manual record + materially different fix -> record returned UNTOUCHED, no write (manual respect)", async () => {
+    const manual: HubLocation = {
+      city: "Edison",
+      state: "NJ",
+      lat: 40.5187,
+      lon: -74.4121,
+      label: "Edison, NJ",
+      source: "manual",
+    };
+    const { result, writes } = await runConverge(manual, DUBLIN_FIX);
+    expect(writes).toHaveLength(0);
+    expect(result).toEqual(manual);
+  });
+
+  it("auto record + material fix -> converges: returns the refreshed Dublin record", async () => {
+    const { result, writes } = await runConverge(KIRAN_FREMONT, DUBLIN_FIX);
+    expect(writes).toHaveLength(1);
+    expect(result).not.toBeNull();
+    expect(result!.label).toBe("Dublin, CA");
+    expect(result!.lat).toBe(DUBLIN_FIX.lat);
+    expect(result!.lon).toBe(DUBLIN_FIX.lon);
+    expect(result!.source).toBe("geolocation");
+  });
+
+  it("auto record + same-place fix -> no write; the stored record is the effective location", async () => {
+    const nearFix = { lat: 37.567, lon: -121.98 }; // ~1 mi from KIRAN_FREMONT, same cluster
+    const { result, writes } = await runConverge(KIRAN_FREMONT, nearFix);
+    expect(writes).toHaveLength(0);
+    expect(result).toEqual(KIRAN_FREMONT);
   });
 });

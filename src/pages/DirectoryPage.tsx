@@ -25,6 +25,7 @@ import {
   getFreshGeolocationFix,
   setStoredHubLocation,
   resolvePlaceLabel,
+  resolveEffectivePlaceName,
 } from "@/hooks/useHubLocation";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 import LocationSuggestionChip from "@/components/LocationSuggestionChip";
@@ -381,6 +382,14 @@ export default function DirectoryPage() {
       (null in near-me mode) — same pattern as EventsPage, so summary
       headings can name the zip's city instead of a generic "near you". */
   const [zipPlace, setZipPlace] = useState<{ zip: string; city: string; state: string } | null>(null);
+  /** The near-me center's city, resolved through the shared chain
+      (resolveEffectivePlaceName) whenever near-me runs without a zip
+      — the summary names it in ALL cases, so the reader always knows
+      exactly which place the results are for (Kiran, 2026-10-18:
+      Directory said "near you" while Events named a city). Null
+      only until resolution lands, or when the coords resolve to no
+      nameable place in any dataset. */
+  const [nearMePlace, setNearMePlace] = useState<{ city: string; state: string } | null>(null);
   const { location: ipLocation } = useUserLocation();
   /* The canonical location record — the same one Your Hub and
      Events read (useHubLocation self-refreshes it when the device
@@ -588,6 +597,36 @@ export default function DirectoryPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ipLocation, hubLocation]);
 
+  /* --- Name the near-me center ---
+     Whenever near-me is active without a zip, resolve the effective
+     coords to a city through the SAME chain that names the Hub
+     record (resolveEffectivePlaceName: the record's own name when
+     the coords are the record's, else resolvePlaceLabel). Identical
+     coords therefore print the identical city here, on Events and
+     on Your Hub. A generic resolution (coords outside every dataset
+     we carry) leaves nearMePlace null and the summary falls back —
+     the only case that may still say "near you". */
+  useEffect(() => {
+    if (!nearMeActive || !userCoords || zipPlace) {
+      setNearMePlace(null);
+      return;
+    }
+    let cancelled = false;
+    void resolveEffectivePlaceName(userCoords.lat, userCoords.lng).then(
+      (place) => {
+        if (cancelled) return;
+        setNearMePlace(
+          place.city
+            ? { city: place.city, state: place.state }
+            : null,
+        );
+      },
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [nearMeActive, userCoords, zipPlace]);
+
   /* --- Fetch listings --- */
   useEffect(() => {
     setLoading(true);
@@ -642,10 +681,15 @@ export default function DirectoryPage() {
   };
 
   /* --- Summary text ---
-     "near you" only when results center on the visitor's own
-     location; zip-driven results name the zip's resolved city
-     instead. That name is itself the edit control: tapping it
-     focuses the ZIP editor above (no visible "change" link). */
+     The summary names the place the results are for in EVERY mode:
+     zip-driven results name the zip's resolved city, near-me results
+     name the near-me center's resolved city (nearMePlace, via the
+     shared resolver — Kiran, 2026-10-18: no more bare "near you"
+     while a city is known). That name is itself the edit control:
+     tapping it focuses the ZIP editor above (no visible "change"
+     link). "near you" survives only as the transient fallback while
+     the name resolves, or when coords match no place in any
+     dataset. */
   const summaryNode = (
     <>
       {searchQuery ? ` matching "${searchQuery}"` : ""}
@@ -660,6 +704,18 @@ export default function DirectoryPage() {
               className="underline decoration-dotted underline-offset-2 hover:text-foreground transition-colors cursor-pointer"
             >
               {zipPlace.city}, {zipPlace.state}
+            </button>
+          </>
+        ) : nearMePlace ? (
+          <>
+            {" near "}
+            <button
+              type="button"
+              onClick={focusZipEditor}
+              aria-label="Change location"
+              className="underline decoration-dotted underline-offset-2 hover:text-foreground transition-colors cursor-pointer"
+            >
+              {nearMePlace.city}, {nearMePlace.state}
             </button>
           </>
         ) : (

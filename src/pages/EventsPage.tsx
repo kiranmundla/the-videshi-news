@@ -26,9 +26,17 @@ import {
   type DateFilterKey,
   type ParsedSearch,
 } from "@/lib/smartSearch";
-import { formatDistance, nearestZipPlace } from "@/lib/geo";
+import { formatDistance } from "@/lib/geo";
 import { useUserLocation } from "@/hooks/useUserLocation";
-import { getFreshGeolocationFix } from "@/hooks/useHubLocation";
+import {
+  useHubLocation,
+  getFreshGeolocationFix,
+  getStoredHubLocation,
+  setStoredHubLocation,
+  convergeHubLocationWithFix,
+  resolveEffectivePlaceName,
+  isGenericHubLabel,
+} from "@/hooks/useHubLocation";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
 import LocationSuggestionChip from "@/components/LocationSuggestionChip";
 import EventCard from "@/components/EventCard";
@@ -491,6 +499,21 @@ export default function EventsPage() {
     } catch { return null; }
   });
   const { location: ipLocation } = useUserLocation();
+  /* The canonical location record — the same one Directory, Your
+     Hub and the fare origin read. Events historically never
+     touched it: its fresh GPS fix lived in page state (plus
+     sessionStorage) and nothing was written back, so Events could
+     center on one place while every other surface used the
+     record's (Kiran, 2026-10-18: Events said San Ramon while
+     Directory ran on Dublin). Mounting the hook also gives Events
+     the record's self-refresh + label heal; the follow effect
+     below seeds from the record, and the auto-detect converges
+     its fresh fix through it. locationTouchedRef marks an
+     explicit choice made on THIS page (pin / ZIP / city), which
+     then wins over the record for the rest of the session — the
+     same discipline Directory uses. */
+  const { location: hubLocation } = useHubLocation();
+  const locationTouchedRef = useRef(false);
   /* The displayed location name IS the edit control (no visible
      "change" link): tapping it focuses the ZIP editor. */
   const zipInputRef = useRef<HTMLInputElement>(null);
@@ -525,6 +548,7 @@ export default function EventsPage() {
   const cityFilter = nearMeActive ? null : (rawCity ?? DEFAULT_CITY);
 
   const setCityFilter = useCallback((city: string | null) => {
+    locationTouchedRef.current = true;
     setNearMeActive(false);
     setUserCoords(null);
     setLocationLabel("");
@@ -541,8 +565,41 @@ export default function EventsPage() {
     }, { replace: true });
   }, [setSearchParams]);
 
+  /* --- Follow the canonical record ---
+     Until the reader makes an explicit choice on THIS page, Events
+     centers on the Hub record and follows its writes live — a chip
+     acceptance, a Hub re-pick, the sticky-record refresh, or
+     Directory's write-through (the same seeding Directory itself
+     performs). The name shown comes from the record, so it is
+     byte-identical with Your Hub's. An explicit ?city= URL and ZIP
+     mode both own the center instead and skip the follow. */
+  useEffect(() => {
+    if (rawCity || locationTouchedRef.current || zipPlace || !hubLocation) return;
+    if (
+      userCoords &&
+      userCoords.lat === hubLocation.lat &&
+      userCoords.lng === hubLocation.lon
+    ) {
+      return;
+    }
+    setUserCoords({ lat: hubLocation.lat, lng: hubLocation.lon });
+    setNearMeActive(true);
+    setLocationLabel(
+      isGenericHubLabel(hubLocation.label)
+        ? "📍 Near You"
+        : `📍 ${hubLocation.label}`,
+    );
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.delete("city");
+      next.set("nearme", "1");
+      return next;
+    }, { replace: true });
+  }, [hubLocation, rawCity, zipPlace, userCoords, setSearchParams]);
+
   /* --- Location handler (from ZipCodeSearch) --- */
   const handleLocation = useCallback((result: LocationResult | null) => {
+    locationTouchedRef.current = true;
     if (!result) {
       setNearMeActive(false);
       setUserCoords(null);
@@ -567,6 +624,23 @@ export default function EventsPage() {
       next.set("nearme", "1");
       return next;
     }, { replace: true });
+    /* Write the explicit choice through to the canonical record, so
+       Events / Directory / Your Hub / the fare origin stay on one
+       location (Directory has always written its picks through;
+       Events never did — one of the ways its center drifted from
+       the rest of the site). A ZIP pick is manual — never
+       auto-overwritten; a pin fix is geolocation-sourced —
+       refreshable when the device materially moves. */
+    if (result.city) {
+      setStoredHubLocation({
+        city: result.city,
+        state: result.state,
+        lat: result.lat,
+        lon: result.lng,
+        label: `${result.city}, ${result.state}`,
+        source: result.source === "zip" ? "manual" : "geolocation",
+      });
+    }
   }, [setCityFilter, setSearchParams]);
 
   const setCategoryFilter = useCallback((cat: string | null) => {
@@ -620,19 +694,46 @@ export default function EventsPage() {
      old call accepted a cached position up to 5 minutes old,
      which on iOS can be far staler — it latched Fremont on a
      device sitting in Dublin until the pin was tapped (Kiran,
-     2026-10-16; same fix as Directory). */
+     2026-10-16; same fix as Directory).
+     CONVERGENCE (2026-10-18): the fix no longer stops at page
+     state. It is converged through the canonical Hub record
+     (convergeHubLocationWithFix) — a first visit CREATES the
+     record from the fix, an auto record follows a material move
+     through the canonical write, an explicit manual pick is
+     never overridden — and this page centers on the record that
+     results, named by the record's own label. Events, Directory,
+     Your Hub and the fare origin thus share one effective
+     location. ZIP mode (picked or session-restored) owns the
+     center and skips the detect; an explicit choice made while
+     the fix was in flight also wins. */
   useEffect(() => {
-    if (rawCity) return;
+    if (rawCity || zipPlace) return;
     if (nearMeActive || userCoords) return;
     let cancelled = false;
-    void getFreshGeolocationFix().then((fix) => {
-      if (cancelled) return;
+    void getFreshGeolocationFix().then(async (fix) => {
+      if (cancelled || locationTouchedRef.current) return;
       if (fix) {
-        const coords = { lat: fix.lat, lng: fix.lon };
-        setUserCoords(coords);
-        setNearMeActive(true);
-        setZipPlace(null);
-        setLocationLabel("📍 Near You");
+        const converged = await convergeHubLocationWithFix(fix).catch(
+          () => null,
+        );
+        if (cancelled || locationTouchedRef.current) return;
+        const eff = converged ?? getStoredHubLocation();
+        if (eff) {
+          setUserCoords({ lat: eff.lat, lng: eff.lon });
+          setNearMeActive(true);
+          setZipPlace(null);
+          setLocationLabel(
+            isGenericHubLabel(eff.label) ? "📍 Near You" : `📍 ${eff.label}`,
+          );
+        } else {
+          /* Record unavailable (storage off): keep the fix
+             page-local, as before — the label-upgrade effect
+             below still names it via the shared resolver. */
+          setUserCoords({ lat: fix.lat, lng: fix.lon });
+          setNearMeActive(true);
+          setZipPlace(null);
+          setLocationLabel("📍 Near You");
+        }
         setSearchParams((prev) => {
           const next = new URLSearchParams(prev);
           next.delete("city");
@@ -666,21 +767,31 @@ export default function EventsPage() {
   }, [ipLocation]);
 
   /* --- Upgrade a generic near-me label to the actual city ---
-     The browser-geo path above (and labels restored from
-     sessionStorage) start as "📍 Near You" because raw coords carry
-     no city. Whenever near-me is active with coords and the label is
-     still generic, reverse-resolve the city from the coords (local
-     zip database) and name it — "📍 Fremont, CA", not "📍 Near You".
-     Zip mode is untouched: zipPlace drives its labels (01c51913). */
+     Labels restored from sessionStorage (and the storage-off
+     fallback above) can start as "📍 Near You" because raw coords
+     carry no city. Whenever near-me is active with coords and the
+     label is still generic, resolve the name through the SHARED
+     chain (resolveEffectivePlaceName — the Hub record's own name
+     when the coords are the record's, else resolvePlaceLabel).
+     This effect used to call nearestZipPlace (the local ZIP
+     database), which names border coords differently from the
+     cluster-aware Hub chain — coords in San Ramon printed
+     "San Ramon, CA" here while the Hub record for the same point
+     said "Dublin, CA" (Kiran, 2026-10-18). One resolver now, so
+     identical coords print the identical city on Events,
+     Directory and Your Hub. Zip mode is untouched: zipPlace
+     drives its labels (01c51913). */
   useEffect(() => {
     if (!nearMeActive || !userCoords || zipPlace) return;
     if (locationLabel && locationLabel !== "📍 Near You") return;
     let cancelled = false;
-    void nearestZipPlace(userCoords.lat, userCoords.lng).then((place) => {
-      if (!cancelled && place) {
-        setLocationLabel(`📍 ${place.city}, ${place.state}`);
-      }
-    });
+    void resolveEffectivePlaceName(userCoords.lat, userCoords.lng).then(
+      (place) => {
+        if (!cancelled && !isGenericHubLabel(place.label)) {
+          setLocationLabel(`📍 ${place.label}`);
+        }
+      },
+    );
     return () => {
       cancelled = true;
     };
@@ -840,10 +951,19 @@ export default function EventsPage() {
   /* --- Summary text --- */
   const summaryParts: string[] = [];
   if (searchQuery) summaryParts.push(`matching "${searchQuery}"`);
-  // "near you" only when results center on the visitor's own location;
-  // zip-driven results name the zip's resolved city instead.
+  // Name the actual city in the summary too (Kiran, 2026-10-18):
+  // zip-driven results name the zip's resolved city; near-me
+  // results name the resolved near-me label (the 📍 label under the
+  // controls, upgraded by the shared resolver) once it names a
+  // place. "near you" remains only for the brief window before the
+  // name lands, or coords no dataset can name.
   if (nearMeActive) {
-    summaryParts.push(zipPlace ? `near ${zipPlace.city}, ${zipPlace.state}` : "near you");
+    const nearName = zipPlace
+      ? `${zipPlace.city}, ${zipPlace.state}`
+      : locationLabel && locationLabel !== "📍 Near You"
+        ? locationLabel.replace(/^📍\s*/, "")
+        : null;
+    summaryParts.push(nearName ? `near ${nearName}` : "near you");
   }
   else if (cityFilter) summaryParts.push(`in ${cityFilter}`);
   if (categoryParam) summaryParts.push(`· ${categoryParam}`);

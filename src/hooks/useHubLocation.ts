@@ -621,6 +621,112 @@ export function refreshHubLocationOnce(): Promise<HubLocation | null> {
 }
 
 /* ------------------------------------------------------------------ */
+/* One effective location + one name for it (2026-10-18, Kiran).      */
+/*                                                                    */
+/* His screenshots, same phone, same minute: Events said              */
+/* "📍 San Ramon, CA" while Directory said "500 listings near you"    */
+/* over Dublin listings. Two divergences caused that:                 */
+/*                                                                    */
+/* 1. TWO NAME RESOLVERS. The Hub record's label comes from           */
+/*    resolvePlaceLabel — cluster-aware: San Ramon is a MEMBER of     */
+/*    the Dublin cluster, so coords in San Ramon name "Dublin, CA".   */
+/*    Events / Kids / the ZipCodeSearch pin named the same coords     */
+/*    with nearestZipPlace — the nearest ZIP centroid — and said      */
+/*    "San Ramon, CA". Same point, two cities.                        */
+/* 2. EVENTS NEVER TOUCHED THE RECORD. It took a fresh GPS fix on     */
+/*    load into page-local state (plus sessionStorage) and wrote      */
+/*    nothing back, so its center could drift from the record every   */
+/*    other surface (Directory, Hub, fares) was using.                */
+/*                                                                    */
+/* The helpers below are the convergence path: a fresh fix goes       */
+/* THROUGH the record (canonical write rules included), and every     */
+/* surface names an effective center through the one resolver.        */
+/* ------------------------------------------------------------------ */
+
+export interface EffectivePlaceNameDeps {
+  getStored?: () => HubLocation | null;
+  resolveLabel?: typeof resolvePlaceLabel;
+}
+
+/** THE name for an effective near-me center — the single function
+ * every surface (Events, Directory, Kids, the pin) names a center
+ * through, so identical coords print the identical city everywhere:
+ *  - coords ARE the canonical record's coords → the record's own
+ *    name (byte-identical with what Your Hub shows for the same
+ *    record; a manual pick keeps the exact name the reader picked);
+ *  - otherwise → resolvePlaceLabel, the Hub's shared chain (cluster
+ *    center → cluster member → IP city → ZIP database).
+ * Before this, Events/Kids upgraded their labels with
+ * nearestZipPlace alone, which disagrees with the cluster chain
+ * exactly at city borders (San Ramon vs Dublin). Never throws
+ * (resolvePlaceLabel never does). */
+export async function resolveEffectivePlaceName(
+  lat: number,
+  lon: number,
+  deps: EffectivePlaceNameDeps = {},
+): Promise<ResolvedPlace> {
+  const stored = (deps.getStored ?? getStoredHubLocation)();
+  if (
+    stored &&
+    stored.lat === lat &&
+    stored.lon === lon &&
+    !isGenericHubLabel(stored.label)
+  ) {
+    return { label: stored.label, city: stored.city, state: stored.state };
+  }
+  return (deps.resolveLabel ?? resolvePlaceLabel)(lat, lon, null);
+}
+
+/** Converge the canonical record onto a FRESH precise fix a surface
+ * obtained on load (Events' auto-detect — getFreshGeolocationFix,
+ * the maximumAge-0 fix of the 2026-10-16 stale-latch fix). Returns
+ * the record that is in effect afterwards:
+ *  - no record yet → one is CREATED from the fix (label via
+ *    resolvePlaceLabel, source "geolocation") — the same creation
+ *    Directory's first-run flow performs, so a first-ever Events
+ *    visit leaves the whole site in agreement;
+ *  - a record exists → the fix is handed to maybeRefreshHubLocation
+ *    (injected as both the cache and granted fix), which applies
+ *    the canonical rules: a MANUAL record is never overwritten —
+ *    the stored record is returned untouched; an auto/inferred
+ *    record moves only when the fix materially differs, and its
+ *    rewrite goes through the canonical write path (live-sync
+ *    events included), so Directory / Hub / the fare origin adopt
+ *    the same point without reloading.
+ * The surface then centers on the RETURNED record, not on the raw
+ * fix — one effective location for the whole site. */
+export async function convergeHubLocationWithFix(
+  fix: PreciseFix,
+  deps: HubRefreshDeps = {},
+): Promise<HubLocation | null> {
+  const stored = (deps.getStored ?? getStoredHubLocation)();
+  if (!stored) {
+    const place = await (deps.resolveLabel ?? resolvePlaceLabel)(
+      fix.lat,
+      fix.lon,
+      null,
+    );
+    const next: HubLocation = {
+      city: place.city || "",
+      state: place.state || "",
+      lat: fix.lat,
+      lon: fix.lon,
+      label: place.label,
+      source: "geolocation",
+      setAt: (deps.now ?? Date.now)(),
+    };
+    (deps.write ?? setStoredHubLocation)(next);
+    return next;
+  }
+  const refreshed = await maybeRefreshHubLocation({
+    ...deps,
+    getCacheFix: () => fix,
+    getGrantedFix: async () => fix,
+  });
+  return refreshed ?? stored;
+}
+
+/* ------------------------------------------------------------------ */
 /* The IP tripwire — "Looks like you're near X?" (2026-10-18).        */
 /*                                                                    */
 /* The precise-fix refresh above can only follow readers whose        */
