@@ -635,7 +635,8 @@
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Arnold_Vosloo_2009.jpg/300px-Arnold_Vosloo_2009.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
       ],
-      "review_slug": "ranabaali-review-roundup-critics"
+      "review_slug": "ranabaali-review-roundup-critics",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/8/82/Ranabaali_2026_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
     },
     {
       "cast": [
@@ -737,6 +738,42 @@
         {
           "name": "Nazriya Nazim",
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Nazriya_Nazim_at_neram_audio_launch.jpg/300px-Nazriya_Nazim_at_neram_audio_launch.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        }
+      ]
+    },
+    {
+      "title": "Aakasamlo Oka Tara",
+      "slug": "aakasamlo-oka-tara-2026",
+      "release_date": "2026-11-20",
+      "status": "coming_soon",
+      "language": "Telugu",
+      "director": "Pavan Sadineni",
+      "cast": [
+        "Dulquer Salmaan",
+        "Satvika Veeravalli",
+        "Shruti Haasan"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=Aakasamlo%20Oka%20Tara%20showtimes%20near%20me",
+      "why_watch": "Aakasamlo Oka Tara is a Telugu film directed by Pavan Sadineni, starring Dulquer Salmaan, Satvika Veeravalli.",
+      "rating": "Opens Nov 20",
+      "rating_source": "Release date",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/d/d2/Aakasamlo_Oka_Tara.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "trailer_url": "https://www.youtube.com/watch?v=h3ElWvu31dc",
+      "cast_details": [
+        {
+          "name": "Dulquer Salmaan",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Dulquer_promoting_Zoya_Factor_cropped.jpg/300px-Dulquer_promoting_Zoya_Factor_cropped.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Satvika Veeravalli",
+          "photo_url": ""
+        },
+        {
+          "name": "Shruti Haasan",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Shruti_Haasan_at_the_special_screening_of_the_short_film_Devi_%2832%29.jpg/300px-Shruti_Haasan_at_the_special_screening_of_the_short_film_Devi_%2832%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
       ]
     }
