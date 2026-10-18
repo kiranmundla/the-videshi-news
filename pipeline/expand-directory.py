@@ -483,34 +483,99 @@ def fetch_cell_coverage():
 COVERED_THRESHOLD = 2
 
 
-def plan_auto_targets(targets, coverage):
+def load_swept_cells():
+    """{(state, category)} pairs that appear in the sweep log.
+
+    Same rule the coverage matrix (directory-coverage-matrix.py) uses:
+    any sweep-log line for a (state, category) means that cell has been
+    searched. Cells with a log entry but 0 listings are "swept-empty"
+    and are never planned again — re-searching them returns the same
+    nothing (WV cells were re-swept on 6 different days before this).
+    """
+    swept = set()
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                        ".state", "sweep-log.jsonl")
+    try:
+        with open(path) as f:
+            for line in f:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    e = json.loads(line)
+                except Exception:
+                    continue
+                if e.get("state") and e.get("category"):
+                    swept.add((e["state"], e["category"]))
+    except FileNotFoundError:
+        pass
+    return swept
+
+
+# Categories the expander can fill — a state's coverage score is how
+# many of these have at least one listing.
+ALL_CATEGORIES = sorted({cat for _, cat in SEARCH_QUERIES})
+
+
+def plan_auto_targets(targets, coverage, swept=None):
     """Build a prioritized work list for --auto mode.
 
-    Returns [(state, cities, [(query, cat), ...]), ...] covering only
-    state×category cells with <= COVERED_THRESHOLD listings, ordered so
-    fully-unswept cells (0 listings) come before thin cells (1-2).
-    States with no uncovered cells are dropped entirely.
+    Returns [(state, cities, [(query, cat), ...]), ...] in strict
+    finish-line order (2026-10-18):
+
+    Tier 1 — UNSWEPT cells (0 listings, never searched): states with
+    the fewest covered categories first; within the tier, every state's
+    next city is planned before any state's following city, because a
+    cell counts as swept once its queries run in one city — primary
+    cities therefore resolve the most new matrix cells per call.
+    Swept-empty cells (searched, 0 found) are excluded entirely.
+    Tier 2 — thin covered cells (1..COVERED_THRESHOLD listings): refresh
+    work, planned only after all unswept work, so it is reached only
+    when calls remain after every unswept cell has been swept.
     """
-    # category -> list of (query, cat) for queries needing work in that state
-    plan = []
+    if swept is None:
+        swept = load_swept_cells()
+    tier1 = []  # (covered_cats, -unswept_cats, state, cities, queries)
+    tier2 = []  # (covered_cats, state, cities, queries)
+    excluded_empty = 0
     for state, cities in targets.items():
-        needed = {}  # cat -> [(query, cat)]
+        covered_cats = sum(1 for c in ALL_CATEGORIES
+                             if coverage.get((state, c), 0) > 0)
+        unswept, thin = {}, {}
         for q, cat in SEARCH_QUERIES:
             n = coverage.get((state, cat), 0)
-            if n <= COVERED_THRESHOLD:
-                needed.setdefault(cat, []).append((q, cat))
-        if not needed:
-            continue
-        # Flatten, unswept categories first
-        ordered = []
-        for cat in sorted(needed, key=lambda c: coverage.get((state, c), 0)):
-            ordered.extend(needed[cat])
-        plan.append((state, cities, ordered,
-                     min(coverage.get((state, c), 0) for c in needed)))
-    # States with the emptiest cells first; break ties by number of
-    # uncovered categories (more gaps = higher priority)
-    plan.sort(key=lambda t: (t[3], -len(set(c for _, c in t[2]))))
-    return [(s, c, q) for s, c, q, _ in plan]
+            if n == 0:
+                if (state, cat) in swept:
+                    excluded_empty += 1  # swept-empty: never re-sweep
+                else:
+                    unswept.setdefault(cat, []).append((q, cat))
+            elif n <= COVERED_THRESHOLD:
+                thin.setdefault(cat, []).append((q, cat))
+        if unswept:
+            ordered = []
+            for cat in sorted(unswept):
+                ordered.extend(unswept[cat])
+            tier1.append((covered_cats, -len(unswept), state, cities, ordered))
+        if thin:
+            ordered = []
+            for cat in sorted(thin,
+                              key=lambda c: (coverage.get((state, c), 0), c)):
+                ordered.extend(thin[cat])
+            tier2.append((covered_cats, state, cities, ordered))
+    if excluded_empty:
+        log.info(f"Auto plan: {excluded_empty} swept-empty cells excluded "
+                 f"(already searched, 0 found)")
+    tier1.sort(key=lambda t: (t[0], t[1], t[2]))
+    tier2.sort(key=lambda t: (t[0], t[1]))
+    plan = []
+    max_cities = max((len(t[3]) for t in tier1), default=0)
+    for ci in range(max_cities):
+        for _, _, state, cities, queries in tier1:
+            if ci < len(cities):
+                plan.append((state, [cities[ci]], queries))
+    for _, state, cities, queries in tier2:
+        plan.append((state, cities, queries))
+    return plan
 
 
 def main():
@@ -550,9 +615,10 @@ def main():
         log.info("Auto mode: fetching cell coverage to skip covered cells...")
         coverage = fetch_cell_coverage()
         work = plan_auto_targets(targets, coverage)
-        skipped_states = len(targets) - len(work)
-        log.info(f"Auto plan: {len(work)} states need work, "
-                 f"{skipped_states} fully covered (skipped)")
+        states_in_plan = len({s for s, _, _ in work})
+        log.info(f"Auto plan: {len(work)} work entries across "
+                 f"{states_in_plan} states, "
+                 f"{len(targets) - states_in_plan} states need no work")
         for state, cities, queries in work:
             buf = []
             log.info(f"\n── {state} ({len(cities)} cities, {len(queries)} queries) ──")
