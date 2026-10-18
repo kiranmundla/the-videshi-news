@@ -1,21 +1,21 @@
 {
-  "last_updated": "2026-10-18T00:35:11.029581+00:00",
+  "last_updated": "2026-10-18T12:35:11.254759+00:00",
   "indices": [
     {
       "symbol": "GOLD",
       "name": "Gold",
       "flag": "\u2728",
       "value": 4181.1,
-      "change": -9.5,
-      "change_pct": -0.23
+      "change": 3.8,
+      "change_pct": 0.09
     },
     {
       "symbol": "SILVER",
       "name": "Silver",
       "flag": "\ud83e\ude99",
       "value": 57.3,
-      "change": -2.84,
-      "change_pct": -4.72
+      "change": -1.86,
+      "change_pct": -3.14
     },
     {
       "symbol": "USDINR",
