@@ -7,6 +7,7 @@
     "season_fit_by_month": "2 = in best season, 1 = shoulder (adjacent month), 0 = off season",
     "trending": "Sum of labeled components (season 40 / search interest 30 / fare 20 / value 10); max_score shows what was computable \u2014 a null component means that signal is not tracked for the destination yet, not a zero.",
     "cheapest_month": "Only set from real flight-deals fare data; null everywhere else by design.",
+    "fares_by_origin": "Per-origin cheapest fare for the destination (origin code -> fare, same shape as fare_from). Rail cards render ONLY the reader's own origin from this map \u2014 no fare line when their airport has none (Kiran, 2026-10-18). fare_from stays the cheapest across origins; it feeds ranking signals, not card display.",
     "eligible_for_picks": "False = second-tier US destination deferred from curated picks/trending (Kiran 2026-10-14 tiering); the record and its guide remain in the full index."
   },
   "trending_now": [
@@ -505,6 +506,7 @@
       "season_note": "Winter sun season; summers are extremely hot.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Sheikh Zayed Grand Mosque",
@@ -601,6 +603,7 @@
       "season_note": "Midnight-sun summer; cruise season. Aurora viewing is Sep\u2013Mar.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Glacier Bay National Park",
@@ -700,6 +703,7 @@
       "season_note": "Outside the hurricane belt \u2014 reliably dry and breezy most of the year.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Eagle Beach",
@@ -810,6 +814,63 @@
         "cadence": "weekly",
         "indicative": true
       },
+      "fares_by_origin": {
+        "SFO": {
+          "price_min": 1132,
+          "route": "SFO-SYD",
+          "origin_metro": "Bay Area",
+          "dest_metro": "Sydney",
+          "date_range": "Oct 21 \u2192 Oct 27",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "LAX": {
+          "price_min": 980,
+          "route": "LAX-SYD",
+          "origin_metro": "Los Angeles",
+          "dest_metro": "Sydney",
+          "date_range": "Oct 28 \u2192 Nov 3",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "JFK": {
+          "price_min": 1350,
+          "route": "JFK-SYD",
+          "origin_metro": "New York",
+          "dest_metro": "Sydney",
+          "date_range": "Oct 21 \u2192 Oct 29",
+          "duration_days": 8,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "ORD": {
+          "price_min": 1907,
+          "route": "ORD-SYD",
+          "origin_metro": "Chicago",
+          "dest_metro": "Sydney",
+          "date_range": "Dec 8 \u2192 Dec 14",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "DFW": {
+          "price_min": 1838,
+          "route": "DFW-SYD",
+          "origin_metro": "Dallas",
+          "dest_metro": "Sydney",
+          "date_range": "Oct 28 \u2192 Nov 3",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        }
+      },
       "highlights": [
         {
           "title": "Great Barrier Reef, Queensland",
@@ -909,6 +970,7 @@
       "season_note": "Dry season; hurricane risk peaks Aug\u2013Oct.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Atlantis Aquaventure Water Park, Paradise Island",
@@ -1021,6 +1083,63 @@
         "cadence": "weekly",
         "indicative": true
       },
+      "fares_by_origin": {
+        "SFO": {
+          "price_min": 880,
+          "route": "SFO-DPS",
+          "origin_metro": "Bay Area",
+          "dest_metro": "Bali",
+          "date_range": "Oct 21 \u2192 Oct 27",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "LAX": {
+          "price_min": 792,
+          "route": "LAX-DPS",
+          "origin_metro": "Los Angeles",
+          "dest_metro": "Bali",
+          "date_range": "Oct 28 \u2192 Nov 5",
+          "duration_days": 8,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "JFK": {
+          "price_min": 844,
+          "route": "JFK-DPS",
+          "origin_metro": "New York",
+          "dest_metro": "Bali",
+          "date_range": "Nov 24 \u2192 Dec 2",
+          "duration_days": 8,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "ORD": {
+          "price_min": 1055,
+          "route": "ORD-DPS",
+          "origin_metro": "Chicago",
+          "dest_metro": "Bali",
+          "date_range": "Nov 10 \u2192 Nov 16",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "DFW": {
+          "price_min": 1143,
+          "route": "DFW-DPS",
+          "origin_metro": "Dallas",
+          "dest_metro": "Bali",
+          "date_range": "Nov 10 \u2192 Nov 16",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        }
+      },
       "highlights": [
         {
           "title": "Uluwatu Temple at Sunset",
@@ -1122,6 +1241,7 @@
       "season_note": "Two seasons: summer lakes (Jun\u2013Sep) and ski season (Dec\u2013Mar).",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Lake Louise",
@@ -1224,6 +1344,7 @@
       "season_note": "Whale season Dec\u2013Apr; late summer is hot with storm risk.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "El Arco de Cabo San Lucas",
@@ -1323,6 +1444,7 @@
       "season_note": "Dry season; avoid the Jun\u2013Oct hurricane window where possible.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Chich\u00e9n Itz\u00e1 Day Trip",
@@ -1422,6 +1544,7 @@
       "season_note": "Dry season Dec\u2013Apr; whale season in Saman\u00e1 is Jan\u2013Mar.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Punta Cana Beach Day",
@@ -1522,6 +1645,7 @@
       "season_note": "Winter is peak \u2014 outdoor weather, festivals, highest prices.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Burj Khalifa, Downtown Dubai",
@@ -1633,6 +1757,63 @@
         "cadence": "weekly",
         "indicative": true
       },
+      "fares_by_origin": {
+        "SFO": {
+          "price_min": 959,
+          "route": "SFO-CAI",
+          "origin_metro": "Bay Area",
+          "dest_metro": "Cairo",
+          "date_range": "Nov 10 \u2192 Nov 16",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "LAX": {
+          "price_min": 642,
+          "route": "LAX-CAI",
+          "origin_metro": "Los Angeles",
+          "dest_metro": "Cairo",
+          "date_range": "Nov 10 \u2192 Nov 16",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "JFK": {
+          "price_min": 723,
+          "route": "JFK-CAI",
+          "origin_metro": "New York",
+          "dest_metro": "Cairo",
+          "date_range": "Oct 28 \u2192 Nov 3",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "ORD": {
+          "price_min": 721,
+          "route": "ORD-CAI",
+          "origin_metro": "Chicago",
+          "dest_metro": "Cairo",
+          "date_range": "Oct 28 \u2192 Nov 3",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "DFW": {
+          "price_min": 809,
+          "route": "DFW-CAI",
+          "origin_metro": "Dallas",
+          "dest_metro": "Cairo",
+          "date_range": "Nov 10 \u2192 Nov 16",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        }
+      },
       "highlights": [
         {
           "title": "Pyramids of Giza & the Sphinx",
@@ -1742,6 +1923,63 @@
         "cadence": "weekly",
         "indicative": true
       },
+      "fares_by_origin": {
+        "SFO": {
+          "price_min": 9670,
+          "route": "SFO-NAN",
+          "origin_metro": "Bay Area",
+          "dest_metro": "Nadi",
+          "date_range": "Oct 21 \u2192 Oct 29",
+          "duration_days": 8,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "LAX": {
+          "price_min": 1144,
+          "route": "LAX-NAN",
+          "origin_metro": "Los Angeles",
+          "dest_metro": "Nadi",
+          "date_range": "Oct 28 \u2192 Nov 3",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "JFK": {
+          "price_min": 11039,
+          "route": "JFK-NAN",
+          "origin_metro": "New York",
+          "dest_metro": "Nadi",
+          "date_range": "Oct 28 \u2192 Nov 5",
+          "duration_days": 8,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "ORD": {
+          "price_min": 11039,
+          "route": "ORD-NAN",
+          "origin_metro": "Chicago",
+          "dest_metro": "Nadi",
+          "date_range": "Nov 24 \u2192 Nov 30",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "DFW": {
+          "price_min": 11039,
+          "route": "DFW-NAN",
+          "origin_metro": "Dallas",
+          "dest_metro": "Nadi",
+          "date_range": "Nov 24 \u2192 Nov 30",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        }
+      },
       "highlights": [
         {
           "title": "Nadi & the Sri Siva Subramaniya Temple",
@@ -1842,6 +2080,7 @@
       "season_note": "Dry, mild winter\u2013spring; summer is hot, humid and hurricane-prone.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Walt Disney World, Orlando",
@@ -1952,6 +2191,19 @@
         "cadence": "weekly",
         "indicative": true
       },
+      "fares_by_origin": {
+        "LAX": {
+          "price_min": 784,
+          "route": "LAX-CDG",
+          "origin_metro": "Los Angeles",
+          "dest_metro": "Paris",
+          "date_range": "Nov 10 \u2192 Nov 16",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        }
+      },
       "highlights": [
         {
           "title": "Eiffel Tower & Seine River Cruise",
@@ -2050,6 +2302,7 @@
       "season_note": "Dry, sunny winter season; monsoon (Jun\u2013Sep) shuts most beach shacks.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Old Goa Churches",
@@ -2159,6 +2412,30 @@
         "cadence": "weekly",
         "indicative": true
       },
+      "fares_by_origin": {
+        "ORD": {
+          "price_min": 1105,
+          "route": "ORD-ATH",
+          "origin_metro": "Chicago",
+          "dest_metro": "Athens",
+          "date_range": "Oct 21 \u2192 Oct 27",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "DFW": {
+          "price_min": 4651,
+          "route": "DFW-ATH",
+          "origin_metro": "Dallas",
+          "dest_metro": "Athens",
+          "date_range": "Dec 24 \u2192 Jan 1",
+          "duration_days": 8,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        }
+      },
       "highlights": [
         {
           "title": "Santorini Sunset at Oia",
@@ -2260,6 +2537,7 @@
       "season_note": "Great most of the year; whale season Dec\u2013Apr, surf peaks in winter.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "N\u0101 Pali Coast, Kauai",
@@ -2361,6 +2639,7 @@
       "season_note": "Spring and autumn are clearest; avoid Jul\u2013Aug monsoon landslides.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Rohtang Pass & Atal Tunnel",
@@ -2461,6 +2740,7 @@
       "season_note": "Summer for the full ring road; Sep\u2013Oct and Feb\u2013Mar for auroras with daylight.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "The Golden Circle",
@@ -2571,6 +2851,19 @@
         "cadence": "weekly",
         "indicative": true
       },
+      "fares_by_origin": {
+        "LAX": {
+          "price_min": 770,
+          "route": "LAX-FCO",
+          "origin_metro": "Los Angeles",
+          "dest_metro": "Rome",
+          "date_range": "Dec 8 \u2192 Dec 14",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        }
+      },
       "highlights": [
         {
           "title": "Rome: Colosseum, Vatican & Trastevere",
@@ -2671,6 +2964,7 @@
       "season_note": "Dry season Nov\u2013Apr; rains build from May.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Dunn's River Falls, Ocho Rios",
@@ -2779,6 +3073,63 @@
         "as_of": "2026-10-18",
         "cadence": "weekly",
         "indicative": true
+      },
+      "fares_by_origin": {
+        "SFO": {
+          "price_min": 950,
+          "route": "SFO-NRT",
+          "origin_metro": "Bay Area",
+          "dest_metro": "Tokyo",
+          "date_range": "Dec 8 \u2192 Dec 16",
+          "duration_days": 8,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "LAX": {
+          "price_min": 849,
+          "route": "LAX-HND",
+          "origin_metro": "Los Angeles",
+          "dest_metro": "Tokyo",
+          "date_range": "Dec 8 \u2192 Dec 16",
+          "duration_days": 8,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "JFK": {
+          "price_min": 1033,
+          "route": "JFK-HND",
+          "origin_metro": "New York",
+          "dest_metro": "Tokyo",
+          "date_range": "Nov 24 \u2192 Dec 2",
+          "duration_days": 8,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "ORD": {
+          "price_min": 1193,
+          "route": "ORD-NRT",
+          "origin_metro": "Chicago",
+          "dest_metro": "Tokyo",
+          "date_range": "Nov 24 \u2192 Dec 2",
+          "duration_days": 8,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "DFW": {
+          "price_min": 1134,
+          "route": "DFW-NRT",
+          "origin_metro": "Dallas",
+          "dest_metro": "Tokyo",
+          "date_range": "Oct 28 \u2192 Nov 5",
+          "duration_days": 8,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        }
       },
       "highlights": [
         {
@@ -2896,6 +3247,19 @@
         "as_of": "2026-10-18",
         "cadence": "daily"
       },
+      "fares_by_origin": {
+        "SFO": {
+          "price_min": 1243,
+          "route": "SFO-BLR",
+          "origin_metro": "Bay Area",
+          "dest_metro": "Bengaluru",
+          "date_range": "Oct 21 \u2192 Nov 10",
+          "duration_days": 20,
+          "weeks": null,
+          "as_of": "2026-10-18",
+          "cadence": "daily"
+        }
+      },
       "highlights": [
         {
           "title": "Hampi \u2014 The Ruined Empire",
@@ -2995,6 +3359,7 @@
       "season_note": "Spring blossom to autumn chinar colours; houseboats Apr\u2013Oct.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Dal Lake Houseboat Stay, Srinagar",
@@ -3094,6 +3459,7 @@
       "season_note": "Great Migration in the Maasai Mara Jul\u2013Oct; dry Jan\u2013Feb is also excellent.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Masai Mara National Reserve (Great Migration)",
@@ -3194,6 +3560,7 @@
       "season_note": "Post-monsoon green and cool; peak over Christmas\u2013New Year.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Alleppey Houseboat, Backwaters",
@@ -3293,6 +3660,7 @@
       "season_note": "Late spring to early autumn; long June evenings are the highlight.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Southall & Brick Lane",
@@ -3394,6 +3762,7 @@
       "season_note": "Dry northeast-monsoon season; best visibility for diving Jan\u2013Mar.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Overwater Villa Stay",
@@ -3495,6 +3864,7 @@
       "season_note": "Mexico City is best Mar\u2013May and for Day of the Dead (early Nov).",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Mexico City Historic Centre & Teotihuac\u00e1n",
@@ -3594,6 +3964,7 @@
       "season_note": "Spring and autumn; the Sahara is best Oct\u2013Apr.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Jemaa el-Fnaa, Marrakech",
@@ -3691,6 +4062,7 @@
       "season_note": "Shoulder months beat the summer crowds at most major parks.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Grand Canyon South Rim, Arizona",
@@ -3791,6 +4163,7 @@
       "season_note": "Spring and autumn are peak NYC \u2014 foliage mid-Oct to early Nov.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Jackson Heights Food Crawl, Queens",
@@ -3890,6 +4263,7 @@
       "season_note": "Southern summer Dec\u2013Feb; March is quieter with settled weather.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Milford Sound Cruise, Fiordland",
@@ -3990,6 +4364,7 @@
       "season_note": "Dry season; Hornbill Festival in early December.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Living Root Bridges, Meghalaya",
@@ -4099,6 +4474,63 @@
         "cadence": "weekly",
         "indicative": true
       },
+      "fares_by_origin": {
+        "SFO": {
+          "price_min": 1409,
+          "route": "SFO-MCT",
+          "origin_metro": "Bay Area",
+          "dest_metro": "Muscat",
+          "date_range": "Nov 10 \u2192 Nov 16",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "LAX": {
+          "price_min": 1335,
+          "route": "LAX-MCT",
+          "origin_metro": "Los Angeles",
+          "dest_metro": "Muscat",
+          "date_range": "Nov 10 \u2192 Nov 16",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "JFK": {
+          "price_min": 821,
+          "route": "JFK-MCT",
+          "origin_metro": "New York",
+          "dest_metro": "Muscat",
+          "date_range": "Oct 28 \u2192 Nov 5",
+          "duration_days": 8,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "ORD": {
+          "price_min": 1255,
+          "route": "ORD-MCT",
+          "origin_metro": "Chicago",
+          "dest_metro": "Muscat",
+          "date_range": "Oct 28 \u2192 Nov 3",
+          "duration_days": 6,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "DFW": {
+          "price_min": 1200,
+          "route": "DFW-MCT",
+          "origin_metro": "Dallas",
+          "dest_metro": "Muscat",
+          "date_range": "Oct 21 \u2192 Oct 29",
+          "duration_days": 8,
+          "as_of": "2026-10-18",
+          "cadence": "weekly",
+          "indicative": true
+        }
+      },
       "highlights": [
         {
           "title": "Sultan Qaboos Grand Mosque, Muscat",
@@ -4197,6 +4629,7 @@
       "season_note": "May\u2013Jun and Sep\u2013Oct are warm, bright and less crowded.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Tram 28 Through Alfama, Lisbon",
@@ -4297,6 +4730,7 @@
       "season_note": "Dry season; whale watching Dec\u2013Mar in Banderas Bay.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Malec\u00f3n Boardwalk",
@@ -4398,6 +4832,7 @@
       "season_note": "Desert winter is the season \u2014 summers are dangerously hot.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Amber Fort, Jaipur",
@@ -4498,6 +4933,7 @@
       "season_note": "Dry season Nov\u2013Apr; sargassum is worst in summer.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Tulum Ruins",
@@ -4595,6 +5031,7 @@
       "season_note": "Midnight-sun summers; aurora season runs Sep\u2013Mar.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Norwegian Fjords Cruise",
@@ -4695,6 +5132,7 @@
       "season_note": "Near-equatorial: visit anytime; F1 (Sep) and year-end spike prices.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Gardens by the Bay & Supertree Grove",
@@ -4794,6 +5232,7 @@
       "season_note": "Dry-season safari May\u2013Sep; Cape Town is best Nov\u2013Mar (see guide).",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Kruger National Park (Self-Drive Safari)",
@@ -4893,6 +5332,7 @@
       "season_note": "Spring and autumn; August is hot and crowded on the coasts.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Sagrada Familia, Barcelona",
@@ -4991,6 +5431,7 @@
       "season_note": "West/south coasts and hill country are at their best Dec\u2013Mar.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Sigiriya Rock Fortress",
@@ -5092,6 +5533,7 @@
       "season_note": "Summer hiking (Jun\u2013Sep) and ski season (Dec\u2013Mar).",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Jungfraujoch, Top of Europe",
@@ -5189,6 +5631,7 @@
       "season_note": "Coolest months; Pongal in mid-January. Coastal rain peaks Oct\u2013Dec.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Meenakshi Amman Temple, Madurai",
@@ -5288,6 +5731,7 @@
       "season_note": "Cool, dry season; Songkran in mid-April.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Grand Palace & Wat Pho, Bangkok",
@@ -5389,6 +5833,7 @@
       "season_note": "Char Dham season May\u2013Jun and Sep\u2013Oct; winters are bitter at altitude.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Ganga Aarti at Triveni Ghat, Rishikesh",
@@ -5487,6 +5932,7 @@
       "season_note": "Drier months overall \u2014 the country spans three climate zones.",
       "cheapest_month": null,
       "fare_from": null,
+      "fares_by_origin": {},
       "highlights": [
         {
           "title": "Ha Long Bay Overnight Cruise",
@@ -5596,6 +6042,117 @@
       "as_of": "2026-10-15",
       "cadence": "weekly",
       "indicative": true
+    },
+    "fares_by_origin": {
+      "EWR": {
+        "price_min": 1283,
+        "route": "EWR-BOM",
+        "origin_metro": "New York",
+        "dest_metro": "Mumbai",
+        "date_range": "Oct 21 \u2192 Nov 10",
+        "duration_days": 20,
+        "as_of": "2026-10-18",
+        "cadence": "daily"
+      },
+      "SFO": {
+        "price_min": 1144,
+        "route": "SFO-BOM",
+        "origin_metro": "Bay Area",
+        "dest_metro": "Mumbai",
+        "date_range": "Oct 28 \u2192 Nov 17",
+        "duration_days": 20,
+        "as_of": "2026-10-15",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "JFK": {
+        "price_min": 748,
+        "route": "JFK-HYD",
+        "origin_metro": "New York",
+        "dest_metro": "Hyderabad",
+        "date_range": "Oct 21 \u2192 Nov 10",
+        "duration_days": 20,
+        "as_of": "2026-10-15",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "ORD": {
+        "price_min": 851,
+        "route": "ORD-HYD",
+        "origin_metro": "Chicago",
+        "dest_metro": "Hyderabad",
+        "date_range": "Oct 21 \u2192 Nov 12",
+        "duration_days": 22,
+        "as_of": "2026-10-15",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "DFW": {
+        "price_min": 1120,
+        "route": "DFW-BOM",
+        "origin_metro": "Dallas",
+        "dest_metro": "Mumbai",
+        "date_range": "Oct 21 \u2192 Nov 10",
+        "duration_days": 20,
+        "as_of": "2026-10-15",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "LAX": {
+        "price_min": 1042,
+        "route": "LAX-BOM",
+        "origin_metro": "Los Angeles",
+        "dest_metro": "Mumbai",
+        "date_range": "Oct 21 \u2192 Nov 10",
+        "duration_days": 20,
+        "as_of": "2026-10-15",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "SEA": {
+        "price_min": 1127,
+        "route": "SEA-BOM",
+        "origin_metro": "Seattle",
+        "dest_metro": "Mumbai",
+        "date_range": "Oct 21 \u2192 Nov 10",
+        "duration_days": 20,
+        "as_of": "2026-10-15",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "IAD": {
+        "price_min": 843,
+        "route": "IAD-BOM",
+        "origin_metro": "Washington DC",
+        "dest_metro": "Mumbai",
+        "date_range": "Oct 21 \u2192 Nov 10",
+        "duration_days": 20,
+        "as_of": "2026-10-15",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "ATL": {
+        "price_min": 930,
+        "route": "ATL-BLR",
+        "origin_metro": "Atlanta",
+        "dest_metro": "Bengaluru",
+        "date_range": "Nov 24 \u2192 Dec 14",
+        "duration_days": 20,
+        "as_of": "2026-10-15",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "BOS": {
+        "price_min": 849,
+        "route": "BOS-BOM",
+        "origin_metro": "Boston",
+        "dest_metro": "Mumbai",
+        "date_range": "Oct 21 \u2192 Nov 10",
+        "duration_days": 20,
+        "as_of": "2026-10-15",
+        "cadence": "weekly",
+        "indicative": true
+      }
     },
     "highlights": [
       {

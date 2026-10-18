@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import {
+  railFareFor,
+  resolveRailOrigin,
   useTrendingDestinations,
   type TrendingDestination,
 } from "@/lib/trendingDestinations";
@@ -52,6 +55,15 @@ import { useRailCounter } from "@/lib/useRailCounter";
 /* index change). The previous mandatory-snap + per-scroll-event      */
 /* setState/offsetWidth pattern felt grabby next to the Hub strip     */
 /* (Kiran, 2026-10-15) — see src/lib/useRailCounter.ts.               */
+/*                                                                    */
+/* FARE LINES (Kiran, 2026-10-18): a card shows ONLY the reader's    */
+/* own airport's fare — "my airport only; no fare line if my         */
+/* airport has none". The origin is resolved once (shared fares      */
+/* preference → Hub location → SFO default, see resolveRailOrigin     */
+/* in trendingDestinations) and each card renders                    */
+/* fares_by_origin[origin] via railFareFor — never fare_from, the     */
+/* cheapest-across-origins teaser this replaced (an SFO reader was    */
+/* being shown LAX → Paris/Rome/Tokyo fares).                        */
 /* ------------------------------------------------------------------ */
 
 const MAX_CARDS = 8;
@@ -120,6 +132,11 @@ function fmtAsOf(iso: string): string {
 
 export default function TrendingDestinations() {
   const { data, galleries, cards } = useTrendingDestinations(MAX_CARDS);
+  /* The reader's ONE origin for every fare line in this rail
+     (Kiran, 2026-10-18 — see header note). Resolved once from the
+     shared fares preference / Hub location; cards without a fare
+     from this origin render no fare line at all. */
+  const [origin] = useState<string>(() => resolveRailOrigin());
 
   /* India card FIRST (editorial placement, Kiran 2026-10-15 20:38),
      then the ranked cards in ranking order (see header note).
@@ -193,6 +210,9 @@ export default function TrendingDestinations() {
              strongest signal. */
           const chips = reasonChips(dest).slice(0, 1);
           const best = fmtBestMonths(dest.best_months);
+          /* ONLY the reader's own origin's fare (see header note);
+             null → the card renders no fare line at all. */
+          const fare = railFareFor(dest, origin);
           return (
             <Link
               key={dest.slug}
@@ -266,14 +286,14 @@ export default function TrendingDestinations() {
                     </p>
                   )}
 
-                  {dest.fare_from && (
+                  {fare && (
                     <p className="mt-auto pt-1 text-[11px] font-semibold text-[#7a5c14] dark:text-[#D4A843]">
-                      ✈️ {dest.fare_from.route.replace("-", " → ")} from ${dest.fare_from.price_min.toLocaleString()}
+                      ✈️ {fare.route.replace("-", " → ")} from ${fare.price_min.toLocaleString()}
                       <span className="block text-[10px] font-normal text-foreground/40">
-                        {dest.fare_from.date_range} ·{" "}
-                        {dest.fare_from.cadence === "weekly"
-                          ? `Checked weekly · ${fmtAsOf(dest.fare_from.as_of)}`
-                          : `Checked ${fmtAsOf(dest.fare_from.as_of)}`}
+                        {fare.date_range} ·{" "}
+                        {fare.cadence === "weekly"
+                          ? `Checked weekly · ${fmtAsOf(fare.as_of)}`
+                          : `Checked ${fmtAsOf(fare.as_of)}`}
                       </span>
                     </p>
                   )}

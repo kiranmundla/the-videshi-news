@@ -300,59 +300,81 @@ def route_cells(r):
 
 
 def intl_destination_fares(slug, intl_deals):
-    """fare_from from the WEEKLY international matrix, or None.
+    """(fare_from, fares_by_origin) from the WEEKLY international
+    matrix.
+
+    fare_from is the cheapest fare across ALL origins — origin-blind
+    on purpose: it feeds the ranking's has_fare_data tie-break and
+    the data_quality flags. fares_by_origin maps each origin code to
+    THAT origin's cheapest fare for this destination (a multi-airport
+    destination merges per origin — Tokyo's HND + NRT, cheapest
+    airport wins): the rail cards render ONLY the reader's own origin
+    out of this map (Kiran, 2026-10-18: "my airport only; no fare
+    line if my airport has none").
 
     These fares are indicative (checked weekly at reduced depth) and
     the record says so — the rail card renders the cadence label.
     """
     airports = INTL_AIRPORT_MAP.get(slug)
     if not airports or not intl_deals:
-        return None
+        return None, {}
     fare_from = None
+    by_origin = {}
     for rk, r in (intl_deals.get("routes") or {}).items():
         if r.get("destination") not in airports:
             continue
         co = r.get("cheapest_overall")
-        if co and (fare_from is None
-                   or co["price_min"] < fare_from["price_min"]):
-            fare_from = {
-                "price_min": co["price_min"],
-                "route": rk,
-                "origin_metro": r.get("origin_metro"),
-                "dest_metro": r.get("dest_metro"),
-                "date_range": reader_date_range(co.get("date_range")),
-                "duration_days": co.get("duration_days"),
-                "as_of": intl_deals.get("as_of"),
-                "cadence": "weekly",
-                "indicative": True,
-            }
-    return fare_from
+        if not co:
+            continue
+        fare = {
+            "price_min": co["price_min"],
+            "route": rk,
+            "origin_metro": r.get("origin_metro"),
+            "dest_metro": r.get("dest_metro"),
+            "date_range": reader_date_range(co.get("date_range")),
+            "duration_days": co.get("duration_days"),
+            "as_of": intl_deals.get("as_of"),
+            "cadence": "weekly",
+            "indicative": True,
+        }
+        if fare_from is None or co["price_min"] < fare_from["price_min"]:
+            fare_from = fare
+        origin = r.get("origin")
+        if origin and (origin not in by_origin
+                       or co["price_min"] < by_origin[origin]["price_min"]):
+            by_origin[origin] = fare
+    return fare_from, by_origin
 
 
 def destination_fares(slug, deals, intl_deals=None):
-    """fare_from + cheapest_month for a destination, from real deals data.
+    """fare_from + cheapest_month + fares_by_origin, from real deals.
 
-    Returns (fare_from, cheapest_month). Both None when no tracked route
-    serves this destination or the route has no fare data yet.
-    India destinations read the daily India matrix (own-metro routes
-    only, per ROUTE_MAP); international destinations read the weekly
-    intl matrix (INTL_AIRPORT_MAP).
+    Returns (fare_from, cheapest_month, fares_by_origin). fare_from
+    and cheapest_month are None when no tracked route serves this
+    destination or the route has no fare data yet; fares_by_origin is
+    {} then. India destinations read the daily India matrix (own-
+    metro routes only, per ROUTE_MAP); international destinations
+    read the weekly intl matrix (INTL_AIRPORT_MAP). fares_by_origin
+    is the per-origin breakdown the rail cards select the reader's
+    own airport from (Kiran, 2026-10-18).
     """
     if slug in INTL_AIRPORT_MAP:
-        return intl_destination_fares(slug, intl_deals), None
+        fare_from, by_origin = intl_destination_fares(slug, intl_deals)
+        return fare_from, None, by_origin
     route_keys = ROUTE_MAP.get(slug)
     if not route_keys or not deals:
-        return None, None
+        return None, None, {}
     routes = deals.get("routes") or {}
     fare_from = None
+    by_origin = {}
     cheapest = None
     for rk in route_keys:
         r = routes.get(rk)
         if not r:
             continue
         co = r.get("cheapest_overall")
-        if co and (fare_from is None or co["price_min"] < fare_from["price_min"]):
-            fare_from = {
+        if co:
+            fare = {
                 "price_min": co["price_min"],
                 "route": rk,
                 "origin_metro": r.get("origin_metro"),
@@ -363,6 +385,12 @@ def destination_fares(slug, deals, intl_deals=None):
                 "as_of": deals.get("as_of"),
                 "cadence": "daily",
             }
+            if fare_from is None or co["price_min"] < fare_from["price_min"]:
+                fare_from = fare
+            origin = r.get("origin")
+            if origin and (origin not in by_origin
+                           or co["price_min"] < by_origin[origin]["price_min"]):
+                by_origin[origin] = fare
         for cell in route_cells(r):
             if cell.get("cheapest_month"):
                 cand = {"month": cell["month"], "year": cell["year"],
@@ -372,7 +400,7 @@ def destination_fares(slug, deals, intl_deals=None):
                         "source": "fare data"}
                 if cheapest is None or cand["price_min"] < cheapest["price_min"]:
                     cheapest = cand
-    return fare_from, cheapest
+    return fare_from, cheapest, by_origin
 
 
 def destination_drop(slug, deals):
@@ -475,11 +503,15 @@ def trending_for(rec, month, year, drop):
 #   - best/peak months: months a MAJORITY of the 9 India state records
 #     list as best/peak (the winter core — Oct–Mar today).
 #   - fare_from: cheapest tracked fare from the rail's anchor origin
-#     (ANCHOR_ORIGIN — the site default the other cards' fare lines
-#     use) to ANY of the five India metros, across the daily matrix
-#     (flight-deals.json, cadence "daily") and the weekly metros grid
-#     (flight-deals-metros.json, cadence "weekly"). The winning file's
-#     cadence + as_of ride along so the stamp stays honest.
+#     (ANCHOR_ORIGIN — the site default) to ANY of the five India
+#     metros, across the daily matrix (flight-deals.json, cadence
+#     "daily") and the weekly metros grid (flight-deals-metros.json,
+#     cadence "weekly"). The winning file's cadence + as_of ride
+#     along so the stamp stays honest.
+#   - fares_by_origin: the same race run per origin (2026-10-18) —
+#     the rail renders only the reader's own origin's entry (Kiran:
+#     "my airport only; no fare line if my airport has none").
+#     fare_from stays the anchor origin's entry, as before.
 #   - season components: the same season_fit math as trending_for(),
 #     computed on the derived months — the "In season now" chip is
 #     earned by the data or not shown at all.
@@ -495,22 +527,31 @@ def _majority_months(records, field):
     return sorted(m for m, c in counts.items() if c * 2 > len(records))
 
 
-def india_card_fare(deals, metros_deals):
-    """Cheapest ANCHOR_ORIGIN -> India-metro fare across both matrices."""
-    best = None
+def india_card_fares_by_origin(deals, metros_deals):
+    """origin -> cheapest fare to ANY India metro, across both matrices.
+
+    The india_card_fare race (daily flight-deals.json + weekly metros
+    grid, cheapest cell wins) run per origin instead of only for the
+    anchor: the rail shows the reader's own origin's entry (Kiran,
+    2026-10-18). The winning file's cadence + as_of ride along per
+    origin so each stamp stays honest.
+    """
+    by_origin = {}
     for source, cadence in ((deals, "daily"), (metros_deals, "weekly")):
         if not source:
             continue
         for rk, r in (source.get("routes") or {}).items():
-            if r.get("origin") != INDIA_CARD_ORIGIN:
+            origin = r.get("origin")
+            if not origin:
                 continue
             if r.get("destination") not in INDIA_METROS:
                 continue
             co = r.get("cheapest_overall")
             if not co:
                 continue
-            if best is None or co["price_min"] < best["price_min"]:
-                best = {
+            cur = by_origin.get(origin)
+            if cur is None or co["price_min"] < cur["price_min"]:
+                fare = {
                     "price_min": co["price_min"],
                     "route": rk,
                     "origin_metro": r.get("origin_metro"),
@@ -521,8 +562,15 @@ def india_card_fare(deals, metros_deals):
                     "cadence": cadence,
                 }
                 if cadence == "weekly":
-                    best["indicative"] = True
-    return best
+                    fare["indicative"] = True
+                by_origin[origin] = fare
+    return by_origin
+
+
+def india_card_fare(deals, metros_deals):
+    """Cheapest ANCHOR_ORIGIN -> India-metro fare across both matrices."""
+    return india_card_fares_by_origin(deals, metros_deals).get(
+        INDIA_CARD_ORIGIN)
 
 
 def india_card_trending(best_months, peak_months, month, year, deals,
@@ -623,6 +671,7 @@ def build_india_card(records, deals, metros_deals, today, galleries=None):
                         "Kashmir and the Himalayas run spring to autumn."),
         "cheapest_month": None,
         "fare_from": india_card_fare(deals, metros_deals),
+        "fares_by_origin": india_card_fares_by_origin(deals, metros_deals),
         "highlights": [{
             "title": "Delhi, Mumbai, Bengaluru, Hyderabad & Kolkata gateways",
             "snippet": ("State guides for the trip home — Goa, Kerala, "
@@ -887,8 +936,8 @@ def main():
         highlights = mine_highlights(text)
         gal = galleries.get(slug) or {}
         photos = gal.get("photos") or []
-        fare_from, cheapest_month = destination_fares(slug, deals,
-                                                      intl_deals)
+        fare_from, cheapest_month, fares_by_origin = destination_fares(
+            slug, deals, intl_deals)
         drop = destination_drop(slug, deals)
 
         rec = {
@@ -903,6 +952,7 @@ def main():
             "season_note": season_note,
             "cheapest_month": cheapest_month,
             "fare_from": fare_from,
+            "fares_by_origin": fares_by_origin,
             "highlights": highlights,
             "photo_count": len(photos),
             "hero_image": photos[0]["src"] if photos else None,
@@ -964,6 +1014,7 @@ def main():
             "season_fit_by_month": "2 = in best season, 1 = shoulder (adjacent month), 0 = off season",
             "trending": "Sum of labeled components (season 40 / search interest 30 / fare 20 / value 10); max_score shows what was computable — a null component means that signal is not tracked for the destination yet, not a zero.",
             "cheapest_month": "Only set from real flight-deals fare data; null everywhere else by design.",
+            "fares_by_origin": "Per-origin cheapest fare for the destination (origin code -> fare, same shape as fare_from). Rail cards render ONLY the reader's own origin from this map — no fare line when their airport has none (Kiran, 2026-10-18). fare_from stays the cheapest across origins; it feeds ranking signals, not card display.",
             "eligible_for_picks": "False = second-tier US destination deferred from curated picks/trending (Kiran 2026-10-14 tiering); the record and its guide remain in the full index.",
         },
         "trending_now": trending_now,

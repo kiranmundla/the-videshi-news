@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import {
+  ORIGIN_CITY_LABELS,
+  detectHubOrigin,
+  readFaresOriginPref,
+} from "@/lib/flightDeals";
 
 /* ------------------------------------------------------------------ */
 /* Destination tracker — the ONE trending ordering.                   */
@@ -61,6 +66,44 @@ export type FareFrom = {
   indicative?: boolean;
 } | null;
 
+export type FareFromEntry = NonNullable<FareFrom>;
+
+/* ------------------------------------------------------------------ */
+/* Rail fare lines — the reader's OWN airport only (Kiran,           */
+/* 2026-10-18: "my airport only; no fare line if my airport has      */
+/* none"). Cards used to render fare_from — the cheapest fare        */
+/* across ALL origins — so an SFO reader was shown LAX teasers.      */
+/* Now the builder emits fares_by_origin (cheapest fare PER origin)   */
+/* and a card renders only the entry for the reader's resolved       */
+/* origin; no entry → NO fare line, never another origin's fare.     */
+/* fare_from stays in the data for ranking signals only.             */
+/*                                                                    */
+/* The origin is resolved ONCE per reader, with the same shared      */
+/* preference the fares hub and destination pages use: the stored    */
+/* pick (videshi-fares-origin) first, then the Hub-location          */
+/* detection, then the site default SFO — the default the hub        */
+/* itself falls back to.                                             */
+/* ------------------------------------------------------------------ */
+
+export const RAIL_DEFAULT_ORIGIN = "SFO";
+
+export function resolveRailOrigin(): string {
+  const stored = readFaresOriginPref();
+  if (stored) return stored;
+  const hub = detectHubOrigin(Object.keys(ORIGIN_CITY_LABELS));
+  if (hub) return hub;
+  return RAIL_DEFAULT_ORIGIN;
+}
+
+/** The fare a rail card may show for this reader: their own origin's
+    fare for the destination, or null (render no fare line at all). */
+export function railFareFor(
+  dest: TrendingDestination,
+  origin: string,
+): FareFrom {
+  return dest.fares_by_origin?.[origin] ?? null;
+}
+
 export type TrendingDestination = {
   slug: string;
   name: string;
@@ -70,7 +113,12 @@ export type TrendingDestination = {
   best_months: number[];
   season_note: string;
   hero_image: string | null;
+  /** Cheapest fare across ALL origins — ranking signals only since
+      2026-10-18; cards never render it (see railFareFor). */
   fare_from: FareFrom;
+  /** Cheapest fare PER origin (origin code -> fare). The only fare
+      data a card may render: the reader's own origin's entry. */
+  fares_by_origin?: Record<string, FareFromEntry>;
   highlights: { title: string; snippet: string }[];
   trending: {
     score: number;
