@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "icici-bank-q2-profit-14843-crore-nii-rises",
+  "article_slug": "icici-bank-q2-profit-14843-crore-nii-rises",
+  "article_id": "d64a683d-d7bf-475c-96dd-2b5cd7ff144f",
+  "category": "Markets Finance",
+  "video": "reel-runs/2026-10-17-icici-bank-q2-profit-14843-crore-nii-rises/output-v2/icici-bank-q2-profit-14843-crore-nii-rises.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Icici-bandra_kurla_complex.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "local_path": "reel-runs/2026-10-17-icici-bank-q2-profit-14843-crore-nii-rises/output-v2/hero.jpg",
+    "width": 1598,
+    "height": 854,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "static-fallback (cv2 unavailable)",
+    "has_face": false,
+    "box_source": [
+      351,
+      85,
+      894,
+      341
+    ],
+    "box_bg": [
+      -464.9,
+      191.1,
+      2009.9,
+      766.7
+    ],
+    "chin_bg": null,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 284,
+      "block_top": 858,
+      "block_bottom": 1142,
+      "text_bbox": [
+        131,
+        858,
+        873,
+        1134
+      ],
+      "texts": [
+        "Markets Finance",
+        "ICICI BANK PROFIT JUMPS 20%"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 298,
+      "block_top": 858,
+      "block_bottom": 1156,
+      "text_bbox": [
+        120,
+        858,
+        887,
+        1160
+      ],
+      "texts": [
+        "What Happened",
+        "ICICI Bank's standalone net profit rose 20.1% year on year to Rs 14,843 crore in the second quarter, beating the Rs 14,251 crore analysts expected."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 287,
+      "block_top": 858,
+      "block_bottom": 1145,
+      "text_bbox": [
+        111,
+        858,
+        898,
+        1150
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "Rs 14,843 CRORE",
+        "ICICI Bank standalone net profit in the second quarter, up 20.1% year on year"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 755,
+      "block_top": 796,
+      "block_bottom": 1551,
+      "text_bbox": [
+        112,
+        796,
+        902,
+        1550
+      ],
+      "texts": [
+        "By The Numbers",
+        "17.7%",
+        "Net interest income rose year on year to Rs 25,339 crore",
+        "1.20%",
+        "Gross NPA ratio, down from 1.38% a quarter earlier",
+        "30%",
+        "Year-on-year loan growth, with deposits up 27.1%"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 407,
+      "block_top": 858,
+      "block_bottom": 1265,
+      "text_bbox": [
+        118,
+        858,
+        849,
+        1270
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Fee income rose 20.1% to Rs 7,795 crore in the quarter",
+        "ICICI Bank is India's second-largest private lender by market capitalisation"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 288,
+      "block_top": 858,
+      "block_bottom": 1146,
+      "text_bbox": [
+        115,
+        858,
+        887,
+        1157
+      ],
+      "texts": [
+        "The Takeaway",
+        "ICICI grew its loan book 30% while still improving asset quality.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "tech-corporate-the-show-must-be-go.mp3",
+    "path": "music/tech-corporate-the-show-must-be-go.mp3"
+  },
+  "render_seconds": 340.1,
+  "mp4_bytes": 9149224
+}

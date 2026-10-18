@@ -1,0 +1,20 @@
+[
+  {
+    "id": "366144da-9fda-4831-9320-15207ab0d695",
+    "headline": "Kolkata Durga Puja Pandal Crush Kills at Least 17, Organisers Detained",
+    "slug": "kolkata-durga-puja-pandal-crush-chorbagan-17-killed",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events leading to the crush, including the exact timing of the announcement and the onset of rain, to provide a clearer context for readers.",
+        "Include a brief background on the significance of Durga Puja in Kolkata to enhance understanding of the event's scale and importance, which may help readers grasp the situation better.",
+        "Ensure consistency in casualty figures by clearly stating the most current and verified numbers, and explain the discrepancies in reports from different sources to avoid confusion."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the West Bengal Chief Minister or Kolkata Police providing updates on the situation or safety measures being taken."
+      ]
+    }
+  }
+]

@@ -1,0 +1,97 @@
+[
+  {
+    "id": "07f73d84-8e96-4e45-a879-4ec26e2656f6",
+    "headline": "OCI Cricketers' Fight to Play in India Now Waits on the Centre's Stand",
+    "slug": "oci-cricketers-bcci-passport-rule-bombay-high-court",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including quotes or perspectives from OCI cardholders or their families about how this ruling impacts their aspirations and connection to Indian cricket. This personal touch can help readers relate to the issue more deeply.",
+        "Provide specific details about the timeline of the case, including the date of the next hearing and potential implications for OCI cardholders if the ruling is in favor of the petitioners. For example, what changes could occur in the BCCI's eligibility rules if the court rules against them?",
+        "Embed a relevant tweet from the BCCI or a cricket authority discussing the ruling or the implications of the case. This would provide readers with direct insight into the official stance and ongoing discussions.",
+        "Revise the headline to make it more compelling and specific, such as 'Will OCI Cricketers Break Barriers? Court Case Challenges BCCI's Domestic Eligibility Rules' to better reflect the stakes involved."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the BCCI or a cricket authority discussing the ruling or the implications of the case."
+      ]
+    }
+  },
+  {
+    "id": "9b9da00c-a2d7-498b-b917-0c3cb29c8268",
+    "headline": "Ashwin Calls Jaiswal's ODI Snub 'Very Unfair' as Gill Is Rested for New Zealand",
+    "slug": "ashwin-jaiswal-odi-snub-new-zealand-very-unfair",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the squads were announced and when the series against New Zealand is set to begin. This will provide readers with a clearer context regarding the urgency of the situation.",
+        "Include a direct quote from the selectors or team management to provide a balanced view and address Ashwin's criticisms. This would enhance the completeness and attribution of the article.",
+        "Expand on the implications of Jaiswal's omission by discussing his recent performance statistics or achievements leading up to this decision. This would provide readers with a better understanding of why his exclusion is significant."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement from the BCCI regarding the ODI squads to provide readers with direct access to the source of information."
+      ]
+    }
+  },
+  {
+    "id": "2c6f295e-cc13-495f-8b66-f204a2ce15e6",
+    "headline": "LK Advani, 98, Admitted to Delhi Hospital With Chest Infection, Condition Stable",
+    "slug": "lk-advani-admitted-delhi-hospital-chest-infection",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of Advani's previous hospitalizations by correcting the year for his December hospitalization from '2024' to '2022' to ensure accuracy.",
+        "Include a quote from a family member or a hospital spokesperson to enhance attribution and provide a human element to the story.",
+        "Add more context about Advani's significance in Indian politics, such as his role in the BJP's formation and any recent public appearances, to give readers a better understanding of his impact.",
+        "Specify the nature of the chest infection if available or mention that further details will be provided as they become available to improve completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a reputable news source that provides updates on Advani's condition or reactions from political figures."
+      ]
+    }
+  },
+  {
+    "id": "4d7f9129-22da-4c84-bc03-286593cb0f39",
+    "headline": "Five Dead, Six Injured as Reactor Blast Rocks Bharuch Pharma Plant in Gujarat",
+    "slug": "reactor-blast-bharuch-pharma-plant-kills-workers",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact time of the explosion and when emergency services arrived on the scene. This will help provide a clearer picture of the incident's progression.",
+        "Include more specific details about the injuries sustained by the victims, such as the severity of injuries or the hospitals they were taken to. This information would enhance the completeness of the report.",
+        "Provide context on the safety regulations in place for chemical plants in Gujarat, especially in light of the previous incident mentioned. This would help readers understand the implications of the explosion better."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from local authorities or emergency services providing updates on the situation or safety measures being taken in response to the incident."
+      ]
+    }
+  },
+  {
+    "id": "a065343e-9d04-456d-b1d9-fa6d7d876618",
+    "headline": "Second Judge Blocks $100,000 H-1B Fee, Including Its One-Year Extension",
+    "slug": "second-judge-blocks-100000-h1b-fee-extension",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the ruling for employers and workers by including specific details about how long the fee will remain blocked and what steps they should take next, if any.",
+        "Provide a brief background on the original fee's purpose and its impact on H-1B visa applications to give readers context on why this ruling is significant.",
+        "Include a quote from the Department of Homeland Security or a relevant government official to provide balance and perspective on the ruling.",
+        "Ensure that the timeline of events is clearly laid out, perhaps in a bullet-point format, to enhance clarity and help readers quickly grasp the sequence of rulings and their implications."
+      ],
+      "embed_opportunities": [
+        "Embed the official court ruling or a relevant tweet from a legal expert discussing the implications of the ruling."
+      ]
+    }
+  }
+]

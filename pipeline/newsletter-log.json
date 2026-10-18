@@ -1525,5 +1525,16 @@
     "top_story_slug": "court-orders-reopen-55000-green-card-lottery-dv2027",
     "quick_hit_count": 5,
     "deadline_count": 2
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-17T13:58:13.419259+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 17, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "prahaar-review-roundup-critics",
+    "quick_hit_count": 5,
+    "deadline_count": 2
   }
 ]

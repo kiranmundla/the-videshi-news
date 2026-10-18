@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-16-brad-smith-vance-h1b-microsoft-nadella-medal/output/brad-smith-vance-h1b-microsoft-nadella-medal.mp4",
+  "qa_passed": true,
+  "qa_score": 9.5,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1374,
+        832
+      ],
+      "manifest_dims": [
+        1374,
+        832
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 509.0,
+      "url": "https://cdn.geekwire.com/wp-content/uploads/2026/10/trump-nadella.png"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-16-brad-smith-vance-h1b-microsoft-nadella-medal/output/qa/frames/frame-hook.png",
+      "text_px_detected": 24249,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          400,
+          209,
+          292,
+          366
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.0,
+        "bg_luminance": 199.9,
+        "delta": 54.1
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-16-brad-smith-vance-h1b-microsoft-nadella-medal/output/qa/frames/frame-news.png",
+      "text_px_detected": 19290,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          398,
+          204,
+          296,
+          371
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": false,
+        "text_luminance": 253.4,
+        "bg_luminance": 205.7,
+        "delta": 47.7
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-16-brad-smith-vance-h1b-microsoft-nadella-medal/output/qa/frames/frame-hero.png",
+      "text_px_detected": 34104,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          397,
+          201,
+          298,
+          378
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 251.9,
+        "bg_luminance": 185.5,
+        "delta": 66.4
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-16-brad-smith-vance-h1b-microsoft-nadella-medal/output/qa/frames/frame-grid.png",
+      "text_px_detected": 49577,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          395,
+          200,
+          299,
+          379
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 163.2,
+        "delta": 90.5
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-16-brad-smith-vance-h1b-microsoft-nadella-medal/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 36213,
+      "edge": {
+        "pass": true,
+        "offending_px": 25,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          397,
+          196,
+          298,
+          382
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 186.8,
+        "delta": 67.1
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-16-brad-smith-vance-h1b-microsoft-nadella-medal/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 14972,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          396,
+          198,
+          298,
+          380
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.9,
+        "bg_luminance": 182.1,
+        "delta": 70.9
+      }
+    }
+  ]
+}

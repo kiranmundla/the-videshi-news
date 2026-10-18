@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "bengaluru-born-ramya-anche-lead-nasa-puffins-mission",
+  "article_slug": "bengaluru-born-ramya-anche-lead-nasa-puffins-mission",
+  "article_id": "877ec0bb-9296-49ae-b8a8-e19b596260d2",
+  "category": "Technology",
+  "video": "reel-runs/2026-10-16-bengaluru-born-ramya-anche-lead-nasa-puffins-mission/output-retry1/bengaluru-born-ramya-anche-lead-nasa-puffins-mission.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/NASA_HQ_Building.jpg/1280px-NASA_HQ_Building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "local_path": "reel-runs/2026-10-16-bengaluru-born-ramya-anche-lead-nasa-puffins-mission/output-retry1/hero.jpg",
+    "width": 1280,
+    "height": 989,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "static-fallback (cv2 unavailable)",
+    "has_face": false,
+    "box_source": [
+      281,
+      98,
+      716,
+      395
+    ],
+    "box_bg": [
+      -154.5,
+      190.3,
+      1390.0,
+      766.8
+    ],
+    "chin_bg": null,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 274,
+      "block_top": 858,
+      "block_bottom": 1132,
+      "text_bbox": [
+        112,
+        858,
+        898,
+        1124
+      ],
+      "texts": [
+        "Technology",
+        "BENGALURU-BORN, NOW LEADING NASA"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 258,
+      "block_top": 858,
+      "block_bottom": 1116,
+      "text_bbox": [
+        113,
+        858,
+        892,
+        1119
+      ],
+      "texts": [
+        "What Happened",
+        "NASA has awarded $20 million to a University of Arizona team led by Bengaluru-born astronomer Ramya Anche to build PUFFINS, a small space telescope that will study interstellar dust."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 362,
+      "block_top": 858,
+      "block_bottom": 1220,
+      "text_bbox": [
+        109,
+        858,
+        889,
+        1215
+      ],
+      "texts": [
+        "THE PRICE TAG",
+        "$20 million",
+        "NASA award to a University of Arizona team to build PUFFINS"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 755,
+      "block_top": 796,
+      "block_bottom": 1551,
+      "text_bbox": [
+        116,
+        796,
+        894,
+        1550
+      ],
+      "texts": [
+        "By The Numbers",
+        "70",
+        "stars PUFFINS will observe from low-Earth orbit",
+        "10-inch",
+        "ultraviolet telescope PUFFINS will use to study interstellar dust",
+        "2030",
+        "target launch year for the PUFFINS mission"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 442,
+      "block_top": 858,
+      "block_bottom": 1300,
+      "text_bbox": [
+        118,
+        858,
+        877,
+        1305
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Ramya Anche, born in Bengaluru, is principal investigator of PUFFINS at the University of Arizona",
+        "Anche led the winning NASA proposal while still a postdoctoral researcher"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 252,
+      "block_top": 858,
+      "block_bottom": 1110,
+      "text_bbox": [
+        115,
+        858,
+        890,
+        1121
+      ],
+      "texts": [
+        "The Takeaway",
+        "PUFFINS data can help define a future instrument for NASA's Habitable Worlds Observatory.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "emotional-inspiring-inspiring-uplifting.mp3",
+    "path": "music/emotional-inspiring-inspiring-uplifting.mp3"
+  },
+  "render_seconds": 413.7,
+  "mp4_bytes": 12091378
+}

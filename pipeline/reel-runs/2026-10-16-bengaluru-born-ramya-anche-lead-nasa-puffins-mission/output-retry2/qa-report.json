@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-16-bengaluru-born-ramya-anche-lead-nasa-puffins-mission/output-retry2/bengaluru-born-ramya-anche-lead-nasa-puffins-mission.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1280,
+        989
+      ],
+      "manifest_dims": [
+        1280,
+        989
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 2095.5,
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f0/NASA_HQ_Building.jpg/1280px-NASA_HQ_Building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-16-bengaluru-born-ramya-anche-lead-nasa-puffins-mission/output-retry2/qa/frames/frame-hook.png",
+      "text_px_detected": 27887,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 110.7,
+        "delta": 143.2
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-16-bengaluru-born-ramya-anche-lead-nasa-puffins-mission/output-retry2/qa/frames/frame-news.png",
+      "text_px_detected": 21270,
+      "edge": {
+        "pass": true,
+        "offending_px": 22,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 113.3,
+        "delta": 140.1
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-16-bengaluru-born-ramya-anche-lead-nasa-puffins-mission/output-retry2/qa/frames/frame-hero.png",
+      "text_px_detected": 31690,
+      "edge": {
+        "pass": true,
+        "offending_px": 12,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.6,
+        "bg_luminance": 103.1,
+        "delta": 149.5
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-16-bengaluru-born-ramya-anche-lead-nasa-puffins-mission/output-retry2/qa/frames/frame-grid.png",
+      "text_px_detected": 49534,
+      "edge": {
+        "pass": true,
+        "offending_px": 1,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 98.2,
+        "delta": 155.3
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-16-bengaluru-born-ramya-anche-lead-nasa-puffins-mission/output-retry2/qa/frames/frame-diaspora.png",
+      "text_px_detected": 37073,
+      "edge": {
+        "pass": true,
+        "offending_px": 28,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 107.5,
+        "delta": 146.4
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-16-bengaluru-born-ramya-anche-lead-nasa-puffins-mission/output-retry2/qa/frames/frame-payoff.png",
+      "text_px_detected": 14648,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.0,
+        "bg_luminance": 114.7,
+        "delta": 138.3
+      }
+    }
+  ]
+}

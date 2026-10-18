@@ -1,0 +1,269 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "jailer-2-box-office-day-2-209-crore-worldwide",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "JAILER 2 CROSSES \u20b9209 CRORE IN TWO DAYS",
+      "numbers": [
+        2.0,
+        209.0,
+        2090000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Jailer 2 crossed \u20b9209 crore in two days.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Rajinikanth's Jailer 2 grossed about \u20b984 crore worldwide on day two, taking its two-day worldwide total to roughly \u20b9209 crore, Pinkvilla reported.",
+      "numbers": [
+        2.0,
+        84.0,
+        209.0,
+        840000000.0,
+        2090000000.0
+      ],
+      "entities": [
+        "Rajinikanth's Jailer"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the article's details about day two gross and total.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "\u20b9209 CRORE",
+      "numbers": [
+        209.0,
+        2090000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the figure of \u20b9209 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Worldwide gross in two days, Pinkvilla reported",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article attributes the worldwide gross figure to Pinkvilla.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article includes numerical statistics.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "\u20b984 CRORE",
+      "numbers": [
+        84.0,
+        840000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states \u20b984 crore was grossed on day two.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Worldwide gross on day two alone",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies \u20b984 crore as the worldwide gross on day two.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "38%",
+      "numbers": [
+        38.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions a 38% drop on day two.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Day-two drop in India \u2014 a phenomenal hold for a Rajinikanth opener",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article describes the 38% drop as a phenomenal hold.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$4.5 MILLION",
+      "numbers": [
+        4.5,
+        4500000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the overseas gross on day two was $4.5 million.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Overseas gross on day two alone, about \u20b943 crore",
+      "numbers": [
+        43.0,
+        430000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the overseas gross and its conversion to \u20b943 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Nearly half the worldwide gross so far has come from outside India",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states nearly half the gross is from outside India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Packed shows in the Gulf and Southeast Asia, powered by the North America premiere run",
+      "numbers": [],
+      "entities": [
+        "Southeast Asia",
+        "North America"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses packed shows in Gulf and Southeast Asia.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Trade trackers say \u20b9500 crore by midweek is in play.",
+      "numbers": [
+        500.0,
+        5000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions trade trackers predicting \u20b9500 crore by midweek.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Jailer 2",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Rajinikanth",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nelson Dilipkumar",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Pinkvilla",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Kollywood",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000518
+  }
+}

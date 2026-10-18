@@ -1,0 +1,271 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "icici-bank-q2-profit-14843-crore-nii-rises",
+  "verdict": "fail",
+  "held_claims": [
+    "stats[0].label"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ICICI BANK PROFIT JUMPS 20%",
+      "numbers": [
+        20.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Profit increased by 20.1% as stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "ICICI Bank's standalone net profit rose 20.1% year on year to Rs 14,843 crore in the second quarter, beating the Rs 14,251 crore analysts expected.",
+      "numbers": [
+        20.1,
+        14251.0,
+        14843.0,
+        142510000000.0,
+        148430000000.0
+      ],
+      "entities": [
+        "ICICI Bank's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Net profit details and analyst expectations are accurately reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "Rs 14,843 CRORE",
+      "numbers": [
+        14843.0,
+        148430000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The profit figure of Rs 14,843 crore is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "ICICI Bank standalone net profit in the second quarter, up 20.1% year on year",
+      "numbers": [
+        20.1
+      ],
+      "entities": [
+        "ICICI Bank"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Standalone net profit increase of 20.1% is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The phrase 'BY THE NUMBERS' is not found in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "17.7%",
+      "numbers": [
+        17.7
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Net interest income rose by 17.7% as stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Rise in net interest income to Rs 25,339 crore",
+      "numbers": [
+        25339.0,
+        253390000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The specific phrasing 'Rise in net interest income to Rs 25,339 crore' is not directly quoted.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "1.20%",
+      "numbers": [
+        1.2
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Gross NPA ratio of 1.20% is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Gross NPA ratio, down from 1.38% a quarter earlier",
+      "numbers": [
+        1.38
+      ],
+      "entities": [
+        "Gross NPA"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The decrease in gross NPA from 1.38% is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "30%",
+      "numbers": [
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Year-on-year loan growth of 30% is stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Year-on-year loan growth, with deposits up 27.1%",
+      "numbers": [
+        27.1
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Deposits increased by 27.1% as mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Fee income rose 20.1% to Rs 7,795 crore in the quarter",
+      "numbers": [
+        20.1,
+        7795.0,
+        77950000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Fee income increase to Rs 7,795 crore is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "ICICI Bank is India's second-largest private lender by market capitalisation",
+      "numbers": [],
+      "entities": [
+        "ICICI Bank"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "ICICI Bank's status as India's second-largest private lender is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "ICICI grew its loan book 30% while still improving asset quality.",
+      "numbers": [
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Loan growth of 30% while improving asset quality is supported by the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "ICICI Bank",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Reuters",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "LSEG",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000603
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "bengaluru-born-ramya-anche-lead-nasa-puffins-mission",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Bengaluru-Born Astronomer Ramya Anche to Lead NASA's $20 Million PUFFINS Mission",
+        "numbers": [
+          20.0,
+          20000000.0
+        ],
+        "entities": [
+          "Bengaluru-Born Astronomer Ramya Anche",
+          "Lead NASA's",
+          "Million PUFFINS Mission"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article states Ramya Anche will lead NASA's $20 million PUFFINS mission.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "PUFFINS will study interstellar dust from about 70 stars ahead of a 2030 launch.",
+        "numbers": [
+          70.0,
+          2030.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2030
+          ]
+        },
+        "llm_reason": "PUFFINS will study interstellar dust from about 70 stars with a 2030 launch.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "NASA has awarded $20 million to a University of Arizona team to build PUFFINS, a small space telescope that will study interstellar dust",
+        "numbers": [
+          20.0,
+          20000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "NASA awarded $20 million to a University of Arizona team for PUFFINS.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "PUFFINS will use a 10-inch telescope in low-Earth orbit to observe about 70 stars, with a target launch in 2030",
+        "numbers": [
+          10.0,
+          70.0,
+          2030.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2030
+          ]
+        },
+        "llm_reason": "PUFFINS will use a 10-inch telescope in low-Earth orbit to observe about 70 stars.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Ramya Anche, an assistant research professor at Steward Observatory, led the winning NASA proposal while still a postdoctoral researcher",
+        "numbers": [],
+        "entities": [
+          "Ramya Anche",
+          "Steward Observatory"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Ramya Anche led the winning NASA proposal while a postdoctoral researcher.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Ramya Anche",
+        "numbers": [],
+        "entities": [
+          "Ramya Anche"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Ramya Anche is mentioned in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Principal Investigator, PUFFINS",
+        "numbers": [],
+        "entities": [
+          "Principal Investigator"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Ramya Anche is identified as Principal Investigator of PUFFINS.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Bengaluru-Born Astronomer Ramya Anche to Lead NASA's $20 Million PUFFINS Mission",
+        "numbers": [
+          20.0,
+          20000000.0
+        ],
+        "entities": [
+          "Bengaluru-Born Astronomer Ramya Anche",
+          "Lead NASA's",
+          "Million PUFFINS Mission"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article confirms Ramya Anche's leadership of NASA's PUFFINS mission.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000428
+    }
+  },
+  "verdict": "pass"
+}

@@ -35,7 +35,7 @@
           2027
         ]
       },
-      "llm_reason": "The article states the judge ordered reinstatement of the lottery for 55,000 visas.",
+      "llm_reason": "The article states a federal judge ordered reinstatement of the lottery for 55,000 visas.",
       "verdicts": {
         "deterministic": "pass",
         "llm": "supported"
@@ -159,7 +159,7 @@
           1990
         ]
       },
-      "llm_reason": "The Diversity Visa program was created by Congress in 1990.",
+      "llm_reason": "The article states Congress created the Diversity Visa program in 1990.",
       "verdicts": {
         "deterministic": "pass",
         "llm": "supported"
@@ -175,7 +175,7 @@
       ],
       "deterministic": "pass",
       "detail": {},
-      "llm_reason": "The article states Congress created the Diversity Visa program in 1990.",
+      "llm_reason": "The article confirms the Diversity Visa program was created by Congress in 1990.",
       "verdicts": {
         "deterministic": "pass",
         "llm": "supported"
@@ -203,7 +203,7 @@
       "entities": [],
       "deterministic": "pass",
       "detail": {},
-      "llm_reason": "The article explains India-born applicants may qualify through spouses or parents.",
+      "llm_reason": "The article explains India-born applicants may qualify through spouses or parents from eligible countries.",
       "verdicts": {
         "deterministic": "pass",
         "llm": "supported"
@@ -219,7 +219,7 @@
       "entities": [],
       "deterministic": "pass",
       "detail": {},
-      "llm_reason": "The article confirms registration had not opened as of October 16.",
+      "llm_reason": "The article states registration had not opened as of October 16.",
       "verdicts": {
         "deterministic": "pass",
         "llm": "supported"
@@ -250,6 +250,6 @@
     "model": "gpt-4o-mini",
     "ran": true,
     "error": null,
-    "cost_usd": 0.000545
+    "cost_usd": 0.00055
   }
 }

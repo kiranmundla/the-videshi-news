@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-16-court-orders-reopen-55000-green-card-lottery-dv2027/output/court-orders-reopen-55000-green-card-lottery-dv2027.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1920,
+        1080
+      ],
+      "manifest_dims": [
+        1920,
+        1080
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 1081.1,
+      "url": "https://cdn.prod.website-files.com/68a3050860dd863f875cffa9/6a7dfc77177bc4970e78eb11_10_Visa%20Bulletin.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-16-court-orders-reopen-55000-green-card-lottery-dv2027/output/qa/frames/frame-hook.png",
+      "text_px_detected": 26385,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 97.8,
+        "delta": 156.3
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-16-court-orders-reopen-55000-green-card-lottery-dv2027/output/qa/frames/frame-news.png",
+      "text_px_detected": 20820,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 99.6,
+        "delta": 153.8
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-16-court-orders-reopen-55000-green-card-lottery-dv2027/output/qa/frames/frame-hero.png",
+      "text_px_detected": 34426,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 251.6,
+        "bg_luminance": 86.1,
+        "delta": 165.4
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-16-court-orders-reopen-55000-green-card-lottery-dv2027/output/qa/frames/frame-grid.png",
+      "text_px_detected": 56945,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 73.9,
+        "delta": 179.5
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-16-court-orders-reopen-55000-green-card-lottery-dv2027/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 33165,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 92.6,
+        "delta": 161.4
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-16-court-orders-reopen-55000-green-card-lottery-dv2027/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 14704,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 85.2,
+        "delta": 168.2
+      }
+    }
+  ]
+}

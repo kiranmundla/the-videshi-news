@@ -1,0 +1,158 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "icici-bank-q2-profit-14843-crore-nii-rises",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "ICICI Bank Profit Jumps 20% to Rs 14,843 Crore in Second Quarter",
+        "numbers": [
+          20.0,
+          14843.0,
+          148430000000.0
+        ],
+        "entities": [
+          "ICICI Bank Profit Jumps",
+          "Second Quarter"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Profit increase and amount are directly stated in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Net interest income rose 17.7% to Rs 25,339 crore, gross NPA fell to 1.20% and loans grew 30%, as India's second-largest private lender beat profit estimates.",
+        "numbers": [
+          1.2,
+          17.7,
+          30.0,
+          25339.0,
+          253390000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All figures and claims are present in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "ICICI Bank's standalone net profit rose 20.1% year on year to Rs 14,843 crore in the quarter ended September 30, 2026, beating the Rs 14,251 crore analysts expected",
+        "numbers": [
+          20.1,
+          30.0,
+          2026.0,
+          14251.0,
+          14843.0,
+          142510000000.0,
+          148430000000.0
+        ],
+        "entities": [
+          "ICICI Bank's"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "Exact profit figures and analyst expectations are mentioned in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Net interest income rose 17.7% to Rs 25,339 crore, while the gross NPA ratio improved to 1.20% and the net NPA ratio fell to 0.30%",
+        "numbers": [
+          0.3,
+          1.2,
+          17.7,
+          25339.0,
+          253390000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All statistics regarding net interest income and NPA ratios are included in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Loans grew 30% and deposits 27.1% year on year, and capital adequacy stood at 16.68% with CET-1 at 16.01%",
+        "numbers": [
+          1.0,
+          16.01,
+          16.68,
+          27.1,
+          30.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Loan growth, deposit growth, and capital adequacy figures are confirmed in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "ICICI Bank Profit Jumps 20% to Rs 14,843 Crore in Second Quarter",
+        "numbers": [
+          20.0,
+          14843.0,
+          148430000000.0
+        ],
+        "entities": [
+          "ICICI Bank Profit Jumps",
+          "Second Quarter"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This is a repetition of the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000396
+    }
+  },
+  "verdict": "pass"
+}

@@ -1,0 +1,283 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "who-is-rohit-prasad-ranchi-alexa-boston-dynamics-ceo",
+  "verdict": "fail",
+  "held_claims": [
+    "hook_stat.big",
+    "stats[2].label"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "THE MAN WHO BUILT ALEXA NOW RUNS BOSTON DYNAMICS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Rohit Prasad built Alexa and is now CEO of Boston Dynamics.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Ranchi-born Rohit Prasad, the speech scientist who built Amazon's Alexa, became chief executive of Boston Dynamics on October 7, 2026.",
+      "numbers": [
+        7.0,
+        2026.0
+      ],
+      "entities": [
+        "Ranchi-born Rohit Prasad",
+        "Amazon's Alexa",
+        "Boston Dynamics"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "Rohit Prasad became CEO on October 7, 2026.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "3RD CEO",
+      "numbers": [
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_numbers": [
+          3.0
+        ],
+        "ungrounded_entities": [
+          "3RD"
+        ]
+      },
+      "llm_reason": "He is the third CEO of Boston Dynamics.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Only the third chief executive in Boston Dynamics' 34-year history",
+      "numbers": [
+        34.0
+      ],
+      "entities": [
+        "Boston Dynamics'"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Only the third chief executive in Boston Dynamics' 34-year history.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "No specific numerical data presented in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "12 YEARS",
+      "numbers": [
+        12.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "He worked 12 years at Amazon.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "At Amazon, where he was head scientist for Alexa and artificial general intelligence",
+      "numbers": [],
+      "entities": [
+        "At Amazon"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "He was head scientist for Alexa and artificial general intelligence.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "30,000",
+      "numbers": [
+        30000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Hyundai plans to produce 30,000 robots a year.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Robots a year \u2014 the production capacity Hyundai plans to build",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Production capacity Hyundai plans to build is 30,000 robots a year.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2028",
+      "numbers": [
+        2028.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2028
+        ]
+      },
+      "llm_reason": "Hyundai plans to deploy Atlas humanoids in 2028.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Hyundai plans to deploy Atlas humanoids at its Georgia plant from this year",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states deployment starts in 2028, not from that year.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "An engineer from Jharkhand now deciding how humanoid robots enter factories",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "He is deciding how humanoid robots enter factories.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "His family still lives in Ranchi \u2014 he returns roughly every year and a half",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "His family lives in Ranchi and he returns every year and a half.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Hyundai plans to deploy Atlas humanoids at its Georgia plant from 2028, with capacity to produce 30,000 robots a year.",
+      "numbers": [
+        2028.0,
+        30000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2028
+        ]
+      },
+      "llm_reason": "Hyundai plans to deploy Atlas humanoids at its Georgia plant from 2028.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Rohit Prasad",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Boston Dynamics",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Amazon",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Alexa",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Hyundai Motor Group",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000604
+  }
+}

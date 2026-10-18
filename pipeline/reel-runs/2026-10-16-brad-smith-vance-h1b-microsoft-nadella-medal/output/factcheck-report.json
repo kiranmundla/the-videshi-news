@@ -184,7 +184,7 @@
       "entities": [],
       "deterministic": "pass",
       "detail": {},
-      "llm_reason": "The article lists the eight employers, including Infosys, TCS, Wipro, and HCLTech.",
+      "llm_reason": "The article lists Infosys, TCS, Wipro, and HCLTech among suspended employers.",
       "verdicts": {
         "deterministic": "pass",
         "llm": "supported"
@@ -198,7 +198,7 @@
       "entities": [],
       "deterministic": "pass",
       "detail": {},
-      "llm_reason": "The impact on Indian professionals' green-card timelines is mentioned.",
+      "llm_reason": "The impact on Indian professionals facing frozen timelines is mentioned.",
       "verdicts": {
         "deterministic": "pass",
         "llm": "supported"
@@ -212,7 +212,7 @@
       "entities": [],
       "deterministic": "pass",
       "detail": {},
-      "llm_reason": "The article states that no companies have been charged and filings remain frozen.",
+      "llm_reason": "The claim that no companies have been charged is directly supported.",
       "verdicts": {
         "deterministic": "pass",
         "llm": "supported"
@@ -251,6 +251,6 @@
     "model": "gpt-4o-mini",
     "ran": true,
     "error": null,
-    "cost_usd": 0.00053
+    "cost_usd": 0.000527
   }
 }

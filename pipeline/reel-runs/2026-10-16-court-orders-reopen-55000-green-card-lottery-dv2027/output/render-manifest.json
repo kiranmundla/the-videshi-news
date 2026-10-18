@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "court-orders-reopen-55000-green-card-lottery-dv2027",
+  "article_slug": "court-orders-reopen-55000-green-card-lottery-dv2027",
+  "article_id": "00028b06-0afb-46a4-8561-292972067a0c",
+  "category": "Immigration",
+  "video": "reel-runs/2026-10-16-court-orders-reopen-55000-green-card-lottery-dv2027/output/court-orders-reopen-55000-green-card-lottery-dv2027.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://cdn.prod.website-files.com/68a3050860dd863f875cffa9/6a7dfc77177bc4970e78eb11_10_Visa%20Bulletin.jpg",
+    "local_path": "reel-runs/2026-10-16-court-orders-reopen-55000-green-card-lottery-dv2027/output/hero.jpg",
+    "width": 1920,
+    "height": 1080,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "focal-heuristic (no face detected)",
+    "has_face": false,
+    "box_source": [
+      543,
+      428,
+      1075,
+      432
+    ],
+    "box_bg": [
+      -414.7,
+      760.9,
+      1911.1,
+      768.0
+    ],
+    "chin_bg": null,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 260,
+      "block_top": 858,
+      "block_bottom": 1118,
+      "text_bbox": [
+        110,
+        858,
+        901,
+        1111
+      ],
+      "texts": [
+        "Immigration",
+        "GREEN CARD LOTTERY ORDERED REOPENED"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 266,
+      "block_top": 858,
+      "block_bottom": 1124,
+      "text_bbox": [
+        111,
+        858,
+        894,
+        1129
+      ],
+      "texts": [
+        "What Happened",
+        "A federal judge in California ordered the State Department to reinstate the fiscal 2027 Diversity Visa lottery, which makes up to 55,000 immigrant visas available each year."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 444,
+      "block_top": 858,
+      "block_bottom": 1302,
+      "text_bbox": [
+        107,
+        858,
+        905,
+        1308
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "55,000",
+        "immigrant visas the lottery makes available each year"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 755,
+      "block_top": 796,
+      "block_bottom": 1551,
+      "text_bbox": [
+        126,
+        796,
+        881,
+        1550
+      ],
+      "texts": [
+        "By The Numbers",
+        "30 days",
+        "minimum registration window the court order requires",
+        "October 18",
+        "date registration must open by, under the injunction",
+        "1990",
+        "year Congress created the Diversity Visa program"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 397,
+      "block_top": 858,
+      "block_bottom": 1255,
+      "text_bbox": [
+        118,
+        858,
+        864,
+        1261
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Enter only through the official dvprogram.state.gov portal - do not pay any third-party site",
+        "India-born applicants generally do not qualify directly, but a spouse or parent born in an eligible country can sometimes provide an alternative"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 258,
+      "block_top": 858,
+      "block_bottom": 1116,
+      "text_bbox": [
+        119,
+        858,
+        887,
+        1127
+      ],
+      "texts": [
+        "The Takeaway",
+        "Registration had not yet opened as of October 16, and no official dates had been announced.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "emotional-inspiring-emotional-uplifting.mp3",
+    "path": "music/emotional-inspiring-emotional-uplifting.mp3"
+  },
+  "render_seconds": 337.3,
+  "mp4_bytes": 15641496
+}

@@ -1,0 +1,16 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa_error",
+  "article_slug": "bengaluru-born-ramya-anche-lead-nasa-puffins-mission",
+  "name": "bengaluru-born-ramya-anche-lead-nasa-puffins-mission",
+  "script": "reel-runs/2026-10-16-bengaluru-born-ramya-anche-lead-nasa-puffins-mission/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000573
+  },
+  "manifest": "reel-runs/2026-10-16-bengaluru-born-ramya-anche-lead-nasa-puffins-mission/output-retry1/render-manifest.json",
+  "video": "reel-runs/2026-10-16-bengaluru-born-ramya-anche-lead-nasa-puffins-mission/output-retry1/bengaluru-born-ramya-anche-lead-nasa-puffins-mission.mp4",
+  "detail": "No module named 'cv2'"
+}

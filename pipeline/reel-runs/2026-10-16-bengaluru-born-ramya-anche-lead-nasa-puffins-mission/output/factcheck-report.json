@@ -1,0 +1,259 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "bengaluru-born-ramya-anche-lead-nasa-puffins-mission",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "BENGALURU-BORN, NOW LEADING NASA",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ramya Anche is Bengaluru-born and leading a NASA mission.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "NASA has awarded $20 million to a University of Arizona team led by Bengaluru-born astronomer Ramya Anche to build PUFFINS, a small space telescope that will study interstellar dust.",
+      "numbers": [
+        20.0,
+        20000000.0
+      ],
+      "entities": [
+        "Ramya Anche"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "NASA awarded $20 million to a University of Arizona team led by Ramya Anche.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$20 million",
+      "numbers": [
+        20.0,
+        20000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$20 million is the amount awarded by NASA.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "NASA award to a University of Arizona team to build PUFFINS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "NASA awarded $20 million to build PUFFINS.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE PRICE TAG",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article does not mention 'THE PRICE TAG' as a specific label.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "70",
+      "numbers": [
+        70.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "PUFFINS will observe about 70 stars.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "stars PUFFINS will observe from low-Earth orbit",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "PUFFINS will observe stars from low-Earth orbit.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "10-inch",
+      "numbers": [
+        10.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "PUFFINS will use a 10-inch ultraviolet telescope.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "ultraviolet telescope PUFFINS will use to study interstellar dust",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The telescope is used to study interstellar dust.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2030",
+      "numbers": [
+        2030.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2030
+        ]
+      },
+      "llm_reason": "The target launch year for PUFFINS is 2030.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "target launch year for the PUFFINS mission",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "2030 is the target launch year for the PUFFINS mission.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Ramya Anche, born in Bengaluru, is principal investigator of PUFFINS at the University of Arizona",
+      "numbers": [],
+      "entities": [
+        "Ramya Anche"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ramya Anche is principal investigator of PUFFINS at the University of Arizona.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Anche led the winning NASA proposal while still a postdoctoral researcher",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Anche led the winning NASA proposal while a postdoctoral researcher.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "PUFFINS data can help define a future instrument for NASA's Habitable Worlds Observatory.",
+      "numbers": [],
+      "entities": [
+        "NASA's Habitable Worlds Observatory"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "PUFFINS data can help define a future instrument for NASA's Habitable Worlds Observatory.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE PRICE TAG",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Ramya Anche",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "NASA",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "PUFFINS",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "University of Arizona",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Steward Observatory",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000516
+  }
+}

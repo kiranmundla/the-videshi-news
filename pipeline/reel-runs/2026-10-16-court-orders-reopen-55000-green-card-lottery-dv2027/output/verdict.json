@@ -1,14 +1,20 @@
 {
   "driver": "reel_produce.py",
-  "status": "held",
-  "stage": "render",
+  "status": "ready",
+  "stage": "complete",
   "article_slug": "court-orders-reopen-55000-green-card-lottery-dv2027",
   "name": "court-orders-reopen-55000-green-card-lottery-dv2027",
   "script": "reel-runs/2026-10-16-court-orders-reopen-55000-green-card-lottery-dv2027/script.json",
   "factcheck": {
     "verdict": "pass",
     "held_claims": [],
-    "llm_cost_usd": 0.000545
+    "llm_cost_usd": 0.00055
   },
-  "detail": "no composition fits all scenes below the chin at the planner floors"
+  "manifest": "reel-runs/2026-10-16-court-orders-reopen-55000-green-card-lottery-dv2027/output/render-manifest.json",
+  "video": "reel-runs/2026-10-16-court-orders-reopen-55000-green-card-lottery-dv2027/output/court-orders-reopen-55000-green-card-lottery-dv2027.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  }
 }

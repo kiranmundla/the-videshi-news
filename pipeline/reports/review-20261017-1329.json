@@ -1,0 +1,194 @@
+[
+  {
+    "id": "5cc671a5-53a6-4aff-9daa-233b55f92e30",
+    "headline": "Min Woo Lee Withdraws in Delhi After Stomach Illness Triggers Back Spasms",
+    "slug": "min-woo-lee-withdraws-delhi-stomach-illness-back-spasms",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when Lee praised the food and when he withdrew due to illness. This will help readers understand the context better.",
+        "Include a direct quote from Lee's Instagram Story to enhance attribution and provide a more personal touch to the story.",
+        "Add details about Lee's next scheduled tournament to inform readers about his recovery timeline and future participation.",
+        "Provide a brief background on the DP World India Championship, including its significance and any relevant details about the event, to give readers more context."
+      ],
+      "embed_opportunities": [
+        "Embed Lee's Instagram Story or a relevant tweet announcing his withdrawal to provide direct access to his statement."
+      ]
+    }
+  },
+  {
+    "id": "d64a683d-d7bf-475c-96dd-2b5cd7ff144f",
+    "headline": "ICICI Bank Profit Jumps 20% to Rs 14,843 Crore in Second Quarter",
+    "slug": "icici-bank-q2-profit-14843-crore-nii-rises",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the fiscal year being referred to, as it currently states 'fiscal 2027' without context on the Indian financial year timeline.",
+        "Include a brief explanation of what the net interest margin narrowing means for the bank's profitability and lending practices, as this is a key metric for understanding the bank's performance.",
+        "Add a comparison of ICICI Bank's performance with its main competitors to provide context on how its growth stands relative to the industry.",
+        "Ensure that all figures are clearly attributed to their sources, especially the analysts' expectations, to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official ICICI Bank tweet announcing the quarterly results to provide direct access to the bank's communication and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "02927694-b9b6-4cb0-98c1-417e342d270c",
+    "headline": "Inside Kap's Cafe Dubai, Where Masala Chai Costs Rs 500",
+    "slug": "kaps-cafe-dubai-kapil-sharma-masala-chai-500-pani-puri-800",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the pricing in both INR and AED consistently throughout the article to avoid confusion for readers unfamiliar with currency conversion. For example, mention the AED equivalent of Rs 500 for masala chai immediately after stating the price in INR.",
+        "Provide a brief context about the significance of Kapil Sharma in the Indian entertainment industry for readers who may not be familiar with him, enhancing the article's completeness and relevance.",
+        "Include a quote from Kapil Sharma or a representative from the cafe to add a personal touch and enhance the article's attribution and depth."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Kapil Sharma or the official Kap's Cafe account announcing the opening, which would provide real-time engagement and authenticity."
+      ]
+    }
+  },
+  {
+    "id": "7787b428-619d-4ad5-882b-5a9885aa5ba0",
+    "headline": "How Bollywood's Older Heroines Are Rewriting the Rules of Reinvention",
+    "slug": "bollywood-older-heroines-rewriting-rules-reinvention",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Provide specific examples of how streaming platforms have changed the career trajectories of these actresses, including any statistics on viewership or critical reception that highlight their success.",
+        "Include quotes or insights from the actresses themselves or industry experts to add depth and personal perspectives to the narrative.",
+        "Clarify the timeline of this shift in Bollywood, perhaps by mentioning when streaming began to significantly impact the industry or specific milestones in the careers of the actresses mentioned."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or post from a prominent film critic or industry insider discussing the impact of streaming on Bollywood actresses' careers."
+      ]
+    }
+  },
+  {
+    "id": "27deb7dd-9a22-4f46-9ce9-264d1566069b",
+    "headline": "Ayushmann and Sharvari to Join Falguni Pathak for Navratri Garba in Mumbai",
+    "slug": "ayushmann-sharvari-falguni-pathak-navratri-yeh-prem-mol-liya",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the date and venue for the garba festival appearance by including a note that readers should check the film's official channels for updates, as the current article lacks specific details.",
+        "Provide additional context about the significance of the Navratri festival and garba celebrations in Mumbai to enhance reader understanding, especially for those unfamiliar with the cultural aspects.",
+        "Include a brief background on the film 'Yeh Prem Mol Liya' and its significance to help readers understand why this promotional event is important.",
+        "Correct the repetitive phrasing regarding the actors' appearance by consolidating sentences to improve clarity and reduce redundancy."
+      ],
+      "embed_opportunities": [
+        "Embed the official YouTube link for the song 'Jai Ambe Bol' to allow readers to easily access and listen to the track."
+      ]
+    }
+  },
+  {
+    "id": "6759ec90-985e-43e5-a265-e29f451ab0c0",
+    "headline": "Muthoot FinCorp Bags BCCI Title Sponsorship for Indian Cricket Until 2028",
+    "slug": "muthoot-fincorp-bcci-title-sponsorship-indian-cricket-2028",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the total value of the sponsorship deal by providing a clear range or specific figure, as there are conflicting reports about the total amount ranging from Rs 150 crore to Rs 170 crore. This will enhance completeness and accuracy.",
+        "Include a direct quote from a BCCI official or a representative from Muthoot FinCorp to provide attribution and credibility to the reporting, especially regarding the motivations behind the sponsorship deal.",
+        "Add context about the significance of the sponsorship for Muthoot FinCorp and the BCCI, such as how this partnership might impact the visibility of Muthoot FinCorp in the cricketing landscape or any strategic goals they aim to achieve.",
+        "Reorganize the content to present the most critical information first, such as the financial details and the significance of the deal, followed by background information on the bidding process and previous sponsorships."
+      ],
+      "embed_opportunities": [
+        "Embed the official BCCI announcement or tweet regarding the sponsorship deal to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "78a9ad0b-3907-4126-a021-4871e57952fa",
+    "headline": "Chrome 155 Fixes Critical Prerender Flaw, Nine Other Security Bugs",
+    "slug": "chrome-155-fixes-critical-prerender-flaw-nine-other-bugs",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the vulnerability reporting and patching process. For example, specify how long users have had to wait for the patch since the initial report on October 2, 2026.",
+        "Include a brief explanation of what a 'use-after-free' vulnerability means for readers who may not be familiar with technical jargon. This will enhance clarity and completeness.",
+        "Provide more context about the potential risks associated with the Critical flaw CVE-2026-110922. For instance, explain what arbitrary code execution could mean for an average user.",
+        "Ensure that the update instructions are clear and concise. Consider breaking them down into bullet points for easier readability."
+      ],
+      "embed_opportunities": [
+        "Embed the official Google Chrome update announcement or advisory to provide readers with direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "3a1cfa11-5ec8-453a-b50b-3c1227fc78c5",
+    "headline": "Rupee Posts Best Week in Seven Months After RBI Curbs",
+    "slug": "rupee-posts-best-week-seven-months-rbi-curbs",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the impact of the RBI measures by providing specific details on how they affect different sectors, such as oil importers and foreign exchange markets. This would enhance the completeness of the article.",
+        "Include a brief explanation of the significance of the rupee's movement in the context of India's economy. For example, explain how a stronger rupee could affect inflation or import costs, which would provide readers with more context.",
+        "Ensure that all statistics are clearly attributed to their sources. For example, when stating that the rupee rose about 2%, specify that this data is from a particular source like Reuters or the RBI to enhance accuracy.",
+        "Reorganize the content to improve clarity. Start with the most critical information about the rupee's performance and the RBI's actions, followed by the implications and a summary of the week's trading activity."
+      ],
+      "embed_opportunities": [
+        "Embed the official RBI announcement regarding the measures taken to curb dollar demand, as this would provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "a6565f83-ffc1-4e31-a041-02e28bc715a9",
+    "headline": "Asian Cup Organisers Say Saudi Tournament Still On Despite Attacks",
+    "slug": "asian-cup-organisers-say-saudi-tournament-still-on-despite-attacks",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the Asian Cup's decision-making process by including specific dates when the Asian Football Confederation will reassess the situation, as this is crucial for understanding potential changes.",
+        "Provide more context on the impact of the Houthi attacks on the region and how they may affect security measures for the Asian Cup, as readers may want to know what this means for the safety of attendees.",
+        "Include a direct quote from the Asian Cup Local Organising Committee to enhance attribution and provide a clearer perspective on their confidence in proceeding with the tournament."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the Asian Cup Local Organising Committee regarding the tournament's status to provide direct access to their communication."
+      ]
+    }
+  },
+  {
+    "id": "507d7691-e1b1-4abe-8c77-5890b4d998a5",
+    "headline": "Iran War's Retail Toll Is Uneven, but It Adds Up to About $2,000 a Household",
+    "slug": "iran-war-retail-toll-uneven-adds-up-2000-household",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the start date of the war and its duration to provide context for the reported costs.",
+        "Include a breakdown of how the estimated $2,000 cost per household was calculated, possibly with a source or methodology reference for transparency.",
+        "Provide more specific figures or examples regarding the impact on grocery prices and other consumer goods to give readers a clearer understanding of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official AAA tweet or report regarding current gasoline and diesel prices to provide real-time data for readers."
+      ]
+    }
+  }
+]

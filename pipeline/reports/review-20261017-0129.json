@@ -1,0 +1,191 @@
+[
+  {
+    "id": "4b57c60f-f43e-4efb-aafb-39e50e826362",
+    "headline": "Prahaar: Rajkummar Rao \u2014 and a Stunning Kasab \u2014 Make the 26/11 Trial Gripping",
+    "slug": "prahaar-review-roundup-critics",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the significance of the film's subject matter by providing a brief context about the 26/11 attacks and their impact on India, which would help readers understand why this film is important.",
+        "Include specific quotes or insights from critics to enhance attribution and provide a more rounded view of the film's reception.",
+        "Add a brief summary of the film's plot or key themes to provide completeness, as readers may not be familiar with the story of Ujjwal Nikam and Ajmal Kasab.",
+        "Consider restructuring the article to prioritize the most critical information first, such as the film's reception and its significance, before delving into detailed reviews."
+      ],
+      "embed_opportunities": [
+        "Embed a trailer of 'Prahaar' to give readers a visual sense of the film and its tone."
+      ]
+    }
+  },
+  {
+    "id": "5dd6d261-933a-4b20-80d7-a32d8fc1c6e9",
+    "headline": "Ranabaali: A Sincere Famine Epic That Wins Respect but Tests Patience",
+    "slug": "ranabaali-review-roundup-critics",
+    "category": "entertainment",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"Ranabaali Official Trailer (Hindi) | Vijay Deverakonda | Ras\" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Provide specific ratings from each critic mentioned to enhance clarity and completeness.",
+        "Include a brief summary of the film's plot to give context to readers unfamiliar with the story.",
+        "Add a quote from a notable critic to strengthen attribution and provide a more personal perspective on the film's reception."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent film critic or the official film account to provide real-time reactions and updates."
+      ]
+    }
+  },
+  {
+    "id": "c49c55fb-c910-4657-a7aa-08f2d3d4ab8c",
+    "headline": "Jailer 2: Critics Say Rajinikanth's Swagger Carries a Sequel That Runs Out of Pl",
+    "slug": "jailer-2-review-roundup-critics",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of the film's events and its connection to the first film. This will help readers understand the context better.",
+        "Provide specific examples or quotes from the reviews to illustrate the points made about the film's strengths and weaknesses. This will enhance the article's credibility and depth.",
+        "Include a brief summary of the film's plot to give readers who may not be familiar with 'Jailer' a clearer understanding of the story.",
+        "Consider breaking up the text into smaller paragraphs for better readability, especially in sections where multiple critics' opinions are discussed."
+      ],
+      "embed_opportunities": [
+        "Embed a trailer or clip from 'Jailer 2' to give readers a visual sense of the film and its style."
+      ]
+    }
+  },
+  {
+    "id": "57ff1d24-f85b-49fb-94df-1fd4eaf20b28",
+    "headline": "Citi Joins US Banks Restricting AI Agents From Customer Accounts",
+    "slug": "citi-us-banks-restrict-ai-agents-customer-accounts",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific security and liability concerns mentioned by the banks to provide readers with a better understanding of the implications of these restrictions.",
+        "Include direct quotes from representatives of Citigroup, JPMorgan Chase, and Charles Schwab to enhance attribution and provide a more nuanced view of their positions on AI agents.",
+        "Add specific examples of what customers can do instead of using third-party AI agents, such as details about the banks' own tools or channels they recommend, to improve completeness and clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from Citigroup regarding their policy on AI agents to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "6389f3fd-591a-452a-a0c8-e5126ea56e65",
+    "headline": "India's Crude Imports Rise In September As Oil Bill Surges Sharply",
+    "slug": "india-crude-imports-september-bill-surges",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the data being reported. The article mentions 'September' and 'April-August' but does not specify the year for the data, which could confuse readers. Ensure all dates are clearly stated.",
+        "Provide specific figures regarding the impact of rising oil prices on the Indian economy or consumers. For instance, include how much the average consumer might expect to pay more for fuel or energy due to these rising import costs.",
+        "Include a brief explanation of the implications of the rising crude import bill on India's trade balance or inflation, as this context would help readers understand the broader economic impact.",
+        "Correct the phrase 'the highest monthly level of 2026' to 'the highest monthly level of 2023' to avoid confusion, as the current year is 2023."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet or report from the Petroleum Planning and Analysis Cell (PPAC) regarding the crude import statistics for September to provide readers with direct access to the source data."
+      ]
+    }
+  },
+  {
+    "id": "25aa41d6-d9d7-4db2-b792-3f430d6d4bbb",
+    "headline": "Bumrah And Akash Deep Return To India's Test Squad For New Zealand",
+    "slug": "bumrah-akash-deep-return-india-test-squad-new-zealand",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of Bumrah's absence from Test cricket by specifying the exact dates of his last Test match and the implications of his return for the upcoming series.",
+        "Provide more context on the fitness status of Rishabh Pant and Prasidh Krishna, including any expected timelines for their fitness clearance and how that impacts the squad composition.",
+        "Enhance the clarity of the article by restructuring it to present the most critical information first, such as the squad announcement, followed by details on player fitness and historical context.",
+        "Include a brief mention of the significance of the series against New Zealand for India's Test rankings or upcoming tournaments to give readers a clearer understanding of the stakes involved."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the BCCI announcing the squad to provide readers with direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "97c6264f-ad5b-4f0e-8bb3-78f78d0052b7",
+    "headline": "Nvidia RTX Spark Laptops Go On Sale From $2,599 For Local AI",
+    "slug": "nvidia-rtx-spark-laptops-on-sale-2599-local-ai",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the memory configuration details for the entry-level models by specifying the exact amount of memory they carry compared to the 128GB ceiling, as this is crucial for potential buyers.",
+        "Provide a brief explanation of what 'local AI' means for consumers, including its benefits and implications for everyday use, to enhance reader understanding.",
+        "Include a quote from Nvidia's official announcement or a relevant executive to add authority and context to the product launch, improving attribution and completeness."
+      ],
+      "embed_opportunities": [
+        "Embed Nvidia's official announcement or a relevant tweet about the launch to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "4139acbb-930b-4fee-938b-ae3e700d476b",
+    "headline": "Top Chef Alum Rasika Venkatesa Opens Mythily, Progressive South Indian Restauran",
+    "slug": "mythily-rasika-venkatesa-williamsburg-south-indian-restaurant",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Provide specific details about the menu items, including price ranges for the dishes mentioned, to give readers a clearer idea of what to expect when dining at Mythily.",
+        "Include quotes from Rasika Venkatesa or food critics to enhance the article's attribution and provide personal insights or opinions on the restaurant's opening and its significance.",
+        "Clarify the significance of the restaurant's opening date by mentioning if it coincides with any local events or trends in the dining scene, which could provide context for readers.",
+        "Add a brief section on the restaurant's ambiance or design elements to give readers a fuller picture of the dining experience at Mythily."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post from Rasika Venkatesa announcing the restaurant's opening or showcasing a signature dish to enhance engagement and provide visual context."
+      ]
+    }
+  },
+  {
+    "id": "842a6d96-426b-4ab0-bf35-3c81ee2e2fa0",
+    "headline": "Nitanshi Goel Closes Suneet Varma's Kashi Show at Lakme Fashion Week",
+    "slug": "nitanshi-goel-suneet-varma-kashi-lakme-fashion-week",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the discrepancies in the descriptions of the top worn by Nitanshi Goel by providing a direct comparison or a more detailed description that reconciles the differences between ANI and PTI reports. This will enhance accuracy and completeness.",
+        "Include a quote from Nitanshi Goel about her experience walking as the showstopper or her thoughts on the collection, which would add depth and personal insight to the article.",
+        "Provide context about the significance of Lakme Fashion Week and its impact on the fashion industry, which would help readers understand the event's importance."
+      ],
+      "embed_opportunities": [
+        "Embed a video clip of the fashion show or a highlight reel from Lakme Fashion Week to give readers a visual experience of the event."
+      ]
+    }
+  },
+  {
+    "id": "2df2923e-25cd-43e8-a2c8-4d42938c6d74",
+    "headline": "London Diaspora Stages Counter-Protest Backing Modi Outside Indian High Commissi",
+    "slug": "london-diaspora-counter-protest-modi-high-commission",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the protests in Delhi and other Indian cities to provide context for the London counter-protest.",
+        "Include specific quotes from the counter-protesters to enhance the depth of the reporting and provide direct attribution to their statements.",
+        "Add a brief explanation of the electoral issues being protested, such as what the Special Intensive Revision (SIR) entails, to give readers a clearer understanding of the significance of the protests."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from SFI-UK regarding their protest to provide direct context and credibility to the opposing viewpoint."
+      ]
+    }
+  }
+]

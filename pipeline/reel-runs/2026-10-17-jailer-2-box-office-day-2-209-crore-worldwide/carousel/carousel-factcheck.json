@@ -1,0 +1,145 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "jailer-2-box-office-day-2-209-crore-worldwide",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Jailer 2 Crosses \u20b9209 Crore Worldwide in Two Days, Eyes a Record Weekend",
+        "numbers": [
+          2.0,
+          209.0,
+          2090000000.0
+        ],
+        "entities": [
+          "Crore Worldwide",
+          "Two Days",
+          "Record Weekend"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Jailer 2 crossed \u20b9209 crore worldwide in two days.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "A 38% day-two drop counts as a phenomenal hold for a Rajinikanth opener \u2014 with Dussehra holidays ahead, trade trackers say \u20b9500 crore by midweek is in play.",
+        "numbers": [
+          38.0,
+          500.0,
+          5000000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions a 38% drop and \u20b9500 crore projection by midweek.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Jailer 2 grossed about \u20b984 crore worldwide on day two, taking its two-day worldwide total to roughly \u20b9209 crore",
+        "numbers": [
+          2.0,
+          84.0,
+          209.0,
+          840000000.0,
+          2090000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Jailer 2 grossed about \u20b984 crore on day two, totaling \u20b9209 crore.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "India gross reached \u20b9108 crore in two days \u2014 a 38% day-two drop that counts as a phenomenal hold for a Rajinikanth opener",
+        "numbers": [
+          38.0,
+          108.0,
+          1080000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states India's gross reached \u20b9108 crore in two days with a 38% drop.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Nearly half the worldwide gross so far has come from outside India, powered by the North America premiere run and packed shows in the Gulf and Southeast Asia",
+        "numbers": [],
+        "entities": [
+          "North America",
+          "Southeast Asia"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article indicates nearly half the gross is from outside India, including North America.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Jailer 2 Crosses \u20b9209 Crore Worldwide in Two Days, Eyes a Record Weekend",
+        "numbers": [
+          2.0,
+          209.0,
+          2090000000.0
+        ],
+        "entities": [
+          "Crore Worldwide",
+          "Two Days",
+          "Record Weekend"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim repeats the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000348
+    }
+  },
+  "verdict": "pass"
+}

@@ -1,14 +1,20 @@
 {
   "driver": "reel_produce.py",
-  "status": "held",
-  "stage": "render",
+  "status": "ready",
+  "stage": "complete",
   "article_slug": "brad-smith-vance-h1b-microsoft-nadella-medal",
   "name": "brad-smith-vance-h1b-microsoft-nadella-medal",
   "script": "reel-runs/2026-10-16-brad-smith-vance-h1b-microsoft-nadella-medal/script.json",
   "factcheck": {
     "verdict": "pass",
     "held_claims": [],
-    "llm_cost_usd": 0.00053
+    "llm_cost_usd": 0.000527
   },
-  "detail": "no composition fits all scenes below the chin at the planner floors"
+  "manifest": "reel-runs/2026-10-16-brad-smith-vance-h1b-microsoft-nadella-medal/output/render-manifest.json",
+  "video": "reel-runs/2026-10-16-brad-smith-vance-h1b-microsoft-nadella-medal/output/brad-smith-vance-h1b-microsoft-nadella-medal.mp4",
+  "qa": {
+    "score": 9.5,
+    "passed": true,
+    "failing_checks": []
+  }
 }

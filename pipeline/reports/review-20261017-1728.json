@@ -1,0 +1,82 @@
+[
+  {
+    "id": "f1a4aa30-281e-440c-bdb6-71e250594279",
+    "headline": "Simran Sharma Replaces Bhavina Patel as India Flag Bearer at Para Asian Games",
+    "slug": "simran-sharma-replaces-bhavina-patel-flag-bearer-para-asian-games",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the opening ceremony in the headline to avoid confusion, as the current headline does not specify the date clearly.",
+        "Include more context about the significance of the Asian Para Games and what winning gold medals would mean for Simran Sharma and India, to enhance the completeness of the article.",
+        "Provide a direct quote from Bhavina Patel or her coach regarding her feelings about stepping down, which would add depth and personal context to the story.",
+        "Mention any previous achievements of Simran Sharma to highlight her credentials and the importance of her role as flag bearer."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Paralympic Committee of India announcing the change in flag bearers to provide official confirmation and context."
+      ]
+    }
+  },
+  {
+    "id": "333b9d23-bddf-4f09-98ae-82a697b7761d",
+    "headline": "India's 9.1% Pay Hikes Hide a Widening Split Over AI Skills, Aon Finds",
+    "slug": "india-wage-hikes-widen-gap-formal-informal-workers",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the salary increases by explicitly stating that the figures pertain to projections for 2027 and comparing them to the previous year's actual increases for better context.",
+        "Include specific examples of companies or sectors that are leading in pay hikes to provide readers with concrete illustrations of the trends discussed.",
+        "Add a brief explanation of how the projected inflation rate of 5.1% will impact the real value of salary increases, to give readers a clearer understanding of the economic implications."
+      ],
+      "embed_opportunities": [
+        "Embed the official Aon report or a relevant tweet summarizing the key findings of the survey for direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "dd24062a-579e-41d3-8a09-d6a9ebee8b1e",
+    "headline": "\"I Have to Fight\": Indian Flydubai Captain Recounts Cockpit Axe Attack",
+    "slug": "indian-flydubai-captain-smit-machchhar-recounts-cockpit-axe-attack",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact time of the attack and the duration of the flight prior to the incident. This will help readers understand the context better.",
+        "Include a brief background on the implications of the investigations by India's NIA and the UAE Attorney General, such as potential legal consequences for the co-pilot and what this means for aviation security protocols.",
+        "Provide more details about the response from Flydubai and any statements they have made regarding the incident, which would add depth and completeness to the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from Flydubai regarding the incident to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "e784142d-db84-40c9-ae20-d0499539a5b8",
+    "headline": "India Notifies First New Zealand FTA Duty Cuts, Sheep Meat at Zero From October ",
+    "slug": "india-notifies-first-new-zealand-fta-duty-cuts-october-20",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the eligibility criteria for importers to claim the duty cuts, including specific details on how to prove New Zealand origin and the exact tariff-rate quota conditions.",
+        "Provide a clearer breakdown of the impact on prices for consumers or businesses in India, such as how much cheaper sheep meat will be for consumers compared to the previous price, and any potential effects on local markets.",
+        "Include a brief explanation of what a free trade agreement (FTA) entails for readers who may not be familiar with the concept, to enhance understanding of its significance.",
+        "Mention any potential implications for Indian farmers or the agricultural sector due to the duty cuts, as this could be a concern for readers interested in the broader economic impact."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from the Indian Finance Ministry regarding the customs duty concessions for a direct source reference."
+      ]
+    }
+  }
+]

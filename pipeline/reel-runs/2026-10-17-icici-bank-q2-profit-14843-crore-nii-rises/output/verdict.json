@@ -1,0 +1,15 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "icici-bank-q2-profit-14843-crore-nii-rises",
+  "name": "icici-bank-q2-profit-14843-crore-nii-rises",
+  "script": "reel-runs/2026-10-17-icici-bank-q2-profit-14843-crore-nii-rises/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "stats[0].label"
+    ],
+    "llm_cost_usd": 0.000603
+  }
+}

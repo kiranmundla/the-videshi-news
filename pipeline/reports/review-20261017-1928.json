@@ -1,0 +1,56 @@
+[
+  {
+    "id": "c75652be-8db4-4b25-9c7b-65001f2b3b4a",
+    "headline": "Akka \u2013 Keerthy Suresh, Radhika Apte Teaser Out",
+    "slug": "akka-keerthy-suresh-radhika-apte-teaser-out",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "The headline should follow the format 'Film Teaser Out' instead of 'Film Teaser Out'.",
+        "Ensure that the teaser drop date is clearly stated as 'October 17, 2026' in the body text."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "0941d55a-a727-498d-a16c-9547922a0ccd",
+    "headline": "Aakasamlo Oka Tara \u2013 Dulquer Salmaan Teaser Out",
+    "slug": "aakasamlo-oka-tara-dulquer-salmaan-teaser-out",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 5 embed(s) placed in the bottom 30% \u2014 move higher for engagement",
+      "Two embeds clustered within 200 chars of each other"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "The headline should follow the 'Film Teaser/Trailer Out' format more closely, e.g., 'Aakasamlo Oka Tara Teaser Out'.",
+        "Ensure that the teaser drop date is clearly stated in the body to match the headline.",
+        "Consider removing redundant phrases in the body to enhance clarity and conciseness."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "034d95ab-3747-46ed-b3b7-a9d04384367d",
+    "headline": "Chaar Yaar Trailer Out: Purav Jha, Naman Jain, Saqib Ayub, Prayrak Mehta",
+    "slug": "chaar-yaar-trailer-out",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "The headline should follow the 'Film Teaser/Trailer Out' format more closely by explicitly stating 'Trailer Out' instead of just the film name.",
+        "Ensure the trailer drop date is clearly stated in the body, as it is currently repeated in a less clear manner.",
+        "The cast names in the headline could be simplified or formatted for better readability."
+      ],
+      "embed_opportunities": []
+    }
+  }
+]

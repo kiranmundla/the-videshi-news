@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "jailer-2-box-office-day-2-209-crore-worldwide",
+  "article_slug": "jailer-2-box-office-day-2-209-crore-worldwide",
+  "article_id": "a016f47c-0e3f-489b-b05b-7ea5de4291f9",
+  "category": "Entertainment",
+  "video": "reel-runs/2026-10-17-jailer-2-box-office-day-2-209-crore-worldwide/output/jailer-2-box-office-day-2-209-crore-worldwide.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://www.pinkvilla.com/images/2026-10/518463036_904514413_jailer-2-webp-1-1.webp",
+    "local_path": "reel-runs/2026-10-17-jailer-2-box-office-day-2-209-crore-worldwide/output/hero.webp",
+    "width": 1280,
+    "height": 720,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "yunet (score 0.89)",
+    "has_face": true,
+    "box_source": [
+      531,
+      86,
+      234,
+      278
+    ],
+    "box_bg": [
+      228.0,
+      229.3,
+      624.0,
+      741.3
+    ],
+    "chin_bg": 970.7,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": 973.8,
+      "zone_top": 1022,
+      "zone_h": 558,
+      "scale": 1.0,
+      "content_h": 244,
+      "block_top": 1112,
+      "block_bottom": 1356,
+      "text_bbox": [
+        118,
+        1112,
+        885,
+        1351
+      ],
+      "texts": [
+        "Entertainment",
+        "JAILER 2 CROSSES \u20b9209 CRORE IN TWO DAYS"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": 978.6,
+      "zone_top": 1027,
+      "zone_h": 553,
+      "scale": 1.0,
+      "content_h": 298,
+      "block_top": 1117,
+      "block_bottom": 1415,
+      "text_bbox": [
+        116,
+        1117,
+        889,
+        1419
+      ],
+      "texts": [
+        "What Happened",
+        "Rajinikanth's Jailer 2 grossed about \u20b984 crore worldwide on day two, taking its two-day worldwide total to roughly \u20b9209 crore, Pinkvilla reported."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": 983.3,
+      "zone_top": 1032,
+      "zone_h": 548,
+      "scale": 1.0,
+      "content_h": 354,
+      "block_top": 1122,
+      "block_bottom": 1476,
+      "text_bbox": [
+        122,
+        1122,
+        894,
+        1482
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "\u20b9209 CRORE",
+        "Worldwide gross in two days, Pinkvilla reported"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": 988.8,
+      "zone_top": 1037,
+      "zone_h": 543,
+      "scale": 0.725,
+      "content_h": 533,
+      "block_top": 1042,
+      "block_bottom": 1575,
+      "text_bbox": [
+        119,
+        1042,
+        892,
+        1576
+      ],
+      "texts": [
+        "By The Numbers",
+        "\u20b984 CRORE",
+        "Worldwide gross on day two alone",
+        "38%",
+        "Day-two drop in India \u2014 a phenomenal hold for a Rajinikanth opener",
+        "$4.5 MILLION",
+        "Overseas gross on day two alone, about \u20b943 crore"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": 994.3,
+      "zone_top": 1043,
+      "zone_h": 537,
+      "scale": 1.0,
+      "content_h": 457,
+      "block_top": 1083,
+      "block_bottom": 1540,
+      "text_bbox": [
+        118,
+        1083,
+        863,
+        1545
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Nearly half the worldwide gross so far has come from outside India",
+        "Packed shows in the Gulf and Southeast Asia, powered by the North America premiere run"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": 998.3,
+      "zone_top": 1047,
+      "zone_h": 533,
+      "scale": 1.0,
+      "content_h": 312,
+      "block_top": 1137,
+      "block_bottom": 1449,
+      "text_bbox": [
+        119,
+        1137,
+        889,
+        1460
+      ],
+      "texts": [
+        "The Takeaway",
+        "Trade trackers say \u20b9500 crore by midweek is in play.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "upbeat-celebration-fun-upbeat-inplus.mp3",
+    "path": "music/upbeat-celebration-fun-upbeat-inplus.mp3"
+  },
+  "render_seconds": 342.0,
+  "mp4_bytes": 11562244
+}

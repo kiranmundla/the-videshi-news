@@ -1,0 +1,37 @@
+{
+  "hook_line": "BENGALURU-BORN, NOW LEADING NASA",
+  "hook_stat": {
+    "big": "$20 million",
+    "eyebrow": "THE PRICE TAG",
+    "sub": "NASA award to a University of Arizona team to build PUFFINS"
+  },
+  "stats": [
+    {
+      "big": "70",
+      "label": "stars PUFFINS will observe from low-Earth orbit"
+    },
+    {
+      "big": "10-inch",
+      "label": "ultraviolet telescope PUFFINS will use to study interstellar dust"
+    },
+    {
+      "big": "2030",
+      "label": "target launch year for the PUFFINS mission"
+    }
+  ],
+  "diaspora_bullets": [
+    "Ramya Anche, born in Bengaluru, is principal investigator of PUFFINS at the University of Arizona",
+    "Anche led the winning NASA proposal while still a postdoctoral researcher"
+  ],
+  "key_entities": [
+    "Ramya Anche",
+    "NASA",
+    "PUFFINS",
+    "University of Arizona",
+    "Steward Observatory"
+  ],
+  "news_summary": "NASA has awarded $20 million to a University of Arizona team led by Bengaluru-born astronomer Ramya Anche to build PUFFINS, a small space telescope that will study interstellar dust.",
+  "payoff": "PUFFINS data can help define a future instrument for NASA's Habitable Worlds Observatory.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

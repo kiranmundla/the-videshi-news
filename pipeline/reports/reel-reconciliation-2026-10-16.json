@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 186,
-    "db_rows": 120,
-    "db_rows_with_yt_id": 90,
+    "channel_videos": 188,
+    "db_rows": 122,
+    "db_rows_with_yt_id": 92,
     "legacy_log_entries": 205,
-    "publish_log_entries": 4,
-    "in_sync": 75,
+    "publish_log_entries": 6,
+    "in_sync": 77,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 10,
     "ghost_db_rows": 14,
@@ -538,6 +538,20 @@
       "privacy": "public",
       "video_id": "l2Kt9NQJhfc",
       "record": "prebuilt_reels:9ff85f0e-fd3c-47f7-be42-31b186520a19"
+    },
+    {
+      "title": "Court Orders State Department to Reopen 55,000-Visa Green Card Lottery #Shorts #GreenCard",
+      "published_at": "2026-10-16T19:34:47Z",
+      "privacy": "unlisted",
+      "video_id": "6dz3MkFtrSY",
+      "record": "prebuilt_reels:05c15505-d893-4f35-8dc2-01d4bdf77886"
+    },
+    {
+      "title": "Microsoft's Brad Smith Hits Back at Vance as Nadella Medal Exposes H-1B Split #Shorts #H1B",
+      "published_at": "2026-10-16T19:40:58Z",
+      "privacy": "unlisted",
+      "video_id": "ch5JcYGZZxE",
+      "record": "prebuilt_reels:4a5e7c4b-e3dc-4946-b4a5-a5d5b5692505"
     }
   ],
   "unknown_legacy_logged": [
@@ -3415,5 +3429,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-10-16T17:12:47+00:00"
+  "generated_at": "2026-10-16T19:41:15+00:00"
 }

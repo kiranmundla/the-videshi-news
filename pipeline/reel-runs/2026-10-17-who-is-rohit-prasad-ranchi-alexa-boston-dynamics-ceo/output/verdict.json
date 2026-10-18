@@ -1,0 +1,16 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "who-is-rohit-prasad-ranchi-alexa-boston-dynamics-ceo",
+  "name": "who-is-rohit-prasad-ranchi-alexa-boston-dynamics-ceo",
+  "script": "reel-runs/2026-10-17-who-is-rohit-prasad-ranchi-alexa-boston-dynamics-ceo/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_stat.big",
+      "stats[2].label"
+    ],
+    "llm_cost_usd": 0.000604
+  }
+}

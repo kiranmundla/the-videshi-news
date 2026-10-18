@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "brad-smith-vance-h1b-microsoft-nadella-medal",
+  "article_slug": "brad-smith-vance-h1b-microsoft-nadella-medal",
+  "article_id": "84e3d395-3446-43f7-871f-f4f12458523f",
+  "category": "Immigration",
+  "video": "reel-runs/2026-10-16-brad-smith-vance-h1b-microsoft-nadella-medal/output/brad-smith-vance-h1b-microsoft-nadella-medal.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://cdn.geekwire.com/wp-content/uploads/2026/10/trump-nadella.png",
+    "local_path": "reel-runs/2026-10-16-brad-smith-vance-h1b-microsoft-nadella-medal/output/hero.png",
+    "width": 1374,
+    "height": 832,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "yunet (score 0.92)",
+    "has_face": true,
+    "box_source": [
+      827,
+      96,
+      126,
+      156
+    ],
+    "box_bg": [
+      395.5,
+      221.5,
+      290.8,
+      360.0
+    ],
+    "chin_bg": 581.5,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": 581.6,
+      "zone_top": 630,
+      "zone_h": 950,
+      "scale": 1.0,
+      "content_h": 284,
+      "block_top": 720,
+      "block_bottom": 1004,
+      "text_bbox": [
+        157,
+        720,
+        847,
+        996
+      ],
+      "texts": [
+        "Immigration",
+        "MICROSOFT HITS BACK OVER H-1B"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": 581.6,
+      "zone_top": 630,
+      "zone_h": 950,
+      "scale": 1.0,
+      "content_h": 246,
+      "block_top": 720,
+      "block_bottom": 966,
+      "text_bbox": [
+        123,
+        720,
+        883,
+        971
+      ],
+      "texts": [
+        "What Happened",
+        "Microsoft president Brad Smith rebutted the administration's H-1B case, saying Microsoft hired more than 9,000 US-born workers last year while PERM filings at eight employers stay suspended."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": 581.7,
+      "zone_top": 630,
+      "zone_h": 950,
+      "scale": 1.0,
+      "content_h": 489,
+      "block_top": 720,
+      "block_bottom": 1209,
+      "text_bbox": [
+        107,
+        720,
+        910,
+        1215
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "9,000",
+        "US-born workers Microsoft hired last year, Smith says"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": 581.8,
+      "zone_top": 630,
+      "zone_h": 950,
+      "scale": 1.0,
+      "content_h": 733,
+      "block_top": 720,
+      "block_bottom": 1453,
+      "text_bbox": [
+        122,
+        720,
+        887,
+        1452
+      ],
+      "texts": [
+        "By The Numbers",
+        "80%",
+        "of the company's roughly 6,000 H-1B filings were extensions or status changes",
+        "5 of 6",
+        "medalists honoured by Trump had come to the US as immigrants",
+        "180 days",
+        "maximum PERM suspension allowed during a fraud investigation"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": 581.9,
+      "zone_top": 630,
+      "zone_h": 950,
+      "scale": 1.0,
+      "content_h": 442,
+      "block_top": 720,
+      "block_bottom": 1162,
+      "text_bbox": [
+        118,
+        720,
+        866,
+        1168
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "PERM green-card filings are frozen at eight employers, including Infosys, TCS, Wipro and HCLTech",
+        "Indian professionals at the eight firms face frozen green-card timelines"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": 581.9,
+      "zone_top": 630,
+      "zone_h": 950,
+      "scale": 1.0,
+      "content_h": 258,
+      "block_top": 720,
+      "block_bottom": 978,
+      "text_bbox": [
+        114,
+        720,
+        891,
+        989
+      ],
+      "texts": [
+        "The Takeaway",
+        "None of the eight companies has been charged, and their PERM filings remain frozen.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "pixabay-breaking-full.mp3",
+    "path": "music/pixabay-breaking-full.mp3"
+  },
+  "render_seconds": 315.0,
+  "mp4_bytes": 8455533
+}
