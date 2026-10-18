@@ -30,6 +30,7 @@ import {
   type MetroFare,
 } from "@/lib/flightDeals";
 import MetroFareRail from "@/components/MetroFareRail";
+import LocationSuggestionChip from "@/components/LocationSuggestionChip";
 import {
   loadTravelPlanner,
   nextHolidayWindow,
@@ -548,6 +549,11 @@ function LocationSetup({
 
 export default function YourHubPage() {
   const { location, setLocation, clearLocation, isSet } = useHubLocation();
+  /* The header shows just the location name (Kiran's rule — no
+     "change" affordance next to it); the name itself is the button
+     and opens the LocationSetup picker below. Non-destructive:
+     the stored record stays until a new pick lands. */
+  const [editingLocation, setEditingLocation] = useState(false);
   const { location: ipLocation } = useUserLocation();
   const [events, setEvents] = useState<EventItem[]>([]);
   const [loaded, setLoaded] = useState(false);
@@ -787,13 +793,30 @@ export default function YourHubPage() {
             </p>
           </div>
           {isSet && location && (
-            <span className="flex-shrink-0 mt-1 px-3 py-1.5 rounded-full border border-border text-[12px] font-semibold text-muted-foreground whitespace-nowrap">
+            <button
+              type="button"
+              onClick={() => setEditingLocation(true)}
+              aria-label="Change location"
+              className="flex-shrink-0 mt-1 px-3 py-1.5 rounded-full border border-border text-[12px] font-semibold text-muted-foreground whitespace-nowrap hover:border-foreground/40 hover:text-foreground transition-colors cursor-pointer"
+            >
               {location.label}
-            </span>
+            </button>
           )}
         </div>
 
-        {!isSet && <LocationSetup onDone={setLocation} clusters={clusters} />}
+        {/* IP-tripwire suggestion — only renders when the stored
+            location looks materially wrong */}
+        {isSet && <LocationSuggestionChip className="mb-6" />}
+
+        {(!isSet || editingLocation) && (
+          <LocationSetup
+            onDone={(loc) => {
+              setLocation(loc);
+              setEditingLocation(false);
+            }}
+            clusters={clusters}
+          />
+        )}
 
         {/* ── This Weekend ── */}
         <section className="mb-10">

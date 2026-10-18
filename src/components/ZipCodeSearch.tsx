@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, type RefObject } from "react";
 import { lookupZip, nearestZipPlace, type ZipInfo } from "@/lib/geo";
 
 export type LocationResult = {
@@ -19,9 +19,14 @@ type Props = {
   /** Compact mode for tight filter bars */
   compact?: boolean;
   className?: string;
+  /** Ref attached to the ZIP input, so a surface's location label can
+   * act as the editor's entry point (tapping the displayed place name
+   * focuses this input — the name is the button, no visible "change"
+   * link). */
+  inputRef?: RefObject<HTMLInputElement | null>;
 };
 
-export default function ZipCodeSearch({ onLocation, active, compact, className }: Props) {
+export default function ZipCodeSearch({ onLocation, active, compact, className, inputRef }: Props) {
   const [zip, setZip] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [geoLoading, setGeoLoading] = useState(false);
@@ -121,6 +126,7 @@ export default function ZipCodeSearch({ onLocation, active, compact, className }
         {/* Zip code input */}
         <div className="flex items-center gap-0">
           <input
+            ref={inputRef}
             type="text"
             inputMode="numeric"
             pattern="[0-9]*"

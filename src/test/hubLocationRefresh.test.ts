@@ -2,12 +2,21 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import {
   FALLBACK_CLUSTERS,
   classifyHubRecord,
+  dismissHubLocationSuggestion,
+  getAnyBrowserGeoFix,
+  getDismissedHubSuggestions,
   getFreshGeolocationFix,
   getFreshPreciseGeoFix,
   getGrantedGeolocationFix,
+  hasPriorGeolocationGrantEvidence,
+  isHubSuggestionDismissed,
   isMateriallyDifferentLocation,
+  isSoftStaleHubRecord,
+  isTripwireDifferentLocation,
   maybeRefreshHubLocation,
+  maybeSuggestHubLocation,
   type HubLocation,
+  type IpGeoFix,
 } from "@/hooks/useHubLocation";
 
 /* Regression suite for the sticky-Hub-location fix (2026-10-14):
@@ -371,5 +380,368 @@ describe("getFreshGeolocationFix — never a stale cached position", () => {
       },
     });
     await expect(getFreshGeolocationFix()).resolves.toBeNull();
+  });
+});
+
+/* ================================================================== */
+/* 2026-10-18 — the smart refresh. Kiran, on his phone: the site      */
+/* still showed the previous location. Three gaps closed:             */
+/*  1. iOS Safari has no reliable Permissions API for geolocation,    */
+/*     so the granted-fix path could never fire on iPhone — it now    */
+/*     falls back to prior-grant EVIDENCE (a browser fix in the geo   */
+/*     cache, however old) and stays silent without it.               */
+/*  2. An IP tripwire SUGGESTS (never writes) a switch when the       */
+/*     stored place looks materially wrong and the record is not a    */
+/*     manual pick; dismissed cities never nag twice.                 */
+/*  3. Auto records older than 7 days are soft-stale and revalidate   */
+/*     on the next landing; a same-metro confirmation restarts their  */
+/*     clock by refreshing setAt only.                                */
+/* ================================================================== */
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+const NOW = 1_700_000_000_000;
+
+describe("prior-grant evidence — a browser fix in the geo cache, any age", () => {
+  const seedGeoCache = (loc: unknown, ageMs = 0) =>
+    localStorage.setItem(
+      "videshi_user_geo",
+      JSON.stringify({ ts: Date.now() - ageMs, loc }),
+    );
+
+  it("a fresh browser fix is evidence", () => {
+    seedGeoCache({ latitude: 37.708, longitude: -121.928, source: "browser" });
+    expect(hasPriorGeolocationGrantEvidence()).toBe(true);
+    expect(getAnyBrowserGeoFix()).toEqual({ lat: 37.708, lon: -121.928 });
+  });
+
+  it("an EXPIRED browser fix is still evidence (provenance, not position)", () => {
+    seedGeoCache(
+      { latitude: 37.708, longitude: -121.928, source: "browser" },
+      30 * DAY_MS,
+    );
+    expect(hasPriorGeolocationGrantEvidence()).toBe(true);
+  });
+
+  it("an IP fix is NOT evidence — it never involved a grant", () => {
+    seedGeoCache({ latitude: 37.708, longitude: -121.928, source: "ip" });
+    expect(hasPriorGeolocationGrantEvidence()).toBe(false);
+    expect(getAnyBrowserGeoFix()).toBeNull();
+  });
+
+  it("empty / corrupt cache -> no evidence", () => {
+    expect(hasPriorGeolocationGrantEvidence()).toBe(false);
+    localStorage.setItem("videshi_user_geo", "{not json");
+    expect(hasPriorGeolocationGrantEvidence()).toBe(false);
+  });
+});
+
+describe("getGrantedGeolocationFix — the iOS path (no Permissions API)", () => {
+  const seedBrowserCache = () =>
+    localStorage.setItem(
+      "videshi_user_geo",
+      JSON.stringify({
+        ts: Date.now() - 30 * DAY_MS, // long expired — evidence only
+        loc: { latitude: 37.5525, longitude: -121.98, source: "browser" },
+      }),
+    );
+  const noPermissionsApi = () =>
+    Object.defineProperty(window.navigator, "permissions", {
+      configurable: true,
+      value: undefined,
+    });
+  const mockPosition = (lat: number, lon: number) => {
+    const getCurrentPosition = vi.fn((ok: PositionCallback) =>
+      ok({ coords: { latitude: lat, longitude: lon } } as GeolocationPosition),
+    );
+    Object.defineProperty(window.navigator, "geolocation", {
+      configurable: true,
+      value: { getCurrentPosition },
+    });
+    return getCurrentPosition;
+  };
+
+  it("prior-grant evidence -> silent GPS attempt WITHOUT the Permissions API", async () => {
+    seedBrowserCache();
+    noPermissionsApi();
+    const getCurrentPosition = mockPosition(37.708, -121.928);
+    await expect(getGrantedGeolocationFix()).resolves.toEqual({
+      lat: 37.708,
+      lon: -121.928,
+    });
+    expect(getCurrentPosition).toHaveBeenCalledTimes(1);
+  });
+
+  it("no evidence -> null, and getCurrentPosition is NEVER called (it could prompt)", async () => {
+    noPermissionsApi();
+    const getCurrentPosition = mockPosition(37.708, -121.928);
+    await expect(getGrantedGeolocationFix()).resolves.toBeNull();
+    expect(getCurrentPosition).not.toHaveBeenCalled();
+  });
+
+  it("an IP-only cache is not evidence -> silent, no GPS attempt", async () => {
+    localStorage.setItem(
+      "videshi_user_geo",
+      JSON.stringify({
+        ts: Date.now(),
+        loc: { latitude: 37.5525, longitude: -121.98, source: "ip" },
+      }),
+    );
+    noPermissionsApi();
+    const getCurrentPosition = mockPosition(37.708, -121.928);
+    await expect(getGrantedGeolocationFix()).resolves.toBeNull();
+    expect(getCurrentPosition).not.toHaveBeenCalled();
+  });
+
+  it("an explicit 'denied' beats cache evidence — a revoked grant is not retried", async () => {
+    seedBrowserCache();
+    Object.defineProperty(window.navigator, "permissions", {
+      configurable: true,
+      value: {
+        query: async () => ({ state: "denied" }) as PermissionStatus,
+      },
+    });
+    const getCurrentPosition = mockPosition(37.708, -121.928);
+    await expect(getGrantedGeolocationFix()).resolves.toBeNull();
+    expect(getCurrentPosition).not.toHaveBeenCalled();
+  });
+});
+
+describe("soft-stale auto records — 7-day revalidation", () => {
+  const STALE_AUTO: HubLocation = {
+    ...KIRAN_FREMONT,
+    source: "geolocation",
+    setAt: NOW - 8 * DAY_MS,
+  };
+  const NEAR_FIX = { lat: 37.567, lon: -121.98 }; // ~1 mi, same cluster
+
+  it("isSoftStaleHubRecord: >7 days true; fresh false; no setAt false (age unprovable)", () => {
+    expect(isSoftStaleHubRecord(STALE_AUTO, NOW)).toBe(true);
+    expect(
+      isSoftStaleHubRecord({ ...STALE_AUTO, setAt: NOW - DAY_MS }, NOW),
+    ).toBe(false);
+    expect(
+      isSoftStaleHubRecord({ ...STALE_AUTO, setAt: NOW - 7 * DAY_MS }, NOW),
+    ).toBe(false);
+    expect(isSoftStaleHubRecord(KIRAN_FREMONT, NOW)).toBe(false);
+  });
+
+  it("same-metro revalidation quietly refreshes setAt — place, coords, source untouched", async () => {
+    const writes: HubLocation[] = [];
+    const result = await maybeRefreshHubLocation({
+      getStored: () => STALE_AUTO,
+      getCacheFix: () => NEAR_FIX,
+      getGrantedFix: async () => NEAR_FIX,
+      loadClustersFn: async () => CLUSTERS,
+      write: (loc) => writes.push(loc),
+      now: () => NOW,
+    });
+    expect(writes).toHaveLength(1);
+    expect(result).not.toBeNull();
+    expect(result!.setAt).toBe(NOW);
+    expect(result!.label).toBe("Fremont, CA");
+    expect(result!.lat).toBe(KIRAN_FREMONT.lat);
+    expect(result!.lon).toBe(KIRAN_FREMONT.lon);
+    expect(result!.source).toBe("geolocation");
+  });
+
+  it("soft-stale revalidation runs the granted path EVEN WITH a fresh cache fix, and prefers it", async () => {
+    const writes: HubLocation[] = [];
+    const result = await maybeRefreshHubLocation({
+      getStored: () => STALE_AUTO,
+      getCacheFix: () => NEAR_FIX, // cache says "still Fremont"
+      getGrantedFix: async () => DUBLIN_FIX, // fresh granted fix says Dublin
+      loadClustersFn: async () => CLUSTERS,
+      write: (loc) => writes.push(loc),
+      now: () => NOW,
+    });
+    expect(writes).toHaveLength(1);
+    expect(result!.label).toBe("Dublin, CA");
+    expect(result!.setAt).toBe(NOW);
+  });
+
+  it("fresh auto record: the cache fix short-circuits — granted path never consulted, no touch", async () => {
+    const freshAuto: HubLocation = {
+      ...KIRAN_FREMONT,
+      source: "geolocation",
+      setAt: NOW - DAY_MS,
+    };
+    const granted = vi.fn(async () => DUBLIN_FIX);
+    const writes: HubLocation[] = [];
+    const result = await maybeRefreshHubLocation({
+      getStored: () => freshAuto,
+      getCacheFix: () => NEAR_FIX,
+      getGrantedFix: granted,
+      loadClustersFn: async () => CLUSTERS,
+      write: (loc) => writes.push(loc),
+      now: () => NOW,
+    });
+    expect(result).toBeNull();
+    expect(writes).toHaveLength(0);
+    expect(granted).not.toHaveBeenCalled();
+  });
+
+  it("soft-stale but NO fix obtainable -> nothing (the clock never restarts on faith)", async () => {
+    const { result, writes } = await runRefresh(
+      { ...STALE_AUTO },
+      null,
+    );
+    expect(result).toBeNull();
+    expect(writes).toHaveLength(0);
+  });
+
+  it("manual records never revalidate, however old", async () => {
+    const oldManual: HubLocation = {
+      ...KIRAN_FREMONT,
+      source: "manual",
+      setAt: NOW - 30 * DAY_MS,
+    };
+    const { result, writes } = await runRefresh(oldManual, NEAR_FIX);
+    expect(result).toBeNull();
+    expect(writes).toHaveLength(0);
+  });
+});
+
+/** IP-geo fixes, shaped like /api/geo responses for those networks. */
+const IP_CHICAGO: IpGeoFix = {
+  lat: 41.8781,
+  lon: -87.6298,
+  city: "Chicago",
+  region: "IL",
+};
+const IP_LOS_ANGELES: IpGeoFix = {
+  lat: 34.0522,
+  lon: -118.2437,
+  city: "Los Angeles",
+  region: "CA",
+};
+const IP_DUBLIN_CA: IpGeoFix = {
+  lat: 37.7022,
+  lon: -121.9358,
+  city: "Dublin",
+  region: "CA",
+};
+
+describe("isTripwireDifferentLocation — the suggestion bar", () => {
+  it("a different state fires (Fremont, CA vs Chicago, IL)", () => {
+    expect(isTripwireDifferentLocation(KIRAN_FREMONT, IP_CHICAGO)).toBe(true);
+  });
+
+  it("same state but >100 miles fires (Fremont vs Los Angeles)", () => {
+    expect(isTripwireDifferentLocation(KIRAN_FREMONT, IP_LOS_ANGELES)).toBe(
+      true,
+    );
+  });
+
+  it("same-metro IP wobble does NOT fire (Fremont vs Dublin, ~11 mi, same state)", () => {
+    expect(isTripwireDifferentLocation(KIRAN_FREMONT, IP_DUBLIN_CA)).toBe(
+      false,
+    );
+  });
+
+  it("a full region NAME never false-fires the state test against a stored code", () => {
+    expect(
+      isTripwireDifferentLocation(KIRAN_FREMONT, {
+        ...IP_DUBLIN_CA,
+        region: "California",
+      }),
+    ).toBe(false);
+  });
+});
+
+describe("maybeSuggestHubLocation — the IP tripwire", () => {
+  const runSuggest = (
+    stored: HubLocation | null,
+    ip: IpGeoFix | null = IP_CHICAGO,
+    extra: Partial<Parameters<typeof maybeSuggestHubLocation>[0]> = {},
+  ) =>
+    maybeSuggestHubLocation({
+      getStored: () => stored,
+      loadClustersFn: async () => CLUSTERS,
+      fetchIpGeo: async () => ip,
+      now: () => NOW,
+      ...extra,
+    });
+
+  it("auto record + different-state IP -> a suggestion (never a write)", async () => {
+    const s = await runSuggest(KIRAN_FREMONT);
+    expect(s).not.toBeNull();
+    expect(s!.key).toBe("Chicago, IL");
+    expect(s!.storedLabel).toBe("Fremont, CA");
+    // The record that "Use this" would write: resolved label/coords,
+    // IP-sourced so the precise refresh can still refine it later.
+    expect(s!.location.label).toBe("Chicago, IL");
+    expect(s!.location.city).toBe("Chicago");
+    expect(s!.location.state).toBe("IL");
+    expect(s!.location.lat).toBe(IP_CHICAGO.lat);
+    expect(s!.location.lon).toBe(IP_CHICAGO.lon);
+    expect(s!.location.source).toBe("ip");
+    expect(s!.location.setAt).toBe(NOW);
+  });
+
+  it("inferred-manual record (the legacy stuck shape) + different-state IP -> suggestion fires", async () => {
+    const stuck: HubLocation = {
+      city: "Fremont",
+      state: "CA",
+      lat: 37.5485,
+      lon: -121.9886,
+      label: "Fremont, CA",
+    };
+    const s = await runSuggest(stuck);
+    expect(s).not.toBeNull();
+    expect(s!.key).toBe("Chicago, IL");
+  });
+
+  it("manual record -> NEVER, and the IP lookup is not even made", async () => {
+    const fetchIpGeo = vi.fn(async () => IP_CHICAGO);
+    const s = await maybeSuggestHubLocation({
+      getStored: () => ({ ...KIRAN_FREMONT, source: "manual" }),
+      loadClustersFn: async () => CLUSTERS,
+      fetchIpGeo,
+      now: () => NOW,
+    });
+    expect(s).toBeNull();
+    expect(fetchIpGeo).not.toHaveBeenCalled();
+  });
+
+  it("auto record + same-metro IP -> no suggestion (IP wobble is not travel)", async () => {
+    const s = await runSuggest(KIRAN_FREMONT, IP_DUBLIN_CA);
+    expect(s).toBeNull();
+  });
+
+  it("a city the reader already dismissed never nags again", async () => {
+    const s = await runSuggest(KIRAN_FREMONT, IP_CHICAGO, {
+      isDismissed: (key) => key === "Chicago, IL",
+    });
+    expect(s).toBeNull();
+  });
+
+  it("no stored record -> nothing (setup flows own creation)", async () => {
+    expect(await runSuggest(null)).toBeNull();
+  });
+
+  it("no IP fix -> nothing", async () => {
+    expect(await runSuggest(KIRAN_FREMONT, null)).toBeNull();
+  });
+});
+
+describe("suggestion dismissals — persisted per city", () => {
+  it("dismiss -> suppressed; other cities unaffected; no duplicates", () => {
+    expect(isHubSuggestionDismissed("Chicago, IL")).toBe(false);
+    dismissHubLocationSuggestion("Chicago, IL");
+    expect(isHubSuggestionDismissed("Chicago, IL")).toBe(true);
+    expect(isHubSuggestionDismissed("Austin, TX")).toBe(false);
+    dismissHubLocationSuggestion("Chicago, IL");
+    expect(getDismissedHubSuggestions()).toEqual(["Chicago, IL"]);
+  });
+
+  it("a persisted dismissal suppresses the suggestion through the default path", async () => {
+    dismissHubLocationSuggestion("Chicago, IL");
+    const s = await maybeSuggestHubLocation({
+      getStored: () => KIRAN_FREMONT,
+      loadClustersFn: async () => CLUSTERS,
+      fetchIpGeo: async () => IP_CHICAGO,
+      now: () => NOW,
+    });
+    expect(s).toBeNull();
   });
 });

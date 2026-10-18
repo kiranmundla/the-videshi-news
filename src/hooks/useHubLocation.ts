@@ -375,26 +375,63 @@ export function getFreshPreciseGeoFix(): PreciseFix | null {
   }
 }
 
-/** A precise fix from the browser WITHOUT ever prompting: only asks
- * for a position when geolocation permission is already 'granted'.
- * When the Permissions API is unavailable the no-prompt guarantee
- * can't be verified, so it conservatively returns null. */
+/** Any browser-sourced fix in the geo cache, IGNORING the TTL. Only
+ * its provenance matters here: a browser fix could only have entered
+ * the cache after the reader granted geolocation on this origin (via
+ * "Use my location" or an Events/Directory pin), so its presence —
+ * however old — is evidence of a prior grant. Its coordinates are
+ * NOT used as a position; they prove permission, nothing more. */
+export function getAnyBrowserGeoFix(): PreciseFix | null {
+  try {
+    const raw = localStorage.getItem(GEO_CACHE_KEY);
+    if (!raw) return null;
+    const { loc } = JSON.parse(raw);
+    if (!loc || loc.source !== "browser") return null;
+    if (typeof loc.latitude !== "number" || typeof loc.longitude !== "number") {
+      return null;
+    }
+    return { lat: loc.latitude, lon: loc.longitude };
+  } catch {
+    return null;
+  }
+}
+
+/** True when this browser has granted geolocation here before — the
+ * only no-prompt proof available where the Permissions API is not. */
+export function hasPriorGeolocationGrantEvidence(): boolean {
+  return getAnyBrowserGeoFix() !== null;
+}
+
+/** A precise fix from the browser WITHOUT ever prompting. Primary
+ * path: the Permissions API reports 'granted'. Where that API is
+ * unavailable or its query fails — iOS Safari has no reliable
+ * geolocation permission query, which is why the refresh NEVER fired
+ * on iPhone (Kiran's "still shows the previous location", 2026-10-18)
+ * — fall back to prior-grant evidence: a browser-sourced fix in the
+ * geo cache. With neither a 'granted' state nor that evidence, stay
+ * silent: a cold getCurrentPosition could surface a prompt, and this
+ * function is called unprompted on page load. An explicit
+ * 'prompt'/'denied' state always wins over evidence (a revoked grant
+ * must not be retried behind the reader's back). If a grant was
+ * revoked at the OS level, getCurrentPosition simply errors → null. */
 export async function getGrantedGeolocationFix(
   timeoutMs = 4000,
 ): Promise<PreciseFix | null> {
   try {
     if (typeof navigator === "undefined" || !navigator.geolocation) return null;
-    if (!navigator.permissions?.query) return null;
-    let state: PermissionState;
-    try {
-      const status = await navigator.permissions.query({
-        name: "geolocation" as PermissionName,
-      });
-      state = status.state;
-    } catch {
-      return null;
+    let permitted = false;
+    if (navigator.permissions?.query) {
+      try {
+        const status = await navigator.permissions.query({
+          name: "geolocation" as PermissionName,
+        });
+        if (status.state !== "granted") return null;
+        permitted = true;
+      } catch {
+        /* the query itself is unsupported — evidence path below */
+      }
     }
-    if (state !== "granted") return null;
+    if (!permitted && !hasPriorGeolocationGrantEvidence()) return null;
     return await new Promise<PreciseFix | null>((resolve) => {
       navigator.geolocation.getCurrentPosition(
         (pos) =>
@@ -456,6 +493,26 @@ export function nearestClusterId(
  * the resolved cluster doesn't already say so. */
 export const HUB_REFRESH_MIN_DISTANCE_MILES = 5;
 
+/** Freshness lifetime of an AUTO record (2026-10-18). Older than
+ * this, a record is "soft-stale": on the next landing it revalidates
+ * against a truly fresh granted fix even when the geo cache already
+ * holds one (a cache fix alone must not restart a week-old record's
+ * clock), and a same-metro confirmation quietly restarts the clock
+ * by refreshing setAt. Manual records are exempt — they never
+ * revalidate. */
+export const HUB_AUTO_RECORD_TTL_MS = 7 * 24 * 60 * 60 * 1000;
+
+/** Soft-stale = the record carries a setAt older than the TTL. Only a
+ * provable age counts: a record with no setAt predates provenance
+ * stamping, its age is unknowable, and it is NOT touched on age
+ * grounds (the pre-2026-10-18 refresh behavior for such records is
+ * pinned by tests); it picks up a setAt on its next write. */
+export function isSoftStaleHubRecord(loc: HubLocation, now: number): boolean {
+  return (
+    typeof loc.setAt === "number" && now - loc.setAt > HUB_AUTO_RECORD_TTL_MS
+  );
+}
+
 /** Materially different = the resolved cluster changed, or the fix is
  * more than HUB_REFRESH_MIN_DISTANCE_MILES from the stored coords.
  * A ~1 mi move inside the same cluster is not material — no churn. */
@@ -492,7 +549,12 @@ export interface HubRefreshDeps {
  *    record: only a fresh precise fix that materially disagrees —
  *    never an IP estimate, never a prompt;
  *  - no fresh precise fix available without prompting → nothing;
- *  - fix not materially different → nothing (no churn);
+ *  - fix not materially different → nothing (no churn) — EXCEPT a
+ *    soft-stale auto record (setAt older than HUB_AUTO_RECORD_TTL_MS),
+ *    whose setAt is quietly refreshed: revalidation confirmed the
+ *    same metro, so its freshness clock restarts. A soft-stale record
+ *    also revalidates against a fresh granted fix even when the geo
+ *    cache already holds one;
  *  - otherwise rewrite coords + label via resolvePlaceLabel and the
  *    canonical write path (which also fires the live-sync events, so
  *    every mounted surface updates at once). The rewritten record is
@@ -507,11 +569,28 @@ export async function maybeRefreshHubLocation(
     () => getCachedClusters(),
   );
   if (classifyHubRecord(stored, clusters) === "manual") return null;
-  const fix =
-    (deps.getCacheFix ?? getFreshPreciseGeoFix)() ??
-    (await (deps.getGrantedFix ?? getGrantedGeolocationFix)());
+  const now = (deps.now ?? Date.now)();
+  const softStale = isSoftStaleHubRecord(stored, now);
+  let fix = (deps.getCacheFix ?? getFreshPreciseGeoFix)();
+  if (!fix || softStale) {
+    /* A soft-stale record revalidates against a fresh granted fix
+     * even when the cache already holds one, and prefers it; a fresh
+     * record with a cache fix never pays for the granted call. */
+    const granted = await (deps.getGrantedFix ?? getGrantedGeolocationFix)();
+    if (granted) fix = granted;
+  }
   if (!fix) return null;
-  if (!isMateriallyDifferentLocation(stored, fix, clusters)) return null;
+  if (!isMateriallyDifferentLocation(stored, fix, clusters)) {
+    if (softStale) {
+      /* Revalidation confirmed the same metro — quietly restart the
+       * freshness clock. Only setAt changes: the reader's place,
+       * coords and provenance are exactly as they were. */
+      const touched: HubLocation = { ...stored, setAt: now };
+      (deps.write ?? setStoredHubLocation)(touched);
+      return touched;
+    }
+    return null;
+  }
   const place = await (deps.resolveLabel ?? resolvePlaceLabel)(
     fix.lat,
     fix.lon,
@@ -524,7 +603,7 @@ export async function maybeRefreshHubLocation(
     lon: fix.lon,
     label: place.label,
     source: "geolocation",
-    setAt: (deps.now ?? Date.now)(),
+    setAt: now,
   };
   (deps.write ?? setStoredHubLocation)(next);
   return next;
@@ -539,6 +618,237 @@ export function refreshHubLocationOnce(): Promise<HubLocation | null> {
     hubRefreshAttempt = maybeRefreshHubLocation().catch(() => null);
   }
   return hubRefreshAttempt;
+}
+
+/* ------------------------------------------------------------------ */
+/* The IP tripwire — "Looks like you're near X?" (2026-10-18).        */
+/*                                                                    */
+/* The precise-fix refresh above can only follow readers whose        */
+/* browser yields a fix without prompting. Everyone else — above all  */
+/* iPhone readers whose one grant never lands in the geo cache —      */
+/* kept a stale record forever with no way to notice. The tripwire    */
+/* covers them: once per page load, compare the stored record with    */
+/* the visitor's IP-geo city (the same /api/geo the site already      */
+/* uses). IP geo is far too coarse to OVERWRITE anything, so a        */
+/* material disagreement produces a SUGGESTION — a dismissible chip   */
+/* on Events / Directory / Your Hub — never a silent rewrite. A       */
+/* reader who keeps the stored place dismisses that city for good.    */
+/* ------------------------------------------------------------------ */
+
+export interface IpGeoFix {
+  lat: number;
+  lon: number;
+  city?: string;
+  region?: string;
+}
+
+/** The visitor's IP-geo fix via /api/geo. Implemented here rather
+ * than imported from useUserLocation: that hook imports THIS module,
+ * so importing back would close a cycle (the geo cache above is read
+ * directly for the same reason). */
+export async function fetchIpGeoFix(): Promise<IpGeoFix | null> {
+  try {
+    const r = await fetch("/api/geo");
+    if (!r.ok) return null;
+    const d = await r.json();
+    if (typeof d.latitude === "number" && typeof d.longitude === "number") {
+      return {
+        lat: d.latitude,
+        lon: d.longitude,
+        city: d.city || undefined,
+        region: d.region || undefined,
+      };
+    }
+  } catch {
+    /* network error — no tripwire this load */
+  }
+  return null;
+}
+
+/** The tripwire bar: how far the IP estimate must sit from the stored
+ * record (when the state check can't already call it) before the
+ * place "looks wrong". IP fixes are routinely tens of miles off;
+ * 100 miles is unambiguously a different metro area. */
+export const HUB_SUGGESTION_MIN_DISTANCE_MILES = 100;
+
+/** Materially different FOR A SUGGESTION: a different state, or more
+ * than HUB_SUGGESTION_MIN_DISTANCE_MILES from the stored coords.
+ * The state test only fires when both sides carry a comparable
+ * region code (<= 3 chars: "CA" vs "IL") — a full region NAME
+ * ("California") never false-fires against a stored code; distance
+ * decides in that case. Same-metro IP wobble (Fremont vs Dublin,
+ * ~11 mi, same state) must never nag. */
+export function isTripwireDifferentLocation(
+  stored: HubLocation,
+  ip: IpGeoFix,
+): boolean {
+  const a = (stored.state ?? "").trim().toUpperCase();
+  const b = (ip.region ?? "").trim().toUpperCase();
+  if (a && b && a.length <= 3 && b.length <= 3 && a !== b) return true;
+  return (
+    haversineMiles(stored.lat, stored.lon, ip.lat, ip.lon) >
+    HUB_SUGGESTION_MIN_DISTANCE_MILES
+  );
+}
+
+/* Dismissed suggestions, keyed by the suggested place's label
+ * ("Chicago, IL"). Persisted so a city the reader rejected once
+ * never nags again on any surface. */
+const SUGGESTION_DISMISSALS_KEY = "videshi-hub-location-dismissals";
+
+export function getDismissedHubSuggestions(): string[] {
+  try {
+    const raw = localStorage.getItem(SUGGESTION_DISMISSALS_KEY);
+    if (!raw) return [];
+    const arr = JSON.parse(raw);
+    return Array.isArray(arr)
+      ? arr.filter((x): x is string => typeof x === "string")
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+export function isHubSuggestionDismissed(key: string): boolean {
+  return getDismissedHubSuggestions().includes(key);
+}
+
+export function dismissHubLocationSuggestion(key: string): void {
+  try {
+    const cur = getDismissedHubSuggestions();
+    if (!cur.includes(key)) {
+      localStorage.setItem(
+        SUGGESTION_DISMISSALS_KEY,
+        JSON.stringify([...cur, key]),
+      );
+    }
+  } catch {
+    /* storage unavailable — the chip still dismisses for this view */
+  }
+}
+
+export interface HubLocationSuggestion {
+  /** The record written if the reader taps "Use this": the resolved
+   * place at the IP coords, sourced "ip" — auto-derived, so the
+   * precise-fix refresh can still refine or override it later. */
+  location: HubLocation;
+  /** Dismissal identity: the suggested place's label ("City, ST"). */
+  key: string;
+  /** The stored record's label, for the chip's "Keep <label>". */
+  storedLabel: string;
+}
+
+export interface HubSuggestionDeps {
+  getStored?: () => HubLocation | null;
+  loadClustersFn?: () => Promise<Cluster[]>;
+  fetchIpGeo?: () => Promise<IpGeoFix | null>;
+  resolveLabel?: typeof resolvePlaceLabel;
+  isDismissed?: (key: string) => boolean;
+  now?: () => number;
+}
+
+/** One suggestion attempt. Returns a suggestion or null. Rules:
+ *  - no stored record → null (the setup flows own creation);
+ *  - explicit-manual record → null, always (a deliberate pick is
+ *    never second-guessed, not even with a question);
+ *  - no IP fix, or the IP place is not tripwire-different → null;
+ *  - the IP coords resolve to a generic label → null (nothing
+ *    nameable to offer);
+ *  - that city was dismissed before → null.
+ * NEVER writes the record — accepting the chip does, through the
+ * canonical setter. Deps injectable for tests, mirroring
+ * maybeRefreshHubLocation. */
+export async function maybeSuggestHubLocation(
+  deps: HubSuggestionDeps = {},
+): Promise<HubLocationSuggestion | null> {
+  const stored = (deps.getStored ?? getStoredHubLocation)();
+  if (!stored) return null;
+  const clusters = await (deps.loadClustersFn ?? loadClusters)().catch(
+    () => getCachedClusters(),
+  );
+  if (classifyHubRecord(stored, clusters) === "manual") return null;
+  const ip = await (deps.fetchIpGeo ?? fetchIpGeoFix)();
+  if (!ip) return null;
+  if (!isTripwireDifferentLocation(stored, ip)) return null;
+  const place = await (deps.resolveLabel ?? resolvePlaceLabel)(ip.lat, ip.lon, {
+    city: ip.city,
+    region: ip.region,
+  });
+  if (isGenericHubLabel(place.label)) return null;
+  const key = place.label;
+  if ((deps.isDismissed ?? isHubSuggestionDismissed)(key)) return null;
+  const location: HubLocation = {
+    city: place.city || ip.city || stored.city,
+    state: place.state || ip.region || stored.state,
+    lat: ip.lat,
+    lon: ip.lon,
+    label: place.label,
+    source: "ip",
+    setAt: (deps.now ?? Date.now)(),
+  };
+  return { location, key, storedLabel: stored.label };
+}
+
+/* At most one suggestion attempt per page load, shared by every
+ * mounted chip (a page mounts exactly one). */
+let hubSuggestionAttempt: Promise<HubLocationSuggestion | null> | null = null;
+
+export function suggestHubLocationOnce(): Promise<HubLocationSuggestion | null> {
+  if (!hubSuggestionAttempt) {
+    hubSuggestionAttempt = maybeSuggestHubLocation().catch(() => null);
+  }
+  return hubSuggestionAttempt;
+}
+
+/** React face of the tripwire: resolves the once-per-load suggestion
+ * and exposes accept/dismiss for the chip. Accept writes through the
+ * canonical setter (every surface live-syncs off the change event);
+ * dismiss persists the city so it never nags twice. If the record
+ * changes underneath — accepted on another surface, or the GPS
+ * refresh moved it onto the suggested place — the suggestion clears
+ * itself instead of asking about a place already in effect. */
+export function useHubLocationSuggestion() {
+  const [suggestion, setSuggestion] = useState<HubLocationSuggestion | null>(
+    null,
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+    void suggestHubLocationOnce().then((s) => {
+      if (!cancelled) setSuggestion(s);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!suggestion) return;
+    const check = () => {
+      const stored = getStoredHubLocation();
+      if (!stored || stored.label === suggestion.key) setSuggestion(null);
+    };
+    window.addEventListener(HUB_LOCATION_CHANGED_EVENT, check);
+    window.addEventListener("storage", check);
+    return () => {
+      window.removeEventListener(HUB_LOCATION_CHANGED_EVENT, check);
+      window.removeEventListener("storage", check);
+    };
+  }, [suggestion]);
+
+  const accept = useCallback(() => {
+    if (!suggestion) return;
+    setStoredHubLocation(suggestion.location);
+    setSuggestion(null);
+  }, [suggestion]);
+
+  const dismiss = useCallback(() => {
+    if (!suggestion) return;
+    dismissHubLocationSuggestion(suggestion.key);
+    setSuggestion(null);
+  }, [suggestion]);
+
+  return { suggestion, accept, dismiss };
 }
 
 /**

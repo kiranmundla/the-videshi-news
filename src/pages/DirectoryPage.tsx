@@ -27,6 +27,7 @@ import {
   resolvePlaceLabel,
 } from "@/hooks/useHubLocation";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
+import LocationSuggestionChip from "@/components/LocationSuggestionChip";
 
 const DEFAULT_CITY = "Bay Area";
 const PAGE_SIZE = 30;
@@ -389,6 +390,15 @@ export default function DirectoryPage() {
      over the record for the rest of the session. */
   const { location: hubLocation } = useHubLocation();
   const locationTouchedRef = useRef(false);
+  /* The displayed place name IS the edit control (no visible
+     "change" link): tapping it focuses the ZIP editor. */
+  const zipInputRef = useRef<HTMLInputElement>(null);
+  const focusZipEditor = useCallback(() => {
+    const el = zipInputRef.current;
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.focus({ preventScroll: true });
+  }, []);
 
   /* --- Sync filters with URL --- */
   const rawCity = searchParams.get("city");
@@ -631,18 +641,39 @@ export default function DirectoryPage() {
     setLoadingMore(false);
   };
 
-  /* --- Summary text --- */
-  const summaryParts: string[] = [];
-  if (searchQuery) summaryParts.push(`matching "${searchQuery}"`);
-  // "near you" only when results center on the visitor's own location;
-  // zip-driven results name the zip's resolved city instead.
-  if (nearMeActive) {
-    summaryParts.push(zipPlace ? `near ${zipPlace.city}, ${zipPlace.state}` : "near you");
-  }
-  else if (cityFilter) summaryParts.push(`in ${cityFilter}`);
-  if (categoryFilter) summaryParts.push(`· ${categoryFilter}`);
-  if (subcategoryFilter) summaryParts.push(`· ${subcategoryFilter}`);
-  const summaryText = summaryParts.length > 0 ? " " + summaryParts.join(" ") : "";
+  /* --- Summary text ---
+     "near you" only when results center on the visitor's own
+     location; zip-driven results name the zip's resolved city
+     instead. That name is itself the edit control: tapping it
+     focuses the ZIP editor above (no visible "change" link). */
+  const summaryNode = (
+    <>
+      {searchQuery ? ` matching "${searchQuery}"` : ""}
+      {nearMeActive ? (
+        zipPlace ? (
+          <>
+            {" near "}
+            <button
+              type="button"
+              onClick={focusZipEditor}
+              aria-label="Change location"
+              className="underline decoration-dotted underline-offset-2 hover:text-foreground transition-colors cursor-pointer"
+            >
+              {zipPlace.city}, {zipPlace.state}
+            </button>
+          </>
+        ) : (
+          " near you"
+        )
+      ) : cityFilter ? (
+        ` in ${cityFilter}`
+      ) : (
+        ""
+      )}
+      {categoryFilter ? ` · ${categoryFilter}` : ""}
+      {subcategoryFilter ? ` · ${subcategoryFilter}` : ""}
+    </>
+  );
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">
@@ -727,6 +758,7 @@ export default function DirectoryPage() {
             <ZipCodeSearch
               onLocation={handleLocation}
               active={nearMeActive}
+              inputRef={zipInputRef}
             />
 
             <div className="relative flex-shrink-0">
@@ -755,6 +787,10 @@ export default function DirectoryPage() {
           </div>
         </div>
 
+        {/* IP-tripwire suggestion — only renders when the stored
+            location looks materially wrong */}
+        <LocationSuggestionChip className="mb-5" />
+
         {/* Category icon cards */}
         <div className="mb-3">
           <CategoryIconCards selected={categoryFilter} onSelect={setCategoryFilter} />
@@ -782,7 +818,7 @@ export default function DirectoryPage() {
           <div className="text-center py-20">
             <p className="text-4xl mb-4">🏢</p>
             <p className="text-muted-foreground text-lg">
-              No listings found{summaryText}.
+              No listings found{summaryNode}.
             </p>
             <p className="text-muted-foreground text-sm mt-2">
               Try a different city or category, or check back soon!
@@ -791,7 +827,7 @@ export default function DirectoryPage() {
         ) : (
           <>
             <p className="text-sm text-muted-foreground mb-4">
-              {listings.length}{hasMore ? "+" : ""} listings{summaryText}
+              {listings.length}{hasMore ? "+" : ""} listings{summaryNode}
             </p>
 
             {nearMeActive ? (

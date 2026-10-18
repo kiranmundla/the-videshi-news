@@ -30,6 +30,7 @@ import { formatDistance, nearestZipPlace } from "@/lib/geo";
 import { useUserLocation } from "@/hooks/useUserLocation";
 import { getFreshGeolocationFix } from "@/hooks/useHubLocation";
 import ZipCodeSearch, { type LocationResult } from "@/components/ZipCodeSearch";
+import LocationSuggestionChip from "@/components/LocationSuggestionChip";
 import EventCard from "@/components/EventCard";
 
 const supabaseRaw = supabaseTyped as unknown as { from: (table: string) => any };
@@ -490,6 +491,15 @@ export default function EventsPage() {
     } catch { return null; }
   });
   const { location: ipLocation } = useUserLocation();
+  /* The displayed location name IS the edit control (no visible
+     "change" link): tapping it focuses the ZIP editor. */
+  const zipInputRef = useRef<HTMLInputElement>(null);
+  const focusZipEditor = useCallback(() => {
+    const el = zipInputRef.current;
+    if (!el) return;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    el.focus({ preventScroll: true });
+  }, []);
 
   /* --- Persist coords in sessionStorage so back-nav doesn't re-prompt --- */
   useEffect(() => {
@@ -945,6 +955,7 @@ export default function EventsPage() {
           <ZipCodeSearch
             onLocation={handleLocation}
             active={nearMeActive}
+            inputRef={zipInputRef}
           />
 
           {/* City dropdown */}
@@ -974,10 +985,23 @@ export default function EventsPage() {
           </div>
         </div>
 
-        {/* Active location — makes clear which place the results are for */}
+        {/* Active location — makes clear which place the results are
+            for. The name itself is the button: tapping it opens the
+            ZIP editor above (no separate "change" link). */}
         {nearMeActive && locationDisplay && (
-          <p className="text-xs text-muted-foreground -mt-3 mb-5">{locationDisplay}</p>
+          <button
+            type="button"
+            onClick={focusZipEditor}
+            aria-label="Change location"
+            className="block text-left text-xs text-muted-foreground -mt-3 mb-5 hover:text-foreground transition-colors cursor-pointer"
+          >
+            {locationDisplay}
+          </button>
         )}
+
+        {/* IP-tripwire suggestion — only renders when the stored
+            location looks materially wrong */}
+        <LocationSuggestionChip className="mb-5" />
 
         {/* Discovery: Time Cards (BookMyShow-style) */}
         <DiscoverySection
