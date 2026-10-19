@@ -120,13 +120,6 @@
     "added_date": "2026-05-01"
   },
   {
-    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/onam-kerala-celebration-37565104.jpg",
-    "label": "Colorful Kathakali dancer in traditional costume at Thrissur festival, Kerala, India. · 📷 Jomon Kollannoor",
-    "source": "pexels",
-    "added_date": "2026-05-27",
-    "pexels_id": 37565104
-  },
-  {
     "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/onam-kerala-celebration-8566097.jpg",
     "label": "Vibrant Kathakali dancers performing in traditional costumes at a cultural event in Kerala, India. · 📷 Jithin murali",
     "source": "pexels",
@@ -258,5 +251,12 @@
     "source": "pexels",
     "added_date": "2026-10-12",
     "pexels_id": 31843397
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/ganesh-chaturthi-procession-9743193.jpg",
+    "label": "Colorful crowds celebrate Ganesh Chaturthi in Mumbai with a grand Ganesha statue. · 📷 Nikunj Khorava",
+    "source": "pexels",
+    "added_date": "2026-10-19",
+    "pexels_id": 9743193
   }
 ]
