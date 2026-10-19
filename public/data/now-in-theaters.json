@@ -465,7 +465,8 @@
           "name": "Raghav Juyal",
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Raghav_Juyal_at_the_Zee5_event_in_Mumbai_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
         }
-      ]
+      ],
+      "fandango_url": "https://www.fandango.com/the-paradise-2026-246366/movie-overview"
     },
     {
       "title": "Dorothy",
@@ -499,7 +500,8 @@
           "name": "Rishikanth",
           "photo_url": ""
         }
-      ]
+      ],
+      "fandango_url": "https://www.fandango.com/dorothy-2026-247564/movie-overview"
     },
     {
       "title": "The Vvaan: Force of the Forrest",
@@ -523,7 +525,8 @@
           "name": "Sidharth Malhotra Tamannaah Bhatia Maniesh Paul Sunil Grover Shweta Tiwari Anup Soni",
           "photo_url": ""
         }
-      ]
+      ],
+      "fandango_url": "https://www.fandango.com/the-vvaan-force-of-the-forrest-247541/movie-overview"
     },
     {
       "title": "Drishyam: The Conclusion",
@@ -547,7 +550,8 @@
           "name": "Ajay Devgn Tabu Shriya Saran Jaideep Ahlawat Ishita Dutta Mrunal Jadhav Rajat Kapoor Prakash Raj Kamlesh Sawant",
           "photo_url": ""
         }
-      ]
+      ],
+      "fandango_url": "https://www.fandango.com/drishyam-the-conclusion-2026-247556/movie-overview"
     },
     {
       "cast": [
@@ -599,7 +603,8 @@
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Kerala_School_Kalolsavam_2026_day_5_Mohanlal_%28277%29_%28cropped%29.jpg/300px-Kerala_School_Kalolsavam_2026_day_5_Mohanlal_%28277%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
       ],
-      "review_slug": "jailer-2-review-roundup-critics"
+      "review_slug": "jailer-2-review-roundup-critics",
+      "fandango_url": "https://www.fandango.com/jailer-2-247862/movie-overview"
     },
     {
       "cast": [
@@ -636,7 +641,8 @@
         }
       ],
       "review_slug": "ranabaali-review-roundup-critics",
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/8/82/Ranabaali_2026_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/8/82/Ranabaali_2026_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "fandango_url": "https://www.fandango.com/ranabaali-2026-247336/movie-overview"
     },
     {
       "cast": [
@@ -677,7 +683,8 @@
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Sikander_Kher_promoting_Tere_Bin_Laden_2_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
         }
       ],
-      "review_slug": "prahaar-review-roundup-critics"
+      "review_slug": "prahaar-review-roundup-critics",
+      "fandango_url": "https://www.fandango.com/prahaar-the-untold-story-of-ujjwal-nikam-2026-247958/movie-overview"
     },
     {
       "title": "Ramayana: Part 1",
