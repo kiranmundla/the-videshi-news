@@ -1,0 +1,14 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "article_slug": "vance-walks-back-indentured-servants-h1b-remark-india-protest",
+  "name": "vance-walks-back-indentured-servants-h1b-remark-india-protest",
+  "script": "reel-runs/2026-10-18-vance-walks-back-indentured-servants-h1b-remark-india-protest/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000584
+  },
+  "detail": "no composition fits all scenes at the planner floors \u2014 cover: scene 'news' text cannot fit at the minimum scale in any zone (text too long); fit: scene 'news' text cannot fit at the minimum scale in any zone (text too long)"
+}

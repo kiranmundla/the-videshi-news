@@ -1,0 +1,267 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "vance-walks-back-indentured-servants-h1b-remark-india-protest",
+  "verdict": "fail",
+  "held_claims": [
+    "hook_stat.big",
+    "stats[2].big"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA PROTESTS, VANCE WALKS BACK H-1B REMARK",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "India protested Vance's remarks, which he later clarified.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "US Vice President JD Vance said his rhetoric was imperfect and that calling H-1B workers 'indentured servants' was not a criticism of the visa holders themselves, after India's Ministry of External Affairs called the term deeply offensive.",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "US Vice President JD Vance",
+        "India's Ministry",
+        "External Affairs"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Vance acknowledged his rhetoric was imperfect after India's Ministry of External Affairs protested.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "70%",
+      "numbers": [
+        70.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Claim lacks context; does not specify what the 70% refers to.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Indian professionals account for more than 70 per cent of approved H-1B petitions annually",
+      "numbers": [
+        1.0,
+        70.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Indian professionals account for over 70% of approved H-1B petitions annually.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE BACKLASH",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "No specific section titled 'THE BACKLASH' in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "8",
+      "numbers": [
+        8.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Eight companies were suspended from the PERM programme.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Companies suspended from the PERM programme",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Eight companies were suspended from the PERM programme.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$20,000",
+      "numbers": [
+        20000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Vance claimed H-1B workers earned $20,000 less than American citizens.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Less that Vance claimed H-1B workers earned than American citizens in similar positions",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Vance claimed H-1B workers earned $20,000 less than American citizens.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "PERM",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Claim lacks context; does not specify what 'PERM' refers to.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Suspension is separate from H-1B status, and existing H-1B visas are not invalidated",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Suspension is separate from H-1B status; existing visas are not invalidated.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Vance was responding to a question from an Indian immigrant who became a US citizen five years ago",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Vance responded to an Indian immigrant who became a US citizen five years ago.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Existing H-1B visas are not invalidated by the PERM suspension, according to the MEA",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "Existing H-1B"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Existing H-1B visas are not invalidated by the PERM suspension, according to the MEA.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Vance's clarification does not reverse the PERM suspensions, change any wage claim he made, or alter H-1B rules.",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Vance's clarification does not reverse PERM suspensions or alter H-1B rules.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE BACKLASH",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "JD Vance",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "India's Ministry of External Affairs",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "H-1B",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "PERM",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "CBS News",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000579
+  }
+}

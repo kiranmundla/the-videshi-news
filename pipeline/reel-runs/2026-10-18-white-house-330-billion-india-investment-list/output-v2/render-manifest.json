@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "white-house-330-billion-india-investment-list",
+  "article_slug": "white-house-330-billion-india-investment-list",
+  "article_id": "355b551e-ba4a-434e-ad69-2f727802250f",
+  "category": "Markets Finance",
+  "video": "reel-runs/2026-10-18-white-house-330-billion-india-investment-list/output-v2/white-house-330-billion-india-investment-list.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/White_House_north_and_south_sides.jpg/3840px-White_House_north_and_south_sides.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "local_path": "reel-runs/2026-10-18-white-house-330-billion-india-investment-list/output-v2/hero.jpg",
+    "width": 3840,
+    "height": 4395,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "focal-heuristic (no face detected)",
+    "has_face": false,
+    "box_source": [
+      0,
+      399,
+      2150,
+      1758
+    ],
+    "box_bg": [
+      0.0,
+      174.3,
+      939.2,
+      768.0
+    ],
+    "chin_bg": null,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 264,
+      "block_top": 858,
+      "block_bottom": 1122,
+      "text_bbox": [
+        116,
+        858,
+        888,
+        1121
+      ],
+      "texts": [
+        "Markets Finance",
+        "WHITE HOUSE TOUTS INDIA'S $330 BILLION"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 286,
+      "block_top": 858,
+      "block_bottom": 1144,
+      "text_bbox": [
+        123,
+        858,
+        880,
+        1148
+      ],
+      "texts": [
+        "What Happened",
+        "The White House listed $330.5 billion in India-linked investment commitments, totalling two entries of $310 billion and $20.5 billion, PTI reported."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 329,
+      "block_top": 858,
+      "block_bottom": 1187,
+      "text_bbox": [
+        114,
+        858,
+        890,
+        1193
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "$330.5 BILLION",
+        "India-linked commitments listed by the White House"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 755,
+      "block_top": 796,
+      "block_bottom": 1551,
+      "text_bbox": [
+        136,
+        796,
+        871,
+        1557
+      ],
+      "texts": [
+        "By The Numbers",
+        "$300 BILLION",
+        "Reliance partnership for a Texas refinery announced in March",
+        "$20.5 BILLION",
+        "Indian industry pledges at the SelectUSA summit in May",
+        "$500 BILLION",
+        "India's total on a second White House tracker, ranking sixth"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 466,
+      "block_top": 858,
+      "block_bottom": 1324,
+      "text_bbox": [
+        118,
+        858,
+        887,
+        1329
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "On the second tracker, India ranks sixth among country-level totals",
+        "Essar Group's Mesabi Metallics announced a $15 billion steel plant"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 278,
+      "block_top": 858,
+      "block_bottom": 1136,
+      "text_bbox": [
+        122,
+        858,
+        879,
+        1147
+      ],
+      "texts": [
+        "The Takeaway",
+        "These are announced commitments, not money already spent.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "breaking-news-newer-wave.mp3",
+    "path": "music/breaking-news-newer-wave.mp3"
+  },
+  "render_seconds": 378.3,
+  "mp4_bytes": 20220843
+}

@@ -1,0 +1,28 @@
+{
+  "hook_line": "CANCER DRUGS GET A PRICE CAP",
+  "hook_stat": {
+    "big": "70%",
+    "eyebrow": "THE PRICE TAG",
+    "sub": "Expected MRP fall on the most heavily marked-up cancer medicines"
+  },
+  "stats": [
+    {"big": "137", "label": "Anti-cancer medicines with trade margins capped by the NPPA"},
+    {"big": "30%", "label": "New cap on trade margins as a share of MRP"},
+    {"big": "700%", "label": "Highest mark-up found on some medicines before the cap"}
+  ],
+  "diaspora_bullets": [
+    "Families funding treatment in India should check the new MRP before paying",
+    "Hospitals and retailers must charge the revised prices from November 9"
+  ],
+  "key_entities": [
+    "NPPA",
+    "National Pharmaceutical Pricing Authority",
+    "Pembrolizumab",
+    "Osimertinib",
+    "Ministry of Chemicals and Fertilizers"
+  ],
+  "news_summary": "The NPPA has capped trade margins at 30% of MRP on 137 anti-cancer medicines, with prices expected to fall by up to 70% on some medicines from November 9.",
+  "payoff": "From November 9, hospitals and retailers must charge the revised prices.",
+  "versus": "",
+  "story_mood": "practical"
+}

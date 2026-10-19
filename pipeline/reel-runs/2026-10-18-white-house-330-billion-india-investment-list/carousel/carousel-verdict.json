@@ -1,0 +1,15 @@
+{
+  "kind": "carousel",
+  "article_slug": "white-house-330-billion-india-investment-list",
+  "status": "held",
+  "stage": "factcheck",
+  "factcheck": {
+    "verdict": "fail",
+    "quote_present": false,
+    "verbatim_quote": null,
+    "speaker_grounded": null,
+    "role_grounded": null,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000338
+  }
+}

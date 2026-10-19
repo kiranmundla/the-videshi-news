@@ -1,0 +1,16 @@
+{
+  "kind": "carousel",
+  "article_slug": "white-house-330-billion-india-investment-list",
+  "status": "held",
+  "stage": "render_fit",
+  "factcheck": {
+    "verdict": "pass",
+    "quote_present": false,
+    "verbatim_quote": null,
+    "speaker_grounded": null,
+    "role_grounded": null,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000334
+  },
+  "detail": "inter cannot fit \"Two India entries \u2014 a $300 billion Reliance refinery partnership and $20.5 billion in SelectUSA pledges \u2014 put India among America's largest announced investors, though a second White House tracker counts $500 billion.\""
+}

@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 191,
-    "db_rows": 126,
-    "db_rows_with_yt_id": 96,
+    "channel_videos": 192,
+    "db_rows": 127,
+    "db_rows_with_yt_id": 97,
     "legacy_log_entries": 205,
-    "publish_log_entries": 10,
-    "in_sync": 80,
+    "publish_log_entries": 11,
+    "in_sync": 81,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 10,
     "ghost_db_rows": 14,
@@ -569,10 +569,17 @@
     },
     {
       "title": "Jailer 2 Crosses \u20b9209 Crore Worldwide in Two Days, Eyes a Record Weekend #Shorts #Entertainment",
-      "published_at": "2026-10-18T05:21:21Z",
-      "privacy": "unlisted",
+      "published_at": "2026-10-18T06:05:34Z",
+      "privacy": "public",
       "video_id": "DptW6hsP1E4",
       "record": "prebuilt_reels:05ced2bf-5653-481b-b716-1972c26ca8b1"
+    },
+    {
+      "title": "White House Touts $330 Billion in Indian Investment as 'Trillions Pour In' #Shorts #Markets",
+      "published_at": "2026-10-18T17:30:10Z",
+      "privacy": "unlisted",
+      "video_id": "ad_O6nV9hGg",
+      "record": "prebuilt_reels:4d8cc5ec-2a15-446d-9221-4a86019303b6"
     }
   ],
   "unknown_legacy_logged": [
@@ -3458,5 +3465,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-10-18T05:22:00+00:00"
+  "generated_at": "2026-10-18T17:32:07+00:00"
 }

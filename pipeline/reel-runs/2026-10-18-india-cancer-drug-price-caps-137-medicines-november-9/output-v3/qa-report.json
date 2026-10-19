@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output-v3/india-cancer-drug-price-caps-137-medicines-november-9.mp4",
+  "qa_passed": true,
+  "qa_score": 9.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1198,
+        627
+      ],
+      "manifest_dims": [
+        1198,
+        627
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 99.6,
+      "url": "https://etimg.etb2bimg.com/thumb/msid-135024295,imgsize-188604,width-1200,height=627,overlay-etpharma,resizemode-75/news/pharma-industry/the-burden-of-cancer-drugs-millions-battle-exorbitant-prices-as-life-saving-treatment-slips-out-of-reach.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output-v3/qa/frames/frame-hook.png",
+      "text_px_detected": 23116,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": false,
+        "text_luminance": 254.1,
+        "bg_luminance": 205.8,
+        "delta": 48.3
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output-v3/qa/frames/frame-news.png",
+      "text_px_detected": 23110,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": false,
+        "text_luminance": 253.4,
+        "bg_luminance": 205.4,
+        "delta": 48.0
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output-v3/qa/frames/frame-hero.png",
+      "text_px_detected": 25171,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 251.2,
+        "bg_luminance": 176.0,
+        "delta": 75.2
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output-v3/qa/frames/frame-grid.png",
+      "text_px_detected": 45255,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 176.7,
+        "delta": 77.1
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output-v3/qa/frames/frame-diaspora.png",
+      "text_px_detected": 37129,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 179.4,
+        "delta": 74.5
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output-v3/qa/frames/frame-payoff.png",
+      "text_px_detected": 15525,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 170.4,
+        "delta": 83.0
+      }
+    }
+  ]
+}

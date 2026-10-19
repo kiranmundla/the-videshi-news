@@ -1,0 +1,36 @@
+{
+  "hook_line": "WHITE HOUSE TOUTS INDIA'S $330 BILLION",
+  "hook_stat": {
+    "big": "$330.5 BILLION",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "India-linked commitments listed by the White House"
+  },
+  "stats": [
+    {
+      "big": "$300 BILLION",
+      "label": "Reliance partnership for a Texas refinery announced in March"
+    },
+    {
+      "big": "$20.5 BILLION",
+      "label": "Indian industry pledges at the SelectUSA summit in May"
+    },
+    {
+      "big": "$500 BILLION",
+      "label": "India's total on a second White House tracker, ranking sixth"
+    }
+  ],
+  "diaspora_bullets": [
+    "On the second tracker, India ranks sixth among country-level totals",
+    "Essar Group's Mesabi Metallics announced a $15 billion steel plant"
+  ],
+  "key_entities": [
+    "White House",
+    "Reliance Industries",
+    "SelectUSA",
+    "PTI"
+  ],
+  "news_summary": "The White House listed $330.5 billion in India-linked investment commitments, totalling two entries of $310 billion and $20.5 billion, PTI reported.",
+  "payoff": "These are announced commitments, not money already spent.",
+  "versus": "",
+  "story_mood": "neutral-news"
+}

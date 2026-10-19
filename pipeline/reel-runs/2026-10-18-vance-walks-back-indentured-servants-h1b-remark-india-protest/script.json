@@ -1,0 +1,37 @@
+{
+  "hook_line": "INDIA PROTESTS, VANCE WALKS BACK H-1B REMARK",
+  "hook_stat": {
+    "big": "8 COMPANIES",
+    "eyebrow": "THE BACKLASH",
+    "sub": "Suspended from the PERM programme"
+  },
+  "stats": [
+    {
+      "big": "MORE THAN 70%",
+      "label": "of approved H-1B petitions annually are accounted for by Indian professionals"
+    },
+    {
+      "big": "$20,000",
+      "label": "Less that Vance claimed H-1B workers earned than American citizens in similar positions"
+    },
+    {
+      "big": "H-1B VISAS STAY VALID",
+      "label": "The PERM suspension is separate from H-1B status, according to the MEA"
+    }
+  ],
+  "diaspora_bullets": [
+    "Vance was responding to a question from an Indian immigrant who became a US citizen five years ago",
+    "His wife, Second Lady Usha Vance, is the daughter of Indian immigrants"
+  ],
+  "key_entities": [
+    "JD Vance",
+    "India's Ministry of External Affairs",
+    "H-1B",
+    "PERM",
+    "CBS News"
+  ],
+  "news_summary": "US Vice President JD Vance said his rhetoric was imperfect and that calling H-1B workers 'indentured servants' was not a criticism of the visa holders themselves, after India's Ministry of External Affairs called the term deeply offensive.",
+  "payoff": "Vance's clarification does not reverse the PERM suspensions, change any wage claim he made, or alter H-1B rules.",
+  "versus": "",
+  "story_mood": "tense"
+}

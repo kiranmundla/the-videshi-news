@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "article_slug": "white-house-330-billion-india-investment-list",
+  "name": "white-house-330-billion-india-investment-list",
+  "script": "reel-runs/2026-10-18-white-house-330-billion-india-investment-list/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000471
+  },
+  "manifest": "reel-runs/2026-10-18-white-house-330-billion-india-investment-list/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-10-18-white-house-330-billion-india-investment-list/output-v2/white-house-330-billion-india-investment-list.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "who-is-sethuraman-panchanathan-chennai-nsf-director-bueche-award",
+  "name": "who-is-sethuraman-panchanathan-chennai-nsf-director-bueche-award",
+  "script": "reel-runs/2026-10-18-who-is-sethuraman-panchanathan-chennai-nsf-director-bueche-award/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_line",
+      "news_summary",
+      "stats[2].big",
+      "diaspora_bullets[0]"
+    ],
+    "llm_cost_usd": 0.000617
+  }
+}

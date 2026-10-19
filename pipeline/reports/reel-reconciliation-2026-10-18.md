@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-10-18T05:22:00+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-10-18T17:32:07+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **191**
-- prebuilt_reels rows: 126 (96 with a yt_video_id)
+- Channel uploads (actual, via API): **192**
+- prebuilt_reels rows: 127 (97 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 10
-- **In sync** (channel video backed by a DB/publish-log record): **80**
+- Phase 2 publish-log entries: 11
+- **In sync** (channel video backed by a DB/publish-log record): **81**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 10
 - Ghost DB rows (yt_video_id not on channel): 14
@@ -273,7 +273,7 @@ _None._
 - row `cd31fd35-0ef2-4b97-ac09-678c9027a296` · slug dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals · yt_video_id `9MuNbawE8ac` · on channel: no
 - row `862b5d9e-cd65-4ab9-8be2-1dd6f981bb69` · slug bengaluru-born-ramya-anche-lead-nasa-puffins-mission · yt_video_id `dXT2DW7iSpU` · on channel: no
 
-## (d) In sync (80)
+## (d) In sync (81)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -354,5 +354,6 @@ _None._
 - `6dz3MkFtrSY` · public · 2026-10-16 · Court Orders State Department to Reopen 55,000-Visa Green Card Lottery #Shorts #GreenCard [prebuilt_reels:05c15505-d893-4f35-8dc2-01d4bdf77886]
 - `ioSSw3vOlJE` · public · 2026-10-17 · Bengaluru-Born Astronomer Ramya Anche to Lead NASA's $20 Million PUFFINS Mission #Shorts #TechNews [prebuilt_reels:2c934096-1240-412c-b4c7-9d770d08afea]
 - `V7FTpE5qRvc` · public · 2026-10-17 · ICICI Bank Profit Jumps 20% to Rs 14,843 Crore in Second Quarter #Shorts #Markets [prebuilt_reels:2ab35e77-428e-450c-abc2-a0c3645ffd80]
-- `DptW6hsP1E4` · unlisted · 2026-10-18 · Jailer 2 Crosses ₹209 Crore Worldwide in Two Days, Eyes a Record Weekend #Shorts #Entertainment [prebuilt_reels:05ced2bf-5653-481b-b716-1972c26ca8b1]
+- `DptW6hsP1E4` · public · 2026-10-18 · Jailer 2 Crosses ₹209 Crore Worldwide in Two Days, Eyes a Record Weekend #Shorts #Entertainment [prebuilt_reels:05ced2bf-5653-481b-b716-1972c26ca8b1]
+- `ad_O6nV9hGg` · unlisted · 2026-10-18 · White House Touts $330 Billion in Indian Investment as 'Trillions Pour In' #Shorts #Markets [prebuilt_reels:4d8cc5ec-2a15-446d-9221-4a86019303b6]
 

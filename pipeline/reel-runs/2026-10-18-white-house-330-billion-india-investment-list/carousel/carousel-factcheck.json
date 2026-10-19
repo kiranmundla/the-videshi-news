@@ -1,0 +1,158 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "white-house-330-billion-india-investment-list",
+    "verdict": "fail",
+    "held_claims": [
+      "stats[0].label"
+    ],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "White House Touts $330 Billion in Indian Investment as 'Trillions Pour In'",
+        "numbers": [
+          330.0,
+          330000000000.0
+        ],
+        "entities": [
+          "White House Touts",
+          "Indian Investment",
+          "Trillions Pour In'"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the White House touted $330 billion in Indian investment.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Two India entries \u2014 a $300 billion Reliance refinery partnership and $20.5 billion in SelectUSA pledges \u2014 put India among America's largest announced investors, though a second White House tracker counts $500 billion.",
+        "numbers": [
+          20.5,
+          300.0,
+          500.0,
+          20500000000.0,
+          300000000000.0,
+          500000000000.0
+        ],
+        "entities": [
+          "Two India",
+          "White House"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions the $300 billion Reliance partnership and $20.5 billion SelectUSA pledges.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The White House listed $330.5 billion in India-linked commitments, in two entries of $310 billion and $20.5 billion",
+        "numbers": [
+          20.5,
+          310.0,
+          330.5,
+          20500000000.0,
+          310000000000.0,
+          330500000000.0
+        ],
+        "entities": [
+          "White House"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "$310 billion is incorrectly stated; the article mentions $330.5 billion total from $300 billion and $20.5 billion.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "unsupported"
+        },
+        "verdict": "fail"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "A $300 billion Reliance partnership for a Texas refinery was announced in March, and Indian industry pledged up to $20.5 billion at the SelectUSA summit in May",
+        "numbers": [
+          20.5,
+          300.0,
+          20500000000.0,
+          300000000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the $300 billion Reliance partnership and $20.5 billion pledge details.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "A second White House tracker counts India at $500 billion, ranking sixth, behind the UAE, Qatar, Japan, Saudi Arabia and EU firms",
+        "numbers": [
+          500.0,
+          500000000000.0
+        ],
+        "entities": [
+          "White House",
+          "Saudi Arabia"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states a second tracker counts India at $500 billion, ranking sixth.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "White House Touts $330 Billion in Indian Investment as 'Trillions Pour In'",
+        "numbers": [
+          330.0,
+          330000000000.0
+        ],
+        "entities": [
+          "White House Touts",
+          "Indian Investment",
+          "Trillions Pour In'"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim repeats the hook line, which is supported by the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000338
+    }
+  },
+  "verdict": "fail"
+}

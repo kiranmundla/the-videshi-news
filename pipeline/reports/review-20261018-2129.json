@@ -1,0 +1,193 @@
+[
+  {
+    "id": "1509560e-1727-4bc6-a0e7-d0b9eeb09b92",
+    "headline": "British Mother Referred to Prevent Counter-Extremism Programme After Trip to Isr",
+    "slug": "british-mother-referred-prevent-counter-extremism-programme-israel-trip",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the referral and the date of the police visit to provide readers with a clearer understanding of the sequence of events.",
+        "Include a brief explanation of the Prevent programme and its criteria for referrals to give readers context about why Passmore was visited by the police.",
+        "Add a quote or statement from a rights group or an expert on counter-extremism to provide a balanced perspective on the implications of this case and the Prevent programme."
+      ],
+      "embed_opportunities": [
+        "Embed the official UK government page on the Prevent programme to provide readers with direct access to more information about its purpose and guidelines."
+      ]
+    }
+  },
+  {
+    "id": "ab2f3bab-0c6a-4da5-be89-9fd5223d5701",
+    "headline": "Cabinet Approves Rs 52,878 Crore IDBI Bank Sale to Fairfax Arm",
+    "slug": "cabinet-approves-rs-52878-crore-idbi-bank-sale-to-fairfax-arm",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the sale for IDBI Bank's operations and its customers, especially regarding any potential changes in services or policies, even if they are not immediate. This could help readers understand what to expect in the future.",
+        "Include a brief background on IDBI Bank's financial performance or challenges leading up to this sale to provide context for why this transaction is significant. This would enhance completeness and give readers a better understanding of the situation.",
+        "Ensure that the headline reflects the significance of the sale more compellingly, perhaps by mentioning it as the largest foreign direct investment in the financial sector to draw more attention."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement from the Finance Ministry regarding the sale for authenticity and to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "c66cbf36-177a-41dd-85d9-207829c3a2a5",
+    "headline": "Evercore Sees Alphabet TPU Sales Reaching $75 Billion in 2027",
+    "slug": "evercore-alphabet-tpu-sales-75-billion-2027",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the projected sales figures by explicitly stating the quarters or months when these revenues are expected to be recognized, especially for the $7.5 billion in the second half of 2026.",
+        "Provide a brief explanation of what TPUs (Tensor Processing Units) are and their significance in the context of AI and cloud computing for readers who may not be familiar with the technology.",
+        "Include a quote or statement from a relevant analyst or source to enhance attribution and provide additional context to the forecasts made by Evercore and J.P. Morgan."
+      ],
+      "embed_opportunities": [
+        "Embed the official Evercore ISI report or a relevant tweet from Evercore that summarizes their findings on TPU sales."
+      ]
+    }
+  },
+  {
+    "id": "8b647eeb-b785-4d8a-8588-98d59660884a",
+    "headline": "Air India Launches Only Nonstop Delhi to Osaka Flights From February 2027",
+    "slug": "air-india-delhi-osaka-nonstop-flights-february-2027",
+    "category": "travel",
+    "structural_issues": [
+      "Inline caption names venue 'Osaka Kansai International Airport' not supported by the image file name (Finnair_MD-11_%28OH-LGF%29_taxiing_at_Kansai_International_A\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include specific fare information or introductory offers for the new route to provide readers with a clearer understanding of potential costs.",
+        "Clarify the booking process by specifying when exactly bookings will open and if there are any early bird discounts or promotions available.",
+        "Add a brief section on the significance of this route for travelers, such as potential tourism benefits or economic impacts, to provide more context.",
+        "Ensure that the flight schedule is clearly formatted, perhaps in a table, to enhance readability and allow readers to quickly grasp the information."
+      ],
+      "embed_opportunities": [
+        "Embed Air India's official announcement or tweet regarding the new route to provide direct access to the source of information."
+      ]
+    }
+  },
+  {
+    "id": "cf16bac8-4b0c-4b2f-a313-6fa9ad552f5b",
+    "headline": "Sensex, Nifty Week Ahead: Jio IPO, Q2 Earnings, Crude and FII Flows in Focus",
+    "slug": "sensex-nifty-week-ahead-jio-ipo-q2-earnings-crude-fii",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the Jio IPO by explicitly stating the dates in a more prominent position, such as 'The Jio IPO opens on October 21 and closes on October 23, with anchor bidding on October 19.' This will enhance clarity for readers looking for specific dates.",
+        "Include a brief explanation of the significance of the Jio IPO in the context of the Indian market, such as its potential impact on liquidity and investor sentiment, to provide readers with a better understanding of its importance.",
+        "Add a summary of the expected Q2 earnings results for the mentioned companies (Infosys, Bajaj Finance, Kotak Mahindra Bank, UltraTech Cement) to give readers a clearer picture of what to watch for in the upcoming week."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Jio Platforms or a relevant financial news account announcing the IPO details to provide readers with direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "eb643d7e-21c6-4f46-bd8e-506a70b0b153",
+    "headline": "Ellyse Perry's Rapid Fifty Lifts Australia to Nervy Two-Wicket Win Over New Zeal",
+    "slug": "ellyse-perry-fifty-australia-two-wicket-win-new-zealand-first-t20i",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the match by specifying the date of the game in the introduction, as this is crucial for readers who may not be aware of when the event took place.",
+        "Provide more context about the significance of this match in relation to the series, such as what the implications are for the overall series standings or any historical context regarding Australia and New Zealand's rivalry in women's cricket.",
+        "Include quotes from players or coaches to enhance the article's depth and provide personal insights into the match's dynamics and key moments.",
+        "Ensure all player names and statistics are accurately attributed to their respective sources, particularly when referencing specific performances or match reports."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight reel of the match to provide readers with visual context and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "c0ac7df2-1089-4964-8723-d52f6bead47f",
+    "headline": "Akasa Air Extends Saudi Suspension to October 27, Longest of Indian Carriers",
+    "slug": "akasa-air-saudi-suspension-october-27-embassy-flight-list",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the reasons for the extended suspension of Akasa Air's flights to Saudi Arabia. Providing context about the ongoing situation at King Khalid International Airport would enhance the completeness of the article.",
+        "Include specific details about the operational status of the airports in Saudi Arabia, particularly King Khalid International Airport, to give readers a clearer understanding of the situation.",
+        "Add a direct quote from the Indian Embassy's advisory to enhance attribution and provide authoritative context to the information being reported.",
+        "Consider revising the headline to make it more compelling and specific, such as 'Akasa Air Extends Suspension of Saudi Routes to October 27 Amid Ongoing Airport Closures'."
+      ],
+      "embed_opportunities": [
+        "Embed the official advisory from the Indian Embassy in Riyadh for readers to access the full details directly."
+      ]
+    }
+  },
+  {
+    "id": "3b1356ea-40ff-4f32-98da-341e8a7e814a",
+    "headline": "Eight MGNREGA Workers Killed as Speeding Car Rams Roadside Crew in Sangrur",
+    "slug": "eight-mgnrega-workers-killed-speeding-car-sangrur",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact time the ambulances arrived at the scene and the duration of the protest by residents. This would provide readers with a clearer understanding of the response time and community reaction.",
+        "Include a quote from a local official or eyewitness to add depth and human interest to the story. This can enhance the narrative and provide a personal perspective on the tragedy.",
+        "Provide more context on the MGNREGA scheme and its significance in rural employment, especially for readers who may not be familiar with it. A brief explanation could help readers understand the impact of this incident on the local community.",
+        "Ensure that the compensation details from the Chief Minister are prominently placed and clearly stated, including how and when the families of the victims can access the \u20b92 lakh compensation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Punjab Chief Minister announcing the compensation and medical coverage for the victims, which would provide official confirmation and context."
+      ]
+    }
+  },
+  {
+    "id": "2aca172a-814f-482c-90e3-1c935cd33495",
+    "headline": "FSSAI Issues Notices to Nestl\u00e9, HUL Over Misleading Horlicks, Resource Claims",
+    "slug": "fssai-notices-nestle-hul-misleading-horlicks-resource-claims",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the companies to respond to the show-cause notices and any potential deadlines for further action by FSSAI, as this information is crucial for understanding the urgency of the situation.",
+        "Provide more context on the implications of these notices for consumers, such as potential health risks associated with the misleading claims, or what consumers should do if they have purchased these products.",
+        "Include direct quotes from FSSAI officials or representatives from Nestl\u00e9 and HUL to enhance attribution and provide a more balanced perspective on the issue."
+      ],
+      "embed_opportunities": [
+        "Embed the official FSSAI statement or tweet regarding the notices to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "2e0330b7-2d73-4ef1-a97b-1e7ed843cb12",
+    "headline": "Shafali Verma and Smriti Mandhana Blast India to Series Win Over Zimbabwe",
+    "slug": "shafali-verma-smriti-mandhana-india-series-win-zimbabwe-2nd-t20i",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the series win by providing context on India's standing in women's T20I cricket, such as their ranking or previous performances against Zimbabwe.",
+        "Include specific statistics about the players' performances in the series so far, such as total runs scored by Shafali Verma and Smriti Mandhana across both matches, to give readers a clearer picture of their contributions.",
+        "Correct the year mentioned in the article; it states 'India's 17th T20I victory of 2026,' which is likely a typographical error and should reflect the current year.",
+        "Provide a brief overview of the upcoming matches or series for India, including dates and opponents, to give readers a sense of what to expect next."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Women's Cricket account or a highlight reel of the match to enhance reader engagement and provide visual context."
+      ]
+    }
+  }
+]

@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "india-cancer-drug-price-caps-137-medicines-november-9",
+  "article_slug": "india-cancer-drug-price-caps-137-medicines-november-9",
+  "article_id": "740381c3-48a4-40fe-88e3-96e018de000c",
+  "category": "News",
+  "video": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output-v3/india-cancer-drug-price-caps-137-medicines-november-9.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://etimg.etb2bimg.com/thumb/msid-135024295,imgsize-188604,width-1200,height=627,overlay-etpharma,resizemode-75/news/pharma-industry/the-burden-of-cancer-drugs-millions-battle-exorbitant-prices-as-life-saving-treatment-slips-out-of-reach.jpg",
+    "local_path": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output-v3/hero.jpg",
+    "width": 1198,
+    "height": 627,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "focal-heuristic (no face detected)",
+    "has_face": false,
+    "box_source": [
+      450,
+      219,
+      670,
+      250
+    ],
+    "box_bg": [
+      -485.0,
+      670.6,
+      2051.7,
+      765.6
+    ],
+    "chin_bg": null,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 284,
+      "block_top": 858,
+      "block_bottom": 1142,
+      "text_bbox": [
+        161,
+        858,
+        844,
+        1134
+      ],
+      "texts": [
+        "News",
+        "CANCER DRUGS GET A PRICE CAP"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 278,
+      "block_top": 858,
+      "block_bottom": 1136,
+      "text_bbox": [
+        112,
+        858,
+        888,
+        1133
+      ],
+      "texts": [
+        "What Happened",
+        "The NPPA has capped trade margins at 30% of MRP on 137 anti-cancer medicines, with prices expected to fall by up to 70% on some medicines from November 9."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 538,
+      "block_top": 858,
+      "block_bottom": 1396,
+      "text_bbox": [
+        114,
+        858,
+        885,
+        1400
+      ],
+      "texts": [
+        "THE PRICE TAG",
+        "70%",
+        "Expected MRP fall on the most heavily marked-up cancer medicines"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 755,
+      "block_top": 796,
+      "block_bottom": 1551,
+      "text_bbox": [
+        124,
+        796,
+        878,
+        1550
+      ],
+      "texts": [
+        "By The Numbers",
+        "137",
+        "Anti-cancer medicines with trade margins capped by the NPPA",
+        "30%",
+        "New cap on trade margins as a share of MRP",
+        "700%",
+        "Highest mark-up found on some medicines before the cap"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 466,
+      "block_top": 858,
+      "block_bottom": 1324,
+      "text_bbox": [
+        118,
+        858,
+        869,
+        1320
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Families funding treatment in India should check the new MRP before paying",
+        "Hospitals and retailers must charge the revised prices from November 9"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 268,
+      "block_top": 858,
+      "block_bottom": 1126,
+      "text_bbox": [
+        118,
+        858,
+        891,
+        1137
+      ],
+      "texts": [
+        "The Takeaway",
+        "From November 9, hospitals and retailers must charge the revised prices.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "breaking-news-background.mp3",
+    "path": "music/breaking-news-background.mp3"
+  },
+  "render_seconds": 302.0,
+  "mp4_bytes": 4656079
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "3027a816-e8e7-4d71-bd1f-faa61827ed8f",
+    "headline": "Mississauga's Mughal Mahal, Known for Amritsari Kulcha, Is Expanding to Brampton",
+    "slug": "mughal-mahal-mississauga-expanding-brampton-amritsari-kulcha",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Provide a specific opening date or timeframe if possible, as this is crucial information for readers interested in visiting the new location.",
+        "Include quotes or testimonials from the restaurant owners or chefs about the expansion to add a personal touch and authenticity to the announcement.",
+        "Clarify the location details for the Brampton site, such as the exact address or any notable landmarks nearby, to help readers easily find it once it opens."
+      ],
+      "embed_opportunities": [
+        "Embed the restaurant's social media announcement for direct access to their updates and visuals of the new location."
+      ]
+    }
+  },
+  {
+    "id": "740381c3-48a4-40fe-88e3-96e018de000c",
+    "headline": "India Caps Margins on 137 Cancer Drugs, Prices to Fall Up to 70% From November 9",
+    "slug": "india-cancer-drug-price-caps-137-medicines-november-9",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the price changes: The article states that revised prices will take effect on November 9, 2026, but this seems to be a typographical error as the current date is 2023. This should be corrected to November 9, 2023, to avoid confusion.",
+        "Provide more context on the impact of the price changes: Include specific examples of how much certain drugs will cost after the price cap is implemented, as this would give readers a clearer understanding of the financial implications.",
+        "Enhance clarity on the process for hospitals and retailers: The article mentions that hospitals and retailers must charge the revised prices from November 9, but it would be helpful to specify what steps patients should take if they encounter discrepancies in pricing after this date."
+      ],
+      "embed_opportunities": [
+        "Embed the official NPPA announcement or a relevant government tweet regarding the price cap to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "ef3469d0-ffe3-4201-acf5-b4dfa5ab9393",
+    "headline": "Missouri Woman Charged After Shot Fired in Neighbours' Fence Dispute",
+    "slug": "missouri-woman-charged-shot-fired-fence-dispute-st-charles",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events leading up to the shooting, including the specific day and time of the incident, to provide readers with a clearer context of the situation.",
+        "Include a direct quote from the police or a legal expert regarding the implications of the charges against Kohensky, which would enhance the article's authority and provide readers with a better understanding of the legal context.",
+        "Specify the potential penalties Kohensky could face if convicted, as this would give readers a concrete understanding of the seriousness of the charges."
+      ],
+      "embed_opportunities": [
+        "Embed the official police statement or press release regarding the incident for additional context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "7208e2c1-021d-4c25-9862-811388ed81ca",
+    "headline": "Jailer 2's Hindi Version Enters Top Five Dubbed Tamil Grossers in Four Days",
+    "slug": "jailer-2-hindi-version-top-five-dubbed-tamil-grossers-day-4",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the sources of the revenue figures by providing direct attribution to Sacnilk and Koimoi at the beginning of the article to enhance credibility.",
+        "Include a brief context about the significance of Rajinikanth's films in the Indian cinema landscape, which could help readers understand why this milestone is noteworthy.",
+        "Add a comparison of the performance of Jailer 2 with other recent releases in the same genre or market to provide a more comprehensive view of its success."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Koimoi or Sacnilk that highlights the box office figures for Jailer 2 to provide readers with a direct source for the information."
+      ]
+    }
+  }
+]

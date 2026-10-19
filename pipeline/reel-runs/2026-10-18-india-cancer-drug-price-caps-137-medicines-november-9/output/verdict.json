@@ -1,0 +1,16 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa_error",
+  "article_slug": "india-cancer-drug-price-caps-137-medicines-november-9",
+  "name": "india-cancer-drug-price-caps-137-medicines-november-9",
+  "script": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000466
+  },
+  "manifest": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output/render-manifest.json",
+  "video": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output/india-cancer-drug-price-caps-137-medicines-november-9.mp4",
+  "detail": "No module named 'cv2'"
+}

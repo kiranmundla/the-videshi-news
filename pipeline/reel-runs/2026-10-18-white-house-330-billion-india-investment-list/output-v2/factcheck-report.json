@@ -1,0 +1,266 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "white-house-330-billion-india-investment-list",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "WHITE HOUSE TOUTS INDIA'S $330 BILLION",
+      "numbers": [
+        330.0,
+        330000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the White House touts $330 billion in Indian investment.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The White House listed $330.5 billion in India-linked investment commitments, totalling two entries of $310 billion and $20.5 billion, PTI reported.",
+      "numbers": [
+        20.5,
+        310.0,
+        330.5,
+        20500000000.0,
+        310000000000.0,
+        330500000000.0
+      ],
+      "entities": [
+        "White House"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the $330.5 billion total and the two entries.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$330.5 BILLION",
+      "numbers": [
+        330.5,
+        330500000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$330.5 billion is explicitly mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "India-linked commitments listed by the White House",
+      "numbers": [],
+      "entities": [
+        "White House"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses India-linked commitments listed by the White House.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article does not mention 'BY THE NUMBERS' as a label.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$300 BILLION",
+      "numbers": [
+        300.0,
+        300000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The $300 billion Reliance partnership is detailed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Reliance partnership for a Texas refinery announced in March",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the Reliance partnership was announced in March.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$20.5 BILLION",
+      "numbers": [
+        20.5,
+        20500000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The $20.5 billion in pledges is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Indian industry pledges at the SelectUSA summit in May",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the $20.5 billion pledges were made at the SelectUSA summit.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$500 BILLION",
+      "numbers": [
+        500.0,
+        500000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states India's total on a second tracker is $500 billion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "India's total on a second White House tracker, ranking sixth",
+      "numbers": [],
+      "entities": [
+        "White House"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms India ranks sixth on the second White House tracker.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "On the second tracker, India ranks sixth among country-level totals",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states India ranks sixth among country-level totals.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Essar Group's Mesabi Metallics announced a $15 billion steel plant",
+      "numbers": [
+        15.0,
+        15000000000.0
+      ],
+      "entities": [
+        "Essar Group's Mesabi Metallics"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The $15 billion steel plant by Essar Group is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "These are announced commitments, not money already spent.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article clarifies these are announced commitments, not spent money.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "White House",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Reliance Industries",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "SelectUSA",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "PTI",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000471
+  }
+}

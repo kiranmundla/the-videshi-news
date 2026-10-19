@@ -1,0 +1,296 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "who-is-sethuraman-panchanathan-chennai-nsf-director-bueche-award",
+  "verdict": "fail",
+  "held_claims": [
+    "hook_line",
+    "news_summary",
+    "stats[2].big",
+    "diaspora_bullets[0]"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ENGINEERING'S 43-YEAR FIRST",
+      "numbers": [
+        43.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 43 years, not specifically engineering's 43-year first.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "news_summary",
+      "text": "Chennai-born Sethuraman Panchanathan, the 15th director of the National Science Foundation, has become the first Indian American to win the National Academy of Engineering's Arthur M. Bueche Award.",
+      "numbers": [
+        15.0
+      ],
+      "entities": [
+        "Chennai-born Sethuraman Panchanathan",
+        "National Science Foundation",
+        "Indian American",
+        "National Academy",
+        "Engineering's Arthur M Bueche Award"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Engineering's Arthur M Bueche Award"
+        ]
+      },
+      "llm_reason": "Panchanathan is the first Indian American to win the Bueche Award.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "43",
+      "numbers": [
+        43.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the Bueche Award's 43-year history.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Years the Bueche Award waited for an Indian American winner",
+      "numbers": [],
+      "entities": [
+        "Bueche Award",
+        "Indian American"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the Bueche Award waited 43 years for an Indian American winner.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article does not contain a section labeled 'BY THE NUMBERS.'",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "15th",
+      "numbers": [
+        15.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Panchanathan is identified as the 15th director of the NSF.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Director of the National Science Foundation, 2020 to 2025",
+      "numbers": [
+        2020.0,
+        2025.0
+      ],
+      "entities": [
+        "National Science Foundation"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2020,
+          2025
+        ]
+      },
+      "llm_reason": "The article states he served as director from 2020 to 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "485+",
+      "numbers": [
+        485.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states he published more than 485 scholarly papers.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Scholarly papers published across his career",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms he published over 485 scholarly papers.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2025",
+      "numbers": [
+        2025.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article states he received the Padma Shri in 2025, not specifically in 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Received the Padma Shri from India",
+      "numbers": [],
+      "entities": [
+        "Padma Shri"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms he received the Padma Shri from India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "A Chennai-born scientist who ran America's National Science Foundation",
+      "numbers": [],
+      "entities": [
+        "America's National Science Foundation"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "America's National Science Foundation"
+        ]
+      },
+      "llm_reason": "The article describes him as a Chennai-born scientist who ran the NSF.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Decorated at the top level by both India and the United States",
+      "numbers": [],
+      "entities": [
+        "United States"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states he has been decorated by both India and the U.S.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The Bueche Award's 43-year wait for an Indian American winner is over.",
+      "numbers": [
+        43.0
+      ],
+      "entities": [
+        "Bueche Award's",
+        "Indian American"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the Bueche Award's 43-year wait for an Indian American winner is over.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Sethuraman Panchanathan",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "National Academy of Engineering",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "National Science Foundation",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Arizona State University",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Bueche Award",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000617
+  }
+}

@@ -136,5 +136,31 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "ad_O6nV9hGg",
+    "article_slug": "white-house-330-billion-india-investment-list",
+    "article_id": "355b551e-ba4a-434e-ad69-2f727802250f",
+    "title": "White House Touts $330 Billion in Indian Investment as 'Trillions Pour In' #Shorts #Markets",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-18T17:30:20.027866+00:00",
+    "video_path": "reel-runs/2026-10-18-white-house-330-billion-india-investment-list/output-v2/white-house-330-billion-india-investment-list.mp4",
+    "video_sha256": "9f938dc26ffc453ed3fcc367a4cf3aa9294bf22db84bd84ad41c89728c6bd7e1",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "M5UjKqtENwU",
+    "article_slug": "india-cancer-drug-price-caps-137-medicines-november-9",
+    "article_id": "740381c3-48a4-40fe-88e3-96e018de000c",
+    "title": "India Caps Margins on 137 Cancer Drugs, Prices to Fall Up to 70% From November 9 #Shorts #News",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-19T05:41:12.286679+00:00",
+    "video_path": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output-v3/india-cancer-drug-price-caps-137-medicines-november-9.mp4",
+    "video_sha256": "d5fd4cdb9d14fe7aa0ba53d54d248a78e70cb72f3386caaf00dd7d394173d376",
+    "factcheck_verdict": "pass",
+    "qa_score": 9.0,
+    "publisher": "reel_publish.py"
   }
 ]
