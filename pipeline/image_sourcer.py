@@ -1768,6 +1768,11 @@ _HEADLINE_COLLECTIVE_WORDS = {
     # a person named "Witnesses Say", blocking Pexels on a generic news
     # headline. A witness is a collective/plural noun, never a given name.
     "witnesses",
+    # 2026-10-19 audit: crowd plurals from the Manipur ambush headline
+    # ("...Firewood Collectors Ambushed, Protesters Reach CM's Gate") —
+    # same class as "witnesses": a crowd is never a given name.
+    "protesters", "demonstrators", "onlookers", "bystanders", "mourners",
+    "collectors",
 }
 # First-word org nouns that can never be a person's given name. Reuses the
 # title-word list (minus bank/banks) because a headline starting with an
@@ -1858,6 +1863,24 @@ _HEADLINE_COMMON_VERB_WORDS = {
     # as a person named "Panama Declares", blocking Pexels on a news headline.
     # Same family as the "announces"/"confirms" 3rd-person verbs above.
     "declares",
+    # 2026-10-19 audit: more headline verb FORMS (3rd-person -s / past
+    # tense / modals) — a surname never reads like one of these, but the
+    # missing forms were passing as surnames: "Sammy Hopes..." (fake
+    # surname "Hopes"), "...Kamboj Earns Test Recall", "Google Adopts...",
+    # "FSSAI Proposes...", "...Sharma Replaces Bhavina Patel".
+    "earns", "hopes", "replaces", "asked", "adopts", "proposes", "puts",
+    "requires", "targets", "referred", "sends", "sent", "rams", "finds",
+    "seeks", "calls", "tells", "shows", "lands", "picks", "leaves",
+    "joins", "meets", "helps", "attract", "attracts", "hires",
+    "triggered", "ambushed", "cannot", "triggers", "reach", "reaches",
+    # Sports-headline verb forms that follow a name ("...Ruled Out",
+    # "...Wins", "...Bags Gold") — these terminate a name run; without
+    # them the full-name recovery above would swallow the verb as a
+    # third name part. Same for memorial verbs ("Mother Teresa
+    # Remembered...").
+    "ruled", "named", "picked", "signs", "scores", "takes", "bags",
+    "clinches", "seals", "leads", "plays", "won", "lost", "drew",
+    "remembered", "mourned", "honoured", "honored", "celebrated",
 }
 # Storm/weather system leads: "Hurricane Isaias Shuts...", "Tropical Storm
 # X...", "Cyclone Y..." — a storm name is not a person's name. The first word
@@ -1867,6 +1890,67 @@ _HEADLINE_COMMON_VERB_WORDS = {
 # "storm" only as a FIRST word; a mid-headline "storm" is irrelevant.
 _HEADLINE_STORM_WORDS = {
     "hurricane", "tropical", "cyclone", "typhoon", "storm",
+}
+# Nationality / demonym adjectives (incl. language-community adjectives).
+# As a headline's FIRST word a demonym is a descriptor modifying the noun
+# after it ("British Mother Referred...", "Pakistani Man Jailed...") —
+# it is never a person's given name. (2026-10-19 audit: "British Mother"
+# passed as a person and kept a story with no named person in it
+# imageless.) Ambiguous given names stay out, per the file's convention:
+# "georgia"/"jordan"/"chad" are names, their demonyms are not.
+_HEADLINE_DEMONYM_WORDS = {
+    "american", "british", "canadian", "australian", "mexican", "indian",
+    "pakistani", "bangladeshi", "nepali", "lankan", "chinese", "japanese",
+    "korean", "russian", "ukrainian", "french", "german", "italian",
+    "spanish", "portuguese", "belgian", "swiss", "austrian", "polish",
+    "greek", "turkish", "iranian", "iraqi", "israeli", "palestinian",
+    "lebanese", "syrian", "jordanian", "egyptian", "libyan", "tunisian",
+    "algerian", "moroccan", "sudanese", "ethiopian", "eritrean",
+    "somali", "kenyan", "tanzanian", "ugandan", "nigerian", "ghanaian",
+    "cameroonian", "senegalese", "malian", "mauritian", "fijian",
+    "afghan", "burmese", "thai", "vietnamese", "cambodian", "laotian",
+    "indonesian", "malaysian", "singaporean", "filipino", "taiwanese",
+    "mongolian", "tibetan", "kazakh", "uzbek", "armenian", "georgian",
+    "brazilian", "argentine", "chilean", "peruvian", "colombian",
+    "venezuelan", "ecuadorian", "bolivian", "paraguayan", "uruguayan",
+    "cuban", "haitian", "jamaican", "dominican", "honduran", "panamanian",
+    "african", "asian", "european", "arab", "persian", "kurdish",
+    "pashtun", "sindhi", "baloch", "punjabi", "bengali", "gujarati",
+    "marathi", "odia", "assamese", "kashmiri", "malayali", "keralite",
+    "telugu", "kannada", "bhutanese", "maldivian",
+}
+# Kinship nouns and role/activity nouns as the SECOND word of a headline
+# lead: in "British Mother ..." / "Para Shooter Rakesh Nidagundi ..." the
+# second word names the subject's relation or role — the pair is a
+# descriptor phrase, not a name (2026-10-19 audit). Singular forms are
+# restricted to words that are essentially never surnames ("son" is a
+# real surname — Son Heung-min — and stays out; profession surnames like
+# Baker/Cook/Player/Singer/Farmer/Driver also stay out); plural role
+# nouns are always safe because surnames are singular.
+_HEADLINE_ROLE_SECOND_WORDS = {
+    # kinship / relation
+    "mother", "father", "parents", "husband", "wife", "daughter",
+    "brother", "sister", "sibling", "siblings", "family", "widow",
+    "widower", "grandmother", "grandfather", "grandma", "grandpa",
+    "mom", "dad", "spouse", "couple", "twins", "boyfriend", "girlfriend",
+    "bearer",
+    # role / activity (singular — never surnames)
+    "shooter", "golfer", "swimmer", "wrestler", "influencer", "activist",
+    "devotee", "tourist", "visitor", "student", "worker", "shopkeeper",
+    "homemaker", "housewife", "jobseeker",
+    # role / activity (plural — surnames are singular)
+    "workers", "students", "tourists", "visitors", "devotees",
+    "shooters", "golfers", "players", "singers", "actors", "farmers",
+    "teachers", "lawyers", "nurses", "engineers", "drivers", "riders",
+    "dancers", "runners", "boxers", "coaches", "employees", "jobseekers",
+    "lawmakers", "legislators", "politicians", "bureaucrats",
+}
+# Pronouns: a headline leading with a pronoun ("He Asked Followers for
+# Diwali Sweets...") is a narrative lead — a pronoun is never a given
+# name (2026-10-19 audit: "He Asked" passed as a named person).
+_HEADLINE_PRONOUN_WORDS = {
+    "he", "she", "it", "they", "we", "you", "i",
+    "him", "her", "them", "us",
 }
 
 
@@ -1908,6 +1992,15 @@ def headline_person_name(headline):
     # FIRST word — "Ranveer Brar's" (possessive on second) is still a person.
     if re.search(r"['’]s$", first) and first_base in _HEADLINE_PLACE_POSSESSIVE_WORDS:
         return None
+    # Possessive on the FIRST token at all ("Anthropic's Junior Tech
+    # Hires..."): the possessive closes the subject noun phrase at token
+    # 1, so tokens 1+2 can never be a two-word person name — a person's
+    # possessive rides on the LAST name token ("Ranveer Brar's").
+    # Single-token possessive subjects outside the prefix/place lists
+    # (companies, brands) slipped through as fake people and engaged the
+    # identity guard on non-person stories (2026-10-19 audit).
+    if re.search(r"['’]s$", first):
+        return None
     # ALL-CAPS short lead words are org/acronyms (IIT, UPI, EPF, NPS, PFRDA),
     # never a person's given name
     if first.isupper() and len(first) <= 5:
@@ -1915,6 +2008,11 @@ def headline_person_name(headline):
     # Preposition/interrogative leads ("After Years...", "Why India..."):
     # a given name never starts with one
     if first_base in _HEADLINE_NONNAME_FIRST_WORDS:
+        return None
+    # Demonym / pronoun leads ("British Mother...", "He Asked..."): a
+    # nationality adjective or a pronoun in first position is a
+    # descriptor or a narrative pronoun, never a given name (2026-10-19)
+    if first_base in _HEADLINE_DEMONYM_WORDS or first_base in _HEADLINE_PRONOUN_WORDS:
         return None
     # Org/collective-noun leads ("Universities Sue...", "Doctors Warn...",
     # "Fans Mourn..."): a given name never starts with one
@@ -1956,6 +2054,11 @@ def headline_person_name(headline):
         return None
     if second_base in _HEADLINE_TITLE_WORDS:
         return None
+    # Kinship / role noun as the second word ("British Mother", "Para
+    # Shooter"): token 2 names the subject's relation or role, not a
+    # surname — the pair is a descriptor phrase, not a name (2026-10-19)
+    if second_base in _HEADLINE_ROLE_SECOND_WORDS:
+        return None
     # Multi-word place phrases ("Sai Kung's ..."): the district is not a person.
     # Checked on the two-word phrase so "Sai" alone still passes as a given
     # name ("Sai Pallavi's Wedding..."). Kept tight and documented per
@@ -1968,10 +2071,31 @@ def headline_person_name(headline):
     # chars) must not pass as a surname — "Still LA's Best Biryani..." is
     # not a person. Checking len(second) let the 4-char "LA's" through.
     if first[0].isupper() and second[0].isupper() and len(first) > 1 and len(second_base) > 2:
-        name = f"{first} {second}"
         # Strip possessive: "Ranveer Brar's" → "Ranveer Brar"
-        name = re.sub(r"['’]s$", "", name)
-        return name
+        parts = [first, re.sub(r"['’]s$", "", second)]
+        # Full-name recovery (2026-10-19 audit): a three-part name was
+        # truncated to its first two tokens — "Min Woo Lee Withdraws..."
+        # yielded "Min Woo", sending the identity guard's Wikipedia
+        # lookup and the profile search after a non-existent person.
+        # Consume a following token as a third name part only when it is
+        # itself name-shaped: a single capitalized alphabetic word (no
+        # hyphen/digit — "Agarwal's Fold-Flat Spoon" must not extend)
+        # belonging to none of the non-name word classes (headline verbs
+        # end name runs: "...Sutar Hits", "...Kamboj Earns"). Skipped
+        # when token 2 carried the possessive: "'s" closes the name
+        # phrase, so what follows is a new noun phrase, never a name
+        # part ("Ranveer Brar's Tandoori..." stays "Ranveer Brar").
+        tm = None
+        if not re.search(r"['’]s$", second):
+            tm = re.match(r"\s+([A-Za-z][\w.'-]*)", h[m.end():])
+        if tm:
+            third = re.sub(r"['’]s$", "", tm.group(1)).rstrip(".")
+            if (re.fullmatch(r"[A-Za-z]+", third)
+                    and len(third) > 1
+                    and not (tm.group(1).isupper() and len(tm.group(1)) <= 5)
+                    and third.lower() not in _NAME_PART_REJECT_WORDS):
+                parts.append(third)
+        return " ".join(parts)
     return None
 
 
@@ -2050,6 +2174,8 @@ _PROFILE_SCAN_BAD_TOKENS = (
     _HEADLINE_TITLE_WORDS | _HEADLINE_PREFIX_WORDS
     | _HEADLINE_NONNAME_FIRST_WORDS | _HEADLINE_COLLECTIVE_WORDS
     | _HEADLINE_COMMON_VERB_WORDS | _HEADLINE_DETERMINER_WORDS
+    | _HEADLINE_DEMONYM_WORDS | _HEADLINE_ROLE_SECOND_WORDS
+    | _HEADLINE_PRONOUN_WORDS
     | {
         "inc", "corp", "ltd", "llc", "co", "university", "college",
         "institute", "school", "hospital", "department", "ministry",
@@ -2081,7 +2207,27 @@ _PROFILE_SCAN_BAD_TOKENS = (
         "lead", "leads", "older", "hate", "citizenship", "false", "claim",
         "illinois", "california", "texas", "florida", "ohio", "georgia",
         "arizona", "nevada", "oregon", "colorado", "virginia",
+        # 2026-10-19 audit: articles/relative pronouns, resultative
+        # adjectives, focusing adverbs, role descriptors, and event/org/
+        # topic nouns the scan kept minting as "people" ("Unbeaten
+        # Only", "The Flowers", "Counter-Extremism Programme", "Ebola
+        # Cases", "Crore Investment", "Roadside Crew"). None of these is
+        # ever part of a person's name.
+        "the", "a", "an", "who",
+        "unbeaten", "undefeated", "only", "also", "former", "defending",
+        "reigning", "biggest", "largest", "junior", "senior",
+        "designer", "stage", "crew", "staff", "agents",
+        "programme", "program", "summit", "conference", "campaign",
+        "scheme", "initiative", "games", "prevent",
+        "cases", "total", "exemption", "crore", "lakh", "rs", "arm",
     }
+)
+
+# Words that disqualify a token as an additional name part in
+# headline_person_name's full-name recovery: every non-name class above.
+_NAME_PART_REJECT_WORDS = (
+    _PROFILE_SCAN_BAD_TOKENS | _HEADLINE_STORM_WORDS
+    | _HEADLINE_PROPER_NONPERSON_WORDS
 )
 
 
@@ -2156,6 +2302,15 @@ def _headline_name_scan(headline):
         if t[:1].isupper() and base.lower() not in _HEADLINE_COMMON_VERB_WORDS \
                 and not (t.isupper() and len(t) <= 5):
             run.append(base)
+            # Sentence boundary (multi-sentence headlines — "...Diwali
+            # Sweets. They Sent a TV..."): a token ending in '.' that is
+            # not a short abbreviation ("Dr.", "St.", "U.S.") closes the
+            # run, or windows straddle the boundary and invent people
+            # ("Sweets They Sent") (2026-10-19 audit).
+            if t.endswith(".") and len(t) > 3 and t.count(".") == 1:
+                if len(run) >= 2:
+                    runs.append(run)
+                run = []
         else:
             if len(run) >= 2:
                 runs.append(run)
