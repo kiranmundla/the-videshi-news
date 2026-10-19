@@ -1,25 +1,25 @@
 {
- "generated_at": "2026-10-17T04:55:07.324682+00:00",
- "week_of": "Oct 12 – Oct 18, 2026",
- "as_of": "2026-10-16",
+ "generated_at": "2026-10-19T17:26:51.480703+00:00",
+ "week_of": "Oct 19 – Oct 25, 2026",
+ "as_of": "2026-10-19",
  "films": [
   {
    "title": "Drishyam: The Conclusion",
    "language": "Hindi",
    "release_date": "2026-10-02",
-   "india_net_crore": 336.0,
-   "worldwide_gross_crore": 520.15,
+   "india_net_crore": 347.35,
+   "worldwide_gross_crore": 538.27,
    "budget_crore": 110,
    "verdict": "Blockbuster",
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/d/d9/Drishyam-_The_Conclusion_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "sources": [
     {
      "name": "Sacnilk",
-     "url": "https://www.sacnilk.com/quicknews/drishyam_3_hindi_2026_Box_Office_Collection_Day_15"
+     "url": "https://www.sacnilk.com/news/drishyam_3_hindi_2026_Box_Office_Collection_Day_Wise_Worldwide"
     },
     {
-     "name": "Koimoi",
-     "url": "https://www.koimoi.com/box-office/drishyam-3-worldwide-box-office-vijay-salgaonkars-royal-entry-into-the-400-crore-club-beats-singham-again-to-become-ajay-devgns-highest-grossing-film-ever/"
+     "name": "IWMBuzz",
+     "url": "https://www.iwmbuzz.com/movies/news-movies/drishyam-3-the-conclusion-box-office-collection-day-17-ajay-devgn-starrer-nears-e282b9350-cr-net-milestone/2026/10/19"
     }
    ]
   },
@@ -27,19 +27,39 @@
    "title": "Hanuman Ansh",
    "language": "Hindi",
    "release_date": "2026-08-07",
-   "india_net_crore": 334.48,
-   "worldwide_gross_crore": 435.37,
+   "india_net_crore": 339.85,
+   "worldwide_gross_crore": 449.67,
    "budget_crore": 1.8,
    "verdict": "All-Time Blockbuster",
-   "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/0e/Official_poster_for_the_Hanuman_Ansh_%282026%29_film.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "poster_url": null,
    "sources": [
     {
      "name": "Sacnilk",
-     "url": "https://www.sacnilk.com/quicknews/Hanuman_Ansh_2026_Box_Office_Collection_Day_66"
+     "url": "https://www.sacnilk.com/quicknews/Hanuman_Ansh_2026_Box_Office_Collection_Day_73"
     },
     {
-     "name": "Zoom TV",
-     "url": "https://www.zoomtventertainment.com/bollywood/hanuman-ansh-box-office-roi-milestone-article-156297865"
+     "name": "Sacnilk (day-wise)",
+     "url": "https://www.sacnilk.com/news/Hanuman_Ansh_2026_Box_Office_Collection_Day_Wise_Worldwide"
+    }
+   ]
+  },
+  {
+   "title": "Jailer 2",
+   "language": "Tamil",
+   "release_date": "2026-10-15",
+   "india_net_crore": 199.9,
+   "worldwide_gross_crore": 424.25,
+   "budget_crore": 300,
+   "verdict": null,
+   "poster_url": "https://upload.wikimedia.org/wikipedia/en/d/dc/Jailer_2_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "sources": [
+    {
+     "name": "Filmibeat (citing Sacnilk)",
+     "url": "https://www.filmibeat.com/tamil/news/2026/jailer-2-box-office-collection-day-4-rajinikanth-film-nears-200-crore-india-net-425-crore-worldwide-535141.html"
+    },
+    {
+     "name": "Filmfare (citing Sacnilk)",
+     "url": "https://www.filmfare.com/news/south/jailer-2-box-office-day-4-rajinikanths-film-crosses-rs-400-crore-worldwide-86684.html"
     }
    ]
   },
@@ -47,15 +67,15 @@
    "title": "Mirzapur: The Movie",
    "language": "Hindi",
    "release_date": "2026-09-04",
-   "india_net_crore": 232.92,
-   "worldwide_gross_crore": 336.06,
+   "india_net_crore": 230.46,
+   "worldwide_gross_crore": 339.71,
    "budget_crore": 90,
    "verdict": "Blockbuster",
    "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Mirzapur_from_the_Ganges.JPG/500px-Mirzapur_from_the_Ganges.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
    "sources": [
     {
-     "name": "Koimoi",
-     "url": "https://www.koimoi.com/box-office/mirzapur-the-movie-box-office-completes-one-month-in-theaters-heres-its-collection-budget-verdict/"
+     "name": "Sacnilk",
+     "url": "https://www.sacnilk.com/news/Mirzapur_The_Movie_2026_Box_Office_Collection_Day_Wise_Worldwide"
     },
     {
      "name": "Koimoi (day-wise)",
@@ -74,32 +94,12 @@
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/b/b4/Bethlehem_Kudumba_Unit_Movie_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "sources": [
     {
+     "name": "Koimoi (closing collection)",
+     "url": "https://www.koimoi.com/box-office/bethlehem-kudumba-unit-box-office-closing-collection-mollywoods-top-grosser-ends-its-blockbuster-run-with-nearly-450-returns/"
+    },
+    {
      "name": "Zoom TV",
      "url": "https://www.zoomtventertainment.com/bollywood/bethlehem-kudumba-unit-box-office-closing-collection-article-156310368"
-    },
-    {
-     "name": "Sacnilk",
-     "url": "https://www.sacnilk.com/movie/bethlehem_kudumba_unit_2026"
-    }
-   ]
-  },
-  {
-   "title": "Jailer 2",
-   "language": "Tamil",
-   "release_date": "2026-10-15",
-   "india_net_crore": 95.3,
-   "worldwide_gross_crore": 209.1,
-   "budget_crore": 300,
-   "verdict": null,
-   "poster_url": "https://upload.wikimedia.org/wikipedia/en/d/dc/Jailer_2_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-   "sources": [
-    {
-     "name": "Sacnilk",
-     "url": "https://www.sacnilk.com/quicknews/Jailer_2_2026_Box_Office_Collection_Day_2"
-    },
-    {
-     "name": "Sacnilk (movie page)",
-     "url": "https://www.sacnilk.com/movie/Jailer_2_2026"
     }
    ]
   },
@@ -107,19 +107,19 @@
    "title": "The Paradise",
    "language": "Telugu",
    "release_date": "2026-09-24",
-   "india_net_crore": 120.03,
-   "worldwide_gross_crore": 172.53,
+   "india_net_crore": 120.84,
+   "worldwide_gross_crore": 173.21,
    "budget_crore": 200,
    "verdict": "Flop",
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/b/bb/The_Paradise_%282026_Indian_film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "sources": [
     {
-     "name": "IWMBuzz (via Sacnilk)",
-     "url": "https://www.iwmbuzz.com/movies/news-movies/the-paradise-box-office-collection-day-18-nanis-film-continues-its-downward-trajectory-earns-just-e282b934-lakh-net/2026/10/12"
+     "name": "Sacnilk",
+     "url": "https://www.sacnilk.com/news/The_Paradise_2026_Box_Office_Collection_Day_Wise_Worldwide"
     },
     {
-     "name": "Zoom TV",
-     "url": "https://www.zoomtventertainment.com/bollywood/nani-the-paradise-box-office-collection-analysis-article-156310364"
+     "name": "Sacnilk",
+     "url": "https://www.sacnilk.com/news/the-paradise-ott-release-date-when-and-where-to-watch-nanis-career-biggest-grosser"
     }
    ]
   },
@@ -127,19 +127,19 @@
    "title": "Mandaadi",
    "language": "Tamil",
    "release_date": "2026-09-10",
-   "india_net_crore": 100.72,
-   "worldwide_gross_crore": 135.82,
+   "india_net_crore": 101.94,
+   "worldwide_gross_crore": 138.24,
    "budget_crore": 50,
    "verdict": "Super Hit",
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/e/ea/Mandaadi.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "sources": [
     {
-     "name": "Koimoi",
-     "url": "https://www.koimoi.com/box-office/mandaadi-box-office-completes-one-month-in-theaters-heres-its-collection-budget-verdict/"
+     "name": "Koimoi (closing collection)",
+     "url": "https://www.koimoi.com/box-office/mandaadi-box-office-closing-collection-soori-starrer-wraps-up-its-theatrical-run-with-almost-104-roi/"
     },
     {
-     "name": "Sacnilk",
-     "url": "https://www.sacnilk.com/movie/mandaadi_2026"
+     "name": "Tenvow (Sacnilk-based)",
+     "url": "https://tenvow.com/box-office/mandaadi/"
     }
    ]
   },
@@ -147,8 +147,8 @@
    "title": "The Vvaan: Force of the Forrest",
    "language": "Hindi",
    "release_date": "2026-09-25",
-   "india_net_crore": 69.74,
-   "worldwide_gross_crore": 90.79,
+   "india_net_crore": 69.9,
+   "worldwide_gross_crore": 90.97,
    "budget_crore": 80,
    "verdict": "Average",
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/f/f1/The_Vvaan_poster.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
@@ -158,28 +158,8 @@
      "url": "https://www.sacnilk.com/news/Vvan_2026_Box_Office_Collection_Day_Wise_Worldwide"
     },
     {
-     "name": "IWMBuzz",
-     "url": "https://www.iwmbuzz.com/movies/news-movies/the-vvaan-box-office-collection-day-18-sidharth-malhotras-film-drops-to-just-e282b935-lakh-net/2026/10/13"
-    }
-   ]
-  },
-  {
-   "title": "Vibe",
-   "language": "Hindi",
-   "release_date": "2026-09-18",
-   "india_net_crore": 16.1,
-   "worldwide_gross_crore": 21.21,
-   "budget_crore": 35,
-   "verdict": "Flop",
-   "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/2c/Vibe_%28film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-   "sources": [
-    {
-     "name": "Koimoi (day-wise)",
-     "url": "https://www.koimoi.com/box-office/daily-breakdown/vibe-day-wise-box-office-collection/"
-    },
-    {
-     "name": "Koimoi",
-     "url": "https://www.koimoi.com/box-office/vibe-box-office-collection-day-11-kunal-kemmus-latest-directorial-lags-62-behind-madgaon-express/"
+     "name": "Sacnilk (movie page)",
+     "url": "https://www.sacnilk.com/movie/Vvan_2026"
     }
    ]
   },
@@ -187,19 +167,39 @@
    "title": "Ranabaali",
    "language": "Telugu",
    "release_date": "2026-10-16",
-   "india_net_crore": 9.25,
-   "worldwide_gross_crore": 16.5,
+   "india_net_crore": 24.05,
+   "worldwide_gross_crore": 36.9,
    "budget_crore": 120,
    "verdict": null,
-   "poster_url": null,
+   "poster_url": "https://upload.wikimedia.org/wikipedia/en/8/82/Ranabaali_2026_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "sources": [
     {
-     "name": "Filmibeat (Sacnilk)",
-     "url": "https://www.filmibeat.com/telugu/news/2026/ranabaali-box-office-collection-day-1-vijay-deverakonda-rashmika-film-crosses-16-crore-worldwide-534931.html"
+     "name": "Sacnilk",
+     "url": "https://www.sacnilk.com/quicknews/Ranabaali_2026_Box_Office_Collection_Day_3"
     },
     {
-     "name": "Sacnilk",
-     "url": "https://www.sacnilk.com/news/vijay-deverakondas-ranabaali-grosses-over-16-cr-worldwide-enters-his-top-5-openers-despite-trailing-career-best-kingdom-on-day-1"
+     "name": "Filmibeat (citing Sacnilk)",
+     "url": "https://www.filmibeat.com/telugu/news/2026/ranabaali-box-office-collection-day-3-vijay-deverakonda-film-nears-37-crore-worldwide-535145.html"
+    }
+   ]
+  },
+  {
+   "title": "Vibe",
+   "language": "Hindi",
+   "release_date": "2026-09-18",
+   "india_net_crore": 15.45,
+   "worldwide_gross_crore": 20.28,
+   "budget_crore": 35,
+   "verdict": "Flop",
+   "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/2c/Vibe_%28film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "sources": [
+    {
+     "name": "Koimoi (closing collection)",
+     "url": "https://www.koimoi.com/box-office/vibe-box-office-closing-collection-kunal-kemmus-film-wraps-up-with-a-55-deficit/"
+    },
+    {
+     "name": "Zoom TV",
+     "url": "https://www.zoomtventertainment.com/bollywood/kunal-kemmu-vibe-box-office-collection-analysis-article-156346051"
     }
    ]
   },
@@ -207,19 +207,39 @@
    "title": "Dorothy",
    "language": "Tamil",
    "release_date": "2026-09-25",
-   "india_net_crore": 13.3,
-   "worldwide_gross_crore": 15.8,
+   "india_net_crore": 14.87,
+   "worldwide_gross_crore": 17.24,
    "budget_crore": null,
    "verdict": null,
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/22/Dorothy_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "sources": [
     {
-     "name": "Cinema Express (Sacnilk)",
-     "url": "https://www.cinemaexpress.com/tamil/news/2026/Oct/09/upendra-on-dorothy-hats-off-to-karthik-subbaraj-for-directing-it-with-conviction"
+     "name": "Sacnilk",
+     "url": "https://www.sacnilk.com/quicknews/Dorothy_2026_Box_Office_Collection_Day_19"
     },
     {
-     "name": "TrackTollywood",
-     "url": "https://tracktollywood.com/movies/dorothy/"
+     "name": "Koimoi",
+     "url": "https://www.koimoi.com/box-office/dorothy-box-office-collection-day-19-becomes-keerthy-sureshs-8th-highest-grosser-post-covid/"
+    }
+   ]
+  },
+  {
+   "title": "Prahaar",
+   "language": "Hindi",
+   "release_date": "2026-10-16",
+   "india_net_crore": 9.15,
+   "worldwide_gross_crore": 12.86,
+   "budget_crore": null,
+   "verdict": null,
+   "poster_url": null,
+   "sources": [
+    {
+     "name": "Koimoi",
+     "url": "https://www.koimoi.com/box-office/prahaar-box-office-collection-day-3-beats-opening-weekend-of-badhaai-do-2-more-rajkummar-raos-post-covid-releases/"
+    },
+    {
+     "name": "SwapUpdate (citing Sacnilk)",
+     "url": "https://www.swapupdate.in/nayyi-navelli-vs-prahaar-box-office-day-3-yami-gautams-film-crosses-rs-10-crore-mark-rajkummar-rao-starrer-trails/"
     }
    ]
   },
@@ -234,32 +254,12 @@
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/7/7c/Daayra_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "sources": [
     {
-     "name": "Koimoi (day-wise)",
-     "url": "https://www.koimoi.com/box-office/daily-breakdown/daayra-day-wise-box-office-collection/"
-    },
-    {
-     "name": "Koimoi",
+     "name": "Koimoi (closing collection)",
      "url": "https://www.koimoi.com/box-office/daayra-box-office-closing-collection-kareena-kapoor-prithviraj-sukumarans-film-wraps-up-below-12-crore/"
-    }
-   ]
-  },
-  {
-   "title": "Prahaar",
-   "language": "Hindi",
-   "release_date": "2026-10-16",
-   "india_net_crore": 2.35,
-   "worldwide_gross_crore": 3.52,
-   "budget_crore": null,
-   "verdict": null,
-   "poster_url": null,
-   "sources": [
-    {
-     "name": "Times of Bengal (Sacnilk)",
-     "url": "https://www.thetimesofbengal.com/entertainment/prahaar-box-office-collection-day-1-rajkummar-raos-film-on-ujjwal-nikam-opens-at-rs-2-35-crore-india-net/"
     },
     {
-     "name": "Filmibeat",
-     "url": "https://www.filmibeat.com/bollywood/box-office/2026/prahaar-box-office-collection-hit-or-flop-budget-records-everything-to-know-about-rajkummars-film-534927.html"
+     "name": "FilmyFriday (Koimoi syndication)",
+     "url": "https://filmyfriday.com/daayra-box-office-closing-collection-kareena-kapoor-prithviraj-sukumarans-film-wraps-up-below-12-crore/"
     }
    ]
   }
