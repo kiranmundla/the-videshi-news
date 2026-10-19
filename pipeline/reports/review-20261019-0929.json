@@ -1,0 +1,117 @@
+[
+  {
+    "id": "9710df82-f7c6-415d-be0f-e392bc6dd820",
+    "headline": "ISRO Ignites Gas Generator for LME-1100 Methane Engine, Its SpaceX-Style Bet on ",
+    "slug": "isro-lme-1100-methane-engine-gas-generator-test-nglv",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the ignition test; the article states October 9, 2026, which seems to be a typographical error since the announcement was made on October 16, 2023. This could confuse readers regarding the timeline of events.",
+        "Provide more context on the significance of the LME-1100 engine in relation to ISRO's overall goals and how it compares to other global space programs, particularly in terms of technological advancements and potential missions.",
+        "Include specific details about the expected capabilities of the LME-1100 engine, such as its intended payload capacity or potential missions, to give readers a clearer understanding of its importance."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from ISRO announcing the ignition test to provide official confirmation and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "2c826c1f-999a-4900-b463-1b66299703d8",
+    "headline": "Madame Tussauds Singapore Courts Indian Travellers With Diwali Icons and a Two-f",
+    "slug": "madame-tussauds-singapore-icons-of-india-diwali-makemytrip",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the Diwali experience by specifying the start date of the event, as the article currently only mentions the end date of November 15, 2026.",
+        "Include the ticket pricing details for the Buy 1 Get 1 deal to provide readers with a clearer understanding of the savings involved.",
+        "Add a quote or comment from a representative of Madame Tussauds Singapore to enhance attribution and provide more depth to the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet or announcement from Madame Tussauds Singapore or MakeMyTrip regarding the Icons of India experience."
+      ]
+    }
+  },
+  {
+    "id": "4adc6e22-0661-4210-9791-4103e9663841",
+    "headline": "Shastri Urges India to Spare Bumrah, Backs Shami Recall and Bhuvneshwar Return",
+    "slug": "shastri-bumrah-workload-shami-recall-bhuvneshwar-new-zealand",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding Bumrah's injury history by specifying the dates of his surgeries and recoveries, as this context is crucial for understanding his current fitness status.",
+        "Provide more details on the implications of Shastri's recommendations for Bumrah's role in the upcoming ODI World Cup, including specific strategies or match scenarios where his absence might be felt.",
+        "Include a quote from a current player or coach to enhance the attribution and provide a broader perspective on Shastri's comments.",
+        "Ensure that the article clearly states the significance of the New Zealand tour and how Bumrah's absence in ODIs and T20Is could impact the team's performance."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the BCCI or a cricket analyst discussing Bumrah's fitness or Shastri's comments to enhance credibility and provide real-time reactions."
+      ]
+    }
+  },
+  {
+    "id": "3fb40ba0-9f7a-475b-a708-b0a4fb03b707",
+    "headline": "Jailer 2 Posts Rs 404 Crore Worldwide in Four Days, Kollywood's Biggest Debut Ev",
+    "slug": "jailer-2-rs-404-crore-worldwide-biggest-kollywood-debut",
+    "category": "entertainment",
+    "structural_issues": [
+      "Two embeds clustered within 200 chars of each other"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact dates of the four-day extended opening weekend to enhance clarity for readers unfamiliar with the context.",
+        "Include a brief comparison of Jailer 2's performance to other recent major releases in Kollywood to provide a more complete picture of its significance in the current cinematic landscape.",
+        "Add a quote or statement from a film industry expert or box office analyst to provide authoritative attribution and insight into the implications of these box office figures."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a film critic or industry analyst discussing the impact of Jailer 2's box office success."
+      ]
+    }
+  },
+  {
+    "id": "9218a56a-c279-490e-a195-4bef1ffd2e7c",
+    "headline": "Anthropic's Junior Tech Hires Fall From 27% to 9% as AI Agents Outwork Staff",
+    "slug": "anthropic-junior-tech-hiring-falls-ai-agents-report",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the report's findings. The article mentions changes from early 2025 to August 2026, but it would be helpful to specify when the report was released and how it relates to these dates.",
+        "Provide more context on the implications of the hiring trends. For instance, what does this mean for the job market in tech? Are there specific skills that are now more valuable for job seekers?",
+        "Include a direct quote from the report or from one of the authors to enhance attribution and provide a clearer perspective on the findings.",
+        "Explain the significance of the report's findings in relation to broader industry trends. How does Anthropic's experience reflect changes in the tech industry as a whole?"
+      ],
+      "embed_opportunities": [
+        "Embed the official report from the Anthropic Institute for readers to access the full findings directly."
+      ]
+    }
+  },
+  {
+    "id": "b7149148-7966-4a41-9e72-e8fe1c22fe12",
+    "headline": "Melbourne Firebombing Destroys Indian Couple's Dream Cafe Built With Their Life ",
+    "slug": "melbourne-firebombing-indian-couple-dream-cafe-and-bodega",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date of the firebombing and the subsequent theft, as well as the timeline of the couple's business journey, to enhance completeness.",
+        "Include a quote from Victoria Police or a relevant authority regarding the ongoing investigation and the broader context of the firebombing incidents to improve attribution and provide necessary context.",
+        "Provide more specific details about the couple's financial loss, such as the total estimated damage to the cafe and the stolen equipment, to give readers a clearer understanding of the impact.",
+        "Add a brief explanation of the significance of the tobacco excise issue mentioned, including how it relates to the firebombing incidents and the couple's call for action, to enhance clarity and completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Victoria Police regarding the investigation into the firebombing incidents to provide official context and updates."
+      ]
+    }
+  }
+]

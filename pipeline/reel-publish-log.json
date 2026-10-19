@@ -161,6 +161,22 @@
     "video_sha256": "d5fd4cdb9d14fe7aa0ba53d54d248a78e70cb72f3386caaf00dd7d394173d376",
     "factcheck_verdict": "pass",
     "qa_score": 9.0,
+    "publisher": "reel_publish.py",
+    "superseded": "2026-10-19T06:24:34.884204+00:00",
+    "superseded_reason": "owner_deleted_in_studio",
+    "superseded_note": "Kiran rejected background pic; hero swapped to Jan Aushadhi photo; redo on new hero"
+  },
+  {
+    "video_id": "i4cIT_LAcUU",
+    "article_slug": "india-cancer-drug-price-caps-137-medicines-november-9",
+    "article_id": "740381c3-48a4-40fe-88e3-96e018de000c",
+    "title": "India Caps Margins on 137 Cancer Drugs, Prices to Fall Up to 70% From November 9 #Shorts #News",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-19T06:31:24.984025+00:00",
+    "video_path": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output-v4/india-cancer-drug-price-caps-137-medicines-november-9.mp4",
+    "video_sha256": "f81f4869c5f4b051fabd326f54b528723618383f608ce38d1baf7d885a3a2c1a",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
     "publisher": "reel_publish.py"
   }
 ]

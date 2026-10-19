@@ -1,18 +1,18 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-10-19T05:41:40+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-10-19T06:31:49+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
 - Channel uploads (actual, via API): **193**
-- prebuilt_reels rows: 128 (98 with a yt_video_id)
+- prebuilt_reels rows: 129 (99 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 12
+- Phase 2 publish-log entries: 13
 - **In sync** (channel video backed by a DB/publish-log record): **82**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 10
 - Ghost DB rows (yt_video_id not on channel): 14
-- Superseded DB rows (owner-deleted/replaced; not ghosts): 2
+- Superseded DB rows (owner-deleted/replaced; not ghosts): 3
 - Public with no DB record: 111
 - Phase 2 uploads now public (manual flip expected): 0
 
@@ -268,10 +268,11 @@ Generated: 2026-10-19T05:41:40+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 
 _None._
 
-## (e) Superseded DB rows — owner-deleted or replaced (not ghosts) (2)
+## (e) Superseded DB rows — owner-deleted or replaced (not ghosts) (3)
 
 - row `cd31fd35-0ef2-4b97-ac09-678c9027a296` · slug dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals · yt_video_id `9MuNbawE8ac` · on channel: no
 - row `862b5d9e-cd65-4ab9-8be2-1dd6f981bb69` · slug bengaluru-born-ramya-anche-lead-nasa-puffins-mission · yt_video_id `dXT2DW7iSpU` · on channel: no
+- row `cededbdc-e47d-4afd-9d01-5586e1d95785` · slug india-cancer-drug-price-caps-137-medicines-november-9 · yt_video_id `M5UjKqtENwU` · on channel: no
 
 ## (d) In sync (82)
 
@@ -356,5 +357,5 @@ _None._
 - `V7FTpE5qRvc` · public · 2026-10-17 · ICICI Bank Profit Jumps 20% to Rs 14,843 Crore in Second Quarter #Shorts #Markets [prebuilt_reels:2ab35e77-428e-450c-abc2-a0c3645ffd80]
 - `DptW6hsP1E4` · public · 2026-10-18 · Jailer 2 Crosses ₹209 Crore Worldwide in Two Days, Eyes a Record Weekend #Shorts #Entertainment [prebuilt_reels:05ced2bf-5653-481b-b716-1972c26ca8b1]
 - `ad_O6nV9hGg` · public · 2026-10-18 · White House Touts $330 Billion in Indian Investment as 'Trillions Pour In' #Shorts #Markets [prebuilt_reels:4d8cc5ec-2a15-446d-9221-4a86019303b6]
-- `M5UjKqtENwU` · unlisted · 2026-10-19 · India Caps Margins on 137 Cancer Drugs, Prices to Fall Up to 70% From November 9 #Shorts #News [prebuilt_reels:cededbdc-e47d-4afd-9d01-5586e1d95785]
+- `i4cIT_LAcUU` · unlisted · 2026-10-19 · India Caps Margins on 137 Cancer Drugs, Prices to Fall Up to 70% From November 9 #Shorts #News [prebuilt_reels:cd15b49b-7612-4bfb-9153-e2d53a650021]
 
