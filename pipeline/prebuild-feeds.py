@@ -578,20 +578,28 @@ def build_homepage_feed(articles: list[dict], url: str = "", key: str = "") -> d
         "generated_at": now.isoformat(),
         "featured": featured,
         "editorial": editorial,
-        "just_in": _build_just_in(articles, now),
+        "just_in": _build_just_in(
+            articles, now,
+            exclude_ids={(featured or {}).get("id")}
+            | {c.get("id") for c in carousel}),
         "sections": sections,
         "carousel": carousel,
     }
 
 
-def _build_just_in(articles: list[dict], now: datetime) -> list[dict]:
+def _build_just_in(articles: list[dict], now: datetime,
+                   exclude_ids: set | None = None) -> list[dict]:
     """Build the 'Just In' strip: 8 most recent articles, purely chronological,
-    across all categories. No scoring — just freshness. Dedupes against featured.
+    across all categories. No scoring — just freshness. Excludes the featured
+    article and carousel picks (exclude_ids): an article already shown in the
+    Featured slot must not repeat in Just In (Kiran, 2026-10-20).
     Uses event_at (when the event happened) instead of published_at (when we wrote it)."""
+    exclude = {i for i in (exclude_ids or set()) if i}
     since_48h = (now - timedelta(hours=48)).isoformat()
     recent = [a for a in articles
               if (a.get("event_at") or a["published_at"]) >= since_48h
-              and a.get("hero_image_url")]
+              and a.get("hero_image_url")
+              and a.get("id") not in exclude]
     recent.sort(key=lambda a: a.get("event_at") or a["published_at"], reverse=True)
 
     # Deduplicate headlines: skip articles whose first 6 headline words match an earlier one

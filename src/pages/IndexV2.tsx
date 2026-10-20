@@ -610,7 +610,10 @@ export default function IndexV2() {
         <DevelopingStories />
 
         {/* Just In — purely chronological, newest articles across all categories */}
-        <JustInStrip articles={justIn.filter((a) => a.id !== featured?.id && !layout.heroSide.some((h) => h.id === a.id))} />
+        <JustInStrip
+          articles={justIn.filter((a) => a.id !== featured?.id && !layout.heroSide.some((h) => h.id === a.id))}
+          excludeIds={[featured?.id, ...layout.heroSide.map((h) => h.id)].filter(Boolean) as string[]}
+        />
 
         {/* Exclusive Interview — editorial spotlight */}
         <InterviewSpotlight articles={layout.interviews} />

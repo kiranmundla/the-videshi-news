@@ -72,11 +72,52 @@ function JustInCard({ item }: { item: JustInItem }) {
 
 /* ── main component ────────────────────────────────── */
 
-export default function JustInStrip() {
+/* Parent-supplied articles arrive in the lib Article / feed shape
+   (title + hero_image_url); the self-fetch fallback returns DB rows
+   (headline + image_url). Both normalize to JustInItem below. */
+type JustInSourceArticle = {
+  id: string;
+  slug: string;
+  title?: string;
+  headline?: string;
+  hero_image_url?: string | null;
+  image_url?: string | null;
+  published_at: string | null;
+  category?: string | null;
+};
+
+interface JustInStripProps {
+  /* Preferred path: the parent passes the feed's just_in list, already
+     filtered against the featured article and hero-side picks. This
+     component previously ignored the prop and self-fetched the newest 6,
+     which re-listed the featured article in Just In (Kiran, 2026-10-20). */
+  articles?: JustInSourceArticle[];
+  /* Fallback path only: ids to exclude from the self-fetch (featured,
+     hero side) so the strip never duplicates what is shown above it. */
+  excludeIds?: string[];
+}
+
+function normalize(a: JustInSourceArticle): JustInItem {
+  return {
+    id: a.id,
+    slug: a.slug,
+    headline: a.title ?? a.headline ?? "",
+    image_url: a.hero_image_url ?? a.image_url ?? null,
+    published_at: a.published_at,
+    category: a.category ?? null,
+  };
+}
+
+export default function JustInStrip({ articles, excludeIds }: JustInStripProps = {}) {
   const [items, setItems] = useState<JustInItem[]>([]);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    if (articles && articles.length) {
+      setItems(articles.map(normalize));
+      setLoaded(true);
+      return;
+    }
     (async () => {
       try {
         const { data } = await (supabase as any)
@@ -84,16 +125,23 @@ export default function JustInStrip() {
           .select("id, slug, headline, image_url, published_at, category")
           .eq("status", "published")
           .order("published_at", { ascending: false })
-          .limit(6);
+          .limit(10);
 
-        if (data?.length) setItems(data);
+        if (data?.length) {
+          const excluded = new Set(excludeIds ?? []);
+          setItems(
+            (data as JustInItem[])
+              .filter((a) => !excluded.has(a.id))
+              .slice(0, 6)
+          );
+        }
       } catch {
         /* silent */
       } finally {
         setLoaded(true);
       }
     })();
-  }, []);
+  }, [articles, excludeIds]);
 
   if (!loaded || items.length === 0) return null;
 
