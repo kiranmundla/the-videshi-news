@@ -1,1 +1,21 @@
-{"aakasamlookatara":{"_verified":"Theatrical release date, 20 Nov 2026 — Wikipedia, Bollywood Hungama, Pinkvilla and 123telugu agree (spot-checked 2026-10-17). None of the film's teasers print a release date, so the held brief could never complete from descriptions alone.","release":"Nov 20, 2026"},"akka":{"_verified":"Netflix series written and directed by Dharmaraj Shetty, produced by YRF Entertainment, premiering 30 Oct 2026 — Bollywood Hungama and Cinema Express (spot-checked 2026-10-17). The official teaser description states cast + date only, and the Netflix title page does not resolve from this server, so neither parser nor platform completion can supply type/director.","director":"Dharmaraj Shetty","media_type":"Series","producer":"YRF Entertainment"},"aot":{"_verified":"Same film as 'aakasamlookatara' — the Tamil/Malayalam teaser titles use the short title 'AOT'. Release date 20 Nov 2026, sources as above.","release":"Nov 20, 2026"}}
+{
+ "aakasamlookatara": {
+  "_verified": "Theatrical release date, 20 Nov 2026 — Wikipedia, Bollywood Hungama, Pinkvilla and 123telugu agree (spot-checked 2026-10-17). None of the film's teasers print a release date, so the held brief could never complete from descriptions alone.",
+  "release": "Nov 20, 2026"
+ },
+ "akka": {
+  "_verified": "Netflix series written and directed by Dharmaraj Shetty, produced by YRF Entertainment, premiering 30 Oct 2026 — Bollywood Hungama and Cinema Express (spot-checked 2026-10-17). The official teaser description states cast + date only, and the Netflix title page does not resolve from this server, so neither parser nor platform completion can supply type/director.",
+  "director": "Dharmaraj Shetty",
+  "media_type": "Series",
+  "producer": "YRF Entertainment"
+ },
+ "aot": {
+  "_verified": "Same film as 'aakasamlookatara' — the Tamil/Malayalam teaser titles use the short title 'AOT'. Release date 20 Nov 2026, sources as above.",
+  "release": "Nov 20, 2026"
+ },
+ "donganaakoduku": {
+  "_verified": "Theatrical Telugu crime comedy releasing Nov 13, 2026 — Hollywood Reporter India, Cinema Express and 123Telugu agree (researched 2026-10-20). The teaser promo description prints cast/director/producer but never states type or release date, so the held brief could never complete from the description alone.",
+  "media_type": "Movie",
+  "release": "Nov 13, 2026"
+ }
+}
