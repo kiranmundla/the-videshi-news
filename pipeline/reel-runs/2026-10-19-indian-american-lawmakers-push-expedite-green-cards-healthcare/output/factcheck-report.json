@@ -1,0 +1,264 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "indian-american-lawmakers-push-expedite-green-cards-healthcare",
+  "verdict": "fail",
+  "held_claims": [
+    "diaspora_bullets[1]"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "63 IN CONGRESS PUSH FASTER GREEN CARDS",
+      "numbers": [
+        63.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "63 members of Congress are pushing for faster green cards.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Sixty-three members of Congress, including three Indian-American lawmakers, urged USCIS to expedite green cards for immigrants losing health coverage.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 63 members urged USCIS to expedite green cards.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "63",
+      "numbers": [
+        63.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The number 63 is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Members of Congress urging USCIS to expedite green cards",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Members of Congress are urging USCIS to expedite green cards.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE STAKES",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article does not specify 'THE STAKES'.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "281,000+",
+      "numbers": [
+        281000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "281,000+ people facing Medicaid loss is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "People in nine states and DC facing Medicaid loss from October 1",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states people in nine states and DC face Medicaid loss.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "1.4 MILLION",
+      "numbers": [
+        1.4,
+        1400000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "1.4 million estimate for uninsured immigrants is included.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Legally present immigrants the CBO estimates uninsured by 2034",
+      "numbers": [
+        2034.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2034
+        ]
+      },
+      "llm_reason": "CBO estimate of 1.4 million uninsured by 2034 is cited.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "OCTOBER 1",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "October 1 is the date healthcare limits took effect.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Day the One Big Beautiful Bill Act healthcare limits took effect",
+      "numbers": [],
+      "entities": [
+        "One Big Beautiful Bill Act"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms October 1 as the effective date.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Krishnamoorthi, Jayapal and Thanedar among the signatories",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Krishnamoorthi, Jayapal, and Thanedar are mentioned as signatories.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Pending I-485? You can request an expedite at no fee today",
+      "numbers": [
+        485.0
+      ],
+      "entities": [
+        "Pending I-485 You"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Pending I-485 You"
+        ]
+      },
+      "llm_reason": "The article states you can request an expedite at no fee.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "payoff",
+      "text": "USCIS has not yet agreed to the requests.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "USCIS has not agreed to the requests is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE STAKES",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "USCIS",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Raja Krishnamoorthi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Pramila Jayapal",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Shri Thanedar",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000513
+  }
+}

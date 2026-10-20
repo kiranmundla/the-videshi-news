@@ -191,5 +191,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "7ZjdQOJyGAs",
+    "article_slug": "indian-american-lawmakers-push-expedite-green-cards-healthcare",
+    "article_id": "f3ea0815-8a99-433a-8941-f8df377d2cb5",
+    "title": "Lawmakers Join 63 in Congress Urging Faster Green Cards as Health Coverage Lapses #Shorts #GreenCard",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-20T05:36:23.168501+00:00",
+    "video_path": "reel-runs/2026-10-19-indian-american-lawmakers-push-expedite-green-cards-healthcare/output-v3/indian-american-lawmakers-push-expedite-green-cards-healthcare.mp4",
+    "video_sha256": "98f2957630e15acbd06941bc9f6898e9eec90e52bd1d3f4fe3d801e4ef0d8b60",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

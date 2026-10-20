@@ -1,0 +1,36 @@
+{
+  "hook_line": "US IMMIGRANT VISAS HALVED",
+  "hook_stat": {
+    "big": "26,483",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Immigrant visas issued in February 2026, about half the pre-Trump monthly average of 52,000"
+  },
+  "stats": [
+    {
+      "big": "-16%",
+      "label": "Immigrant visas for Indian nationals in February 2026"
+    },
+    {
+      "big": "91",
+      "label": "Countries now facing travel or visa restrictions"
+    },
+    {
+      "big": "3,264",
+      "label": "Employment-based immigrant visas in February 2026, nearly steady"
+    }
+  ],
+  "diaspora_bullets": [
+    "India is not on any ban list, but consular processing is slower",
+    "Employment-based green card pathways remain the steadiest channel"
+  ],
+  "key_entities": [
+    "State Department",
+    "Donald Trump",
+    "New York Times",
+    "Cato Institute"
+  ],
+  "news_summary": "The State Department issued 26,483 immigrant visas in February 2026, about half the pre-Trump monthly average of roughly 52,000, as restrictions came to cover 91 countries and immigrant visas for Indian nationals fell 16%.",
+  "payoff": "Employment-based immigrant visas held nearly steady, while the collapse was concentrated in family reunification and the diversity lottery.",
+  "versus": "",
+  "story_mood": "tense"
+}

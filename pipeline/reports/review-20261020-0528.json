@@ -1,0 +1,153 @@
+[
+  {
+    "id": "8797b540-1b22-485d-aee1-52cfab1de53d",
+    "headline": "ICE Detains Bronx Food Pantry Founder After Court Hearing, and 8,000 Neighbours ",
+    "slug": "ice-detains-bronx-food-pantry-founder-aleksander-nilaj",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the court hearing and the timeline for when the pantry may reopen if Nilaj is not released. This will provide readers with a clearer understanding of the urgency of the situation.",
+        "Include direct quotes from community members or officials to enhance attribution and provide a more personal perspective on the impact of Nilaj's detention. This could help convey the emotional weight of the story.",
+        "Add context regarding the legal process Nilaj is facing, such as potential next steps in his case or how long he might be detained, to give readers a better understanding of the implications of his detention."
+      ],
+      "embed_opportunities": [
+        "Embed the official ICE statement or a relevant tweet from a community organization supporting Nilaj to provide authoritative context on the situation."
+      ]
+    }
+  },
+  {
+    "id": "f3ea0815-8a99-433a-8941-f8df377d2cb5",
+    "headline": "Indian-American Lawmakers Join 63 in Congress Urging Faster Green Cards as Healt",
+    "slug": "indian-american-lawmakers-push-expedite-green-cards-healthcare",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific implications of the new eligibility limits under the One Big Beautiful Bill Act for affected individuals, including detailed information on how many people are impacted in each state and the specific groups that are losing coverage.",
+        "Provide a clearer timeline regarding the urgency of the situation, including deadlines for requesting expedited green cards and any relevant dates for those affected to take action.",
+        "Include a direct quote from one of the lawmakers or a relevant expert to enhance attribution and provide a human element to the story."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet regarding the expedited green card process for clarity and to provide readers with direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "1ae50540-2828-4d00-b3f3-9ad0126f01c2",
+    "headline": "PSU Banks Surge Up to 8% on PNB Beat as HDFC, Axis Fall Despite Profit Growth",
+    "slug": "psu-banks-surge-pnb-q2-private-lenders-fall-margins",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact date of the reporting period for Q2 FY27 to avoid confusion for readers unfamiliar with fiscal year timelines.",
+        "Include specific analyst estimates for Axis Bank and HDFC Bank to provide context on how much they missed expectations, which will help readers understand the significance of the profit growth versus the market reaction.",
+        "Add a brief explanation of what factors contributed to the narrowing margins for private banks, as this would provide readers with a clearer understanding of the market dynamics at play.",
+        "Ensure consistency in the reporting of financial figures by using either 'crore' or 'Rs' consistently throughout the article to enhance clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or brokerage firm commenting on the market reaction to these earnings results to provide real-time insights."
+      ]
+    }
+  },
+  {
+    "id": "0b1cfc22-529c-467d-80f1-1a0dc78bbce6",
+    "headline": "Rajinikanth Dethrones Vijay With Rs 1,981 Crore Post-COVID Gross as Jailer 2 Roa",
+    "slug": "rajinikanth-dethrones-vijay-1981-crore-post-covid-gross",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the box office tracking data by providing a direct attribution to Koimoi within the text, rather than just at the end of the article. This will enhance credibility and allow readers to verify the information easily.",
+        "Include a brief context about the significance of Rajinikanth and Vijay in the film industry for readers who may not be familiar with Kollywood. This could be a sentence or two explaining their popularity and impact on Indian cinema.",
+        "Add a specific takeaway regarding the implications of Rajinikanth's achievement, such as potential future projects or how this milestone might influence box office trends in Kollywood."
+      ],
+      "embed_opportunities": [
+        "Embed the official Koimoi tweet that tracks the box office figures for a visual reference and to substantiate the claims made in the article."
+      ]
+    }
+  },
+  {
+    "id": "b76bcac3-f876-4ea8-89ce-866a0bf224d2",
+    "headline": "US Immigrant Visas Halve to 26,483 as Restrictions Cover 91 Countries; India Dow",
+    "slug": "us-immigrant-visas-halve-91-countries-india-down-16",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date when the expanded travel ban was implemented in January 2026, as well as the context of President Trump's second term for readers who may not be familiar with the timeline.",
+        "Provide specific numbers or percentages regarding the impact on family reunification and diversity lottery visas, as the article mentions a collapse but does not quantify it beyond stating zero visas were issued in January and February 2026.",
+        "Include a direct quote or statement from a relevant official or expert to enhance attribution and provide authoritative context to the reported statistics.",
+        "Reorganize the content to lead with the most critical information about the visa issuance numbers and restrictions before delving into the historical context, which would improve clarity and accessibility for readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official State Department tweet or announcement regarding the visa statistics for February 2026 to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "a26bd6db-dc1f-4f7b-89b3-20e8d3ee1adb",
+    "headline": "Hardik Jagda Wakes at 3am but Won't Make His Team Work 9-9-6",
+    "slug": "hardik-jagda-proximity-works-rejects-996-work-culture",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the information about Hardik Jagda's routine and philosophy. While the article mentions Business Insider and Times Now World, it would be helpful to provide direct quotes or specific details from these sources to enhance credibility and attribution.",
+        "Include specific metrics or outcomes that demonstrate the effectiveness of Jagda's approach. For example, mentioning any measurable improvements in productivity or employee satisfaction since implementing this model would provide concrete context for readers.",
+        "Provide a brief explanation of the 9-9-6 work model for readers who may not be familiar with it. This would enhance clarity and ensure that all readers understand the implications of Jagda's stance against it."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or statement from Hardik Jagda or Proximity Works that highlights his philosophy on work-life balance or productivity. This would add authenticity and immediacy to the article."
+      ]
+    }
+  },
+  {
+    "id": "8119daa6-1207-4b16-902a-94700f353163",
+    "headline": "Supreme Court Orders Mandatory Insurance on All Railway Counter Tickets From Oct",
+    "slug": "india-railway-counter-ticket-insurance-mandatory-oct-27",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the premium amount for counter ticket insurance as soon as it is announced, to provide readers with complete information on costs associated with the new policy.",
+        "Include a brief explanation of how passengers can file claims under the new insurance policy, as this is crucial for understanding the practical implications of the court's order.",
+        "Add a quote from a legal expert or a railway official regarding the implications of this ruling to enhance attribution and provide authoritative context."
+      ],
+      "embed_opportunities": [
+        "Embed the official Supreme Court ruling or a related tweet from the Supreme Court's official account to provide direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "64ca02b4-8aa3-4d01-9f1b-31e358e93e7b",
+    "headline": "Infosys Bets on Trust as AI Reprices IT Services, Forrester Says",
+    "slug": "infosys-bets-trust-ai-reprices-it-services-forrester",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the time frame for the expected productivity gains mentioned by the European bank client. Instead of stating 'by end of this year,' specify the exact month to enhance clarity.",
+        "Include a direct quote from Salil Parekh or another Infosys executive to strengthen attribution and provide a more personal insight into the company's strategy regarding AI and trust.",
+        "Expand on the implications of the 1.5-3% full-year guidance for Infosys. What does this mean for investors or stakeholders? Providing context around this figure could enhance completeness.",
+        "Ensure that the term 'autonomous enterprise' is defined or explained, as it may not be familiar to all readers. This will improve clarity and understanding of the article's key points."
+      ],
+      "embed_opportunities": [
+        "Embed the official Forrester report or analysis that discusses the IT services repricing and its implications for AI, which would provide readers with direct access to the source material."
+      ]
+    }
+  }
+]

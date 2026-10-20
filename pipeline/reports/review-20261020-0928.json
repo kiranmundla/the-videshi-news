@@ -1,0 +1,155 @@
+[
+  {
+    "id": "da8e6abb-7475-4496-8058-459ee7456663",
+    "headline": "Proposed Immigration Court Contempt Rule Would Fine Lawyers Who Allege Bias",
+    "slug": "immigration-court-contempt-rule-bias-critics",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the proposed rule's implementation and the comment period. The article mentions that comments were due September 28, 2026, but it should specify if the rule is expected to take effect after that date or if further steps are needed before implementation.",
+        "Provide a brief explanation of what constitutes 'abusive language' as defined by the proposed rule. This would help readers understand the potential implications for attorneys and their clients more clearly.",
+        "Include a quote from a legal expert or an immigration attorney to provide additional context or perspective on the implications of this proposed rule."
+      ],
+      "embed_opportunities": [
+        "Embed the official DOJ announcement or Federal Register notice regarding the proposed rule for readers to access the primary source directly."
+      ]
+    }
+  },
+  {
+    "id": "215cef4f-cf99-46d2-9645-f54537fb96e7",
+    "headline": "US Proposes $70,000 OPT Fee That Could Hit Indian Students Hardest",
+    "slug": "us-proposes-70000-opt-fee-indian-students",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying that the proposed rule is currently open for public comment until November 9, 2026, and emphasize that the fee is not yet in effect, which could alleviate immediate concerns for students.",
+        "Include a brief explanation of the implications for universities and employers regarding the potential passing of fees to students, as this is a critical aspect for those affected.",
+        "Add a quote or statement from a relevant authority, such as a university representative or immigration expert, to provide additional context and credibility to the reporting.",
+        "Ensure that the explanation of how the fee would work is complete by clarifying what happens if a student changes employers during OPT, as the current sentence is cut off."
+      ],
+      "embed_opportunities": [
+        "Embed the official DHS announcement or the Federal Register document link for readers to access the primary source directly."
+      ]
+    }
+  },
+  {
+    "id": "6a321aa1-33eb-49d0-8b09-dc6e538ca083",
+    "headline": "WWF-India Urges a Crackers-Free Diwali in Green Campaign to Nov 8",
+    "slug": "wwf-india-green-diwali-campaign-avoid-firecrackers",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the AQI data by providing a comparison of the current year's AQI to previous years in a more detailed manner, including potential health impacts for different AQI ranges.",
+        "Include specific statistics or data on the expected impact of firecrackers on air quality, such as projected PM2.5 increases during Diwali, to give readers a clearer understanding of the urgency behind the campaign.",
+        "Add a brief quote or statement from a representative of WWF-India or the Ministry of Environment to enhance attribution and provide a human element to the campaign's message."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from WWF-India or the Ministry of Environment, Forest and Climate Change promoting the campaign for greater visibility and engagement."
+      ]
+    }
+  },
+  {
+    "id": "3b48f5ff-8f76-4888-b03e-b1c877d66dc6",
+    "headline": "Nepal Bans Priyagold Biscuits After India Flags Cattle-Feed Bran",
+    "slug": "nepal-bans-priyagold-biscuits-cattle-feed-bran-fssai",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date when the FSSAI initiated the prosecution proceedings against Surya Food and Agro Ltd, as well as the date of the emergency meeting held by Nepal's FTQCD.",
+        "Include specific details about the alleged hygiene deficiencies found during the inspection by the FSSAI, as this would provide readers with a clearer understanding of the severity of the situation.",
+        "Add a brief statement about the potential consequences for consumers who may have already purchased the biscuits, such as health risks or legal implications if they do not comply with the recall.",
+        "Ensure that the article maintains a consistent structure by clearly separating the sections discussing Nepal's actions and the allegations from India, possibly using subheadings for better readability."
+      ],
+      "embed_opportunities": [
+        "Embed the official FSSAI tweet or announcement regarding the suspension of Surya Food and Agro Ltd's license, as this would provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "f1a0d9da-b3b8-43ef-bf26-560e8df03791",
+    "headline": "Indian Rappers Turn Water Shortages and Heat Into a Climate Alarm",
+    "slug": "indian-rappers-climate-emergency-mixtape",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the album's release and any upcoming events related to it, such as performances or discussions, to provide readers with actionable information.",
+        "Include direct quotes from the artists involved or organizers to enhance attribution and provide a more personal connection to the story.",
+        "Expand on the implications of the climate crisis as discussed in the mixtape, possibly by summarizing key themes or messages from the tracks to give readers a clearer understanding of the content.",
+        "Provide statistics or specific examples of how climate change is currently affecting water availability in Bengaluru, which would add depth and context to the article."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the artists or organizers announcing the mixtape or discussing its themes, which would enhance engagement and provide real-time context."
+      ]
+    }
+  },
+  {
+    "id": "29e52288-a718-4b10-a52d-a6e84fa990e4",
+    "headline": "Rajnath Singh Represents India at SCO Heads of Government Meeting in Dushanbe",
+    "slug": "rajnath-singh-sco-heads-government-dushanbe-tajikistan",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date of Singh's meeting with Tajik Prime Minister Qohir Rosulzoda, as the article mentions October 20 for both the meeting and the overall event, which may cause confusion.",
+        "Provide more context on the significance of the SCO meeting, such as key outcomes expected or previous decisions made at similar meetings, to enhance completeness.",
+        "Include direct quotes from Singh's address or statements made during the meetings to improve attribution and provide a clearer understanding of his positions."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Rajnath Singh or the official SCO account summarizing key points from the meeting for real-time updates and engagement."
+      ]
+    }
+  },
+  {
+    "id": "9bd62051-6a9e-4161-85d3-d833eb4f16e2",
+    "headline": "Eloelo's Dolphin AI Bets Budget Is No Longer Storytelling's Gatekeeper",
+    "slug": "eloelo-dolphin-ai-saurabh-pandey-storytelling-gatekeepers",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the release of Dolphin AI and the expected rollout of the credit-based pricing model, including any specific dates or milestones that creators should be aware of.",
+        "Expand on the implications of Dolphin AI for the Indian film industry, particularly how it might change the landscape for independent filmmakers or smaller production houses, providing specific examples or potential scenarios.",
+        "Include direct quotes from Saurabh Pandey or other attendees at TechSparks to enhance attribution and provide a more personal perspective on the significance of Dolphin AI."
+      ],
+      "embed_opportunities": [
+        "Embed a video demonstration of Dolphin AI or a related presentation from TechSparks to visually illustrate its capabilities."
+      ]
+    }
+  },
+  {
+    "id": "8a904af6-7ef5-41b6-acf7-104bb5892168",
+    "headline": "Jio's \u20b910.3 Lakh Crore IPO Tests Whether Cheap Data Can Pay",
+    "slug": "jio-ipo-10-lakh-crore-valuation-cheap-data",
+    "category": "markets-finance",
+    "structural_issues": [
+      "Caption names venue 'Reliance Corporate Park' not supported by the image file name (Jio_LYF_building.jpg\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the IPO by including a brief explanation of what this means for investors and the market, such as potential impacts on stock prices or the telecommunications sector in India.",
+        "Add a quote from a financial analyst or a company representative to provide expert insight or context regarding the IPO's implications, enhancing the article's attribution and depth.",
+        "Include a comparison of Jio's IPO with previous major IPOs in India for context, such as how it stacks up against the largest IPOs in terms of investor interest or market impact."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Jio Platforms or a financial analyst discussing the IPO to provide real-time reactions and insights."
+      ]
+    }
+  }
+]

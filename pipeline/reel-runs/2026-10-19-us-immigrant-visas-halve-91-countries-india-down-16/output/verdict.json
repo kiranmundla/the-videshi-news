@@ -1,0 +1,14 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "article_slug": "us-immigrant-visas-halve-91-countries-india-down-16",
+  "name": "us-immigrant-visas-halve-91-countries-india-down-16",
+  "script": "reel-runs/2026-10-19-us-immigrant-visas-halve-91-countries-india-down-16/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000618
+  },
+  "detail": "no composition fits all scenes at the planner floors \u2014 cover: scene 'news' text cannot fit at the minimum scale in any zone (text too long); fit: scene 'news' text cannot fit at the minimum scale in any zone (text too long)"
+}

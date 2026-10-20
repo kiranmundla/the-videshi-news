@@ -1,0 +1,175 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": false,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "indian-american-lawmakers-push-expedite-green-cards-healthcare",
+    "verdict": "fail",
+    "held_claims": [
+      "diaspora_bullets[0]"
+    ],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Indian-American Lawmakers Join 63 in Congress Urging Faster Green Cards as Health Coverage Lapses",
+        "numbers": [
+          63.0
+        ],
+        "entities": [
+          "Indian-American Lawmakers Join",
+          "Congress Urging Faster Green Cards",
+          "Health Coverage Lapses"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article states Indian-American lawmakers joined 63 in Congress for faster green cards.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The letter asks USCIS Director Joseph Edlow for an emergency I-485 expedite pathway after October 1 healthcare cuts left legally present immigrants uninsured while their green cards wait.",
+        "numbers": [
+          1.0,
+          485.0
+        ],
+        "entities": [
+          "USCIS Director Joseph Edlow"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The letter requests an emergency I-485 expedite pathway due to healthcare cuts.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Sixty-three members of Congress have urged USCIS to expedite green-card applications for legally present immigrants who are losing government-funded healthcare",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article confirms 63 members urged USCIS to expedite green-card applications.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The congressional release put the number facing Medicaid loss from October 1 at more than 281,000 people across nine states and Washington, DC",
+        "numbers": [
+          1.0,
+          281000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article states over 281,000 people face Medicaid loss from October 1.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Indian-American lawmakers Raja Krishnamoorthi, Pramila Jayapal and Shri Thanedar were among the signatories",
+        "numbers": [],
+        "entities": [
+          "Raja Krishnamoorthi",
+          "Pramila Jayapal",
+          "Shri Thanedar"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Indian-American lawmakers mentioned as signatories in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Yvette Clarke",
+        "numbers": [],
+        "entities": [
+          "Yvette Clarke"
+        ],
+        "deterministic": "fail",
+        "detail": {
+          "ungrounded_entities": [
+            "Yvette Clarke"
+          ]
+        },
+        "llm_reason": "Yvette Clarke is mentioned as a leader of the letter.",
+        "verdicts": {
+          "deterministic": "fail",
+          "llm": "supported"
+        },
+        "verdict": "fail"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Democratic Representative from New York",
+        "numbers": [],
+        "entities": [
+          "Democratic Representative",
+          "New York"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Yvette Clarke is identified as a Democratic Representative from New York.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Indian-American Lawmakers Join 63 in Congress Urging Faster Green Cards as Health Coverage Lapses",
+        "numbers": [
+          63.0
+        ],
+        "entities": [
+          "Indian-American Lawmakers Join",
+          "Congress Urging Faster Green Cards",
+          "Health Coverage Lapses"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Reiterates the initial claim about Indian-American lawmakers urging faster green cards.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000423
+    }
+  },
+  "verdict": "fail"
+}

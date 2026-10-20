@@ -1,0 +1,15 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "indian-american-lawmakers-push-expedite-green-cards-healthcare",
+  "name": "indian-american-lawmakers-push-expedite-green-cards-healthcare",
+  "script": "reel-runs/2026-10-19-indian-american-lawmakers-push-expedite-green-cards-healthcare/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "diaspora_bullets[1]"
+    ],
+    "llm_cost_usd": 0.000513
+  }
+}

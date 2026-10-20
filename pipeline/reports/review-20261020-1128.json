@@ -1,0 +1,44 @@
+[
+  {
+    "id": "eaf7338a-17f2-4fe1-80f9-c1af6342a0e9",
+    "headline": "GE Aerospace Set to Report Earnings Amid Industry Challenges",
+    "slug": "happening-2026-10-20-ge-aerospace-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by explicitly discussing how GE Aerospace's performance could impact Indian investors or NRIs with investments in the aerospace sector. For example, mention any specific partnerships or contracts GE Aerospace has with Indian companies or how the earnings report might influence stock prices relevant to the Indian market.",
+        "Include specific financial details such as projected earnings per share (EPS) or revenue figures for GE Aerospace, as well as any potential impact on stock prices. This will help readers understand the direct implications for their investments, especially if they hold shares in related companies.",
+        "Add a section that outlines key dates and deadlines for investors, such as when to expect the earnings report and any subsequent analyst calls or investor presentations that may provide further insights.",
+        "Consider embedding a relevant tweet from GE Aerospace or an industry expert that discusses the upcoming earnings report, which could provide real-time insights and enhance the article's relevance."
+      ],
+      "embed_opportunities": [
+        "Embed the official GE Aerospace Twitter account's latest tweet regarding their earnings report or any relevant updates leading up to the report date."
+      ]
+    }
+  },
+  {
+    "id": "cc16a4be-da97-4589-99b7-f5d8b356f872",
+    "headline": "Celebrating Dussehra / Vijayadashami: A Festival of Victory and Goodness",
+    "slug": "happening-2026-10-20-dussehra-vijayadashami",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including personal anecdotes or quotes from NRIs who celebrate Dussehra, discussing how they maintain traditions and what this festival means to them while living abroad.",
+        "Provide specific details about the upcoming Dussehra celebrations, such as ticket prices, registration deadlines, or any special events that require prior sign-up, to give readers actionable steps they can take to participate.",
+        "Include a section on how Dussehra is celebrated in different countries, highlighting any unique adaptations by the Indian diaspora, to give a broader perspective on the festival's significance for NRIs.",
+        "Add a brief overview of the historical and cultural significance of Dussehra that might resonate with NRIs, such as its impact on community bonding and identity preservation in foreign lands."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Instagram post or tweet from a prominent Indian cultural organization showcasing Dussehra celebrations in the diaspora, which can visually engage readers and provide a real-time connection to the festivities."
+      ]
+    }
+  }
+]

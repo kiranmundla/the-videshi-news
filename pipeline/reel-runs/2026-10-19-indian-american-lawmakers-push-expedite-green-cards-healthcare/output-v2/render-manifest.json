@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "indian-american-lawmakers-push-expedite-green-cards-healthcare",
+  "article_slug": "indian-american-lawmakers-push-expedite-green-cards-healthcare",
+  "article_id": "f3ea0815-8a99-433a-8941-f8df377d2cb5",
+  "category": "Immigration",
+  "video": "reel-runs/2026-10-19-indian-american-lawmakers-push-expedite-green-cards-healthcare/output-v2/indian-american-lawmakers-push-expedite-green-cards-healthcare.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://indicanews.com/wp-content/uploads/2026/05/Green-Card-citizenpath.com_.jpeg",
+    "local_path": "reel-runs/2026-10-19-indian-american-lawmakers-push-expedite-green-cards-healthcare/output-v2/hero.jpeg",
+    "width": 1168,
+    "height": 740,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "static-fallback (cv2 unavailable)",
+    "has_face": false,
+    "box_source": [
+      256,
+      74,
+      654,
+      296
+    ],
+    "box_bg": [
+      -307.8,
+      192.0,
+      1696.9,
+      768.0
+    ],
+    "chin_bg": null,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 254,
+      "block_top": 858,
+      "block_bottom": 1112,
+      "text_bbox": [
+        117,
+        858,
+        887,
+        1106
+      ],
+      "texts": [
+        "Immigration",
+        "63 IN CONGRESS PUSH FASTER GREEN CARDS"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 266,
+      "block_top": 858,
+      "block_bottom": 1124,
+      "text_bbox": [
+        113,
+        858,
+        894,
+        1129
+      ],
+      "texts": [
+        "What Happened",
+        "Sixty-three members of Congress, including three Indian-American lawmakers, urged USCIS to expedite green cards for immigrants losing health coverage."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 562,
+      "block_top": 858,
+      "block_bottom": 1420,
+      "text_bbox": [
+        113,
+        858,
+        895,
+        1426
+      ],
+      "texts": [
+        "THE STAKES",
+        "63",
+        "Members of Congress urging USCIS to expedite green cards"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 755,
+      "block_top": 796,
+      "block_bottom": 1551,
+      "text_bbox": [
+        119,
+        796,
+        896,
+        1550
+      ],
+      "texts": [
+        "By The Numbers",
+        "281,000+",
+        "People in nine states and DC facing Medicaid loss from October 1",
+        "1.4 MILLION",
+        "Legally present immigrants the CBO estimates uninsured by 2034",
+        "OCTOBER 1",
+        "Day the One Big Beautiful Bill Act healthcare limits took effect"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 466,
+      "block_top": 858,
+      "block_bottom": 1324,
+      "text_bbox": [
+        118,
+        858,
+        830,
+        1320
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Krishnamoorthi, Jayapal and Thanedar among the signatories",
+        "I-485 applicants can request an expedite at no fee via the USCIS Contact Center"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 312,
+      "block_top": 858,
+      "block_bottom": 1170,
+      "text_bbox": [
+        118,
+        858,
+        889,
+        1181
+      ],
+      "texts": [
+        "The Takeaway",
+        "USCIS has not yet agreed to the requests.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "breaking-news-newer-wave.mp3",
+    "path": "music/breaking-news-newer-wave.mp3"
+  },
+  "render_seconds": 325.6,
+  "mp4_bytes": 7154236
+}
