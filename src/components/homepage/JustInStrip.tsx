@@ -86,6 +86,10 @@ type JustInSourceArticle = {
   category?: string | null;
 };
 
+/* Strip capacity — the feed supplies up to 20 (prebuild-feeds.py
+   _build_just_in); both render paths cap here. */
+const JUST_IN_MAX = 20;
+
 interface JustInStripProps {
   /* Preferred path: the parent passes the feed's just_in list, already
      filtered against the featured article and hero-side picks. This
@@ -114,7 +118,7 @@ export default function JustInStrip({ articles, excludeIds }: JustInStripProps =
 
   useEffect(() => {
     if (articles && articles.length) {
-      setItems(articles.map(normalize));
+      setItems(articles.slice(0, JUST_IN_MAX).map(normalize));
       setLoaded(true);
       return;
     }
@@ -125,14 +129,14 @@ export default function JustInStrip({ articles, excludeIds }: JustInStripProps =
           .select("id, slug, headline, image_url, published_at, category")
           .eq("status", "published")
           .order("published_at", { ascending: false })
-          .limit(10);
+          .limit(28);
 
         if (data?.length) {
           const excluded = new Set(excludeIds ?? []);
           setItems(
             (data as JustInItem[])
               .filter((a) => !excluded.has(a.id))
-              .slice(0, 6)
+              .slice(0, JUST_IN_MAX)
           );
         }
       } catch {

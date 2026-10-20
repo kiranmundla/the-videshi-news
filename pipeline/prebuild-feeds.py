@@ -611,8 +611,9 @@ def _build_just_in(articles: list[dict], now: datetime,
             continue
         seen_prefixes.add(prefix)
         deduped.append(a)
-        # Return 15 so the frontend filter (removes hero+sidebar overlap) still leaves 8+
-        if len(deduped) >= 15:
+        # Featured/carousel are excluded above, so all 20 are displayable
+        # in the strip (Kiran, 2026-10-20: "Just in could take more now").
+        if len(deduped) >= 20:
             break
 
     return [article_without_body(a) for a in deduped]
