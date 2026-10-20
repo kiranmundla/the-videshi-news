@@ -1,0 +1,14 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "article_slug": "vance-h1b-attack-targeted-companies-not-visa-holders",
+  "name": "vance-h1b-attack-targeted-companies-not-visa-holders",
+  "script": "reel-runs/2026-10-19-vance-h1b-attack-targeted-companies-not-visa-holders/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000507
+  },
+  "detail": "no composition fits all scenes at the planner floors \u2014 cover: scene 'news' text cannot fit at the minimum scale in any zone (text too long); fit: scene 'news' text cannot fit at the minimum scale in any zone (text too long)"
+}

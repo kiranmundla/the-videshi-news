@@ -1,0 +1,273 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "BAJAJ FINANCE PROFIT JUMPS 29%",
+      "numbers": [
+        29.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Profit increase of 29% is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Bajaj Finance's consolidated net profit rose 28.7% year on year to Rs 6,366.57 crore in Q2 FY27, as net interest income jumped 24%.",
+      "numbers": [
+        2.0,
+        24.0,
+        27.0,
+        28.7,
+        6366.57,
+        63665700000.0
+      ],
+      "entities": [
+        "Bajaj Finance's",
+        "Q2 FY27"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Net profit and net interest income figures are accurately reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "Rs 6,366.57 CRORE",
+      "numbers": [
+        6366.57,
+        63665700000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The figure Rs 6,366.57 crore is directly stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Consolidated net profit in Q2 FY27, up 28.7% year on year",
+      "numbers": [
+        2.0,
+        27.0,
+        28.7
+      ],
+      "entities": [
+        "Q2 FY27"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The profit increase of 28.7% year on year is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The phrase 'BY THE NUMBERS' is not found in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "24%",
+      "numbers": [
+        24.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Net interest income increase of 24% is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Net interest income rose year on year to Rs 13,335 crore",
+      "numbers": [
+        13335.0,
+        133350000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Net interest income figure of Rs 13,335 crore is provided.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "1.06%",
+      "numbers": [
+        1.06
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Gross NPA ratio of 1.06% is stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Gross NPA ratio, down from 1.24% a year earlier",
+      "numbers": [
+        1.24
+      ],
+      "entities": [
+        "Gross NPA"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The decrease from 1.24% is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "26%",
+      "numbers": [
+        26.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Assets under management growth of 26% is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Assets under management grew year on year to Rs 5,84,624 crore",
+      "numbers": [
+        584624.0,
+        5846240000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The figure Rs 5,84,624 crore for assets under management is provided.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "New loan bookings rose 11% to 13.45 million in the quarter",
+      "numbers": [
+        11.0,
+        13.45,
+        13450000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "New loan bookings increase of 11% to 13.45 million is confirmed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Customer franchise reached 128.85 million, up 16% year on year",
+      "numbers": [
+        16.0,
+        128.85,
+        128850000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Customer franchise figure of 128.85 million is stated.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The lender also proposed raising up to Rs 17,500 crore in capital, subject to approvals.",
+      "numbers": [
+        17500.0,
+        175000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The proposed capital raise of Rs 17,500 crore is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Bajaj Finance",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Upstox",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000588
+  }
+}

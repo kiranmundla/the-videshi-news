@@ -1,0 +1,15 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii",
+  "name": "bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii",
+  "script": "reel-runs/2026-10-19-bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_stat.big"
+    ],
+    "llm_cost_usd": 0.00058
+  }
+}

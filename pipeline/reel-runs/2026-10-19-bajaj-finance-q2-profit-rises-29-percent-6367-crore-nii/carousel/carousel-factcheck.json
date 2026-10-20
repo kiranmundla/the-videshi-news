@@ -1,0 +1,154 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Bajaj Finance Q2 Profit Rises 29% to Rs 6,367 Crore as NII Jumps 24%",
+        "numbers": [
+          2.0,
+          24.0,
+          29.0,
+          6367.0,
+          63670000000.0
+        ],
+        "entities": [
+          "Bajaj Finance Q2 Profit Rises",
+          "NII Jumps"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Profit rose 29% to Rs 6,367 crore; NII increased 24%.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Profit, lending income and the loan book all grew by double digits in the July-September quarter, while asset quality improved.",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Profit, lending income, loan book, and asset quality improved.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Consolidated net profit rose 28.7% year on year to Rs 6,366.57 crore in Q2 FY27, from Rs 4,947.76 crore a year earlier",
+        "numbers": [
+          2.0,
+          27.0,
+          28.7,
+          4947.76,
+          6366.57,
+          49477600000.0,
+          63665700000.0
+        ],
+        "entities": [
+          "Q2 FY27"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Consolidated net profit rose 28.7% to Rs 6,366.57 crore.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Net interest income rose 24% to Rs 13,335 crore, and assets under management grew 26% to Rs 5,84,624 crore",
+        "numbers": [
+          24.0,
+          26.0,
+          13335.0,
+          584624.0,
+          133350000000.0,
+          5846240000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "NII rose 24% to Rs 13,335 crore; AUM grew 26% to Rs 5,84,624 crore.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Gross NPAs fell to 1.06% from 1.24% a year earlier, and the lender proposed raising up to Rs 17,500 crore in capital",
+        "numbers": [
+          1.06,
+          1.24,
+          17500.0,
+          175000000000.0
+        ],
+        "entities": [
+          "Gross NPAs"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Gross NPAs fell to 1.06%; proposed capital raise of Rs 17,500 crore.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Bajaj Finance Q2 Profit Rises 29% to Rs 6,367 Crore as NII Jumps 24%",
+        "numbers": [
+          2.0,
+          24.0,
+          29.0,
+          6367.0,
+          63670000000.0
+        ],
+        "entities": [
+          "Bajaj Finance Q2 Profit Rises",
+          "NII Jumps"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Profit rose 29% to Rs 6,367 crore; NII increased 24%.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000414
+    }
+  },
+  "verdict": "pass"
+}

@@ -1,0 +1,137 @@
+[
+  {
+    "id": "88a392d1-9fd0-47bd-980b-9fcd4eb3cf17",
+    "headline": "Delhi Court Extends Detention of 'Cockroach' Leaders Ranka and Das by Two Days",
+    "slug": "delhi-court-extends-detention-cockroach-leaders-ranka-das",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the context of the protests by providing more details about the voter-list revision, including specific numbers or statistics regarding the impact on voters and how it relates to the demands for the Chief Election Commissioner's resignation.",
+        "Include a direct quote from a representative of the Delhi Police regarding their rationale for seeking additional detention time, which would provide a more balanced view of the situation.",
+        "Add a brief background on the Cockroach Janta Party and its formation, as well as its significance in the current political landscape, to help readers understand the context of the protests better.",
+        "Ensure that the timeline of events is clearly laid out, perhaps in a bullet-point format, to enhance clarity regarding when the protests began, the court's decisions, and the timeline of the voter-list revision."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Cockroach Janta Party or a relevant news outlet that covers the protests or the court's decision to provide real-time updates and reactions."
+      ]
+    }
+  },
+  {
+    "id": "ccea79eb-d75f-4bca-beeb-cae5e5c6f966",
+    "headline": "Two Indians Among 28 Green Card Holders Charged in California Voting Case",
+    "slug": "two-indians-28-green-card-holders-charged-california-voting",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date when the fraudulent registrations occurred, particularly for Kamlesh Navnitlal Shah, who registered on the day of the election.",
+        "Include a brief explanation of 'Operation Protect the Vote' to provide context for readers unfamiliar with the initiative and its goals.",
+        "Ensure that the phrase 'presumed innocent' is clearly attributed to the Justice Department to maintain accuracy in reporting.",
+        "Add a quote or statement from a relevant authority, such as a spokesperson from the Justice Department, to enhance the article's credibility and provide additional context."
+      ],
+      "embed_opportunities": [
+        "Embed the official DOJ announcement regarding 'Operation Protect the Vote' for readers to access primary information directly."
+      ]
+    }
+  },
+  {
+    "id": "44c8d8de-25a3-496f-9444-388a18236680",
+    "headline": "US Proposes Ending Deference on H-1B Extensions, Raising Scrutiny for Indian Wor",
+    "slug": "us-proposes-ending-deference-h1b-extensions-indian-workers",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by correcting the date of the proposed rule publication; it should be October 14, 2023, not 2026, to ensure accuracy and timeliness.",
+        "Provide a more detailed explanation of the implications for H-1B and L-1 visa holders, including specific examples of what kind of evidence will be required in the new petition process.",
+        "Include a direct quote from a DHS official or an immigration expert to enhance attribution and provide authoritative context to the proposed changes."
+      ],
+      "embed_opportunities": [
+        "Embed the official DHS announcement or a relevant tweet from USCIS regarding the proposed rule for credibility and direct access to primary sources."
+      ]
+    }
+  },
+  {
+    "id": "6d2ad6e3-0e5b-4b11-9a1b-f5a123fe90c4",
+    "headline": "IRS Officer Ekta Vishnoi Wins Three Golds at World Masters Powerlifting in Nevad",
+    "slug": "ekta-vishnoi-three-golds-world-masters-powerlifting-nevada",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Clarify the timeline of the event: Specify the date of the World Masters Powerlifting Championships to provide context and timeliness for readers.",
+        "Include a quote from Ekta Vishnoi or her coach to add a personal touch and depth to the story, enhancing reader engagement and providing insight into her experience.",
+        "Ensure consistent attribution: The article mentions PTI and IANS but does not clearly differentiate between their contributions. Clarifying which parts of the information come from which source would improve accuracy and transparency."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official World Masters Powerlifting Championships account announcing the results or congratulating the winners to provide official context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "5db2462a-a4db-442c-ae76-bd28e1c71ead",
+    "headline": "Indian-American House Strength Set to Fall From Six to Four After Midterms",
+    "slug": "indian-american-house-six-to-four-midterms-full-roster",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the drop in representation. Include specific implications for Indian-American voters or communities, such as potential impacts on policy or representation in Congress.",
+        "Provide more context on the competitive races involving Amish Shah and Pia Dandiya. Include details about their opponents and any relevant polling data to give readers a clearer picture of their chances.",
+        "Ensure the article consistently uses the term 'midterms' or 'midterm elections' throughout for clarity and coherence. For instance, the headline mentions 'midterms' while the body refers to 'November 3 midterm elections'\u2014standardizing this would enhance clarity.",
+        "Correct the phrasing regarding the 'Samosa Caucus' to ensure it is clear that this term is used informally and may not be widely recognized. A brief explanation of the term could help readers unfamiliar with it."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a reputable news source or political analyst discussing the implications of the midterm elections for Indian-American representation."
+      ]
+    }
+  },
+  {
+    "id": "1a0238b4-37aa-4575-91ed-2d8bbbc382dd",
+    "headline": "Over 400 Indian-Origin Scholars in 27 Countries Warn Against 'Anarchy' Over Elec",
+    "slug": "indian-origin-scholars-27-countries-spare-india-anarchy-election-protests",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific nature of the protests being condemned. Providing details about the protests, such as dates, locations, and the specific issues being raised, would enhance the completeness of the article.",
+        "Include direct quotes from the joint statement or key signatories to improve attribution and provide readers with a clearer understanding of the sentiments expressed by the scholars.",
+        "Add context about the significance of the Election Commission of India and the current political climate to help readers understand why these protests are occurring and why the scholars feel compelled to respond.",
+        "Ensure that the headline reflects the urgency and significance of the statement. Consider revising it to something like 'Over 400 Indian-Origin Scholars Urge Unity Against Election Protests Threatening India's Democracy.'"
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or a link to it for readers who want to read the full text and understand the scholars' arguments in detail."
+      ]
+    }
+  },
+  {
+    "id": "44f11eb8-23f5-485f-a4bc-f99b30f6ffa2",
+    "headline": "Diwali at Times Square Returns October 24 for Its 11th Edition",
+    "slug": "diwali-at-times-square-2026-11th-edition-october-24",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the event in the headline to avoid confusion, as the current headline mentions October 24 but does not specify the year. Consider revising it to 'Diwali at Times Square Returns on October 24, 2026, for Its 11th Edition.'",
+        "Include more specific details about the performers and their expected performance times to give readers a clearer idea of the event schedule. This could enhance reader engagement and planning.",
+        "Add a brief background on the significance of Diwali for those who may not be familiar with the festival, which could provide valuable context for a broader audience.",
+        "Ensure that the information about the Awards and Gala Dinner on October 23 is clearly distinguished from the main festival details, possibly by using subheadings or bullet points for better readability."
+      ],
+      "embed_opportunities": [
+        "Embed the official social media posts or announcements from Sammaan For All or the Consulate General of India regarding the event to provide direct access to updates and visuals."
+      ]
+    }
+  }
+]

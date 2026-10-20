@@ -178,5 +178,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "a_05lp6TNcw",
+    "article_slug": "bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii",
+    "article_id": "1520da4f-07f4-479f-b05d-780783950f2d",
+    "title": "Bajaj Finance Q2 Profit Rises 29% to Rs 6,367 Crore as NII Jumps 24% #Shorts #Markets",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-19T19:13:44.289764+00:00",
+    "video_path": "reel-runs/2026-10-19-bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii/output-v3/bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii.mp4",
+    "video_sha256": "94fc57d98dd869b7ec213e95e2402d7b555fc1667eac8a7900fcb66b8637849d",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

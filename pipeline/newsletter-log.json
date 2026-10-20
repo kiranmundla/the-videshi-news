@@ -1536,5 +1536,16 @@
     "top_story_slug": "prahaar-review-roundup-critics",
     "quick_hit_count": 5,
     "deadline_count": 2
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-19T13:58:42.314130+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 19, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "diwali-muhurat-trading-2026-nov-8-timings",
+    "quick_hit_count": 5,
+    "deadline_count": 4
   }
 ]

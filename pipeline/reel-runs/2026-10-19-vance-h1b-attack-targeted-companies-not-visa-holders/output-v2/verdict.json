@@ -1,0 +1,15 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "vance-h1b-attack-targeted-companies-not-visa-holders",
+  "name": "vance-h1b-attack-targeted-companies-not-visa-holders",
+  "script": "reel-runs/2026-10-19-vance-h1b-attack-targeted-companies-not-visa-holders/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "key_entities:India's Ministry of External Affairs"
+    ],
+    "llm_cost_usd": 0.000521
+  }
+}

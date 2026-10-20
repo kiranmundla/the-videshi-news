@@ -1,0 +1,141 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "india-cancer-drug-price-caps-137-medicines-november-9",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "India Caps Margins on 137 Cancer Drugs, Prices to Fall Up to 70% From November 9",
+        "numbers": [
+          9.0,
+          70.0,
+          137.0
+        ],
+        "entities": [
+          "India Caps Margins",
+          "Cancer Drugs",
+          "Fall Up",
+          "From November"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article states prices will fall up to 70% from November 9.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Covered drugs include Pembrolizumab and Osimertinib, used across more than 20 cancer types.",
+        "numbers": [
+          20.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article lists Pembrolizumab and Osimertinib as covered drugs for cancer.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The NPPA capped trade margins at 30% of MRP on 137 non-scheduled anti-cancer medicines",
+        "numbers": [
+          30.0,
+          137.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article confirms NPPA capped trade margins at 30% of MRP on 137 medicines.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Mark-ups averaged about 170% and reached 700% in some cases before the cap",
+        "numbers": [
+          170.0,
+          700.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article mentions average mark-ups of about 170% and up to 700%.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Manufacturers must file revised prices within 7 days of the October 17 Gazette notification",
+        "numbers": [
+          7.0,
+          17.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article states manufacturers must file revised prices within 7 days of October 17.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "India Caps Margins on 137 Cancer Drugs, Prices to Fall Up to 70% From November 9",
+        "numbers": [
+          9.0,
+          70.0,
+          137.0
+        ],
+        "entities": [
+          "India Caps Margins",
+          "Cancer Drugs",
+          "Fall Up",
+          "From November"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Same as claim 1, reiterates price fall from November 9.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000333
+    }
+  },
+  "verdict": "pass"
+}

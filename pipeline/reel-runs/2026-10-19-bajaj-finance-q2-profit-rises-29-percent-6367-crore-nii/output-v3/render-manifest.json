@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii",
+  "article_slug": "bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii",
+  "article_id": "1520da4f-07f4-479f-b05d-780783950f2d",
+  "category": "Markets Finance",
+  "video": "reel-runs/2026-10-19-bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii/output-v3/bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://images.moneycontrol.com/static-mcnews/2023/03/BAJAJ-FINANCE.jpg",
+    "local_path": "reel-runs/2026-10-19-bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii/output-v3/hero.jpg",
+    "width": 1280,
+    "height": 734,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "focal-heuristic (no face detected)",
+    "has_face": false,
+    "box_source": [
+      435,
+      213,
+      716,
+      293
+    ],
+    "box_bg": [
+      -396.1,
+      557.2,
+      1872.9,
+      766.4
+    ],
+    "chin_bg": null,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 280,
+      "block_top": 858,
+      "block_bottom": 1138,
+      "text_bbox": [
+        117,
+        858,
+        883,
+        1130
+      ],
+      "texts": [
+        "Markets Finance",
+        "BAJAJ FINANCE PROFIT JUMPS 29%"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 330,
+      "block_top": 858,
+      "block_bottom": 1188,
+      "text_bbox": [
+        122,
+        858,
+        885,
+        1192
+      ],
+      "texts": [
+        "What Happened",
+        "Bajaj Finance's consolidated net profit rose 28.7% year on year to Rs 6,366.57 crore in Q2 FY27, as net interest income jumped 24%."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 311,
+      "block_top": 858,
+      "block_bottom": 1169,
+      "text_bbox": [
+        112,
+        858,
+        897,
+        1175
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "Rs 6,366.57 CRORE",
+        "Consolidated net profit in Q2 FY27, up 28.7% year on year"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 755,
+      "block_top": 796,
+      "block_bottom": 1551,
+      "text_bbox": [
+        111,
+        796,
+        902,
+        1557
+      ],
+      "texts": [
+        "By The Numbers",
+        "24%",
+        "Net interest income rose year on year to Rs 13,335 crore",
+        "1.06%",
+        "Gross NPA ratio, down from 1.24% a year earlier",
+        "26%",
+        "Assets under management grew year on year to Rs 5,84,624 crore"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 407,
+      "block_top": 858,
+      "block_bottom": 1265,
+      "text_bbox": [
+        118,
+        858,
+        875,
+        1270
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "New loan bookings rose 11% to 13.45 million in the quarter",
+        "Customer franchise reached 128.85 million, up 16% year on year"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 262,
+      "block_top": 858,
+      "block_bottom": 1120,
+      "text_bbox": [
+        111,
+        858,
+        899,
+        1131
+      ],
+      "texts": [
+        "The Takeaway",
+        "The lender also proposed raising up to Rs 17,500 crore in capital, subject to approvals.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "pixabay-breaking-full.mp3",
+    "path": "music/pixabay-breaking-full.mp3"
+  },
+  "render_seconds": 332.9,
+  "mp4_bytes": 5826506
+}

@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "article_slug": "bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii",
+  "name": "bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii",
+  "script": "reel-runs/2026-10-19-bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000588
+  },
+  "manifest": "reel-runs/2026-10-19-bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii/output-v3/render-manifest.json",
+  "video": "reel-runs/2026-10-19-bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii/output-v3/bajaj-finance-q2-profit-rises-29-percent-6367-crore-nii.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  }
+}

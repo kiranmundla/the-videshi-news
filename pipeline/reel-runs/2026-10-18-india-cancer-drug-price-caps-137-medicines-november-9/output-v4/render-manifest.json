@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "india-cancer-drug-price-caps-137-medicines-november-9",
+  "article_slug": "india-cancer-drug-price-caps-137-medicines-november-9",
+  "article_id": "740381c3-48a4-40fe-88e3-96e018de000c",
+  "category": "News",
+  "video": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output-v4/india-cancer-drug-price-caps-137-medicines-november-9.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Janaushadhi_store%2C_RR_Nagar%2C_Bengaluru_%282026%29.jpg/1280px-Janaushadhi_store%2C_RR_Nagar%2C_Bengaluru_%282026%29.jpg",
+    "local_path": "reel-runs/2026-10-18-india-cancer-drug-price-caps-137-medicines-november-9/output-v4/hero.jpg",
+    "width": 1280,
+    "height": 761,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "yunet (score 0.86)",
+    "has_face": true,
+    "box_source": [
+      621,
+      131,
+      44,
+      53
+    ],
+    "box_bg": [
+      484.8,
+      330.5,
+      111.0,
+      133.7
+    ],
+    "chin_bg": 464.2,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": 463.3,
+      "zone_top": 512,
+      "zone_h": 1068,
+      "scale": 1.0,
+      "content_h": 284,
+      "block_top": 602,
+      "block_bottom": 886,
+      "text_bbox": [
+        161,
+        602,
+        844,
+        878
+      ],
+      "texts": [
+        "News",
+        "CANCER DRUGS GET A PRICE CAP"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": 462.0,
+      "zone_top": 510,
+      "zone_h": 1070,
+      "scale": 1.0,
+      "content_h": 278,
+      "block_top": 600,
+      "block_bottom": 878,
+      "text_bbox": [
+        112,
+        600,
+        888,
+        875
+      ],
+      "texts": [
+        "What Happened",
+        "The NPPA has capped trade margins at 30% of MRP on 137 anti-cancer medicines, with prices expected to fall by up to 70% on some medicines from November 9."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": 460.7,
+      "zone_top": 509,
+      "zone_h": 1071,
+      "scale": 1.0,
+      "content_h": 538,
+      "block_top": 599,
+      "block_bottom": 1137,
+      "text_bbox": [
+        114,
+        599,
+        885,
+        1141
+      ],
+      "texts": [
+        "THE PRICE TAG",
+        "70%",
+        "Expected MRP fall on the most heavily marked-up cancer medicines"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": 459.1,
+      "zone_top": 508,
+      "zone_h": 1072,
+      "scale": 1.0,
+      "content_h": 755,
+      "block_top": 598,
+      "block_bottom": 1353,
+      "text_bbox": [
+        124,
+        598,
+        878,
+        1352
+      ],
+      "texts": [
+        "By The Numbers",
+        "137",
+        "Anti-cancer medicines with trade margins capped by the NPPA",
+        "30%",
+        "New cap on trade margins as a share of MRP",
+        "700%",
+        "Highest mark-up found on some medicines before the cap"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": 457.5,
+      "zone_top": 506,
+      "zone_h": 1074,
+      "scale": 1.0,
+      "content_h": 466,
+      "block_top": 596,
+      "block_bottom": 1062,
+      "text_bbox": [
+        118,
+        596,
+        869,
+        1058
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Families funding treatment in India should check the new MRP before paying",
+        "Hospitals and retailers must charge the revised prices from November 9"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": 456.4,
+      "zone_top": 505,
+      "zone_h": 1075,
+      "scale": 1.0,
+      "content_h": 268,
+      "block_top": 595,
+      "block_bottom": 863,
+      "text_bbox": [
+        118,
+        595,
+        891,
+        874
+      ],
+      "texts": [
+        "The Takeaway",
+        "From November 9, hospitals and retailers must charge the revised prices.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "breaking-news-background.mp3",
+    "path": "music/breaking-news-background.mp3"
+  },
+  "render_seconds": 325.5,
+  "mp4_bytes": 14292886
+}

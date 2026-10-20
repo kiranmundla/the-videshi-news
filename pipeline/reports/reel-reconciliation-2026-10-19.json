@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 193,
-    "db_rows": 129,
-    "db_rows_with_yt_id": 99,
+    "channel_videos": 194,
+    "db_rows": 130,
+    "db_rows_with_yt_id": 100,
     "legacy_log_entries": 205,
-    "publish_log_entries": 13,
-    "in_sync": 82,
+    "publish_log_entries": 14,
+    "in_sync": 83,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 10,
     "ghost_db_rows": 14,
@@ -583,10 +583,17 @@
     },
     {
       "title": "India Caps Margins on 137 Cancer Drugs, Prices to Fall Up to 70% From November 9 #Shorts #News",
-      "published_at": "2026-10-19T06:31:20Z",
-      "privacy": "unlisted",
+      "published_at": "2026-10-19T14:15:02Z",
+      "privacy": "public",
       "video_id": "i4cIT_LAcUU",
       "record": "prebuilt_reels:cd15b49b-7612-4bfb-9153-e2d53a650021"
+    },
+    {
+      "title": "Bajaj Finance Q2 Profit Rises 29% to Rs 6,367 Crore as NII Jumps 24% #Shorts #Markets",
+      "published_at": "2026-10-19T19:13:40Z",
+      "privacy": "unlisted",
+      "video_id": "a_05lp6TNcw",
+      "record": "prebuilt_reels:b24a1654-1500-4177-9970-9cb7f6a2a0a3"
     }
   ],
   "unknown_legacy_logged": [
@@ -3480,5 +3487,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-10-19T06:31:49+00:00"
+  "generated_at": "2026-10-19T19:21:26+00:00"
 }

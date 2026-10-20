@@ -1,0 +1,198 @@
+[
+  {
+    "id": "f2fdc0f9-b302-4c41-82d1-b225fbf296a5",
+    "headline": "From Mumbai to Rishikesh: Retirees Choose Tier-2 Cities and Spiritual Hubs",
+    "slug": "retirees-tier-2-cities-spiritual-hubs-senior-living-india",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline for the projected growth of the senior-living market by specifying the years mentioned in the report, such as the growth from $4.31 billion in 2026 to $11.43 billion by 2031, to enhance clarity and completeness.",
+        "Provide specific examples of what constitutes 'hospital access' and 'emergency response' in the context of Tier-2 cities to give readers concrete action steps when considering a move.",
+        "Include a brief explanation of the factors contributing to the low penetration rate of senior living in India compared to the US and New Zealand, as this context would help readers understand the market dynamics better."
+      ],
+      "embed_opportunities": [
+        "Embed the official report from Square Yards Research or a relevant tweet summarizing the findings to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "e26a8a56-a80f-4164-8235-c375c6a6ca64",
+    "headline": "Infosys, Truist Expand Hyderabad AI Centre, Onboard Over 1,000",
+    "slug": "infosys-truist-hyderabad-gcc-1000-onboarded",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the celebration of the onboarding of over 1,000 colleagues. The phrase 'celebrated later in October 2026' seems to be a typographical error, as the current date is October 2023. This needs correction for accuracy and clarity.",
+        "Provide specific details about the roles being offered at the AI centre, such as job titles, salary ranges, or qualifications required. This would enhance completeness and give readers a clearer understanding of what to expect.",
+        "Include a quote from a representative of either Infosys or Truist to enhance attribution and provide a human element to the story."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement from Infosys or Truist regarding the expansion of the AI centre for direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "b161c59e-0a17-490f-967a-b5bff2c5f64d",
+    "headline": "Mysuru's Howdah Bearers: The Elephants Behind Dasara's Golden Throne",
+    "slug": "mysuru-dasara-elephants-howdah-bearers-golden-howdah",
+    "category": "news",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by explicitly stating the year of the upcoming Jamboo Savari procession as 2026 in the first paragraph, as it currently appears later in the text. This will enhance clarity and ensure readers understand the immediacy of the event.",
+        "Provide more context about the significance of the Dasara festival and the role of the elephants, possibly including a brief historical background or cultural importance to enrich the reader's understanding.",
+        "Include a quote from a relevant authority or expert, such as a representative from the Forest Department or a cultural historian, to enhance attribution and provide a personal touch to the story."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Mysuru District Administration or the Karnataka Tourism Board announcing the dates and significance of the Dasara festival for added credibility and real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "7666a128-e800-4e96-a7dd-a036411b3dd4",
+    "headline": "Amar Kale Paints Karnataka in Chilli and Turmeric for a World Record",
+    "slug": "amar-kale-largest-spice-painting-guinness-record-karnataka",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the painting's completion in the opening paragraph to improve timeliness and context for readers unfamiliar with the event.",
+        "Include a quote or statement from Guinness World Records to enhance attribution and credibility regarding the record-setting event.",
+        "Provide additional context about the significance of the Hampi Chariot and its cultural relevance to Karnataka, which would enrich the article's completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from Guinness World Records announcing the record, which would provide authoritative confirmation and enhance reader engagement."
+      ]
+    }
+  },
+  {
+    "id": "9e215643-f5d5-4307-9547-f694aafc43d9",
+    "headline": "Diwali Muhurat Trading 2026 Set for Nov 8, 2:20 to 3:30 PM",
+    "slug": "diwali-muhurat-trading-2026-nov-8-timings",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Ensure all relevant details about the trading session are clearly outlined, including any potential implications for investors.",
+        "Clarify the significance of the Diwali Muhurat Trading session and its traditional context to enhance reader understanding.",
+        "Remove the diaspora investor reference to maintain focus on the primary audience and avoid any potential confusion.",
+        "Include direct quotes or attributions from official sources or experts to enhance credibility.",
+        "Add a brief explanation of what Muhurat Trading is for readers unfamiliar with the concept."
+      ],
+      "embed_opportunities": [
+        "Consider embedding a video explanation of Diwali Muhurat Trading for visual learners.",
+        "Include a tweet from the NSE or BSE announcing the trading session to provide real-time updates."
+      ],
+      "rubric_violation": true
+    }
+  },
+  {
+    "id": "557c7d96-0a66-4fe2-a227-6a50ebe51588",
+    "headline": "Universo Ferrari Opens in New Delhi With F80, Testarossa and Hypersail",
+    "slug": "universo-ferrari-exhibition-new-delhi-yashobhoomi-f80-testarossa",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the ticket purchasing process by including a direct link to where tickets can be bought or more details on how to obtain them.",
+        "Provide more context on the significance of the exhibition, such as its impact on the automotive culture in India or Ferrari's strategy in the Indian market.",
+        "Include a brief mention of any special events or activities planned during the public entry dates that might attract visitors, such as meet-and-greets with Ferrari experts or special presentations."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Ferrari or a related automotive account announcing the exhibition to enhance credibility and provide real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "8304195f-cd84-4be4-9aff-5bbed9a455cd",
+    "headline": "Philippines Ambassador Invites Indian Travellers, With 14-Day Visa-Free Entry",
+    "slug": "philippines-ambassador-india-travel-awards-visa-free-indian-travellers",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the visa requirements by providing specific details on the proof of funds needed for the visa-free entry. For instance, state the minimum amount required per day or total for the 14-day stay.",
+        "Include a quote from the Philippine Ambassador or a tourism official to enhance attribution and provide a personal touch to the invitation for Indian travelers.",
+        "Add a brief context about the significance of the India Travel Awards 2026 and how it relates to the Philippines' tourism strategy, which would help readers understand the importance of the event.",
+        "Ensure the article mentions the effective date of the visa-free entry policy to inform readers when they can start planning their travel."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Philippine Embassy in India announcing the visa-free entry policy or the India Travel Awards to provide real-time updates and credibility."
+      ]
+    }
+  },
+  {
+    "id": "68988849-3a65-48dd-88f8-cacbadb1e2d7",
+    "headline": "Chinmay Sutar Hits Unbeaten 400, Only Second Indian to Reach the Mark",
+    "slug": "chinmay-sutar-unbeaten-400-ranji-trophy-second-indian",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Sutar's achievement by providing more context about the rarity of quadruple centuries in cricket, including how many have been scored globally and the historical context of the previous records.",
+        "Include a direct quote from Sutar or a coach/teammate to add a personal touch and insight into the emotional impact of this achievement.",
+        "Mention the implications of this performance for Sutar's career moving forward, such as potential selection for higher-level competitions or national team consideration.",
+        "Add a brief summary of Mizoram's performance in the Ranji Trophy so far this season to give readers a better understanding of the team's context and Sutar's contribution."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight of Sutar's innings from a reputable sports news outlet or the official Ranji Trophy channel to enhance reader engagement."
+      ]
+    }
+  },
+  {
+    "id": "b326392d-31a8-4cad-a518-82ba7d5d31ff",
+    "headline": "Four Killed in Manipur as Firewood Collectors Ambushed, Protesters Reach CM's Ga",
+    "slug": "manipur-four-killed-firewood-ambush-protest-cm-bungalow",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact dates and times of the incidents, as well as when the protests occurred. This will help readers understand the sequence of events better.",
+        "Provide more context on the ongoing situation in Manipur, including any background on the conflict or tensions in the region that led to this incident. This will help readers grasp the significance of the ambush and protests.",
+        "Include direct quotes from officials or eyewitnesses to enhance the attribution and provide a more personal perspective on the events. This could help convey the emotional weight of the situation.",
+        "Specify the number of people involved in the protests and any demands they are making, as well as the response from law enforcement. This will give readers a clearer picture of the public reaction to the ambush."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Chief Minister's office or local law enforcement regarding the incident or the response to the protests to provide official updates."
+      ]
+    }
+  },
+  {
+    "id": "09001b3f-36cf-443a-8bbc-67267db46c6b",
+    "headline": "First Diwali After Gulf War Finds India Spending Less, Using Savings",
+    "slug": "india-diwali-gulf-war-tighter-budgets-spending",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the date of the Gulf War to provide context for readers unfamiliar with the event's impact on current spending habits.",
+        "Include a direct quote from a LocalCircles representative or an economic expert to enhance attribution and credibility of the survey results.",
+        "Provide a clearer breakdown of how inflation rates are impacting specific spending categories, such as food versus discretionary items, to give readers a more comprehensive understanding of the economic landscape.",
+        "Ensure that the statistic regarding last year's festive spending (Rs 2.10 lakh crore in 2025) is accurate and clearly stated, as it appears to reference a future year incorrectly."
+      ],
+      "embed_opportunities": [
+        "Embed the LocalCircles survey report link for readers to access the full data and insights directly."
+      ]
+    }
+  }
+]

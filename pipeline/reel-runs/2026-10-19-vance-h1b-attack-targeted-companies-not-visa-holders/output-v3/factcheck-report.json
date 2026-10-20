@@ -1,0 +1,259 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "vance-h1b-attack-targeted-companies-not-visa-holders",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "H-1B ATTACK TARGETED COMPANIES, NOT HOLDERS",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states Vance targeted companies, not H-1B holders.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "At a CBS News town hall in Flat Rock, Michigan, Vice President JD Vance said his 'foreign indentured servants' description was a criticism of companies and the visa system, not of H-1B holders, and conceded his rhetoric had been imperfect.",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "CBS News",
+        "Flat Rock",
+        "Vice President JD Vance"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Details about Vance's comments at the town hall are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "COMPANIES, NOT HOLDERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Reiterates that companies, not holders, were targeted.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Vance says his H-1B criticism was of employers and the visa system, not visa holders",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Vance's criticism was indeed of employers and the visa system.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE BACKLASH",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "No specific details about backlash are provided in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "MORE THAN 70%",
+      "numbers": [
+        70.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states Indian professionals account for over 70% of H-1B petitions.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "of approved H-1B petitions annually are accounted for by Indian professionals",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Accurate representation of the statistic regarding Indian professionals.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "FLAT ROCK, MICHIGAN",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Flat Rock, Michigan is mentioned as the town hall location.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "CBS News town hall where Vance conceded his rhetoric had been imperfect",
+      "numbers": [],
+      "entities": [
+        "CBS News"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Correctly states the town hall where Vance conceded his rhetoric.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "NO NEW POLICY",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms no new policy was announced.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Vance announced no new policy and did not retract his support for tighter controls",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Vance did not retract support for tighter controls.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Vance invoked his in-laws, who immigrated from South India",
+      "numbers": [],
+      "entities": [
+        "South India"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Vance invoked his in-laws who immigrated from South India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "His in-laws' daughter, born in the United States, is now the second lady",
+      "numbers": [],
+      "entities": [
+        "United States"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Correctly states his in-laws' daughter is the second lady.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "No rule changed: H-1B status and PERM positions are unchanged, and the clarification does not restore any suspended firm's PERM access.",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Clarification about H-1B status and PERM positions is accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE BACKLASH",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "JD Vance",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "CBS News",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "H-1B",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "PERM",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ministry of External Affairs",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000507
+  }
+}

@@ -1,0 +1,40 @@
+[
+  {
+    "id": "754716e6-9710-4416-a38e-370853964bde",
+    "headline": "Nvidia Wins Modal as Vera CPU Customer in Push Beyond GPUs",
+    "slug": "nvidia-modal-vera-cpu-design-win-intel-amd",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the deal by providing specific details about the performance metrics of the Nvidia Vera processor compared to Intel and AMD chips, including any quantitative data on speed or efficiency improvements beyond just 'doubling the amount of work'.",
+        "Include a direct quote from Modal's CEO or a relevant Nvidia executive to enhance attribution and provide a personal perspective on the implications of this partnership.",
+        "Add context about the competitive landscape in the CPU market, such as market share statistics or recent developments from Intel and AMD, to help readers understand the broader implications of Nvidia's entry into this space."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Nvidia or Modal announcing the partnership or highlighting the performance of the Vera processor to provide real-time updates and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "5112d002-0ee4-46c1-9fb7-ada5a2f8be04",
+    "headline": "Shashi Kumar Left Wipro to Farm; His Father Stayed Silent for Eight Years",
+    "slug": "shashi-kumar-left-wipro-farming-akshayakalpa-father-eight-years",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events, particularly the transition from Wipro to founding Akshayakalpa, to enhance the narrative flow and provide a clearer understanding of Shashi Kumar's journey.",
+        "Include specific financial figures regarding Akshayakalpa's growth trajectory over the years, such as revenue milestones or profit margins, to give readers a clearer picture of the business's success.",
+        "Provide more context on the challenges faced by Akshayakalpa, including specific examples of the difficulties during the near-bankruptcy phases, to give a fuller understanding of the entrepreneurial journey."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or post from Akshayakalpa Organic that highlights their mission or recent achievements to provide additional context and engagement."
+      ]
+    }
+  }
+]
