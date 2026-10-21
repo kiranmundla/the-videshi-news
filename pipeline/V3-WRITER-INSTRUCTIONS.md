@@ -472,6 +472,8 @@ Every article should end with the reader able to DO something they couldn't do b
 
 12. **Trailer embed placement.** When an article includes a `<youtube>` trailer embed, place it after the SECOND paragraph — never at the bottom. The trailer is the reason many readers opened the article; burying it at the end kills engagement.
 
+13. **Help links for stories about people in need (2026-10-21, Kiran's reader-perspective rule).** Judge every enrichment from the reader's seat: after reading, what would the reader want to DO next? When a story centers on a person or family in need — a death, a disaster, a medical crisis, a community loss — and a VERIFIED fundraiser or relief channel exists (e.g., a GoFundMe organized by the family, confirmed as genuine by reputable coverage), the article MUST link it with a clear help line naming the organizer, the purpose, and the goal. Link only fundraisers whose identity is verified (organizer is the family or a named party, corroborated by a reputable outlet); never link an unverified or lookalike campaign. The same reader-seat test applies broadly: official sign-up/registration links for events and programs, helpline numbers for crisis stories, application links for benefits — if the reader's next step exists, the article carries it.
+
 ## Movie Review Format (when writing a movie review article)
 All movie reviews MUST follow The Videshi Rating format:
 1. **Rating data** (stored as article fields, rendered as "THE VIDESHI RATING" card):
