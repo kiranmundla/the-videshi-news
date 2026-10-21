@@ -14,7 +14,6 @@ interface Props {
 }
 
 const GAP = 12;
-const FADE_WIDTH = 56;
 
 export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight = 180, objectFit = "cover", onPhotoClick }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -90,40 +89,15 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
     opacity: 0.9,
   };
 
-  const fadeBase: React.CSSProperties = {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    width: FADE_WIDTH,
-    zIndex: 5,
-    pointerEvents: "none",
-  };
-
   return (
     <div style={{ position: "relative" }}>
       <style>{`.photo-scroll-strip::-webkit-scrollbar { display: none; }`}</style>
 
-      {/* Edge fades — signal more content in that direction */}
-      {canScrollLeft && (
-        <div
-          aria-hidden
-          style={{
-            ...fadeBase,
-            left: 0,
-            background: "linear-gradient(to right, hsl(var(--background)), hsl(var(--background) / 0))",
-          }}
-        />
-      )}
-      {canScrollRight && (
-        <div
-          aria-hidden
-          style={{
-            ...fadeBase,
-            right: 0,
-            background: "linear-gradient(to left, hsl(var(--background)), hsl(var(--background) / 0))",
-          }}
-        />
-      )}
+      {/* Scroll signal = the counter pill below + arrows + the peeking
+          next photo. The old edge-fade gradients (page-background →
+          transparent, 56px) washed a milky/cloudy veil over the photos'
+          sides — worst on dark photos (Japan, 2026-10-21) — so they are
+          gone. */}
 
       {/* Photo counter — makes the total count visible at a glance */}
       {photos.length > 1 && (
@@ -183,7 +157,10 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
           WebkitOverflowScrolling: "touch",
           scrollbarWidth: "none",
           msOverflowStyle: "none",
-          scrollSnapType: "x mandatory",
+          // proximity + start-align (2026-10-21): mandatory + center snap
+          // fought the reader's swipe and felt sticky next to every other
+          // rail on the site, which all use start alignment.
+          scrollSnapType: "x proximity",
           paddingLeft: "4%",
           paddingRight: "4%",
         } as React.CSSProperties}
@@ -198,7 +175,7 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
               maxWidth: "calc(100vw - 88px)",
               flexShrink: 0,
               cursor: onPhotoClick ? "pointer" : "default",
-              scrollSnapAlign: "center",
+              scrollSnapAlign: "start",
             }}
           >
             <div style={{
