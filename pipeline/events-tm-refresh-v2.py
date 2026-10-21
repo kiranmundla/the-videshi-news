@@ -106,23 +106,35 @@ def slugify(text):
     s = re.sub(r'-+', '-', s)
     return s[:80].strip('-')
 
+def _tm_cat_hit(kw, t):
+    # Word-boundary match (2026-10-21): substring matching let "guru"
+    # (a performer's name — Guru Randhawa) badge concerts as Spiritual.
+    kw = kw.strip()
+    if " " in kw or "-" in kw:
+        return re.search(r"\b" + re.escape(kw) + r"\b", t) is not None
+    return re.search(r"\b" + re.escape(kw) + r"(?:s|es|ing|ed|ity)?\b", t) is not None
+
+
 def categorize(title):
     t = title.lower()
+    # NOTE: bare "guru" removed from spiritual_kw (2026-10-21) — it is a
+    # chart-topping singer's stage name (Guru Randhawa); genuine spiritual
+    # titles carry temple/kirtan/satsang/gita signals instead.
     spiritual_kw = ["temple", "mandir", "kirtan", "bhajan", "puja", "satsang",
                      "meditation", "yoga", "vedic", "bhakti", "spiritual", "dharma",
-                     "gita", "iskcon", "baps", "guru", "havan", "aarti"]
-    if any(kw in t for kw in spiritual_kw):
+                     "gita", "iskcon", "baps", "havan", "aarti"]
+    if any(_tm_cat_hit(kw, t) for kw in spiritual_kw):
         return "Spiritual"
     ent_kw = ["concert", "bollywood", "music", "dance", "comedy", "show",
               "tour", "festival", "mela", "bhangra", "garba", "dandiya",
               "dj ", "party", "night", "live", "singer"]
-    if any(kw in t for kw in ent_kw):
+    if any(_tm_cat_hit(kw, t) for kw in ent_kw):
         return "Entertainment"
     sport_kw = ["cricket", "kabaddi", "badminton", "marathon", "run ",
                 "volleyball", "sports", "tournament", "triathlon",
                 "cycling", "trail run", "charity run", "yogathon",
                 "5k", "10k", "half marathon"]
-    if any(kw in t for kw in sport_kw):
+    if any(_tm_cat_hit(kw, t) for kw in sport_kw):
         return "Sports & Fitness"
     return "Community"
 

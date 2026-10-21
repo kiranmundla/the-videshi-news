@@ -229,7 +229,7 @@ CATEGORY_RULES = [
     # Spiritual/Religious FIRST — yoga, meditation, etc. should never be Education
     ("Religious",   ["temple", "gurdwara", "mosque", "puja", "pooja", "havan",
                      "kirtan", "bhajan", "aarti", "satsang", "prayer",
-                     "yoga", "meditation", "sound bath", "sound healing",
+                     "yoga", "yogathon", "meditation", "sound bath", "sound healing",
                      "pranayama", "dhyana", "mantra", "bhakti", "vedic",
                      "ayurveda", "kundalini", "reiki", "chakra", "inner engineering",
                      "sadhguru", "devotional", "sacred", "chanting", "sufi",
@@ -244,7 +244,7 @@ CATEGORY_RULES = [
                        "bollyx", "dj party", "afterparty", "after party",
                        "cruise party", "rooftop party", "yacht party",
                        "bollywood rock", "show", "club", "lounge"]),
-    ("Music",       ["concert", "live music", "live band", "singer", "dj night",
+    ("Music",       ["concert", "music", "live music", "live band", "singer", "dj night",
                      "bhangra night", "carnatic", "classical music",
                      "ghazal", "qawwali", "raagas"]),
     ("Dance",       ["dance", "bharatanatyam", "kathak", "garba", "dandiya",
@@ -342,12 +342,53 @@ FALSE_POSITIVE_PATTERNS = [
 # Helpers
 # ---------------------------------------------------------------------------
 
-def categorize(title: str, description: str = "") -> str:
-    text = f"{title} {description}".lower()
+def _cat_hit(kw: str, text: str) -> bool:
+    """Word-boundary keyword match for categorization (2026-10-21).
+
+    Plain substring matching misfired on ordinary text: "pooja" — a host's
+    NAME in an agenda line ("Host: Bandhavi & Pooja") — badged a Bollywood
+    social evening as Religious; "holi" inside "holiday" made parties
+    Festivals; "art" inside "party" made socials Cultural. Single tokens
+    match on word boundaries with a small inflection allowance (plurals,
+    -ing/-ed, -ity); phrases match on boundaries at both ends.
+    """
+    kw = kw.strip()
+    if not kw:
+        return False
+    if " " in kw or "-" in kw:
+        return re.search(r"\b" + re.escape(kw) + r"\b", text) is not None
+    return re.search(r"\b" + re.escape(kw) + r"(?:s|es|ing|ed|ity)?\b", text) is not None
+
+
+def _categorize_text(text: str):
     for cat, keywords in CATEGORY_RULES:
         for kw in keywords:
-            if kw in text:
+            if _cat_hit(kw, text):
                 return cat
+    return None
+
+
+def categorize(title: str, description: str = "") -> str:
+    # Title first: the strongest signal, and free of agenda/host
+    # boilerplate. The full event description must never drive the
+    # category on its own — "Host: Bandhavi & Pooja" in an agenda is a
+    # person, not a puja (Bollywood and Bites, Pleasanton, 2026-10-21:
+    # badged Religious off the long description's host line).
+    cat = _categorize_text((title or "").lower())
+    if cat:
+        return cat
+    # Fall back to title + the description's opening summary lead. Cut at
+    # agenda/host boilerplate markers first — those sections carry personal
+    # names, and a 400-char window alone still caught "Host: … & Pooja" at
+    # ~char 370 of the incident description.
+    lead = (description or "")[:400]
+    for marker in ("\nagenda", "\nschedule", "\nlineup", "host:", "\nhost "):
+        idx = lead.lower().find(marker)
+        if idx != -1:
+            lead = lead[:idx]
+    cat = _categorize_text(f"{title} {lead}".lower())
+    if cat:
+        return cat
     return "Entertainment"  # Default for AllEvents
 
 
@@ -606,7 +647,10 @@ def process_event(card: dict, city: dict) -> dict | None:
         "venue_name": venue_name,
         "city": event_city,
         "state": event_state,
-        "category": categorize(title, full_description),
+        # Categorize off the SHORT description — never full_description:
+        # its agenda/host lines carry personal names that false-match
+        # category keywords (2026-10-21 Bollywood and Bites incident).
+        "category": categorize(title, description),
         "description": description[:500] if description else title,
         "long_description": full_description[:2000] if full_description else None,
         "image_url": image_url,

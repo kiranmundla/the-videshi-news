@@ -162,9 +162,18 @@ CATEGORY_KEYWORDS = [
 def guess_category(title: str) -> str:
     t = title.lower()
     for keywords, cat in CATEGORY_KEYWORDS:
-        if any(k in t for k in keywords):
+        if any(_sulekha_cat_hit(k, t) for k in keywords):
             return cat
     return "Entertainment"
+
+
+def _sulekha_cat_hit(kw: str, t: str) -> bool:
+    # Word-boundary match (2026-10-21): substring matching let "holi"
+    # inside "holiday" badge ordinary events as Festival.
+    kw = kw.strip()
+    if " " in kw or "-" in kw:
+        return re.search(r"\b" + re.escape(kw) + r"\b", t) is not None
+    return re.search(r"\b" + re.escape(kw) + r"(?:s|es|ing|ed|ity)?\b", t) is not None
 
 
 def parse_event(obj: dict) -> dict | None:
