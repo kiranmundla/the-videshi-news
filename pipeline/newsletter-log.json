@@ -1547,5 +1547,16 @@
     "top_story_slug": "diwali-muhurat-trading-2026-nov-8-timings",
     "quick_hit_count": 5,
     "deadline_count": 4
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-20T13:58:28.585563+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 20, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "early-flu-season-mutated-h1n1-strain-concern-younger-americans",
+    "quick_hit_count": 5,
+    "deadline_count": 4
   }
 ]

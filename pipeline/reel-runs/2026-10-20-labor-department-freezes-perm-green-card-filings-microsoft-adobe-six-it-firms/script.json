@@ -1,0 +1,38 @@
+{
+  "hook_line": "GREEN-CARD FILINGS FROZEN FOR 8 FIRMS",
+  "hook_stat": {
+    "big": "8",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Employers whose PERM green-card processing is suspended"
+  },
+  "stats": [
+    {
+      "big": "180 DAYS",
+      "label": "How long the initial suspension can last under the rule cited"
+    },
+    {
+      "big": "230,000+",
+      "label": "H-1B approvals the eight firms received, per the Labor Secretary"
+    },
+    {
+      "big": "100,000+",
+      "label": "Permanent labor certifications the eight firms obtained"
+    }
+  ],
+  "diaspora_bullets": [
+    "Indian professionals are a large share of H-1B holders at the named firms",
+    "A pending PERM cannot advance to an I-140 while the freeze holds"
+  ],
+  "key_entities": [
+    "Microsoft",
+    "Adobe",
+    "Infosys",
+    "U.S. Department of Labor",
+    "PERM",
+    "Keith Sonderling"
+  ],
+  "news_summary": "The Labor Department has suspended PERM labor-certification processing for Microsoft, Adobe and six large IT firms, halting a first step in employer-sponsored green-card cases while federal investigations proceed.",
+  "payoff": "H-1B visas are not cancelled \u2014 affected workers face delay, not denial.",
+  "versus": "",
+  "story_mood": "tense"
+}

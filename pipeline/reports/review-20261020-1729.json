@@ -1,0 +1,188 @@
+[
+  {
+    "id": "e3fe18ef-7068-4877-b750-6d755a3193ba",
+    "headline": "Google Messages Tests Satellite, Terrain and Traffic for Location Sharing",
+    "slug": "google-messages-tests-satellite-terrain-traffic-location-sharing-beta",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by including a statement about the expected duration of the beta testing phase or any potential future announcements from Google regarding the rollout of this feature.",
+        "Provide a brief explanation of what APK teardown means for readers who may not be familiar with the term, enhancing clarity and completeness.",
+        "Include specific details about how users can join the beta program for Google Messages, such as links or steps to follow, to give readers actionable information.",
+        "Mention any potential implications for users if this feature is rolled out, such as improvements in user experience or changes in how location sharing is perceived."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Google or Android Authority regarding the beta testing of the new features for visual context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "1689c335-9474-4f02-9faa-89f01870d7f0",
+    "headline": "Cyberpunk 2077 Update 2.5 Arrives October 22 With Dual-Wielding Playstyle",
+    "slug": "cyberpunk-2077-update-2-5-october-22-dual-wielding-edgerunners",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the release date by correcting the year from 2026 to 2023, as the context suggests the update is imminent and not in the future.",
+        "Include specific details about the new dual-wielding playstyle and cyberware customization features to enhance completeness, as readers may want to know how these changes will impact gameplay.",
+        "Add a quote from a CD Projekt Red representative or a relevant industry expert to enhance attribution and provide additional context about the significance of this update."
+      ],
+      "embed_opportunities": [
+        "Embed the official CD Projekt Red announcement tweet regarding Update 2.5 for direct access to the source information."
+      ]
+    }
+  },
+  {
+    "id": "6e56e4cf-dc87-48a1-8a17-a39dffbc9d46",
+    "headline": "Data Center Stocks Slide as Elice IPO Plunges Over 30% in Seoul Debut",
+    "slug": "data-center-stocks-slide-elice-ipo-plunge-october-20-2026",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the 389 times oversubscription in relation to the IPO's performance. Explain why such a high demand did not translate into a successful debut, which could help readers understand market dynamics better.",
+        "Provide more context on the implications of Elice's IPO failure for the broader AI and data center market. This could include potential investor sentiment shifts or future IPO prospects in the sector.",
+        "Include a brief explanation of what a 'neocloud' provider is, as this term may not be familiar to all readers, enhancing overall clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from CoinDesk or MarketWatch that highlights the IPO's performance or market reactions to provide real-time updates and context."
+      ]
+    }
+  },
+  {
+    "id": "6ada0b82-a43b-4c5f-89fb-93c79735ee4f",
+    "headline": "Wall Street Opens Lower as AI Stocks Slide and Oil Climbs",
+    "slug": "wall-street-opens-lower-ai-stocks-oil-october-20-2026",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the impact of the AI stock declines on broader market sentiment by providing specific examples of how this might affect individual investors or sectors.",
+        "Include more detailed context on the geopolitical risks affecting oil prices, such as specific events or regions involved, to enhance reader understanding.",
+        "Ensure all statistics and figures are accurate and consistently presented, particularly the Dow Jones, S&amp;P 500, and Nasdaq values, to avoid confusion."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial expert or analyst discussing the market trends or AI stock performance for real-time insights."
+      ]
+    }
+  },
+  {
+    "id": "54117095-3acc-4c54-977c-7c593b3e11c4",
+    "headline": "Megan Thee Stallion Names Priyanka Chopra Jonas Her Honorary Victoria's Secret A",
+    "slug": "megan-thee-stallion-priyanka-chopra-honorary-angel-victorias-secret",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the 2026 Victoria's Secret Fashion Show in the first paragraph, as it currently appears later in the article.",
+        "Ensure that all quotes are properly attributed to their sources; for instance, clarify who reported Megan's comments about Priyanka being 'tea' and the context of her invitation.",
+        "Provide more context about the significance of Megan's performance and her statement about it being 'full circle' for readers who may not be familiar with her past comments or aspirations regarding the Victoria's Secret Fashion Show."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Megan Thee Stallion or Priyanka Chopra Jonas regarding this event or their thoughts on the invitation to enhance engagement and provide direct access to their social media commentary."
+      ]
+    }
+  },
+  {
+    "id": "c5faec95-ab5d-4a2b-b212-1481619ad746",
+    "headline": "Jailer 2 Crosses Rs 500 Crore in Six Days, Fastest Tamil Film Ever",
+    "slug": "jailer-2-crosses-rs-500-crore-six-days-fastest-tamil-film",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact date the film was released to provide context for the six-day milestone.",
+        "Include a brief comparison of Jailer 2's performance against other recent Tamil films to give readers a clearer picture of its success relative to the competition.",
+        "Add a quote from a film industry expert or a relevant source to provide authoritative insight into the significance of this achievement in the Tamil film industry."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Sacnilk or a relevant industry source confirming the box office figures to enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "52030dfb-a3e1-4be5-a7ac-e3b9f7a5fd7a",
+    "headline": "Jaishankar Tells Rubio Understanding Cricket Is Test of India's Friendship",
+    "slug": "jaishankar-rubio-cricket-mumbai-26-11-tribute",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the context of the cricket reference by briefly explaining its significance in Indian culture and diplomacy, as this may not be clear to all readers.",
+        "Include a direct quote from Rubio regarding his visit or response to Jaishankar's comments to provide balance and enhance attribution.",
+        "Add specific details about the topics discussed in the Mumbai talks, such as any agreements reached or key figures related to trade and energy, to improve completeness.",
+        "Ensure the timeline of Rubio's visit is clear by explicitly stating the dates and locations of his meetings, which would enhance clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Ministry of External Affairs regarding Rubio's visit or the wreath-laying ceremony for additional context."
+      ]
+    }
+  },
+  {
+    "id": "08c3e4be-0b67-49a2-8b69-66682a0afa33",
+    "headline": "Indian-American Voters Take Centre Stage in Texas and New York Midterms",
+    "slug": "indian-american-voters-texas-new-york-midterms",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the 66-18 support ratio for Democratic Senate candidates among Indian-Americans by providing context on how this compares to previous elections or other demographic groups.",
+        "Include specific details about early voting deadlines in Texas and New York, as well as any relevant eligibility criteria for voters, to enhance the actionable information for readers.",
+        "Provide attribution for the statistic regarding Indian-American support for Democratic candidates, specifying the source of the 2026 AAPI Voter Survey more clearly to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official Texas Secretary of State's tweet regarding early voting information to provide readers with direct access to official updates."
+      ]
+    }
+  },
+  {
+    "id": "26d8b272-f6a6-4b53-8c44-ac048a1ab297",
+    "headline": "DHS Final Rule Permanently Ends Automatic Work Permit Extensions For Renewals",
+    "slug": "dhs-final-rule-ends-automatic-work-permit-extensions-ead",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the rule change by including specific examples of how it affects H-4 spouses and adjustment-of-status applicants, such as potential loss of income or employment opportunities during the waiting period for EAD renewal.",
+        "Include a direct quote from a DHS official or an immigration expert to provide authoritative context and enhance the article's credibility.",
+        "Add a brief section summarizing what individuals can do if their EAD expires before their renewal is approved, including any legal recourse or support resources available to them."
+      ],
+      "embed_opportunities": [
+        "Embed the official DHS announcement or a relevant tweet from USCIS regarding the final rule to provide readers with direct access to primary sources."
+      ]
+    }
+  },
+  {
+    "id": "ee4fd21d-28c1-438b-b66c-c176c973fbe9",
+    "headline": "Schweikert SMARTER Act Would Replace H-1B Lottery With Merit Points System",
+    "slug": "schweikert-smarter-act-replace-h1b-lottery-merit-points",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the proposed changes: Include specific dates or a timeline for when the SMARTER Act could potentially be passed or implemented, as this would provide readers with a clearer understanding of when changes might affect them.",
+        "Expand on the implications of the removal of per-country caps: Provide more context on how the removal of these caps could impact the green card wait times for Indian professionals, including any potential numerical estimates of wait times if available.",
+        "Include more details on the merit points system: Offer a brief overview of how the merit points system would function, including what qualifications or factors would be considered in the ranking process."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or summary of the SMARTER Act from the House Judiciary Committee or Rep. David Schweikert's official page for direct access to primary information."
+      ]
+    }
+  }
+]

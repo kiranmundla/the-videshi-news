@@ -1,0 +1,15 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "labor-department-freezes-perm-green-card-filings-microsoft-adobe-six-it-firms",
+  "name": "labor-department-freezes-perm-green-card-filings-microsoft-adobe-six-it-firms",
+  "script": "reel-runs/2026-10-20-labor-department-freezes-perm-green-card-filings-microsoft-adobe-six-it-firms/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "news_summary"
+    ],
+    "llm_cost_usd": 0.000564
+  }
+}

@@ -1,6 +1,6 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-10-20T05:38:12+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-10-20T17:16:11+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
@@ -359,5 +359,5 @@ _None._
 - `ad_O6nV9hGg` · public · 2026-10-18 · White House Touts $330 Billion in Indian Investment as 'Trillions Pour In' #Shorts #Markets [prebuilt_reels:4d8cc5ec-2a15-446d-9221-4a86019303b6]
 - `i4cIT_LAcUU` · public · 2026-10-19 · India Caps Margins on 137 Cancer Drugs, Prices to Fall Up to 70% From November 9 #Shorts #News [prebuilt_reels:cd15b49b-7612-4bfb-9153-e2d53a650021]
 - `a_05lp6TNcw` · public · 2026-10-19 · Bajaj Finance Q2 Profit Rises 29% to Rs 6,367 Crore as NII Jumps 24% #Shorts #Markets [prebuilt_reels:b24a1654-1500-4177-9970-9cb7f6a2a0a3]
-- `7ZjdQOJyGAs` · unlisted · 2026-10-20 · Lawmakers Join 63 in Congress Urging Faster Green Cards as Health Coverage Lapses #Shorts #GreenCard [prebuilt_reels:34cad0ab-2041-40cd-a8d5-b9f7cdee4131]
+- `7ZjdQOJyGAs` · public · 2026-10-20 · Lawmakers Join 63 in Congress Urging Faster Green Cards as Health Coverage Lapses #Shorts #GreenCard [prebuilt_reels:34cad0ab-2041-40cd-a8d5-b9f7cdee4131]
 

@@ -1,0 +1,16 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "ekta-vishnoi-three-golds-world-masters-powerlifting-nevada",
+  "name": "ekta-vishnoi-three-golds-world-masters-powerlifting-nevada",
+  "script": "reel-runs/2026-10-20-ekta-vishnoi-three-golds-world-masters-powerlifting-nevada/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "news_summary",
+      "key_entities:World Masters Powerlifting Championships"
+    ],
+    "llm_cost_usd": 0.000533
+  }
+}
