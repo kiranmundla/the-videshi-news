@@ -540,6 +540,17 @@ def get_earnings(date: str) -> list[dict]:
         
         detail = f"{symbol}" + (f" · {timing}" if timing else "")
 
+        # Consensus expectations from the Nasdaq calendar row itself
+        # (epsForecast / noOfEsts / lastYearEPS). These are GIVEN facts for
+        # the brief prompt — the earnings spec requires the brief to state
+        # them (2026-10-21, Kiran: an earnings preview without the number
+        # the market expects is half a brief). Never let the writer model
+        # invent figures beyond these.
+        eps_forecast = (r.get("epsForecast") or "").strip()
+        no_of_ests = (r.get("noOfEsts") or "").strip()
+        last_year_eps = (r.get("lastYearEPS") or "").strip()
+        fiscal_quarter = (r.get("fiscalQuarterEnding") or "").strip()
+
         # Sources for the generated brief: the Nasdaq calendar (this data's
         # origin) plus the company's verified investor-relations page when we
         # have one. The brief gate in ensure_happening_briefs() requires >= 2.
@@ -558,6 +569,10 @@ def get_earnings(date: str) -> list[dict]:
             "category": "markets",
             "kind": "earnings",
             "symbol": symbol,
+            "eps_forecast": eps_forecast,
+            "no_of_ests": no_of_ests,
+            "last_year_eps": last_year_eps,
+            "fiscal_quarter": fiscal_quarter,
             "sources": sources,
             "start_time_utc": None,
             "search_terms": [symbol.lower(), name.lower().split()[0]],
@@ -1210,16 +1225,31 @@ Venue/location: {detail}
 Include: the matchup and format, venue, start time, and what's at stake (series context, standings implications — only if inferable from the event name/league).
 Mention star players ONLY if they are globally famous and obviously relevant (e.g. an India match). NEVER invent quotes, scores, predictions, or broadcast details. If you don't know the broadcaster, omit it."""
 
+    # Consensus expectations carried on the item from the Nasdaq calendar
+    # row (get_earnings). Given facts: the brief MUST state them — a reader
+    # judges an earnings report against the expected number (2026-10-21).
+    expectations_block = ""
+    if item.get("eps_forecast"):
+        expectations_block = (
+            f"\nMARKET EXPECTATIONS (given facts from the Nasdaq earnings calendar — state them exactly): "
+            f"analyst consensus EPS forecast is {item['eps_forecast']}"
+            + (f" (from {item['no_of_ests']} analyst estimates)" if item.get("no_of_ests") else "")
+            + (f"; the company reported EPS of {item['last_year_eps']} in the same quarter last year" if item.get("last_year_eps") else "")
+            + (f"; fiscal quarter ending {item['fiscal_quarter']}" if item.get("fiscal_quarter") else "")
+            + "."
+        )
+
     earnings_spec = f"""Write a concise earnings preview (220-300 words) for this company reporting today.
 Company: {label}
-Detail: {detail}
+Detail: {detail}{expectations_block}
 Structure the brief in short paragraphs covering:
 1. What the company does and its main business segments.
 2. When it reports (from the detail line) and what is at stake this quarter.
-3. What investors will watch, segment by segment: revenue trends, margin and cost pressures, guidance, and capital returns (dividends/buybacks) — qualitative only.
-4. Why this report matters beyond the company (sector read-through, index weight, consumer or business signal).
+3. What the market expects: state the consensus EPS forecast and the year-ago EPS from the MARKET EXPECTATIONS line above, exactly as given. If no expectations line is given, omit figures rather than inventing them.
+4. What investors will watch, segment by segment: revenue trends, margin and cost pressures, guidance, and capital returns (dividends/buybacks) — qualitative only.
+5. Why this report matters beyond the company (sector read-through, index weight, consumer or business signal).
 The body MUST be at least 220 words. Do not pad with filler — add substantive preview detail instead.
-NEVER invent EPS estimates, revenue figures, or analyst price targets. If expectations are unknown, say "analysts will be watching" without numbers."""
+NEVER invent EPS estimates, revenue figures, or analyst price targets beyond the given MARKET EXPECTATIONS figures. If expectations are unknown, say "analysts will be watching" without numbers."""
 
     markets_spec = f"""Write a short market notice (150-200 words).
 Event: {label}
