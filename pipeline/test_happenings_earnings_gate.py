@@ -393,3 +393,40 @@ if FAILURES:
     print(f"FAILED: {len(FAILURES)} check(s): {FAILURES}")
     sys.exit(1)
 print("ALL CHECKS PASSED")
+
+# ── 2026-10-20: earnings-coverage gate + near-miss band ─────────────────
+# An earnings row may link ONLY to genuine earnings coverage: headline
+# names the company AND is about its results. (The names-only gate linked
+# the Netflix Earnings row to a Hindi film-premiere roundup.)
+_cov = dh.headline_is_earnings_coverage
+check("Netflix premiere roundup rejected by coverage gate",
+      _cov("Hindi Releases This Week: Gajab Raat, Udta Teer and New Films on Netflix",
+           "Netflix") is False)
+check("...but the names-only gate would have passed it",
+      dh.headline_names_company(
+          "Hindi Releases This Week: Gajab Raat, Udta Teer and New Films on Netflix",
+          "Netflix") is True)
+check("Netflix results headline links",
+      _cov("Netflix Q3 Revenue Beats Estimates as Profit Jumps 44%", "Netflix") is True)
+check("JPMorgan headline does not satisfy Morgan Stanley",
+      _cov("JPMorgan Chase Q3 Earnings Beat Estimates", "Morgan Stanley") is False)
+check("Morgan Stanley results headline links for Morgan Stanley",
+      _cov("Morgan Stanley Q3 Earnings Beat Estimates", "Morgan Stanley") is True)
+check("Company news without earnings signal rejected",
+      _cov("GE Aerospace Wins New Engine Order From Emirates", "GE Aerospace") is False
+      and _cov("3M Launches New Adhesive Line for EV Batteries", "3M") is False)
+check("3M / GE earnings headlines link",
+      _cov("3M Q3 Earnings Beat Estimates as Guidance Rises", "3M") is True
+      and _cov("GE Aerospace Set to Report Earnings Amid Industry Challenges",
+               "GE Aerospace") is True)
+check("near-miss band edges",
+      dh._near_miss_band(198) is True and dh._near_miss_band(180) is True
+      and dh._near_miss_band(179) is False and dh._near_miss_band(200) is False
+      and dh._near_miss_band(150) is False)
+_p = dh._brief_prompt({"label": "3M Earnings", "category": "markets",
+                       "expand_brief": True, "prev_words": 198,
+                       "deficit_words": 22})
+check("deficit note lands in expansion prompt", "add roughly 22 more words" in _p)
+_p2 = dh._brief_prompt({"label": "3M Earnings", "category": "markets",
+                        "expand_brief": True, "prev_words": 150})
+check("no deficit note without deficit_words", "add roughly" not in _p2)

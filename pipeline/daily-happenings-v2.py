@@ -480,6 +480,13 @@ EARNINGS_IR_URLS = {
 EARNINGS_MIN_SOURCES = 2
 EARNINGS_BRIEF_MIN_WORDS = 200
 
+
+def _near_miss_band(words: int) -> bool:
+    """True when an earnings brief landed just under the publish floor —
+    close enough that one deficit-aware expansion retry can plausibly save
+    it (2026-10-20: the 3M brief died at 198/200 after the generic retry)."""
+    return EARNINGS_BRIEF_MIN_WORDS - 20 <= words < EARNINGS_BRIEF_MIN_WORDS
+
 def get_earnings(date: str) -> list[dict]:
     """Fetch earnings from Nasdaq calendar API, filtered to watchlist."""
     items = []
@@ -996,6 +1003,27 @@ def headline_names_company(headline: str, company_name: str) -> bool:
     return False
 
 
+_EARNINGS_SIGNAL_RE = re.compile(
+    r"\b(results?|reports?|reported|quarter(?:ly)?|q[1-4]|eps|earnings|"
+    r"revenue|profits?|estimates?|beats?|miss(?:es|ed)?|guidance|outlook)\b")
+
+
+def headline_has_earnings_signal(headline: str) -> bool:
+    """True if the headline is ABOUT an earnings report/results — not merely
+    a headline that happens to name the company."""
+    return bool(_EARNINGS_SIGNAL_RE.search((headline or "").lower()))
+
+
+def headline_is_earnings_coverage(headline: str, company_name: str) -> bool:
+    """An earnings happening may link ONLY to genuine earnings coverage:
+    the headline must name the company (headline_names_company) AND carry an
+    earnings signal. The names-only gate (2026-10-14) linked the Netflix
+    Earnings row to a Hindi film-premiere roundup whose headline mentioned
+    Netflix — same company, wrong subject entirely (2026-10-20)."""
+    return (headline_names_company(headline, company_name)
+            and headline_has_earnings_signal(headline))
+
+
 def _company_from_label(label: str) -> str:
     """'Bank of America Corporation Earnings' -> 'Bank of America Corporation'."""
     name = (label or "").strip()
@@ -1084,7 +1112,7 @@ def match_articles(items: list[dict]) -> list[dict]:
             candidates = _candidate_articles(
                 _company_search_patterns(company), cutoff)
             hit = next((r for r in candidates
-                        if headline_names_company(r.get("headline", ""), company)),
+                        if headline_is_earnings_coverage(r.get("headline", ""), company)),
                        None)
             if hit:
                 item["link"] = f"/articles/{hit['slug']}"
@@ -1222,6 +1250,9 @@ NEVER invent reviews, ratings, or box office numbers."""
                        f"~{item.get('prev_words', 0)} words. Write a fuller brief of at least "
                        f"220 words with more substantive segment-by-segment preview detail "
                        f"and context. Never pad with filler and never invent figures.")
+        if item.get("deficit_words"):
+            expand_note += (f" Specifically, add roughly {item['deficit_words']} more "
+                            f"words of substantive segment detail than the previous draft.")
 
     return f"""You are writing a brief info article for The Videshi, a news site for the Indian diaspora.
 Today is {datetime.now(PT).strftime('%B %d, %Y')}.
@@ -1593,6 +1624,18 @@ def ensure_happening_briefs(items: list[dict], date: str, dry_run: bool = False)
                 if art2 and _word_count(art2.get("body_html", "")) > brief_words:
                     art = art2
                     brief_words = _word_count(art.get("body_html", ""))
+                # Near-miss second retry (2026-10-20): a brief landing just
+                # under the floor (within 20 words) gets ONE more expansion
+                # with the exact deficit spelled out. The 3M brief died at
+                # 198/200 after the first retry and its row shipped unlinked.
+                if _near_miss_band(brief_words):
+                    retry2 = dict(item, expand_brief=True,
+                                  prev_words=brief_words,
+                                  deficit_words=220 - brief_words)
+                    art3 = _gpt_brief(retry2, api_key)
+                    if art3 and _word_count(art3.get("body_html", "")) > brief_words:
+                        art = art3
+                        brief_words = _word_count(art.get("body_html", ""))
                 if brief_words < EARNINGS_BRIEF_MIN_WORDS:
                     print(f"  🚫 earnings brief suppressed for '{item.get('label')}': "
                           f"{brief_words} words < {EARNINGS_BRIEF_MIN_WORDS}-word floor "
@@ -1695,7 +1738,7 @@ def _find_results_article(company: str, date_str: str):
         slug = r.get("slug") or ""
         if slug.startswith("happening-"):
             continue
-        if headline_names_company(r.get("headline", ""), company):
+        if headline_is_earnings_coverage(r.get("headline", ""), company):
             return r
     return None
 
