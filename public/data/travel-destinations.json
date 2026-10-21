@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-20",
+  "generated_at": "2026-10-21",
   "current_month": 10,
   "current_year": 2026,
   "destination_count": 50,
@@ -11,7 +11,6 @@
     "eligible_for_picks": "False = second-tier US destination deferred from curated picks/trending (Kiran 2026-10-14 tiering); the record and its guide remain in the full index."
   },
   "trending_now": [
-    "karnataka",
     "japan",
     "oman",
     "france",
@@ -26,6 +25,7 @@
     "kenya",
     "hawaii",
     "national-parks",
+    "karnataka",
     "spain",
     "iceland",
     "himachal-pradesh",
@@ -62,11 +62,11 @@
   ],
   "best_by_month": {
     "1": [
-      "karnataka",
       "oman",
       "egypt",
       "kenya",
       "kerala",
+      "karnataka",
       "rajasthan",
       "northeast-india",
       "cabo",
@@ -94,12 +94,12 @@
       "vietnam"
     ],
     "2": [
-      "karnataka",
       "oman",
       "egypt",
       "kenya",
       "kerala",
       "iceland",
+      "karnataka",
       "rajasthan",
       "northeast-india",
       "cabo",
@@ -158,12 +158,12 @@
       "aruba",
       "bahamas",
       "cancun",
-      "karnataka",
       "france",
       "italy",
       "bali",
       "kenya",
       "hawaii",
+      "karnataka",
       "spain",
       "kashmir",
       "london",
@@ -349,11 +349,11 @@
       "south-africa",
       "switzerland",
       "banff",
-      "karnataka",
       "japan",
       "oman",
       "egypt",
       "kerala",
+      "karnataka",
       "rajasthan",
       "northeast-india",
       "cabo",
@@ -362,7 +362,6 @@
       "scandinavia"
     ],
     "10": [
-      "karnataka",
       "japan",
       "oman",
       "france",
@@ -379,6 +378,7 @@
       "national-parks",
       "himachal-pradesh",
       "iceland",
+      "karnataka",
       "spain",
       "rajasthan",
       "uttarakhand",
@@ -404,7 +404,6 @@
       "banff"
     ],
     "11": [
-      "karnataka",
       "japan",
       "oman",
       "egypt",
@@ -412,6 +411,7 @@
       "kerala",
       "hawaii",
       "himachal-pradesh",
+      "karnataka",
       "rajasthan",
       "uttarakhand",
       "northeast-india",
@@ -449,11 +449,11 @@
       "cancun"
     ],
     "12": [
-      "karnataka",
       "oman",
       "egypt",
       "kerala",
       "hawaii",
+      "karnataka",
       "rajasthan",
       "northeast-india",
       "cabo",
@@ -3230,33 +3230,33 @@
       "cheapest_month": {
         "month": 10,
         "year": 2026,
-        "price_min": 1197,
+        "price_min": 1243,
         "route": "SFO-BLR",
-        "duration_days": 20,
+        "duration_days": 22,
         "weeks": null,
         "source": "fare data"
       },
       "fare_from": {
-        "price_min": 1197,
+        "price_min": 1243,
         "route": "SFO-BLR",
         "origin_metro": "Bay Area",
         "dest_metro": "Bengaluru",
-        "date_range": "Oct 27 \u2192 Nov 16",
-        "duration_days": 20,
+        "date_range": "Oct 27 \u2192 Nov 18",
+        "duration_days": 22,
         "weeks": null,
-        "as_of": "2026-10-20",
+        "as_of": "2026-10-21",
         "cadence": "daily"
       },
       "fares_by_origin": {
         "SFO": {
-          "price_min": 1197,
+          "price_min": 1243,
           "route": "SFO-BLR",
           "origin_metro": "Bay Area",
           "dest_metro": "Bengaluru",
-          "date_range": "Oct 27 \u2192 Nov 16",
-          "duration_days": 20,
+          "date_range": "Oct 27 \u2192 Nov 18",
+          "duration_days": 22,
           "weeks": null,
-          "as_of": "2026-10-20",
+          "as_of": "2026-10-21",
           "cadence": "daily"
         }
       },
@@ -3306,7 +3306,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 77,
+        "score": 62,
         "max_score": 100,
         "components": [
           {
@@ -3323,9 +3323,9 @@
           },
           {
             "id": "fare_drop",
-            "points": 15,
+            "points": 0,
             "max": 20,
-            "reason": "Fares down 14.7% on SFO-BLR ($2233 \u2192 $1905) vs 2026-10-19"
+            "reason": "Fare route tracked, no notable drop right now"
           },
           {
             "id": "offpeak_value",
@@ -6044,16 +6044,6 @@
       "indicative": true
     },
     "fares_by_origin": {
-      "EWR": {
-        "price_min": 1366,
-        "route": "EWR-BOM",
-        "origin_metro": "New York",
-        "dest_metro": "Mumbai",
-        "date_range": "Oct 29 \u2192 Nov 18",
-        "duration_days": 20,
-        "as_of": "2026-10-20",
-        "cadence": "daily"
-      },
       "SFO": {
         "price_min": 1144,
         "route": "SFO-BOM",
@@ -6120,6 +6110,16 @@
         "cadence": "weekly",
         "indicative": true
       },
+      "EWR": {
+        "price_min": 1283,
+        "route": "EWR-BOM",
+        "origin_metro": "New York",
+        "dest_metro": "Mumbai",
+        "date_range": "Oct 27 \u2192 Nov 16",
+        "duration_days": 20,
+        "as_of": "2026-10-21",
+        "cadence": "daily"
+      },
       "IAD": {
         "price_min": 843,
         "route": "IAD-BOM",
@@ -6184,7 +6184,7 @@
           "id": "fare_drop",
           "points": 30,
           "max": 30,
-          "reason": "Fares down 31.0% on ATL-DEL ($1977 \u2192 $1365) vs 2026-10-19"
+          "reason": "Fares down 37.6% on JFK-DEL ($1334 \u2192 $833) vs 2026-10-20"
         }
       ]
     },
