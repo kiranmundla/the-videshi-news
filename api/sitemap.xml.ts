@@ -57,8 +57,28 @@ const STATIC_PAGES = [
 ];
 
 const CATEGORIES = [
-  "news", "nri-world", "travel", "lifestyle-health",
+  "news", "nri-world", "lifestyle-health",
   "markets-finance", "sports", "entertainment", "food"
+];
+// NOTE: "travel" is NOT in CATEGORIES — /travel already ships in
+// STATIC_PAGES, and listing it in both emitted the URL twice
+// (found in the 2026-10-21 sitemap audit).
+
+// Travel destination pages (/travel/<slug>) — the sitemap generator
+// originally had NO source for these, so all 50 guide pages and
+// /travel/india were missing from the sitemap (2026-10-21 audit).
+// The handler fetches the site's own travel-destinations.json first;
+// this list is the fallback if that fetch fails.
+const TRAVEL_FALLBACK_SLUGS = [
+  "abu-dhabi", "alaska", "aruba", "australia", "bahamas", "bali", "banff",
+  "cabo", "cancun", "dominican-republic", "dubai", "egypt", "fiji",
+  "florida", "france", "goa", "greece", "hawaii", "himachal-pradesh",
+  "iceland", "italy", "jamaica", "japan", "karnataka", "kashmir", "kenya",
+  "kerala", "london", "maldives", "mexico", "morocco", "national-parks",
+  "new-york-city", "new-zealand", "northeast-india", "oman", "portugal",
+  "puerto-vallarta", "rajasthan", "riviera-maya", "scandinavia",
+  "singapore", "south-africa", "spain", "sri-lanka", "switzerland",
+  "tamil-nadu", "thailand", "uttarakhand", "vietnam",
 ];
 
 const escapeXml = (s: string) =>
@@ -110,8 +130,18 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 `;
 
+    // Duplicate guard (2026-10-21 audit found 8 duplicated URLs: /travel
+    // in two lists, plus articles/listings whose rows share a slug).
+    const seen = new Set<string>();
+    const fresh = (loc: string) => {
+      if (seen.has(loc)) return false;
+      seen.add(loc);
+      return true;
+    };
+
     // Static pages
     for (const page of STATIC_PAGES) {
+      if (!fresh(page.loc)) continue;
       xml += `  <url>
     <loc>${escapeXml(SITE + page.loc)}</loc>
     <lastmod>${today}</lastmod>
@@ -123,6 +153,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
 
     // Category pages
     for (const cat of CATEGORIES) {
+      if (!fresh("/" + cat)) continue;
       xml += `  <url>
     <loc>${escapeXml(SITE + "/" + cat)}</loc>
     <lastmod>${today}</lastmod>
@@ -132,9 +163,36 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
 `;
     }
 
+    // Travel destination pages + the India hub (added 2026-10-21 — these
+    // were entirely absent from the sitemap).
+    let travelSlugs = TRAVEL_FALLBACK_SLUGS;
+    try {
+      const tdRes = await fetch(`${SITE}/data/travel-destinations.json`);
+      if (tdRes.ok) {
+        const td = await tdRes.json();
+        const fromFile = (td?.destinations ?? [])
+          .map((d: any) => d?.slug)
+          .filter((s: any) => typeof s === "string" && s.length > 0);
+        if (fromFile.length > 0) travelSlugs = fromFile;
+      }
+    } catch {
+      // keep the fallback list
+    }
+    for (const loc of ["/travel/india", ...travelSlugs.map((s) => `/travel/${s}`)]) {
+      if (!fresh(loc)) continue;
+      xml += `  <url>
+    <loc>${escapeXml(SITE + loc)}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+`;
+    }
+
     // Article pages
     for (const article of articles) {
       if (!article.slug) continue;
+      if (!fresh("/articles/" + article.slug)) continue;
       const pubDate = article.published_at
         ? new Date(article.published_at).toISOString()
         : now;
@@ -162,6 +220,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     // to stop 404 crawl waste)
     for (const event of events) {
       if (!event.slug) continue;
+      if (!fresh("/events/" + event.slug)) continue;
       const lastmod = event.updated_at
         ? new Date(event.updated_at).toISOString().split("T")[0]
         : today;
@@ -179,6 +238,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     // value for "Indian [profession] in [city]" searches.
     for (const listing of listings) {
       if (!listing.slug) continue;
+      if (!fresh("/directory/" + listing.slug)) continue;
       const lastmod = listing.updated_at
         ? new Date(listing.updated_at).toISOString().split("T")[0]
         : today;
@@ -194,6 +254,7 @@ export default async function handler(_req: VercelRequest, res: VercelResponse) 
     // Classified pages (active only)
     for (const classified of classifieds) {
       if (!classified.slug) continue;
+      if (!fresh("/classifieds/" + classified.slug)) continue;
       const lastmod = classified.updated_at
         ? new Date(classified.updated_at).toISOString().split("T")[0]
         : today;
