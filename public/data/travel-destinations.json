@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21",
+  "generated_at": "2026-10-22",
   "current_month": 10,
   "current_year": 2026,
   "destination_count": 50,
@@ -16,6 +16,7 @@
     "france",
     "italy",
     "egypt",
+    "karnataka",
     "greece",
     "australia",
     "fiji",
@@ -25,7 +26,6 @@
     "kenya",
     "hawaii",
     "national-parks",
-    "karnataka",
     "spain",
     "iceland",
     "himachal-pradesh",
@@ -64,9 +64,9 @@
     "1": [
       "oman",
       "egypt",
+      "karnataka",
       "kenya",
       "kerala",
-      "karnataka",
       "rajasthan",
       "northeast-india",
       "cabo",
@@ -96,10 +96,10 @@
     "2": [
       "oman",
       "egypt",
+      "karnataka",
       "kenya",
       "kerala",
       "iceland",
-      "karnataka",
       "rajasthan",
       "northeast-india",
       "cabo",
@@ -160,10 +160,10 @@
       "cancun",
       "france",
       "italy",
+      "karnataka",
       "bali",
       "kenya",
       "hawaii",
-      "karnataka",
       "spain",
       "kashmir",
       "london",
@@ -352,8 +352,8 @@
       "japan",
       "oman",
       "egypt",
-      "kerala",
       "karnataka",
+      "kerala",
       "rajasthan",
       "northeast-india",
       "cabo",
@@ -367,6 +367,7 @@
       "france",
       "egypt",
       "italy",
+      "karnataka",
       "greece",
       "australia",
       "bali",
@@ -378,7 +379,6 @@
       "national-parks",
       "himachal-pradesh",
       "iceland",
-      "karnataka",
       "spain",
       "rajasthan",
       "uttarakhand",
@@ -407,11 +407,11 @@
       "japan",
       "oman",
       "egypt",
+      "karnataka",
       "australia",
       "kerala",
       "hawaii",
       "himachal-pradesh",
-      "karnataka",
       "rajasthan",
       "uttarakhand",
       "northeast-india",
@@ -451,9 +451,9 @@
     "12": [
       "oman",
       "egypt",
+      "karnataka",
       "kerala",
       "hawaii",
-      "karnataka",
       "rajasthan",
       "northeast-india",
       "cabo",
@@ -3230,33 +3230,33 @@
       "cheapest_month": {
         "month": 10,
         "year": 2026,
-        "price_min": 1243,
+        "price_min": 1197,
         "route": "SFO-BLR",
-        "duration_days": 22,
+        "duration_days": 20,
         "weeks": null,
         "source": "fare data"
       },
       "fare_from": {
-        "price_min": 1243,
+        "price_min": 1197,
         "route": "SFO-BLR",
         "origin_metro": "Bay Area",
         "dest_metro": "Bengaluru",
-        "date_range": "Oct 27 \u2192 Nov 18",
-        "duration_days": 22,
+        "date_range": "Oct 27 \u2192 Nov 16",
+        "duration_days": 20,
         "weeks": null,
-        "as_of": "2026-10-21",
+        "as_of": "2026-10-22",
         "cadence": "daily"
       },
       "fares_by_origin": {
         "SFO": {
-          "price_min": 1243,
+          "price_min": 1197,
           "route": "SFO-BLR",
           "origin_metro": "Bay Area",
           "dest_metro": "Bengaluru",
-          "date_range": "Oct 27 \u2192 Nov 18",
-          "duration_days": 22,
+          "date_range": "Oct 27 \u2192 Nov 16",
+          "duration_days": 20,
           "weeks": null,
-          "as_of": "2026-10-21",
+          "as_of": "2026-10-22",
           "cadence": "daily"
         }
       },
@@ -3306,7 +3306,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 62,
+        "score": 67,
         "max_score": 100,
         "components": [
           {
@@ -3323,9 +3323,9 @@
           },
           {
             "id": "fare_drop",
-            "points": 0,
+            "points": 5,
             "max": 20,
-            "reason": "Fare route tracked, no notable drop right now"
+            "reason": "Fares down 4.7% on SFO-BLR ($2210 \u2192 $2106) vs 2026-10-21"
           },
           {
             "id": "offpeak_value",
@@ -6111,13 +6111,13 @@
         "indicative": true
       },
       "EWR": {
-        "price_min": 1283,
+        "price_min": 1367,
         "route": "EWR-BOM",
         "origin_metro": "New York",
         "dest_metro": "Mumbai",
         "date_range": "Oct 27 \u2192 Nov 16",
         "duration_days": 20,
-        "as_of": "2026-10-21",
+        "as_of": "2026-10-22",
         "cadence": "daily"
       },
       "IAD": {
@@ -6184,7 +6184,7 @@
           "id": "fare_drop",
           "points": 30,
           "max": 30,
-          "reason": "Fares down 37.6% on JFK-DEL ($1334 \u2192 $833) vs 2026-10-20"
+          "reason": "Fares down 44.6% on ORD-DEL ($2104 \u2192 $1166) vs 2026-10-21"
         }
       ]
     },
