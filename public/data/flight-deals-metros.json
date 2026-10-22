@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-15T23:49:42Z",
-  "as_of": "2026-10-15",
+  "generated_at": "2026-10-22T12:28:49Z",
+  "as_of": "2026-10-22",
   "market": "india-metros",
   "band": {
     "id": "in-3wk",
@@ -19,23 +19,29 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-28 \u2192 2026-11-17",
-          "dep_date": "2026-10-28",
-          "ret_date": "2026-11-17",
-          "duration_days": 20,
+          "date_range": "2026-10-27 \u2192 2026-11-18",
+          "dep_date": "2026-10-27",
+          "ret_date": "2026-11-18",
+          "duration_days": 22,
           "band": "in-3wk",
-          "price_min": 1144,
-          "price_max": 1242,
+          "price_min": 1309,
+          "price_max": 1384,
           "cheapest_airline": "Emirates",
           "num_samples": 3,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 10,
           "route": "SFO-BOM",
           "origin_metro": "Bay Area",
           "dest_metro": "Mumbai",
-          "cheapest_month": true
+          "cheapest_month": true,
+          "change_vs_prev": {
+            "prev_price_min": 1144,
+            "prev_as_of": "2026-10-15",
+            "delta": -165,
+            "delta_pct": -14.4
+          }
         },
         {
           "date_range": "2026-11-24 \u2192 2026-12-14",
@@ -43,44 +49,56 @@
           "ret_date": "2026-12-14",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1295,
-          "price_max": 1817,
-          "cheapest_airline": "Qatar Airways",
+          "price_min": 1545,
+          "price_max": 1981,
+          "cheapest_airline": "Virgin Atlantic",
           "num_samples": 3,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "SFO-BOM",
           "origin_metro": "Bay Area",
-          "dest_metro": "Mumbai"
+          "dest_metro": "Mumbai",
+          "change_vs_prev": {
+            "prev_price_min": 1295,
+            "prev_as_of": "2026-10-15",
+            "delta": -250,
+            "delta_pct": -19.3
+          }
         },
         {
-          "date_range": "2026-12-24 \u2192 2027-01-13",
-          "dep_date": "2026-12-24",
-          "ret_date": "2027-01-13",
+          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "dep_date": "2026-12-08",
+          "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1761,
-          "price_max": 2707,
-          "cheapest_airline": "SAS",
+          "price_min": 2031,
+          "price_max": 2662,
+          "cheapest_airline": "ANA",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
           "route": "SFO-BOM",
           "origin_metro": "Bay Area",
-          "dest_metro": "Mumbai"
+          "dest_metro": "Mumbai",
+          "change_vs_prev": {
+            "prev_price_min": 1761,
+            "prev_as_of": "2026-10-15",
+            "delta": -270,
+            "delta_pct": -15.3
+          }
         }
       ],
       "cheapest_overall": {
         "year": 2026,
         "month": 10,
         "band": "in-3wk",
-        "duration_days": 20,
-        "price_min": 1144,
-        "date_range": "2026-10-28 \u2192 2026-11-17"
+        "duration_days": 22,
+        "price_min": 1309,
+        "date_range": "2026-10-27 \u2192 2026-11-18"
       }
     },
     "SFO-HYD": {
@@ -91,23 +109,29 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-28 \u2192 2026-11-19",
-          "dep_date": "2026-10-28",
-          "ret_date": "2026-11-19",
-          "duration_days": 22,
+          "date_range": "2026-10-29 \u2192 2026-11-18",
+          "dep_date": "2026-10-29",
+          "ret_date": "2026-11-18",
+          "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1266,
-          "price_max": 1366,
+          "price_min": 1331,
+          "price_max": 1796,
           "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 10,
           "route": "SFO-HYD",
           "origin_metro": "Bay Area",
           "dest_metro": "Hyderabad",
-          "cheapest_month": true
+          "cheapest_month": true,
+          "change_vs_prev": {
+            "prev_price_min": 1266,
+            "prev_as_of": "2026-10-15",
+            "delta": -65,
+            "delta_pct": -5.1
+          }
         },
         {
           "date_range": "2026-11-24 \u2192 2026-12-14",
@@ -115,17 +139,23 @@
           "ret_date": "2026-12-14",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1302,
-          "price_max": 2370,
-          "cheapest_airline": "Qatar Airways",
+          "price_min": 1563,
+          "price_max": 3423,
+          "cheapest_airline": "Singapore Airlines",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "SFO-HYD",
           "origin_metro": "Bay Area",
-          "dest_metro": "Hyderabad"
+          "dest_metro": "Hyderabad",
+          "change_vs_prev": {
+            "prev_price_min": 1302,
+            "prev_as_of": "2026-10-15",
+            "delta": -261,
+            "delta_pct": -20.0
+          }
         },
         {
           "date_range": "2026-12-24 \u2192 2027-01-13",
@@ -133,26 +163,32 @@
           "ret_date": "2027-01-13",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 2311,
+          "price_min": 2544,
           "price_max": 4540,
-          "cheapest_airline": "Cathay Pacific",
+          "cheapest_airline": "KLM",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
           "route": "SFO-HYD",
           "origin_metro": "Bay Area",
-          "dest_metro": "Hyderabad"
+          "dest_metro": "Hyderabad",
+          "change_vs_prev": {
+            "prev_price_min": 2311,
+            "prev_as_of": "2026-10-15",
+            "delta": -233,
+            "delta_pct": -10.1
+          }
         }
       ],
       "cheapest_overall": {
         "year": 2026,
         "month": 10,
         "band": "in-3wk",
-        "duration_days": 22,
-        "price_min": 1266,
-        "date_range": "2026-10-28 \u2192 2026-11-19"
+        "duration_days": 20,
+        "price_min": 1331,
+        "date_range": "2026-10-29 \u2192 2026-11-18"
       }
     },
     "SFO-CCU": {
@@ -163,22 +199,29 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-28 \u2192 2026-11-19",
-          "dep_date": "2026-10-28",
-          "ret_date": "2026-11-19",
-          "duration_days": 22,
+          "date_range": "2026-10-27 \u2192 2026-11-16",
+          "dep_date": "2026-10-27",
+          "ret_date": "2026-11-16",
+          "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1589,
-          "price_max": 2473,
-          "cheapest_airline": "Emirates",
+          "price_min": 1591,
+          "price_max": 2200,
+          "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 10,
           "route": "SFO-CCU",
           "origin_metro": "Bay Area",
-          "dest_metro": "Kolkata"
+          "dest_metro": "Kolkata",
+          "cheapest_month": true,
+          "change_vs_prev": {
+            "prev_price_min": 1589,
+            "prev_as_of": "2026-10-15",
+            "delta": -2,
+            "delta_pct": -0.1
+          }
         },
         {
           "date_range": "2026-11-24 \u2192 2026-12-14",
@@ -186,18 +229,23 @@
           "ret_date": "2026-12-14",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1524,
-          "price_max": 3188,
+          "price_min": 1941,
+          "price_max": 3736,
           "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "SFO-CCU",
           "origin_metro": "Bay Area",
           "dest_metro": "Kolkata",
-          "cheapest_month": true
+          "change_vs_prev": {
+            "prev_price_min": 1524,
+            "prev_as_of": "2026-10-15",
+            "delta": -417,
+            "delta_pct": -27.4
+          }
         },
         {
           "date_range": "2026-12-24 \u2192 2027-01-13",
@@ -205,26 +253,32 @@
           "ret_date": "2027-01-13",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 2495,
+          "price_min": 2669,
           "price_max": 4376,
           "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
           "route": "SFO-CCU",
           "origin_metro": "Bay Area",
-          "dest_metro": "Kolkata"
+          "dest_metro": "Kolkata",
+          "change_vs_prev": {
+            "prev_price_min": 2495,
+            "prev_as_of": "2026-10-15",
+            "delta": -174,
+            "delta_pct": -7.0
+          }
         }
       ],
       "cheapest_overall": {
         "year": 2026,
-        "month": 11,
+        "month": 10,
         "band": "in-3wk",
         "duration_days": 20,
-        "price_min": 1524,
-        "date_range": "2026-11-24 \u2192 2026-12-14"
+        "price_min": 1591,
+        "date_range": "2026-10-27 \u2192 2026-11-16"
       }
     },
     "LAX-BOM": {
@@ -235,23 +289,28 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-21 \u2192 2026-11-10",
-          "dep_date": "2026-10-21",
-          "ret_date": "2026-11-10",
+          "date_range": "2026-10-27 \u2192 2026-11-16",
+          "dep_date": "2026-10-27",
+          "ret_date": "2026-11-16",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1042,
-          "price_max": 1171,
+          "price_min": 1155,
+          "price_max": 1383,
           "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 10,
           "route": "LAX-BOM",
           "origin_metro": "Los Angeles",
           "dest_metro": "Mumbai",
-          "cheapest_month": true
+          "change_vs_prev": {
+            "prev_price_min": 1042,
+            "prev_as_of": "2026-10-15",
+            "delta": -113,
+            "delta_pct": -10.8
+          }
         },
         {
           "date_range": "2026-11-10 \u2192 2026-12-02",
@@ -259,44 +318,57 @@
           "ret_date": "2026-12-02",
           "duration_days": 22,
           "band": "in-3wk",
-          "price_min": 1042,
-          "price_max": 1332,
+          "price_min": 1060,
+          "price_max": 1428,
           "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "LAX-BOM",
           "origin_metro": "Los Angeles",
-          "dest_metro": "Mumbai"
+          "dest_metro": "Mumbai",
+          "cheapest_month": true,
+          "change_vs_prev": {
+            "prev_price_min": 1042,
+            "prev_as_of": "2026-10-15",
+            "delta": -18,
+            "delta_pct": -1.7
+          }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
-          "dep_date": "2026-12-08",
-          "ret_date": "2026-12-28",
+          "date_range": "2026-12-24 \u2192 2027-01-13",
+          "dep_date": "2026-12-24",
+          "ret_date": "2027-01-13",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1673,
-          "price_max": 1971,
+          "price_min": 1768,
+          "price_max": 2372,
           "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
           "route": "LAX-BOM",
           "origin_metro": "Los Angeles",
-          "dest_metro": "Mumbai"
+          "dest_metro": "Mumbai",
+          "change_vs_prev": {
+            "prev_price_min": 1673,
+            "prev_as_of": "2026-10-15",
+            "delta": -95,
+            "delta_pct": -5.7
+          }
         }
       ],
       "cheapest_overall": {
         "year": 2026,
-        "month": 10,
+        "month": 11,
         "band": "in-3wk",
-        "duration_days": 20,
-        "price_min": 1042,
-        "date_range": "2026-10-21 \u2192 2026-11-10"
+        "duration_days": 22,
+        "price_min": 1060,
+        "date_range": "2026-11-10 \u2192 2026-12-02"
       }
     },
     "LAX-BLR": {
@@ -307,23 +379,29 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-21 \u2192 2026-11-10",
-          "dep_date": "2026-10-21",
-          "ret_date": "2026-11-10",
+          "date_range": "2026-10-27 \u2192 2026-11-16",
+          "dep_date": "2026-10-27",
+          "ret_date": "2026-11-16",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1339,
-          "price_max": 1425,
-          "cheapest_airline": "KLM",
+          "price_min": 1244,
+          "price_max": 1457,
+          "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 10,
           "route": "LAX-BLR",
           "origin_metro": "Los Angeles",
           "dest_metro": "Bengaluru",
-          "cheapest_month": true
+          "cheapest_month": true,
+          "change_vs_prev": {
+            "prev_price_min": 1339,
+            "prev_as_of": "2026-10-15",
+            "delta": 95,
+            "delta_pct": 7.1
+          }
         },
         {
           "date_range": "2026-11-10 \u2192 2026-12-02",
@@ -332,16 +410,22 @@
           "duration_days": 22,
           "band": "in-3wk",
           "price_min": 1342,
-          "price_max": 1713,
+          "price_max": 1698,
           "cheapest_airline": "Cathay Pacific",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "LAX-BLR",
           "origin_metro": "Los Angeles",
-          "dest_metro": "Bengaluru"
+          "dest_metro": "Bengaluru",
+          "change_vs_prev": {
+            "prev_price_min": 1342,
+            "prev_as_of": "2026-10-15",
+            "delta": 0,
+            "delta_pct": 0.0
+          }
         },
         {
           "date_range": "2026-12-08 \u2192 2026-12-28",
@@ -349,17 +433,23 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1737,
-          "price_max": 2075,
+          "price_min": 1834,
+          "price_max": 2344,
           "cheapest_airline": "Cathay Pacific",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
           "route": "LAX-BLR",
           "origin_metro": "Los Angeles",
-          "dest_metro": "Bengaluru"
+          "dest_metro": "Bengaluru",
+          "change_vs_prev": {
+            "prev_price_min": 1737,
+            "prev_as_of": "2026-10-15",
+            "delta": -97,
+            "delta_pct": -5.6
+          }
         }
       ],
       "cheapest_overall": {
@@ -367,8 +457,8 @@
         "month": 10,
         "band": "in-3wk",
         "duration_days": 20,
-        "price_min": 1339,
-        "date_range": "2026-10-21 \u2192 2026-11-10"
+        "price_min": 1244,
+        "date_range": "2026-10-27 \u2192 2026-11-16"
       }
     },
     "LAX-HYD": {
@@ -379,23 +469,29 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-21 \u2192 2026-11-10",
-          "dep_date": "2026-10-21",
-          "ret_date": "2026-11-10",
+          "date_range": "2026-10-27 \u2192 2026-11-16",
+          "dep_date": "2026-10-27",
+          "ret_date": "2026-11-16",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1266,
-          "price_max": 1650,
-          "cheapest_airline": "Emirates",
+          "price_min": 1213,
+          "price_max": 1700,
+          "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 10,
           "route": "LAX-HYD",
           "origin_metro": "Los Angeles",
           "dest_metro": "Hyderabad",
-          "cheapest_month": true
+          "cheapest_month": true,
+          "change_vs_prev": {
+            "prev_price_min": 1266,
+            "prev_as_of": "2026-10-15",
+            "delta": 53,
+            "delta_pct": 4.2
+          }
         },
         {
           "date_range": "2026-11-10 \u2192 2026-12-02",
@@ -404,16 +500,22 @@
           "duration_days": 22,
           "band": "in-3wk",
           "price_min": 1266,
-          "price_max": 1721,
+          "price_max": 1881,
           "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "LAX-HYD",
           "origin_metro": "Los Angeles",
-          "dest_metro": "Hyderabad"
+          "dest_metro": "Hyderabad",
+          "change_vs_prev": {
+            "prev_price_min": 1266,
+            "prev_as_of": "2026-10-15",
+            "delta": 0,
+            "delta_pct": 0.0
+          }
         },
         {
           "date_range": "2026-12-08 \u2192 2026-12-28",
@@ -421,17 +523,23 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1751,
-          "price_max": 2162,
+          "price_min": 1862,
+          "price_max": 2497,
           "cheapest_airline": "Cathay Pacific",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-15",
+          "fetched_as_of": "2026-10-22",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
           "route": "LAX-HYD",
           "origin_metro": "Los Angeles",
-          "dest_metro": "Hyderabad"
+          "dest_metro": "Hyderabad",
+          "change_vs_prev": {
+            "prev_price_min": 1751,
+            "prev_as_of": "2026-10-15",
+            "delta": -111,
+            "delta_pct": -6.3
+          }
         }
       ],
       "cheapest_overall": {
@@ -439,8 +547,8 @@
         "month": 10,
         "band": "in-3wk",
         "duration_days": 20,
-        "price_min": 1266,
-        "date_range": "2026-10-21 \u2192 2026-11-10"
+        "price_min": 1213,
+        "date_range": "2026-10-27 \u2192 2026-11-16"
       }
     },
     "LAX-CCU": {
@@ -2676,7 +2784,40 @@
       }
     }
   },
-  "biggest_drops": [],
+  "biggest_drops": [
+    {
+      "route": "LAX-BLR",
+      "origin_metro": "Los Angeles",
+      "dest_metro": "Bengaluru",
+      "year": 2026,
+      "month": 10,
+      "band": "in-3wk",
+      "duration_days": 20,
+      "date_range": "2026-10-27 \u2192 2026-11-16",
+      "was": 1339,
+      "now": 1244,
+      "drop_abs": 95,
+      "drop_pct": 7.1,
+      "baseline_as_of": "2026-10-15",
+      "cheapest_airline": "Qatar Airways"
+    },
+    {
+      "route": "LAX-HYD",
+      "origin_metro": "Los Angeles",
+      "dest_metro": "Hyderabad",
+      "year": 2026,
+      "month": 10,
+      "band": "in-3wk",
+      "duration_days": 20,
+      "date_range": "2026-10-27 \u2192 2026-11-16",
+      "was": 1266,
+      "now": 1213,
+      "drop_abs": 53,
+      "drop_pct": 4.2,
+      "baseline_as_of": "2026-10-15",
+      "cheapest_airline": "Qatar Airways"
+    }
+  ],
   "festival_seasons": [
     {
       "id": "diwali-2026",
@@ -2775,5 +2916,5 @@
   "cadence": "weekly",
   "indicative": true,
   "fetched_as_of_oldest": "2026-10-15",
-  "fetched_as_of_newest": "2026-10-15"
+  "fetched_as_of_newest": "2026-10-22"
 }
