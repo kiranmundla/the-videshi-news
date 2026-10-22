@@ -230,5 +230,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "n-yuVnXCf-s",
+    "article_slug": "anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash",
+    "article_id": "e26ed645-3d76-44ec-bf87-302c2149d926",
+    "title": "Anahat Singh Stuns Eight-Time World Champion El Sherbini at Silicon Valley Open #Shorts #Sports",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-22T05:29:00.646112+00:00",
+    "video_path": "reel-runs/2026-10-21-anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash/output-v3/anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash.mp4",
+    "video_sha256": "72fea41c3e3d0a29c6345f647cfd26b89ac5e1354e379270fbfe9d6d28b49753",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

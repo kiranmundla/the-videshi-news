@@ -1,0 +1,243 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash",
+  "article_slug": "anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash",
+  "article_id": "e26ed645-3d76-44ec-bf87-302c2149d926",
+  "category": "Sports",
+  "video": "reel-runs/2026-10-21-anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash/output-v3/anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202610/anahat-singh-264724301-16x9.nuqdgm4fkpv-bmdhgj7ichpwlcxkwlh_zlipjaewydy?VersionId=1QVa1imUEoAPK2mh71pTmM0GY7z5wVH.",
+    "local_path": "reel-runs/2026-10-21-anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash/output-v3/hero.nuqdgm4fkpv-bmdhgj7ichpwlcxkwlh_zlipjaewydy",
+    "width": 1200,
+    "height": 675,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "yunet (score 0.91)",
+    "has_face": true,
+    "box_source": [
+      414,
+      161,
+      196,
+      291
+    ],
+    "box_bg": [
+      372.6,
+      229.9,
+      176.4,
+      261.9
+    ],
+    "chin_bg": 491.8,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "fit",
+    "rejected": [
+      {
+        "branch": "cover",
+        "failed_scene": "hero",
+        "reason": "scene 'hero' cannot fit below the chin at scale >= 0.5"
+      }
+    ],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": 491.1,
+      "zone_top": 540,
+      "zone_h": 1040,
+      "scale": 1.0,
+      "content_h": 240,
+      "block_top": 630,
+      "block_bottom": 870,
+      "text_bbox": [
+        119,
+        630,
+        889,
+        865
+      ],
+      "texts": [
+        "Sports",
+        "TEEN STUNS EIGHT-TIME WORLD CHAMPION"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": 490.1,
+      "zone_top": 539,
+      "zone_h": 1041,
+      "scale": 1.0,
+      "content_h": 246,
+      "block_top": 629,
+      "block_bottom": 875,
+      "text_bbox": [
+        122,
+        629,
+        881,
+        880
+      ],
+      "texts": [
+        "What Happened",
+        "India's Anahat Singh, 18, beat eight-time world champion and top seed Nour El Sherbini 11-8, 11-8, 11-7 in 30 minutes at the Silicon Valley Open in Redwood City to reach the quarter-finals."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": 489.1,
+      "zone_top": 538,
+      "zone_h": 1042,
+      "scale": 1.0,
+      "content_h": 393,
+      "block_top": 628,
+      "block_bottom": 1021,
+      "text_bbox": [
+        106,
+        628,
+        900,
+        1027
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "$143,500",
+        "PSA Gold event at the Silicon Valley Open"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": 487.9,
+      "zone_top": 536,
+      "zone_h": 1044,
+      "scale": 1.0,
+      "content_h": 755,
+      "block_top": 626,
+      "block_bottom": 1381,
+      "text_bbox": [
+        116,
+        626,
+        894,
+        1382
+      ],
+      "texts": [
+        "By The Numbers",
+        "30 MIN",
+        "To beat the world No. 3 in straight games",
+        "11-8, 11-8, 11-7",
+        "Scoreline in the straight-games win over the top seed",
+        "AGE 18",
+        "India's Anahat Singh, into the quarter-finals"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": 486.7,
+      "zone_top": 535,
+      "zone_h": 1045,
+      "scale": 1.0,
+      "content_h": 466,
+      "block_top": 625,
+      "block_bottom": 1091,
+      "text_bbox": [
+        118,
+        625,
+        844,
+        1097
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "First Indian to win a women's singles silver in squash at the Asian Games",
+        "Won in Redwood City as squash heads for its Olympic debut at Los Angeles 2028"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": 485.9,
+      "zone_top": 534,
+      "zone_h": 1046,
+      "scale": 1.0,
+      "content_h": 258,
+      "block_top": 624,
+      "block_bottom": 882,
+      "text_bbox": [
+        125,
+        624,
+        881,
+        893
+      ],
+      "texts": [
+        "The Takeaway",
+        "The biggest win of her professional career \u2014 over a champion she had never faced before.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "emotional-inspiring-inspiring-uplifting.mp3",
+    "path": "music/emotional-inspiring-inspiring-uplifting.mp3"
+  },
+  "render_seconds": 313.8,
+  "mp4_bytes": 6671488
+}

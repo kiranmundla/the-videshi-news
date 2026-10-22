@@ -1,0 +1,227 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "mamdani-hindu-festivities-queens-unity-illinois-temple-plot",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "MAMDANI DANCES GARBA AFTER TEMPLE PLOT",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Mamdani danced garba after the temple plot during Navratri celebrations.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "New York City Mayor Zohran Mamdani joined Hindu New Yorkers in Queens to celebrate Navratri, Durga Puja, Dashain and Vijayadashami, calling for unity after the attempted mass shooting at a Hindu temple in Aurora, Illinois.",
+      "numbers": [],
+      "entities": [
+        "New York City Mayor Zohran Mamdani",
+        "Hindu New Yorkers",
+        "Durga Puja"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Mamdani joined celebrations and called for unity after the attempted shooting.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "105",
+      "numbers": [
+        105.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "105 lawmakers urged the FBI to investigate the Aurora temple attempt.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Members of Congress urging an FBI hate-crime investigation into the Aurora temple attempt",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Members of Congress urged an FBI hate-crime investigation into the Aurora attempt.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "No specific section labeled 'BY THE NUMBERS' in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "OCT 11",
+      "numbers": [
+        11.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The attempted shooting occurred on October 11, the first day of Navratri.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Attempted shooting outside the Aurora Balaji temple on the first day of Navratri",
+      "numbers": [],
+      "entities": [
+        "Aurora Balaji"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The shooting attempt was outside the Aurora Balaji temple on Navratri's first day.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "19",
+      "numbers": [
+        19.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The suspect's age is stated as 19 years old.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Age of the suspect whose rifle jammed outside the temple",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The suspect's rifle jammed outside the temple.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Raja Krishnamoorthi led the 105 lawmakers \u2014 he was worshipping at the temple with his family",
+      "numbers": [
+        105.0
+      ],
+      "entities": [
+        "Raja Krishnamoorthi"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Raja Krishnamoorthi led the 105 lawmakers and was at the temple with family.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Queens is home to one of the largest Hindu communities in the United States",
+      "numbers": [],
+      "entities": [
+        "United States"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Queens has one of the largest Hindu communities in the U.S.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The Aurora case now moves through the courts while the FBI decides on the hate-crime investigation lawmakers requested.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The Aurora case is moving through the courts as the FBI decides on the investigation.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Zohran Mamdani",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Raja Krishnamoorthi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "FBI",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Aurora Balaji Temple",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Navratri",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000482
+  }
+}

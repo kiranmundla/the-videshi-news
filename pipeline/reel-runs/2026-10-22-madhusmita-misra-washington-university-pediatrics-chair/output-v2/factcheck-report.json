@@ -1,0 +1,242 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "madhusmita-misra-washington-university-pediatrics-chair",
+  "verdict": "fail",
+  "held_claims": [
+    "payoff"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA-TRAINED DOCTOR TO LEAD WASHU PEDIATRICS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Misra is an India-trained doctor leading WashU pediatrics.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Madhusmita Misra has been named chair of the Edward Mallinckrodt Department of Pediatrics at Washington University School of Medicine and pediatrician-in-chief at St. Louis Children's Hospital, starting January 4, 2027.",
+      "numbers": [
+        4.0,
+        2027.0
+      ],
+      "entities": [
+        "Madhusmita Misra",
+        "Edward Mallinckrodt Department",
+        "Washington University School",
+        "St Louis Children's Hospital"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "Details about Misra's appointment and start date are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "JAN 4, 2027",
+      "numbers": [
+        4.0,
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article states her appointment starts on January 4, 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Starts as pediatrics chair at WashU Medicine and pediatrician-in-chief at St. Louis Children's Hospital",
+      "numbers": [],
+      "entities": [
+        "WashU Medicine",
+        "St Louis Children's Hospital"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Misra will serve as pediatrics chair and pediatrician-in-chief.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "No numerical data presented in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "NEARLY 25",
+      "numbers": [
+        25.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Misra spent nearly 25 years at Massachusetts General Hospital.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Years at Massachusetts General Hospital before chairing pediatrics at UVA",
+      "numbers": [],
+      "entities": [
+        "Massachusetts General Hospital"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Misra chaired pediatrics at UVA before her new role.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "PRESIDENT",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Misra has held the presidency of the Pediatric Endocrine Society.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Has held the presidency of the Pediatric Endocrine Society",
+      "numbers": [],
+      "entities": [
+        "Pediatric Endocrine Society"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Misra's educational background includes a medical degree from Odisha.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Medical degree in Odisha, residency in New York, fellowship at Massachusetts General Hospital",
+      "numbers": [],
+      "entities": [
+        "New York",
+        "Massachusetts General Hospital"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Misra is an India-trained physician-scientist in a top US pediatrics role.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "An India-trained physician-scientist takes a top US pediatrics post",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Misra's leadership role at a top medical school.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "An India-trained doctor will lead pediatrics at one of America's top-ranked medical schools.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "missing"
+      },
+      "verdict": "fail"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Madhusmita Misra",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Washington University School of Medicine",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "St. Louis Children's Hospital",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "University of Virginia",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Massachusetts General Hospital",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00044
+  }
+}

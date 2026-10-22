@@ -1,0 +1,3519 @@
+{
+  "counts": {
+    "channel_videos": 198,
+    "db_rows": 134,
+    "db_rows_with_yt_id": 104,
+    "legacy_log_entries": 205,
+    "publish_log_entries": 18,
+    "in_sync": 87,
+    "unknown_legacy_logged": 101,
+    "unknown_no_record": 10,
+    "ghost_db_rows": 14,
+    "superseded_db_rows": 3,
+    "public_without_db_record": 111,
+    "phase2_uploads_now_public": 0
+  },
+  "in_sync": [
+    {
+      "title": "India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts",
+      "published_at": "2026-06-11T04:59:58Z",
+      "privacy": "public",
+      "video_id": "JK4WlKchwm8",
+      "record": "prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505"
+    },
+    {
+      "title": "Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts",
+      "published_at": "2026-06-17T17:02:13Z",
+      "privacy": "public",
+      "video_id": "5rPRXIxjDVc",
+      "record": "prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee"
+    },
+    {
+      "title": "In Paris, Modi Told the Diaspora They Are India's Soft Power. Then He Made Their Lives a Li #Shorts",
+      "published_at": "2026-06-20T23:34:47Z",
+      "privacy": "public",
+      "video_id": "ADxhex0Ua3w",
+      "record": "prebuilt_reels:0b0f5dbf-a3ab-430b-a4ca-5ffff6bfdd62"
+    },
+    {
+      "title": "Nine Women, Three Cities, One Dance: How Brazil's Indian Diaspora Choreographed a Welcome f #Shorts",
+      "published_at": "2026-06-21T04:57:53Z",
+      "privacy": "public",
+      "video_id": "w6S_JW1CftI",
+      "record": "prebuilt_reels:52e2e103-9fa2-45a3-8e2f-f0fe4ed9414d"
+    },
+    {
+      "title": "EB-5 Was the Indian Escape Hatch From the Green Card Backlog. It Just Slammed Shut Until Oc #Shorts",
+      "published_at": "2026-06-21T10:57:51Z",
+      "privacy": "public",
+      "video_id": "BFSoTMvonf8",
+      "record": "prebuilt_reels:5b1e25f5-e00a-4d84-bef7-164986c03436"
+    },
+    {
+      "title": "Indian Families Just Cut Their Study-Abroad Spending to the Lowest in Seven Years. The Reas #Shorts",
+      "published_at": "2026-06-21T10:59:44Z",
+      "privacy": "public",
+      "video_id": "ur9fduzX6uI",
+      "record": "prebuilt_reels:6ad540fd-db89-4f92-adfc-9dbd62f352a0"
+    },
+    {
+      "title": "The Open-Ended Student Visa Is Ending. India's 360,000 Students Are the Most Exposed #Shorts",
+      "published_at": "2026-06-21T22:57:47Z",
+      "privacy": "public",
+      "video_id": "zOP3DJXZ6dc",
+      "record": "prebuilt_reels:127c9acf-72d3-4e5c-b462-fcb6be7d9c41"
+    },
+    {
+      "title": "Forget the $100,000 Fee. The Quiet Wage Rule Is the H-1B Change That Follows Indians All th #Shorts",
+      "published_at": "2026-06-22T10:57:53Z",
+      "privacy": "public",
+      "video_id": "_LAEloq58YE",
+      "record": "prebuilt_reels:3e9a6b62-6dd7-4251-9e67-2eb8c544bbdd"
+    },
+    {
+      "title": "The H-1B Coin Flip Is Dead. The New System Rewards a Very Specific Indian Applicant #Shorts",
+      "published_at": "2026-06-22T10:59:51Z",
+      "privacy": "public",
+      "video_id": "xa0dMQZQIlo",
+      "record": "prebuilt_reels:60b42ed0-35ad-4266-8dc1-658c07a75d81"
+    },
+    {
+      "title": "A Third Community Has Been Drawn Into Manipur's War. Now the Kukis Are Begging Modi to Step #Shorts",
+      "published_at": "2026-06-22T11:01:38Z",
+      "privacy": "public",
+      "video_id": "OD5oWa0WMWo",
+      "record": "prebuilt_reels:5f4868ed-7768-4135-bf28-b388bffea3ed"
+    },
+    {
+      "title": "An Indian Founder Now Runs the App 500 Million Indians Use Every Day #Shorts",
+      "published_at": "2026-06-22T22:58:09Z",
+      "privacy": "public",
+      "video_id": "MNIzqG0jPKg",
+      "record": "prebuilt_reels:b82a6809-d955-406f-ab65-36785048b2b3"
+    },
+    {
+      "title": "What an H-1B Actually Costs in 2026, Line by Line #Shorts",
+      "published_at": "2026-06-22T22:59:36Z",
+      "privacy": "public",
+      "video_id": "_NBqM6zrIlQ",
+      "record": "prebuilt_reels:daaff254-dd62-4797-b9d6-6e44efb02701"
+    },
+    {
+      "title": "India Wants the Diaspora's Dollars Back. It's Offering 7.1% \u2014 and a $55 Billion Bet \u2014 to Ge #Shorts",
+      "published_at": "2026-06-23T04:58:07Z",
+      "privacy": "public",
+      "video_id": "T5x7JdoOwcM",
+      "record": "prebuilt_reels:b1bd3e69-7279-4172-bedb-a9da3a2cb340"
+    },
+    {
+      "title": "Washington Just Built a Machine to Audit H-1B Employers. Indian IT Firms Are the Target #Shorts",
+      "published_at": "2026-06-23T04:59:26Z",
+      "privacy": "public",
+      "video_id": "1n8Xtq0ZRNM",
+      "record": "prebuilt_reels:6b7080d4-15f7-4c64-bd1d-0595a7fe32de"
+    },
+    {
+      "title": "Washington Just Moved to End the Open-Ended Student Visa. India's 360,000 Students Are Firs #Shorts",
+      "published_at": "2026-06-23T05:00:46Z",
+      "privacy": "public",
+      "video_id": "FnMG17CefY0",
+      "record": "prebuilt_reels:e4a19937-8175-4d05-98c3-b764147fdfed"
+    },
+    {
+      "title": "Pay $750, Skip the U.S. Visa Line \u2014 but Only if You're a Tourist, Not an H-1B #Shorts",
+      "published_at": "2026-06-23T10:58:27Z",
+      "privacy": "public",
+      "video_id": "5N9ul4E5bCE",
+      "record": "prebuilt_reels:115abf42-be2a-4635-8846-718b4c3ed821"
+    },
+    {
+      "title": "India Is Quietly Telling the Gulf to Pay Its 5 Million Workers More. It's a Billion-Dollar #Shorts",
+      "published_at": "2026-06-24T22:58:03Z",
+      "privacy": "public",
+      "video_id": "tytxxfAAWc4",
+      "record": "prebuilt_reels:3cb6b457-d303-446c-8c09-dc6c7005df8c"
+    },
+    {
+      "title": "Day-1 CPT Was the H-1B Lottery's Backup Plan. The Proposed Rules Would Kill It #Shorts",
+      "published_at": "2026-06-27T10:58:08Z",
+      "privacy": "public",
+      "video_id": "5e_rP5GjuUg",
+      "record": "prebuilt_reels:4757dcdc-756c-447e-b0f9-52d0a8268c67"
+    },
+    {
+      "title": "He Built a Credit-Card App With $1 Million of His Own Money. Now He Runs WhatsApp for 3 Bil #Shorts",
+      "published_at": "2026-06-27T10:59:21Z",
+      "privacy": "public",
+      "video_id": "1HQ3sdpeKz4",
+      "record": "prebuilt_reels:4255c147-3977-482a-839b-a61c9734e63a"
+    },
+    {
+      "title": "Modi Wrote in Creole to a Diaspora That Has Been in Seychelles Since Before America Was a C #Shorts",
+      "published_at": "2026-06-28T04:58:11Z",
+      "privacy": "public",
+      "video_id": "08k14I-fMYU",
+      "record": "prebuilt_reels:33450671-fa90-40af-a1cb-dcdbc65bd62a"
+    },
+    {
+      "title": "India Banned Telegram for 150 Million Users to Protect One Exam. A Court Just Said That Was #Shorts",
+      "published_at": "2026-06-28T04:59:50Z",
+      "privacy": "public",
+      "video_id": "0v7_kfRC9qw",
+      "record": "prebuilt_reels:ddbe2174-60e6-4fbe-b1a2-2464ede1aa76"
+    },
+    {
+      "title": "'H-1B Isn't Targeting India,' Says America's Envoy. The Numbers Disagree #Shorts",
+      "published_at": "2026-06-28T10:58:17Z",
+      "privacy": "public",
+      "video_id": "LrC9HZfOWhc",
+      "record": "prebuilt_reels:5ce0a119-0689-41ba-b718-fc374fa4d4ce"
+    },
+    {
+      "title": "Indian Workers Pay $4 Billion a Year Into Social Security. They Will Never See a Dime #Shorts",
+      "published_at": "2026-06-28T22:57:48Z",
+      "privacy": "public",
+      "video_id": "wiVR7mASym8",
+      "record": "prebuilt_reels:80317a51-0a92-4b43-b439-c329ed148d81"
+    },
+    {
+      "title": "A Brooklyn Judge Just Told the Trump DOJ It Can't Walk Away From the Adani Case Without Exp #Shorts",
+      "published_at": "2026-06-28T22:59:17Z",
+      "privacy": "public",
+      "video_id": "5JT238dKg2E",
+      "record": "prebuilt_reels:5bb12ae1-0e97-441a-b3a6-cb85798063ff"
+    },
+    {
+      "title": "The US Banned Its Most Powerful AI From Leaving the Country. India Decided It Was Time to B #Shorts",
+      "published_at": "2026-06-29T04:58:07Z",
+      "privacy": "public",
+      "video_id": "9l-49XETZLI",
+      "record": "prebuilt_reels:c38b3077-4b96-468e-a6d6-2be3b809baa7"
+    },
+    {
+      "title": "Modi Signed 19 Agreements in Seychelles Today. Here's What India Got \u2014 and What It Gave. #Shorts",
+      "published_at": "2026-06-29T04:59:06Z",
+      "privacy": "public",
+      "video_id": "308xYl74mdo",
+      "record": "prebuilt_reels:ca8293ac-b56a-4d1a-86b2-ee185f80ed55"
+    },
+    {
+      "title": "Rubio Says Washington Is Planning a Trump Visit to India Early Next Year. He'll Fly Out Fir #Shorts",
+      "published_at": "2026-06-29T10:59:05Z",
+      "privacy": "public",
+      "video_id": "X7eqGv7d4Bc",
+      "record": "prebuilt_reels:ae4925da-7e88-4992-a056-ff78cbfa32d2"
+    },
+    {
+      "title": "India's Central Bank Just Gave NRIs a Reason to Move Their Dollars Home. Banks Are in a Fre #Shorts",
+      "published_at": "2026-06-29T22:58:03Z",
+      "privacy": "public",
+      "video_id": "fG580Ycr_5Y",
+      "record": "prebuilt_reels:e6187287-eb8e-4bf8-b1ce-5412ca9934fa"
+    },
+    {
+      "title": "Persistent Systems Just Bet $1.1 Billion That Indian IT Can Buy Its Way Into Europe #Shorts",
+      "published_at": "2026-06-29T22:59:03Z",
+      "privacy": "public",
+      "video_id": "L_qa3pLsh7w",
+      "record": "prebuilt_reels:628f7bbc-bf18-49bb-8178-79df8e253562"
+    },
+    {
+      "title": "Lutnick Promises to 'Change' the H-1B Programme. His Gold Card Has Approved One Person #Shorts",
+      "published_at": "2026-06-30T04:58:04Z",
+      "privacy": "public",
+      "video_id": "lcHRMwNNJsE",
+      "record": "prebuilt_reels:5ef97e62-f993-4d79-b62c-e1331dc79407"
+    },
+    {
+      "title": "India Just Merged Its Two Biggest Power Lenders Into a $130 Billion Giant. Here's What It M #Shorts",
+      "published_at": "2026-06-30T10:58:10Z",
+      "privacy": "public",
+      "video_id": "kfIxzPwRSCw",
+      "record": "prebuilt_reels:b7d94518-c570-49cf-a056-d91657ee1211"
+    },
+    {
+      "title": "Japan's First Female PM Arrives in India Tomorrow. She's Bringing a $68 Billion Investment #Shorts",
+      "published_at": "2026-06-30T10:59:14Z",
+      "privacy": "public",
+      "video_id": "c7pAqYeuKsE",
+      "record": "prebuilt_reels:1b2966ef-3e3f-4220-a203-e492b4e72410"
+    },
+    {
+      "title": "Modi and Carney Have Met Four Times in Under a Year. Here's What India and Canada Just Agre #Shorts",
+      "published_at": "2026-06-30T22:58:03Z",
+      "privacy": "public",
+      "video_id": "SX7SHmctwyg",
+      "record": "prebuilt_reels:7ef18f7c-0242-42e1-b7cb-1096348752fd"
+    },
+    {
+      "title": "His Mother Had Stage 4 Cancer. His Visa Said Don't Move #Shorts",
+      "published_at": "2026-06-30T22:59:34Z",
+      "privacy": "public",
+      "video_id": "pCkG2QKmOOI",
+      "record": "prebuilt_reels:18ce071f-4071-40f1-9bc7-1722f5161bdc"
+    },
+    {
+      "title": "The Supreme Court Just Told 250,000 Babies a Year They're Still American. Here's What It Me #Shorts",
+      "published_at": "2026-06-30T23:01:04Z",
+      "privacy": "public",
+      "video_id": "Y1Cga19L3cM",
+      "record": "prebuilt_reels:622933e2-dd61-4e39-a308-34c970f1d37a"
+    },
+    {
+      "title": "Delhi Just Banned New Petrol Scooters From 2028. The EV Mandate That Takes Effect Tomorrow #Shorts",
+      "published_at": "2026-07-01T04:57:49Z",
+      "privacy": "public",
+      "video_id": "EZ7ZGDNWxns",
+      "record": "prebuilt_reels:fc54c35d-7802-47d9-ab94-da741e41e3c9"
+    },
+    {
+      "title": "China's K Visa Wants India's Best Engineers. Washington Barely Noticed #Shorts",
+      "published_at": "2026-07-01T10:57:57Z",
+      "privacy": "public",
+      "video_id": "AOSglsFWEqM",
+      "record": "prebuilt_reels:d59c0c6b-d3ff-494d-806c-7f656136b753"
+    },
+    {
+      "title": "Iran and Oman Want to Charge Ships $40 Billion a Year to Pass Through the Strait of Hormuz. #Shorts",
+      "published_at": "2026-07-01T10:59:23Z",
+      "privacy": "public",
+      "video_id": "f3qncLjtMfc",
+      "record": "prebuilt_reels:30c525d3-41f2-4cd0-81ce-d4e6f452af66"
+    },
+    {
+      "title": "Quad Foreign Ministers Will Meet in the Philippines This Month. A Trump Visit to India May #Shorts",
+      "published_at": "2026-07-01T22:57:54Z",
+      "privacy": "public",
+      "video_id": "RaCJhySj0vc",
+      "record": "prebuilt_reels:1a2e9053-14d0-43ec-8901-fb21826abd8f"
+    },
+    {
+      "title": "India Just Killed the Physical OCI Booklet. Five Million Cardholders Can Finally Exhale.",
+      "published_at": "2026-07-03T02:30:51Z",
+      "privacy": "public",
+      "video_id": "i5XSd_rxiLI",
+      "record": "prebuilt_reels:1a554170-e7d5-4d1f-8cff-91fc3aecc749"
+    },
+    {
+      "title": "Modi Is Heading to Three Countries Next Week. In One of Them, Indians Are Being Told They're Not Wel",
+      "published_at": "2026-07-03T16:58:43Z",
+      "privacy": "public",
+      "video_id": "N1ltHShLFq8",
+      "record": "prebuilt_reels:25a01e0d-4cbb-4161-b215-f29ec66c83e0"
+    },
+    {
+      "title": "Modi Was Personally Invited to Khamenei's Funeral. India Sent a Deputy Minister Instead.",
+      "published_at": "2026-07-03T22:58:07Z",
+      "privacy": "public",
+      "video_id": "fBLLUHuzmUc",
+      "record": "prebuilt_reels:3d683eb6-70a3-4928-ade4-effe2cac456f"
+    },
+    {
+      "title": "Forty Democrats Told USCIS to Reverse Its Green Card Memo. The Agency Has Not Responded",
+      "published_at": "2026-07-04T04:57:58Z",
+      "privacy": "public",
+      "video_id": "c_aEUAy9r1o",
+      "record": "prebuilt_reels:5f4be0a6-4922-48dd-91d7-79b9e3a84f5b"
+    },
+    {
+      "title": "America Rejected 61 Per Cent of Indian Student Visas Last Year. The Pipeline Is Bleeding Out",
+      "published_at": "2026-07-04T10:58:09Z",
+      "privacy": "public",
+      "video_id": "EgrQOcuWbAI",
+      "record": "prebuilt_reels:837345cc-1f80-4cdd-91c9-f83dac73aec4"
+    },
+    {
+      "title": "Your Instagram Is Now Part of Your Visa Interview. Consular Officers Have Been Scrolling Since Decem",
+      "published_at": "2026-07-04T22:58:02Z",
+      "privacy": "public",
+      "video_id": "9TmC83BVn8g",
+      "record": "prebuilt_reels:9234bafb-24ed-4879-86d6-055ed46fb892"
+    },
+    {
+      "title": "Trump Accounts Just Went Live. For Indian-American Families, the Math Is Extraordinarily Good.",
+      "published_at": "2026-07-05T10:57:53Z",
+      "privacy": "public",
+      "video_id": "agLxOKxAOwc",
+      "record": "prebuilt_reels:1ce25cfe-1835-48aa-a723-73aa22192b2d"
+    },
+    {
+      "title": "Three Courts. Three Answers. The $100,000 H-1B Fee Is Heading for the Supreme Court",
+      "published_at": "2026-07-05T16:57:55Z",
+      "privacy": "public",
+      "video_id": "HMBQYx1DbAs",
+      "record": "prebuilt_reels:18eb49a0-5399-453e-9e15-c229a37bfb77"
+    },
+    {
+      "title": "He Knew They'd Kill It. Diljit Dosanjh Released Satluj Anyway \u2014 and India Pulled It in 48 H #Shorts",
+      "published_at": "2026-07-06T21:11:06Z",
+      "privacy": "public",
+      "video_id": "4A3aUsXHtRA",
+      "record": "prebuilt_reels:14ecc7dc-593d-4166-a9ac-cc8e43b827e8"
+    },
+    {
+      "title": "Nadella's Microsoft Cuts 4,800 Jobs. Indian H-1B Workers Have 60 Days to Figure Out What's Next.",
+      "published_at": "2026-07-06T22:57:59Z",
+      "privacy": "public",
+      "video_id": "oqQK-XJzDJw",
+      "record": "prebuilt_reels:68b9904a-c992-4f67-97c7-bf280b9e9c69"
+    },
+    {
+      "title": "Oil Just Fell to Pre-War Levels. For India, the Breathing Room Is Enormous.",
+      "published_at": "2026-07-07T04:58:01Z",
+      "privacy": "public",
+      "video_id": "D1oHn01XFmg",
+      "record": "prebuilt_reels:7480ce1d-39df-44f8-812e-678e268aa16e"
+    },
+    {
+      "title": "India's Private Banks Just Posted Their Strongest Quarter in Over a Year \u2014 and Wall Street Is Raisin",
+      "published_at": "2026-07-07T22:59:47Z",
+      "privacy": "public",
+      "video_id": "Q-ZVsDHVxM4",
+      "record": "prebuilt_reels:1f707571-0058-4d24-98b1-d8c4b456d657"
+    },
+    {
+      "title": "She Left Kerala at Six. Now Nithya Raman Wants to Run America's Second-Largest City. #Shorts",
+      "published_at": "2026-07-08T05:07:47Z",
+      "privacy": "public",
+      "video_id": "99lJ_f06qJ0",
+      "record": "prebuilt_reels:da4dddc6-3acc-41cc-b647-405c47ff3772"
+    },
+    {
+      "title": "An AI Is Now Reading Every H-1B Filing You Ever Made. The Government Just Connected the Dots \ud83c\udf99\ufe0f",
+      "published_at": "2026-07-08T14:52:52Z",
+      "privacy": "public",
+      "video_id": "t4h3fHLB5Co",
+      "record": "prebuilt_reels:cedd7109-5707-4cd8-9f05-e191a40e3993"
+    },
+    {
+      "title": "India Just Switched On Its Third Chip Plant in Five Months. The Target: Five Billion Chips a Year \ud83c\udf99\ufe0f",
+      "published_at": "2026-07-08T21:23:13Z",
+      "privacy": "public",
+      "video_id": "VoYNzR0O4Ow",
+      "record": "prebuilt_reels:1e8bba81-ec95-4982-96a4-a5d3cf5c1ecd"
+    },
+    {
+      "title": "India Just Received a Record $145 Billion From Its Diaspora. For the First Time, America Sent the \ud83c\udf99\ufe0f",
+      "published_at": "2026-07-09T10:57:44Z",
+      "privacy": "public",
+      "video_id": "Udb6EdcyS4s",
+      "record": "prebuilt_reels:2563fbd7-a451-4859-9859-d8c1f7e9058c"
+    },
+    {
+      "title": "You Paid $120,000 in Social Security Taxes. India Has No Deal to Get Any of It Back \ud83c\udf99\ufe0f",
+      "published_at": "2026-07-09T16:57:49Z",
+      "privacy": "public",
+      "video_id": "X7SGW8bXF1s",
+      "record": "prebuilt_reels:ba442993-3e27-4209-8e91-6a72db715e9e"
+    },
+    {
+      "title": "Pay $750 to Skip the Queue. The State Department Just Put a Price on Visa Interviews \ud83c\udf99\ufe0f",
+      "published_at": "2026-07-09T22:57:46Z",
+      "privacy": "public",
+      "video_id": "qRzUUeMPz9s",
+      "record": "prebuilt_reels:44656854-6a15-44f7-875d-442ded1ac702"
+    },
+    {
+      "title": "The Date Is Set. Ramayana Drops Its First Trailer July 18 \u2014 at India's Grandest Stage. \ud83c\udfb5",
+      "published_at": "2026-07-10T10:57:33Z",
+      "privacy": "public",
+      "video_id": "QRtMpscl2Mg",
+      "record": "prebuilt_reels:7e37e04d-fbc9-4e1d-b862-95bfd1c02d90"
+    },
+    {
+      "title": "They Took Satluj Off the Internet. Now Gurudwaras Are Screening It Across Five States. \ud83c\udf99\ufe0f",
+      "published_at": "2026-07-10T16:57:48Z",
+      "privacy": "public",
+      "video_id": "dX-tn9qtcts",
+      "record": "prebuilt_reels:a3a36a6e-3db1-4a39-a982-b1cc99284f70"
+    },
+    {
+      "title": "India Just Survived a Record $48 Billion Foreign Exodus \u2014 And Came Out Stronger. \ud83c\udfb5",
+      "published_at": "2026-07-10T22:58:36Z",
+      "privacy": "public",
+      "video_id": "yFnGT0lWoco",
+      "record": "prebuilt_reels:3079c9ef-5284-40fa-b3fc-9d67929521cd"
+    },
+    {
+      "title": "OpenAI Wants to Give the US Government a $42 Billion Stake. An Indian American Is Helping Broker \ud83c\udf99\ufe0f",
+      "published_at": "2026-07-11T10:57:51Z",
+      "privacy": "public",
+      "video_id": "8Vh_ncC9vXA",
+      "record": "prebuilt_reels:4fa4bceb-bb5b-4a00-a4e0-e866b461063f"
+    },
+    {
+      "title": "India's SIP Machine Hits \u20b9317.81 Billion \u2014 Just \u20b93 Billion Short of the All-Time Record as Mid-Cap \ud83c\udfb5",
+      "published_at": "2026-07-11T16:57:51Z",
+      "privacy": "public",
+      "video_id": "NOzHCxUgRo8",
+      "record": "prebuilt_reels:436e5ecb-dd75-43a6-b3a9-c2dda761e3dd"
+    },
+    {
+      "title": "A Bill in Congress Would Kill STEM OPT, End Dual Intent, and Ban Post-Layoff H-1B Hiring. Here Is \ud83c\udf99\ufe0f",
+      "published_at": "2026-07-11T22:57:52Z",
+      "privacy": "public",
+      "video_id": "YnjlD-Vzrh8",
+      "record": "prebuilt_reels:433151b4-e97b-40cf-8401-f4dc1953dcda"
+    },
+    {
+      "title": "Amazon Raises Its India Bet to $48 Billion. That Is More Than Most Countries Spend on AI. \ud83c\udfb5",
+      "published_at": "2026-07-12T10:58:04Z",
+      "privacy": "public",
+      "video_id": "CsmavrD-YDs",
+      "record": "prebuilt_reels:a76fc13d-14c0-470c-bd1b-682759b3ce5e"
+    },
+    {
+      "title": "India's Tax Department Can Now See Your Foreign Bank Accounts. Here Is What Every NRI Needs to Kn \ud83c\udf99\ufe0f",
+      "published_at": "2026-07-12T16:58:07Z",
+      "privacy": "public",
+      "video_id": "lOX1BBi3dh4",
+      "record": "prebuilt_reels:1a9e6284-1590-47e3-b754-e2694dd0fcaa"
+    },
+    {
+      "title": "The First Wage-Weighted H-1B Lottery Is Over. Here Is What It Did to Indian Applicants \ud83c\udfb5",
+      "published_at": "2026-07-12T22:57:44Z",
+      "privacy": "public",
+      "video_id": "m1-D9m130so",
+      "record": "prebuilt_reels:ed8a3fe7-de6b-4f20-b559-3d04c76fb2dc"
+    },
+    {
+      "title": "The Billionaire, the Doctor, and the Toss-Up: Vivek Ramaswamy's Ohio Governor Race Just Got Real \ud83c\udf99\ufe0f",
+      "published_at": "2026-07-13T10:57:45Z",
+      "privacy": "public",
+      "video_id": "YpjAVIe147A",
+      "record": "prebuilt_reels:8596ed63-adb4-4481-afa8-d5f2be042ce0"
+    },
+    {
+      "title": "Dhamaal 4 Just Crossed \u20b965 Crore in Three Days. The Franchise Has Never Done This. \ud83c\udfb5",
+      "published_at": "2026-07-13T16:57:35Z",
+      "privacy": "public",
+      "video_id": "5eZLLhR060s",
+      "record": "prebuilt_reels:d6c6bb87-486f-4598-a572-554f3f8bafe8"
+    },
+    {
+      "title": "Germany, Canada, and the EU Want the Indian Talent America Is Pushing Away \ud83c\udf99\ufe0f",
+      "published_at": "2026-07-13T22:57:52Z",
+      "privacy": "public",
+      "video_id": "yNl81iWqw8U",
+      "record": "prebuilt_reels:307871fd-1e8c-442e-8f27-b41580aeee43"
+    },
+    {
+      "title": "Rupee Slides to One-Month Low as India's Trade Deficit Balloons to $30.43 Billion \u2014 What NRI Remit \ud83c\udfb5",
+      "published_at": "2026-07-14T10:57:46Z",
+      "privacy": "public",
+      "video_id": "JYdFf19RVtw",
+      "record": "prebuilt_reels:e6d38716-51ab-4775-8f3a-2abe1d9907bb"
+    },
+    {
+      "title": "Satya Nadella Is Quietly Building Microsoft's Own AI Models. The Goal: Stop Paying OpenAI and Ant \ud83c\udf99\ufe0f",
+      "published_at": "2026-07-14T16:57:41Z",
+      "privacy": "public",
+      "video_id": "Cq-CwlUarOU",
+      "record": "prebuilt_reels:89fe716f-ffdc-44d2-956f-159e4835289c"
+    },
+    {
+      "title": "Five Box Office Wars That Will Define the Second Half of 2026 \ud83c\udfb5",
+      "published_at": "2026-07-14T22:57:43Z",
+      "privacy": "public",
+      "video_id": "YbpiTLVJWCA",
+      "record": "prebuilt_reels:30e3cac5-9362-4964-8065-f3acebd2760a"
+    },
+    {
+      "title": "Astrophysicist Sukanya Chakrabarti Elected Fellow of American Physical Society #Shorts #DarkMatter",
+      "published_at": "2026-10-14T08:13:38Z",
+      "privacy": "public",
+      "video_id": "2MrWgJOsprg",
+      "record": "prebuilt_reels:c236b952-ed9d-4de2-b33b-f266d3884960"
+    },
+    {
+      "title": "DHS Proposes Ending Deference to Prior H-1B and L-1 Petition Approvals #Shorts #H1B",
+      "published_at": "2026-10-14T10:52:59Z",
+      "privacy": "public",
+      "video_id": "F65YQsTymGw",
+      "record": "prebuilt_reels:cecd5411-672e-4729-b616-f6f85448021c"
+    },
+    {
+      "title": "Cabinet Clears 78-Day Diwali Bonus for 11.4 Lakh Railway Employees #Shorts #News",
+      "published_at": "2026-10-15T05:41:13Z",
+      "privacy": "public",
+      "video_id": "l2Kt9NQJhfc",
+      "record": "prebuilt_reels:9ff85f0e-fd3c-47f7-be42-31b186520a19"
+    },
+    {
+      "title": "Microsoft's Brad Smith Hits Back at Vance as Nadella Medal Exposes H-1B Split #Shorts #H1B",
+      "published_at": "2026-10-16T22:08:45Z",
+      "privacy": "public",
+      "video_id": "ch5JcYGZZxE",
+      "record": "prebuilt_reels:4a5e7c4b-e3dc-4946-b4a5-a5d5b5692505"
+    },
+    {
+      "title": "Court Orders State Department to Reopen 55,000-Visa Green Card Lottery #Shorts #GreenCard",
+      "published_at": "2026-10-16T22:09:16Z",
+      "privacy": "public",
+      "video_id": "6dz3MkFtrSY",
+      "record": "prebuilt_reels:05c15505-d893-4f35-8dc2-01d4bdf77886"
+    },
+    {
+      "title": "Bengaluru-Born Astronomer Ramya Anche to Lead NASA's $20 Million PUFFINS Mission #Shorts #TechNews",
+      "published_at": "2026-10-17T14:32:07Z",
+      "privacy": "public",
+      "video_id": "ioSSw3vOlJE",
+      "record": "prebuilt_reels:2c934096-1240-412c-b4c7-9d770d08afea"
+    },
+    {
+      "title": "ICICI Bank Profit Jumps 20% to Rs 14,843 Crore in Second Quarter #Shorts #Markets",
+      "published_at": "2026-10-17T17:40:12Z",
+      "privacy": "public",
+      "video_id": "V7FTpE5qRvc",
+      "record": "prebuilt_reels:2ab35e77-428e-450c-abc2-a0c3645ffd80"
+    },
+    {
+      "title": "Jailer 2 Crosses \u20b9209 Crore Worldwide in Two Days, Eyes a Record Weekend #Shorts #Entertainment",
+      "published_at": "2026-10-18T06:05:34Z",
+      "privacy": "public",
+      "video_id": "DptW6hsP1E4",
+      "record": "prebuilt_reels:05ced2bf-5653-481b-b716-1972c26ca8b1"
+    },
+    {
+      "title": "White House Touts $330 Billion in Indian Investment as 'Trillions Pour In' #Shorts #Markets",
+      "published_at": "2026-10-18T20:44:17Z",
+      "privacy": "public",
+      "video_id": "ad_O6nV9hGg",
+      "record": "prebuilt_reels:4d8cc5ec-2a15-446d-9221-4a86019303b6"
+    },
+    {
+      "title": "India Caps Margins on 137 Cancer Drugs, Prices to Fall Up to 70% From November 9 #Shorts #News",
+      "published_at": "2026-10-19T14:15:02Z",
+      "privacy": "public",
+      "video_id": "i4cIT_LAcUU",
+      "record": "prebuilt_reels:cd15b49b-7612-4bfb-9153-e2d53a650021"
+    },
+    {
+      "title": "Bajaj Finance Q2 Profit Rises 29% to Rs 6,367 Crore as NII Jumps 24% #Shorts #Markets",
+      "published_at": "2026-10-19T23:06:49Z",
+      "privacy": "public",
+      "video_id": "a_05lp6TNcw",
+      "record": "prebuilt_reels:b24a1654-1500-4177-9970-9cb7f6a2a0a3"
+    },
+    {
+      "title": "Lawmakers Join 63 in Congress Urging Faster Green Cards as Health Coverage Lapses #Shorts #GreenCard",
+      "published_at": "2026-10-20T06:11:39Z",
+      "privacy": "public",
+      "video_id": "7ZjdQOJyGAs",
+      "record": "prebuilt_reels:34cad0ab-2041-40cd-a8d5-b9f7cdee4131"
+    },
+    {
+      "title": "DHS Final Rule Permanently Ends Automatic Work Permit Extensions For Renewals #Shorts #Immigration",
+      "published_at": "2026-10-21T13:03:35Z",
+      "privacy": "public",
+      "video_id": "mdUdnvLdZGI",
+      "record": "prebuilt_reels:d0cf0ace-71bc-4a98-b7fb-10fff0e73b05"
+    },
+    {
+      "title": "Schweikert SMARTER Act Would Replace H-1B Lottery With Merit Points System #Shorts #H1B",
+      "published_at": "2026-10-21T23:24:09Z",
+      "privacy": "public",
+      "video_id": "6kGD-tK1y38",
+      "record": "prebuilt_reels:4bcbb9cf-4573-4b15-a3d8-de9251a0faf5"
+    },
+    {
+      "title": "Anahat Singh Stuns Eight-Time World Champion El Sherbini at Silicon Valley Open #Shorts #Sports",
+      "published_at": "2026-10-22T05:28:57Z",
+      "privacy": "unlisted",
+      "video_id": "n-yuVnXCf-s",
+      "record": "prebuilt_reels:f9096a09-e79c-419b-b7fa-c8bc84970eb1"
+    }
+  ],
+  "unknown_legacy_logged": [
+    {
+      "title": "Mammootty Was Supposed to Receive India's Third-Highest Civilian Honour Today. He Was in Kott #Sh...",
+      "published_at": "2026-05-26T07:59:02Z",
+      "privacy": "public",
+      "video_id": "E0_-Wo2WOr4",
+      "legacy": {
+        "video_id": "E0_-Wo2WOr4",
+        "article_slug": "mammootty-skipped-padma-bhushan-ceremony-third-honorary-doctorate-mahatma-gandhi-university-kerala-20260525",
+        "uploaded_at": "2026-05-26T07:58:38.630598Z",
+        "url": "https://youtube.com/shorts/E0_-Wo2WOr4",
+        "file": "reel-mammootty-skipped-padma-bhushan-ceremony-third-honorary-doctorate-mahatma-gandhi.mp4"
+      }
+    },
+    {
+      "title": "India and the US Just Signed a Critical Minerals Deal and a Rare Earths Agreement at the Firs #Sh...",
+      "published_at": "2026-05-26T07:59:15Z",
+      "privacy": "public",
+      "video_id": "u-OB58pDic8",
+      "legacy": {
+        "video_id": "u-OB58pDic8",
+        "article_slug": "quad-foreign-ministers-delhi-critical-minerals-rare-earths-deal-20260526",
+        "uploaded_at": "2026-05-26T07:58:50.130154Z",
+        "url": "https://youtube.com/shorts/u-OB58pDic8",
+        "file": "reel-quad-foreign-ministers-delhi-critical-minerals-rare-earths-deal-20260526.mp4"
+      }
+    },
+    {
+      "title": "Loneliness Inflames the Gut. A UK Biobank Study of 275,000 Adults Found That Social Isolatio #Shorts",
+      "published_at": "2026-05-26T10:59:25Z",
+      "privacy": "public",
+      "video_id": "TwszLprZxcQ",
+      "legacy": {
+        "video_id": "TwszLprZxcQ",
+        "article_slug": "loneliness-inflames-gut-social-isolation-ibd-85-percent-indian-20260526",
+        "uploaded_at": "2026-05-26T10:58:59.430868Z",
+        "url": "https://youtube.com/shorts/TwszLprZxcQ",
+        "file": "reel-loneliness-inflames-gut-social-isolation-ibd-85-percent-indian-20260526.mp4"
+      }
+    },
+    {
+      "title": "India Killed the Blue Booklet \u2014 What the New Digital e-OCI Card Means for 4.7 Million Overse #Shorts",
+      "published_at": "2026-05-26T10:59:31Z",
+      "privacy": "public",
+      "video_id": "7SH4rEKOAhU",
+      "legacy": {
+        "video_id": "7SH4rEKOAhU",
+        "article_slug": "india-digital-eoci-card-nri-qr-code-guide-20260526",
+        "uploaded_at": "2026-05-26T10:59:12.018677Z",
+        "url": "https://youtube.com/shorts/7SH4rEKOAhU",
+        "file": "reel-india-digital-eoci-card-nri-qr-code-guide-20260526.mp4"
+      }
+    },
+    {
+      "title": "Monsoon Hits Kerala May 26 Six Days Early Farmers Rush #Shorts",
+      "published_at": "2026-05-26T19:58:31Z",
+      "privacy": "public",
+      "video_id": "n1pczEcKAzk",
+      "legacy": {
+        "video_id": "n1pczEcKAzk",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-26T19:58:14.299424Z",
+        "url": "https://youtube.com/shorts/n1pczEcKAzk",
+        "file": "reel-monsoon-hits-kerala-may-26-six-days-early-farmers-rush-20260526.mp4"
+      }
+    },
+    {
+      "title": "Iran Supreme Leader Uranium Surrender Irgc Drone Retaliation #Shorts",
+      "published_at": "2026-05-26T19:58:49Z",
+      "privacy": "public",
+      "video_id": "UXlJ8v0rY_0",
+      "legacy": {
+        "video_id": "UXlJ8v0rY_0",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-26T19:58:25.790275Z",
+        "url": "https://youtube.com/shorts/UXlJ8v0rY_0",
+        "file": "reel-iran-supreme-leader-uranium-surrender-irgc-drone-retaliation-20260526.mp4"
+      }
+    },
+    {
+      "title": "The Curcumin in Your Supplement Is Not the Same as the Turmeric in Your Dal. A Study of 100\u2026 #Shorts",
+      "published_at": "2026-05-26T22:59:03Z",
+      "privacy": "public",
+      "video_id": "K_zZnPBErlg",
+      "legacy": {
+        "video_id": "K_zZnPBErlg",
+        "article_slug": "curcumin-supplement-not-turmeric-dal-food-additive-49-percent-diabetes-20260526",
+        "uploaded_at": "2026-05-26T22:58:37.340407Z",
+        "url": "https://youtube.com/shorts/K_zZnPBErlg",
+        "file": "reel-curcumin-supplement-not-turmeric-dal-food-additive-49-percent-diabetes-20260526.mp4"
+      }
+    },
+    {
+      "title": "Who Ebola Global Emergency India Travel Advisory Bundibugyo #Shorts",
+      "published_at": "2026-05-27T01:59:02Z",
+      "privacy": "public",
+      "video_id": "lezYZfdgziM",
+      "legacy": {
+        "video_id": "lezYZfdgziM",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-27T01:58:39.374537Z",
+        "url": "https://youtube.com/shorts/lezYZfdgziM",
+        "file": "reel-who-ebola-global-emergency-india-travel-advisory-bundibugyo-20260526.mp4"
+      }
+    },
+    {
+      "title": "The $110 Billion Deal That Would Merge Marvel, Star Wars, Harry Potter, DC, and HBO Into ... #Shorts",
+      "published_at": "2026-05-27T07:58:45Z",
+      "privacy": "public",
+      "video_id": "Vb2dFMpl_7U",
+      "legacy": {
+        "video_id": "Vb2dFMpl_7U",
+        "article_slug": "paramount-warner-bros-110-billion-merger-approved-streaming-india-20260527",
+        "uploaded_at": "2026-05-27T07:58:30.066819Z",
+        "url": "https://youtube.com/shorts/Vb2dFMpl_7U",
+        "file": "reel-paramount-warner-bros-110-billion-merger-approved-streaming-india-20260527.mp4"
+      }
+    },
+    {
+      "title": "Netflix Made a Show About Ultra-Rich Indians in Dubai. Karan Kundrra Proposed to Tejasswi... #Shorts",
+      "published_at": "2026-05-27T07:59:08Z",
+      "privacy": "public",
+      "video_id": "Exd3v2tALfo",
+      "legacy": {
+        "video_id": "Exd3v2tALfo",
+        "article_slug": "netflix-desi-bling-dubai-indian-expats-karan-kundrra-tejasswi-prakash-engagement-nri-wealth-20260527",
+        "uploaded_at": "2026-05-27T07:58:41.407203Z",
+        "url": "https://youtube.com/shorts/Exd3v2tALfo",
+        "file": "reel-netflix-desi-bling-dubai-indian-expats-karan-kundrra-tejasswi-prakash-engagement.mp4"
+      }
+    },
+    {
+      "title": "Canc\u00fan for Desis: Why NRIs Are Trading Goa for Mexico's Caribbean This Summer #Shorts",
+      "published_at": "2026-05-27T10:58:49Z",
+      "privacy": "public",
+      "video_id": "TzlzHd4wBWc",
+      "legacy": {
+        "video_id": "TzlzHd4wBWc",
+        "article_slug": "cancun-desis-nri-mexico-caribbean-summer-20260527",
+        "uploaded_at": "2026-05-27T10:58:26.785481Z",
+        "url": "https://youtube.com/shorts/TzlzHd4wBWc",
+        "file": "reel-cancun-desis-nri-mexico-caribbean-summer-20260527.mp4"
+      }
+    },
+    {
+      "title": "India Oil Supply Chain Latin America Africa Venezuela Hormuz #Shorts",
+      "published_at": "2026-05-27T10:58:59Z",
+      "privacy": "public",
+      "video_id": "Rw6eSgkC7uA",
+      "legacy": {
+        "video_id": "Rw6eSgkC7uA",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-27T10:58:38.674274Z",
+        "url": "https://youtube.com/shorts/Rw6eSgkC7uA",
+        "file": "reel-india-oil-supply-chain-latin-america-africa-venezuela-hormuz-20260526.mp4"
+      }
+    },
+    {
+      "title": "India's Supreme Court Just Quashed the \u20b9202 Crore Penalty on Amazon. The CCI Must Refund t #Shorts",
+      "published_at": "2026-05-27T13:58:43Z",
+      "privacy": "public",
+      "video_id": "N-xhAGj1ths",
+      "legacy": {
+        "video_id": "N-xhAGj1ths",
+        "article_slug": "supreme-court-quashes-cci-202-crore-amazon-penalty-future-coupons-20260527",
+        "uploaded_at": "2026-05-27T13:58:21.296966Z",
+        "url": "https://youtube.com/shorts/N-xhAGj1ths",
+        "file": "reel-supreme-court-quashes-cci-202-crore-amazon-penalty-future-coupons-20260527.mp4"
+      }
+    },
+    {
+      "title": "Pm 602 0199 Legal Challenge Court 1967 Case Law #Shorts",
+      "published_at": "2026-05-27T13:58:57Z",
+      "privacy": "public",
+      "video_id": "A-ep679QDWo",
+      "legacy": {
+        "video_id": "A-ep679QDWo",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-27T13:58:32.994435Z",
+        "url": "https://youtube.com/shorts/A-ep679QDWo",
+        "file": "reel-pm-602-0199-legal-challenge-court-1967-case-law-20260527.mp4"
+      }
+    },
+    {
+      "title": "If They Can't Come to America, America Is Going to Them #Shorts",
+      "published_at": "2026-05-27T16:58:46Z",
+      "privacy": "public",
+      "video_id": "ck2rvxVwG7Y",
+      "legacy": {
+        "video_id": "ck2rvxVwG7Y",
+        "article_slug": "gcc-boom-india-american-companies-hiring-h1b-alternative-20260527",
+        "uploaded_at": "2026-05-27T16:58:27.429878Z",
+        "url": "https://youtube.com/shorts/ck2rvxVwG7Y",
+        "file": "reel-gcc-boom-india-american-companies-hiring-h1b-alternative-20260527.mp4"
+      }
+    },
+    {
+      "title": "India Petrol Crosses 100 Four Hikes 10 Days Hormuz Oil Crisis #Shorts",
+      "published_at": "2026-05-27T16:59:03Z",
+      "privacy": "public",
+      "video_id": "aJyE_SqI6c8",
+      "legacy": {
+        "video_id": "aJyE_SqI6c8",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-27T16:58:39.198604Z",
+        "url": "https://youtube.com/shorts/aJyE_SqI6c8",
+        "file": "reel-india-petrol-crosses-100-four-hikes-10-days-hormuz-oil-crisis-20260526.mp4"
+      }
+    },
+    {
+      "title": "Karan Johar Bet on Ananya Panday and Lakshya. The Box Office Said No. Chand Mera Dil Is... #Shorts",
+      "published_at": "2026-05-27T19:59:43Z",
+      "privacy": "public",
+      "video_id": "gcsw1l_gQNY",
+      "legacy": {
+        "video_id": "gcsw1l_gQNY",
+        "article_slug": "chand-mera-dil-box-office-dharma-ananya-panday-lakshya-netflix-nri-20260527",
+        "uploaded_at": "2026-05-27T19:59:27.897398Z",
+        "url": "https://youtube.com/shorts/gcsw1l_gQNY",
+        "file": "reel-chand-mera-dil-box-office-dharma-ananya-panday-lakshya-netflix-nri-20260527.mp4"
+      }
+    },
+    {
+      "title": "Canada's Government Just Shrank to a One-Seat Majority. The India Trade Deal Could Be t... #Shorts",
+      "published_at": "2026-05-27T20:02:38Z",
+      "privacy": "public",
+      "video_id": "FbpxG8_TNIM",
+      "legacy": {
+        "video_id": "FbpxG8_TNIM",
+        "article_slug": "canada-carney-one-seat-majority-india-cepa-trade-deal-20260527",
+        "uploaded_at": "2026-05-27T20:02:19.419165+00:00",
+        "url": "https://youtube.com/shorts/FbpxG8_TNIM",
+        "file": "reel-canada-carney-one-seat-majority-india-cepa-trade-deal-20260527.mp4"
+      }
+    },
+    {
+      "title": "Foreign Airlines Are Quietly Feasting on India's Aviation Crisis \u2014 and NRIs Are the Prize #Shorts",
+      "published_at": "2026-05-27T22:58:57Z",
+      "privacy": "public",
+      "video_id": "JmFXrJ9tZro",
+      "legacy": {
+        "video_id": "JmFXrJ9tZro",
+        "article_slug": "foreign-airlines-india-aviation-crisis-cathay-singapore-nri-20260527",
+        "uploaded_at": "2026-05-27T22:58:30.045207+00:00",
+        "url": "https://youtube.com/shorts/JmFXrJ9tZro",
+        "file": "reel-foreign-airlines-india-aviation-crisis-cathay-singapore-nri-20260527.mp4"
+      }
+    },
+    {
+      "title": "33 Days to File or Lose It Forever \u2014 The FY2027 H-1B Petition Window Is Closing and the Rul\u2026 #Shorts",
+      "published_at": "2026-05-28T05:00:19Z",
+      "privacy": "public",
+      "video_id": "wYmFNvEQzoo",
+      "legacy": {
+        "video_id": "wYmFNvEQzoo",
+        "article_slug": "h1b-fy2027-june-30-filing-deadline-guide-indian-20260528",
+        "uploaded_at": "2026-05-28T05:00:01.707919+00:00",
+        "url": "https://youtube.com/shorts/wYmFNvEQzoo",
+        "file": "reel-h1b-fy2027-june-30-filing-deadline-guide-indian-20260528.mp4"
+      }
+    },
+    {
+      "title": "India Oil Supply Chain Rewired Venezuela Africa Uae Hormuz Closed #Shorts",
+      "published_at": "2026-05-28T07:59:20Z",
+      "privacy": "public",
+      "video_id": "2E_jkg26oDA",
+      "legacy": {
+        "video_id": "2E_jkg26oDA",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-28T07:59:05.332390+00:00",
+        "url": "https://youtube.com/shorts/2E_jkg26oDA",
+        "file": "reel-india-oil-supply-chain-rewired-venezuela-africa-uae-hormuz-closed-20260527.mp4"
+      }
+    },
+    {
+      "title": "Mamata Refused to Resign After Losing West Bengal. The Governor Dissolved the Assembly ... #Shorts",
+      "published_at": "2026-05-28T07:59:32Z",
+      "privacy": "public",
+      "video_id": "jZDR7uOuW6s",
+      "legacy": {
+        "video_id": "jZDR7uOuW6s",
+        "article_slug": "west-bengal-bjp-wins-mamata-refuses-resign-governor-dissolves-assembly-20260527",
+        "uploaded_at": "2026-05-28T07:59:17.025210+00:00",
+        "url": "https://youtube.com/shorts/jZDR7uOuW6s",
+        "file": "reel-west-bengal-bjp-wins-mamata-refuses-resign-governor-dissolves-assembly-20260527.mp4"
+      }
+    },
+    {
+      "title": "Consular Processing India Green Card Logistics Crisis #Shorts",
+      "published_at": "2026-05-28T10:59:31Z",
+      "privacy": "public",
+      "video_id": "4p3cIQz9i8k",
+      "legacy": {
+        "video_id": "4p3cIQz9i8k",
+        "article_slug": "consular-processing-india-green-card-logistics-crisis-20260526",
+        "uploaded_at": "2026-05-28T10:59:03.262641+00:00",
+        "url": "https://youtube.com/shorts/4p3cIQz9i8k",
+        "file": "reel-consular-processing-india-green-card-logistics-crisis-20260526.mp4"
+      }
+    },
+    {
+      "title": "India Just Sold Shares in Coal India at a 10 Per Cent Discount. It Sold Central Bank of #Shorts",
+      "published_at": "2026-05-28T11:00:06Z",
+      "privacy": "public",
+      "video_id": "goI8_uBt0dc",
+      "legacy": {
+        "video_id": "goI8_uBt0dc",
+        "article_slug": "india-coal-india-divestment-ofs-central-bank-800-billion-rupees-nri-20260528",
+        "uploaded_at": "2026-05-28T10:59:42.455106+00:00",
+        "url": "https://youtube.com/shorts/goI8_uBt0dc",
+        "file": "reel-india-coal-india-divestment-ofs-central-bank-800-billion-rupees-nri-20260528.mp4"
+      }
+    },
+    {
+      "title": "Trump Anything India Wants They Get Delhi Call Ar Rahman Quad #Shorts",
+      "published_at": "2026-05-28T13:59:20Z",
+      "privacy": "public",
+      "video_id": "zgCp8lOKyxg",
+      "legacy": {
+        "video_id": "zgCp8lOKyxg",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-28T13:59:00.549079+00:00",
+        "url": "https://youtube.com/shorts/zgCp8lOKyxg",
+        "file": "reel-trump-anything-india-wants-they-get-delhi-call-ar-rahman-quad-20260525.mp4"
+      }
+    },
+    {
+      "title": "U.S. Inflation Just Hit 3.8 Percent. The Iran War Is Baked Into Every Price Tag in America. #Shorts",
+      "published_at": "2026-05-28T13:59:21Z",
+      "privacy": "public",
+      "video_id": "AQgQi65ZuvU",
+      "legacy": {
+        "video_id": "AQgQi65ZuvU",
+        "article_slug": "us-pce-inflation-3-8-percent-iran-war-fed-rate-hike-indian-americans-20260528",
+        "uploaded_at": "2026-05-28T13:58:48.647567+00:00",
+        "url": "https://youtube.com/shorts/AQgQi65ZuvU",
+        "file": "reel-us-pce-inflation-3-8-percent-iran-war-fed-rate-hike-indian-americans-20260528.mp4"
+      }
+    },
+    {
+      "title": "290,000 Students, One Confirmation Hearing, and the Quiet Death of OPT #Shorts",
+      "published_at": "2026-05-28T16:59:05Z",
+      "privacy": "public",
+      "video_id": "n-deTJ7Tw2M",
+      "legacy": {
+        "video_id": "n-deTJ7Tw2M",
+        "article_slug": "opt-end-uscis-edlow-indian-students-work-rights-20260528",
+        "uploaded_at": "2026-05-28T16:58:44.909629+00:00",
+        "url": "https://youtube.com/shorts/n-deTJ7Tw2M",
+        "file": "reel-opt-end-uscis-edlow-indian-students-work-rights-20260528.mp4"
+      }
+    },
+    {
+      "title": "American Airlines Will Double Its India Tech Hub to 800 People. It Is Not Alone. #Shorts",
+      "published_at": "2026-05-28T19:59:13Z",
+      "privacy": "public",
+      "video_id": "WDnDm86Trzs",
+      "legacy": {
+        "video_id": "WDnDm86Trzs",
+        "article_slug": "american-airlines-india-hyderabad-gcc-tech-hub-double-800-employees-20260528",
+        "uploaded_at": "2026-05-28T19:58:53.829329Z",
+        "url": "https://youtube.com/shorts/WDnDm86Trzs",
+        "file": "reel-american-airlines-india-hyderabad-gcc-tech-hub-double-800-employees-20260528.mp4"
+      }
+    },
+    {
+      "title": "India's Supreme Court Just Wiped Out \u20b9202 Crore in Fines Against Amazon. Foreign Invest... #Shorts",
+      "published_at": "2026-05-29T01:59:20Z",
+      "privacy": "public",
+      "video_id": "huUCGBYiEsM",
+      "legacy": {
+        "video_id": "huUCGBYiEsM",
+        "article_slug": "india-supreme-court-amazon-future-group-cci-penalty-overturned-cross-border-investment-20260529",
+        "uploaded_at": "2026-05-29T01:58:59.817263+00:00",
+        "url": "https://youtube.com/shorts/huUCGBYiEsM",
+        "file": "reel-india-supreme-court-amazon-future-group-cci-penalty-overturned-cross-border-inve.mp4"
+      }
+    },
+    {
+      "title": "Europe's New Biometric Border Is Already Broken \u2014 and NRIs Are Stuck in the Queue #Shorts",
+      "published_at": "2026-05-29T01:59:34Z",
+      "privacy": "public",
+      "video_id": "l6AYs1agyR8",
+      "legacy": {
+        "video_id": "l6AYs1agyR8",
+        "article_slug": "eu-ees-biometric-border-nri-europe-travel-delays-20260528",
+        "uploaded_at": "2026-05-29T01:59:11.358815+00:00",
+        "url": "https://youtube.com/shorts/l6AYs1agyR8",
+        "file": "reel-eu-ees-biometric-border-nri-europe-travel-delays-20260528.mp4"
+      }
+    },
+    {
+      "title": "Permanent Residency in 21 Months #Shorts",
+      "published_at": "2026-05-29T04:59:44Z",
+      "privacy": "public",
+      "video_id": "NEJ5ExZlZhk",
+      "legacy": {
+        "video_id": "NEJ5ExZlZhk",
+        "article_slug": "germany-eu-blue-card-indian-engineers-h1b-alternative-20260529",
+        "uploaded_at": "2026-05-29T04:59:21.814540Z",
+        "url": "https://youtube.com/shorts/NEJ5ExZlZhk",
+        "file": "reel-germany-eu-blue-card-indian-engineers-h1b-alternative-20260529.mp4"
+      }
+    },
+    {
+      "title": "Shrey Parikh Wins the Scripps Spelling Bee \ud83c\udfc6 | Indian American Dynasty",
+      "published_at": "2026-05-29T05:45:09Z",
+      "privacy": "public",
+      "video_id": "taAqbmBbKN0",
+      "legacy": {
+        "video_id": "taAqbmBbKN0",
+        "article_slug": "shrey-parikh-scripps-spelling-bee-2026-indian-american-dynasty",
+        "uploaded_at": "2026-05-29T05:44:46.388145+00:00",
+        "url": "https://youtube.com/shorts/taAqbmBbKN0",
+        "file": "reel-shrey-parikh-scripps-spelling-bee-2026-indian-american-dynasty.mp4"
+      }
+    },
+    {
+      "title": "The US Ambassador to India Says a Trade Deal Is 'Not Too Far Apart.' Here Is What That Ac... #Shorts",
+      "published_at": "2026-05-29T08:00:54Z",
+      "privacy": "public",
+      "video_id": "YSbvFQQXqsM",
+      "legacy": {
+        "video_id": "YSbvFQQXqsM",
+        "article_slug": "us-india-trade-deal-ambassador-gor-tariffs-nri-businesses-20260529",
+        "uploaded_at": "2026-05-29T08:00:28.200043+00:00",
+        "url": "https://youtube.com/shorts/YSbvFQQXqsM",
+        "file": "reel-us-india-trade-deal-ambassador-gor-tariffs-nri-businesses-20260529.mp4"
+      }
+    },
+    {
+      "title": "A Genetic Variant Carried by 1 in 13 South Asians Makes the Standard Diabetes Blood Test... #Shorts",
+      "published_at": "2026-05-29T10:59:27Z",
+      "privacy": "public",
+      "video_id": "-oFziAnFFuY",
+      "legacy": {
+        "video_id": "-oFziAnFFuY",
+        "article_slug": "south-asian-piezo1-g6pd-hba1c-diabetes-underdiagnosis-blood-test-unreliable-20260529",
+        "uploaded_at": "2026-05-29T10:59:01.748260Z",
+        "url": "https://youtube.com/shorts/-oFziAnFFuY",
+        "file": "reel-south-asian-piezo1-g6pd-hba1c-diabetes-underdiagnosis-blood-test-unreliable-2026.mp4"
+      }
+    },
+    {
+      "title": "India and South Korea Just Signed a Defense and Cyber Pact in Seoul. The Indo-Pacific Che... #Shorts",
+      "published_at": "2026-05-29T13:59:35Z",
+      "privacy": "public",
+      "video_id": "ZTKvup2acb0",
+      "legacy": {
+        "video_id": "ZTKvup2acb0",
+        "article_slug": "india-south-korea-defense-cyber-mou-rajnath-singh-indo-pacific-20260529",
+        "uploaded_at": "2026-05-29T13:59:15.103633+00:00",
+        "url": "https://youtube.com/shorts/ZTKvup2acb0",
+        "file": "reel-india-south-korea-defense-cyber-mou-rajnath-singh-indo-pacific-20260529.mp4"
+      }
+    },
+    {
+      "title": "The New H-1B Wage Floor Is Still a Basement #Shorts",
+      "published_at": "2026-05-29T16:59:30Z",
+      "privacy": "public",
+      "video_id": "s5OjC8oe8eo",
+      "legacy": {
+        "video_id": "s5OjC8oe8eo",
+        "article_slug": "dol-h1b-prevailing-wage-rule-34th-percentile-indian-20260529",
+        "uploaded_at": "2026-05-29T16:59:05.766365+00:00",
+        "url": "https://youtube.com/shorts/s5OjC8oe8eo",
+        "file": "reel-dol-h1b-prevailing-wage-rule-34th-percentile-indian-20260529.mp4"
+      }
+    },
+    {
+      "title": "The Rupee Just Had Its Best Day in Two Months. The Reason: Oil Fell and the RBI Stepped In. #Shorts",
+      "published_at": "2026-05-29T19:59:00Z",
+      "privacy": "public",
+      "video_id": "e-NlbSTAPHc",
+      "legacy": {
+        "video_id": "e-NlbSTAPHc",
+        "article_slug": "rupee-best-day-two-months-rbi-intervention-oil-iran-deal-20260529",
+        "uploaded_at": "2026-05-29T19:58:40.592779+00:00",
+        "url": "https://youtube.com/shorts/e-NlbSTAPHc",
+        "file": "reel-rupee-best-day-two-months-rbi-intervention-oil-iran-deal-20260529.mp4"
+      }
+    },
+    {
+      "title": "India's Vande Bharat Sleeper Kills the Waitlist \u2014 Confirmed Tickets Only, Fares Above Rajdh\u2026 #Shorts",
+      "published_at": "2026-05-29T22:58:55Z",
+      "privacy": "public",
+      "video_id": "UWFiYGBWrNk",
+      "legacy": {
+        "video_id": "UWFiYGBWrNk",
+        "article_slug": "vande-bharat-sleeper-confirmed-tickets-no-rac-nri-20260529",
+        "uploaded_at": "2026-05-29T22:58:41.834131+00:00",
+        "url": "https://youtube.com/shorts/UWFiYGBWrNk",
+        "file": "reel-vande-bharat-sleeper-confirmed-tickets-no-rac-nri-20260529.mp4"
+      }
+    },
+    {
+      "title": "AAP Just Swept Punjab's Municipal Elections. Congress Finished Second. The BJP Barely\u2026 #Shorts",
+      "published_at": "2026-05-30T01:59:27Z",
+      "privacy": "public",
+      "video_id": "OEisEKttFhw",
+      "legacy": {
+        "video_id": "OEisEKttFhw",
+        "article_slug": "aap-sweeps-punjab-civic-body-elections-congress-bjp-results-20260530",
+        "uploaded_at": "2026-05-30T01:59:09.437344Z",
+        "url": "https://youtube.com/shorts/OEisEKttFhw",
+        "file": "reel-aap-sweeps-punjab-civic-body-elections-congress-bjp-results-20260530.mp4"
+      }
+    },
+    {
+      "title": "They Showed Up Without Calling \u2014 Inside the USCIS Site Visit Surge That's Putting H-1B Wo... #Shorts",
+      "published_at": "2026-05-30T05:00:56Z",
+      "privacy": "public",
+      "video_id": "MoN7aStjXGk",
+      "legacy": {
+        "video_id": "MoN7aStjXGk",
+        "article_slug": "uscis-fdns-site-visits-h1b-deportation-indian-workers-20260530",
+        "uploaded_at": "2026-05-30T05:00:31.518869Z",
+        "url": "https://youtube.com/shorts/MoN7aStjXGk",
+        "file": "reel-uscis-fdns-site-visits-h1b-deportation-indian-workers-20260530.mp4"
+      }
+    },
+    {
+      "title": "The Sensex Fell 850 Points in 10 Minutes on Friday. The Explanation That Went Viral Was... #Shorts",
+      "published_at": "2026-05-30T07:58:57Z",
+      "privacy": "public",
+      "video_id": "WTJLpYhiISM",
+      "legacy": {
+        "video_id": "WTJLpYhiISM",
+        "article_slug": "sensex-850-point-crash-msci-rebalance-panic-india-weight-unchanged-20260530",
+        "uploaded_at": "2026-05-30T07:58:38.975759Z",
+        "url": "https://youtube.com/shorts/WTJLpYhiISM",
+        "file": "reel-sensex-850-point-crash-msci-rebalance-panic-india-weight-unchanged-20260530.mp4"
+      }
+    },
+    {
+      "title": "Air India's 2026 Route Blitz \u2014 Mumbai-Tokyo, London-Bengaluru, and Nine Other New Flights  #Shorts",
+      "published_at": "2026-05-30T10:59:10Z",
+      "privacy": "public",
+      "video_id": "jmPqRtdJHLc",
+      "legacy": {
+        "video_id": "jmPqRtdJHLc",
+        "article_slug": "air-india-2026-route-expansion-mumbai-tokyo-london-bengaluru-nri-20260530",
+        "uploaded_at": "2026-05-30T10:58:49.904664Z",
+        "url": "https://youtube.com/shorts/jmPqRtdJHLc",
+        "file": "reel-air-india-2026-route-expansion-mumbai-tokyo-london-bengaluru-nri-20260530.mp4"
+      }
+    },
+    {
+      "title": "India's Finance Ministry Has Named the Single Biggest Risk to the Economy. It Is the St... #Shorts",
+      "published_at": "2026-05-30T13:59:08Z",
+      "privacy": "public",
+      "video_id": "n4bRvX7gsQc",
+      "legacy": {
+        "video_id": "n4bRvX7gsQc",
+        "article_slug": "india-finance-ministry-inflation-warning-hormuz-monsoon-fuel-prices-iran-war-20260530",
+        "uploaded_at": "2026-05-30T13:58:45.807421Z",
+        "url": "https://youtube.com/shorts/n4bRvX7gsQc",
+        "file": "reel-india-finance-ministry-inflation-warning-hormuz-monsoon-fuel-prices-iran-war-202.mp4"
+      }
+    },
+    {
+      "title": "V2 Final #Shorts",
+      "published_at": "2026-05-30T17:00:16Z",
+      "privacy": "public",
+      "video_id": "BPOVGFWntnE",
+      "legacy": {
+        "video_id": "BPOVGFWntnE",
+        "article_slug": "v2-final",
+        "uploaded_at": "2026-05-30T16:59:56.004985Z",
+        "url": "https://youtube.com/shorts/BPOVGFWntnE",
+        "file": "reel-v2-final.mp4"
+      }
+    },
+    {
+      "title": "110,000 and Counting \u2014 The 2026 Tech Layoff Wave Is Pushing Indian H-1B Workers to the Edge #Shorts",
+      "published_at": "2026-05-30T17:02:59Z",
+      "privacy": "public",
+      "video_id": "37Rmjon7xy4",
+      "legacy": {
+        "video_id": "37Rmjon7xy4",
+        "article_slug": "tech-layoffs-h1b-60-day-clock-indian-workers-20260530",
+        "uploaded_at": "2026-05-30T17:02:34.349592+00:00",
+        "url": "https://youtube.com/shorts/37Rmjon7xy4",
+        "file": "reel-tech-layoffs-h1b-60-day-clock-indian-workers-20260530.mp4"
+      }
+    },
+    {
+      "title": "The Quad Just Agreed to Build a Port in Fiji and Launch a Critical Minerals Pact. India H... #Shorts",
+      "published_at": "2026-05-30T19:59:10Z",
+      "privacy": "public",
+      "video_id": "X3cFOLFlqhc",
+      "legacy": {
+        "video_id": "X3cFOLFlqhc",
+        "article_slug": "quad-foreign-ministers-new-delhi-fiji-port-critical-minerals-maritime-surveillance-20260530",
+        "uploaded_at": "2026-05-30T19:58:42.994439Z",
+        "url": "https://youtube.com/shorts/X3cFOLFlqhc",
+        "file": "reel-quad-foreign-ministers-new-delhi-fiji-port-critical-minerals-maritime-surveillan.mp4"
+      }
+    },
+    {
+      "title": "Mounjaro Tirzepatide Surpass Early Type 2 Diabetes Glp1 South Asian #Shorts",
+      "published_at": "2026-05-30T22:59:06Z",
+      "privacy": "public",
+      "video_id": "rTSzbV3aP44",
+      "legacy": {
+        "video_id": "rTSzbV3aP44",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-30T22:58:41.953821Z",
+        "url": "https://youtube.com/shorts/rTSzbV3aP44",
+        "file": "reel-mounjaro-tirzepatide-surpass-early-type-2-diabetes-glp1-south-asian-20260530.mp4"
+      }
+    },
+    {
+      "title": "The US and Iran Have Reached a Ceasefire Extension Deal on Paper. Neither Leader Has Si... #Shorts",
+      "published_at": "2026-05-31T01:59:54Z",
+      "privacy": "public",
+      "video_id": "GahzQaiOwdQ",
+      "legacy": {
+        "video_id": "GahzQaiOwdQ",
+        "article_slug": "us-iran-ceasefire-extension-mou-hormuz-trump-khamenei-india-oil-20260531",
+        "uploaded_at": "2026-05-31T01:59:30.167857Z",
+        "url": "https://youtube.com/shorts/GahzQaiOwdQ",
+        "file": "reel-us-iran-ceasefire-extension-mou-hormuz-trump-khamenei-india-oil-20260531.mp4"
+      }
+    },
+    {
+      "title": "The 12-Factor Test USCIS Is Already Using to Decide Who Gets to Stay #Shorts",
+      "published_at": "2026-05-31T04:59:21Z",
+      "privacy": "public",
+      "video_id": "iRtGZ8GYlNU",
+      "legacy": {
+        "video_id": "iRtGZ8GYlNU",
+        "article_slug": "uscis-12-factor-rfe-test-aos-green-card-indian-20260531",
+        "uploaded_at": "2026-05-31T04:58:58.341629Z",
+        "url": "https://youtube.com/shorts/iRtGZ8GYlNU",
+        "file": "reel-uscis-12-factor-rfe-test-aos-green-card-indian-20260531.mp4"
+      }
+    },
+    {
+      "title": "New York's Indian-Origin Mayor Just Launched His Own DOGE. Jeff Bezos Agreed With Him. #Shorts",
+      "published_at": "2026-05-31T07:59:14Z",
+      "privacy": "public",
+      "video_id": "80-prrpKdqQ",
+      "legacy": {
+        "video_id": "80-prrpKdqQ",
+        "article_slug": "zohran-mamdani-nyc-mayor-coge-government-efficiency-bezos-endorsement-diaspora-20260531",
+        "uploaded_at": "2026-05-31T07:58:53.975214Z",
+        "url": "https://youtube.com/shorts/80-prrpKdqQ",
+        "file": "reel-zohran-mamdani-nyc-mayor-coge-government-efficiency-bezos-endorsement-diaspora-2.mp4"
+      }
+    },
+    {
+      "title": "Enterprise AI Spending Is Showing Its First Cracks. If You Hold US Tech Stocks, Your Portfo\u2026 #Shorts",
+      "published_at": "2026-05-31T10:59:00Z",
+      "privacy": "public",
+      "video_id": "rXjpfuyHsLY",
+      "legacy": {
+        "video_id": "rXjpfuyHsLY",
+        "article_slug": "ai-enterprise-spending-fatigue-nri-portfolio-tech-stocks-rebalancing-20260531",
+        "uploaded_at": "2026-05-31T10:58:40.452629Z",
+        "url": "https://youtube.com/shorts/rXjpfuyHsLY",
+        "file": "reel-ai-enterprise-spending-fatigue-nri-portfolio-tech-stocks-rebalancing-20260531.mp4"
+      }
+    },
+    {
+      "title": "Mumbai's Dabbawalas Fed the City for 130 Years. Now Only 1,500 Are Left. #Shorts",
+      "published_at": "2026-05-31T13:59:04Z",
+      "privacy": "public",
+      "video_id": "ljwTYKbQWD0",
+      "legacy": {
+        "video_id": "ljwTYKbQWD0",
+        "article_slug": "mumbai-dabbawalas-disappearing-1500-left-remote-work-app-delivery-bbc-20260531",
+        "uploaded_at": "2026-05-31T13:58:42.172331Z",
+        "url": "https://youtube.com/shorts/ljwTYKbQWD0",
+        "file": "reel-mumbai-dabbawalas-disappearing-1500-left-remote-work-app-delivery-bbc-20260531.mp4"
+      }
+    },
+    {
+      "title": "Skip the Lottery, File Your Own Case \u2014 Inside the EB-1A Gold Rush Reshaping Indian Immigrati #Shorts",
+      "published_at": "2026-05-31T16:59:10Z",
+      "privacy": "public",
+      "video_id": "Dro95qc9EVw",
+      "legacy": {
+        "video_id": "Dro95qc9EVw",
+        "article_slug": "eb1a-gold-rush-indian-tech-self-petition-green-card-20260531",
+        "uploaded_at": "2026-05-31T16:58:48.341092Z",
+        "url": "https://youtube.com/shorts/Dro95qc9EVw",
+        "file": "reel-eb1a-gold-rush-indian-tech-self-petition-green-card-20260531.mp4"
+      }
+    },
+    {
+      "title": "The US Said Green Card Applicants Must Leave the Country. A Week Later, It Said Never Mind. #Shorts",
+      "published_at": "2026-05-31T19:59:10Z",
+      "privacy": "public",
+      "video_id": "plI06TM_ac0",
+      "legacy": {
+        "video_id": "plI06TM_ac0",
+        "article_slug": "uscis-adjustment-of-status-memo-dhs-walkback-green-card-h1b-indians-20260531",
+        "uploaded_at": "2026-05-31T19:58:46.763756Z",
+        "url": "https://youtube.com/shorts/plI06TM_ac0",
+        "file": "reel-uscis-adjustment-of-status-memo-dhs-walkback-green-card-h1b-indians-20260531.mp4"
+      }
+    },
+    {
+      "title": "The WHO Just Endorsed a $1 Antibiotic Pill That Prevents Syphilis and Chlamydia After Sex.... #Sh...",
+      "published_at": "2026-05-31T22:59:03Z",
+      "privacy": "public",
+      "video_id": "cv14T6xFoq0",
+      "legacy": {
+        "video_id": "cv14T6xFoq0",
+        "article_slug": "who-doxypep-doxycycline-sti-prevention-syphilis-chlamydia-first-recommendation-south-asian-20260531",
+        "uploaded_at": "2026-05-31T22:58:38.601689Z",
+        "url": "https://youtube.com/shorts/cv14T6xFoq0",
+        "file": "reel-who-doxypep-doxycycline-sti-prevention-syphilis-chlamydia-first-recommendation-s.mp4"
+      }
+    },
+    {
+      "title": "From Memes to Monarchy: RCB's Dynasty Has Arrived #Shorts",
+      "published_at": "2026-06-01T02:54:53Z",
+      "privacy": "public",
+      "video_id": "D5OB9TKic3k",
+      "legacy": {
+        "video_id": "D5OB9TKic3k",
+        "article_slug": "rcb-ipl-2026-champions-back-to-back-dynasty-kohli-sooryavanshi-editorial",
+        "uploaded_at": "2026-06-01T02:54:35.952116Z",
+        "url": "https://youtube.com/shorts/D5OB9TKic3k",
+        "file": "reel-rcb-ipl-2026-champions-back-to-back-dynasty-kohli-sooryavanshi-editorial-20260531.mp4"
+      }
+    },
+    {
+      "title": "Orphaned at Five. World Rank Six at Twenty-Five. Rupa Bayor Is the First Indian in the Glob\u2026 #Shorts",
+      "published_at": "2026-06-01T02:55:10Z",
+      "privacy": "public",
+      "video_id": "4gI_8WHNSNU",
+      "legacy": {
+        "video_id": "4gI_8WHNSNU",
+        "article_slug": "rupa-bayor-world-rank-6-asia-1-taekwondo-poomsae-arunachal-pradesh-india-first-nri",
+        "uploaded_at": "2026-06-01T02:54:47.738306Z",
+        "url": "https://youtube.com/shorts/4gI_8WHNSNU",
+        "file": "reel-rupa-bayor-world-rank-6-asia-1-taekwondo-poomsae-arunachal-pradesh-india-first-n.mp4"
+      }
+    },
+    {
+      "title": "Jim Sarbh Is Xerxes Desai and Naseeruddin Shah Is JRD Tata in Made in India: A Titan Story #Shorts",
+      "published_at": "2026-06-01T10:58:53Z",
+      "privacy": "public",
+      "video_id": "L-jk1WNwKjo",
+      "legacy": {
+        "video_id": "L-jk1WNwKjo",
+        "article_slug": "made-in-india-titan-story-jim-sarbh-naseeruddin-shah-mx-player-june-3-nri",
+        "uploaded_at": "2026-06-01T10:58:33.539225Z",
+        "url": "https://youtube.com/shorts/L-jk1WNwKjo",
+        "file": "reel-made-in-india-titan-story-jim-sarbh-naseeruddin-shah-mx-player-june-3-nri.mp4"
+      }
+    },
+    {
+      "title": "Bollywood's Children Are Graduating from NYU, Columbia, and Emory. They're Coming Home to  #Shorts",
+      "published_at": "2026-06-01T19:58:58Z",
+      "privacy": "public",
+      "video_id": "hHFvhW9lO6c",
+      "legacy": {
+        "video_id": "hHFvhW9lO6c",
+        "article_slug": "bollywood-star-kids-class-2026-nyu-columbia-emory-nri-diaspora-education-20260601",
+        "uploaded_at": "2026-06-01T19:58:38.325777Z",
+        "url": "https://youtube.com/shorts/hHFvhW9lO6c",
+        "file": "reel-bollywood-star-kids-class-2026-nyu-columbia-emory-nri-diaspora-education-2026060.mp4"
+      }
+    },
+    {
+      "title": "Praggnanandhaa Beat Firouzja in Classical. Gukesh Had So on the Ropes but Ran Out of Time.\u2026 #Shorts",
+      "published_at": "2026-06-02T01:58:58Z",
+      "privacy": "public",
+      "video_id": "eI4vItKaiZA",
+      "legacy": {
+        "video_id": "eI4vItKaiZA",
+        "article_slug": "norway-chess-2026-round-7-praggnanandhaa-beats-firouzja-gukesh-misses-so-divya-nri",
+        "uploaded_at": "2026-06-02T01:58:36.947301Z",
+        "url": "https://youtube.com/shorts/eI4vItKaiZA",
+        "file": "reel-norway-chess-2026-round-7-praggnanandhaa-beats-firouzja-gukesh-misses-so-divya-n.mp4"
+      }
+    },
+    {
+      "title": "Naseeruddin Shah Plays JRD Tata in a Show About India's First Watch. Every NRI's Wrist Has #Shorts",
+      "published_at": "2026-06-02T10:59:13Z",
+      "privacy": "public",
+      "video_id": "J-Hvh8ZFcyY",
+      "legacy": {
+        "video_id": "J-Hvh8ZFcyY",
+        "article_slug": "made-in-india-titan-story-naseeruddin-shah-jrd-tata-amazon-mx-june-3-nri-20260602",
+        "uploaded_at": "2026-06-02T10:58:46.775569Z",
+        "url": "https://youtube.com/shorts/J-Hvh8ZFcyY",
+        "file": "reel-made-in-india-titan-story-naseeruddin-shah-jrd-tata-amazon-mx-june-3-nri-2026060.mp4"
+      }
+    },
+    {
+      "title": "Ramayana Got a Private Screening Room at CinemaCon. The Audience Was Every Major Distributo\u2026 #Shorts",
+      "published_at": "2026-06-02T19:59:18Z",
+      "privacy": "public",
+      "video_id": "lh4FT35FxH4",
+      "legacy": {
+        "video_id": "lh4FT35FxH4",
+        "article_slug": "ramayana-cinemacons-global-push-namit-malhotra-bollywood-nri-20260602",
+        "uploaded_at": "2026-06-02T19:58:56.603585Z",
+        "url": "https://youtube.com/shorts/lh4FT35FxH4",
+        "file": "reel-ramayana-cinemacons-global-push-namit-malhotra-bollywood-nri-20260602.mp4"
+      }
+    },
+    {
+      "title": "Gulveer Singh Ran a 3:55 Mile. He Is the First Indian to Break the Four-Minute Barrier.... #Shorts",
+      "published_at": "2026-06-03T01:58:58Z",
+      "privacy": "public",
+      "video_id": "W6fRWZu6lnk",
+      "legacy": {
+        "video_id": "W6fRWZu6lnk",
+        "article_slug": "gulveer-singh-sub-4-minute-mile-first-indian-athletics-records-week-nri",
+        "uploaded_at": "2026-06-03T01:58:37.140712Z",
+        "url": "https://youtube.com/shorts/W6fRWZu6lnk",
+        "file": "reel-gulveer-singh-sub-4-minute-mile-first-indian-athletics-records-week-nri.mp4"
+      }
+    },
+    {
+      "title": "Dhurandhar 2 Hits JioHotstar Tomorrow. India's Second-Biggest Film Ever Just Became a L... #Shorts",
+      "published_at": "2026-06-03T10:58:59Z",
+      "privacy": "public",
+      "video_id": "2fslGaTkzII",
+      "legacy": {
+        "video_id": "2fslGaTkzII",
+        "article_slug": "dhurandhar-2-jiohotstar-ott-release-june-4-ranveer-singh-streaming-nri-20260603",
+        "uploaded_at": "2026-06-03T10:58:38.703085Z",
+        "url": "https://youtube.com/shorts/2fslGaTkzII",
+        "file": "reel-dhurandhar-2-jiohotstar-ott-release-june-4-ranveer-singh-streaming-nri-20260603.mp4"
+      }
+    },
+    {
+      "title": "Jacqueline Fernandez Walked Into a Delhi Courtroom Today. The \u20b9200-Crore Trial She Spent T #Shorts",
+      "published_at": "2026-06-03T19:59:06Z",
+      "privacy": "public",
+      "video_id": "z5NqFylO7MQ",
+      "legacy": {
+        "video_id": "z5NqFylO7MQ",
+        "article_slug": "jacqueline-fernandez-delhi-court-money-laundering-trial-sukesh-200-crore-nri-20260603",
+        "uploaded_at": "2026-06-03T19:58:36.362227Z",
+        "url": "https://youtube.com/shorts/z5NqFylO7MQ",
+        "file": "reel-jacqueline-fernandez-delhi-court-money-laundering-trial-sukesh-200-crore-nri-202.mp4"
+      }
+    },
+    {
+      "title": "Ten Gold Medals. Nineteen Total. India's U20 Athletes Just Had Their Best Overseas Cham... #Shorts",
+      "published_at": "2026-06-04T01:58:59Z",
+      "privacy": "public",
+      "video_id": "5YxuQMkCibU",
+      "legacy": {
+        "video_id": "5YxuQMkCibU",
+        "article_slug": "india-u20-asian-athletics-championships-2026-hong-kong-19-medals-10-gold-records-nri",
+        "uploaded_at": "2026-06-04T01:58:35.411947Z",
+        "url": "https://youtube.com/shorts/5YxuQMkCibU",
+        "file": "reel-india-u20-asian-athletics-championships-2026-hong-kong-19-medals-10-gold-records.mp4"
+      }
+    },
+    {
+      "title": "The India Story Shreyas Talpade Kajal Aggarwal Food Adulteration Teaser Pesticid #Shorts",
+      "published_at": "2026-06-04T19:59:05Z",
+      "privacy": "public",
+      "video_id": "_RNDQNBenxs",
+      "legacy": {
+        "video_id": "_RNDQNBenxs",
+        "article_slug": "the-india-story-shreyas-talpade-kajal-aggarwal-food-adulteration-teaser-pesticid",
+        "uploaded_at": "2026-06-04T19:58:41.741117Z",
+        "url": "https://youtube.com/shorts/_RNDQNBenxs",
+        "file": "reel-the-india-story-shreyas-talpade-kajal-aggarwal-food-adulteration-teaser-pesticid.mp4"
+      }
+    },
+    {
+      "title": "Sixty Countries. Four Hundred Athletes. India Just Turned Yoga Into a Competitive Sport... #Shorts",
+      "published_at": "2026-06-05T01:59:22Z",
+      "privacy": "public",
+      "video_id": "BzpjNk_yoio",
+      "legacy": {
+        "video_id": "BzpjNk_yoio",
+        "article_slug": "world-yogasana-championship-2026-ahmedabad-modi-60-countries-olympic-pathway-nri",
+        "uploaded_at": "2026-06-05T01:58:53.628825Z",
+        "url": "https://youtube.com/shorts/BzpjNk_yoio",
+        "file": "reel-world-yogasana-championship-2026-ahmedabad-modi-60-countries-olympic-pathway-nri.mp4"
+      }
+    },
+    {
+      "title": "Celina Jaitly Has Fired Back at Her Estranged Husband's Defamation Threats. The Custody Ba #Shorts",
+      "published_at": "2026-06-05T11:00:54Z",
+      "privacy": "public",
+      "video_id": "z1SB02xajp8",
+      "legacy": {
+        "video_id": "z1SB02xajp8",
+        "article_slug": "celina-jaitly-peter-haag-defamation-notice-custody-battle-austria-india-nri-20260605",
+        "uploaded_at": "2026-06-05T11:00:34.463819Z",
+        "url": "https://youtube.com/shorts/z1SB02xajp8",
+        "file": "reel-celina-jaitly-peter-haag-defamation-notice-custody-battle-austria-india-nri-2026.mp4"
+      }
+    },
+    {
+      "title": "Naga Chaitanya Just Won a Court Order Against AI Deepfakes. It Is Part of a Larger Reckonin\u2026 #Shorts",
+      "published_at": "2026-06-05T19:59:24Z",
+      "privacy": "public",
+      "video_id": "SDM5K9GjHpA",
+      "legacy": {
+        "video_id": "SDM5K9GjHpA",
+        "article_slug": "naga-chaitanya-delhi-high-court-ai-deepfake-personality-rights-order-nri-20260605",
+        "uploaded_at": "2026-06-05T19:59:02.576342Z",
+        "url": "https://youtube.com/shorts/SDM5K9GjHpA",
+        "file": "reel-naga-chaitanya-delhi-high-court-ai-deepfake-personality-rights-order-nri-2026060.mp4"
+      }
+    },
+    {
+      "title": "'I Don't Look for Excuses.' Gambhir Confirms Sudharsan at No. 3 and Says the Afghanistan #Shorts",
+      "published_at": "2026-06-06T01:59:05Z",
+      "privacy": "public",
+      "video_id": "vCgEuXAiE7Y",
+      "legacy": {
+        "video_id": "vCgEuXAiE7Y",
+        "article_slug": "gambhir-sudharsan-no-3-afghanistan-test-mohali-serious-business-wtc-transition-nri",
+        "uploaded_at": "2026-06-06T01:58:45.128567Z",
+        "url": "https://youtube.com/shorts/vCgEuXAiE7Y",
+        "file": "reel-gambhir-sudharsan-no-3-afghanistan-test-mohali-serious-business-wtc-transition-n.mp4"
+      }
+    },
+    {
+      "title": "Anushka Sharma Endorsed Homeopathy. A Doctor Called Her an 'Illiterate Celeb.' The #Shorts",
+      "published_at": "2026-06-06T10:59:57Z",
+      "privacy": "public",
+      "video_id": "XO78Jp1Ri_c",
+      "legacy": {
+        "video_id": "XO78Jp1Ri_c",
+        "article_slug": "anushka-sharma-homeopathy-controversy-liver-doc-cyriac-philips-celebrity-health-nri-20260606",
+        "uploaded_at": "2026-06-06T10:59:33.834634Z",
+        "url": "https://youtube.com/shorts/XO78Jp1Ri_c",
+        "file": "reel-anushka-sharma-homeopathy-controversy-liver-doc-cyriac-philips-celebrity-health-.mp4"
+      }
+    },
+    {
+      "title": "Salim Kumar Is on a Ventilator. The Man Who Made Malayalam Cinema Laugh Is Fighting for... #Shorts",
+      "published_at": "2026-06-06T19:58:47Z",
+      "privacy": "public",
+      "video_id": "JOWJqrGDm0Q",
+      "legacy": {
+        "video_id": "JOWJqrGDm0Q",
+        "article_slug": "salim-kumar-ventilator-hospital-ernakulam-malayalam-cinema-national-award-nri-20260606",
+        "uploaded_at": "2026-06-06T19:58:30.867090Z",
+        "url": "https://youtube.com/shorts/JOWJqrGDm0Q",
+        "file": "reel-salim-kumar-ventilator-hospital-ernakulam-malayalam-cinema-national-award-nri-20.mp4"
+      }
+    },
+    {
+      "title": "DeepSeek Just Topped America's Fastest-Growing Software List. The Security Implications Are\u2026 #Shorts",
+      "published_at": "2026-06-07T10:59:33Z",
+      "privacy": "public",
+      "video_id": "ipnbuauMdao",
+      "legacy": {
+        "video_id": "ipnbuauMdao",
+        "article_slug": "deepseek-trending-us-corporate-ai-data-security-indian-tech-20260607",
+        "uploaded_at": "2026-06-07T10:59:14.264827Z",
+        "url": "https://youtube.com/shorts/ipnbuauMdao",
+        "file": "reel-deepseek-trending-us-corporate-ai-data-security-indian-tech-20260607.mp4"
+      }
+    },
+    {
+      "title": "Nolan's The Odyssey Opens IMAX Ticket Sales Tomorrow. India Gets First Dibs Alongside the... #Shorts",
+      "published_at": "2026-06-07T19:59:57Z",
+      "privacy": "public",
+      "video_id": "GhYTqvEkL5s",
+      "legacy": {
+        "video_id": "GhYTqvEkL5s",
+        "article_slug": "christopher-nolan-the-odyssey-imax-tickets-india-june-8-matt-damon-nri-20260607",
+        "uploaded_at": "2026-06-07T19:59:39.213185Z",
+        "url": "https://youtube.com/shorts/GhYTqvEkL5s",
+        "file": "reel-christopher-nolan-the-odyssey-imax-tickets-india-june-8-matt-damon-nri-20260607.mp4"
+      }
+    },
+    {
+      "title": "Prasidh Krishna Had Not Played a Test in India for Three Years. On Sunday, He Reminded ... #Shorts",
+      "published_at": "2026-06-08T01:59:53Z",
+      "privacy": "public",
+      "video_id": "NQeWdzlW6zA",
+      "legacy": {
+        "video_id": "NQeWdzlW6zA",
+        "article_slug": "prasidh-krishna-test-comeback-india-afghanistan-mullanpur-wickets-day-2-nri",
+        "uploaded_at": "2026-06-08T01:59:33.061192Z",
+        "url": "https://youtube.com/shorts/NQeWdzlW6zA",
+        "file": "reel-prasidh-krishna-test-comeback-india-afghanistan-mullanpur-wickets-day-2-nri.mp4"
+      }
+    },
+    {
+      "title": "A New Bill Wants to Kill the H-1B-to-Green-Card Pipeline. Big Tech Should Be Nervous. #Shorts",
+      "published_at": "2026-06-08T11:00:49Z",
+      "privacy": "public",
+      "video_id": "2lcx7xfvfbk",
+      "legacy": {
+        "video_id": "2lcx7xfvfbk",
+        "article_slug": "h1b-overhaul-bill-green-card-opt-tech-industry-20260608",
+        "uploaded_at": "2026-06-08T11:00:31.095879Z",
+        "url": "https://youtube.com/shorts/2lcx7xfvfbk",
+        "file": "reel-h1b-overhaul-bill-green-card-opt-tech-industry-20260608.mp4"
+      }
+    },
+    {
+      "title": "22M-Follower Creator Leads India's First Cockroach Protest #Shorts",
+      "published_at": "2026-06-08T15:24:17Z",
+      "privacy": "public",
+      "video_id": "HKQIO0655RE",
+      "legacy": {
+        "video_id": "HKQIO0655RE",
+        "article_slug": "cockroach-janta-party-first-protest-jantar-mantar-22-million-followers-dipke-20260608",
+        "uploaded_at": "2026-06-08T15:23:49.974469+00:00",
+        "url": "https://youtube.com/shorts/HKQIO0655RE",
+        "file": "reel-cockroach-janta-party-first-protest-jantar-mantar-22-million-followers-dipke-20.mp4"
+      }
+    },
+    {
+      "title": "Manoj Bajpayee Is Playing the Man Who Saved India From Bankruptcy. The Tickets Cost What Th\u2026 #Shorts",
+      "published_at": "2026-06-09T01:59:58Z",
+      "privacy": "public",
+      "video_id": "fU0cTt-FGdY",
+      "legacy": {
+        "video_id": "fU0cTt-FGdY",
+        "article_slug": "governor-manoj-bajpayee-rbi-1990-crisis-ticket-pricing-june-12-nri-20260609",
+        "uploaded_at": "2026-06-09T01:59:36.581569Z",
+        "url": "https://youtube.com/shorts/fU0cTt-FGdY",
+        "file": "reel-governor-manoj-bajpayee-rbi-1990-crisis-ticket-pricing-june-12-nri-20260609.mp4"
+      }
+    },
+    {
+      "title": "Welcome To The Jungle Drops Its Trailer Wednesday. Bollywood's Most Insane Ensemble Is Fina\u2026 #Shorts",
+      "published_at": "2026-06-09T02:00:06Z",
+      "privacy": "public",
+      "video_id": "-pXScWJB8SU",
+      "legacy": {
+        "video_id": "-pXScWJB8SU",
+        "article_slug": "welcome-to-the-jungle-trailer-june-11-akshay-suniel-paresh-ensemble-nri-20260608",
+        "uploaded_at": "2026-06-09T01:59:51.088207Z",
+        "url": "https://youtube.com/shorts/-pXScWJB8SU",
+        "file": "reel-welcome-to-the-jungle-fullframe-final-v2.mp4"
+      }
+    },
+    {
+      "title": "The US Just Found a New Legal Route to Tariff India. This Time, It May Stick. #Shorts",
+      "published_at": "2026-06-09T04:59:03Z",
+      "privacy": "public",
+      "video_id": "kTyJTd8jNII",
+      "legacy": {
+        "video_id": "kTyJTd8jNII",
+        "article_slug": "ustr-section-301-forced-labor-tariff-india-12-percent-greer-trade-deal-20260608",
+        "uploaded_at": "2026-06-09T04:58:42.722963Z",
+        "url": "https://youtube.com/shorts/kTyJTd8jNII",
+        "file": "reel-ustr-section-301-forced-labor-tariff-india-12-percent-greer-trade-deal-20260608.mp4"
+      }
+    },
+    {
+      "title": "Suriya's \u20b9304 Crore Monster Karuppu Lands on Prime Video Thursday. The Diaspora Finally Get\u2026 #Shorts",
+      "published_at": "2026-06-09T07:59:21Z",
+      "privacy": "public",
+      "video_id": "8w71FTQq3u8",
+      "legacy": {
+        "video_id": "8w71FTQq3u8",
+        "article_slug": "karuppu-suriya-prime-video-ott-304-crore-tamil-blockbuster-nri-20260609",
+        "uploaded_at": "2026-06-09T07:58:51.917526Z",
+        "url": "https://youtube.com/shorts/8w71FTQq3u8",
+        "file": "reel-vo-karuppu-suriya-prime-video-ott-304-crore-tamil-blockbuster-n.mp4"
+      }
+    },
+    {
+      "title": "Malayalam Cinema's Two Hottest Directors Made a Film Together. It Just Played Cannes. #Shorts",
+      "published_at": "2026-06-09T10:59:10Z",
+      "privacy": "public",
+      "video_id": "ixHUYZ1QwJg",
+      "legacy": {
+        "video_id": "ixHUYZ1QwJg",
+        "article_slug": "balan-the-boy-chidambaram-jithu-madhavan-cannes-malayalam-multilingual-june-19-nri-20260609",
+        "uploaded_at": "2026-06-09T10:58:46.088365Z",
+        "url": "https://youtube.com/shorts/ixHUYZ1QwJg",
+        "file": "reel-balan-the-boy-chidambaram-jithu-madhavan-cannes-malayalam-multilingual-june-19-n.mp4"
+      }
+    },
+    {
+      "title": "NRI Remittances Hit $43.5 Billion in One Quarter. The Gulf Crisis Is the Reason. #Shorts",
+      "published_at": "2026-06-09T22:56:42Z",
+      "privacy": "public",
+      "video_id": "oHZ8jiCsHMo",
+      "legacy": {
+        "video_id": "oHZ8jiCsHMo",
+        "article_slug": "nri-remittances-record-43-billion-q4-fy26-current-account-surplus-gulf-crisis-20260609",
+        "uploaded_at": "2026-06-09T22:56:11.964854Z",
+        "url": "https://youtube.com/shorts/oHZ8jiCsHMo",
+        "file": "ss-reel-nri-remittances-PROD-20260609.mp4"
+      }
+    },
+    {
+      "title": "Akshay Kumar Is Making India's First Alien Thriller. The Creature Designer Built the Actua #Shorts",
+      "published_at": "2026-06-09T22:59:23Z",
+      "privacy": "public",
+      "video_id": "gSAykuWacJA",
+      "legacy": {
+        "video_id": "gSAykuWacJA",
+        "article_slug": "akshay-kumar-samuk-alien-thriller-alec-gillis-practical-fx-bollywood-nri-20260609",
+        "uploaded_at": "2026-06-09T22:58:57.787099Z",
+        "url": "https://youtube.com/shorts/gSAykuWacJA",
+        "file": "reel-akshay-kumar-samuk-alien-thriller-alec-gillis-practical-fx-bollywood-nri-2026060.mp4"
+      }
+    },
+    {
+      "title": "Cocktail 2 Just Invented the Bollywood Music Festival. Three Cities. One Film. Pure Mayhem #Shorts",
+      "published_at": "2026-06-10T04:58:56Z",
+      "privacy": "public",
+      "video_id": "UMsqCwLUG-M",
+      "legacy": {
+        "video_id": "UMsqCwLUG-M",
+        "article_slug": "cocktail-2-music-festival-shahid-kriti-rashmika-mumbai-delhi-pune-nri-20260610",
+        "uploaded_at": "2026-06-10T04:58:39.011479Z",
+        "url": "https://youtube.com/shorts/UMsqCwLUG-M",
+        "file": "reel-cocktail-2-music-festival-shahid-kriti-rashmika-mumbai-delhi-pune-nri-20260610.mp4"
+      }
+    },
+    {
+      "title": "Unavailable \u2014 The One Word That Just Froze Half a Million Indian Green Card Dreams #Shorts",
+      "published_at": "2026-06-10T07:59:36Z",
+      "privacy": "public",
+      "video_id": "5oLRVj-H4kA",
+      "legacy": {
+        "video_id": "5oLRVj-H4kA",
+        "article_slug": "eb2-india-unavailable-june-visa-bulletin-green-card-frozen-20260610",
+        "uploaded_at": "2026-06-10T07:59:04.957753Z",
+        "url": "https://youtube.com/shorts/5oLRVj-H4kA",
+        "file": "ss-reel-eb2-india-unavailable-june-visa-bulletin-green-card-frozen-2-20260609-2348.mp4"
+      }
+    },
+    {
+      "title": "ISRO Just Handed Its Biggest Rocket to the Private Sector. India's Launch Cadence Depends  #Shorts",
+      "published_at": "2026-06-10T10:59:17Z",
+      "privacy": "public",
+      "video_id": "ls4_NQ7_mnc",
+      "legacy": {
+        "video_id": "ls4_NQ7_mnc",
+        "article_slug": "isro-lvm3-technology-transfer-private-sector-space-20260610",
+        "uploaded_at": "2026-06-10T10:58:58.491492Z",
+        "url": "https://youtube.com/shorts/ls4_NQ7_mnc",
+        "file": "reel-isro-lvm3-technology-transfer-private-sector-space-20260610.mp4"
+      }
+    },
+    {
+      "title": "The War That Choked India's Oil Lifeline May Be Ending #Shorts",
+      "published_at": "2026-06-20T02:12:38Z",
+      "privacy": "public",
+      "video_id": "vO-v4Elnh_Q",
+      "legacy": {
+        "video_id": "vO-v4Elnh_Q",
+        "article_slug": "india-welcomes-us-iran-gulf-peace-deal-strait-hormuz-reopen-oil-falls-20260615",
+        "uploaded_at": "2026-06-20T02:12:14.227492Z",
+        "url": "https://youtube.com/shorts/vO-v4Elnh_Q",
+        "file": "ss-reel-india-strait-of-hormuz-reopens-oil-lifeline-fragile-us-iran--20260619-2054.mp4"
+      }
+    },
+    {
+      "title": "An H-1B Worker Says He Paid $100,000 to Keep His Job. His Lawsuit Exposes the Visa's Dark Si #Shorts",
+      "published_at": "2026-06-20T18:54:29Z",
+      "privacy": "public",
+      "video_id": "mr4cA7I1mI8",
+      "legacy": {
+        "article_slug": "h1b-labor-trafficking-lawsuit-telugu-worker-pay-to-stay-michigan-green-card-20260620",
+        "uploaded_at": "2026-06-20T18:53:55Z",
+        "video_id": "mr4cA7I1mI8",
+        "file": "2c7b81aa-df23-407d-8a63-a1e3b660687b"
+      }
+    },
+    {
+      "title": "Apple's $38 Billion India Fine \u2014 CCI Antitrust Showdown #Shorts",
+      "published_at": "2026-07-02T05:59:38Z",
+      "privacy": "public",
+      "video_id": "NlQ5lRS3zbs",
+      "legacy": {
+        "article_slug": "apple-cci-antitrust-app-store-copy-pasted-38-billion-20260702",
+        "uploaded_at": "2026-07-02T05:59:19.798891+00:00",
+        "video_id": "NlQ5lRS3zbs",
+        "format": "pulse-short",
+        "file": "e1351abd-749b-4cd6-acf3-88bb0d2099cc"
+      }
+    },
+    {
+      "title": "Microsoft Disputes Vance's 'Foreign Indentured Servants' Claim With Its Own H-1B Data #Shorts",
+      "published_at": "2026-10-09T04:58:37Z",
+      "privacy": "public",
+      "video_id": "vEqk-X9_qxY",
+      "legacy": {
+        "video_id": "vEqk-X9_qxY",
+        "article_slug": "microsoft-disputes-vance-fraud-claims-h1b-response",
+        "uploaded_at": "2026-10-09T04:58:11.637572+00:00",
+        "url": "https://youtube.com/shorts/vEqk-X9_qxY",
+        "file": "ss-pulse-microsoft-disputes-vance-fraud-claims-h1b-response-20261009-0452.mp4"
+      }
+    },
+    {
+      "title": "TCS Says US Green Card Suspension Won't Disrupt Workforce Strategy or Hiring #Shorts",
+      "published_at": "2026-10-09T04:58:48Z",
+      "privacy": "public",
+      "video_id": "94YJRBwNNY4",
+      "legacy": {
+        "video_id": "94YJRBwNNY4",
+        "article_slug": "tcs-says-us-green-card-suspension-no-workforce-impact",
+        "uploaded_at": "2026-10-09T04:58:26.189214+00:00",
+        "url": "https://youtube.com/shorts/94YJRBwNNY4",
+        "file": "ss-pulse-tcs-says-us-green-card-suspension-no-workforce-impact-20261009-0456.mp4"
+      }
+    },
+    {
+      "title": "Kashmiri Filmmaker's Shocking Two-Week ICE Detention!",
+      "published_at": "2026-10-10T00:17:35Z",
+      "privacy": "public",
+      "video_id": "VlklU4Xpv2k",
+      "legacy": {
+        "video_id": "VlklU4Xpv2k",
+        "article_slug": "arfat-sheikh-released-on-bond-ice-detention-kashmiri-filmmaker",
+        "uploaded_at": "2026-10-10T00:17:17.119132+00:00",
+        "url": "https://youtube.com/shorts/VlklU4Xpv2k",
+        "file": "ss-pulse-arfat-sheikh-released-on-bond-ice-detention-kashmiri-filmmaker-20261009-0508.mp4"
+      }
+    },
+    {
+      "title": "US Green Card Curbs: A Setback for India?",
+      "published_at": "2026-10-10T00:18:04Z",
+      "privacy": "public",
+      "video_id": "IGemFdLn2bs",
+      "legacy": {
+        "video_id": "IGemFdLn2bs",
+        "article_slug": "india-says-us-green-card-curbs-do-not-advance-shared-ambitions",
+        "uploaded_at": "2026-10-10T00:17:41.291885+00:00",
+        "url": "https://youtube.com/shorts/IGemFdLn2bs",
+        "file": "ss-pulse-india-says-us-green-card-curbs-do-not-advance-shared-ambitions-20261009-1708.mp4"
+      }
+    },
+    {
+      "title": "Green Card Curbs: Will India\u2019s Talent Surge?",
+      "published_at": "2026-10-11T00:18:36Z",
+      "privacy": "public",
+      "video_id": "nZgz3u2iINc",
+      "legacy": {
+        "video_id": "nZgz3u2iINc",
+        "article_slug": "nasscom-chief-green-card-curbs-work-india-talent-base-20261010",
+        "uploaded_at": "2026-10-11T00:17:54.430389+00:00",
+        "url": "https://youtube.com/shorts/nZgz3u2iINc",
+        "file": "ss-pulse-nasscom-chief-green-card-curbs-work-india-talent-base-20261010-20261010-1708.mp4"
+      }
+    },
+    {
+      "title": "OpenAI's Bold Move: Banning Influencers from Russia & Iran",
+      "published_at": "2026-10-11T00:18:48Z",
+      "privacy": "public",
+      "video_id": "E7A6l8BVUVg",
+      "legacy": {
+        "video_id": "E7A6l8BVUVg",
+        "article_slug": "openai-bans-russian-iranian-chatgpt-influence-campaigns",
+        "uploaded_at": "2026-10-11T00:18:17.576170+00:00",
+        "url": "https://youtube.com/shorts/E7A6l8BVUVg",
+        "file": "ss-pulse-openai-bans-russian-iranian-chatgpt-influence-campaigns-20261009-0545.mp4"
+      }
+    },
+    {
+      "title": "H-1B: A Business Model? Trump Official's Bold Defense",
+      "published_at": "2026-10-12T00:17:43Z",
+      "privacy": "public",
+      "video_id": "gjPPpPt4rOQ",
+      "legacy": {
+        "video_id": "gjPPpPt4rOQ",
+        "article_slug": "h1b-business-model-trump-official-defends-suspensions",
+        "uploaded_at": "2026-10-12T00:17:18.314742+00:00",
+        "url": "https://youtube.com/shorts/gjPPpPt4rOQ",
+        "file": "ss-pulse-h1b-business-model-trump-official-defends-suspensions-20261011-0508.mp4"
+      }
+    },
+    {
+      "title": "Green Card Freeze: H-1B Workers Face New Challenges",
+      "published_at": "2026-10-12T00:18:08Z",
+      "privacy": "public",
+      "video_id": "mP7Ow3xGpc0",
+      "legacy": {
+        "video_id": "mP7Ow3xGpc0",
+        "article_slug": "us-green-card-freeze-eight-tech-firms-h1b-workers",
+        "uploaded_at": "2026-10-12T00:17:38.932198+00:00",
+        "url": "https://youtube.com/shorts/mP7Ow3xGpc0",
+        "file": "ss-pulse-us-green-card-freeze-eight-tech-firms-h1b-workers-20261011-1708.mp4"
+      }
+    },
+    {
+      "title": "GOP's H-1B Visa Shift: 9 Indian-American Republicans Run!",
+      "published_at": "2026-10-13T00:18:00Z",
+      "privacy": "public",
+      "video_id": "dOdIzexK70M",
+      "legacy": {
+        "video_id": "dOdIzexK70M",
+        "article_slug": "indian-american-republicans-h-1b-backlash-ballot-2026",
+        "uploaded_at": "2026-10-13T00:17:38.180006+00:00",
+        "url": "https://youtube.com/shorts/dOdIzexK70M",
+        "file": "ss-pulse-indian-american-republicans-h-1b-backlash-ballot-2026-20261012-0508.mp4"
+      }
+    },
+    {
+      "title": "Hyderabad Man's Family Faces Tragedy in Riyadh Airport Attac",
+      "published_at": "2026-10-13T00:18:34Z",
+      "privacy": "public",
+      "video_id": "d-Lek2J0Q-g",
+      "legacy": {
+        "video_id": "d-Lek2J0Q-g",
+        "article_slug": "hyderabad-man-riyadh-airport-attack-funeral-saudi",
+        "uploaded_at": "2026-10-13T00:17:59.373117+00:00",
+        "url": "https://youtube.com/shorts/d-Lek2J0Q-g",
+        "file": "ss-pulse-hyderabad-man-riyadh-airport-attack-funeral-saudi-20261012-1708.mp4"
+      }
+    }
+  ],
+  "unknown_no_record": [
+    {
+      "title": "Mammootty Skipped the Padma Bhushan Ceremony for a Kerala Doctorate #Shorts",
+      "published_at": "2026-05-26T07:30:04Z",
+      "privacy": "public",
+      "video_id": "2XdG6znjzGs"
+    },
+    {
+      "title": "Rodrigues Has Batted 3, 4, and 5 in Three Consecutive Series. She Says She'll Bat Anywhere \u2026 #Shorts",
+      "published_at": "2026-06-07T02:00:21Z",
+      "privacy": "public",
+      "video_id": "2PoRwT_MWi0"
+    },
+    {
+      "title": "A New Bill Wants to Kill the H-1B Pipeline #h1b #immigration #nri #greencard #shorts",
+      "published_at": "2026-06-08T16:29:46Z",
+      "privacy": "public",
+      "video_id": "kLDarOkIb9s"
+    },
+    {
+      "title": "SpaceX just pulled off the biggest IPO ever #Shorts",
+      "published_at": "2026-06-21T22:44:53Z",
+      "privacy": "public",
+      "video_id": "jp_jPPjFqr0"
+    },
+    {
+      "title": "Trump Used America's 250th Birthday to Call Immigrants a 'Communist Menace' #Shorts",
+      "published_at": "2026-07-05T18:16:35Z",
+      "privacy": "public",
+      "video_id": "sq1okCjGFmE"
+    },
+    {
+      "title": "EB-2 India Unavailable: July Visa Bulletin Green Card Crisis",
+      "published_at": "2026-07-05T21:30:41Z",
+      "privacy": "public",
+      "video_id": "X2ee9QZDRwg"
+    },
+    {
+      "title": "Supreme Court Rules 6-3: Green Card Holders at Risk #Shorts",
+      "published_at": "2026-07-06T04:33:51Z",
+      "privacy": "public",
+      "video_id": "U2QeKymzYBU"
+    },
+    {
+      "title": "Britain, Canada, Germany, Australia. The Countries Lining Up to Take America's Indian Engin #Shorts",
+      "published_at": "2026-07-06T13:14:56Z",
+      "privacy": "public",
+      "video_id": "IJVVEOFsCeQ"
+    },
+    {
+      "title": "Persistent Systems Just Made India's Boldest AI Bet \u2014 a $1.4 Billion Gamble on a German Sof #Shorts",
+      "published_at": "2026-07-06T19:40:49Z",
+      "privacy": "public",
+      "video_id": "jXiFqMOBpXU"
+    },
+    {
+      "title": "H-1B Crackdown Meets the Ballot Box: 9 Indian-American Republicans in the Middle #Shorts #H1B",
+      "published_at": "2026-10-13T04:35:32Z",
+      "privacy": "public",
+      "video_id": "SG8Yd6PmDnc"
+    }
+  ],
+  "ghost_db_rows": [
+    {
+      "row_id": "9ac8c1ac-0fa5-49c1-82d9-3606f5373a05",
+      "article_slug": "welcome-to-the-jungle-akshay-kumar-ensemble-comedy-june-26-nri-20260603",
+      "yt_video_id": "TlA7C-Df2-I",
+      "status": "pending",
+      "yt_posted_at": "2026-06-20T23:25:12.628228+00:00",
+      "malformed_id": false
+    },
+    {
+      "row_id": "4bc561e2-ca7d-4fdd-86a1-e0341a6fe801",
+      "article_slug": "scotus-overturns-humphreys-executor-presidential-power-independent-agencies-2026",
+      "yt_video_id": "zoJRBSo2Qkk",
+      "status": "pending",
+      "yt_posted_at": "2026-07-02T05:04:51.308879+00:00",
+      "malformed_id": false
+    },
+    {
+      "row_id": "e2ba84d7-9e5a-4e48-9817-9d9d83dca73a",
+      "article_slug": "scotus-birthright-citizenship-indian-americans-14th-amendment-ruling-20260701",
+      "yt_video_id": "YQNfyH78zlg",
+      "status": "pending",
+      "yt_posted_at": "2026-07-02T11:01:43.603951+00:00",
+      "malformed_id": false
+    },
+    {
+      "row_id": "e9e449db-2031-44cb-9700-d109b49d7632",
+      "article_slug": "india-record-foreign-bond-inflows-bloomberg-index-inclusion-tax-reform-20260701",
+      "yt_video_id": "PNK46ccY0gQ",
+      "status": "pending",
+      "yt_posted_at": "2026-07-02T10:59:35.7921+00:00",
+      "malformed_id": false
+    },
+    {
+      "row_id": "c9180676-a333-40d9-93b6-b08941d5d3c0",
+      "article_slug": "delhi-ev-policy-2026-petrol-ban-electric-two-wheeler-charging-infrastructure-202",
+      "yt_video_id": "o3CSzjC_QUI",
+      "status": "pending",
+      "yt_posted_at": "2026-07-02T22:58:25.166099+00:00",
+      "malformed_id": false
+    },
+    {
+      "row_id": "38df4d27-3d90-48b9-be48-9f7a15e96dd8",
+      "article_slug": "delhi-ev-policy-2026-petrol-two-wheeler-ban-2028-electric-rickshaw-15000-crore-2",
+      "yt_video_id": "zThTi1hktRU",
+      "status": "pending",
+      "yt_posted_at": "2026-07-03T10:57:37.16385+00:00",
+      "malformed_id": false
+    },
+    {
+      "row_id": "e7b42dd5-7d05-4d6d-9165-673ada67a6a3",
+      "article_slug": "ram-charan-peddi-netflix-july-9-339-crore-telugu-megastar-ar-rahman-streaming-diaspora-20260706",
+      "yt_video_id": "1YRx1ySJ2bQ",
+      "status": "ready",
+      "yt_posted_at": "2026-07-06T22:58:58.741993+00:00",
+      "malformed_id": false
+    },
+    {
+      "row_id": "2d3151ab-b096-40e8-9cc2-3e48d563df3f",
+      "article_slug": "india-private-banks-q1-fy27-hdfc-axis-loan-growth-nri-investor-20260706",
+      "yt_video_id": "U6NtZcj472k",
+      "status": "ready",
+      "yt_posted_at": "2026-07-07T05:06:39+00:00",
+      "malformed_id": false
+    },
+    {
+      "row_id": "c0baf39d-ff7e-4693-b857-90c8138ffe54",
+      "article_slug": "manipal-health-ipo-sebi-approval-temasek-india-healthcare-listing-july-nri-investor-20260705",
+      "yt_video_id": "Qv32AtPc_4Q",
+      "status": "pending",
+      "yt_posted_at": "2026-07-07T13:05:46+00:00",
+      "malformed_id": false
+    },
+    {
+      "row_id": "8bc4c787-8f77-4dab-af31-b267938d8c25",
+      "article_slug": "nithya-raman-kerala-los-angeles-mayor-runoff-indian-american-20260708",
+      "yt_video_id": "dedup-log-8bc4c787-8f77-4dab-af31-b267938d8c25",
+      "status": "ready",
+      "yt_posted_at": "2026-07-08T14:54:11.747983+00:00",
+      "malformed_id": true
+    },
+    {
+      "row_id": "4d8bd9c5-ecb5-41d4-8ea8-aec009b2dcf2",
+      "article_slug": "ai-h1b-enforcement-palantir-project-firewall-compliance-20260708",
+      "yt_video_id": "ij-Vr8Jzw1s",
+      "status": "ready",
+      "yt_posted_at": "2026-07-08T14:53:22.889527+00:00",
+      "malformed_id": false
+    },
+    {
+      "row_id": "ba61a966-a888-4041-8ca6-12e845ec0d36",
+      "article_slug": "india-third-chip-plant-cg-semi-sanand-osat-five-billion-20260708",
+      "yt_video_id": "mQwtFEhuvuo",
+      "status": "ready",
+      "yt_posted_at": "2026-07-08T21:23:52.473336+00:00",
+      "malformed_id": false
+    },
+    {
+      "row_id": "6ac4d40a-7ad8-49a0-93a8-d9ce2f78b52c",
+      "article_slug": "india-remittance-record-145-billion-america-largest-source-20260708",
+      "yt_video_id": "QeO4sLlXZII",
+      "status": "ready",
+      "yt_posted_at": "2026-07-09T10:58:15.723759+00:00",
+      "malformed_id": false
+    },
+    {
+      "row_id": "21634a8f-8b70-4645-bb38-664eafc8d72a",
+      "article_slug": "social-security-totalization-india-h1b-workers-lost-20260709",
+      "yt_video_id": "wWi6O6dqYGw",
+      "status": "ready",
+      "yt_posted_at": "2026-07-09T16:58:18.259717+00:00",
+      "malformed_id": false
+    }
+  ],
+  "superseded_rows": [
+    {
+      "row_id": "cd31fd35-0ef2-4b97-ac09-678c9027a296",
+      "article_slug": "dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals",
+      "yt_video_id": "9MuNbawE8ac",
+      "status": "yt_posted",
+      "yt_posted_at": "2026-10-14T08:29:48.62629+00:00",
+      "on_channel": false
+    },
+    {
+      "row_id": "862b5d9e-cd65-4ab9-8be2-1dd6f981bb69",
+      "article_slug": "bengaluru-born-ramya-anche-lead-nasa-puffins-mission",
+      "yt_video_id": "dXT2DW7iSpU",
+      "status": "superseded",
+      "yt_posted_at": "2026-10-17T05:45:10.432816+00:00",
+      "on_channel": false
+    },
+    {
+      "row_id": "cededbdc-e47d-4afd-9d01-5586e1d95785",
+      "article_slug": "india-cancer-drug-price-caps-137-medicines-november-9",
+      "yt_video_id": "M5UjKqtENwU",
+      "status": "superseded",
+      "yt_posted_at": "2026-10-19T05:41:12.286679+00:00",
+      "on_channel": false
+    }
+  ],
+  "public_without_db_record": [
+    {
+      "title": "Mammootty Skipped the Padma Bhushan Ceremony for a Kerala Doctorate #Shorts",
+      "published_at": "2026-05-26T07:30:04Z",
+      "privacy": "public",
+      "video_id": "2XdG6znjzGs"
+    },
+    {
+      "title": "Mammootty Was Supposed to Receive India's Third-Highest Civilian Honour Today. He Was in Kott #Sh...",
+      "published_at": "2026-05-26T07:59:02Z",
+      "privacy": "public",
+      "video_id": "E0_-Wo2WOr4",
+      "legacy": {
+        "video_id": "E0_-Wo2WOr4",
+        "article_slug": "mammootty-skipped-padma-bhushan-ceremony-third-honorary-doctorate-mahatma-gandhi-university-kerala-20260525",
+        "uploaded_at": "2026-05-26T07:58:38.630598Z",
+        "url": "https://youtube.com/shorts/E0_-Wo2WOr4",
+        "file": "reel-mammootty-skipped-padma-bhushan-ceremony-third-honorary-doctorate-mahatma-gandhi.mp4"
+      }
+    },
+    {
+      "title": "India and the US Just Signed a Critical Minerals Deal and a Rare Earths Agreement at the Firs #Sh...",
+      "published_at": "2026-05-26T07:59:15Z",
+      "privacy": "public",
+      "video_id": "u-OB58pDic8",
+      "legacy": {
+        "video_id": "u-OB58pDic8",
+        "article_slug": "quad-foreign-ministers-delhi-critical-minerals-rare-earths-deal-20260526",
+        "uploaded_at": "2026-05-26T07:58:50.130154Z",
+        "url": "https://youtube.com/shorts/u-OB58pDic8",
+        "file": "reel-quad-foreign-ministers-delhi-critical-minerals-rare-earths-deal-20260526.mp4"
+      }
+    },
+    {
+      "title": "Loneliness Inflames the Gut. A UK Biobank Study of 275,000 Adults Found That Social Isolatio #Shorts",
+      "published_at": "2026-05-26T10:59:25Z",
+      "privacy": "public",
+      "video_id": "TwszLprZxcQ",
+      "legacy": {
+        "video_id": "TwszLprZxcQ",
+        "article_slug": "loneliness-inflames-gut-social-isolation-ibd-85-percent-indian-20260526",
+        "uploaded_at": "2026-05-26T10:58:59.430868Z",
+        "url": "https://youtube.com/shorts/TwszLprZxcQ",
+        "file": "reel-loneliness-inflames-gut-social-isolation-ibd-85-percent-indian-20260526.mp4"
+      }
+    },
+    {
+      "title": "India Killed the Blue Booklet \u2014 What the New Digital e-OCI Card Means for 4.7 Million Overse #Shorts",
+      "published_at": "2026-05-26T10:59:31Z",
+      "privacy": "public",
+      "video_id": "7SH4rEKOAhU",
+      "legacy": {
+        "video_id": "7SH4rEKOAhU",
+        "article_slug": "india-digital-eoci-card-nri-qr-code-guide-20260526",
+        "uploaded_at": "2026-05-26T10:59:12.018677Z",
+        "url": "https://youtube.com/shorts/7SH4rEKOAhU",
+        "file": "reel-india-digital-eoci-card-nri-qr-code-guide-20260526.mp4"
+      }
+    },
+    {
+      "title": "Monsoon Hits Kerala May 26 Six Days Early Farmers Rush #Shorts",
+      "published_at": "2026-05-26T19:58:31Z",
+      "privacy": "public",
+      "video_id": "n1pczEcKAzk",
+      "legacy": {
+        "video_id": "n1pczEcKAzk",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-26T19:58:14.299424Z",
+        "url": "https://youtube.com/shorts/n1pczEcKAzk",
+        "file": "reel-monsoon-hits-kerala-may-26-six-days-early-farmers-rush-20260526.mp4"
+      }
+    },
+    {
+      "title": "Iran Supreme Leader Uranium Surrender Irgc Drone Retaliation #Shorts",
+      "published_at": "2026-05-26T19:58:49Z",
+      "privacy": "public",
+      "video_id": "UXlJ8v0rY_0",
+      "legacy": {
+        "video_id": "UXlJ8v0rY_0",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-26T19:58:25.790275Z",
+        "url": "https://youtube.com/shorts/UXlJ8v0rY_0",
+        "file": "reel-iran-supreme-leader-uranium-surrender-irgc-drone-retaliation-20260526.mp4"
+      }
+    },
+    {
+      "title": "The Curcumin in Your Supplement Is Not the Same as the Turmeric in Your Dal. A Study of 100\u2026 #Shorts",
+      "published_at": "2026-05-26T22:59:03Z",
+      "privacy": "public",
+      "video_id": "K_zZnPBErlg",
+      "legacy": {
+        "video_id": "K_zZnPBErlg",
+        "article_slug": "curcumin-supplement-not-turmeric-dal-food-additive-49-percent-diabetes-20260526",
+        "uploaded_at": "2026-05-26T22:58:37.340407Z",
+        "url": "https://youtube.com/shorts/K_zZnPBErlg",
+        "file": "reel-curcumin-supplement-not-turmeric-dal-food-additive-49-percent-diabetes-20260526.mp4"
+      }
+    },
+    {
+      "title": "Who Ebola Global Emergency India Travel Advisory Bundibugyo #Shorts",
+      "published_at": "2026-05-27T01:59:02Z",
+      "privacy": "public",
+      "video_id": "lezYZfdgziM",
+      "legacy": {
+        "video_id": "lezYZfdgziM",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-27T01:58:39.374537Z",
+        "url": "https://youtube.com/shorts/lezYZfdgziM",
+        "file": "reel-who-ebola-global-emergency-india-travel-advisory-bundibugyo-20260526.mp4"
+      }
+    },
+    {
+      "title": "The $110 Billion Deal That Would Merge Marvel, Star Wars, Harry Potter, DC, and HBO Into ... #Shorts",
+      "published_at": "2026-05-27T07:58:45Z",
+      "privacy": "public",
+      "video_id": "Vb2dFMpl_7U",
+      "legacy": {
+        "video_id": "Vb2dFMpl_7U",
+        "article_slug": "paramount-warner-bros-110-billion-merger-approved-streaming-india-20260527",
+        "uploaded_at": "2026-05-27T07:58:30.066819Z",
+        "url": "https://youtube.com/shorts/Vb2dFMpl_7U",
+        "file": "reel-paramount-warner-bros-110-billion-merger-approved-streaming-india-20260527.mp4"
+      }
+    },
+    {
+      "title": "Netflix Made a Show About Ultra-Rich Indians in Dubai. Karan Kundrra Proposed to Tejasswi... #Shorts",
+      "published_at": "2026-05-27T07:59:08Z",
+      "privacy": "public",
+      "video_id": "Exd3v2tALfo",
+      "legacy": {
+        "video_id": "Exd3v2tALfo",
+        "article_slug": "netflix-desi-bling-dubai-indian-expats-karan-kundrra-tejasswi-prakash-engagement-nri-wealth-20260527",
+        "uploaded_at": "2026-05-27T07:58:41.407203Z",
+        "url": "https://youtube.com/shorts/Exd3v2tALfo",
+        "file": "reel-netflix-desi-bling-dubai-indian-expats-karan-kundrra-tejasswi-prakash-engagement.mp4"
+      }
+    },
+    {
+      "title": "Canc\u00fan for Desis: Why NRIs Are Trading Goa for Mexico's Caribbean This Summer #Shorts",
+      "published_at": "2026-05-27T10:58:49Z",
+      "privacy": "public",
+      "video_id": "TzlzHd4wBWc",
+      "legacy": {
+        "video_id": "TzlzHd4wBWc",
+        "article_slug": "cancun-desis-nri-mexico-caribbean-summer-20260527",
+        "uploaded_at": "2026-05-27T10:58:26.785481Z",
+        "url": "https://youtube.com/shorts/TzlzHd4wBWc",
+        "file": "reel-cancun-desis-nri-mexico-caribbean-summer-20260527.mp4"
+      }
+    },
+    {
+      "title": "India Oil Supply Chain Latin America Africa Venezuela Hormuz #Shorts",
+      "published_at": "2026-05-27T10:58:59Z",
+      "privacy": "public",
+      "video_id": "Rw6eSgkC7uA",
+      "legacy": {
+        "video_id": "Rw6eSgkC7uA",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-27T10:58:38.674274Z",
+        "url": "https://youtube.com/shorts/Rw6eSgkC7uA",
+        "file": "reel-india-oil-supply-chain-latin-america-africa-venezuela-hormuz-20260526.mp4"
+      }
+    },
+    {
+      "title": "India's Supreme Court Just Quashed the \u20b9202 Crore Penalty on Amazon. The CCI Must Refund t #Shorts",
+      "published_at": "2026-05-27T13:58:43Z",
+      "privacy": "public",
+      "video_id": "N-xhAGj1ths",
+      "legacy": {
+        "video_id": "N-xhAGj1ths",
+        "article_slug": "supreme-court-quashes-cci-202-crore-amazon-penalty-future-coupons-20260527",
+        "uploaded_at": "2026-05-27T13:58:21.296966Z",
+        "url": "https://youtube.com/shorts/N-xhAGj1ths",
+        "file": "reel-supreme-court-quashes-cci-202-crore-amazon-penalty-future-coupons-20260527.mp4"
+      }
+    },
+    {
+      "title": "Pm 602 0199 Legal Challenge Court 1967 Case Law #Shorts",
+      "published_at": "2026-05-27T13:58:57Z",
+      "privacy": "public",
+      "video_id": "A-ep679QDWo",
+      "legacy": {
+        "video_id": "A-ep679QDWo",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-27T13:58:32.994435Z",
+        "url": "https://youtube.com/shorts/A-ep679QDWo",
+        "file": "reel-pm-602-0199-legal-challenge-court-1967-case-law-20260527.mp4"
+      }
+    },
+    {
+      "title": "If They Can't Come to America, America Is Going to Them #Shorts",
+      "published_at": "2026-05-27T16:58:46Z",
+      "privacy": "public",
+      "video_id": "ck2rvxVwG7Y",
+      "legacy": {
+        "video_id": "ck2rvxVwG7Y",
+        "article_slug": "gcc-boom-india-american-companies-hiring-h1b-alternative-20260527",
+        "uploaded_at": "2026-05-27T16:58:27.429878Z",
+        "url": "https://youtube.com/shorts/ck2rvxVwG7Y",
+        "file": "reel-gcc-boom-india-american-companies-hiring-h1b-alternative-20260527.mp4"
+      }
+    },
+    {
+      "title": "India Petrol Crosses 100 Four Hikes 10 Days Hormuz Oil Crisis #Shorts",
+      "published_at": "2026-05-27T16:59:03Z",
+      "privacy": "public",
+      "video_id": "aJyE_SqI6c8",
+      "legacy": {
+        "video_id": "aJyE_SqI6c8",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-27T16:58:39.198604Z",
+        "url": "https://youtube.com/shorts/aJyE_SqI6c8",
+        "file": "reel-india-petrol-crosses-100-four-hikes-10-days-hormuz-oil-crisis-20260526.mp4"
+      }
+    },
+    {
+      "title": "Karan Johar Bet on Ananya Panday and Lakshya. The Box Office Said No. Chand Mera Dil Is... #Shorts",
+      "published_at": "2026-05-27T19:59:43Z",
+      "privacy": "public",
+      "video_id": "gcsw1l_gQNY",
+      "legacy": {
+        "video_id": "gcsw1l_gQNY",
+        "article_slug": "chand-mera-dil-box-office-dharma-ananya-panday-lakshya-netflix-nri-20260527",
+        "uploaded_at": "2026-05-27T19:59:27.897398Z",
+        "url": "https://youtube.com/shorts/gcsw1l_gQNY",
+        "file": "reel-chand-mera-dil-box-office-dharma-ananya-panday-lakshya-netflix-nri-20260527.mp4"
+      }
+    },
+    {
+      "title": "Canada's Government Just Shrank to a One-Seat Majority. The India Trade Deal Could Be t... #Shorts",
+      "published_at": "2026-05-27T20:02:38Z",
+      "privacy": "public",
+      "video_id": "FbpxG8_TNIM",
+      "legacy": {
+        "video_id": "FbpxG8_TNIM",
+        "article_slug": "canada-carney-one-seat-majority-india-cepa-trade-deal-20260527",
+        "uploaded_at": "2026-05-27T20:02:19.419165+00:00",
+        "url": "https://youtube.com/shorts/FbpxG8_TNIM",
+        "file": "reel-canada-carney-one-seat-majority-india-cepa-trade-deal-20260527.mp4"
+      }
+    },
+    {
+      "title": "Foreign Airlines Are Quietly Feasting on India's Aviation Crisis \u2014 and NRIs Are the Prize #Shorts",
+      "published_at": "2026-05-27T22:58:57Z",
+      "privacy": "public",
+      "video_id": "JmFXrJ9tZro",
+      "legacy": {
+        "video_id": "JmFXrJ9tZro",
+        "article_slug": "foreign-airlines-india-aviation-crisis-cathay-singapore-nri-20260527",
+        "uploaded_at": "2026-05-27T22:58:30.045207+00:00",
+        "url": "https://youtube.com/shorts/JmFXrJ9tZro",
+        "file": "reel-foreign-airlines-india-aviation-crisis-cathay-singapore-nri-20260527.mp4"
+      }
+    },
+    {
+      "title": "33 Days to File or Lose It Forever \u2014 The FY2027 H-1B Petition Window Is Closing and the Rul\u2026 #Shorts",
+      "published_at": "2026-05-28T05:00:19Z",
+      "privacy": "public",
+      "video_id": "wYmFNvEQzoo",
+      "legacy": {
+        "video_id": "wYmFNvEQzoo",
+        "article_slug": "h1b-fy2027-june-30-filing-deadline-guide-indian-20260528",
+        "uploaded_at": "2026-05-28T05:00:01.707919+00:00",
+        "url": "https://youtube.com/shorts/wYmFNvEQzoo",
+        "file": "reel-h1b-fy2027-june-30-filing-deadline-guide-indian-20260528.mp4"
+      }
+    },
+    {
+      "title": "India Oil Supply Chain Rewired Venezuela Africa Uae Hormuz Closed #Shorts",
+      "published_at": "2026-05-28T07:59:20Z",
+      "privacy": "public",
+      "video_id": "2E_jkg26oDA",
+      "legacy": {
+        "video_id": "2E_jkg26oDA",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-28T07:59:05.332390+00:00",
+        "url": "https://youtube.com/shorts/2E_jkg26oDA",
+        "file": "reel-india-oil-supply-chain-rewired-venezuela-africa-uae-hormuz-closed-20260527.mp4"
+      }
+    },
+    {
+      "title": "Mamata Refused to Resign After Losing West Bengal. The Governor Dissolved the Assembly ... #Shorts",
+      "published_at": "2026-05-28T07:59:32Z",
+      "privacy": "public",
+      "video_id": "jZDR7uOuW6s",
+      "legacy": {
+        "video_id": "jZDR7uOuW6s",
+        "article_slug": "west-bengal-bjp-wins-mamata-refuses-resign-governor-dissolves-assembly-20260527",
+        "uploaded_at": "2026-05-28T07:59:17.025210+00:00",
+        "url": "https://youtube.com/shorts/jZDR7uOuW6s",
+        "file": "reel-west-bengal-bjp-wins-mamata-refuses-resign-governor-dissolves-assembly-20260527.mp4"
+      }
+    },
+    {
+      "title": "Consular Processing India Green Card Logistics Crisis #Shorts",
+      "published_at": "2026-05-28T10:59:31Z",
+      "privacy": "public",
+      "video_id": "4p3cIQz9i8k",
+      "legacy": {
+        "video_id": "4p3cIQz9i8k",
+        "article_slug": "consular-processing-india-green-card-logistics-crisis-20260526",
+        "uploaded_at": "2026-05-28T10:59:03.262641+00:00",
+        "url": "https://youtube.com/shorts/4p3cIQz9i8k",
+        "file": "reel-consular-processing-india-green-card-logistics-crisis-20260526.mp4"
+      }
+    },
+    {
+      "title": "India Just Sold Shares in Coal India at a 10 Per Cent Discount. It Sold Central Bank of #Shorts",
+      "published_at": "2026-05-28T11:00:06Z",
+      "privacy": "public",
+      "video_id": "goI8_uBt0dc",
+      "legacy": {
+        "video_id": "goI8_uBt0dc",
+        "article_slug": "india-coal-india-divestment-ofs-central-bank-800-billion-rupees-nri-20260528",
+        "uploaded_at": "2026-05-28T10:59:42.455106+00:00",
+        "url": "https://youtube.com/shorts/goI8_uBt0dc",
+        "file": "reel-india-coal-india-divestment-ofs-central-bank-800-billion-rupees-nri-20260528.mp4"
+      }
+    },
+    {
+      "title": "Trump Anything India Wants They Get Delhi Call Ar Rahman Quad #Shorts",
+      "published_at": "2026-05-28T13:59:20Z",
+      "privacy": "public",
+      "video_id": "zgCp8lOKyxg",
+      "legacy": {
+        "video_id": "zgCp8lOKyxg",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-28T13:59:00.549079+00:00",
+        "url": "https://youtube.com/shorts/zgCp8lOKyxg",
+        "file": "reel-trump-anything-india-wants-they-get-delhi-call-ar-rahman-quad-20260525.mp4"
+      }
+    },
+    {
+      "title": "U.S. Inflation Just Hit 3.8 Percent. The Iran War Is Baked Into Every Price Tag in America. #Shorts",
+      "published_at": "2026-05-28T13:59:21Z",
+      "privacy": "public",
+      "video_id": "AQgQi65ZuvU",
+      "legacy": {
+        "video_id": "AQgQi65ZuvU",
+        "article_slug": "us-pce-inflation-3-8-percent-iran-war-fed-rate-hike-indian-americans-20260528",
+        "uploaded_at": "2026-05-28T13:58:48.647567+00:00",
+        "url": "https://youtube.com/shorts/AQgQi65ZuvU",
+        "file": "reel-us-pce-inflation-3-8-percent-iran-war-fed-rate-hike-indian-americans-20260528.mp4"
+      }
+    },
+    {
+      "title": "290,000 Students, One Confirmation Hearing, and the Quiet Death of OPT #Shorts",
+      "published_at": "2026-05-28T16:59:05Z",
+      "privacy": "public",
+      "video_id": "n-deTJ7Tw2M",
+      "legacy": {
+        "video_id": "n-deTJ7Tw2M",
+        "article_slug": "opt-end-uscis-edlow-indian-students-work-rights-20260528",
+        "uploaded_at": "2026-05-28T16:58:44.909629+00:00",
+        "url": "https://youtube.com/shorts/n-deTJ7Tw2M",
+        "file": "reel-opt-end-uscis-edlow-indian-students-work-rights-20260528.mp4"
+      }
+    },
+    {
+      "title": "American Airlines Will Double Its India Tech Hub to 800 People. It Is Not Alone. #Shorts",
+      "published_at": "2026-05-28T19:59:13Z",
+      "privacy": "public",
+      "video_id": "WDnDm86Trzs",
+      "legacy": {
+        "video_id": "WDnDm86Trzs",
+        "article_slug": "american-airlines-india-hyderabad-gcc-tech-hub-double-800-employees-20260528",
+        "uploaded_at": "2026-05-28T19:58:53.829329Z",
+        "url": "https://youtube.com/shorts/WDnDm86Trzs",
+        "file": "reel-american-airlines-india-hyderabad-gcc-tech-hub-double-800-employees-20260528.mp4"
+      }
+    },
+    {
+      "title": "India's Supreme Court Just Wiped Out \u20b9202 Crore in Fines Against Amazon. Foreign Invest... #Shorts",
+      "published_at": "2026-05-29T01:59:20Z",
+      "privacy": "public",
+      "video_id": "huUCGBYiEsM",
+      "legacy": {
+        "video_id": "huUCGBYiEsM",
+        "article_slug": "india-supreme-court-amazon-future-group-cci-penalty-overturned-cross-border-investment-20260529",
+        "uploaded_at": "2026-05-29T01:58:59.817263+00:00",
+        "url": "https://youtube.com/shorts/huUCGBYiEsM",
+        "file": "reel-india-supreme-court-amazon-future-group-cci-penalty-overturned-cross-border-inve.mp4"
+      }
+    },
+    {
+      "title": "Europe's New Biometric Border Is Already Broken \u2014 and NRIs Are Stuck in the Queue #Shorts",
+      "published_at": "2026-05-29T01:59:34Z",
+      "privacy": "public",
+      "video_id": "l6AYs1agyR8",
+      "legacy": {
+        "video_id": "l6AYs1agyR8",
+        "article_slug": "eu-ees-biometric-border-nri-europe-travel-delays-20260528",
+        "uploaded_at": "2026-05-29T01:59:11.358815+00:00",
+        "url": "https://youtube.com/shorts/l6AYs1agyR8",
+        "file": "reel-eu-ees-biometric-border-nri-europe-travel-delays-20260528.mp4"
+      }
+    },
+    {
+      "title": "Permanent Residency in 21 Months #Shorts",
+      "published_at": "2026-05-29T04:59:44Z",
+      "privacy": "public",
+      "video_id": "NEJ5ExZlZhk",
+      "legacy": {
+        "video_id": "NEJ5ExZlZhk",
+        "article_slug": "germany-eu-blue-card-indian-engineers-h1b-alternative-20260529",
+        "uploaded_at": "2026-05-29T04:59:21.814540Z",
+        "url": "https://youtube.com/shorts/NEJ5ExZlZhk",
+        "file": "reel-germany-eu-blue-card-indian-engineers-h1b-alternative-20260529.mp4"
+      }
+    },
+    {
+      "title": "Shrey Parikh Wins the Scripps Spelling Bee \ud83c\udfc6 | Indian American Dynasty",
+      "published_at": "2026-05-29T05:45:09Z",
+      "privacy": "public",
+      "video_id": "taAqbmBbKN0",
+      "legacy": {
+        "video_id": "taAqbmBbKN0",
+        "article_slug": "shrey-parikh-scripps-spelling-bee-2026-indian-american-dynasty",
+        "uploaded_at": "2026-05-29T05:44:46.388145+00:00",
+        "url": "https://youtube.com/shorts/taAqbmBbKN0",
+        "file": "reel-shrey-parikh-scripps-spelling-bee-2026-indian-american-dynasty.mp4"
+      }
+    },
+    {
+      "title": "The US Ambassador to India Says a Trade Deal Is 'Not Too Far Apart.' Here Is What That Ac... #Shorts",
+      "published_at": "2026-05-29T08:00:54Z",
+      "privacy": "public",
+      "video_id": "YSbvFQQXqsM",
+      "legacy": {
+        "video_id": "YSbvFQQXqsM",
+        "article_slug": "us-india-trade-deal-ambassador-gor-tariffs-nri-businesses-20260529",
+        "uploaded_at": "2026-05-29T08:00:28.200043+00:00",
+        "url": "https://youtube.com/shorts/YSbvFQQXqsM",
+        "file": "reel-us-india-trade-deal-ambassador-gor-tariffs-nri-businesses-20260529.mp4"
+      }
+    },
+    {
+      "title": "A Genetic Variant Carried by 1 in 13 South Asians Makes the Standard Diabetes Blood Test... #Shorts",
+      "published_at": "2026-05-29T10:59:27Z",
+      "privacy": "public",
+      "video_id": "-oFziAnFFuY",
+      "legacy": {
+        "video_id": "-oFziAnFFuY",
+        "article_slug": "south-asian-piezo1-g6pd-hba1c-diabetes-underdiagnosis-blood-test-unreliable-20260529",
+        "uploaded_at": "2026-05-29T10:59:01.748260Z",
+        "url": "https://youtube.com/shorts/-oFziAnFFuY",
+        "file": "reel-south-asian-piezo1-g6pd-hba1c-diabetes-underdiagnosis-blood-test-unreliable-2026.mp4"
+      }
+    },
+    {
+      "title": "India and South Korea Just Signed a Defense and Cyber Pact in Seoul. The Indo-Pacific Che... #Shorts",
+      "published_at": "2026-05-29T13:59:35Z",
+      "privacy": "public",
+      "video_id": "ZTKvup2acb0",
+      "legacy": {
+        "video_id": "ZTKvup2acb0",
+        "article_slug": "india-south-korea-defense-cyber-mou-rajnath-singh-indo-pacific-20260529",
+        "uploaded_at": "2026-05-29T13:59:15.103633+00:00",
+        "url": "https://youtube.com/shorts/ZTKvup2acb0",
+        "file": "reel-india-south-korea-defense-cyber-mou-rajnath-singh-indo-pacific-20260529.mp4"
+      }
+    },
+    {
+      "title": "The New H-1B Wage Floor Is Still a Basement #Shorts",
+      "published_at": "2026-05-29T16:59:30Z",
+      "privacy": "public",
+      "video_id": "s5OjC8oe8eo",
+      "legacy": {
+        "video_id": "s5OjC8oe8eo",
+        "article_slug": "dol-h1b-prevailing-wage-rule-34th-percentile-indian-20260529",
+        "uploaded_at": "2026-05-29T16:59:05.766365+00:00",
+        "url": "https://youtube.com/shorts/s5OjC8oe8eo",
+        "file": "reel-dol-h1b-prevailing-wage-rule-34th-percentile-indian-20260529.mp4"
+      }
+    },
+    {
+      "title": "The Rupee Just Had Its Best Day in Two Months. The Reason: Oil Fell and the RBI Stepped In. #Shorts",
+      "published_at": "2026-05-29T19:59:00Z",
+      "privacy": "public",
+      "video_id": "e-NlbSTAPHc",
+      "legacy": {
+        "video_id": "e-NlbSTAPHc",
+        "article_slug": "rupee-best-day-two-months-rbi-intervention-oil-iran-deal-20260529",
+        "uploaded_at": "2026-05-29T19:58:40.592779+00:00",
+        "url": "https://youtube.com/shorts/e-NlbSTAPHc",
+        "file": "reel-rupee-best-day-two-months-rbi-intervention-oil-iran-deal-20260529.mp4"
+      }
+    },
+    {
+      "title": "India's Vande Bharat Sleeper Kills the Waitlist \u2014 Confirmed Tickets Only, Fares Above Rajdh\u2026 #Shorts",
+      "published_at": "2026-05-29T22:58:55Z",
+      "privacy": "public",
+      "video_id": "UWFiYGBWrNk",
+      "legacy": {
+        "video_id": "UWFiYGBWrNk",
+        "article_slug": "vande-bharat-sleeper-confirmed-tickets-no-rac-nri-20260529",
+        "uploaded_at": "2026-05-29T22:58:41.834131+00:00",
+        "url": "https://youtube.com/shorts/UWFiYGBWrNk",
+        "file": "reel-vande-bharat-sleeper-confirmed-tickets-no-rac-nri-20260529.mp4"
+      }
+    },
+    {
+      "title": "AAP Just Swept Punjab's Municipal Elections. Congress Finished Second. The BJP Barely\u2026 #Shorts",
+      "published_at": "2026-05-30T01:59:27Z",
+      "privacy": "public",
+      "video_id": "OEisEKttFhw",
+      "legacy": {
+        "video_id": "OEisEKttFhw",
+        "article_slug": "aap-sweeps-punjab-civic-body-elections-congress-bjp-results-20260530",
+        "uploaded_at": "2026-05-30T01:59:09.437344Z",
+        "url": "https://youtube.com/shorts/OEisEKttFhw",
+        "file": "reel-aap-sweeps-punjab-civic-body-elections-congress-bjp-results-20260530.mp4"
+      }
+    },
+    {
+      "title": "They Showed Up Without Calling \u2014 Inside the USCIS Site Visit Surge That's Putting H-1B Wo... #Shorts",
+      "published_at": "2026-05-30T05:00:56Z",
+      "privacy": "public",
+      "video_id": "MoN7aStjXGk",
+      "legacy": {
+        "video_id": "MoN7aStjXGk",
+        "article_slug": "uscis-fdns-site-visits-h1b-deportation-indian-workers-20260530",
+        "uploaded_at": "2026-05-30T05:00:31.518869Z",
+        "url": "https://youtube.com/shorts/MoN7aStjXGk",
+        "file": "reel-uscis-fdns-site-visits-h1b-deportation-indian-workers-20260530.mp4"
+      }
+    },
+    {
+      "title": "The Sensex Fell 850 Points in 10 Minutes on Friday. The Explanation That Went Viral Was... #Shorts",
+      "published_at": "2026-05-30T07:58:57Z",
+      "privacy": "public",
+      "video_id": "WTJLpYhiISM",
+      "legacy": {
+        "video_id": "WTJLpYhiISM",
+        "article_slug": "sensex-850-point-crash-msci-rebalance-panic-india-weight-unchanged-20260530",
+        "uploaded_at": "2026-05-30T07:58:38.975759Z",
+        "url": "https://youtube.com/shorts/WTJLpYhiISM",
+        "file": "reel-sensex-850-point-crash-msci-rebalance-panic-india-weight-unchanged-20260530.mp4"
+      }
+    },
+    {
+      "title": "Air India's 2026 Route Blitz \u2014 Mumbai-Tokyo, London-Bengaluru, and Nine Other New Flights  #Shorts",
+      "published_at": "2026-05-30T10:59:10Z",
+      "privacy": "public",
+      "video_id": "jmPqRtdJHLc",
+      "legacy": {
+        "video_id": "jmPqRtdJHLc",
+        "article_slug": "air-india-2026-route-expansion-mumbai-tokyo-london-bengaluru-nri-20260530",
+        "uploaded_at": "2026-05-30T10:58:49.904664Z",
+        "url": "https://youtube.com/shorts/jmPqRtdJHLc",
+        "file": "reel-air-india-2026-route-expansion-mumbai-tokyo-london-bengaluru-nri-20260530.mp4"
+      }
+    },
+    {
+      "title": "India's Finance Ministry Has Named the Single Biggest Risk to the Economy. It Is the St... #Shorts",
+      "published_at": "2026-05-30T13:59:08Z",
+      "privacy": "public",
+      "video_id": "n4bRvX7gsQc",
+      "legacy": {
+        "video_id": "n4bRvX7gsQc",
+        "article_slug": "india-finance-ministry-inflation-warning-hormuz-monsoon-fuel-prices-iran-war-20260530",
+        "uploaded_at": "2026-05-30T13:58:45.807421Z",
+        "url": "https://youtube.com/shorts/n4bRvX7gsQc",
+        "file": "reel-india-finance-ministry-inflation-warning-hormuz-monsoon-fuel-prices-iran-war-202.mp4"
+      }
+    },
+    {
+      "title": "V2 Final #Shorts",
+      "published_at": "2026-05-30T17:00:16Z",
+      "privacy": "public",
+      "video_id": "BPOVGFWntnE",
+      "legacy": {
+        "video_id": "BPOVGFWntnE",
+        "article_slug": "v2-final",
+        "uploaded_at": "2026-05-30T16:59:56.004985Z",
+        "url": "https://youtube.com/shorts/BPOVGFWntnE",
+        "file": "reel-v2-final.mp4"
+      }
+    },
+    {
+      "title": "110,000 and Counting \u2014 The 2026 Tech Layoff Wave Is Pushing Indian H-1B Workers to the Edge #Shorts",
+      "published_at": "2026-05-30T17:02:59Z",
+      "privacy": "public",
+      "video_id": "37Rmjon7xy4",
+      "legacy": {
+        "video_id": "37Rmjon7xy4",
+        "article_slug": "tech-layoffs-h1b-60-day-clock-indian-workers-20260530",
+        "uploaded_at": "2026-05-30T17:02:34.349592+00:00",
+        "url": "https://youtube.com/shorts/37Rmjon7xy4",
+        "file": "reel-tech-layoffs-h1b-60-day-clock-indian-workers-20260530.mp4"
+      }
+    },
+    {
+      "title": "The Quad Just Agreed to Build a Port in Fiji and Launch a Critical Minerals Pact. India H... #Shorts",
+      "published_at": "2026-05-30T19:59:10Z",
+      "privacy": "public",
+      "video_id": "X3cFOLFlqhc",
+      "legacy": {
+        "video_id": "X3cFOLFlqhc",
+        "article_slug": "quad-foreign-ministers-new-delhi-fiji-port-critical-minerals-maritime-surveillance-20260530",
+        "uploaded_at": "2026-05-30T19:58:42.994439Z",
+        "url": "https://youtube.com/shorts/X3cFOLFlqhc",
+        "file": "reel-quad-foreign-ministers-new-delhi-fiji-port-critical-minerals-maritime-surveillan.mp4"
+      }
+    },
+    {
+      "title": "Mounjaro Tirzepatide Surpass Early Type 2 Diabetes Glp1 South Asian #Shorts",
+      "published_at": "2026-05-30T22:59:06Z",
+      "privacy": "public",
+      "video_id": "rTSzbV3aP44",
+      "legacy": {
+        "video_id": "rTSzbV3aP44",
+        "article_slug": "unknown",
+        "uploaded_at": "2026-05-30T22:58:41.953821Z",
+        "url": "https://youtube.com/shorts/rTSzbV3aP44",
+        "file": "reel-mounjaro-tirzepatide-surpass-early-type-2-diabetes-glp1-south-asian-20260530.mp4"
+      }
+    },
+    {
+      "title": "The US and Iran Have Reached a Ceasefire Extension Deal on Paper. Neither Leader Has Si... #Shorts",
+      "published_at": "2026-05-31T01:59:54Z",
+      "privacy": "public",
+      "video_id": "GahzQaiOwdQ",
+      "legacy": {
+        "video_id": "GahzQaiOwdQ",
+        "article_slug": "us-iran-ceasefire-extension-mou-hormuz-trump-khamenei-india-oil-20260531",
+        "uploaded_at": "2026-05-31T01:59:30.167857Z",
+        "url": "https://youtube.com/shorts/GahzQaiOwdQ",
+        "file": "reel-us-iran-ceasefire-extension-mou-hormuz-trump-khamenei-india-oil-20260531.mp4"
+      }
+    },
+    {
+      "title": "The 12-Factor Test USCIS Is Already Using to Decide Who Gets to Stay #Shorts",
+      "published_at": "2026-05-31T04:59:21Z",
+      "privacy": "public",
+      "video_id": "iRtGZ8GYlNU",
+      "legacy": {
+        "video_id": "iRtGZ8GYlNU",
+        "article_slug": "uscis-12-factor-rfe-test-aos-green-card-indian-20260531",
+        "uploaded_at": "2026-05-31T04:58:58.341629Z",
+        "url": "https://youtube.com/shorts/iRtGZ8GYlNU",
+        "file": "reel-uscis-12-factor-rfe-test-aos-green-card-indian-20260531.mp4"
+      }
+    },
+    {
+      "title": "New York's Indian-Origin Mayor Just Launched His Own DOGE. Jeff Bezos Agreed With Him. #Shorts",
+      "published_at": "2026-05-31T07:59:14Z",
+      "privacy": "public",
+      "video_id": "80-prrpKdqQ",
+      "legacy": {
+        "video_id": "80-prrpKdqQ",
+        "article_slug": "zohran-mamdani-nyc-mayor-coge-government-efficiency-bezos-endorsement-diaspora-20260531",
+        "uploaded_at": "2026-05-31T07:58:53.975214Z",
+        "url": "https://youtube.com/shorts/80-prrpKdqQ",
+        "file": "reel-zohran-mamdani-nyc-mayor-coge-government-efficiency-bezos-endorsement-diaspora-2.mp4"
+      }
+    },
+    {
+      "title": "Enterprise AI Spending Is Showing Its First Cracks. If You Hold US Tech Stocks, Your Portfo\u2026 #Shorts",
+      "published_at": "2026-05-31T10:59:00Z",
+      "privacy": "public",
+      "video_id": "rXjpfuyHsLY",
+      "legacy": {
+        "video_id": "rXjpfuyHsLY",
+        "article_slug": "ai-enterprise-spending-fatigue-nri-portfolio-tech-stocks-rebalancing-20260531",
+        "uploaded_at": "2026-05-31T10:58:40.452629Z",
+        "url": "https://youtube.com/shorts/rXjpfuyHsLY",
+        "file": "reel-ai-enterprise-spending-fatigue-nri-portfolio-tech-stocks-rebalancing-20260531.mp4"
+      }
+    },
+    {
+      "title": "Mumbai's Dabbawalas Fed the City for 130 Years. Now Only 1,500 Are Left. #Shorts",
+      "published_at": "2026-05-31T13:59:04Z",
+      "privacy": "public",
+      "video_id": "ljwTYKbQWD0",
+      "legacy": {
+        "video_id": "ljwTYKbQWD0",
+        "article_slug": "mumbai-dabbawalas-disappearing-1500-left-remote-work-app-delivery-bbc-20260531",
+        "uploaded_at": "2026-05-31T13:58:42.172331Z",
+        "url": "https://youtube.com/shorts/ljwTYKbQWD0",
+        "file": "reel-mumbai-dabbawalas-disappearing-1500-left-remote-work-app-delivery-bbc-20260531.mp4"
+      }
+    },
+    {
+      "title": "Skip the Lottery, File Your Own Case \u2014 Inside the EB-1A Gold Rush Reshaping Indian Immigrati #Shorts",
+      "published_at": "2026-05-31T16:59:10Z",
+      "privacy": "public",
+      "video_id": "Dro95qc9EVw",
+      "legacy": {
+        "video_id": "Dro95qc9EVw",
+        "article_slug": "eb1a-gold-rush-indian-tech-self-petition-green-card-20260531",
+        "uploaded_at": "2026-05-31T16:58:48.341092Z",
+        "url": "https://youtube.com/shorts/Dro95qc9EVw",
+        "file": "reel-eb1a-gold-rush-indian-tech-self-petition-green-card-20260531.mp4"
+      }
+    },
+    {
+      "title": "The US Said Green Card Applicants Must Leave the Country. A Week Later, It Said Never Mind. #Shorts",
+      "published_at": "2026-05-31T19:59:10Z",
+      "privacy": "public",
+      "video_id": "plI06TM_ac0",
+      "legacy": {
+        "video_id": "plI06TM_ac0",
+        "article_slug": "uscis-adjustment-of-status-memo-dhs-walkback-green-card-h1b-indians-20260531",
+        "uploaded_at": "2026-05-31T19:58:46.763756Z",
+        "url": "https://youtube.com/shorts/plI06TM_ac0",
+        "file": "reel-uscis-adjustment-of-status-memo-dhs-walkback-green-card-h1b-indians-20260531.mp4"
+      }
+    },
+    {
+      "title": "The WHO Just Endorsed a $1 Antibiotic Pill That Prevents Syphilis and Chlamydia After Sex.... #Sh...",
+      "published_at": "2026-05-31T22:59:03Z",
+      "privacy": "public",
+      "video_id": "cv14T6xFoq0",
+      "legacy": {
+        "video_id": "cv14T6xFoq0",
+        "article_slug": "who-doxypep-doxycycline-sti-prevention-syphilis-chlamydia-first-recommendation-south-asian-20260531",
+        "uploaded_at": "2026-05-31T22:58:38.601689Z",
+        "url": "https://youtube.com/shorts/cv14T6xFoq0",
+        "file": "reel-who-doxypep-doxycycline-sti-prevention-syphilis-chlamydia-first-recommendation-s.mp4"
+      }
+    },
+    {
+      "title": "From Memes to Monarchy: RCB's Dynasty Has Arrived #Shorts",
+      "published_at": "2026-06-01T02:54:53Z",
+      "privacy": "public",
+      "video_id": "D5OB9TKic3k",
+      "legacy": {
+        "video_id": "D5OB9TKic3k",
+        "article_slug": "rcb-ipl-2026-champions-back-to-back-dynasty-kohli-sooryavanshi-editorial",
+        "uploaded_at": "2026-06-01T02:54:35.952116Z",
+        "url": "https://youtube.com/shorts/D5OB9TKic3k",
+        "file": "reel-rcb-ipl-2026-champions-back-to-back-dynasty-kohli-sooryavanshi-editorial-20260531.mp4"
+      }
+    },
+    {
+      "title": "Orphaned at Five. World Rank Six at Twenty-Five. Rupa Bayor Is the First Indian in the Glob\u2026 #Shorts",
+      "published_at": "2026-06-01T02:55:10Z",
+      "privacy": "public",
+      "video_id": "4gI_8WHNSNU",
+      "legacy": {
+        "video_id": "4gI_8WHNSNU",
+        "article_slug": "rupa-bayor-world-rank-6-asia-1-taekwondo-poomsae-arunachal-pradesh-india-first-nri",
+        "uploaded_at": "2026-06-01T02:54:47.738306Z",
+        "url": "https://youtube.com/shorts/4gI_8WHNSNU",
+        "file": "reel-rupa-bayor-world-rank-6-asia-1-taekwondo-poomsae-arunachal-pradesh-india-first-n.mp4"
+      }
+    },
+    {
+      "title": "Jim Sarbh Is Xerxes Desai and Naseeruddin Shah Is JRD Tata in Made in India: A Titan Story #Shorts",
+      "published_at": "2026-06-01T10:58:53Z",
+      "privacy": "public",
+      "video_id": "L-jk1WNwKjo",
+      "legacy": {
+        "video_id": "L-jk1WNwKjo",
+        "article_slug": "made-in-india-titan-story-jim-sarbh-naseeruddin-shah-mx-player-june-3-nri",
+        "uploaded_at": "2026-06-01T10:58:33.539225Z",
+        "url": "https://youtube.com/shorts/L-jk1WNwKjo",
+        "file": "reel-made-in-india-titan-story-jim-sarbh-naseeruddin-shah-mx-player-june-3-nri.mp4"
+      }
+    },
+    {
+      "title": "Bollywood's Children Are Graduating from NYU, Columbia, and Emory. They're Coming Home to  #Shorts",
+      "published_at": "2026-06-01T19:58:58Z",
+      "privacy": "public",
+      "video_id": "hHFvhW9lO6c",
+      "legacy": {
+        "video_id": "hHFvhW9lO6c",
+        "article_slug": "bollywood-star-kids-class-2026-nyu-columbia-emory-nri-diaspora-education-20260601",
+        "uploaded_at": "2026-06-01T19:58:38.325777Z",
+        "url": "https://youtube.com/shorts/hHFvhW9lO6c",
+        "file": "reel-bollywood-star-kids-class-2026-nyu-columbia-emory-nri-diaspora-education-2026060.mp4"
+      }
+    },
+    {
+      "title": "Praggnanandhaa Beat Firouzja in Classical. Gukesh Had So on the Ropes but Ran Out of Time.\u2026 #Shorts",
+      "published_at": "2026-06-02T01:58:58Z",
+      "privacy": "public",
+      "video_id": "eI4vItKaiZA",
+      "legacy": {
+        "video_id": "eI4vItKaiZA",
+        "article_slug": "norway-chess-2026-round-7-praggnanandhaa-beats-firouzja-gukesh-misses-so-divya-nri",
+        "uploaded_at": "2026-06-02T01:58:36.947301Z",
+        "url": "https://youtube.com/shorts/eI4vItKaiZA",
+        "file": "reel-norway-chess-2026-round-7-praggnanandhaa-beats-firouzja-gukesh-misses-so-divya-n.mp4"
+      }
+    },
+    {
+      "title": "Naseeruddin Shah Plays JRD Tata in a Show About India's First Watch. Every NRI's Wrist Has #Shorts",
+      "published_at": "2026-06-02T10:59:13Z",
+      "privacy": "public",
+      "video_id": "J-Hvh8ZFcyY",
+      "legacy": {
+        "video_id": "J-Hvh8ZFcyY",
+        "article_slug": "made-in-india-titan-story-naseeruddin-shah-jrd-tata-amazon-mx-june-3-nri-20260602",
+        "uploaded_at": "2026-06-02T10:58:46.775569Z",
+        "url": "https://youtube.com/shorts/J-Hvh8ZFcyY",
+        "file": "reel-made-in-india-titan-story-naseeruddin-shah-jrd-tata-amazon-mx-june-3-nri-2026060.mp4"
+      }
+    },
+    {
+      "title": "Ramayana Got a Private Screening Room at CinemaCon. The Audience Was Every Major Distributo\u2026 #Shorts",
+      "published_at": "2026-06-02T19:59:18Z",
+      "privacy": "public",
+      "video_id": "lh4FT35FxH4",
+      "legacy": {
+        "video_id": "lh4FT35FxH4",
+        "article_slug": "ramayana-cinemacons-global-push-namit-malhotra-bollywood-nri-20260602",
+        "uploaded_at": "2026-06-02T19:58:56.603585Z",
+        "url": "https://youtube.com/shorts/lh4FT35FxH4",
+        "file": "reel-ramayana-cinemacons-global-push-namit-malhotra-bollywood-nri-20260602.mp4"
+      }
+    },
+    {
+      "title": "Gulveer Singh Ran a 3:55 Mile. He Is the First Indian to Break the Four-Minute Barrier.... #Shorts",
+      "published_at": "2026-06-03T01:58:58Z",
+      "privacy": "public",
+      "video_id": "W6fRWZu6lnk",
+      "legacy": {
+        "video_id": "W6fRWZu6lnk",
+        "article_slug": "gulveer-singh-sub-4-minute-mile-first-indian-athletics-records-week-nri",
+        "uploaded_at": "2026-06-03T01:58:37.140712Z",
+        "url": "https://youtube.com/shorts/W6fRWZu6lnk",
+        "file": "reel-gulveer-singh-sub-4-minute-mile-first-indian-athletics-records-week-nri.mp4"
+      }
+    },
+    {
+      "title": "Dhurandhar 2 Hits JioHotstar Tomorrow. India's Second-Biggest Film Ever Just Became a L... #Shorts",
+      "published_at": "2026-06-03T10:58:59Z",
+      "privacy": "public",
+      "video_id": "2fslGaTkzII",
+      "legacy": {
+        "video_id": "2fslGaTkzII",
+        "article_slug": "dhurandhar-2-jiohotstar-ott-release-june-4-ranveer-singh-streaming-nri-20260603",
+        "uploaded_at": "2026-06-03T10:58:38.703085Z",
+        "url": "https://youtube.com/shorts/2fslGaTkzII",
+        "file": "reel-dhurandhar-2-jiohotstar-ott-release-june-4-ranveer-singh-streaming-nri-20260603.mp4"
+      }
+    },
+    {
+      "title": "Jacqueline Fernandez Walked Into a Delhi Courtroom Today. The \u20b9200-Crore Trial She Spent T #Shorts",
+      "published_at": "2026-06-03T19:59:06Z",
+      "privacy": "public",
+      "video_id": "z5NqFylO7MQ",
+      "legacy": {
+        "video_id": "z5NqFylO7MQ",
+        "article_slug": "jacqueline-fernandez-delhi-court-money-laundering-trial-sukesh-200-crore-nri-20260603",
+        "uploaded_at": "2026-06-03T19:58:36.362227Z",
+        "url": "https://youtube.com/shorts/z5NqFylO7MQ",
+        "file": "reel-jacqueline-fernandez-delhi-court-money-laundering-trial-sukesh-200-crore-nri-202.mp4"
+      }
+    },
+    {
+      "title": "Ten Gold Medals. Nineteen Total. India's U20 Athletes Just Had Their Best Overseas Cham... #Shorts",
+      "published_at": "2026-06-04T01:58:59Z",
+      "privacy": "public",
+      "video_id": "5YxuQMkCibU",
+      "legacy": {
+        "video_id": "5YxuQMkCibU",
+        "article_slug": "india-u20-asian-athletics-championships-2026-hong-kong-19-medals-10-gold-records-nri",
+        "uploaded_at": "2026-06-04T01:58:35.411947Z",
+        "url": "https://youtube.com/shorts/5YxuQMkCibU",
+        "file": "reel-india-u20-asian-athletics-championships-2026-hong-kong-19-medals-10-gold-records.mp4"
+      }
+    },
+    {
+      "title": "The India Story Shreyas Talpade Kajal Aggarwal Food Adulteration Teaser Pesticid #Shorts",
+      "published_at": "2026-06-04T19:59:05Z",
+      "privacy": "public",
+      "video_id": "_RNDQNBenxs",
+      "legacy": {
+        "video_id": "_RNDQNBenxs",
+        "article_slug": "the-india-story-shreyas-talpade-kajal-aggarwal-food-adulteration-teaser-pesticid",
+        "uploaded_at": "2026-06-04T19:58:41.741117Z",
+        "url": "https://youtube.com/shorts/_RNDQNBenxs",
+        "file": "reel-the-india-story-shreyas-talpade-kajal-aggarwal-food-adulteration-teaser-pesticid.mp4"
+      }
+    },
+    {
+      "title": "Sixty Countries. Four Hundred Athletes. India Just Turned Yoga Into a Competitive Sport... #Shorts",
+      "published_at": "2026-06-05T01:59:22Z",
+      "privacy": "public",
+      "video_id": "BzpjNk_yoio",
+      "legacy": {
+        "video_id": "BzpjNk_yoio",
+        "article_slug": "world-yogasana-championship-2026-ahmedabad-modi-60-countries-olympic-pathway-nri",
+        "uploaded_at": "2026-06-05T01:58:53.628825Z",
+        "url": "https://youtube.com/shorts/BzpjNk_yoio",
+        "file": "reel-world-yogasana-championship-2026-ahmedabad-modi-60-countries-olympic-pathway-nri.mp4"
+      }
+    },
+    {
+      "title": "Celina Jaitly Has Fired Back at Her Estranged Husband's Defamation Threats. The Custody Ba #Shorts",
+      "published_at": "2026-06-05T11:00:54Z",
+      "privacy": "public",
+      "video_id": "z1SB02xajp8",
+      "legacy": {
+        "video_id": "z1SB02xajp8",
+        "article_slug": "celina-jaitly-peter-haag-defamation-notice-custody-battle-austria-india-nri-20260605",
+        "uploaded_at": "2026-06-05T11:00:34.463819Z",
+        "url": "https://youtube.com/shorts/z1SB02xajp8",
+        "file": "reel-celina-jaitly-peter-haag-defamation-notice-custody-battle-austria-india-nri-2026.mp4"
+      }
+    },
+    {
+      "title": "Naga Chaitanya Just Won a Court Order Against AI Deepfakes. It Is Part of a Larger Reckonin\u2026 #Shorts",
+      "published_at": "2026-06-05T19:59:24Z",
+      "privacy": "public",
+      "video_id": "SDM5K9GjHpA",
+      "legacy": {
+        "video_id": "SDM5K9GjHpA",
+        "article_slug": "naga-chaitanya-delhi-high-court-ai-deepfake-personality-rights-order-nri-20260605",
+        "uploaded_at": "2026-06-05T19:59:02.576342Z",
+        "url": "https://youtube.com/shorts/SDM5K9GjHpA",
+        "file": "reel-naga-chaitanya-delhi-high-court-ai-deepfake-personality-rights-order-nri-2026060.mp4"
+      }
+    },
+    {
+      "title": "'I Don't Look for Excuses.' Gambhir Confirms Sudharsan at No. 3 and Says the Afghanistan #Shorts",
+      "published_at": "2026-06-06T01:59:05Z",
+      "privacy": "public",
+      "video_id": "vCgEuXAiE7Y",
+      "legacy": {
+        "video_id": "vCgEuXAiE7Y",
+        "article_slug": "gambhir-sudharsan-no-3-afghanistan-test-mohali-serious-business-wtc-transition-nri",
+        "uploaded_at": "2026-06-06T01:58:45.128567Z",
+        "url": "https://youtube.com/shorts/vCgEuXAiE7Y",
+        "file": "reel-gambhir-sudharsan-no-3-afghanistan-test-mohali-serious-business-wtc-transition-n.mp4"
+      }
+    },
+    {
+      "title": "Anushka Sharma Endorsed Homeopathy. A Doctor Called Her an 'Illiterate Celeb.' The #Shorts",
+      "published_at": "2026-06-06T10:59:57Z",
+      "privacy": "public",
+      "video_id": "XO78Jp1Ri_c",
+      "legacy": {
+        "video_id": "XO78Jp1Ri_c",
+        "article_slug": "anushka-sharma-homeopathy-controversy-liver-doc-cyriac-philips-celebrity-health-nri-20260606",
+        "uploaded_at": "2026-06-06T10:59:33.834634Z",
+        "url": "https://youtube.com/shorts/XO78Jp1Ri_c",
+        "file": "reel-anushka-sharma-homeopathy-controversy-liver-doc-cyriac-philips-celebrity-health-.mp4"
+      }
+    },
+    {
+      "title": "Salim Kumar Is on a Ventilator. The Man Who Made Malayalam Cinema Laugh Is Fighting for... #Shorts",
+      "published_at": "2026-06-06T19:58:47Z",
+      "privacy": "public",
+      "video_id": "JOWJqrGDm0Q",
+      "legacy": {
+        "video_id": "JOWJqrGDm0Q",
+        "article_slug": "salim-kumar-ventilator-hospital-ernakulam-malayalam-cinema-national-award-nri-20260606",
+        "uploaded_at": "2026-06-06T19:58:30.867090Z",
+        "url": "https://youtube.com/shorts/JOWJqrGDm0Q",
+        "file": "reel-salim-kumar-ventilator-hospital-ernakulam-malayalam-cinema-national-award-nri-20.mp4"
+      }
+    },
+    {
+      "title": "Rodrigues Has Batted 3, 4, and 5 in Three Consecutive Series. She Says She'll Bat Anywhere \u2026 #Shorts",
+      "published_at": "2026-06-07T02:00:21Z",
+      "privacy": "public",
+      "video_id": "2PoRwT_MWi0"
+    },
+    {
+      "title": "DeepSeek Just Topped America's Fastest-Growing Software List. The Security Implications Are\u2026 #Shorts",
+      "published_at": "2026-06-07T10:59:33Z",
+      "privacy": "public",
+      "video_id": "ipnbuauMdao",
+      "legacy": {
+        "video_id": "ipnbuauMdao",
+        "article_slug": "deepseek-trending-us-corporate-ai-data-security-indian-tech-20260607",
+        "uploaded_at": "2026-06-07T10:59:14.264827Z",
+        "url": "https://youtube.com/shorts/ipnbuauMdao",
+        "file": "reel-deepseek-trending-us-corporate-ai-data-security-indian-tech-20260607.mp4"
+      }
+    },
+    {
+      "title": "Nolan's The Odyssey Opens IMAX Ticket Sales Tomorrow. India Gets First Dibs Alongside the... #Shorts",
+      "published_at": "2026-06-07T19:59:57Z",
+      "privacy": "public",
+      "video_id": "GhYTqvEkL5s",
+      "legacy": {
+        "video_id": "GhYTqvEkL5s",
+        "article_slug": "christopher-nolan-the-odyssey-imax-tickets-india-june-8-matt-damon-nri-20260607",
+        "uploaded_at": "2026-06-07T19:59:39.213185Z",
+        "url": "https://youtube.com/shorts/GhYTqvEkL5s",
+        "file": "reel-christopher-nolan-the-odyssey-imax-tickets-india-june-8-matt-damon-nri-20260607.mp4"
+      }
+    },
+    {
+      "title": "Prasidh Krishna Had Not Played a Test in India for Three Years. On Sunday, He Reminded ... #Shorts",
+      "published_at": "2026-06-08T01:59:53Z",
+      "privacy": "public",
+      "video_id": "NQeWdzlW6zA",
+      "legacy": {
+        "video_id": "NQeWdzlW6zA",
+        "article_slug": "prasidh-krishna-test-comeback-india-afghanistan-mullanpur-wickets-day-2-nri",
+        "uploaded_at": "2026-06-08T01:59:33.061192Z",
+        "url": "https://youtube.com/shorts/NQeWdzlW6zA",
+        "file": "reel-prasidh-krishna-test-comeback-india-afghanistan-mullanpur-wickets-day-2-nri.mp4"
+      }
+    },
+    {
+      "title": "A New Bill Wants to Kill the H-1B-to-Green-Card Pipeline. Big Tech Should Be Nervous. #Shorts",
+      "published_at": "2026-06-08T11:00:49Z",
+      "privacy": "public",
+      "video_id": "2lcx7xfvfbk",
+      "legacy": {
+        "video_id": "2lcx7xfvfbk",
+        "article_slug": "h1b-overhaul-bill-green-card-opt-tech-industry-20260608",
+        "uploaded_at": "2026-06-08T11:00:31.095879Z",
+        "url": "https://youtube.com/shorts/2lcx7xfvfbk",
+        "file": "reel-h1b-overhaul-bill-green-card-opt-tech-industry-20260608.mp4"
+      }
+    },
+    {
+      "title": "22M-Follower Creator Leads India's First Cockroach Protest #Shorts",
+      "published_at": "2026-06-08T15:24:17Z",
+      "privacy": "public",
+      "video_id": "HKQIO0655RE",
+      "legacy": {
+        "video_id": "HKQIO0655RE",
+        "article_slug": "cockroach-janta-party-first-protest-jantar-mantar-22-million-followers-dipke-20260608",
+        "uploaded_at": "2026-06-08T15:23:49.974469+00:00",
+        "url": "https://youtube.com/shorts/HKQIO0655RE",
+        "file": "reel-cockroach-janta-party-first-protest-jantar-mantar-22-million-followers-dipke-20.mp4"
+      }
+    },
+    {
+      "title": "A New Bill Wants to Kill the H-1B Pipeline #h1b #immigration #nri #greencard #shorts",
+      "published_at": "2026-06-08T16:29:46Z",
+      "privacy": "public",
+      "video_id": "kLDarOkIb9s"
+    },
+    {
+      "title": "Manoj Bajpayee Is Playing the Man Who Saved India From Bankruptcy. The Tickets Cost What Th\u2026 #Shorts",
+      "published_at": "2026-06-09T01:59:58Z",
+      "privacy": "public",
+      "video_id": "fU0cTt-FGdY",
+      "legacy": {
+        "video_id": "fU0cTt-FGdY",
+        "article_slug": "governor-manoj-bajpayee-rbi-1990-crisis-ticket-pricing-june-12-nri-20260609",
+        "uploaded_at": "2026-06-09T01:59:36.581569Z",
+        "url": "https://youtube.com/shorts/fU0cTt-FGdY",
+        "file": "reel-governor-manoj-bajpayee-rbi-1990-crisis-ticket-pricing-june-12-nri-20260609.mp4"
+      }
+    },
+    {
+      "title": "Welcome To The Jungle Drops Its Trailer Wednesday. Bollywood's Most Insane Ensemble Is Fina\u2026 #Shorts",
+      "published_at": "2026-06-09T02:00:06Z",
+      "privacy": "public",
+      "video_id": "-pXScWJB8SU",
+      "legacy": {
+        "video_id": "-pXScWJB8SU",
+        "article_slug": "welcome-to-the-jungle-trailer-june-11-akshay-suniel-paresh-ensemble-nri-20260608",
+        "uploaded_at": "2026-06-09T01:59:51.088207Z",
+        "url": "https://youtube.com/shorts/-pXScWJB8SU",
+        "file": "reel-welcome-to-the-jungle-fullframe-final-v2.mp4"
+      }
+    },
+    {
+      "title": "The US Just Found a New Legal Route to Tariff India. This Time, It May Stick. #Shorts",
+      "published_at": "2026-06-09T04:59:03Z",
+      "privacy": "public",
+      "video_id": "kTyJTd8jNII",
+      "legacy": {
+        "video_id": "kTyJTd8jNII",
+        "article_slug": "ustr-section-301-forced-labor-tariff-india-12-percent-greer-trade-deal-20260608",
+        "uploaded_at": "2026-06-09T04:58:42.722963Z",
+        "url": "https://youtube.com/shorts/kTyJTd8jNII",
+        "file": "reel-ustr-section-301-forced-labor-tariff-india-12-percent-greer-trade-deal-20260608.mp4"
+      }
+    },
+    {
+      "title": "Suriya's \u20b9304 Crore Monster Karuppu Lands on Prime Video Thursday. The Diaspora Finally Get\u2026 #Shorts",
+      "published_at": "2026-06-09T07:59:21Z",
+      "privacy": "public",
+      "video_id": "8w71FTQq3u8",
+      "legacy": {
+        "video_id": "8w71FTQq3u8",
+        "article_slug": "karuppu-suriya-prime-video-ott-304-crore-tamil-blockbuster-nri-20260609",
+        "uploaded_at": "2026-06-09T07:58:51.917526Z",
+        "url": "https://youtube.com/shorts/8w71FTQq3u8",
+        "file": "reel-vo-karuppu-suriya-prime-video-ott-304-crore-tamil-blockbuster-n.mp4"
+      }
+    },
+    {
+      "title": "Malayalam Cinema's Two Hottest Directors Made a Film Together. It Just Played Cannes. #Shorts",
+      "published_at": "2026-06-09T10:59:10Z",
+      "privacy": "public",
+      "video_id": "ixHUYZ1QwJg",
+      "legacy": {
+        "video_id": "ixHUYZ1QwJg",
+        "article_slug": "balan-the-boy-chidambaram-jithu-madhavan-cannes-malayalam-multilingual-june-19-nri-20260609",
+        "uploaded_at": "2026-06-09T10:58:46.088365Z",
+        "url": "https://youtube.com/shorts/ixHUYZ1QwJg",
+        "file": "reel-balan-the-boy-chidambaram-jithu-madhavan-cannes-malayalam-multilingual-june-19-n.mp4"
+      }
+    },
+    {
+      "title": "NRI Remittances Hit $43.5 Billion in One Quarter. The Gulf Crisis Is the Reason. #Shorts",
+      "published_at": "2026-06-09T22:56:42Z",
+      "privacy": "public",
+      "video_id": "oHZ8jiCsHMo",
+      "legacy": {
+        "video_id": "oHZ8jiCsHMo",
+        "article_slug": "nri-remittances-record-43-billion-q4-fy26-current-account-surplus-gulf-crisis-20260609",
+        "uploaded_at": "2026-06-09T22:56:11.964854Z",
+        "url": "https://youtube.com/shorts/oHZ8jiCsHMo",
+        "file": "ss-reel-nri-remittances-PROD-20260609.mp4"
+      }
+    },
+    {
+      "title": "Akshay Kumar Is Making India's First Alien Thriller. The Creature Designer Built the Actua #Shorts",
+      "published_at": "2026-06-09T22:59:23Z",
+      "privacy": "public",
+      "video_id": "gSAykuWacJA",
+      "legacy": {
+        "video_id": "gSAykuWacJA",
+        "article_slug": "akshay-kumar-samuk-alien-thriller-alec-gillis-practical-fx-bollywood-nri-20260609",
+        "uploaded_at": "2026-06-09T22:58:57.787099Z",
+        "url": "https://youtube.com/shorts/gSAykuWacJA",
+        "file": "reel-akshay-kumar-samuk-alien-thriller-alec-gillis-practical-fx-bollywood-nri-2026060.mp4"
+      }
+    },
+    {
+      "title": "Cocktail 2 Just Invented the Bollywood Music Festival. Three Cities. One Film. Pure Mayhem #Shorts",
+      "published_at": "2026-06-10T04:58:56Z",
+      "privacy": "public",
+      "video_id": "UMsqCwLUG-M",
+      "legacy": {
+        "video_id": "UMsqCwLUG-M",
+        "article_slug": "cocktail-2-music-festival-shahid-kriti-rashmika-mumbai-delhi-pune-nri-20260610",
+        "uploaded_at": "2026-06-10T04:58:39.011479Z",
+        "url": "https://youtube.com/shorts/UMsqCwLUG-M",
+        "file": "reel-cocktail-2-music-festival-shahid-kriti-rashmika-mumbai-delhi-pune-nri-20260610.mp4"
+      }
+    },
+    {
+      "title": "Unavailable \u2014 The One Word That Just Froze Half a Million Indian Green Card Dreams #Shorts",
+      "published_at": "2026-06-10T07:59:36Z",
+      "privacy": "public",
+      "video_id": "5oLRVj-H4kA",
+      "legacy": {
+        "video_id": "5oLRVj-H4kA",
+        "article_slug": "eb2-india-unavailable-june-visa-bulletin-green-card-frozen-20260610",
+        "uploaded_at": "2026-06-10T07:59:04.957753Z",
+        "url": "https://youtube.com/shorts/5oLRVj-H4kA",
+        "file": "ss-reel-eb2-india-unavailable-june-visa-bulletin-green-card-frozen-2-20260609-2348.mp4"
+      }
+    },
+    {
+      "title": "ISRO Just Handed Its Biggest Rocket to the Private Sector. India's Launch Cadence Depends  #Shorts",
+      "published_at": "2026-06-10T10:59:17Z",
+      "privacy": "public",
+      "video_id": "ls4_NQ7_mnc",
+      "legacy": {
+        "video_id": "ls4_NQ7_mnc",
+        "article_slug": "isro-lvm3-technology-transfer-private-sector-space-20260610",
+        "uploaded_at": "2026-06-10T10:58:58.491492Z",
+        "url": "https://youtube.com/shorts/ls4_NQ7_mnc",
+        "file": "reel-isro-lvm3-technology-transfer-private-sector-space-20260610.mp4"
+      }
+    },
+    {
+      "title": "The War That Choked India's Oil Lifeline May Be Ending #Shorts",
+      "published_at": "2026-06-20T02:12:38Z",
+      "privacy": "public",
+      "video_id": "vO-v4Elnh_Q",
+      "legacy": {
+        "video_id": "vO-v4Elnh_Q",
+        "article_slug": "india-welcomes-us-iran-gulf-peace-deal-strait-hormuz-reopen-oil-falls-20260615",
+        "uploaded_at": "2026-06-20T02:12:14.227492Z",
+        "url": "https://youtube.com/shorts/vO-v4Elnh_Q",
+        "file": "ss-reel-india-strait-of-hormuz-reopens-oil-lifeline-fragile-us-iran--20260619-2054.mp4"
+      }
+    },
+    {
+      "title": "An H-1B Worker Says He Paid $100,000 to Keep His Job. His Lawsuit Exposes the Visa's Dark Si #Shorts",
+      "published_at": "2026-06-20T18:54:29Z",
+      "privacy": "public",
+      "video_id": "mr4cA7I1mI8",
+      "legacy": {
+        "article_slug": "h1b-labor-trafficking-lawsuit-telugu-worker-pay-to-stay-michigan-green-card-20260620",
+        "uploaded_at": "2026-06-20T18:53:55Z",
+        "video_id": "mr4cA7I1mI8",
+        "file": "2c7b81aa-df23-407d-8a63-a1e3b660687b"
+      }
+    },
+    {
+      "title": "SpaceX just pulled off the biggest IPO ever #Shorts",
+      "published_at": "2026-06-21T22:44:53Z",
+      "privacy": "public",
+      "video_id": "jp_jPPjFqr0"
+    },
+    {
+      "title": "Apple's $38 Billion India Fine \u2014 CCI Antitrust Showdown #Shorts",
+      "published_at": "2026-07-02T05:59:38Z",
+      "privacy": "public",
+      "video_id": "NlQ5lRS3zbs",
+      "legacy": {
+        "article_slug": "apple-cci-antitrust-app-store-copy-pasted-38-billion-20260702",
+        "uploaded_at": "2026-07-02T05:59:19.798891+00:00",
+        "video_id": "NlQ5lRS3zbs",
+        "format": "pulse-short",
+        "file": "e1351abd-749b-4cd6-acf3-88bb0d2099cc"
+      }
+    },
+    {
+      "title": "Trump Used America's 250th Birthday to Call Immigrants a 'Communist Menace' #Shorts",
+      "published_at": "2026-07-05T18:16:35Z",
+      "privacy": "public",
+      "video_id": "sq1okCjGFmE"
+    },
+    {
+      "title": "EB-2 India Unavailable: July Visa Bulletin Green Card Crisis",
+      "published_at": "2026-07-05T21:30:41Z",
+      "privacy": "public",
+      "video_id": "X2ee9QZDRwg"
+    },
+    {
+      "title": "Supreme Court Rules 6-3: Green Card Holders at Risk #Shorts",
+      "published_at": "2026-07-06T04:33:51Z",
+      "privacy": "public",
+      "video_id": "U2QeKymzYBU"
+    },
+    {
+      "title": "Britain, Canada, Germany, Australia. The Countries Lining Up to Take America's Indian Engin #Shorts",
+      "published_at": "2026-07-06T13:14:56Z",
+      "privacy": "public",
+      "video_id": "IJVVEOFsCeQ"
+    },
+    {
+      "title": "Persistent Systems Just Made India's Boldest AI Bet \u2014 a $1.4 Billion Gamble on a German Sof #Shorts",
+      "published_at": "2026-07-06T19:40:49Z",
+      "privacy": "public",
+      "video_id": "jXiFqMOBpXU"
+    },
+    {
+      "title": "Microsoft Disputes Vance's 'Foreign Indentured Servants' Claim With Its Own H-1B Data #Shorts",
+      "published_at": "2026-10-09T04:58:37Z",
+      "privacy": "public",
+      "video_id": "vEqk-X9_qxY",
+      "legacy": {
+        "video_id": "vEqk-X9_qxY",
+        "article_slug": "microsoft-disputes-vance-fraud-claims-h1b-response",
+        "uploaded_at": "2026-10-09T04:58:11.637572+00:00",
+        "url": "https://youtube.com/shorts/vEqk-X9_qxY",
+        "file": "ss-pulse-microsoft-disputes-vance-fraud-claims-h1b-response-20261009-0452.mp4"
+      }
+    },
+    {
+      "title": "TCS Says US Green Card Suspension Won't Disrupt Workforce Strategy or Hiring #Shorts",
+      "published_at": "2026-10-09T04:58:48Z",
+      "privacy": "public",
+      "video_id": "94YJRBwNNY4",
+      "legacy": {
+        "video_id": "94YJRBwNNY4",
+        "article_slug": "tcs-says-us-green-card-suspension-no-workforce-impact",
+        "uploaded_at": "2026-10-09T04:58:26.189214+00:00",
+        "url": "https://youtube.com/shorts/94YJRBwNNY4",
+        "file": "ss-pulse-tcs-says-us-green-card-suspension-no-workforce-impact-20261009-0456.mp4"
+      }
+    },
+    {
+      "title": "Kashmiri Filmmaker's Shocking Two-Week ICE Detention!",
+      "published_at": "2026-10-10T00:17:35Z",
+      "privacy": "public",
+      "video_id": "VlklU4Xpv2k",
+      "legacy": {
+        "video_id": "VlklU4Xpv2k",
+        "article_slug": "arfat-sheikh-released-on-bond-ice-detention-kashmiri-filmmaker",
+        "uploaded_at": "2026-10-10T00:17:17.119132+00:00",
+        "url": "https://youtube.com/shorts/VlklU4Xpv2k",
+        "file": "ss-pulse-arfat-sheikh-released-on-bond-ice-detention-kashmiri-filmmaker-20261009-0508.mp4"
+      }
+    },
+    {
+      "title": "US Green Card Curbs: A Setback for India?",
+      "published_at": "2026-10-10T00:18:04Z",
+      "privacy": "public",
+      "video_id": "IGemFdLn2bs",
+      "legacy": {
+        "video_id": "IGemFdLn2bs",
+        "article_slug": "india-says-us-green-card-curbs-do-not-advance-shared-ambitions",
+        "uploaded_at": "2026-10-10T00:17:41.291885+00:00",
+        "url": "https://youtube.com/shorts/IGemFdLn2bs",
+        "file": "ss-pulse-india-says-us-green-card-curbs-do-not-advance-shared-ambitions-20261009-1708.mp4"
+      }
+    },
+    {
+      "title": "Green Card Curbs: Will India\u2019s Talent Surge?",
+      "published_at": "2026-10-11T00:18:36Z",
+      "privacy": "public",
+      "video_id": "nZgz3u2iINc",
+      "legacy": {
+        "video_id": "nZgz3u2iINc",
+        "article_slug": "nasscom-chief-green-card-curbs-work-india-talent-base-20261010",
+        "uploaded_at": "2026-10-11T00:17:54.430389+00:00",
+        "url": "https://youtube.com/shorts/nZgz3u2iINc",
+        "file": "ss-pulse-nasscom-chief-green-card-curbs-work-india-talent-base-20261010-20261010-1708.mp4"
+      }
+    },
+    {
+      "title": "OpenAI's Bold Move: Banning Influencers from Russia & Iran",
+      "published_at": "2026-10-11T00:18:48Z",
+      "privacy": "public",
+      "video_id": "E7A6l8BVUVg",
+      "legacy": {
+        "video_id": "E7A6l8BVUVg",
+        "article_slug": "openai-bans-russian-iranian-chatgpt-influence-campaigns",
+        "uploaded_at": "2026-10-11T00:18:17.576170+00:00",
+        "url": "https://youtube.com/shorts/E7A6l8BVUVg",
+        "file": "ss-pulse-openai-bans-russian-iranian-chatgpt-influence-campaigns-20261009-0545.mp4"
+      }
+    },
+    {
+      "title": "H-1B: A Business Model? Trump Official's Bold Defense",
+      "published_at": "2026-10-12T00:17:43Z",
+      "privacy": "public",
+      "video_id": "gjPPpPt4rOQ",
+      "legacy": {
+        "video_id": "gjPPpPt4rOQ",
+        "article_slug": "h1b-business-model-trump-official-defends-suspensions",
+        "uploaded_at": "2026-10-12T00:17:18.314742+00:00",
+        "url": "https://youtube.com/shorts/gjPPpPt4rOQ",
+        "file": "ss-pulse-h1b-business-model-trump-official-defends-suspensions-20261011-0508.mp4"
+      }
+    },
+    {
+      "title": "Green Card Freeze: H-1B Workers Face New Challenges",
+      "published_at": "2026-10-12T00:18:08Z",
+      "privacy": "public",
+      "video_id": "mP7Ow3xGpc0",
+      "legacy": {
+        "video_id": "mP7Ow3xGpc0",
+        "article_slug": "us-green-card-freeze-eight-tech-firms-h1b-workers",
+        "uploaded_at": "2026-10-12T00:17:38.932198+00:00",
+        "url": "https://youtube.com/shorts/mP7Ow3xGpc0",
+        "file": "ss-pulse-us-green-card-freeze-eight-tech-firms-h1b-workers-20261011-1708.mp4"
+      }
+    },
+    {
+      "title": "GOP's H-1B Visa Shift: 9 Indian-American Republicans Run!",
+      "published_at": "2026-10-13T00:18:00Z",
+      "privacy": "public",
+      "video_id": "dOdIzexK70M",
+      "legacy": {
+        "video_id": "dOdIzexK70M",
+        "article_slug": "indian-american-republicans-h-1b-backlash-ballot-2026",
+        "uploaded_at": "2026-10-13T00:17:38.180006+00:00",
+        "url": "https://youtube.com/shorts/dOdIzexK70M",
+        "file": "ss-pulse-indian-american-republicans-h-1b-backlash-ballot-2026-20261012-0508.mp4"
+      }
+    },
+    {
+      "title": "Hyderabad Man's Family Faces Tragedy in Riyadh Airport Attac",
+      "published_at": "2026-10-13T00:18:34Z",
+      "privacy": "public",
+      "video_id": "d-Lek2J0Q-g",
+      "legacy": {
+        "video_id": "d-Lek2J0Q-g",
+        "article_slug": "hyderabad-man-riyadh-airport-attack-funeral-saudi",
+        "uploaded_at": "2026-10-13T00:17:59.373117+00:00",
+        "url": "https://youtube.com/shorts/d-Lek2J0Q-g",
+        "file": "ss-pulse-hyderabad-man-riyadh-airport-attack-funeral-saudi-20261012-1708.mp4"
+      }
+    },
+    {
+      "title": "H-1B Crackdown Meets the Ballot Box: 9 Indian-American Republicans in the Middle #Shorts #H1B",
+      "published_at": "2026-10-13T04:35:32Z",
+      "privacy": "public",
+      "video_id": "SG8Yd6PmDnc"
+    }
+  ],
+  "phase2_uploads_now_public": [],
+  "generated_at": "2026-10-22T17:23:16+00:00"
+}

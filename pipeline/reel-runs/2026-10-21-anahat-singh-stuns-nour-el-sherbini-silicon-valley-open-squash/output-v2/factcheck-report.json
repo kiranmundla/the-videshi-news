@@ -1,0 +1,273 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "TEEN STUNS EIGHT-TIME WORLD CHAMPION",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Anahat Singh defeated an eight-time world champion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "India's Anahat Singh, 18, beat eight-time world champion and top seed Nour El Sherbini 11-8, 11-8, 11-7 in 30 minutes at the Silicon Valley Open in Redwood City to reach the quarter-finals.",
+      "numbers": [
+        7.0,
+        8.0,
+        11.0,
+        18.0,
+        30.0
+      ],
+      "entities": [
+        "India's Anahat Singh",
+        "Nour El Sherbini",
+        "Silicon Valley Open",
+        "Redwood City"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about the match and Anahat's achievement are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$143,500",
+      "numbers": [
+        143500.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$143,500 prize money is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "PSA Gold event at the Silicon Valley Open",
+      "numbers": [],
+      "entities": [
+        "PSA Gold",
+        "Silicon Valley Open"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The event is identified as a PSA Gold event.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "No specific section labeled 'BY THE NUMBERS' exists in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "30 MIN",
+      "numbers": [
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Match duration of 30 minutes is confirmed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "To beat the world No. 3 in straight games",
+      "numbers": [
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Beating the world No. 3 in straight games is accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "11-8, 11-8, 11-7",
+      "numbers": [
+        7.0,
+        8.0,
+        11.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Scoreline of 11-8, 11-8, 11-7 is correctly stated.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Scoreline in the straight-games win over the top seed",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The scoreline in the straight-games win is accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "AGE 18",
+      "numbers": [
+        18.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Anahat Singh's age of 18 is confirmed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "India's Anahat Singh, into the quarter-finals",
+      "numbers": [],
+      "entities": [
+        "India's Anahat Singh"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Anahat Singh reached the quarter-finals.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "First Indian to win a women's singles silver in squash at the Asian Games",
+      "numbers": [],
+      "entities": [
+        "First Indian",
+        "Asian Games"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Anahat is the first Indian to win a women's singles silver at the Asian Games.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Won in Redwood City as squash heads for its Olympic debut at Los Angeles 2028",
+      "numbers": [
+        2028.0
+      ],
+      "entities": [
+        "Redwood City",
+        "Los Angeles"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2028
+        ]
+      },
+      "llm_reason": "The article mentions squash's Olympic debut in Los Angeles 2028.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The biggest win of her professional career \u2014 over a champion she had never faced before.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This win is described as the biggest of her career against an opponent she hadn't faced.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Anahat Singh",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nour El Sherbini",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Silicon Valley Open",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "PSA",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000543
+  }
+}

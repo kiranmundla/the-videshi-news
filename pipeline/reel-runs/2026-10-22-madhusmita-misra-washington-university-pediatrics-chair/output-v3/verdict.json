@@ -1,0 +1,15 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "madhusmita-misra-washington-university-pediatrics-chair",
+  "name": "madhusmita-misra-washington-university-pediatrics-chair",
+  "script": "reel-runs/2026-10-22-madhusmita-misra-washington-university-pediatrics-chair/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "payoff"
+    ],
+    "llm_cost_usd": 0.000438
+  }
+}

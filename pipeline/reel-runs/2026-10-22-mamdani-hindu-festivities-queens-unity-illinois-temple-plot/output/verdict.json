@@ -1,0 +1,14 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "article_slug": "mamdani-hindu-festivities-queens-unity-illinois-temple-plot",
+  "name": "mamdani-hindu-festivities-queens-unity-illinois-temple-plot",
+  "script": "reel-runs/2026-10-22-mamdani-hindu-festivities-queens-unity-illinois-temple-plot/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000482
+  },
+  "detail": "no composition fits all scenes at the planner floors \u2014 cover: scene 'news' text cannot fit at the minimum scale in any zone (text too long); fit: scene 'news' text cannot fit at the minimum scale in any zone (text too long)"
+}

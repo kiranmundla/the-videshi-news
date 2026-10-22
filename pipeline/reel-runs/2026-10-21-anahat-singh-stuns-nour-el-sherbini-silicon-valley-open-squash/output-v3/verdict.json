@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "article_slug": "anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash",
+  "name": "anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash",
+  "script": "reel-runs/2026-10-21-anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000546
+  },
+  "manifest": "reel-runs/2026-10-21-anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash/output-v3/render-manifest.json",
+  "video": "reel-runs/2026-10-21-anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash/output-v3/anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  }
+}

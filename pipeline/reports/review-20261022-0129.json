@@ -1,0 +1,40 @@
+[
+  {
+    "id": "be4cb5fa-6646-4b67-bc55-e2322bea5f01",
+    "headline": "Carmakers Bank on Diwali as Maruti Bookings Climb to 2.7 Lakh After Dussehra",
+    "slug": "carmakers-diwali-maruti-bookings-2-7-lakh-festive-sales",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "8f4fa4b5-afaa-4af5-a55a-ab19d63e58d9",
+    "headline": "Blacksmith Hits $1 Billion Valuation as AI-Written Code Floods Testing Pipelines",
+    "slug": "blacksmith-1-billion-valuation-sequoia-series-c-ai-code-testing",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": null
+  },
+  {
+    "id": "e3ef69f8-a0c6-4c89-ad8d-4d5bac2f47bb",
+    "headline": "Indian National Injured as Drone Debris Kills Two at Saudi Shaybah Oil Field",
+    "slug": "indian-injured-houthi-drone-debris-saudi-shaybah-oil-field",
+    "category": "nri-world",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/35097391/pexels-photo-35097391.jpeg?auto=compre"
+    ],
+    "llm_review": null
+  },
+  {
+    "id": "349c4dbb-7fda-445f-965e-8df9268bd22f",
+    "headline": "Trump's Green Card Curbs Test Indian Tech Workers as PERM Freeze Hits Eight Firm",
+    "slug": "trump-green-card-curbs-indian-tech-workers-perm-freeze",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": null
+  }
+]

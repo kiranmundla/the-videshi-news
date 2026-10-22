@@ -1,0 +1,15 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash",
+  "name": "anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash",
+  "script": "reel-runs/2026-10-21-anahat-singh-stuns-nour-el-sherbini-silicon-valley-open-squash/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_stat.big"
+    ],
+    "llm_cost_usd": 0.000528
+  }
+}
