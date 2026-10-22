@@ -263,6 +263,54 @@ check("stub article PATCHed to draft",
 check("no PATCH for the gap company",
       not any("globex" in p[1] for p in patches))
 
+print("H2. results_repoint_pass — UNLINKED rows (brief held, no stub ever created)")
+# Regression for 2026-10-22: Comcast + P&G preview briefs were held by the
+# >=2-source gate, so their rows had link NULL. The old pass fetched only
+# stub-linked rows (link like /articles/happening-*) and skipped anything
+# else, so unlinked rows were invisible: never repointed, never gapped,
+# and the self-heal never engaged.
+NULL_ROWS = [
+    {"id": "r4", "date": _yday, "label": "Nullink Media Corporation Earnings",
+     "detail": "NLNK · Before Market", "link": None, "category": "markets"},
+    {"id": "r5", "date": _yday, "label": "Nolink Bank Corporation Earnings",
+     "detail": "NLBK · Before Market", "link": None, "category": "markets"},
+]
+null_patches = []
+
+
+def fake_sb_curl_null(method, path, payload=None):
+    if method == "GET":
+        # Both fetches (stub-linked and link=is.null) return the same set;
+        # the pass must dedupe by id and process each row exactly once.
+        return [dict(r) for r in NULL_ROWS]
+    null_patches.append((method, path, payload))
+    return []
+
+
+dh._sb_curl = fake_sb_curl_null
+dh._find_results_article = (
+    lambda company, date_str: {"slug": "real-nullink-results"}
+    if company.startswith("Nullink") else None)
+res2 = dh.results_repoint_pass()
+check("unlinked row with coverage is repointed", res2["repointed"] == 1,
+      f"res={res2}")
+check("unlinked row without coverage fires the gap", res2["gaps"] == 1,
+      f"res={res2}")
+check("unlinked rows are not left pending", res2["pending"] == 0,
+      f"res={res2}")
+check("unlinked happening row PATCHed to results link",
+      any(p[0] == "PATCH" and p[1] == "daily_happenings?id=eq.r4"
+          and p[2] == {"link": "/articles/real-nullink-results"}
+          for p in null_patches),
+      f"patches={null_patches}")
+check("no stub retired for an unlinked row (there is no stub)",
+      not any(p[0] == "PATCH" and p[1].startswith("p2_articles")
+              for p in null_patches),
+      f"patches={null_patches}")
+check("no PATCH for the unlinked gap company",
+      not any("nolink" in p[1].lower() for p in null_patches))
+dh._sb_curl = fake_sb_curl
+
 print("I. festival sources — FESTIVAL_SOURCES covers every calendar keyword; Dussehra brief assembles")
 missing = [kw for (_, _, kw) in dh.FESTIVALS_2026.values()
            if len(dh.source_gate.valid_sources(dh.FESTIVAL_SOURCES.get(kw, []))) < 2]

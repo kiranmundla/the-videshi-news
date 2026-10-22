@@ -1817,14 +1817,28 @@ def results_repoint_pass(dry_run: bool = False, extra_rows: list | None = None) 
         "&category=eq.markets&label=ilike.*earnings*"
         "&link=like./articles/happening-*"
         f"&date=in.({yesterday},{today})&order=date.asc") or []
+    # Earnings rows whose preview brief was held (e.g. by the >=2-source
+    # gate) never got a stub, so their link is NULL — the stub-only fetch
+    # above can never see them (found live 2026-10-22: the Comcast and
+    # P&G rows sat unlinked through both passes while their results were
+    # already out). Fetch them too; the loop links a qualifying results
+    # article or fires the same RESULTS GAP for them.
+    unlinked = _sb_curl(
+        "GET",
+        "daily_happenings?select=id,date,label,detail,link,category"
+        "&category=eq.markets&label=ilike.*earnings*"
+        "&link=is.null"
+        f"&date=in.({yesterday},{today})&order=date.asc") or []
+    _seen_ids = {r.get("id") for r in rows}
+    rows = list(rows) + [r for r in unlinked if r.get("id") not in _seen_ids]
     rows = list(rows) + list(extra_rows or [])
 
     repointed = gaps = pending = 0
     for row in rows:
         link = row.get("link") or ""
-        if not link.startswith("/articles/happening-"):
+        if link and not link.startswith("/articles/happening-"):
             continue
-        stub_slug = link.rsplit("/", 1)[-1]
+        stub_slug = link.rsplit("/", 1)[-1] if link else None
         company = _company_from_label(row.get("label", ""))
         window_end = _report_window_end(row)
         if window_end is None or now < window_end:
@@ -1835,25 +1849,32 @@ def results_repoint_pass(dry_run: bool = False, extra_rows: list | None = None) 
             new_link = f"/articles/{hit['slug']}"
             if dry_run:
                 print(f"  🔁 [dry-run] would repoint '{row.get('label')}' "
-                      f"({row.get('date')}): {link} -> {new_link}; "
-                      f"stub {stub_slug} -> draft")
+                      f"({row.get('date')}): {link or '(unlinked)'} -> "
+                      f"{new_link}; "
+                      + (f"stub {stub_slug} -> draft" if stub_slug
+                         else "row was unlinked, nothing to retire"))
             else:
                 if row.get("id"):
                     _sb_curl("PATCH",
                              f"daily_happenings?id=eq.{row['id']}",
                              {"link": new_link})
-                _sb_curl("PATCH",
-                         f"p2_articles?slug=eq.{stub_slug}&status=eq.published",
-                         {"status": "draft"})
+                if stub_slug:
+                    _sb_curl("PATCH",
+                             f"p2_articles?slug=eq.{stub_slug}&status=eq.published",
+                             {"status": "draft"})
                 print(f"  🔁 RESULTS REPOINT: '{row.get('label')}' "
-                      f"({row.get('date')}) {link} -> {new_link}; "
-                      f"stub retired to draft")
+                      f"({row.get('date')}) {link or '(unlinked)'} -> "
+                      f"{new_link}; "
+                      + ("stub retired to draft" if stub_slug
+                         else "row was unlinked, nothing to retire"))
             repointed += 1
         elif now > window_end + timedelta(hours=6):
             print(f"  ⚠️ RESULTS GAP: {company} reported on {row.get('date')} "
                   f"and the report window closed over 6h ago, but no published "
                   f"results article names the company in its headline — "
-                  f"Happening Today still links to the preview stub {link}")
+                  f"Happening Today "
+                  + (f"still links to the preview stub {link}" if link
+                     else "row has no article link at all"))
             gaps += 1
         else:
             pending += 1
