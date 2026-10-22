@@ -1,0 +1,35 @@
+{
+  "hook_line": "AUTOMATIC WORK PERMIT EXTENSIONS END",
+  "hook_stat": {
+    "big": "540 DAYS",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Automatic EAD extension for renewals that is now permanently ended"
+  },
+  "stats": [
+    {
+      "big": "OCTOBER 30, 2025",
+      "label": "Renewals filed on or after this date lose the extension"
+    },
+    {
+      "big": "180 DAYS",
+      "label": "How early a renewal can be filed before the card expires"
+    },
+    {
+      "big": "OCTOBER 14, 2026",
+      "label": "Date DHS published the final rule in the Federal Register"
+    }
+  ],
+  "diaspora_bullets": [
+    "H-4 spouses and green card applicants are among those affected",
+    "Indian applicants spend more years renewing EADs while they wait"
+  ],
+  "key_entities": [
+    "DHS",
+    "USCIS",
+    "Form I-765"
+  ],
+  "news_summary": "DHS has permanently ended the 540-day automatic extension for work permit renewals filed on or after October 30, 2025.",
+  "payoff": "Continued employment now depends on USCIS approving the renewal before the current card expires.",
+  "versus": "",
+  "story_mood": "tense"
+}

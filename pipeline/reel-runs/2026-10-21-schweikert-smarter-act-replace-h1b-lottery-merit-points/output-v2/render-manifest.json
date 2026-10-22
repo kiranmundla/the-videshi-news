@@ -1,0 +1,235 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "schweikert-smarter-act-replace-h1b-lottery-merit-points",
+  "article_slug": "schweikert-smarter-act-replace-h1b-lottery-merit-points",
+  "article_id": "ee4fd21d-28c1-438b-b66c-c176c973fbe9",
+  "category": "Immigration",
+  "video": "reel-runs/2026-10-21-schweikert-smarter-act-replace-h1b-lottery-merit-points/output-v2/schweikert-smarter-act-replace-h1b-lottery-merit-points.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/David_Schweikert_official_portrait_116th_Congress.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "local_path": "reel-runs/2026-10-21-schweikert-smarter-act-replace-h1b-lottery-merit-points/output-v2/hero.jpg",
+    "width": 3360,
+    "height": 4200,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "yunet (score 0.93)",
+    "has_face": true,
+    "box_source": [
+      1060,
+      966,
+      966,
+      1277
+    ],
+    "box_bg": [
+      319.6,
+      441.6,
+      441.6,
+      583.8
+    ],
+    "chin_bg": 1025.4,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": 1029.0,
+      "zone_top": 1077,
+      "zone_h": 503,
+      "scale": 1.0,
+      "content_h": 284,
+      "block_top": 1167,
+      "block_bottom": 1451,
+      "text_bbox": [
+        113,
+        1167,
+        894,
+        1443
+      ],
+      "texts": [
+        "Immigration",
+        "BILL WOULD SCRAP H-1B LOTTERY"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": 1034.4,
+      "zone_top": 1083,
+      "zone_h": 497,
+      "scale": 1.0,
+      "content_h": 338,
+      "block_top": 1162,
+      "block_bottom": 1500,
+      "text_bbox": [
+        116,
+        1162,
+        886,
+        1505
+      ],
+      "texts": [
+        "What Happened",
+        "A bill by Rep. David Schweikert would replace the H-1B lottery with a merit-based points system starting at 85,000 visas."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": 1039.8,
+      "zone_top": 1088,
+      "zone_h": 492,
+      "scale": 1.0,
+      "content_h": 440,
+      "block_top": 1114,
+      "block_bottom": 1554,
+      "text_bbox": [
+        104,
+        1114,
+        908,
+        1560
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "85,000",
+        "Initial cap under the proposed merit-based system"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": 1046.0,
+      "zone_top": 1095,
+      "zone_h": 485,
+      "scale": 0.925,
+      "content_h": 445,
+      "block_top": 1115,
+      "block_bottom": 1560,
+      "text_bbox": [
+        122,
+        1115,
+        882,
+        1559
+      ],
+      "texts": [
+        "By The Numbers",
+        "H.R. 10460",
+        "SMARTER Act bill number in the House",
+        "26-30",
+        "Age range with the highest age-related scores"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": 1052.3,
+      "zone_top": 1101,
+      "zone_h": 479,
+      "scale": 1.0,
+      "content_h": 348,
+      "block_top": 1166,
+      "block_bottom": 1514,
+      "text_bbox": [
+        118,
+        1166,
+        837,
+        1519
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Per-country green card caps would be removed",
+        "Bill is in committee \u2014 current rules still apply"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": 1056.8,
+      "zone_top": 1105,
+      "zone_h": 475,
+      "scale": 1.0,
+      "content_h": 298,
+      "block_top": 1193,
+      "block_bottom": 1491,
+      "text_bbox": [
+        127,
+        1193,
+        876,
+        1502
+      ],
+      "texts": [
+        "The Takeaway",
+        "Nothing changes yet \u2014 the bill is in committee and is not law.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "breaking-news-newer-wave.mp3",
+    "path": "music/breaking-news-newer-wave.mp3"
+  },
+  "render_seconds": 352.6,
+  "mp4_bytes": 13324801
+}

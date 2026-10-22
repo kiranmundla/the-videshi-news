@@ -1,0 +1,137 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "dhs-final-rule-ends-automatic-work-permit-extensions-ead",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "DHS Final Rule Permanently Ends Automatic Work Permit Extensions For Renewals",
+        "numbers": [],
+        "entities": [
+          "DHS Final Rule Permanently Ends Automatic Work Permit Extensions For Renewals"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states DHS finalized a rule ending automatic extensions.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "H-4 spouses and green card applicants must now get approval before their card expires.",
+        "numbers": [
+          4.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions H-4 spouses and green card applicants need approval before expiration.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The final rule makes permanent the end of the 540-day automatic extension for EAD renewals filed on or after October 30, 2025",
+        "numbers": [
+          30.0,
+          540.0,
+          2025.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2025
+          ]
+        },
+        "llm_reason": "The article confirms the rule makes the end of the 540-day extension permanent.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "H-4 spouses in category (c)(26) and adjustment-of-status applicants in (c)(9) are among those affected",
+        "numbers": [
+          4.0,
+          9.0,
+          26.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article lists H-4 spouses in category c 26 and adjustment applicants in c 9 as affected.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Renewals filed before October 30, 2025 that qualified keep their automatic extension",
+        "numbers": [
+          30.0,
+          2025.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2025
+          ]
+        },
+        "llm_reason": "The article states renewals filed before October 30, 2025 retain their automatic extension.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "DHS Final Rule Permanently Ends Automatic Work Permit Extensions For Renewals",
+        "numbers": [],
+        "entities": [
+          "DHS Final Rule Permanently Ends Automatic Work Permit Extensions For Renewals"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim repeats the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000362
+    }
+  },
+  "verdict": "pass"
+}

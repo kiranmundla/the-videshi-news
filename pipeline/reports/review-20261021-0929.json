@@ -1,0 +1,189 @@
+[
+  {
+    "id": "4cfa2f19-a6b6-4cab-a443-405dbddf8761",
+    "headline": "Illinois Lab Owner Rajesh Patel Charged in $66 Million Covid Testing Fraud",
+    "slug": "illinois-lab-owner-rajesh-patel-charged-in-66-million-covid-testing-fraud",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact dates when the alleged fraudulent activities occurred, as well as when the indictment was officially announced. This will enhance the completeness and clarity of the article.",
+        "Include a direct quote from the indictment or a specific statement from the Justice Department to strengthen the attribution and provide more context on the charges against Patel.",
+        "Provide more detail on the potential consequences Patel faces if convicted, such as the total possible prison time he could serve based on the number of counts, to give readers a clearer understanding of the stakes involved."
+      ],
+      "embed_opportunities": [
+        "Embed the official DOJ announcement or press release regarding the indictment to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "bc0d52a0-c8b7-49f1-81f8-7d4dce32f043",
+    "headline": "Air India and Standard Chartered Launch Travel Wealth Offer for Global Indians",
+    "slug": "air-india-and-standard-chartered-launch-travel-wealth-offer-for-global-indians",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for when the eligibility checks will begin and when clients can expect to see the benefits activated. Specific dates would enhance clarity for readers.",
+        "Include specific eligibility criteria for the Maharaja Club Gold and Silver status to inform readers about what qualifies them as 'affluent Global Indian clients.'",
+        "Add more context about the significance of this partnership for Air India and Standard Chartered, such as how it compares to similar offerings in the market or its potential impact on customer loyalty.",
+        "Ensure that the article clearly states that the benefits are not automatically available to all Standard Chartered account holders, but only to those who meet specific criteria."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement tweet from Air India or Standard Chartered to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "ad5f2882-53f2-454e-b8c5-cdc2a2733149",
+    "headline": "Delhi High Court Seeks FSSAI Reply on Analogue Products Sold as Paneer",
+    "slug": "delhi-high-court-seeks-fssai-reply-on-analogue-products-sold-as-paneer",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the FSSAI's September 24 draft amendment by including specific details about the proposed changes and their potential impact on consumers and businesses, such as timelines for implementation or compliance requirements.",
+        "Provide a brief background on the significance of paneer in Indian cuisine and the potential health implications of consuming non-dairy products marketed as paneer, to give readers context about why this issue is important.",
+        "Include quotes or statements from the petitioners or legal experts to enhance the article's depth and provide a more comprehensive view of the legal arguments being made."
+      ],
+      "embed_opportunities": [
+        "Embed the official FSSAI announcement or relevant tweet regarding the September 24 draft amendment to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "00528764-bfdc-4d4f-93c9-b1cf55500487",
+    "headline": "Supreme Court Stays CMRL Probe Against Pinarayi Vijayan for One Week",
+    "slug": "supreme-court-stays-cmrl-probe-against-pinarayi-vijayan-for-one-week",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events leading up to the Supreme Court's decision, including specific dates for the FIR, the Kerala High Court's ruling, and the Supreme Court's stay. This will provide readers with a clearer context of the case's progression.",
+        "Include a brief explanation of the implications of the Supreme Court's stay on the investigation for the parties involved. For example, what does this mean for the ongoing legal proceedings and potential next steps for Vijayan and his family?",
+        "Ensure that the attribution for the quotes and information is consistent throughout the article. For instance, clarify which sources provided the details about the FIR and the Supreme Court's ruling to enhance credibility.",
+        "Consider rephrasing the headline to make it more compelling and specific, such as 'Supreme Court Halts CMRL Investigation Against Former Kerala CM Pinarayi Vijayan for One Week Amid Allegations of Bribery'. This would provide more context and attract reader interest."
+      ],
+      "embed_opportunities": [
+        "Embed the official Supreme Court ruling or a relevant statement from the court to provide readers with direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "1b02eb3f-b864-4989-8ed4-3660e8d0d826",
+    "headline": "Katrina Mirpuri Shares Family Diwali Feast Recipes With Tesco for London Homes",
+    "slug": "katrina-mirpuri-shares-family-diwali-feast-recipes-with-tesco-for-london-homes",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the recipes shared by Mirpuri in relation to Diwali traditions. For example, explain why each dish is meaningful or how it connects to specific Diwali customs.",
+        "Include a brief background on Katrina Mirpuri's previous work or her influence in the culinary space to provide context for her authority on the subject.",
+        "Add a section that outlines how readers can access the recipes or where they can find the guide, including any necessary links or steps to obtain the recipes from Tesco or London On The Inside.",
+        "Ensure that the pricing information for Tesco Clubcard items is clearly highlighted, perhaps in a bullet-point format, to make it easier for readers to digest and understand the savings."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Tesco or Katrina Mirpuri promoting the Diwali recipes or the guide to enhance engagement and provide direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "30e1a2e7-cc9b-4957-95cc-1424de3ac775",
+    "headline": "Rubio Says US Engagement With Pakistan Could Work in India's Favour",
+    "slug": "rubio-says-us-engagement-with-pakistan-could-work-in-indias-favour",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of Rubio's statements by specifying the date of his 2025 remarks as a senator to provide context for readers unfamiliar with the timeline.",
+        "Include specific quotes from Rubio's interview with Network18 to enhance clarity and provide direct attribution for his statements, which would strengthen the article's credibility.",
+        "Add a brief explanation of the implications of US engagement with Pakistan for India, such as potential impacts on regional security or trade relations, to provide readers with a clearer understanding of the stakes involved."
+      ],
+      "embed_opportunities": [
+        "Embed the official Network18 interview clip or a relevant segment to provide readers with direct access to Rubio's comments and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "095c6442-50c0-4698-8d9d-9700f7bad7ac",
+    "headline": "Sonu Nigam Apologises to Kannadigas Ahead of Bengaluru Concert on October 24",
+    "slug": "sonu-nigam-apologises-kannadigas-bengaluru-concert",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date of the April 2025 remarks and the date of the concert on October 24, 2025, to avoid confusion about the timeline.",
+        "Include direct quotes from the Karnataka Rakshana Vedike (KRV) to provide a fuller context of their demands and the reasons behind their protest.",
+        "Add more context about the significance of Sonu Nigam's relationship with Karnataka audiences, including any previous controversies or support he has received from them, to enhance understanding of the situation.",
+        "Ensure that the video message from Sonu Nigam is embedded directly in the article for readers to access it easily."
+      ],
+      "embed_opportunities": [
+        "Embed the official video message from Sonu Nigam to provide readers with direct access to his apology."
+      ]
+    }
+  },
+  {
+    "id": "88a59145-a0bc-49a6-aac1-776bab47ed76",
+    "headline": "Ishan Kishan Closes In on Three Major T20 Records Against New Zealand",
+    "slug": "ishan-kishan-three-t20-records-new-zealand",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the upcoming matches by specifying the exact dates for the series against New Zealand and Sri Lanka, as well as the significance of these matches in relation to Kishan's record chase.",
+        "Provide a direct quote or attribution from a credible source, such as a coach or cricket analyst, to add depth and authority to the reporting on Kishan's performance and potential records.",
+        "Include a brief context about the significance of these records in the broader landscape of T20 cricket, which would enhance completeness and provide readers with a better understanding of why these milestones matter."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the official ICC or a cricket news outlet that highlights Kishan's achievements or the upcoming series to enhance engagement and provide real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "483dd181-39a4-48ac-a07d-7973f1837ad8",
+    "headline": "Hardik Pandya May Not Return to Action Before IPL 2027",
+    "slug": "hardik-pandya-may-not-return-before-ipl-2027",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for Pandya's recovery by providing specific dates for when he is expected to start jogging and when he might return to full match fitness, if available. This would give readers a clearer understanding of his rehabilitation progress.",
+        "Include a quote or direct attribution from a medical professional or the BCCI regarding Pandya's injury and recovery plan to enhance credibility and provide authoritative insight on his situation.",
+        "Add context about the implications of Pandya's absence for the Indian cricket team, such as how it affects team dynamics or performance in upcoming series, to provide a more comprehensive view of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the BCCI or a relevant cricket authority providing updates on Pandya's injury status or the team's plans without him."
+      ]
+    }
+  },
+  {
+    "id": "6e90dce3-dae5-45b9-86b5-cb7cd752ae99",
+    "headline": "Dr Reddy's Wins DCGI Approval for Zytorvi in Advanced Esophageal Cancer",
+    "slug": "dr-reddys-wins-dcgi-approval-zytorvi-esophageal-cancer",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for when Zytorvi will be available to patients in India, including any expected launch dates or distribution plans.",
+        "Provide additional context on the significance of the 42% reduction in disease progression or death risk, such as how this compares to existing treatment options for advanced esophageal cancer.",
+        "Include a brief explanation of what esophageal squamous cell carcinoma is, as well as its symptoms and typical prognosis, to help readers understand the disease's impact.",
+        "Ensure consistent use of terminology when referring to the drug and its approval; for example, clarify that 'Zytorvi' is the brand name and 'toripalimab' is the generic name to avoid confusion."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement from Dr. Reddy's Laboratories or a relevant tweet from the CDSCO regarding the approval for better credibility and direct access to primary sources."
+      ]
+    }
+  }
+]

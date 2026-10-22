@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "dhs-final-rule-ends-automatic-work-permit-extensions-ead",
+  "article_slug": "dhs-final-rule-ends-automatic-work-permit-extensions-ead",
+  "article_id": "26d8b272-f6a6-4b53-8c44-ac048a1ab297",
+  "category": "Immigration",
+  "video": "reel-runs/2026-10-20-dhs-final-rule-ends-automatic-work-permit-extensions-ead/output/dhs-final-rule-ends-automatic-work-permit-extensions-ead.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Department_of_Homeland_Security_new_Headquarters_ceremony_%2832644743917%29.jpg/1280px-Department_of_Homeland_Security_new_Headquarters_ceremony_%2832644743917%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "local_path": "reel-runs/2026-10-20-dhs-final-rule-ends-automatic-work-permit-extensions-ead/output/hero.jpg",
+    "width": 1280,
+    "height": 1920,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "yunet (score 0.90)",
+    "has_face": true,
+    "box_source": [
+      572,
+      522,
+      92,
+      115
+    ],
+    "box_bg": [
+      494.0,
+      522.0,
+      92.0,
+      115.0
+    ],
+    "chin_bg": 637.0,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": 637.5,
+      "zone_top": 686,
+      "zone_h": 894,
+      "scale": 1.0,
+      "content_h": 234,
+      "block_top": 776,
+      "block_bottom": 1010,
+      "text_bbox": [
+        123,
+        776,
+        882,
+        1006
+      ],
+      "texts": [
+        "Immigration",
+        "AUTOMATIC WORK PERMIT EXTENSIONS END"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": 638.2,
+      "zone_top": 687,
+      "zone_h": 893,
+      "scale": 1.0,
+      "content_h": 338,
+      "block_top": 777,
+      "block_bottom": 1115,
+      "text_bbox": [
+        116,
+        777,
+        886,
+        1118
+      ],
+      "texts": [
+        "What Happened",
+        "DHS has permanently ended the 540-day automatic extension for work permit renewals filed on or after October 30, 2025."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": 639.0,
+      "zone_top": 687,
+      "zone_h": 893,
+      "scale": 1.0,
+      "content_h": 353,
+      "block_top": 777,
+      "block_bottom": 1130,
+      "text_bbox": [
+        104,
+        777,
+        918,
+        1135
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "540 DAYS",
+        "Automatic EAD extension for renewals that is now permanently ended"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": 639.8,
+      "zone_top": 688,
+      "zone_h": 892,
+      "scale": 1.0,
+      "content_h": 720,
+      "block_top": 774,
+      "block_bottom": 1494,
+      "text_bbox": [
+        135,
+        774,
+        875,
+        1493
+      ],
+      "texts": [
+        "By The Numbers",
+        "OCTOBER 30, 2025",
+        "Renewals filed on or after this date lose the extension",
+        "180 DAYS",
+        "How early a renewal can be filed before the card expires",
+        "OCTOBER 14, 2026",
+        "Date DHS published the final rule in the Federal Register"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": 640.7,
+      "zone_top": 689,
+      "zone_h": 891,
+      "scale": 1.0,
+      "content_h": 466,
+      "block_top": 779,
+      "block_bottom": 1245,
+      "text_bbox": [
+        118,
+        779,
+        843,
+        1250
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "H-4 spouses and green card applicants are among those affected",
+        "Indian applicants spend more years renewing EADs while they wait"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": 641.3,
+      "zone_top": 690,
+      "zone_h": 890,
+      "scale": 1.0,
+      "content_h": 242,
+      "block_top": 780,
+      "block_bottom": 1022,
+      "text_bbox": [
+        125,
+        780,
+        881,
+        1033
+      ],
+      "texts": [
+        "The Takeaway",
+        "Continued employment now depends on USCIS approving the renewal before the current card expires.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "pixabay-breaking-full.mp3",
+    "path": "music/pixabay-breaking-full.mp3"
+  },
+  "render_seconds": 337.4,
+  "mp4_bytes": 18242517
+}

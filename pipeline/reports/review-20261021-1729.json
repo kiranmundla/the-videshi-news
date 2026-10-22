@@ -1,0 +1,168 @@
+[
+  {
+    "id": "6904c3d3-f173-4c06-99f9-7a4f305b966c",
+    "headline": "India Inc Festive Revenue Holds Up as Margins Shrink in Q2",
+    "slug": "india-inc-festive-revenue-holds-up-margins-shrink-q2",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact dates for Q2 FY27, as well as the comparison with Q1 FY27, to enhance clarity for readers unfamiliar with fiscal year terminology.",
+        "Provide specific figures or percentages regarding the impact of the West Asia conflict and rupee depreciation on costs, as this would give readers a clearer understanding of the economic context.",
+        "Include a brief explanation of what the contraction in operating profit margins means for investors and businesses, potentially adding a direct quote from ICRA or another expert for credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official ICRA report or a relevant tweet from ICRA summarizing their findings to provide readers with direct access to the source of the analysis."
+      ]
+    }
+  },
+  {
+    "id": "8d65e9a0-54ee-4d31-ac74-8a0ade499712",
+    "headline": "Nvidia Packs Seven Vera Rubin Racks Into Truck-Shipped DSX Pod",
+    "slug": "nvidia-packs-seven-vera-rubin-racks-truck-shipped-dsx-pod",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for delivery by specifying when in early 2027 the pods will be available, as this is crucial for potential operators planning their AI capacity.",
+        "Provide a more detailed explanation of the significance of the 'time to first token' metric, including what it means for operators in practical terms, such as potential revenue implications or competitive advantages.",
+        "Include a direct quote or specific data from Nvidia's announcement to enhance attribution and provide readers with a clearer understanding of the company's perspective."
+      ],
+      "embed_opportunities": [
+        "Embed Nvidia's official announcement or a relevant tweet about the DSX Pod to provide readers with direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "cb7bc36c-3395-4faa-b994-4713cbddff39",
+    "headline": "Seven South OTT Releases This Week: Paradise, Dorothy Lead Streaming Lineup",
+    "slug": "seven-south-ott-releases-this-week-paradise-dorothy",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the US availability of the titles mentioned, as the article notes that it is not stated. Providing specific details on whether these titles will be available in the US would enhance completeness.",
+        "Include a brief summary or key themes of the series and films mentioned, as this would provide readers with context and help them understand what to expect from the content.",
+        "Ensure that the release dates are accurate and up-to-date, as the article mentions that Netflix has not formally announced the date for 'Dorothy'. This could mislead readers if the information changes."
+      ],
+      "embed_opportunities": [
+        "Embed the official Netflix announcement or social media posts regarding the release dates of 'The Paradise' and 'Dorothy' for verification and credibility."
+      ]
+    }
+  },
+  {
+    "id": "10a241db-b9c2-4c66-8f46-d57ae061c1e3",
+    "headline": "Leaks Suggest Galaxy S27 Pro, Ultra Get Horizontal Camera Bar",
+    "slug": "galaxy-s27-pro-ultra-horizontal-camera-bar-leaks",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the S27 series launch by providing specific dates or a more precise timeframe instead of vague 'January or February 2027'.",
+        "Include a statement on the implications of the battery size increase for users, such as expected improvements in battery life or charging times.",
+        "Add attribution to the specific sources of the leaked information, such as direct quotes or links to the original reports from Android Headlines and SammyGuru for transparency.",
+        "Provide context on how this design change compares to previous models, particularly in terms of user experience or market trends."
+      ],
+      "embed_opportunities": [
+        "Embed the official Samsung Twitter account or a relevant tweet discussing the leaks or upcoming products to enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "5e38e205-f17b-4e3e-9dba-e5a9b69f9a7b",
+    "headline": "Thyagarajan Takes 11 Wickets As Hyderabad Beat Andhra By 267 Runs",
+    "slug": "thyagarajan-11-wickets-hyderabad-beat-andhra-267-runs-ranji",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Thyagarajan's performance by including historical context, such as how his 11 wickets compare to previous records in the Ranji Trophy or for Hyderabad specifically.",
+        "Provide a brief overview of the implications of this victory for Hyderabad's standing in the Ranji Trophy, such as their current position in the group or potential next steps in the tournament."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight reel of Thyagarajan's performance or key moments from the match to enhance reader engagement."
+      ]
+    }
+  },
+  {
+    "id": "d49a0c9b-8c30-407d-ba7f-4391e0bfaecb",
+    "headline": "Abbott to Spin Off Nutrition Unit, Cuts 2026 Sales Growth Outlook",
+    "slug": "abbott-to-spin-off-nutrition-unit-cuts-2026-sales-growth-outlook",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the spin-off by specifying the expected date in 2027, as well as any key milestones leading up to it. This will provide readers with a clearer understanding of the timeline.",
+        "Include specific details about the implications of the sales growth forecast cut, such as how this might affect Abbott's stock price or investor sentiment, as well as any potential impact on consumers.",
+        "Provide additional context regarding the government contract loss and litigation over baby formula products, as this information is crucial for understanding the challenges faced by the Nutrition unit and the rationale behind the spin-off."
+      ],
+      "embed_opportunities": [
+        "Embed the official Abbott Laboratories announcement or press release regarding the spin-off for direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "64525127-4cd5-4fdc-b507-add7cab73c26",
+    "headline": "India Warns TV Channels on Anti-National Debates, Caps AI to Assistive Role",
+    "slug": "india-tv-channels-advisory-programme-code-ai-assistive",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the consequences of non-compliance with the advisory by providing specific examples of potential penalties or actions that could be taken against channels under the Cable Television Networks (Regulation) Act, 1995.",
+        "Include a brief explanation of the Programme Code and its significance to provide context for readers unfamiliar with the regulations governing television broadcasts in India.",
+        "Enhance the clarity of the advisory's requirements by breaking down the key points into bullet points or subheadings, making it easier for readers to digest the information quickly.",
+        "Add a timestamp or date for when the advisory was issued to emphasize its timeliness and relevance."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Ministry of Information and Broadcasting regarding the advisory for direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "d6044ecd-37b3-4847-b62c-c0808f55dac8",
+    "headline": "Rupee Beer Launches Diwali Campaign Linking Diyas, Food and Beer",
+    "slug": "rupee-beer-launches-diwali-campaign-linking-diyas-food-and-beer",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the campaign launch. The article mentions '2026 Diwali campaign' but does not specify when the campaign will start or any key dates leading up to Diwali 2026.",
+        "Provide more context about Rupee Beer\u2019s previous campaigns or initiatives to give readers a better understanding of the brand's history and its connection to Diwali celebrations.",
+        "Include specific details about the beer offerings, such as the types of beers available and their price points, to give readers a clearer idea of what they can expect.",
+        "Mention any partnerships or collaborations that Rupee Beer may have for this campaign, as this could enhance the credibility and reach of their initiative."
+      ],
+      "embed_opportunities": [
+        "Embed the official press release from Rupee Beer to provide readers with direct access to more detailed information about the campaign."
+      ]
+    }
+  },
+  {
+    "id": "98c2794b-8da1-4d64-b99a-ae4153ad3e36",
+    "headline": "Trump Jr. Privately Urged His Father Against the Iran War, Atlantic Reports",
+    "slug": "trump-jr-privately-urged-father-against-iran-war-atlantic",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events mentioned in the article, specifically the date of the strikes on February 28, as it is currently unclear which year is being referenced. This could confuse readers about the context of the conflict.",
+        "Provide more context regarding the Pew survey mentioned, including details such as the sample size, demographics, and methodology, to enhance the credibility of the statistic about public disapproval of Trump's handling of the war.",
+        "Include a direct quote from the Atlantic report to strengthen the attribution and provide readers with a clearer understanding of Trump Jr.'s stance and the implications of his private opposition."
+      ],
+      "embed_opportunities": [
+        "Embed the official Pew Research Center tweet or report that details the survey findings on public opinion regarding Trump's handling of the war to provide readers with direct access to this information."
+      ]
+    }
+  }
+]

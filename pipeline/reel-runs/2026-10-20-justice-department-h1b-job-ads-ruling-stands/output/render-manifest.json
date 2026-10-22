@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "justice-department-h1b-job-ads-ruling-stands",
+  "article_slug": "justice-department-h1b-job-ads-ruling-stands",
+  "article_id": "88f66e68-2b65-4bed-a499-3c99a9164d9a",
+  "category": "Immigration",
+  "video": "reel-runs/2026-10-20-justice-department-h1b-job-ads-ruling-stands/output/justice-department-h1b-job-ads-ruling-stands.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://media.telanganatoday.com/wp-content/uploads/2026/10/H-1B-job-ads-not-inherently-discriminatory-US-Justice-Department-upholds-ruling.jpg",
+    "local_path": "reel-runs/2026-10-20-justice-department-h1b-job-ads-ruling-stands/output/hero.jpg",
+    "width": 1280,
+    "height": 750,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "static-fallback (cv2 unavailable)",
+    "has_face": false,
+    "box_source": [
+      281,
+      75,
+      716,
+      300
+    ],
+    "box_bg": [
+      -375.6,
+      192.0,
+      1833.0,
+      768.0
+    ],
+    "chin_bg": null,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 270,
+      "block_top": 858,
+      "block_bottom": 1128,
+      "text_bbox": [
+        118,
+        858,
+        890,
+        1120
+      ],
+      "texts": [
+        "Immigration",
+        "H-1B-ONLY JOB ADS: NOT ILLEGAL ALONE"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 310,
+      "block_top": 858,
+      "block_bottom": 1168,
+      "text_bbox": [
+        125,
+        858,
+        880,
+        1172
+      ],
+      "texts": [
+        "What Happened",
+        "The Justice Department let stand a ruling that H-1B-only job ads are not illegal alone, dismissing a complaint over a Chicago jobs board."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 532,
+      "block_top": 858,
+      "block_bottom": 1390,
+      "text_bbox": [
+        115,
+        858,
+        886,
+        1395
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "13",
+        "House Republicans who asked the Justice Department to take up the case"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 755,
+      "block_top": 796,
+      "block_bottom": 1551,
+      "text_bbox": [
+        129,
+        796,
+        880,
+        1550
+      ],
+      "texts": [
+        "By The Numbers",
+        "60 DAYS",
+        "Review window Attorney General Todd Blanche let lapse",
+        "AUGUST 12",
+        "Date of the administrative law judge ruling that now stands",
+        "$5 MILLION",
+        "Instacart will pay to settle discrimination charges"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 466,
+      "block_top": 858,
+      "block_bottom": 1324,
+      "text_bbox": [
+        118,
+        858,
+        889,
+        1320
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Indian professionals account for over 70 per cent of H-1B holders",
+        "Challenging an ad now requires a nonselection, recruitment or termination claim"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 282,
+      "block_top": 858,
+      "block_bottom": 1140,
+      "text_bbox": [
+        125,
+        858,
+        874,
+        1151
+      ],
+      "texts": [
+        "The Takeaway",
+        "The ad alone is no longer the case, but the hiring decision still can be.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "breaking-news-background.mp3",
+    "path": "music/breaking-news-background.mp3"
+  },
+  "render_seconds": 324.9,
+  "mp4_bytes": 9280588
+}

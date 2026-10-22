@@ -1,0 +1,16 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa_error",
+  "article_slug": "justice-department-h1b-job-ads-ruling-stands",
+  "name": "justice-department-h1b-job-ads-ruling-stands",
+  "script": "reel-runs/2026-10-20-justice-department-h1b-job-ads-ruling-stands/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000518
+  },
+  "manifest": "reel-runs/2026-10-20-justice-department-h1b-job-ads-ruling-stands/output/render-manifest.json",
+  "video": "reel-runs/2026-10-20-justice-department-h1b-job-ads-ruling-stands/output/justice-department-h1b-job-ads-ruling-stands.mp4",
+  "detail": "No module named 'cv2'"
+}

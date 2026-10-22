@@ -204,5 +204,31 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "mdUdnvLdZGI",
+    "article_slug": "dhs-final-rule-ends-automatic-work-permit-extensions-ead",
+    "article_id": "26d8b272-f6a6-4b53-8c44-ac048a1ab297",
+    "title": "DHS Final Rule Permanently Ends Automatic Work Permit Extensions For Renewals #Shorts #Immigration",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-21T06:00:30.042255+00:00",
+    "video_path": "reel-runs/2026-10-20-dhs-final-rule-ends-automatic-work-permit-extensions-ead/output/dhs-final-rule-ends-automatic-work-permit-extensions-ead.mp4",
+    "video_sha256": "c5b8bdb95799ce5dc6c2bac41ad80619d8e098d6e783302ccd2eee0ffafda0e9",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "6kGD-tK1y38",
+    "article_slug": "schweikert-smarter-act-replace-h1b-lottery-merit-points",
+    "article_id": "ee4fd21d-28c1-438b-b66c-c176c973fbe9",
+    "title": "Schweikert SMARTER Act Would Replace H-1B Lottery With Merit Points System #Shorts #H1B",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-21T17:24:10.011788+00:00",
+    "video_path": "reel-runs/2026-10-21-schweikert-smarter-act-replace-h1b-lottery-merit-points/output-v2/schweikert-smarter-act-replace-h1b-lottery-merit-points.mp4",
+    "video_sha256": "acd31ff25a96c8fae21fb8aaf1b0aa56acecd07f0254cd5da2e07f3be9f418b1",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

@@ -1,0 +1,125 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "schweikert-smarter-act-replace-h1b-lottery-merit-points",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Schweikert SMARTER Act Would Replace H-1B Lottery With Merit Points System",
+        "numbers": [
+          1.0
+        ],
+        "entities": [
+          "Schweikert SMARTER Act Would Replace H-1B Lottery With Merit Points System"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the SMARTER Act replaces the H-1B lottery with a merit points system.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "A merit-points system could affect Indian professionals who face decades-long green card waits.",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions the bill could affect Indian professionals facing long green card waits.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "H.R. 10460 would scrap the lottery and set an initial cap of 85,000 visas under a new board",
+        "numbers": [
+          10460.0,
+          85000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms H.R. 10460 would scrap the lottery and set an initial cap of 85,000 visas.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The bill would remove per-country caps on employment-based immigration",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the bill would remove per-country caps on employment-based immigration.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The bill is in the House Judiciary Committee with no hearing scheduled and is not law",
+        "numbers": [],
+        "entities": [
+          "House Judiciary Committee"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the bill is in committee, has no hearing scheduled, and is not law.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Schweikert SMARTER Act Would Replace H-1B Lottery With Merit Points System",
+        "numbers": [
+          1.0
+        ],
+        "entities": [
+          "Schweikert SMARTER Act Would Replace H-1B Lottery With Merit Points System"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim repeats the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000369
+    }
+  },
+  "verdict": "pass"
+}

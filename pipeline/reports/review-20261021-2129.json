@@ -1,0 +1,186 @@
+[
+  {
+    "id": "1a185974-55dd-4a16-a331-c132cee2549f",
+    "headline": "Short on Sleep, India Open New Zealand T20 Series on Two Days' Rest",
+    "slug": "india-short-on-sleep-new-zealand-t20-series-opener-iyer",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events leading up to the match, including specific dates for the Asian Games and the home series against the West Indies, to provide context for the team's fatigue.",
+        "Include a quote or statement from a New Zealand player or coach to provide balance and perspective on the upcoming series.",
+        "Add specific details about the conditions expected in Christchurch, such as weather forecasts or pitch reports, to give readers a clearer understanding of what to expect during the match.",
+        "Ensure that the headline accurately reflects the urgency and context of the situation, possibly rephrasing it to emphasize the challenges faced by the team due to their limited rest."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ICC account regarding the match schedule or conditions to provide real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "6870c106-28e7-4991-991b-c152884a1008",
+    "headline": "Diwali 2026 Falls on Sunday, November 8: The Five-Day Calendar for US and India",
+    "slug": "diwali-2026-november-8-five-day-calendar-us-india",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the time zones for the muhurat timings provided. While New York, Chicago, Houston, and the Bay Area are mentioned, it would be helpful to specify that these times are in local time for each city to avoid confusion.",
+        "Include a brief explanation of the significance of each day of Diwali for readers who may not be familiar with the festival. This could enhance completeness and provide context for the five-day celebration.",
+        "Add a section or bullet points summarizing key dates and their significance for quick reference. This would improve clarity and allow readers to easily digest the information.",
+        "Consider mentioning any potential travel impacts or considerations for families planning to celebrate Diwali, especially given the proximity of Dhanteras to the weekend."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from a reputable Hindu organization or cultural group that provides additional context or resources for celebrating Diwali, which could enhance the article's authority."
+      ]
+    }
+  },
+  {
+    "id": "28b1c572-9a41-4ba9-bf79-050a52e6f9ab",
+    "headline": "105 Lawmakers Demand FBI Hate-Crime Probe Into Foiled Aurora Hindu Temple Shooti",
+    "slug": "105-lawmakers-fbi-hate-crime-probe-aurora-hindu-temple-shooting",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the deadline for the FBI's response by specifying what kind of written answers are expected from them regarding bias and protection for houses of worship.",
+        "Include more context about the implications of the lawmakers' letter and what actions might follow if the FBI does not respond adequately by the deadline.",
+        "Provide a brief background on the significance of the Sri Venkateswara Swami (Balaji) Temple in the community to enhance the article's depth."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from Rep. Raja Krishnamoorthi's office regarding the letter to the FBI for direct attribution and additional context."
+      ]
+    }
+  },
+  {
+    "id": "b24513c8-bbd2-472c-8048-6d536d99c132",
+    "headline": "Putin Frees US Teacher Hubbard as Witkoff Pushes to Resume Three-Way Ukraine Tal",
+    "slug": "putin-frees-us-teacher-hubbard-witkoff-three-way-ukraine-talks",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date of Hubbard's release and the Oslo talks to enhance completeness and clarity.",
+        "Provide direct quotes from Witkoff or Putin regarding the discussions to improve attribution and depth of reporting.",
+        "Include more context about the significance of Hubbard's release in relation to US-Russia relations or ongoing negotiations to give readers a better understanding of the implications."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the US State Department regarding the release of Stephen Hubbard or the ongoing negotiations to provide official context."
+      ]
+    }
+  },
+  {
+    "id": "873e326f-46e3-4e37-b422-cfb5f35b51f3",
+    "headline": "Ravi Kishan Plays Lord Ram for First Time at Delhi Ramleela, Photos Go Viral",
+    "slug": "ravi-kishan-lord-ram-delhi-ramleela-viral-photos-dussehra",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Ravi Kishan's role as Lord Ram in the context of the Ramleela tradition, as this would provide readers with a deeper understanding of its cultural importance.",
+        "Include more specific details about the event, such as the location and time of the Ramleela performance, to enhance completeness and context for readers unfamiliar with the event.",
+        "Provide a quote or reaction from a notable figure or audience member regarding Kishan's performance to add depth and perspective to the coverage."
+      ],
+      "embed_opportunities": [
+        "Embed a video clip of Ravi Kishan's performance or a highlight reel from the Ramleela event to give readers a visual connection to the story."
+      ]
+    }
+  },
+  {
+    "id": "a6fa81d1-216e-4413-9aaf-ac62729fda5f",
+    "headline": "Happy Marriage Alone Won't Slow Ageing \u2014 Shared Habits Decide, Studies Find",
+    "slug": "happy-marriage-ageing-couples-routines-biological-ageing-health",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the University of Missouri study by specifying when results are expected or when the study will be completed, as this would provide readers with a clearer understanding of the research's relevance.",
+        "Include a brief explanation of what telomeres are and why their length is significant in the context of aging, as this would enhance reader comprehension of the study's findings.",
+        "Add a direct quote from one of the researchers involved in the studies to provide authoritative attribution and depth to the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official CDC guidelines on diabetes prevention to provide readers with direct access to actionable health information."
+      ]
+    }
+  },
+  {
+    "id": "bb975268-98f9-4521-9e5e-7dd3ac817924",
+    "headline": "Pune Restaurant Bills to Rise 10-15% Before Diwali as Costs Surge",
+    "slug": "pune-restaurant-bills-rise-10-15-percent-before-diwali-costs",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the price increases by specifying the exact date when the new prices will take effect, rather than just 'in the next eight to 10 days.'",
+        "Provide a more detailed breakdown of how much specific items are expected to increase in price, as this would give readers a clearer understanding of the impact on their dining expenses.",
+        "Include quotes or data from a wider range of restaurant operators to provide a more comprehensive view of the situation, rather than relying heavily on a few sources.",
+        "Explain the potential long-term implications of these price increases on consumer behavior and restaurant patronage, which would add depth to the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Indian Hotel and Restaurant Association (AHAR) regarding the price increases to provide official context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "bf2380de-edad-4fc3-b597-edd859b81582",
+    "headline": "M&M Financial Profit Climbs 61% Consolidated; Eternal Profit Surges 92% but Miss",
+    "slug": "q2-results-mm-financial-profit-61-eternal-profit-92",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the profit figures by providing context on what these numbers mean for investors or the market. For example, explain how the profit growth compares to industry averages or historical performance.",
+        "Include specific analyst estimates for Eternal's profit to give readers a clearer picture of the expectations that were missed. This could help contextualize the disappointment in the earnings report.",
+        "Add a brief summary of the implications of Blinkit's expansion costs on future profitability. This could help readers understand the potential risks associated with the growth strategy.",
+        "Ensure consistency in terminology and figures. For instance, clarify whether the profit figures are reported in crores or billions, as this could lead to confusion."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or the companies involved that discusses the earnings results or market reactions. This could provide real-time insights and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "87490a37-eb33-40e7-b79a-ee1fc6167619",
+    "headline": "Bangladesh Measles Death Toll Reaches 1,205 in World's Worst Outbreak This Year",
+    "slug": "bangladesh-measles-deaths-1205-worst-global-outbreak",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the outbreak by specifying when the first cases were reported and how the situation has evolved since then. This will provide readers with a clearer understanding of the outbreak's progression.",
+        "Include a brief explanation of the implications of the vaccination coverage drop and what it means for public health in Bangladesh. This context will help readers understand the severity of the situation better.",
+        "Ensure that the statistics presented are consistently attributed to their sources. For example, clarify which organization provided the data on vaccination coverage and the death toll, as this adds credibility to the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official WHO tweet regarding the measles outbreak for authoritative context and updates."
+      ]
+    }
+  },
+  {
+    "id": "94b93108-a21e-4677-98c4-80cdcc847736",
+    "headline": "Jailer 2 Beats Leo in Kerala in Seven Days, Becomes Biggest Tamil Grosser in Sta",
+    "slug": "jailer-2-kerala-box-office-day-7-beats-leo-biggest-tamil-grosser",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the films mentioned by specifying the exact release dates for 'Leo' and 'Vikram' to provide better context for the reader.",
+        "Include a direct quote from a credible source or industry expert to enhance the article's attribution and authority regarding the significance of this box office milestone.",
+        "Provide a brief analysis or comment on what this record means for the future of Tamil cinema in Kerala, which could help readers understand the broader implications of the achievement."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from AB George or a relevant industry tracker confirming the box office figures for Jailer 2 and Leo."
+      ]
+    }
+  }
+]

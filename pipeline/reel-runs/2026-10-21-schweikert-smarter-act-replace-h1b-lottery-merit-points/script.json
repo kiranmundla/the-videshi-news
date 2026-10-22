@@ -1,0 +1,32 @@
+{
+  "diaspora_bullets": [
+    "Per-country green card caps would be removed",
+    "Bill is in committee \u2014 current rules still apply"
+  ],
+  "hook_line": "BILL WOULD SCRAP H-1B LOTTERY",
+  "hook_stat": {
+    "big": "85,000",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Initial cap under the proposed merit-based system"
+  },
+  "key_entities": [
+    "David Schweikert",
+    "SMARTER Act",
+    "H-1B",
+    "House Judiciary Committee"
+  ],
+  "news_summary": "A bill by Rep. David Schweikert would replace the H-1B lottery with a merit-based points system starting at 85,000 visas.",
+  "payoff": "Nothing changes yet \u2014 the bill is in committee and is not law.",
+  "stats": [
+    {
+      "big": "H.R. 10460",
+      "label": "SMARTER Act bill number in the House"
+    },
+    {
+      "big": "26-30",
+      "label": "Age range with the highest age-related scores"
+    }
+  ],
+  "story_mood": "tense",
+  "versus": ""
+}

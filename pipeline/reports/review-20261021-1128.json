@@ -1,0 +1,81 @@
+[
+  {
+    "id": "8ec20581-5e3a-4b0b-89b6-9c73ad56c362",
+    "headline": "Meethe Mein Kya Hai \u2013 Ritwik Bhowmik, Ayesha Raza Trailer Out",
+    "slug": "meethe-mein-kya-hai-ritwik-bhowmik-ayesha-raza-trailer-out",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Ensure the headline follows the 'Film Teaser/Trailer Out' format. It should be 'Meethe Mein Kya Hai \u2013 Ritwik Bhowmik, Ayesha Raza Trailer Out'.",
+        "Clarify the trailer drop date in the body to avoid redundancy; it is mentioned twice."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "ae3a11c6-6e40-4b11-abc9-5ecf39f5c9c0",
+    "headline": "Meta Platforms Set to Report Earnings Amidst Market Scrutiny",
+    "slug": "happening-2026-10-21-meta-platforms-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by discussing how Meta's earnings report could impact Indian NRIs who invest in US tech stocks. For example, mention potential fluctuations in stock prices and how that might affect their investment portfolios.",
+        "Include specific financial metrics such as expected revenue figures or analyst predictions for Meta's earnings to provide a clearer picture of what this means for NRI investors. For instance, if analysts expect earnings per share (EPS) of $3.00, highlight this figure and its implications for stock performance.",
+        "Add a section that outlines potential action steps for NRIs, such as when to consider buying or selling Meta shares based on the earnings report, or how to adjust their investment strategies in response to the report's outcomes.",
+        "Provide context on how Meta's performance may affect the Indian market or tech investments, especially for NRIs who may be considering diversifying their portfolios."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Meta or a financial analyst discussing the earnings report to provide real-time insights and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "1ac506fb-7bbc-4436-ae60-3db4b9d27fd1",
+    "headline": "IBM Earnings Preview: Key Insights Ahead of Q3 Report",
+    "slug": "happening-2026-10-21-international-business-machines-corporation-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Enhance the diaspora/NRI angle by including insights on how IBM's performance might affect Indian investors or NRIs holding IBM stocks, such as potential impacts on stock prices or dividends in rupee terms.",
+        "Provide specific financial metrics, such as projected earnings per share (EPS) or revenue figures, to answer the question 'What does this mean for ME?' for NRIs who might be considering investing in IBM or are already shareholders.",
+        "Include a section that outlines key dates for IBM's earnings report and subsequent investor calls, along with any relevant deadlines for NRI investors to consider in relation to their investments.",
+        "Add context about IBM's operations in India or partnerships with Indian companies, which would resonate with the NRI audience and provide a more localized perspective."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from IBM's official account or a financial analyst discussing the earnings report to provide real-time insights and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "584b5247-d734-4dc0-aa31-117918d7d17b",
+    "headline": "AT&T Earnings Preview: Key Insights Ahead of Q3 Report",
+    "slug": "happening-2026-10-21-at-t-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "1. Strengthen the diaspora angle by including specific implications for NRIs who might be invested in AT&T or are considering investing in US telecommunications stocks. For example, mention how fluctuations in AT&T's stock price could impact the portfolios of Indian investors living abroad.",
+        "2. Provide concrete financial specifics such as the expected earnings per share (EPS) for the upcoming report, any anticipated changes in dividends, and how these figures compare to previous quarters. This would help NRIs understand the potential financial impact on their investments.",
+        "3. Include a section that outlines actionable steps for NRIs, such as how to invest in AT&T stocks, relevant tax implications for Indian investors, and any deadlines for making investment decisions based on the earnings report."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from AT&T or a financial analyst discussing the upcoming earnings report to provide real-time insights and engage readers."
+      ]
+    }
+  }
+]

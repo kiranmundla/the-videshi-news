@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-20-dhs-final-rule-ends-automatic-work-permit-extensions-ead/output/dhs-final-rule-ends-automatic-work-permit-extensions-ead.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1280,
+        1920
+      ],
+      "manifest_dims": [
+        1280,
+        1920
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 2302.4,
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Department_of_Homeland_Security_new_Headquarters_ceremony_%2832644743917%29.jpg/1280px-Department_of_Homeland_Security_new_Headquarters_ceremony_%2832644743917%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-20-dhs-final-rule-ends-automatic-work-permit-extensions-ead/output/qa/frames/frame-hook.png",
+      "text_px_detected": 22851,
+      "edge": {
+        "pass": true,
+        "offending_px": 4,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          495,
+          526,
+          89,
+          116
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 142.3,
+        "delta": 111.6
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-20-dhs-final-rule-ends-automatic-work-permit-extensions-ead/output/qa/frames/frame-news.png",
+      "text_px_detected": 32560,
+      "edge": {
+        "pass": true,
+        "offending_px": 164,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          494,
+          521,
+          91,
+          122
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 142.8,
+        "delta": 110.8
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-20-dhs-final-rule-ends-automatic-work-permit-extensions-ead/output/qa/frames/frame-hero.png",
+      "text_px_detected": 24774,
+      "edge": {
+        "pass": true,
+        "offending_px": 97,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          493,
+          520,
+          92,
+          123
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 249.9,
+        "bg_luminance": 131.2,
+        "delta": 118.8
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-20-dhs-final-rule-ends-automatic-work-permit-extensions-ead/output/qa/frames/frame-grid.png",
+      "text_px_detected": 65057,
+      "edge": {
+        "pass": true,
+        "offending_px": 9,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          493,
+          521,
+          91,
+          122
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.1,
+        "bg_luminance": 103.8,
+        "delta": 149.3
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-20-dhs-final-rule-ends-automatic-work-permit-extensions-ead/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 33772,
+      "edge": {
+        "pass": true,
+        "offending_px": 116,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.91)",
+        "box": [
+          493,
+          519,
+          93,
+          125
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 120.1,
+        "delta": 133.8
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-20-dhs-final-rule-ends-automatic-work-permit-extensions-ead/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 11856,
+      "edge": {
+        "pass": true,
+        "offending_px": 47,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          493,
+          520,
+          93,
+          124
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.9,
+        "bg_luminance": 144.5,
+        "delta": 108.4
+      }
+    }
+  ]
+}

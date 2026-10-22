@@ -1,0 +1,15 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "schweikert-smarter-act-replace-h1b-lottery-merit-points",
+  "name": "schweikert-smarter-act-replace-h1b-lottery-merit-points",
+  "script": "reel-runs/2026-10-21-schweikert-smarter-act-replace-h1b-lottery-merit-points/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "news_summary"
+    ],
+    "llm_cost_usd": 0.000506
+  }
+}

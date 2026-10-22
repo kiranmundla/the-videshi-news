@@ -1558,5 +1558,16 @@
     "top_story_slug": "early-flu-season-mutated-h1n1-strain-concern-younger-americans",
     "quick_hit_count": 5,
     "deadline_count": 4
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-21T13:58:39.786729+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 21, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "antique-jio-ipo-17-percent-upside-tariff-hike",
+    "quick_hit_count": 5,
+    "deadline_count": 3
   }
 ]
