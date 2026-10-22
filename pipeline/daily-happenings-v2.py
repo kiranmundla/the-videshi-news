@@ -968,6 +968,21 @@ def _company_name_tokens(name: str) -> list[str]:
     return toks
 
 
+# Companies whose coverage almost always uses a short form that shares NO
+# token with the legal name on the Nasdaq calendar label. Without an alias,
+# headline_names_company can never match their results coverage (found
+# 2026-10-21: an "IBM Q3 Earnings…" headline failed against the label name
+# "International Business Machines Corporation"). Keyed by the normalized
+# token-joined name; values are extra accepted headline forms.
+_COMPANY_ALIASES = {
+    "international business machines": [["ibm"]],
+}
+
+
+def _alias_forms(name: str) -> list[list[str]]:
+    return _COMPANY_ALIASES.get(" ".join(_company_name_tokens(name)), [])
+
+
 def _company_headline_forms(name: str) -> list[list[str]]:
     """Acceptable headline forms for a company name, as token lists:
     the full name; shorter prefixes that still contain a distinctive token
@@ -990,6 +1005,7 @@ def _company_headline_forms(name: str) -> list[list[str]]:
             if t.endswith(suf) and len(t) - len(suf) >= 4:
                 forms.append([t[: -len(suf)]])
                 break
+    forms.extend(_alias_forms(name))
     seen, out = set(), []
     for f in forms:
         k = tuple(f)
@@ -1073,6 +1089,19 @@ def _company_search_patterns(name: str) -> list[str]:
         c = "".join(form)
         if len(c) >= 4:
             patterns.append(f"*{c}*")
+    # Alias short forms (e.g. 'ibm') — recall for companies whose coverage
+    # never spells out the legal name.
+    for form in _alias_forms(name):
+        patterns.append("*" + " ".join(form) + "*")
+        c = "".join(form)
+        if len(c) >= 3:
+            patterns.append(f"*{c}*")
+    # The raw name as printed (e.g. 'AT&T'): the token-joined phrase
+    # ('at t') never appears in a real headline, so punctuated names were
+    # unfetchable and fired false RESULTS GAPs (2026-10-21, AT&T).
+    raw = (name or "").strip().lower()
+    if raw and raw != " ".join(toks) and "%" not in raw and "_" not in raw:
+        patterns.append(f"*{raw}*")
     return list(dict.fromkeys(patterns))
 
 
