@@ -68,6 +68,8 @@ STATE_DIR = os.path.join(HERE, ".state")
 ELIGIBLE_CATEGORIES = {"sports", "entertainment"}
 SEARCH_UNITS_PER_CALL = 100  # YouTube Data API search.list cost
 MAX_SEARCHES_PER_RUN = 20
+MAX_CHANNELS_PER_ARTICLE = 4   # cap on channels actually searched per article
+MAX_QUERIES_PER_ARTICLE = 5    # cap on search queries built per article
 RECENCY_BEFORE_DAYS = 14   # highlights may precede the write-up slightly
 RECENCY_AFTER_DAYS = 2     # ...or land just after publication
 
@@ -156,12 +158,59 @@ def load_official_channels():
     return entries
 
 
+def _name_fragments(name):
+    """Multi-word fragments of a channel name ('New Zealand Cricket' ->
+    {'new zealand', 'zealand cricket', 'new zealand cricket'}). A single
+    generic word ('cricket') is never a fragment — it proves nothing."""
+    words = (name or "").lower().split()
+    frags = set()
+    for i in range(len(words)):
+        for j in range(i + 2, len(words) + 1):
+            frags.add(" ".join(words[i:j]))
+    return frags
+
+
+def _channel_specificity(entry, matched_terms, headline_l, haystack):
+    """Rank key for a mapped channel — more specific mappings first.
+
+    A generic term like 'cricket' matches ~11 channels; without ranking
+    the per-run search budget dies in file order before the article's
+    actual rights holder is reached. Signals, strongest first:
+      1. the channel itself is named in the headline
+      2. a matched term is multi-word ('rugby league', 'world cup')
+      3. a multi-word fragment of the channel name ('new zealand' from
+         'New Zealand Cricket') appears in the headline
+      4. ... or anywhere in the headline+body haystack
+      5. the channel's domain word ('rugby league', 'kabaddi') is in
+         the headline
+      6. a matched term appears in the headline (not only the body)
+      7. longest matched term, as a final tiebreak
+    Ties keep allowlist file order (stable sort).
+    """
+    name_l = entry["name"].lower()
+    frags = _name_fragments(entry["name"])
+    domain = (entry.get("domain") or "").lower()
+    return (
+        name_l in headline_l,
+        any(len(t.split()) > 1 for t in matched_terms),
+        any(f in headline_l for f in frags),
+        any(f in haystack for f in frags),
+        bool(domain) and domain in headline_l,
+        any(t in headline_l for t in matched_terms),
+        max((len(t) for t in matched_terms), default=0),
+    )
+
+
 def channels_for_article(article, channels):
-    """Rights holders this article plausibly belongs to. Returns [(entry, why)].
+    """Rights holders this article plausibly belongs to, ranked by
+    mapping specificity (see _channel_specificity). Returns [(entry, why)].
 
     Conservative by design: category must be eligible AND match — a
     match_term hit in headline/body, or the channel name itself named in
-    the headline. No mapping, no search, no embed.
+    the headline. No mapping, no search, no embed. The full ranked list
+    is returned; callers that SEARCH cap themselves at
+    MAX_CHANNELS_PER_ARTICLE (discovery users like official_x_candidates
+    keep the whole list — handles cost nothing until apply time).
     """
     category = (article.get("category") or "").lower()
     if category not in ELIGIBLE_CATEGORIES:
@@ -169,18 +218,23 @@ def channels_for_article(article, channels):
     headline = (article.get("headline") or "")
     haystack = (headline + "\n" + (article.get("body") or "")[:2000]).lower()
     headline_l = headline.lower()
-    mapped = []
+    scored = []
     for entry in channels:
         if category not in (entry.get("categories") or []):
             continue
-        for term in entry.get("match_terms") or []:
-            if term and term in haystack:
-                mapped.append((entry, f"match_term '{term}'"))
-                break
+        matched = [t for t in (entry.get("match_terms") or [])
+                   if t and t in haystack]
+        if matched:
+            why = f"match_term '{matched[0]}'"
+        elif entry["name"].lower() in headline_l:
+            matched = [entry["name"].lower()]
+            why = "channel named in headline"
         else:
-            if entry["name"].lower() in headline_l:
-                mapped.append((entry, "channel named in headline"))
-    return mapped
+            continue
+        key = _channel_specificity(entry, matched, headline_l, haystack)
+        scored.append((key, entry, why))
+    scored.sort(key=lambda r: r[0], reverse=True)
+    return [(entry, why) for _key, entry, why in scored]
 
 
 # ─── People / event extraction (for the strong title match) ─────────────────
@@ -307,6 +361,36 @@ def search_channel_videos(token, channel_id, query, max_results=6,
     return out
 
 
+# Team/country names for team-match queries. headline_people() only
+# emits multi-word capitalized runs, so a lone country name in a
+# headline ('India Eye 2-0 Lead...') never becomes a phrase — and
+# person-surname queries find only channel filler on team fixtures,
+# whose highlights are titled '<Team> v <Team> | HIGHLIGHTS'. The list
+# covers the allowlist's team sports (cricket, rugby league, football).
+_TEAM_COUNTRIES = (
+    "india", "pakistan", "sri lanka", "bangladesh", "afghanistan",
+    "new zealand", "australia", "england", "south africa", "west indies",
+    "ireland", "zimbabwe", "scotland", "wales", "netherlands", "namibia",
+    "nepal", "oman", "united arab emirates", "papua new guinea",
+    "france", "samoa", "tonga", "fiji", "lebanon", "cook islands",
+    "argentina", "brazil", "germany", "spain", "italy", "portugal",
+    "belgium", "croatia", "uruguay", "mexico", "united states", "canada",
+    "japan", "south korea", "morocco", "nigeria", "ghana", "cameroon",
+)
+
+
+def _team_entities(article):
+    """Team/country names appearing in the headline, in headline order."""
+    headline = (article.get("headline") or "").lower()
+    hits = []
+    for name in _TEAM_COUNTRIES:
+        m = re.search(r"\b" + re.escape(name) + r"\b", headline)
+        if m:
+            hits.append((m.start(), name))
+    hits.sort()
+    return [name for _pos, name in hits]
+
+
 def build_search_queries(article, people):
     """Search queries for a channel-scoped search, most specific first.
 
@@ -317,6 +401,13 @@ def build_search_queries(article, people):
     surnames + the event phrase ('Singh Sherbini Silicon Valley Open');
     fallback = the lead person's full name ('Anahat Singh'), which is
     how these channels title their uploads.
+
+    Team fixtures get team-match queries AFTER the person pair (person
+    queries stay first and unchanged): '<A> <B> highlights',
+    '<A> v <B>', '<B> highlights' — the shapes rights holders actually
+    title match uploads with ('New Zealand v India | HIGHLIGHTS').
+    Queries only SHAPE discovery; the gate in gate_candidate() decides.
+    Total queries capped at MAX_QUERIES_PER_ARTICLE.
     """
     person_phrases = [p for p in people
                       if not ({w.lower() for w in p.split()}
@@ -341,6 +432,18 @@ def build_search_queries(article, people):
     for q in (primary, fallback):
         if q and q not in queries:
             queries.append(q)
+    teams = _team_entities(article)
+    team_queries = []
+    if len(teams) >= 2:
+        team_queries = [f"{teams[0]} {teams[1]} highlights",
+                        f"{teams[0]} v {teams[1]}",
+                        f"{teams[1]} highlights"]
+    elif teams:
+        team_queries = [f"{teams[0]} highlights"]
+    for q in team_queries:
+        if q not in queries:
+            queries.append(q)
+    queries = queries[:MAX_QUERIES_PER_ARTICLE]
     return queries or [" ".join(sorted(_content_words(
         article.get("headline") or ""))[:4])]
 
@@ -514,6 +617,13 @@ def official_video_for_article(article, token=None, search_fn=None,
     people = headline_people(article.get("headline") or "")
     queries = build_search_queries(article, people)
     decisions, best = [], None
+    if len(mapped) > MAX_CHANNELS_PER_ARTICLE:
+        decisions.append({
+            "reason": f"{len(mapped)} channels mapped; searching top "
+                      f"{MAX_CHANNELS_PER_ARTICLE} by specificity: "
+                      + ", ".join(e["name"] for e, _w in
+                                  mapped[:MAX_CHANNELS_PER_ARTICLE])})
+        mapped = mapped[:MAX_CHANNELS_PER_ARTICLE]
     for entry, why in mapped:
         results = []
         for query in queries:
@@ -621,7 +731,7 @@ def main():
                 counts.get("search_budget_exhausted", 0) + 1
             continue
         if mapped:
-            searches += len(mapped)
+            searches += min(len(mapped), MAX_CHANNELS_PER_ARTICLE)
         res = official_video_for_article(art, token=token, channels=channels)
         counts[res["status"]] = counts.get(res["status"], 0) + 1
         x_new = official_x_candidates(art, channels)
