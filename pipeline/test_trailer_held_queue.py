@@ -268,5 +268,41 @@ outcome, _ = attempt_brief_fn("gajabraat", [GAJAB_DROP], CHANNELS, [],
 check("queue: failed insert outcome is 'failed' (retryable)",
       outcome == "failed")
 
+# -------------------- phantom-key re-keying (2026-10-23)
+# A queue entry born from a dialogue-line title carries a phantom key;
+# its drops re-key to the real film, so the retry works the real key,
+# _held_entry_for still finds the entry (first_held_at/attempts carry
+# over), and dequeue under the real key removes the phantom entry.
+_held_entry_for = _ns["_held_entry_for"]
+DNK_DROP = {
+    "video_id": "WWBWDkWZjgg",
+    "title": "Manam kooda families ey kada saar \U0001f642 | #DNKTeaser "
+             "Out Now | Mouli | Sushmita Shetty | Sreenu Kambala",
+    "published": "2026-10-22T12:58:00+00:00",
+    "description": "Manam kooda families ey kada saar, Donga Naa Koduku "
+                   "Teaser Out Now Video on @MythriMovieMakers \n\n"
+                   "Donga Naa Koduku is an Upcoming Telugu movie ft. "
+                   "Mouli, Sushmita Shetty & others.",
+    "channel": "Mythri Movie Makers",
+}
+held2 = {}
+queue_hold(held2, "manamkoodafamilieseykadasaar", [DNK_DROP],
+           ["release date"], "2026-10-22T16:12:25+00:00", attempts=5)
+work3 = merge_held_into_groups([], held2)
+check("queue: phantom-key entry retries under the real film key",
+      len(work3) == 1 and work3[0][0] == "donganaakoduku")
+qk, entry = _held_entry_for(held2, "donganaakoduku")
+check("queue: _held_entry_for finds the phantom entry by the real key",
+      qk == "manamkoodafamilieseykadasaar" and entry["attempts"] == 5)
+dnk_fresh = dict(DNK_DROP, video_id="otherVid1",
+                 title="Donga Naa Koduku - Official Teaser | Mouli")
+work4 = merge_held_into_groups([["donganaakoduku", [dnk_fresh]]], held2)
+check("queue: fresh group unions phantom-key queued drops, keeps key",
+      len(work4) == 1 and work4[0][0] == "donganaakoduku"
+      and len(work4[0][1]) == 2)
+dequeue_film(held2, "donganaakoduku")
+check("queue: dequeue by the real key removes the phantom entry",
+      held2 == {})
+
 print(f"\n{total - fails}/{total} pass")
 sys.exit(1 if fails else 0)

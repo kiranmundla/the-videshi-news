@@ -310,5 +310,75 @@ check("merge: cross-run match finds the Ramayana brief for Trailer 2",
             "slug": "ramayana-rise-of-a-legend-trailer-out",
             "id": "x", "body": "", "sources": []}]) is not None)
 
+# ----------------- 'Series directed by' type inference (2026-10-23)
+# Kauriburir Mandir held on 'type': hoichoi's teaser states the type in
+# its own announcement line ('Series directed by Sayantan Ghosal
+# premieres 6th November'), which no existing pattern read. Fixture is a
+# trimmed copy of the real held drop (.state/trailer-watch-held.json).
+drop_key = _ns["drop_key"]
+KAURI_DESC = (
+    "ঘন জঙ্গলের গভীরে লুকিয়ে আছে এমন এক অভিশাপ।\n\n"
+    "#KauriburirMandir: Official Teaser | Series directed by Sayantan "
+    "Ghosal premieres 6th November, only on #hoichoi.\n\n"
+    "Jeetu Kamal Solanki Roy Paoli Dam Saswata Chatterjee Aniruddha "
+    "Gupta Debopriyo Mukherjee Avik Sarkar Nabarun Bose")
+check("type: 'Series directed by' infers Series (Kauriburir Mandir)",
+      parse_description(KAURI_DESC)[1] == "Series")
+check("type: 'The series premieres' clause infers Series",
+      parse_description("The series premieres November 6, only on "
+                        "hoichoi.")[1] == "Series")
+check("type: 'film series premieres' does NOT infer Series",
+      parse_description("The film series premieres its third chapter "
+                        "this Diwali.")[1] is None)
+check("type: 'web series directed by' still infers Series",
+      parse_description("A web series directed by Ananya Rao, coming "
+                        "soon.")[1] == "Series")
+
+CHANNELS3 = dict(CHANNELS2)
+CHANNELS3["Hoichoi"] = {"language": "Bengali", "industry": "streamer"}
+kauri_drop = {
+    "video_id": "diDs33qgGNI",
+    "title": "Official Teaser - Kauriburir Mandir | Jeetu Kamal, Paoli "
+             "Dam | Sayantan Ghosal | 6 NOV | hoichoi",
+    "published": "2026-10-22T11:30:28+00:00",
+    "description": KAURI_DESC,
+    "channel": "Hoichoi",
+}
+art = build_brief_article([kauri_drop], CHANNELS3)
+check("gate: Kauriburir Mandir passes once type is read from the drop",
+      art["card_complete"] is True and art["card_missing"] == [])
+check("gate: Kauriburir Mandir card type is Series",
+      '<div class="vdc-stat-val">Series</div>' in art["body"])
+check("gate: Kauriburir Mandir card release is Nov 6, 2026",
+      '<div class="vdc-stat-val">Nov 6, 2026</div>' in art["body"])
+
+# ----------------- dialogue-line title keying (2026-10-23)
+# Mythri titled the Donga Naa Koduku teaser with a dialogue line, so the
+# drop keyed a phantom film and could not merge into the published brief.
+DNK_TITLE = ("Manam kooda families ey kada saar \U0001f642 | #DNKTeaser "
+             "Out Now | Mouli | Sushmita Shetty | Sreenu Kambala")
+DNK_DESC = (
+    "Manam kooda families ey kada saar, Donga Naa Koduku Teaser Out Now "
+    "Video on @MythriMovieMakers \n\n"
+    "Donga Naa Koduku is an Upcoming Telugu movie ft. Mouli, Sushmita "
+    "Shetty & others. Directed by Sreenu Kambala.\n\n"
+    "#DongaNaaKodukuTeaser #DongaNaaKoduku #Mouli #SushmitaShetty")
+check("key: dialogue-line title keys via description announcement",
+      drop_key({"title": DNK_TITLE, "description": DNK_DESC})
+      == "donganaakoduku")
+check("key: announcement corroborating the title keeps the title key",
+      drop_key({"title": "Donga Naa Koduku - Official Teaser | Mouli",
+                "description": "Donga Naa Koduku Teaser Out Now."})
+      == "donganaakoduku")
+check("key: no announcement in description keeps the title key",
+      drop_key({"title": "Bhogi - Official Teaser | Sharwanand",
+                "description": "Bhogi teaser out now. Starring "
+                               "Sharwanand."}) == "bhogi")
+check("key: announcement beyond the opening lines is ignored",
+      drop_key({"title": DNK_TITLE,
+                "description": "Line one.\nLine two.\nLine three.\n"
+                               "Line four.\nSome Other Film Teaser Out "
+                               "Now."}) == "manamkoodafamilieseykadasaar")
+
 print(f"\n{total - fails}/{total} pass")
 sys.exit(1 if fails else 0)

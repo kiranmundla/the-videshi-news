@@ -343,6 +343,18 @@ def parse_description(desc):
         # boilerplate says "original series" on film drops too, so the
         # bare word 'series' is never read — only this explicit label.
         media_type = "Series"
+    elif re.search(r"(?i)\bseries\s+(?:directed|created)\s+by\b", text) or \
+            re.search(r"(?im)(?:^|[|:.]\s*)(?:the\s+)?series\s+premieres\b",
+                      text):
+        # The work calls ITSELF a series in its own announcement prose:
+        # hoichoi's Kauriburir Mandir teaser says 'Series directed by
+        # Sayantan Ghosal premieres 6th November' and held for a missing
+        # type (2026-10-23). Unlike bare 'series' in platform boilerplate
+        # (which describes the catalogue, not this drop), these phrases
+        # have the work itself as their subject. The 'premieres' form is
+        # anchored to a clause start so film copy like 'the film series
+        # premieres its third chapter' cannot trip it.
+        media_type = "Series"
     elif re.search(r"(?i)\b\d+\s+episodes?\b|\b\w+-episodes?\b|"
                    r"\ball\s+episodes\b", text):
         # Episode language: "8 episodes", "eight-episode series",
@@ -630,6 +642,39 @@ def film_key(title):
     return key or re.sub(r"[^a-z0-9]+", "", t.lower())[:40]
 
 
+# '<Film Name> Teaser/Trailer Out Now' as announced in a description's
+# opening lines — the channel's own statement of which film this drop is.
+_DESC_FILM_ANNOUNCE_RE = re.compile(
+    r"\b([A-Z][A-Za-z0-9'&.-]+(?:\s+[A-Z][A-Za-z0-9'&.-]+){1,5})\s+"
+    r"(?i:(?:official\s+)?(?:teaser|trailer)\s+out\s+now)\b")
+
+
+def drop_key(drop):
+    """Grouping key for a fresh drop: the title key, UNLESS the drop's own
+    description announces a different film's teaser/trailer as out now.
+
+    Dialogue-line titles key a phantom film: Mythri titled the Donga Naa
+    Koduku teaser 'Manam kooda families ey kada saar' (a line FROM the
+    teaser), so the drop keyed 'manamkoodafamilieseykadasaar', never
+    matched the published Donga brief, and sat in the held queue asking
+    for a release date instead of merging its embed (2026-10-22). The
+    description's opening lines name the film — 'Donga Naa Koduku Teaser
+    Out Now' — and the hashtag block corroborates (#DongaNaaKoduku). When
+    that announcement keys differently from the title, trust it.
+    Fail-closed: no announcement in the opening lines, or the announcement
+    corroborates the title key -> the title key stands."""
+    key = film_key(drop.get("title", ""))
+    desc = unicodedata.normalize("NFKD", drop.get("description", "") or "")
+    head = "\n".join(desc.split("\n")[:3])
+    m = _DESC_FILM_ANNOUNCE_RE.search(head)
+    if m:
+        nk = re.sub(r"[^a-z0-9]+", "",
+                    clean_film_name(m.group(1)).lower())
+        if len(nk) >= 5 and not _same_film_key(nk, key):
+            return nk
+    return key
+
+
 _NETFLIX_TITLE_RE = re.compile(r"netflix\.com/title/(\d+)")
 
 
@@ -725,7 +770,12 @@ def verified_completion(drops):
     if not isinstance(reg, dict):
         return {}
     for d in drops:
-        entry = reg.get(film_key(d.get("title", "")))
+        entry = None
+        for cand_key in (film_key(d.get("title", "")), drop_key(d)):
+            cand = reg.get(cand_key)
+            if isinstance(cand, dict):
+                entry = cand
+                break
         if isinstance(entry, dict):
             out = {k: entry[k] for k in
                    ("media_type", "release", "cast", "director",
@@ -1202,9 +1252,21 @@ def _same_film_key(a, b):
     return bool(a) and bool(b) and (a.startswith(b) or b.startswith(a))
 
 
+def _queue_key_match(work_key, qk, qdrops):
+    """True when held entry `qk` is the same film as work item `work_key`.
+
+    Plain prefix key match, or the entry's drops re-key to the work key
+    via drop_key: an entry born from a dialogue-line title carries a
+    phantom key ('manamkoodafamilieseykadasaar'), but its drops still
+    name the real film ('donganaakoduku')."""
+    if _same_film_key(qk, work_key):
+        return True
+    return bool(qdrops) and drop_key(qdrops[0]) == work_key
+
+
 def _held_entry_for(held, key):
     for qk, entry in held.items():
-        if _same_film_key(qk, key):
+        if _queue_key_match(key, qk, entry.get("drops") or []):
             return qk, entry
     return None, None
 
@@ -1221,7 +1283,8 @@ def queue_hold(held, key, drops, missing, now_iso,
 
 
 def dequeue_film(held, key):
-    for qk in [k for k in held if _same_film_key(k, key)]:
+    for qk in [k for k, e in held.items()
+               if _queue_key_match(key, k, e.get("drops") or [])]:
         held.pop(qk, None)
 
 
@@ -1239,14 +1302,21 @@ def merge_held_into_groups(groups, held):
         if not qdrops:
             continue
         for w in work:
-            if _same_film_key(w[0], qk):
+            if _queue_key_match(w[0], qk, qdrops):
                 have = {d["video_id"] for d in w[1]}
                 w[1].extend(d for d in qdrops if d["video_id"] not in have)
-                if len(qk) > len(w[0]):
+                # Adopt the longer of two prefix-related keys (stub vs
+                # full title) — but never adopt a phantom dialogue-line
+                # key that only matched via drop_key.
+                if _same_film_key(w[0], qk) and len(qk) > len(w[0]):
                     w[0] = qk
                 break
         else:
-            retries.append([qk, list(qdrops)])
+            # Queue-only retry: re-key via drop_key so an entry born
+            # under a phantom dialogue-line key retries as its real
+            # film (main() carries first_held_at/attempts over via
+            # _held_entry_for, which matches the same alias).
+            retries.append([drop_key(qdrops[0]) or qk, list(qdrops)])
     return retries + work
 
 
@@ -1348,7 +1418,7 @@ def main():
         # Trailer") alongside full ones ("#418 The Last Warning (Hindi) | ...").
         groups = []  # [key, drops]
         for d in majors:
-            k = film_key(d["title"])
+            k = drop_key(d)
             placed = False
             for g in groups:
                 if k and g[0] and (g[0].startswith(k) or k.startswith(g[0])):
