@@ -1487,6 +1487,30 @@ def main():
         else:
             print(f"     YT: already has embed")
 
+        # ── Official-video pass (2026-10-22) — OPT-IN, default OFF ──
+        # Channel-scoped official highlights (the SQUASHTV pattern) for
+        # sports/entertainment: search ONLY the rights holder's allowlisted
+        # channel, then gate hard (see official_video_pass.py). Built and
+        # dry-run tested 2026-10-22; NOT enabled for the cron yet — runs
+        # only when VIDESHI_OFFICIAL_VIDEO_PASS=1 is set in the job env.
+        if (os.environ.get("VIDESHI_OFFICIAL_VIDEO_PASS") == "1"
+                and not has_embed(body, "youtube")):
+            try:
+                from official_video_pass import official_video_for_article
+                ov = official_video_for_article(article)
+                if ov.get("status") == "accepted":
+                    ov_url = f"https://youtube.com/watch?v={ov['video_id']}"
+                    print(f"     YT-official: {ov_url} — \"{ov['title'][:50]}\" "
+                          f"via {ov['channel']} [score:{ov['score']}]")
+                    pending_embeds.append(
+                        (ov["score"] + 2, "youtube", ov_url,
+                         f"YT-official({ov['channel'][:20]})"))
+                    report["yt_embeds"] += 1
+                else:
+                    print(f"     YT-official: {ov.get('status')}")
+            except Exception as e:
+                print(f"     YT-official: pass error (non-fatal): {e}")
+
         # ── X enrichment ──
         # Priority: 1) cache (free) → 2) per-handle live lookup (cheap, ~15 credits)
         # Expensive topic search removed — cost/hit ratio was near zero.
