@@ -1252,6 +1252,46 @@ def fetch_official_source_image(headline, entities=None, topic="", official_url=
     return None, None
 
 
+# ── Signature/autograph artifact guard ──────────────────────────────────────
+# Some Wikipedia pages (golfers, athletes, celebrities) use a scan of the
+# person's AUTOGRAPH as the page's lead image instead of a photograph.
+# (2026-10-23: the Min Woo Lee page's lead image is 'Min_Woo_Lee_signature.jpg'
+# — green marker strokes on white — and it passed every gate in
+# fetch_wikipedia_image: filename-vs-entity matched, >=800px, relevant page.
+# A human reviewer caught it; an automated run would have published a
+# signature as the golfer's hero.) A signature scan is not a photo of the
+# subject, so it is never an acceptable hero.
+#
+# Whole-token matching only, so legitimate files survive: 'design',
+# 'signal', 'consigned', 'unsigned' are different tokens from 'signed'.
+# 'signed' is matched in FILENAMES only ('Lee_signed_ball.jpg' is a photo
+# of an autographed item) — in free-text descriptions it is narrative
+# ('the president signed the bill' can describe a real ceremony photo),
+# so descriptions match on signature/autograph tokens alone.
+_SIGNATURE_TOKENS = {"signature", "signatures", "autograph", "autographs"}
+
+
+def _artifact_tokens(text):
+    """Tokenize a filename/title/description for artifact guards: strip any
+    URL path, underscores/hyphens -> spaces, camelCase split (same as the
+    filename cross-check in fetch_wikipedia_image), whole-word tokens."""
+    t = (text or "").split("?")[0].rsplit("/", 1)[-1]
+    t = t.replace("_", " ").replace("-", " ")
+    t = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", t)
+    return set(re.findall(r"[a-z]+", t.lower()))
+
+
+def _is_signature_artifact(name_or_url, description=""):
+    """True if a Wikipedia/Commons candidate is a signature/autograph scan
+    rather than a photograph of the subject. Checks the filename (or
+    Commons title) tokens, plus the description tokens when provided."""
+    if _artifact_tokens(name_or_url) & (_SIGNATURE_TOKENS | {"signed"}):
+        return True
+    if description and _artifact_tokens(description) & _SIGNATURE_TOKENS:
+        return True
+    return False
+
+
 def fetch_wikipedia_image(entity_name, article_context=None, article_headline=None):
     """Fetch image from Wikipedia REST API for a person/entity.
     Returns image URL or None.
@@ -1363,6 +1403,14 @@ def fetch_wikipedia_image(entity_name, article_context=None, article_headline=No
                       f"place ('{wiki_desc[:50]}') not mentioned by name in article")
                 return None
 
+        # ── Signature/autograph guard ──
+        # The page's lead image can be a scan of the person's autograph
+        # (e.g. 'Min_Woo_Lee_signature.jpg'), not a photograph of them.
+        if _is_signature_artifact(img, wiki_desc):
+            print(f"    ⊘ Skipping Wikipedia image for '{entity_name}' — "
+                  f"signature/autograph scan, not a photograph")
+            return None
+
         return img
     except:
         return None
@@ -1418,7 +1466,13 @@ def commons_relevance_ok(commons_title, headline, topic=""):
     title_l = (commons_title or "").lower()
     headline_l = (headline or "").lower()
     topic_l = (topic or "").lower()
-    
+
+    # Signature/autograph scans are not photographs of the subject
+    # (2026-10-23: 'Min Woo Lee signature.jpg' passed relevance for a
+    # Min Woo Lee article — the name matches, the artifact is wrong).
+    if _is_signature_artifact(commons_title):
+        return False
+
     # Check confusable subjects
     for subject, negatives in _COMMONS_NEGATIVE.items():
         if subject in headline_l:
