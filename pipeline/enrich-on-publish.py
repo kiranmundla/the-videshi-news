@@ -1066,6 +1066,13 @@ def promote_inline_social_urls(body, existing_embeds):
 
     added = 0
 
+    # YouTube scans run on a copy with <youtube>...</youtube> tags stripped:
+    # a URL-form tag (<youtube>https://youtube.com/watch?v=…</youtube>)
+    # already renders inline, and the watch-URL scan below would otherwise
+    # promote its URL into social_embeds — rendering the video twice
+    # (Sacramento ICE/murder article, 2026-10-22).
+    yt_scan_body = re.sub(r'<youtube>.*?</youtube>', '', body or "", flags=re.S)
+
     # X / Twitter status URLs
     for m in re.finditer(r'https?://(?:www\.)?(?:twitter|x)\.com/(\w+)/status/(\d+)', body or ""):
         user, tid = m.group(1), m.group(2)
@@ -1078,7 +1085,7 @@ def promote_inline_social_urls(body, existing_embeds):
         added += 1
 
     # YouTube watch URLs
-    for m in re.finditer(r'https?://(?:www\.)?youtube\.com/watch\?[^"\s<>]*v=([A-Za-z0-9_-]{11})', body or ""):
+    for m in re.finditer(r'https?://(?:www\.)?youtube\.com/watch\?[^"\s<>]*v=([A-Za-z0-9_-]{11})', yt_scan_body):
         vid = m.group(1)
         if f"yt:{vid}" in seen:
             continue
@@ -1089,7 +1096,7 @@ def promote_inline_social_urls(body, existing_embeds):
         added += 1
 
     # YouTube short URLs
-    for m in re.finditer(r'https?://youtu\.be/([A-Za-z0-9_-]{11})', body or ""):
+    for m in re.finditer(r'https?://youtu\.be/([A-Za-z0-9_-]{11})', yt_scan_body):
         vid = m.group(1)
         if f"yt:{vid}" in seen:
             continue
@@ -1589,7 +1596,16 @@ def main():
         # URL on its own line (detectSocialUrl) or a <youtube>ID</youtube> tag.
         # A URL buried inside an <a href> or blockquote is dead text, NOT a
         # rendered embed, so its social_embeds copy must stay.
-        body_yt_ids = set(re.findall(r'<youtube>([A-Za-z0-9_-]{11})</youtube>', new_body or ""))
+        # <youtube> tags hold a bare ID *or* a full watch URL (frontend
+        # extractYouTubeId accepts both) — extract the ID from either form.
+        # The bare-ID-only regex missed URL-form tags (2026-10-22).
+        body_yt_ids = set()
+        for _c in re.findall(r'<youtube>(.*?)</youtube>', new_body or "", re.S):
+            _c = _c.strip()
+            _m = (re.search(r'(?:v=|youtu\.be/|/embed/)([A-Za-z0-9_-]{11})', _c)
+                  or re.match(r'^([A-Za-z0-9_-]{11})$', _c))
+            if _m:
+                body_yt_ids.add(_m.group(1))
         deduped_embeds = []
         n_deduped = 0
         for e in new_embeds:

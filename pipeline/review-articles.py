@@ -116,7 +116,18 @@ def check_duplicate_embeds(article):
             embeds = json.loads(embeds)
         except:
             embeds = []
-    body_yt_ids = set(re.findall(r'<youtube>([A-Za-z0-9_-]{11})</youtube>', body))
+    # <youtube> tags hold a bare ID *or* a full watch URL (frontend
+    # extractYouTubeId accepts both) — extract the ID from either form.
+    # The bare-ID-only regex missed URL-form tags, so a video present in
+    # both places rendered twice undetected (Sacramento ICE/murder
+    # article, 2026-10-22).
+    body_yt_ids = set()
+    for _c in re.findall(r'<youtube>(.*?)</youtube>', body, re.S):
+        _c = _c.strip()
+        _m = (re.search(r'(?:v=|youtu\.be/|/embed/)([A-Za-z0-9_-]{11})', _c)
+              or re.match(r'^([A-Za-z0-9_-]{11})$', _c))
+        if _m:
+            body_yt_ids.add(_m.group(1))
 
     for e in embeds:
         eurl = e.get("url", "") if isinstance(e, dict) else str(e)

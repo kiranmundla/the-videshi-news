@@ -2607,6 +2607,31 @@ def _extract_exact_name_portrait(page_url, person_name, context_words=None):
     return None, site_name, True, page_title, topical_ok
 
 
+def _is_blank_canvas_image(img_bytes):
+    """True when one quantized color covers >=80% of the frame — a
+    logo/placeholder canvas, not a photograph. Calibrated 2026-10-22:
+    Khel Now's site-logo placeholder (accepted as Anahat Singh's verified
+    portrait — its <img> carried her exact name as alt on a player page
+    with no photo) measures 0.984 dominant share / 13 quantized colors,
+    while verified cached portraits (Ramya Anche, Janhvi Kapoor,
+    Sethuraman Panchanathan) measure 0.05-0.11. Filename checks cannot
+    catch this class: the placeholder's URL names no 'logo'. Returns
+    False when the image cannot be decoded (other gates decide)."""
+    try:
+        import io
+        from PIL import Image
+        im = Image.open(io.BytesIO(img_bytes)).convert("RGB")
+        im.thumbnail((200, 200))
+        px = [(r // 16, g // 16, b // 16) for r, g, b in im.getdata()]
+        if not px:
+            return False
+        from collections import Counter
+        dominant = Counter(px).most_common(1)[0][1] / len(px)
+        return dominant >= 0.80
+    except Exception:
+        return False
+
+
 def _count_faces(img_bytes):
     """Haar face count for the group-photo gate. -1 = detection unavailable
     (cv2 missing) — the exact-name alt gate still applies on its own."""
@@ -2760,6 +2785,9 @@ def fetch_person_profile_image(article):
                     continue
                 pw, ph = get_image_dimensions(raw)
                 if pw < 800:
+                    continue
+                if _is_blank_canvas_image(raw):
+                    print(f"    ⊘ person-profile: '{name}' image is a blank/logo canvas (dominant-color gate), skipping")
                     continue
                 faces = _count_faces(raw)
                 if faces >= 2:
