@@ -687,6 +687,32 @@
       "fandango_url": "https://www.fandango.com/prahaar-the-untold-story-of-ujjwal-nikam-2026-247958/movie-overview"
     },
     {
+      "title": "418",
+      "slug": "418-2026",
+      "release_date": "2026-10-23",
+      "status": "opening",
+      "language": "Kannada",
+      "director": "Kirtan Nadagouda",
+      "cast": [
+        "Charan Lakkaraju Chaithra J. Achar Surya Raj Preethi Pagadala Ramesh Indira"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=418%20showtimes%20near%20me",
+      "why_watch": "418 is a Kannada film directed by Kirtan Nadagouda, starring Charan Lakkaraju Chaithra J. Achar Surya Raj Preethi Pagadala Ramesh Indira.",
+      "rating": "Opens Oct 23",
+      "rating_source": "Release date",
+      "poster_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Visigoth_migrations.jpg/500px-Visigoth_migrations.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "trailer_url": "https://www.youtube.com/watch?v=IFgK5ynoe6s",
+      "cast_details": [
+        {
+          "name": "Charan Lakkaraju Chaithra J. Achar Surya Raj Preethi Pagadala Ramesh Indira",
+          "photo_url": ""
+        }
+      ]
+    },
+    {
       "title": "Ramayana: Part 1",
       "slug": "ramayana-part-1-2026",
       "release_date": "2026-11-05",
