@@ -368,6 +368,23 @@ def _haar_face_box(arr, cv2, scale):
     return None
 
 
+# Center-damping for heuristic (no-face) crop anchors (2026-10-23).
+# The focal heuristic is a saliency GUESS: on the UK/Downing St hero it
+# locked onto a bright lamp arch (0.659, 0.084) while the actual subject
+# — a black door on black brick — sat dead center, and the 9:16 cover
+# crop (only ~33% of a wide photo's width) clipped the door in half.
+# A face detection is reliable and is NEVER damped; a heuristic anchor
+# keeps only half its offset from center, so a wrong guess can no
+# longer push the (usually near-center) subject out of frame.
+ANCHOR_DAMP_FACTOR = 0.5
+
+
+def damp_anchor(x, y, factor=ANCHOR_DAMP_FACTOR):
+    """Pull a relative anchor (x, y) toward frame center (0.5, 0.5),
+    keeping `factor` of its original offset on each axis."""
+    return (0.5 + factor * (x - 0.5), 0.5 + factor * (y - 0.5))
+
+
 def detect_face_box(src_img):
     """Detect the subject's face in the source image (PIL, RGB).
     Returns (box, method): box = (x, y, w, h) in SOURCE pixels of the
@@ -404,6 +421,12 @@ def detect_face_box(src_img):
             return haar
 
     # No face found — focal-point heuristic box (reported, not hidden).
+    # The heuristic anchor is center-damped before it becomes the box
+    # (see ANCHOR_DAMP_FACTOR above); raw and damped values ride along
+    # in the method string, so they land in the render log AND in the
+    # manifest's face.method field. Face-detected boxes never pass
+    # through here and stay exact.
+    anchor_note = ""
     try:
         sys.path.insert(0, str(Path(__file__).resolve().parent))
         from focal_point import compute_focal_point
@@ -411,12 +434,17 @@ def detect_face_box(src_img):
         buf = io.BytesIO()
         src_img.save(buf, format="JPEG", quality=92)
         fx, fy = compute_focal_point(buf.getvalue())
+        raw_fx, raw_fy = fx, fy
+        fx, fy = damp_anchor(fx, fy)
+        anchor_note = (f"; anchor raw=({raw_fx:.3f},{raw_fy:.3f}) "
+                       f"damped=({fx:.3f},{fy:.3f})")
     except Exception:
         fx, fy = 0.5, 0.32
     bw, bh = int(w * 0.56), int(h * 0.40)
     bx = min(max(int(fx * w - bw / 2), 0), w - bw)
     by = min(max(int(fy * h - bh * 0.55), 0), h - bh)
-    return (bx, by, bw, bh), "focal-heuristic (no face detected)"
+    return (bx, by, bw, bh), ("focal-heuristic (no face detected)"
+                              + anchor_note)
 
 
 # ── Background composition (face-aware) ────────────────────────────────────

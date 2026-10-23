@@ -224,6 +224,50 @@ if CHAK.exists():
     check("chin consistent with the approved render (±6% of height)",
           abs(chin_frac - 0.458) <= 0.06, f"chin={chin_frac:.3f}")
 
+print("── renderer: heuristic anchor center-damping (2026-10-23 —")
+print("          the Downing St door clipped by a lamp-arch focal guess)")
+dx, dy = reel_renderer.damp_anchor(0.655, 0.087)
+check("damp_anchor(0.655) -> 0.5775 (half the offset kept)",
+      abs(dx - 0.5775) < 1e-9, f"{dx}")
+check("damp_anchor(0.087) -> 0.2935", abs(dy - 0.2935) < 1e-9, f"{dy}")
+check("center anchor is unmoved by damping",
+      reel_renderer.damp_anchor(0.5, 0.5) == (0.5, 0.5))
+import focal_point as _fp
+_orig_focal = _fp.compute_focal_point
+try:
+    _fp.compute_focal_point = lambda _b: (0.9, 0.1)
+    plain = Image.new("RGB", (1000, 800), (30, 30, 30))
+    hbox, hmethod = reel_renderer.detect_face_box(plain)
+finally:
+    _fp.compute_focal_point = _orig_focal
+check("heuristic path reports raw + damped anchors",
+      "raw=(0.900,0.100)" in hmethod
+      and "damped=(0.700,0.300)" in hmethod, hmethod)
+check("heuristic box is built from the DAMPED anchor",
+      abs((hbox[0] + hbox[2] / 2) / 1000 - 0.7) < 0.01,
+      f"box={hbox}")
+if CHAK.exists():
+    cimg2 = Image.open(CHAK).convert("RGB")
+    # Replicate detect_face_box's own geometry: it detects on the
+    # ≤800px downscale and maps the box back by the same factor.
+    import cv2 as _cv2
+    _arr = np.array(cimg2)
+    _h, _w = _arr.shape[:2]
+    _s = 800 / max(_h, _w) if max(_h, _w) > 800 else 1.0
+    if _s != 1.0:
+        _arr = _cv2.resize(_arr, (int(_w * _s), int(_h * _s)))
+    faces = reel_renderer.yunet_faces(_arr)
+    if faces:
+        _fx, _fy, _fw, _fh, _sc = max(faces,
+                                      key=lambda f: f[2] * f[3])
+        raw_box = tuple(int(round(v / _s))
+                        for v in (_fx, _fy, _fw, _fh))
+        fbox, fmethod = reel_renderer.detect_face_box(cimg2)
+        check("face-detected box is EXACT (no damping on the face path)",
+              fmethod.startswith("yunet") and "damped" not in fmethod
+              and tuple(fbox) == raw_box,
+              f"{fmethod} box={fbox} raw={raw_box}")
+
 print("── no fabricated QA anywhere in the new modules")
 import ast
 for mod in ("reel_renderer.py", "reel_factcheck.py", "reel_frame_qa.py",
