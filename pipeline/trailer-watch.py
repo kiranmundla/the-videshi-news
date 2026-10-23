@@ -627,6 +627,92 @@ def extract_language(title):
     return m.group(1).capitalize() if m else None
 
 
+# Languages a description may state outright — a superset of _LANG_RE
+# (adds Assamese, Odia, Urdu, which title tags don't use but description
+# prose does).
+_DESC_LANGS = ["Hindi", "Bengali", "Telugu", "Tamil", "Malayalam",
+               "Kannada", "Marathi", "Punjabi", "Assamese", "Odia",
+               "Gujarati", "Urdu", "English"]
+_DESC_LANG_RE = "|".join(_DESC_LANGS)
+_DESC_LANG_LOWER_RE = "|".join(l.lower() for l in _DESC_LANGS)
+
+
+def extract_description_language(desc):
+    """Language a description states outright, or None.
+
+    Only explicit statements count, strongest first: a language hashtag
+    (#BengaliWebSeries, #bengali), a 'language: Bengali' credit line, an
+    adjective phrase ('Bengali series', 'Telugu movie'), or 'in Bengali'
+    (subtitle mentions excluded — 'subtitles in English' describes the
+    subtitles, not the work). If a pattern names several languages the
+    drop is not single-language: return None rather than guess (a wrong
+    label is worse than none)."""
+    text = unicodedata.normalize("NFKD", desc or "")
+    patterns = (
+        r"#(" + _DESC_LANG_RE + r")(?=[A-Z]|[^A-Za-z]|$)",
+        r"#(" + _DESC_LANG_LOWER_RE + r")(?=[^a-z]|$)",
+        r"(?i)\blanguage\s*[:\-]\s*(" + _DESC_LANG_RE + r")\b",
+        r"(?i)\b(" + _DESC_LANG_RE + r")\s+"
+        r"(?:web\s+series|series|films?|movies?|shows?|cinema)\b",
+    )
+    for pat in patterns:
+        found = {m.group(1).capitalize() for m in re.finditer(pat, text)}
+        if len(found) == 1:
+            return found.pop()
+        if len(found) > 1:
+            return None
+    # 'in X' last: a list continuation ('in Hindi, Tamil and Telugu')
+    # names every language in the list, not just the first.
+    found = set()
+    for m in re.finditer(
+            r"(?i)(?<!subtitle )(?<!subtitles )\bin\s+(" + _DESC_LANG_RE
+            + r")\b", text):
+        found.add(m.group(1).capitalize())
+        tail = text[m.end():m.end() + 60]
+        while True:
+            lm = re.match(r"\s*(?:,|and|&)\s*(" + _DESC_LANG_RE + r")\b",
+                          tail, re.I)
+            if not lm:
+                break
+            found.add(lm.group(1).capitalize())
+            tail = tail[lm.end():]
+    if len(found) == 1:
+        return found.pop()
+    return None
+
+
+# Channel industry -> the work's language, ONLY where the industry is
+# itself a single-language industry. Pan-language industries present in
+# trailer-channels.json ('hollywood', 'streamer') deliberately map to
+# nothing: a Netflix India drop is not thereby Hindi or English.
+_INDUSTRY_LANGUAGE = {
+    "bengali": "Bengali", "telugu": "Telugu", "tamil": "Tamil",
+    "malayalam": "Malayalam", "kannada": "Kannada", "marathi": "Marathi",
+    "punjabi": "Punjabi", "hindi": "Hindi", "bollywood": "Hindi",
+}
+
+
+def derive_drop_language(drop, channel):
+    """The work's language for one drop, best evidence first:
+    (1) title tag, (2) description-stated language, (3) the channel's
+    explicit language field (unset in trailer-channels.json today),
+    (4) single-language industry map. None when unknown — no label is
+    ever invented (2026-10-23: Kiran — briefs and cards must state the
+    work's language; single-language works without a title tag, e.g.
+    hoichoi's Bengali series, previously got none)."""
+    lang = extract_language(
+        unicodedata.normalize("NFKD", drop.get("title", "")))
+    if lang:
+        return lang
+    lang = extract_description_language(drop.get("description", ""))
+    if lang:
+        return lang
+    ch = channel or {}
+    if ch.get("language"):
+        return ch["language"]
+    return _INDUSTRY_LANGUAGE.get((ch.get("industry") or "").lower())
+
+
 def clean_film_name(film):
     """Strip language tags from a film name: '#418 (Kannada)' -> '#418'."""
     film = re.sub(r"\s*\((?:" + _LANG_RE + r")\)\s*", " ", film, flags=re.I)
@@ -811,9 +897,8 @@ def build_brief_article(drops, channels_by_name):
 
     versions = []
     for d in drops:
-        lang = extract_language(unicodedata.normalize("NFKD", d["title"]))
-        ch = channels_by_name.get(d["channel"], {})
-        lang = lang or ch.get("language")  # None if unknown — no fake label
+        # None if unknown — no fake label (see derive_drop_language).
+        lang = derive_drop_language(d, channels_by_name.get(d["channel"], {}))
         watch_url = f"https://www.youtube.com/watch?v={d['video_id']}"
         versions.append({"lang": lang, "channel": d["channel"], "url": watch_url,
                          "video_id": d["video_id"]})
@@ -907,19 +992,23 @@ def build_brief_article(drops, channels_by_name):
                 credits[k] = vcomp[k]
 
     main_ch = channels_by_name.get(first["channel"], {})
+    # State the work's language where the type/premiere is stated — but
+    # only when the brief has exactly one; multi-language briefs list
+    # theirs in the "Out in ..." takeaway below instead of picking one.
+    lang_prefix = f"{langs[0]} " if len(langs) == 1 else ""
     takeaways = [
         f"The {kind.lower()} for <b>{html.escape(film)}</b> dropped {pub_str}.",
     ]
     if media_type and release:
         takeaways.append(
-            f"New {media_type.lower()} premiering {release} on {html.escape(first['channel'])}.")
+            f"New {lang_prefix}{media_type.lower()} premiering {release} on {html.escape(first['channel'])}.")
     elif media_type:
-        takeaways.append(f"New {media_type.lower()} on {html.escape(first['channel'])}.")
+        takeaways.append(f"New {lang_prefix}{media_type.lower()} on {html.escape(first['channel'])}.")
     elif release:
         takeaways.append(f"Releasing {release}.")
     if desc_line:
         takeaways.append(html.escape(desc_line))
-    if langs:
+    if len(langs) > 1:
         takeaways.append(f"Out in {', '.join(langs)} \u2014 pick your language below.")
 
     body = (
@@ -931,7 +1020,17 @@ def build_brief_article(drops, channels_by_name):
     )
     if desc_line and len(takeaways) < 3:
         body += f"<p>{html.escape(desc_line)}</p>"
-    dest = "streaming" if main_ch.get("industry") == "streamer" else "theaters"
+    # Where the work is headed: a series lands on its platform, never in
+    # theaters (hoichoi's industry is 'bengali', not 'streamer', so the
+    # old industry-only check sent its series to "theaters" — 2026-10-23).
+    # Films keep the original split: streamer channels -> streaming,
+    # everyone else -> theaters.
+    if media_type == "Series":
+        dest = f"what's headed to {html.escape(first['channel'])}"
+    elif main_ch.get("industry") == "streamer":
+        dest = "what's headed to streaming"
+    else:
+        dest = "what's headed to theaters"
     if is_game:
         body += (f"<p>For diaspora gamers, the {kind.lower()} is the first "
                  f"real look at what's ahead"
@@ -939,7 +1038,7 @@ def build_brief_article(drops, channels_by_name):
                  + "</p>")
     else:
         body += (f"<p>For diaspora audiences tracking the {work}'s US release, the {kind.lower()} is the first "
-                 f"real look at what's headed to {dest}.</p>")
+                 f"real look at {dest}.</p>")
     info_rows = []
     # Cast renders as a headshot strip below the stat grid, not a flat text
     # stat — comma-joined name lists are unreadable on mobile.
@@ -961,9 +1060,11 @@ def build_brief_article(drops, channels_by_name):
         info_rows.append(("Type", media_type))
     if release:
         info_rows.append(("Release", release))
-    if langs:
+    if len(langs) == 1:
+        info_rows.append(("Language", langs[0]))
+    elif langs:
         info_rows.append(("Languages", ", ".join(langs)))
-    # A lone "Languages" row isn't worth a navy card — require at least one
+    # A lone language row isn't worth a navy card — require at least one
     # real credit, type, or release date. The cast strip counts as content too.
     if (info_rows or cast_strip_html) and (any(credits.get(k) for k in
                           ("cast", "director", "host", "producer", "music"))
@@ -1202,10 +1303,7 @@ def sb_merge_embeds(existing, drops, channels_by_name):
         vid = d["video_id"]
         if vid in body or not _video_is_live(vid):
             continue
-        t = unicodedata.normalize("NFKD", d["title"])
-        lang = extract_language(t)
-        ch = channels_by_name.get(d["channel"], {})
-        lang = lang or ch.get("language")
+        lang = derive_drop_language(d, channels_by_name.get(d["channel"], {}))
         label = (f"<b>{html.escape(lang)}</b> \u2014 {html.escape(d['channel'])}"
                  if lang else f"<b>{html.escape(d['channel'])}</b>")
         url = f"https://www.youtube.com/watch?v={vid}"
