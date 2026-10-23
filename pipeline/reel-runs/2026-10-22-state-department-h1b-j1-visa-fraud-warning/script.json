@@ -1,0 +1,32 @@
+{
+  "hook_line": "STATE DEPT PUTS H-1B AND J-1 ON NOTICE",
+  "hook_stat": {
+    "big": "OCT 22",
+    "eyebrow": "BREAKING",
+    "sub": "State Department warns H-1B and J-1 fraud threatens American jobs and national security"
+  },
+  "stats": [
+    {
+      "big": "2 YEARS",
+      "label": "Home stay required afterwards for most J-1 exchange visitors"
+    },
+    {
+      "big": "OCT 21",
+      "label": "Indian American lawmaker warned draconian anti-immigrant bills could pass Congress"
+    }
+  ],
+  "diaspora_bullets": [
+    "Indians are the largest national group in both the H-1B and J-1 pipelines",
+    "Genuine applicants should expect fraud-focused questioning and document checks"
+  ],
+  "key_entities": [
+    "US State Department",
+    "Bureau of Consular Affairs",
+    "H-1B",
+    "J-1"
+  ],
+  "news_summary": "The State Department warned on October 22 that H-1B and J-1 visa fraud threatens American jobs and national security.",
+  "payoff": "Both programmes remain open, but genuine applicants should expect fraud-focused questioning and document checks.",
+  "versus": "",
+  "story_mood": "tense"
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "ccd8b12d-e064-47ad-a3f8-cfeecac1dac4",
+    "headline": "American Express Set to Report Q3 Earnings Amidst Economic Uncertainty",
+    "slug": "happening-2026-10-23-american-express-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora/NRI angle by including insights on how American Express's performance may affect NRIs, particularly in terms of currency exchange rates, international spending, and remittance services. For example, explain how fluctuations in American Express's stock could impact the value of the dollar against the rupee, which is crucial for NRIs managing their finances.",
+        "Provide concrete specifics regarding the implications of the earnings report for NRIs. Include actionable information such as potential changes in fees for international transactions or rewards programs that may affect NRIs directly. For instance, if American Express is expected to adjust its foreign transaction fees, include the current fee structure and any anticipated changes.",
+        "Consider embedding a relevant tweet from American Express or a financial analyst that discusses the upcoming earnings report or its implications for consumers and businesses. This could provide real-time insights and enhance the article's relevance.",
+        "Revise the headline to make it more compelling and specific for the NRI audience. For example, 'American Express Q3 Earnings Report: What NRIs Should Know About Spending Trends and Currency Impact' would directly address the interests of the diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from American Express or a financial analyst discussing the upcoming earnings report and its potential impact on consumers, particularly NRIs."
+      ]
+    }
+  }
+]

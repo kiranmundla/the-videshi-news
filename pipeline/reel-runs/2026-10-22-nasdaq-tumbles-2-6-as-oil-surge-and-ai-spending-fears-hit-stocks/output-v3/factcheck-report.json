@@ -1,0 +1,233 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks",
+  "verdict": "fail",
+  "held_claims": [
+    "payoff"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "NASDAQ TUMBLES 2.6% IN WORST DAY SINCE JUNE",
+      "numbers": [
+        2.6
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The Nasdaq tumbled 2.6%, its worst day since June.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The Nasdaq Composite fell 2.6% on October 22, its steepest drop since June, as oil surged and AI spending fears hit tech stocks.",
+      "numbers": [
+        2.6,
+        22.0
+      ],
+      "entities": [
+        "Nasdaq Composite"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The Nasdaq fell 2.6% on October 22 due to oil and AI fears.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "2.6%",
+      "numbers": [
+        2.6
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The Nasdaq fell 2.6%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Nasdaq Composite fall on October 22, its steepest drop since June",
+      "numbers": [
+        22.0
+      ],
+      "entities": [
+        "Nasdaq Composite"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The Nasdaq Composite's steepest drop was on October 22.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The section title 'BY THE NUMBERS' is not factually asserted.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$113.03",
+      "numbers": [
+        113.03
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$113.03 is the Brent crude settlement price.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Brent crude settlement a barrel, up 3%",
+      "numbers": [
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Brent crude settled up 3% at $113.03.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "7%",
+      "numbers": [
+        7.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Meta fell about 7%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Meta fell about 7% despite beating revenue expectations",
+      "numbers": [
+        7.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Meta fell about 7% despite beating revenue expectations.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Chipmakers sold off: AMD fell more than 8%, Nvidia lost 4%",
+      "numbers": [
+        4.0,
+        8.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "AMD fell more than 8% and Nvidia lost 4%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Treasury yields fell as investors sought safety amid the selloff",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Treasury yields fell as investors sought safety.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The next test is whether oil holds above $110.",
+      "numbers": [
+        110.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article does not specify if oil will hold above $110.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Nasdaq Composite",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "S&P 500",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Meta",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Brent crude",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000504
+  }
+}

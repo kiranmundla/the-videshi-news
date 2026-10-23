@@ -1,0 +1,15 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks",
+  "name": "nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks",
+  "script": "reel-runs/2026-10-22-nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "payoff"
+    ],
+    "llm_cost_usd": 0.000504
+  }
+}

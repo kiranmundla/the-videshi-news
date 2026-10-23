@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "article_slug": "nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks",
+  "name": "nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks",
+  "script": "reel-runs/2026-10-22-nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000509
+  },
+  "manifest": "reel-runs/2026-10-22-nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-10-22-nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks/output-v2/nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  }
+}

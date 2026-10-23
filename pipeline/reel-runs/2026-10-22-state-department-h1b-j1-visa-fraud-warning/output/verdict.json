@@ -1,0 +1,14 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "article_slug": "state-department-h1b-j1-visa-fraud-warning",
+  "name": "state-department-h1b-j1-visa-fraud-warning",
+  "script": "reel-runs/2026-10-22-state-department-h1b-j1-visa-fraud-warning/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000459
+  },
+  "detail": "no composition fits all scenes at the planner floors \u2014 cover: scene 'payoff' text cannot fit at the minimum scale in any zone (text too long); fit: scene 'payoff' text cannot fit at the minimum scale in any zone (text too long)"
+}

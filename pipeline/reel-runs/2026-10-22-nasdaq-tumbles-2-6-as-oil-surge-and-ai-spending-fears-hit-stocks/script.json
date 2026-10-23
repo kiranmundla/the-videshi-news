@@ -1,0 +1,32 @@
+{
+  "hook_line": "NASDAQ TUMBLES 2.6% IN WORST DAY SINCE JUNE",
+  "hook_stat": {
+    "big": "2.6%",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Nasdaq Composite fall on October 22, its steepest drop since June"
+  },
+  "stats": [
+    {
+      "big": "$113.03",
+      "label": "Brent crude settlement a barrel, up 3%"
+    },
+    {
+      "big": "7%",
+      "label": "Meta fell about 7% despite beating revenue expectations"
+    }
+  ],
+  "diaspora_bullets": [
+    "Chipmakers sold off: AMD fell more than 8%, Nvidia lost 4%",
+    "Treasury yields fell as investors sought safety amid the selloff"
+  ],
+  "key_entities": [
+    "Nasdaq Composite",
+    "S&P 500",
+    "Meta",
+    "Brent crude"
+  ],
+  "news_summary": "The Nasdaq Composite fell 2.6% on October 22, its steepest drop since June, as oil surged and AI spending fears hit tech stocks.",
+  "payoff": "The next test is whether oil holds above $110.",
+  "versus": "",
+  "story_mood": "tense"
+}

@@ -1,0 +1,194 @@
+[
+  {
+    "id": "8e0d4893-e764-46e5-aa45-b00a66067af9",
+    "headline": "Implant Burns Off Excess Blood Sugar Without Insulin or Drugs in Mouse Study",
+    "slug": "eth-zurich-implant-echo-blood-sugar-without-insulin-drugs-mice",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the study by including a statement about the timeline for potential human trials or when the technology might be available for clinical use. This would help readers understand the relevance of the findings to their lives.",
+        "Add a brief explanation of the potential risks or side effects associated with using the implant, even if it has only been tested in mice. This would provide a more complete picture of the technology's safety profile.",
+        "Ensure that the headline reflects the groundbreaking nature of the study by including the term 'diabetes' to make it clear that this is a significant development in diabetes management."
+      ],
+      "embed_opportunities": [
+        "Embed a link to the original study published in Science for readers who want to explore the research in detail."
+      ]
+    }
+  },
+  {
+    "id": "7a4cf7ed-cdfa-4117-a77e-ab357ebf5d4d",
+    "headline": "Indian EB-2 Queue Stays Frozen in 2013 as Premium Processing Rule Reaches White ",
+    "slug": "indian-eb2-queue-frozen-2013-premium-processing-white-house-review",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the unchanged EB-2 final action date for Indian applicants. Include specific details on how this affects their green card processing timelines and what steps they should take next.",
+        "Provide a brief explanation of the premium processing rule and its potential impact on applicants once the details are made public. This will help readers understand the significance of the proposed rule.",
+        "Include a direct quote or statement from a relevant authority or immigration expert regarding the implications of the frozen EB-2 queue and the premium processing rule. This would enhance the article's credibility and provide readers with expert insight.",
+        "Ensure that the article clearly distinguishes between the EB-2 and EB-3 categories, as well as the significance of the final action dates for each, to avoid confusion among readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or announcement regarding the Visa Bulletin for November 2026 to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "61be37f9-cb99-4c96-8d01-b32fec9dae96",
+    "headline": "Jailer 2 Crosses Rs 600 Crore Worldwide as India Gross Hits Rs 374 Crore",
+    "slug": "jailer-2-box-office-374-crore-india-crosses-600-crore-worldwide",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the reporting of the film's gross by ensuring consistency in the figures provided. For instance, the article mentions both Rs 606 crore and Rs 583 crore as the worldwide total; this discrepancy should be resolved for accuracy.",
+        "Provide clearer attribution for the figures cited. While Pinkvilla and Sacnilk are mentioned, it would enhance credibility to specify the nature of their reporting or methodology, especially since box office figures can vary significantly between sources.",
+        "Include a brief context about the significance of these box office figures in relation to the film industry, such as how this performance compares to other recent releases or what it means for future Tamil cinema projects."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a reputable film industry analyst or box office tracker that confirms the film's gross figures or discusses its performance in the market."
+      ]
+    }
+  },
+  {
+    "id": "a4880b61-d1cf-41b2-bf9b-5a600c0e8af8",
+    "headline": "Swiggy Shares Plunge 17% to 52-Week Low as Instamart Losses Widen",
+    "slug": "swiggy-shares-plunge-17-percent-52-week-low-q2-instamart-losses",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the financial results by explicitly stating the date of the Q2 FY27 report to enhance context for readers unfamiliar with the reporting schedule.",
+        "Include a brief explanation of what EBITDA means for readers who may not be familiar with financial terminology, as it is a key metric in the article.",
+        "Provide more specific information on what the price targets from brokerages mean for investors, such as potential implications for buying or selling shares based on these targets."
+      ],
+      "embed_opportunities": [
+        "Embed the official Swiggy tweet or press release regarding the Q2 FY27 results to provide direct information from the company."
+      ]
+    }
+  },
+  {
+    "id": "5ce642fd-0cfe-411b-b277-ddbaaa70a3dd",
+    "headline": "All 14 Indians Aboard Yacht Off Yemen Reported Safe Around Hodeidah",
+    "slug": "all-14-indians-yacht-yemen-reported-safe-hodeidah",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the date of the incident (October 22) in the first paragraph to enhance clarity and context for readers.",
+        "Provide more details about the nature of the incident, including what led to the Houthi claim and the response from Saudi authorities, to give readers a fuller understanding of the situation.",
+        "Include a direct quote from the Indian embassy's statement to enhance attribution and credibility, rather than paraphrasing their message.",
+        "Ensure that the article clearly distinguishes between the Houthi claims and the confirmed information from the Indian embassy to avoid confusion about what is verified versus what is alleged."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian embassy in Yemen for direct access to their statement and updates."
+      ]
+    }
+  },
+  {
+    "id": "653019b5-d78a-405c-a585-a60a751a5188",
+    "headline": "Indians Posted to UK Now Avoid Double Social Security for Five Years",
+    "slug": "indians-posted-uk-avoid-double-social-security-five-years-dcc",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the DCC's implementation; the article states it came into force on July 15, 2026, which is in the future. This should be corrected to reflect the actual implementation date, which is likely intended to be July 15, 2023.",
+        "Provide more context on the implications of the DCC for Indian employees, such as how much they can save in terms of National Insurance contributions over the five years compared to the previous 52-week exemption.",
+        "Include a brief explanation of what a Certificate of Coverage is and how detached workers can obtain it from EPFO, as this is crucial for compliance with the new rules."
+      ],
+      "embed_opportunities": [
+        "Embed the official UK government announcement or guidance on the Double Contributions Convention to provide readers with direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "edd45e74-6769-48cd-b3b6-06f88960ec30",
+    "headline": "Magnitude 7.0 Earthquake in Tibet Kills 16, Injures 65 as Rescue Expands",
+    "slug": "tibet-earthquake-magnitude-7-baqen-16-killed-rescue",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the date and time of the earthquake in the introduction, as well as when the casualty figures were last updated to enhance clarity and timeliness.",
+        "Include a brief statement about the potential for further aftershocks or ongoing rescue efforts, as this information is critical for understanding the situation's evolution and implications.",
+        "Provide a more detailed description of the response efforts, such as the types of aid being sent (e.g., medical assistance, food supplies) and the challenges faced by rescuers due to the harsh weather conditions."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a credible source such as the U.S. Geological Survey or a local news outlet providing real-time updates on the earthquake and rescue efforts."
+      ]
+    }
+  },
+  {
+    "id": "bc1f6fe8-64d5-4658-a805-792dabff1d18",
+    "headline": "India Eye 2-0 Lead as Bowlers Face Christchurch Test in Second T20I",
+    "slug": "india-eye-2-0-lead-bowlers-christchurch-second-t20i-new-zealand",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the headline to make it more compelling and specific, such as 'India Aims for 2-0 Lead Against New Zealand in Crucial Second T20I at Christchurch'.",
+        "Include specific details about the fitness of Mitchell Santner, such as whether he is expected to play in the second T20I or if there are any updates on his condition, to provide readers with complete context.",
+        "Add statistics or insights about the performance of both teams in the first T20I to enhance completeness, such as the overall series history or how this match impacts the series standings.",
+        "Ensure that the match preview includes the date of the next match clearly in the context of the series, as well as any relevant information about ticket availability or viewing options for fans."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ICC or New Zealand Cricket regarding the match preview or player fitness updates."
+      ]
+    }
+  },
+  {
+    "id": "262c00c9-cb04-4ff3-b1a3-7e2c54f145a6",
+    "headline": "Petraeus Urges India to Build Rapid New Warfare Concept for Two-Front Threat",
+    "slug": "petraeus-india-rapid-new-warfare-concept-two-front-threat",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific recommendations Petraeus made regarding the new concept of warfare. For example, include details on what technologies or strategies he specifically suggested India adopt, as this would provide readers with a clearer understanding of actionable steps.",
+        "Provide direct quotes from Petraeus to enhance attribution and credibility. This would allow readers to grasp the urgency and specifics of his recommendations more effectively.",
+        "Include context on the implications of Petraeus's advice for India's military strategy. For instance, what immediate changes might the Indian military consider in response to this advice, and how might this affect regional security dynamics?",
+        "Add a brief background on the NDTV World Summit 2026, including its significance and previous editions, to give readers a better understanding of the event's context."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from NDTV or a video clip from the summit featuring Petraeus's remarks to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "a28dfeb6-f9de-4be2-97c1-9531ac3a3121",
+    "headline": "Gen Z Flight Bookings Jump 60 Percent Ahead of Diwali, Cleartrip Finds",
+    "slug": "gen-z-flight-bookings-jump-60-percent-diwali-cleartrip",
+    "category": "travel",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the data by explicitly stating that Cleartrip's PeekABoo tracker is the primary source for all statistics mentioned, ensuring that readers understand where the information is coming from.",
+        "Include specific numbers or percentages regarding the average cost of flights or hotel bookings to provide readers with a clearer understanding of the financial implications of these trends.",
+        "Add a brief context about the significance of Diwali travel trends in India, particularly how they reflect broader economic or cultural shifts, which would enhance the completeness of the article."
+      ],
+      "embed_opportunities": [
+        "Embed Cleartrip's official tweet or announcement regarding the PeekABoo tracker findings to provide direct access to the source of the data."
+      ]
+    }
+  }
+]

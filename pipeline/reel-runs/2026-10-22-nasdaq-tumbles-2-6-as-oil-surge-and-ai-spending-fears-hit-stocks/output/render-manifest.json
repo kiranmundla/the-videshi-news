@@ -1,0 +1,235 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks",
+  "article_slug": "nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks",
+  "article_id": "85c51c61-b33d-45ef-81e5-e50b10d3a529",
+  "category": "Markets Finance",
+  "video": "reel-runs/2026-10-22-nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks/output/nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Nasdaq_Tower_May_2026.jpg/3840px-Nasdaq_Tower_May_2026.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+    "local_path": "reel-runs/2026-10-22-nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks/output/hero.jpg",
+    "width": 3840,
+    "height": 5760,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "static-fallback (cv2 unavailable)",
+    "has_face": false,
+    "box_source": [
+      844,
+      576,
+      2150,
+      2304
+    ],
+    "box_bg": [
+      182.3,
+      192.0,
+      716.7,
+      768.0
+    ],
+    "chin_bg": null,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 230,
+      "block_top": 858,
+      "block_bottom": 1088,
+      "text_bbox": [
+        117,
+        858,
+        893,
+        1084
+      ],
+      "texts": [
+        "Markets Finance",
+        "NASDAQ TUMBLES 2.6% IN WORST DAY SINCE JUNE"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 330,
+      "block_top": 858,
+      "block_bottom": 1188,
+      "text_bbox": [
+        124,
+        858,
+        878,
+        1193
+      ],
+      "texts": [
+        "What Happened",
+        "The Nasdaq Composite fell 2.6% on October 22, its steepest drop since June, as oil surged and AI spending fears hit tech stocks."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 507,
+      "block_top": 858,
+      "block_bottom": 1365,
+      "text_bbox": [
+        110,
+        858,
+        892,
+        1371
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "2.6%",
+        "Nasdaq Composite fall on October 22, its steepest drop since June"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 520,
+      "block_top": 858,
+      "block_bottom": 1378,
+      "text_bbox": [
+        116,
+        858,
+        894,
+        1377
+      ],
+      "texts": [
+        "By The Numbers",
+        "$113.03",
+        "Brent crude settlement a barrel, up 3%",
+        "7%",
+        "Meta fell about 7% despite beating revenue expectations"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 407,
+      "block_top": 858,
+      "block_bottom": 1265,
+      "text_bbox": [
+        118,
+        858,
+        850,
+        1261
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Chipmakers sold off: AMD fell more than 8%, Nvidia lost 4%",
+        "Treasury yields fell as investors sought safety amid the selloff"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 312,
+      "block_top": 858,
+      "block_bottom": 1170,
+      "text_bbox": [
+        128,
+        858,
+        874,
+        1181
+      ],
+      "texts": [
+        "The Takeaway",
+        "The next test is whether oil holds above $110.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "tech-corporate-the-show-must-be-go.mp3",
+    "path": "music/tech-corporate-the-show-must-be-go.mp3"
+  },
+  "render_seconds": 392.4,
+  "mp4_bytes": 23122394
+}
