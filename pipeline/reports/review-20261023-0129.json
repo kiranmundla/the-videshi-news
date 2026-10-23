@@ -1,0 +1,186 @@
+[
+  {
+    "id": "4727d76b-b224-4b28-8ac3-c1d01ad59cb8",
+    "headline": "Record Gold Prices Are Changing What Diwali Shoppers Buy, Not Whether They Buy",
+    "slug": "record-gold-prices-changing-diwali-shopping-lighter-jewellery-coins",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific price range for smaller jewellery items and how much less consumers are spending compared to previous years to provide a clearer financial context for readers.",
+        "Include a direct quote from a shopper or a statistic about consumer sentiment regarding gold purchases to enhance the article's human element and relatability.",
+        "Add a brief comparison of gold prices in India versus Canada to give readers a broader understanding of the global market impact on Diwali shopping."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the World Gold Council regarding the trends in gold buying during Diwali to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "3354c42b-aa55-4bdc-ac2b-0de4cc9d266c",
+    "headline": "Westminster and Downing Street Light Diyas for Diwali With Indian Diaspora",
+    "slug": "westminster-downing-street-diwali-appg-indian-diaspora",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date of the Diwali celebrations at Westminster and Downing Street, as well as the date of Starmer's visit to Mumbai for context.",
+        "Include a direct quote from Prime Minister Keir Starmer's Diwali message to provide a more personal touch and enhance the article's depth.",
+        "Provide more context on the significance of the UK-India Free Trade Agreement mentioned, such as specific benefits or implications for the UK-India relationship that readers may find relevant."
+      ],
+      "embed_opportunities": [
+        "Embed a video of the Diwali celebrations or a clip of Keir Starmer's message if available, to enhance engagement and provide a visual element to the article."
+      ]
+    }
+  },
+  {
+    "id": "9b9c1fa9-d44c-4db1-a150-52cd4d8486bd",
+    "headline": "USPS Prints 20 Million Diwali Rangoli Stamps After Indian American Campaign",
+    "slug": "usps-prints-20-million-diwali-rangoli-stamps",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the current First-Class Mail one-ounce price to provide readers with specific dollar amounts related to the stamp purchase.",
+        "Include a direct quote or statement from the Indian American advocacy groups involved in the campaign for the second stamp to enhance attribution and provide a broader perspective on community involvement.",
+        "Add context about the significance of Diwali stamps in the U.S. and how they reflect the growing recognition of Indian culture, which could enhance completeness and reader understanding."
+      ],
+      "embed_opportunities": [
+        "Embed the official USPS announcement or tweet regarding the stamp release to provide readers with direct access to the source of information."
+      ]
+    }
+  },
+  {
+    "id": "e7dea995-21dd-429b-8c21-10560874a271",
+    "headline": "Indian Chefs Put Bone Marrow Centre Stage, Sanghvi Notes in Rude Food",
+    "slug": "indian-chefs-bone-marrow-menu-sanghvi-rude-food",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the trend by including specific statistics or quotes from industry experts about the growth in popularity of bone marrow dishes in Indian cuisine, which would provide context and depth.",
+        "Add a brief explanation of what bone marrow is and its culinary uses for readers who may not be familiar with it, enhancing clarity and completeness.",
+        "Include a timeline or mention any upcoming events, festivals, or food fairs where these bone marrow dishes will be featured, giving readers actionable steps to experience this trend.",
+        "Ensure that all chefs and restaurants mentioned are properly attributed with their full names and titles for accuracy and completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from Vir Sanghvi or a relevant chef discussing the trend of bone marrow in Indian cuisine to provide real-time insights and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "d37b53c8-4280-4794-861f-3ba1adfec763",
+    "headline": "Air India Launches Course-by-Course Fine Dining in Business Class on UK Routes",
+    "slug": "air-india-fine-dining-business-class-long-haul-uk",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the launch in the first sentence to avoid confusion; it currently states 'October 22, 2026,' which may be a typo since it is in the future.",
+        "Include specific details about the timeline for the rollout of the new service to other routes beyond the UK, as this would provide readers with a clearer understanding of when they might expect similar upgrades on other flights.",
+        "Add a brief comparison of the previous meal service to highlight the improvements made with the new course-by-course dining experience, which would enhance reader understanding of the significance of this change."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Air India announcing the launch of the fine dining service to provide direct access to the airline's official communication on this change."
+      ]
+    }
+  },
+  {
+    "id": "ed0941b7-92d9-4e2e-af4f-f860ec7dc391",
+    "headline": "Sri Lanka Chase 430 to Beat England Despite Brook's Record 202",
+    "slug": "sri-lanka-chase-430-beat-england-brook-record-202-rawalpindi",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Sri Lanka's chase by providing context on previous high chases in ODI history, including the highest successful chase record and how this match compares to it.",
+        "Include a brief summary of the implications of Brook's record-setting performance for England's ODI future, such as how it might affect team strategy or player selection moving forward.",
+        "Ensure that all statistics are accurate and cross-verified, particularly the claim about the highest ODI total made in Pakistan, as this could be contested by historical records."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight reel of key moments from the match, including Brook's innings and Sri Lanka's chase, to enhance reader engagement."
+      ]
+    }
+  },
+  {
+    "id": "b50e421a-4ab8-4829-9198-f33886b86c6d",
+    "headline": "Google Will Pay Homes and Businesses to Use Less Power for Data Centers",
+    "slug": "google-voltus-1-gigawatt-virtual-power-plant-pjm",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the financial incentives for participants in the program by including specific dollar amounts or percentages they can expect to earn or save by participating in the virtual power plant initiative.",
+        "Provide a brief explanation of how participants can sign up for this program, including any deadlines or eligibility criteria that may apply to residents in the PJM territory.",
+        "Include a quote or statement from a Google or Voltus representative to enhance attribution and provide insight into the motivations behind this initiative."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Google or Voltus announcing the partnership or providing more details about the program."
+      ]
+    }
+  },
+  {
+    "id": "14e0bb48-afbf-4efd-a3e0-4ad328644187",
+    "headline": "OpenAI Acquires Orchestra Bio, Founded by Ashoka Rajendra, for Rosalind",
+    "slug": "openai-acquires-orchestra-bio-ashoka-rajendra-rosalind",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the financial terms of the acquisition, even if they are undisclosed. Mentioning the estimated valuation of Orchestra Bio based on its previous funding rounds could provide readers with context on the scale of the acquisition.",
+        "Include a quote from OpenAI or Ashoka Rajendra to provide direct attribution and insight into the motivations behind the acquisition. This would enhance the article's depth and credibility.",
+        "Explain the significance of the acquisition in more detail. For instance, how does this acquisition position OpenAI in the biopharma industry compared to its competitors? This would help readers understand the broader implications.",
+        "Correct the timeline inconsistency regarding the funding raised by Orchestra Bio. The article states it raised about $20 million as of 2025, which contradicts the acquisition announcement in 2026. Ensure that all dates and figures are accurate and consistent."
+      ],
+      "embed_opportunities": [
+        "Embed the official OpenAI announcement or a relevant tweet from OpenAI regarding the acquisition to provide readers with direct access to primary sources."
+      ]
+    }
+  },
+  {
+    "id": "f24fade4-f6e8-4aeb-818d-bc0cc7eea07b",
+    "headline": "Treasury Drops Venezuela From Outbound Investment Restriction List in New Propos",
+    "slug": "treasury-drops-venezuela-from-outbound-investment-restriction-list-in-new-proposal",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the statement about Maduro's capture; provide a specific date and context for this event to enhance accuracy and completeness.",
+        "Include a brief explanation of the implications for US investors regarding the new rules, such as specific sectors affected or potential financial impacts, to address the 'what does this mean for me?' aspect.",
+        "Ensure that the quote from the Treasury is attributed clearly to a specific official or document to enhance credibility and clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official US Treasury announcement or a relevant tweet to provide readers with direct access to primary sources."
+      ]
+    }
+  },
+  {
+    "id": "85c51c61-b33d-45ef-81e5-e50b10d3a529",
+    "headline": "Nasdaq Tumbles 2.6% as Oil Surge and AI Spending Fears Hit Stocks",
+    "slug": "nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the context of the oil price surge by including specific details about the Houthi attacks and their implications for global oil supply, which would help readers understand the significance of the price increase.",
+        "Provide specific dollar amounts or percentages regarding the impact of the AI spending fears on stock prices, particularly for major companies like Meta, to give readers a clearer picture of the financial implications.",
+        "Include a brief explanation of what the non-voting shares mean for investors and how this could affect Meta's future performance, as this is a critical point for understanding the market reaction."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or news outlet summarizing the market reaction to the oil price surge and AI spending concerns."
+      ]
+    }
+  }
+]
