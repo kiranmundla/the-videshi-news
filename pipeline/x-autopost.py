@@ -214,7 +214,20 @@ def compose_post(article):
 {summary}
 
 📰 Read the full story on The Videshi"""
-    return post
+    return delink(post)
+
+
+def delink(text):
+    """Strip every URL from a post. X bills any post containing a URL at
+    the ContentCreateWithUrl rate ($0.20 vs $0.015 link-free), and the
+    summary is extracted from article body text, which can carry source
+    URLs into the post — 50 of October's 135 posts leaked a link this
+    way ($10.00 of the $11.28 console total, verified 2026-10-24).
+    Kiran's policy: X posts are link-free, full stop."""
+    text = re.sub(r'https?://\S+', '', text)
+    text = re.sub(r'[ \t]{2,}', ' ', text)
+    text = re.sub(r'\n{3,}', '\n\n', text)
+    return text.strip()
 
 
 # --- Post loop ---
