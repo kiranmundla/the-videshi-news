@@ -1519,7 +1519,7 @@ def fetch_wikimedia_commons_image(search_query, headline=""):
         "gsrlimit": "5",
         "prop": "imageinfo",
         "iiprop": "url|mime|size",
-        "iiurlwidth": "1200",
+        "iiurlwidth": "1920",
     })
     url = f"https://commons.wikimedia.org/w/api.php?{params}"
     
@@ -2854,7 +2854,8 @@ def fetch_person_profile_image(article):
                 # upload fails (it was verified reachable above).
                 slug_name = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
                 fname = f"person-images/{slug_name}-{int(time.time())}.jpg"
-                uploaded = upload_to_supabase(compress_image(raw), fname)
+                uploaded = upload_to_supabase(
+                    compress_image(raw, max_width=1920), fname)
                 final_url = uploaded or img_url
                 _cache_person_profile_image(name, final_url, attribution,
                                             page_url, pw, ph)
@@ -2981,7 +2982,7 @@ def _fetch_commons_with_date(search_query, headline="", max_results=5):
         "gsrlimit": str(max_results),
         "prop": "imageinfo",
         "iiprop": "url|mime|size|timestamp",  # timestamp added for freshness scoring
-        "iiurlwidth": "1200",
+        "iiurlwidth": "1920",
     })
     url = f"https://commons.wikimedia.org/w/api.php?{params}"
     candidates = []

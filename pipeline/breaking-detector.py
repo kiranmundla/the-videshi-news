@@ -361,7 +361,7 @@ def fetch_commons_image(query):
         "gsrlimit": "3",
         "prop": "imageinfo",
         "iiprop": "url|size|mime",
-        "iiurlwidth": "1200",
+        "iiurlwidth": "1920",
         "format": "json"
     })
     url = f"https://commons.wikimedia.org/w/api.php?{params}"

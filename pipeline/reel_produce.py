@@ -52,7 +52,77 @@ def download(url, dest):
     if r.returncode != 0 or not Path(dest).exists() \
             or Path(dest).stat().st_size < 10000:
         raise RuntimeError(f"hero download failed: {url} "
-                           f"({r.stderr[:200]})")
+                           f"({r.stderr[:200]}")
+
+
+_RASTER_SUFFIXES = {".jpg", ".jpeg", ".png", ".webp"}
+
+
+def original_url(url):
+    """Best render-time upgrade of a stored hero URL to its original.
+
+    Article heroes are stored at the article rung (Wikimedia thumbs at
+    1920 wide, NASA ~large) — right for readers, but a landscape hero's
+    9:16 reel crop is set by its HEIGHT (a 1920-wide Capitol frame is
+    only 963px tall), so reels layout-held on heroes that were fine for
+    the article. Reel downloads are pipeline-side (readers pay no
+    bytes), so fetch the original at render time (Kiran's pick,
+    2026-10-24):
+    - upload.wikimedia.org thumb URLs -> the original file URL
+    - commons Special:FilePath?width=N -> width dropped (original)
+    - NASA ~large.jpg -> ~orig.jpg
+    - Pexels size params (w/h/dpr) -> dropped (original)
+    Anything else is returned unchanged.
+    """
+    import urllib.parse
+    try:
+        p = urllib.parse.urlparse(url)
+    except Exception:
+        return url
+    host = (p.netloc or "").lower()
+    if host in ("upload.wikimedia.org", "thumb.wikimedia.org") \
+            and "/thumb/" in p.path:
+        parts = p.path.split("/")
+        # /wikipedia/commons/thumb/<a>/<ab>/<file>/<rendition>
+        # (the Commons API serves thumbs from thumb.wikimedia.org and
+        # appends utm query params; originals live on upload.wikimedia.org)
+        if len(parts) >= 8 and parts[3] == "thumb":
+            original_path = "/".join(parts[:3] + parts[4:-1])
+            if Path(original_path).suffix.lower() in _RASTER_SUFFIXES:
+                return urllib.parse.urlunparse(p._replace(
+                    netloc="upload.wikimedia.org", path=original_path,
+                    query=""))
+        return url
+    if "Special:FilePath" in p.path and p.query:
+        qs = urllib.parse.parse_qsl(p.query)
+        if any(k == "width" for k, _v in qs):
+            qs = [(k, v) for k, v in qs if k != "width"]
+            return urllib.parse.urlunparse(
+                p._replace(query=urllib.parse.urlencode(qs)))
+        return url
+    if "~large." in url and ("nasa.gov" in host or "nasa" in url):
+        return url.replace("~large.", "~orig.")
+    if host == "images.pexels.com" and p.query:
+        qs = urllib.parse.parse_qsl(p.query)
+        kept = [(k, v) for k, v in qs if k not in ("w", "h", "dpr")]
+        if len(kept) != len(qs):
+            return urllib.parse.urlunparse(
+                p._replace(query=urllib.parse.urlencode(kept)))
+    return url
+
+
+def download_hero(url, dest):
+    """Download the hero, preferring the render-time original (see
+    original_url); falls back to the stored URL if the upgrade fails."""
+    upgraded = original_url(url)
+    if upgraded != url:
+        try:
+            download(upgraded, dest)
+            print(f"   hero: original fetched for render ({upgraded[:90]})")
+            return
+        except Exception:
+            print("   hero: original fetch failed, using stored URL")
+    download(url, dest)
 
 
 def main():
@@ -136,7 +206,7 @@ def main():
         ext = Path(photo_url.split("?")[0]).suffix or ".jpg"
         hero = outdir / f"hero{ext}"
         try:
-            download(photo_url, hero)
+            download_hero(photo_url, hero)
         except Exception as e:
             print(f"🚫 {e}", file=sys.stderr)
             verdict["stage"] = "photo"

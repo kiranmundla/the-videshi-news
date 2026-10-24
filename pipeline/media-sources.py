@@ -450,7 +450,7 @@ def search_wikimedia_commons(query, limit=5):
         "gsrlimit": str(limit),
         "prop": "imageinfo",
         "iiprop": "url|size|mime",
-        "iiurlwidth": "1200",
+        "iiurlwidth": "1920",
         "format": "json",
     }
     try:

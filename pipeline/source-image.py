@@ -151,7 +151,7 @@ def fetch_commons(query):
                 "action": "query", "generator": "search",
                 "gsrsearch": query, "gsrnamespace": "6", "gsrlimit": "5",
                 "prop": "imageinfo", "iiprop": "url|size|mime",
-                "iiurlwidth": "1200", "format": "json",
+                "iiurlwidth": "1920", "format": "json",
             },
             headers=UA, timeout=15,
         )
