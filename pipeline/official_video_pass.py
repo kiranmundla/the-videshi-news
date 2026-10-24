@@ -75,6 +75,71 @@ MAX_QUERIES_PER_ARTICLE = 5    # cap on search queries built per article
 RECENCY_BEFORE_DAYS = 14   # highlights may precede the write-up slightly
 RECENCY_AFTER_DAYS = 2     # ...or land just after publication
 
+# ─── Daily search budget (shared across processes) ─────────────────────
+# YouTube's quota resets at midnight Pacific and is shared by every
+# consumer on this box; search.list costs 100 units of the 10,000/day
+# pool. The pass's own main() caps a single run at MAX_SEARCHES_PER_RUN,
+# but the enricher hook calls official_video_for_article() per article
+# with no run concept — so the binding cap is a daily ledger on disk,
+# consulted before EVERY live search, whichever process is running.
+# Default 30 searches/day = 3,000 units, leaving headroom for the
+# enrichers' own YouTube search and other consumers.
+SEARCH_BUDGET_PATH = os.path.join(
+    STATE_DIR, "official-video-search-budget.json")
+try:
+    DAILY_SEARCH_BUDGET = max(0, int(os.environ.get(
+        "VIDESHI_OVP_DAILY_SEARCH_BUDGET", "30")))
+except ValueError:
+    DAILY_SEARCH_BUDGET = 30
+
+
+class _SearchBudgetExhausted(Exception):
+    """Raised by the live search path when the daily budget is spent."""
+
+
+def _pacific_today():
+    try:
+        from zoneinfo import ZoneInfo
+        return datetime.now(
+            ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
+    except Exception:
+        return datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+
+def _consume_search_budget():
+    """Take one search from today's ledger. Returns False when spent.
+
+    Fail-closed: an unreadable or corrupt ledger counts as fully spent —
+    quota protection beats one day of embeds. The read-modify-write is
+    flock-guarded so overlapping writer/enricher processes cannot both
+    spend the same last search.
+    """
+    import fcntl
+    today = _pacific_today()
+    try:
+        os.makedirs(STATE_DIR, exist_ok=True)
+        f = open(SEARCH_BUDGET_PATH, "a+")
+    except OSError:
+        return False
+    with f:
+        try:
+            fcntl.flock(f, fcntl.LOCK_EX)
+            f.seek(0)
+            raw = f.read().strip()
+            state = json.loads(raw) if raw else {}
+            if not isinstance(state, dict) or state.get("date") != today:
+                state = {"date": today, "searches": 0}
+            if state.get("searches", 0) >= DAILY_SEARCH_BUDGET:
+                return False
+            state["searches"] = state.get("searches", 0) + 1
+            f.seek(0)
+            f.truncate()
+            json.dump(state, f)
+            f.flush()
+            return True
+        except (ValueError, TypeError, OSError):
+            return False
+
 
 # ─── Env / credentials ───────────────────────────────────────────────────────
 
@@ -721,6 +786,8 @@ def official_video_for_article(article, token=None, search_fn=None,
                                              "unavailable"}]}
 
         def _live_search(entry, query, art):
+            if not _consume_search_budget():
+                raise _SearchBudgetExhausted()
             return search_channel_videos(token, entry.get("channel_id"),
                                          query)
         search_fn = _live_search
@@ -735,10 +802,22 @@ def official_video_for_article(article, token=None, search_fn=None,
                       + ", ".join(e["name"] for e, _w in
                                   mapped[:MAX_CHANNELS_PER_ARTICLE])})
         mapped = mapped[:MAX_CHANNELS_PER_ARTICLE]
+    budget_dead = False
     for entry, why in mapped:
+        if budget_dead:
+            break
         results = []
         for query in queries:
-            results = search_fn(entry, query, article)
+            try:
+                results = search_fn(entry, query, article)
+            except _SearchBudgetExhausted:
+                decisions.append({
+                    "channel": entry["name"],
+                    "reason": "daily official-video search budget "
+                              "exhausted"})
+                results = []
+                budget_dead = True
+                break
             if results:
                 break
             decisions.append({"channel": entry["name"], "query": query,

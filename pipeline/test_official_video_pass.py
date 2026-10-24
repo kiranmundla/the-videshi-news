@@ -435,6 +435,67 @@ check("11 pirate-bait still rejected in team branch",
 check("11 pirate-bait reason survives",
       "pirate-bait" in res_slp["decisions"][0]["reason"], True)
 
+# ── 12. daily search budget ledger (2026-10-24) ─────────────────────────
+import json as _json
+import tempfile
+
+_budget_file = os.path.join(tempfile.mkdtemp(), "budget.json")
+_orig_budget_path = ovp.SEARCH_BUDGET_PATH
+_orig_budget_cap = ovp.DAILY_SEARCH_BUDGET
+_orig_search = ovp.search_channel_videos
+ovp.SEARCH_BUDGET_PATH = _budget_file
+ovp.DAILY_SEARCH_BUDGET = 3
+check("12 consume 1-3 within cap",
+      [ovp._consume_search_budget() for _ in range(3)],
+      [True, True, True])
+check("12 fourth consume denied", ovp._consume_search_budget(), False)
+with open(_budget_file) as f:
+    _state = _json.load(f)
+check("12 ledger records date + count",
+      (_state["date"], _state["searches"]),
+      (ovp._pacific_today(), 3))
+
+with open(_budget_file, "w") as f:
+    _json.dump({"date": "1999-01-01", "searches": 99}, f)
+check("12 stale date rolls over", ovp._consume_search_budget(), True)
+with open(_budget_file) as f:
+    _state = _json.load(f)
+check("12 rollover resets count", _state["searches"], 1)
+
+with open(_budget_file, "w") as f:
+    f.write("not json {")
+check("12 corrupt ledger fails closed", ovp._consume_search_budget(), False)
+
+# Live path: budget spent -> no API call, decision names the budget
+live_calls = []
+
+
+def fake_api_search(token, channel_id, query, **_kw):
+    live_calls.append(query)
+    return [NZ_VIDEO]
+
+
+ovp.search_channel_videos = fake_api_search
+with open(_budget_file, "w") as f:
+    _json.dump({"date": ovp._pacific_today(), "searches": 3}, f)
+res_b0 = ovp.official_video_for_article(TEAM_ART, token="fake-token",
+                                        channels=[NZC])
+check("12 spent budget makes no API call", live_calls, [])
+check("12 spent budget decision is named",
+      any("budget exhausted" in (d.get("reason") or "")
+          for d in res_b0["decisions"]), True)
+
+with open(_budget_file, "w") as f:
+    _json.dump({"date": ovp._pacific_today(), "searches": 2}, f)
+res_b1 = ovp.official_video_for_article(TEAM_ART, token="fake-token",
+                                        channels=[NZC])
+check("12 one budget unit lets the live search run",
+      res_b1["status"], "accepted")
+check("12 live search consumed the unit", len(live_calls) >= 1, True)
+ovp.search_channel_videos = _orig_search
+ovp.SEARCH_BUDGET_PATH = _orig_budget_path
+ovp.DAILY_SEARCH_BUDGET = _orig_budget_cap
+
 print()
 if FAILURES:
     print(f"FAILURES ({len(FAILURES)}): {FAILURES}")
