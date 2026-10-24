@@ -314,7 +314,17 @@ for i, article in enumerate(articles):
 
         tweet_resp = client.create_tweet(**kwargs)
         tweet_id = str(tweet_resp.data['id'])
-        if x_spend: x_spend.add(writes=1)
+        if x_spend:
+            # Book the spend X actually charges: a post carrying a URL
+            # bills at the ContentCreateWithUrl rate ($0.20), not the
+            # link-free rate ($0.015). This call previously booked every
+            # post as link-free, which hid ~$9 of October's real $11.28
+            # console total (verified against console.x.com 2026-10-24:
+            # 85 PostCreate + 50 ContentCreateWithUrl = $11.28).
+            if "http" in post_text:
+                x_spend.add(writes_link=1)
+            else:
+                x_spend.add(writes=1)
         tweet_url = f"https://x.com/thevideshi/status/{tweet_id}"
         print(f"  ✅ Posted: {tweet_url}")
 
