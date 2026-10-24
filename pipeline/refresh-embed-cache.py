@@ -3,7 +3,7 @@
 refresh-embed-cache.py — Refresh the social embed handle cache.
 
 Reads all X and IG handles from Supabase social_accounts table, fetches their
-recent posts via TwitterAPI.io and Apify, and writes the results to
+recent posts via TwitterAPI.io and the Meta Instagram connector, and writes the results to
 pipeline/cache/embed_cache.json so enrich-on-publish.py can do instant
 handle-based enrichment without live API calls.
 
@@ -12,7 +12,7 @@ Usage:
   python3 -u refresh-embed-cache.py --x-only       # only refresh X handles
   python3 -u refresh-embed-cache.py --ig-only      # only refresh IG handles
 
-Env: ~/workspace/.env.twitterapi-io, ~/workspace/.env.apify
+Env: ~/workspace/.env.twitterapi-io, ~/workspace/.env.supabase
 """
 
 import os
@@ -41,12 +41,23 @@ def load_env(path):
                     os.environ.setdefault(k.strip(), v.strip())
 
 load_env(os.path.expanduser("~/workspace/.env.twitterapi-io"))
-load_env(os.path.expanduser("~/workspace/.env.apify"))
 load_env(os.path.expanduser("~/workspace/.env.supabase"))
 
 TWITTERAPI_IO_KEY = os.environ.get("TWITTERAPI_IO_KEY", "")
 TWITTERAPI_IO_BASE = os.environ.get("TWITTERAPI_IO_BASE", "https://api.twitterapi.io")
-APIFY_API_TOKEN = os.environ.get("APIFY_API_TOKEN", "")
+
+# Instagram reads use the Meta Accounts Center-backed connector, not a
+# developer-app token or scraper. Refreshes rotate through the registry:
+# a bounded number of handles per run, oldest cache entries first.
+INSTAGRAM_CLI = "/opt/hatch/bin/instagram-cli"
+INSTAGRAM_ACCOUNT_ID = os.environ.get(
+    "VIDESHI_INSTAGRAM_ACCOUNT_ID", "17841426005310230")
+try:
+    IG_MAX_HANDLES_PER_REFRESH = max(
+        0, int(os.environ.get("VIDESHI_IG_MAX_HANDLES_PER_REFRESH", "40")))
+except ValueError:
+    IG_MAX_HANDLES_PER_REFRESH = 40
+IG_RATE_LIMITED = False
 
 
 # ─── Registry ────────────────────────────────────────────────────────────────
@@ -183,96 +194,143 @@ def refresh_x_cache(handles, existing_cache):
     return x_cache
 
 
-# ─── Instagram / Apify ────────────────────────────────────────────────────────
+# ─── Instagram / Meta connector ───────────────────────────────────────────────
+
+def _ig_shortcode_from_url(url):
+    m = re.search(r"instagram\.com/(?:p|reel|tv)/([^/?#]+)", url or "")
+    return m.group(1) if m else ""
+
+
+def _is_ig_rate_limit_text(text):
+    low = (text or "").lower()
+    return "429" in low or "too many requests" in low or "rate limit" in low
+
+
+def _normalize_ig_post(item, requested_handle):
+    if not isinstance(item, dict):
+        return None
+    owner = (item.get("username") or "").lower().lstrip("@")
+    if owner != requested_handle:
+        return None
+    if item.get("visibility") and item.get("visibility") != "public":
+        return None
+    url = item.get("url") or ""
+    shortcode = _ig_shortcode_from_url(url)
+    if not shortcode:
+        return None
+    return {
+        "shortCode": shortcode,
+        "caption": item.get("post_caption") or item.get("caption") or "",
+        "timestamp": item.get("created_at") or item.get("timestamp") or "",
+        "likesCount": item.get("likes") or item.get("likesCount") or 0,
+        "commentsCount": item.get("comments") or item.get("commentsCount") or 0,
+        "type": item.get("media_type") or item.get("type") or "",
+        "url": url,
+        "displayUrl": item.get("displayUrl") or "",
+        "ownerUsername": owner,
+        "post_id": item.get("post_id") or item.get("id") or "",
+    }
+
 
 def fetch_ig_posts_batch(handles, results_limit=12):
-    """Batch-fetch recent posts from IG handles via Apify. Returns {handle: [posts]}."""
-    if not APIFY_API_TOKEN:
-        print("  ⚠ APIFY_API_TOKEN not set, skipping IG")
-        return {}
+    """Fetch recent public posts one handle at a time via the connector.
 
-    payload = json.dumps({
-        "username": handles,
-        "resultsLimit": results_limit,
-    })
-
-    try:
-        result = subprocess.run(
-            ["curl", "-sS", "-X", "POST",
-             f"https://api.apify.com/v2/acts/apify~instagram-post-scraper/run-sync-get-dataset-items?token={APIFY_API_TOKEN}",
-             "-H", "Content-Type: application/json",
-             "-d", payload],
-            capture_output=True, text=True, timeout=300,
-        )
-        if result.returncode != 0:
-            print(f"  ⚠ Apify curl failed: {result.stderr[:200]}")
-            return {}
-        data = json.loads(result.stdout)
-    except Exception as e:
-        print(f"  ⚠ Apify call failed: {e}")
-        return {}
-
+    The connector has no batch endpoint. A 429 stops the whole refresh;
+    handles not reached keep their existing cache entries. Returns
+    {handle: [posts]} only for handles actually queried successfully.
+    """
+    global IG_RATE_LIMITED
     by_handle = {}
-    for item in data:
-        if not isinstance(item, dict):
+    for raw_handle in handles:
+        if IG_RATE_LIMITED:
+            break
+        handle = (raw_handle or "").lower().lstrip("@")
+        if not handle:
             continue
-        owner = (item.get("ownerUsername") or "").lower()
-        if not owner:
-            input_url = item.get("inputUrl", "")
-            m = re.search(r'instagram\.com/([^/]+)', input_url)
-            owner = m.group(1).lower() if m else ""
-        if owner:
-            by_handle.setdefault(owner, []).append({
-                "shortCode": item.get("shortCode", ""),
-                "caption": item.get("caption", ""),
-                "timestamp": item.get("timestamp", ""),
-                "likesCount": item.get("likesCount", 0),
-                "commentsCount": item.get("commentsCount", 0),
-                "type": item.get("type", ""),
-                "url": item.get("url", ""),
-                "displayUrl": item.get("displayUrl", ""),
-                "ownerUsername": owner,
-            })
+        cmd = [INSTAGRAM_CLI, "posts",
+               "--account-id", INSTAGRAM_ACCOUNT_ID,
+               "--username", handle,
+               "--limit", str(results_limit)]
+        try:
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
+        except Exception as e:
+            print(f"  ⚠ Instagram connector call failed for @{handle}: {e}")
+            continue
 
+        # Rate-limit detection is STRUCTURAL, never a substring scan of the
+        # payload: post IDs and counts are long digit strings that can
+        # legitimately contain "429". Trust the parsed provider_error
+        # object; scan raw text only when the output is not JSON at all.
+        try:
+            start = result.stdout.find("{")
+            data = json.loads(result.stdout[start:]) if start >= 0 else {}
+            if not isinstance(data, dict):
+                data = {}
+        except (json.JSONDecodeError, TypeError):
+            data = {}
+        if not data:
+            combined = f"{result.stdout}\n{result.stderr}"
+            if _is_ig_rate_limit_text(combined):
+                IG_RATE_LIMITED = True
+                print("  ⚠ Instagram rate limit (429) — stopping IG refresh")
+                break
+            print(f"  ⚠ Instagram connector returned non-JSON for @{handle}")
+            continue
+
+        provider_error = data.get("provider_error") or data.get("error")
+        if provider_error:
+            err_text = json.dumps(provider_error)
+            if _is_ig_rate_limit_text(err_text):
+                IG_RATE_LIMITED = True
+                print(f"  ⚠ Instagram rate limit (429) — stopping IG refresh: {err_text[:160]}")
+                break
+            print(f"  ⚠ Instagram connector error for @{handle}: {err_text[:160]}")
+            continue
+        if result.returncode != 0:
+            print(f"  ⚠ Instagram connector exited {result.returncode} for @{handle}")
+            continue
+
+        posts = []
+        for item in data.get("posts", []):
+            normalized = _normalize_ig_post(item, handle)
+            if normalized:
+                posts.append(normalized)
+        by_handle[handle] = posts
     return by_handle
 
 
-def refresh_ig_cache(handles, existing_cache):
-    """Fetch IG posts for all handles. Returns updated ig cache dict."""
-    ig_cache = existing_cache.get("ig", {})
+def refresh_ig_cache(handles, existing_cache, max_handles=IG_MAX_HANDLES_PER_REFRESH):
+    """Refresh a bounded, rotating slice of the IG registry.
+
+    Handles with no cache entry go first, then the oldest entries. This
+    respects Meta's practical per-account lookup limits instead of trying
+    to read the entire registry in one run. Unreached handles keep their
+    existing cache entries untouched.
+    """
+    ig_cache = dict(existing_cache.get("ig", {}))
     now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     if not handles:
         print("  No IG handles to fetch")
         return ig_cache
 
-    # Batch in groups of 10
-    BATCH_SIZE = 10
+    def _fetched_at(handle):
+        entry = ig_cache.get(handle)
+        return entry.get("fetched_at", "") if isinstance(entry, dict) else ""
+
+    ordered = sorted(handles, key=lambda h: (_fetched_at(h), h))
+    selected = ordered[:max_handles] if max_handles else []
+    deferred = ordered[len(selected):]
+    print(f"  IG rotation: refreshing {len(selected)} of {len(handles)} handles; "
+          f"{len(deferred)} deferred to a later refresh")
+
+    results = fetch_ig_posts_batch(selected, results_limit=12)
     total_posts = 0
-    fetched = 0
+    for h, posts in results.items():
+        ig_cache[h] = {"posts": posts, "fetched_at": now_iso}
+        total_posts += len(posts)
 
-    for i in range(0, len(handles), BATCH_SIZE):
-        batch = handles[i:i + BATCH_SIZE]
-        print(f"  Batch {i//BATCH_SIZE + 1}: {len(batch)} handles ({', '.join(batch[:5])}{'...' if len(batch) > 5 else ''}) ... ", end="", flush=True)
-
-        results = fetch_ig_posts_batch(batch, results_limit=12)
-
-        for h in batch:
-            posts = results.get(h, [])
-            ig_cache[h] = {
-                "posts": posts,
-                "fetched_at": now_iso,
-            }
-            total_posts += len(posts)
-            fetched += 1
-
-        batch_total = sum(len(results.get(h, [])) for h in batch)
-        print(f"{batch_total} posts")
-
-        if i + BATCH_SIZE < len(handles):
-            time.sleep(2)
-
-    print(f"\n  IG summary: {fetched} handles fetched, {total_posts} posts cached")
+    print(f"\n  IG summary: {len(results)} handles fetched, {total_posts} posts cached")
     return ig_cache
 
 
@@ -303,6 +361,8 @@ def main():
     parser = argparse.ArgumentParser(description="Refresh social embed handle cache")
     parser.add_argument("--x-only", action="store_true", help="Only refresh X handles")
     parser.add_argument("--ig-only", action="store_true", help="Only refresh IG handles")
+    parser.add_argument("--ig-limit", type=int, default=IG_MAX_HANDLES_PER_REFRESH,
+                        help="Max IG handles to refresh this run (rotating, oldest first)")
     args = parser.parse_args()
 
     do_x = not args.ig_only
@@ -324,11 +384,9 @@ def main():
             cache["x"] = refresh_x_cache(x_handles, cache)
 
     if do_ig:
-        print("\n── Instagram / Apify ──")
-        if not APIFY_API_TOKEN:
-            print("  ⚠ APIFY_API_TOKEN not set — skipping IG")
-        else:
-            cache["ig"] = refresh_ig_cache(ig_handles, cache)
+        print("\n── Instagram / Meta connector ──")
+        cache["ig"] = refresh_ig_cache(
+            ig_handles, cache, max_handles=max(0, args.ig_limit))
 
     cache["refreshed_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     save_cache(cache)

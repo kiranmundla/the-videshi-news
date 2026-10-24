@@ -8,7 +8,7 @@ without registry matches.
 
 This script handles:
   - X (Twitter) embed enrichment (cache + live search)
-  - Instagram embed enrichment (cache + Apify live)
+  - Instagram embed enrichment (cache + Meta connector live)
   - YouTube embed enrichment (Data API)
   - Hero image upgrade: replaces Pexels/stock heroes with real photos from
     authoritative tweets (with entity gate + graphic card filter)
@@ -19,7 +19,7 @@ Usage:
   python3 -u enrich-on-publish.py --article-ids ID1,ID2 --apply
 
 Env: ~/workspace/.env.supabase, ~/workspace/.env.twitterapi-io,
-     ~/workspace/.env.apify, ~/workspace/.env.youtube
+     ~/workspace/.env.youtube
 """
 
 import os
@@ -50,7 +50,6 @@ def load_env(path):
 
 load_env(os.path.expanduser("~/workspace/.env.supabase"))
 load_env(os.path.expanduser("~/workspace/.env.twitterapi-io"))
-load_env(os.path.expanduser("~/workspace/.env.apify"))
 load_env(os.path.expanduser("~/workspace/.env.youtube"))
 load_env(os.path.expanduser("~/workspace/.env.openai"))
 
@@ -59,6 +58,22 @@ SB_KEY = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
 TWITTERAPI_IO_KEY = os.environ.get("TWITTERAPI_IO_KEY", "")
 TWITTERAPI_IO_BASE = os.environ.get("TWITTERAPI_IO_BASE", "https://api.twitterapi.io")
 OPENAI_KEY = os.environ.get("OPENAI_API_KEY", "")
+
+# Instagram connector (Meta Accounts Center-backed CLI). The account ID is
+# the brand Instagram account's FBID, not a developer-app token.
+INSTAGRAM_CLI = "/opt/hatch/bin/instagram-cli"
+INSTAGRAM_ACCOUNT_ID = os.environ.get(
+    "VIDESHI_INSTAGRAM_ACCOUNT_ID", "17841426005310230")
+try:
+    IG_CACHE_TTL_HOURS = float(os.environ.get("VIDESHI_IG_CACHE_TTL_HOURS", "6"))
+except ValueError:
+    IG_CACHE_TTL_HOURS = 6.0
+try:
+    IG_MAX_LIVE_HANDLES_PER_RUN = max(
+        0, int(os.environ.get("VIDESHI_IG_MAX_LIVE_HANDLES_PER_RUN", "10")))
+except ValueError:
+    IG_MAX_LIVE_HANDLES_PER_RUN = 10
+IG_RATE_LIMITED = False
 
 # Categories eligible for social embeds
 EMBED_CATEGORIES = {
@@ -213,6 +228,20 @@ def load_cache():
     else:
         print("  ⚠ No cache file found — handle-based enrichment will be skipped")
     return {"x": {}, "ig": {}, "refreshed_at": None}
+
+
+def save_cache(cache):
+    """Persist embed cache atomically, preserving X and IG entries."""
+    try:
+        os.makedirs(os.path.dirname(CACHE_PATH), exist_ok=True)
+        tmp_path = CACHE_PATH + ".tmp"
+        with open(tmp_path, "w") as f:
+            json.dump(cache, f)
+        os.replace(tmp_path, CACHE_PATH)
+        return True
+    except (IOError, OSError) as e:
+        print(f"  ⚠ Cache save failed: {e}")
+        return False
 
 
 # ─── Registry ────────────────────────────────────────────────────────────────
@@ -612,56 +641,142 @@ def enrich_x_from_search(article):
 
 # ─── IG enrichment from cache ────────────────────────────────────────────────
 
+def _ig_shortcode_from_url(url):
+    m = re.search(r"instagram\.com/(?:p|reel|tv)/([^/?#]+)", url or "")
+    return m.group(1) if m else ""
+
+
+def _is_ig_rate_limit_text(text):
+    low = (text or "").lower()
+    return "429" in low or "too many requests" in low or "rate limit" in low
+
+
+def _normalize_ig_post(item, requested_handle):
+    """Normalize one connector post and reject anything not provably owned
+    by the requested public handle. Returns the cache post shape or None."""
+    if not isinstance(item, dict):
+        return None
+    owner = (item.get("username") or "").lower().lstrip("@")
+    if owner != requested_handle:
+        return None
+    if item.get("visibility") and item.get("visibility") != "public":
+        return None
+    url = item.get("url") or ""
+    shortcode = _ig_shortcode_from_url(url)
+    if not shortcode:
+        return None
+    return {
+        "shortCode": shortcode,
+        "caption": item.get("post_caption") or item.get("caption") or "",
+        "timestamp": item.get("created_at") or item.get("timestamp") or "",
+        "likesCount": item.get("likes") or item.get("likesCount") or 0,
+        "commentsCount": item.get("comments") or item.get("commentsCount") or 0,
+        "type": item.get("media_type") or item.get("type") or "",
+        "url": url,
+        "displayUrl": item.get("displayUrl") or "",
+        "ownerUsername": owner,
+        "post_id": item.get("post_id") or item.get("id") or "",
+    }
+
+
 def fetch_ig_posts_live(handles, results_limit=12):
-    """Live-fetch recent posts from IG handles via Apify. Returns {handle: [posts]}."""
-    token = os.environ.get("APIFY_API_TOKEN", "")
-    if not token or not handles:
-        return {}
+    """Live-fetch recent public posts via the Instagram connector.
 
-    payload = json.dumps({
-        "username": handles,
-        "resultsLimit": results_limit,
-    })
-
-    try:
-        result = subprocess.run(
-            ["curl", "-sS", "-X", "POST",
-             f"https://api.apify.com/v2/acts/apify~instagram-post-scraper/run-sync-get-dataset-items?token={token}",
-             "-H", "Content-Type: application/json",
-             "-d", payload],
-            capture_output=True, text=True, timeout=180,
-        )
-        if result.returncode != 0:
-            return {}
-        data = json.loads(result.stdout)
-        if isinstance(data, dict) and "error" in data:
-            err_msg = data["error"].get("message", "")
-            if "limit exceeded" in err_msg.lower():
-                print(f"     ⚠ Apify monthly limit exceeded — skipping IG")
-            else:
-                print(f"     ⚠ Apify error: {err_msg[:80]}")
-            return {}
-    except Exception as e:
-        print(f"     ⚠ Apify call failed: {e}")
-        return {}
-
+    The connector has no batch endpoint, so handles are read one at a time
+    and the caller caps how many may be refreshed in a run. A 429 is a hard
+    stop for every remaining Instagram call in the process, per Meta's
+    connector policy. Returns {handle: [normalized posts]} for handles that
+    were actually queried (including a successful empty result).
+    """
+    global IG_RATE_LIMITED
     by_handle = {}
-    for item in data:
-        owner = (item.get("ownerUsername") or "").lower()
-        if not owner:
-            input_url = item.get("inputUrl", "")
-            m = re.search(r"instagram\.com/([^/]+)", input_url)
-            owner = m.group(1).lower() if m else ""
-        if owner:
-            by_handle.setdefault(owner, []).append(item)
+    if not handles or IG_RATE_LIMITED:
+        return by_handle
+
+    for raw_handle in handles:
+        if IG_RATE_LIMITED:
+            break
+        handle = (raw_handle or "").lower().lstrip("@")
+        if not handle:
+            continue
+        cmd = [INSTAGRAM_CLI, "posts",
+               "--account-id", INSTAGRAM_ACCOUNT_ID,
+               "--username", handle,
+               "--limit", str(results_limit)]
+        try:
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
+        except Exception as e:
+            print(f"     ⚠ Instagram connector call failed for @{handle}: {e}")
+            continue
+
+        # Rate-limit detection is STRUCTURAL, never a substring scan of the
+        # payload: post IDs and counts are long digit strings that can
+        # legitimately contain "429" (a payload scan false-positived on the
+        # first live dry run, 2026-10-24). Trust the parsed provider_error
+        # object; scan raw text only when the output is not JSON at all.
+        try:
+            start = result.stdout.find("{")
+            data = json.loads(result.stdout[start:]) if start >= 0 else {}
+            if not isinstance(data, dict):
+                data = {}
+        except (json.JSONDecodeError, TypeError):
+            data = {}
+        if not data:
+            combined = f"{result.stdout}\n{result.stderr}"
+            if _is_ig_rate_limit_text(combined):
+                IG_RATE_LIMITED = True
+                print("     ⚠ Instagram rate limit (429) — stopping all IG lookups this run")
+                break
+            print(f"     ⚠ Instagram connector returned non-JSON for @{handle}")
+            continue
+
+        provider_error = data.get("provider_error") or data.get("error")
+        if provider_error:
+            err_text = json.dumps(provider_error)
+            if _is_ig_rate_limit_text(err_text):
+                IG_RATE_LIMITED = True
+                print(f"     ⚠ Instagram rate limit (429) — stopping all IG lookups this run: {err_text[:160]}")
+                break
+            print(f"     ⚠ Instagram connector error for @{handle}: {err_text[:160]}")
+            continue
+        if result.returncode != 0:
+            print(f"     ⚠ Instagram connector exited {result.returncode} for @{handle}")
+            continue
+
+        posts = []
+        for item in data.get("posts", []):
+            normalized = _normalize_ig_post(item, handle)
+            if normalized:
+                posts.append(normalized)
+        by_handle[handle] = posts
     return by_handle
 
 
-def prefetch_ig_for_articles(articles, registry):
-    """Collect matched IG handles across all articles and batch-fetch via Apify.
-    Returns a dict like the ig cache: {handle: {"posts": [...], "fetched_at": ...}}
+def _ig_cache_entry_fresh(entry, ttl_hours=IG_CACHE_TTL_HOURS):
+    if not isinstance(entry, dict) or not entry.get("posts"):
+        return False
+    fetched_at = entry.get("fetched_at")
+    if not fetched_at:
+        return False
+    try:
+        fetched = datetime.fromisoformat(fetched_at.replace("Z", "+00:00"))
+        if fetched.tzinfo is None:
+            fetched = fetched.replace(tzinfo=timezone.utc)
+    except (ValueError, TypeError):
+        return False
+    return (datetime.now(timezone.utc) - fetched).total_seconds() < ttl_hours * 3600
+
+
+def prefetch_ig_for_articles(articles, registry, cache=None, persist=False):
+    """Collect matched IG handles, reuse fresh cache entries, and refresh
+    only stale/missing handles through the connector.
+
+    Live refreshes are capped per run; fresh cache hits do not consume the
+    cap. Returns newly fetched entries in the cache shape. Existing cache
+    entries remain available to enrich_ig_from_cache() either way.
     """
-    all_handles = set()
+    ordered_handles = []
+    seen = set()
     for article in articles:
         headline = article.get("headline", "")
         body = article.get("body", "")
@@ -669,29 +784,57 @@ def prefetch_ig_for_articles(articles, registry):
             continue  # already has an IG embed
         matches = match_handles(headline, registry, "instagram")
         for m in matches[:3]:
-            all_handles.add(m["handle"].lower())
+            handle = m["handle"].lower().lstrip("@")
+            if handle not in seen:
+                seen.add(handle)
+                ordered_handles.append(handle)
 
-    if not all_handles:
+    if not ordered_handles:
         return {}
 
-    handles_list = sorted(all_handles)
-    print(f"\n  IG pre-fetch: {len(handles_list)} handles via Apify ({', '.join(handles_list[:5])}{'...' if len(handles_list) > 5 else ''})")
+    cache_ig = (cache or {}).get("ig", {}) if isinstance(cache, dict) else {}
+    stale_handles = [h for h in ordered_handles
+                     if not _ig_cache_entry_fresh(cache_ig.get(h))]
+    live_handles = stale_handles[:IG_MAX_LIVE_HANDLES_PER_RUN]
+    capped = stale_handles[len(live_handles):]
 
-    results = fetch_ig_posts_live(handles_list, results_limit=12)
+    print(f"\n  IG pre-fetch: {len(ordered_handles)} matched handles; "
+          f"{len(ordered_handles) - len(stale_handles)} fresh in cache, "
+          f"{len(live_handles)} via Instagram connector"
+          f" ({', '.join(live_handles[:5])}{'...' if len(live_handles) > 5 else ''})")
+    if capped:
+        print(f"  IG pre-fetch: per-run cap reached; {len(capped)} stale handles deferred")
+
+    if not live_handles:
+        print("")
+        return {}
+
+    results = fetch_ig_posts_live(live_handles, results_limit=12)
     now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
     ig_live = {}
     total = 0
-    for h in handles_list:
-        posts = results.get(h, [])
-        ig_live[h] = {"posts": posts, "fetched_at": now_iso}
+    for h, posts in results.items():
+        entry = {"posts": posts, "fetched_at": now_iso}
+        ig_live[h] = entry
         total += len(posts)
+        if isinstance(cache, dict):
+            cache.setdefault("ig", {})[h] = entry
+    if persist and ig_live:
+        save_cache(cache)
     print(f"  IG pre-fetch: {total} posts from {len([h for h in ig_live if ig_live[h]['posts']])} handles\n")
     return ig_live
 
 
 def enrich_ig_from_cache(article, cache, registry, live_ig=None):
-    """Try handle-based IG enrichment from cache or live fetch. Returns shortcode or None."""
+    """Try handle-based IG enrichment from cache or live fetch.
+
+    Returns (embed_url, evidence) or (None, None). A post is eligible only
+    when its owner matches the registry handle and its caption materially
+    matches the article headline. The personality's unrelated latest post
+    is never used as a fallback: an embed is evidence for this story, not
+    decoration.
+    """
     headline = article["headline"]
     ig_matches = match_handles(headline, registry, "instagram")
     if not ig_matches:
@@ -713,7 +856,7 @@ def enrich_ig_from_cache(article, cache, registry, live_ig=None):
     }
 
     for m in ig_matches[:3]:
-        handle = m["handle"]
+        handle = m["handle"].lower().lstrip("@")
         cached = merged.get(handle)
         if not cached or not cached.get("posts"):
             continue
@@ -728,33 +871,49 @@ def enrich_ig_from_cache(article, cache, registry, live_ig=None):
 
         posts = cached["posts"]
 
-        # First pass: try caption relevance matching (best if we find a topical post)
+        # Caption relevance is mandatory. Match whole words so a topic term
+        # cannot fire merely because it is a substring of another word.
+        keywords = []
+        seen_kw = set()
+        for w in topic_kw:
+            kw = w.lower().strip(".,!?:;-\"'“”‘’")
+            if len(kw) > 2 and kw not in seen_kw:
+                seen_kw.add(kw)
+                keywords.append(kw)
+
         scored = []
         for post in posts:
+            owner = (post.get("ownerUsername") or "").lower().lstrip("@")
+            if owner and owner != handle:
+                continue
             caption = (post.get("caption", "") or "").lower()
             if not caption:
                 continue
-            keywords = [w.lower().strip(".,!?:;-") for w in topic_kw if len(w) > 2]
-            hits = sum(1 for kw in keywords if kw in caption)
+            matched = [kw for kw in keywords
+                       if re.search(r"\b" + re.escape(kw) + r"\b", caption)]
+            hits = len(matched)
             if hits >= 2 or (hits >= 1 and len(keywords) <= 2):
-                sc = post.get("shortCode", "")
-                if sc:
-                    scored.append((hits, sc, post))
+                url = post.get("url") or ""
+                sc = post.get("shortCode") or _ig_shortcode_from_url(url)
+                url_sc = _ig_shortcode_from_url(url)
+                if not sc or (url_sc and url_sc != sc):
+                    continue
+                if not url:
+                    url = f"https://www.instagram.com/p/{sc}/"
+                scored.append((hits, post.get("timestamp", ""), url, post, matched))
 
         if scored:
-            scored.sort(key=lambda x: -x[0])
-            shortcode = scored[0][1]
-            return shortcode, {"handle": handle, "name": m["name"]}
-
-        # Second pass: no topical match — embed the most recent post ONLY for person handles.
-        # For org handles (NVIDIA, Google, etc.), the latest post is about some
-        # random product/announcement, not the article topic — irrelevant.
-        # For persons, showing their latest post adds social proof and visual engagement.
-        if m.get("group") == "persons":
-            for post in posts:
-                sc = post.get("shortCode", "")
-                if sc:
-                    return sc, {"handle": handle, "name": m["name"]}
+            scored.sort(key=lambda x: (x[0], x[1]), reverse=True)
+            hits, _ts, url, post, matched = scored[0]
+            return url, {
+                "handle": handle,
+                "name": m["name"],
+                "score": min(10, 5 + hits),
+                "matched_keywords": matched,
+                "caption": post.get("caption", ""),
+                "timestamp": post.get("timestamp", ""),
+                "post_id": post.get("post_id", ""),
+            }
 
     return None, None
 
@@ -1345,12 +1504,12 @@ def fetch_articles(article_ids=None, hours=3):
     """Fetch articles to enrich — either by IDs or recent window."""
     if article_ids:
         # Fetch specific articles
-        id_filter = ",".join(f'"{aid}"' for aid in article_ids)
         params = {
             "select": "id,headline,slug,category,body,social_embeds,enriched_at,published_at,image_url",
             "id": f"in.({','.join(article_ids)})",
             "status": "eq.published",
         }
+        return sb_get("p2_articles", params)
     else:
         since = (datetime.now(timezone.utc) - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
         # NOTE: do NOT filter on enriched_at — article-polish.py sets enriched_at at
@@ -1407,14 +1566,11 @@ def main():
     eligible = [a for a in articles if a.get("category") in EMBED_CATEGORIES]
     print(f"\nArticles: {len(articles)} total, {len(eligible)} in eligible categories")
 
-    # Pre-fetch IG posts for matched handles (1 Apify call instead of cache)
-    ig_cache_empty = not any(
-        v.get("posts") for v in cache.get("ig", {}).values()
-        if isinstance(v, dict)
-    )
-    live_ig = {}
-    if ig_cache_empty:
-        live_ig = prefetch_ig_for_articles(eligible[:args.max], registry)
+    # Pre-fetch IG posts for matched handles: fresh cache first, then a
+    # capped connector refresh for stale/missing handles. Cache writes are
+    # persisted only on --apply runs so dry runs remain read-only.
+    live_ig = prefetch_ig_for_articles(
+        eligible[:args.max], registry, cache=cache, persist=args.apply)
 
     report = {"processed": 0, "x_embeds": 0, "ig_embeds": 0, "yt_embeds": 0, "hero_upgrades": 0, "skipped": 0}
 
@@ -1542,18 +1698,23 @@ def main():
         else:
             print(f"     X: already has embed")
 
-        # ── IG enrichment — DISABLED until IG API tokens are refreshed ──
-        #         if not has_embed(body, "instagram"):
-        #             shortcode, info = enrich_ig_from_cache(article, cache, registry, live_ig=live_ig)
-        #             if shortcode:
-        #                 ig_url = f"https://www.instagram.com/p/{shortcode}/"
-        #                 source = "live" if live_ig else "cache"
-        #                 ig_score = info.get("score", 5)
-        #                 print(f"     IG ({source}): @{info['handle']} → {ig_url} [score:{ig_score}]")
-        #                 pending_embeds.append((ig_score, "instagram", ig_url, f"IG(@{info['handle']})"))
-        #                 report["ig_embeds"] += 1
-        #         else:
-        #             print(f"     IG: already has embed")
+        # ── IG enrichment (cache + Meta connector) ──
+        if not has_embed(body, "instagram"):
+            ig_url, info = enrich_ig_from_cache(
+                article, cache, registry, live_ig=live_ig)
+            if ig_url:
+                source = "live" if info["handle"] in live_ig else "cache"
+                ig_score = info.get("score", 5)
+                matched = ",".join(info.get("matched_keywords", []))
+                print(f"     IG ({source}): @{info['handle']} → {ig_url} "
+                      f"[score:{ig_score}; matched:{matched}]")
+                pending_embeds.append(
+                    (ig_score, "instagram", ig_url, f"IG(@{info['handle']})"))
+                report["ig_embeds"] += 1
+            else:
+                print("     IG: no verified, topical post found")
+        else:
+            print("     IG: already has embed")
 
         # Sort by relevance score descending — best match gets highest placement
         pending_embeds.sort(key=lambda x: x[0], reverse=True)
