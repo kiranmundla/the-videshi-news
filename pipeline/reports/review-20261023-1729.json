@@ -1,0 +1,194 @@
+[
+  {
+    "id": "7bb2dac5-4987-4f06-b518-27bc459b1aa5",
+    "headline": "Nvidia and TCV Invest in AI Video Startup Higgsfield",
+    "slug": "nvidia-tcv-invest-ai-video-startup-higgsfield",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the size of the extension and its valuation if possible, as this information is crucial for understanding the significance of the investment.",
+        "Include a direct quote from a representative of Nvidia or TCV to enhance attribution and provide insight into their perspective on the investment.",
+        "Add context regarding the competitive landscape of AI video startups to help readers understand Higgsfield's position in the market and the implications of this investment."
+      ],
+      "embed_opportunities": [
+        "Embed the official Nvidia tweet about Jensen Huang's visit to Kazakhstan and the investment announcement to provide immediate context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "49d8acef-31bd-42b2-8f03-03c3cf918cd4",
+    "headline": "India-Origin UK Mayors Say Public Sentiment on Immigration Has Changed",
+    "slug": "india-origin-uk-mayors-immigration-sentiment-changed-ndtv-summit",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific changes in public sentiment regarding immigration that the mayors are referring to. Providing concrete examples or statistics would enhance the completeness of the article.",
+        "Include direct quotes from Tushar Kumar and Parveen Rani regarding their views on the changing sentiment and its implications. This would improve attribution and clarity.",
+        "Add a brief context about the current immigration policies in the UK and how they may relate to the sentiments expressed by the mayors. This would provide readers with a more comprehensive understanding of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official NDTV tweet or video from the World Summit session featuring the mayors to enhance the article's credibility and provide a visual element."
+      ]
+    }
+  },
+  {
+    "id": "86ef19f7-574a-4425-8e73-dba9e5864a1a",
+    "headline": "Rawal's Unbeaten Century Powers India to Nine-Wicket Win Over Zimbabwe in Opener",
+    "slug": "pratika-rawal-century-india-nine-wicket-win-zimbabwe-first-wodi",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Clarify the significance of the match by including context about the importance of this series for both teams, such as their current standings or historical performance against each other.",
+        "Provide more detailed statistics about the players' performances, such as their averages or previous records in ODIs, to give readers a better understanding of their achievements in this match.",
+        "Include a quote from a player or coach to add depth and perspective to the match report, enhancing the narrative and providing insights into the team's strategy or morale.",
+        "Mention any upcoming matches or series implications beyond just the next game, such as how this series fits into the broader context of international rankings or future tournaments."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official cricket board or a sports journalist summarizing the match highlights or player performances."
+      ]
+    }
+  },
+  {
+    "id": "0cbf4e86-465c-4990-9560-9b6388cbd3ba",
+    "headline": "DOJ Sues to Block Alaska Senate Certification if Sullivan Loses",
+    "slug": "doj-sues-block-alaska-senate-certification-sullivan-loses",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the date when the certification is expected to occur and when the court decision is anticipated, as this will provide readers with a clearer understanding of the urgency and implications of the lawsuit.",
+        "Provide more context on the implications of ranked-choice voting in Alaska, particularly how it works and how the presence of a similar-named candidate could specifically affect the outcome of the election.",
+        "Include direct quotes from the Justice Department or relevant officials to enhance attribution and provide a clearer perspective on the motivations behind the lawsuit."
+      ],
+      "embed_opportunities": [
+        "Embed the official DOJ press release regarding the lawsuit for readers to access the primary source of information."
+      ]
+    }
+  },
+  {
+    "id": "42999970-f0c6-4f12-9798-b80dfd36ca03",
+    "headline": "NHS Clears Five AI Tools to Help Spot Prostate Cancer on MRI Scans",
+    "slug": "nhs-ai-tools-prostate-cancer-mri-nice",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the two-year evidence-generation period. Specify when the evaluation will begin and when results are expected to be reported to provide readers with a clearer understanding of the timeframe.",
+        "Include a specific statement on the expected impact of these AI tools on patient outcomes or healthcare costs. For example, mention any projected improvements in diagnosis rates or reductions in unnecessary biopsies, if available.",
+        "Provide more context on the significance of the 58,000 prostate cancer diagnoses in England. For instance, compare this figure to previous years or discuss its implications for healthcare resources and patient care."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from NICE or a healthcare expert that summarizes the significance of this recommendation or the potential impact of AI in prostate cancer diagnosis."
+      ]
+    }
+  },
+  {
+    "id": "73762db4-136e-4b26-a45e-8487552bf60f",
+    "headline": "India to Count Unpaid Work, Gig Workers in Jobs Survey Overhaul",
+    "slug": "india-plfs-overhaul-unpaid-work-gig-platform-workers-2027",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the proposed changes by specifying the exact date when the public feedback period ends, as well as the implications of the changes starting in January 2027.",
+        "Include a brief explanation of how the new categories for unpaid work and gig workers will impact the overall labor statistics, particularly in terms of expected changes in unemployment and participation rates.",
+        "Add a quote from a relevant expert or official to provide authoritative context and enhance the credibility of the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Ministry of Statistics and Programme Implementation announcing the proposed changes to provide direct access to the source of information."
+      ]
+    }
+  },
+  {
+    "id": "b6a64dfd-2fc9-41af-8634-24d3eace6302",
+    "headline": "Mann Says Delhi Airport Hold-Up Was Revenge, Links Customs Chief to CEC",
+    "slug": "mann-delhi-airport-revenge-customs-chief-cec-brother",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the connection between Mann's hold-up and the alleged political revenge; provide more context on why he believes this is politically motivated.",
+        "Include a direct quote or statement from the Delhi Customs or Election Commission to provide balance and completeness to the story.",
+        "Add specific details about the Rs 50,000 fine, such as the basis for the fine and any relevant regulations or laws that apply to such situations."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official statement from the Delhi Customs or Election Commission to provide their perspective on the incident."
+      ]
+    }
+  },
+  {
+    "id": "3e0bb202-a7e7-46cb-bf58-0355a369dbfe",
+    "headline": "American Express Profit Jumps 28%, Raises Outlook, Cuts 3,500 Jobs",
+    "slug": "american-express-q3-profit-raises-outlook-cuts-3500-jobs",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the impact of the job cuts by providing more context on how this might affect the company's operations or customer service. For example, specify which departments will be affected or how this might influence the company's service delivery.",
+        "Include a direct quote from a company executive or a financial analyst to provide insight into the implications of the profit increase and job cuts. This would enhance attribution and provide a human element to the financial data.",
+        "Add a comparison to previous quarters or years to give readers a clearer picture of American Express's performance trends. For instance, how does the current profit and revenue compare to the same quarter last year or the previous quarter?",
+        "Provide specific details on the restructuring charge of $336 million. Explain how this will be allocated or what specific areas of the business it will impact."
+      ],
+      "embed_opportunities": [
+        "Embed the official American Express earnings call or a relevant tweet from the company regarding the earnings report to provide direct access to their statements."
+      ]
+    }
+  },
+  {
+    "id": "e72893ee-25a9-499c-b2a3-244c6c92fff7",
+    "headline": "MEA Blames Patrol Deviations as India, China Agree LAC Talks",
+    "slug": "mea-lac-patrol-deviations-india-china-border-talks",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the recent face-offs in Arunachal Pradesh occurred. This would provide readers with a clearer understanding of the situation's urgency.",
+        "Include specific quotes or data from the ITBP chief's disclosure regarding the nature and frequency of the face-offs to enhance the completeness of the report.",
+        "Provide context on the implications of the October 2024 patrolling agreement mentioned in the article. A brief explanation of what this agreement entails and its significance would help readers understand the stakes involved.",
+        "Ensure that the article maintains a logical flow by clearly separating the MEA's statements from the responses of opposition leaders. This could improve clarity and help readers follow the narrative more easily."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the Ministry of External Affairs regarding the border situation to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "939ef4a4-2491-41ea-9698-aba850f372be",
+    "headline": "\u2018418\u2019: Critics Say Chaitra Achar\u2019s Performance Shines in a Promising Yet Flawed ",
+    "slug": "418-review-roundup-critics",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image",
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement",
+      "Possibly irrelevant YouTube: \"#418 O\ufb03cial Trailer - The Last Warning (Hindi) | Prashanth N\" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the film's release date and box office expectations to provide context for readers about its immediate relevance.",
+        "Include specific quotes from critics to enhance attribution and provide a clearer sense of the critical reception.",
+        "Expand on the mental health themes mentioned, offering specific examples from the film that illustrate how these themes are presented or executed.",
+        "Provide a brief overview of the director Kirtan Nadagouda's background to give readers context about his experience and potential influence on the film."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent film critic or a film industry insider discussing their thoughts on '418' to enhance credibility and engagement."
+      ]
+    }
+  }
+]

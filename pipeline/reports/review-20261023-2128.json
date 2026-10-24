@@ -1,0 +1,151 @@
+[
+  {
+    "id": "035b58a3-1087-4ad8-8de4-528ca7ee2c73",
+    "headline": "Kauriburir Mandir Teaser Out: Jeetu Kamal, Paoli Dam",
+    "slug": "kauriburir-mandir-teaser-out-jeetu-kamal-paoli-dam",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Change the headline to match the 'Film Teaser Out' format.",
+        "Ensure the drop date is clearly stated in the body for clarity."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "8a62b56b-8349-4b0b-a6ad-3c9ef0a6adb3",
+    "headline": "ED Raids 13 Sites in Probe Into Fraudulent NRI Housing Loans",
+    "slug": "ed-raids-13-sites-nri-housing-loan-fraud-probe",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying when the raids occurred and if there are any expected follow-up actions or updates from the Enforcement Directorate.",
+        "Include specific figures regarding the number and total value of the loans involved, as this information is crucial for understanding the scale of the alleged fraud.",
+        "Add a brief statement on the potential legal consequences for the companies involved if found guilty, as this would provide context on the seriousness of the allegations."
+      ],
+      "embed_opportunities": [
+        "Embed the official Enforcement Directorate tweet regarding the raids or the investigation for authenticity and direct information."
+      ]
+    }
+  },
+  {
+    "id": "7ba5e649-fb42-45ee-8dfd-ce82ea8e1371",
+    "headline": "Epic Games Puts $65,000 Behind AI-Built Games in Four-Day MegaJam",
+    "slug": "epic-games-ai-megajam-65000-prizes",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the cash prize structure by explicitly stating that the total cash pool is $65,000, with the top prize being $7,500, to avoid any confusion regarding the distribution of funds.",
+        "Provide a brief explanation of what the Development Continuation Grants are and how teams can apply for them, including any criteria or process involved.",
+        "Include a direct quote from an Epic Games representative or a relevant source to enhance credibility and provide insight into the motivation behind the MegaJam.",
+        "Add a brief section summarizing the significance of AI in game development and how this MegaJam reflects current trends in the industry."
+      ],
+      "embed_opportunities": [
+        "Embed the official Epic Games announcement or tweet regarding the MegaJam to provide readers with direct access to the source of information."
+      ]
+    }
+  },
+  {
+    "id": "473d5640-1897-4ead-9b02-c7c682b75d51",
+    "headline": "Trump Administration Narrows H-1B Hiring With Layoff Scrutiny and New Fees",
+    "slug": "trump-administration-narrows-h1b-hiring-layoff-scrutiny",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the $100,000 payment extension for H-1B hires. Include details on whether this fee is applicable to all employers or only specific categories, and how it affects the overall cost of hiring H-1B workers.",
+        "Provide a clearer timeline regarding the comments on ending the 60-day grace period. Specify what actions readers should take before the November 10, 2026 deadline to ensure they are prepared for potential changes.",
+        "Include a brief explanation of how the scrutiny of layoffs will specifically impact the H-1B application process. For example, what specific documentation or evidence might employers need to provide to demonstrate compliance?",
+        "Add a quote or statement from a legal expert or immigration attorney to provide authoritative insight on the implications of these changes for employers and H-1B workers."
+      ],
+      "embed_opportunities": [
+        "Embed the official White House statement or press release regarding the September 18 executive order to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "8b751046-dfbf-49f2-871e-d00ced8cae01",
+    "headline": "Diwali 2026 Recipes: Nine Traditional Dishes and the Kaju Sweets to Make at Home",
+    "slug": "diwali-2026-traditional-recipes-kaju-sweets",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the preparation times for each recipe to help readers plan their cooking schedule more effectively. For example, include specific time estimates for each dish.",
+        "Provide a brief overview of the cultural significance of each dish mentioned, which would enhance the completeness and context of the article.",
+        "Include a note on ingredient availability or substitutions for readers who may have difficulty sourcing specific items, which would improve the article's practicality.",
+        "Ensure consistency in the presentation of the recipes, such as using bullet points for ingredients and step-by-step instructions for clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a YouTube video demonstrating the preparation of one or more of the featured recipes to provide visual guidance for readers."
+      ]
+    }
+  },
+  {
+    "id": "1f370000-cfb3-4a53-b248-7c234a8abbc4",
+    "headline": "Air India Flight Returns to Hyderabad Five Minutes After Take-Off, 109 Safe",
+    "slug": "air-india-flight-returns-hyderabad-five-minutes-takeoff-109-safe",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the flight number discrepancy by confirming with Air India which flight number is accurate (AI417 or AI418) and include this information in the article to enhance accuracy.",
+        "Provide a specific timeline for when passengers can expect updates regarding the rescheduling of their flight or transfer to another aircraft, as this is crucial information for affected travelers.",
+        "Include a brief statement from Air India or relevant aviation authorities regarding the nature of the technical issue, if available, to enhance completeness and context."
+      ],
+      "embed_opportunities": [
+        "Embed Air India's official statement or tweet regarding the incident for authoritative confirmation and updates."
+      ]
+    }
+  },
+  {
+    "id": "3858ec69-bd61-4101-8ef7-2b865c571965",
+    "headline": "India Smartphone Shipments Fall 20% to Decade Low in Q3",
+    "slug": "india-smartphone-shipments-fall-20-percent-q3-counterpoint",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact dates for Q3 2026, as well as the expected timeline for the next round of price hikes after the festive season sale.",
+        "Include specific figures regarding the impact of the price hikes on average smartphone prices, as well as any projected price ranges for the upcoming models to provide readers with a clearer understanding of what to expect.",
+        "Provide a brief comparison with previous years' shipment figures to give context to the 20% decline, helping readers understand the significance of this drop.",
+        "Add a quote from a representative of a major smartphone brand or industry expert to provide additional perspective on the market conditions and future outlook."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Counterpoint Research or a major smartphone brand that discusses the current market trends or the impact of rising memory prices."
+      ]
+    }
+  },
+  {
+    "id": "50bec9ae-3da6-439b-bf77-d66833aea082",
+    "headline": "Milan Condemn Racist Abuse of Maignan After Bournemouth Red Card",
+    "slug": "milan-condemn-racist-abuse-maignan-bournemouth-red-card",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date of the match and the date of the club's statement to enhance clarity and timeliness.",
+        "Include a quote from Maignan's social media post to provide a direct perspective from the player and enhance the completeness of the article.",
+        "Add context about previous incidents of racism in football, particularly involving Maignan, to provide readers with a deeper understanding of the issue and its recurrence."
+      ],
+      "embed_opportunities": [
+        "Embed the official AC Milan statement regarding the incident to provide readers with direct access to the club's position."
+      ]
+    }
+  }
+]

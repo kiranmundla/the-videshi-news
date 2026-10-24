@@ -1,0 +1,37 @@
+{
+ "hook_line": "NO DOUBLE SOCIAL SECURITY IN THE UK",
+ "hook_stat": {
+  "big": "5 YEARS",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "UK posting window with no double social security payments"
+ },
+ "stats": [
+  {
+   "big": "60 MONTHS",
+   "label": "NIC exemption for detached workers, up from 52 weeks"
+  },
+  {
+   "big": "\u00a3769",
+   "label": "Visa application fee \u2014 visa costs still apply"
+  },
+  {
+   "big": "\u00a31,035",
+   "label": "Immigration Health Surcharge for up to 12 months"
+  }
+ ],
+ "diaspora_bullets": [
+  "Detached workers need an EPFO Certificate of Coverage",
+  "Workers who move on their own for a UK job pay NICs from day one"
+ ],
+ "key_entities": [
+  "Double Contributions Convention",
+  "EPFO",
+  "UK National Insurance",
+  "India",
+  "United Kingdom"
+ ],
+ "news_summary": "Indian employees posted to the UK no longer pay social security twice under the Double Contributions Convention in force since July 15.",
+ "payoff": "Detached workers now pay into one system \u2014 India's EPF.",
+ "versus": "",
+ "story_mood": "celebratory"
+}

@@ -1,0 +1,147 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "indians-posted-uk-avoid-double-social-security-five-years-dcc",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Indians Posted to UK Now Avoid Double Social Security for Five Years",
+        "numbers": [],
+        "entities": [
+          "Indians Posted",
+          "UK Now Avoid Double Social Security",
+          "Five Years"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article states Indians avoid double social security for up to five years.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The Double Contributions Convention extends the NIC exemption for detached workers from 52 weeks to 60 months \u2014 if they hold an EPFO Certificate of Coverage.",
+        "numbers": [
+          52.0,
+          60.0
+        ],
+        "entities": [
+          "Double Contributions Convention",
+          "EPFO Certificate"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article confirms NIC exemption extension for detached workers with EPFO certificate.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The Double Contributions Convention, in force since July 15, 2026, extends the NIC exemption for detached workers from 52 weeks to 60 months",
+        "numbers": [
+          15.0,
+          52.0,
+          60.0,
+          2026.0
+        ],
+        "entities": [
+          "Double Contributions Convention"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "Article states the convention is in force since July 15, 2026, extending NIC exemption.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Indian employees sent by an India-based employer to the UK for up to 60 months pay no UK National Insurance and keep contributing to India's EPF instead",
+        "numbers": [
+          60.0
+        ],
+        "entities": [
+          "UK National Insurance",
+          "India's EPF"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article confirms Indian employees sent to the UK pay no UK National Insurance.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Detached workers need a Certificate of Coverage from EPFO as proof; visa costs still apply, including a \u00a3769 application fee and \u00a31,035 a year Immigration Health Surcharge",
+        "numbers": [
+          769.0,
+          1035.0
+        ],
+        "entities": [
+          "Immigration Health Surcharge"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article mentions the need for a Certificate of Coverage and lists visa costs.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Indians Posted to UK Now Avoid Double Social Security for Five Years",
+        "numbers": [],
+        "entities": [
+          "Indians Posted",
+          "UK Now Avoid Double Social Security",
+          "Five Years"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article reiterates that Indians avoid double social security for five years.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000366
+    }
+  },
+  "verdict": "pass"
+}

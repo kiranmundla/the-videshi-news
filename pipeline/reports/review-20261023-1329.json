@@ -1,0 +1,201 @@
+[
+  {
+    "id": "a664a2b9-1357-4fad-bae3-1d309cc41c96",
+    "headline": "Shah Rukh Khan, Deepika Padukone to Shoot King Song in Mumbai October 26",
+    "slug": "shah-rukh-khan-deepika-padukone-king-song-mumbai-october-26",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact dates for the filming schedule beyond just 'about a week' to give readers a clearer understanding of the production timeline.",
+        "Provide more context about the significance of the song sequence in relation to the film's overall narrative or marketing strategy, which could enhance reader engagement.",
+        "Ensure that all sources are clearly attributed in the article, especially when mentioning reports from Variety India, NDTV, and Bollywood Hungama, to enhance credibility.",
+        "Remove repetitive phrases to improve clarity and conciseness, such as the repeated mention of the choreographer and the filming location."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Shah Rukh Khan or Deepika Padukone announcing the filming or sharing excitement about the project to enhance reader connection."
+      ]
+    }
+  },
+  {
+    "id": "fec7696f-6ca6-4350-8443-82ff22410030",
+    "headline": "Tharoor Calls for Predictable China Ties Not Weaponised Against India",
+    "slug": "tharoor-predictable-china-ties-itbp-remark-row",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the ITBP chief's remarks were made and how they relate to Tharoor's comments. This will help readers understand the sequence of developments more clearly.",
+        "Include direct quotes from the ITBP Director General Shatrujeet Kapur's statement to provide context and balance to Tharoor's perspective. This will enhance the completeness of the reporting.",
+        "Provide more context on Operation Sindoor, including when it occurred and its significance in the India-China relationship. This will help readers who may not be familiar with the event understand its relevance to the current situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official NDTV tweet that includes Tharoor's comments for direct access to the source and to enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "9eff9a6f-90cc-4c69-99b0-8adb0be47994",
+    "headline": "Social Security Faces 2032 Depletion as Congress Weighs Costly Fixes",
+    "slug": "social-security-2032-depletion-congress-hidden-cost",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for Congress's potential actions by specifying any upcoming deadlines or key dates for proposed legislation regarding Social Security fixes.",
+        "Include a brief explanation of the implications of the projected cuts for average beneficiaries, such as estimated dollar amounts that could be lost per month if the cuts are implemented.",
+        "Provide additional context on the current political climate surrounding Social Security reform to help readers understand the likelihood of Congress taking action before the projected depletion dates."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a credible source, such as the Social Security Administration or a prominent economist, discussing the implications of the projected depletion."
+      ]
+    }
+  },
+  {
+    "id": "0f1d5679-d5a2-4528-aa56-4d7a12689bf9",
+    "headline": "England Must Chase Points Without Losing Discipline Against France",
+    "slug": "england-france-rugby-league-world-cup-points-discipline",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of England's current standing in the tournament by providing specific scenarios or outcomes that could lead to their advancement to the semi-finals, including potential point thresholds or match outcomes.",
+        "Include direct quotes from players or the coach regarding their strategy or mindset going into the match against France to enhance attribution and provide a more personal perspective.",
+        "Add a brief overview of the historical context of England's performance in past Rugby League World Cups, especially their record of reaching the semi-finals, to give readers a better understanding of the stakes involved.",
+        "Ensure that the article specifies the date of the match against Papua New Guinea to provide readers with a clear timeline of upcoming events."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Rugby League World Cup account that highlights key statistics or updates leading up to the match."
+      ]
+    }
+  },
+  {
+    "id": "f4d0bd02-2c50-4a61-97b6-d97df281ea5c",
+    "headline": "JSW Indian Open Returns With India's First Women's Silver-Level PSA Tournament",
+    "slug": "jsw-indian-open-2027-womens-silver-psa-mumbai",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Silver-level upgrade by providing specific details on how it impacts ranking points and the international field compared to the previous Copper level. This would enhance the reader's understanding of the tournament's importance.",
+        "Include a quote from a player or coach to provide a personal perspective on the impact of this upgrade on Indian squash. This would add depth and human interest to the article.",
+        "Provide a brief overview of the previous editions of the tournament, including any notable outcomes or players, to give context to the significance of this year's event."
+      ],
+      "embed_opportunities": [
+        "Embed the official PSA announcement regarding the tournament upgrade to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "6a293d78-1ac1-4922-9260-0a72e4aec872",
+    "headline": "AI Can Bridge India's Public Healthcare Gaps, but Scaling Remains Hard",
+    "slug": "ai-bridge-india-public-healthcare-gaps-techsparks",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific benefits of AI tools for readers by providing concrete examples of how these technologies improve patient outcomes or reduce costs in public healthcare. For instance, detail the expected impact of Niramai's breast cancer screening on early detection rates and potential cost savings for the healthcare system.",
+        "Include direct quotes from the panelists to enhance attribution and provide a more personal perspective on the challenges discussed. This would add depth and clarity to the article's key points.",
+        "Provide a brief overview of the current state of public healthcare in India, including statistics on access and quality, to give readers context on why these AI tools are necessary and what gaps they aim to fill."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or post from the TechSparks 2026 event that highlights key takeaways or quotes from the panel discussion to enhance credibility and engagement."
+      ]
+    }
+  },
+  {
+    "id": "901edc30-3a10-4eea-905b-ca24db014748",
+    "headline": "iPhone 16 Plus Drops Rs 9,901 on Flipkart to Rs 79,999",
+    "slug": "iphone-16-plus-price-drop-flipkart-rs-79999",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source attribution for the price drop information. Instead of stating 'according to Digit and the Free Press Journal' in the opening line, specify which source reported the price first and ensure that the information is consistently attributed throughout the article.",
+        "Provide a clearer breakdown of the total savings when using the Flipkart Axis Bank card. Mention the exact final price after applying the 5% discount to the listed price, so readers can easily understand the total cost.",
+        "Include a comparison table or a clearer section that highlights the differences in pricing and offers between Flipkart and Amazon, as this will help readers quickly assess where to find the best deal.",
+        "Add a brief note on the availability of the iPhone 16 Plus in physical stores or other online platforms, as this could provide additional context for readers considering their purchasing options."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Flipkart announcing the price drop or promotional offers related to the iPhone 16 Plus to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "eea1398c-33c7-498f-89dd-72d3e5744fb2",
+    "headline": "Sensex, Nifty Fall for Fourth Session as Brent Crude Hits $114",
+    "slug": "sensex-nifty-fall-fourth-session-brent-crude-114-fii-outflows",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the impact of the crude oil price increase on specific sectors within the Indian economy, such as transportation and manufacturing, by providing concrete examples or data points.",
+        "Include a brief analysis or quote from a financial expert or analyst regarding the implications of the current market trends and crude oil prices on future market performance.",
+        "Add a timeline or specific dates for when the Jio Platforms IPO money is expected to return and how it might influence market stability in the coming weeks."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or institution commenting on the market trends and crude oil prices for added context."
+      ]
+    }
+  },
+  {
+    "id": "cd3ef073-e41b-4215-b972-6d447d6269d9",
+    "headline": "Infosys and Truist Expand Hyderabad AI Capability Centre Past 1,000 Staff",
+    "slug": "infosys-truist-hyderabad-global-capability-center-expansion",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the onboarding of the 1,000 colleagues. Specify the exact date or timeframe within the month of October 2026 when this onboarding will occur.",
+        "Provide more context on the significance of the Build, Operate, Transfer model. Explain how this model benefits both Infosys and Truist, and what it means for the future operations of the AI Capability Centre.",
+        "Include a quote from a representative of either Infosys or Truist to add a human element and provide insight into the strategic importance of this expansion.",
+        "Mention any potential impacts on local employment or the technology landscape in Hyderabad due to this expansion, as this could be relevant to readers interested in the local economy."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement from Infosys or Truist regarding the expansion, if available, to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "d13e903f-9ae5-4198-b201-9bf129992a82",
+    "headline": "Infosys Cuts FY27 Growth Outlook Despite Strong AI Revenue Surge",
+    "slug": "infosys-cuts-fy27-growth-outlook-ai-revenue-deal-wins",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the lowered growth outlook for investors and stakeholders by providing specific financial impacts, such as potential changes in stock price or investor sentiment.",
+        "Add a brief explanation of what the AI revenue surge means for the company's future prospects, especially in relation to its overall strategy and market position.",
+        "Include a quote from a company executive or an industry analyst to provide expert insight into the significance of the revenue changes and the AI growth.",
+        "Ensure that the timeline for the interim dividend payment is clearly stated, emphasizing the importance of the record date and payment date for shareholders."
+      ],
+      "embed_opportunities": [
+        "Embed the official Infosys press release regarding the earnings report to provide readers with direct access to the company's statements and figures."
+      ]
+    }
+  }
+]

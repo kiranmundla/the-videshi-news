@@ -1,17 +1,17 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-10-23T05:31:32+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-10-23T17:21:10+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
 - Channel uploads (actual, via API): **199**
-- prebuilt_reels rows: 135 (105 with a yt_video_id)
+- prebuilt_reels rows: 136 (106 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
 - Phase 2 publish-log entries: 19
 - **In sync** (channel video backed by a DB/publish-log record): **88**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 10
-- Ghost DB rows (yt_video_id not on channel): 14
+- Ghost DB rows (yt_video_id not on channel): 15
 - Superseded DB rows (owner-deleted/replaced; not ghosts): 3
 - Public with no DB record: 111
 - Phase 2 uploads now public (manual flip expected): 0
@@ -133,7 +133,7 @@ Generated: 2026-10-23T05:31:32+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - `jXiFqMOBpXU` · public · 2026-07-06 · Persistent Systems Just Made India's Boldest AI Bet — a $1.4 Billion Gamble on a German Sof #Shorts
 - `SG8Yd6PmDnc` · public · 2026-10-13 · H-1B Crackdown Meets the Ballot Box: 9 Indian-American Republicans in the Middle #Shorts #H1B
 
-## (b) Ghost DB rows — yt_video_id not on the channel (14)
+## (b) Ghost DB rows — yt_video_id not on the channel (15)
 
 - row `9ac8c1ac-0fa5-49c1-82d9-3606f5373a05` · slug welcome-to-the-jungle-akshay-kumar-ensemble-comedy-june-26-nri-20260603 · yt_video_id `TlA7C-Df2-I` · status pending
 - row `4bc561e2-ca7d-4fdd-86a1-e0341a6fe801` · slug scotus-overturns-humphreys-executor-presidential-power-independent-agencies-2026 · yt_video_id `zoJRBSo2Qkk` · status pending
@@ -149,6 +149,7 @@ Generated: 2026-10-23T05:31:32+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - row `ba61a966-a888-4041-8ca6-12e845ec0d36` · slug india-third-chip-plant-cg-semi-sanand-osat-five-billion-20260708 · yt_video_id `mQwtFEhuvuo` · status ready
 - row `6ac4d40a-7ad8-49a0-93a8-d9ce2f78b52c` · slug india-remittance-record-145-billion-america-largest-source-20260708 · yt_video_id `QeO4sLlXZII` · status ready
 - row `21634a8f-8b70-4645-bb38-664eafc8d72a` · slug social-security-totalization-india-h1b-workers-lost-20260709 · yt_video_id `wWi6O6dqYGw` · status ready
+- row `c7713080-09d5-4d70-914a-5090686d7791` · slug nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks · yt_video_id `dB5AYzpRFC8` · status yt_posted
 
 ## (c1) Privacy flag — public channel videos with no DB record (111)
 
@@ -363,5 +364,5 @@ _None._
 - `mdUdnvLdZGI` · public · 2026-10-21 · DHS Final Rule Permanently Ends Automatic Work Permit Extensions For Renewals #Shorts #Immigration [prebuilt_reels:d0cf0ace-71bc-4a98-b7fb-10fff0e73b05]
 - `6kGD-tK1y38` · public · 2026-10-21 · Schweikert SMARTER Act Would Replace H-1B Lottery With Merit Points System #Shorts #H1B [prebuilt_reels:4bcbb9cf-4573-4b15-a3d8-de9251a0faf5]
 - `n-yuVnXCf-s` · public · 2026-10-22 · Anahat Singh Stuns Eight-Time World Champion El Sherbini at Silicon Valley Open #Shorts #Sports [prebuilt_reels:f9096a09-e79c-419b-b7fa-c8bc84970eb1]
-- `dB5AYzpRFC8` · unlisted · 2026-10-23 · Nasdaq Tumbles 2.6% as Oil Surge and AI Spending Fears Hit Stocks #Shorts #Markets [prebuilt_reels:c7713080-09d5-4d70-914a-5090686d7791]
+- `XLG0m4w2Tdc` · unlisted · 2026-10-23 · Indians Posted to UK Now Avoid Double Social Security for Five Years #Shorts #Immigration [prebuilt_reels:f657b812-87ab-478a-9206-5afdff5143df]
 

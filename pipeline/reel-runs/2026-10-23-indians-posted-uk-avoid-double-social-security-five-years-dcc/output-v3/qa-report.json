@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-23-indians-posted-uk-avoid-double-social-security-five-years-dcc/output-v3/indians-posted-uk-avoid-double-social-security-five-years-dcc.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        3000,
+        1738
+      ],
+      "manifest_dims": [
+        3000,
+        1738
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 351.1,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/13/10_Downing_Street._MOD_45155532.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-23-indians-posted-uk-avoid-double-social-security-five-years-dcc/output-v3/qa/frames/frame-hook.png",
+      "text_px_detected": 27367,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 25.1,
+        "delta": 228.8
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-23-indians-posted-uk-avoid-double-social-security-five-years-dcc/output-v3/qa/frames/frame-news.png",
+      "text_px_detected": 32064,
+      "edge": {
+        "pass": true,
+        "offending_px": 33,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 30.1,
+        "delta": 223.4
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-23-indians-posted-uk-avoid-double-social-security-five-years-dcc/output-v3/qa/frames/frame-hero.png",
+      "text_px_detected": 31607,
+      "edge": {
+        "pass": true,
+        "offending_px": 36,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 251.4,
+        "bg_luminance": 23.2,
+        "delta": 228.2
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-23-indians-posted-uk-avoid-double-social-security-five-years-dcc/output-v3/qa/frames/frame-grid.png",
+      "text_px_detected": 53225,
+      "edge": {
+        "pass": true,
+        "offending_px": 10,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 19.6,
+        "delta": 233.8
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-23-indians-posted-uk-avoid-double-social-security-five-years-dcc/output-v3/qa/frames/frame-diaspora.png",
+      "text_px_detected": 33842,
+      "edge": {
+        "pass": true,
+        "offending_px": 40,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 30.3,
+        "delta": 223.6
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-23-indians-posted-uk-avoid-double-social-security-five-years-dcc/output-v3/qa/frames/frame-payoff.png",
+      "text_px_detected": 22383,
+      "edge": {
+        "pass": true,
+        "offending_px": 20,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 35.0,
+        "delta": 218.5
+      }
+    }
+  ]
+}

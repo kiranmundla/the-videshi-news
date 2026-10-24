@@ -31,6 +31,384 @@
    "name": "Rugby League World Cup",
    "rights_holder": "International Rugby League (RLWC tournament channel)",
    "verified": "2026-10-23: channel_id resolved via YouTube API videos.list on OVYScEH5TLQ (RLWC 2026 England v Tonga R1 highlights) and YzN-nj39UtY (Samoa v France R1 highlights); both status.embeddable=true; both embedded in the England-France preview article 2026-10-23"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCt2JXOLNxqry7B_4rRZME3Q",
+   "domain": "cricket",
+   "match_terms": [
+    "cricket",
+    "world cup",
+    "t20",
+    "odi",
+    "champions trophy"
+   ],
+   "name": "ICC",
+   "rights_holder": "International Cricket Council",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCAC3c_TJEj-9zVny-bSSIiA",
+   "domain": "cricket",
+   "match_terms": [
+    "cricket",
+    "india"
+   ],
+   "name": "BCCI",
+   "rights_holder": "Board of Control for Cricket in India",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UC0oyi_CF3v9fsKmBM2m6wPA",
+   "domain": "cricket",
+   "match_terms": [
+    "ipl",
+    "indian premier league",
+    "cricket"
+   ],
+   "name": "IPL",
+   "rights_holder": "Indian Premier League",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCkBY0aHJP9BwjZLDYxAQrKg",
+   "domain": "cricket",
+   "match_terms": [
+    "cricket",
+    "ashes",
+    "big bash"
+   ],
+   "name": "cricket.com.au",
+   "rights_holder": "Cricket Australia",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCz1D0n02BR3t51KuBOPmfTQ",
+   "domain": "cricket",
+   "match_terms": [
+    "cricket",
+    "england"
+   ],
+   "name": "England & Wales Cricket Board",
+   "rights_holder": "ECB",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCuKowzPg2-A0FcmyPa3yWug",
+   "domain": "cricket",
+   "match_terms": [
+    "cricket",
+    "blackcaps"
+   ],
+   "name": "New Zealand Cricket",
+   "rights_holder": "New Zealand Cricket",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCiWrjBhlICf_L_RK5y6Vrxw",
+   "domain": "cricket",
+   "match_terms": [
+    "cricket",
+    "pakistan"
+   ],
+   "name": "Pakistan Cricket",
+   "rights_holder": "PCB",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCJA-NQ4MtcRIog66wziD8fA",
+   "domain": "cricket",
+   "match_terms": [
+    "cricket",
+    "sri lanka"
+   ],
+   "name": "Sri Lanka Cricket",
+   "rights_holder": "Sri Lanka Cricket",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCzevPCfP7MtRqOB0ZkU5cwg",
+   "domain": "cricket",
+   "match_terms": [
+    "cricket",
+    "proteas"
+   ],
+   "name": "Cricket South Africa",
+   "rights_holder": "Cricket South Africa",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCbcxFkd6B9xUU54InHv4Tig",
+   "domain": "tennis",
+   "match_terms": [
+    "tennis",
+    "atp"
+   ],
+   "name": "Tennis TV",
+   "rights_holder": "ATP Tour official streaming/highlights arm",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCaBIVVpHjq6j3tSyxwTE-8Q",
+   "domain": "tennis",
+   "match_terms": [
+    "tennis",
+    "wta"
+   ],
+   "name": "WTA",
+   "rights_holder": "WTA",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCNa8NxMgSm7m4Ii9d4QGk1Q",
+   "domain": "tennis",
+   "match_terms": [
+    "wimbledon",
+    "tennis"
+   ],
+   "name": "Wimbledon",
+   "rights_holder": "The Championships, Wimbledon",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCXbboag48Qlr78zzz6SkzkQ",
+   "domain": "tennis",
+   "match_terms": [
+    "us open",
+    "tennis"
+   ],
+   "name": "US Open Tennis Championships",
+   "rights_holder": "US Open (USTA)",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCeTKJSW1NTAkf27nNmjWt5A",
+   "domain": "tennis",
+   "match_terms": [
+    "australian open",
+    "tennis"
+   ],
+   "name": "Australian Open",
+   "rights_holder": "Australian Open (Tennis Australia)",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCF3K1Jf8hjFW8qliei8fQ3A",
+   "domain": "tennis",
+   "match_terms": [
+    "roland garros",
+    "french open",
+    "tennis"
+   ],
+   "name": "Roland-Garros",
+   "rights_holder": "Roland-Garros (FFT)",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCpcTrCXblq78GZrTUTLWeBw",
+   "domain": "football",
+   "match_terms": [
+    "fifa",
+    "world cup",
+    "football",
+    "soccer"
+   ],
+   "name": "FIFA",
+   "rights_holder": "FIFA",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCG5qGWdu8nIRZqJ_GgDwQ-w",
+   "domain": "football",
+   "match_terms": [
+    "premier league",
+    "football",
+    "soccer"
+   ],
+   "name": "Premier League",
+   "rights_holder": "Premier League",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCyGa1YEx9ST66rYrJTGIKOw",
+   "domain": "football",
+   "match_terms": [
+    "uefa",
+    "champions league",
+    "europa league",
+    "football"
+   ],
+   "name": "UEFA",
+   "rights_holder": "UEFA",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCJk-aQ7NZtqYtpcqKDt_vZg",
+   "domain": "football",
+   "match_terms": [
+    "isl",
+    "indian super league",
+    "football"
+   ],
+   "name": "Indian Super League",
+   "rights_holder": "Indian Super League (customUrl @indiansuperleague verified)",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UChh-akEbUM8_6ghGVnJd6cQ",
+   "domain": "badminton",
+   "match_terms": [
+    "badminton",
+    "bwf"
+   ],
+   "name": "BWF TV",
+   "rights_holder": "Badminton World Federation",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCsRwclNMmdK1Kiy2O3eL6hg",
+   "domain": "hockey",
+   "match_terms": [
+    "hockey",
+    "fih"
+   ],
+   "name": "International Hockey Federation (FIH)",
+   "rights_holder": "FIH",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCB_qr75-ydFVKSF9Dmo6izg",
+   "domain": "formula 1",
+   "match_terms": [
+    "formula 1",
+    "f1",
+    "grand prix"
+   ],
+   "name": "FORMULA 1",
+   "rights_holder": "Formula 1",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCQk7fWv15ChjMJLCRVmtApw",
+   "domain": "athletics",
+   "match_terms": [
+    "athletics",
+    "world athletics"
+   ],
+   "name": "World Athletics",
+   "rights_holder": "World Athletics",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCTl3QQTvqHFjurroKxexy2Q",
+   "domain": "olympics",
+   "match_terms": [
+    "olympics",
+    "olympic"
+   ],
+   "name": "Olympic Games",
+   "rights_holder": "IOC / Olympics",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCL7l6c635bbxWkH7Gofbb-A",
+   "domain": "kabaddi",
+   "match_terms": [
+    "kabaddi",
+    "pro kabaddi"
+   ],
+   "name": "Pro Kabaddi",
+   "rights_holder": "Pro Kabaddi League",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
+  },
+  {
+   "categories": [
+    "sports"
+   ],
+   "channel_id": "UCmqfX0S3x0I3uwLkPdpX03w",
+   "domain": "cricket",
+   "match_terms": [
+    "cricket",
+    "kabaddi",
+    "star sports"
+   ],
+   "name": "Star Sports",
+   "rights_holder": "Star Sports (India rights broadcaster)",
+   "verified": "2026-10-23: channel_id resolved via YouTube API (channel search / signature highlights video); description confirms official channel"
   }
  ]
 }

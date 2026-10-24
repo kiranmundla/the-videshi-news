@@ -1,0 +1,267 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "indians-posted-uk-avoid-double-social-security-five-years-dcc",
+  "verdict": "fail",
+  "held_claims": [
+    "diaspora_bullets[1]"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "NO DOUBLE SOCIAL SECURITY IN THE UK",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states no double social security for Indian workers in the UK.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Indian employees posted to the UK no longer pay social security twice under the Double Contributions Convention in force since July 15.",
+      "numbers": [
+        15.0
+      ],
+      "entities": [
+        "Double Contributions Convention"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms Indian employees posted to the UK avoid double social security since July 15.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "5 YEARS",
+      "numbers": [
+        5.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article mentions the exemption lasts for five years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "UK posting window with no double social security payments",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article discusses the UK posting window with no double social security payments.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article does not provide specific numbers in this format.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "60 MONTHS",
+      "numbers": [
+        60.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states the exemption period is 60 months.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "NIC exemption for detached workers, up from 52 weeks",
+      "numbers": [
+        52.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms NIC exemption for detached workers increased from 52 weeks to 60 months.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "\u00a3769",
+      "numbers": [
+        769.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states the visa application fee is \u00a3769.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Visa application fee \u2014 visa costs still apply",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms visa costs still apply.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "\u00a31,035",
+      "numbers": [
+        1035.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states the Immigration Health Surcharge is \u00a31,035.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Immigration Health Surcharge for up to 12 months",
+      "numbers": [
+        12.0
+      ],
+      "entities": [
+        "Immigration Health Surcharge"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms the Immigration Health Surcharge applies for up to 12 months.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Detached workers need an EPFO Certificate of Coverage",
+      "numbers": [],
+      "entities": [
+        "EPFO Certificate"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states detached workers need an EPFO Certificate of Coverage.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Independent UK job movers still pay NICs from day one",
+      "numbers": [],
+      "entities": [
+        "Independent UK"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Independent UK"
+        ]
+      },
+      "llm_reason": "Article confirms independent UK job movers pay NICs from day one.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "payoff",
+      "text": "Detached workers now pay into one system \u2014 India's EPF.",
+      "numbers": [],
+      "entities": [
+        "India's EPF"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states detached workers pay into India's EPF system.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Double Contributions Convention",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "EPFO",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "UK National Insurance",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "India",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "United Kingdom",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000539
+  }
+}

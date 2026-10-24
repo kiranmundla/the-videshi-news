@@ -243,5 +243,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "XLG0m4w2Tdc",
+    "article_slug": "indians-posted-uk-avoid-double-social-security-five-years-dcc",
+    "article_id": "653019b5-d78a-405c-a585-a60a751a5188",
+    "title": "Indians Posted to UK Now Avoid Double Social Security for Five Years #Shorts #Immigration",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-23T17:20:37.592027+00:00",
+    "video_path": "reel-runs/2026-10-23-indians-posted-uk-avoid-double-social-security-five-years-dcc/output-v2/indians-posted-uk-avoid-double-social-security-five-years-dcc.mp4",
+    "video_sha256": "bb10624f5b50b05a03eb0cf70eca7f4ef2ca45790dc6c43e8055236866d1c54d",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

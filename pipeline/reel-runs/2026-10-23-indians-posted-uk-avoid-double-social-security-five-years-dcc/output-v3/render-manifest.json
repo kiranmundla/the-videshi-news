@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "indians-posted-uk-avoid-double-social-security-five-years-dcc",
+  "article_slug": "indians-posted-uk-avoid-double-social-security-five-years-dcc",
+  "article_id": "653019b5-d78a-405c-a585-a60a751a5188",
+  "category": "Immigration",
+  "video": "reel-runs/2026-10-23-indians-posted-uk-avoid-double-social-security-five-years-dcc/output-v3/indians-posted-uk-avoid-double-social-security-five-years-dcc.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/13/10_Downing_Street._MOD_45155532.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+    "local_path": "reel-runs/2026-10-23-indians-posted-uk-avoid-double-social-security-five-years-dcc/output-v3/hero.jpg",
+    "width": 3000,
+    "height": 1738,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "focal-heuristic (no face detected); anchor raw=(0.659,0.084) damped=(0.580,0.292)",
+    "has_face": false,
+    "box_source": [
+      898,
+      125,
+      1680,
+      695
+    ],
+    "box_bg": [
+      -388.0,
+      138.1,
+      1855.9,
+      767.8
+    ],
+    "chin_bg": null,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 274,
+      "block_top": 858,
+      "block_bottom": 1132,
+      "text_bbox": [
+        113,
+        858,
+        889,
+        1124
+      ],
+      "texts": [
+        "Immigration",
+        "NO DOUBLE SOCIAL SECURITY IN THE UK"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 318,
+      "block_top": 858,
+      "block_bottom": 1176,
+      "text_bbox": [
+        121,
+        858,
+        885,
+        1180
+      ],
+      "texts": [
+        "What Happened",
+        "Indian employees posted to the UK no longer pay social security twice under the Double Contributions Convention in force since July 15."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 397,
+      "block_top": 858,
+      "block_bottom": 1255,
+      "text_bbox": [
+        105,
+        858,
+        898,
+        1261
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "5 YEARS",
+        "UK posting window with no double social security payments"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 755,
+      "block_top": 796,
+      "block_bottom": 1551,
+      "text_bbox": [
+        118,
+        796,
+        892,
+        1550
+      ],
+      "texts": [
+        "By The Numbers",
+        "60 MONTHS",
+        "NIC exemption for detached workers, up from 52 weeks",
+        "\u00a3769",
+        "Visa application fee \u2014 visa costs still apply",
+        "\u00a31,035",
+        "Immigration Health Surcharge for up to 12 months"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 407,
+      "block_top": 858,
+      "block_bottom": 1265,
+      "text_bbox": [
+        118,
+        858,
+        883,
+        1270
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Detached workers need an EPFO Certificate of Coverage",
+        "Workers who move on their own for a UK job pay NICs from day one"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 298,
+      "block_top": 858,
+      "block_bottom": 1156,
+      "text_bbox": [
+        113,
+        858,
+        892,
+        1167
+      ],
+      "texts": [
+        "The Takeaway",
+        "Detached workers now pay into one system \u2014 India's EPF.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "pixabay-breaking-full.mp3",
+    "path": "music/pixabay-breaking-full.mp3"
+  },
+  "render_seconds": 332.6,
+  "mp4_bytes": 15998097
+}

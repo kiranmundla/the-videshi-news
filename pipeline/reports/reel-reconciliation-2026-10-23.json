@@ -1,14 +1,14 @@
 {
   "counts": {
     "channel_videos": 199,
-    "db_rows": 135,
-    "db_rows_with_yt_id": 105,
+    "db_rows": 136,
+    "db_rows_with_yt_id": 106,
     "legacy_log_entries": 205,
     "publish_log_entries": 19,
     "in_sync": 88,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 10,
-    "ghost_db_rows": 14,
+    "ghost_db_rows": 15,
     "superseded_db_rows": 3,
     "public_without_db_record": 111,
     "phase2_uploads_now_public": 0
@@ -624,11 +624,11 @@
       "record": "prebuilt_reels:f9096a09-e79c-419b-b7fa-c8bc84970eb1"
     },
     {
-      "title": "Nasdaq Tumbles 2.6% as Oil Surge and AI Spending Fears Hit Stocks #Shorts #Markets",
-      "published_at": "2026-10-23T05:30:29Z",
+      "title": "Indians Posted to UK Now Avoid Double Social Security for Five Years #Shorts #Immigration",
+      "published_at": "2026-10-23T17:20:32Z",
       "privacy": "unlisted",
-      "video_id": "dB5AYzpRFC8",
-      "record": "prebuilt_reels:c7713080-09d5-4d70-914a-5090686d7791"
+      "video_id": "XLG0m4w2Tdc",
+      "record": "prebuilt_reels:f657b812-87ab-478a-9206-5afdff5143df"
     }
   ],
   "unknown_legacy_logged": [
@@ -2119,6 +2119,14 @@
       "status": "ready",
       "yt_posted_at": "2026-07-09T16:58:18.259717+00:00",
       "malformed_id": false
+    },
+    {
+      "row_id": "c7713080-09d5-4d70-914a-5090686d7791",
+      "article_slug": "nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks",
+      "yt_video_id": "dB5AYzpRFC8",
+      "status": "yt_posted",
+      "yt_posted_at": "2026-10-23T05:30:34.929983+00:00",
+      "malformed_id": false
     }
   ],
   "superseded_rows": [
@@ -3522,5 +3530,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-10-23T05:31:32+00:00"
+  "generated_at": "2026-10-23T17:21:10+00:00"
 }

@@ -1580,5 +1580,16 @@
     "top_story_slug": "sonu-sood-leases-versova-commercial-unit-3-52-crore-five-years",
     "quick_hit_count": 5,
     "deadline_count": 3
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-23T13:58:13.597613+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 23, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "sensex-nifty-fall-fourth-session-brent-crude-114-fii-outflows",
+    "quick_hit_count": 5,
+    "deadline_count": 3
   }
 ]

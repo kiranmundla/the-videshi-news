@@ -1,0 +1,15 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "indians-posted-uk-avoid-double-social-security-five-years-dcc",
+  "name": "indians-posted-uk-avoid-double-social-security-five-years-dcc",
+  "script": "reel-runs/2026-10-23-indians-posted-uk-avoid-double-social-security-five-years-dcc/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "diaspora_bullets[1]"
+    ],
+    "llm_cost_usd": 0.000539
+  }
+}
