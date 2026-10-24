@@ -299,26 +299,22 @@
           "caption": "Tranquil scene of wooden rafts reflecting on serene waters surrounded by lush greenery in Periyar, India."
         }
       ],
-      "Kathakali": [
+      "Varkala Cliff Beach": [
         {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-exp-kathakali-1.jpg",
-          "caption": "Kathakali performer"
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-exp-varkala-cliff-beach-1.jpg",
+          "caption": "Varkala Cliff and beach at dusk, Kerala"
         },
         {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-exp-kathakali-2.jpg",
-          "caption": "Traditional Kathakali makeup"
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-exp-varkala-cliff-beach-2.jpg",
+          "caption": "Sunset over the Arabian Sea from Varkala Cliff"
         },
         {
-          "src": "https://images.pexels.com/photos/8610533/pexels-photo-8610533.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Vibrant display of Kathakali dancers in traditional costumes on stage in Thiruvananthapuram."
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-exp-varkala-cliff-beach-3.jpg",
+          "caption": "Varkala beach from the cliff top"
         },
         {
-          "src": "https://images.pexels.com/photos/31843397/pexels-photo-31843397.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Kathakali \u2014 Photo by Abhishek C"
-        },
-        {
-          "src": "https://images.pexels.com/photos/36998147/pexels-photo-36998147.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Colorful Kathakali dancer in traditional attire performing in Kumily, Kerala, India."
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/kerala-exp-varkala-cliff-beach-4.jpg",
+          "caption": "The red cliffs above Varkala beach"
         }
       ]
     }
@@ -409,28 +405,6 @@
         {
           "src": "https://images.pexels.com/photos/32262464/pexels-photo-32262464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
           "caption": "A stunning aerial view of Palolem Beach in Goa, India at sunset, lined with lush palm trees."
-        }
-      ],
-      "Spice Plantation": [
-        {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/goa-exp-spice-plantation-1.jpg",
-          "caption": "Goa spice garden"
-        },
-        {
-          "src": "https://images.pexels.com/photos/8289875/pexels-photo-8289875.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Close-up of ripe red chili peppers hanging on a plant with lush green leaves in Indonesia."
-        },
-        {
-          "src": "https://images.pexels.com/photos/13808031/pexels-photo-13808031.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "A close-up shot of nutmeg held in a hand in Munnar, Kerala. Vibrant and detailed."
-        },
-        {
-          "src": "https://images.pexels.com/photos/19115418/pexels-photo-19115418.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Aerial view of a river, palm trees, and a rural road in Chorao, Goa, India during daytime."
-        },
-        {
-          "src": "https://images.pexels.com/photos/18861235/pexels-photo-18861235.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Lush green leaves of black pepper plants in an outdoor setting showcasing natural growth."
         }
       ],
       "Dudhsagar Falls": [
@@ -577,48 +551,36 @@
           "caption": "Aerial view of a sandbank in the Maldives with turquoise water and clear skies, ideal for vacation imagery."
         }
       ],
-      "Bioluminescent Beach": [
+      "Mal\u00e9 Fish Market & Hukuru Miskiiy": [
         {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-bioluminescent-beach-1.jpg",
-          "caption": "Glowing plankton at night"
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-male-fish-market-hukuru-miskiiy-1.jpg",
+          "caption": "Cleaning the day's catch at Mal\u00e9 Fish Market"
         },
         {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-bioluminescent-beach-2.jpg",
-          "caption": "Bioluminescent shore"
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-male-fish-market-hukuru-miskiiy-2.jpg",
+          "caption": "Butchering yellowfin tuna at Mal\u00e9 Fish Market"
         },
         {
-          "src": "https://images.pexels.com/photos/26794599/pexels-photo-26794599.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Captivating image of glowing bioluminescent waves against a rugged rocky shore at night."
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-male-fish-market-hukuru-miskiiy-3.jpg",
+          "caption": "Hukuru Miskiiy, Mal\u00e9's coral-stone Friday Mosque"
         },
         {
-          "src": "https://images.pexels.com/photos/26794597/pexels-photo-26794597.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Stunning night view of bioluminescent waters along a rocky coast, glowing bright blue."
-        },
-        {
-          "src": "https://images.pexels.com/photos/33697123/pexels-photo-33697123.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "A mesmerizing view of glowing jellyfish in an aquarium exhibit, showcasing their ethereal beauty underwater."
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-male-fish-market-hukuru-miskiiy-4.jpg",
+          "caption": "Carved coral stone of Hukuru Miskiiy, Mal\u00e9"
         }
       ],
-      "Whale Shark": [
+      "Sunset Dolphin Cruise": [
         {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-whale-shark-1.jpg",
-          "caption": "Whale shark encounter"
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-sunset-dolphin-cruise-1.jpg",
+          "caption": "Spinner dolphins surfacing in Raa Atoll"
         },
         {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-whale-shark-2.jpg",
-          "caption": "Swimming with whale sharks"
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-sunset-dolphin-cruise-2.jpg",
+          "caption": "Spinner dolphins in Raa Atoll, Maldives"
         },
         {
-          "src": "https://images.pexels.com/photos/6530412/pexels-photo-6530412.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Stunning underwater view of a whale shark with scuba divers in the background, showcasing marine life."
-        },
-        {
-          "src": "https://images.pexels.com/photos/7905793/pexels-photo-7905793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "A woman gracefully swimming atop a whale shark in the deep blue ocean, Indonesia."
-        },
-        {
-          "src": "https://images.pexels.com/photos/4552982/pexels-photo-4552982.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Back view of full body of unrecognizable male swimmer in oxygen mask swimming undersea near big fish"
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/maldives-exp-sunset-dolphin-cruise-3.jpg",
+          "caption": "A pod of spinner dolphins in Alifu Dhaalu Atoll"
         }
       ]
     }
@@ -763,18 +725,18 @@
           "caption": "A majestic Sri Lankan Leopard drinking water at a pond in its natural habitat."
         }
       ],
-      "Nine Arches Bridge": [
+      "Jaffna & the North": [
         {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-exp-nine-arches-bridge-1.jpg",
-          "caption": "Nine Arches Bridge, Ella"
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-exp-jaffna-the-north-1.jpg",
+          "caption": "Nallur Kandaswamy Temple, Jaffna"
         },
         {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-exp-nine-arches-bridge-2.jpg",
-          "caption": "Train on Nine Arches"
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-exp-jaffna-the-north-2.jpg",
+          "caption": "Jaffna Fort and its moat"
         },
         {
-          "src": "https://images.pexels.com/photos/34218651/pexels-photo-34218651.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Aerial shot of a dense tropical forest surrounding a bridge, showcasing natural beauty and engineering."
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/sri-lanka-exp-jaffna-the-north-3.jpg",
+          "caption": "Jaffna Public Library"
         }
       ]
     }
@@ -831,7 +793,7 @@
       }
     ],
     "experiences": {
-      "Tegallalang Rice Terraces": [
+      "Ubud Rice Terraces": [
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-exp-tegallalang-rice-terraces-1.jpg",
           "caption": "Tegallalang terraces"
@@ -919,26 +881,28 @@
           "caption": "Mount Batur \u2014 Photo by Stijn Dijkstra"
         }
       ],
-      "Tanah Lot": [
+      "Seminyak Beach Clubs": [
         {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-exp-tanah-lot-1.jpg",
-          "caption": "Tanah Lot at sunset"
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-exp-seminyak-beach-clubs-1.jpg",
+          "caption": "Potato Head Beach Club's shutter facade, Seminyak"
         },
         {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-exp-tanah-lot-2.jpg",
-          "caption": "Tanah Lot temple"
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-exp-seminyak-beach-clubs-2.jpg",
+          "caption": "Inside Potato Head Beach Club, Seminyak"
+        }
+      ],
+      "Tirta Empul": [
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-exp-tirta-empul-1.jpg",
+          "caption": "Purification pools at Tirta Empul temple, Bali"
         },
         {
-          "src": "https://images.pexels.com/photos/14795013/pexels-photo-14795013.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Dramatic waves crash against the cliffs of Tanah Lot Temple, a serene oceanfront view in Bali."
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-exp-tirta-empul-2.jpg",
+          "caption": "Worshippers at Tirta Empul's holy springs"
         },
         {
-          "src": "https://images.pexels.com/photos/34908201/pexels-photo-34908201.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Beautiful sunset view of Tanah Lot Temple, Bali, Indonesia, with ocean waves."
-        },
-        {
-          "src": "https://images.pexels.com/photos/34819159/pexels-photo-34819159.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Stunning sunset view over Tanah Lot Temple in Bali with ocean and vibrant sky."
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/bali-exp-tirta-empul-3.jpg",
+          "caption": "Tirta Empul temple courtyard, Tampaksiring"
         }
       ]
     }
@@ -995,28 +959,6 @@
       }
     ],
     "experiences": {
-      "Tower of London": [
-        {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-tower-of-london-1.jpg",
-          "caption": "Tower of London"
-        },
-        {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-tower-of-london-2.jpg",
-          "caption": "Crown Jewels fortress"
-        },
-        {
-          "src": "https://images.pexels.com/photos/8909147/pexels-photo-8909147.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Stunning view of the historical Tower of London, a masterpiece of medieval architecture."
-        },
-        {
-          "src": "https://images.pexels.com/photos/33737665/pexels-photo-33737665.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Black and white image showcasing the historic Tower of London."
-        },
-        {
-          "src": "https://images.pexels.com/photos/37072814/pexels-photo-37072814.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Aerial photo of Tower of London, historic architecture in central London, England."
-        }
-      ],
       "Borough Market": [
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-borough-market-1.jpg",
@@ -1075,26 +1017,36 @@
           "caption": "Capturing London's urban vibe with graffiti and umbrellas on a rainy street."
         }
       ],
-      "Neasden Temple": [
+      "West End Theatre": [
         {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-neasden-temple-1.jpg",
-          "caption": "BAPS Shri Swaminarayan Mandir"
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-west-end-theatre-1.jpg",
+          "caption": "The Lyric and Apollo theatres on Shaftesbury Avenue"
         },
         {
-          "src": "https://images.pexels.com/photos/36885025/pexels-photo-36885025.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Beautiful architectural detail of Shree Swaminarayan Mandir in Bartlett, Illinois."
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-west-end-theatre-2.jpg",
+          "caption": "Palace Theatre, home of Harry Potter and the Cursed Child"
         },
         {
-          "src": "https://images.pexels.com/photos/35960312/pexels-photo-35960312.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Explore the intricate architectural beauty of Prem Mandir in Vrindavan at twilight."
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-west-end-theatre-3.jpg",
+          "caption": "Les Mis\u00e9rables at the Sondheim Theatre, Shaftesbury Avenue"
+        }
+      ],
+      "Day Trip to Oxford or Bath": [
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-day-trip-to-oxford-or-bath-1.jpg",
+          "caption": "The Radcliffe Camera, Oxford"
         },
         {
-          "src": "https://images.pexels.com/photos/37431602/pexels-photo-37431602.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Explore the detailed architecture of BAPS Shri Swaminarayan Mandir, Robbinsville, NJ."
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-day-trip-to-oxford-or-bath-2.jpg",
+          "caption": "Radcliffe Camera from Radcliffe Square, Oxford"
         },
         {
-          "src": "https://images.pexels.com/photos/36885034/pexels-photo-36885034.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Neasden Temple \u2014 Photo by Roy Serafin"
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-day-trip-to-oxford-or-bath-3.jpg",
+          "caption": "The Royal Crescent, Bath, from above"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/london-exp-day-trip-to-oxford-or-bath-4.jpg",
+          "caption": "Georgian townhouses of the Royal Crescent, Bath"
         }
       ]
     }
@@ -1217,28 +1169,6 @@
           "caption": "Stunning view of the Matterhorn mountain surrounded by lush greenery in Zermatt, Switzerland."
         }
       ],
-      "Bernina Express": [
-        {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-exp-bernina-express-1.jpg",
-          "caption": "Bernina Express viaduct"
-        },
-        {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-exp-bernina-express-2.jpg",
-          "caption": "Swiss mountain railway"
-        },
-        {
-          "src": "https://images.pexels.com/photos/32801796/pexels-photo-32801796.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Red train curving through the beautiful Swiss Alps landscape near Bernina Pass."
-        },
-        {
-          "src": "https://images.pexels.com/photos/16418182/pexels-photo-16418182.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Red Bernina Express train traversing snowy mountains in the Swiss Alps during winter."
-        },
-        {
-          "src": "https://images.pexels.com/photos/36206782/pexels-photo-36206782.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Scenic view of a red train on a snow-covered bridge in the Swiss Alps, showcasing winter beauty."
-        }
-      ],
       "Interlaken": [
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-exp-interlaken-1.jpg",
@@ -1259,6 +1189,24 @@
         {
           "src": "https://images.pexels.com/photos/34119859/pexels-photo-34119859.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
           "caption": "Paragliders soar above the picturesque mountains of Interlaken, Switzerland, beneath dramatic clouds."
+        }
+      ],
+      "Grindelwald First Cliff Walk": [
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-exp-grindelwald-first-cliff-walk-1.jpg",
+          "caption": "First Cliff Walk viewing platform in winter"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-exp-grindelwald-first-cliff-walk-2.jpg",
+          "caption": "First Cliff Walk with the Eiger beyond"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-exp-grindelwald-first-cliff-walk-3.jpg",
+          "caption": "The First Cliff Walk platform above Grindelwald"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/switzerland-exp-grindelwald-first-cliff-walk-4.jpg",
+          "caption": "First Cliff Walk above a sea of cloud, Eiger behind"
         }
       ]
     }
@@ -1337,28 +1285,6 @@
           "caption": "Picturesque view of Milford Sound with boats navigating through stunning fjord landscape in New Zealand."
         }
       ],
-      "Hobbiton": [
-        {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-exp-hobbiton-1.jpg",
-          "caption": "Hobbiton Shire door"
-        },
-        {
-          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-exp-hobbiton-2.jpg",
-          "caption": "The Shire, Matamata"
-        },
-        {
-          "src": "https://images.pexels.com/photos/1308185/pexels-photo-1308185.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Charming Hobbiton-style houses built into lush green hills in rural New Zealand."
-        },
-        {
-          "src": "https://images.pexels.com/photos/2259917/pexels-photo-2259917.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "Explore a cozy hobbit house nestled in New Zealand's lush countryside, perfect for a rustic getaway."
-        },
-        {
-          "src": "https://images.pexels.com/photos/24414780/pexels-photo-24414780.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-          "caption": "A charming hobbit-inspired house nestled in lush greenery, capturing the essence of rustic countryside living."
-        }
-      ],
       "Queenstown": [
         {
           "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-exp-queenstown-1.jpg",
@@ -1423,6 +1349,24 @@
         {
           "src": "https://images.pexels.com/photos/5926331/pexels-photo-5926331.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
           "caption": "Vibrant geothermal pool with steam in lush green forest under blue skies."
+        }
+      ],
+      "Abel Tasman Coastal Track": [
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-exp-abel-tasman-coastal-track-1.jpg",
+          "caption": "Rocky coast near Ratakura Point, from the Coastal Track"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-exp-abel-tasman-coastal-track-2.jpg",
+          "caption": "Towards Totaranui Bay from the Coastal Track"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-exp-abel-tasman-coastal-track-3.jpg",
+          "caption": "Granite rock stacks at Anapai Bay"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/new-zealand-exp-abel-tasman-coastal-track-4.jpg",
+          "caption": "Apple Tree Bay and Fisherman Island, Abel Tasman Coast Track"
         }
       ]
     }
@@ -1585,6 +1529,24 @@
         {
           "src": "https://images.pexels.com/photos/12789413/pexels-photo-12789413.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
           "caption": "A vibrant street scene in Oaxaca, Mexico featuring a vintage Volkswagen van and colorful facades."
+        }
+      ],
+      "San Miguel de Allende": [
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-san-miguel-de-allende-1.jpg",
+          "caption": "La Parroquia de San Miguel Arc\u00e1ngel"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-san-miguel-de-allende-2.jpg",
+          "caption": "La Parroquia from the Jard\u00edn, San Miguel de Allende"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-san-miguel-de-allende-3.jpg",
+          "caption": "Inside La Parroquia, San Miguel de Allende"
+        },
+        {
+          "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/travel/mexico-exp-san-miguel-de-allende-4.jpg",
+          "caption": "D\u00eda de Muertos night in San Miguel's centro hist\u00f3rico"
         }
       ]
     }
