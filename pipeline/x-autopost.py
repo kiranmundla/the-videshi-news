@@ -159,6 +159,13 @@ def extract_key_content(body_md):
         # Skip HTML tags and blocks (data cards, divs, etc.)
         if l.startswith('<') and ('div' in l.lower() or 'span' in l.lower() or 'ul' in l.lower() or 'li' in l.lower() or l.startswith('</')):
             continue
+        # Skip bare embed lines: X/YouTube embeds are stored in the body
+        # as a lone URL between paragraphs. Left in, the URL becomes
+        # "summary" content — the post goes out carrying a stray embed
+        # link and X bills it at the $0.20 with-URL rate (50 of October's
+        # 135 posts, $10.00 — Kiran spotted it from his timeline).
+        if re.fullmatch(r'https?://\S+', re.sub(r'<[^>]+>', '', l).strip()):
+            continue
         # Strip any remaining inline HTML tags
         l = re.sub(r'<[^>]+>', '', l)
         # Strip bold/italic markers for cleaner reading
