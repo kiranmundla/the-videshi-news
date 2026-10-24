@@ -67,7 +67,7 @@ def save_posted(slugs, pending, abandoned=None, pending_since=None):
 def pick_article(posted):
     # Top published articles from the last 12h, preferring key categories
     rows = sb_get(
-        "p2_articles?select=headline,subheadline,slug,category,image_url"
+        "p2_articles?select=headline,subheadline,slug,category,image_url,tags"
         "&status=eq.published"
         "&published_at=gte." + _hours_ago(12) +
         "&order=published_at.desc&limit=30")
@@ -91,17 +91,59 @@ def _hours_ago(h):
         "%Y-%m-%dT%H:%M:%SZ")
 
 
+CATEGORY_HASHTAGS = {
+    "news": "#IndiaNews",
+    "immigration": "#Immigration",
+    "technology": "#TechNews",
+    "entertainment": "#Bollywood",
+    "sports": "#SportsNews",
+    "markets-finance": "#Markets",
+    "nri-world": "#IndianDiaspora",
+    "food": "#IndianFood",
+    "travel": "#Travel",
+    "lifestyle-health": "#Lifestyle",
+}
+
+
+def _tagify(raw):
+    import re
+    words = re.sub(r"[^A-Za-z0-9 ]", " ", str(raw)).split()
+    tag = "".join(w[:1].upper() + w[1:] for w in words)
+    return f"#{tag}" if len(tag) >= 3 else None
+
+
+def hashtag_line(article):
+    """#TheVideshi + the category tag + up to 2 topic tags from the
+    article's own tags. Max 4 tags total — discovery without spam
+    (Kiran approved hashtags on article posts 2026-10-24)."""
+    tags = ["#TheVideshi"]
+    cat = CATEGORY_HASHTAGS.get(article.get("category") or "")
+    if cat:
+        tags.append(cat)
+    for raw in (article.get("tags") or []):
+        if len(tags) >= 4:
+            break
+        t = _tagify(raw)
+        if t and t not in tags:
+            tags.append(t)
+    return " ".join(tags)
+
+
 def build_post_text(article):
     headline = article["headline"].strip()
     sub = (article.get("subheadline") or "").strip()
     url = f"https://www.thevideshi.com/articles/{article['slug']}"
-    # Keep it tight: headline + one-line summary + link
+    # Keep it tight: headline + one-line summary + link + hashtags
     summary = sub.split(".")[0].strip() + "." if sub else ""
+    tags = hashtag_line(article)
+    budget = 1000 - len(tags) - 2  # reserve room so tags never get cut
     text = headline
     if summary and summary.lower() not in headline.lower():
         text += f"\n\n{summary}"
     text += f"\n\nRead the full story: {url}"
-    return text[:1000]
+    if len(text) > budget:
+        text = text[:budget]
+    return text + f"\n\n{tags}"
 
 
 def download_image(url):

@@ -97,7 +97,7 @@ def fetch_articles(slugs):
         return {}
     in_list = ",".join(sorted(slugs))
     rows = sb_get(
-        "p2_articles?select=headline,subheadline,slug,published_at"
+        "p2_articles?select=headline,subheadline,slug,published_at,category,tags"
         f"&slug=in.({in_list})")
     if not isinstance(rows, list):
         return {}
@@ -113,11 +113,49 @@ def hours_since(iso_ts):
         return None
 
 
+CATEGORY_HASHTAGS = {
+    "news": "#IndiaNews",
+    "immigration": "#Immigration",
+    "technology": "#TechNews",
+    "entertainment": "#Bollywood",
+    "sports": "#SportsNews",
+    "markets-finance": "#Markets",
+    "nri-world": "#IndianDiaspora",
+    "food": "#IndianFood",
+    "travel": "#Travel",
+    "lifestyle-health": "#Lifestyle",
+}
+
+
+def _tagify(raw):
+    import re
+    words = re.sub(r"[^A-Za-z0-9 ]", " ", str(raw)).split()
+    tag = "".join(w[:1].upper() + w[1:] for w in words)
+    return f"#{tag}" if len(tag) >= 3 else None
+
+
+def hashtag_line(article):
+    """#TheVideshi + the category tag + up to 2 topic tags from the
+    article's own tags. Max 4 tags total — discovery without spam
+    (Kiran approved hashtags on article posts 2026-10-24)."""
+    tags = ["#TheVideshi"]
+    cat = CATEGORY_HASHTAGS.get(article.get("category") or "")
+    if cat:
+        tags.append(cat)
+    for raw in (article.get("tags") or []):
+        if len(tags) >= 4:
+            break
+        t = _tagify(raw)
+        if t and t not in tags:
+            tags.append(t)
+    return " ".join(tags)
+
+
 def build_text(article, with_link=True):
     headline = (article.get("headline") or "").strip()
     summary = (article.get("subheadline") or "").strip()
     url = f"https://www.thevideshi.com/articles/{article['slug']}"
-    tail = f"\n\n{url}" if with_link else ""
+    tail = (f"\n\n{url}" if with_link else "") + f"\n\n{hashtag_line(article)}"
     if summary and summary.lower() not in headline.lower():
         candidate = f"{headline}\n\n{summary}{tail}"
         if len(candidate) <= CHAR_LIMIT:
