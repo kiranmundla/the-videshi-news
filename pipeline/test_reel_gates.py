@@ -268,6 +268,184 @@ if CHAK.exists():
               and tuple(fbox) == raw_box,
               f"{fmethod} box={fbox} raw={raw_box}")
 
+print("── fact-check: LLM verdict attribution (2026-10-24 — the drift")
+print("          that held the Nasdaq payoff and the SpaceX sample:")
+print("          judge verdicts mapped positionally shifted by one")
+print("          field and left the last claims 'missing')")
+SPX_ARTICLE = {
+    "slug": "spx-test",
+    "headline": "SpaceX Launches 27 Starlink Satellites From "
+                "California",
+    "subheadline": "",
+    "body": ("<p>SpaceX launched 27 Starlink satellites from "
+             "California on the fourth attempt after three scrubs. "
+             "Booster B1063 completed its 36th flight. More than "
+             "11,100 Starlink satellites are now in orbit, with "
+             "service active in 174 markets. Starlink added 1.6 "
+             "million customers in the third quarter. Each California "
+             "launch adds capacity to the network. Falcon 9 remains "
+             "the vehicle building out Starlink from California.</p>"),
+    "sources": [],
+}
+SPX_SCRIPT = {
+    "hook_line": "27 SATELLITES, FOURTH ATTEMPT",
+    "news_summary": "SpaceX launched 27 Starlink satellites from "
+                    "California on the fourth attempt.",
+    "hook_stat": {"big": "27",
+                  "sub": "Starlink satellites launched from "
+                         "California on the fourth attempt",
+                  "eyebrow": "BY THE NUMBERS"},
+    "stats": [{"big": "36TH", "label": "Flight for booster B1063"},
+              {"big": "11,100+",
+               "label": "Starlink satellites now in orbit"},
+              {"big": "174",
+               "label": "Markets where Starlink service is active"}],
+    "diaspora_bullets": [
+        "Starlink added 1.6 million customers in the third quarter",
+        "Each California launch adds capacity to the network"],
+    "payoff": "Falcon 9 remains the vehicle building out Starlink "
+              "from California.",
+    "key_entities": ["SpaceX", "Starlink", "Falcon 9"],
+}
+check("SpaceX-shaped script passes deterministic layer",
+      reel_factcheck.run_gate(SPX_SCRIPT, SPX_ARTICLE,
+                              use_llm=False)["verdict"] == "pass")
+_spx_claims = reel_factcheck.collect_claims(SPX_SCRIPT)
+_spx_eligible = [(i, c) for i, c in enumerate(_spx_claims)
+                 if c["field"] not in
+                 reel_factcheck._JUDGE_EXEMPT_FIELDS]
+# Unit: echo beats id. A verdict carrying stats[1].label's id but
+# stats[2].label's exact text belongs to stats[2].label.
+_by_field = {c["field"]: (i, c) for i, c in _spx_eligible}
+_att, _un = reel_factcheck.attribute_verdicts(
+    _spx_eligible,
+    [{"id": "stats[1].label",
+      "claim": _by_field["stats[2].label"][1]["text"],
+      "verdict": "supported", "reason": "about markets"}])
+check("drifted verdict attributed by echoed text, not by id",
+      _att.get(_by_field["stats[2].label"][0], {}).get("reason")
+      == "about markets"
+      and _by_field["stats[1].label"][0] not in _att
+      and _un == 0, str((_att, _un)))
+# Unit: a stray verdict about a non-claim (the eyebrow) is dropped,
+# never shifted onto a neighbouring claim.
+_att, _un = reel_factcheck.attribute_verdicts(
+    _spx_eligible,
+    [{"id": "hook_stat.eyebrow", "claim": "BY THE NUMBERS",
+      "verdict": "unsupported", "reason": "no such section"},
+     {"id": "payoff",
+      "claim": _by_field["payoff"][1]["text"],
+      "verdict": "supported", "reason": "about the payoff"}])
+check("stray non-claim verdict dropped, neighbour unaffected",
+      _un == 1 and len(_att) == 1
+      and _att[_by_field["payoff"][0]]["verdict"] == "supported",
+      str((_att, _un)))
+# Unit: unknown verdict strings are not attributed.
+_att, _un = reel_factcheck.attribute_verdicts(
+    _spx_eligible,
+    [{"id": "payoff", "claim": _by_field["payoff"][1]["text"],
+      "verdict": "maybe", "reason": "?"}])
+check("unknown verdict string left unattributed", _att == {}
+      and _un == 1, str((_att, _un)))
+
+_orig_judge_call = reel_factcheck._judge_call
+_seen_fields = []
+
+
+def _fake_drift(ask_claims, article):
+    """Round 1 replicates the SpaceX failure: the tail verdicts carry
+    the right claim TEXT under the wrong ids, and two claims get no
+    verdict at all. The re-ask (small list) is answered honestly."""
+    _seen_fields.extend(c["field"] for c in ask_claims)
+    texts = {c["field"]: c["text"] for c in ask_claims}
+    if len(ask_claims) <= 2:
+        return ([{"id": c["field"], "claim": c["text"],
+                  "verdict": "supported", "reason": "re-ask ok"}
+                 for c in ask_claims], 0.0, None)
+    out = [{"id": c["field"], "claim": c["text"],
+            "verdict": "supported", "reason": f"about {c['field']}"}
+           for c in ask_claims[:7]]
+    for wrong_id, right_field in (
+            ("stats[1].label", "stats[2].label"),
+            ("stats[2].big", "diaspora_bullets[0]"),
+            ("stats[2].label", "diaspora_bullets[1]"),
+            ("diaspora_bullets[0]", "payoff")):
+        out.append({"id": wrong_id, "claim": texts[right_field],
+                    "verdict": "supported",
+                    "reason": f"about {right_field}"})
+    return out, 0.0, None
+
+
+try:
+    reel_factcheck._judge_call = _fake_drift
+    _seen_fields.clear()
+    rep = reel_factcheck.run_gate(SPX_SCRIPT, SPX_ARTICLE,
+                                  use_llm=True)
+finally:
+    reel_factcheck._judge_call = _orig_judge_call
+check("drifted judge response still passes an honest script",
+      rep["verdict"] == "pass", json.dumps(rep["held_claims"]))
+check("eyebrow is never sent to the judge",
+      "hook_stat.eyebrow" not in _seen_fields, str(_seen_fields))
+check("eyebrow claim records no LLM verdict",
+      next(c for c in rep["claims"]
+           if c["field"] == "hook_stat.eyebrow")
+      ["verdicts"]["llm"] is None)
+check("the two unanswered claims were re-asked exactly once",
+      rep["llm"]["reasked_claims"] == ["stats[1].label",
+                                        "stats[2].big"],
+      str(rep["llm"]))
+check("drifted reasons land on the claims they are about",
+      next(c for c in rep["claims"] if c["field"] == "payoff")
+      ["llm_reason"] == "about payoff"
+      and next(c for c in rep["claims"]
+               if c["field"] == "diaspora_bullets[1]")
+      ["llm_reason"] == "about diaspora_bullets[1]",
+      json.dumps([(c["field"], c.get("llm_reason"))
+                  for c in rep["claims"]]))
+check("no judge errors on the recovered run",
+      rep["judge_errors"] == [] and rep["llm"]["rounds"] == 2)
+
+
+def _fake_silent_on_payoff(ask_claims, article):
+    return ([{"id": c["field"], "claim": c["text"],
+              "verdict": "supported", "reason": "ok"}
+             for c in ask_claims if c["field"] != "payoff"],
+            0.0, None)
+
+
+try:
+    reel_factcheck._judge_call = _fake_silent_on_payoff
+    rep = reel_factcheck.run_gate(SPX_SCRIPT, SPX_ARTICLE,
+                                  use_llm=True)
+finally:
+    reel_factcheck._judge_call = _orig_judge_call
+_pay = next(c for c in rep["claims"] if c["field"] == "payoff")
+check("claim the judge never answers is held as judge_error",
+      rep["verdict"] == "fail" and "payoff" in rep["held_claims"]
+      and _pay["verdicts"]["llm"] == "judge_error"
+      and rep["judge_errors"] == ["payoff"], str(rep["held_claims"]))
+
+
+def _fake_unsupported_payoff(ask_claims, article):
+    return ([{"id": c["field"], "claim": c["text"],
+              "verdict": "unsupported" if c["field"] == "payoff"
+              else "supported", "reason": "checked"}
+             for c in ask_claims], 0.0, None)
+
+
+try:
+    reel_factcheck._judge_call = _fake_unsupported_payoff
+    rep = reel_factcheck.run_gate(SPX_SCRIPT, SPX_ARTICLE,
+                                  use_llm=True)
+finally:
+    reel_factcheck._judge_call = _orig_judge_call
+_pay = next(c for c in rep["claims"] if c["field"] == "payoff")
+check("genuinely unsupported claim still holds, correctly labelled",
+      rep["verdict"] == "fail" and rep["held_claims"] == ["payoff"]
+      and _pay["verdicts"]["llm"] == "unsupported"
+      and rep["judge_errors"] == [], str(rep["held_claims"]))
+
 print("── no fabricated QA anywhere in the new modules")
 import ast
 for mod in ("reel_renderer.py", "reel_factcheck.py", "reel_frame_qa.py",

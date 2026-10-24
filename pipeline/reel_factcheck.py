@@ -33,6 +33,14 @@ Two layers, both must pass:
      your local rules") is supported unless it asserts a fact the
      article does not contain. Cost is computed from API usage and
      recorded in the report (~$0.001/reel at current prices).
+     Verdicts are attributed to claims by the claim text the judge
+     echoes back (claim id second) — NEVER positionally: a judge
+     that skips or renumbers claims used to shift every later
+     verdict onto the wrong claim and leave the tail "missing"
+     (2026-10-22 Nasdaq hold, 2026-10-24 SpaceX sample hold).
+     Claims left without an attributable verdict are re-asked ONCE;
+     still unattributed after that = "judge_error", held and
+     labelled as a judge failure, not as an unsupported claim.
 
 A failed claim = the reel is HELD: verdict "fail", the failing claims
 named in the report, exit code 1. There is no warn-and-continue.
@@ -325,20 +333,33 @@ def deterministic_check(claims, script, article):
 _LLM_MODEL = "gpt-4o-mini"
 _PRICE_IN, _PRICE_OUT = 0.15 / 1e6, 0.60 / 1e6   # USD per token
 
+# Fields the LLM never judges: the hook eyebrow is a section label,
+# governed by the closed-vocabulary / grounded-year rule in the
+# deterministic layer. Sending it to the judge only invites a verdict
+# slot spent on a non-claim ("no 'BY THE NUMBERS' section exists in
+# the article" — true, and irrelevant).
+_JUDGE_EXEMPT_FIELDS = {"hook_stat.eyebrow"}
 
-def llm_check(claims, article):
+
+def _judge_call(ask_claims, article):
+    """One judge round over `ask_claims` (claim dicts with field/text).
+    Returns (raw_verdicts, cost_usd, error): raw_verdicts is the
+    judge's own list of {"id", "claim", "verdict", "reason"} dicts —
+    UNTRUSTED in order, numbering and completeness. Attribution is
+    attribute_verdicts' job, never this function's."""
     key = os.environ.get("OPENAI_API_KEY")
     if not key:
         return None, 0.0, "OPENAI_API_KEY not set"
     body_text = norm_text(" ".join([article.get("headline") or "",
                                     article.get("subheadline") or "",
                                     article.get("body") or ""]))[:7000]
-    claim_lines = "\n".join(f"{i + 1}. [{c['field']}] {c['text']}"
-                            for i, c in enumerate(claims))
+    claim_lines = "\n".join(
+        f"{i + 1}. [id: {c['field']}] {c['text']}"
+        for i, c in enumerate(ask_claims))
     prompt = (
         "You are a strict fact-checker for short news videos. Below is a "
-        "news article and a numbered list of on-screen text claims for a "
-        "video about it. For EACH claim decide:\n"
+        "news article and a list of on-screen text claims for a video "
+        "about it. For EACH claim decide:\n"
         '- "supported": every fact it asserts (names, numbers, dates, '
         "titles, attributions) is present in or directly entailed by the "
         "article. Paraphrase is fine. Advice or imperatives to the "
@@ -348,8 +369,13 @@ def llm_check(claims, article):
         '- "unsupported": it asserts anything absent from, or '
         "contradicted by, the article.\n"
         "Reply with ONLY a JSON object: "
-        '{"verdicts": [{"n": 1, "verdict": "supported"|"unsupported", '
-        '"reason": "<=20 words"}]} covering every claim number.\n\n'
+        '{"verdicts": [{"id": "<the claim\'s id, copied exactly>", '
+        '"claim": "<the claim text, copied exactly word for word>", '
+        '"verdict": "supported"|"unsupported", '
+        '"reason": "<=20 words"}]} with exactly one verdict per claim '
+        "in the list. Copying the claim text exactly is how your "
+        "verdict is matched back to its claim — do not paraphrase, "
+        "shorten or renumber it.\n\n"
         f"ARTICLE:\n{body_text}\n\nCLAIMS:\n{claim_lines}")
     payload = {"model": _LLM_MODEL, "temperature": 0,
                "response_format": {"type": "json_object"},
@@ -370,13 +396,107 @@ def llm_check(claims, article):
                 + usage.get("completion_tokens", 0) * _PRICE_OUT)
         content = resp["choices"][0]["message"]["content"]
         verdicts = json.loads(content)["verdicts"]
-        out = {}
-        for v in verdicts:
-            out[int(v["n"])] = {"verdict": v["verdict"],
-                                "reason": v.get("reason", "")}
-        return out, cost, None
+        if not isinstance(verdicts, list):
+            raise ValueError("verdicts is not a list")
+        return verdicts, cost, None
     except Exception as e:
         return None, 0.0, f"unparseable LLM response: {e}"
+
+
+def attribute_verdicts(pending, raw_verdicts):
+    """Attribute raw judge verdicts to the claims they are about.
+
+    `pending` is a list of (orig_index, claim) pairs still awaiting a
+    verdict. A verdict is attributed by, in order:
+      1. its echoed claim text — an exact normalized match against a
+         still-unjudged claim (when several unjudged claims share the
+         text, the one whose id the verdict also carries wins);
+      2. its claim id — the field name copied from the claim list.
+    Positional order is NEVER used: the 2026-10-24 SpaceX judge
+    answered 12 of 14 claims and numbered its tail verdicts onto the
+    wrong fields, which the old positional mapping recorded as
+    supported verdicts for claims they were not about, and "missing"
+    for the two claims that never got one. Verdicts that match no
+    pending claim (stray non-claims, duplicates, unknown verdict
+    strings) are dropped and counted, never shifted onto a neighbour.
+
+    Returns (attributed, unmatched_count): attributed maps orig_index
+    -> {"verdict", "reason"}."""
+    by_text = {}
+    for orig_idx, c in pending:
+        by_text.setdefault(norm_text(c["text"]), []).append(orig_idx)
+    by_field = {c["field"]: orig_idx for orig_idx, c in pending}
+    attributed, taken, unmatched = {}, set(), 0
+    for v in raw_verdicts or []:
+        if not isinstance(v, dict):
+            unmatched += 1
+            continue
+        verdict = str(v.get("verdict", "")).strip().lower()
+        if verdict not in ("supported", "unsupported"):
+            unmatched += 1
+            continue
+        echo = norm_text(str(v.get("claim") or ""))
+        vid = str(v.get("id") or "").strip()
+        target = None
+        if echo:
+            cands = [i for i in by_text.get(echo, []) if i not in taken]
+            if len(cands) == 1:
+                target = cands[0]
+            elif len(cands) > 1:
+                id_idx = by_field.get(vid)
+                target = id_idx if id_idx in cands else cands[0]
+        if target is None:
+            id_idx = by_field.get(vid)
+            if id_idx is not None and id_idx not in taken:
+                target = id_idx
+        if target is None:
+            unmatched += 1
+            continue
+        taken.add(target)
+        attributed[target] = {"verdict": verdict,
+                              "reason": str(v.get("reason", ""))}
+    return attributed, unmatched
+
+
+def llm_check(claims, article):
+    """Judge every judge-eligible claim; attribute by echo/id.
+
+    Returns (verdict_map, cost_usd, error, meta). verdict_map is keyed
+    by 1-based position in the FULL claims list (run_gate's lookup).
+    Every eligible claim ends with an entry: a real verdict, or
+    "judge_error" when the judge produced nothing attributable for it
+    even after the single re-ask — run_gate holds those claims, but
+    the report labels them as judge failures, not unsupported facts.
+    meta carries {"rounds", "reasked", "unmatched_verdicts",
+    "judge_error_claims"} for the report."""
+    eligible = [(i, c) for i, c in enumerate(claims)
+                if c["field"] not in _JUDGE_EXEMPT_FIELDS]
+    meta = {"rounds": 0, "reasked": [], "unmatched_verdicts": 0,
+            "judge_error_claims": []}
+    attributed, total_cost = {}, 0.0
+    pending = list(eligible)
+    for round_no in (1, 2):
+        if not pending:
+            break
+        raw, cost, err = _judge_call([c for _, c in pending], article)
+        if err:
+            return None, total_cost, err, meta
+        total_cost += cost
+        meta["rounds"] = round_no
+        got, unmatched = attribute_verdicts(pending, raw)
+        meta["unmatched_verdicts"] += unmatched
+        attributed.update(got)
+        pending = [(i, c) for i, c in pending if i not in attributed]
+        if pending and round_no == 1:
+            meta["reasked"] = [c["field"] for _, c in pending]
+    for i, c in pending:
+        attributed[i] = {
+            "verdict": "judge_error",
+            "reason": "judge returned no attributable verdict for "
+                      "this claim after one re-ask"}
+        meta["judge_error_claims"].append(c["field"])
+    out = {i + 1: v for i, v in attributed.items()}
+    return out, total_cost, None, meta
 
 
 # ── Article loading ─────────────────────────────────────────────────────────
@@ -403,16 +523,25 @@ def fetch_article_by_slug(slug):
 def run_gate(script, article, use_llm=True):
     claims = collect_claims(script)
     results, extra = deterministic_check(claims, script, article)
-    llm_map, llm_cost, llm_err = (None, 0.0, None)
+    llm_map, llm_cost, llm_err, llm_meta = (None, 0.0, None, {})
     if use_llm:
-        llm_map, llm_cost, llm_err = llm_check(claims, article)
+        llm_map, llm_cost, llm_err, llm_meta = llm_check(claims, article)
     held = []
     for i, r in enumerate(results):
         verdicts = {"deterministic": r["deterministic"]}
         if llm_map is not None:
             lv = llm_map.get(i + 1)
-            verdicts["llm"] = lv["verdict"] if lv else "missing"
-            r["llm_reason"] = lv["reason"] if lv else ""
+            if lv:
+                verdicts["llm"] = lv["verdict"]
+                r["llm_reason"] = lv["reason"]
+            elif r["field"] in _JUDGE_EXEMPT_FIELDS:
+                # Never sent to the judge (section label, not a
+                # claim) — an absent verdict here is by design.
+                verdicts["llm"] = None
+                r["llm_reason"] = ""
+            else:
+                verdicts["llm"] = "missing"
+                r["llm_reason"] = ""
         r["verdicts"] = verdicts
         # The eyebrow kicker is a section label, not a factual claim:
         # it is governed by the closed-vocabulary / grounded-year rule
@@ -444,10 +573,17 @@ def run_gate(script, article, use_llm=True):
         "eyebrow": {"value": extra["eyebrow"], "ok": extra["eyebrow_ok"],
                     "detail": extra["eyebrow_detail"]},
         "key_entities": extra["key_entities"],
+        "judge_errors": llm_meta.get("judge_error_claims", []),
         "llm": {"model": _LLM_MODEL if use_llm else None,
                 "ran": llm_map is not None,
                 "error": llm_err,
-                "cost_usd": round(llm_cost, 6)},
+                "cost_usd": round(llm_cost, 6),
+                "rounds": llm_meta.get("rounds", 0),
+                "reasked_claims": llm_meta.get("reasked", []),
+                "unmatched_verdicts": llm_meta.get(
+                    "unmatched_verdicts", 0),
+                "judge_error_claims": llm_meta.get(
+                    "judge_error_claims", [])},
     }
     return report
 
