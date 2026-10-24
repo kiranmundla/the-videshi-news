@@ -59,7 +59,9 @@ from datetime import datetime, timedelta, timezone
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 
-from embed_placement import _content_words, youtube_embed_accept  # noqa: E402
+from embed_placement import (  # noqa: E402
+    _content_words, is_non_english_title, score_youtube_result,
+    youtube_embed_accept, youtube_embed_reject_reason)
 
 ALLOWLIST_PATH = os.path.join(HERE, "official-video-channels.json")
 TRAILER_CHANNELS_PATH = os.path.join(HERE, "trailer-channels.json")
@@ -379,16 +381,72 @@ _TEAM_COUNTRIES = (
 )
 
 
-def _team_entities(article):
-    """Team/country names appearing in the headline, in headline order."""
-    headline = (article.get("headline") or "").lower()
+def _teams_in_text(text):
+    """Team/country names appearing in `text`, in text order."""
     hits = []
     for name in _TEAM_COUNTRIES:
-        m = re.search(r"\b" + re.escape(name) + r"\b", headline)
+        m = re.search(r"\b" + re.escape(name) + r"\b", text or "")
         if m:
             hits.append((m.start(), name))
     hits.sort()
     return [name for _pos, name in hits]
+
+
+def _team_entities(article):
+    """Team/country names appearing in the headline, in headline order."""
+    return _teams_in_text((article.get("headline") or "").lower())
+
+
+def _fixture_teams(article):
+    """The article's fixture pair, most authoritative source first.
+
+    Headline hits in headline order; if fewer than two, slug hits are
+    appended (slugs routinely name both sides when the headline doesn't —
+    the India v New Zealand case, 2026-10-23: the headline never literally
+    said 'New Zealand', the slug and body did), then opening-body hits.
+    The gate's team-match test uses the FIRST TWO as the fixture pair, so
+    a third team mentioned in the body can never redefine the fixture
+    when headline+slug already name both sides.
+    """
+    teams = _team_entities(article)
+    if len(teams) >= 2:
+        return teams
+    slug_text = (article.get("slug") or "").replace("-", " ").lower()
+    for name in _teams_in_text(slug_text):
+        if name not in teams:
+            teams.append(name)
+    if len(teams) >= 2:
+        return teams
+    body_text = re.sub(r"<[^>]+>", " ",
+                       article.get("body") or "")[:800].lower()
+    for name in _teams_in_text(body_text):
+        if name not in teams:
+            teams.append(name)
+    return teams
+
+
+# Words that mark a video title as coverage OF a fixture (as opposed to
+# a press conference, training clip or fan-cam from the same channel).
+_FORMAT_WORDS = (
+    "highlights", "highlight", "t20i", "t20", "odi", "series",
+    "test match", "world cup", "final", "semi-final", "semifinal",
+    "replay",
+)
+
+
+def _team_match(article, title):
+    """Team-match test (approved 2026-10-24): the fixture's BOTH teams
+    appear in the video title AND a format word does too. Title matching
+    is whole-word, so 'india' never fires on 'indian'."""
+    teams = _fixture_teams(article)
+    if len(teams) < 2:
+        return False
+    t = (title or "").lower()
+    if not all(re.search(r"\b" + re.escape(team) + r"\b", t)
+               for team in teams[:2]):
+        return False
+    return any(re.search(r"\b" + re.escape(w) + r"\b", t)
+               for w in _FORMAT_WORDS)
 
 
 def build_search_queries(article, people):
@@ -433,6 +491,14 @@ def build_search_queries(article, people):
         if q and q not in queries:
             queries.append(q)
     teams = _team_entities(article)
+    if len(teams) < 2:
+        # The slug often names the opponent the headline omits; use it to
+        # complete the pair query. (Body is NOT mined for queries — too
+        # noisy; the gate's _fixture_teams may still use it as evidence.)
+        slug_text = (article.get("slug") or "").replace("-", " ").lower()
+        for name in _teams_in_text(slug_text):
+            if name not in teams:
+                teams.append(name)
     team_queries = []
     if len(teams) >= 2:
         team_queries = [f"{teams[0]} {teams[1]} highlights",
@@ -460,10 +526,19 @@ def gate_candidate(article, entry, video, people):
          the allowlist name exactly).
       2. Shared gate: embed_placement.youtube_embed_accept (pirate-bait,
          unofficial trailer, first-person/vlog, topical overlap, English
-         title, score threshold, >=2 headline-keyword matches).
+         title, score threshold, >=2 headline-keyword matches). When a
+         team-match holds, its entity-centred score/overlap rules are
+         substituted as described in the code — safety rules and the
+         English filter still apply verbatim.
       3. Strong title match: a named person/event phrase from the
          headline must appear in the video title, AND at least one
-         non-name headline content word must appear too.
+         non-name headline content word must appear too. OR the
+         team-match test: the fixture's both teams (headline, then
+         slug/opening body) appear in the video title alongside a
+         format word — the shape rights holders title match uploads
+         with ('New Zealand v India | HIGHLIGHTS'), which names no
+         person and few headline words. Team-match lives ONLY in
+         this pass; the generic enricher gate is untouched.
       4. Recency: published within [article-14d, article+2d].
     """
     # 1 ── channel identity
@@ -483,8 +558,36 @@ def gate_candidate(article, entry, video, people):
 
     # 2 ── shared gate
     entity = people[0] if people else entry["name"]
+    title = video.get("title") or ""
+    team_match = _team_match(article, title)
+    via_team_match = False
     score, reason = youtube_embed_accept(video, entity, keywords,
                                          headline=headline)
+    if reason and team_match:
+        # Team-match substitution (this pass only): a fixture title
+        # ('New Zealand v India | HIGHLIGHTS') names no person, so the
+        # shared gate's entity-centred score and headline-overlap rules
+        # structurally fail exactly the videos this pass exists to
+        # embed — the proven 2026-10-23 rejections died at this layer,
+        # not the title-match layer. The shared gate's SAFETY rules
+        # still apply verbatim (pirate-bait, unofficial trailer,
+        # first-person — via headline=None so only rules 1-3 run) plus
+        # the English-title filter; topicality is proven by the
+        # team-match itself, and the score is recomputed against the
+        # fixture teams under the same >=6 floor.
+        safety = youtube_embed_reject_reason(
+            title, video.get("channelTitle") or "", headline=None)
+        if safety:
+            return False, f"shared gate: {safety}", score
+        if is_non_english_title(title):
+            return False, "shared gate: non-English title", score
+        teams = _fixture_teams(article)
+        score = score_youtube_result(video, " ".join(teams[:2]), keywords)
+        if score < 6:
+            return False, (f"shared gate: team-match score {score} "
+                           f"below threshold 6"), score
+        reason = None
+        via_team_match = True
     if reason:
         return False, f"shared gate: {reason}", score
 
@@ -494,7 +597,6 @@ def gate_candidate(article, entry, video, people):
     # an event/filler token ("Silicon Valley Open", "World Cup Final")
     # count as event phrases, not people; if the headline yields no
     # person phrase at all, an event-phrase hit may stand in.
-    title = video.get("title") or ""
     person_phrases = [p for p in people
                       if not ({w.lower() for w in p.split()}
                               & EVENT_STOPWORDS)]
@@ -507,12 +609,19 @@ def gate_candidate(article, entry, video, people):
     else:
         hit = _title_has_name(title, event_phrases)
         name_words = _content_words(hit) if hit else set()
-    if not hit:
-        return False, "no headline name (person/event) in video title", score
     title_words = _content_words(title)
-    non_name_hits = (set(keywords) - name_words) & title_words
-    if not non_name_hits:
-        return False, "no non-name headline word in video title", score
+    non_name_hits = (set(keywords) - name_words) & title_words \
+        if hit else set()
+    if not hit or not non_name_hits:
+        # Team fixtures title their uploads '<Team> v <Team> | FORMAT',
+        # which can fail both person-phrase checks above despite being
+        # exactly the article's match on the official channel.
+        if team_match:
+            via_team_match = True
+        elif not hit:
+            return False, "no headline name (person/event) in video title", score
+        else:
+            return False, "no non-name headline word in video title", score
 
     # 4 ── recency window
     try:
@@ -527,6 +636,8 @@ def gate_candidate(article, entry, video, people):
     except (ValueError, TypeError):
         return False, "unparseable publishedAt / published_at", score
 
+    if via_team_match:
+        return True, f"accepted via team-match (score {score})", score
     return True, f"accepted (score {score})", score
 
 

@@ -303,6 +303,138 @@ res8 = ovp.official_video_for_article(cricket_art, search_fn=fake_search8,
 check("8 no_channel status", res8["status"], "no_channel")
 check("8 no search executed", searched8, [])
 
+# ── 11. team-match gate (approved 2026-10-24) ───────────────────────────
+# The proven Oct 23 failures: rights-holder highlights titled
+# '<Team> v <Team> | HIGHLIGHTS' died at the shared gate's
+# entity-centred score / headline-overlap rules, and the India v NZ
+# article's headline never literally names New Zealand (slug/body do).
+SLUG_ART = dict(REAL_ART)
+SLUG_ART["slug"] = ("india-eye-2-0-lead-second-t20i-new-zealand-"
+                    "christchurch")
+BODY_ART = dict(REAL_ART)
+BODY_ART["body"] = ("<p>India face New Zealand in Christchurch as the "
+                    "T20I cricket series continues.</p>")
+
+check("11 fixture pair from headline stays the pair",
+      ovp._fixture_teams(TEAM_ART)[:2], ["india", "new zealand"])
+check("11 fixture pair completed from slug",
+      ovp._fixture_teams(SLUG_ART)[:2], ["india", "new zealand"])
+check("11 fixture pair completed from body",
+      ovp._fixture_teams(BODY_ART)[:2], ["india", "new zealand"])
+check("11 no second team anywhere -> single team only",
+      ovp._fixture_teams(REAL_ART), ["india"])
+
+check("11 team-match true (slug case)",
+      ovp._team_match(SLUG_ART, NZ_VIDEO["title"]), True)
+check("11 team-match true (body case)",
+      ovp._team_match(BODY_ART, NZ_VIDEO["title"]), True)
+check("11 team-match false: wrong opponent",
+      ovp._team_match(SLUG_ART, "India v Australia | HIGHLIGHTS"), False)
+check("11 team-match false: only one team in title",
+      ovp._team_match(SLUG_ART, "New Zealand | HIGHLIGHTS | Christchurch"),
+      False)
+check("11 team-match false: no format word",
+      ovp._team_match(SLUG_ART, "New Zealand v India | Christchurch"),
+      False)
+check("11 team-match false: 'india' as substring of 'indian'",
+      ovp._team_match(SLUG_ART, "Indian v New Zealand | HIGHLIGHTS"),
+      False)
+
+_ok, _reason, _score = ovp.gate_candidate(
+    SLUG_ART, NZC, NZ_VIDEO, ovp.headline_people(SLUG_ART["headline"]))
+check("11 gate accepts slug case via team-match", _ok, True)
+check("11 gate reason names team-match", "team-match" in _reason, True)
+_ok2, _reason2, _ = ovp.gate_candidate(
+    REAL_ART, NZC, NZ_VIDEO, ovp.headline_people(REAL_ART["headline"]))
+check("11 gate still rejects when no second team exists", _ok2, False)
+
+
+def fake_search_nz(entry, query, art):
+    return [NZ_VIDEO]
+
+
+res_slug = ovp.official_video_for_article(SLUG_ART,
+                                          search_fn=fake_search_nz,
+                                          channels=[NZC])
+check("11 end-to-end accepted (slug case)", res_slug["status"], "accepted")
+res_body = ovp.official_video_for_article(BODY_ART,
+                                          search_fn=fake_search_nz,
+                                          channels=[NZC])
+check("11 end-to-end accepted (body case)", res_body["status"], "accepted")
+
+WRONG_OPP = dict(NZ_VIDEO)
+WRONG_OPP["videoId"] = "WrongOpp2026"
+WRONG_OPP["title"] = "Australia v England | HIGHLIGHTS | 2nd T20I"
+
+
+def fake_search_wrong_opp(entry, query, art):
+    return [WRONG_OPP]
+
+
+res_wo = ovp.official_video_for_article(SLUG_ART,
+                                        search_fn=fake_search_wrong_opp,
+                                        channels=[NZC])
+check("11 end-to-end rejected: neither fixture team pairing",
+      res_wo["status"], "rejected")
+
+NOFMT = dict(NZ_VIDEO)
+NOFMT["videoId"] = "NoFormat2026"
+NOFMT["title"] = "New Zealand v India | Christchurch"
+
+
+def fake_search_nofmt(entry, query, art):
+    return [NOFMT]
+
+
+res_nf = ovp.official_video_for_article(SLUG_ART,
+                                        search_fn=fake_search_nofmt,
+                                        channels=[NZC])
+check("11 end-to-end rejected: teams but no format word",
+      res_nf["status"], "rejected")
+
+# Sri Lanka v England shape + pirate-bait must still die in team branch
+SLC = {"name": "Sri Lanka Cricket", "channel_id": "UCslc000000001",
+       "domain": "cricket", "categories": ["sports"],
+       "match_terms": ["cricket"], "x_handle": None}
+SL_ART = {"id": "test-sl", "slug": "sri-lanka-beat-england-t20i-thriller",
+          "headline": "Sri Lanka Beat England in T20I Thriller to Level Series",
+          "category": "sports",
+          "body": "<p>Sri Lanka beat England in a T20I cricket thriller.</p>",
+          "published_at": "2026-10-23T00:00:00Z"}
+SL_VIDEO = {"videoId": "SlV1deo2026",
+            "title": "Sri Lanka v England | HIGHLIGHTS | 2nd T20I",
+            "channelTitle": "Sri Lanka Cricket",
+            "channelId": "UCslc000000001",
+            "publishedAt": "2026-10-22T10:00:00Z"}
+
+
+def fake_search_sl(entry, query, art):
+    return [SL_VIDEO]
+
+
+res_sl = ovp.official_video_for_article(SL_ART, search_fn=fake_search_sl,
+                                        channels=[SLC])
+check("11 Sri Lanka v England highlight accepted",
+      res_sl["status"], "accepted")
+
+SL_PIRATE = dict(SL_VIDEO)
+SL_PIRATE["videoId"] = "SlP1rate2026"
+SL_PIRATE["title"] = ("Sri Lanka v England | HIGHLIGHTS | watch online "
+                      "free download")
+
+
+def fake_search_sl_pirate(entry, query, art):
+    return [SL_PIRATE]
+
+
+res_slp = ovp.official_video_for_article(SL_ART,
+                                         search_fn=fake_search_sl_pirate,
+                                         channels=[SLC])
+check("11 pirate-bait still rejected in team branch",
+      res_slp["status"], "rejected")
+check("11 pirate-bait reason survives",
+      "pirate-bait" in res_slp["decisions"][0]["reason"], True)
+
 print()
 if FAILURES:
     print(f"FAILURES ({len(FAILURES)}): {FAILURES}")
