@@ -2,10 +2,18 @@
 """
 Threads auto-poster for The Videshi (@the.videshi).
 
-Mirrors the Facebook autopost picks: every article the FB job posts to
-the Page is also posted to Threads, in the same order discipline, with
-its own ledger so nothing ever double-posts. Text is reformatted for
-Threads' 500-character limit (headline + subheadline + link).
+Mirrors the article picks of the other text channels onto Threads,
+with one shared ledger so no article ever posts twice:
+
+  * Facebook picks (pipeline/.state/fb-posted.json) — always carry the
+    article link (Threads posts are free; the link is the point).
+  * X picks (pipeline/tweet-log.json) — carry the article link only
+    when the X post itself did (the run's top pick, flagged with_link);
+    the rest mirror as plain text, matching Kiran's cross-channel
+    policy: important ones with links, the rest as plain text.
+
+Text is reformatted for Threads' 500-character limit
+(headline + subheadline [+ link]).
 
 Usage: python3 -u threads-autopost.py [--dry-run]
 
@@ -14,9 +22,9 @@ State: pipeline/.state/threads-posted.json
   pending_slugs — publish outcome unknown; re-verified next run,
                   abandoned after PENDING_TTL_SECS (never re-attempted)
 
-First run seeds the ledger with every FB pick whose article is older
+First run seeds the ledger with every pick whose article is older
 than SEED_AGE_HOURS, so Threads starts from today's picks instead of
-dumping the whole FB back-catalogue.
+dumping the whole back-catalogue.
 """
 import json
 import os
@@ -33,11 +41,13 @@ THREADS_CLI = "/opt/hatch/bin/threads-cli"
 
 BASE = os.path.expanduser("~/workspace/the-videshi-news/pipeline/.state")
 FB_STATE = os.path.join(BASE, "fb-posted.json")
+TWEET_LOG = os.path.expanduser(
+    "~/workspace/the-videshi-news/pipeline/tweet-log.json")
 STATE_FILE = os.path.join(BASE, "threads-posted.json")
 
-MAX_PER_RUN = 2          # mirrors FB's pace; catch-up drains over runs
+MAX_PER_RUN = 3           # drains FB (5/day) + X (12/day) across 5 slots
 MIRROR_WINDOW_HOURS = 48  # only mirror picks still fresh enough to matter
-SEED_AGE_HOURS = 24       # older FB picks are seeded as already-mirrored
+SEED_AGE_HOURS = 24       # older picks are seeded as already-mirrored
 PENDING_TTL_SECS = 3 * 3600
 CHAR_LIMIT = 500
 
@@ -103,24 +113,23 @@ def hours_since(iso_ts):
         return None
 
 
-def build_text(article):
+def build_text(article, with_link=True):
     headline = (article.get("headline") or "").strip()
     summary = (article.get("subheadline") or "").strip()
     url = f"https://www.thevideshi.com/articles/{article['slug']}"
-    text = headline
+    tail = f"\n\n{url}" if with_link else ""
     if summary and summary.lower() not in headline.lower():
-        candidate = f"{headline}\n\n{summary}\n\n{url}"
+        candidate = f"{headline}\n\n{summary}{tail}"
         if len(candidate) <= CHAR_LIMIT:
             return candidate
-        # Trim the summary at a word boundary to fit.
-        budget = CHAR_LIMIT - len(headline) - len(url) - 5  # \n\n x2 + slack
+        budget = CHAR_LIMIT - len(headline) - len(tail) - 3  # \n\n + slack
         if budget > 40:
             trimmed = summary[:budget].rsplit(" ", 1)[0] + "…"
-            return f"{headline}\n\n{trimmed}\n\n{url}"
-    text = f"{headline}\n\n{url}"
+            return f"{headline}\n\n{trimmed}{tail}"
+    text = f"{headline}{tail}"
     if len(text) > CHAR_LIMIT:
-        text = headline[:CHAR_LIMIT - len(url) - 3].rsplit(" ", 1)[0] \
-            + "…\n\n" + url
+        keep = CHAR_LIMIT - len(tail) - 1
+        text = headline[:keep].rsplit(" ", 1)[0] + "…" + tail
     return text
 
 
@@ -143,8 +152,9 @@ def publish(text):
     return None
 
 
-def verify_pending(slug):
-    """True if a recent brand Threads post carries this article's URL."""
+def verify_pending(slug, headline=None):
+    """True if a recent brand Threads post carries this article's URL —
+    or, for plain-text mirrors with no URL, its headline."""
     url = f"https://www.thevideshi.com/articles/{slug}"
     cmd = [THREADS_CLI, "profile-threads", "--account-id", ACCOUNT_ID,
            "--user-id", ACCOUNT_ID, "--first", "10"]
@@ -155,44 +165,61 @@ def verify_pending(slug):
         print(f"ERROR: verify failed: {e}", file=sys.stderr)
         return False
     for post in data.get("posts", []):
-        if url in (post.get("post_caption_text") or ""):
+        caption = post.get("post_caption_text") or ""
+        if url in caption:
+            return True
+        if headline and headline[:60] in caption:
             return True
     return False
 
 
-def main():
+def collect_picks():
+    """slug -> with_link across both source channels (FB wins ties:
+    an FB pick always carries its link on Threads)."""
+    picks = {}
+    tweets = load_json(TWEET_LOG, {})
+    if isinstance(tweets, dict):
+        for entry in tweets.values():
+            if isinstance(entry, dict) and entry.get("slug"):
+                picks[entry["slug"]] = bool(entry.get("with_link"))
     fb = load_json(FB_STATE, {})
-    fb_posted = set(fb.get("posted_slugs", []))
-    if not fb_posted:
-        print("FB ledger empty — nothing to mirror.")
+    for slug in fb.get("posted_slugs", []):
+        picks[slug] = True
+    return picks
+
+
+def main():
+    picks = collect_picks()
+    if not picks:
+        print("No source picks found — nothing to mirror.")
         return
 
     state = load_state()
     if state is None:
-        # First run: seed historical FB picks so they are never mirrored.
-        articles = fetch_articles(fb_posted)
+        # First run: seed historical picks so they are never mirrored.
+        articles = fetch_articles(set(picks))
         seeded = set()
-        for slug in fb_posted:
+        for slug in picks:
             row = articles.get(slug)
             age = hours_since(row["published_at"]) if row else None
             if age is None or age > SEED_AGE_HOURS:
                 seeded.add(slug)
-        print(f"Seeding ledger: {len(seeded)} historical FB picks marked "
-              f"already-mirrored; {len(fb_posted) - len(seeded)} recent.")
+        print(f"Seeding ledger: {len(seeded)} historical picks marked "
+              f"already-mirrored; {len(picks) - len(seeded)} recent.")
+        posted, pending, abandoned, pending_since, post_ids = \
+            seeded, set(), set(), {}, {}
         if DRY_RUN:
             print("DRY RUN — seed not saved.")
-            posted, pending, abandoned, pending_since, post_ids = \
-                seeded, set(), set(), {}, {}
         else:
-            posted, pending, abandoned, pending_since, post_ids = \
-                seeded, set(), set(), {}, {}
             save_state(posted, pending, abandoned, pending_since, post_ids)
     else:
         posted, pending, abandoned, pending_since, post_ids = state
 
     # Resolve pending publishes from earlier runs before posting new ones.
+    pending_articles = fetch_articles(pending) if pending else {}
     for slug in sorted(pending):
-        if verify_pending(slug):
+        headline = (pending_articles.get(slug) or {}).get("headline")
+        if verify_pending(slug, headline):
             pending.discard(slug)
             pending_since.pop(slug, None)
             posted.add(slug)
@@ -215,28 +242,31 @@ def main():
     if not DRY_RUN:
         save_state(posted, pending, abandoned, pending_since, post_ids)
 
-    candidates = fb_posted - posted - pending - abandoned
+    candidates = {s: link for s, link in picks.items()
+                  if s not in posted and s not in pending
+                  and s not in abandoned}
     if not candidates:
-        print("Threads mirror is up to date with Facebook.")
+        print("Threads mirror is up to date.")
         return
-    articles = fetch_articles(candidates)
+    articles = fetch_articles(set(candidates))
     fresh = []
-    for slug in candidates:
+    for slug, with_link in candidates.items():
         row = articles.get(slug)
         if not row:
             continue
         age = hours_since(row.get("published_at") or "")
         if age is not None and age <= MIRROR_WINDOW_HOURS:
-            fresh.append(row)
-    fresh.sort(key=lambda r: r.get("published_at") or "", reverse=True)
+            fresh.append((row, with_link))
+    fresh.sort(key=lambda t: t[0].get("published_at") or "", reverse=True)
     batch = fresh[:MAX_PER_RUN]
     if not batch:
-        print("No fresh FB picks inside the mirror window.")
+        print("No fresh picks inside the mirror window.")
         return
 
-    for article in batch:
-        text = build_text(article)
-        print(f"Mirror: {article['headline'][:80]}")
+    for article, with_link in batch:
+        text = build_text(article, with_link=with_link)
+        print(f"Mirror: {article['headline'][:80]} "
+              f"(link: {with_link})")
         print(f"Text ({len(text)} chars): {text[:160]}...")
         if DRY_RUN:
             print("DRY RUN — not publishing.")

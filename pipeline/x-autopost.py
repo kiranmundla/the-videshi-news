@@ -126,8 +126,9 @@ resp.raise_for_status()
 all_articles = resp.json()
 print(f"Fetched {len(all_articles)} untweeted articles")
 
-# Pick up to 4 with images
-articles = [a for a in all_articles if a.get('image_url')][:4]
+# Pick up to 6 with images (volume raised 2026-10-24 — plain posts are
+# only $0.015, so 12/day costs less than the old 8/day did with leaks)
+articles = [a for a in all_articles if a.get('image_url')][:6]
 print(f"Selected {len(articles)} articles to post")
 
 if not articles:
@@ -175,11 +176,13 @@ def extract_key_content(body_md):
             lines.append(l)
     return '\n'.join(lines)
 
-def compose_post(article):
+def compose_post(article, with_link=False):
     """Compose a clean, X-native post from article data.
 
-    Format: hook line, headline, tight summary, link. No dividers
+    Format: hook line, headline, tight summary, closer. No dividers
     (they render as broken bars), no duplicated takeaways, no boilerplate.
+    with_link=True (the run's top pick only) appends the article URL —
+    the one deliberate $0.20 post per run; all other posts are link-free.
     """
     cat = article.get("category", "news")
     emoji = CATEGORY_EMOJI.get(cat, "🇮🇳")
@@ -221,7 +224,10 @@ def compose_post(article):
 {summary}
 
 📰 Read the full story on The Videshi"""
-    return delink(post)
+    post = delink(post)
+    if with_link:
+        post += f"\n\nhttps://www.thevideshi.com/articles/{slug}"
+    return post
 
 
 def delink(text):
@@ -230,7 +236,9 @@ def delink(text):
     summary is extracted from article body text, which can carry source
     URLs into the post — 50 of October's 135 posts leaked a link this
     way ($10.00 of the $11.28 console total, verified 2026-10-24).
-    Kiran's policy: X posts are link-free, full stop."""
+    Kiran's policy: link-free by default — the only URL a post may carry
+    is the article link compose_post appends deliberately for the run's
+    top pick, after delink has run."""
     text = re.sub(r'https?://\S+', '', text)
     text = re.sub(r'[ \t]{2,}', ' ', text)
     text = re.sub(r'\n{3,}', '\n\n', text)
@@ -252,8 +260,11 @@ for i, article in enumerate(articles):
     print(f"  Headline: {article['headline'][:80]}...")
     print(f"  Category: {article['category']}")
 
-    post_text = compose_post(article)
-    print(f"  Post length: {len(post_text)} chars")
+    # The run's top pick is the important story: it alone carries the
+    # article link ($0.20); every other post stays link-free ($0.015).
+    with_link = (i == 0)
+    post_text = compose_post(article, with_link=with_link)
+    print(f"  Post length: {len(post_text)} chars (link: {with_link})")
 
     # Check for carousel images from prebuilt_reels (up to 4 image slides)
     media_ids = []
@@ -360,7 +371,8 @@ for i, article in enumerate(articles):
         tweet_log[tweet_id] = {
             "article_id": article['id'],
             "slug": article['slug'],
-            "posted_at": datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
+            "posted_at": datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
+            "with_link": with_link
         }
         with open(log_path, 'w') as f:
             json.dump(tweet_log, f, indent=2)
