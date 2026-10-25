@@ -43,6 +43,12 @@ Usage:
   python3 -u watchlist_pilot.py --dry-run [--no-refresh] [--hours 72]
   python3 -u watchlist_pilot.py --draft   [--no-refresh]
   python3 -u watchlist_pilot.py --dry-run --commit-ledger   # mark seen
+  python3 -u watchlist_pilot.py --draft-all [--no-refresh] [--draft-cap 6]
+      Daily pilot run (Kiran approved draft mode 2026-10-24): draft EVERY
+      outcome-(a) candidate (cap 6, highest score first) as a file in
+      .state/watchlist-drafts/, write + print the daily digest
+      (.state/watchlist-digest-YYYYMMDD.json, Pacific date), and consume
+      the batch in the ledger. Drafts are NEVER inserted — see _draft_one.
 
 Env: ~/workspace/.env.supabase, ~/workspace/.env.openai,
      ~/workspace/.env.twitterapi-io (all loaded if present).
@@ -71,6 +77,8 @@ CACHE_PATH = os.path.join(_DIR, "cache", "embed_cache.json")
 STATE_PATH = os.path.join(_DIR, ".state", "watchlist-pilot.json")
 SAMPLE_PATH = os.path.join(_DIR, ".state", "watchlist-sample.json")
 REPORT_DIR = os.path.join(_DIR, ".state")
+DRAFTS_DIR = os.path.join(_DIR, ".state", "watchlist-drafts")
+DRAFT_ALL_CAP = 6
 
 # GPT-4o-mini list prices (same constants v3-select.py uses).
 PRICE_IN_PER_M = 0.15
@@ -969,6 +977,16 @@ def save_ledger(led):
         json.dump(led, f, indent=2)
 
 
+def pacific_date_str(now=None):
+    """Pilot digests are dated by the Pacific day (Kiran reads in PT)."""
+    try:
+        from zoneinfo import ZoneInfo
+        tz = ZoneInfo("America/Los_Angeles")
+    except Exception:
+        tz = timezone(timedelta(hours=-7))  # PDT fallback
+    return (now or datetime.now(timezone.utc)).astimezone(tz).strftime("%Y-%m-%d")
+
+
 def write_reports(report):
     os.makedirs(REPORT_DIR, exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M")
@@ -977,7 +995,7 @@ def write_reports(report):
     with open(jpath, "w") as f:
         json.dump(report, f, indent=2, default=str)
     lines = [
-        f"# Watchlist pilot — dry-run report {report['run_at']}",
+        f"# Watchlist pilot — {report.get('mode', 'dry-run')} report {report['run_at']}",
         "",
         f"- Posts detected (new, in window): **{report['scanned']}**; scored: "
         f"**{report.get('scored', report['scanned'])}** "
@@ -1020,7 +1038,9 @@ def run_pipeline(args):
     watermark = parse_post_time(led["watermark"], "x")
     seen = set(led.get("seen_ids", [])) | set(led.get("drafted_ids", []))
 
-    print(f"═══ Watchlist pilot — {'DRAFT' if args.draft else 'DRY RUN'} ═══")
+    mode_label = ("DRAFT-ALL" if args.draft_all
+                  else "DRAFT" if args.draft else "DRY RUN")
+    print(f"═══ Watchlist pilot — {mode_label} ═══")
     print(f"Window {window}h · watermark {led['watermark']} · threshold {threshold}")
     posts, counts = detect_posts(cfg, cache, refresh=not args.no_refresh,
                                  window_hours=window)
@@ -1061,7 +1081,8 @@ def run_pipeline(args):
 
     report = {
         "run_at": datetime.now(timezone.utc).isoformat(),
-        "mode": "draft" if args.draft else "dry-run",
+        "mode": ("draft-all" if args.draft_all
+                 else "draft" if args.draft else "dry-run"),
         "scanned": scanned_total,
         "scored": len(posts),
         "by_platform": {pf: sum(1 for p in posts if p["platform"] == pf)
@@ -1103,6 +1124,24 @@ def run_pipeline(args):
         report["cost_usd"] = cost
         report["sample"] = sample_info
 
+    digest = None
+    if args.draft_all:
+        counts = {"scanned": scanned_total, "scored": len(posts),
+                  "passed": len(passed)}
+        digest, cost, deferred_recs = _do_draft_all(
+            outcome_a, outcome_b, outcome_c, led, cost, counts,
+            cap=args.draft_cap or DRAFT_ALL_CAP)
+        report["cost_usd"] = cost
+        report["digest"] = digest
+        report["draft_all"] = {
+            "drafts_written": len(digest["drafts"]),
+            "deferred": [_cand_rec(r) for r in deferred_recs],
+        }
+        # Draft files are already on disk and drafted_ids already saved —
+        # only NOW consume the rest of the batch, so a crash mid-drafting
+        # loses nothing (undrafted posts stay new and are retried).
+        args.commit_ledger = True
+
     if args.commit_ledger:
         led["seen_ids"] = sorted(seen | {f"{p['platform']}:{p['id']}" for p in posts})
         save_ledger(led)
@@ -1112,6 +1151,10 @@ def run_pipeline(args):
     print(f"\nReports: {jpath}\n         {mpath}")
     print(f"Outcomes: (a) draftable {len(outcome_a)} · (b) duplicates "
           f"{len(outcome_b)} · (c) held {len(outcome_c)} · total cost ${report['cost_usd']:.4f}")
+    if digest is not None:
+        print(f"\nDaily digest (also in pipeline/.state/"
+              f"watchlist-digest-{digest['date'].replace('-', '')}.json):")
+        print(json.dumps(digest, indent=2))
     return report
 
 
@@ -1244,18 +1287,198 @@ def _do_draft(outcome_a, outcome_b, led, cost):
             "sources": article["sources"]}, cost
 
 
+# ─── Draft-all (daily pilot mode) ─────────────────────────────────────────────
+# Kiran approved the 1-week pilot in DRAFT mode (2026-10-24): every
+# outcome-(a) candidate becomes a draft FILE in .state/watchlist-drafts/.
+# Nothing is ever inserted — v3-batch-insert.process_article hardcodes
+# status='published', so pilot drafts stay files exactly like the sample.
+#
+# Crash-safety order (deliberate): draft files are written FIRST, then
+# drafted post IDs are persisted to the ledger, then (in run_pipeline)
+# the rest of the batch is marked seen. A crash can therefore at worst
+# re-draft a post on the next run (slug suffixing keeps files distinct);
+# it can never consume a post whose draft was never written.
+
+def select_draft_batch(outcome_a, cap=DRAFT_ALL_CAP):
+    """(batch, deferred): outcome-(a) records ordered highest score
+    first (ties: newest post first), split at the daily cap. Deferred
+    candidates are NOT carried over — they are consumed with the batch
+    and age out."""
+    ordered = sorted(outcome_a,
+                     key=lambda r: (r["scored"].get("score", 0),
+                                    r["post"]["created_at_dt"]),
+                     reverse=True)
+    return ordered[:cap], ordered[cap:]
+
+
+def build_digest(date_str, scanned, scored, passed, drafts, duplicates,
+                 held, deferred_count, est_cost_usd):
+    """The daily digest relayed to Kiran by the cron worker. Field names
+    are a stable contract — do not rename."""
+    return {
+        "date": date_str,
+        "scanned": scanned,
+        "scored": scored,
+        "passed": passed,
+        "drafts": drafts,
+        "duplicates": duplicates,
+        "held": held,
+        "deferred_count": deferred_count,
+        "est_cost_usd": round(est_cost_usd, 4),
+    }
+
+
+def _draft_one(rec, used_slugs, drafts_dir):
+    """Synthesize + validate + write ONE draft file for an outcome-(a)
+    record, using the same checks as the single --draft path
+    (corroboration actually read, build_sample_article's ≥2-source
+    evidence gate, corpus slug-collision check). Returns
+    (article, added_cost, error_reason)."""
+    p, res, c = rec["post"], rec["scored"], rec["corr"]
+    corr_item = c.get("corroboration")
+    if not corr_item or not corr_item.get("url"):
+        return None, 0.0, "no sourceable corroboration (evidence gate)"
+
+    fetched = fetch_url_text(corr_item.get("url", ""))
+    if fetched and len(fetched) > len(corr_item.get("extra_text") or ""):
+        corr_item = dict(corr_item, extra_text=fetched)
+
+    name_attr = f"@{p['handle']}" if p.get("handle") else p.get("feed_name", "")
+    writer, cost, err = synthesize(p, res, corr_item, name_attr)
+    if writer and len(writer.get("paragraphs") or []) < 3 and not err:
+        writer2, cost2, err2 = synthesize(p, res, corr_item, name_attr)
+        cost += cost2
+        if writer2 and len(writer2.get("paragraphs") or []) > len(writer.get("paragraphs") or []):
+            writer = writer2
+    if err or not writer:
+        return None, cost, f"synthesis failed: {err}"
+    article = build_sample_article(p, res, corr_item, writer)
+    if article is None:
+        return None, cost, "assembled article failed the ≥2-source gate"
+
+    slug = article["slug"]
+    existing = sb_get(f"p2_articles?select=id&slug=eq.{slug}&limit=1")
+    if existing:
+        slug = slug + "-watchlist"
+    base, n = slug, 2
+    while slug in used_slugs or os.path.exists(os.path.join(drafts_dir, slug + ".json")):
+        slug = f"{base}-{n}"
+        n += 1
+    article["slug"] = slug
+    used_slugs.add(slug)
+
+    payload = {
+        "status": "DRAFT — not inserted",
+        "why_not_inserted": (
+            "v3-batch-insert.process_article hardcodes status='published'. "
+            "Watchlist pilot drafts stay files for Kiran's review during "
+            "the pilot week (2026-10-25 → 2026-10-31)."),
+        "basis": "true-add (corroborated, not yet published) — pilot draft-all",
+        "candidate": _cand_rec(rec),
+        "article": article,
+    }
+    os.makedirs(drafts_dir, exist_ok=True)
+    with open(os.path.join(drafts_dir, slug + ".json"), "w") as f:
+        json.dump(payload, f, indent=2)
+    return article, cost, None
+
+
+def run_draft_all(outcome_a, outcome_b, outcome_c, led, counts,
+                  cap=DRAFT_ALL_CAP, drafts_dir=DRAFTS_DIR,
+                  digest_dir=REPORT_DIR, persist=None, date_str=None,
+                  base_cost=0.0):
+    """Draft every outcome-(a) candidate up to the daily cap and build
+    the daily digest. Only (a) records are drafted — duplicates (b) and
+    held (c) are reported, never written (the evidence gate). Returns
+    (digest, total_cost, deferred_records)."""
+    batch, deferred = select_draft_batch(outcome_a, cap)
+    used_slugs, drafted_keys, drafts_meta = set(), [], []
+    added_cost = 0.0
+    for rec in batch:
+        article, dcost, err = _draft_one(rec, used_slugs, drafts_dir)
+        added_cost += dcost
+        p, res = rec["post"], rec["scored"]
+        if article is None:
+            print(f"  ⚠ draft-all: skipped {p['entry_name']} "
+                  f"({p['platform']}) — {err}")
+            continue
+        corr = rec["corr"].get("corroboration") or {}
+        drafts_meta.append({
+            "headline": article["headline"],
+            "slug": article["slug"],
+            "score": res["score"],
+            "handle": p.get("handle", ""),
+            "platform": p["platform"],
+            "corroboration_source_name": corr.get("source_name", ""),
+            "why": res.get("summary", ""),
+        })
+        drafted_keys.append(f"{p['platform']}:{p['id']}")
+        print(f"  ✎ drafted: {article['headline']} "
+              f"(.state/watchlist-drafts/{article['slug']}.json)")
+
+    # Files are on disk BEFORE the ledger moves — see the ordering note
+    # at the top of this section.
+    if persist is not None and drafted_keys:
+        led["drafted_ids"] = sorted(set(led.get("drafted_ids", []))
+                                    | set(drafted_keys))
+        persist(led)
+
+    duplicates = [{
+        "headline_or_post": r["scored"].get("summary", ""),
+        "matched_article": (r["corr"].get("published_match") or {}).get("title", ""),
+    } for r in outcome_b]
+    held = []
+    for r in outcome_c:
+        p = r["post"]
+        reason = ("coverage exists only as a topic match with no "
+                  "sourceable article"
+                  if r["corr"].get("topic_only_match")
+                  else "no independent corroboration found")
+        held.append({"handle": p.get("handle") or p["entry_name"],
+                     "reason": reason})
+
+    digest = build_digest(date_str or pacific_date_str(),
+                          counts.get("scanned", 0), counts.get("scored", 0),
+                          counts.get("passed", 0), drafts_meta, duplicates,
+                          held, len(deferred), base_cost + added_cost)
+    if digest_dir:
+        os.makedirs(digest_dir, exist_ok=True)
+        dpath = os.path.join(
+            digest_dir,
+            f"watchlist-digest-{digest['date'].replace('-', '')}.json")
+        with open(dpath, "w") as f:
+            json.dump(digest, f, indent=2)
+    return digest, base_cost + added_cost, deferred
+
+
+def _do_draft_all(outcome_a, outcome_b, outcome_c, led, cost, counts, cap):
+    digest, total_cost, deferred = run_draft_all(
+        outcome_a, outcome_b, outcome_c, led, counts, cap=cap,
+        persist=save_ledger, base_cost=cost)
+    print(f"Draft-all: {len(digest['drafts'])} draft(s) written to "
+          f"pipeline/.state/watchlist-drafts/ · "
+          f"{digest['deferred_count']} deferred past the cap of {cap}")
+    return digest, total_cost, deferred
+
+
 def main():
     ap = argparse.ArgumentParser(description="Watchlist synthesis pilot")
     ap.add_argument("--dry-run", action="store_true", help="detect + score + corroborate, report only")
     ap.add_argument("--draft", action="store_true", help="also synthesize ONE sample draft (file only)")
+    ap.add_argument("--draft-all", action="store_true",
+                    help="daily pilot mode: draft EVERY outcome-(a) candidate "
+                         "(cap --draft-cap) to .state/watchlist-drafts/, write + "
+                         "print the daily digest, consume the batch in the ledger")
+    ap.add_argument("--draft-cap", type=int, default=0,
+                    help="max drafts per --draft-all run (default 6)")
     ap.add_argument("--no-refresh", action="store_true", help="cache-only detection (no live top-up)")
     ap.add_argument("--hours", type=int, default=0, help="detection window override")
     ap.add_argument("--max-scored", type=int, default=0,
                     help="cap on posts sent to the scorer (default 60)")
     ap.add_argument("--commit-ledger", action="store_true", help="mark detected posts seen in the ledger")
     args = ap.parse_args()
-    if not (args.dry_run or args.draft):
-        ap.error("one of --dry-run / --draft is required")
+    if not (args.dry_run or args.draft or args.draft_all):
+        ap.error("one of --dry-run / --draft / --draft-all is required")
     run_pipeline(args)
 
 

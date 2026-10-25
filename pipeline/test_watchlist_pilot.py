@@ -244,5 +244,150 @@ aitems = wp.parse_feed(ATOM, "Atom", "https://example.com/feed")
 check("rss: atom entry parsed", len(aitems) == 1 and aitems[0]["url"] == "https://example.com/a")
 check("rss: garbage -> []", wp.parse_feed("<not xml", "x", "y") == [])
 
+# ── draft-all ────────────────────────────────────────────────────────────────
+import json
+import tempfile
+
+def _mk_post(pid, handle, entry, when):
+    return {"platform": "x", "entry_name": entry, "lane": "A",
+            "handle": handle, "id": pid,
+            "text": f"Post {pid} body text with enough substance to draft.",
+            "url": f"https://x.com/{handle}/status/{pid}",
+            "created_at_dt": when, "photos": [], "has_video": False,
+            "origin": "live"}
+
+def _mk_rec(pid, score, outcome, handle="spacex", entry="SpaceX",
+            corr_url="https://example.com/corroboration", pub_title=""):
+    corr = {"outcome": outcome, "corroboration": None, "published_match": None,
+            "keywords": []}
+    if outcome == "draft":
+        corr["corroboration"] = {"source_name": "Reuters",
+                                 "url": corr_url,
+                                 "title": "Corroborating coverage",
+                                 "extra_text": ""}
+    if outcome == "duplicate":
+        corr["published_match"] = {"title": pub_title,
+                                   "url": "https://www.thevideshi.com/articles/dup"}
+    return {"post": _mk_post(pid, handle, entry, NOW),
+            "scored": {"score": score, "type": "announcement",
+                       "summary": f"Summary {pid}",
+                       "category": "technology", "entities": [entry]},
+            "corr": corr}
+
+_orig_synth, _orig_fetch = wp.synthesize, wp.fetch_url_text
+_orig_sb = wp.sb_get
+
+def _stub_writer(p, s, c, n):
+    return ({"headline": f"Story {s['summary']}", "subheadline": "sub",
+             "takeaways": ["t1", "t2", "t3"],
+             "paragraphs": [f"In a post on X, {p['entry_name']} announced it.",
+                            "Detail from corroboration.", "Third paragraph."],
+             "tags": ["x"], "diaspora_angle": ""}, 0.002, None)
+
+wp.synthesize = _stub_writer
+wp.fetch_url_text = lambda url, max_chars=2600: ""
+wp.sb_get = lambda endpoint: None
+try:
+    tmp = tempfile.mkdtemp()
+    drafts_dir = os.path.join(tmp, "drafts")
+    digest_dir = os.path.join(tmp, "digests")
+    led = {"watermark": NOW.isoformat(), "seen_ids": [], "drafted_ids": []}
+    saved = []
+    recs_a = [_mk_rec("a1", 9, "draft"), _mk_rec("a2", 8, "draft")]
+    recs_b = [_mk_rec("b1", 9, "duplicate", pub_title="Already Published Story")]
+    recs_c = [_mk_rec("c1", 8, "held")]
+    digest, total_cost, deferred = wp.run_draft_all(
+        recs_a, recs_b, recs_c, led,
+        {"scanned": 10, "scored": 9, "passed": 4},
+        drafts_dir=drafts_dir, digest_dir=digest_dir,
+        persist=lambda l: saved.append(list(l.get("drafted_ids", []))),
+        date_str="2026-10-25", base_cost=0.01)
+
+    files = sorted(os.listdir(drafts_dir))
+    check("draft-all: only outcome-(a) records are drafted", len(files) == 2)
+    check("draft-all: no draft file for duplicate/held candidates",
+          not any("b1" in f or "c1" in f for f in files))
+    check("draft-all: deferred empty under cap", len(deferred) == 0
+          and digest["deferred_count"] == 0)
+    one = json.load(open(os.path.join(drafts_dir, files[0])))
+    check("draft-all: file shape matches sample (payload + article)",
+          one.get("status", "").startswith("DRAFT")
+          and isinstance(one.get("article"), dict)
+          and isinstance(one.get("candidate"), dict))
+    check("draft-all: written article carries >=2 distinct sources",
+          len({s["url"] for s in one["article"]["sources"]}) >= 2)
+    check("draft-all: drafted post IDs persisted to ledger",
+          sorted(led["drafted_ids"]) == ["x:a1", "x:a2"] and saved)
+    check("digest: counts carried through",
+          digest["scanned"] == 10 and digest["scored"] == 9
+          and digest["passed"] == 4)
+    check("digest: drafts entries carry the contract fields",
+          len(digest["drafts"]) == 2 and all(
+              {"headline", "slug", "score", "handle", "platform",
+               "corroboration_source_name", "why"} <= set(d)
+              for d in digest["drafts"]))
+    check("digest: draft why = scorer reason, corr source named",
+          all(d["why"].startswith("Summary ")
+              and d["corroboration_source_name"] == "Reuters"
+              for d in digest["drafts"]))
+    check("digest: duplicates report the matched article",
+          digest["duplicates"] == [{
+              "headline_or_post": "Summary b1",
+              "matched_article": "Already Published Story"}])
+    check("digest: held carries handle + reason",
+          len(digest["held"]) == 1
+          and digest["held"][0]["handle"] == "spacex"
+          and "corroboration" in digest["held"][0]["reason"])
+    check("digest: cost = base + synthesis costs",
+          abs(digest["est_cost_usd"] - 0.014) < 1e-9
+          and abs(total_cost - 0.014) < 1e-9)
+    dfile = os.path.join(digest_dir, "watchlist-digest-20261025.json")
+    check("digest: file written under Pacific-date name, content matches",
+          os.path.exists(dfile) and json.load(open(dfile)) == digest)
+
+    # cap enforcement + score ordering
+    many = [_mk_rec(f"m{i}", s, "draft")
+            for i, s in enumerate([7, 10, 8, 9, 7, 10, 8, 9])]
+    led2 = {"watermark": NOW.isoformat(), "seen_ids": [], "drafted_ids": []}
+    digest2, _, deferred2 = wp.run_draft_all(
+        many, [], [], led2, {"scanned": 8, "scored": 8, "passed": 8},
+        drafts_dir=os.path.join(tmp, "drafts2"),
+        digest_dir=os.path.join(tmp, "digests"),
+        persist=lambda l: None, date_str="2026-10-25")
+    drafted_scores = [d["score"] for d in digest2["drafts"]]
+    check("draft-all: cap of 6 enforced", len(digest2["drafts"]) == 6)
+    check("draft-all: highest scores first, lowest deferred",
+          drafted_scores == sorted(drafted_scores, reverse=True)
+          and min(drafted_scores) == 8 and digest2["deferred_count"] == 2
+          and len(deferred2) == 2
+          and all(r["scored"]["score"] == 7 for r in deferred2))
+    batch, defr = wp.select_draft_batch(many, 3)
+    check("select_draft_batch: splits at cap, order preserved",
+          len(batch) == 3 and len(defr) == 5
+          and batch[0]["scored"]["score"] == 10)
+
+    # evidence gate inside draft-all: (a) label but no sourceable URL
+    gate_rec = _mk_rec("g1", 9, "draft", corr_url="")
+    led3 = {"watermark": NOW.isoformat(), "seen_ids": [], "drafted_ids": []}
+    digest3, _, _ = wp.run_draft_all(
+        [gate_rec], [], [], led3, {"scanned": 1, "scored": 1, "passed": 1},
+        drafts_dir=os.path.join(tmp, "drafts3"),
+        digest_dir=os.path.join(tmp, "digests"),
+        persist=lambda l: None, date_str="2026-10-25")
+    check("draft-all: uncorroborated-URL candidate is NOT drafted",
+          digest3["drafts"] == [] and led3["drafted_ids"] == [])
+    check("draft-all: gated candidate leaves no file",
+          not os.path.exists(os.path.join(tmp, "drafts3"))
+          or os.listdir(os.path.join(tmp, "drafts3")) == [])
+finally:
+    wp.synthesize, wp.fetch_url_text, wp.sb_get = _orig_synth, _orig_fetch, _orig_sb
+
+check("build_digest: exact top-level field set",
+      set(wp.build_digest("2026-10-25", 1, 2, 3, [], [], [], 0, 0.0))
+      == {"date", "scanned", "scored", "passed", "drafts", "duplicates",
+          "held", "deferred_count", "est_cost_usd"})
+check("pacific_date_str: YYYY-MM-DD shape",
+      len(wp.pacific_date_str()) == 10 and wp.pacific_date_str()[4] == "-")
+
 print(f"\n{total - fails}/{total} checks passed")
 sys.exit(1 if fails else 0)
