@@ -451,6 +451,79 @@ def _story_hint_terms(article, entity_name, all_entities=None):
     return toks - set(RES.entity_tokens(entity_name))
 
 
+# ── person namesake gate (2026-10-25, second live-run lesson) ─────
+# Persons were EXEMPT from topicality on the theory that an
+# exact-name portrait is on-topic by construction. Namesakes break
+# it: the Commons file for Shadab Khan the Indian ACTOR passes
+# exact-name identity perfectly for a story about Shadab Khan the
+# Pakistani CRICKETER (and in Oct a businessman Abhishek Sharma
+# illustrated the cricketer of the same name). A Commons person
+# candidate must therefore ALSO agree with the story's context:
+# at least one context token — headline/other-entity vocabulary
+# or the article category's domain vocabulary — must appear in
+# the file's own evidence. No agreement (or no context at all)
+# means Commons cannot distinguish this person from a namesake:
+# reject, and let the verified routes (person cache, Source 3.8
+# profile lookup) or an honest miss carry the story instead.
+_PERSON_DOMAIN_TOKENS = {
+    "sports": ("cricket", "cricketer", "football", "soccer",
+               "tennis", "hockey", "badminton", "kabaddi",
+               "athlete", "olympic", "boxer", "boxing",
+               "wrestler", "wrestling", "golfer", "sprinter",
+               "chess", "squash", "baseball", "basketball",
+               "weightlifting", "archery"),
+    "entertainment": ("actor", "actress", "film", "cinema",
+                      "singer", "singing", "musician", "director",
+                      "composer", "bollywood", "hollywood"),
+    "technology": ("engineer", "scientist", "researcher",
+                   "professor", "founder", "programmer",
+                   "astronaut", "executive", "entrepreneur"),
+    "markets-finance": ("executive", "founder", "entrepreneur",
+                        "businessman", "businesswoman", "investor",
+                        "banker", "economist", "chief"),
+    "news": ("politician", "minister", "diplomat", "ambassador",
+             "activist", "official", "senator", "congressman"),
+    "nri-world": ("politician", "minister", "diplomat",
+                  "ambassador", "activist", "official",
+                  "senator", "congressman"),
+    "immigration": ("politician", "minister", "diplomat",
+                    "ambassador", "activist", "official",
+                    "lawyer", "judge"),
+    "lifestyle-health": ("doctor", "physician", "surgeon",
+                         "scientist", "researcher", "professor",
+                         "chef"),
+    "food": ("chef", "cook", "restaurateur"),
+}
+
+
+def _person_context_terms(article, entity_name, all_entities=None):
+    """Context vocabulary for the person namesake gate: the
+    story's hint terms (headline content words + other entities'
+    tokens, this entity's own tokens removed) plus the domain
+    vocabulary of the article's category."""
+    toks = set(_story_hint_terms(article, entity_name,
+                                 all_entities=all_entities))
+    cat = (article.get("category") or "").strip().lower()
+    toks.update(_PERSON_DOMAIN_TOKENS.get(cat, ()))
+    for t in re.findall(r"[a-z]+", cat):
+        if len(t) >= 4:
+            toks.add(t)
+    return frozenset(toks)
+
+
+def _ctx_token_match(hint_tok, ev_tokens):
+    """Prefix-tolerant token agreement: 'cricket' matches the
+    evidence token 'cricketers' (and vice versa) via a shared
+    5-character stem; exact equality always matches."""
+    if hint_tok in ev_tokens:
+        return True
+    if len(hint_tok) < 4:
+        return False
+    stem = hint_tok[:5]
+    return any(t.startswith(stem) or hint_tok.startswith(t[:5])
+               for t in ev_tokens if len(t) >= 4)
+
+
 # ── subject gates (2026-10-25 live-run hardening) ───────────────────
 # The first live run applied junk that the token gates had all
 # passed, because identity_ok() counts the entity's tokens
@@ -603,14 +676,35 @@ def _wikimedia_thumb_url(url, width):
     return f"{base}/thumb/{a}/{ab}/{fname}/{width}px-{fname}"
 
 
+def _domain_contradiction_markers(story_domain):
+    """Profession/domain tokens that belong to OTHER domains
+    only (a token shared by 2+ domains — 'founder', 'scientist'
+    — marks no single domain and cannot contradict). An
+    'actor' marker on a sports story's candidate is a
+    contradiction; on an entertainment story it is agreement."""
+    from collections import Counter
+    counts = Counter()
+    for toks in _PERSON_DOMAIN_TOKENS.values():
+        counts.update(set(toks))
+    story = set(_PERSON_DOMAIN_TOKENS.get(story_domain or "", ()))
+    return frozenset(t for t, n in counts.items()
+                     if n == 1 and t not in story)
+
+
 def evaluate_article_candidate(page, entity, route, min_w, min_h,
                                hint_terms=frozenset(),
-                               entity_kind=None):
+                               entity_kind=None,
+                               person_context=None,
+                               person_domain=None):
     """One Commons search hit -> (candidate | None, ledger_row).
     Same gates as reel_entity_sourcing.evaluate_commons_page
     (photograph type, subject denylist, license, exact identity,
     wildlife-subject denial) with article resolution floors,
-    plus a topicality gate when hint_terms are supplied."""
+    plus a topicality gate when hint_terms are supplied, plus
+    the person namesake gate when person_context is supplied
+    (a set, possibly empty — None leaves the gate off).
+    person_domain is the article's category, for the gate's
+    contradiction markers."""
     title = page.get("title") or ""
     info = (page.get("imageinfo") or [{}])[0]
     row = {"candidate": title, "route": route, "entity": entity}
@@ -655,6 +749,48 @@ def evaluate_article_candidate(page, entity, route, min_w, min_h,
                       f"({binomial} in the description) photo-"
                       "graphed AT the entity, not the entity "
                       "itself")
+    if entity_kind == "person" and person_context is not None:
+        ev_text = f"{title} {RES._strip_html(desc)} {cats}"
+        ev_tokens = set(RES._tokens(ev_text))
+        # 1. Contradiction: the evidence marks a DIFFERENT
+        # profession/domain than the story's — a parenthesised
+        # disambiguator ('Shadab Khan (actor)') or a profession
+        # marker unique to another domain ('businessman' on a
+        # sports story). This is the namesake signature.
+        bad = _domain_contradiction_markers(person_domain)
+        contra = {t for t in bad if _ctx_token_match(t, ev_tokens)}
+        disambig = re.findall(r"\(([^)]+)\)", ev_text)
+        for d in disambig:
+            d_toks = set(RES._tokens(d))
+            contra |= {t for t in bad
+                       if any(_ctx_token_match(t, {x})
+                              for x in d_toks)}
+        if contra:
+            return reject(
+                "namesake guard: the file's evidence marks a "
+                f"different domain ({', '.join(sorted(contra))}) "
+                f"than this {person_domain or 'story'} article — "
+                f"a same-name different person, not {entity!r} "
+                "the subject of this story")
+        # 2. Agreement: a story-context token in the evidence.
+        matched = {t for t in person_context
+                   if _ctx_token_match(t, ev_tokens)}
+        # 3. Own category: the file sits in the person's OWN
+        # Commons category (a segment exactly equal to the
+        # name) — filed under this person, no contradiction.
+        own_cat = any(
+            seg.strip().lower().removeprefix("category:")
+            == (entity or "").strip().lower()
+            for seg in (cats or "").split("|"))
+        if not matched and not own_cat:
+            return reject(
+                "namesake guard: the file page's evidence shares "
+                "no story-context token with this article and "
+                "the file is not in the person's own Commons "
+                "category, so it cannot be told apart from a "
+                f"same-name different person ({entity!r}) — "
+                "verified routes only (person cache / profile "
+                "lookup), else no picture")
     if entity_kind != "person":
         if not _subject_position_ok(entity, title, desc):
             return reject("subject: the entity is not the "
@@ -792,11 +928,18 @@ def source_entity_images(entity_rec, article, hint, net, min_w,
                        "in a file's evidence is not identity "
                        "proof; never sourced"})
         return cands, ledger
-    # Topicality vocabulary for the gates below (persons exempt —
-    # see _story_hint_terms).
-    hint_terms = frozenset() if entity_rec.get("kind") == "person" \
+    # Topicality vocabulary for the gates below. Non-persons use
+    # it as the topicality gate; persons are exempt from THAT
+    # gate but get the namesake gate instead — their Commons
+    # candidates must agree with the story's context vocabulary
+    # (see _person_context_terms).
+    is_person = entity_rec.get("kind") == "person"
+    hint_terms = frozenset() if is_person \
         else _story_hint_terms(article, name,
                                all_entities=all_entities)
+    person_context = _person_context_terms(
+        article, name, all_entities=all_entities) if is_person \
+        else None
 
     def consider(cand, row):
         ledger.append(row)
@@ -825,7 +968,10 @@ def source_entity_images(entity_rec, article, hint, net, min_w,
                 cand, row = evaluate_article_candidate(
                     page, name, "A — Wikimedia Commons", min_w,
                     min_h, hint_terms=hint_terms,
-                    entity_kind=entity_rec.get("kind"))
+                    entity_kind=entity_rec.get("kind"),
+                    person_context=person_context,
+                    person_domain=(article.get("category") or "")
+                    .strip().lower())
                 consider(cand, row)
     except Exception as e:
         ledger.append({"candidate": "(route A)", "entity": name,
@@ -856,7 +1002,10 @@ def source_entity_images(entity_rec, article, hint, net, min_w,
                 cand, row = evaluate_article_candidate(
                     page, name, "C — web search (discovery) → "
                     "Commons", min_w, min_h, hint_terms=hint_terms,
-                    entity_kind=entity_rec.get("kind"))
+                    entity_kind=entity_rec.get("kind"),
+                    person_context=person_context,
+                    person_domain=(article.get("category") or "")
+                    .strip().lower())
                 consider(cand, row)
         except Exception as e:
             ledger.append({"candidate": "(route C)", "entity": name,

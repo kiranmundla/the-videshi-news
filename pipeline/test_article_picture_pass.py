@@ -241,6 +241,103 @@ cand, row = P.evaluate_article_candidate(
 check("wildlife-at-the-place rejected (not a picture OF it)",
       cand is None)
 
+# ── person namesake gate (2026-10-25 Shadab Khan lesson) ───────────
+print("person namesake gate")
+SHADAB_ARTICLE = {
+    "headline": "Shadab Khan Scores Century as Pakistan Beat "
+                "Sri Lanka in T20 Thriller",
+    "category": "sports", "image_url": None,
+    "image_caption": "", "image_attribution": "",
+    "image_entities": [], "image_backfill_blocked": False,
+    "published_at": "2026-10-25T06:40:00Z", "body": "", "sources": []}
+SHADAB_CTX = P._person_context_terms(
+    SHADAB_ARTICLE, "Shadab Khan",
+    all_entities=[{"name": "Pakistan"}, {"name": "Sri Lanka"}])
+ACTOR_PAGE = commons_page(
+    "File:Shadab Khan actor.jpg", 1600, 1200,
+    desc="Shadab Khan is an Indian actor who appears in Hindi "
+         "films and television.",
+    cats="Shadab Khan (actor)|Indian male film actors")
+CRICKETER_PAGE = commons_page(
+    "File:Shadab Khan bowling.jpg", 2400, 1600,
+    desc="Shadab Khan, Pakistani cricketer, bowling during a "
+         "T20 international match.",
+    cats="Shadab Khan")
+cand, row = P.evaluate_article_candidate(
+    ACTOR_PAGE, "Shadab Khan", "A — test", 800, 450,
+    entity_kind="person", person_context=SHADAB_CTX,
+    person_domain="sports")
+check("actor namesake of the cricketer rejected (Shadab Khan)",
+      cand is None and "namesake guard" in row["reason"])
+cand, row = P.evaluate_article_candidate(
+    CRICKETER_PAGE, "Shadab Khan", "A — test", 800, 450,
+    entity_kind="person", person_context=SHADAB_CTX,
+    person_domain="sports")
+check("the actual cricketer's portrait accepted", cand is not None)
+cand, row = P.evaluate_article_candidate(
+    ACTOR_PAGE, "Shadab Khan", "A — test", 800, 450,
+    entity_kind="person", person_context=None)
+check("gate off when person_context is None (legacy callers)",
+      cand is not None)
+ABHISHEK_ARTICLE = {
+    "headline": "Abhishek Sharma Smashes Fastest T20 Fifty "
+                "for India",
+    "category": "sports", "image_url": None,
+    "image_caption": "", "image_attribution": "",
+    "image_entities": [], "image_backfill_blocked": False,
+    "published_at": "2026-10-12T06:40:00Z", "body": "", "sources": []}
+ABHISHEK_CTX = P._person_context_terms(ABHISHEK_ARTICLE,
+                                       "Abhishek Sharma")
+BIZ_PAGE = commons_page(
+    "File:Abhishek Sharma founder.jpg", 1800, 1200,
+    desc="Abhishek Sharma, Indian businessman and startup "
+         "founder, at a Delhi summit.",
+    cats="Abhishek Sharma")
+cand, row = P.evaluate_article_candidate(
+    BIZ_PAGE, "Abhishek Sharma", "A — test", 800, 450,
+    entity_kind="person", person_context=ABHISHEK_CTX,
+    person_domain="sports")
+check("businessman namesake of the cricketer rejected "
+      "(Abhishek Sharma) — contradiction beats own-category",
+      cand is None and "namesake guard" in row["reason"])
+EMPTY_CTX = P._person_context_terms(
+    {"headline": "Shadab Khan", "category": ""}, "Shadab Khan")
+check_eq("bare-name story yields empty person context",
+         len(EMPTY_CTX), 0)
+OWN_CAT_PAGE = commons_page(
+    "File:Shadab Khan 2023.jpg", 1600, 1200,
+    desc="Shadab Khan in 2023.", cats="Shadab Khan")
+cand, row = P.evaluate_article_candidate(
+    OWN_CAT_PAGE, "Shadab Khan", "A — test", 800, 450,
+    entity_kind="person", person_context=EMPTY_CTX,
+    person_domain="")
+check("thin page in the person's OWN category accepted "
+      "(the Modi/Sen pattern)", cand is not None)
+NO_SIGNAL_PAGE = commons_page(
+    "File:Shadab Khan 2023.jpg", 1600, 1200,
+    desc="Shadab Khan in 2023.", cats="2023 events")
+cand, row = P.evaluate_article_candidate(
+    NO_SIGNAL_PAGE, "Shadab Khan", "A — test", 800, 450,
+    entity_kind="person", person_context=EMPTY_CTX,
+    person_domain="")
+check("no context, no own category, no marker -> rejected "
+      "(verified routes only)", cand is None
+      and "namesake guard" in row["reason"])
+RAHUL_PAGE = commons_page(
+    "File:KL Rahul in 2024.jpg", 2400, 1600,
+    desc="KL Rahul, Indian cricketer, during a net session.",
+    cats="KL Rahul")
+RAHUL_CTX = P._person_context_terms(
+    {"headline": "KL Rahul Anchors India's Chase Against "
+                 "Australia", "category": "sports"}, "KL Rahul",
+    all_entities=[{"name": "Australia"}])
+cand, row = P.evaluate_article_candidate(
+    RAHUL_PAGE, "KL Rahul", "A — test", 800, 450,
+    entity_kind="person", person_context=RAHUL_CTX,
+    person_domain="sports")
+check("verified-domain cricketer portrait accepted (KL Rahul)",
+      cand is not None)
+
 # ── inline counting + placement ─────────────────────────────────────
 print("inline placement")
 check_eq("no figures counted in plain body",
@@ -500,8 +597,11 @@ cand, row = P.evaluate_article_candidate(
     US_WH_PAGE, "White House", "A — test", 800, 450,
     hint_terms=wh_hints)
 check("on-topic same-name building accepted", cand is not None)
-# Persons are exempt: an exact-name portrait with zero headline
-# overlap in its evidence still sources.
+# Persons: an exact-name portrait with zero headline overlap in
+# its evidence still sources when it sits in the person's OWN
+# Commons category and carries no contradicting domain marker
+# (the namesake gate's own-category path — the topicality gate
+# itself no longer applies to persons, the namesake gate does).
 MODI_PAGE = commons_page(
     "File:Narendra Modi addressing supporters.jpg", 2400, 1600,
     desc="Narendra Modi addressing supporters at a rally.",
@@ -512,7 +612,8 @@ modi_rec = {"name": "Narendra Modi", "kind": "person",
             "source": "headline", "sourceable": True}
 cands_pm, _rows_pm = P.source_entity_images(
     modi_rec, ARTICLE, "", net_pm, 800, 450)
-check("person exact-name pick exempt from topicality gate",
+check("person pick in own category sources without headline "
+      "overlap (namesake gate own-category path)",
       len(cands_pm) == 1)
 # Headline-ese fragments never become entities.
 PARCEL = {
