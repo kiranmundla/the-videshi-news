@@ -89,6 +89,36 @@ _WILDLIFE_CAT_MARKERS = ("birds", "fauna", "flora", "insects",
                          "butterflies", "moths", "passeriformes",
                          "wildlife")
 _BINOMIAL_RE = re.compile(r"^[A-Z][a-z]+ [a-z]{3,}$")
+# A binomial category may carry a descriptor tail ("Corvus
+# splendens heads" — the category that let a crow illustrate
+# Tamil Nadu in the 2026-10-25 article picture pass). The pair
+# still marks a wildlife subject when the remaining words are
+# only body/view descriptors, and the genus word is not a
+# category-administration starter ("Quality images", ...).
+_BINOMIAL_TAIL = {"heads", "head", "male", "female", "juvenile",
+                  "juveniles", "flight", "view", "views", "close",
+                  "portrait", "portraits", "specimen", "specimens",
+                  "eggs", "nest", "nests", "calls", "sounds"}
+_BINOMIAL_GENUS_STOP = {"quality", "featured", "valued", "self",
+                        "taken", "files", "images", "pictures",
+                        "photographs", "commons", "wikipedia",
+                        "media", "category"}
+
+
+def _binomial_subject(seg):
+    """True when a category segment names a species: an exact
+    Latin binomial, or a binomial plus a descriptor tail."""
+    if _BINOMIAL_RE.match(seg):
+        return True
+    words = seg.split()
+    if not (3 <= len(words) <= 5):
+        return False
+    if not re.fullmatch(r"[A-Z][a-z]+", words[0]) \
+            or not re.fullmatch(r"[a-z]{3,}", words[1]):
+        return False
+    if words[0].lower() in _BINOMIAL_GENUS_STOP:
+        return False
+    return all(w.lower() in _BINOMIAL_TAIL for w in words[2:])
 _WILDLIFE_WORDS = {"bird", "birds", "eagle", "owl", "fish", "deer",
                    "bear", "wolf", "whale", "shark", "snake",
                    "frog", "butterfly", "bee", "spider"}
@@ -279,7 +309,7 @@ def wildlife_subject(entity, categories_text):
         return False
     for seg in categories_text.split("|"):
         seg = seg.strip()
-        if _BINOMIAL_RE.match(seg) \
+        if _binomial_subject(seg) \
                 and not (set(_tokens(seg)) & ent):
             return True
         low = seg.lower()

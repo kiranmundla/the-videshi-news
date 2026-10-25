@@ -83,6 +83,12 @@ MAX_ENTITIES = 6
 MAX_INLINE_TOTAL = 3       # figures per article after the pass
 MIN_ARTICLE_WORDS = 350    # shorter pieces don't get inlines
 PER_ENTITY_INLINE_CAP = 1  # inlines spread across entities
+MAX_SERVE_BYTES = 8 * 1024 * 1024  # web budget for a SERVED file:
+# a pick whose original exceeds it is served via its <=1920px
+# variant or rejected. Originals-at-any-size are a reels-render
+# rule, never a served-article rule (the 2026-10-25 Cyclone
+# Arnab hero was a topical but ~105 MB original GIF).
+SERVE_THUMB_W = 1920
 
 # Category labels that show up as junk in image_entities (the
 # Romanch ledger's "Nri World" finding) + generic non-entities.
@@ -191,7 +197,50 @@ _KIND_PLACE_MARKERS = {
     "bay", "falls", "valley", "desert", "forest", "harbour",
     "harbor", "news", "fest", "festival", "school", "college",
     "hospital", "library", "theatre", "theater", "zoo",
+    # Indian states/UTs and their distinctive tokens: 'Tamil
+    # Nadu' and 'Andhra Pradesh' are two Title Case words, so
+    # the person heuristic claimed them — and as 'persons' they
+    # were EXEMPT from the topicality and subject gates, which
+    # is how a silk-dyeing photo and an art collage were
+    # proposed for them in the post-hardening dry-run.
+    "nadu", "pradesh", "bengal", "kashmir", "punjab",
+    "gujarat", "karnataka", "kerala", "maharashtra",
+    "rajasthan", "odisha", "assam", "bihar", "haryana",
+    "jharkhand", "chhattisgarh", "telangana", "manipur",
+    "meghalaya", "mizoram", "nagaland", "sikkim", "tripura",
+    "uttarakhand", "goa", "delhi", "ladakh", "puducherry",
+    "india",
 }
+
+
+# ── fragment entities (never sourced) ───────────────────────────────
+# A grade/class label is a fragment, not a picture-worthy entity:
+# 'Class XII' was sourced in the first live run (2026-10-25) and
+# matched a photo of the Louis XII wing at Blois — 'xii' via the
+# king's name, 'class' via the French 'classé' in the file's
+# heritage description. Numerals and generic label words carry
+# no identity.
+_FRAGMENT_HEADS = {"class", "grade", "standard", "std", "form",
+                   "level", "part", "phase", "round"}
+
+
+def _is_numeral_token(tok):
+    if tok.isdigit():
+        return True
+    return bool(tok) and len(tok) <= 6 \
+        and all(c in "ivxlcdm" for c in tok)
+
+
+def _is_fragment_entity(name):
+    toks = RES.entity_tokens(name)
+    if not toks:
+        return True
+    if toks[0] in _FRAGMENT_HEADS:
+        return all(_is_numeral_token(t) or t in _FRAGMENT_HEADS
+                   for t in toks[1:])
+    return any(_is_numeral_token(t) for t in toks) and all(
+        _is_numeral_token(t) or t in _FRAGMENT_HEADS
+        for t in toks)
 
 
 def extract_article_entities(article):
@@ -221,7 +270,8 @@ def extract_article_entities(article):
                 for prev in out:
                     if prev["name"].lower() == k:
                         prev["source"] = "image_entities"
-                        prev["sourceable"] = True
+                        prev["sourceable"] = \
+                            not _is_fragment_entity(name)
             return
         # A fuller name supersedes a bare surname token added
         # earlier ('Modi' -> 'Narendra Modi').
@@ -238,8 +288,8 @@ def extract_article_entities(article):
         # is NOT identity proof, so they are recorded but never
         # sourced. Curated image_entities single tokens (a real
         # company name, e.g. 'Infosys') stay sourceable.
-        sourceable = len(name.split()) > 1 or source == \
-            "image_entities"
+        sourceable = (len(name.split()) > 1 or source == \
+            "image_entities") and not _is_fragment_entity(name)
         kind = "person" if RES._looks_like_person(name) \
             else "org/place"
         if kind == "person" and any(
@@ -326,7 +376,14 @@ def classify_hero(article, probe):
     if _is_pexels(url):
         return "replace", "hero is a Pexels URL (stock — sourcer " \
                           "policy replaces Pexels heroes)"
-    if IS._is_generic_og_image(url):
+    if "upload.wikimedia.org" not in url \
+            and IS._is_generic_og_image(url):
+        # IS._is_generic_og_image is an og-scrape heuristic (it
+        # blanket-rejects .gif as tracking-pixel class). A
+        # Wikimedia Commons file URL is curated content, not an
+        # og scrape — the reviewer's captioned Cyclone Mocha
+        # satellite GIF hero was misclassified 'generic' by the
+        # .gif rule and marked for replacement.
         return "replace", "hero is a generic og/stock image " \
                           "(root social filename / blocklist)"
     if probe is not None:
@@ -392,8 +449,161 @@ def _story_hint_terms(article, entity_name, all_entities=None):
     return toks - set(RES.entity_tokens(entity_name))
 
 
+# ── subject gates (2026-10-25 live-run hardening) ───────────────────
+# The first live run applied junk that the token gates had all
+# passed, because identity_ok() counts the entity's tokens
+# ANYWHERE in the file evidence (title + description +
+# categories pooled): a file merely LOCATED at the entity (a
+# crow photographed in Tamil Nadu), a file whose categories
+# mention the entity while its subject is a person (a portrait
+# of Bryan Traynor, filed under Breakthrough Prize winners), a
+# namesake building in another city (Bangalore's Raj Bhavan,
+# renamed Lok Bhavan, for Manipur's Lok Bhavan), and a fragment
+# entity whose tokens collide with unrelated words ('Class XII'
+# -> the Louis XII wing at Blois). The gates below require the
+# evidence to establish the entity as the file's SUBJECT.
+
+_GRAPHIC_MARKERS = ("openstreetmap", "overpass", "mandal",
+                    "maps of ", "map of ")
+
+
+def _phrase_span(toks, stream):
+    """Start index of the entity's tokens as a contiguous run in
+    the (stopword-filtered) token stream, else None."""
+    if not toks:
+        return None
+    for i in range(len(stream) - len(toks) + 1):
+        if stream[i:i + len(toks)] == toks:
+            return i
+    return None
+
+
+def _title_core(title):
+    core = (title or "").replace("File:", "", 1).strip()
+    return re.sub(r"\.(jpe?g|png|gif|webp|tiff?)$", "", core,
+                  flags=re.I).strip()
+
+
+def _head_segment(text):
+    """The subject segment of a title/description: the text up
+    to the first comma, parenthesis or dash."""
+    return re.split(r"[,()—–]|\s-\s", text or "",
+                    maxsplit=1)[0].strip()
+
+
+def _phrase_is_trailing_location(toks, text):
+    """The phrase's only occurrence in the text is a trailing
+    location phrase — '... in Kumbakonam, Tamil Nadu' at the
+    very end (at most digit tokens after it, e.g. a file's
+    serial number). That is a location mention, not the
+    subject."""
+    raw = re.findall(r"[a-z0-9]+", (text or "").lower())
+    for i in range(len(raw) - len(toks) + 1):
+        if raw[i:i + len(toks)] == toks:
+            return i > 0 and raw[i - 1] == "in" and all(
+                t.isdigit() for t in raw[i + len(toks):])
+    return False
+
+
+def _subject_position_ok(entity, title, desc):
+    """The entity must be the file's SUBJECT, evidenced by its
+    full token phrase in subject position:
+      * inside the title's head segment ('Dr. Ashoke Sen at
+        Scottish Church College', 'Umhlanga Rocks'), or
+      * in the title following a year — participation at a
+        dated event ('Aremi Fuentes Zavala ... at the 2019
+        World Weightlifting Championships'), or
+      * in the first sentence of the description
+        ('Alexander Stadium at the opening ceremony to
+        Birmingham 2022 Commonwealth Games').
+    A phrase that appears only in a trailing location phrase
+    ('Crow in Tamil Nadu'), only in categories, or nowhere in
+    title/description subject positions does not qualify."""
+    toks = RES.entity_tokens(entity)
+    if not toks:
+        return False
+    core = _title_core(title)
+    head = _head_segment(core)
+    if _phrase_span(toks, RES._tokens(head)) is not None \
+            and not _phrase_is_trailing_location(toks, head):
+        return True
+    stream = RES._tokens(core)
+    span = _phrase_span(toks, stream)
+    if span is not None and span > 0 \
+            and re.fullmatch(r"(19|20)\d{2}", stream[span - 1]):
+        # Participation at a dated event: the phrase directly
+        # follows the year ('... at the 2019 World
+        # Weightlifting Championships'). A year elsewhere in
+        # the title ('Crow in Tamil Nadu, 2024') is not this.
+        return True
+    first_sentence = re.split(r"(?<=[.!?])\s+",
+                              RES._strip_html(desc) or "",
+                              maxsplit=1)[0]
+    return _phrase_span(toks, RES._tokens(first_sentence)) \
+        is not None and not _phrase_is_trailing_location(
+            toks, first_sentence)
+
+
+_NAME_LEADERS = {"dr", "dr.", "mr", "mr.", "mrs", "mrs.", "ms",
+                 "shri", "smt", "prof", "prof."}
+
+
+def _depicted_person_name(title, entity):
+    """When the file's title head is a portrait-style person
+    name (2–4 capitalized words, optionally led by an honorific)
+    that is NOT the entity, return the name. A posed portrait
+    of a specific person cannot illustrate a non-person entity
+    merely because the person is associated with it (Bryan
+    Traynor for 'Breakthrough Prize')."""
+    head = _head_segment(_title_core(title))
+    words = head.split()
+    if words and words[0].lower() in _NAME_LEADERS:
+        words = words[1:]
+    if not (2 <= len(words) <= 4):
+        return None
+    if not all(re.fullmatch(r"[A-Z][A-Za-z.'’\-]+", w)
+               for w in words):
+        return None
+    name = " ".join(words)
+    if set(RES.entity_tokens(name)) & set(RES.entity_tokens(
+            entity)):
+        return None
+    return name
+
+
+def _desc_binomial_subject(desc, entity):
+    """A parenthesised Latin binomial in the description —
+    'Crow (Corvus splendens) in Tamil Nadu' — names the file's
+    true subject: a species, not the story entity."""
+    m = re.search(r"\(([A-Z][a-z]+ [a-z]{3,})\)",
+                  RES._strip_html(desc) or "")
+    if not m:
+        return None
+    if set(RES._tokens(m.group(1))) & set(
+            RES.entity_tokens(entity)):
+        return None
+    return m.group(1)
+
+
+def _wikimedia_thumb_url(url, width):
+    """The <=width px served variant of a Wikimedia original:
+    .../commons/a/ab/Name.ext -> .../commons/thumb/a/ab/
+    Name.ext/<width>px-Name.ext. None when the URL is not a
+    Commons original (already a thumb, or another host)."""
+    if not url:
+        return None
+    m = re.match(r"(https://upload\.wikimedia\.org/wikipedia/"
+                 r"commons)/([0-9a-f])/([0-9a-f]{2})/([^/?#]+)$",
+                 url.split("?")[0])
+    if not m:
+        return None
+    base, a, ab, fname = m.groups()
+    return f"{base}/thumb/{a}/{ab}/{fname}/{width}px-{fname}"
+
+
 def evaluate_article_candidate(page, entity, route, min_w, min_h,
-                               hint_terms=frozenset()):
+                               hint_terms=frozenset(),
+                               entity_kind=None):
     """One Commons search hit -> (candidate | None, ledger_row).
     Same gates as reel_entity_sourcing.evaluate_commons_page
     (photograph type, subject denylist, license, exact identity,
@@ -416,6 +626,13 @@ def evaluate_article_candidate(page, entity, route, min_w, min_h,
         return reject("title/description marks it as a logo/"
                       "diagram/map-type file, not a scene "
                       "photograph")
+    graphic_text = (f"{title} {RES._strip_html(desc)} {cats}"
+                    ).lower()
+    if any(m in graphic_text for m in _GRAPHIC_MARKERS):
+        return reject("title/description/categories mark it "
+                      "as a map/graphic file (OpenStreetMap/"
+                      "overpass/mandal-type), not a scene "
+                      "photograph")
     w, h = info.get("width") or 0, info.get("height") or 0
     if not (w >= min_w and h >= min_h):
         return reject(f"resolution: {w}x{h} — below the "
@@ -430,10 +647,33 @@ def evaluate_article_candidate(page, entity, route, min_w, min_h,
         return reject("identity: the file's subject is wildlife "
                       "photographed AT the entity, not the entity "
                       "itself (species-marked categories)")
+    binomial = _desc_binomial_subject(desc, entity)
+    if binomial:
+        return reject("identity: the file's subject is wildlife "
+                      f"({binomial} in the description) photo-"
+                      "graphed AT the entity, not the entity "
+                      "itself")
+    if entity_kind != "person":
+        if not _subject_position_ok(entity, title, desc):
+            return reject("subject: the entity is not the "
+                          "file's subject — it appears only as "
+                          "a location, a category mention or a "
+                          "namesake, not in the title/description "
+                          "subject position")
+        person = _depicted_person_name(title, entity)
+        if person and _phrase_span(RES.entity_tokens(entity),
+                                   RES._tokens(
+                                       _title_core(title))) \
+                is None:
+            return reject("subject: the file is a portrait of "
+                          f"{person}, a specific person who is "
+                          "not the entity — association is not "
+                          "depiction")
     if hint_terms:
         evidence = (f"{title} {RES._strip_html(desc)} {cats}"
                     ).lower()
-        matched = {t for t in hint_terms if t in evidence}
+        ev_tokens = set(RES._tokens(evidence))
+        matched = {t for t in hint_terms if t in ev_tokens}
         need = 2 if len(hint_terms) >= 3 else 1
         if len(matched) < need:
             return reject("topicality: the file page's evidence "
@@ -441,10 +681,33 @@ def evaluate_article_candidate(page, entity, route, min_w, min_h,
                           f"story's terms (needs {need}) — a "
                           "namesake/generic match, not this "
                           "story's subject")
+    # Serve-size gate: an original over the web budget is
+    # served via its <=1920px Wikimedia variant, or rejected
+    # when no variant is derivable — a served article never
+    # hotlinks an original-at-any-size (the Cyclone Arnab hero
+    # was a ~105 MB original GIF).
+    file_url = info.get("url")
+    serve_note = ""
+    size_bytes = info.get("size") or 0
+    if size_bytes > MAX_SERVE_BYTES:
+        thumb = _wikimedia_thumb_url(file_url, SERVE_THUMB_W)
+        if not thumb:
+            return reject(f"serve size: the original file is "
+                          f"{size_bytes} bytes — over the "
+                          f"{MAX_SERVE_BYTES}-byte web budget "
+                          "and no <=1920px variant is "
+                          "derivable")
+        if w > SERVE_THUMB_W:
+            h = round(h * SERVE_THUMB_W / w)
+            w = SERVE_THUMB_W
+        serve_note = (f"original {size_bytes} bytes exceeds "
+                      f"the web budget — served via its "
+                      f"{SERVE_THUMB_W}px variant")
+        file_url = thumb
     artist = RES._meta(info, "Artist")[:80]
     cand = {
         "entity": entity, "title": title,
-        "file_url": info.get("url"), "size": [w, h],
+        "file_url": file_url, "size": [w, h],
         "source_page": info.get("descriptionurl")
         or ("https://commons.wikimedia.org/wiki/"
             + urllib.parse.quote(title.replace(" ", "_"))),
@@ -459,9 +722,14 @@ def evaluate_article_candidate(page, entity, route, min_w, min_h,
                         f"({label})" if artist else
                         f"Wikimedia Commons ({label})"),
     }
+    if serve_note:
+        cand["serve_variant"] = True
+        cand["verification"] += "; " + serve_note
     row.update({"verdict": "accepted",
                 "reason": f"{w}x{h}, {label}, identity evidenced "
-                          f"on the file page"})
+                          f"on the file page"
+                          + (f"; {serve_note}" if serve_note
+                             else "")})
     return cand, row
 
 
@@ -542,7 +810,8 @@ def source_entity_images(entity_rec, article, hint, net, min_w,
                     continue
                 cand, row = evaluate_article_candidate(
                     page, name, "A — Wikimedia Commons", min_w,
-                    min_h, hint_terms=hint_terms)
+                    min_h, hint_terms=hint_terms,
+                    entity_kind=entity_rec.get("kind"))
                 consider(cand, row)
     except Exception as e:
         ledger.append({"candidate": "(route A)", "entity": name,
@@ -572,7 +841,8 @@ def source_entity_images(entity_rec, article, hint, net, min_w,
                     continue
                 cand, row = evaluate_article_candidate(
                     page, name, "C — web search (discovery) → "
-                    "Commons", min_w, min_h, hint_terms=hint_terms)
+                    "Commons", min_w, min_h, hint_terms=hint_terms,
+                    entity_kind=entity_rec.get("kind"))
                 consider(cand, row)
         except Exception as e:
             ledger.append({"candidate": "(route C)", "entity": name,
@@ -602,9 +872,11 @@ def source_entity_images(entity_rec, article, hint, net, min_w,
                     link, name, "B — official sources", net)
                 dropped = False
                 if cand and hint_terms:
-                    ev = (f"{cand.get('title', '')} "
-                          f"{cand.get('subject', '')}").lower()
-                    matched = {t for t in hint_terms if t in ev}
+                    ev_tokens = set(RES._tokens(
+                        f"{cand.get('title', '')} "
+                        f"{cand.get('subject', '')}"))
+                    matched = {t for t in hint_terms
+                               if t in ev_tokens}
                     need = 2 if len(hint_terms) >= 3 else 1
                     if len(matched) < need:
                         ledger.append(

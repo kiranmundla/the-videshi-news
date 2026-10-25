@@ -69,11 +69,10 @@ ARTICLE = {
 
 def commons_page(title, w, h, license_short="CC BY-SA 4.0",
                  desc="", cats="", artist="A Photographer",
-                 mime="image/jpeg"):
-    return {
-        "title": title,
-        "imageinfo": [{
-            "url": "https://upload.wikimedia.org/wikipedia/commons/"
+                 mime="image/jpeg", size=None, url=None):
+    info = {
+            "url": url or
+                   "https://upload.wikimedia.org/wikipedia/commons/"
                    + title.replace("File:", "").replace(" ", "_"),
             "width": w, "height": h, "mime": mime,
             "descriptionurl": "https://commons.wikimedia.org/wiki/"
@@ -85,8 +84,10 @@ def commons_page(title, w, h, license_short="CC BY-SA 4.0",
                 "Categories": {"value": cats},
                 "Artist": {"value": artist},
             },
-        }],
     }
+    if size is not None:
+        info["size"] = size
+    return {"title": title, "imageinfo": [info]}
 
 
 RBI_PAGE = commons_page(
@@ -627,6 +628,263 @@ cand, row = P.evaluate_article_candidate(
     TWO_TERM_PAGE, "Festival of Lights", "A — test", 800, 450,
     hint_terms=uae_hints)
 check("two-term topical overlap accepted", cand is not None)
+
+# ── regression round 4: the first LIVE run (2026-10-25 10:15 PT) ────
+# Step 0.25's first apply run shipped four junk inlines plus a map
+# hero and a ~105 MB hero. Every fixture below is modeled on the
+# actual Commons evidence that fooled the gates (fetched from the
+# live file pages during remediation).
+print("live-run regressions: subject position, fragments, "
+      "portraits, maps, serve size")
+
+# (1) 'Class XII' -> the Louis XII wing at Blois. The tokens
+# matched scattered: 'xii' from the king's name, 'class' from the
+# French 'classé' in the heritage description.
+check("'Class XII' is a fragment entity",
+      P._is_fragment_entity("Class XII"))
+check("'Grade 10' is a fragment entity",
+      P._is_fragment_entity("Grade 10"))
+check("'World Weightlifting Championships' is not a fragment",
+      not P._is_fragment_entity(
+          "World Weightlifting Championships"))
+check("'Reserve Bank of India' is not a fragment",
+      not P._is_fragment_entity("Reserve Bank of India"))
+SALEM_ART = {
+    "headline": "Salem Records 97.28 Percent Class XII Higher "
+                "Education Enrolment",
+    "body": "<p>Salem district recorded the rise in Class XII "
+            "enrolment. Class XII students led the state.</p>",
+    "image_entities": ["Class XII", "Tamil Nadu"],
+}
+salem_by_name = {e["name"]: e
+                 for e in P.extract_article_entities(SALEM_ART)}
+check("extracted 'Class XII' is recorded but never sourceable",
+      salem_by_name.get("Class XII", {}).get("sourceable")
+      is False)
+BLOIS_PAGE = commons_page(
+    "File:Louis XII wing of the castle of Blois 01.jpg",
+    4907, 2908,
+    desc="Louis XII wing of the castle of Blois, Loir-et-Cher, "
+         "France. This building is classé au titre des "
+         "monuments historiques de la France.",
+    cats="Monuments historiques classés|Castles in France "
+         "photographed in 2018|Louis XII wing")
+cand, row = P.evaluate_article_candidate(
+    BLOIS_PAGE, "Class XII", "A — test", 800, 450,
+    entity_kind="org/place")
+check("Louis XII castle rejected for 'Class XII'",
+      cand is None and "subject" in row.get("reason", ""))
+
+# (2) A crow photographed IN Tamil Nadu: the entity is only the
+# location; the file's subject is the bird (binomial with a
+# descriptor tail in the categories, and in the description).
+CROW_PAGE = commons_page(
+    "File:Crow in Tamil Nadu 01.jpg", 5472, 3648,
+    desc="Crow (Corvus splendens) in Tamil Nadu",
+    cats="Self-published work|Corvus splendens heads")
+check("binomial-with-tail category marks a wildlife subject",
+      P.RES.wildlife_subject("Tamil Nadu",
+                             "Self-published work|"
+                             "Corvus splendens heads"))
+cand, row = P.evaluate_article_candidate(
+    CROW_PAGE, "Tamil Nadu", "A — test", 800, 450,
+    hint_terms=P._story_hint_terms(SALEM_ART, "Tamil Nadu"),
+    entity_kind="org/place")
+check("crow located in Tamil Nadu rejected for 'Tamil Nadu'",
+      cand is None and "wildlife" in row.get("reason", ""))
+
+# (3) A portrait of Bryan Traynor filed under Breakthrough Prize
+# winners: a non-person entity cannot be illustrated by a posed
+# portrait of an associated person.
+TRAYNOR_PAGE = commons_page(
+    "File:Bryan Traynor, 2026.jpg", 1128, 903,
+    license_short="CC0 1.0",
+    desc="Bryan Traynor, 2026",
+    cats="CC-Zero|Winners of the Breakthrough Prize in Life "
+         "Sciences|Portrait photographs of physicians")
+SEN_ART = {
+    "headline": "Who Is Ashoke Sen? The Kolkata Physicist Who "
+                "Unified String Theory",
+    "body": "<p>Ashoke Sen won the Breakthrough Prize.</p>",
+    "image_entities": None,
+}
+cand, row = P.evaluate_article_candidate(
+    TRAYNOR_PAGE, "Breakthrough Prize", "A — test", 800, 450,
+    hint_terms=P._story_hint_terms(SEN_ART, "Breakthrough Prize"),
+    entity_kind="org/place")
+check("Traynor portrait rejected for 'Breakthrough Prize'",
+      cand is None and ("portrait" in row.get("reason", "")
+                        or "subject" in row.get("reason", "")))
+
+# (4) Bangalore's Raj Bhavan (renamed Lok Bhavan) for Manipur's
+# Lok Bhavan: the entity phrase lives only in a category; the
+# title/description subject is an event at a namesake building
+# in another city.
+RAJ_BHAVAN_PAGE = commons_page(
+    "File:Independence day at Raj Bhavan, Bangalore (2025) "
+    "53.jpg", 4080, 3072,
+    desc="Independence day at Raj Bhavan, Bangalore (2025)",
+    cats="Self-published work|Flowers at Lok Bhavan, Bengaluru|"
+         "Independence day at Raj Bhavan, Bengaluru (2025)")
+MANIPUR_ART = {
+    "headline": "Congress Demands Manipur CM Resignation, "
+                "Fresh Polls",
+    "body": "<p>The Congress party demanded fresh polls in "
+            "Manipur on Sunday.</p>",
+    "image_entities": None,
+}
+cand, row = P.evaluate_article_candidate(
+    RAJ_BHAVAN_PAGE, "Lok Bhavan", "A — test", 800, 450,
+    hint_terms=P._story_hint_terms(MANIPUR_ART, "Lok Bhavan"),
+    entity_kind="org/place")
+check("Bangalore Raj Bhavan rejected for Manipur's "
+      "'Lok Bhavan'", cand is None
+      and "subject" in row.get("reason", ""))
+
+# (5) The Cyclone hero slot took an OpenStreetMap mandals
+# graphic: map markers live in the categories, which the old
+# subject_denied never read.
+MANDALS_PAGE = commons_page(
+    "File:Andhra Pradesh Mandals-Telugu.png", 1920, 1046,
+    mime="image/png",
+    desc="Screenshot of the Query for a selected area (Query "
+         "link http://overpass-turbo.eu/s/NWB )",
+    cats="Self-published work|ODbL OpenStreetMap|OpenStreetMap "
+         "maps of Andhra Pradesh|Mandals of Andhra Pradesh")
+cand, row = P.evaluate_article_candidate(
+    MANDALS_PAGE, "Andhra Pradesh", "A — test", 1200, 500,
+    entity_kind="org/place")
+check("OSM mandals graphic rejected as a map file",
+      cand is None and "map/graphic" in row.get("reason", ""))
+
+# (6) Keepers from the same run must still pass: an athlete AT
+# the named championships, an opening ceremony OF the named
+# Games, and a person's own exact-name portrait.
+FUENTES_PAGE = commons_page(
+    "File:Aremi Fuentes Zavala (born 1993) at the 2019 World "
+    "Weightlifting Championships, Women's 76 kg.png",
+    801, 603, mime="image/png", license_short="CC BY 3.0",
+    desc="Aremi Fuentes Zavala at the 2019 World "
+         "Weightlifting Championships.",
+    cats="Aremi Fuentes Zavala|2019 World Weightlifting "
+         "Championships")
+cand, row = P.evaluate_article_candidate(
+    FUENTES_PAGE, "World Weightlifting Championships",
+    "A — test", 800, 450, entity_kind="org/place")
+check("athlete at the named championships accepted",
+      cand is not None, row.get("reason", ""))
+BIRMINGHAM_PAGE = commons_page(
+    "File:Birmingham 2022 Opening Ceremony.jpg", 4032, 3024,
+    desc="Alexander Stadium at the opening ceremony to "
+         "Birmingham 2022 Commonwealth Games.",
+    cats="Birmingham 2022 Commonwealth Games|Alexander Stadium")
+cand, row = P.evaluate_article_candidate(
+    BIRMINGHAM_PAGE, "Commonwealth Games", "A — test", 800, 450,
+    entity_kind="org/place")
+check("opening ceremony of the named Games accepted",
+      cand is not None, row.get("reason", ""))
+SEN_PAGE = commons_page(
+    "File:Dr. Ashoke Sen at Scottish Church College.jpg",
+    1600, 1200,
+    desc="Dr. Ashoke Sen at Scottish Church College.",
+    cats="Ashoke Sen")
+cand, row = P.evaluate_article_candidate(
+    SEN_PAGE, "Ashoke Sen", "A — test", 800, 450,
+    entity_kind="person")
+check("person's own portrait accepted", cand is not None,
+      row.get("reason", ""))
+
+# (7) Serve-size gate (the ~105 MB Cyclone hero): an oversized
+# Wikimedia original is served via its 1920px variant; an
+# oversized file with no derivable variant is rejected.
+CYCLONE_BIG_PAGE = commons_page(
+    "File:Cyclone Mocha satellite view.jpg", 6000, 6000,
+    desc="Satellite view of Cyclone Mocha over the Bay of "
+         "Bengal.",
+    cats="Cyclone Mocha",
+    url="https://upload.wikimedia.org/wikipedia/commons/2/29/"
+        "Cyclone_Mocha_satellite.jpg",
+    size=109_822_325)
+cand, row = P.evaluate_article_candidate(
+    CYCLONE_BIG_PAGE, "Bay of Bengal", "A — test", 1200, 500,
+    entity_kind="org/place")
+check("oversized original served via its 1920px variant",
+      cand is not None
+      and cand["file_url"] ==
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/"
+      "2/29/Cyclone_Mocha_satellite.jpg/1920px-"
+      "Cyclone_Mocha_satellite.jpg"
+      and cand["size"] == [1920, 1920],
+      row.get("reason", ""))
+HUGE_FOREIGN_PAGE = commons_page(
+    "File:Bay of Bengal storm surge.jpg", 6000, 4000,
+    desc="Storm surge along the Bay of Bengal coast.",
+    cats="Bay of Bengal",
+    url="https://cdn.example.com/huge.jpg", size=50_000_000)
+cand, row = P.evaluate_article_candidate(
+    HUGE_FOREIGN_PAGE, "Bay of Bengal", "A — test", 1200, 500,
+    entity_kind="org/place")
+check("oversized file with no variant rejected",
+      cand is None and "serve size" in row.get("reason", ""))
+
+# (7a) Indian state names are places, not persons: as
+# 'persons' they were exempt from topicality/subject gates.
+salem_kinds = {e["name"]: e["kind"]
+               for e in P.extract_article_entities(SALEM_ART)}
+check("'Tamil Nadu' extracts as org/place, not person",
+      salem_kinds.get("Tamil Nadu") == "org/place")
+CYCLONE_ENTS = {e["name"]: e["kind"] for e in
+                P.extract_article_entities({
+                    "headline": "Cyclone Arnab Red Alert in "
+                                "Odisha, Andhra Pradesh Braces",
+                    "body": "<p>Andhra Pradesh braced for the "
+                            "cyclone. Andhra Pradesh officials "
+                            "met on Sunday.</p>",
+                    "image_entities": None})}
+check("'Andhra Pradesh' extracts as org/place, not person",
+      CYCLONE_ENTS.get("Andhra Pradesh") == "org/place")
+
+# (7b) A worker photographed IN a place is not a picture OF
+# the place: the entity phrase sits in the description's
+# trailing location phrase (found by the post-hardening live
+# dry-run, which proposed this for the same Salem article).
+SILK_PAGE = commons_page(
+    "File:Silk dyeing in Kumbakonam.jpg", 4000, 3000,
+    desc="A man dyeing silk red in boiling water in "
+         "Kumbakonam, Tamil Nadu.",
+    cats="Silk dyeing|Kumbakonam")
+cand, row = P.evaluate_article_candidate(
+    SILK_PAGE, "Tamil Nadu", "A — test", 800, 450,
+    entity_kind="org/place")
+check("silk worker located in Tamil Nadu rejected",
+      cand is None and "subject" in row.get("reason", ""))
+
+# (7c) The reviewer's Cyclone hero — a captioned Wikimedia
+# satellite GIF, served as the 1920px thumb — is a verified
+# hero, never a 'generic og image' replacement target (the
+# og-scrape heuristic blanket-rejects .gif).
+CYCLONE_ART = {**ARTICLE,
+               "image_url": "https://upload.wikimedia.org/"
+               "wikipedia/commons/thumb/2/29/Cyclone_Mocha_"
+               "Forms_in_Bay_of_Bengal_labels.gif/1920px-"
+               "Cyclone_Mocha_Forms_in_Bay_of_Bengal_"
+               "labels.gif"}
+check_eq("Wikimedia GIF hero is kept, not 'generic'",
+         P.classify_hero(CYCLONE_ART,
+                         {"ok": True, "width": 1920})[0],
+         "keep")
+
+# (8) Topicality is whole-token now: 'sale' must not match
+# 'Salem' as a substring of the evidence.
+PORT_PAGE = commons_page(
+    "File:Chennai Port at dawn.jpg", 3000, 2000,
+    desc="Ships at the port of Chennai, near Salem.",
+    cats="Chennai Port")
+cand, row = P.evaluate_article_candidate(
+    PORT_PAGE, "Chennai Port", "A — test", 800, 450,
+    hint_terms=frozenset({"sale"}), entity_kind="org/place")
+check("topicality: substring 'sale' in 'Salem' does not count",
+      cand is None and "topicality" in row.get("reason", ""))
 
 print()
 if FAILS:
