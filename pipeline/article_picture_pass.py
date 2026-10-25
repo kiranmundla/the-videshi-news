@@ -84,10 +84,12 @@ MAX_INLINE_TOTAL = 3       # figures per article after the pass
 MIN_ARTICLE_WORDS = 350    # shorter pieces don't get inlines
 PER_ENTITY_INLINE_CAP = 1  # inlines spread across entities
 MAX_SERVE_BYTES = 8 * 1024 * 1024  # web budget for a SERVED file:
-# a pick whose original exceeds it is served via its <=1920px
-# variant or rejected. Originals-at-any-size are a reels-render
-# rule, never a served-article rule (the 2026-10-25 Cyclone
-# Arnab hero was a topical but ~105 MB original GIF).
+# a pick whose original exceeds it is compress-and-kept — host
+# variant (Wikimedia 1920px thumb) first, else self-compressed
+# and self-hosted; rejected only if both fail. Originals-at-
+# any-size are a reels-render rule, never a served-article rule
+# (the 2026-10-25 Cyclone Arnab hero was a topical but ~105 MB
+# original GIF).
 SERVE_THUMB_W = 1920
 
 # Category labels that show up as junk in image_entities (the
@@ -681,29 +683,34 @@ def evaluate_article_candidate(page, entity, route, min_w, min_h,
                           f"story's terms (needs {need}) — a "
                           "namesake/generic match, not this "
                           "story's subject")
-    # Serve-size gate: an original over the web budget is
-    # served via its <=1920px Wikimedia variant, or rejected
-    # when no variant is derivable — a served article never
-    # hotlinks an original-at-any-size (the Cyclone Arnab hero
-    # was a ~105 MB original GIF).
+    # Serve-size gate (compress-and-keep, Kiran's steer
+    # 2026-10-25): an original over the web budget is never
+    # hotlinked as-is (the Cyclone Arnab hero was a ~105 MB
+    # original GIF). In order: (1) a host-side resized variant
+    # (Wikimedia 1920px thumb) when one is derivable; (2) the
+    # pick is flagged oversize and _verify_pick downloads the
+    # original, self-compresses it to <=1920px and uploads it
+    # to Supabase Storage; (3) reject only if both paths fail
+    # (decided at verify time, where the bytes are in hand).
     file_url = info.get("url")
     serve_note = ""
+    oversize_bytes = 0
     size_bytes = info.get("size") or 0
     if size_bytes > MAX_SERVE_BYTES:
         thumb = _wikimedia_thumb_url(file_url, SERVE_THUMB_W)
-        if not thumb:
-            return reject(f"serve size: the original file is "
-                          f"{size_bytes} bytes — over the "
-                          f"{MAX_SERVE_BYTES}-byte web budget "
-                          "and no <=1920px variant is "
-                          "derivable")
-        if w > SERVE_THUMB_W:
-            h = round(h * SERVE_THUMB_W / w)
-            w = SERVE_THUMB_W
-        serve_note = (f"original {size_bytes} bytes exceeds "
-                      f"the web budget — served via its "
-                      f"{SERVE_THUMB_W}px variant")
-        file_url = thumb
+        if thumb:
+            if w > SERVE_THUMB_W:
+                h = round(h * SERVE_THUMB_W / w)
+                w = SERVE_THUMB_W
+            serve_note = (f"original {size_bytes} bytes exceeds "
+                          f"the web budget — served via its "
+                          f"{SERVE_THUMB_W}px variant")
+            file_url = thumb
+        else:
+            oversize_bytes = size_bytes
+            serve_note = (f"original {size_bytes} bytes exceeds "
+                          f"the web budget — flagged for "
+                          "self-compression at verify time")
     artist = RES._meta(info, "Artist")[:80]
     cand = {
         "entity": entity, "title": title,
@@ -723,8 +730,14 @@ def evaluate_article_candidate(page, entity, route, min_w, min_h,
                         f"Wikimedia Commons ({label})"),
     }
     if serve_note:
-        cand["serve_variant"] = True
         cand["verification"] += "; " + serve_note
+    if oversize_bytes:
+        cand["oversize_original"] = oversize_bytes
+        cand["needs_dims_check"] = True  # force the download
+        # path in _verify_pick: the bytes are needed to
+        # self-compress, and dims must be re-verified there
+    elif serve_note:
+        cand["serve_variant"] = True
     row.update({"verdict": "accepted",
                 "reason": f"{w}x{h}, {label}, identity evidenced "
                           f"on the file page"
@@ -755,6 +768,7 @@ DEFAULT_NET = {
     "download_verify": _download_verify,
     "verify_url": _verify_url,
     "person_cache": IS.fetch_cached_person_image,
+    "upload_image": IS.upload_to_supabase,
 }
 
 
@@ -1134,6 +1148,41 @@ def _hero_caption(article, cand):
     return build_caption(cand["entity"], cand, article)
 
 
+def _self_compress(local_path, max_w=SERVE_THUMB_W):
+    """Resize a downloaded original to <=max_w wide and JPEG-
+    compress it (q80; one retry at 1600px/q72 if still over
+    the serve budget). Returns (jpeg_bytes, [w, h]) or
+    (None, None)."""
+    from io import BytesIO
+    from PIL import Image
+    try:
+        with Image.open(local_path) as im:
+            im.load()
+            if im.mode in ("RGBA", "LA", "P", "PA"):
+                bg = Image.new("RGB", im.size, (255, 255, 255))
+                bg.paste(im, mask=im.convert("RGBA")
+                         .split()[-1])
+                im = bg
+            elif im.mode != "RGB":
+                im = im.convert("RGB")
+            for width, quality in ((max_w, 80), (1600, 72)):
+                work = im
+                if work.width > width:
+                    work = work.resize(
+                        (width, round(work.height * width
+                                      / work.width)),
+                        Image.LANCZOS)
+                out = BytesIO()
+                work.save(out, format="JPEG", quality=quality,
+                          optimize=True)
+                data = out.getvalue()
+                if len(data) <= MAX_SERVE_BYTES:
+                    return data, [work.width, work.height]
+            return None, None
+    except Exception:
+        return None, None
+
+
 def _verify_pick(cand, net, download_dir, slug, log,
                  min_w=0, min_h=0):
     """Verify a selected candidate at the downloaded file (true
@@ -1169,6 +1218,43 @@ def _verify_pick(cand, net, download_dir, slug, log,
         log(f"    ⊘ {cand['title'][:50]}: {size[0]}x{size[1]} at "
             f"the file — below the {min_w}x{min_h} floor")
         return None
+    if cand.get("oversize_original"):
+        # Compress-and-keep path 2: no host variant exists, so
+        # self-compress the downloaded original and self-host
+        # it. Failure of either step rejects the pick (path 3).
+        data, new_size = _self_compress(dest)
+        if not data:
+            log(f"    ⊘ {cand['title'][:50]}: self-compression "
+                f"could not bring the "
+                f"{cand['oversize_original']}-byte original "
+                "under the serve budget")
+            return None
+        uploader = net["upload_image"] if "upload_image" in net \
+            else IS.upload_to_supabase
+        fname = (RES.slugify((slug or "article") + "-" +
+                             cand["title"].replace("File:", "")
+                             .rsplit(".", 1)[0]) + "-web.jpg")
+        try:
+            stored_url = uploader(data, fname)
+        except Exception:
+            stored_url = None
+        if not stored_url:
+            log(f"    ⊘ {cand['title'][:50]}: self-compressed "
+                "upload to Supabase Storage failed")
+            return None
+        log(f"    ⇓ {cand['title'][:50]}: self-compressed "
+            f"{cand['oversize_original']} -> {len(data)} bytes "
+            f"({new_size[0]}x{new_size[1]}), self-hosted")
+        cand["file_url"] = stored_url
+        cand["size"] = new_size
+        cand["serve_variant"] = True
+        cand["self_compressed"] = True
+        cand["verification"] += (
+            f"; self-compressed from original "
+            f"({cand['oversize_original']} bytes) to "
+            f"{new_size[0]}x{new_size[1]} JPEG and self-hosted "
+            "in Supabase Storage (article-images)")
+        size = new_size
     cand["_verified_size"] = size
     cand["_local_path"] = str(dest)
     return cand

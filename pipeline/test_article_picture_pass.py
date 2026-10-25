@@ -824,8 +824,71 @@ HUGE_FOREIGN_PAGE = commons_page(
 cand, row = P.evaluate_article_candidate(
     HUGE_FOREIGN_PAGE, "Bay of Bengal", "A — test", 1200, 500,
     entity_kind="org/place")
-check("oversized file with no variant rejected",
-      cand is None and "serve size" in row.get("reason", ""))
+check("oversized file with no host variant is flagged for "
+      "self-compression, not rejected (compress-and-keep)",
+      cand is not None
+      and cand.get("oversize_original") == 50_000_000
+      and cand.get("needs_dims_check") is True
+      and cand["file_url"] == "https://cdn.example.com/huge.jpg",
+      row.get("reason", ""))
+
+# Compress-and-keep path 2 at verify time: the flagged pick is
+# downloaded, resized to <=1920px, JPEG-compressed and uploaded
+# to Supabase Storage; the served URL is the stored one, with
+# the provenance noting the self-compression.
+from PIL import Image as _PILImage
+_uploads = {}
+
+
+def _fake_download(url, dest):
+    img = _PILImage.effect_noise((2400, 1600), 64).convert("RGB")
+    img.save(dest, format="JPEG", quality=95)
+    return [2400, 1600]
+
+
+def _fake_upload(data, filename):
+    _uploads[filename] = data
+    return ("https://supabase.test/storage/v1/object/public/"
+            "article-images/" + filename)
+
+
+_oversize_cand = {
+    "entity": "Bay of Bengal",
+    "title": "File:Bay of Bengal storm surge.jpg",
+    "file_url": "https://cdn.example.com/huge.jpg",
+    "size": [2400, 1600], "route": "A — Wikimedia Commons",
+    "license": "CC BY-SA 4.0", "verification": "stub",
+    "oversize_original": 50_000_000, "needs_dims_check": True,
+}
+_net_oversize = {"download_verify": _fake_download,
+                 "verify_url": lambda u: {"ok": True},
+                 "upload_image": _fake_upload}
+with tempfile.TemporaryDirectory() as _td:
+    got = P._verify_pick(dict(_oversize_cand), _net_oversize,
+                         _td, "bay-of-bengal-story",
+                         lambda *a: None, min_w=1200, min_h=500)
+check("path 2: oversized pick self-compressed + self-hosted",
+      got is not None
+      and got["file_url"].startswith(
+          "https://supabase.test/storage/v1/object/public/"
+          "article-images/")
+      and got["_verified_size"] == [1920, 1280]
+      and got.get("self_compressed") is True
+      and "self-compressed from original" in
+      got["verification"])
+_uploaded = next(iter(_uploads.values()), b"")
+check("path 2: uploaded bytes are a JPEG under the budget",
+      _uploaded[:2] == b"\xff\xd8"
+      and 0 < len(_uploaded) <= P.MAX_SERVE_BYTES)
+_net_upload_fails = {"download_verify": _fake_download,
+                     "verify_url": lambda u: {"ok": True},
+                     "upload_image": lambda d, f: None}
+with tempfile.TemporaryDirectory() as _td:
+    got = P._verify_pick(dict(_oversize_cand),
+                         _net_upload_fails, _td,
+                         "bay-of-bengal-story", lambda *a: None,
+                         min_w=1200, min_h=500)
+check("path 3: upload failure rejects the pick", got is None)
 
 # (7a) Indian state names are places, not persons: as
 # 'persons' they were exempt from topicality/subject gates.
