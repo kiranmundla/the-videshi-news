@@ -24,7 +24,7 @@ import os
 import sys
 import tempfile
 import unittest
-from contextlib import redirect_stdout
+from contextlib import redirect_stderr, redirect_stdout
 from datetime import datetime, timedelta, timezone
 from unittest import mock
 
@@ -736,6 +736,115 @@ class TestFlushCardSets(QueuePatchMixin, unittest.TestCase):
         with redirect_stdout(io.StringIO()) as buf:
             flush.print_list(sq.load_entries())
         self.assertIn("cards: set of 3 (backdrop)", buf.getvalue())
+
+
+class TestFlushCliFailures(QueuePatchMixin, unittest.TestCase):
+    """Regression (2026-10-24): the first Threads CARD SET flush
+    stopped with 'threads article output not JSON: ' — the CLI
+    had failed after its approval and the flush's stdout-only
+    parsing destroyed the real error (stderr + exit code were
+    captured and discarded). The flush's CLI wrappers now go
+    through _run_cli_json: success needs exit 0 AND JSON, and
+    failures surface stderr + exit code. The connector is mocked
+    at the subprocess boundary — nothing here can post."""
+
+    def setUp(self):
+        super().setUp()
+        self.th_state = os.path.join(self.tmp, "threads-posted.json")
+        self.reel_state = os.path.join(self.tmp, "reel-dist.json")
+        self.files = []
+        for n in (1, 2, 3, 4):
+            p = os.path.join(self.tmp, f"set-{n}.png")
+            with open(p, "wb") as f:
+                f.write(b"\x89PNG fake")
+            self.files.append(p)
+        self.cli_result = mock.Mock(stdout="", stderr="", returncode=1)
+        self.cli_cmds = []
+
+        def fake_run(cmd, **kw):
+            self.cli_cmds.append(cmd)
+            return self.cli_result
+
+        self._p = [
+            mock.patch.object(threads_autopost, "STATE_FILE",
+                              self.th_state),
+            mock.patch.object(flush, "REEL_STATE_FILE", self.reel_state),
+            mock.patch.object(flush.subprocess, "run", fake_run),
+        ]
+        for p in self._p:
+            p.start()
+
+    def tearDown(self):
+        for p in self._p:
+            p.stop()
+        super().tearDown()
+
+    def _set_entry(self):
+        return make_entry(
+            channel="threads", slug="set-story",
+            card_file=self.files[0], card_files=list(self.files),
+            card_texts=["Set Story Headline", "Takeaway one.",
+                        "Takeaway two.", "Full story at thevideshi.com"],
+            card_track="backdrop",
+            image_url="https://img.example/hero.jpg")
+
+    def test_threads_set_success_via_helper(self):
+        self.cli_result = mock.Mock(
+            stdout=json.dumps({"post_id": "th-set4"}), stderr="",
+            returncode=0)
+        result = flush.publish_threads_article(self._set_entry())
+        self.assertEqual(result, {"post_id": "th-set4"})
+        cmd = self.cli_cmds[0]
+        idx = [i for i, a in enumerate(cmd) if a == "--media-item"]
+        self.assertEqual(len(idx), 4)
+        items = [json.loads(cmd[i + 1]) for i in idx]
+        self.assertEqual([it["file"] for it in items], self.files)
+        self.assertEqual(items[3]["alt_text"],
+                         "Full story at thevideshi.com")
+
+    def test_threads_set_empty_stdout_surfaces_stderr(self):
+        # The exact 2026-10-24 shape: CLI exits nonzero, stdout
+        # empty, the real cause sitting on stderr.
+        self.cli_result = mock.Mock(
+            stdout="", returncode=1,
+            stderr="Threads Write Rate Limit Reached")
+        with redirect_stderr(io.StringIO()) as err:
+            result = flush.publish_threads_article(self._set_entry())
+        self.assertIsNone(result)
+        self.assertIn("exit 1", err.getvalue())
+        self.assertIn("Write Rate Limit", err.getvalue())
+
+    def test_threads_set_exit0_empty_stdout_still_fails(self):
+        self.cli_result = mock.Mock(stdout="", stderr="",
+                                    returncode=0)
+        with redirect_stderr(io.StringIO()) as err:
+            result = flush.publish_threads_article(self._set_entry())
+        self.assertIsNone(result)
+        self.assertIn("exit 0", err.getvalue())
+
+    def test_nonzero_exit_with_json_body_is_not_success(self):
+        # An error JSON on stdout with a nonzero exit used to be
+        # returned as a truthy "result" by the IG/FB-draft
+        # wrappers — a false success. Now it must fail.
+        self.cli_result = mock.Mock(
+            stdout=json.dumps({"error": "nope"}), stderr="bad",
+            returncode=2)
+        with redirect_stderr(io.StringIO()):
+            data = flush._run_cli_json(["cli"], "test call")
+        self.assertIsNone(data)
+
+    def test_flush_stops_and_keeps_set_queued_on_cli_failure(self):
+        self.cli_result = mock.Mock(
+            stdout="", returncode=1,
+            stderr="carousel item upload failed")
+        sq.add_entry(self._set_entry())
+        with redirect_stdout(io.StringIO()) as out, \
+                redirect_stderr(io.StringIO()) as err:
+            rc = flush.main()
+        self.assertEqual(rc, 1)
+        self.assertIn("STOPPED", out.getvalue())
+        self.assertIn("carousel item upload failed", err.getvalue())
+        self.assertEqual(len(sq.load_entries()), 1)
 
 
 import x_cards  # noqa: E402

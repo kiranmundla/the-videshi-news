@@ -57,6 +57,41 @@ FB_DRAFT_TEXT_LIMIT = 1024  # drafts are created with the staged text
                             # verbatim (already trimmed at stage time)
 
 
+def _run_cli_json(cmd, label, timeout=600):
+    """Run a connector CLI and parse its JSON stdout.
+
+    Success requires BOTH a zero exit code and parseable JSON —
+    the CLIs report their real errors on stderr (validation
+    rejects, rate limits, a carousel item failing mid-upload
+    after the approval), and a wrapper that only looks at stdout
+    turns every such failure into a content-free "output not
+    JSON: " with the actual cause destroyed (2026-10-24: the
+    first Threads card-set flush stopped exactly this way).
+    On failure this prints the exit code, stdout AND stderr, and
+    returns None; the caller stops the flush with the entry still
+    queued. A publish that fails after its approval is AMBIGUOUS
+    per the connector docs (the post may or may not exist), so
+    the message says to verify on the channel before re-running.
+    """
+    r = subprocess.run(cmd, capture_output=True, text=True,
+                       timeout=timeout)
+    data = None
+    if isinstance(r.stdout, str) and r.stdout.strip():
+        try:
+            data = json.loads(r.stdout)
+        except json.JSONDecodeError:
+            data = None
+    if r.returncode == 0 and data is not None:
+        return data
+    out = r.stdout if isinstance(r.stdout, str) else ""
+    err = r.stderr if isinstance(r.stderr, str) else ""
+    print(f"ERROR: {label} failed (exit {r.returncode}): "
+          f"stdout={out[:200]!r} stderr={err[:400]!r} — if this "
+          f"was a publish, the outcome is ambiguous; verify on "
+          f"the channel before re-running.", file=sys.stderr)
+    return None
+
+
 # ------------------------------------------------------------------
 # Producer modules use hyphenated filenames (fb-autopost.py), so
 # they are loaded by path rather than imported by name.
@@ -146,14 +181,7 @@ def publish_threads_article(entry):
             if alt:
                 item["alt_text"] = str(alt)[:1024]
             cmd += ["--media-item", json.dumps(item)]
-        r = subprocess.run(cmd, capture_output=True, text=True,
-                           timeout=600)
-        try:
-            return json.loads(r.stdout)
-        except json.JSONDecodeError:
-            print(f"ERROR: threads article output not JSON: "
-                  f"{r.stdout[:200]}", file=sys.stderr)
-            return None
+        return _run_cli_json(cmd, "threads article publish")
     return _th().publish(entry["text"])
 
 
@@ -165,13 +193,7 @@ def publish_ig_article(entry):
     --cover."""
     cmd = [IG_CLI, "post-feed", "--account-id", IG_ACCOUNT_ID,
            "--file", entry["card_file"], "--caption", entry["text"]]
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
-    try:
-        return json.loads(r.stdout)
-    except json.JSONDecodeError:
-        print(f"ERROR: ig article post output not JSON: "
-              f"{r.stdout[:200]}", file=sys.stderr)
-        return None
+    return _run_cli_json(cmd, "ig article post")
 
 
 def create_fb_reel_draft(entry):
@@ -180,12 +202,8 @@ def create_fb_reel_draft(entry):
     FB draft limit at stage time)."""
     cmd = [FB_CLI, "pages", "drafts", "create", "--page-id", PAGE_ID,
            "--text", entry["text"], "--file", entry["media_file"]]
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
-    try:
-        data = json.loads(r.stdout)
-    except json.JSONDecodeError:
-        print(f"ERROR: fb draft output not JSON: {r.stdout[:200]}",
-              file=sys.stderr)
+    data = _run_cli_json(cmd, "fb draft create")
+    if data is None:
         return None
     return data.get("draft_id") or data.get("id") or data
 
@@ -197,13 +215,7 @@ def publish_ig_reel(entry):
            "--file", entry["media_file"], "--caption", entry["text"]]
     if entry.get("cover_file"):
         cmd += ["--cover", entry["cover_file"]]
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
-    try:
-        return json.loads(r.stdout)
-    except json.JSONDecodeError:
-        print(f"ERROR: ig post output not JSON: {r.stdout[:200]}",
-              file=sys.stderr)
-        return None
+    return _run_cli_json(cmd, "ig reel post")
 
 
 def publish_threads_reel(entry):
@@ -217,13 +229,7 @@ def publish_threads_reel(entry):
         item["alt_text"] = entry["alt_text"]
     cmd = [THREADS_CLI, "publish-post", "--account-id", THREADS_ACCOUNT_ID,
            "--text", entry["text"], "--media-item", json.dumps(item)]
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
-    try:
-        return json.loads(r.stdout)
-    except json.JSONDecodeError:
-        print(f"ERROR: threads post output not JSON: {r.stdout[:200]}",
-              file=sys.stderr)
-        return None
+    return _run_cli_json(cmd, "threads reel post")
 
 
 # ------------------------------------------------------------------

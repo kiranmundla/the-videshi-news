@@ -203,8 +203,12 @@ def publish(text):
     try:
         data = json.loads(r.stdout)
     except json.JSONDecodeError:
-        print(f"ERROR: threads-cli output not JSON: {r.stdout[:300]}",
-              file=sys.stderr)
+        # The CLI reports its real errors on stderr — surface them
+        # (plus the exit code) instead of a content-free message.
+        err = r.stderr if isinstance(r.stderr, str) else ""
+        print(f"ERROR: threads-cli output not JSON (exit "
+              f"{r.returncode}): stdout={r.stdout[:200]!r} "
+              f"stderr={err[:400]!r}", file=sys.stderr)
         return None
     if data.get("post_id"):
         return data
