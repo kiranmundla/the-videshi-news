@@ -810,6 +810,32 @@
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Shruti_Haasan_at_the_special_screening_of_the_short_film_Devi_%2832%29.jpg/300px-Shruti_Haasan_at_the_special_screening_of_the_short_film_Devi_%2832%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
       ]
+    },
+    {
+      "title": "King",
+      "slug": "king-2026",
+      "release_date": "2026-12-24",
+      "status": "coming_soon",
+      "language": "Hindi",
+      "director": "Siddharth Anand",
+      "cast": [
+        "Shah Rukh Khan Suhana Khan Deepika Padukone Abhishek Bachchan Anil Kapoor Jackie Shroff Arshad Warsi Rani Mukerji Raghav Juyal Abhay Verma Saurabh Shukla Jaideep Ahlawat Akshay Oberoi Karanvir Malhotra"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=King%20showtimes%20near%20me",
+      "why_watch": "King is a Hindi film directed by Siddharth Anand, starring Shah Rukh Khan Suhana Khan Deepika Padukone Abhishek Bachchan Anil Kapoor Jackie Shroff Arshad Warsi Rani Mukerji Raghav Juyal Abhay Verma Saurabh Shukla Jaideep Ahlawat Akshay Oberoi Karanvir Malhotra.",
+      "rating": "Opens Dec 24",
+      "rating_source": "Release date",
+      "poster_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Aachen_Domschatz_Bueste1.jpg/500px-Aachen_Domschatz_Bueste1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "trailer_url": "https://www.youtube.com/watch?v=Uu2QK9Z9X5E",
+      "cast_details": [
+        {
+          "name": "Shah Rukh Khan Suhana Khan Deepika Padukone Abhishek Bachchan Anil Kapoor Jackie Shroff Arshad Warsi Rani Mukerji Raghav Juyal Abhay Verma Saurabh Shukla Jaideep Ahlawat Akshay Oberoi Karanvir Malhotra",
+          "photo_url": ""
+        }
+      ]
     }
   ],
   "week_of": "Oct 19 – Oct 25, 2026"
