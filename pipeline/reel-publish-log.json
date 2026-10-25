@@ -256,5 +256,31 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "lLsRWWK448I",
+    "article_slug": "harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal",
+    "article_id": "87cf5b8e-1f93-47af-b114-301bac754987",
+    "title": "Harmeet Desai, Yashaswini Ghorpade End India's 72-Year Mixed Doubles Wait #Shorts #Sports",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-24T05:40:50.307491+00:00",
+    "video_path": "reel-runs/2026-10-23-harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal/output-v4/harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal.mp4",
+    "video_sha256": "afc1f416c633bd53d400f0b118bb5f493dcec88751a2a1dfd4b9c818d76ba397",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "qoeV9bl0MH0",
+    "article_slug": "spacex-launches-27-starlink-satellites-california-three-scrubs",
+    "article_id": "a12e2097-e54b-47e7-8d01-f3739e724418",
+    "title": "SpaceX Launches 27 Starlink Satellites From California After Three Scrubs #Shorts #TechNews",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-24T17:58:12.759214+00:00",
+    "video_path": "reel-runs/sample-pro-v3-spacex-continuous/output/spacex-launches-27-starlink-satellites-california-three-scrubs-pro-v3-sample.mp4",
+    "video_sha256": "dcbd1f98594ba1cb8a27f73dddc15b381b047ab397a0246816b2c03e76e3a810",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

@@ -1,0 +1,33 @@
+{
+  "photo": {
+    "url": null,
+    "width": 1500,
+    "height": 900
+  },
+  "face": {
+    "method": "yunet (score 0.93)",
+    "has_face": true,
+    "box_source": [
+      528,
+      166,
+      65,
+      89
+    ]
+  },
+  "cover": {
+    "face_box_card": [
+      492.0,
+      249.0,
+      97.5,
+      133.5
+    ],
+    "headline_size": 84,
+    "headline_lines": 4
+  },
+  "facts": {
+    "facts_bottom": 1115
+  },
+  "end": {
+    "headline_size": 60
+  }
+}

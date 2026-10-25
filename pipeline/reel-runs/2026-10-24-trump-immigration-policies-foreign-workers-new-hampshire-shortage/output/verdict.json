@@ -1,0 +1,15 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "article_slug": "trump-immigration-policies-foreign-workers-new-hampshire-shortage",
+  "name": "trump-immigration-policies-foreign-workers-new-hampshire-shortage",
+  "script": "reel-runs/2026-10-24-trump-immigration-policies-foreign-workers-new-hampshire-shortage/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "stats[1].big"
+    ],
+    "llm_cost_usd": 0.00075
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "article_slug": "trump-immigration-policies-foreign-workers-new-hampshire-shortage",
+  "name": "trump-immigration-policies-foreign-workers-new-hampshire-shortage",
+  "script": "reel-runs/2026-10-24-trump-immigration-policies-foreign-workers-new-hampshire-shortage/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.00075
+  },
+  "detail": "no composition fits all scenes at the planner floors \u2014 cover: scene 'news' text cannot fit at the minimum scale in any zone (text too long); fit: scene 'news' text cannot fit at the minimum scale in any zone (text too long)"
+}

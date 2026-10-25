@@ -1,0 +1,189 @@
+[
+  {
+    "id": "9de3f8b4-6436-443f-9a33-419a51d015da",
+    "headline": "Government Weighs Cutting Stakes in Four PSU Banks to 75% After IDBI Sale",
+    "slug": "government-cut-stake-four-psu-banks-75-percent-idbi-fairfax",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the proposed stake reductions. While the article mentions 'within about a year,' providing a more specific timeframe or key dates for potential announcements or actions would enhance clarity.",
+        "Include more detailed information about the implications of the stake reduction for investors. For example, what potential changes in stock prices or investor sentiment might occur as a result of these moves? Providing concrete examples or historical context could improve completeness.",
+        "Ensure that the attribution to The Economic Times is clear and consistent throughout the article. Consider mentioning that the report was also covered by Mint and other outlets earlier in the article to reinforce the credibility of the information.",
+        "Add a brief explanation of the offer-for-sale (OFS) route for readers who may not be familiar with this process. This would enhance clarity and completeness by providing context on how the stake reduction will be executed."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official statement from the Ministry of Finance or DIPAM regarding the stake reduction plans to provide readers with direct access to primary sources."
+      ]
+    }
+  },
+  {
+    "id": "bec8b539-a55d-44a0-b39e-56e5989f6688",
+    "headline": "India Moves to Bring Home Dammam Victim's Remains as Injured Indians Leave Hospi",
+    "slug": "india-facilitates-return-dammam-victim-remains-injured-discharged",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding the repatriation of the deceased's remains. Include specific details such as expected dates for the transportation process and any potential delays that might occur.",
+        "Provide more context about the attacks, such as the nature of the incidents at Dammam airport and the Shaybah oil field, to help readers understand the situation better.",
+        "Ensure that quotes from the embassy are clearly attributed and distinguish between direct quotes and paraphrased information to enhance clarity and accuracy.",
+        "Include a brief overview of the current security situation in Saudi Arabia, especially for Indian nationals, to give readers a better understanding of the risks involved."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian Embassy in Riyadh regarding the advisory for Indian nationals in Saudi Arabia."
+      ]
+    }
+  },
+  {
+    "id": "3ca0ae90-faa3-429c-acbb-a37768933bd5",
+    "headline": "New Hampshire Employers Warn Trump Immigration Policies Risk Turning Away Needed",
+    "slug": "trump-immigration-policies-foreign-workers-new-hampshire-shortage",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding the $100,000 H-1B payment requirement by specifying the exact date when this policy takes effect and any relevant deadlines for employers to comply.",
+        "Include more specific statistics or context regarding the impact of the declining nurse arrivals, such as how this shortage is affecting patient care or specific healthcare facilities in New Hampshire.",
+        "Add a quote or data point from a local government official or policy expert to provide additional authority and perspective on the implications of these immigration policies for New Hampshire's economy."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS tweet or announcement regarding the H-1B payment requirement to provide readers with direct access to the source of this information."
+      ]
+    }
+  },
+  {
+    "id": "555e3b49-8e4a-4ce3-a4c5-ff2bb2132ffa",
+    "headline": "Kolkata's Tangra Chinese Comes to Kochi as Chao Blends Regional Twists and Bold ",
+    "slug": "tangra-kolkata-chinese-chao-kochi",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Chao's opening in Kochi by providing specific details about the restaurant, such as its location, opening date, and any unique offerings or signature dishes that differentiate it from other Chinese restaurants in the area.",
+        "Include quotes or insights from the restaurant's owner or chef to provide a personal touch and deeper context about the inspiration behind Chao and its menu, enhancing the article's attribution and completeness.",
+        "Add a brief comparison of the Tangra-style cuisine to other regional Chinese cuisines available in Kochi, which would provide readers with a clearer understanding of what makes this cuisine unique.",
+        "Ensure that the article maintains a consistent structure by avoiding repetitive phrases and streamlining the information about Tangra's history and its influence on Indo-Chinese cuisine."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from Chao's official social media announcing their opening, which could provide real-time updates and engage readers."
+      ]
+    }
+  },
+  {
+    "id": "fa6bd908-7e22-4f1e-a14d-5879e7e790c3",
+    "headline": "Diwali Fatigue Is Real: Why Late Nights Leave You Exhausted, and How to Reset",
+    "slug": "diwali-fatigue-late-nights-reset-sleep",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include specific statistics on how many people experience Diwali fatigue, such as survey data or studies that quantify the issue.",
+        "Add a section on the long-term effects of sleep deprivation, such as how it can impact mental health or workplace productivity, to provide more context.",
+        "Clarify the timeline for the recommended reset: how soon after Diwali should individuals start implementing the suggested changes for maximum effectiveness?",
+        "Provide concrete examples of light, fiber-rich meals that can help with recovery, making it easier for readers to implement the advice."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a health organization or expert discussing the importance of sleep during festive seasons."
+      ]
+    }
+  },
+  {
+    "id": "34a6234b-2ad8-4b47-b72e-a6d37574243b",
+    "headline": "Delhi High Court Refuses to Restore Power, Water to Century-Old Race Course Mosq",
+    "slug": "delhi-high-court-race-course-mosque-power-water",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by including specific dates for when the electricity and water were disconnected and when the court ruling was made. This will help readers understand the urgency and context of the situation.",
+        "Provide more context regarding the eviction judgment mentioned. Explain what the August 25 eviction judgment entails and how it affects the mosque's status, as this is crucial for understanding the legal backdrop of the case.",
+        "Include a direct quote from the Delhi Waqf Board or a representative to provide a clearer perspective on their stance regarding the disconnection of utilities and their ongoing efforts to restore them.",
+        "Ensure that all legal terms and references are clearly explained for readers who may not be familiar with the legal context, such as the implications of being a Waqf-notified property."
+      ],
+      "embed_opportunities": [
+        "Embed the official Delhi High Court ruling or a relevant government statement regarding the eviction judgment to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "bd25a393-558d-427c-9a1a-43ec2ac3c579",
+    "headline": "Tu Hai Meri Kiran Review: A Clever Time-Phone Premise the Second Half Cannot Car",
+    "slug": "tu-hai-meri-kiran-review-sonakshi-sinha-zaheer-iqbal",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of the film's events, especially how the time connection between Kiran and Samar operates, to enhance reader understanding of the plot mechanics.",
+        "Provide more context on the film's box office performance, including specific numbers or comparisons to other films released during the same period, to give readers a clearer picture of its commercial prospects.",
+        "Include a brief summary of the critical reception, highlighting key points from the reviews to give a more rounded view of the film's strengths and weaknesses."
+      ],
+      "embed_opportunities": [
+        "Embed a trailer or clip from the film to give readers a visual sense of the movie's style and tone."
+      ]
+    }
+  },
+  {
+    "id": "67e83362-98f2-46c8-94ea-524726ebc1b1",
+    "headline": "Former MLB Stars Find Cricket Skills Transfer Fast at Mumbai Kids Clinic",
+    "slug": "former-mlb-stars-mumbai-kids-baseball-clinic",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the MLBx: Mumbai event; it is mentioned as October 24, but the article states the clinic occurred on October 23. Ensure the timeline is accurate and clear for readers.",
+        "Add a quote or statistic from a local coach or participant to provide additional context on the impact of the clinic and the skills transfer mentioned by the MLB stars.",
+        "Include more details about the specific skills that were taught during the clinic to enhance completeness and provide readers with a better understanding of the training process."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from MLB or the players involved about the clinic or the upcoming MLBx: Mumbai event to provide official context and updates."
+      ]
+    }
+  },
+  {
+    "id": "59dcdc52-06ec-4287-bc14-967507918039",
+    "headline": "India Showcases Nuclear Advances, Development Partnerships at UN General Assembl",
+    "slug": "india-nuclear-advances-development-partnerships-unga-session",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events mentioned in the article. For instance, the reference to the Kalpakkam fast breeder reactor going critical in April 2026 and the heat-based hydrogen demonstration in June 2026 should be corrected to reflect the actual dates, as these appear to be in the future.",
+        "Provide more context on the significance of India's chairmanship of the IAEA's Regional Cooperative Agreement (RCA). Explain what this means for international nuclear cooperation and how it positions India on the global stage.",
+        "Include direct quotes or specific data from the IAEA report mentioned in the article to enhance the credibility and depth of the reporting.",
+        "Ensure that the attribution to ANI and Times of India is clear and consistent throughout the article, particularly when referencing statements made by Sangeeta Kumari Singh Deo."
+      ],
+      "embed_opportunities": [
+        "Embed the official IAEA report or a relevant tweet from the IAEA that highlights India's contributions or role in nuclear science and technology."
+      ]
+    }
+  },
+  {
+    "id": "16e70cbc-abff-4f2c-be33-5a1901060f08",
+    "headline": "Kerala Bets on Early Detection to Prevent Child Deaths From Malnutrition, Neglec",
+    "slug": "kerala-early-detection-prevent-child-deaths-malnutrition-neglect",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific roles and responsibilities of Anganwadi workers, ASHAs, and teachers in the early detection process to enhance understanding of the framework.",
+        "Provide more context on the KAVAL Plus and Balasuraksha Protocol programs, including their specific goals and how they contribute to preventing malnutrition and neglect.",
+        "Include a direct quote from a relevant official or expert to enhance attribution and provide a human perspective on the issue.",
+        "Add statistics or data on child malnutrition rates in Kerala to give readers a clearer picture of the scope of the problem."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Kerala State Commission for Protection of Child Rights regarding their ongoing efforts or statements on the issue."
+      ]
+    }
+  }
+]

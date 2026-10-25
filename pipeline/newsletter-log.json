@@ -1591,5 +1591,16 @@
     "top_story_slug": "sensex-nifty-fall-fourth-session-brent-crude-114-fii-outflows",
     "quick_hit_count": 5,
     "deadline_count": 3
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-24T13:58:09.442844+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 24, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "government-cut-stake-four-psu-banks-75-percent-idbi-fairfax",
+    "quick_hit_count": 5,
+    "deadline_count": 2
   }
 ]

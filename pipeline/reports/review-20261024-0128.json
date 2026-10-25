@@ -1,0 +1,152 @@
+[
+  {
+    "id": "e0322b21-7c92-490e-ad97-98e05efd7543",
+    "headline": "Gangster Himanshu Bhau Arrested in Las Vegas After Indian Tip-Off",
+    "slug": "himanshu-bhau-arrested-las-vegas-us",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Provide specific details on the timeline for the deportation process, including any expected dates or deadlines for when Bhau might be returned to India.",
+        "Clarify the implications of Bhau's arrest for ongoing criminal investigations in India, particularly how it might affect cases related to his alleged criminal activities.",
+        "Include a brief background on the significance of the Interpol red notice and what it entails for Bhau's legal situation in the US and India.",
+        "Ensure consistent attribution throughout the article, particularly when referencing the NIA source, to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official Interpol notice regarding Himanshu Bhau to provide readers with direct access to the official documentation."
+      ]
+    }
+  },
+  {
+    "id": "0c22287a-1ece-405a-a866-26c852cce330",
+    "headline": "US Quietly Pulls Diplomats' Families From Gulf Posts as Houthi Attacks Escalate",
+    "slug": "us-diplomats-families-middle-east-drawdown-houthi",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the dates of the previous evacuation and the current drawdown to provide context for readers unfamiliar with the situation.",
+        "Include specific details about the per diem allowances and support being provided to families, such as dollar amounts or eligibility criteria, to enhance the article's completeness and provide actionable information.",
+        "Add a quote or statement from the State Department to provide official attribution regarding the rationale behind the evacuation, which would enhance the article's accuracy and credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official State Department announcement regarding the evacuation for direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "edf08193-640f-4c8e-9681-663b05aadb7d",
+    "headline": "Harrods Lights Its Facade for Diwali as Luxury Courts Indian Shoppers",
+    "slug": "harrods-diwali-lights-luxury-second-year",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the dates for the light display and the duration of the overall campaign at the beginning of the article for better readability.",
+        "Provide more specific details about the Diwali gift box contents, including prices or how to purchase it, to enhance completeness and give readers actionable information.",
+        "Include a quote or attribution from a Harrods representative or a relevant industry expert to enhance credibility and provide context on the significance of this campaign.",
+        "Correct the year mentioned for the debut of the light show; it states 2025, which appears to be a typographical error, as the current year is 2023."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Harrods or a relevant social media post announcing the Diwali events to provide real-time updates and engage readers visually."
+      ]
+    }
+  },
+  {
+    "id": "20545a0f-80e6-41ab-a9ad-332bac40f3de",
+    "headline": "Freight Now Adds Up to $40 a Barrel to Delivered Cost of Oil",
+    "slug": "oil-freight-cost-40-per-barrel-hormuz-shipping",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the Goldman Sachs estimates by providing a direct link or citation to the original report for readers seeking more detailed information.",
+        "Include specific implications of the increased freight costs on consumer prices, such as potential increases in gasoline prices or other fuel-related costs, to give readers a clearer understanding of the impact.",
+        "Add a brief explanation of how these freight cost increases might affect global oil supply chains or geopolitical dynamics, providing context for the significance of the changes reported."
+      ],
+      "embed_opportunities": [
+        "Embed the official Goldman Sachs report or a relevant tweet summarizing their findings to enhance credibility and provide direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "9c084d6b-e1f1-4d66-bfcf-0049a45e3bb7",
+    "headline": "Pankaj Advani Beats Robert Hall to Win 29th World Title in Billiards",
+    "slug": "pankaj-advani-29th-world-title-world-billiards-championship",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the match by specifying the exact date it took place, as well as the date of the next IBSF World Snooker Championship in Indore.",
+        "Include a brief background on Pankaj Advani's previous achievements to provide context for his 29th title, which would enhance the completeness of the article.",
+        "Add a quote from Advani or a relevant figure to provide a personal touch and enhance the clarity of the significance of this victory.",
+        "Ensure that the article clearly states the implications of this win for Advani's career trajectory, such as potential rankings or future competitions."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight of Advani's winning breaks from the match to provide visual context and enhance reader engagement."
+      ]
+    }
+  },
+  {
+    "id": "48926c32-da36-4c1f-a85f-5a79f3c097a7",
+    "headline": "Modi Calls for Unity Against Divisive Forces at Chinmaya Sammelan Inauguration",
+    "slug": "modi-unity-divisive-forces-chinmaya-amrit-mahotsav-sammelan",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events: The article mentions that the celebrations began in 2025, which seems to be a typographical error. It should likely refer to 2023. This needs to be corrected for accuracy.",
+        "Provide specific quotes or data: While Modi's statements are paraphrased, including direct quotes with attribution could enhance clarity and credibility. For example, quoting his call for unity directly would strengthen the reporting.",
+        "Include context on the Chinmaya Mission: A brief background on the Chinmaya Mission and its significance could help readers understand the importance of the event and Modi's remarks.",
+        "Clarify the significance of the 'Viksit Bharat 2047' goal: Adding a sentence explaining what this goal entails or its implications for India would provide readers with a clearer understanding of its relevance."
+      ],
+      "embed_opportunities": [
+        "Embed a video of Modi's speech or a relevant clip from the event to provide visual context and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "87cf5b8e-1f93-47af-b114-301bac754987",
+    "headline": "Harmeet Desai, Yashaswini Ghorpade End India's 72-Year Mixed Doubles Wait",
+    "slug": "harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the championship and the date the medal was secured, as this adds context to the achievement.",
+        "Provide more details on the significance of this achievement for Indian table tennis, such as its impact on the sport's development or future prospects, to enhance completeness.",
+        "Consider including quotes from the players or coaches to add depth and personal perspective to the story."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight of the quarter-final match to provide readers with a visual representation of the achievement."
+      ]
+    }
+  },
+  {
+    "id": "a12e2097-e54b-47e7-8d01-f3739e724418",
+    "headline": "SpaceX Launches 27 Starlink Satellites From California After Three Scrubs",
+    "slug": "spacex-launches-27-starlink-satellites-california-three-scrubs",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the launch for users by including specific details about how the addition of 27 satellites will impact service quality or coverage areas for Starlink users, such as potential improvements in speed or latency.",
+        "Include a brief summary of the technical issue that caused the previous scrubs to provide context for readers unfamiliar with the situation.",
+        "Add a quote from a SpaceX representative or an expert in the field to enhance attribution and provide insight into the implications of this launch."
+      ],
+      "embed_opportunities": [
+        "Embed the official SpaceX tweet announcing the successful launch to provide readers with real-time updates and visuals."
+      ]
+    }
+  }
+]

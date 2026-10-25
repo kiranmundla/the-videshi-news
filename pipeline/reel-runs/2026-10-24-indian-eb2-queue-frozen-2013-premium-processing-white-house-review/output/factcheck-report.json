@@ -1,0 +1,323 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "indian-eb2-queue-frozen-2013-premium-processing-white-house-review",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA'S EB-2 GREEN CARD LINE STAYS FROZEN IN 2013",
+      "numbers": [
+        2.0,
+        2013.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2013
+        ]
+      },
+      "llm_reason": "The article states India's EB-2 final action date is unchanged since 2013.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The November 2026 Visa Bulletin keeps India's EB-2 final action date at November 1, 2013, unchanged for a second straight month, while most other countries advanced three months to April 1, 2025.",
+      "numbers": [
+        1.0,
+        2.0,
+        2013.0,
+        2025.0,
+        2026.0
+      ],
+      "entities": [
+        "Visa Bulletin",
+        "India's EB-2"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2013,
+          2025,
+          2026
+        ]
+      },
+      "llm_reason": "The article confirms this information about the November 2026 Visa Bulletin.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "179 YEARS",
+      "numbers": [
+        179.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions a projected wait of 179 years for Indian green card applicants.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Projected wait for an Indian national filing in EB-2 in January 2026 or later",
+      "numbers": [
+        2.0,
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article specifies this wait projection for Indian nationals.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "NOV 1, 2013",
+      "numbers": [
+        1.0,
+        2013.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2013
+        ]
+      },
+      "llm_reason": "The article states India's EB-2 final action date is November 1, 2013.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "India's EB-2 final action date, unchanged for a second straight month",
+      "numbers": [
+        2.0
+      ],
+      "entities": [
+        "India's EB-2"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the date is unchanged for two months.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "APR 1, 2025",
+      "numbers": [
+        1.0,
+        2025.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article states most other countries' EB-2 date advanced to April 1, 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "EB-2 final action date for most other countries, after advancing three months",
+      "numbers": [
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this advancement for most countries.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "996,599",
+      "numbers": [
+        996599.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this number of Indians waiting in employment-based preferences.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Indians waiting in the first three employment-based preferences, about 79% of the total",
+      "numbers": [
+        79.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this percentage and context.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "A green card can only be approved if your priority date is before November 1, 2013",
+      "numbers": [
+        1.0,
+        2013.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2013
+        ]
+      },
+      "llm_reason": "The article states this requirement for green card approval.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Indian EB-2 applicants with priority dates before January 15, 2015 can file adjustment applications for November",
+      "numbers": [
+        2.0,
+        15.0,
+        2015.0
+      ],
+      "entities": [
+        "Indian EB-2"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2015
+        ]
+      },
+      "llm_reason": "The article confirms this filing eligibility for Indian EB-2 applicants.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "India's EB-2 line did not move, while a USCIS proposal to amend premium processing timeframes sits under White House review with its text still not public.",
+      "numbers": [
+        2.0
+      ],
+      "entities": [
+        "India's EB-2",
+        "White House"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms both the EB-2 line status and the USCIS proposal.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "India",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "EB-2",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Visa Bulletin",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "USCIS",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Josh Gottheimer",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "National Foundation for American Policy",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000772,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

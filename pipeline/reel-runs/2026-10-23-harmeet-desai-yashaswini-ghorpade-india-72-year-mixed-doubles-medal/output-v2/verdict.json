@@ -1,0 +1,16 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa_error",
+  "article_slug": "harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal",
+  "name": "harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal",
+  "script": "reel-runs/2026-10-23-harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000527
+  },
+  "manifest": "reel-runs/2026-10-23-harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-10-23-harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal/output-v2/harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal.mp4",
+  "detail": "No module named 'cv2'"
+}

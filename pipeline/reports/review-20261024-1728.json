@@ -1,0 +1,120 @@
+[
+  {
+    "id": "0265190d-6c46-4a18-9076-394009705829",
+    "headline": "Amritsar Man Shot Dead Outside Home After Argument Over Parked Scooter",
+    "slug": "amritsar-man-shot-dead-scooter-parking-argument-anand-avenue",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact time of the shooting and when the police were notified. This would enhance the completeness of the report.",
+        "Include a direct quote from the victim's father or a witness to provide a personal perspective and add depth to the story.",
+        "Provide more context about the political implications of the incident, such as specific comments from local leaders or historical context regarding crime rates in Punjab, to enhance the clarity and relevance of the political response.",
+        "Ensure that the names of the accused are consistently presented, as they are referred to as both 'brothers' and 'three brothers' in different parts of the article, which could confuse readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official police statement or tweet regarding the incident for verification and to provide readers with direct information from authorities."
+      ]
+    }
+  },
+  {
+    "id": "492933e8-b1f7-40bc-b11b-87ffaf7edd8f",
+    "headline": "iPhone Duo Screens Crack Along the Hinge Within Hours of $1,999 Foldable's Launc",
+    "slug": "iphone-duo-screen-cracks-hinge-launch-day-reports",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact date of the launch (October 23) in the first paragraph to enhance clarity and immediacy.",
+        "Include a direct quote from Apple or a representative regarding the reported issues to improve attribution and provide a more authoritative perspective on the situation.",
+        "Add more specific details about the warranty coverage and the return policy, such as the exact steps customers need to take if they experience similar issues, to enhance completeness and provide actionable information.",
+        "Mention the total number of reported cases or a percentage of users experiencing issues to give readers a better sense of the scale of the problem."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a user who reported the issue, showcasing their experience to provide real-time context and social proof."
+      ]
+    }
+  },
+  {
+    "id": "993ffb30-3dd1-4efd-801d-68040fc64294",
+    "headline": "Telugu Horror Film 418 Opens at Rs 2.65 Crore, Fifth-Biggest Post-COVID Start fo",
+    "slug": "418-box-office-day-1-rs-2-65-crore-telugu-horror",
+    "category": "entertainment",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"#418 O\ufb03cial Trailer - The Last Warning (Hindi) | Prashanth N\" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the film's release in the opening paragraph to enhance timeliness and context for readers unfamiliar with the timeline.",
+        "Include a brief summary of the critical reception (e.g., specific review scores or notable critic comments) to provide completeness regarding how the film is being received by audiences and critics alike.",
+        "Consider adding a quote from a key figure involved in the film, such as the director or a lead actor, to provide attribution and depth to the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the film's official account or from a prominent film critic discussing the film's opening to enhance engagement and provide real-time reactions."
+      ]
+    }
+  },
+  {
+    "id": "0a574976-be50-4d62-883c-76516b81a58d",
+    "headline": "India Condemns Karak Church Attack as Jordan Raises Death Toll to Eight",
+    "slug": "india-condemns-karak-church-attack-jordan-toll-eight",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date of the attack and the date when the death toll was raised to eight. This will help readers understand the progression of the situation more clearly.",
+        "Include direct quotes from the Ministry of External Affairs statement to enhance attribution and provide a more authoritative voice to India's response.",
+        "Provide additional context about the significance of the attack, such as the historical background of violence in the region or the implications for security in Jordan, to give readers a deeper understanding of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Jordanian government or security authorities regarding the attack or the ongoing situation."
+      ]
+    }
+  },
+  {
+    "id": "15ad9bd8-7e08-4d87-9a8e-20b270d012f3",
+    "headline": "London's Diwali on the Square Cancelled as Storm Boelo Makes Build Unsafe",
+    "slug": "london-diwali-on-the-square-cancelled-storm-boelo",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the event cancellation in the opening paragraph to avoid confusion, as the date mentioned (October 25) is a future date and the announcement is made on a Saturday before that date.",
+        "Provide more context about Storm Boelo, such as its expected impact on London specifically, to give readers a clearer understanding of why the event is cancelled.",
+        "Include a quote from a city official or event organizer to add depth to the reporting and provide a human element to the story."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Mayor of London's office regarding the cancellation for direct attribution and to enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "3c4ddca1-044e-4b0a-8a83-8e706b89aac3",
+    "headline": "India-Born Republican Nirav Sheth Backs H-1B Crackdown, Citing Fake Firms",
+    "slug": "nirav-sheth-backs-h1b-crackdown-visa-fraud-washington",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the statistics mentioned regarding H-1B beneficiaries; specify the fiscal year and provide a source for the claim that Indians accounted for around 70% of approved H-1B beneficiaries in fiscal 2025.",
+        "Include a direct quote from Nirav Sheth regarding his stance on the PERM suspension affecting major companies like Microsoft, Adobe, and Infosys to provide a clearer understanding of his position.",
+        "Add context about the implications of the H-1B crackdown on Indian professionals, such as potential delays in visa processing or impacts on employment opportunities, to enhance completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or statement from the Trump administration regarding the H-1B visa policy to provide official context and enhance credibility."
+      ]
+    }
+  }
+]

@@ -45,6 +45,9 @@ pipeline/prebuild-feeds.py.bak-20260714
 src/pages/IndexV2.tsx.bak-20260714
 pipeline/cache/embed_cache.json
 
+# Local pip library dir (VM-rebuild dependency restores) — binaries, never commit
+pipeline/.pylibs/
+
 # Transient pipeline state — local operational files, never commit
 pipeline/.state/
 pipeline/.reviewed-articles.json

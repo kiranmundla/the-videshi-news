@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-23-harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal/output-v4/harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1500,
+        900
+      ],
+      "manifest_dims": [
+        1500,
+        900
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 954.8,
+      "url": "https://thebridge.in/h-upload/2026/02/15/64808-harmeet-desai-and-yashaswini-ghorpade.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-23-harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal/output-v4/qa/frames/frame-hook.png",
+      "text_px_detected": 25510,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          474,
+          350,
+          132,
+          194
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 74.2,
+        "delta": 179.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-23-harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal/output-v4/qa/frames/frame-news.png",
+      "text_px_detected": 24751,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.94)",
+        "box": [
+          472,
+          350,
+          135,
+          194
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 61.9,
+        "delta": 191.6
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-23-harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal/output-v4/qa/frames/frame-hero.png",
+      "text_px_detected": 25957,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.94)",
+        "box": [
+          473,
+          348,
+          134,
+          195
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 242.4,
+        "bg_luminance": 69.6,
+        "delta": 172.9
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-23-harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal/output-v4/qa/frames/frame-grid.png",
+      "text_px_detected": 51349,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.94)",
+        "box": [
+          473,
+          346,
+          136,
+          197
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 45.6,
+        "delta": 208.1
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-23-harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal/output-v4/qa/frames/frame-diaspora.png",
+      "text_px_detected": 40912,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.94)",
+        "box": [
+          473,
+          344,
+          138,
+          199
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 60.1,
+        "delta": 193.7
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-23-harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal/output-v4/qa/frames/frame-payoff.png",
+      "text_px_detected": 13120,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          472,
+          333,
+          140,
+          207
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.0,
+        "bg_luminance": 84.2,
+        "delta": 168.8
+      }
+    }
+  ]
+}

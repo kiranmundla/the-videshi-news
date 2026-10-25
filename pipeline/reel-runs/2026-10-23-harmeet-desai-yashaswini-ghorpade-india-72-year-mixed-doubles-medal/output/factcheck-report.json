@@ -1,0 +1,281 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal",
+  "verdict": "fail",
+  "held_claims": [
+    "stats[1].label"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA ENDS 72-YEAR TABLE TENNIS WAIT",
+      "numbers": [
+        72.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "India ended a 72-year wait for a mixed doubles medal.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Harmeet Desai and Yashaswini Ghorpade won bronze in mixed doubles at the Asian Table Tennis Championships in Tashkent, India's first medal in the event since 1954.",
+      "numbers": [
+        1954.0
+      ],
+      "entities": [
+        "Harmeet Desai",
+        "Yashaswini Ghorpade",
+        "Asian Table Tennis Championships"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          1954
+        ]
+      },
+      "llm_reason": "Desai and Ghorpade won bronze, first since 1954.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "72 YEARS",
+      "numbers": [
+        72.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states a 72-year wait.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "India's wait for a mixed doubles medal at the Asian Table Tennis Championships",
+      "numbers": [],
+      "entities": [
+        "Asian Table Tennis Championships"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "India's wait for a mixed doubles medal is 72 years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "No specific numerical data presented in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "3-2",
+      "numbers": [
+        2.0,
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The match score was 3-2 against South Korea.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Quarter-final comeback win over South Korea in Tashkent",
+      "numbers": [],
+      "entities": [
+        "South Korea"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the quarter-final win over South Korea.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "42 MIN",
+      "numbers": [
+        42.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The match lasted 42 minutes.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Five-game quarter-final, won 11-9 in the deciding game",
+      "numbers": [
+        9.0,
+        11.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article does not specify winning 11-9 in the deciding game.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "1954",
+      "numbers": [
+        1954.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          1954
+        ]
+      },
+      "llm_reason": "1954 is mentioned as the last medal year.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Year of India's last mixed doubles medal before this bronze",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "1954 was the year of India's last mixed doubles medal.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Harmeet Desai and Yashaswini Ghorpade beat South Korea's Park Ganghyeon and Lee Daeun",
+      "numbers": [],
+      "entities": [
+        "Harmeet Desai",
+        "Yashaswini Ghorpade",
+        "South Korea's Park Ganghyeon",
+        "Lee Daeun"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Desai and Ghorpade beat South Korea's pair.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "They lost the semi-final to Japan's Sora Matsushima and Miwa Harimoto",
+      "numbers": [],
+      "entities": [
+        "Japan's Sora Matsushima",
+        "Miwa Harimoto"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "They lost to Japan's Matsushima and Harimoto.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "India's first mixed doubles medal in 72 years \u2014 and only its third ever at the championships.",
+      "numbers": [
+        72.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "It's India's first mixed doubles medal in 72 years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Harmeet Desai",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Yashaswini Ghorpade",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Asian Table Tennis Championships",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Tashkent",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "India",
+      "deterministic": "pass"
+    }
+  ],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000525
+  }
+}

@@ -1,0 +1,37 @@
+{
+ "hook_line": "TRUMP IMMIGRATION POLICIES RISK TURNING AWAY NEEDED WORKERS",
+ "hook_stat": {
+  "big": "$100,000",
+  "eyebrow": "THE PRICE TAG",
+  "sub": "New H-1B payment for petitions for workers outside the US"
+ },
+ "stats": [
+  {
+   "big": "~100",
+   "label": "Nurses arriving weekly via immigration, down from 250-300"
+  },
+  {
+   "big": "60,000-80,000",
+   "label": "Registered nurse posts that went unfilled in 2025"
+  },
+  {
+   "big": "12.5%",
+   "label": "Immigrants' share of New Hampshire manufacturing workers"
+  }
+ ],
+ "diaspora_bullets": [
+  "H-1B processing now stretches to nearly two years, up from about six months",
+  "Tony Fernandez said Indian and Asian immigration is essential in tech and life sciences manufacturing"
+ ],
+ "key_entities": [
+  "New Hampshire",
+  "H-1B",
+  "Trump administration",
+  "Tony Fernandez",
+  "Core Medical Group"
+ ],
+ "news_summary": "Business leaders in New Hampshire are warning that the Trump administration's immigration policies risk turning away foreign workers the state cannot replace, as employers face shortages in factories, hospitals and technology firms.",
+ "payoff": "Employers say immigration has to be part of the solution to ensure the state has the talent and workforce to compete.",
+ "versus": "",
+ "story_mood": "tense"
+}

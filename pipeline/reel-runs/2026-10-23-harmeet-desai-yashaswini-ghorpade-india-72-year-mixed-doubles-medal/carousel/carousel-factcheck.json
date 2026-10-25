@@ -1,0 +1,159 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Harmeet Desai, Yashaswini Ghorpade End India's 72-Year Mixed Doubles Wait",
+        "numbers": [
+          72.0
+        ],
+        "entities": [
+          "Harmeet Desai",
+          "Yashaswini Ghorpade End India's",
+          "Mixed Doubles Wait"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Desai and Ghorpade ended a 72-year wait for a mixed doubles medal.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The Indian pair beat South Korea in a five-game quarter-final in Tashkent and took bronze at the Asian Table Tennis Championships, India's first mixed doubles medal since 1954.",
+        "numbers": [
+          1954.0
+        ],
+        "entities": [
+          "South Korea",
+          "Asian Table Tennis Championships"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            1954
+          ]
+        },
+        "llm_reason": "The Indian pair beat South Korea and won bronze, marking the first medal since 1954.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Harmeet Desai and Yashaswini Ghorpade won bronze in mixed doubles at the Asian Table Tennis Championships in Tashkent, India's first medal in the event in 72 years",
+        "numbers": [
+          72.0
+        ],
+        "entities": [
+          "Harmeet Desai",
+          "Yashaswini Ghorpade",
+          "Asian Table Tennis Championships"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Desai and Ghorpade won bronze in Tashkent, India's first medal in 72 years.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The Indian pair beat South Korea's Park Ganghyeon and Lee Daeun 3-2 in the quarter-final, coming back from 1-2 down to win 11-6, 8-11, 8-11, 11-9, 11-9 in 42 minutes",
+        "numbers": [
+          1.0,
+          2.0,
+          3.0,
+          6.0,
+          8.0,
+          9.0,
+          11.0,
+          42.0
+        ],
+        "entities": [
+          "South Korea's Park Ganghyeon",
+          "Lee Daeun"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The Indian pair beat South Korea's duo 3-2 in the quarter-final with specified scores.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "India's previous mixed doubles medals at the championships were gold in 1952 and silver in 1954",
+        "numbers": [
+          1952.0,
+          1954.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            1952,
+            1954
+          ]
+        },
+        "llm_reason": "India's previous mixed doubles medals were gold in 1952 and silver in 1954.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Harmeet Desai, Yashaswini Ghorpade End India's 72-Year Mixed Doubles Wait",
+        "numbers": [
+          72.0
+        ],
+        "entities": [
+          "Harmeet Desai",
+          "Yashaswini Ghorpade End India's",
+          "Mixed Doubles Wait"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Desai and Ghorpade ended a 72-year wait for a mixed doubles medal.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000375
+    }
+  },
+  "verdict": "pass"
+}

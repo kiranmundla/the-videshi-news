@@ -1,0 +1,146 @@
+[
+  {
+    "id": "b43c9349-de67-4026-898f-f11753029a66",
+    "headline": "Net FDI Into India Rises 44% to $13.8 Billion in April-August, RBI Data Show",
+    "slug": "net-fdi-india-up-44-percent-april-august-rbi",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the fiscal year being referenced (FY27) to avoid confusion for readers unfamiliar with the Indian fiscal calendar.",
+        "Provide a clearer breakdown of the sectors that attracted FDI, including specific dollar amounts for each sector to give readers a better understanding of where the investments are going.",
+        "Include a quote or statement from a relevant expert or economist to provide additional context and credibility to the data presented.",
+        "Add a brief explanation of what the implications of increased FDI might be for the Indian economy, such as potential job creation or economic growth."
+      ],
+      "embed_opportunities": [
+        "Embed the official RBI tweet or announcement regarding the FDI data for direct attribution and to enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "6a9e9109-c1d9-42fc-8a39-1f7334f05e07",
+    "headline": "Zetwerk Lists at 5% Premium, Ends Debut 8% Below Issue Price as Early Backers Bo",
+    "slug": "zetwerk-ipo-listing-5-percent-premium-peak-xv-30th",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the IPO subscription period (October 15-19) in the context of the listing date (October 23) to enhance clarity.",
+        "Provide more context on the significance of the 38x returns for early backers. Explain how this compares to industry standards or past IPO performances to give readers a better understanding of the implications.",
+        "Include a brief explanation of what the market capitalization figure means for investors or the company's future prospects, particularly in relation to its valuation at the top of the price band.",
+        "Ensure that all financial figures are consistently presented in both rupees and dollars for clarity, especially for international readers who may not be familiar with the Indian currency."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Zetwerk or a financial analyst commenting on the IPO performance to provide real-time reactions and insights."
+      ]
+    }
+  },
+  {
+    "id": "8ca4ca6e-9c89-4a7e-95f6-70d5c41481bc",
+    "headline": "Modi Interacts With AI Avatar of Swami Chinmayananda at Chinmaya Anniversary",
+    "slug": "modi-ai-avatar-swami-chinmayananda-chinmaya-sammelan",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the event by including more context about the Chinmaya Amrit Mahotsav and its relevance to the audience. For example, explain what the event aims to achieve or its historical importance.",
+        "Provide a direct quote from the official release regarding the technological aspects of the Holobot to enhance credibility and detail about this innovation.",
+        "Include more details about the AI technology used in the Holobot, such as the company or team behind it, to give readers a clearer understanding of the innovation.",
+        "Mention any notable attendees or speakers at the event to provide a fuller picture of the gathering and its importance."
+      ],
+      "embed_opportunities": [
+        "Embed the official video of the interaction shared by the Prime Minister's office to give readers visual context and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "46ab77d2-ae90-4221-b8c5-4f5d88ebc7e7",
+    "headline": "Bay of Bengal Storm, Likely Named Arnab, to Hit Odisha-Andhra Coast on October 2",
+    "slug": "bay-of-bengal-cyclone-landfall-october-28-odisha-andhra-imd",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the expected intensification of the storm and its implications for residents in the affected areas, such as potential evacuation orders or emergency services activation dates.",
+        "Include specific details about the expected impact on infrastructure and services, such as potential power outages, road closures, or disruptions to public transport, to provide readers with a clearer understanding of what to expect.",
+        "Add a quote from a local government official or meteorologist to enhance attribution and provide authoritative insight into the situation.",
+        "Ensure that the information about the storm's name and origin is accurate and clearly attributed, as there seems to be a discrepancy regarding the year of the cyclone formation mentioned in the article (2026 should likely be 2023)."
+      ],
+      "embed_opportunities": [
+        "Embed the official IMD tweet regarding the cyclone warning to provide readers with real-time updates and authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "617ea530-a25f-468c-9c88-ceba3cb5c8a4",
+    "headline": "Seven Killed in Attack on Church Funeral in Jordan's Karak; US Embassy Issues Al",
+    "slug": "jordan-karak-church-attack-us-embassy-security-ramped-up",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact time of the attack and when the US Embassy issued the alert, as this would provide readers with a clearer understanding of the situation's progression.",
+        "Include a brief background on the security situation in Jordan, particularly in Karak, to give readers context about why this attack is significant and how it fits into broader regional issues.",
+        "Ensure consistency in reporting numbers; the article mentions both seven and six fatalities in different sections. Confirm the latest figures and stick to one source for accuracy."
+      ],
+      "embed_opportunities": [
+        "Embed the official US Embassy tweet regarding the security alert for immediate access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "22bec376-ca91-4fa3-a51f-74f61f19c771",
+    "headline": "Bitcoin Hovers Near $80,000 as ETF Outflows and $100 Oil Weigh on Crypto",
+    "slug": "bitcoin-near-80000-ethereum-2370-etf-outflows-oil",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the $636 million in ETF outflows by specifying which ETFs are involved, as this would provide more context for readers.",
+        "Include a brief explanation of why the $100 oil price is significant for the crypto market, as this connection is currently implied but not explicitly stated.",
+        "Add a specific timeframe for the reported data on Bitcoin and Ethereum prices, such as 'as of Saturday morning' or 'as of the last trading session,' to enhance clarity on when this information is relevant.",
+        "Provide a clearer breakdown of the $467 million in liquidated positions, including the types of positions (e.g., futures, options) and the impact on the broader market, to give readers a more comprehensive understanding of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or statement from a reputable financial analyst or crypto expert commenting on the current market conditions to provide additional context and authority."
+      ]
+    }
+  },
+  {
+    "id": "1b213afd-1b4f-4920-ba37-d793619505b5",
+    "headline": "India Is Listing 'AI-Proof' Jobs and Sectors It Wants to Lead Globally, Goyal Sa",
+    "slug": "india-ai-proof-professions-goyal-commerce-ministry-global-lead",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the term 'AI-proof professions' by providing a definition or context for readers unfamiliar with the concept.",
+        "Include specific examples of the 'incentives' mentioned by Goyal to support the identified sectors, such as potential funding amounts or types of initiatives.",
+        "Add a quote or data point regarding the expected impact of these AI-proof sectors on employment or economic growth to provide readers with a clearer understanding of the significance.",
+        "Provide a brief background on the IndiaAI Mission and its goals to give context to the Rs 10,371.92 crore outlay mentioned."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Piyush Goyal or the official Commerce Ministry account regarding this announcement."
+      ]
+    }
+  }
+]

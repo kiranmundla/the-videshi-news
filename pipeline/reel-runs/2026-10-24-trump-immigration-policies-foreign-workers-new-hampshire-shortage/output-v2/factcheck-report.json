@@ -1,0 +1,272 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "trump-immigration-policies-foreign-workers-new-hampshire-shortage",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "TRUMP IMMIGRATION POLICIES RISK TURNING AWAY NEEDED WORKERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states Trump's policies risk turning away needed foreign workers.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Business leaders in New Hampshire are warning that the Trump administration's immigration policies risk turning away foreign workers the state cannot replace, as employers face shortages in factories, hospitals and technology firms.",
+      "numbers": [],
+      "entities": [
+        "New Hampshire"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Business leaders warn Trump's policies risk foreign worker shortages in key sectors.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$100,000",
+      "numbers": [
+        100000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions a $100,000 H-1B payment requirement.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "New H-1B payment for petitions for workers outside the US",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "New H-1B"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article discusses new H-1B payment for petitions filed for workers outside the US.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE PRICE TAG",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "~100",
+      "numbers": [
+        100.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Nurse arrivals have fallen to about 100 per week according to the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Nurses arriving weekly via immigration, down from 250-300",
+      "numbers": [
+        250.0,
+        300.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states nurse arrivals have decreased from 250-300 to about 100.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "60,000-80,000",
+      "numbers": [
+        60000.0,
+        80000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states 60,000 to 80,000 registered nurse posts went unfilled in 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Registered nurse posts that went unfilled in 2025",
+      "numbers": [
+        2025.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article confirms the number of unfilled registered nurse posts in 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "12.5%",
+      "numbers": [
+        12.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states immigrants account for 12.5% of manufacturing workers.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Immigrants' share of New Hampshire manufacturing workers",
+      "numbers": [],
+      "entities": [
+        "New Hampshire"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the share of immigrants in manufacturing.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "H-1B processing now stretches to nearly two years, up from about six months",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states H-1B processing times have increased to nearly two years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Tony Fernandez said Indian and Asian immigration is essential in tech and life sciences manufacturing",
+      "numbers": [],
+      "entities": [
+        "Tony Fernandez"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Tony Fernandez emphasizes the necessity of Indian and Asian immigration.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Employers say immigration has to be part of the solution to ensure the state has the talent and workforce to compete.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Employers argue immigration is essential for workforce competitiveness.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE PRICE TAG",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "New Hampshire",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "H-1B",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Trump administration",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Tony Fernandez",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Core Medical Group",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00075,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

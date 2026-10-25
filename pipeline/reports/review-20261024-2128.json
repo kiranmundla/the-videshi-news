@@ -1,0 +1,175 @@
+[
+  {
+    "id": "9505e038-366e-417f-8e53-a5cf3e45e5a1",
+    "headline": "AI Cross-Checks May Flag H-1B Address Mismatches, Law Firm Warns",
+    "slug": "ai-cross-checks-h1b-address-worksite-mismatches-law-firm-warns",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the consequences of mismatches between addresses. For example, specify what potential actions USCIS might take if discrepancies are flagged, such as increased scrutiny or potential denial of visa applications.",
+        "Include specific timelines for reporting address changes to USCIS and employers. For instance, mention that the AR-11 must be filed within 10 days of moving, but also clarify any potential grace periods or implications for failing to do so.",
+        "Provide a brief explanation of the AI-assisted checks mentioned. A sentence or two on how these checks work or what they entail would help readers understand the significance of the warning.",
+        "Ensure the headline reflects the urgency and importance of the issue. Consider rephrasing it to something like 'Urgent Warning: AI Checks Could Expose H-1B Address Discrepancies, Law Firm Advises' to enhance its compelling nature."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official statement from USCIS regarding the importance of keeping address records updated, which would provide authoritative context to the article."
+      ]
+    }
+  },
+  {
+    "id": "66638ea1-e44b-48c7-98ea-dc45daeaff23",
+    "headline": "Indian-American Donors Give Republicans Four-to-One Funding Edge Ahead of Midter",
+    "slug": "indian-american-donors-republicans-four-to-one-funding-edge-midterms",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the funding, specifying the exact dates or time frame for the contributions mentioned, as the phrase 'since 2025' is misleading since the midterms are in 2026.",
+        "Provide a clearer explanation of the significance of the funding disparity. For example, explain how this funding edge could impact the Republican Party's campaign strategies or voter outreach efforts in the upcoming midterms.",
+        "Include a brief explanation of the AAPI Voter Survey's methodology or sample size to give readers context on the reliability of the voter support statistics mentioned."
+      ],
+      "embed_opportunities": [
+        "Embed the official FEC data or a relevant graphic that visualizes the funding disparity between Republican and Democratic PAC contributions."
+      ]
+    }
+  },
+  {
+    "id": "c8ae948e-d755-437b-8a9b-da107703d283",
+    "headline": "Cheeni in Durham Named North Carolina's Best Indian Restaurant in National Ranki",
+    "slug": "cheeni-durham-named-north-carolinas-best-indian-restaurant-tasting-table",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include a quote from Chef Preeti Waas or a representative from Tasting Table to provide a personal touch and enhance credibility.",
+        "Add specific details about the ranking criteria used by Tasting Table, such as the number of reviews considered or how the final decision was made, to give readers a clearer understanding of the ranking's significance.",
+        "Mention any upcoming events, specials, or promotions at Cheeni to encourage readers to visit the restaurant, enhancing the article's relevance for potential customers.",
+        "Clarify the opening date of the restaurant, as it currently states 'opened in November 2023' without a specific date, which could help contextualize its rapid rise in popularity."
+      ],
+      "embed_opportunities": [
+        "Embed the official Tasting Table article or tweet announcing the ranking for direct access to the source and additional context."
+      ]
+    }
+  },
+  {
+    "id": "91835dcc-9e61-4568-a72d-e76abce7ea56",
+    "headline": "Air India Extends Riyadh, Dammam Flight Suspensions to November 7",
+    "slug": "air-india-riyadh-dammam-flights-suspended-november-7-indigo-akasa",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the year in the dates mentioned; it states 'November 7, 2026' which seems incorrect given the context of current events. It should likely be 'November 7, 2023'.",
+        "Provide more context on the nature of the attacks on Saudi civilian infrastructure that led to these flight suspensions, as this information is crucial for readers to understand the severity of the situation.",
+        "Include specific details on how passengers can initiate the one-time free rebooking or refund process, such as contact numbers or links to the airlines' customer service pages."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or advisory from Air India regarding the flight suspensions for authenticity and direct access to information."
+      ]
+    }
+  },
+  {
+    "id": "8c4bdb84-b8eb-4d0a-a86f-7dbb3085ae0a",
+    "headline": "Mumbai's Dedicated Pasta Restaurants Boom as World Pasta Day Arrives October 25",
+    "slug": "mumbai-dedicated-pasta-restaurants-boom-world-pasta-day",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of World Pasta Day in the headline and body to avoid confusion, as October 25 is a Wednesday in 2023, not a Sunday.",
+        "Include a brief overview of the significance of World Pasta Day for context, as readers may not be familiar with its relevance.",
+        "Add more specific details about the workshops at Luuma House, such as the cost of participation and any required materials or reservations, to provide actionable information for readers.",
+        "Ensure that all quotes are properly attributed with the source to enhance credibility and transparency."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a local food influencer or restaurant about World Pasta Day celebrations in Mumbai to provide real-time engagement."
+      ]
+    }
+  },
+  {
+    "id": "276a03c5-0f8a-4f6c-88f7-e58c22c1a901",
+    "headline": "India A Face Pakistan A on November 22 in Asia Cup Rising Stars",
+    "slug": "india-a-pakistan-a-november-22-asia-cup-rising-stars-2026",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the matches by providing context on how they impact the players' chances for selection in the senior national team, including any specific criteria or benchmarks that are relevant.",
+        "Include the local time zone for the matches to avoid confusion for readers in different regions, especially since the article mentions local time but does not specify the time zone.",
+        "Add a brief overview of the format of the tournament, including how many teams advance to the semi-finals and the criteria for advancement, to enhance completeness."
+      ],
+      "embed_opportunities": [
+        "Embed the official ACC or ICC tweet announcing the tournament schedule for credibility and to provide readers with direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "c1e39122-4e4b-4d61-bfbd-7a3e13b3415f",
+    "headline": "India Issues Fresh Advisory for Umrah Pilgrims as Saudi Flights Stay Cancelled",
+    "slug": "india-fresh-advisory-umrah-pilgrims-saudi-flights-cancelled",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the advisory by specifying the exact date of the previous advisory to highlight the urgency and context of the situation.",
+        "Include specific contact details for the Indian Consulate in Jeddah, such as phone numbers or email addresses, to enhance accessibility for stranded pilgrims.",
+        "Add a brief explanation of the reasons behind the flight cancellations to provide readers with context about the situation affecting Umrah pilgrims."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian Consulate in Jeddah regarding the advisory for real-time updates and credibility."
+      ]
+    }
+  },
+  {
+    "id": "b7721504-99ef-4ab9-9266-fb424a41f9a3",
+    "headline": "Class 12 Student Found With Severe Burns at Delhi School Dies",
+    "slug": "class-12-student-found-severe-burns-delhi-school-dies",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by providing specific times for when the student was found, when the police arrived, and when she was declared dead. This will help readers understand the sequence of events more clearly.",
+        "Include a brief background on the school or the area to provide context for readers unfamiliar with Krishna Nagar. This could help in understanding the environment where the incident occurred.",
+        "Ensure that the statement from Delhi Police is fully quoted and attributed to provide clarity on what they have officially confirmed regarding the incident. This will enhance the accuracy and completeness of the reporting.",
+        "Remove the repetitive mention of the student's age and class to improve clarity and conciseness in the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official Delhi Police statement or a tweet from their account regarding the incident for direct attribution and to provide readers with official information."
+      ]
+    }
+  },
+  {
+    "id": "33ac4018-2606-4731-8b37-93a911e9dd27",
+    "headline": "Diwali Meets Chuseok in Delhi as K-Pop Band NTX Headlines Korea Culture Day",
+    "slug": "diwali-meets-chuseok-delhi-korea-culture-day-ntx",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the event by specifying the exact dates for both days of the festival, as it currently states 'October 23, running into October 24' without clear details.",
+        "Include direct quotes from the South Korean ambassador or other key figures to enhance attribution and provide a more personal touch to the reporting.",
+        "Provide additional context about the significance of the cultural exchange between India and Korea, perhaps by briefly mentioning past events or collaborations to give readers a clearer picture of the relationship.",
+        "Explain the significance of the performances, particularly the K-pop band's songs, and how they relate to the themes of Diwali and Chuseok."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from the Korean Cultural Centre India or the South Korean embassy highlighting the event or sharing images from the performances."
+      ]
+    }
+  }
+]

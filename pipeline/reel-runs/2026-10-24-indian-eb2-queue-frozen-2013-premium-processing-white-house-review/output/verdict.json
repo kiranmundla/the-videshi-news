@@ -1,0 +1,14 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "article_slug": "indian-eb2-queue-frozen-2013-premium-processing-white-house-review",
+  "name": "indian-eb2-queue-frozen-2013-premium-processing-white-house-review",
+  "script": "reel-runs/2026-10-24-indian-eb2-queue-frozen-2013-premium-processing-white-house-review/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000772
+  },
+  "detail": "no composition fits all scenes at the planner floors \u2014 cover: scene 'grid' text cannot fit at the minimum scale in any zone (text too long); fit: scene 'grid' text cannot fit at the minimum scale in any zone (text too long)"
+}

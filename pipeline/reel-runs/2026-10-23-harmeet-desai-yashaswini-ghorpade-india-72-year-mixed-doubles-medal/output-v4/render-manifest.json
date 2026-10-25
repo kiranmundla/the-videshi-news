@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal",
+  "article_slug": "harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal",
+  "article_id": "87cf5b8e-1f93-47af-b114-301bac754987",
+  "category": "Sports",
+  "video": "reel-runs/2026-10-23-harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal/output-v4/harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://thebridge.in/h-upload/2026/02/15/64808-harmeet-desai-and-yashaswini-ghorpade.jpg",
+    "local_path": "reel-runs/2026-10-23-harmeet-desai-yashaswini-ghorpade-india-72-year-mixed-doubles-medal/output-v4/hero.jpg",
+    "width": 1500,
+    "height": 900,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "yunet (score 0.93)",
+    "has_face": true,
+    "box_source": [
+      528,
+      166,
+      65,
+      89
+    ],
+    "box_bg": [
+      471.4,
+      354.1,
+      138.7,
+      189.9
+    ],
+    "chin_bg": 544.0,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": 543.7,
+      "zone_top": 592,
+      "zone_h": 988,
+      "scale": 1.0,
+      "content_h": 270,
+      "block_top": 682,
+      "block_bottom": 952,
+      "text_bbox": [
+        121,
+        682,
+        889,
+        944
+      ],
+      "texts": [
+        "Sports",
+        "INDIA ENDS 72-YEAR TABLE TENNIS WAIT"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": 543.4,
+      "zone_top": 592,
+      "zone_h": 988,
+      "scale": 1.0,
+      "content_h": 278,
+      "block_top": 682,
+      "block_bottom": 960,
+      "text_bbox": [
+        124,
+        682,
+        882,
+        957
+      ],
+      "texts": [
+        "What Happened",
+        "Harmeet Desai and Yashaswini Ghorpade won bronze in mixed doubles at the Asian Table Tennis Championships in Tashkent, India's first medal in the event since 1954."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": 543.0,
+      "zone_top": 591,
+      "zone_h": 989,
+      "scale": 1.0,
+      "content_h": 351,
+      "block_top": 681,
+      "block_bottom": 1032,
+      "text_bbox": [
+        107,
+        681,
+        895,
+        1037
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "72 YEARS",
+        "India's wait for a mixed doubles medal at the Asian Table Tennis Championships"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": 542.5,
+      "zone_top": 591,
+      "zone_h": 989,
+      "scale": 1.0,
+      "content_h": 751,
+      "block_top": 681,
+      "block_bottom": 1432,
+      "text_bbox": [
+        124,
+        681,
+        883,
+        1431
+      ],
+      "texts": [
+        "By The Numbers",
+        "3-2",
+        "Quarter-final comeback win over South Korea in Tashkent",
+        "42 MIN",
+        "Length of the five-game quarter-final against South Korea",
+        "1954",
+        "Year of India's last mixed doubles medal before this bronze"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": 542.1,
+      "zone_top": 591,
+      "zone_h": 989,
+      "scale": 1.0,
+      "content_h": 457,
+      "block_top": 681,
+      "block_bottom": 1138,
+      "text_bbox": [
+        118,
+        681,
+        867,
+        1134
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "Harmeet Desai and Yashaswini Ghorpade beat South Korea's Park Ganghyeon and Lee Daeun",
+        "They lost the semi-final to Japan's Sora Matsushima and Miwa Harimoto"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": 541.8,
+      "zone_top": 590,
+      "zone_h": 990,
+      "scale": 1.0,
+      "content_h": 252,
+      "block_top": 680,
+      "block_bottom": 932,
+      "text_bbox": [
+        133,
+        680,
+        873,
+        943
+      ],
+      "texts": [
+        "The Takeaway",
+        "India's first mixed doubles medal in 72 years \u2014 and only its third ever at the championships.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "emotional-inspiring-inspiring-uplifting.mp3",
+    "path": "music/emotional-inspiring-inspiring-uplifting.mp3"
+  },
+  "render_seconds": 322.1,
+  "mp4_bytes": 11409204
+}
