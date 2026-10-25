@@ -53,6 +53,41 @@ serif-led, photo-forward, navy/gold/red):
     the QA edge bands forbid glyphs above y=118).
 
 This module NEVER writes to prebuilt_reels and NEVER uploads.
+
+REVISION (2026-10-24 late, Kiran's spot-check of the first sample):
+  1. CONSTANT COMPOSED SIZE — the first sample's progressive
+     hero-crop shrink (0.62 -> 0.50 -> 0.40 -> 0.32, the photo
+     getting smaller on the stage every scene) is abolished.
+     Every backdrop scene now shows its photo at ONE composed
+     size: the stage box = the hook scene's backdrop fit. Scenes
+     vary by crop REGION at that same display size (focal-anchored
+     windows of the source), never by shrinking. Supplied images
+     (inline / supplementary) are windowed into the same box.
+  2. CONTINUOUS TRANSITIONS — measured on the first sample, the
+     cuts were frame-exact but the frame-to-frame change at the
+     hook->news cut spiked ~28x over the within-scene motion
+     baseline (MAD 27.9 vs ~0.6): two differently scaled renderings
+     of the photo swapped in a single frame while the camera zoom
+     advanced 0.2%. Assembly now crossfades every scene boundary
+     (xfade, offsets on the beat boundaries, the shared global
+     Ken Burns phase running underneath both sides), and fix 1
+     removes the size/position jump itself.
+  3. STAGE VARIANTS — the stage colour is a render parameter:
+     "navy" (house #0B1D3A) or "black" (#000000), so Kiran can
+     A/B the identical composition on both. Gold kicker/rule and
+     white text are unchanged; the brand chip fill follows the
+     stage.
+  4. SUPPLEMENTARY ENTITY IMAGES — a scene may be assigned a
+     verified supplementary photo (campus / HQ / person / org
+     building) from the sourcing ladder, with provenance recorded
+     in the manifest per scene. The article's own hero stays the
+     hook; beats without an assignment fall back to inlines, then
+     hero region windows, then the plain stage closer.
+  5. The full-bleed branch now crops through the module's own
+     9:16 cover_window (the first build called social_card's 4:5
+     cover_crop with a wrong signature — dead code, because no
+     scene in that sample earned full-bleed; the path is live now
+     that high-res supplementary originals can earn it).
 """
 import json, math, subprocess, sys, time
 from pathlib import Path
@@ -72,19 +107,35 @@ TEXT_X = R.PANEL_X0                 # 70 — the v6 text column
 TEXT_MAX_W = R.PANEL_X1 - R.PANEL_X0   # 860 (left-aligned card block)
 SAFE_TOP, SAFE_BOTTOM = R.TOP_SAFE, R.BOT_SAFE   # 140 / 1580
 PHOTO_MAX_H = 1020                  # backdrop: photo zone cap (~53%)
-PHOTO_TOP = 128                     # backdrop photo head margin:
-                                    # static cards sit the photo
-                                    # flush at y=0; on the reel the
-                                    # frame-QA edge band (and the
-                                    # Shorts UI) reserves the top
-                                    # 118px, so the photo starts
-                                    # just below it on the navy stage
+# The zoom-safe photo column. The frame-QA gate's forbidden bands
+# (x<48, x>952, y<118) are sized for TEXT; a backdrop photo that
+# spans the canvas gets pushed INTO them by the Ken Burns zoom
+# (out = bg*z - centre*(z-1), z up to 1.07): measured on this
+# sample, the facade photo's edges formed glyph-like clusters in
+# the side bands and the campus photo's top row formed a 2893px
+# strip in the top band. So the stage box lives inside the region
+# that stays clear of every band at max zoom — which, happily,
+# is almost exactly the v6 text column (x 81..925 vs text
+# 70..930): photo and text share one column, as on the cards.
+SAFE_BOX_X0, SAFE_BOX_X1 = 86, 920
+PHOTO_TOP = 156                     # backdrop photo top: clears
+                                    # the y<118 band at max zoom
+                                    # (156*1.07 - 0.3*1920*0.07 =
+                                    # 126.6); the static cards sit
+                                    # photos at y=0, the reel cannot
 ZONE_TOP_GAP = 64                   # photo bottom -> text block gap
 ZONE_BOTTOM_PAD = 24
 MIN_FONT = R.MIN_FONT
-CROP_FRACS = (0.62, 0.50, 0.40, 0.32)
-MIN_CROP_W = 480                    # crops narrower than this stop
-                                    # the chain (navy takes over)
+STAGE_COLORS = {"navy": NAVY, "black": (0, 0, 0)}
+XFADE_S = 0.4                       # scene-boundary crossfade (s)
+# Backdrop crop regions, cycled for hero-window scenes: windows of
+# the source at the stage box's aspect, differing by REGION only.
+# Widths are fractions of the largest box-aspect window and are
+# clamped so a window never goes below the box (no upscale).
+WINDOW_REGIONS = (("subject", 0.88), ("left", 0.80),
+                  ("right", 0.80), ("bottom", 0.74))
+MIN_WINDOW_W = 480                  # windows narrower than this
+                                    # stop the chain (stage takes over)
 
 
 # ── 9:16 track gate (social_card.choose_track logic, 9:16 geometry) ──
@@ -117,53 +168,190 @@ def choose_track_916(w, h):
 
 
 def scene_track(source_px):
-    """Track decision for one scene image (None -> navy text scene)."""
+    """Track decision for one scene image (None -> plain stage)."""
     if source_px is None:
-        return "navy", 1.0, None
+        return "stage", 1.0, None
     return choose_track_916(source_px[0], source_px[1])
 
 
+# ── Constant composed size: the stage box + region windows ──────
+def stage_box(hero_size):
+    """(box_w, box_h, hook_scale) — THE composed photo size for
+    every backdrop scene in the reel: the hook scene's backdrop
+    fit of the hero, clamped into the zoom-safe column (see
+    SAFE_BOX_X0/X1) so no scene's photo can enter the QA edge
+    bands under the Ken Burns zoom. All backdrop photos render
+    at exactly this size, at the same stage position; only their
+    crop region varies (Kiran, 2026-10-24: the progressive
+    shrink is out)."""
+    bw, bh, _s = backdrop_fit_916(hero_size[0], hero_size[1])
+    max_w = SAFE_BOX_X1 - SAFE_BOX_X0
+    if bw > max_w:
+        bh = int(bh * max_w / bw)
+        bw = max_w
+    return bw, bh, bw / hero_size[0]
+
+
+def max_window(src_size, box):
+    """The largest rect of the box's aspect inside the source."""
+    sw, sh = src_size
+    bw, bh = box[0], box[1]
+    aspect = bw / bh
+    if sw / sh >= aspect:
+        win_h, win_w = sh, int(sh * aspect)
+    else:
+        win_w, win_h = sw, int(sw / aspect)
+    return win_w, win_h
+
+
+def shift_subject_inside(rect, subject):
+    """Shift a crop window the minimum amount so the subject rect
+    lies fully inside it (per axis, only when the window is at
+    least as large as the subject on that axis). Keeps a crop from
+    clipping the subject — the first sample's scene-3 sign clip."""
+    if subject is None:
+        return rect
+    x0, y0, x1, y1 = rect
+    sx0, sy0, sx1, sy1 = subject
+    if x1 - x0 >= sx1 - sx0:
+        if sx0 < x0:
+            x1 -= x0 - sx0
+            x0 = sx0
+        elif sx1 > x1:
+            x0 += sx1 - x1
+            x1 = sx1
+    if y1 - y0 >= sy1 - sy0:
+        if sy0 < y0:
+            y1 -= y0 - sy0
+            y0 = sy0
+        elif sy1 > y1:
+            y0 += sy1 - y1
+            y1 = sy1
+    return (x0, y0, x1, y1)
+
+
+def backdrop_window(src_size, box, anchor, region="subject",
+                    frac=1.0, subject=None):
+    """The crop window of `src_size` shown in the stage box.
+
+    The window has the box's aspect and is sized `frac` of the
+    largest such window (clamped so it never goes below the box —
+    display scale <= 1.0 — and never exceeds the source). Position
+    is set by `region` around the focal anchor, then shifted by
+    the subject-keep-inside rule. Returns (rect, display_scale);
+    when the source is smaller than the box the window is the
+    largest available and display_scale > 1.0 tells the caller to
+    contain-fit at native scale instead (never upscale)."""
+    sw, sh = src_size
+    bw, bh = box[0], box[1]
+    mw, mh = max_window(src_size, box)
+    win_w = min(mw, max(bw, int(mw * frac)))
+    win_h = int(win_w * bh / bw)
+    if win_h > mh:                      # rounding guard
+        win_h = mh
+        win_w = int(win_h * bw / bh)
+    fx, fy = anchor
+    if region == "left":
+        x0 = 0
+        y0 = int(fy * sh - win_h / 2)
+    elif region == "right":
+        x0 = sw - win_w
+        y0 = int(fy * sh - win_h / 2)
+    elif region == "bottom":
+        x0 = int(fx * sw - win_w / 2)
+        y0 = sh - win_h
+    else:                               # "subject" / "wide"
+        x0 = int(fx * sw - win_w / 2)
+        y0 = int(fy * sh - win_h / 2)
+    x0 = min(max(x0, 0), sw - win_w)
+    y0 = min(max(y0, 0), sh - win_h)
+    rect = shift_subject_inside((x0, y0, x0 + win_w, y0 + win_h),
+                                subject)
+    # Keep-inside may push the window out of frame on an axis
+    # where the subject touches the edge — re-clamp (the window
+    # still contains as much of the subject as the frame allows).
+    x0 = min(max(rect[0], 0), sw - win_w)
+    y0 = min(max(rect[1], 0), sh - win_h)
+    rect = (x0, y0, x0 + win_w, y0 + win_h)
+    return rect, bw / win_w
+
+
+def xfade_plan(beats, fade_s=XFADE_S):
+    """Pure timing math for the crossfade assembly: per-segment
+    frame counts (every segment but the last is extended by the
+    fade so its tail blends into the next scene) and the xfade
+    offsets (the beat boundaries). Total output frames are
+    exactly the reel's."""
+    plan = []
+    n = len(beats)
+    for i, (key, start, dur) in enumerate(beats):
+        frames = int(dur * FPS) + (int(fade_s * FPS) if i < n - 1
+                                   else 0)
+        plan.append({"beat": key, "frames": frames,
+                     "offset": start if i else None})
+    return plan
+
+
 # ── Per-scene image planner (Kiran's deck ideal) ─────────────────────
-def plan_scene_images(beat_keys, hero_size, inline_sizes):
+def plan_scene_images(beat_keys, hero_size, inline_sizes,
+                      extras=None):
     """Assign each beat its own image. Order (the approved chain):
-    hook -> the hero; payoff -> navy (the closer); every other beat
-    consumes, in order: the article's inline images (body order),
-    then progressively tighter hero detail-crops (skipping crops
-    narrower than MIN_CROP_W), then navy. Pure function of sizes —
-    unit-tested in test_reel_v7.py."""
+    hook -> the hero; a beat with a supplementary assignment
+    (extras, from the verified sourcing ladder) takes it; payoff
+    without an assignment is the plain-stage closer; every other
+    beat consumes, in order: the article's inline images (body
+    order), then hero region windows (constant composed size —
+    WINDOW_REGIONS), then the plain stage. Pure function of
+    sizes — unit-tested in test_reel_v7.py."""
+    extras = extras or {}
     plans = []
     inline_i = 0
-    crop_i = 0
+    win_i = 0
     for key in beat_keys:
         if key == "hook":
             plans.append({"beat": key, "source": "hero",
-                          "source_px": list(hero_size)})
+                          "source_px": list(hero_size),
+                          "region": "wide", "frac": 1.0})
+            continue
+        if key in extras:
+            plans.append({"beat": key,
+                          "source": f"extra:{extras[key]['label']}",
+                          "extra": extras[key],
+                          "source_px": list(extras[key]["size"]),
+                          "region": "subject", "frac": 1.0})
             continue
         if key == "payoff":
-            plans.append({"beat": key, "source": "navy",
+            plans.append({"beat": key, "source": "stage",
                           "source_px": None})
             continue
         if inline_i < len(inline_sizes):
             plans.append({"beat": key,
                           "source": f"inline:{inline_i + 1}",
                           "inline_index": inline_i,
-                          "source_px": list(inline_sizes[inline_i])})
+                          "source_px": list(inline_sizes[inline_i]),
+                          "region": "subject", "frac": 1.0})
             inline_i += 1
             continue
         placed = False
-        while crop_i < len(CROP_FRACS):
-            frac = CROP_FRACS[crop_i]
-            crop_i += 1
-            cw, ch = int(hero_size[0] * frac), int(hero_size[1] * frac)
-            if cw >= MIN_CROP_W:
+        box_w = stage_box(hero_size)[0]
+        mw, _mh = max_window(hero_size, stage_box(hero_size))
+        while win_i < len(WINDOW_REGIONS):
+            region, frac = WINDOW_REGIONS[win_i]
+            win_i += 1
+            # A window scene must fill the stage box WITHOUT
+            # upscaling (window >= box width) and clear the size
+            # floor — on a hero barely wider than its box the
+            # regions degenerate to the full frame, so the beat
+            # falls through to the plain stage instead.
+            if int(mw * frac) >= max(MIN_WINDOW_W, box_w):
                 plans.append({"beat": key,
-                              "source": f"hero-crop:{frac}",
-                              "crop_frac": frac,
-                              "source_px": [cw, ch]})
+                              "source": f"hero-win:{region}",
+                              "region": region, "frac": frac,
+                              "source_px": list(hero_size)})
                 placed = True
                 break
         if not placed:
-            plans.append({"beat": key, "source": "navy",
+            plans.append({"beat": key, "source": "stage",
                           "source_px": None})
     return plans
 
@@ -452,23 +640,44 @@ def fit_scene_v7(key, stats, category, zone_h, floor=0.5):
 
 
 # ── Scene background composition ─────────────────────────────────────
-def compose_scene_bg(img, track, anchor):
+def _brand_chip_stage(img, x, y, stage_rgb):
+    """'THE VIDESHI' chip on the photo (backdrop track): pill fill
+    follows the stage variant, gold outline + tracked gold caps
+    (social_card.brand_chip geometry)."""
+    d = ImageDraw.Draw(img)
+    f = R.get_font(800, 25)
+    label = "THE VIDESHI"
+    tw = SC.tracked_w(d, label, f, 6)
+    d.rounded_rectangle((x, y, x + tw + 36, y + 52), radius=10,
+                        fill=stage_rgb, outline=GOLD, width=2)
+    cx = x + 18
+    for ch in label:
+        d.text((cx, y + 12), ch, font=f, fill=GOLD)
+        cx += d.textlength(ch, font=f) + 6
+
+
+def compose_scene_bg(img, track, anchor, stage_rgb, box=None,
+                     window=None):
     """Compose one scene's text-free 1080x1920 background.
 
-    Returns (bg, placement) where placement records the photo
-    geometry: {mode, x, y, w, h, scale} — the face mapper and the
-    manifest read it. full-bleed: 9:16 cover-crop anchored on the
-    focal point (exact face, else the damped heuristic — the card
-    system's focal_anchor) + the v6 smooth gradient + the "V."
-    mark inside the safe zone. backdrop: photo at native scale,
-    top-centred on the navy stage + the gold "THE VIDESHI" chip on
-    the photo's top-left (the card treatment). navy: the stage."""
-    if track == "navy" or img is None:
-        return Image.new("RGB", (W, H), NAVY), {
-            "mode": "navy", "x": 0, "y": 0, "w": 0, "h": 0,
+    Returns (bg, placement). full-bleed: the 9:16 cover window
+    (cover_window) resized to the frame — the track gate has
+    already guaranteed scale <= 1.0 — + the v6 smooth gradient +
+    the "V." mark inside the safe zone. backdrop: the scene's
+    window of the source resized to the CONSTANT stage box
+    (box_w x box_h at PHOTO_TOP) — every backdrop scene in the
+    reel shows its photo at this identical size — + the brand
+    chip. When window is None and the source is smaller than the
+    box, the photo is contain-fitted at native scale centred in
+    the box area (never upscale). stage: the bare stage."""
+    if track == "stage" or img is None:
+        return Image.new("RGB", (W, H), stage_rgb), {
+            "mode": "stage", "x": 0, "y": 0, "w": 0, "h": 0,
             "scale": 1.0}
     if track == "full-bleed":
-        bg = SC.cover_crop(img, anchor, canvas=(W, H)).convert("RGB")
+        rect = cover_window(img.size, anchor)
+        crop = img.crop(rect)
+        bg = crop.resize((W, H), Image.LANCZOS).convert("RGB")
         bg = R.apply_gradient(bg)
         # "V." mark in the card style (white Playfair V + red dot),
         # shifted from the card corner (52, 36) to y=150 — just
@@ -480,33 +689,44 @@ def compose_scene_bg(img, track, anchor):
         d.text((56, 150), "V", font=f, fill=SC.WHITE)
         d.ellipse((56 + tw + 7, 190, 56 + tw + 17, 200), fill=SC.RED)
         return bg, {"mode": "cover", "x": 0, "y": 0, "w": W, "h": H,
-                    "scale": full_bleed_scale_916(*img.size)}
+                    "scale": full_bleed_scale_916(*img.size),
+                    "window": list(rect)}
+    box_w, box_h = box[0], box[1]
+    bg = Image.new("RGB", (W, H), stage_rgb)
+    px = SAFE_BOX_X0 + (SAFE_BOX_X1 - SAFE_BOX_X0 - box_w) // 2
+    if window is not None:
+        photo = img.crop(window).resize((box_w, box_h),
+                                        Image.LANCZOS)
+        bg.paste(photo, (px, PHOTO_TOP))
+        _brand_chip_stage(bg, px + 48, PHOTO_TOP + 44, stage_rgb)
+        return bg, {"mode": "backdrop", "x": px, "y": PHOTO_TOP,
+                    "w": box_w, "h": box_h,
+                    "scale": box_w / (window[2] - window[0]),
+                    "window": list(window)}
     pw, ph, scale = backdrop_fit_916(*img.size)
-    photo = img if scale >= 0.999 else img.resize((pw, ph),
-                                                  Image.LANCZOS)
-    bg = Image.new("RGB", (W, H), NAVY)
-    px = (W - pw) // 2
-    bg.paste(photo, (px, PHOTO_TOP))
-    SC.brand_chip(bg, x=px + 48, y=PHOTO_TOP + 44)
-    return bg, {"mode": "backdrop", "x": px, "y": PHOTO_TOP,
-                "w": pw, "h": ph, "scale": scale}
+    pw, ph = min(pw, box_w), min(ph, box_h)
+    photo = img if (pw, ph) == img.size else img.resize(
+        (pw, ph), Image.LANCZOS)
+    cx = px + (box_w - pw) // 2
+    cy = PHOTO_TOP + (box_h - ph) // 2
+    bg.paste(photo, (cx, cy))
+    _brand_chip_stage(bg, cx + 48, cy + 44, stage_rgb)
+    return bg, {"mode": "backdrop-contain", "x": cx, "y": cy,
+                "w": pw, "h": ph, "scale": scale, "window": None}
 
 
 def map_face_to_bg(face_box, img_size, track, placement, crop_rect):
     """Map a source-image face box into scene-background coords.
-    crop_rect is the cover-crop window (full-bleed only)."""
+    crop_rect is the source window the scene shows (the 9:16 cover
+    window on full-bleed, the stage-box window on backdrop)."""
     if face_box is None:
         return None
     fx, fy, fw, fh = face_box
-    if track == "full-bleed":
-        x0, y0, x1, y1 = crop_rect
-        sc = W / (x1 - x0)
-        return [round((fx - x0) * sc), round((fy - y0) * sc),
-                round(fw * sc), round(fh * sc)]
-    if track == "backdrop":
+    if track in ("full-bleed", "backdrop") and crop_rect is not None:
+        x0, y0 = crop_rect[0], crop_rect[1]
         s = placement["scale"]
-        return [round(fx * s) + placement["x"],
-                round(fy * s) + placement["y"],
+        return [round((fx - x0) * s) + placement["x"],
+                round((fy - y0) * s) + placement["y"],
                 round(fw * s), round(fh * s)]
     return None
 
@@ -525,13 +745,20 @@ def cover_window(img_size, anchor):
     return (x0, y0, x0 + win_w, y0 + win_h)
 
 
-# ── Assembly (v6 ffmpeg shape, per-scene segments) ───────────────────
+# ── Assembly (per-scene segments + crossfade joins) ─────────────────
 def assemble_v7(outdir, video_path, music_path, log=print):
     """One ffmpeg pass: each scene segment = its background still
     under the GLOBAL-phase Ken Burns zoom (the same curve v6 uses,
     phase-continuous across scene cuts, so the QA plate/overlay
-    warps stay exact) + its text overlay faded in/out; segments
-    concatenated; music bed with the v6 fades."""
+    warps stay exact) + its text overlay; segments are joined by
+    XFADE crossfades whose offsets sit on the beat boundaries —
+    the measured fix for the first sample's boundary jerk (a
+    ~28x frame-change spike at every hard cut). Segments before
+    the last are extended by the fade length (xfade_plan), so
+    the total stays exactly TOTAL and the zoom phase runs
+    continuously underneath both sides of every dissolve. Text
+    overlays fade in per scene and dissolve out WITH their scene
+    (the final scene keeps the v6 end fade)."""
     cmd = ["ffmpeg", "-y"]
     for key, _st, dur in BEATS:
         cmd += ["-loop", "1", "-framerate", str(FPS), "-i",
@@ -541,26 +768,32 @@ def assemble_v7(outdir, video_path, music_path, log=print):
                 str(outdir / f"overlay-{key}.png")]
     cmd += ["-i", str(music_path)]
     n = len(BEATS)
+    plan = {p["beat"]: p for p in xfade_plan(BEATS)}
     fc = []
-    segs = []
     for i, (key, start, dur) in enumerate(BEATS):
         off = int(start * FPS)
-        frames = int(dur * FPS)
+        frames = plan[key]["frames"]
         fc.append(
             f"[{i}:v]scale=2160:3840:flags=lanczos,"
             f"zoompan=z='1+0.07*(on+{off})/{int(TOTAL * FPS)}'"
             f":x='(iw-iw/zoom)/2':y='(ih-ih/zoom)*0.30'"
             f":d={frames}:s={W}x{H}:fps={FPS},"
             f"trim=end_frame={frames},setpts=PTS-STARTPTS[bgv{i}]")
+        fade_tail = (f",fade=t=out:st={max(dur - 0.3, 0):.2f}"
+                     f":d=0.3:alpha=1" if i == n - 1 else "")
         fc.append(
             f"[{n + i}:v]format=rgba,"
-            f"fade=t=in:st=0:d=0.35:alpha=1,"
-            f"fade=t=out:st={max(dur - 0.3, 0):.2f}:d=0.3:alpha=1,"
+            f"fade=t=in:st=0:d=0.35:alpha=1{fade_tail},"
             f"trim=end_frame={frames},setpts=PTS-STARTPTS[ovf{i}]")
-        fc.append(f"[bgv{i}][ovf{i}]overlay=0:0[seg{i}]")
-        segs.append(f"[seg{i}]")
-    fc.append("".join(segs) + f"concat=n={n}:v=1:a=0,format=yuv420p"
-              "[vout]")
+        fc.append(f"[bgv{i}][ovf{i}]overlay=0:0,"
+                  f"format=yuv420p,settb=AVTB[seg{i}]")
+    cur = "[seg0]"
+    for i in range(1, n):
+        out = "[vout]" if i == n - 1 else f"[xf{i}]"
+        fc.append(f"{cur}[seg{i}]xfade=transition=fade:"
+                  f"duration={XFADE_S}:offset={BEATS[i][1]:.2f}"
+                  f"{out}")
+        cur = out
     fc.append(f"[{2 * n}:a]atrim=0:{TOTAL},"
               f"afade=t=in:st=0:d=0.5,"
               f"afade=t=out:st={TOTAL - 2}:d=2[mout]")
@@ -571,26 +804,39 @@ def assemble_v7(outdir, video_path, music_path, log=print):
             "-c:a", "aac", "-b:a", "160k", "-t", str(TOTAL),
             str(video_path)]
     log("🎬 ffmpeg: per-scene Cards v1 backgrounds + overlays "
-        "(global-phase Ken Burns)")
+        "(global-phase Ken Burns, xfade joins)")
     r = subprocess.run(cmd, capture_output=True, text=True)
     if r.returncode != 0:
         raise RuntimeError("ffmpeg assembly failed: "
                            + r.stderr[-600:])
 
 
+def _subject_rect(box_xywh):
+    """Detector box (x, y, w, h) -> (x0, y0, x1, y1) or None."""
+    if not box_xywh:
+        return None
+    x, y, w, h = box_xywh
+    return (x, y, x + w, y + h)
+
+
 # ── Main entry ───────────────────────────────────────────────────────
 def render_reel_v7(script, hero_path, inline_paths, music_path,
                    outdir, name="reel", category="News",
                    photo_url=None, article_slug=None, article_id=None,
-                   log=print):
+                   stage="navy", extras=None, log=print):
     """Render the v7 sample. inline_paths: [(path, (w, h)), ...] in
-    article body order (hero excluded). Returns (video_path,
-    manifest dict) — the same contract shape as
-    reel_renderer.render_reel, plus per-scene v7 records."""
+    article body order (hero excluded). extras: {beat: {"label",
+    "path", "size", "role", "provenance"}} — verified
+    supplementary entity photos from the sourcing ladder. stage:
+    "navy" | "black". Returns (video_path, manifest dict) — the
+    same contract shape as reel_renderer.render_reel, plus
+    per-scene v7 records."""
     t0 = time.time()
     outdir = Path(outdir)
     outdir.mkdir(parents=True, exist_ok=True)
     hero_path = Path(hero_path)
+    stage_rgb = STAGE_COLORS[stage]
+    extras = extras or {}
 
     stats = script   # v6 measurers/SCENE_TEXTS consume the raw
                      # script dict ("stats" in the v6 signatures)
@@ -603,44 +849,87 @@ def render_reel_v7(script, hero_path, inline_paths, music_path,
             f"the {R.MIN_PHOTO_W}x{R.MIN_PHOTO_H} floor")
 
     hero_img = grade_native(hero_raw)
-    hero_anchor = SC.focal_anchor(hero_img, None)
+    hero_anchor3 = SC.focal_anchor(hero_img, None)
+    hero_anchor = (hero_anchor3[0], hero_anchor3[1])
     face_box, face_method = R.detect_face_box(hero_raw)
-    # Only a real detector hit creates a face (the v6 rule).
+    # Only a real detector hit creates a face (the v6 rule). The
+    # detector's box (face or salient heuristic) doubles as the
+    # subject rect for the keep-inside crop rule (converted from
+    # the detector's XYWH to XYXY).
     has_face = face_method.startswith(("yunet", "haar"))
+    hero_subject = _subject_rect(face_box)
 
+    box = stage_box(hero_src_size)     # THE composed size (all
+                                       # backdrop scenes)
     beat_keys = [k for k, _s, _d in BEATS]
     inline_sizes = [(p[1]) for p in inline_paths]
+    extras_plan = {b: {"label": e["label"], "size": e["size"]}
+                   for b, e in extras.items()}
     plans = plan_scene_images(beat_keys, list(hero_src_size),
-                              [list(s) for s in inline_sizes])
+                              [list(s) for s in inline_sizes],
+                              extras_plan)
     plan_by_beat = {p["beat"]: p for p in plans}
 
     # Materialise each scene's source image (graded hero, graded
-    # inline, or a focal detail-crop of the graded hero).
+    # inline, graded supplementary) + its anchor + subject rect.
     inline_imgs = {}
     for idx, (path, _size) in enumerate(inline_paths):
         inline_imgs[idx] = grade_native(Image.open(path))
-    scene_src = {}
+    extra_imgs = {}
+    for beat, e in extras.items():
+        extra_imgs[e["label"]] = grade_native(
+            Image.open(e["path"]))
+    scene_src, scene_anchor, scene_subject = {}, {}, {}
     for p in plans:
-        src = p["source"]
-        if src == "hero":
-            scene_src[p["beat"]] = hero_img
+        src, key = p["source"], p["beat"]
+        if src in ("hero",) or src.startswith("hero-win:"):
+            scene_src[key] = hero_img
+            scene_anchor[key] = hero_anchor
+            scene_subject[key] = hero_subject
         elif src.startswith("inline:"):
-            scene_src[p["beat"]] = inline_imgs[p["inline_index"]]
-        elif src.startswith("hero-crop:"):
-            scene_src[p["beat"]] = SC.detail_crop(
-                hero_img, hero_anchor[0], hero_anchor[1],
-                p["crop_frac"])
+            im = inline_imgs[p["inline_index"]]
+            scene_src[key] = im
+            a3 = SC.focal_anchor(im, None)
+            scene_anchor[key] = (a3[0], a3[1])
+            fb, _fm = R.detect_face_box(im)
+            scene_subject[key] = _subject_rect(fb)
+        elif src.startswith("extra:"):
+            im = extra_imgs[p["extra"]["label"]]
+            scene_src[key] = im
+            hint = extras[key].get("anchor")
+            if hint:
+                # Sourcing marked the subject location on this
+                # photo (e.g. the carved DOJ sign sits right of
+                # frame) — the marked anchor wins over the
+                # saliency heuristic.
+                scene_anchor[key] = (hint[0], hint[1])
+            else:
+                a3 = SC.focal_anchor(im, None)
+                scene_anchor[key] = (a3[0], a3[1])
+            fb, _fm = R.detect_face_box(im)
+            scene_subject[key] = _subject_rect(fb)
         else:
-            scene_src[p["beat"]] = None
+            scene_src[key] = None
+            scene_anchor[key] = (0.5, 0.5)
+            scene_subject[key] = None
 
     scenes = {}
     for key, start, dur in BEATS:
         plan = plan_by_beat[key]
-        track, render_scale, track_note = scene_track(plan["source_px"])
+        track, gate_scale, track_note = scene_track(plan["source_px"])
         img = scene_src[key]
-        anchor = SC.focal_anchor(img, None) if img is not None \
-            else (0.5, 0.5)
-        bg, placement = compose_scene_bg(img, track, anchor)
+        anchor = scene_anchor[key]
+        window = None
+        if track == "backdrop" and img is not None:
+            window, dscale = backdrop_window(
+                img.size, box, anchor, region=plan.get("region",
+                                                      "subject"),
+                frac=plan.get("frac", 1.0),
+                subject=scene_subject[key])
+            if dscale > 1.0:
+                window = None   # contain-fit at native (no upscale)
+        bg, placement = compose_scene_bg(
+            img, track, anchor, stage_rgb, box=box, window=window)
         bg.save(outdir / f"bg-{key}.jpg", quality=92)
         if key == "hook":
             bg.save(outdir / "background.jpg", quality=92)
@@ -649,9 +938,6 @@ def render_reel_v7(script, hero_path, inline_paths, music_path,
         if track == "backdrop":
             zone_top = placement["y"] + placement["h"] + ZONE_TOP_GAP
             zone_h = (SAFE_BOTTOM - ZONE_BOTTOM_PAD) - zone_top
-        elif track == "full-bleed":
-            zone_top = SAFE_TOP
-            zone_h = SAFE_BOTTOM - zone_top
         else:
             zone_top = SAFE_TOP
             zone_h = SAFE_BOTTOM - zone_top
@@ -662,24 +948,24 @@ def render_reel_v7(script, hero_path, inline_paths, music_path,
                 f"beat '{key}': content needs {c_min}px > zone "
                 f"{zone_h}px (track {track}) even at scale 0.5")
         scale, content_h, painter = fit
-        if track == "backdrop":
-            block_top = zone_top + max(
-                0, (zone_h - content_h) // 2)
-        elif track == "full-bleed":
+        if track == "full-bleed":
             block_top = SAFE_BOTTOM - content_h
             # Face-aware: the block must start below the chin,
             # mapped through the scene-end zoom (v6 plan_layout).
             fmap = None
-            if has_face and plan["source"] == "hero":
-                fmap = map_face_to_bg(
-                    face_box, hero_src_size, track, placement,
-                    cover_window(hero_src_size, hero_anchor))
-            elif img is not None:
-                fb2, fm2 = R.detect_face_box(img)
-                if fm2.startswith(("yunet", "haar")):
-                    fmap = map_face_to_bg(
-                        fb2, img.size, track, placement,
-                        cover_window(img.size, anchor))
+            if img is not None:
+                if plan["source"] in ("hero",) or \
+                        plan["source"].startswith("hero-win:"):
+                    if has_face:
+                        fmap = map_face_to_bg(
+                            face_box, hero_src_size, track, placement,
+                            placement.get("window"))
+                else:
+                    fb2, fm2 = R.detect_face_box(img)
+                    if fm2.startswith(("yunet", "haar")):
+                        fmap = map_face_to_bg(
+                            fb2, img.size, track, placement,
+                            placement.get("window"))
             if fmap:
                 chin_out = R.bg_to_out_y(
                     fmap[1] + fmap[3],
@@ -687,7 +973,8 @@ def render_reel_v7(script, hero_path, inline_paths, music_path,
                 block_top = max(block_top,
                                 math.ceil(chin_out) + R.FACE_MARGIN)
         else:
-            block_top = zone_top + max(0, (zone_h - content_h) // 2)
+            block_top = zone_top + max(
+                0, (zone_h - content_h) // 2)
         block_bottom = block_top + content_h
         if block_bottom > SAFE_BOTTOM + 22:   # stroke bleed margin
             raise R.TextFitError(
@@ -709,14 +996,17 @@ def render_reel_v7(script, hero_path, inline_paths, music_path,
             "v7": {
                 "image_source": plan["source"],
                 "track": track,
-                "render_scale": round(render_scale, 3),
+                "render_scale": round(placement["scale"], 3),
                 "photo_px": plan["source_px"],
+                "region": plan.get("region"),
                 "placement": placement,
                 "track_note": track_note,
+                "provenance": (extras[key].get("provenance")
+                               if key in extras else None),
             },
         }
-        log(f"  scene {key:9s} src={plan['source']:14s} "
-            f"track={track:11s} scale={render_scale:.3f} "
+        log(f"  scene {key:9s} src={plan['source']:18s} "
+            f"track={track:11s} scale={placement['scale']:.3f} "
             f"text@{scale:.2f}")
 
     video_path = outdir / f"{name}.mp4"
@@ -724,25 +1014,19 @@ def render_reel_v7(script, hero_path, inline_paths, music_path,
 
     # Manifest face record: the hero face mapped into the HOOK
     # scene's background coords (the QA plate geometry).
-    hook_plan = plan_by_beat["hook"]
     hook_track = scenes["hook"]["v7"]["track"]
     hook_place = scenes["hook"]["v7"]["placement"]
-    if hook_track == "full-bleed":
-        fmap = map_face_to_bg(face_box, hero_src_size, hook_track,
-                              hook_place,
-                              cover_window(hero_src_size, hero_anchor))
-    elif hook_track == "backdrop":
-        fmap = map_face_to_bg(face_box, hero_src_size, hook_track,
-                              hook_place, None)
-    else:
-        fmap = None
+    fmap = map_face_to_bg(face_box, hero_src_size, hook_track,
+                          hook_place, hook_place.get("window"))
 
     manifest = {
-        "renderer": "reel_renderer_v7.py (SAMPLE v7 — Cards v1 "
-                    "design system on the v6 pipeline; NOT "
-                    "production)",
+        "renderer": "reel_renderer_v7.py (SAMPLE v7 rev.2 — Cards "
+                    "v1 design system on the v6 pipeline; constant "
+                    "composed size, xfade transitions, stage "
+                    "variants; NOT production)",
         "design_system": "Cards v1 — Firstpost revised style "
                          "(serif-led, photo-forward, navy/gold/red)",
+        "stage": {"name": stage, "rgb": list(stage_rgb)},
         "name": name,
         "article_slug": article_slug,
         "article_id": article_id,
@@ -764,8 +1048,13 @@ def render_reel_v7(script, hero_path, inline_paths, music_path,
         "composition": {
             "model": "per-scene Cards v1: full-bleed only when the "
                      "9:16 cover-crop needs no upscale, else "
-                     "backdrop (native scale on navy), else navy",
+                     "backdrop at the CONSTANT stage box (the "
+                     "hook's backdrop fit) with per-scene crop "
+                     "regions, else the plain stage; scene joins "
+                     "are xfade crossfades over the global Ken "
+                     "Burns phase",
             "never_upscale": True,
+            "stage_box": [box[0], box[1]],
             "text_column": [TEXT_X, TEXT_X + TEXT_MAX_W]},
         "grade": {"mode": "native-resolution (no 2x supersample)",
                   **{k: R.ENH[k] for k in

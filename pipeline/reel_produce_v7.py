@@ -18,7 +18,9 @@ Usage:
   python3 -u reel_produce_v7.py --script runs/<slug>/script.json \
       --article-file runs/<slug>/article.json \
       --music music/tech-corporate-technology.mp3 \
-      --outdir runs/<slug>/output-v7
+      --outdir runs/<slug>/output-v7 \
+      [--stage navy|black] \
+      [--extras runs/<slug>/supplementary/provenance.json]
 """
 import argparse, json, subprocess, sys, time
 from pathlib import Path
@@ -66,32 +68,59 @@ def make_stills(outdir, manifest):
         y = (i // 2) * (chh + lab)
         sheet.paste(fr, (x, y))
         v7 = manifest["scenes"][key]["v7"]
+        pl = v7["placement"]
+        disp = (f"{pl['w']}x{pl['h']}" if pl["w"] else "—")
         d.text((x + 18, y + chh + 10),
                f"{i + 1}. {key.upper()} — {v7['image_source']}",
                font=f_lab, fill=(255, 255, 255))
         d.text((x + 18, y + chh + 48),
-               f"track: {v7['track']} · render scale "
-               f"{v7['render_scale']:.2f}x",
+               f"track: {v7['track']} · display {disp} · "
+               f"scale {v7['render_scale']:.2f}x",
                font=f_sub, fill=(190, 198, 214))
     sheet_path = outdir / "contact-sheet.png"
     sheet.save(sheet_path, "PNG")
     return sheet_path
 
 
-def produce(script_path, article, music_path, outdir, log=print):
+def load_extras(extras_path):
+    """provenance.json -> the renderer's extras dict, with local
+    paths resolved against the provenance file's directory. Only
+    entries carrying a beat assignment are used."""
+    extras_path = Path(extras_path)
+    data = json.loads(extras_path.read_text())
+    out = {}
+    for e in data.get("extras", []):
+        if not e.get("beat"):
+            continue
+        out[e["beat"]] = {
+            "label": e["label"],
+            "path": str(extras_path.parent / e["path"]),
+            "size": e["size"], "role": e.get("role"),
+            "anchor": e.get("anchor"),
+            "provenance": {k: e.get(k) for k in
+                           ("subject", "route", "source_page",
+                            "file_url", "license", "artist")}}
+    return out
+
+
+def produce(script_path, article, music_path, outdir, stage="navy",
+            extras=None, log=print):
     """article: dict with the v6 produce fields. Returns the
     verdict dict."""
+    extras = extras or {}
     outdir = Path(outdir)
     outdir.mkdir(parents=True, exist_ok=True)
     script = json.loads(Path(script_path).read_text())
     slug = article.get("slug")
     name = slug or "reel"
 
-    verdict = {"driver": "reel_produce_v7.py (SAMPLE v7 — Cards v1 "
-                         "skin; NOT production)",
+    verdict = {"driver": "reel_produce_v7.py (SAMPLE v7 rev.2 — "
+                         "Cards v1 skin; NOT production)",
                "slug": slug, "article_id": article.get("id"),
                "script": str(script_path), "music": str(music_path),
                "outdir": str(outdir), "status": "held",
+               "stage": stage,
+               "extras": {b: e["label"] for b, e in extras.items()},
                "factcheck": None, "qa": None, "video": None,
                "problems": []}
 
@@ -140,13 +169,15 @@ def produce(script_path, article, music_path, outdir, log=print):
         .replace("-", " ").title()
 
     # ── Render (v7) ─────────────────────────────────────────────
-    log("🎞  rendering Reels v7 (Cards v1 per-scene composition)…")
+    log(f"🎞  rendering Reels v7 rev.2 (stage={stage}, "
+        f"{len(extras)} supplementary assignment(s))…")
     try:
         video, manifest = R7.render_reel_v7(
             script, hero_path, inline_paths, music_path, outdir,
             name=name, category=category,
             photo_url=article["image_url"], article_slug=slug,
-            article_id=article.get("id"), log=log)
+            article_id=article.get("id"), stage=stage,
+            extras=extras, log=log)
     except R.PhotoTooSmallError as e:
         verdict["problems"].append(str(e))
         (outdir / "verdict.json").write_text(json.dumps(verdict,
@@ -201,6 +232,11 @@ def main():
     ap.add_argument("--script", required=True)
     ap.add_argument("--music", required=True)
     ap.add_argument("--outdir", required=True)
+    ap.add_argument("--stage", choices=("navy", "black"),
+                    default="navy")
+    ap.add_argument("--extras",
+                    help="supplementary provenance.json (sourcing "
+                         "ladder output; per-beat assignments)")
     args = ap.parse_args()
 
     if args.article_file:
@@ -208,8 +244,10 @@ def main():
     else:
         from reel_produce import fetch_article
         article = fetch_article(args.slug)
+    extras = load_extras(args.extras) if args.extras else {}
     verdict, code = produce(args.script, article,
-                            Path(args.music), Path(args.outdir))
+                            Path(args.music), Path(args.outdir),
+                            stage=args.stage, extras=extras)
     return code
 
 
