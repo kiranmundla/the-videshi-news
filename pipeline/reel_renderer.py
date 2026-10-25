@@ -333,6 +333,12 @@ def yunet_faces(arr_rgb, score_threshold=YUNET_SCORE_THRESHOLD):
         return None
     if not hasattr(cv2, "FaceDetectorYN") or not YUNET_MODEL.exists():
         return None
+    if arr_rgb.ndim != 3 or arr_rgb.shape[2] != 3:
+        # YuNet's conv layers require exactly 3 channels; a
+        # single-channel (or RGBA) array makes the DNN throw.
+        # Report "unavailable" so the caller falls back safely
+        # instead of feeding the net a bad blob.
+        return None
     h, w = arr_rgb.shape[:2]
     try:
         det = cv2.FaceDetectorYN.create(
@@ -353,7 +359,12 @@ def yunet_faces(arr_rgb, score_threshold=YUNET_SCORE_THRESHOLD):
 def _haar_face_box(arr, cv2, scale):
     """Legacy Haar path (frontal -> profile, largest face), in source
     pixels. Used ONLY when YuNet is unavailable."""
-    gray = cv2.cvtColor(arr, cv2.COLOR_RGB2GRAY)
+    if arr.ndim == 2:
+        gray = arr
+    elif arr.shape[2] == 4:
+        gray = cv2.cvtColor(arr, cv2.COLOR_RGBA2GRAY)
+    else:
+        gray = cv2.cvtColor(arr, cv2.COLOR_RGB2GRAY)
     sh, sw = gray.shape[:2]
     min_size = (int(sw * 0.04), int(sh * 0.04))
     for cascade_name in ("haarcascade_frontalface_default.xml",
@@ -390,6 +401,15 @@ def detect_face_box(src_img):
     Returns (box, method): box = (x, y, w, h) in SOURCE pixels of the
     largest detected face. Falls back to the focal-point heuristic, then
     to a static upper-frame box — and says so; never silently places."""
+    # Normalize to 3 channels before any OpenCV work. Callers are
+    # supposed to pass RGB (the v6 entry converts), but the v7 entry
+    # hands over the raw Image.open() result — and a palette (P) or
+    # grayscale (L) hero becomes a single-channel numpy array, which
+    # made YuNet throw and then crashed cvtColor in the Haar fallback
+    # (scn=1) on 2026-10-25, dropping the story. convert("RGB")
+    # handles P / L / LA / RGBA / CMYK; it is a no-op for RGB input.
+    if src_img.mode != "RGB":
+        src_img = src_img.convert("RGB")
     try:
         import cv2
         import numpy as np

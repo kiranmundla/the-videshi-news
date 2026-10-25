@@ -220,6 +220,53 @@ total_out = plan[-1]["offset"] + plan[-1]["frames"] / V7.FPS
 check_eq("chained output length is exactly the reel duration",
          total_out, V7.TOTAL)
 
+print("── regression: single-channel hero must not crash face detection ──")
+# 2026-10-25: the midterms story's hero reached render_reel_v7 as a
+# raw Image.open() (palette mode, mode "P"), np.array() made it a
+# single-channel array, YuNet threw on the 1-channel blob, and the
+# Haar fallback then crashed in cvtColor (scn=1) — the story was
+# dropped. detect_face_box now normalizes to RGB at entry. Build
+# real single-channel fixtures (palette PNG + grayscale JPEG, the
+# shapes this pipeline actually receives), reopen them UNconverted
+# exactly as render_reel_v7 does, and require a sane no-face
+# fallback box instead of an exception.
+import io as _io
+import reel_renderer as _R
+
+_base = Image.new("RGB", (640, 480))
+_px = _base.load()
+for _y in range(480):
+    for _x in range(640):
+        _v = (_x * 255) // 640
+        _px[_x, _y] = (_v, 255 - _v, (_x + _y) % 256)
+
+for _mode_name, _img, _fmt in (
+        ("palette (P)", _base.convert("P"), "PNG"),
+        ("grayscale (L)", _base.convert("L"), "JPEG")):
+    _buf = _io.BytesIO()
+    _img.save(_buf, format=_fmt)
+    _buf.seek(0)
+    _raw = Image.open(_buf)
+    _raw.load()
+    check(f"{_mode_name} fixture really is single-channel",
+          _raw.mode in ("P", "L"))
+    try:
+        _box, _method = _R.detect_face_box(_raw)
+        _crashed = False
+    except Exception as _e:  # the regression: this used to raise
+        _box, _method, _crashed = None, repr(_e), True
+    check(f"{_mode_name} hero: detect_face_box does not crash",
+          not _crashed)
+    if not _crashed:
+        check(f"{_mode_name} hero: sane fallback box in frame",
+              isinstance(_box, tuple) and len(_box) == 4
+              and 0 <= _box[0] and 0 <= _box[1]
+              and _box[0] + _box[2] <= 640
+              and _box[1] + _box[3] <= 480)
+        check(f"{_mode_name} hero: no face claimed on a faceless "
+              f"gradient ({_method})",
+              not _method.startswith(("yunet", "haar")))
+
 print()
 if FAILS:
     print(f"❌ {len(FAILS)} FAILURE(S): {FAILS}")
