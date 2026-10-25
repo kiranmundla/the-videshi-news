@@ -1,0 +1,35 @@
+{
+ "driver": "reel_produce_v7.py (SAMPLE v7 rev.2 \u2014 Cards v1 skin; NOT production)",
+ "slug": "infosys-doj-investigation-h1b-classifications-disclosure",
+ "article_id": "df15e501-c5ae-435e-a57d-894b495cce90",
+ "script": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/script.json",
+ "music": "music/tech-corporate-technology.mp3",
+ "outdir": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v7b",
+ "status": "ready",
+ "stage": "black",
+ "extras": {
+  "news": "campus-mysore",
+  "hero": "doj-rfk-facade",
+  "grid": "doj-wall-sign",
+  "diaspora": "campus-ec-lunch",
+  "payoff": "campus-ec-cafeteria"
+ },
+ "factcheck": {
+  "verdict": "pass",
+  "held_claims": [],
+  "llm_cost_usd": 0.000678,
+  "report": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v7b/factcheck-report.json"
+ },
+ "qa": {
+  "passed": true,
+  "score": 10.0,
+  "failing_checks": [],
+  "report": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v7b/qa/qa-report.json"
+ },
+ "video": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v7b/infosys-doj-investigation-h1b-classifications-disclosure.mp4",
+ "problems": [],
+ "photo_url_upgraded": "https://cdn.gulte.com/wp-content/uploads/2026/01/infosys-bills-.jpg",
+ "manifest": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v7b/render-manifest.json",
+ "contact_sheet": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v7b/contact-sheet.png",
+ "article_slug": "infosys-doj-investigation-h1b-classifications-disclosure"
+}

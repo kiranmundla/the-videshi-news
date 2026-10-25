@@ -1,0 +1,16 @@
+{
+  "kind": "carousel",
+  "article_slug": "infosys-doj-investigation-h1b-classifications-disclosure",
+  "status": "held",
+  "stage": "render_fit",
+  "factcheck": {
+    "verdict": "pass",
+    "quote_present": false,
+    "verbatim_quote": null,
+    "speaker_grounded": null,
+    "role_grounded": null,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000443
+  },
+  "detail": "inter cannot fit 'Infosys disclosed in its September-quarter financial statements that the US Department of Justice is investigating how it classified certain H-1B holders in immigration filings, and said it cannot predict the outcome.'"
+}

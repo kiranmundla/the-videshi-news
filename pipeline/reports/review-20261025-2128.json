@@ -1,0 +1,57 @@
+[
+  {
+    "id": "44ac4f60-5727-4be4-88db-ca4d9abfda2e",
+    "headline": "Americans Say the Economy Is Bad and Keep Spending Anyway. Polls Are Not a Forec",
+    "slug": "americans-say-economy-bad-keep-spending-midterms",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the midterm elections by explicitly stating the date of November 3 in the context of the article's discussion on consumer confidence and spending behavior. This will help readers understand the urgency of the economic situation as it relates to the upcoming elections.",
+        "Provide specific dollar amounts or percentages regarding how much consumers are spending on average or how much retail sales have increased in real terms. This would give readers a clearer picture of the economic landscape.",
+        "Include a brief explanation of what the implications of the current consumer spending trends might be for different sectors of the economy. This could help readers understand the broader context of the data presented."
+      ],
+      "embed_opportunities": [
+        "Embed the official Pew Research Center tweet or graphic that summarizes the polling data on consumer confidence and its importance to voters, which would provide a visual representation of the statistics mentioned."
+      ]
+    }
+  },
+  {
+    "id": "26af5d00-a0f9-44d2-ae40-951ff1d3ccba",
+    "headline": "Shadab Khan's Maiden Century Drags Pakistan From 154 for 9 to One-Wicket Win Ove",
+    "slug": "shadab-khan-century-pakistan-one-wicket-win-england",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Shadab Khan's performance by including statistics on previous records or milestones he has achieved in ODIs, which would provide context for readers unfamiliar with his career.",
+        "Include a brief summary of the implications of this match for both teams moving forward, such as their standings in the tri-series and what the upcoming matches mean for their chances of winning the series."
+      ],
+      "embed_opportunities": [
+        "Embed the official ICC tweet or graphic summarizing the match statistics and highlights to provide visual context for readers."
+      ]
+    }
+  },
+  {
+    "id": "7704d102-eb8e-4ff5-85fc-5507feaf3235",
+    "headline": "Melioidosis, a Deadly Soil Infection That Mimics TB, Is Going Undetected Across ",
+    "slug": "melioidosis-india-deadly-soil-infection-undetected",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the study: The article states the study was conducted between January 2023 and December 2025, which is confusing as it includes a future date. It should specify if the study is ongoing or if it has been completed up to a certain date in 2023.",
+        "Provide more context on the implications of the findings: Explain what the high percentage of undetected cases means for public health in India, particularly for healthcare providers and policymakers.",
+        "Include a direct quote or statement from a health official or expert to enhance attribution and credibility regarding the urgency of addressing melioidosis."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from The Lancet Global Health or a public health authority discussing the findings of the study to provide additional credibility and context."
+      ]
+    }
+  }
+]

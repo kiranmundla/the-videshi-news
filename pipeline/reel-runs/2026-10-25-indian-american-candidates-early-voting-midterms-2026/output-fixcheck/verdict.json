@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "indian-american-candidates-early-voting-midterms-2026",
+  "name": "indian-american-candidates-early-voting-midterms-2026",
+  "script": "reel-runs/2026-10-25-indian-american-candidates-early-voting-midterms-2026/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000724
+  },
+  "sourcing": {
+    "mode": "provided",
+    "provenance": "reel-runs/2026-10-25-indian-american-candidates-early-voting-midterms-2026/output-v2/supplementary/provenance.json",
+    "extras": {
+      "news": "vivek-ramaswamy-2025",
+      "hero": "amish-shah-46694757942",
+      "grid": "dandiya-pia-candidate-overview-fec",
+      "diaspora": "amish-shah-david-marshall-52750179671"
+    }
+  },
+  "manifest": "reel-runs/2026-10-25-indian-american-candidates-early-voting-midterms-2026/output-fixcheck/render-manifest.json",
+  "video": "reel-runs/2026-10-25-indian-american-candidates-early-voting-midterms-2026/output-fixcheck/indian-american-candidates-early-voting-midterms-2026.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-10-25-indian-american-candidates-early-voting-midterms-2026/output-fixcheck/tiktok-caption.txt"
+}

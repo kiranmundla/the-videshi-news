@@ -1,0 +1,278 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "indian-american-candidates-early-voting-midterms-2026",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIAN-AMERICAN CANDIDATES FACE THE EARLY VOTE",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article discusses Indian-American candidates and early voting.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Early voting is under way in the states where Indian-American candidates face their toughest races, ahead of the November 3 midterms.",
+      "numbers": [
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states early voting is ongoing for tough races before November 3.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$7.6 MILLION",
+      "numbers": [
+        7.6,
+        7600000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$7.6 million spent against Amish Shah is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Spent against Amish Shah in Arizona's 1st Congressional District",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "Amish Shah",
+        "Congressional District"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies spending against Shah in Arizona's 1st District.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "ELECTIONS 2026",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$3.8 MILLION",
+      "numbers": [
+        3.8,
+        3800000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$3.8 million spent against Pia Dandiya is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Spent against Pia Dandiya in Florida's 22nd District",
+      "numbers": [
+        22.0
+      ],
+      "entities": [
+        "Pia Dandiya"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies spending against Dandiya in Florida's 22nd District.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "NOVEMBER 3",
+      "numbers": [
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "November 3 is mentioned as Election Day in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Election Day",
+      "numbers": [],
+      "entities": [
+        "Election Day"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article identifies November 3 as Election Day.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "28 SITES",
+      "numbers": [
+        28.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states there are 28 early voting sites in Palm Beach County.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Palm Beach County early voting sites, open through November 1",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "Palm Beach County"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Palm Beach County sites are open through November 1.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Amish Shah in Arizona and Pia Dandiya in Florida are in congressional races rated toss-up to tilt",
+      "numbers": [],
+      "entities": [
+        "Amish Shah",
+        "Pia Dandiya"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article rates Shah and Dandiya's races as toss-up to tilt.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Vivek Ramaswamy is running for Ohio governor, and Saritha Komatireddy is challenging New York Attorney General Letitia James",
+      "numbers": [],
+      "entities": [
+        "Vivek Ramaswamy",
+        "Saritha Komatireddy",
+        "New York Attorney General Letitia James"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Ramaswamy and Komatireddy's races.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The toss-up ratings in Arizona and Florida mean the Indian-American presence in the next Congress could hinge on a few thousand early and absentee ballots.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses the impact of toss-up ratings on Indian-American candidates.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "ELECTIONS 2026",
+    "ok": true,
+    "detail": "ELECTIONS <grounded year>"
+  },
+  "key_entities": [
+    {
+      "entity": "Amish Shah",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Pia Dandiya",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Vivek Ramaswamy",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Saritha Komatireddy",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000724,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

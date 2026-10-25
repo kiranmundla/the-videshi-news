@@ -1,0 +1,294 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "bharat-biotech-malaria-vaccine-price-cut-gavi-unicef",
+  "verdict": "fail",
+  "held_claims": [
+    "stats[0].big"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "MALARIA VACCINE PRICE CUT BY 40%",
+      "numbers": [
+        40.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states a 40% price cut for the malaria vaccine.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Bharat Biotech has agreed an equitable pricing deal with Gavi and UNICEF that will cut the price of the world's first malaria vaccine by about 40 per cent.",
+      "numbers": [
+        40.0
+      ],
+      "entities": [
+        "Bharat Biotech"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the pricing deal with Gavi and UNICEF.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "40%",
+      "numbers": [
+        40.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions a 40% reduction in vaccine price.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Cut in the price of Bharat Biotech's malaria vaccine Mosqivac",
+      "numbers": [],
+      "entities": [
+        "Bharat Biotech's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses the price cut for Mosqivac.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "1 MILLION",
+      "numbers": [
+        1.0,
+        1000000.0
+      ],
+      "entities": [],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_numbers": [
+          1000000.0
+        ]
+      },
+      "llm_reason": "The article states the vaccine will reach up to one million more children.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "More children who could receive the full four-dose course",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions funding for more children to receive the vaccine.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$50 MILLION",
+      "numbers": [
+        50.0,
+        50000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states expected savings of $50 million for immunisation programmes.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Expected savings for immunisation programmes between 2027 and 2029",
+      "numbers": [
+        2027.0,
+        2029.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027,
+          2029
+        ]
+      },
+      "llm_reason": "The article specifies savings for the mentioned period.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$200 MILLION",
+      "numbers": [
+        200.0,
+        200000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions $200 million invested by GSK and Bharat Biotech.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Invested by GSK and Bharat Biotech in higher-output manufacturing",
+      "numbers": [],
+      "entities": [
+        "Bharat Biotech"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the investment for manufacturing improvements.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Hyderabad-based Bharat Biotech manufactures Mosqivac, the first malaria vaccine the WHO recommended, in 2021",
+      "numbers": [
+        2021.0
+      ],
+      "entities": [
+        "Hyderabad-based Bharat Biotech"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2021
+        ]
+      },
+      "llm_reason": "The article states Bharat Biotech manufactures Mosqivac, recommended by WHO in 2021.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The lower price could fund full four-dose courses for up to one million more children",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses funding for additional children due to the price cut.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "GSK and Bharat Biotech aim to bring the price below $5 per dose by 2028.",
+      "numbers": [
+        5.0,
+        2028.0
+      ],
+      "entities": [
+        "Bharat Biotech"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2028
+        ]
+      },
+      "llm_reason": "The article mentions plans to reduce the price below $5 by 2028.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Bharat Biotech",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Mosqivac",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Gavi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "UNICEF",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "GSK",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00067,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "article_slug": "infosys-doj-investigation-h1b-classifications-disclosure",
+  "name": "infosys-doj-investigation-h1b-classifications-disclosure",
+  "script": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000681
+  },
+  "manifest": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v2/infosys-doj-investigation-h1b-classifications-disclosure.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  }
+}

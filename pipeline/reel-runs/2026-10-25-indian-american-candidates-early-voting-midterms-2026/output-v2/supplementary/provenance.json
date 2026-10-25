@@ -1,0 +1,247 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "indian-american-candidates-early-voting-midterms-2026",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Amish Shah",
+    "Pia Dandiya",
+    "Vivek Ramaswamy",
+    "Saritha Komatireddy",
+    "Nri World",
+    "Democrat Amish Shah"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Amish Shah & David Marshall (52750179671).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "5916x3944, CC BY-SA 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Amish Shah (46694757942).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "4488x3344, CC BY-SA 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:2026 United States House of Representatives elections in Florida results map.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:2026 United States House of Representatives elections in Florida results map by county.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Pia Dandiya WHF.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 156x195 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Pia Dandiya WHF (cropped).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 125x156 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:AmericaFest 2025 - Vivek Ramaswamy 03 (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:VivekR-Signature-01.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Vivek Ramaswamy, 2025.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "6275x5349, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Vivek Ramaswamy, Prime Minister Narendra Modi, 2025 (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 920x1078 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Vivek Ramaswamy.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 534x508 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Vivek Ramaswamy December 2025.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Vivek Ramaswamy at AmericaFest 2022 (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Vivek Ramaswamy at AmericaFest 2025.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Vivek Ramaswamy by Gage Skidmore.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "2389x3212, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Thomas Sullivan.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "1127x1675, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:2015 -WorldFoodDay in South-South Nigeria.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:FAO World Food Day 1981 3pc Set Silver.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:FAO World Food Day 2003 Silver Obverse.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 291x296 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana 10.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana 5.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana 8.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana 9.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day barnstar.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:World Food day 2017, Kalakamati, Botswana 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "https://www.fec.gov/data/candidate/H6FL21059/",
+      "route": "B \u2014 official sources",
+      "verdict": "USED (grid)",
+      "reason": "license basis: US federal government work \u2014 public domain; dimensions verified at download"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "vivek-ramaswamy-2025",
+      "path": "vivek-ramaswamy-2025.jpg",
+      "size": [
+        6275,
+        5349
+      ],
+      "role": "establishing",
+      "subject": "Vivek Ramaswamy speaking with attendees at the 2025 AmericaFest at the Phoenix Convention Center in Phoenix, Arizona.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Vivek_Ramaswamy,_2025.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Vivek_Ramaswamy%2C_2025.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Gage Skidmore"
+    },
+    {
+      "beat": "hero",
+      "label": "amish-shah-46694757942",
+      "path": "amish-shah-46694757942.jpg",
+      "size": [
+        4488,
+        3344
+      ],
+      "role": "establishing",
+      "subject": "State Representative Amish Shah speaking with supporters at the Arizona State Capitol in Phoenix, Arizona. Please attribute to Gage Skidmore if used elsewhere.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_(46694757942).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Amish_Shah_%2846694757942%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Gage Skidmore from Peoria, AZ, United States of America"
+    },
+    {
+      "beat": "grid",
+      "label": "dandiya-pia-candidate-overview-fec",
+      "path": "dandiya-pia-candidate-overview-fec.png",
+      "size": [
+        1200,
+        600
+      ],
+      "role": "establishing",
+      "subject": "DANDIYA, PIA - Candidate overview | FEC",
+      "route": "B \u2014 official sources",
+      "source_page": "https://www.fec.gov/data/candidate/H6FL21059/",
+      "file_url": "https://www.fec.gov/static/img/social/fec-data.png",
+      "license": "US federal government work \u2014 public domain",
+      "artist": ""
+    },
+    {
+      "beat": "diaspora",
+      "label": "amish-shah-david-marshall-52750179671",
+      "path": "amish-shah-david-marshall-52750179671.jpg",
+      "size": [
+        5916,
+        3944
+      ],
+      "role": "interior",
+      "subject": "State Representatives Amish Shah and David Marshall speaking on the floor of the Arizona House of Representatives at the Arizona State Capitol building in Phoenix, Arizona. Please attribute to Gage Skidmore if used elsewhere.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_%26_David_Marshall_(52750179671).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Amish_Shah_%26_David_Marshall_%2852750179671%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Gage Skidmore from Surprise, AZ, United States of America"
+    }
+  ]
+}

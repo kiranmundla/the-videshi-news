@@ -1,0 +1,141 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "infosys-doj-investigation-h1b-classifications-disclosure",
+    "verdict": "fail",
+    "held_claims": [
+      "stats[2].label"
+    ],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Infosys in Talks With DOJ Over Investigation Into H-1B Classifications",
+        "numbers": [
+          1.0
+        ],
+        "entities": [
+          "Talks With DOJ Over Investigation Into H-1B Classifications"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Infosys is in talks with DOJ regarding H-1B classifications.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Infosys is in discussions with the US Department of Justice over an investigation into how it classified certain H-1B visa holders in immigration filings.",
+        "numbers": [
+          1.0
+        ],
+        "entities": [
+          "US Department"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Infosys is discussing H-1B classifications with DOJ.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "In 2013, Infosys paid $34 million to settle a US government probe into alleged immigration violations",
+        "numbers": [
+          34.0,
+          2013.0,
+          34000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2013
+          ]
+        },
+        "llm_reason": "The article mentions Infosys paid $34 million in 2013 to settle immigration violations.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The probe concerns the employer's filings, not individual workers' status",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the probe focuses on employer filings, not individual statuses.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Indian nationals receive the largest share of H-1B approvals",
+        "numbers": [
+          1.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions Indian firms are large sponsors but does not provide approval share data.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "unsupported"
+        },
+        "verdict": "fail"
+      },
+      {
+        "field": "payoff",
+        "text": "Infosys in Talks With DOJ Over Investigation Into H-1B Classifications",
+        "numbers": [
+          1.0
+        ],
+        "entities": [
+          "Talks With DOJ Over Investigation Into H-1B Classifications"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Infosys is in talks with DOJ regarding H-1B classifications.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000434,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "fail"
+}

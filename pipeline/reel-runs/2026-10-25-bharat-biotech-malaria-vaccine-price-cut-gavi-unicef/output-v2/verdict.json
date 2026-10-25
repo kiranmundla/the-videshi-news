@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "bharat-biotech-malaria-vaccine-price-cut-gavi-unicef",
+  "name": "bharat-biotech-malaria-vaccine-price-cut-gavi-unicef",
+  "script": "reel-runs/2026-10-25-bharat-biotech-malaria-vaccine-price-cut-gavi-unicef/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "stats[0].big"
+    ],
+    "llm_cost_usd": 0.00067
+  }
+}

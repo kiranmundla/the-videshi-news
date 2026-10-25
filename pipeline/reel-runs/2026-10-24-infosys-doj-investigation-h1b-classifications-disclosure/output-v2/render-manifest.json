@@ -1,0 +1,237 @@
+{
+  "renderer": "reel_renderer.py (Phase 1, v6 recipe)",
+  "name": "infosys-doj-investigation-h1b-classifications-disclosure",
+  "article_slug": "infosys-doj-investigation-h1b-classifications-disclosure",
+  "article_id": "df15e501-c5ae-435e-a57d-894b495cce90",
+  "category": "Immigration",
+  "video": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v2/infosys-doj-investigation-h1b-classifications-disclosure.mp4",
+  "duration_s": 35.0,
+  "canvas": [
+    1080,
+    1920
+  ],
+  "photo": {
+    "url": "https://cdn.gulte.com/wp-content/uploads/2026/01/infosys-bills-.jpg",
+    "local_path": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v2/hero.jpg",
+    "width": 1599,
+    "height": 1200,
+    "floor": [
+      1080,
+      600
+    ]
+  },
+  "face": {
+    "method": "focal-heuristic (no face detected); anchor raw=(0.494,0.389) damped=(0.497,0.445)",
+    "has_face": false,
+    "box_source": [
+      347,
+      269,
+      895,
+      480
+    ],
+    "box_bg": [
+      -175.8,
+      430.4,
+      1432.0,
+      768.0
+    ],
+    "chin_bg": null,
+    "margin_px": 48
+  },
+  "composition": {
+    "branch": "cover",
+    "rejected": [],
+    "cover_min_scale": 0.5,
+    "fit_min_scale": 0.45,
+    "fit_backdrop": {
+      "blur": 30,
+      "brightness": 0.4,
+      "navy_tint": 0.5
+    }
+  },
+  "grade": {
+    "upscale": 2,
+    "denoise_blur": 0.6,
+    "unsharp": [
+      2.0,
+      55,
+      3
+    ],
+    "gamma": 1.08,
+    "brightness": 1.08,
+    "contrast": 1.1,
+    "saturation": 1.18,
+    "warmth": [
+      1.03,
+      1.0,
+      0.96
+    ]
+  },
+  "gradient": {
+    "color": [
+      5,
+      9,
+      18
+    ],
+    "t0": 0.25,
+    "exponent": 1.35,
+    "amax": 165
+  },
+  "safe_zone": {
+    "x": [
+      70,
+      930
+    ],
+    "top": 140,
+    "bottom": 1580,
+    "text_max_w": 772
+  },
+  "scenes": {
+    "hook": {
+      "start": 0.0,
+      "duration": 4.0,
+      "zoom_at_end": 1.008,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 244,
+      "block_top": 858,
+      "block_bottom": 1102,
+      "text_bbox": [
+        117,
+        858,
+        891,
+        1097
+      ],
+      "texts": [
+        "Immigration",
+        "INFOSYS IN TALKS WITH DOJ OVER H-1B FILINGS"
+      ]
+    },
+    "news": {
+      "start": 4.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.02,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 278,
+      "block_top": 858,
+      "block_bottom": 1136,
+      "text_bbox": [
+        128,
+        858,
+        876,
+        1140
+      ],
+      "texts": [
+        "What Happened",
+        "Infosys is in discussions with the US Department of Justice over an investigation into how it classified certain H-1B visa holders in immigration filings."
+      ]
+    },
+    "hero": {
+      "start": 10.0,
+      "duration": 6.0,
+      "zoom_at_end": 1.032,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 348,
+      "block_top": 858,
+      "block_bottom": 1206,
+      "text_bbox": [
+        108,
+        858,
+        903,
+        1212
+      ],
+      "texts": [
+        "BY THE NUMBERS",
+        "SEP 30, 2026",
+        "Quarter-end in the filing disclosing the DOJ probe"
+      ]
+    },
+    "grid": {
+      "start": 16.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.046,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 755,
+      "block_top": 796,
+      "block_bottom": 1551,
+      "text_bbox": [
+        131,
+        796,
+        873,
+        1550
+      ],
+      "texts": [
+        "By The Numbers",
+        "$34 MILLION",
+        "Paid in 2013 to settle a US immigration probe",
+        "B-1",
+        "Visas at issue in the 2013 settlement allegations",
+        "NO FINDING",
+        "No charge, settlement or finding in the current probe"
+      ]
+    },
+    "diaspora": {
+      "start": 23.0,
+      "duration": 7.0,
+      "zoom_at_end": 1.06,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 407,
+      "block_top": 858,
+      "block_bottom": 1265,
+      "text_bbox": [
+        118,
+        858,
+        884,
+        1271
+      ],
+      "texts": [
+        "Why It Matters To You",
+        "The probe concerns the employer's filings, not individual workers' status",
+        "Indian nationals receive the largest share of H-1B approvals"
+      ]
+    },
+    "payoff": {
+      "start": 30.0,
+      "duration": 5.0,
+      "zoom_at_end": 1.07,
+      "chin_out": null,
+      "zone_top": 768,
+      "zone_h": 812,
+      "scale": 1.0,
+      "content_h": 288,
+      "block_top": 858,
+      "block_bottom": 1146,
+      "text_bbox": [
+        114,
+        858,
+        887,
+        1157
+      ],
+      "texts": [
+        "The Takeaway",
+        "Infosys said it cannot predict the outcome of the DOJ investigation.",
+        "THE VIDESHI \u00b7 thevideshi.com"
+      ]
+    }
+  },
+  "music": {
+    "file": "tech-corporate-technology.mp3",
+    "path": "music/tech-corporate-technology.mp3"
+  },
+  "render_seconds": 322.7,
+  "mp4_bytes": 8452549
+}

@@ -1,0 +1,35 @@
+{
+ "hook_line": "INFOSYS IN TALKS WITH DOJ OVER H-1B FILINGS",
+ "hook_stat": {
+  "big": "SEP 30, 2026",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Quarter-end in the filing disclosing the DOJ probe"
+ },
+ "stats": [
+  {
+   "big": "$34 MILLION",
+   "label": "Paid in 2013 to settle a US immigration probe"
+  },
+  {
+   "big": "B-1",
+   "label": "Visas at issue in the 2013 settlement allegations"
+  },
+  {
+   "big": "NO FINDING",
+   "label": "No charge, settlement or finding in the current probe"
+  }
+ ],
+ "diaspora_bullets": [
+  "The probe concerns the employer's filings, not individual workers' status",
+  "Indian nationals receive the largest share of H-1B approvals"
+ ],
+ "key_entities": [
+  "Infosys",
+  "US Department of Justice",
+  "H-1B"
+ ],
+ "news_summary": "Infosys is in discussions with the US Department of Justice over an investigation into how it classified certain H-1B visa holders in immigration filings.",
+ "payoff": "Infosys said it cannot predict the outcome of the DOJ investigation.",
+ "versus": "",
+ "story_mood": "tense"
+}

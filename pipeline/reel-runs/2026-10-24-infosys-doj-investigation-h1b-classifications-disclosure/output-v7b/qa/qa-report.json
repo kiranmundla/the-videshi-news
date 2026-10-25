@@ -1,0 +1,216 @@
+{
+ "qa": "reel_frame_qa.py",
+ "video": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v7b/infosys-doj-investigation-h1b-classifications-disclosure.mp4",
+ "qa_passed": true,
+ "qa_score": 10.0,
+ "pass_threshold": 7.0,
+ "failing_checks": [],
+ "checks": {
+  "technical": {
+   "pass": true,
+   "width": 1080,
+   "height": 1920,
+   "duration_s": 35.0,
+   "audio_streams": 1
+  },
+  "photo": {
+   "pass": true,
+   "measured_dims": [
+    1599,
+    1200
+   ],
+   "manifest_dims": [
+    1599,
+    1200
+   ],
+   "floor": [
+    1080,
+    600
+   ],
+   "center_sharpness_laplacian_var": 66.3,
+   "url": "https://cdn.gulte.com/wp-content/uploads/2026/01/infosys-bills-.jpg"
+  }
+ },
+ "beats": [
+  {
+   "beat": "hook",
+   "t": 2.0,
+   "frame": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v7b/qa/frames/frame-hook.png",
+   "text_px_detected": 25591,
+   "edge": {
+    "pass": true,
+    "offending_px": 0,
+    "clusters": 0,
+    "largest_cluster": 0
+   },
+   "face": {
+    "pass": true,
+    "method": "no-face",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "overlap_px": 0
+   },
+   "contrast": {
+    "pass": true,
+    "full_marks": true,
+    "text_luminance": 253.9,
+    "bg_luminance": 0.0,
+    "delta": 253.9
+   }
+  },
+  {
+   "beat": "news",
+   "t": 7.0,
+   "frame": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v7b/qa/frames/frame-news.png",
+   "text_px_detected": 42097,
+   "edge": {
+    "pass": true,
+    "offending_px": 581,
+    "clusters": 0,
+    "largest_cluster": 0
+   },
+   "face": {
+    "pass": true,
+    "method": "no-face",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "overlap_px": 0
+   },
+   "contrast": {
+    "pass": true,
+    "full_marks": true,
+    "text_luminance": 253.9,
+    "bg_luminance": 45.6,
+    "delta": 208.4
+   }
+  },
+  {
+   "beat": "hero",
+   "t": 13.0,
+   "frame": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v7b/qa/frames/frame-hero.png",
+   "text_px_detected": 33804,
+   "edge": {
+    "pass": true,
+    "offending_px": 0,
+    "clusters": 0,
+    "largest_cluster": 0
+   },
+   "face": {
+    "pass": true,
+    "method": "no-face",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "overlap_px": 0
+   },
+   "contrast": {
+    "pass": true,
+    "full_marks": true,
+    "text_luminance": 171.4,
+    "bg_luminance": 0.0,
+    "delta": 171.4
+   }
+  },
+  {
+   "beat": "grid",
+   "t": 19.5,
+   "frame": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v7b/qa/frames/frame-grid.png",
+   "text_px_detected": 57325,
+   "edge": {
+    "pass": true,
+    "offending_px": 37,
+    "clusters": 0,
+    "largest_cluster": 0
+   },
+   "face": {
+    "pass": true,
+    "method": "no-face",
+    "box": [
+     0,
+     0,
+     0,
+     0
+    ],
+    "overlap_px": 0
+   },
+   "contrast": {
+    "pass": true,
+    "full_marks": true,
+    "text_luminance": 253.4,
+    "bg_luminance": 91.8,
+    "delta": 161.6
+   }
+  },
+  {
+   "beat": "diaspora",
+   "t": 26.5,
+   "frame": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v7b/qa/frames/frame-diaspora.png",
+   "text_px_detected": 39377,
+   "edge": {
+    "pass": true,
+    "offending_px": 0,
+    "clusters": 0,
+    "largest_cluster": 0
+   },
+   "face": {
+    "pass": true,
+    "method": "frame-yunet (score 0.77)",
+    "box": [
+     449,
+     661,
+     17,
+     23
+    ],
+    "overlap_px": 0
+   },
+   "contrast": {
+    "pass": true,
+    "full_marks": true,
+    "text_luminance": 253.9,
+    "bg_luminance": 0.0,
+    "delta": 253.9
+   }
+  },
+  {
+   "beat": "payoff",
+   "t": 32.5,
+   "frame": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v7b/qa/frames/frame-payoff.png",
+   "text_px_detected": 28931,
+   "edge": {
+    "pass": true,
+    "offending_px": 0,
+    "clusters": 0,
+    "largest_cluster": 0
+   },
+   "face": {
+    "pass": true,
+    "method": "frame-yunet (score 0.64)",
+    "box": [
+     773,
+     451,
+     19,
+     25
+    ],
+    "overlap_px": 0
+   },
+   "contrast": {
+    "pass": true,
+    "full_marks": true,
+    "text_luminance": 253.9,
+    "bg_luminance": 0.0,
+    "delta": 253.9
+   }
+  }
+ ]
+}

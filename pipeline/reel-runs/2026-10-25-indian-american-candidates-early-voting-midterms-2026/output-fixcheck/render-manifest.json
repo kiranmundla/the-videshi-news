@@ -1,0 +1,413 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "indian-american-candidates-early-voting-midterms-2026",
+ "article_slug": "indian-american-candidates-early-voting-midterms-2026",
+ "article_id": "172eed73-cb2f-4064-96fa-3af4d9f79a23",
+ "category": "Nri World",
+ "video": "reel-runs/2026-10-25-indian-american-candidates-early-voting-midterms-2026/output-fixcheck/indian-american-candidates-early-voting-midterms-2026.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://www.indiaweekly.biz/media-library/us-midterms.png?id=68458793&width=1200&height=600&coordinates=0%2C52%2C0%2C53",
+  "local_path": "reel-runs/2026-10-25-indian-american-candidates-early-voting-midterms-2026/output-fixcheck/hero.png",
+  "width": 1200,
+  "height": 600,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.91)",
+  "has_face": true,
+  "box_source": [
+   806,
+   22,
+   124,
+   181
+  ],
+  "box_bg": [
+   646,
+   171,
+   86,
+   126
+  ],
+  "chin_bg": 297,
+  "anchor": [
+   0.722,
+   0.189
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   417
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 637,
+   "zone_h": 919,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 915,
+   "block_bottom": 1278,
+   "text_bbox": [
+    70,
+    915,
+    930,
+    1278
+   ],
+   "texts": [
+    "Nri World",
+    "INDIAN-AMERICAN CANDIDATES FACE THE EARLY VOTE"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     600
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 417,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      600
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.20x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Early voting is under way in the states where Indian-American candidates face their toughest races, ahead of the November 3 midterms."
+   ],
+   "v7": {
+    "image_source": "extra:vivek-ramaswamy-2025",
+    "track": "full-bleed",
+    "render_scale": 0.359,
+    "photo_px": [
+     6275,
+     5349
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.35894559730790804,
+     "window": [
+      330,
+      0,
+      3338,
+      5349
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Vivek Ramaswamy speaking with attendees at the 2025 AmericaFest at the Phoenix Convention Center in Phoenix, Arizona.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Vivek_Ramaswamy,_2025.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Vivek_Ramaswamy%2C_2025.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Gage Skidmore"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 370,
+   "block_top": 1210,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1210,
+    930,
+    1580
+   ],
+   "texts": [
+    "ELECTIONS 2026",
+    "$7.6 MILLION",
+    "Spent against Amish Shah in Arizona's 1st Congressional District"
+   ],
+   "v7": {
+    "image_source": "extra:amish-shah-46694757942",
+    "track": "full-bleed",
+    "render_scale": 0.574,
+    "photo_px": [
+     4488,
+     3344
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5741626794258373,
+     "window": [
+      1701,
+      0,
+      3582,
+      3344
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "State Representative Amish Shah speaking with supporters at the Arizona State Capitol in Phoenix, Arizona. Please attribute to Gage Skidmore if used elsewhere.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_(46694757942).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Amish_Shah_%2846694757942%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.0",
+     "artist": "Gage Skidmore from Peoria, AZ, United States of America"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 637,
+   "zone_h": 919,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 725,
+   "block_bottom": 1468,
+   "text_bbox": [
+    70,
+    725,
+    930,
+    1468
+   ],
+   "texts": [
+    "By The Numbers",
+    "$3.8 MILLION",
+    "Spent against Pia Dandiya in Florida's 22nd District",
+    "NOVEMBER 3",
+    "Election Day",
+    "28 SITES",
+    "Palm Beach County early voting sites, open through November 1"
+   ],
+   "v7": {
+    "image_source": "extra:dandiya-pia-candidate-overview-fec",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     600
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 417,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      600
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.20x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "DANDIYA, PIA - Candidate overview | FEC",
+     "route": "B \u2014 official sources",
+     "source_page": "https://www.fec.gov/data/candidate/H6FL21059/",
+     "file_url": "https://www.fec.gov/static/img/social/fec-data.png",
+     "license": "US federal government work \u2014 public domain",
+     "artist": ""
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 417,
+   "block_top": 1163,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1163,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Amish Shah in Arizona and Pia Dandiya in Florida are in congressional races rated toss-up to tilt",
+    "Vivek Ramaswamy is running for Ohio governor, and Saritha Komatireddy is challenging New York Attorney General Letitia James"
+   ],
+   "v7": {
+    "image_source": "extra:amish-shah-david-marshall-52750179671",
+    "track": "full-bleed",
+    "render_scale": 0.487,
+    "photo_px": [
+     5916,
+     3944
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.486815415821501,
+     "window": [
+      1787,
+      0,
+      4005,
+      3944
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "State Representatives Amish Shah and David Marshall speaking on the floor of the Arizona House of Representatives at the Arizona State Capitol building in Phoenix, Arizona. Please attribute to Gage Skidmore if used elsewhere.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_%26_David_Marshall_(52750179671).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Amish_Shah_%26_David_Marshall_%2852750179671%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.0",
+     "artist": "Gage Skidmore from Surprise, AZ, United States of America"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 310,
+   "block_top": 705,
+   "block_bottom": 1015,
+   "text_bbox": [
+    70,
+    705,
+    930,
+    1015
+   ],
+   "texts": [
+    "The Takeaway",
+    "The toss-up ratings in Arizona and Florida mean the Indian-American presence in the next Congress could hinge on a few thousand early and absentee ballots.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "/home/hatch/workspace/the-videshi-news/pipeline/music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 135.9,
+ "mp4_bytes": 10334559
+}

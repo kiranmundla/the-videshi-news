@@ -1,0 +1,37 @@
+{
+ "hook_line": "MALARIA VACCINE PRICE CUT BY 40%",
+ "hook_stat": {
+  "big": "40%",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Cut in the price of Bharat Biotech's malaria vaccine Mosqivac"
+ },
+ "stats": [
+  {
+   "big": "1 MILLION",
+   "label": "More children who could receive the full four-dose course"
+  },
+  {
+   "big": "$50 MILLION",
+   "label": "Expected savings for immunisation programmes between 2027 and 2029"
+  },
+  {
+   "big": "$200 MILLION",
+   "label": "Invested by GSK and Bharat Biotech in higher-output manufacturing"
+  }
+ ],
+ "diaspora_bullets": [
+  "Hyderabad-based Bharat Biotech manufactures Mosqivac, the first malaria vaccine the WHO recommended, in 2021",
+  "The lower price could fund full four-dose courses for up to one million more children"
+ ],
+ "key_entities": [
+  "Bharat Biotech",
+  "Mosqivac",
+  "Gavi",
+  "UNICEF",
+  "GSK"
+ ],
+ "news_summary": "Bharat Biotech has agreed an equitable pricing deal with Gavi and UNICEF that will cut the price of the world's first malaria vaccine by about 40 per cent.",
+ "payoff": "GSK and Bharat Biotech aim to bring the price below $5 per dose by 2028.",
+ "versus": "",
+ "story_mood": "celebratory"
+}

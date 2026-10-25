@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-25-indian-american-candidates-early-voting-midterms-2026/output-fixcheck/indian-american-candidates-early-voting-midterms-2026.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1200,
+        600
+      ],
+      "manifest_dims": [
+        1200,
+        600
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 688.1,
+      "url": "https://www.indiaweekly.biz/media-library/us-midterms.png?id=68458793&width=1200&height=600&coordinates=0%2C52%2C0%2C53"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-25-indian-american-candidates-early-voting-midterms-2026/output-fixcheck/qa/frames/frame-hook.png",
+      "text_px_detected": 27853,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.91)",
+        "box": [
+          646,
+          176,
+          90,
+          117
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-25-indian-american-candidates-early-voting-midterms-2026/output-fixcheck/qa/frames/frame-news.png",
+      "text_px_detected": 36558,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.63)",
+        "box": [
+          257,
+          372,
+          426,
+          511
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.8,
+        "bg_luminance": 21.4,
+        "delta": 232.3
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-25-indian-american-candidates-early-voting-midterms-2026/output-fixcheck/qa/frames/frame-hero.png",
+      "text_px_detected": 31760,
+      "edge": {
+        "pass": true,
+        "offending_px": 32,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.88)",
+        "box": [
+          365,
+          230,
+          365,
+          449
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.1,
+        "bg_luminance": 38.4,
+        "delta": 213.7
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-25-indian-american-candidates-early-voting-midterms-2026/output-fixcheck/qa/frames/frame-grid.png",
+      "text_px_detected": 70476,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          650,
+          155,
+          89,
+          131
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 171.9,
+        "bg_luminance": 0.0,
+        "delta": 171.9
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-25-indian-american-candidates-early-voting-midterms-2026/output-fixcheck/qa/frames/frame-diaspora.png",
+      "text_px_detected": 34465,
+      "edge": {
+        "pass": true,
+        "offending_px": 30,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          394,
+          152,
+          275,
+          321
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 34.0,
+        "delta": 219.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-25-indian-american-candidates-early-voting-midterms-2026/output-fixcheck/qa/frames/frame-payoff.png",
+      "text_px_detected": 19765,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          653,
+          145,
+          92,
+          134
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    }
+  ]
+}

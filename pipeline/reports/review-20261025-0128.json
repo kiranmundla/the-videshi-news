@@ -1,0 +1,94 @@
+[
+  {
+    "id": "4d7768d4-c345-4bd2-bf21-bf364cd626ea",
+    "headline": "New York Bans Horse-Drawn Carriages Under Romanch's Law, Honouring Indian Teen",
+    "slug": "romanchs-law-new-york-horse-carriage-ban-indian-teen",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the transition program by providing specific details on what it entails and when it will begin, as this is crucial for understanding the impact on affected workers.",
+        "Include a quote from Mayor Zohran Mamdani regarding the law to provide official context and perspective on the legislation's significance.",
+        "Add a brief explanation of the potential legal challenges from the carriage drivers' union to give readers insight into the opposition and its implications for the law's implementation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the New York City Council announcing the passage of Romanch's Law for real-time updates and official confirmation."
+      ]
+    }
+  },
+  {
+    "id": "f39f6694-f65b-469f-8ce1-aadf56a51112",
+    "headline": "Amrita Puri Has No Regrets About Leaving Bollywood for a Master's",
+    "slug": "amrita-puri-no-regrets-break-bollywood-masters-edinburgh",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of her break from acting. Specify the exact years she paused her career for her master's degree to provide context for readers.",
+        "Include a direct quote from Amrita Puri regarding her feelings about the impact of her break on her career to enhance the article's depth and personal connection.",
+        "Add a brief background on the significance of the University of Edinburgh's program she attended, which could provide context on why her master's degree is relevant to her career.",
+        "Mention any upcoming projects or plans she has post-degree to give readers a sense of what to expect from her in the future."
+      ],
+      "embed_opportunities": [
+        "Embed the official YouTube link to the interview on The Shaili Chopra Show for readers who want to watch the full conversation."
+      ]
+    }
+  },
+  {
+    "id": "0a7f9fa7-57fe-49a1-a599-72b0ba22dc42",
+    "headline": "India's 300th T20I Brings a First: 200 Outright Wins in the Format",
+    "slug": "india-300-t20is-200-wins-milestone-christchurch",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the 200 outright wins in the context of T20I history and its impact on India's standing in international cricket. This could include comparisons with other teams' win records.",
+        "Provide more detailed statistics about the match, such as the performance of key players, to give readers a clearer picture of how the victory was achieved.",
+        "Include a brief overview of India's T20I journey, highlighting key milestones and changes in team composition over the years, to provide context for the achievement."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from ESPNcricinfo or the official BCCI account celebrating the milestone, as this would enhance the article's credibility and provide real-time engagement."
+      ]
+    }
+  },
+  {
+    "id": "df15e501-c5ae-435e-a57d-894b495cce90",
+    "headline": "Infosys in Talks With DOJ Over Investigation Into H-1B Classifications",
+    "slug": "infosys-doj-investigation-h1b-classifications-disclosure",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the potential implications of the investigation for Infosys and its H-1B employees, including any possible financial repercussions or changes in policy that may arise from the DOJ's inquiry.",
+        "Provide a more detailed timeline of the investigation, including when it began and any key dates mentioned in the company's disclosures, to give readers a clearer understanding of the situation's progression.",
+        "Include a quote from a legal expert or immigration attorney to provide context on the significance of the investigation and its potential impact on H-1B visa classifications.",
+        "Ensure that the article specifies whether the investigation could lead to any changes in H-1B visa policies or practices that could affect other companies in the tech industry."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or press release from Infosys regarding the investigation to provide readers with direct access to the company's perspective."
+      ]
+    }
+  },
+  {
+    "id": "2d908b9d-8fb8-4279-9317-bbe209d0a35a",
+    "headline": "AISA President Neha Bora Refuses Peace Bond, Calls It a Curb on Dissent",
+    "slug": "neha-bora-refuses-peace-bond-dissent-delhi-high-court",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the peace bond refusal by including specific legal consequences Neha Bora might face if she does not comply with the magistrate's order, such as potential fines or arrest.",
+        "Provide more context about the significance of the 'Lehra Do Tiranga' march and its relevance to current political issues in India, which would help readers understand the stakes involved in this situation.",
+        "Include a direct quote from the Delhi High Court's ruling to enhance the article's credibility and provide readers with a clearer understanding of the legal framework surrounding this case."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Delhi High Court or a relevant legal authority regarding the peace bond or the rights of protesters to provide official context and enhance the article's authority."
+      ]
+    }
+  }
+]
