@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Post recently published Videshi articles to X as long-form posts."""
 
-import json, os, sys, time, tempfile, requests, tweepy, subprocess
+import json, os, re, sys, time, tempfile, requests, tweepy, subprocess
 try:
     import x_spend
 except Exception:
