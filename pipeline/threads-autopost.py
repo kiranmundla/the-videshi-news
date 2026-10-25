@@ -5,15 +5,17 @@ Threads auto-poster for The Videshi (@the.videshi).
 Mirrors the article picks of the other text channels onto Threads,
 with one shared ledger so no article ever posts twice:
 
-  * Facebook picks (pipeline/.state/fb-posted.json) — always carry the
-    article link (Threads posts are free; the link is the point).
-  * X picks (pipeline/tweet-log.json) — carry the article link only
-    when the X post itself did (the run's top pick, flagged with_link);
-    the rest mirror as plain text, matching Kiran's cross-channel
-    policy: important ones with links, the rest as plain text.
+  * Facebook picks (pipeline/.state/fb-posted.json) and X picks
+    (pipeline/tweet-log.json) — EVERY mirror carries the article
+    link, whatever the source pick itself did. Threads posts are
+    free; the link is the point (Kiran, 2026-10-25: "links where
+    it's allowed and free"). X's with_link flag is deliberately
+    NOT inherited here: it exists only because X charges $0.20
+    per link post, and X itself keeps that important-only
+    discipline (x-autopost.py) — it never applied to Threads.
 
 Text is reformatted for Threads' 500-character limit
-(headline + subheadline [+ link]).
+(headline + subheadline + link + hashtags).
 
 DELAYED-PUBLISH (default, what the slot crons run): STAGE mode —
 compose the exact Threads text and append it to the shared social
@@ -173,11 +175,16 @@ def hashtag_line(article):
     return " ".join(tags)
 
 
-def build_text(article, with_link=True):
+def build_text(article):
+    """Compose the Threads text within the 500-char limit:
+    headline + subheadline + article link + hashtags. The link
+    ALWAYS rides (Threads posts are free — see module docstring);
+    when space runs out the subheadline is trimmed first, then
+    the headline — never the link or the hashtag line."""
     headline = (article.get("headline") or "").strip()
     summary = (article.get("subheadline") or "").strip()
     url = f"https://www.thevideshi.com/articles/{article['slug']}"
-    tail = (f"\n\n{url}" if with_link else "") + f"\n\n{hashtag_line(article)}"
+    tail = f"\n\n{url}" + f"\n\n{hashtag_line(article)}"
     if summary and summary.lower() not in headline.lower():
         candidate = f"{headline}\n\n{summary}{tail}"
         if len(candidate) <= CHAR_LIMIT:
@@ -238,14 +245,17 @@ def verify_pending(slug, headline=None):
 
 
 def collect_picks():
-    """slug -> with_link across both source channels (FB wins ties:
-    an FB pick always carries its link on Threads)."""
+    """slug -> with_link across both source channels. The value is
+    the THREADS mirror's link flag and is always True: every mirror
+    carries the article link, even when the source pick went out
+    without one (an X non-top pick's with_link=False reflects X's
+    per-link pricing only and is not inherited)."""
     picks = {}
     tweets = load_json(TWEET_LOG, {})
     if isinstance(tweets, dict):
         for entry in tweets.values():
             if isinstance(entry, dict) and entry.get("slug"):
-                picks[entry["slug"]] = bool(entry.get("with_link"))
+                picks[entry["slug"]] = True
     fb = load_json(FB_STATE, {})
     for slug in fb.get("posted_slugs", []):
         picks[slug] = True
@@ -384,9 +394,8 @@ def stage_main():
         return
 
     for article, with_link in batch:
-        text = build_text(article, with_link=with_link)
-        print(f"Mirror: {article['headline'][:80]} "
-              f"(link: {with_link})")
+        text = build_text(article)
+        print(f"Mirror: {article['headline'][:80]} (link: yes)")
         print(f"Text ({len(text)} chars): {text[:160]}...")
         if DRY_RUN:
             print("DRY RUN — not staging.")
@@ -400,8 +409,8 @@ def stage_main():
             "headline": article["headline"],
             "text": text,
             "link": (f"https://www.thevideshi.com/articles/"
-                     f"{article['slug']}" if with_link else None),
-            "with_link": bool(with_link),
+                     f"{article['slug']}"),
+            "with_link": True,
             "image_url": article.get("image_url"),
             "card_file": card_files[0] if card_files else None,
             "card_files": card_files or None,
@@ -497,9 +506,8 @@ def main():
         return
 
     for article, with_link in batch:
-        text = build_text(article, with_link=with_link)
-        print(f"Mirror: {article['headline'][:80]} "
-              f"(link: {with_link})")
+        text = build_text(article)
+        print(f"Mirror: {article['headline'][:80]} (link: yes)")
         print(f"Text ({len(text)} chars): {text[:160]}...")
         if DRY_RUN:
             print("DRY RUN — not publishing.")

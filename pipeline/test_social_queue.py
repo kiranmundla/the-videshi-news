@@ -310,10 +310,14 @@ class TestThreadsStage(QueuePatchMixin, unittest.TestCase):
         by_slug = {e["slug"]: e for e in entries}
         self.assertIn("https://www.thevideshi.com/articles/x-top",
                       by_slug["x-top"]["text"])
-        # X pick without with_link mirrors as plain text (policy v2)
-        self.assertNotIn("thevideshi.com/articles",
-                         by_slug["x-plain"]["text"])
-        self.assertIsNone(by_slug["x-plain"]["link"])
+        # X pick without with_link STILL mirrors with the link
+        # (2026-10-25: Threads posts are free — always link; X's
+        # with_link flag is not inherited)
+        self.assertIn("https://www.thevideshi.com/articles/x-plain",
+                      by_slug["x-plain"]["text"])
+        self.assertEqual(by_slug["x-plain"]["link"],
+                         "https://www.thevideshi.com/articles/x-plain")
+        self.assertTrue(by_slug["x-plain"]["with_link"])
         # staged FB pick always carries the link
         self.assertIn("https://www.thevideshi.com/articles/queued-fb",
                       by_slug["queued-fb"]["text"])
@@ -332,6 +336,21 @@ class TestThreadsStage(QueuePatchMixin, unittest.TestCase):
         th = [e for e in sq.load_entries() if e["channel"] == "threads"]
         self.assertEqual([e["slug"] for e in th],
                          ["x-top", "x-plain", "queued-fb", "fb-slug"])
+
+    def test_build_text_link_survives_tight_char_budget(self):
+        # Over-long subheadline: the 500-char trim must cut the
+        # subheadline, never the link or the hashtag line.
+        article = {"headline": "A Moderately Long Headline About "
+                               "Something Important Happening Today",
+                   "subheadline": "word " * 120,
+                   "slug": "tight-budget-story",
+                   "category": "news", "tags": ["india"]}
+        text = threads_autopost.build_text(article)
+        self.assertLessEqual(len(text), 500)
+        self.assertIn(
+            "https://www.thevideshi.com/articles/tight-budget-story",
+            text)
+        self.assertIn("#TheVideshi", text)
 
     def test_mirror_shares_fb_card_set_and_generates_own(self):
         shared = ["/cards/x-top-1.png", "/cards/x-top-2.png",
