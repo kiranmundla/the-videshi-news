@@ -2,17 +2,13 @@
 """
 Threads auto-poster for The Videshi (@the.videshi).
 
-Mirrors the article picks of the other text channels onto Threads,
-with one shared ledger so no article ever posts twice:
-
-  * Facebook picks (pipeline/.state/fb-posted.json) and X picks
-    (pipeline/tweet-log.json) — EVERY mirror carries the article
-    link, whatever the source pick itself did. Threads posts are
-    free; the link is the point (Kiran, 2026-10-25: "links where
-    it's allowed and free"). X's with_link flag is deliberately
-    NOT inherited here: it exists only because X charges $0.20
-    per link post, and X itself keeps that important-only
-    discipline (x-autopost.py) — it never applied to Threads.
+Mirrors the FACEBOOK article pick set onto Threads — the same
+stories, the same count (Kiran, 2026-10-25 fresh start: parity
+across FB and Threads). X picks are NO LONGER mirrored (they used
+to inflate the Threads queue beyond the FB set). Every mirror
+carries the article link: Threads posts are free; the link is
+the point (Kiran, 2026-10-25: "links where it's allowed and
+free").
 
 Text is reformatted for Threads' 500-character limit
 (headline + subheadline + link + hashtags).
@@ -26,11 +22,10 @@ before its Threads mirror. No Threads calls are made in stage mode;
 social-publish-flush.py publishes the queue later while Kiran is
 present to approve each post.
 
-Each mirror also carries the pick's social CARD SET (card_files /
-card_texts / card_track): shared from the staged FB entry when it
-has one, generated for the pick otherwise (social_card.py
-make_card_set; the <600px skip rule leaves the set empty and the
-flush posts text-only, as before cards existed).
+FORMAT (Kiran, 2026-10-25): mirrors are SINGLE HERO-IMAGE posts —
+the article's own cover image attached at flush time. No card
+sets for article posts; card decks survive only on FB/Threads for
+articles that have a reel (staged by reel-distribute-social.py).
 
 Usage: python3 -u threads-autopost.py [--dry-run]   stage (default)
        python3 -u threads-autopost.py --publish-now [--dry-run]
@@ -69,7 +64,7 @@ TWEET_LOG = os.path.expanduser(
     "~/workspace/the-videshi-news/pipeline/tweet-log.json")
 STATE_FILE = os.path.join(BASE, "threads-posted.json")
 
-MAX_PER_RUN = 3           # drains FB (5/day) + X (12/day) across 5 slots
+MAX_PER_RUN = 4           # drains the FB pick set (10/day) across 5 slots
 MIRROR_WINDOW_HOURS = 48  # only mirror picks still fresh enough to matter
 SEED_AGE_HOURS = 24       # older picks are seeded as already-mirrored
 PENDING_TTL_SECS = 3 * 3600
@@ -245,17 +240,12 @@ def verify_pending(slug, headline=None):
 
 
 def collect_picks():
-    """slug -> with_link across both source channels. The value is
-    the THREADS mirror's link flag and is always True: every mirror
-    carries the article link, even when the source pick went out
-    without one (an X non-top pick's with_link=False reflects X's
-    per-link pricing only and is not inherited)."""
+    """slug -> with_link for the FACEBOOK pick set only (posted
+    ledger + currently staged FB queue entries). The value is the
+    THREADS mirror's link flag and is always True: every mirror
+    carries the article link. X picks are not mirrored anymore
+    (2026-10-25 parity rule — see module docstring)."""
     picks = {}
-    tweets = load_json(TWEET_LOG, {})
-    if isinstance(tweets, dict):
-        for entry in tweets.values():
-            if isinstance(entry, dict) and entry.get("slug"):
-                picks[entry["slug"]] = True
     fb = load_json(FB_STATE, {})
     for slug in fb.get("posted_slugs", []):
         picks[slug] = True
@@ -367,11 +357,6 @@ def stage_main():
               f"{sorted(pending)}")
 
     staged = social_queue.queued_slugs("threads", "article_post")
-    # Staged FB entries by slug — their card files are shared with
-    # the mirrors below (generate once, share the file).
-    fb_cards = {e["slug"]: e for e in social_queue.load_entries()
-                if e.get("channel") == "facebook"
-                and e.get("kind") == "article_post" and e.get("slug")}
     candidates = {s: link for s, link in picks.items()
                   if s not in posted and s not in pending
                   and s not in abandoned and s not in staged}
@@ -400,8 +385,6 @@ def stage_main():
         if DRY_RUN:
             print("DRY RUN — not staging.")
             continue
-        card_files, card_track, card_texts = _mirror_card_set(
-            article, fb_cards.get(article["slug"]))
         entry = {
             "channel": "threads",
             "kind": "article_post",
@@ -412,10 +395,10 @@ def stage_main():
                      f"{article['slug']}"),
             "with_link": True,
             "image_url": article.get("image_url"),
-            "card_file": card_files[0] if card_files else None,
-            "card_files": card_files or None,
-            "card_texts": card_texts or None,
-            "card_track": card_track,
+            "card_file": None,
+            "card_files": None,
+            "card_texts": None,
+            "card_track": None,
             "media_file": None,
             "cover_file": None,
             "alt_text": None,

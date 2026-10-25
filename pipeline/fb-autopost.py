@@ -10,12 +10,14 @@ social publish queue (pipeline/.state/social-publish-queue.json).
 No Facebook calls are made; social-publish-flush.py publishes the
 queue later while Kiran is present to approve each post.
 
-Each staged pick also renders its social CARD SET (social_card.py
-make_card_set: hook + key-takeaway cards + closer, 2-4 cards) into
-the queue entry (card_files/card_texts/card_track; the <600px skip
-rule leaves the set empty and the flush falls back to the plain
-hero), and — when a set exists — stages a matching Instagram card
-post carrying the single hook card, since IG stays single-card.
+FORMAT (Kiran, 2026-10-25 fresh start): article posts are SINGLE
+HERO-IMAGE posts — the article's own cover image attached to the
+post text. No card sets are rendered for article posts (card decks
+survive only on FB/Threads for articles that have a reel, staged
+by reel-distribute-social.py). Instagram no longer receives article
+posts at all — IG is reels-only. Each run stages PICKS_PER_RUN
+articles so the day's five slots stage 10 posts, and Threads
+mirrors exactly this pick set (threads-autopost.py).
 
 Usage: python3 -u fb-autopost.py [--dry-run]   stage (default)
        python3 -u fb-autopost.py --publish-now [--dry-run]
@@ -347,12 +349,17 @@ def build_ig_caption(article):
     return "\n\n".join(parts)
 
 
+PICKS_PER_RUN = 2  # 5 slots/day x 2 = 10 article posts/day (2026-10-25)
+
+
 def stage_main():
     """Delayed-publish staging: pick + compose + queue. No FB calls.
 
     fb-posted.json is NOT written at stage time (the flush writes it
     on publish); already-staged slugs are read back from the queue so
-    later slots never re-pick the same article."""
+    later slots never re-pick the same article. Each pick stages ONE
+    hero-image article post (no card set, no Instagram spawn — see
+    the module docstring's FORMAT note)."""
     posted, pending, abandoned, _pending_since = load_posted()
     if pending:
         print(f"NOTE: {len(pending)} slug(s) pending verification from "
@@ -360,65 +367,48 @@ def stage_main():
               f"until a --publish-now run resolves them: "
               f"{sorted(pending)}")
     staged = social_queue.queued_slugs("facebook", "article_post")
-    article = pick_article(posted | pending | abandoned | staged)
-    if not article:
-        print("No fresh article to stage (all recent ones already "
-              "posted or staged).")
-        return
-    text = build_post_text(article)
-    article_url = f"https://www.thevideshi.com/articles/{article['slug']}"
-    print(f"Picked: {article['headline'][:80]}")
-    print(f"Text preview: {text[:150]}...")
-    if DRY_RUN:
-        print("DRY RUN — not staging.")
-        return
-    card_files, card_track, card_texts = generate_card_set(article)
-    card_file = card_files[0] if card_files else None
-    entry = {
-        "channel": "facebook",
-        "kind": "article_post",
-        "slug": article["slug"],
-        "headline": article["headline"],
-        "text": text,
-        "link": article_url,
-        "image_url": article.get("image_url"),
-        "card_file": card_file,
-        "card_files": card_files or None,
-        "card_texts": card_texts or None,
-        "card_track": card_track,
-        "media_file": None,
-        "cover_file": None,
-        "alt_text": None,
-        "source": "fb-autopost",
-    }
-    if social_queue.add_entry(entry):
-        print(f"Staged for Facebook: {article['slug']}")
-    else:
-        print(f"Already staged, skipped: {article['slug']}")
-    # Instagram stays a SINGLE-card channel: stage a card post for
-    # the same pick carrying the set's hook card (same file, IG
-    # caption). A skipped set (<600px hero) means NO IG entry —
-    # the pick simply doesn't go to IG.
-    if card_file:
-        ig_entry = {
-            "channel": "instagram",
+    excluded = posted | pending | abandoned | staged
+    picked = 0
+    for _ in range(PICKS_PER_RUN):
+        article = pick_article(excluded)
+        if not article:
+            break
+        excluded.add(article["slug"])
+        text = build_post_text(article)
+        article_url = (f"https://www.thevideshi.com/articles/"
+                       f"{article['slug']}")
+        print(f"Picked: {article['headline'][:80]}")
+        print(f"Text preview: {text[:150]}...")
+        if DRY_RUN:
+            picked += 1
+            continue
+        entry = {
+            "channel": "facebook",
             "kind": "article_post",
             "slug": article["slug"],
             "headline": article["headline"],
-            "text": build_ig_caption(article),
-            "link": None,
+            "text": text,
+            "link": article_url,
             "image_url": article.get("image_url"),
-            "card_file": card_file,
-            "card_track": card_track,
+            "card_file": None,
+            "card_files": None,
+            "card_texts": None,
+            "card_track": None,
             "media_file": None,
             "cover_file": None,
-            "alt_text": article["headline"],
+            "alt_text": None,
             "source": "fb-autopost",
         }
-        if social_queue.add_entry(ig_entry):
-            print(f"Staged for Instagram (card): {article['slug']}")
+        if social_queue.add_entry(entry):
+            print(f"Staged for Facebook: {article['slug']}")
+            picked += 1
         else:
-            print(f"IG entry already staged, skipped: {article['slug']}")
+            print(f"Already staged, skipped: {article['slug']}")
+    if not picked:
+        print("No fresh article to stage (all recent ones already "
+              "posted or staged).")
+    if DRY_RUN:
+        print("DRY RUN — not staging.")
 
 
 def main():

@@ -24,6 +24,13 @@ Kiran is present to approve each one, and the flush writes the
 reel-distribution.json outcomes. YouTube privacy reads still happen
 here (flip detection is read-only and token-based).
 
+CARD DECKS (Kiran, 2026-10-25): once the Short is public, the
+reel's article ALSO gets a card-carousel post staged for Facebook
+and Threads (social_card.make_card_set — per-card entity sourcing,
+hero on the hook card only). IG carries the reel itself; ordinary
+articles without reels get single hero-image posts instead
+(fb-autopost.py / threads-autopost.py).
+
 Usage: python3 -u reel-distribute-social.py [--dry-run]   stage (default)
        python3 -u reel-distribute-social.py --publish-now [--dry-run]
            legacy immediate distribution (unchanged behavior)
@@ -100,6 +107,107 @@ def trim(text, limit):
     if len(text) <= limit:
         return text
     return text[:limit - 1].rsplit(" ", 1)[0] + "…"
+
+
+_MODULES = {}
+
+
+def _producer(mod_name, filename):
+    """Load a hyphenated producer module by path (same pattern as
+    social-publish-flush.py) so deck staging reuses the exact FB /
+    Threads text builders and the shared card-set renderer."""
+    if mod_name not in _MODULES:
+        if mod_name in sys.modules:
+            _MODULES[mod_name] = sys.modules[mod_name]
+            return _MODULES[mod_name]
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            mod_name, os.path.join(PIPELINE, filename))
+        mod = importlib.util.module_from_spec(spec)
+        sys.modules[mod_name] = mod
+        spec.loader.exec_module(mod)
+        _MODULES[mod_name] = mod
+    return _MODULES[mod_name]
+
+
+def _stage_reel_decks(row):
+    """Stage the reel article's CARD DECK posts for FB + Threads.
+
+    Runs once the Short is public (same gate as the IG/Threads reel
+    legs). The deck is rendered NOW, with the current social_card
+    code — queued decks are never re-rendered later, so a deck must
+    never be staged by old code and flushed blind (2026-10-25
+    lesson). A slug already queued as an article_post on a channel
+    (e.g. it was also a regular FB pick) is skipped there — the
+    flush's published-ledger check is the second line of defence.
+    Returns the number of entries staged."""
+    slug = row.get("article_slug")
+    if not slug:
+        return 0
+    from urllib.parse import quote
+    rows = sb_get(
+        "p2_articles?select=headline,subheadline,slug,category,"
+        "image_url,tags,key_takeaways,body"
+        f"&slug=eq.{quote(slug, safe='')}&status=eq.published")
+    if not isinstance(rows, list) or not rows:
+        print(f"  Deck skipped for {slug}: article not found")
+        return 0
+    article = rows[0]
+    fb = _producer("fb_autopost", "fb-autopost.py")
+    th = _producer("threads_autopost", "threads-autopost.py")
+    card_files, card_track, card_texts = fb.generate_card_set(article)
+    if not card_files:
+        print(f"  Deck skipped for {slug}: no card set "
+              f"(track={card_track})")
+        return 0
+    article_url = f"https://www.thevideshi.com/articles/{slug}"
+    staged = 0
+    fb_entry = {
+        "channel": "facebook",
+        "kind": "article_post",
+        "slug": slug,
+        "headline": article["headline"],
+        "text": fb.build_post_text(article),
+        "link": article_url,
+        "image_url": article.get("image_url"),
+        "card_file": card_files[0],
+        "card_files": card_files,
+        "card_texts": card_texts,
+        "card_track": card_track,
+        "media_file": None,
+        "cover_file": None,
+        "alt_text": None,
+        "source": "reel-distribute-social",
+    }
+    if slug in social_queue.queued_slugs("facebook", "article_post"):
+        print(f"  FB deck skipped (already queued): {slug}")
+    elif social_queue.add_entry(fb_entry):
+        staged += 1
+        print(f"  Staged FB card deck for {slug}")
+    th_entry = {
+        "channel": "threads",
+        "kind": "article_post",
+        "slug": slug,
+        "headline": article["headline"],
+        "text": th.build_text(article),
+        "link": article_url,
+        "with_link": True,
+        "image_url": article.get("image_url"),
+        "card_file": card_files[0],
+        "card_files": card_files,
+        "card_texts": card_texts,
+        "card_track": card_track,
+        "media_file": None,
+        "cover_file": None,
+        "alt_text": None,
+        "source": "reel-distribute-social",
+    }
+    if slug in social_queue.queued_slugs("threads", "article_post"):
+        print(f"  Threads deck skipped (already queued): {slug}")
+    elif social_queue.add_entry(th_entry):
+        staged += 1
+        print(f"  Staged Threads card deck for {slug}")
+    return staged
 
 
 def yt_privacy(video_ids):
@@ -328,6 +436,9 @@ def main():
                             queued_th.add(vid)
                             acted += 1
                             print(f"  Staged Threads post entry for {vid}")
+                    # Card decks for this reel's article on FB +
+                    # Threads (IG carries the reel itself).
+                    acted += _stage_reel_decks(row)
                 continue
             print(f"FLIPPED PUBLIC: {row['article_slug']} ({vid}) "
                   f"— posting IG + Threads")

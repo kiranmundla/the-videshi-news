@@ -169,6 +169,14 @@ def publish_threads_article(entry):
     single = entry.get("card_file")
     if not files and single and os.path.exists(single):
         files = [single]
+    hero_tmp = None
+    if not files and entry.get("image_url"):
+        # Hero-image article post (the 2026-10-25 default format):
+        # attach the article's own cover image as the single media
+        # item. A failed download degrades to the text-only post.
+        hero_tmp = _fb().download_image(entry["image_url"])
+        if hero_tmp:
+            files = [hero_tmp]
     if files:
         texts = entry.get("card_texts") or []
         cmd = [THREADS_CLI, "publish-post", "--account-id",
@@ -181,7 +189,13 @@ def publish_threads_article(entry):
             if alt:
                 item["alt_text"] = str(alt)[:1024]
             cmd += ["--media-item", json.dumps(item)]
-        return _run_cli_json(cmd, "threads article publish")
+        result = _run_cli_json(cmd, "threads article publish")
+        if hero_tmp:
+            try:
+                os.unlink(hero_tmp)
+            except OSError:
+                pass
+        return result
     return _th().publish(entry["text"])
 
 
