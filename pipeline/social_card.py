@@ -45,10 +45,15 @@ the hook card (make_card) + up to 2 key-takeaway cards + a closer
 card, all in the Sample C navy/gold system. X's 4-image cap is the
 binding constraint, so ONE set serves all three surfaces. A skipped
 hook (<600px) means no set at all; surfaces fall back to today's
-single-image behavior. Each middle card carries its OWN background
-from the article's verified assets (inline body images in order,
-else a hero detail crop, else plain navy), theme-gated per card —
-never upscaled.
+single-image behavior. Each middle card carries its OWN picture,
+sourced for that card's subject (Kiran's cross-format doctrine,
+2026-10-25 — the Reels v7 per-scene model applied to decks): the
+article's inline body images in order, else the ENTITY-SOURCING
+ladder (reel_entity_sourcing: Commons -> official -> Brave
+discovery, license-gated, provenance recorded), else a plain navy
+text card. The hero appears ONLY on the hook card and no image is
+ever rendered twice in one deck. Theme-gated per card — never
+upscaled.
 """
 
 import argparse
@@ -59,6 +64,7 @@ import os
 import re
 import subprocess
 import sys
+import urllib.parse
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -149,8 +155,14 @@ def pf(size, weight="Bold"):
     return f
 
 
+_INTER_FILES = {"400": "Inter-400.ttf", "600": "Inter-600.ttf",
+                "700": "Inter-700.ttf", "800": "Inter-800.ttf"}
+
+
 def inter(size, weight="700"):
-    path = INTER_800 if weight == "800" else INTER_700
+    path = FONT_DIR / _INTER_FILES.get(str(weight), "Inter-700.ttf")
+    if not path.exists():
+        path = INTER_700
     return ImageFont.truetype(str(path), size)
 
 
@@ -599,17 +611,213 @@ def _same_image(a, b):
     return bool(fa) and fa == fb
 
 
-def detail_crop(img, fx, fy, frac):
-    """A tighter crop of img around the focal anchor (frac of the
-    full frame in each dimension, clamped inside the frame) — a
-    materially different visual of the same verified subject, used
-    as a middle card's background when no inline image remains."""
-    w, h = img.size
-    cw = min(w, max(2, int(w * frac)))
-    ch = min(h, max(2, int(h * frac)))
-    x0 = min(max(int(fx * w - cw / 2), 0), w - cw)
-    y0 = min(max(int(fy * h - ch / 2), 0), h - ch)
-    return img.crop((x0, y0, x0 + cw, y0 + ch))
+def _elog(msg):
+    """Deck-build diagnostics go to stderr: stdout carries the
+    CLI's single JSON line, and queue producers import this
+    module."""
+    print(f"social_card: {msg}", file=sys.stderr)
+
+
+# ── Per-card entity sourcing (the Reels v7 ladder, adapted) ──────
+ENTITY_CACHE_DIR = CACHE_DIR / "entity"
+MAX_CARD_ENTITIES = 3
+
+
+_BRAND_TOKEN_RE = re.compile(r"[A-Za-z][A-Za-z&.'-]*")
+
+
+def _card_entities(text, article_ctx):
+    """Picture-worthy entities for ONE takeaway card, best first:
+    the card's OWN subjects in text order — capitalized phrases
+    (_PHRASE_RE) plus mixed-case brand tokens the phrase regex
+    misses (IndiGo, YouTube, WhatsApp carry an internal capital)
+    — then the article's entities from reel_entity_sourcing's
+    extractor, ranked by token overlap with the card text.
+    Article-level entities with zero overlap stay as honest
+    fallbacks."""
+    import reel_entity_sourcing as res
+    seen = set()
+    own = []
+
+    def add(e, bucket):
+        e = res._clean_entity(e)
+        if e and e.lower() not in seen:
+            seen.add(e.lower())
+            bucket.append(e)
+
+    hits = [(m.start(), m.group(0))
+            for m in res._PHRASE_RE.finditer(text or "")]
+    for m in _BRAND_TOKEN_RE.finditer(text or ""):
+        tok = m.group(0)
+        if any(ch.isupper() for ch in tok[1:]):
+            hits.append((m.start(), tok))
+    for _pos, e in sorted(hits):
+        add(e, own)
+    art = []
+    for e in res.extract_entities(article_ctx, None):
+        add(e, art)
+    toks = set(res._tokens(text))
+
+    def overlap(e):
+        return sum(1 for t in res.entity_tokens(e) if t in toks)
+
+    art.sort(key=lambda e: -overlap(e))
+    return own + art
+
+
+_NON_PHOTO_RE = re.compile(
+    r"\b(maps?|diagrams?|charts?|graphs?|logos?|destinations|"
+    r"routes|timetable|flags?|coat of arms)\b", re.I)
+
+
+def _card_photo_ok(cand):
+    """Cards carry PHOTOGRAPHS of the entity. The ladder's gates
+    reject map fragments in descriptions, but a whole-file graphic
+    whose subject IS a map/diagram (e.g. an airline's destinations
+    map) still passes them — useless as a card picture, so the
+    adapter skips it by title and keeps scanning."""
+    return not _NON_PHOTO_RE.search(cand.get("title") or "")
+
+
+def _download_entity_image(url):
+    """Download an entity-sourced file into the card cache and
+    load it. Returns (img, raw) like load_local_image."""
+    import reel_entity_sourcing as res
+    ENTITY_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    key = hashlib.sha1(url.encode()).hexdigest()[:16]
+    dest = ENTITY_CACHE_DIR / f"{key}.img"
+    if not dest.exists():
+        res.download_file(url, dest)
+    return load_local_image(dest)
+
+
+def _entity_image_for_card(text, article_ctx, used, log=None):
+    """Source ONE picture for a takeaway card's own subject via
+    the Reels v7 entity ladder (reel_entity_sourcing — Kiran's
+    cross-format doctrine, 2026-10-25, proven on the Infosys
+    reel): Route A Wikimedia Commons originals, Route B official
+    sources, Route C Brave discovery -> Commons. Every candidate
+    passes the ladder's gates at its hosting page (provably the
+    entity, license clean CC/PD with attribution, true dimensions
+    at the file) and must not duplicate an image already in the
+    deck (`used` — the hero included).
+
+    Returns (img, raw, prov) with prov = {entity, route,
+    source_page, file_url, license, artist, bg_px}, or None on an
+    honest miss (logged). NEVER raises."""
+    log = log or _elog
+    try:
+        import reel_entity_sourcing as res
+    except Exception as e:
+        log(f"entity sourcing unavailable ({e})")
+        return None
+    used = [u for u in (used or []) if u]
+
+    def is_used(url):
+        return any(_same_image(url, u) for u in used)
+
+    try:
+        entities = _card_entities(text, article_ctx)
+    except Exception as e:
+        log(f"entity extraction failed ({e})")
+        return None
+    if not entities:
+        log("entity sourcing: no entities for this card — navy")
+        return None
+    hint = ""
+    try:
+        hint = res.topical_hint(article_ctx, entities)
+    except Exception:
+        pass
+    for entity in entities[:MAX_CARD_ENTITIES]:
+        cand = None
+        # Route A — Wikimedia Commons originals
+        try:
+            for q in res.queries_for(entity, hint):
+                if cand:
+                    break
+                for page in res.commons_search(q, limit=8):
+                    c, _row = res.evaluate_commons_page(
+                        page, entity, "A — Wikimedia Commons")
+                    if c and not _card_photo_ok(c):
+                        log(f"entity sourcing: skipped non-photo "
+                            f"graphic for {entity}: "
+                            f"{(c['title'] or '')[:60]}")
+                        c = None
+                    if c and not is_used(c["file_url"]):
+                        cand = c
+                        break
+        except Exception as e:
+            log(f"entity sourcing route A failed ({entity}): {e}")
+        # Route B — official sources (newsroom / org / .gov)
+        if cand is None:
+            try:
+                links = res.brave_links(
+                    f"{entity} official newsroom press media", 6)
+                ent_tok = res.entity_tokens(entity)
+                for link in links[:3]:
+                    host = urllib.parse.urlparse(
+                        link).netloc.lower()
+                    if not (host.endswith((".gov", ".mil"))
+                            or (ent_tok and ent_tok[0] in host)):
+                        continue
+                    c, _row = res.evaluate_hosted_page(
+                        link, entity, "B — official sources",
+                        res.DEFAULT_NET)
+                    if c and not is_used(c["file_url"]) \
+                            and _card_photo_ok(c):
+                        cand = c
+                        break
+            except Exception as e:
+                log(f"entity sourcing route B failed ({entity}): {e}")
+        # Route C — web search as discovery only -> Commons gates
+        if cand is None:
+            try:
+                links = res.brave_links(
+                    f"{entity} site:commons.wikimedia.org", 6)
+                for link in links:
+                    m = re.search(r"/wiki/(File:[^/?#]+)", link)
+                    if not m:
+                        continue
+                    title = urllib.parse.unquote(
+                        m.group(1)).replace("_", " ")
+                    page = res.commons_file_info(title)
+                    if not page:
+                        continue
+                    c, _row = res.evaluate_commons_page(
+                        page, entity,
+                        "C — web search (discovery) → Commons")
+                    if c and not is_used(c["file_url"]) \
+                            and _card_photo_ok(c):
+                        cand = c
+                        break
+            except Exception as e:
+                log(f"entity sourcing route C failed ({entity}): {e}")
+        if cand is None:
+            continue
+        try:
+            img, raw = _download_entity_image(cand["file_url"])
+        except Exception as e:
+            log(f"entity sourcing: download failed ({entity}): {e}")
+            continue
+        if not res.dims_ok(*img.size):
+            log(f"entity sourcing: {entity} file below the floor "
+                f"at true size {img.size[0]}x{img.size[1]} — skip")
+            continue
+        prov = {"entity": entity, "route": cand["route"],
+                "source_page": cand["source_page"],
+                "file_url": cand["file_url"],
+                "license": cand["license"],
+                "artist": cand.get("artist") or "",
+                "bg_px": list(img.size)}
+        log(f"entity sourcing: {entity} ← "
+            f"{(cand['title'] or '')[:64]} "
+            f"({img.size[0]}x{img.size[1]}, {cand['license']}) "
+            f"via {cand['route']}")
+        return img, raw, prov
+    log(f"entity sourcing: honest miss for this card "
+        f"(tried: {', '.join(entities[:MAX_CARD_ENTITIES])}) — navy")
+    return None
 
 
 def normalize_takeaways(raw):
@@ -711,39 +919,128 @@ def render_middle_card(text, kicker, pos, total, bg_img=None,
     return card, info
 
 
+LOGO_ASSET = HERE / "assets" / "logo-transparent.png"
+OFFWHITE = (233, 229, 218)
+_lockup_cache = None
+
+
+def load_v_lockup():
+    """The V+compass brand glyph in white ink on transparency,
+    derived from the tracked brand asset (assets/logo-transparent.png)
+    the same way the cover family derived it (build_covers.py):
+    crop to the glyph, recolor the navy ink white, keep the gold
+    compass rose. Cached; None when the asset is unavailable (the
+    closer then draws the mark in Playfair)."""
+    global _lockup_cache
+    if _lockup_cache is not None:
+        return _lockup_cache or None
+    try:
+        im = Image.open(LOGO_ASSET).convert("RGBA")
+        bbox = im.getchannel("A").getbbox()
+        if bbox:
+            im = im.crop(bbox)
+        # The asset also bakes a small 'THE VIDESHI' caption under
+        # the mark; keep only the top ink cluster (the glyph) —
+        # the closer draws its own fitted label.
+        alpha = im.getchannel("A")
+        w2, h2 = im.size
+        apx = alpha.load()
+        cut = h2
+        for yy in range(h2):
+            if all(apx[xx, yy] == 0 for xx in range(w2)):
+                cut = yy
+                break
+        if 0 < cut < h2:
+            im = im.crop((0, 0, w2, cut))
+        px = im.load()
+        w, h = im.size
+        for yy in range(h):
+            for xx in range(w):
+                r, g, b, a = px[xx, yy]
+                if a and r < 130 and b >= r:   # navy ink -> white
+                    px[xx, yy] = (255, 255, 255, a)
+        _lockup_cache = im
+    except Exception:
+        _lockup_cache = False
+    return _lockup_cache or None
+
+
 def render_closer_card(kicker, slug=None, pos=None, total=None):
-    """The set closer: navy field, centred 'THE VIDESHI' wordmark
-    (gold tracked caps under a gold rule), the category kicker, the
-    serif line 'Full story at thevideshi.com' and, when the slug is
-    clean, the article's short link line under it."""
+    """The set closer (redesigned 2026-10-25 — the old closer read
+    as an empty navy slab): the full brand lockup, centred — the
+    V+compass glyph with 'THE VIDESHI' fitted under it (the
+    avatar/cover treatment from build_covers.py), then the
+    Playfair wordmark 'The Videshi', a gold rule, the tagline and
+    thevideshi.com in gold. kicker/slug are accepted for call
+    compatibility but no longer compete with the lockup."""
     card = Image.new("RGB", (W, H), NAVY)
-    brand_mark_v(card)
     d = ImageDraw.Draw(card)
     cx = W // 2
-    y = 452
-    d.rectangle((cx - 36, y, cx + 36, y + RULE_H), fill=GOLD)
-    wf = inter(46, "800")
-    label = "THE VIDESHI"
-    tw = tracked_w(d, label, wf, 12)
-    draw_tracked(d, (cx - tw / 2, y + 42), label, wf, 12, GOLD)
-    kf = inter(28, "700")
-    kw = tracked_w(d, kicker, kf, KICKER_TRACKING)
-    draw_tracked(d, (cx - kw / 2, y + 128), kicker, kf,
-                 KICKER_TRACKING, SUBTLE_FILL)
-    sf = pf(56, "Bold")
-    ly = y + 204
-    for ln in wrap(d, "Full story at thevideshi.com", sf, CW):
-        lw = d.textlength(ln, font=sf)
-        d.text((cx - lw / 2, ly), ln, font=sf, fill=WHITE)
-        ly += int(56 * LINE_RATIO)
-    if slug and re.fullmatch(r"[a-z0-9][a-z0-9-]*", slug):
-        uf = inter(25, "700")
-        url = f"thevideshi.com/articles/{slug}"
-        uw = d.textlength(url, font=uf)
-        d.text((cx - uw / 2, ly + 30), url, font=uf, fill=SUBTLE_FILL)
+
+    def th(text, font):
+        b = d.textbbox((0, 0), text, font=font)
+        return b[3] - b[1], b[1]
+
+    glyph = load_v_lockup()
+    wm_f = pf(96, "Bold")
+    wm_h, wm_top = th("The Videshi", wm_f)
+    tag_f = inter(33, "400")
+    tag = "Your daily source for Indian diaspora news."
+    tag_h, tag_top = th(tag, tag_f)
+    url_f = inter(36, "600")
+    url_h, url_top = th("thevideshi.com", url_f)
+    g_wm, g_rule, g_tag, g_url = 58, 16, 15, 14
+    if glyph is not None:
+        glyph_h = 296
+        glyph_w = int(glyph_h * glyph.width / glyph.height)
+        lab_size = 30
+        while lab_size > 10:
+            lf = inter(lab_size, "600")
+            if tracked_w(d, "THE VIDESHI", lf,
+                         lab_size * 0.32) <= glyph_w:
+                break
+            lab_size -= 1
+        lab_f, lab_tr = inter(lab_size, "600"), lab_size * 0.32
+        lab_h = lab_size
+        lab_gap = int(glyph_h * 0.07)
+        group_h = (glyph_h + lab_gap + lab_h + g_wm + wm_h + g_rule
+                   + RULE_H + g_tag + tag_h + g_url + url_h)
+        y = (H - group_h) // 2
+        g = glyph.resize((glyph_w, glyph_h), Image.LANCZOS)
+        card.paste(g, (cx - glyph_w // 2, y), g)
+        d = ImageDraw.Draw(card)
+        lw_ = tracked_w(d, "THE VIDESHI", lab_f, lab_tr)
+        draw_tracked(d, (cx - lw_ / 2, y + glyph_h + lab_gap),
+                     "THE VIDESHI", lab_f, lab_tr, WHITE)
+        y += glyph_h + lab_gap + lab_h + g_wm
+    else:
+        vf = pf(190, "ExtraBold")
+        vh, _vt = th("V", vf)
+        lab_h = 44
+        group_h = (vh + 18 + lab_h + g_wm + wm_h + g_rule + RULE_H
+                   + g_tag + tag_h + g_url + url_h)
+        y = (H - group_h) // 2
+        vw = d.textlength("V", font=vf)
+        d.text((cx - vw / 2, y), "V", font=vf, fill=WHITE)
+        y += vh + 18 + lab_h + g_wm
+    wm_w = d.textlength("The Videshi", font=wm_f)
+    d.text((cx - wm_w / 2, y - wm_top), "The Videshi", font=wm_f,
+           fill=WHITE)
+    y += wm_h + g_rule
+    d.rectangle((cx - 60, y, cx + 60, y + RULE_H), fill=GOLD)
+    y += RULE_H + g_tag
+    tw_ = d.textlength(tag, font=tag_f)
+    d.text((cx - tw_ / 2, y - tag_top), tag, font=tag_f,
+           fill=OFFWHITE)
+    y += tag_h + g_url
+    uw = d.textlength("thevideshi.com", font=url_f)
+    d.text((cx - uw / 2, y - url_top), "thevideshi.com",
+           font=url_f, fill=GOLD)
     if pos:
-        _position_marker(d, pos, total)
-    return card, {"render_scale": 1.0, "truncated": False}
+        _position_marker(ImageDraw.Draw(card), pos, total)
+    return card, {"render_scale": 1.0, "truncated": False,
+                  "lockup": "asset" if glyph is not None
+                  else "drawn"}
 
 
 def _set_base(slug, headline):
@@ -766,15 +1063,20 @@ def make_card_set(headline, category, image_url=None, image_path=None,
     ordered PNG paths) and "cards" (per-card role/alt/truncated —
     takeaway cards also carry bg_source / bg_track / bg_px).
 
-    Each middle card gets its OWN background, relevant to its text,
-    sourced ONLY from the article's already-verified assets:
+    Each middle card gets its OWN picture, sourced for that
+    card's subject (Kiran's cross-format doctrine, 2026-10-25):
       a. inline images from the article body, in body order
          (hero and its thumbnail variants excluded) — middle i
          uses inline i;
-      b. else a detail crop of the hero (tighter focal crop;
-         successive crops go tighter still);
+      b. else ENTITY SOURCING for that card's subject via the
+         Reels v7 ladder (_entity_image_for_card — Commons ->
+         official -> Brave discovery, license-gated, provenance
+         recorded on the card entry as bg_provenance);
       c. else the plain navy text card.
-    Each background is theme-gated like the hook (see
+    The hero renders ONLY on the hook card, exactly once per
+    deck, and no image renders on more than one card (a deck-level
+    guard re-checks every candidate against the images already
+    used). Each background is theme-gated like the hook (see
     render_middle_card): never upscaled."""
     out_dir = Path(out_dir) if out_dir else DEFAULT_OUT_DIR
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -796,67 +1098,80 @@ def make_card_set(headline, category, image_url=None, image_path=None,
         middle_source = "subheadline"
     total = 2 + len(middles)
 
-    # ── Middle-card backgrounds: inline -> hero detail-crop -> navy
+    # ── Middle-card pictures: inline -> entity ladder -> navy.
+    # The hero is NEVER a middle background; `used` tracks every
+    # image identity already in the deck so nothing renders twice.
     inlines = [u for u in extract_inline_images(body)
                if not _same_image(u, image_url)]
-    hero_img = hero_raw = hero_anchor = None
-    crops_used = 0
-
-    def hero_crop_bg():
-        nonlocal hero_img, hero_raw, hero_anchor, crops_used
-        if hero_img is None:
-            if image_path:
-                hero_img, hero_raw = load_local_image(image_path)
-            elif image_url:
-                hero_img, _u, hero_raw = fetch_image(image_url)
-            else:
-                return None
-            hero_anchor = focal_anchor(hero_img, hero_raw)
-        frac = 0.55 if crops_used == 0 else 0.38
-        crops_used += 1
-        return detail_crop(hero_img, hero_anchor[0], hero_anchor[1],
-                           frac)
+    article_ctx = {"headline": headline, "body": body or "",
+                   "slug": slug, "category": category}
+    hook_id = (hook.get("fetched_url") or image_url
+               or (str(image_path) if image_path else None))
+    used = [u for u in (image_url, hook.get("fetched_url"),
+                        str(image_path) if image_path else None)
+            if u]
 
     files = [hook["out_path"]]
     cards = [{"role": "hook", "path": hook["out_path"],
               "alt": headline, "track": hook["track"],
+              "image_id": hook_id,
               "truncated": bool(hook.get("truncated"))}]
     for i, text in enumerate(middles):
         pos = i + 2
         path = str(out_dir / f"{base}-{pos}.png")
-        bg_img = bg_raw = None
+        bg_img = bg_raw = bg_url = prov = None
         bg_source = "navy"
         if i < len(inlines):
             try:
                 bg_img, _u, bg_raw = fetch_image(inlines[i])
-                bg_source = f"inline:{i + 1}"
+                bg_url = inlines[i]
+                if any(_same_image(bg_url, u) for u in used):
+                    bg_img = bg_raw = bg_url = None
+                else:
+                    bg_source = f"inline:{i + 1}"
             except Exception:
-                bg_img = bg_raw = None
+                bg_img = bg_raw = bg_url = None
         if bg_img is None:
-            try:
-                bg_img = hero_crop_bg()
-                if bg_img is not None:
-                    bg_source = "hero-crop"
-            except Exception:
-                bg_img = None
+            got = _entity_image_for_card(text, article_ctx, used)
+            if got is not None:
+                bg_img, bg_raw, prov = got
+                if any(_same_image(prov["file_url"], u)
+                       for u in used):
+                    # Deck-level guard: the adapter already
+                    # filters, but a deck never repeats an image.
+                    bg_img = bg_raw = prov = None
+                else:
+                    bg_source = "entity"
+                    bg_url = prov["file_url"]
         card, rinfo = render_middle_card(text, kicker, pos, total,
                                          bg_img=bg_img, bg_raw=bg_raw)
         card.save(path, "PNG")
         files.append(path)
-        cards.append({"role": "takeaway", "path": path, "alt": text,
-                      "truncated": rinfo["truncated"],
-                      "text_size": rinfo.get("text_size"),
-                      "text_lines": rinfo.get("text_lines"),
-                      "bg_source": bg_source,
-                      "bg_track": rinfo.get("bg_track"),
-                      "bg_px": list(bg_img.size) if bg_img else None})
+        entry = {"role": "takeaway", "path": path, "alt": text,
+                 "truncated": rinfo["truncated"],
+                 "text_size": rinfo.get("text_size"),
+                 "text_lines": rinfo.get("text_lines"),
+                 "bg_source": bg_source,
+                 "bg_track": rinfo.get("bg_track"),
+                 "bg_px": list(bg_img.size) if bg_img else None,
+                 "image_id": bg_url}
+        if prov is not None:
+            entry["bg_entity"] = prov["entity"]
+            entry["bg_provenance"] = {
+                k: prov[k] for k in ("entity", "route",
+                                     "source_page", "file_url",
+                                     "license", "artist")}
+        cards.append(entry)
+        if bg_url:
+            used.append(bg_url)
     closer_path = str(out_dir / f"{base}-{total}.png")
     card, _ = render_closer_card(kicker, slug=slug, pos=total,
                                  total=total)
     card.save(closer_path, "PNG")
     files.append(closer_path)
     cards.append({"role": "closer", "path": closer_path,
-                  "alt": "Full story at thevideshi.com",
+                  "alt": "The Videshi — Your daily source for "
+                         "Indian diaspora news. thevideshi.com",
                   "truncated": False})
     info = {"track": hook["track"],
             "source_px": hook.get("source_px"),

@@ -18,6 +18,11 @@ Core invariants under test:
     make_card render nothing and return track "skipped" /
     reason "hero_under_600px"; exactly 600px renders; force_track
     (--track) overrides the skip.
+  - Deck rule (2026-10-25): every takeaway card carries its OWN
+    picture — article inlines in order, else the entity-sourcing
+    ladder, else a navy text card. The hero renders ONLY on the
+    hook card, and NO image renders on more than one card in a
+    deck (hard invariant, tested against an adversarial sourcer).
 """
 import os
 import sys
@@ -252,15 +257,20 @@ check_true("same_image: wikimedia thumb variant", sc._same_image(
 check_true("same_image: different files differ", not sc._same_image(
     "https://img.example/foo.jpg", "https://img.example/bar.jpg"))
 
-# Set composition via a local hero (no body -> hero-crop middles)
+# Set composition via a local hero (no body; the entity ladder
+# is patched to an honest miss -> navy middles — the hero is
+# NEVER reused as a middle background)
+NO_ENTITY = mock.patch.object(sc, "_entity_image_for_card",
+                              return_value=None)
 p6 = os.path.join(tmp, "hero-set.jpg")
 solid(2560, 1440, (120, 60, 30)).save(p6, "JPEG")
-info = sc.make_card_set(
-    "Set Composition Headline", "sports", image_path=p6,
-    key_takeaways=["First takeaway for the set.",
-                   "Second takeaway for the set.",
-                   "Third takeaway must be capped."],
-    slug="set-comp", out_dir=tmp)
+with NO_ENTITY:
+    info = sc.make_card_set(
+        "Set Composition Headline", "sports", image_path=p6,
+        key_takeaways=["First takeaway for the set.",
+                       "Second takeaway for the set.",
+                       "Third takeaway must be capped."],
+        slug="set-comp", out_dir=tmp)
 check("set: hook+2 takeaways+closer = 4", info["set_size"], 4)
 check("set: files ordered", [os.path.basename(f) for f in info["files"]],
       ["set-comp-1.png", "set-comp-2.png", "set-comp-3.png",
@@ -270,16 +280,18 @@ check("set: roles", [c["role"] for c in info["cards"]],
 check("set: takeaways capped at 2", info["takeaways_used"], 2)
 check_true("set: all files written",
            all(os.path.exists(f) for f in info["files"]))
-check("set: no body -> middles are hero-crops",
+check("set: no body + entity miss -> navy middles",
       [c["bg_source"] for c in info["cards"][1:3]],
-      ["hero-crop", "hero-crop"])
+      ["navy", "navy"])
 check("set: closer alt", info["cards"][-1]["alt"],
-      "Full story at thevideshi.com")
+      "The Videshi — Your daily source for "
+      "Indian diaspora news. thevideshi.com")
 
-info = sc.make_card_set(
-    "Subheadline Fallback Set", "news", image_path=p6,
-    key_takeaways=None, subheadline="The subheadline stands in.",
-    slug="set-sub", out_dir=tmp)
+with NO_ENTITY:
+    info = sc.make_card_set(
+        "Subheadline Fallback Set", "news", image_path=p6,
+        key_takeaways=None, subheadline="The subheadline stands in.",
+        slug="set-sub", out_dir=tmp)
 check("set: subheadline fallback = 3 cards", info["set_size"], 3)
 check("set: middle_source subheadline", info["middle_source"],
       "subheadline")
@@ -297,10 +309,11 @@ check("set: <600px hook -> no set", info["track"], "skipped")
 check("set: skip files empty", info["files"], [])
 
 # Takeaway truncation is flagged, never silent
-info = sc.make_card_set(
-    "Truncation Flag Set", "news", image_path=p6,
-    key_takeaways=[" ".join(["filler"] * 900)],
-    slug="set-trunc", out_dir=tmp)
+with NO_ENTITY:
+    info = sc.make_card_set(
+        "Truncation Flag Set", "news", image_path=p6,
+        key_takeaways=[" ".join(["filler"] * 900)],
+        slug="set-trunc", out_dir=tmp)
 check_true("set: absurd takeaway truncates with flag",
            info["cards"][1]["truncated"] is True)
 
@@ -332,48 +345,149 @@ check("set: middle 2 source", info["cards"][2]["bg_source"], "inline:2")
 check("set: high-res inline -> photo middle",
       info["cards"][2]["bg_track"], "photo")
 
-# Fallback chain: inline fetch fails -> hero detail crop -> navy
+# Fallback chain: inline fetch fails -> entity ladder (patched
+# to an honest miss here) -> navy
 def flaky_fetch(url):
     if "inline" in url:
         raise RuntimeError("boom")
     return FAKE_IMGS[url].copy(), url, b"rawbytes"
 
 
-with mock.patch.object(sc, "fetch_image", flaky_fetch):
+with mock.patch.object(sc, "fetch_image", flaky_fetch), NO_ENTITY:
     info = sc.make_card_set(
         "Fallback Chain Set", "technology",
         image_url="https://img.example/hero.jpg",
-        key_takeaways=["Falls back to a hero crop."],
+        key_takeaways=["Falls back when the inline fails."],
         slug="set-fallback", out_dir=tmp, body=BODY_HTML)
-check("set: failed inline -> hero-crop",
-      info["cards"][1]["bg_source"], "hero-crop")
+check("set: failed inline + entity miss -> navy",
+      info["cards"][1]["bg_source"], "navy")
 
-with mock.patch.object(sc, "fetch_image", fake_fetch), \
-        mock.patch.object(sc, "detail_crop",
-                          side_effect=RuntimeError("no crop")):
+with mock.patch.object(sc, "fetch_image", fake_fetch), NO_ENTITY:
     info = sc.make_card_set(
         "Navy Last Resort Set", "technology",
         image_url="https://img.example/hero.jpg",
         key_takeaways=["Nothing left but navy."],
         slug="set-navy", out_dir=tmp, body="<p>no images here</p>")
-check("set: no inline + crop fails -> navy",
+check("set: no inline + entity miss -> navy",
       info["cards"][1]["bg_source"], "navy")
 check("set: navy middle track", info["cards"][1]["bg_track"], "navy")
 
-# A big hero's detail crop can itself clear the photo gate
+# The hero NEVER backs a middle — not even as a detail crop of
+# a huge original (the old hero-crop fallback, removed
+# 2026-10-25). With the entity ladder missing honestly, the
+# middle is a navy text card.
 BIG = {"https://img.example/big.jpg": solid(4000, 2600, (99, 88, 77))}
 with mock.patch.object(
         sc, "fetch_image",
-        lambda url: (BIG[url].copy(), url, b"raw")):
+        lambda url: (BIG[url].copy(), url, b"raw")), NO_ENTITY:
     info = sc.make_card_set(
-        "Big Hero Crop Set", "news",
+        "Big Hero Never Reused", "news",
         image_url="https://img.example/big.jpg",
-        key_takeaways=["Crop of a 4000px hero stays photo-grade."],
-        slug="set-bigcrop", out_dir=tmp)
-check("set: big-hero crop source", info["cards"][1]["bg_source"],
-      "hero-crop")
-check("set: big-hero crop -> photo middle",
+        key_takeaways=["A 4000px hero still never backs a middle."],
+        slug="set-bighero", out_dir=tmp)
+check("set: big hero middle is navy, not a hero crop",
+      info["cards"][1]["bg_source"], "navy")
+check("set: big hero middle track navy",
+      info["cards"][1]["bg_track"], "navy")
+
+# Entity sourcing: a takeaway card gets ITS OWN picture from the
+# ladder, with provenance recorded on the card entry
+PROV = {"entity": "Example Airport",
+        "route": "A — Wikimedia Commons",
+        "source_page": "https://commons.wikimedia.org/wiki/"
+                       "File:Example.jpg",
+        "file_url": "https://upload.wikimedia.org/example/Example.jpg",
+        "license": "CC BY-SA 4.0", "artist": "A Photographer",
+        "bg_px": [2600, 1500]}
+
+
+def fake_entity(text, ctx, used, log=None):
+    return solid(2600, 1500, (12, 34, 56)), b"raw", dict(PROV)
+
+
+with mock.patch.object(sc, "_entity_image_for_card",
+                       side_effect=fake_entity):
+    info = sc.make_card_set(
+        "Entity Sourced Set", "travel", image_path=p6,
+        key_takeaways=["Example Airport gets its own picture."],
+        slug="set-entity", out_dir=tmp)
+check("set: entity middle source", info["cards"][1]["bg_source"],
+      "entity")
+check("set: entity middle -> photo track",
       info["cards"][1]["bg_track"], "photo")
+check("set: entity middle provenance entity",
+      info["cards"][1]["bg_provenance"]["entity"], "Example Airport")
+check("set: entity middle provenance license",
+      info["cards"][1]["bg_provenance"]["license"], "CC BY-SA 4.0")
+check("set: entity middle image id",
+      info["cards"][1]["image_id"], PROV["file_url"])
+
+# Adapter units: a mixed-case brand leads its own card even
+# though _PHRASE_RE misses it, and whole-file graphics (maps,
+# diagrams) are not card pictures
+CTX = {"headline": "IndiGo, Air India Group to Shift Mumbai "
+                   "Flights",
+       "body": "IndiGo moves flights. Navi Mumbai Airport opens.",
+       "slug": "x", "category": "travel"}
+ents = sc._card_entities(
+    "IndiGo to shift flights to Navi Mumbai Airport.", CTX)
+check("entities: mixed-case brand leads its card", ents[0],
+      "IndiGo")
+check_true("photo gate: destinations map rejected",
+           not sc._card_photo_ok(
+               {"title": "Airline destinations in India.png"}))
+check_true("photo gate: real photo passes",
+           sc._card_photo_ok(
+               {"title": "IndiGo Airbus A320neo at Delhi.jpg"}))
+
+# HARD INVARIANT (Kiran, 2026-10-25): no image renders on more
+# than one card in a deck; the hero appears only on the hook. An
+# adversarial sourcer that keeps offering the SAME file must be
+# rejected by the deck-level guard.
+def dup_entity(text, ctx, used, log=None):
+    return solid(2000, 1200, (1, 2, 3)), b"raw", dict(PROV)
+
+
+with mock.patch.object(sc, "fetch_image", fake_fetch), \
+        mock.patch.object(sc, "_entity_image_for_card",
+                          side_effect=dup_entity):
+    info = sc.make_card_set(
+        "Invariant Deck", "technology",
+        image_url="https://img.example/hero.jpg",
+        key_takeaways=["First middle takes the entity file.",
+                       "Second middle must not repeat it."],
+        slug="set-invariant", out_dir=tmp,
+        body="<p>no inlines here</p>")
+ids = [c.get("image_id") for c in info["cards"]]
+ids = [i for i in ids if i]
+check("invariant: image ids unique within a deck",
+      len(ids), len(set(ids)))
+check("invariant: first middle took the entity file",
+      info["cards"][1]["bg_source"], "entity")
+check("invariant: repeated offer rejected -> navy",
+      info["cards"][2]["bg_source"], "navy")
+
+
+# …and a sourcer offering the HERO itself is rejected outright
+def hero_entity(text, ctx, used, log=None):
+    return solid(2000, 1200, (1, 2, 3)), b"raw", {
+        **PROV, "file_url": "https://img.example/hero.jpg"}
+
+
+with mock.patch.object(sc, "fetch_image", fake_fetch), \
+        mock.patch.object(sc, "_entity_image_for_card",
+                          side_effect=hero_entity):
+    info = sc.make_card_set(
+        "Hero Offer Deck", "technology",
+        image_url="https://img.example/hero.jpg",
+        key_takeaways=["The hero is never a middle background."],
+        slug="set-herooffer", out_dir=tmp,
+        body="<p>no inlines here</p>")
+check("invariant: hero offered as entity -> rejected to navy",
+      info["cards"][1]["bg_source"], "navy")
+check("invariant: hero identity appears exactly once",
+      [c.get("image_id") for c in info["cards"]].count(
+          "https://img.example/hero.jpg"), 1)
 
 # Navy text card + closer render directly
 card, tinfo = sc.render_text_card("A lone takeaway on navy.",
@@ -387,6 +501,11 @@ card, cinfo = sc.render_closer_card("SPORTS", slug="some-slug",
                                     pos=4, total=4)
 check("closer canvas", card.size, (1080, 1350))
 check("closer navy field", card.getpixel((10, 10)), sc.NAVY)
+check_true("closer carries the brand lockup",
+           cinfo.get("lockup") in ("asset", "drawn"))
+_centre = card.crop((340, 375, 740, 975))
+check_true("closer centre is not an empty slab",
+           any(px != sc.NAVY for px in _centre.getdata()))
 
 print(f"\n{TOTAL[0] - len(FAILURES)}/{TOTAL[0]} checks passed"
       if not FAILURES else f"\nFAILURES: {FAILURES}")
