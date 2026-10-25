@@ -706,6 +706,50 @@ def gate_candidate(article, entry, video, people):
     return True, f"accepted (score {score})", score
 
 
+# ─── Region availability (the audience is US-based) ─────────────────────────
+
+_REGION_CACHE = {}
+
+
+def region_allows_us(region_restriction):
+    """Pure rule: may this video play for a US viewer?
+
+    regionRestriction semantics: an `allowed` list is exhaustive (the
+    video plays ONLY there); a `blocked` list plays everywhere except
+    there; neither field means no restriction. The 2026-10-25 Shadab
+    incident: PCB's full highlights carried allowed=["PK"] — embeddable
+    per oEmbed, unplayable for the entire US diaspora audience."""
+    rr = region_restriction or {}
+    allowed = rr.get("allowed")
+    if allowed is not None:
+        return "US" in allowed
+    blocked = rr.get("blocked")
+    if blocked is not None:
+        return "US" not in blocked
+    return True
+
+
+def fetch_region_restriction(token, video_id):
+    """contentDetails.regionRestriction for one video via the Data API,
+    or None when the lookup itself failed (caller fails closed)."""
+    if video_id in _REGION_CACHE:
+        return _REGION_CACHE[video_id]
+    args = ["curl", "-sS", "https://www.googleapis.com/youtube/v3/videos",
+            "-H", f"Authorization: Bearer {token}", "-G",
+            "--data-urlencode", f"id={video_id}",
+            "-d", "part=contentDetails"]
+    try:
+        r = subprocess.run(args, capture_output=True, text=True, timeout=20)
+        data = json.loads(r.stdout)
+        items = data.get("items") or []
+        rr = (items[0].get("contentDetails") or {}).get(
+            "regionRestriction") if items else None
+    except Exception:
+        rr = None
+    _REGION_CACHE[video_id] = rr
+    return rr
+
+
 # ─── Insertion ───────────────────────────────────────────────────────────────
 
 def insert_after_first_paragraph(body, video_id):
@@ -757,7 +801,7 @@ def official_x_candidates(article, channels, registry_handles=()):
 # ─── The pass ────────────────────────────────────────────────────────────────
 
 def official_video_for_article(article, token=None, search_fn=None,
-                               channels=None, log=print):
+                               channels=None, log=print, region_fn=None):
     """Run the official-video pass for one article (pure: no writes).
 
     Returns {status, channel, video_id, title, score, decisions, new_body}
@@ -826,6 +870,28 @@ def official_video_for_article(article, token=None, search_fn=None,
             continue
         for video in results:
             ok, reason, score = gate_candidate(article, entry, video, people)
+            if ok:
+                # Region layer (2026-10-25): an embeddable video can
+                # still be unplayable for the US audience — PCB's full
+                # highlights were allowed=["PK"] only. Fails closed:
+                # an unverifiable region is a rejection, never a pass.
+                if region_fn is not None:
+                    rr = region_fn(video.get("videoId"))
+                    if rr is None:
+                        ok, reason = False, ("region check unavailable "
+                                             "— rejected (fail-closed)")
+                    elif not region_allows_us(rr):
+                        ok, reason = False, ("region-blocked for US "
+                                             f"audience: {rr}")
+                elif token:
+                    rr = fetch_region_restriction(token,
+                                                  video.get("videoId"))
+                    if rr is None:
+                        ok, reason = False, ("region check unavailable "
+                                             "— rejected (fail-closed)")
+                    elif not region_allows_us(rr):
+                        ok, reason = False, ("region-blocked for US "
+                                             f"audience: {rr}")
             decisions.append({"channel": entry["name"],
                               "video_id": video.get("videoId"),
                               "title": video.get("title"),

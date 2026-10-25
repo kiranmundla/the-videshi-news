@@ -443,6 +443,8 @@ _budget_file = os.path.join(tempfile.mkdtemp(), "budget.json")
 _orig_budget_path = ovp.SEARCH_BUDGET_PATH
 _orig_budget_cap = ovp.DAILY_SEARCH_BUDGET
 _orig_search = ovp.search_channel_videos
+_orig_region = ovp.fetch_region_restriction
+ovp.fetch_region_restriction = lambda token, vid: {}
 ovp.SEARCH_BUDGET_PATH = _budget_file
 ovp.DAILY_SEARCH_BUDGET = 3
 check("12 consume 1-3 within cap",
@@ -493,8 +495,42 @@ check("12 one budget unit lets the live search run",
       res_b1["status"], "accepted")
 check("12 live search consumed the unit", len(live_calls) >= 1, True)
 ovp.search_channel_videos = _orig_search
+ovp.fetch_region_restriction = _orig_region
 ovp.SEARCH_BUDGET_PATH = _orig_budget_path
 ovp.DAILY_SEARCH_BUDGET = _orig_budget_cap
+
+# ── 13. region layer: US audience playability ────────────────────────────
+check("13 allowed PK-only is not US-playable",
+      ovp.region_allows_us({"allowed": ["PK"]}), False)
+check("13 allowed incl US is US-playable",
+      ovp.region_allows_us({"allowed": ["US", "PK"]}), True)
+check("13 blocked IN only is US-playable",
+      ovp.region_allows_us({"blocked": ["IN"]}), True)
+check("13 blocked US is not US-playable",
+      ovp.region_allows_us({"blocked": ["US"]}), False)
+check("13 no restriction is US-playable",
+      ovp.region_allows_us({}), True)
+
+res_pk = ovp.official_video_for_article(
+    ART, search_fn=fake_search_ok, channels=CHANNELS,
+    region_fn=lambda vid: {"allowed": ["PK"]})
+check("13 PK-only candidate rejected end-to-end",
+      res_pk["status"], "rejected")
+check("13 PK-only rejection names the region",
+      any("region-blocked for US" in (d.get("reason") or "")
+          for d in res_pk["decisions"]), True)
+
+res_in = ovp.official_video_for_article(
+    ART, search_fn=fake_search_ok, channels=CHANNELS,
+    region_fn=lambda vid: {"blocked": ["IN"]})
+check("13 IN-blocked candidate still accepted",
+      res_in["status"], "accepted")
+
+res_unknown = ovp.official_video_for_article(
+    ART, search_fn=fake_search_ok, channels=CHANNELS,
+    region_fn=lambda vid: None)
+check("13 unverifiable region fails closed",
+      res_unknown["status"], "rejected")
 
 print()
 if FAILURES:
