@@ -1,0 +1,36 @@
+{
+ "hook_line": "New York Bans Horse-Drawn Carriages Under Romanch's Law",
+ "news_summary": "The New York City Council voted 40 to 7 to phase out horse-drawn carriages by June 1, 2028, naming the law for Romanch Mahajan, 18, of Pathankot, who died in June when a carriage horse bolted in Central Park.",
+ "hook_stat": {
+  "big": "40-7",
+  "eyebrow": "WHAT WE KNOW",
+  "sub": "City Council vote to end horse-drawn carriages in New York"
+ },
+ "stats": [
+  {
+   "big": "JUNE 1, 2028",
+   "label": "WHEN THE PHASE-OUT OF HORSE-DRAWN CARRIAGES COMPLETES"
+  },
+  {
+   "big": "$50,000",
+   "label": "PETA'S OFFER TO HELP RETIRE HORSES TO RESCUE FARMS"
+  },
+  {
+   "big": "2007",
+   "label": "CAMPAIGNERS HAVE SOUGHT A CARRIAGE BAN SINCE AT LEAST 2007"
+  }
+ ],
+ "diaspora_bullets": [
+  "Romanch Mahajan, 18, was visiting from Pathankot with his parents and brother",
+  "He died diving to save his mother when their carriage horse bolted in Central Park",
+  "His uncle told a City Hall rally: 'please do not forget Romanch'"
+ ],
+ "key_entities": [
+  "New York City Council",
+  "Central Park",
+  "Romanch Mahajan"
+ ],
+ "payoff": "For the Mahajan family, one outcome is already fixed: the name on New York's law is their son's.",
+ "versus": null,
+ "story_mood": "somber"
+}

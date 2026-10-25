@@ -1,0 +1,679 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "romanchs-law-new-york-horse-carriage-ban-indian-teen",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "New York City Council",
+    "Central Park",
+    "Romanch Mahajan",
+    "Romanch's Law",
+    "Nri World",
+    "Mayor Zohran Mamdani"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Catalogue of the works of art belonging to the City of New York (IA 0450414.0001.001.umich.edu).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:History of the city of New York- its origin, rise and progress (IA historyofcityofn03lamb).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Lamb - History of the city of New York - Volume 3.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Minutes of the Common council of the city of New York, 1784-1831 (IA minutesofcommonc141newy).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Old buildings of New York City, with some notes regarding their origin and occupants (IA oldbuildingsnewy00newy).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Old buildings of New York City, with some notes regarding their origin and occupants (IA oldbuildingsofne01newy).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Ordinances of the mayor, aldermen and commonalty of the city of New York (IA ordinancesofmayo00newyrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Souvenir of the centennial celebration of Washington's inauguration, held in New York city, April 29th and 30th, 1889 (IA souvenirofcenten00dowe).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The street surface railway franchises of New York City (IA cu31924030122851).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The street surface railway franchises of New York City (IA streetsurfacerai00carmrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:New York City Council District 12 (2013).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:New York City Council District 17 (2013).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:New York City Council District 22 (2013).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:New York City Council District 27 (2013).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:New York City Council District 28 (2013).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:New York City Council District 29 (2013).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:New York City Council District 2 (2013).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:New York City Council District 34 (2013).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:New York City Council District 48 (2013).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:New York City Council District 5 (2013).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:New York City United Nations UNO 07.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:New York City United Nations UNO 08.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:New York City United Nations UNO 09.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:Police Headquarters, 300 Mulberry Street, New York City.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 944x750 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:The Council Chamber, Washington's Headquarters, Morris-Jumel Mansion, New York (NYPL b12647398-74582).tiff",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:UN-Sicherheitsrat - UN Security Council - New York City - 2014 01 06.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:United Nations Headquarters - Security Council chamber, angled view.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:United Nations Headquarters - Security Council chamber, angled view (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:United Nations Headquarters - Security Council chamber, straight-on view.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:United Nations Headquarters - Security Council chamber wallpaper.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:Annual register of The Free Academy of the City of New York (IA annualregisterof190910191112city).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Annual register of The Free Academy of the City of New York (IA annualregisterof191213191415city).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:College of pharmacy of the City of New York (IA collegeofpharmac1934coll).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:College of pharmacy of the City of New York (IA collegeofpharmac1967coll).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:College of pharmacy of the City of New York (IA collegeofpharmac1968coll).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:College of pharmacy of the City of New York (IA collegeofpharmac1969coll).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:College of pharmacy of the City of New York (IA collegeofpharmac1971coll).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:College of pharmacy of the City of New York (IA collegeofpharmac1972coll).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:History of the city of New York, 1609-1909, from the earliest discoveries to the Hudson-Fulton celebration; (IA historyofcityofn00leon).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Tercentenary announcements, 1609-1909. \"Three epochs in education in New York city.\" (IA tercentenaryanno00newyrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:134\u2013140 Grand Street, New York City, 1870.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:Annual report of the New-York Juvenile Asylum to the legislature of the state, and to the Common Council of the City of New York. (IA annualreportofne00newy 0).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:City council chamber, 2nd floor - New York City Hall, City Hall Park, New York, New York County, NY HABS NY,31-NEYO,91-9.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:Equitable Life Assurance Building, 120 Broadway, New York City 1870.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:Grand Central Depot, New York City, 1870.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:Kemp Building, Cedar and William Streets, New York City 1870.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:Lord & Taylor Building, Broadway and 20th Street, New York City 1870.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:Minutes of the Common Council of the City of New York, 1784-1831 (IA minutesofcommonc13newy).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:St. George Building, Beekman and Cliff Streets, New York City 1870.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:The Old Revenue Office, New York City, by Henry Farrer.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "File:A ride in Central Park 1989.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:CENTRAL PARK 4.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "6080x4012, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Central Park NewYork21.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x682 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Central Park carriages Cherry Hill circle jeh.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "3600x2400, CC0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Aplech de rondayes mallorquines d'en Jordi des Rec\u00f3 - Tom II (1925).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Complete works, with introductory notes by George Parsons Lathrop and illustrated with etchings by Blum (and others.) (IA completeworkswit11hawtuoft).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Ecumenical list of translations of the Holy Scriptures, classified according to geographical and linguistic considerations up to the year 1900 (IA ecumenicallistof00cust).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:LL-Q117707514 (oci-whistled)-Univ\u00f2c64-romanch.wav",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (audio/wav)"
+    },
+    {
+      "candidate": "File:Llibre de disputaci\u00f3 de l'ase (1922).djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Manuscrits catalans de la Biblioteca Nacional de Madrid (1896).djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Monitorul Oficial al Rom\u00e2niei 1878-06-27, nr. 140.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Octavian Goga - Din umbra zidurilor - Poezii.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:On the Insensible Graduation of Words (IA jstor-981822).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The New-York Evangelist 1883-10-11- Vol 54 Iss 41 (IA sim evangelist-and-religious-review 1883-10-11 54 41).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:2015 -WorldFoodDay in South-South Nigeria.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:FAO World Food Day 1981 3pc Set Silver.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:FAO World Food Day 2003 Silver Obverse.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 291x296 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana 10.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana 5.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana 8.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana 9.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day barnstar.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:World Food day 2017, Kalakamati, Botswana 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:Donald Trump and Zohran Mamdani meeting at the Oval Office.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Mayor Zohran Mamdani'"
+    },
+    {
+      "candidate": "File:President Trump Meets with Zohran Mamdani, Mayor-Elect, New York City 12-22 screenshot.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:President Trump Meets with Zohran Mamdani, Mayor-Elect, New York City 12-23 screenshot.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Zohran K. Mamdani at Inauguration.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Mayor Zohran Mamdani'"
+    },
+    {
+      "candidate": "File:Zohran Mamdani 05.25.25 (b) (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Mayor Zohran Mamdani'"
+    },
+    {
+      "candidate": "File:Zohran Mamdani Campaigning in Flushing.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Mayor Zohran Mamdani'"
+    },
+    {
+      "candidate": "File:Zohran Mamdani audio sample.ogg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Zohran Mamdani is Sworn in as Mayor of the City of New York.mp3",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (audio/mpeg)"
+    },
+    {
+      "candidate": "File:Zohran Mamdani on TMTv-SA.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 869x777 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Zohran Mamdani with John Liu Campaigning in Flushing.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Mayor Zohran Mamdani'"
+    },
+    {
+      "candidate": "https://council.nyc.gov/press/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "identity: the page does not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "https://council.nyc.gov/budget/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "identity: the page does not evidence 'New York City Council'"
+    },
+    {
+      "candidate": "https://council.nyc.gov/districts/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "https://www.centralparknyc.org/press",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "https://www.centralparknyc.org/locations",
+      "route": "B \u2014 official sources",
+      "verdict": "accepted",
+      "reason": "license basis: explicit CC / public-domain statement on the page; dimensions verified at download"
+    },
+    {
+      "candidate": "https://council.nyc.gov/press/2026/10/22/3306/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "identity: the page does not evidence 'Romanch Mahajan'"
+    },
+    {
+      "candidate": "https://council.nyc.gov/press/2026/10/14/3297/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "identity: the page does not evidence \"Romanch's Law\""
+    },
+    {
+      "candidate": "https://council.nyc.gov/budget/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "identity: the page does not evidence \"Romanch's Law\""
+    },
+    {
+      "candidate": "https://council.nyc.gov/districts/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "https://nripress.com/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "license: no license grant on the hosting page"
+    },
+    {
+      "candidate": "https://www.nyc.gov/mayors-office",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.nyc.gov/main",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.nyc.gov/main/events",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "File:Metropolitan Museum of Art (The Met) - Central Park, NYC.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:1866 Map of Central Park, New York City, New York - Geographicus - CentralParkGuide-mcny-1869.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Central Park - NYC.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "accepted",
+      "reason": "2048x1368, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:The renowned mountaineer, Smt. Santosh Yadav releasing a book \u2018Parvatarohan Ka Romanch\u2019, brought by the Publications Division, in New Delhi on September 04, 2008 (cropped).jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 500x600 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Roh-put\u00e8r-La vuolp.ogg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Rm-rumgr-La vulp.oga",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:NRI en Logo.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Zohran Mamdani 2026.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Zohran Mamdani swearing in, 2026.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Mayor Zohran Mamdani'"
+    },
+    {
+      "candidate": "Places to See | Central Park Conservancy",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://d2wsrtli9cxkek.cloudfront.net/media/images/ColumbusCircle_InformationKiosk_20210404_7251.jpg?auto=compress%2Cformat&amp;crop=focalpoint&amp;fit=crop"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "central-park-carriages-cherry-hill-circle-je",
+      "path": "central-park-carriages-cherry-hill-circle-je.jpg",
+      "size": [
+        3600,
+        2400
+      ],
+      "role": "establishing",
+      "subject": "Looking north at carriages stopping on hill south of the Lake.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Central_Park_carriages_Cherry_Hill_circle_jeh.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Central_Park_carriages_Cherry_Hill_circle_jeh.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Jim.henderson"
+    }
+  ]
+}

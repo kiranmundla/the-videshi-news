@@ -1,0 +1,301 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "romanchs-law-new-york-horse-carriage-ban-indian-teen",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "New York Bans Horse-Drawn Carriages Under Romanch's Law",
+      "numbers": [],
+      "entities": [
+        "New York Bans Horse-Drawn Carriages Under Romanch's Law"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states New York banned horse-drawn carriages under Romanch's Law.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The New York City Council voted 40 to 7 to phase out horse-drawn carriages by June 1, 2028, naming the law for Romanch Mahajan, 18, of Pathankot, who died in June when a carriage horse bolted in Central Park.",
+      "numbers": [
+        1.0,
+        7.0,
+        18.0,
+        40.0,
+        2028.0
+      ],
+      "entities": [
+        "New York City Council",
+        "Romanch Mahajan",
+        "Central Park"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2028
+        ]
+      },
+      "llm_reason": "All details about the vote, date, and Romanch's death are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "40-7",
+      "numbers": [
+        7.0,
+        40.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the vote was 40 to 7.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "City Council vote to end horse-drawn carriages in New York",
+      "numbers": [],
+      "entities": [
+        "City Council",
+        "New York"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses the City Council's vote to end horse-drawn carriages.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "WHAT WE KNOW",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "JUNE 1, 2028",
+      "numbers": [
+        1.0,
+        2028.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2028
+        ]
+      },
+      "llm_reason": "The article states the phase-out is by June 1, 2028.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "WHEN THE PHASE-OUT OF HORSE-DRAWN CARRIAGES COMPLETES",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the completion date for the phase-out.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$50,000",
+      "numbers": [
+        50000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions PETA's offer of $50,000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "PETA'S OFFER TO HELP RETIRE HORSES TO RESCUE FARMS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses PETA's offer related to retiring horses.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2007",
+      "numbers": [
+        2007.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2007
+        ]
+      },
+      "llm_reason": "The article states campaigners sought a ban since at least 2007.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "CAMPAIGNERS HAVE SOUGHT A CARRIAGE BAN SINCE AT LEAST 2007",
+      "numbers": [
+        2007.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2007
+        ]
+      },
+      "llm_reason": "The article confirms the timeline of campaigners seeking a ban.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Romanch Mahajan, 18, was visiting from Pathankot with his parents and brother",
+      "numbers": [
+        18.0
+      ],
+      "entities": [
+        "Romanch Mahajan"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Romanch was visiting New York with his family.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "He died diving to save his mother when their carriage horse bolted in Central Park",
+      "numbers": [],
+      "entities": [
+        "Central Park"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article details how Romanch died while saving his mother.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[2]",
+      "text": "His uncle told a City Hall rally: 'please do not forget Romanch'",
+      "numbers": [],
+      "entities": [
+        "City Hall"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article quotes Romanch's uncle at a rally.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "For the Mahajan family, one outcome is already fixed: the name on New York's law is their son's.",
+      "numbers": [],
+      "entities": [
+        "New York's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the law is named after Romanch Mahajan.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "WHAT WE KNOW",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "New York City Council",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Central Park",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Romanch Mahajan",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00079,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

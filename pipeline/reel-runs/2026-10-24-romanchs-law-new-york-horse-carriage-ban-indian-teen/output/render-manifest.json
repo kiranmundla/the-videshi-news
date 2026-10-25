@@ -1,0 +1,393 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "romanchs-law-new-york-horse-carriage-ban-indian-teen",
+ "article_slug": "romanchs-law-new-york-horse-carriage-ban-indian-teen",
+ "article_id": "4d7768d4-c345-4bd2-bf21-bf364cd626ea",
+ "category": "Nri World",
+ "video": "reel-runs/2026-10-24-romanchs-law-new-york-horse-carriage-ban-indian-teen/output/romanchs-law-new-york-horse-carriage-ban-indian-teen.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://assets.bizzbuzz.news/h-upload/2026/10/23/2014559-new-york-city-council-passes-law-to-ban-horse-carriage-honours-indian-teen-killed-in-accident.jpg",
+  "local_path": "reel-runs/2026-10-24-romanchs-law-new-york-horse-carriage-ban-indian-teen/output/hero.jpg",
+  "width": 1500,
+  "height": 900,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.94)",
+  "has_face": true,
+  "box_source": [
+   439,
+   188,
+   240,
+   308
+  ],
+  "box_bg": [
+   330,
+   261,
+   133,
+   171
+  ],
+  "chin_bg": 432,
+  "anchor": [
+   0.372,
+   0.38
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   500
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 720,
+   "zone_h": 836,
+   "scale": 1.0,
+   "content_h": 357,
+   "block_top": 959,
+   "block_bottom": 1316,
+   "text_bbox": [
+    70,
+    959,
+    930,
+    1316
+   ],
+   "texts": [
+    "Nri World",
+    "New York Bans Horse-Drawn Carriages Under Romanch's Law"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.556,
+    "photo_px": [
+     1500,
+     900
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 500,
+     "scale": 0.556,
+     "window": [
+      0,
+      0,
+      1500,
+      899
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 353,
+   "block_top": 1227,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1227,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "The New York City Council voted 40 to 7 to phase out horse-drawn carriages by June 1, 2028, naming the law for Romanch Mahajan, 18, of Pathankot, who died in June when a carriage horse bolted in Central Park."
+   ],
+   "v7": {
+    "image_source": "extra:central-park-carriages-cherry-hill-circle-je",
+    "track": "full-bleed",
+    "render_scale": 0.8,
+    "photo_px": [
+     3600,
+     2400
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8,
+     "window": [
+      1130,
+      0,
+      2480,
+      2400
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Looking north at carriages stopping on hill south of the Lake.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Central_Park_carriages_Cherry_Hill_circle_jeh.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Central_Park_carriages_Cherry_Hill_circle_jeh.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "Jim.henderson"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 720,
+   "zone_h": 836,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 919,
+   "block_bottom": 1357,
+   "text_bbox": [
+    70,
+    919,
+    930,
+    1357
+   ],
+   "texts": [
+    "WHAT WE KNOW",
+    "40-7",
+    "City Council vote to end horse-drawn carriages in New York"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.632,
+    "photo_px": [
+     1500,
+     900
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 500,
+     "scale": 0.6318181818181818,
+     "window": [
+      0,
+      0,
+      1320,
+      791
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 720,
+   "zone_h": 836,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 744,
+   "block_bottom": 1532,
+   "text_bbox": [
+    70,
+    744,
+    930,
+    1532
+   ],
+   "texts": [
+    "By The Numbers",
+    "JUNE 1, 2028",
+    "WHEN THE PHASE-OUT OF HORSE-DRAWN CARRIAGES COMPLETES",
+    "$50,000",
+    "PETA'S OFFER TO HELP RETIRE HORSES TO RESCUE FARMS",
+    "2007",
+    "CAMPAIGNERS HAVE SOUGHT A CARRIAGE BAN SINCE AT LEAST 2007"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1500,
+     900
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 500,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      719
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 720,
+   "zone_h": 836,
+   "scale": 1.0,
+   "content_h": 645,
+   "block_top": 815,
+   "block_bottom": 1460,
+   "text_bbox": [
+    70,
+    815,
+    930,
+    1460
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Romanch Mahajan, 18, was visiting from Pathankot with his parents and brother",
+    "He died diving to save his mother when their carriage horse bolted in Central Park",
+    "His uncle told a City Hall rally: 'please do not forget Romanch'"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1500,
+     900
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 500,
+     "scale": 0.695,
+     "window": [
+      300,
+      0,
+      1500,
+      719
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 379,
+   "block_top": 670,
+   "block_bottom": 1049,
+   "text_bbox": [
+    70,
+    670,
+    930,
+    1049
+   ],
+   "texts": [
+    "The Takeaway",
+    "For the Mahajan family, one outcome is already fixed: the name on New York's law is their son's.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 106.9,
+ "mp4_bytes": 8415967
+}

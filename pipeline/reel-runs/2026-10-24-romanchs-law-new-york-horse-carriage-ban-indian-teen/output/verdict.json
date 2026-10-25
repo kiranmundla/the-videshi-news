@@ -1,0 +1,33 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "romanchs-law-new-york-horse-carriage-ban-indian-teen",
+  "name": "romanchs-law-new-york-horse-carriage-ban-indian-teen",
+  "script": "reel-runs/2026-10-24-romanchs-law-new-york-horse-carriage-ban-indian-teen/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.00079
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-24-romanchs-law-new-york-horse-carriage-ban-indian-teen/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "central-park-carriages-cherry-hill-circle-je"
+    }
+  },
+  "manifest": "reel-runs/2026-10-24-romanchs-law-new-york-horse-carriage-ban-indian-teen/output/render-manifest.json",
+  "video": "reel-runs/2026-10-24-romanchs-law-new-york-horse-carriage-ban-indian-teen/output/romanchs-law-new-york-horse-carriage-ban-indian-teen.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-10-24-romanchs-law-new-york-horse-carriage-ban-indian-teen/output/tiktok-caption.txt"
+}

@@ -76,24 +76,30 @@ def make_reel_dir(tmp, verdict_overrides=None, slug="test-article-slug"):
 
 
 def fake_deps(events, db_rows=None, publish_entries=None, legacy_log=None):
+    state = {}
+
     def get_token():
         events.append("token")
         return "fake-token"
 
     def upload(token, path, body):
         events.append("upload")
-        assert body["status"]["privacyStatus"] == "unlisted"
+        state["privacy"] = body["status"]["privacyStatus"]
+        assert state["privacy"] in ("public", "unlisted")
         return "VID12345678"
 
     def verify(token, video_id):
         events.append("verify")
-        return "unlisted", "Live Title"
+        return state.get("privacy", "public"), "Live Title"
 
     def append_log(entry):
         events.append("append_log")
+        state["log_privacy"] = entry.get("privacy")
 
-    def write_back(article, verdict, video_path, video_id, metadata, now_iso):
+    def write_back(article, verdict, video_path, video_id, metadata,
+                   now_iso, privacy="public"):
         events.append("write_back")
+        state["write_back_privacy"] = privacy
         return {"id": "row-1", "yt_video_id": video_id, "status": "yt_posted"}
 
     return {
@@ -107,23 +113,29 @@ def fake_deps(events, db_rows=None, publish_entries=None, legacy_log=None):
 
 # ------------------------------------------------------------- tests
 
-def t_privacy_constant_is_unlisted():
-    assert rp.PRIVACY_STATUS == "unlisted"
+def t_privacy_default_is_public():
+    # Kiran, 2026-10-24: gate-passed reels post PUBLIC by default.
+    assert rp.DEFAULT_PRIVACY == "public"
     body = rp.build_upload_body({"title": "t", "description": "d",
                                  "tags": ["x"]})
-    assert body["status"]["privacyStatus"] == "unlisted", body
+    assert body["status"]["privacyStatus"] == "public", body
+    body_u = rp.build_upload_body({"title": "t", "description": "d",
+                                   "tags": ["x"]}, rp.UNLISTED_PRIVACY)
+    assert body_u["status"]["privacyStatus"] == "unlisted", body_u
 
 
-def t_privacy_cannot_be_overridden():
-    src = inspect.getsource(rp.build_upload_body)
-    assert "PRIVACY_STATUS" in src, "payload must be built from the constant"
-    source = Path(rp.__file__).read_text()
-    assert '"public"' not in source and "'public'" not in source, \
-        "the public privacy literal must not exist anywhere in the module"
+def t_unlisted_only_via_the_flag():
+    # The ONLY way to an unlisted upload is publish's unlisted flag
+    # (the CLI's --unlisted; samples/tests). There is no free-form
+    # privacy parameter anywhere.
     params = inspect.signature(rp.publish).parameters
-    assert "privacy" not in params
-    params = inspect.signature(rp.build_upload_body).parameters
-    assert "privacy" not in params
+    assert "privacy" not in params and "unlisted" in params
+    with tempfile.TemporaryDirectory() as tmp:
+        verdict_path, _ = make_reel_dir(tmp)
+        events = []
+        result = rp.publish(verdict_path, deps=fake_deps(events),
+                            unlisted=True)
+        assert result["privacy"] == "unlisted", result
 
 
 def t_verdict_gate_variants():
@@ -208,19 +220,24 @@ def t_happy_path_order_and_result():
         events = []
         result = rp.publish(verdict_path, deps=fake_deps(events))
         assert result["video_id"] == "VID12345678"
-        assert result["privacy"] == "unlisted"
+        assert result["privacy"] == "public"
+        pack = Path(result["tiktok_pack"])
+        assert pack.exists() and "CAPTION:" in pack.read_text(), pack
+        assert "https://" not in pack.read_text().split("CAPTION:")[1]
         # the publish log is written BEFORE the DB write-back, so a crash
         # mid-write-back can never lead to a duplicate re-upload
         assert events.index("append_log") < events.index("write_back"), events
         assert events.index("verify") < events.index("append_log"), events
 
 
-def t_public_verification_is_a_hard_failure():
+def t_privacy_mismatch_is_a_hard_failure():
+    # The live privacy read-back must equal what was requested
+    # (public by default); any mismatch fails before the ledgers.
     with tempfile.TemporaryDirectory() as tmp:
         verdict_path, _ = make_reel_dir(tmp)
         events = []
         deps = fake_deps(events)
-        deps["verify"] = lambda token, vid: ("public", "T")
+        deps["verify"] = lambda token, vid: ("unlisted", "T")
         try:
             rp.publish(verdict_path, deps=deps)
         except rp.PublishFailed as e:
@@ -247,7 +264,7 @@ def t_metadata_from_real_sample():
     assert 0 < len(meta["tags"]) <= 12, meta["tags"]
     assert "Sukanya Chakrabarti" in meta["tags"]
     body = rp.build_upload_body(meta)
-    assert body["status"]["privacyStatus"] == "unlisted"
+    assert body["status"]["privacyStatus"] == "public"
 
 
 def t_reconcile_classification():
@@ -453,8 +470,8 @@ def t_reconcile_is_read_only():
 
 def main():
     tests = [
-        ("privacy constant is unlisted", t_privacy_constant_is_unlisted),
-        ("privacy cannot be overridden", t_privacy_cannot_be_overridden),
+        ("privacy default is public", t_privacy_default_is_public),
+        ("unlisted only via the flag", t_unlisted_only_via_the_flag),
         ("verdict gate variants", t_verdict_gate_variants),
         ("real negative sample refused pre-API",
          t_real_negative_sample_refused_before_any_api_call),
@@ -464,8 +481,8 @@ def main():
         ("duplicate in publish log refused", t_duplicate_in_publish_log_refused),
         ("duplicate in legacy log refused", t_duplicate_in_legacy_log_refused),
         ("happy path order + result", t_happy_path_order_and_result),
-        ("public verification = hard failure",
-         t_public_verification_is_a_hard_failure),
+        ("privacy mismatch = hard failure",
+         t_privacy_mismatch_is_a_hard_failure),
         ("metadata from real Chakrabarti sample", t_metadata_from_real_sample),
         ("reconcile classification", t_reconcile_classification),
         ("superseded records don't block republish",

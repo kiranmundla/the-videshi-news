@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
-reel_renderer_v7.py — SAMPLE-ONLY "Reels v7" renderer (2026-10-24):
-tonight's production v6 reel re-skinned in the Cards v1 design
-system (Kiran: "new format everywhere" — sample first; production
-reel_renderer.py / reel_produce.py are untouched).
+reel_renderer_v7.py — the "Reels v7" renderer (PRODUCTION since
+2026-10-24, adopted on Kiran's approval of the rev.2 sample):
+the v6 reel re-skinned in the Cards v1 design system (Kiran:
+"new format everywhere"). reel_produce.py renders through this
+module by default; reel_renderer.py (v6) stays in the tree for
+rollback and is no longer called by production.
 
 WHAT STAYS FROM v6 (the pipeline): the 6-beat Pulse arc and timing,
 the script schema, real-font-metrics text fitting (overflow excluded
@@ -824,7 +826,7 @@ def render_reel_v7(script, hero_path, inline_paths, music_path,
                    outdir, name="reel", category="News",
                    photo_url=None, article_slug=None, article_id=None,
                    stage="navy", extras=None, log=print):
-    """Render the v7 sample. inline_paths: [(path, (w, h)), ...] in
+    """Render one v7 reel. inline_paths: [(path, (w, h)), ...] in
     article body order (hero excluded). extras: {beat: {"label",
     "path", "size", "role", "provenance"}} — verified
     supplementary entity photos from the sourcing ladder. stage:
@@ -1020,10 +1022,10 @@ def render_reel_v7(script, hero_path, inline_paths, music_path,
                           hook_place, hook_place.get("window"))
 
     manifest = {
-        "renderer": "reel_renderer_v7.py (SAMPLE v7 rev.2 — Cards "
+        "renderer": "reel_renderer_v7.py (Reels v7 rev.2 — Cards "
                     "v1 design system on the v6 pipeline; constant "
                     "composed size, xfade transitions, stage "
-                    "variants; NOT production)",
+                    "variants; PRODUCTION)",
         "design_system": "Cards v1 — Firstpost revised style "
                          "(serif-led, photo-forward, navy/gold/red)",
         "stage": {"name": stage, "rgb": list(stage_rgb)},

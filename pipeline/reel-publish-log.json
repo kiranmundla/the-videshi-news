@@ -282,5 +282,49 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "sVryrh31poY",
+    "article_slug": "infosys-doj-investigation-h1b-classifications-disclosure",
+    "article_id": "df15e501-c5ae-435e-a57d-894b495cce90",
+    "title": "Infosys in Talks With DOJ Over Investigation Into H-1B Classifications #Shorts #H1B",
+    "privacy": "unlisted",
+    "uploaded_at": "2026-10-25T05:23:36.581967+00:00",
+    "video_path": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v2/infosys-doj-investigation-h1b-classifications-disclosure.mp4",
+    "video_sha256": "654ebb129a1d8ab405d578512b4cf9381d0e596b7efa48699c24f1a5c12f33cd",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py",
+    "superseded": "2026-10-25T06:36:05.383806+00:00",
+    "superseded_reason": "owner_deleted_in_studio",
+    "superseded_note": "Replaced by Reels v7 black render; Kiran deleted the v6 in Studio 2026-10-24"
+  },
+  {
+    "video_id": "yhTCz7BdS_o",
+    "article_slug": "infosys-doj-investigation-h1b-classifications-disclosure",
+    "article_id": "df15e501-c5ae-435e-a57d-894b495cce90",
+    "title": "Infosys in Talks With DOJ Over Investigation Into H-1B Classifications #Shorts #H1B",
+    "privacy": "public",
+    "uploaded_at": "2026-10-25T06:36:38.059840+00:00",
+    "video_path": "reel-runs/2026-10-24-infosys-doj-investigation-h1b-classifications-disclosure/output-v7b/infosys-doj-investigation-h1b-classifications-disclosure.mp4",
+    "video_sha256": "d6ca573712175d0f3b57580ffbf3364ad0c33a8af9963eae8e72be747d50e49b",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py",
+    "public_verified_at": "2026-10-25T06:59:31.014467+00:00",
+    "public_note": "flip check 2026-10-25: owner-authenticated videos.list already reported privacyStatus=public; no API write needed. Ledger corrected from unlisted."
+  },
+  {
+    "video_id": "OieWYgkZbmQ",
+    "article_slug": "romanchs-law-new-york-horse-carriage-ban-indian-teen",
+    "article_id": "4d7768d4-c345-4bd2-bf21-bf364cd626ea",
+    "title": "New York Bans Horse-Drawn Carriages Under Romanch's Law, Honouring Indian Teen #Shorts #NRI",
+    "privacy": "public",
+    "uploaded_at": "2026-10-25T06:59:29.683874+00:00",
+    "video_path": "reel-runs/2026-10-24-romanchs-law-new-york-horse-carriage-ban-indian-teen/output/romanchs-law-new-york-horse-carriage-ban-indian-teen.mp4",
+    "video_sha256": "8153fd844483f2c42010bf2ca715a9eaa9c7557c6c805777bc9d2fc423bc4f01",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

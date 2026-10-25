@@ -1,18 +1,24 @@
 #!/usr/bin/env python3
 """reel_publish.py — the SINGLE sanctioned YouTube publish path for Videshi reels.
 
-Phase 2 (approved by Kiran 2026-10-14). Publish model, locked 2026-10-12:
-the pipeline uploads finished reels as UNLISTED YouTube Shorts only; Kiran
-spot-checks in Studio and flips them public himself. Nothing auto-publishes,
-ever. This module is the only code allowed to upload a reel:
+Phase 2 (approved by Kiran 2026-10-14). Publish model, updated
+2026-10-24 on Kiran's directive ("going forward, we can post as
+public to YouTube"): gate-passed reels upload PUBLIC by default —
+the verdict gates (fact-check + frame QA) are the safeguard that
+replaces the Studio spot-check. An explicit --unlisted flag
+remains for samples/tests. The unlisted backlog already on the
+channel is NOT retroactively flipped by this change. This module
+is the only code allowed to upload a reel:
 
   * Input is a reel_produce.py verdict.json. Unless the verdict is a full
     PASS (status "ready" + fact-check "pass" + frame QA passed at/above
     threshold), the publish is REFUSED before any network call. There is no
     code path that uploads an arbitrary MP4.
-  * Privacy is the module-level constant PRIVACY_STATUS below. It is not a
-    parameter, not an env var, not a CLI flag. The upload payload is built
-    from the constant in exactly one place (build_upload_body).
+  * Privacy defaults to DEFAULT_PRIVACY ("public") in exactly one
+    place (build_upload_body); the only alternative is the CLI's
+    --unlisted flag. The chosen privacy is recorded in the publish
+    log entry and the prebuilt_reels write-back notes, and the
+    uploaded video's live privacy is verified against it.
   * Idempotent: a reel whose article already has a YouTube video (per
     prebuilt_reels, the Phase 2 publish log, or the legacy youtube-log.json)
     is refused, never re-uploaded.
@@ -27,7 +33,8 @@ proxy on this box). Credentials come from ~/workspace/.env.youtube and
 ~/workspace/.env.supabase (already-exported env wins).
 
 Usage:
-    python3 -u reel_publish.py --verdict path/to/output/verdict.json [--dry-run]
+    python3 -u reel_publish.py --verdict path/to/output/verdict.json
+        [--dry-run] [--unlisted]
 
 Exit codes: 0 published (or dry-run OK) · 2 refused (gate/duplicate) ·
 3 upload, verification, or write-back failure.
@@ -48,8 +55,10 @@ WORKSPACE = Path.home() / "workspace"
 PUBLISH_LOG_PATH = PIPELINE_DIR / "reel-publish-log.json"
 LEGACY_LOG_PATH = PIPELINE_DIR / "youtube-log.json"
 
-# --- THE publish model, as a constant. Do not parameterize this. ---
-PRIVACY_STATUS = "unlisted"
+# --- THE publish model (Kiran, 2026-10-24): gate-passed reels post
+# PUBLIC by default; --unlisted is the only opt-out, for samples/tests.
+DEFAULT_PRIVACY = "public"
+UNLISTED_PRIVACY = "unlisted"
 
 QA_PASS_THRESHOLD = 7.0  # must match reel_frame_qa.py / reel_produce.py
 YOUTUBE_CATEGORY_NEWS = "25"
@@ -384,9 +393,10 @@ def build_metadata(article, script):
             "topic": topic}
 
 
-def build_upload_body(metadata):
-    """The ONLY place an upload payload is constructed. Privacy comes from
-    the module constant — there is deliberately no way to override it."""
+def build_upload_body(metadata, privacy=DEFAULT_PRIVACY):
+    """The ONLY place an upload payload is constructed. Privacy is
+    the publish default (public) or the CLI's --unlisted choice —
+    nothing else may set it."""
     return {
         "snippet": {
             "title": metadata["title"],
@@ -395,10 +405,50 @@ def build_upload_body(metadata):
             "categoryId": YOUTUBE_CATEGORY_NEWS,
         },
         "status": {
-            "privacyStatus": PRIVACY_STATUS,
+            "privacyStatus": privacy,
             "selfDeclaredMadeForKids": False,
         },
     }
+
+
+# ---------------------------------------------------------------- TikTok pack
+
+def build_tiktok_caption(article, script):
+    """A ready-to-paste TikTok caption: the hook, 1–2 grounded
+    lines (summary, then payoff), hashtags — and NO bare URL
+    (TikTok captions don't link; Kiran pastes this in-app)."""
+    hook = (script.get("hook_line") or article.get("headline")
+            or "").strip()
+    parts = [hook] if hook else []
+    summary = (script.get("news_summary")
+               or article.get("subheadline") or "").strip()
+    if summary and summary != hook:
+        parts.append(summary)
+    payoff = (script.get("payoff") or "").strip()
+    if payoff and payoff not in (hook, summary):
+        parts.append(payoff)
+    topic = topic_hashtag(article, script)
+    tags = ["#TheVideshi", f"#{topic}"]
+    cat_tag = CATEGORY_HASHTAG.get(article.get("category") or "")
+    if cat_tag and f"#{cat_tag}" not in tags:
+        tags.append(f"#{cat_tag}")
+    if "#IndianDiaspora" not in tags:
+        tags.append("#IndianDiaspora")
+    parts.append(" ".join(tags))
+    caption = "\n\n".join(p for p in parts if p)
+    return re.sub(r"https?://\S+", "", caption).strip()
+
+
+def write_tiktok_pack(outdir, video_path, article, script):
+    """The per-reel TikTok pack (Kiran, 2026-10-24): a small file
+    beside the verdict carrying the final MP4 path + the copyable
+    caption, so delivery can hand him video + caption together.
+    File artifact only — no TikTok connector is ever called."""
+    pack_path = Path(outdir) / "tiktok-caption.txt"
+    pack_path.write_text(
+        f"VIDEO: {video_path}\n\nCAPTION:\n"
+        f"{build_tiktok_caption(article, script)}\n")
+    return pack_path
 
 
 # ---------------------------------------------------------------- youtube
@@ -579,11 +629,12 @@ def resolve_inputs(verdict_path):
     return verdict, video_path, script, article
 
 
-def write_back(article, verdict, video_path, video_id, metadata, now_iso):
+def write_back(article, verdict, video_path, video_id, metadata, now_iso,
+               privacy=DEFAULT_PRIVACY):
     slug = article["slug"]
     qa = verdict.get("qa") or {}
     fc = verdict.get("factcheck") or {}
-    notes = (f"publisher=reel_publish.py; privacy={PRIVACY_STATUS}; "
+    notes = (f"publisher=reel_publish.py; privacy={privacy}; "
              f"factcheck={fc.get('verdict')}; frame_qa_score={qa.get('score')}; "
              f"gate=phase2")
     payload = {
@@ -628,11 +679,14 @@ def write_back(article, verdict, video_path, video_id, metadata, now_iso):
     return check[0]
 
 
-def publish(verdict_path, dry_run=False, deps=None):
+def publish(verdict_path, dry_run=False, deps=None, unlisted=False):
     """Run the full publish chain. deps allows tests to inject fakes:
     {get_token, db_rows, legacy_log, publish_entries, upload, verify,
-     write_back, append_log}. Returns a result dict."""
+     write_back, append_log}. unlisted=True is the CLI's --unlisted
+    opt-out (samples/tests); the default publishes PUBLIC.
+    Returns a result dict."""
     deps = deps or {}
+    privacy_want = UNLISTED_PRIVACY if unlisted else DEFAULT_PRIVACY
     verdict, video_path, script, article = resolve_inputs(verdict_path)
     slug = article["slug"]
     sha256 = hashlib.sha256(Path(video_path).read_bytes()).hexdigest()
@@ -645,8 +699,8 @@ def publish(verdict_path, dry_run=False, deps=None):
         raise PublishRefused("duplicate check failed:\n  - " + "\n  - ".join(dupes))
 
     metadata = build_metadata(article, script)
-    body = build_upload_body(metadata)
-    assert body["status"]["privacyStatus"] == PRIVACY_STATUS  # paranoia, cheap
+    body = build_upload_body(metadata, privacy_want)
+    assert body["status"]["privacyStatus"] == privacy_want  # paranoia, cheap
 
     if dry_run:
         return {"dry_run": True, "slug": slug, "video": str(video_path),
@@ -655,10 +709,10 @@ def publish(verdict_path, dry_run=False, deps=None):
     token = (deps.get("get_token") or get_access_token)()
     video_id = (deps.get("upload") or youtube_upload)(token, video_path, body)
     privacy, live_title = (deps.get("verify") or youtube_verify)(token, video_id)
-    if privacy != PRIVACY_STATUS:
+    if privacy != privacy_want:
         raise PublishFailed(
             f"post-upload verification: video {video_id} privacy is "
-            f"{privacy!r}, expected {PRIVACY_STATUS!r}. NOT flipping it — "
+            f"{privacy!r}, expected {privacy_want!r}. NOT flipping it — "
             f"manual review required.")
 
     now_iso = datetime.now(timezone.utc).isoformat()
@@ -667,7 +721,7 @@ def publish(verdict_path, dry_run=False, deps=None):
         "article_slug": slug,
         "article_id": article.get("id"),
         "title": metadata["title"],
-        "privacy": PRIVACY_STATUS,
+        "privacy": privacy_want,
         "uploaded_at": now_iso,
         "video_path": verdict.get("video"),
         "video_sha256": sha256,
@@ -679,13 +733,23 @@ def publish(verdict_path, dry_run=False, deps=None):
     # the video_id and any retry refuses as a duplicate.
     (deps.get("append_log") or append_publish_log)(entry)
     row = (deps.get("write_back") or write_back)(
-        article, verdict, video_path, video_id, metadata, now_iso)
+        article, verdict, video_path, video_id, metadata, now_iso,
+        privacy=privacy_want)
     entry["prebuilt_reels_id"] = row.get("id")
+    # TikTok pack beside the verdict (file artifact only; a pack
+    # failure never fails a completed publish).
+    try:
+        pack = str(write_tiktok_pack(
+            Path(verdict_path).resolve().parent, video_path,
+            article, script))
+    except Exception:
+        pack = None
     return {"dry_run": False, "slug": slug, "video_id": video_id,
             "url": f"https://www.youtube.com/watch?v={video_id}",
             "shorts_url": f"https://youtube.com/shorts/{video_id}",
             "privacy": privacy, "live_title": live_title,
             "metadata": metadata, "prebuilt_reels_row": row,
+            "tiktok_pack": pack,
             "uploaded_at": now_iso}
 
 
@@ -695,6 +759,9 @@ def main(argv=None):
                     help="path to a reel_produce.py verdict.json")
     ap.add_argument("--dry-run", action="store_true",
                     help="gate + duplicate checks + metadata only, no upload")
+    ap.add_argument("--unlisted", action="store_true",
+                    help="upload UNLISTED instead of the default PUBLIC "
+                         "(samples/tests only)")
     ap.add_argument("--supersede", metavar="VIDEO_ID",
                     help="mark a Studio-deleted Phase 2 upload superseded "
                          "in both ledgers so its story may be re-published "
@@ -721,7 +788,8 @@ def main(argv=None):
     if not args.verdict:
         ap.error("--verdict is required unless --supersede is given")
     try:
-        result = publish(args.verdict, dry_run=args.dry_run)
+        result = publish(args.verdict, dry_run=args.dry_run,
+                         unlisted=args.unlisted)
     except PublishRefused as e:
         print(f"REFUSED — nothing was uploaded.\n{e}")
         return REFUSED
@@ -732,7 +800,7 @@ def main(argv=None):
     if result.get("dry_run"):
         print("\nDRY RUN — nothing was uploaded.")
     else:
-        print(f"\nPUBLISHED (unlisted): {result['url']}")
+        print(f"\nPUBLISHED ({result['privacy']}): {result['url']}")
     return 0
 
 
