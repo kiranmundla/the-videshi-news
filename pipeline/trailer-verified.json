@@ -17,5 +17,11 @@
   "_verified": "Theatrical Telugu crime comedy releasing Nov 13, 2026 — Hollywood Reporter India, Cinema Express and 123Telugu agree (researched 2026-10-20). The teaser promo description prints cast/director/producer but never states type or release date, so the held brief could never complete from the description alone.",
   "media_type": "Movie",
   "release": "Nov 13, 2026"
+ },
+ "dead": {
+  "_verified": "Netflix Korean mystery-horror series (8 episodes), premiering 30 Oct 2026 — Netflix press release via HanCinema, corroborated by FilmiBeat and Gadgets 360 (spot-checked 2026-10-24). The official Netflix India trailer description states the premise + 30 October date only — no type, cast or director — and the Netflix title page does not resolve from this server, so neither parser nor platform completion can supply type/credits.",
+  "media_type": "Series",
+  "director": "Kim Da-min",
+  "cast": "Lee Jae-wook, Go Min-si, Kim Min-ha, Lee Hee-jun"
  }
 }
