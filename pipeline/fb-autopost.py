@@ -331,15 +331,18 @@ def generate_card_set(article):
 
 def build_ig_caption(article):
     """Instagram caption for the card post: headline + one-line
-    summary + 'Full story at thevideshi.com' + the same hashtags as
-    the FB post. No article URL — IG captions aren't clickable."""
+    summary + 'Full story: <article URL>' + the same hashtags as
+    the FB post. The URL rides as plain text — IG captions don't
+    make it tappable, but Kiran's rule (2026-10-25) is that the
+    article link goes wherever it is allowed and free."""
     headline = article["headline"].strip()
     sub = (article.get("subheadline") or "").strip()
     summary = sub.split(".")[0].strip() + "." if sub else ""
     parts = [headline]
     if summary and summary.lower() not in headline.lower():
         parts.append(summary)
-    parts.append("Full story at thevideshi.com")
+    parts.append(
+        f"Full story: https://thevideshi.com/articles/{article['slug']}")
     parts.append(hashtag_line(article))
     return "\n\n".join(parts)
 

@@ -211,16 +211,22 @@ class TestFbStage(QueuePatchMixin, unittest.TestCase):
         self.assertEqual(fb_e["card_file"], files[0])
         self.assertEqual(fb_e["card_texts"], texts)
         self.assertEqual(fb_e["card_track"], "backdrop")
-        # IG stays single-card: the hook only, IG caption, no URL,
-        # and no card_files of its own
+        # IG stays single-card: the hook only, IG caption carrying
+        # the full article URL as text (Kiran, 2026-10-25: links
+        # wherever allowed and free), and no card_files of its own
         self.assertEqual((ig_e["channel"], ig_e["kind"]),
                          ("instagram", "article_post"))
         self.assertEqual(ig_e["slug"], "big-immigration-story")
         self.assertEqual(ig_e["card_file"], files[0])
         self.assertIsNone(ig_e.get("card_files"))
         self.assertEqual(ig_e["card_track"], "backdrop")
-        self.assertIn("Full story at thevideshi.com", ig_e["text"])
-        self.assertNotIn("thevideshi.com/articles", ig_e["text"])
+        story = ("Full story: https://thevideshi.com/articles/"
+                 "big-immigration-story")
+        self.assertIn(story, ig_e["text"])
+        self.assertNotIn("Full story at thevideshi.com", ig_e["text"])
+        # The story line sits before the hashtag line.
+        self.assertLess(ig_e["text"].index(story),
+                        ig_e["text"].index("#TheVideshi"))
         self.assertIn("#TheVideshi", ig_e["text"])
         self.assertIsNone(ig_e["link"])
 

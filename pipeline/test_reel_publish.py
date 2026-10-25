@@ -223,7 +223,13 @@ def t_happy_path_order_and_result():
         assert result["privacy"] == "public"
         pack = Path(result["tiktok_pack"])
         assert pack.exists() and "CAPTION:" in pack.read_text(), pack
-        assert "https://" not in pack.read_text().split("CAPTION:")[1]
+        # The pack caption carries the article URL as text (Kiran,
+        # 2026-10-25: links wherever allowed and free) — and it is
+        # the ONLY URL in the caption.
+        caption = pack.read_text().split("CAPTION:")[1]
+        assert ("Full story: https://thevideshi.com/articles/"
+                "test-article-slug") in caption, caption
+        assert caption.count("https://") == 1, caption
         # the publish log is written BEFORE the DB write-back, so a crash
         # mid-write-back can never lead to a duplicate re-upload
         assert events.index("append_log") < events.index("write_back"), events
@@ -536,6 +542,24 @@ def t_tiktok_generics_never_displace_topics():
         assert t in tags, tags
 
 
+def t_tiktok_caption_carries_story_url():
+    # Kiran, 2026-10-25: article links go wherever allowed and
+    # free — the TikTok caption carries the full article URL as
+    # text, on its own line immediately before the hashtags.
+    cap = rp.build_tiktok_caption(ROMANCH_ARTICLE, ROMANCH_SCRIPT)
+    url = ("Full story: https://thevideshi.com/articles/"
+           "romanchs-law-new-york-horse-carriage-ban-indian-teen")
+    assert url in cap, cap
+    lines = [ln for ln in cap.split("\n") if ln.strip()]
+    assert lines[-2] == url, lines
+    assert lines[-1].startswith("#TheVideshi"), lines
+    # A slugless article gets no story line and no crash.
+    cap2 = rp.build_tiktok_caption(
+        {"headline": "Some Story", "category": "news", "tags": None},
+        {"news_summary": "A summary."})
+    assert "Full story:" not in cap2, cap2
+
+
 def t_youtube_description_carries_topic_tags():
     # The description hashtag line had the same generic-only failure
     # mode via topic_hashtag's category fallback.
@@ -590,6 +614,8 @@ def main():
          t_tiktok_rule_topic_and_entity_tags),
         ("tiktok: generics never displace topics",
          t_tiktok_generics_never_displace_topics),
+        ("tiktok: caption carries the full story URL",
+         t_tiktok_caption_carries_story_url),
         ("youtube description carries topic tags",
          t_youtube_description_carries_topic_tags),
     ]

@@ -161,11 +161,13 @@ with tempfile.TemporaryDirectory() as tmp:
     check("TikTok pack written beside the verdict", pack.exists())
     if pack.exists():
         pack_text = pack.read_text()
-        check("pack = MP4 path + caption, no bare URL anywhere",
+        check("pack = MP4 path + caption, one story URL as text",
               pack_text.startswith("VIDEO: ")
               and "CAPTION:" in pack_text
               and "http://" not in pack_text
-              and "https://" not in pack_text)
+              and ("Full story: https://thevideshi.com/articles/"
+                   "acme-corp-opens-campus") in pack_text
+              and pack_text.count("https://") == 1)
         check("caption leads with the hook and carries hashtags",
               SCRIPT["hook_line"] in pack_text
               and "#TheVideshi" in pack_text)

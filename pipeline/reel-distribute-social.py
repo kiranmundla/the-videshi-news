@@ -31,6 +31,7 @@ Env: .env.supabase + .env.youtube sourced by the caller.
 """
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -130,6 +131,40 @@ def make_cover(mp4_path, video_id):
     return cover if r.returncode == 0 and os.path.exists(cover) else None
 
 
+STORY_URL_BASE = "https://thevideshi.com/articles/"
+_STORY_LINE_RE = re.compile(
+    r"^(?:Read the full story|Full story):\s*https?://\S+\s*$", re.M)
+
+
+def ig_reel_caption(caption, slug):
+    """Instagram reel caption: the full article URL as a
+    'Full story: <url>' line immediately before the hashtag block
+    (Kiran, 2026-10-25 — article links go wherever allowed and
+    free; the URL rides as text even though IG doesn't make it
+    tappable). The stored reel caption is the YouTube description,
+    whose 'Read the full story:' line sits mid-text; on IG that
+    line is normalised to 'Full story:' and moved to just above
+    the hashtags. FB drafts and Threads keep the stored caption —
+    their 'Read the full story:' line already carries the URL."""
+    if not slug:
+        return caption
+    story = f"Full story: {STORY_URL_BASE}{slug}"
+    text = _STORY_LINE_RE.sub("", caption or "")
+    text = re.sub(r"\n{3,}", "\n\n", text).strip()
+    if not text:
+        return story
+    lines = text.split("\n")
+    idx = len(lines)
+    while idx > 0 and lines[idx - 1].strip().startswith("#"):
+        idx -= 1
+    if idx < len(lines):
+        head = "\n".join(lines[:idx]).rstrip()
+        tags = "\n".join(lines[idx:])
+        return f"{head}\n\n{story}\n\n{tags}" if head else \
+            f"{story}\n\n{tags}"
+    return f"{text}\n\n{story}"
+
+
 def fb_draft(mp4_path, caption):
     cmd = [FB_CLI, "pages", "drafts", "create", "--page-id", PAGE_ID,
            "--text", trim(caption, FB_TEXT_LIMIT), "--file", mp4_path]
@@ -199,6 +234,7 @@ def main():
         entry = state.setdefault(vid, {})
         mp4 = os.path.join(PIPELINE, row.get("video_path") or "")
         caption = row.get("caption") or row.get("headline") or ""
+        ig_text = ig_reel_caption(caption, row.get("article_slug"))
         alt_text = row.get("headline") or row.get("article_slug") or ""
         if not os.path.exists(mp4):
             print(f"SKIP {vid}: video file missing ({mp4})", file=sys.stderr)
@@ -263,7 +299,7 @@ def main():
                             "reel_id": vid,
                             "slug": row.get("article_slug"),
                             "headline": row.get("headline"),
-                            "text": caption,
+                            "text": ig_text,
                             "link": None,
                             "media_file": mp4,
                             "cover_file": cover,
@@ -298,7 +334,7 @@ def main():
             if DRY_RUN:
                 print("  DRY RUN — not posting.")
             else:
-                ig = ig_post(mp4, cover, caption)
+                ig = ig_post(mp4, cover, ig_text)
                 if ig:
                     entry["ig_done"] = True
                     entry["ig_result"] = ig.get("post_id") or ig.get("id")

@@ -63,6 +63,9 @@ UNLISTED_PRIVACY = "unlisted"
 QA_PASS_THRESHOLD = 7.0  # must match reel_frame_qa.py / reel_produce.py
 YOUTUBE_CATEGORY_NEWS = "25"
 ARTICLE_URL_BASE = "https://www.thevideshi.com/articles/"
+# Canonical (no-www) base for the 'Full story:' line in IG/TikTok
+# captions — matches the format Kiran approved 2026-10-25.
+ARTICLE_URL_BASE_BARE = "https://thevideshi.com/articles/"
 
 REFUSED = 2
 FAILED = 3
@@ -491,8 +494,11 @@ TIKTOK_TAG_CAP = 5
 
 def build_tiktok_caption(article, script):
     """A ready-to-paste TikTok caption: the hook, 1–2 grounded
-    lines (summary, then payoff), hashtags — and NO bare URL
-    (TikTok captions don't link; Kiran pastes this in-app).
+    lines (summary, then payoff), a 'Full story: <article URL>'
+    line, then hashtags. The URL rides as plain text — TikTok
+    captions don't make it tappable, but Kiran's rule (2026-10-25)
+    is that the article link goes wherever it is allowed and free;
+    Kiran pastes this in-app.
     Hashtags match the social policy (hashtag_line): #TheVideshi +
     up to 2 TOPIC tags from topic_tags() + the category tag, capped
     at 5 total; generic diaspora tags fill only leftover slots and
@@ -507,6 +513,13 @@ def build_tiktok_caption(article, script):
     payoff = (script.get("payoff") or "").strip()
     if payoff and payoff not in (hook, summary):
         parts.append(payoff)
+    # URLs embedded in the prose stay out (unlinked noise); the one
+    # URL that belongs in the caption is the story line added below.
+    parts = [re.sub(r"https?://\S+", "", p).strip() for p in parts]
+    parts = [p for p in parts if p]
+    slug = (article.get("slug") or "").strip()
+    if slug:
+        parts.append(f"Full story: {ARTICLE_URL_BASE_BARE}{slug}")
     tags, seen = [], set()
 
     def push(tag):
@@ -522,8 +535,7 @@ def build_tiktok_caption(article, script):
     push("#IndianDiaspora")
     push("#IndianAmerican")
     parts.append(" ".join(tags))
-    caption = "\n\n".join(p for p in parts if p)
-    return re.sub(r"https?://\S+", "", caption).strip()
+    return "\n\n".join(p for p in parts if p)
 
 
 def write_tiktok_pack(outdir, video_path, article, script):
