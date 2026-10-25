@@ -32,6 +32,12 @@ Usage:
 
 Prints one JSON line: {track, source_px, render_scale, out_path, ...}.
 Importable: make_card(headline, category, image_url=...|image_path=...).
+
+SKIP RULE: if the best available image (after the original-upgrade
+fetch) is <600px wide, make_card renders nothing and returns
+{track: "skipped", reason: "hero_under_600px", source_px: [w, h]} —
+callers (the social queue producers) fall back to the plain-hero
+post. --track overrides the skip, for testing.
 """
 
 import argparse
@@ -74,6 +80,9 @@ BLACK = (5, 5, 5)
 BACKDROPS = {"navy": NAVY, "black": BLACK}
 
 GATE_MIN_WIDTH = 1920        # full-bleed gate: fetched-original width
+SKIP_MIN_WIDTH = 600         # skip rule: best image under this width
+                             # renders NO card (callers fall back to
+                             # the plain-hero post)
 MAX_PHOTO_H = 880            # backdrop: photo never eats the text zone
 HEADLINE_START = 62
 HEADLINE_FLOOR = 42
@@ -470,6 +479,19 @@ def make_card(headline, category, image_url=None, image_path=None,
         raise ValueError("image_url or image_path required")
     src_w, src_h = img.size
     kicker = kicker_for(category)
+    # SKIP RULE (Kiran, go-live 2026-10-24): if the best available
+    # image — after the original-upgrade fetch above — is under
+    # 600px wide, render nothing and report the skip; queue callers
+    # fall back to the plain-hero post. force_track (--track) still
+    # forces a render, for testing.
+    if not force_track and src_w < SKIP_MIN_WIDTH:
+        info = {"track": "skipped", "reason": "hero_under_600px",
+                "source_px": [src_w, src_h], "out_path": None,
+                "render_scale": None, "truncated": False,
+                "kicker": kicker, "backdrop": None}
+        if fetched_url:
+            info["fetched_url"] = fetched_url
+        return info
     if force_track:
         track = force_track
         if track == "full-bleed":

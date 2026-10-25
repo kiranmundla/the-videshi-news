@@ -14,6 +14,10 @@ Core invariants under test:
   - Headline fitting: long headlines shrink to fit their zone; only as
     a last resort do they truncate, and truncation is flagged.
   - Kicker category mapping (nri-world -> NRI WORLD etc.).
+  - Skip rule (go-live, 2026-10-24): a best image <600px wide makes
+    make_card render nothing and return track "skipped" /
+    reason "hero_under_600px"; exactly 600px renders; force_track
+    (--track) overrides the skip.
 """
 import os
 import sys
@@ -175,6 +179,38 @@ info = sc.make_card("End to End Backdrop Test", "sports",
                     image_path=p2, out_path=os.path.join(tmp, "c2.png"))
 check("e2e backdrop track", info["track"], "backdrop")
 check("e2e backdrop no upscale", info["render_scale"], 0.9)
+
+# ── Skip rule: best image <600px wide renders NOTHING ────────────────
+p3 = os.path.join(tmp, "hero-small.jpg")
+solid(480, 360).save(p3, "JPEG")
+out3 = os.path.join(tmp, "card-small.png")
+info = sc.make_card("Tiny Hero Should Skip", "entertainment",
+                    image_path=p3, out_path=out3)
+check("skip: 480px track", info["track"], "skipped")
+check("skip: reason", info["reason"], "hero_under_600px")
+check("skip: source_px", info["source_px"], [480, 360])
+check_true("skip: nothing rendered", not os.path.exists(out3))
+
+p4 = os.path.join(tmp, "hero-599.jpg")
+solid(599, 400).save(p4, "JPEG")
+info = sc.make_card("One Pixel Under Still Skips", "news",
+                    image_path=p4, out_path=os.path.join(tmp, "c599.png"))
+check("skip: 599px still skips", info["track"], "skipped")
+
+p5 = os.path.join(tmp, "hero-600.jpg")
+solid(600, 450).save(p5, "JPEG")
+out5 = os.path.join(tmp, "c600.png")
+info = sc.make_card("Exactly Six Hundred Renders", "news",
+                    image_path=p5, out_path=out5)
+check("skip: 600px renders (backdrop)", info["track"], "backdrop")
+check_true("skip: 600px output written", os.path.exists(out5))
+
+# --track (force_track) overrides the skip, for testing
+out6 = os.path.join(tmp, "c-forced.png")
+info = sc.make_card("Forced Tiny Render", "entertainment",
+                    image_path=p3, out_path=out6, force_track="backdrop")
+check("skip: force_track overrides", info["track"], "backdrop")
+check_true("skip: forced output written", os.path.exists(out6))
 
 print(f"\n{TOTAL[0] - len(FAILURES)}/{TOTAL[0]} checks passed"
       if not FAILURES else f"\nFAILURES: {FAILURES}")

@@ -10,6 +10,12 @@ social publish queue (pipeline/.state/social-publish-queue.json).
 No Facebook calls are made; social-publish-flush.py publishes the
 queue later while Kiran is present to approve each post.
 
+Each staged pick also renders its social card (social_card.py) into
+the queue entry (card_file/card_track; the <600px skip rule leaves
+card_file null and the flush falls back to the plain hero), and —
+when a card exists — stages a matching Instagram card post, since
+IG is a card-only channel.
+
 Usage: python3 -u fb-autopost.py [--dry-run]   stage (default)
        python3 -u fb-autopost.py --publish-now [--dry-run]
            legacy immediate publish (unchanged behavior)
@@ -181,10 +187,19 @@ def download_image(url):
     return None
 
 
-def publish(text, article_url, image_url=None):
+def publish(text, article_url, image_url=None, image_path=None):
     cmd = ["facebook-cli", "pages", "posts", "create",
            "--page-id", PAGE_ID, "--text", text, "--privacy", "PUBLIC"]
-    img_path = download_image(image_url) if image_url else None
+    # image_path is a caller-owned local file (e.g. a rendered social
+    # card from the flush) — attach it directly and never delete it.
+    # Otherwise fall back to downloading the article hero, as before.
+    own_img = None
+    img_path = None
+    if image_path and os.path.exists(image_path):
+        img_path = image_path
+    elif image_url:
+        img_path = download_image(image_url)
+        own_img = img_path
     if img_path:
         cmd.extend(["--file", img_path])
         print(f"Attaching image: {img_path}", file=sys.stderr)
@@ -225,8 +240,8 @@ def publish(text, article_url, image_url=None):
               file=sys.stderr)
         return None
     finally:
-        if img_path and os.path.exists(img_path):
-            os.unlink(img_path)
+        if own_img and os.path.exists(own_img):
+            os.unlink(own_img)
 
 
 def _verify_recent_post(article_url):
@@ -266,6 +281,50 @@ def _verify_recent_post(article_url):
     return None
 
 
+def generate_card(article):
+    """Render the article's social card via social_card.make_card.
+
+    Returns (card_file, card_track): card_track is "full-bleed" /
+    "backdrop" on success, "skipped" when the best hero is under the
+    600px skip rule, None when no card could be made (no image, or a
+    fetch/render failure). NEVER raises — staging degrades to the
+    plain-hero post, exactly as before cards existed."""
+    image_url = article.get("image_url")
+    if not image_url:
+        return None, None
+    try:
+        import social_card
+        out = os.path.join(str(social_card.DEFAULT_OUT_DIR),
+                           f"{article['slug']}.png")
+        info = social_card.make_card(article["headline"],
+                                     article.get("category"),
+                                     image_url=image_url, out_path=out)
+    except Exception as e:
+        print(f"NOTE: card generation failed for {article['slug']}: {e}")
+        return None, None
+    if info.get("track") == "skipped":
+        print(f"NOTE: card skipped for {article['slug']} "
+              f"({info.get('reason')}, source {info.get('source_px')})")
+        return None, "skipped"
+    print(f"Card rendered: {info.get('track')} -> {info.get('out_path')}")
+    return info.get("out_path"), info.get("track")
+
+
+def build_ig_caption(article):
+    """Instagram caption for the card post: headline + one-line
+    summary + 'Full story at thevideshi.com' + the same hashtags as
+    the FB post. No article URL — IG captions aren't clickable."""
+    headline = article["headline"].strip()
+    sub = (article.get("subheadline") or "").strip()
+    summary = sub.split(".")[0].strip() + "." if sub else ""
+    parts = [headline]
+    if summary and summary.lower() not in headline.lower():
+        parts.append(summary)
+    parts.append("Full story at thevideshi.com")
+    parts.append(hashtag_line(article))
+    return "\n\n".join(parts)
+
+
 def stage_main():
     """Delayed-publish staging: pick + compose + queue. No FB calls.
 
@@ -291,6 +350,7 @@ def stage_main():
     if DRY_RUN:
         print("DRY RUN — not staging.")
         return
+    card_file, card_track = generate_card(article)
     entry = {
         "channel": "facebook",
         "kind": "article_post",
@@ -299,6 +359,8 @@ def stage_main():
         "text": text,
         "link": article_url,
         "image_url": article.get("image_url"),
+        "card_file": card_file,
+        "card_track": card_track,
         "media_file": None,
         "cover_file": None,
         "alt_text": None,
@@ -308,6 +370,29 @@ def stage_main():
         print(f"Staged for Facebook: {article['slug']}")
     else:
         print(f"Already staged, skipped: {article['slug']}")
+    # Instagram is a card-only channel: stage a card post for the
+    # same pick (same card file, IG caption). A skipped card (<600px
+    # hero) means NO IG entry — the pick simply doesn't go to IG.
+    if card_file:
+        ig_entry = {
+            "channel": "instagram",
+            "kind": "article_post",
+            "slug": article["slug"],
+            "headline": article["headline"],
+            "text": build_ig_caption(article),
+            "link": None,
+            "image_url": article.get("image_url"),
+            "card_file": card_file,
+            "card_track": card_track,
+            "media_file": None,
+            "cover_file": None,
+            "alt_text": article["headline"],
+            "source": "fb-autopost",
+        }
+        if social_queue.add_entry(ig_entry):
+            print(f"Staged for Instagram (card): {article['slug']}")
+        else:
+            print(f"IG entry already staged, skipped: {article['slug']}")
 
 
 def main():

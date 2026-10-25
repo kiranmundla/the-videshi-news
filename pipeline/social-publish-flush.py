@@ -21,6 +21,11 @@ Behavior:
     producer script's immediate mode does (fb-posted.json /
     threads-posted.json / reel-distribution.json + the prebuilt_reels
     IG stamp), then removes the entry from the queue.
+  * Article entries with a staged social card (card_file) publish
+    the CARD as the image: FB attaches it instead of the hero,
+    Threads carries it as the media item, and Instagram article
+    entries exist only as card photo posts. Entries without a card
+    publish exactly as before cards existed.
   * A queue entry whose slug is already in the published ledger
     (e.g. posted via a manual --publish-now run) is dropped as done.
   * On the FIRST failure or declined approval: stops, keeps that
@@ -85,12 +90,56 @@ def _th():
 # ------------------------------------------------------------------
 
 def publish_fb_article(entry):
+    # With a staged social card, the CARD is the attached image
+    # (fb publish() attaches the caller-owned file directly and
+    # never deletes it). Without one — or if the file has gone
+    # missing since staging — today's plain-hero attach, unchanged.
+    card = entry.get("card_file")
+    if card and os.path.exists(card):
+        return _fb().publish(entry["text"], entry.get("link"),
+                             entry.get("image_url"), image_path=card)
     return _fb().publish(entry["text"], entry.get("link"),
                          entry.get("image_url"))
 
 
 def publish_threads_article(entry):
+    # With a staged social card, the card rides as the post's media
+    # item — the same --media-item mechanism as reel posts (images
+    # take no cover). Without one, the text-only publish, unchanged.
+    card = entry.get("card_file")
+    if card and os.path.exists(card):
+        item = {"file": card}
+        if entry.get("headline"):
+            item["alt_text"] = entry["headline"][:1024]
+        cmd = [THREADS_CLI, "publish-post", "--account-id",
+               THREADS_ACCOUNT_ID, "--text", entry["text"],
+               "--media-item", json.dumps(item)]
+        r = subprocess.run(cmd, capture_output=True, text=True,
+                           timeout=600)
+        try:
+            return json.loads(r.stdout)
+        except json.JSONDecodeError:
+            print(f"ERROR: threads article output not JSON: "
+                  f"{r.stdout[:200]}", file=sys.stderr)
+            return None
     return _th().publish(entry["text"])
+
+
+def publish_ig_article(entry):
+    """instagram-cli post-feed with the staged card as a photo post
+    — the same command the reel path uses. Per the Instagram
+    connector doc, one JPEG/PNG (preferably 1080x1350, exactly the
+    card's size) publishes a photo post, and images take no
+    --cover."""
+    cmd = [IG_CLI, "post-feed", "--account-id", IG_ACCOUNT_ID,
+           "--file", entry["card_file"], "--caption", entry["text"]]
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+    try:
+        return json.loads(r.stdout)
+    except json.JSONDecodeError:
+        print(f"ERROR: ig article post output not JSON: "
+              f"{r.stdout[:200]}", file=sys.stderr)
+        return None
 
 
 def create_fb_reel_draft(entry):
@@ -185,6 +234,11 @@ def already_published(entry):
     if kind == "article_post" and channel == "threads":
         state = _th().load_state()
         return bool(state) and entry.get("slug") in state[0]
+    if kind == "article_post" and channel == "instagram":
+        # No IG article ledger — the queue entry itself is the
+        # record (removed on publish), and re-staging is prevented
+        # upstream because a published FB pick leaves the picker.
+        return False
     if kind == "reel_draft" and channel == "facebook":
         return bool(load_reel_state().get(entry.get("reel_id") or "", {})
                     .get("fb_draft_id"))
@@ -218,6 +272,10 @@ def record_success(entry, result):
         th.save_state(posted, pending, abandoned,
                       pending_since, post_ids)
         return result["post_id"]
+    if kind == "article_post" and channel == "instagram":
+        # No IG article ledger (see already_published) — the queue
+        # removal in main() is the record of the publish.
+        return str(result.get("post_id") or result.get("id") or "ok")
     state = load_reel_state()
     rent = state.setdefault(entry["reel_id"], {})
     if kind == "reel_draft" and channel == "facebook":
@@ -256,6 +314,17 @@ def dispatch(entry):
     if (channel, kind) == ("threads", "article_post"):
         result = publish_threads_article(entry)
         return result if result and result.get("post_id") else None
+    if (channel, kind) == ("instagram", "article_post"):
+        # IG is card-only: the card IS the post. A card file that
+        # has gone missing since staging is a hard stop, exactly
+        # like a missing reel media file above.
+        card = entry.get("card_file")
+        if not card or not os.path.exists(card):
+            print(f"ERROR: card file missing for IG article entry "
+                  f"{entry.get('id')}: {card}", file=sys.stderr)
+            return None
+        result = publish_ig_article(entry)
+        return result if result else None
     if (channel, kind) == ("facebook", "reel_draft"):
         result = create_fb_reel_draft(entry)
         return result if result else None
@@ -278,6 +347,18 @@ def entry_label(entry):
     return f"[{entry.get('channel')}/{entry.get('kind')}] {name}"
 
 
+def card_annotation(entry):
+    """'card: full-bleed|backdrop|none…' for article entries, so
+    the flush sitting shows exactly what image will go out."""
+    if entry.get("kind") != "article_post":
+        return ""
+    if entry.get("card_file"):
+        return f" · card: {entry.get('card_track') or 'rendered'}"
+    if entry.get("card_track") == "skipped":
+        return " · card: none (<600px skip)"
+    return " · card: none"
+
+
 def print_list(entries):
     if not entries:
         print("Publish queue is empty.")
@@ -288,7 +369,8 @@ def print_list(entries):
         age = social_queue.age_hours(entry)
         age_txt = f"{age:.1f}h old" if age is not None else "age ?"
         stale = " — STALE (>48h)" if social_queue.is_stale(entry) else ""
-        print(f"{i}. {entry_label(entry)} — {age_txt}{stale}")
+        print(f"{i}. {entry_label(entry)} — {age_txt}{stale}"
+              f"{card_annotation(entry)}")
         print(f"   staged {entry.get('created_at')} "
               f"via {entry.get('source')}")
 

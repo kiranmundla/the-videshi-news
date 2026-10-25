@@ -8,6 +8,11 @@ Stage modes must make ZERO connector CLI invocations — producer
 modules get a subprocess.run that raises if touched (their data
 fetches are mocked at the function level instead).
 
+Card coverage (go-live 2026-10-24): staging attaches card_file /
+card_track (FB renders, Threads shares or generates, IG stages
+only when a card exists, the <600px skip leaves card_file null),
+and the flush publishes the card on all three channels.
+
 Run: python3 -u -m unittest test_social_queue -v
 """
 import io
@@ -183,6 +188,47 @@ class TestFbStage(QueuePatchMixin, unittest.TestCase):
         self.assertIn("No fresh article", out)
         self.assertEqual(sq.load_entries(), [])
 
+    def test_stage_with_card_also_stages_ig(self):
+        card = os.path.join(self.tmp, "card.png")
+        with open(card, "wb") as f:
+            f.write(b"\x89PNG")
+        with mock.patch.object(fb_autopost, "generate_card",
+                               return_value=(card, "backdrop")):
+            self._stage([ARTICLE_1, ARTICLE_2])
+        entries = sq.load_entries()
+        self.assertEqual(len(entries), 2)
+        fb_e, ig_e = entries
+        self.assertEqual(fb_e["card_file"], card)
+        self.assertEqual(fb_e["card_track"], "backdrop")
+        # IG is card-only: same card file, IG caption, no URL
+        self.assertEqual((ig_e["channel"], ig_e["kind"]),
+                         ("instagram", "article_post"))
+        self.assertEqual(ig_e["slug"], "big-immigration-story")
+        self.assertEqual(ig_e["card_file"], card)
+        self.assertEqual(ig_e["card_track"], "backdrop")
+        self.assertIn("Full story at thevideshi.com", ig_e["text"])
+        self.assertNotIn("thevideshi.com/articles", ig_e["text"])
+        self.assertIn("#TheVideshi", ig_e["text"])
+        self.assertIsNone(ig_e["link"])
+
+    def test_stage_card_skipped_no_ig(self):
+        with mock.patch.object(fb_autopost, "generate_card",
+                               return_value=(None, "skipped")):
+            self._stage([ARTICLE_1])
+        entries = sq.load_entries()
+        self.assertEqual(len(entries), 1)
+        self.assertIsNone(entries[0]["card_file"])
+        self.assertEqual(entries[0]["card_track"], "skipped")
+
+    def test_stage_card_failure_still_stages_cardless(self):
+        with mock.patch.object(fb_autopost, "generate_card",
+                               return_value=(None, None)):
+            self._stage([ARTICLE_1])
+        entries = sq.load_entries()
+        self.assertEqual(len(entries), 1)
+        self.assertIsNone(entries[0]["card_file"])
+        self.assertIsNone(entries[0]["card_track"])
+
 
 def t_article(slug, mins_ago, headline=None):
     ts = (datetime.now(timezone.utc) - timedelta(minutes=mins_ago)) \
@@ -271,6 +317,51 @@ class TestThreadsStage(QueuePatchMixin, unittest.TestCase):
         th = [e for e in sq.load_entries() if e["channel"] == "threads"]
         self.assertEqual([e["slug"] for e in th],
                          ["x-top", "x-plain", "queued-fb", "fb-slug"])
+
+    def test_mirror_shares_fb_card_and_generates_own(self):
+        sq.add_entry(make_entry(channel="facebook", slug="x-top",
+                                card_file="/cards/x-top.png",
+                                card_track="backdrop"))
+        calls = []
+
+        def fake_gen(article):
+            calls.append(article["slug"])
+            return ("/cards/gen.png", "full-bleed")
+
+        with mock.patch.object(threads_autopost, "generate_card",
+                               side_effect=fake_gen):
+            with redirect_stdout(io.StringIO()):
+                threads_autopost.stage_main()
+        entries = {e["slug"]: e for e in sq.load_entries()
+                   if e["channel"] == "threads"}
+        # FB counterpart's card: shared file, never regenerated
+        self.assertEqual(entries["x-top"]["card_file"],
+                         "/cards/x-top.png")
+        self.assertEqual(entries["x-top"]["card_track"], "backdrop")
+        # X-only pick and the card-less staged FB pick generate their own
+        self.assertEqual(entries["x-plain"]["card_file"], "/cards/gen.png")
+        self.assertEqual(entries["queued-fb"]["card_file"],
+                         "/cards/gen.png")
+        self.assertEqual(sorted(calls), ["queued-fb", "x-plain"])
+
+    def test_mirror_inherits_fb_skip(self):
+        sq.add_entry(make_entry(channel="facebook", slug="x-plain",
+                                card_file=None, card_track="skipped"))
+        calls = []
+
+        def fake_gen(article):
+            calls.append(article["slug"])
+            return ("/cards/gen.png", "full-bleed")
+
+        with mock.patch.object(threads_autopost, "generate_card",
+                               side_effect=fake_gen):
+            with redirect_stdout(io.StringIO()):
+                threads_autopost.stage_main()
+        entries = {e["slug"]: e for e in sq.load_entries()
+                   if e["channel"] == "threads"}
+        self.assertIsNone(entries["x-plain"]["card_file"])
+        self.assertEqual(entries["x-plain"]["card_track"], "skipped")
+        self.assertNotIn("x-plain", calls)
 
 
 class TestReelStage(QueuePatchMixin, unittest.TestCase):
@@ -409,6 +500,116 @@ class TestFlush(QueuePatchMixin, unittest.TestCase):
         with redirect_stdout(io.StringIO()) as buf:
             flush.print_list(sq.load_entries())
         self.assertIn("STALE", buf.getvalue())
+
+
+class TestFlushCards(QueuePatchMixin, unittest.TestCase):
+    """Flush with staged social cards: FB attaches the card file,
+    Threads carries it as a media item, IG publishes it as a photo
+    post via post-feed. The producers' publish functions and the
+    CLIs are mocked at the boundary; the flush's own card dispatch
+    logic runs for real."""
+
+    def setUp(self):
+        super().setUp()
+        self.fb_state = os.path.join(self.tmp, "fb-posted.json")
+        self.th_state = os.path.join(self.tmp, "threads-posted.json")
+        self.reel_state = os.path.join(self.tmp, "reel-dist.json")
+        self.card = os.path.join(self.tmp, "card.png")
+        with open(self.card, "wb") as f:
+            f.write(b"\x89PNG fake")
+        self.calls = []
+
+        def fb_publish(text, url, image_url=None, image_path=None):
+            self.calls.append(("fb", image_path))
+            return {"state": "published", "post_url": "https://fb/c1"}
+
+        def fake_run(cmd, **kw):
+            self.calls.append((cmd[0].rsplit("/", 1)[-1], cmd))
+            payload = ({"post_id": "th-card"} if "threads-cli" in cmd[0]
+                       else {"post_id": "ig-card"})
+            return mock.Mock(stdout=json.dumps(payload), returncode=0)
+
+        self._p = [
+            mock.patch.object(fb_autopost, "STATE_FILE", self.fb_state),
+            mock.patch.object(threads_autopost, "STATE_FILE",
+                              self.th_state),
+            mock.patch.object(flush, "REEL_STATE_FILE", self.reel_state),
+            mock.patch.object(fb_autopost, "publish", fb_publish),
+            mock.patch.object(flush.subprocess, "run", fake_run),
+        ]
+        for p in self._p:
+            p.start()
+
+    def tearDown(self):
+        for p in self._p:
+            p.stop()
+        super().tearDown()
+
+    def _card_entry(self, channel, slug="card-story"):
+        return make_entry(channel=channel, slug=slug,
+                          card_file=self.card, card_track="backdrop",
+                          image_url="https://img.example/hero.jpg")
+
+    def test_flush_publishes_cards_all_channels(self):
+        sq.add_entry(self._card_entry("facebook"))
+        sq.add_entry(self._card_entry("threads"))
+        sq.add_entry(self._card_entry("instagram"))
+        with redirect_stdout(io.StringIO()):
+            rc = flush.main()
+        self.assertEqual(rc, 0)
+        self.assertEqual(sq.load_entries(), [])
+        self.assertEqual([c[0] for c in self.calls],
+                         ["fb", "threads-cli", "instagram-cli"])
+        # FB attached the card file itself (image_path), not a hero
+        self.assertEqual(self.calls[0][1], self.card)
+        # Threads carried the card as a media item; images take no cover
+        th_cmd = self.calls[1][1]
+        item = json.loads(th_cmd[th_cmd.index("--media-item") + 1])
+        self.assertEqual(item["file"], self.card)
+        self.assertNotIn("cover", item)
+        # IG posted the card as a photo: post-feed --file, no --cover
+        ig_cmd = self.calls[2][1]
+        self.assertIn("post-feed", ig_cmd)
+        self.assertEqual(ig_cmd[ig_cmd.index("--file") + 1], self.card)
+        self.assertNotIn("--cover", ig_cmd)
+        # ledgers written as today
+        with open(self.fb_state) as f:
+            self.assertEqual(json.load(f)["posted_slugs"], ["card-story"])
+        with open(self.th_state) as f:
+            self.assertEqual(json.load(f)["post_ids"],
+                             {"card-story": "th-card"})
+
+    def test_ig_article_missing_card_stops_flush(self):
+        e = self._card_entry("instagram")
+        e["card_file"] = os.path.join(self.tmp, "gone.png")
+        sq.add_entry(e)
+        with redirect_stdout(io.StringIO()) as buf:
+            rc = flush.main()
+        self.assertEqual(rc, 1)
+        self.assertIn("STOPPED", buf.getvalue())
+        self.assertEqual(len(sq.load_entries()), 1)
+
+    def test_fb_article_missing_card_falls_back_to_hero(self):
+        e = self._card_entry("facebook")
+        e["card_file"] = os.path.join(self.tmp, "gone.png")
+        sq.add_entry(e)
+        with redirect_stdout(io.StringIO()):
+            rc = flush.main()
+        self.assertEqual(rc, 0)
+        # publish() invoked with no image_path -> plain-hero behavior
+        self.assertEqual(self.calls, [("fb", None)])
+
+    def test_list_annotates_cards(self):
+        sq.add_entry(self._card_entry("facebook", slug="with-card"))
+        sq.add_entry(make_entry(slug="skipped-card", card_file=None,
+                                card_track="skipped"))
+        sq.add_entry(make_entry(slug="plain"))
+        with redirect_stdout(io.StringIO()) as buf:
+            flush.print_list(sq.load_entries())
+        out = buf.getvalue()
+        self.assertIn("card: backdrop", out)
+        self.assertIn("card: none (<600px skip)", out)
+        self.assertIn("card: none", out)
 
 
 if __name__ == "__main__":

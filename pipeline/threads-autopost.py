@@ -24,6 +24,12 @@ before its Threads mirror. No Threads calls are made in stage mode;
 social-publish-flush.py publishes the queue later while Kiran is
 present to approve each post.
 
+Each mirror also carries the pick's social card (card_file /
+card_track): shared from the staged FB entry when it has one,
+generated for the pick otherwise (social_card.py; the <600px skip
+rule leaves card_file null and the flush posts text-only, as
+before cards existed).
+
 Usage: python3 -u threads-autopost.py [--dry-run]   stage (default)
        python3 -u threads-autopost.py --publish-now [--dry-run]
            legacy immediate publish (unchanged behavior)
@@ -113,7 +119,7 @@ def fetch_articles(slugs):
         return {}
     in_list = ",".join(sorted(slugs))
     rows = sb_get(
-        "p2_articles?select=headline,subheadline,slug,published_at,category,tags"
+        "p2_articles?select=headline,subheadline,slug,published_at,category,tags,image_url"
         f"&slug=in.({in_list})")
     if not isinstance(rows, list):
         return {}
@@ -251,6 +257,48 @@ def collect_picks():
     return picks
 
 
+def generate_card(article):
+    """Render the article's social card via social_card.make_card.
+
+    Returns (card_file, card_track): "full-bleed" / "backdrop" on
+    success, "skipped" under the 600px skip rule, None when no card
+    could be made. NEVER raises — the mirror stages card-less and
+    the flush falls back to the text-only post, as before cards."""
+    image_url = article.get("image_url")
+    if not image_url:
+        return None, None
+    try:
+        import social_card
+        out = os.path.join(str(social_card.DEFAULT_OUT_DIR),
+                           f"{article['slug']}.png")
+        info = social_card.make_card(article["headline"],
+                                     article.get("category"),
+                                     image_url=image_url, out_path=out)
+    except Exception as e:
+        print(f"NOTE: card generation failed for {article['slug']}: {e}")
+        return None, None
+    if info.get("track") == "skipped":
+        print(f"NOTE: card skipped for {article['slug']} "
+              f"({info.get('reason')}, source {info.get('source_px')})")
+        return None, "skipped"
+    print(f"Card rendered: {info.get('track')} -> {info.get('out_path')}")
+    return info.get("out_path"), info.get("track")
+
+
+def _mirror_card(article, fb_entry):
+    """(card_file, card_track) for a Threads mirror entry. Shares
+    the FB counterpart's card file when the staged FB queue entry
+    has one (generate once, share the file) and inherits its <600px
+    skip; otherwise — X picks, ledger-only FB picks — generates
+    this pick's own card the same way."""
+    if fb_entry is not None:
+        if fb_entry.get("card_file"):
+            return fb_entry["card_file"], fb_entry.get("card_track")
+        if fb_entry.get("card_track") == "skipped":
+            return None, "skipped"
+    return generate_card(article)
+
+
 def stage_main():
     """Delayed-publish staging: compose exact Threads texts and
     queue them. No Threads calls; threads-posted.json is written by
@@ -291,6 +339,11 @@ def stage_main():
               f"{sorted(pending)}")
 
     staged = social_queue.queued_slugs("threads", "article_post")
+    # Staged FB entries by slug — their card files are shared with
+    # the mirrors below (generate once, share the file).
+    fb_cards = {e["slug"]: e for e in social_queue.load_entries()
+                if e.get("channel") == "facebook"
+                and e.get("kind") == "article_post" and e.get("slug")}
     candidates = {s: link for s, link in picks.items()
                   if s not in posted and s not in pending
                   and s not in abandoned and s not in staged}
@@ -320,6 +373,8 @@ def stage_main():
         if DRY_RUN:
             print("DRY RUN — not staging.")
             continue
+        card_file, card_track = _mirror_card(
+            article, fb_cards.get(article["slug"]))
         entry = {
             "channel": "threads",
             "kind": "article_post",
@@ -329,6 +384,9 @@ def stage_main():
             "link": (f"https://www.thevideshi.com/articles/"
                      f"{article['slug']}" if with_link else None),
             "with_link": bool(with_link),
+            "image_url": article.get("image_url"),
+            "card_file": card_file,
+            "card_track": card_track,
             "media_file": None,
             "cover_file": None,
             "alt_text": None,
