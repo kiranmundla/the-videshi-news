@@ -313,7 +313,10 @@ CATEGORY_HASHTAG = {
 }
 
 
-def topic_hashtag(article, script):
+def _rule_topic(article, script):
+    """The keyword-rule topic tag (TOPIC_RULES), or None when no rule
+    matches. Kept separate from topic_hashtag's category fallback so
+    callers can tell a real topic from a fallback."""
     text = " ".join([
         article.get("headline") or "",
         script.get("news_summary") or "",
@@ -322,7 +325,72 @@ def topic_hashtag(article, script):
     for needles, tag in TOPIC_RULES:
         if any(n in text for n in needles):
             return tag
-    return CATEGORY_TOPIC.get(article.get("category") or "", "TheVideshi")
+    return None
+
+
+def topic_hashtag(article, script):
+    return _rule_topic(article, script) or CATEGORY_TOPIC.get(
+        article.get("category") or "", "TheVideshi")
+
+
+def _hashtagify(raw):
+    """Tagify a name/phrase the social way (threads-autopost._tagify):
+    strip punctuation, capitalize each word, join — except apostrophes
+    are dropped rather than split on, so "Romanch's Law" ->
+    #RomanchsLaw (the form Kiran expects) and "H-1B" -> #H1B."""
+    s = str(raw).replace("'", "").replace("’", "")
+    words = re.sub(r"[^A-Za-z0-9 ]", " ", s).split()
+    tag = "".join(w[:1].upper() + w[1:] for w in words)
+    return f"#{tag}" if len(tag) >= 3 else None
+
+
+# A law named in a headline ("Romanch's Law") is the story's own tag.
+_LAW_RE = re.compile(r"([A-Z][A-Za-z]*['’]s Law)\b")
+
+
+def topic_tags(article, script, limit=2):
+    """Up to `limit` TOPIC hashtags for a reel, best first:
+    1. a law named in the headline ("Romanch's Law" -> #RomanchsLaw);
+    2. the keyword-rule topic (#H1B for an H-1B story);
+    3. key_entities actually named in the headline (a distinctive
+       >=5-char token of the entity appears there) — the subjects;
+    4. the article's own tags;
+    5. any remaining key_entities.
+    Generic diaspora tags are NOT topics and never appear here —
+    callers append them only into leftover slots, so they can never
+    displace a topic tag. (2026-10-25 fix: build_tiktok_caption used
+    to rely on topic_hashtag alone, whose category fallback shipped
+    generic-only tags — #TheVideshi #NRI #IndianDiaspora — for the
+    Romanch's Law reel, with no #RomanchsLaw.)"""
+    tags, seen = [], set()
+
+    def add(tag):
+        if tag and tag.lower() not in seen and len(tags) < limit:
+            seen.add(tag.lower())
+            tags.append(tag)
+
+    headline = article.get("headline") or ""
+    m = _LAW_RE.search(headline)
+    if m:
+        add(_hashtagify(m.group(1)))
+    rule = _rule_topic(article, script)
+    if rule:
+        add(f"#{rule}")
+    head_low = headline.lower()
+    grounded, rest = [], []
+    for ent in (script.get("key_entities") or []):
+        toks = [t.strip(".,'’-") for t in str(ent).split()]
+        if any(len(t) >= 5 and t.lower() in head_low for t in toks):
+            grounded.append(ent)
+        else:
+            rest.append(ent)
+    for ent in grounded:
+        add(_hashtagify(ent))
+    for raw in (article.get("tags") or []):
+        add(_hashtagify(raw))
+    for ent in rest:
+        add(_hashtagify(ent))
+    return tags
 
 
 def _tail_trim(base, suffix):
@@ -365,10 +433,15 @@ def build_metadata(article, script):
         desc_parts.append(payoff)
     desc_parts.append(f"Read the full story: {ARTICLE_URL_BASE}{slug}")
     cat_tag = CATEGORY_HASHTAG.get(article.get("category") or "")
-    hashtags = ["#Shorts", f"#{topic}", "#IndianAmerican", "#IndianDiaspora",
-                "#TheVideshi"]
-    if cat_tag and f"#{cat_tag}" not in hashtags:
-        hashtags.append(f"#{cat_tag}")
+    # Topic tags come from topic_tags() (named law / rule topic /
+    # headline entities), NOT from topic_hashtag alone — its category
+    # fallback shipped generic-only description hashtags for stories
+    # no keyword rule matches (the Romanch's Law failure mode).
+    hashtags = ["#Shorts"] + topic_tags(article, script)
+    for extra in ("#TheVideshi", f"#{cat_tag}" if cat_tag else None,
+                  "#IndianDiaspora", "#IndianAmerican"):
+        if extra and extra not in hashtags:
+            hashtags.append(extra)
     desc_parts.append(" ".join(hashtags))
     description = "\n\n".join(p for p in desc_parts if p)
 
@@ -413,10 +486,17 @@ def build_upload_body(metadata, privacy=DEFAULT_PRIVACY):
 
 # ---------------------------------------------------------------- TikTok pack
 
+TIKTOK_TAG_CAP = 5
+
+
 def build_tiktok_caption(article, script):
     """A ready-to-paste TikTok caption: the hook, 1–2 grounded
     lines (summary, then payoff), hashtags — and NO bare URL
-    (TikTok captions don't link; Kiran pastes this in-app)."""
+    (TikTok captions don't link; Kiran pastes this in-app).
+    Hashtags match the social policy (hashtag_line): #TheVideshi +
+    up to 2 TOPIC tags from topic_tags() + the category tag, capped
+    at 5 total; generic diaspora tags fill only leftover slots and
+    never displace a topic tag."""
     hook = (script.get("hook_line") or article.get("headline")
             or "").strip()
     parts = [hook] if hook else []
@@ -427,13 +507,20 @@ def build_tiktok_caption(article, script):
     payoff = (script.get("payoff") or "").strip()
     if payoff and payoff not in (hook, summary):
         parts.append(payoff)
-    topic = topic_hashtag(article, script)
-    tags = ["#TheVideshi", f"#{topic}"]
+    tags, seen = [], set()
+
+    def push(tag):
+        if tag and tag.lower() not in seen and len(tags) < TIKTOK_TAG_CAP:
+            seen.add(tag.lower())
+            tags.append(tag)
+
+    push("#TheVideshi")
+    for t in topic_tags(article, script):
+        push(t)
     cat_tag = CATEGORY_HASHTAG.get(article.get("category") or "")
-    if cat_tag and f"#{cat_tag}" not in tags:
-        tags.append(f"#{cat_tag}")
-    if "#IndianDiaspora" not in tags:
-        tags.append("#IndianDiaspora")
+    push(f"#{cat_tag}" if cat_tag else None)
+    push("#IndianDiaspora")
+    push("#IndianAmerican")
     parts.append(" ".join(tags))
     caption = "\n\n".join(p for p in parts if p)
     return re.sub(r"https?://\S+", "", caption).strip()

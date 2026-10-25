@@ -468,6 +468,90 @@ def t_reconcile_is_read_only():
         assert banned not in source, f"reconcile must stay read-only: {banned}"
 
 
+ROMANCH_ARTICLE = {
+    "headline": "New York Bans Horse-Drawn Carriages Under Romanch's Law, "
+                "Honouring Indian Teen",
+    "category": "nri-world", "tags": None,
+    "slug": "romanchs-law-new-york-horse-carriage-ban-indian-teen",
+}
+ROMANCH_SCRIPT = {
+    "hook_line": "New York Bans Horse-Drawn Carriages Under Romanch's Law",
+    "news_summary": "The New York City Council voted 40 to 7 to phase out "
+                    "horse-drawn carriages by June 1, 2028, naming the law "
+                    "for Romanch Mahajan, 18, of Pathankot.",
+    "payoff": "For the Mahajan family, one outcome is already fixed.",
+    "key_entities": ["New York City Council", "Central Park",
+                     "Romanch Mahajan"],
+}
+
+
+def _tag_line(caption):
+    return caption.strip().split("\n")[-1].split()
+
+
+def t_tiktok_named_law_story_gets_name_tags():
+    # Regression (Kiran, 2026-10-25): the Romanch's Law pack shipped
+    # generic-only tags. A story named for a law/person must surface
+    # that name tag.
+    tags = _tag_line(rp.build_tiktok_caption(ROMANCH_ARTICLE,
+                                             ROMANCH_SCRIPT))
+    assert tags[0] == "#TheVideshi", tags
+    assert "#RomanchsLaw" in tags, tags
+    assert "#RomanchMahajan" in tags, tags
+    assert len(tags) <= rp.TIKTOK_TAG_CAP, tags
+
+
+def t_hashtagify_normalization():
+    assert rp._hashtagify("Romanch's Law") == "#RomanchsLaw"
+    assert rp._hashtagify("Romanch’s Law") == "#RomanchsLaw"
+    assert rp._hashtagify("H-1B") == "#H1B"
+    assert rp._hashtagify("Romanch Mahajan") == "#RomanchMahajan"
+    assert rp._hashtagify("US Department of Justice") == \
+        "#USDepartmentOfJustice"
+    assert rp._hashtagify("!!") is None
+
+
+def t_tiktok_rule_topic_and_entity_tags():
+    article = {"headline": "Infosys in Talks With DOJ Over Investigation "
+                           "Into H-1B Classifications",
+               "category": "immigration", "tags": None}
+    script = {"news_summary": "Infosys is in discussions with the US "
+                              "Department of Justice.",
+              "key_entities": ["Infosys", "US Department of Justice",
+                               "H-1B"]}
+    tags = _tag_line(rp.build_tiktok_caption(article, script))
+    assert "#H1B" in tags and "#Infosys" in tags, tags
+    assert "#Immigration" in tags, tags
+
+
+def t_tiktok_generics_never_displace_topics():
+    # Even with brand + 2 topics + category filling the cap, the
+    # generic diaspora tags must be the ones squeezed out — never a
+    # topic tag.
+    tags = _tag_line(rp.build_tiktok_caption(ROMANCH_ARTICLE,
+                                             ROMANCH_SCRIPT))
+    assert len(tags) == rp.TIKTOK_TAG_CAP, tags
+    assert "#IndianAmerican" not in tags, tags
+    for t in ("#RomanchsLaw", "#RomanchMahajan", "#NRI"):
+        assert t in tags, tags
+
+
+def t_youtube_description_carries_topic_tags():
+    # The description hashtag line had the same generic-only failure
+    # mode via topic_hashtag's category fallback.
+    meta = rp.build_metadata(ROMANCH_ARTICLE, ROMANCH_SCRIPT)
+    line = meta["description"].strip().split("\n")[-1]
+    assert "#RomanchsLaw" in line and "#RomanchMahajan" in line, line
+    assert line.startswith("#Shorts"), line
+    meta2 = rp.build_metadata(
+        {"headline": "Infosys in Talks With DOJ Over H-1B Filings",
+         "category": "immigration", "tags": None},
+        {"news_summary": "An H-1B investigation.",
+         "key_entities": ["Infosys", "H-1B"]})
+    line2 = meta2["description"].strip().split("\n")[-1]
+    assert "#H1B" in line2 and "#Infosys" in line2, line2
+
+
 def main():
     tests = [
         ("privacy default is public", t_privacy_default_is_public),
@@ -499,6 +583,15 @@ def main():
         ("write-back error object = clean failure",
          t_write_back_error_object_is_a_clean_failure),
         ("reconcile is read-only", t_reconcile_is_read_only),
+        ("tiktok: named-law story gets its name tags",
+         t_tiktok_named_law_story_gets_name_tags),
+        ("hashtagify normalization", t_hashtagify_normalization),
+        ("tiktok: rule topic + entity tags",
+         t_tiktok_rule_topic_and_entity_tags),
+        ("tiktok: generics never displace topics",
+         t_tiktok_generics_never_displace_topics),
+        ("youtube description carries topic tags",
+         t_youtube_description_carries_topic_tags),
     ]
     for name, fn in tests:
         check(name, fn)
