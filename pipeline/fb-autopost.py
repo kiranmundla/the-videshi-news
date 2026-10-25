@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 """
 Facebook auto-poster for TheVideshi Page.
-Picks the top recent published article not yet posted to Facebook,
-publishes it to the Page, and records it to avoid duplicates.
+Picks the top recent published article not yet posted to Facebook
+and records it to avoid duplicates.
 
-Usage: python3 -u fb-autopost.py [--dry-run]
+DELAYED-PUBLISH (default, what the slot crons run): STAGE mode —
+pick + compose the exact post text and append it to the shared
+social publish queue (pipeline/.state/social-publish-queue.json).
+No Facebook calls are made; social-publish-flush.py publishes the
+queue later while Kiran is present to approve each post.
+
+Usage: python3 -u fb-autopost.py [--dry-run]   stage (default)
+       python3 -u fb-autopost.py --publish-now [--dry-run]
+           legacy immediate publish (unchanged behavior)
 """
 import json
 import os
@@ -13,6 +21,11 @@ import sys
 import urllib.parse
 
 DRY_RUN = "--dry-run" in sys.argv
+PUBLISH_NOW = "--publish-now" in sys.argv
+STAGE = not PUBLISH_NOW
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import social_queue  # noqa: E402
 
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
@@ -253,8 +266,55 @@ def _verify_recent_post(article_url):
     return None
 
 
+def stage_main():
+    """Delayed-publish staging: pick + compose + queue. No FB calls.
+
+    fb-posted.json is NOT written at stage time (the flush writes it
+    on publish); already-staged slugs are read back from the queue so
+    later slots never re-pick the same article."""
+    posted, pending, abandoned, _pending_since = load_posted()
+    if pending:
+        print(f"NOTE: {len(pending)} slug(s) pending verification from "
+              f"earlier immediate publishes; excluded from staging "
+              f"until a --publish-now run resolves them: "
+              f"{sorted(pending)}")
+    staged = social_queue.queued_slugs("facebook", "article_post")
+    article = pick_article(posted | pending | abandoned | staged)
+    if not article:
+        print("No fresh article to stage (all recent ones already "
+              "posted or staged).")
+        return
+    text = build_post_text(article)
+    article_url = f"https://www.thevideshi.com/articles/{article['slug']}"
+    print(f"Picked: {article['headline'][:80]}")
+    print(f"Text preview: {text[:150]}...")
+    if DRY_RUN:
+        print("DRY RUN — not staging.")
+        return
+    entry = {
+        "channel": "facebook",
+        "kind": "article_post",
+        "slug": article["slug"],
+        "headline": article["headline"],
+        "text": text,
+        "link": article_url,
+        "image_url": article.get("image_url"),
+        "media_file": None,
+        "cover_file": None,
+        "alt_text": None,
+        "source": "fb-autopost",
+    }
+    if social_queue.add_entry(entry):
+        print(f"Staged for Facebook: {article['slug']}")
+    else:
+        print(f"Already staged, skipped: {article['slug']}")
+
+
 def main():
     import time
+    if STAGE:
+        stage_main()
+        return
     posted, pending, abandoned, pending_since = load_posted()
     # Re-check anything left pending from a previous timed-out run: if it's
     # live now, record it. If it is still not live past PENDING_TTL_SECS,
@@ -286,7 +346,8 @@ def main():
               f"not posting a duplicate.", file=sys.stderr)
         save_posted(posted, pending, abandoned, pending_since)
         sys.exit(1)
-    article = pick_article(posted | pending | abandoned)
+    staged = social_queue.queued_slugs("facebook", "article_post")
+    article = pick_article(posted | pending | abandoned | staged)
     if not article:
         print("No fresh article to post (all recent ones already posted).")
         return

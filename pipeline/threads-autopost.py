@@ -15,7 +15,18 @@ with one shared ledger so no article ever posts twice:
 Text is reformatted for Threads' 500-character limit
 (headline + subheadline [+ link]).
 
-Usage: python3 -u threads-autopost.py [--dry-run]
+DELAYED-PUBLISH (default, what the slot crons run): STAGE mode —
+compose the exact Threads text and append it to the shared social
+publish queue (pipeline/.state/social-publish-queue.json). FB
+sources include picks already STAGED in the queue by fb-autopost,
+so at flush time the Facebook original (created earlier) publishes
+before its Threads mirror. No Threads calls are made in stage mode;
+social-publish-flush.py publishes the queue later while Kiran is
+present to approve each post.
+
+Usage: python3 -u threads-autopost.py [--dry-run]   stage (default)
+       python3 -u threads-autopost.py --publish-now [--dry-run]
+           legacy immediate publish (unchanged behavior)
 
 State: pipeline/.state/threads-posted.json
   posted_slugs  — mirrored (or seeded as historical, never posted)
@@ -33,6 +44,11 @@ import sys
 import time
 
 DRY_RUN = "--dry-run" in sys.argv
+PUBLISH_NOW = "--publish-now" in sys.argv
+STAGE = not PUBLISH_NOW
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import social_queue  # noqa: E402
 
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
@@ -223,10 +239,111 @@ def collect_picks():
     fb = load_json(FB_STATE, {})
     for slug in fb.get("posted_slugs", []):
         picks[slug] = True
+    # Delayed-publish: FB picks staged in the social queue have not
+    # landed in fb-posted.json yet (the flush writes it on publish),
+    # but their mirrors belong in the same flush — staged after the
+    # FB originals, so created-order publishing keeps FB first.
+    for entry in social_queue.load_entries():
+        if (entry.get("channel") == "facebook"
+                and entry.get("kind") == "article_post"
+                and entry.get("slug")):
+            picks[entry["slug"]] = True
     return picks
 
 
+def stage_main():
+    """Delayed-publish staging: compose exact Threads texts and
+    queue them. No Threads calls; threads-posted.json is written by
+    the flush on publish, never at stage time. Pending slugs from
+    earlier immediate publishes cannot be re-verified here (that
+    needs a connector read), so they are excluded and noted."""
+    picks = collect_picks()
+    if not picks:
+        print("No source picks found — nothing to mirror.")
+        return
+
+    state = load_state()
+    if state is None:
+        # First run: seed historical picks so they are never mirrored.
+        articles = fetch_articles(set(picks))
+        seeded = set()
+        for slug in picks:
+            row = articles.get(slug)
+            age = hours_since(row["published_at"]) if row else None
+            if age is None or age > SEED_AGE_HOURS:
+                seeded.add(slug)
+        print(f"Seeding ledger: {len(seeded)} historical picks marked "
+              f"already-mirrored; {len(picks) - len(seeded)} recent.")
+        posted, pending, abandoned, pending_since, post_ids = \
+            seeded, set(), set(), {}, {}
+        if DRY_RUN:
+            print("DRY RUN — seed not saved.")
+        else:
+            save_state(posted, pending, abandoned, pending_since,
+                       post_ids)
+    else:
+        posted, pending, abandoned, pending_since, post_ids = state
+
+    if pending:
+        print(f"NOTE: {len(pending)} slug(s) pending verification from "
+              f"earlier immediate publishes; excluded from staging "
+              f"until a --publish-now run resolves them: "
+              f"{sorted(pending)}")
+
+    staged = social_queue.queued_slugs("threads", "article_post")
+    candidates = {s: link for s, link in picks.items()
+                  if s not in posted and s not in pending
+                  and s not in abandoned and s not in staged}
+    if not candidates:
+        print("Threads mirror is up to date.")
+        return
+    articles = fetch_articles(set(candidates))
+    fresh = []
+    for slug, with_link in candidates.items():
+        row = articles.get(slug)
+        if not row:
+            continue
+        age = hours_since(row.get("published_at") or "")
+        if age is not None and age <= MIRROR_WINDOW_HOURS:
+            fresh.append((row, with_link))
+    fresh.sort(key=lambda t: t[0].get("published_at") or "", reverse=True)
+    batch = fresh[:MAX_PER_RUN]
+    if not batch:
+        print("No fresh picks inside the mirror window.")
+        return
+
+    for article, with_link in batch:
+        text = build_text(article, with_link=with_link)
+        print(f"Mirror: {article['headline'][:80]} "
+              f"(link: {with_link})")
+        print(f"Text ({len(text)} chars): {text[:160]}...")
+        if DRY_RUN:
+            print("DRY RUN — not staging.")
+            continue
+        entry = {
+            "channel": "threads",
+            "kind": "article_post",
+            "slug": article["slug"],
+            "headline": article["headline"],
+            "text": text,
+            "link": (f"https://www.thevideshi.com/articles/"
+                     f"{article['slug']}" if with_link else None),
+            "with_link": bool(with_link),
+            "media_file": None,
+            "cover_file": None,
+            "alt_text": None,
+            "source": "threads-autopost",
+        }
+        if social_queue.add_entry(entry):
+            print(f"Staged for Threads: {article['slug']}")
+        else:
+            print(f"Already staged, skipped: {article['slug']}")
+
+
 def main():
+    if STAGE:
+        stage_main()
+        return
     picks = collect_picks()
     if not picks:
         print("No source picks found — nothing to mirror.")

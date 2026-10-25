@@ -13,7 +13,20 @@ and must never be auto-duplicated):
      reel stays YouTube-unlisted and nothing goes out on IG/Threads.
 
 State: pipeline/.state/reel-distribution.json keyed by yt_video_id.
-Usage: python3 -u reel-distribute-social.py [--dry-run]
+
+DELAYED-PUBLISH (default, what the cron runs): STAGE mode — the FB
+unpublished-draft entry and (once the Short is public) the IG +
+Threads post entries are staged, fully ready (final MP4, cover,
+caption, alt text), in the shared social publish queue
+(pipeline/.state/social-publish-queue.json). No connector calls are
+made; social-publish-flush.py creates the draft / posts later while
+Kiran is present to approve each one, and the flush writes the
+reel-distribution.json outcomes. YouTube privacy reads still happen
+here (flip detection is read-only and token-based).
+
+Usage: python3 -u reel-distribute-social.py [--dry-run]   stage (default)
+       python3 -u reel-distribute-social.py --publish-now [--dry-run]
+           legacy immediate distribution (unchanged behavior)
 Env: .env.supabase + .env.youtube sourced by the caller.
 """
 import json
@@ -22,9 +35,12 @@ import subprocess
 import sys
 
 DRY_RUN = "--dry-run" in sys.argv
+PUBLISH_NOW = "--publish-now" in sys.argv
+STAGE = not PUBLISH_NOW
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import reel_publish  # noqa: E402  (get_access_token + sb helpers)
+import social_queue  # noqa: E402
 
 SUPABASE_URL = os.environ["SUPABASE_URL"]
 SUPABASE_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
@@ -174,33 +190,109 @@ def main():
 
     state = load_state()
     privacy = yt_privacy([r["yt_video_id"] for r in rows])
+    queued_fb = social_queue.queued_refs("facebook", "reel_draft")
+    queued_ig = social_queue.queued_refs("instagram", "reel_post")
+    queued_th = social_queue.queued_refs("threads", "reel_post")
     acted = 0
     for row in rows:
         vid = row["yt_video_id"]
         entry = state.setdefault(vid, {})
         mp4 = os.path.join(PIPELINE, row.get("video_path") or "")
         caption = row.get("caption") or row.get("headline") or ""
+        alt_text = row.get("headline") or row.get("article_slug") or ""
         if not os.path.exists(mp4):
             print(f"SKIP {vid}: video file missing ({mp4})", file=sys.stderr)
             continue
 
-        # 1. Facebook draft — immediate, unpublished.
+        # 1. Facebook draft — unpublished (staged in delayed mode).
         if not entry.get("fb_draft_id"):
-            print(f"FB draft: {row['article_slug']} ({vid})")
-            if DRY_RUN:
-                print("  DRY RUN — not creating.")
-            else:
-                draft = fb_draft(mp4, caption)
-                if draft:
-                    entry["fb_draft_id"] = str(draft)
-                    acted += 1
-                    save_state(state)
+            if STAGE:
+                if vid in queued_fb:
+                    print(f"FB draft already staged: "
+                          f"{row['article_slug']} ({vid})")
                 else:
-                    print(f"  FB draft failed for {vid}", file=sys.stderr)
+                    print(f"FB draft: {row['article_slug']} ({vid})")
+                    if DRY_RUN:
+                        print("  DRY RUN — not staging.")
+                    else:
+                        staged = social_queue.add_entry({
+                            "channel": "facebook",
+                            "kind": "reel_draft",
+                            "reel_id": vid,
+                            "slug": row.get("article_slug"),
+                            "headline": row.get("headline"),
+                            "text": trim(caption, FB_TEXT_LIMIT),
+                            "link": None,
+                            "media_file": mp4,
+                            "cover_file": None,
+                            "alt_text": alt_text,
+                            "reel_row_id": row.get("id"),
+                            "source": "reel-distribute-social",
+                        })
+                        if staged:
+                            queued_fb.add(vid)
+                            acted += 1
+                            print(f"  Staged FB draft entry for {vid}")
+            else:
+                print(f"FB draft: {row['article_slug']} ({vid})")
+                if DRY_RUN:
+                    print("  DRY RUN — not creating.")
+                else:
+                    draft = fb_draft(mp4, caption)
+                    if draft:
+                        entry["fb_draft_id"] = str(draft)
+                        acted += 1
+                        save_state(state)
+                    else:
+                        print(f"  FB draft failed for {vid}",
+                              file=sys.stderr)
 
         # 2. IG + Threads — only once Kiran flips the Short public.
         if privacy.get(vid) == "public" and not entry.get("ig_done"):
             cover = make_cover(mp4, vid)
+            if STAGE:
+                print(f"FLIPPED PUBLIC: {row['article_slug']} ({vid}) "
+                      f"— staging IG + Threads")
+                if DRY_RUN:
+                    print("  DRY RUN — not staging.")
+                else:
+                    if vid not in queued_ig:
+                        if social_queue.add_entry({
+                            "channel": "instagram",
+                            "kind": "reel_post",
+                            "reel_id": vid,
+                            "slug": row.get("article_slug"),
+                            "headline": row.get("headline"),
+                            "text": caption,
+                            "link": None,
+                            "media_file": mp4,
+                            "cover_file": cover,
+                            "alt_text": alt_text,
+                            "reel_row_id": row.get("id"),
+                            "source": "reel-distribute-social",
+                        }):
+                            queued_ig.add(vid)
+                            acted += 1
+                            print(f"  Staged IG post entry for {vid}")
+                    if vid not in queued_th:
+                        if social_queue.add_entry({
+                            "channel": "threads",
+                            "kind": "reel_post",
+                            "reel_id": vid,
+                            "slug": row.get("article_slug"),
+                            "headline": row.get("headline"),
+                            "text": trim(caption, THREADS_TEXT_LIMIT),
+                            "link": None,
+                            "media_file": mp4,
+                            "cover_file": cover,
+                            "alt_text": alt_text,
+                            "reel_row_id": row.get("id"),
+                            "source": "reel-distribute-social",
+                        }):
+                            queued_th.add(vid)
+                            acted += 1
+                            print(f"  Staged Threads post entry for {vid}")
+                continue
             print(f"FLIPPED PUBLIC: {row['article_slug']} ({vid}) "
                   f"— posting IG + Threads")
             if DRY_RUN:
