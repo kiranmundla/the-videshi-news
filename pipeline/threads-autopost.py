@@ -24,11 +24,11 @@ before its Threads mirror. No Threads calls are made in stage mode;
 social-publish-flush.py publishes the queue later while Kiran is
 present to approve each post.
 
-Each mirror also carries the pick's social card (card_file /
-card_track): shared from the staged FB entry when it has one,
-generated for the pick otherwise (social_card.py; the <600px skip
-rule leaves card_file null and the flush posts text-only, as
-before cards existed).
+Each mirror also carries the pick's social CARD SET (card_files /
+card_texts / card_track): shared from the staged FB entry when it
+has one, generated for the pick otherwise (social_card.py
+make_card_set; the <600px skip rule leaves the set empty and the
+flush posts text-only, as before cards existed).
 
 Usage: python3 -u threads-autopost.py [--dry-run]   stage (default)
        python3 -u threads-autopost.py --publish-now [--dry-run]
@@ -119,7 +119,7 @@ def fetch_articles(slugs):
         return {}
     in_list = ",".join(sorted(slugs))
     rows = sb_get(
-        "p2_articles?select=headline,subheadline,slug,published_at,category,tags,image_url"
+        "p2_articles?select=headline,subheadline,slug,published_at,category,tags,image_url,key_takeaways,body"
         f"&slug=in.({in_list})")
     if not isinstance(rows, list):
         return {}
@@ -257,46 +257,60 @@ def collect_picks():
     return picks
 
 
-def generate_card(article):
-    """Render the article's social card via social_card.make_card.
+def generate_card_set(article):
+    """Render the article's social CARD SET via
+    social_card.make_card_set (hook + key-takeaway cards + closer).
 
-    Returns (card_file, card_track): "full-bleed" / "backdrop" on
-    success, "skipped" under the 600px skip rule, None when no card
-    could be made. NEVER raises — the mirror stages card-less and
-    the flush falls back to the text-only post, as before cards."""
+    Returns (card_files, card_track, card_texts) — see
+    fb-autopost.generate_card_set for the contract. NEVER raises —
+    the mirror stages set-less and the flush falls back to the
+    text-only post, as before cards."""
     image_url = article.get("image_url")
     if not image_url:
-        return None, None
+        return [], None, []
     try:
         import social_card
-        out = os.path.join(str(social_card.DEFAULT_OUT_DIR),
-                           f"{article['slug']}.png")
-        info = social_card.make_card(article["headline"],
-                                     article.get("category"),
-                                     image_url=image_url, out_path=out)
+        info = social_card.make_card_set(
+            article["headline"], article.get("category"),
+            image_url=image_url,
+            key_takeaways=article.get("key_takeaways"),
+            subheadline=article.get("subheadline"),
+            slug=article.get("slug"),
+            body=article.get("body"))
     except Exception as e:
-        print(f"NOTE: card generation failed for {article['slug']}: {e}")
-        return None, None
+        print(f"NOTE: card set generation failed for "
+              f"{article['slug']}: {e}")
+        return [], None, []
     if info.get("track") == "skipped":
-        print(f"NOTE: card skipped for {article['slug']} "
+        print(f"NOTE: card set skipped for {article['slug']} "
               f"({info.get('reason')}, source {info.get('source_px')})")
-        return None, "skipped"
-    print(f"Card rendered: {info.get('track')} -> {info.get('out_path')}")
-    return info.get("out_path"), info.get("track")
+        return [], "skipped", []
+    files = info.get("files") or []
+    texts = [c.get("alt") or "" for c in info.get("cards") or []]
+    print(f"Card set rendered: {info.get('track')}, "
+          f"{len(files)} cards -> {files[0] if files else None}")
+    return files, info.get("track"), texts
 
 
-def _mirror_card(article, fb_entry):
-    """(card_file, card_track) for a Threads mirror entry. Shares
-    the FB counterpart's card file when the staged FB queue entry
-    has one (generate once, share the file) and inherits its <600px
-    skip; otherwise — X picks, ledger-only FB picks — generates
-    this pick's own card the same way."""
+def _mirror_card_set(article, fb_entry):
+    """(card_files, card_track, card_texts) for a Threads mirror
+    entry. Shares the FB counterpart's SET when the staged FB queue
+    entry has one (generate once, share the files) and inherits
+    its <600px skip; a legacy FB entry with only a single card_file
+    shares that one card; otherwise — X picks, ledger-only FB
+    picks — generates this pick's own set the same way."""
     if fb_entry is not None:
+        if fb_entry.get("card_files"):
+            return (list(fb_entry["card_files"]),
+                    fb_entry.get("card_track"),
+                    list(fb_entry.get("card_texts") or []))
         if fb_entry.get("card_file"):
-            return fb_entry["card_file"], fb_entry.get("card_track")
+            return ([fb_entry["card_file"]],
+                    fb_entry.get("card_track"),
+                    [article.get("headline") or ""])
         if fb_entry.get("card_track") == "skipped":
-            return None, "skipped"
-    return generate_card(article)
+            return [], "skipped", []
+    return generate_card_set(article)
 
 
 def stage_main():
@@ -373,7 +387,7 @@ def stage_main():
         if DRY_RUN:
             print("DRY RUN — not staging.")
             continue
-        card_file, card_track = _mirror_card(
+        card_files, card_track, card_texts = _mirror_card_set(
             article, fb_cards.get(article["slug"]))
         entry = {
             "channel": "threads",
@@ -385,7 +399,9 @@ def stage_main():
                      f"{article['slug']}" if with_link else None),
             "with_link": bool(with_link),
             "image_url": article.get("image_url"),
-            "card_file": card_file,
+            "card_file": card_files[0] if card_files else None,
+            "card_files": card_files or None,
+            "card_texts": card_texts or None,
             "card_track": card_track,
             "media_file": None,
             "cover_file": None,

@@ -10,11 +10,12 @@ social publish queue (pipeline/.state/social-publish-queue.json).
 No Facebook calls are made; social-publish-flush.py publishes the
 queue later while Kiran is present to approve each post.
 
-Each staged pick also renders its social card (social_card.py) into
-the queue entry (card_file/card_track; the <600px skip rule leaves
-card_file null and the flush falls back to the plain hero), and —
-when a card exists — stages a matching Instagram card post, since
-IG is a card-only channel.
+Each staged pick also renders its social CARD SET (social_card.py
+make_card_set: hook + key-takeaway cards + closer, 2-4 cards) into
+the queue entry (card_files/card_texts/card_track; the <600px skip
+rule leaves the set empty and the flush falls back to the plain
+hero), and — when a set exists — stages a matching Instagram card
+post carrying the single hook card, since IG stays single-card.
 
 Usage: python3 -u fb-autopost.py [--dry-run]   stage (default)
        python3 -u fb-autopost.py --publish-now [--dry-run]
@@ -86,7 +87,7 @@ def save_posted(slugs, pending, abandoned=None, pending_since=None):
 def pick_article(posted):
     # Top published articles from the last 12h, preferring key categories
     rows = sb_get(
-        "p2_articles?select=headline,subheadline,slug,category,image_url,tags"
+        "p2_articles?select=headline,subheadline,slug,category,image_url,tags,key_takeaways,body"
         "&status=eq.published"
         "&published_at=gte." + _hours_ago(12) +
         "&order=published_at.desc&limit=30")
@@ -187,22 +188,30 @@ def download_image(url):
     return None
 
 
-def publish(text, article_url, image_url=None, image_path=None):
+def publish(text, article_url, image_url=None, image_path=None,
+            image_paths=None):
     cmd = ["facebook-cli", "pages", "posts", "create",
            "--page-id", PAGE_ID, "--text", text, "--privacy", "PUBLIC"]
-    # image_path is a caller-owned local file (e.g. a rendered social
-    # card from the flush) — attach it directly and never delete it.
-    # Otherwise fall back to downloading the article hero, as before.
+    # image_path / image_paths are caller-owned local files (e.g. a
+    # rendered social card or card SET from the flush) — attach them
+    # directly and never delete them. facebook-cli accepts --file
+    # repeated (up to 80) in post order, so a set attaches as one
+    # multi-image post. Otherwise fall back to downloading the
+    # article hero, as before.
     own_img = None
-    img_path = None
-    if image_path and os.path.exists(image_path):
-        img_path = image_path
-    elif image_url:
-        img_path = download_image(image_url)
-        own_img = img_path
-    if img_path:
-        cmd.extend(["--file", img_path])
-        print(f"Attaching image: {img_path}", file=sys.stderr)
+    img_paths = []
+    if image_paths:
+        img_paths = [p for p in image_paths
+                     if p and os.path.exists(p)]
+    if not img_paths and image_path and os.path.exists(image_path):
+        img_paths = [image_path]
+    if not img_paths and image_url:
+        img_paths = [download_image(image_url)]
+        own_img = img_paths[0]
+    for img_path in img_paths:
+        if img_path:
+            cmd.extend(["--file", img_path])
+            print(f"Attaching image: {img_path}", file=sys.stderr)
     # Retry on connector write lock ("already running") with backoff.
     # The lock is transient — a previous write hanging server-side blocks
     # the next one until it clears.
@@ -281,33 +290,43 @@ def _verify_recent_post(article_url):
     return None
 
 
-def generate_card(article):
-    """Render the article's social card via social_card.make_card.
+def generate_card_set(article):
+    """Render the article's social CARD SET via
+    social_card.make_card_set (hook + key-takeaway cards + closer).
 
-    Returns (card_file, card_track): card_track is "full-bleed" /
-    "backdrop" on success, "skipped" when the best hero is under the
-    600px skip rule, None when no card could be made (no image, or a
-    fetch/render failure). NEVER raises — staging degrades to the
-    plain-hero post, exactly as before cards existed."""
+    Returns (card_files, card_track, card_texts): card_files is the
+    ordered list of set PNGs (card_files[0] is the hook card),
+    card_track the hook's track ("full-bleed" / "backdrop"),
+    card_texts the per-card alt texts parallel to card_files. On
+    the <600px skip rule returns ([], "skipped", []); on no image
+    or a fetch/render failure ([], None, []). NEVER raises —
+    staging degrades to the plain-hero post, exactly as before
+    cards existed."""
     image_url = article.get("image_url")
     if not image_url:
-        return None, None
+        return [], None, []
     try:
         import social_card
-        out = os.path.join(str(social_card.DEFAULT_OUT_DIR),
-                           f"{article['slug']}.png")
-        info = social_card.make_card(article["headline"],
-                                     article.get("category"),
-                                     image_url=image_url, out_path=out)
+        info = social_card.make_card_set(
+            article["headline"], article.get("category"),
+            image_url=image_url,
+            key_takeaways=article.get("key_takeaways"),
+            subheadline=article.get("subheadline"),
+            slug=article.get("slug"),
+            body=article.get("body"))
     except Exception as e:
-        print(f"NOTE: card generation failed for {article['slug']}: {e}")
-        return None, None
+        print(f"NOTE: card set generation failed for "
+              f"{article['slug']}: {e}")
+        return [], None, []
     if info.get("track") == "skipped":
-        print(f"NOTE: card skipped for {article['slug']} "
+        print(f"NOTE: card set skipped for {article['slug']} "
               f"({info.get('reason')}, source {info.get('source_px')})")
-        return None, "skipped"
-    print(f"Card rendered: {info.get('track')} -> {info.get('out_path')}")
-    return info.get("out_path"), info.get("track")
+        return [], "skipped", []
+    files = info.get("files") or []
+    texts = [c.get("alt") or "" for c in info.get("cards") or []]
+    print(f"Card set rendered: {info.get('track')}, "
+          f"{len(files)} cards -> {files[0] if files else None}")
+    return files, info.get("track"), texts
 
 
 def build_ig_caption(article):
@@ -350,7 +369,8 @@ def stage_main():
     if DRY_RUN:
         print("DRY RUN — not staging.")
         return
-    card_file, card_track = generate_card(article)
+    card_files, card_track, card_texts = generate_card_set(article)
+    card_file = card_files[0] if card_files else None
     entry = {
         "channel": "facebook",
         "kind": "article_post",
@@ -360,6 +380,8 @@ def stage_main():
         "link": article_url,
         "image_url": article.get("image_url"),
         "card_file": card_file,
+        "card_files": card_files or None,
+        "card_texts": card_texts or None,
         "card_track": card_track,
         "media_file": None,
         "cover_file": None,
@@ -370,9 +392,10 @@ def stage_main():
         print(f"Staged for Facebook: {article['slug']}")
     else:
         print(f"Already staged, skipped: {article['slug']}")
-    # Instagram is a card-only channel: stage a card post for the
-    # same pick (same card file, IG caption). A skipped card (<600px
-    # hero) means NO IG entry — the pick simply doesn't go to IG.
+    # Instagram stays a SINGLE-card channel: stage a card post for
+    # the same pick carrying the set's hook card (same file, IG
+    # caption). A skipped set (<600px hero) means NO IG entry —
+    # the pick simply doesn't go to IG.
     if card_file:
         ig_entry = {
             "channel": "instagram",

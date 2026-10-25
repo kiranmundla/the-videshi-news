@@ -212,6 +212,182 @@ info = sc.make_card("Forced Tiny Render", "entertainment",
 check("skip: force_track overrides", info["track"], "backdrop")
 check_true("skip: forced output written", os.path.exists(out6))
 
+# ── Card sets: composition, takeaways, per-card backgrounds ──────────
+from unittest import mock  # noqa: E402
+
+check("takeaways: list passes through",
+      sc.normalize_takeaways([" One ", "", "Two"]), ["One", "Two"])
+check("takeaways: None -> []", sc.normalize_takeaways(None), [])
+check("takeaways: JSON string",
+      sc.normalize_takeaways('["A", "B"]'), ["A", "B"])
+check("takeaways: dict items",
+      sc.normalize_takeaways([{"text": "X"}, {"takeaway": "Y"}]),
+      ["X", "Y"])
+
+BODY_HTML = (
+    '<p>Intro.</p>'
+    '<figure><img src="https://img.example/hero.jpg" alt="hero">'
+    '</figure>'
+    '<p>Body text.</p>'
+    '<img src="https://img.example/inline1.jpg">'
+    '<p>More.</p>'
+    '![chart](https://img.example/inline2.jpg)'
+    '<img src="https://img.example/inline1.jpg">'
+    '<youtube>abc123</youtube>')
+check("inline extraction: order + dedup + hero present",
+      sc.extract_inline_images(BODY_HTML),
+      ["https://img.example/hero.jpg",
+       "https://img.example/inline1.jpg",
+       "https://img.example/inline2.jpg"])
+check("inline extraction: empty body", sc.extract_inline_images(""), [])
+check("inline extraction: None body", sc.extract_inline_images(None), [])
+
+check_true("same_image: exact", sc._same_image(
+    "https://upload.wikimedia.org/wikipedia/commons/a/ab/Foo.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/a/ab/Foo.jpg"))
+check_true("same_image: wikimedia thumb variant", sc._same_image(
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/"
+    "Foo.jpg/1280px-Foo.jpg",
+    "https://upload.wikimedia.org/wikipedia/commons/a/ab/Foo.jpg"))
+check_true("same_image: different files differ", not sc._same_image(
+    "https://img.example/foo.jpg", "https://img.example/bar.jpg"))
+
+# Set composition via a local hero (no body -> hero-crop middles)
+p6 = os.path.join(tmp, "hero-set.jpg")
+solid(2560, 1440, (120, 60, 30)).save(p6, "JPEG")
+info = sc.make_card_set(
+    "Set Composition Headline", "sports", image_path=p6,
+    key_takeaways=["First takeaway for the set.",
+                   "Second takeaway for the set.",
+                   "Third takeaway must be capped."],
+    slug="set-comp", out_dir=tmp)
+check("set: hook+2 takeaways+closer = 4", info["set_size"], 4)
+check("set: files ordered", [os.path.basename(f) for f in info["files"]],
+      ["set-comp-1.png", "set-comp-2.png", "set-comp-3.png",
+       "set-comp-4.png"])
+check("set: roles", [c["role"] for c in info["cards"]],
+      ["hook", "takeaway", "takeaway", "closer"])
+check("set: takeaways capped at 2", info["takeaways_used"], 2)
+check_true("set: all files written",
+           all(os.path.exists(f) for f in info["files"]))
+check("set: no body -> middles are hero-crops",
+      [c["bg_source"] for c in info["cards"][1:3]],
+      ["hero-crop", "hero-crop"])
+check("set: closer alt", info["cards"][-1]["alt"],
+      "Full story at thevideshi.com")
+
+info = sc.make_card_set(
+    "Subheadline Fallback Set", "news", image_path=p6,
+    key_takeaways=None, subheadline="The subheadline stands in.",
+    slug="set-sub", out_dir=tmp)
+check("set: subheadline fallback = 3 cards", info["set_size"], 3)
+check("set: middle_source subheadline", info["middle_source"],
+      "subheadline")
+check("set: subheadline is the middle alt",
+      info["cards"][1]["alt"], "The subheadline stands in.")
+
+info = sc.make_card_set("Bare Set No Middles", "news", image_path=p6,
+                        slug="set-bare", out_dir=tmp)
+check("set: no takeaways/sub = hook+closer", info["set_size"], 2)
+
+info = sc.make_card_set("Tiny Hero Set Skips", "news", image_path=p3,
+                        key_takeaways=["Never rendered."],
+                        slug="set-skip", out_dir=tmp)
+check("set: <600px hook -> no set", info["track"], "skipped")
+check("set: skip files empty", info["files"], [])
+
+# Takeaway truncation is flagged, never silent
+info = sc.make_card_set(
+    "Truncation Flag Set", "news", image_path=p6,
+    key_takeaways=[" ".join(["filler"] * 900)],
+    slug="set-trunc", out_dir=tmp)
+check_true("set: absurd takeaway truncates with flag",
+           info["cards"][1]["truncated"] is True)
+
+# Per-card backgrounds: inline images in body order, hero excluded,
+# each theme-gated on its own pixels (fake fetch serves local solids)
+FAKE_IMGS = {
+    "https://img.example/hero.jpg": solid(2560, 1440, (200, 30, 30)),
+    "https://img.example/inline1.jpg": solid(1200, 800, (30, 200, 30)),
+    "https://img.example/inline2.jpg": solid(2600, 1500, (30, 30, 200)),
+}
+
+
+def fake_fetch(url):
+    return FAKE_IMGS[url].copy(), url, b"rawbytes"
+
+
+with mock.patch.object(sc, "fetch_image", fake_fetch):
+    info = sc.make_card_set(
+        "Inline Background Set", "technology",
+        image_url="https://img.example/hero.jpg",
+        key_takeaways=["Middle one gets the low-res inline.",
+                       "Middle two gets the high-res inline."],
+        slug="set-inline", out_dir=tmp, body=BODY_HTML)
+check("set: inline count excludes hero", info["inline_images"], 2)
+check("set: middle 1 source", info["cards"][1]["bg_source"], "inline:1")
+check("set: low-res inline -> backdrop middle",
+      info["cards"][1]["bg_track"], "backdrop")
+check("set: middle 2 source", info["cards"][2]["bg_source"], "inline:2")
+check("set: high-res inline -> photo middle",
+      info["cards"][2]["bg_track"], "photo")
+
+# Fallback chain: inline fetch fails -> hero detail crop -> navy
+def flaky_fetch(url):
+    if "inline" in url:
+        raise RuntimeError("boom")
+    return FAKE_IMGS[url].copy(), url, b"rawbytes"
+
+
+with mock.patch.object(sc, "fetch_image", flaky_fetch):
+    info = sc.make_card_set(
+        "Fallback Chain Set", "technology",
+        image_url="https://img.example/hero.jpg",
+        key_takeaways=["Falls back to a hero crop."],
+        slug="set-fallback", out_dir=tmp, body=BODY_HTML)
+check("set: failed inline -> hero-crop",
+      info["cards"][1]["bg_source"], "hero-crop")
+
+with mock.patch.object(sc, "fetch_image", fake_fetch), \
+        mock.patch.object(sc, "detail_crop",
+                          side_effect=RuntimeError("no crop")):
+    info = sc.make_card_set(
+        "Navy Last Resort Set", "technology",
+        image_url="https://img.example/hero.jpg",
+        key_takeaways=["Nothing left but navy."],
+        slug="set-navy", out_dir=tmp, body="<p>no images here</p>")
+check("set: no inline + crop fails -> navy",
+      info["cards"][1]["bg_source"], "navy")
+check("set: navy middle track", info["cards"][1]["bg_track"], "navy")
+
+# A big hero's detail crop can itself clear the photo gate
+BIG = {"https://img.example/big.jpg": solid(4000, 2600, (99, 88, 77))}
+with mock.patch.object(
+        sc, "fetch_image",
+        lambda url: (BIG[url].copy(), url, b"raw")):
+    info = sc.make_card_set(
+        "Big Hero Crop Set", "news",
+        image_url="https://img.example/big.jpg",
+        key_takeaways=["Crop of a 4000px hero stays photo-grade."],
+        slug="set-bigcrop", out_dir=tmp)
+check("set: big-hero crop source", info["cards"][1]["bg_source"],
+      "hero-crop")
+check("set: big-hero crop -> photo middle",
+      info["cards"][1]["bg_track"], "photo")
+
+# Navy text card + closer render directly
+card, tinfo = sc.render_text_card("A lone takeaway on navy.",
+                                  "NRI WORLD", 2, 4)
+check("text card canvas", card.size, (1080, 1350))
+check("text card navy field", card.getpixel((10, 700)), sc.NAVY)
+card, tinfo = sc.render_middle_card("No background at all.",
+                                    "NEWS", 3, 4, bg_img=None)
+check("middle card no-bg -> navy", tinfo["bg_track"], "navy")
+card, cinfo = sc.render_closer_card("SPORTS", slug="some-slug",
+                                    pos=4, total=4)
+check("closer canvas", card.size, (1080, 1350))
+check("closer navy field", card.getpixel((10, 10)), sc.NAVY)
+
 print(f"\n{TOTAL[0] - len(FAILURES)}/{TOTAL[0]} checks passed"
       if not FAILURES else f"\nFAILURES: {FAILURES}")
 sys.exit(1 if FAILURES else 0)

@@ -118,7 +118,7 @@ resp = requests.get(
         'tweeted_at': 'is.null',
         'order': 'published_at.desc',
         'limit': '20',
-        'select': 'id,slug,headline,subheadline,category,tags,image_url,body'
+        'select': 'id,slug,headline,subheadline,category,tags,image_url,body,key_takeaways'
     },
     headers=SUPA_HEADERS
 )
@@ -304,8 +304,24 @@ for i, article in enumerate(articles):
     post_text = compose_post(article, with_link=with_link)
     print(f"  Post length: {len(post_text)} chars (link: {with_link})")
 
-    # Check for carousel images from prebuilt_reels (up to 4 image slides)
+    # Card carousel (Kiran's format map, 2026-10-24): generate the
+    # article's card SET (hook + key-takeaway cards + closer) and
+    # attach up to X's 4-image cap. All-or-nothing — see x_cards.py;
+    # any failure leaves media_ids empty and the fallbacks below
+    # run exactly as before card sets existed.
     media_ids = []
+    try:
+        import x_cards
+        media_ids = x_cards.card_set_media_ids(
+            api_v1, article, compress_for_upload, upload_image_file)
+        if media_ids:
+            print(f"  🃏 Card set attached: {len(media_ids)} cards")
+    except Exception as e:
+        print(f"  Card set failed ({e}), falling back")
+        media_ids = []
+
+    # Check for carousel images from prebuilt_reels (up to 4 image slides)
+    carousel_ids = []
     try:
         carousel_resp = requests.get(
             f'{SUPABASE_URL}/rest/v1/prebuilt_reels',
@@ -337,7 +353,7 @@ for i, article in enumerate(articles):
                             continue
                         up_path = compress_for_upload(tmp_path)
                         media_id = upload_image_file(api_v1, up_path)
-                        media_ids.append(media_id)
+                        carousel_ids.append(media_id)
                         print(f"    Slide {ci}: media_id={media_id}")
                     except Exception as e:
                         print(f"    Slide {ci} failed: {e}")
@@ -350,6 +366,8 @@ for i, article in enumerate(articles):
                                     pass
     except Exception as e:
         print(f"  Carousel check failed ({e}), falling back to hero image")
+    if not media_ids and carousel_ids:
+        media_ids = carousel_ids
 
     # Fall back to hero image if no carousel
     if not media_ids:

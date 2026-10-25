@@ -38,6 +38,17 @@ fetch) is <600px wide, make_card renders nothing and returns
 {track: "skipped", reason: "hero_under_600px", source_px: [w, h]} —
 callers (the social queue producers) fall back to the plain-hero
 post. --track overrides the skip, for testing.
+
+CARD SETS (make_card_set, Kiran's format map 2026-10-24 — card
+carousels for Threads / X / Facebook): an ordered set of 2-4 cards —
+the hook card (make_card) + up to 2 key-takeaway cards + a closer
+card, all in the Sample C navy/gold system. X's 4-image cap is the
+binding constraint, so ONE set serves all three surfaces. A skipped
+hook (<600px) means no set at all; surfaces fall back to today's
+single-image behavior. Each middle card carries its OWN background
+from the article's verified assets (inline body images in order,
+else a hero detail crop, else plain navy), theme-gated per card —
+never upscaled.
 """
 
 import argparse
@@ -45,6 +56,7 @@ import hashlib
 import io
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -339,10 +351,13 @@ def bottom_gradient(img, top_frac=0.42, max_alpha=228):
 
 
 # ── Track renderers ───────────────────────────────────────────────────
-def render_full_bleed(img, headline, kicker, anchor=None):
+def render_full_bleed(img, headline, kicker, anchor=None,
+                      fit_start=60, fit_floor=HEADLINE_FLOOR,
+                      fit_max_lines=6):
     probe = ImageDraw.Draw(Image.new("RGB", (W, H)))
     font, lines, size, truncated = fit_headline(
-        probe, headline, CW, max_lines=6, start=60)
+        probe, headline, CW, max_lines=fit_max_lines,
+        start=fit_start, floor=fit_floor)
     bh = block_height(len(lines), size)
     if anchor is None:
         anchor = focal_anchor(img)
@@ -358,7 +373,8 @@ def render_full_bleed(img, headline, kicker, anchor=None):
     return card, info
 
 
-def render_backdrop(img, headline, kicker, backdrop="navy"):
+def render_backdrop(img, headline, kicker, backdrop="navy",
+                    fit_start=HEADLINE_START, fit_floor=HEADLINE_FLOOR):
     color = BACKDROPS[backdrop]
     card = Image.new("RGB", (W, H), color)
     pw, ph, scale = backdrop_fit(*img.size)
@@ -373,8 +389,8 @@ def render_backdrop(img, headline, kicker, backdrop="navy"):
     probe = ImageDraw.Draw(card)
     avail = zone_h - ZONE_TOP_GAP - ZONE_BOTTOM_MARGIN
     font = lines = None
-    size, truncated = HEADLINE_START, False
-    while size > HEADLINE_FLOOR:
+    size, truncated = fit_start, False
+    while size > fit_floor:
         f = pf(size, "Bold")
         ls = wrap(probe, headline, f, CW)
         if block_height(len(ls), size) <= avail:
@@ -382,7 +398,7 @@ def render_backdrop(img, headline, kicker, backdrop="navy"):
             break
         size -= 2
     if font is None:
-        size = HEADLINE_FLOOR
+        size = fit_floor
         font = pf(size, "Bold")
         lines = wrap(probe, headline, font, CW)
         max_lines = max(1, (avail - BLOCK_FIXED_H) // int(size * LINE_RATIO))
@@ -453,7 +469,8 @@ def fetch_article(slug=None, article_id=None):
     key = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
     filt = f"slug=eq.{slug}" if slug else f"id=eq.{article_id}"
     url = (f"{base}/rest/v1/p2_articles?{filt}"
-           "&select=id,slug,headline,category,image_url")
+           "&select=id,slug,headline,subheadline,category,image_url,"
+           "key_takeaways,body")
     r = subprocess.run(
         ["curl", "-sS", url, "-H", f"apikey: {key}",
          "-H", f"Authorization: Bearer {key}"],
@@ -532,6 +549,334 @@ def make_card(headline, category, image_url=None, image_path=None,
     return info
 
 
+# ── Card sets: takeaway cards + closer (Sample C system) ─────────────
+MAX_SET_TAKEAWAYS = 2        # hook + 2 middles + closer = 4 (X's cap)
+TAKEAWAY_START = 58
+TAKEAWAY_FLOOR = 34
+MARKER_FILL = (168, 180, 198)
+SUBTLE_FILL = (166, 178, 198)
+
+_IMG_SRC_RE = re.compile(r"<img[^>]+src=[\"']([^\"']+)[\"']", re.I)
+_MD_IMG_RE = re.compile(r"!\[[^\]]*\]\((https?://[^)\s]+)\)")
+
+
+def extract_inline_images(body):
+    """Image URLs embedded in an article body, in document order.
+
+    Sources: HTML <img src> (the writer wraps them in <figure>) and
+    markdown ![..](url). These images already passed the image
+    sourcer's relevance/identity gates and sit near the text they
+    illustrate — the only approved pool for per-card backgrounds."""
+    if not body:
+        return []
+    found = [(m.start(), m.group(1)) for m in _IMG_SRC_RE.finditer(body)]
+    found += [(m.start(), m.group(1)) for m in _MD_IMG_RE.finditer(body)]
+    found.sort(key=lambda t: t[0])
+    out, seen = [], set()
+    for _pos, url in found:
+        url = url.strip()
+        if not url.startswith(("http://", "https://")) or url in seen:
+            continue
+        seen.add(url)
+        out.append(url)
+    return out
+
+
+def _img_filename(url):
+    name = (url or "").split("?")[0].rstrip("/").rsplit("/", 1)[-1]
+    return re.sub(r"^\d+px-", "", name).lower()
+
+
+def _same_image(a, b):
+    """True when two URLs point at the same underlying image —
+    exact match, or a Wikimedia-style thumbnail variant (the thumb
+    URL's final segment is '<width>px-<original filename>')."""
+    if not a or not b:
+        return False
+    if a == b:
+        return True
+    fa, fb = _img_filename(a), _img_filename(b)
+    return bool(fa) and fa == fb
+
+
+def detail_crop(img, fx, fy, frac):
+    """A tighter crop of img around the focal anchor (frac of the
+    full frame in each dimension, clamped inside the frame) — a
+    materially different visual of the same verified subject, used
+    as a middle card's background when no inline image remains."""
+    w, h = img.size
+    cw = min(w, max(2, int(w * frac)))
+    ch = min(h, max(2, int(h * frac)))
+    x0 = min(max(int(fx * w - cw / 2), 0), w - cw)
+    y0 = min(max(int(fy * h - ch / 2), 0), h - ch)
+    return img.crop((x0, y0, x0 + cw, y0 + ch))
+
+
+def normalize_takeaways(raw):
+    """p2_articles.key_takeaways -> a clean list of strings.
+
+    The column is a JSON list of strings when populated (NULL on
+    some writer rows); be liberal: also accept a JSON string, a
+    newline-joined string, or dicts with a text-ish value."""
+    if raw is None:
+        return []
+    items = raw
+    if isinstance(raw, str):
+        s = raw.strip()
+        if not s:
+            return []
+        try:
+            parsed = json.loads(s)
+        except (ValueError, TypeError):
+            parsed = None
+        if isinstance(parsed, list):
+            items = parsed
+        else:
+            items = [ln.strip() for ln in s.splitlines() if ln.strip()] \
+                or [s]
+    out = []
+    if isinstance(items, list):
+        for it in items:
+            if isinstance(it, dict):
+                it = (it.get("text") or it.get("takeaway")
+                      or it.get("point") or "")
+            t = str(it).strip()
+            if t:
+                out.append(t)
+    return out
+
+
+def _position_marker(draw, pos, total):
+    """Discreet '2 / 4' in the bottom-right corner."""
+    f = inter(26, "700")
+    label = f"{pos} / {total}"
+    tw = draw.textlength(label, font=f)
+    draw.text((W - M - tw, H - 74), label, font=f, fill=MARKER_FILL)
+
+
+def render_text_card(text, kicker, pos, total):
+    """A key-takeaway card: pure navy field in the Sample C system —
+    gold kicker + gold rule + the takeaway in large Playfair white
+    serif, 'V.' mark top-left, position marker bottom-right. The
+    block is vertically centred on the tall field."""
+    card = Image.new("RGB", (W, H), NAVY)
+    brand_mark_v(card)
+    probe = ImageDraw.Draw(card)
+    font, lines, size, truncated = fit_headline(
+        probe, text, CW, max_lines=10, start=TAKEAWAY_START,
+        floor=TAKEAWAY_FLOOR)
+    bh = block_height(len(lines), size)
+    y0 = max(170, (H - bh) // 2)
+    draw_text_block(card, y0, kicker, GOLD, GOLD, font, lines, size)
+    _position_marker(ImageDraw.Draw(card), pos, total)
+    info = {"render_scale": 1.0, "truncated": truncated,
+            "text_size": size, "text_lines": len(lines)}
+    return card, info
+
+
+def render_middle_card(text, kicker, pos, total, bg_img=None,
+                       bg_raw=None):
+    """A takeaway card with its OWN background (Kiran's steering,
+    2026-10-24), theme-gated exactly like the hook:
+
+      bg image >=1920px with a no-upscale cover-crop -> photo card
+      (text over the smooth bottom gradient, white kicker + red
+      rule, same type system as a full-bleed hook);
+      bg image below the gate -> backdrop composition for this
+      card (photo at native scale on navy, gold kicker + rule,
+      text in the backdrop zone);
+      no bg image -> the navy text card (render_text_card).
+
+    bg_track in the returned info is "photo" / "backdrop" / "navy"."""
+    if bg_img is not None:
+        track, _scale, _note = choose_track(*bg_img.size)
+        if track == "full-bleed":
+            card, info = render_full_bleed(
+                bg_img, text, kicker,
+                anchor=focal_anchor(bg_img, bg_raw),
+                fit_start=TAKEAWAY_START, fit_floor=TAKEAWAY_FLOOR,
+                fit_max_lines=9)
+            info["bg_track"] = "photo"
+        else:
+            card, info = render_backdrop(
+                bg_img, text, kicker, fit_start=TAKEAWAY_START,
+                fit_floor=TAKEAWAY_FLOOR)
+            info["bg_track"] = "backdrop"
+        _position_marker(ImageDraw.Draw(card), pos, total)
+        info.setdefault("text_size", info.get("headline_size"))
+        info.setdefault("text_lines", info.get("headline_lines"))
+        return card, info
+    card, info = render_text_card(text, kicker, pos, total)
+    info["bg_track"] = "navy"
+    return card, info
+
+
+def render_closer_card(kicker, slug=None, pos=None, total=None):
+    """The set closer: navy field, centred 'THE VIDESHI' wordmark
+    (gold tracked caps under a gold rule), the category kicker, the
+    serif line 'Full story at thevideshi.com' and, when the slug is
+    clean, the article's short link line under it."""
+    card = Image.new("RGB", (W, H), NAVY)
+    brand_mark_v(card)
+    d = ImageDraw.Draw(card)
+    cx = W // 2
+    y = 452
+    d.rectangle((cx - 36, y, cx + 36, y + RULE_H), fill=GOLD)
+    wf = inter(46, "800")
+    label = "THE VIDESHI"
+    tw = tracked_w(d, label, wf, 12)
+    draw_tracked(d, (cx - tw / 2, y + 42), label, wf, 12, GOLD)
+    kf = inter(28, "700")
+    kw = tracked_w(d, kicker, kf, KICKER_TRACKING)
+    draw_tracked(d, (cx - kw / 2, y + 128), kicker, kf,
+                 KICKER_TRACKING, SUBTLE_FILL)
+    sf = pf(56, "Bold")
+    ly = y + 204
+    for ln in wrap(d, "Full story at thevideshi.com", sf, CW):
+        lw = d.textlength(ln, font=sf)
+        d.text((cx - lw / 2, ly), ln, font=sf, fill=WHITE)
+        ly += int(56 * LINE_RATIO)
+    if slug and re.fullmatch(r"[a-z0-9][a-z0-9-]*", slug):
+        uf = inter(25, "700")
+        url = f"thevideshi.com/articles/{slug}"
+        uw = d.textlength(url, font=uf)
+        d.text((cx - uw / 2, ly + 30), url, font=uf, fill=SUBTLE_FILL)
+    if pos:
+        _position_marker(d, pos, total)
+    return card, {"render_scale": 1.0, "truncated": False}
+
+
+def _set_base(slug, headline):
+    if slug and re.fullmatch(r"[a-z0-9][a-z0-9-]*", slug):
+        return slug
+    return "card-" + hashlib.sha1(headline.encode()).hexdigest()[:12]
+
+
+def make_card_set(headline, category, image_url=None, image_path=None,
+                  key_takeaways=None, subheadline=None, slug=None,
+                  out_dir=None, backdrop="navy", body=None):
+    """Render a full card SET for one article.
+
+    Order: hook (make_card) -> up to MAX_SET_TAKEAWAYS takeaway
+    cards (one takeaway each; the subheadline stands in as a single
+    middle card when key_takeaways is empty) -> closer. Set size is
+    therefore 2-4. A skipped hook (<600px rule) yields NO set —
+    {"track": "skipped", "files": [], ...} — and callers fall back
+    to today's behavior. Returns the info dict with "files" (the
+    ordered PNG paths) and "cards" (per-card role/alt/truncated —
+    takeaway cards also carry bg_source / bg_track / bg_px).
+
+    Each middle card gets its OWN background, relevant to its text,
+    sourced ONLY from the article's already-verified assets:
+      a. inline images from the article body, in body order
+         (hero and its thumbnail variants excluded) — middle i
+         uses inline i;
+      b. else a detail crop of the hero (tighter focal crop;
+         successive crops go tighter still);
+      c. else the plain navy text card.
+    Each background is theme-gated like the hook (see
+    render_middle_card): never upscaled."""
+    out_dir = Path(out_dir) if out_dir else DEFAULT_OUT_DIR
+    out_dir.mkdir(parents=True, exist_ok=True)
+    base = _set_base(slug, headline)
+    kicker = kicker_for(category)
+    hook_path = str(out_dir / f"{base}-1.png")
+    hook = make_card(headline, category, image_url=image_url,
+                     image_path=image_path, out_path=hook_path,
+                     backdrop=backdrop)
+    if hook.get("track") == "skipped":
+        return {"track": "skipped", "reason": hook.get("reason"),
+                "source_px": hook.get("source_px"), "files": [],
+                "cards": [], "set_size": 0, "slug": slug,
+                "kicker": kicker}
+    middles = normalize_takeaways(key_takeaways)[:MAX_SET_TAKEAWAYS]
+    middle_source = "key_takeaways" if middles else None
+    if not middles and subheadline and str(subheadline).strip():
+        middles = [str(subheadline).strip()]
+        middle_source = "subheadline"
+    total = 2 + len(middles)
+
+    # ── Middle-card backgrounds: inline -> hero detail-crop -> navy
+    inlines = [u for u in extract_inline_images(body)
+               if not _same_image(u, image_url)]
+    hero_img = hero_raw = hero_anchor = None
+    crops_used = 0
+
+    def hero_crop_bg():
+        nonlocal hero_img, hero_raw, hero_anchor, crops_used
+        if hero_img is None:
+            if image_path:
+                hero_img, hero_raw = load_local_image(image_path)
+            elif image_url:
+                hero_img, _u, hero_raw = fetch_image(image_url)
+            else:
+                return None
+            hero_anchor = focal_anchor(hero_img, hero_raw)
+        frac = 0.55 if crops_used == 0 else 0.38
+        crops_used += 1
+        return detail_crop(hero_img, hero_anchor[0], hero_anchor[1],
+                           frac)
+
+    files = [hook["out_path"]]
+    cards = [{"role": "hook", "path": hook["out_path"],
+              "alt": headline, "track": hook["track"],
+              "truncated": bool(hook.get("truncated"))}]
+    for i, text in enumerate(middles):
+        pos = i + 2
+        path = str(out_dir / f"{base}-{pos}.png")
+        bg_img = bg_raw = None
+        bg_source = "navy"
+        if i < len(inlines):
+            try:
+                bg_img, _u, bg_raw = fetch_image(inlines[i])
+                bg_source = f"inline:{i + 1}"
+            except Exception:
+                bg_img = bg_raw = None
+        if bg_img is None:
+            try:
+                bg_img = hero_crop_bg()
+                if bg_img is not None:
+                    bg_source = "hero-crop"
+            except Exception:
+                bg_img = None
+        card, rinfo = render_middle_card(text, kicker, pos, total,
+                                         bg_img=bg_img, bg_raw=bg_raw)
+        card.save(path, "PNG")
+        files.append(path)
+        cards.append({"role": "takeaway", "path": path, "alt": text,
+                      "truncated": rinfo["truncated"],
+                      "text_size": rinfo.get("text_size"),
+                      "text_lines": rinfo.get("text_lines"),
+                      "bg_source": bg_source,
+                      "bg_track": rinfo.get("bg_track"),
+                      "bg_px": list(bg_img.size) if bg_img else None})
+    closer_path = str(out_dir / f"{base}-{total}.png")
+    card, _ = render_closer_card(kicker, slug=slug, pos=total,
+                                 total=total)
+    card.save(closer_path, "PNG")
+    files.append(closer_path)
+    cards.append({"role": "closer", "path": closer_path,
+                  "alt": "Full story at thevideshi.com",
+                  "truncated": False})
+    info = {"track": hook["track"],
+            "source_px": hook.get("source_px"),
+            "render_scale": hook.get("render_scale"),
+            "files": files, "cards": cards, "set_size": total,
+            "middle_source": middle_source,
+            "takeaways_used": len(middles)
+            if middle_source == "key_takeaways" else 0,
+            "inline_images": len(inlines),
+            "truncated": any(c["truncated"] for c in cards),
+            "kicker": kicker, "slug": slug,
+            "backdrop": backdrop if hook["track"] == "backdrop"
+            else None}
+    if hook.get("track_note"):
+        info["track_note"] = hook["track_note"]
+    if hook.get("fetched_url"):
+        info["fetched_url"] = hook["fetched_url"]
+    return info
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[1])
     ap.add_argument("--slug")
@@ -545,19 +890,46 @@ def main(argv=None):
                     default="navy")
     ap.add_argument("--track", choices=["full-bleed", "backdrop"],
                     default=None, help="override the width gate (testing)")
+    ap.add_argument("--set", dest="set_mode", action="store_true",
+                    help="render a full card SET (hook + takeaway "
+                         "cards + closer) instead of a single card")
+    ap.add_argument("--key-takeaways",
+                    help="JSON list of takeaway strings (explicit "
+                         "mode; with --slug/--id the article's own "
+                         "key_takeaways are used)")
+    ap.add_argument("--subheadline")
     args = ap.parse_args(argv)
 
     headline, category = args.headline, args.category
     image_url, slug = args.image_url, args.slug
+    subheadline, key_takeaways, body = args.subheadline, None, None
+    if args.key_takeaways:
+        try:
+            key_takeaways = json.loads(args.key_takeaways)
+        except ValueError:
+            key_takeaways = args.key_takeaways
     if args.slug or args.article_id:
         art = fetch_article(slug=args.slug, article_id=args.article_id)
         headline = headline or art["headline"]
         category = category or art["category"]
         image_url = image_url or art["image_url"]
         slug = art["slug"]
+        if subheadline is None:
+            subheadline = art.get("subheadline")
+        if key_takeaways is None:
+            key_takeaways = art.get("key_takeaways")
+        body = art.get("body")
     if not headline or not category or not (image_url or args.image_path):
         ap.error("need --slug/--id, or --headline + --category + "
                  "--image-url/--image-path")
+    if args.set_mode:
+        info = make_card_set(headline, category, image_url=image_url,
+                             image_path=args.image_path,
+                             key_takeaways=key_takeaways,
+                             subheadline=subheadline, slug=slug,
+                             backdrop=args.backdrop, body=body)
+        print(json.dumps(info))
+        return 0
     out = args.out
     if out is None and slug:
         DEFAULT_OUT_DIR.mkdir(parents=True, exist_ok=True)

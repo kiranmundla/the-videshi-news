@@ -21,11 +21,14 @@ Behavior:
     producer script's immediate mode does (fb-posted.json /
     threads-posted.json / reel-distribution.json + the prebuilt_reels
     IG stamp), then removes the entry from the queue.
-  * Article entries with a staged social card (card_file) publish
-    the CARD as the image: FB attaches it instead of the hero,
-    Threads carries it as the media item, and Instagram article
-    entries exist only as card photo posts. Entries without a card
-    publish exactly as before cards existed.
+  * Article entries with a staged social CARD SET (card_files:
+    hook + takeaway cards + closer) publish the whole set: FB
+    attaches every card to the Page post (facebook-cli --file
+    repeats in post order), Threads carries every card as an
+    ordered media item with its own alt text. Entries with only a
+    single card (card_file, incl. Instagram article entries, which
+    stay single-card) publish that card as the image. Entries
+    without a card publish exactly as before cards existed.
   * A queue entry whose slug is already in the published ledger
     (e.g. posted via a manual --publish-now run) is dropped as done.
   * On the FIRST failure or declined approval: stops, keeps that
@@ -89,11 +92,28 @@ def _th():
 # Publish dispatchers — CLI invocations mirror the producer scripts.
 # ------------------------------------------------------------------
 
+def _existing_set_files(entry):
+    """The entry's staged card-set files that still exist on disk,
+    in set order. The set is only usable when its hook (first
+    file) survives — a partial set missing a middle degrades to
+    the surviving cards; a missing hook degrades to []."""
+    files = [f for f in (entry.get("card_files") or []) if f]
+    if not files or not os.path.exists(files[0]):
+        return []
+    return [f for f in files if os.path.exists(f)]
+
+
 def publish_fb_article(entry):
-    # With a staged social card, the CARD is the attached image
-    # (fb publish() attaches the caller-owned file directly and
-    # never deletes it). Without one — or if the file has gone
-    # missing since staging — today's plain-hero attach, unchanged.
+    # With a staged card SET, ALL cards attach to the Page post
+    # (fb publish() passes them as repeated --file, in post order,
+    # and never deletes caller-owned files). With only a single
+    # card, that card is the attached image. Without either — or
+    # if the files have gone missing since staging — today's
+    # plain-hero attach, unchanged.
+    files = _existing_set_files(entry)
+    if files:
+        return _fb().publish(entry["text"], entry.get("link"),
+                             entry.get("image_url"), image_paths=files)
     card = entry.get("card_file")
     if card and os.path.exists(card):
         return _fb().publish(entry["text"], entry.get("link"),
@@ -103,17 +123,29 @@ def publish_fb_article(entry):
 
 
 def publish_threads_article(entry):
-    # With a staged social card, the card rides as the post's media
-    # item — the same --media-item mechanism as reel posts (images
-    # take no cover). Without one, the text-only publish, unchanged.
-    card = entry.get("card_file")
-    if card and os.path.exists(card):
-        item = {"file": card}
-        if entry.get("headline"):
-            item["alt_text"] = entry["headline"][:1024]
+    # With a staged card SET, every card rides as an ordered media
+    # item with its own alt text (hook = headline, middles = their
+    # takeaway, closer = the full-story line) — the same
+    # --media-item mechanism as reel posts, repeated 1-20x in
+    # display order (images take no cover). With only a single
+    # card, that one item. Without either, the text-only publish,
+    # unchanged.
+    files = _existing_set_files(entry)
+    single = entry.get("card_file")
+    if not files and single and os.path.exists(single):
+        files = [single]
+    if files:
+        texts = entry.get("card_texts") or []
         cmd = [THREADS_CLI, "publish-post", "--account-id",
-               THREADS_ACCOUNT_ID, "--text", entry["text"],
-               "--media-item", json.dumps(item)]
+               THREADS_ACCOUNT_ID, "--text", entry["text"]]
+        for i, path in enumerate(files):
+            item = {"file": path}
+            alt = texts[i] if i < len(texts) else None
+            if not alt and i == 0:
+                alt = entry.get("headline")
+            if alt:
+                item["alt_text"] = str(alt)[:1024]
+            cmd += ["--media-item", json.dumps(item)]
         r = subprocess.run(cmd, capture_output=True, text=True,
                            timeout=600)
         try:
@@ -348,10 +380,15 @@ def entry_label(entry):
 
 
 def card_annotation(entry):
-    """'card: full-bleed|backdrop|none…' for article entries, so
-    the flush sitting shows exactly what image will go out."""
+    """'cards: set of N (track)' / 'card: …' / 'card: none…' for
+    article entries, so the flush sitting shows exactly what
+    images will go out."""
     if entry.get("kind") != "article_post":
         return ""
+    files = entry.get("card_files") or []
+    if len(files) > 1:
+        return (f" · cards: set of {len(files)} "
+                f"({entry.get('card_track') or 'rendered'})")
     if entry.get("card_file"):
         return f" · card: {entry.get('card_track') or 'rendered'}"
     if entry.get("card_track") == "skipped":

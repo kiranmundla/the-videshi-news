@@ -13,14 +13,20 @@ created order, while Kiran is present to approve each one.
 
 Queue file: pipeline/.state/social-publish-queue.json
   {"entries": [ {id, channel, kind, slug|reel_id, headline, text,
-                 link, image_url, card_file, card_track, media_file,
-                 cover_file, alt_text, reel_row_id, with_link,
-                 created_at, source}, ... ]}
+                 link, image_url, card_file, card_files, card_texts,
+                 card_track, media_file, cover_file, alt_text,
+                 reel_row_id, with_link, created_at, source}, ... ]}
 
-card_file / card_track (article_post entries): the rendered social
-card (social_card.py) staged with the pick — card_track is
-"full-bleed" / "backdrop", or "skipped" with card_file null when
-the hero fell under the 600px skip rule.
+card_file / card_files / card_texts / card_track (article_post
+entries): the rendered social CARD SET (social_card.py
+make_card_set) staged with the pick — card_files is the ordered
+set (hook + takeaway cards + closer, 2-4 PNGs), card_file is the
+hook card alone (card_files[0]; the only field Instagram uses —
+IG stays single-card), card_texts the per-card alt texts parallel
+to card_files. card_track is the hook's track ("full-bleed" /
+"backdrop"), or "skipped" with no files when the hero fell under
+the 600px skip rule. Legacy entries staged before card sets carry
+only card_file/card_track and publish exactly as before.
 
 channel: facebook | threads | instagram
 kind:    article_post | reel_draft | reel_post
