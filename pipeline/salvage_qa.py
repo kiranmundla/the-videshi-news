@@ -4,6 +4,10 @@ network error. Re-runs ONLY the QA gate on the already-rendered file (no
 re-render). If it passes, uploads to Supabase and registers in prebuilt_reels.
 
 Usage: python3 salvage_qa.py <article_id> <video_path> [poster_path] [thumb_path]
+
+NOTE (2026-10-25): INERT — shotstack-reel.py was retired with the legacy
+HeyGen/Shotstack reel stack (HeyGen API v1/v2 shut down 2026-10-31), so the
+import below will fail. Kept only as a record of the old salvage flow.
 """
 import sys, os, importlib.util
 
