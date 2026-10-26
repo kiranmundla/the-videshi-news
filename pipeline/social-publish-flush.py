@@ -176,7 +176,17 @@ def publish_threads_article(entry):
         # item. A failed download degrades to the text-only post.
         hero_tmp = _fb().download_image(entry["image_url"])
         if hero_tmp:
-            files = [hero_tmp]
+            # threads-cli rejects media outside the authenticated
+            # workspace; fb-autopost's downloader lands in /tmp.
+            # Copy the hero into the workspace before attaching.
+            ws_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                  ".state", "threads-media")
+            os.makedirs(ws_dir, exist_ok=True)
+            ws_path = os.path.join(
+                ws_dir, "hero-" + os.path.basename(hero_tmp))
+            import shutil
+            shutil.copyfile(hero_tmp, ws_path)
+            files = [ws_path]
     if files:
         texts = entry.get("card_texts") or []
         cmd = [THREADS_CLI, "publish-post", "--account-id",
