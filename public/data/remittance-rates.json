@@ -1,49 +1,49 @@
 {
-  "generated_at": "2026-10-19T17:18:32.660433+00:00",
-  "as_of": "2026-10-19",
+  "generated_at": "2026-10-26T16:31:57.838699+00:00",
+  "as_of": "2026-10-26",
   "send_usd": 1000,
   "note": "Bank deposit to India. Best available advertised rates \u2014 some reflect new-customer promos. Providers change rates through the day.",
   "providers": [
     {
       "provider": "Western Union",
-      "rate": 95.461,
+      "rate": 95.8021,
       "fee_usd": 0.0,
-      "recipient_gets_inr": 95461.0,
-      "delivery": "0-4 business days",
-      "as_of": "2026-10-19",
+      "recipient_gets_inr": 95802.1,
+      "delivery": "Up to 5 days",
+      "as_of": "2026-10-26",
       "promo": true,
-      "promo_note": "Best rate; $0 fee to bank accounts through Dec 15",
-      "source_url": "https://www.westernunion.com/us/en/send-money-to-india.html"
+      "promo_note": "Best advertised rate; $0 fee on first transfer",
+      "source_url": "https://www.westernunion.com/us/en/currency-converter.html"
     },
     {
       "provider": "Remitly",
-      "rate": 95.35,
+      "rate": 95.37,
       "fee_usd": 0.0,
-      "recipient_gets_inr": 95350.0,
+      "recipient_gets_inr": 95370.0,
       "delivery": "Instantly (bank to bank deposit)",
-      "as_of": "2026-10-19",
+      "as_of": "2026-10-26",
       "promo": true,
       "promo_note": "Welcome rate, new customers",
-      "source_url": "https://www.remitly.com/us/en/money-transfer/send-money-to-india"
+      "source_url": "https://www.remitly.com/us/en/india"
     },
     {
       "provider": "Xoom",
-      "rate": 94.7196,
+      "rate": 94.9814,
       "fee_usd": 0.0,
-      "recipient_gets_inr": 94719.6,
+      "recipient_gets_inr": 94981.4,
       "delivery": "Typically in minutes",
-      "as_of": "2026-10-19",
+      "as_of": "2026-10-26",
       "promo": true,
       "promo_note": "First time rate, new customers",
-      "source_url": "https://www.xoom.com/india/send-money"
+      "source_url": "https://www.xoom.com/currency-converter/usd-to-inr-rate/india"
     },
     {
       "provider": "Wise",
-      "rate": 94.9463,
+      "rate": 95.1877,
       "fee_usd": 6.85,
-      "recipient_gets_inr": 94295.92,
+      "recipient_gets_inr": 94535.66,
       "delivery": "In seconds",
-      "as_of": "2026-10-19",
+      "as_of": "2026-10-26",
       "promo": false,
       "promo_note": null,
       "source_url": "https://wise.com/us/compare/wise-usd-to-inr"
