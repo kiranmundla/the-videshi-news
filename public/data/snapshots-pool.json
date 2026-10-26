@@ -120,13 +120,6 @@
     "added_date": "2026-05-01"
   },
   {
-    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/onam-kerala-celebration-8566097.jpg",
-    "label": "Vibrant Kathakali dancers performing in traditional costumes at a cultural event in Kerala, India. · 📷 Jithin murali",
-    "source": "pexels",
-    "added_date": "2026-05-27",
-    "pexels_id": 8566097
-  },
-  {
     "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/onam-kerala-celebration-32455915.jpg",
     "label": "Elegant South Indian woman in traditional attire adorned with jewelry, celebrating culture. · 📷 Manoj Bharathi",
     "source": "pexels",
@@ -258,5 +251,12 @@
     "source": "pexels",
     "added_date": "2026-10-19",
     "pexels_id": 9743193
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/kerala-houseboat-backwaters-12950219.jpg",
+    "label": "Traditional houseboats cruise the serene backwaters of Alappuzha, Kerala, India. · 📷 Nishad Mohammed",
+    "source": "pexels",
+    "added_date": "2026-10-26",
+    "pexels_id": 12950219
   }
 ]
