@@ -11,41 +11,41 @@
     "eligible_for_picks": "False = second-tier US destination deferred from curated picks/trending (Kiran 2026-10-14 tiering); the record and its guide remain in the full index."
   },
   "trending_now": [
-    "japan",
-    "oman",
     "france",
-    "italy",
+    "oman",
+    "japan",
     "egypt",
-    "greece",
+    "italy",
     "australia",
+    "greece",
+    "kenya",
+    "kerala",
     "fiji",
     "bali",
-    "portugal",
-    "kerala",
-    "kenya",
-    "karnataka",
     "hawaii",
+    "karnataka",
+    "portugal",
     "national-parks",
     "spain",
     "iceland",
-    "himachal-pradesh",
     "rajasthan",
+    "himachal-pradesh",
     "uttarakhand",
     "kashmir",
-    "northeast-india",
     "cabo",
+    "northeast-india",
     "singapore",
     "morocco",
+    "vietnam",
     "abu-dhabi",
     "london",
     "south-africa",
-    "vietnam",
-    "thailand",
     "mexico",
-    "dubai",
-    "maldives",
-    "jamaica",
+    "thailand",
     "goa",
+    "maldives",
+    "dubai",
+    "jamaica",
     "switzerland",
     "tamil-nadu",
     "puerto-vallarta",
@@ -53,10 +53,10 @@
     "banff",
     "new-zealand",
     "alaska",
-    "sri-lanka",
     "dominican-republic",
-    "bahamas",
+    "sri-lanka",
     "aruba",
+    "bahamas",
     "scandinavia",
     "cancun"
   ],
@@ -68,13 +68,13 @@
       "kerala",
       "karnataka",
       "rajasthan",
-      "northeast-india",
       "cabo",
+      "northeast-india",
       "abu-dhabi",
-      "thailand",
-      "dubai",
       "mexico",
+      "thailand",
       "goa",
+      "dubai",
       "jamaica",
       "maldives",
       "switzerland",
@@ -83,8 +83,8 @@
       "riviera-maya",
       "banff",
       "new-zealand",
-      "sri-lanka",
       "dominican-republic",
+      "sri-lanka",
       "aruba",
       "bahamas",
       "cancun",
@@ -101,15 +101,15 @@
       "karnataka",
       "iceland",
       "rajasthan",
-      "northeast-india",
       "cabo",
+      "northeast-india",
       "singapore",
       "abu-dhabi",
-      "thailand",
       "vietnam",
-      "dubai",
       "mexico",
+      "thailand",
       "goa",
+      "dubai",
       "jamaica",
       "maldives",
       "switzerland",
@@ -118,8 +118,8 @@
       "riviera-maya",
       "banff",
       "new-zealand",
-      "sri-lanka",
       "dominican-republic",
+      "sri-lanka",
       "aruba",
       "bahamas",
       "cancun",
@@ -130,38 +130,38 @@
       "morocco"
     ],
     "3": [
-      "japan",
       "oman",
+      "japan",
       "egypt",
       "australia",
       "kerala",
-      "himachal-pradesh",
       "iceland",
+      "himachal-pradesh",
       "rajasthan",
       "uttarakhand",
-      "northeast-india",
       "cabo",
+      "northeast-india",
       "singapore",
       "morocco",
       "abu-dhabi",
-      "thailand",
       "vietnam",
-      "dubai",
       "mexico",
+      "thailand",
+      "dubai",
       "jamaica",
       "maldives",
       "puerto-vallarta",
       "riviera-maya",
       "new-zealand",
-      "sri-lanka",
       "dominican-republic",
+      "sri-lanka",
       "aruba",
       "bahamas",
       "cancun",
       "france",
       "italy",
-      "bali",
       "kenya",
+      "bali",
       "hawaii",
       "karnataka",
       "spain",
@@ -173,23 +173,23 @@
       "banff"
     ],
     "4": [
-      "japan",
       "france",
+      "japan",
       "egypt",
       "italy",
       "australia",
       "bali",
       "hawaii",
-      "himachal-pradesh",
       "spain",
+      "himachal-pradesh",
       "uttarakhand",
+      "cabo",
       "kashmir",
       "northeast-india",
-      "cabo",
       "singapore",
       "morocco",
-      "london",
       "vietnam",
+      "london",
       "mexico",
       "jamaica",
       "maldives",
@@ -201,8 +201,8 @@
       "cancun",
       "oman",
       "greece",
-      "fiji",
       "kerala",
+      "fiji",
       "portugal",
       "national-parks",
       "iceland",
@@ -216,21 +216,21 @@
       "scandinavia"
     ],
     "5": [
-      "japan",
       "france",
+      "japan",
       "italy",
-      "greece",
       "australia",
+      "greece",
       "bali",
       "fiji",
-      "portugal",
       "hawaii",
+      "portugal",
       "national-parks",
-      "himachal-pradesh",
       "spain",
+      "himachal-pradesh",
       "uttarakhand",
-      "kashmir",
       "cabo",
+      "kashmir",
       "morocco",
       "london",
       "south-africa",
@@ -259,12 +259,12 @@
       "greece",
       "bali",
       "fiji",
-      "portugal",
       "hawaii",
+      "portugal",
       "national-parks",
-      "himachal-pradesh",
       "iceland",
       "spain",
+      "himachal-pradesh",
       "uttarakhand",
       "kashmir",
       "singapore",
@@ -283,9 +283,9 @@
     ],
     "7": [
       "greece",
+      "kenya",
       "bali",
       "fiji",
-      "kenya",
       "iceland",
       "kashmir",
       "singapore",
@@ -297,17 +297,17 @@
       "scandinavia",
       "france",
       "italy",
-      "portugal",
       "hawaii",
+      "portugal",
       "national-parks",
-      "himachal-pradesh",
       "spain",
+      "himachal-pradesh",
       "uttarakhand"
     ],
     "8": [
+      "kenya",
       "bali",
       "fiji",
-      "kenya",
       "iceland",
       "kashmir",
       "south-africa",
@@ -317,13 +317,13 @@
       "scandinavia",
       "france",
       "italy",
-      "greece",
       "australia",
-      "portugal",
+      "greece",
       "hawaii",
+      "portugal",
       "national-parks",
-      "himachal-pradesh",
       "spain",
+      "himachal-pradesh",
       "uttarakhand",
       "singapore",
       "london"
@@ -331,17 +331,17 @@
     "9": [
       "france",
       "italy",
-      "greece",
       "australia",
+      "greece",
+      "kenya",
       "bali",
       "fiji",
-      "kenya",
-      "portugal",
       "hawaii",
+      "portugal",
       "national-parks",
-      "himachal-pradesh",
       "iceland",
       "spain",
+      "himachal-pradesh",
       "uttarakhand",
       "kashmir",
       "singapore",
@@ -349,52 +349,52 @@
       "south-africa",
       "switzerland",
       "banff",
-      "japan",
       "oman",
+      "japan",
       "egypt",
       "kerala",
       "karnataka",
       "rajasthan",
-      "northeast-india",
       "cabo",
+      "northeast-india",
       "morocco",
       "alaska",
       "scandinavia"
     ],
     "10": [
-      "japan",
-      "oman",
       "france",
+      "oman",
+      "japan",
       "egypt",
       "italy",
-      "greece",
       "australia",
-      "bali",
-      "fiji",
+      "greece",
       "kenya",
       "kerala",
-      "portugal",
+      "bali",
+      "fiji",
       "hawaii",
       "karnataka",
+      "portugal",
       "national-parks",
-      "himachal-pradesh",
       "iceland",
       "spain",
+      "himachal-pradesh",
       "rajasthan",
       "uttarakhand",
+      "cabo",
       "kashmir",
       "northeast-india",
-      "cabo",
       "morocco",
       "singapore",
       "abu-dhabi",
+      "vietnam",
       "london",
       "south-africa",
-      "thailand",
-      "vietnam",
-      "dubai",
       "mexico",
+      "thailand",
       "goa",
+      "dubai",
       "jamaica",
       "maldives",
       "switzerland",
@@ -404,8 +404,8 @@
       "banff"
     ],
     "11": [
-      "japan",
       "oman",
+      "japan",
       "egypt",
       "australia",
       "kerala",
@@ -414,15 +414,15 @@
       "himachal-pradesh",
       "rajasthan",
       "uttarakhand",
-      "northeast-india",
       "cabo",
+      "northeast-india",
       "morocco",
       "abu-dhabi",
-      "thailand",
       "vietnam",
-      "dubai",
       "mexico",
+      "thailand",
       "goa",
+      "dubai",
       "jamaica",
       "maldives",
       "tamil-nadu",
@@ -431,9 +431,9 @@
       "france",
       "italy",
       "greece",
+      "kenya",
       "bali",
       "fiji",
-      "kenya",
       "portugal",
       "national-parks",
       "iceland",
@@ -442,8 +442,8 @@
       "switzerland",
       "banff",
       "new-zealand",
-      "sri-lanka",
       "dominican-republic",
+      "sri-lanka",
       "aruba",
       "bahamas",
       "cancun"
@@ -455,14 +455,14 @@
       "hawaii",
       "karnataka",
       "rajasthan",
-      "northeast-india",
       "cabo",
+      "northeast-india",
       "abu-dhabi",
-      "thailand",
       "vietnam",
-      "dubai",
       "mexico",
+      "thailand",
       "goa",
+      "dubai",
       "jamaica",
       "maldives",
       "switzerland",
@@ -471,8 +471,8 @@
       "riviera-maya",
       "banff",
       "new-zealand",
-      "sri-lanka",
       "dominican-republic",
+      "sri-lanka",
       "aruba",
       "bahamas",
       "cancun",
@@ -568,7 +568,7 @@
             "id": "search_interest",
             "points": 21,
             "max": 30,
-            "reason": "Wikipedia attention +32% vs prior quarter (2,193 views/day)"
+            "reason": "Wikipedia attention +33% vs prior quarter (2,236 views/day)"
           },
           {
             "id": "fare_drop",
@@ -652,7 +652,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 30,
+        "score": 29,
         "max_score": 80,
         "components": [
           {
@@ -663,9 +663,9 @@
           },
           {
             "id": "search_interest",
-            "points": 20,
+            "points": 19,
             "max": 30,
-            "reason": "Wikipedia attention +1% vs prior quarter (4,540 views/day)"
+            "reason": "Wikipedia attention +4% vs prior quarter (4,634 views/day)"
           },
           {
             "id": "fare_drop",
@@ -765,7 +765,7 @@
             "id": "search_interest",
             "points": 17,
             "max": 30,
-            "reason": "Wikipedia attention -2% vs prior quarter (2,680 views/day)"
+            "reason": "Wikipedia attention +3% vs prior quarter (2,727 views/day)"
           },
           {
             "id": "fare_drop",
@@ -919,7 +919,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
+        "score": 66,
         "max_score": 80,
         "components": [
           {
@@ -930,9 +930,9 @@
           },
           {
             "id": "search_interest",
-            "points": 17,
+            "points": 18,
             "max": 30,
-            "reason": "Wikipedia attention -30% vs prior quarter (9,709 views/day)"
+            "reason": "Wikipedia attention -26% vs prior quarter (9,636 views/day)"
           },
           {
             "id": "fare_drop",
@@ -1019,7 +1019,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 27,
+        "score": 26,
         "max_score": 80,
         "components": [
           {
@@ -1030,9 +1030,9 @@
           },
           {
             "id": "search_interest",
-            "points": 17,
+            "points": 16,
             "max": 30,
-            "reason": "Wikipedia attention -7% vs prior quarter (2,989 views/day)"
+            "reason": "Wikipedia attention -10% vs prior quarter (2,894 views/day)"
           },
           {
             "id": "fare_drop",
@@ -1188,7 +1188,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
+        "score": 64,
         "max_score": 80,
         "components": [
           {
@@ -1199,9 +1199,9 @@
           },
           {
             "id": "search_interest",
-            "points": 17,
+            "points": 16,
             "max": 30,
-            "reason": "Wikipedia attention -6% vs prior quarter (3,039 views/day)"
+            "reason": "Wikipedia attention -10% vs prior quarter (2,920 views/day)"
           },
           {
             "id": "fare_drop",
@@ -1290,7 +1290,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 40,
+        "score": 39,
         "max_score": 80,
         "components": [
           {
@@ -1301,9 +1301,9 @@
           },
           {
             "id": "search_interest",
-            "points": 6,
+            "points": 5,
             "max": 30,
-            "reason": "Wikipedia attention -25% vs prior quarter (360 views/day)"
+            "reason": "Wikipedia attention -27% vs prior quarter (344 views/day)"
           },
           {
             "id": "fare_drop",
@@ -1393,7 +1393,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 59,
+        "score": 60,
         "max_score": 80,
         "components": [
           {
@@ -1404,9 +1404,9 @@
           },
           {
             "id": "search_interest",
-            "points": 11,
+            "points": 12,
             "max": 30,
-            "reason": "Wikipedia attention -3% vs prior quarter (566 views/day)"
+            "reason": "Wikipedia attention +0% vs prior quarter (554 views/day)"
           },
           {
             "id": "fare_drop",
@@ -1493,7 +1493,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 22,
+        "score": 20,
         "max_score": 80,
         "components": [
           {
@@ -1504,9 +1504,9 @@
           },
           {
             "id": "search_interest",
-            "points": 12,
+            "points": 10,
             "max": 30,
-            "reason": "Wikipedia attention -5% vs prior quarter (693 views/day)"
+            "reason": "Wikipedia attention -7% vs prior quarter (666 views/day)"
           },
           {
             "id": "fare_drop",
@@ -1593,7 +1593,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 28,
+        "score": 29,
         "max_score": 80,
         "components": [
           {
@@ -1604,9 +1604,9 @@
           },
           {
             "id": "search_interest",
-            "points": 18,
+            "points": 19,
             "max": 30,
-            "reason": "Wikipedia attention -2% vs prior quarter (3,830 views/day)"
+            "reason": "Wikipedia attention +1% vs prior quarter (3,801 views/day)"
           },
           {
             "id": "fare_drop",
@@ -1694,7 +1694,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 53,
+        "score": 51,
         "max_score": 80,
         "components": [
           {
@@ -1705,9 +1705,9 @@
           },
           {
             "id": "search_interest",
-            "points": 19,
+            "points": 17,
             "max": 30,
-            "reason": "Wikipedia attention +4% vs prior quarter (3,595 views/day)"
+            "reason": "Wikipedia attention -2% vs prior quarter (3,408 views/day)"
           },
           {
             "id": "fare_drop",
@@ -1862,7 +1862,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 67,
+        "score": 69,
         "max_score": 80,
         "components": [
           {
@@ -1873,9 +1873,9 @@
           },
           {
             "id": "search_interest",
-            "points": 19,
+            "points": 21,
             "max": 30,
-            "reason": "Wikipedia attention -10% vs prior quarter (6,062 views/day)"
+            "reason": "Wikipedia attention +4% vs prior quarter (6,465 views/day)"
           },
           {
             "id": "fare_drop",
@@ -2028,7 +2028,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
+        "score": 64,
         "max_score": 80,
         "components": [
           {
@@ -2039,9 +2039,9 @@
           },
           {
             "id": "search_interest",
-            "points": 17,
+            "points": 16,
             "max": 30,
-            "reason": "Wikipedia attention -7% vs prior quarter (3,531 views/day)"
+            "reason": "Wikipedia attention -9% vs prior quarter (3,419 views/day)"
           },
           {
             "id": "fare_drop",
@@ -2143,7 +2143,7 @@
             "id": "search_interest",
             "points": 18,
             "max": 30,
-            "reason": "Wikipedia attention -1% vs prior quarter (3,473 views/day)"
+            "reason": "Wikipedia attention +1% vs prior quarter (3,516 views/day)"
           },
           {
             "id": "fare_drop",
@@ -2252,7 +2252,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 69,
+        "score": 73,
         "max_score": 80,
         "components": [
           {
@@ -2263,9 +2263,9 @@
           },
           {
             "id": "search_interest",
-            "points": 21,
+            "points": 25,
             "max": 30,
-            "reason": "Wikipedia attention -1% vs prior quarter (9,564 views/day)"
+            "reason": "Wikipedia attention +17% vs prior quarter (10,918 views/day)"
           },
           {
             "id": "fare_drop",
@@ -2351,7 +2351,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 51,
+        "score": 52,
         "max_score": 80,
         "components": [
           {
@@ -2362,9 +2362,9 @@
           },
           {
             "id": "search_interest",
-            "points": 17,
+            "points": 18,
             "max": 30,
-            "reason": "Wikipedia attention +6% vs prior quarter (2,145 views/day)"
+            "reason": "Wikipedia attention +8% vs prior quarter (2,186 views/day)"
           },
           {
             "id": "fare_drop",
@@ -2497,7 +2497,7 @@
             "id": "search_interest",
             "points": 18,
             "max": 30,
-            "reason": "Wikipedia attention -10% vs prior quarter (5,014 views/day)"
+            "reason": "Wikipedia attention -11% vs prior quarter (4,943 views/day)"
           },
           {
             "id": "fare_drop",
@@ -2586,7 +2586,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 63,
+        "score": 64,
         "max_score": 80,
         "components": [
           {
@@ -2597,9 +2597,9 @@
           },
           {
             "id": "search_interest",
-            "points": 15,
+            "points": 16,
             "max": 30,
-            "reason": "Wikipedia attention -28% vs prior quarter (5,564 views/day)"
+            "reason": "Wikipedia attention -26% vs prior quarter (5,556 views/day)"
           },
           {
             "id": "fare_drop",
@@ -2688,7 +2688,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 62,
+        "score": 61,
         "max_score": 80,
         "components": [
           {
@@ -2699,9 +2699,9 @@
           },
           {
             "id": "search_interest",
-            "points": 14,
+            "points": 13,
             "max": 30,
-            "reason": "Wikipedia attention -3% vs prior quarter (1,179 views/day)"
+            "reason": "Wikipedia attention -5% vs prior quarter (1,160 views/day)"
           },
           {
             "id": "fare_drop",
@@ -2802,7 +2802,7 @@
             "id": "search_interest",
             "points": 14,
             "max": 30,
-            "reason": "Wikipedia attention -28% vs prior quarter (4,283 views/day)"
+            "reason": "Wikipedia attention -30% vs prior quarter (4,114 views/day)"
           },
           {
             "id": "fare_drop",
@@ -2925,7 +2925,7 @@
             "id": "search_interest",
             "points": 19,
             "max": 30,
-            "reason": "Wikipedia attention -10% vs prior quarter (6,452 views/day)"
+            "reason": "Wikipedia attention -10% vs prior quarter (6,392 views/day)"
           },
           {
             "id": "fare_drop",
@@ -3026,7 +3026,7 @@
             "id": "search_interest",
             "points": 17,
             "max": 30,
-            "reason": "Wikipedia attention -2% vs prior quarter (3,298 views/day)"
+            "reason": "Wikipedia attention -6% vs prior quarter (3,186 views/day)"
           },
           {
             "id": "fare_drop",
@@ -3179,7 +3179,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 71,
+        "score": 70,
         "max_score": 80,
         "components": [
           {
@@ -3190,9 +3190,9 @@
           },
           {
             "id": "search_interest",
-            "points": 23,
+            "points": 22,
             "max": 30,
-            "reason": "Wikipedia attention +1% vs prior quarter (10,348 views/day)"
+            "reason": "Wikipedia attention +1% vs prior quarter (10,240 views/day)"
           },
           {
             "id": "fare_drop",
@@ -3319,7 +3319,7 @@
             "id": "search_interest",
             "points": 14,
             "max": 30,
-            "reason": "Wikipedia attention -11% vs prior quarter (1,750 views/day)"
+            "reason": "Wikipedia attention -12% vs prior quarter (1,734 views/day)"
           },
           {
             "id": "fare_drop",
@@ -3421,7 +3421,7 @@
             "id": "search_interest",
             "points": 12,
             "max": 30,
-            "reason": "Wikipedia attention -18% vs prior quarter (1,436 views/day)"
+            "reason": "Wikipedia attention -20% vs prior quarter (1,404 views/day)"
           },
           {
             "id": "fare_drop",
@@ -3521,7 +3521,7 @@
             "id": "search_interest",
             "points": 17,
             "max": 30,
-            "reason": "Wikipedia attention -2% vs prior quarter (3,027 views/day)"
+            "reason": "Wikipedia attention -0% vs prior quarter (3,081 views/day)"
           },
           {
             "id": "fare_drop",
@@ -3622,7 +3622,7 @@
             "id": "search_interest",
             "points": 17,
             "max": 30,
-            "reason": "Wikipedia attention -0% vs prior quarter (3,091 views/day)"
+            "reason": "Wikipedia attention -2% vs prior quarter (3,068 views/day)"
           },
           {
             "id": "fare_drop",
@@ -3722,7 +3722,7 @@
             "id": "search_interest",
             "points": 20,
             "max": 30,
-            "reason": "Wikipedia attention -2% vs prior quarter (7,051 views/day)"
+            "reason": "Wikipedia attention -1% vs prior quarter (7,060 views/day)"
           },
           {
             "id": "fare_drop",
@@ -3824,7 +3824,7 @@
             "id": "search_interest",
             "points": 17,
             "max": 30,
-            "reason": "Wikipedia attention -8% vs prior quarter (3,965 views/day)"
+            "reason": "Wikipedia attention -7% vs prior quarter (3,982 views/day)"
           },
           {
             "id": "fare_drop",
@@ -3926,7 +3926,7 @@
             "id": "search_interest",
             "points": 19,
             "max": 30,
-            "reason": "Wikipedia attention -12% vs prior quarter (7,639 views/day)"
+            "reason": "Wikipedia attention -7% vs prior quarter (7,526 views/day)"
           },
           {
             "id": "fare_drop",
@@ -4026,7 +4026,7 @@
             "id": "search_interest",
             "points": 12,
             "max": 30,
-            "reason": "Wikipedia attention -63% vs prior quarter (5,469 views/day)"
+            "reason": "Wikipedia attention -51% vs prior quarter (5,397 views/day)"
           },
           {
             "id": "fare_drop",
@@ -4124,7 +4124,7 @@
             "id": "search_interest",
             "points": 15,
             "max": 30,
-            "reason": "Wikipedia attention -15% vs prior quarter (3,168 views/day)"
+            "reason": "Wikipedia attention -19% vs prior quarter (2,973 views/day)"
           },
           {
             "id": "fare_drop",
@@ -4213,7 +4213,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 66,
+        "score": 67,
         "max_score": 80,
         "components": [
           {
@@ -4224,9 +4224,9 @@
           },
           {
             "id": "search_interest",
-            "points": 22,
+            "points": 23,
             "max": 30,
-            "reason": "Wikipedia attention -0% vs prior quarter (11,504 views/day)"
+            "reason": "Wikipedia attention +6% vs prior quarter (12,198 views/day)"
           },
           {
             "id": "fare_drop",
@@ -4325,7 +4325,7 @@
             "id": "search_interest",
             "points": 20,
             "max": 30,
-            "reason": "Wikipedia attention -4% vs prior quarter (6,944 views/day)"
+            "reason": "Wikipedia attention -2% vs prior quarter (7,073 views/day)"
           },
           {
             "id": "fare_drop",
@@ -4413,7 +4413,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 60,
+        "score": 59,
         "max_score": 80,
         "components": [
           {
@@ -4424,9 +4424,9 @@
           },
           {
             "id": "search_interest",
-            "points": 12,
+            "points": 11,
             "max": 30,
-            "reason": "Wikipedia attention -6% vs prior quarter (786 views/day)"
+            "reason": "Wikipedia attention -10% vs prior quarter (758 views/day)"
           },
           {
             "id": "fare_drop",
@@ -4579,7 +4579,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 70,
+        "score": 72,
         "max_score": 80,
         "components": [
           {
@@ -4590,9 +4590,9 @@
           },
           {
             "id": "search_interest",
-            "points": 22,
+            "points": 24,
             "max": 30,
-            "reason": "Wikipedia attention +13% vs prior quarter (4,956 views/day)"
+            "reason": "Wikipedia attention +27% vs prior quarter (5,517 views/day)"
           },
           {
             "id": "fare_drop",
@@ -4678,7 +4678,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 65,
+        "score": 63,
         "max_score": 80,
         "components": [
           {
@@ -4689,9 +4689,9 @@
           },
           {
             "id": "search_interest",
-            "points": 17,
+            "points": 15,
             "max": 30,
-            "reason": "Wikipedia attention -23% vs prior quarter (6,408 views/day)"
+            "reason": "Wikipedia attention -28% vs prior quarter (5,430 views/day)"
           },
           {
             "id": "fare_drop",
@@ -4779,7 +4779,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 48,
+        "score": 49,
         "max_score": 80,
         "components": [
           {
@@ -4790,9 +4790,9 @@
           },
           {
             "id": "search_interest",
-            "points": 14,
+            "points": 15,
             "max": 30,
-            "reason": "Wikipedia attention +19% vs prior quarter (651 views/day)"
+            "reason": "Wikipedia attention +24% vs prior quarter (650 views/day)"
           },
           {
             "id": "fare_drop",
@@ -4894,7 +4894,7 @@
             "id": "search_interest",
             "points": 13,
             "max": 30,
-            "reason": "Wikipedia attention -15% vs prior quarter (1,644 views/day)"
+            "reason": "Wikipedia attention -17% vs prior quarter (1,600 views/day)"
           },
           {
             "id": "fare_drop",
@@ -4995,7 +4995,7 @@
             "id": "search_interest",
             "points": 8,
             "max": 30,
-            "reason": "Wikipedia attention +5% vs prior quarter (204 views/day)"
+            "reason": "Wikipedia attention +5% vs prior quarter (206 views/day)"
           },
           {
             "id": "fare_drop",
@@ -5093,7 +5093,7 @@
             "id": "search_interest",
             "points": 13,
             "max": 30,
-            "reason": "Wikipedia attention -16% vs prior quarter (1,616 views/day)"
+            "reason": "Wikipedia attention -14% vs prior quarter (1,596 views/day)"
           },
           {
             "id": "fare_drop",
@@ -5194,7 +5194,7 @@
             "id": "search_interest",
             "points": 23,
             "max": 30,
-            "reason": "Wikipedia attention +6% vs prior quarter (11,124 views/day)"
+            "reason": "Wikipedia attention +3% vs prior quarter (10,760 views/day)"
           },
           {
             "id": "fare_drop",
@@ -5294,7 +5294,7 @@
             "id": "search_interest",
             "points": 20,
             "max": 30,
-            "reason": "Wikipedia attention -5% vs prior quarter (6,898 views/day)"
+            "reason": "Wikipedia attention -5% vs prior quarter (6,719 views/day)"
           },
           {
             "id": "fare_drop",
@@ -5394,7 +5394,7 @@
             "id": "search_interest",
             "points": 14,
             "max": 30,
-            "reason": "Wikipedia attention -46% vs prior quarter (7,510 views/day)"
+            "reason": "Wikipedia attention -46% vs prior quarter (7,339 views/day)"
           },
           {
             "id": "fare_drop",
@@ -5480,7 +5480,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 29,
+        "score": 28,
         "max_score": 80,
         "components": [
           {
@@ -5491,9 +5491,9 @@
           },
           {
             "id": "search_interest",
-            "points": 19,
+            "points": 18,
             "max": 30,
-            "reason": "Wikipedia attention -6% vs prior quarter (5,562 views/day)"
+            "reason": "Wikipedia attention -11% vs prior quarter (5,309 views/day)"
           },
           {
             "id": "fare_drop",
@@ -5595,7 +5595,7 @@
             "id": "search_interest",
             "points": 16,
             "max": 30,
-            "reason": "Wikipedia attention -27% vs prior quarter (5,887 views/day)"
+            "reason": "Wikipedia attention -26% vs prior quarter (5,741 views/day)"
           },
           {
             "id": "fare_drop",
@@ -5693,7 +5693,7 @@
             "id": "search_interest",
             "points": 16,
             "max": 30,
-            "reason": "Wikipedia attention -6% vs prior quarter (2,364 views/day)"
+            "reason": "Wikipedia attention -6% vs prior quarter (2,352 views/day)"
           },
           {
             "id": "fare_drop",
@@ -5780,7 +5780,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 54,
+        "score": 53,
         "max_score": 80,
         "components": [
           {
@@ -5791,9 +5791,9 @@
           },
           {
             "id": "search_interest",
-            "points": 20,
+            "points": 19,
             "max": 30,
-            "reason": "Wikipedia attention +0% vs prior quarter (5,422 views/day)"
+            "reason": "Wikipedia attention -1% vs prior quarter (5,357 views/day)"
           },
           {
             "id": "fare_drop",
@@ -5981,7 +5981,7 @@
       "trending": {
         "month": 10,
         "year": 2026,
-        "score": 54,
+        "score": 55,
         "max_score": 80,
         "components": [
           {
@@ -5992,9 +5992,9 @@
           },
           {
             "id": "search_interest",
-            "points": 20,
+            "points": 21,
             "max": 30,
-            "reason": "Wikipedia attention -0% vs prior quarter (6,338 views/day)"
+            "reason": "Wikipedia attention +1% vs prior quarter (6,366 views/day)"
           },
           {
             "id": "fare_drop",
@@ -6060,7 +6060,7 @@
         "dest_metro": "Hyderabad",
         "date_range": "Oct 27 \u2192 Nov 18",
         "duration_days": 22,
-        "as_of": "2026-10-25",
+        "as_of": "2026-10-26",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6071,18 +6071,18 @@
         "dest_metro": "Mumbai",
         "date_range": "Nov 10 \u2192 Dec 2",
         "duration_days": 22,
-        "as_of": "2026-10-25",
+        "as_of": "2026-10-26",
         "cadence": "weekly",
         "indicative": true
       },
       "DFW": {
-        "price_min": 1150,
+        "price_min": 1190,
         "route": "DFW-BLR",
         "origin_metro": "Dallas",
         "dest_metro": "Bengaluru",
         "date_range": "Oct 28 \u2192 Nov 17",
         "duration_days": 20,
-        "as_of": "2026-10-25",
+        "as_of": "2026-10-26",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6093,7 +6093,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Nov 10 \u2192 Dec 2",
         "duration_days": 22,
-        "as_of": "2026-10-25",
+        "as_of": "2026-10-26",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6104,7 +6104,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Nov 10 \u2192 Nov 30",
         "duration_days": 20,
-        "as_of": "2026-10-25",
+        "as_of": "2026-10-26",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6119,13 +6119,13 @@
         "cadence": "daily"
       },
       "IAD": {
-        "price_min": 843,
-        "route": "IAD-BOM",
+        "price_min": 961,
+        "route": "IAD-HYD",
         "origin_metro": "Washington DC",
-        "dest_metro": "Mumbai",
-        "date_range": "Oct 21 \u2192 Nov 10",
-        "duration_days": 20,
-        "as_of": "2026-10-25",
+        "dest_metro": "Hyderabad",
+        "date_range": "Nov 10 \u2192 Dec 2",
+        "duration_days": 22,
+        "as_of": "2026-10-26",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6136,7 +6136,7 @@
         "dest_metro": "Bengaluru",
         "date_range": "Nov 24 \u2192 Dec 14",
         "duration_days": 20,
-        "as_of": "2026-10-25",
+        "as_of": "2026-10-26",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6147,7 +6147,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Oct 21 \u2192 Nov 10",
         "duration_days": 20,
-        "as_of": "2026-10-25",
+        "as_of": "2026-10-26",
         "cadence": "weekly",
         "indicative": true
       }
