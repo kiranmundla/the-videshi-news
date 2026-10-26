@@ -714,6 +714,32 @@
       "review_slug": "418-review-roundup-critics"
     },
     {
+      "title": "Udta Teer",
+      "slug": "udta-teer-2026",
+      "release_date": "2026-10-23",
+      "status": "opening",
+      "language": "Hindi",
+      "director": "Aakash Kaushik",
+      "cast": [
+        "Ayushmann Khurrana Sara Ali Khan Ram Kapoor Rahul Bose Suhail Nayyar Gulshan Grover Mukul Dev Raghubir Yadav Brijendra Kala Sandeep Anand Supriya Pilgaonkar Smita Tambe"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=Udta%20Teer%20showtimes%20near%20me",
+      "why_watch": "Udta Teer is a Hindi film directed by Aakash Kaushik, starring Ayushmann Khurrana Sara Ali Khan Ram Kapoor Rahul Bose Suhail Nayyar Gulshan Grover Mukul Dev Raghubir Yadav Brijendra Kala Sandeep Anand Supriya Pilgaonkar Smita Tambe.",
+      "rating": "Opens Oct 23",
+      "rating_source": "Release date",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Udta_Teer_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "trailer_url": "https://www.youtube.com/watch?v=hN_ZUElLH44",
+      "cast_details": [
+        {
+          "name": "Ayushmann Khurrana Sara Ali Khan Ram Kapoor Rahul Bose Suhail Nayyar Gulshan Grover Mukul Dev Raghubir Yadav Brijendra Kala Sandeep Anand Supriya Pilgaonkar Smita Tambe",
+          "photo_url": ""
+        }
+      ]
+    },
+    {
       "title": "Ramayana: Part 1",
       "slug": "ramayana-part-1-2026",
       "release_date": "2026-11-05",
