@@ -1,0 +1,15 @@
+{
+  "kind": "carousel",
+  "article_slug": "indian-american-lawmakers-push-expedite-green-cards-healthcare",
+  "status": "held",
+  "stage": "factcheck",
+  "factcheck": {
+    "verdict": "fail",
+    "quote_present": true,
+    "verbatim_quote": true,
+    "speaker_grounded": false,
+    "role_grounded": true,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000579
+  }
+}

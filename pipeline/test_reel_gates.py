@@ -146,6 +146,41 @@ check("shout-case yields no entities",
       reel_factcheck.extract_entities("H-1B CRACKDOWN HITS ELECTIONS")
       == [])
 
+print("── fact-check: middle initials + honorific surnames (2026-10-26 —")
+print("          the green-card lawmakers carousel held forever: extract")
+print("          strips 'D.' to 'D' while the article keeps 'd.')")
+CLARKE_RAW = ("Rep. Yvette D. Clarke joined colleagues in urging "
+              "action. A letter led by Reps. Clarke and Grijalva "
+              "asks USCIS for an expedite pathway.")
+CLARKE_NORM = reel_factcheck.norm_text(CLARKE_RAW)
+eg = reel_factcheck.entity_grounded
+check("initial without period grounds ('Yvette D Clarke')",
+      eg("Yvette D Clarke", CLARKE_NORM, CLARKE_RAW) is True)
+check("initial with period grounds ('Yvette D. Clarke')",
+      eg("Yvette D. Clarke", CLARKE_NORM, CLARKE_RAW) is True)
+check("honorific+surname grounds ('Reps Clarke')",
+      eg("Reps Clarke", CLARKE_NORM, CLARKE_RAW) is True)
+check("honorific+surname grounds ('Rep. Clarke')",
+      eg("Rep. Clarke", CLARKE_NORM, CLARKE_RAW) is True)
+check("honorific grounds on fuller form alone (no honorific pairing)",
+      eg("Sen Young",
+         reel_factcheck.norm_text("Senator John Young spoke."),
+         "Senator John Young spoke.") is True)
+check("WRONG initial still held ('Yvette X. Clarke')",
+      eg("Yvette X. Clarke", CLARKE_NORM, CLARKE_RAW) is False)
+check("WRONG initial, no period, still held ('Yvette X Clarke')",
+      eg("Yvette X Clarke", CLARKE_NORM, CLARKE_RAW) is False)
+check("absent surname still held ('Reps Nobody')",
+      eg("Reps Nobody", CLARKE_NORM, CLARKE_RAW) is False)
+check("absent surname still held ('Rep. Smoot')",
+      eg("Rep. Smoot", CLARKE_NORM, CLARKE_RAW) is False)
+check("surname as lowercase common word does not ground ('Sen Young')",
+      eg("Sen Young",
+         reel_factcheck.norm_text(
+             "The young senator said the rice was young at heart."),
+         "The young senator said the rice was young at heart.")
+      is False)
+
 print("── carousel: verbatim quote gate")
 spec = {
     "eyebrow": "IMMIGRATION",

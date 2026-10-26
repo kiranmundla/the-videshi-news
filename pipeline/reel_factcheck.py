@@ -239,6 +239,58 @@ _SENTENCE_OPENERS = {
 }
 
 
+_INITIAL_DOT = re.compile(r"\b([a-z])\.(?=\s|$)")
+
+
+def _initial_norm(s):
+    """Collapse the period after a single-letter initial ('d.' -> 'd').
+    Applied symmetrically to entity and article inside entity_grounded,
+    so an initial matches with or without its period — and a WRONG
+    initial still fails ('x' never equals 'd'). Digits/decimals are
+    untouched ('1.5' is not an initial)."""
+    return _INITIAL_DOT.sub(r"\1", s)
+
+
+# Titles that pair with a surname as a complete reference to a person
+# ("Reps. Clarke", "Sen. Cruz", "Dr. Rao"). The article almost always
+# names the person in fuller form, so the shorthand itself is never a
+# contiguous substring — see the honorific path in entity_grounded.
+_HONORIFICS = {
+    "rep", "reps", "representative", "representatives",
+    "sen", "sens", "senator", "senators",
+    "dr", "mr", "mrs", "ms", "judge", "justice",
+    "gov", "governor", "ambassador", "secretary",
+    "prof", "professor", "president",
+}
+_HONORIFIC_RAW = (r"(?:Reps?|Sens?|Representatives?|Senators?|Dr|Mr|Mrs|"
+                  r"Ms|Judge|Justice|Gov|Governor|Ambassador|Secretary|"
+                  r"Prof|President)")
+
+
+def _surname_grounded(surname_norm, surname_orig, article_norm,
+                      article_raw):
+    """Strict name-context check for an honorific+surname entity: the
+    surname must appear in the article as part of a name — the article's
+    own honorific pairing ("reps. clarke"), an initial pairing
+    ("d. clarke"), or a fuller form in the raw text ("Yvette Clarke",
+    "Yvette D. Clarke", "Rep. Clarke"). A surname that appears only as
+    a lowercase common word does NOT ground."""
+    sn = re.escape(surname_norm)
+    if re.search(rf"\b(?:{'|'.join(sorted(_HONORIFICS))})\.? {sn}\b",
+                 article_norm):
+        return True
+    if re.search(rf"\b[a-z]\.? {sn}\b", article_norm):
+        return True
+    if article_raw:
+        so = re.escape(surname_orig)
+        if re.search(rf"\b{_HONORIFIC_RAW}\.\s+{so}\b", article_raw):
+            return True
+        if re.search(rf"(?:\b[A-Z][a-z]+|\b[A-Z]\.)\s+"
+                     rf"(?:[A-Z]\.\s+)?{so}\b", article_raw):
+            return True
+    return False
+
+
 def entity_grounded(entity, article_norm, article_raw=""):
     """Entity (original case) must appear in normalized article text.
     Sentence-initial capitalization is ambiguous, so if the full run
@@ -252,8 +304,19 @@ def entity_grounded(entity, article_norm, article_raw=""):
         return True
     if e and e in article_norm:
         return True
+    # Middle-initial equivalence: extract_entities strips the period
+    # off a single-letter initial ("Yvette D Clarke") while the
+    # article's normalized text keeps it ("yvette d. clarke"), so the
+    # plain substring check can never match. Collapse the period on
+    # BOTH sides — a wrong initial still fails.
+    e_i = _initial_norm(e)
+    a_i = _initial_norm(article_norm)
+    if e_i and e_i in a_i:
+        return True
     toks = e.split()
     if len(toks) >= 3 and " ".join(toks[1:]) in article_norm:
+        return True
+    if len(toks) >= 3 and _initial_norm(" ".join(toks[1:])) in a_i:
         return True
     orig_toks = entity.split()
     if len(toks) == 2 and len(orig_toks) == 2:
@@ -261,6 +324,12 @@ def entity_grounded(entity, article_norm, article_raw=""):
             return True
         if toks[0] in _SENTENCE_OPENERS and article_raw and re.search(
                 rf"\b{re.escape(orig_toks[1])}\b", article_raw):
+            return True
+        # Honorific + surname ("Reps Clarke", "Rep. Clarke"): ground
+        # only via the surname's own name context in the article.
+        if toks[0].rstrip(".") in _HONORIFICS and _surname_grounded(
+                toks[1], orig_toks[1].strip(".,"), article_norm,
+                article_raw):
             return True
     return False
 
