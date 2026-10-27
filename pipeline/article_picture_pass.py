@@ -39,6 +39,19 @@ GATES (never relaxed — inherited from the reel ladder + sourcer):
     skipped before any probing or sourcing.
   * No AI images, no Pexels/stock for named entities, true
     dimensions verified at the downloaded file.
+  * Hero subject gate (2026-10-26): a hero is sourced ONLY
+    for headline-subject entities (headline-named or the
+    writer's image_entities) — never for body-only mentions,
+    quoted analysts/sources, or place mentions on a story
+    about something else; no subject picture means an honest
+    miss. Entity hygiene: no entity may span a sentence
+    boundary or a possessive, end on a stopword or a
+    possessive form, or be a news outlet. Era gate: a file
+    dated (in its title) to a different year than the
+    headline's story, or marked archival, is a different
+    event — rejected for current stories. An inline never
+    duplicates the hero, another inline, or a picture the
+    body already carries.
 
 MODES:
   --dry-run (DEFAULT) — writes .state/picture-pass-report.json and
@@ -150,6 +163,122 @@ def patch_article(article_id, payload):
     return (r.stdout or "").strip() in ("200", "204")
 
 
+# ── entity hygiene (2026-10-26 live-run guards) ────────────────────
+# The Oct 25–26 runs kept sourcing from BROKEN entities: a
+# fragment spanning a sentence boundary ('Reuters. The' — the
+# phrase regex's token pattern swallows the period), a fragment
+# spanning a possessive ("Secret Toronto" out of "Victoria's
+# Secret Toronto"), possessive FORMS standing as names
+# ("New Zealand's"), and news OUTLETS standing as subjects
+# (a Reuters vehicle photo + the Reuters Building, sourced for
+# the entity 'Reuters'). None of these may ever be sourced.
+_OUTLET_ENTITIES = {
+    "reuters", "associated press", "press trust of india",
+    "bloomberg", "hindustan times", "times of india",
+    "the times of india", "indian express", "the indian express",
+    "the hindu", "ndtv", "bbc", "bbc news", "cnn",
+    "al jazeera", "the guardian", "new york times",
+    "the new york times", "washington post",
+    "the washington post", "wall street journal",
+    "the wall street journal", "financial times",
+    "the financial times", "the economist", "dow jones",
+    "cnbc", "fox news", "nbc news", "abc news",
+    "deccan chronicle", "deccan herald", "tribune india",
+    "the tribune", "telegraph india", "ani", "ians", "afp",
+    "upi", "xinhua", "ap",
+}
+
+# An entity may not BEGIN or END on a function word ('... of',
+# 'The ...' leftovers): those are phrase fragments, not names.
+_EDGE_STOPWORDS = {"the", "a", "an", "of", "in", "on", "at",
+                   "to", "and", "for", "by", "with", "from"}
+
+
+def _entity_hygiene_reject(name):
+    """Why this entity string may never be sourced, or None.
+    Pure string rules (the possessive-span rule needs the
+    article text — see _possessive_fragment)."""
+    if not name:
+        return "empty entity"
+    # Sentence-boundary span — but honorifics and initials
+    # ('Dr. Arun Raghavan', 'U.S. Congress', 'Yvette D.
+    # Clarke') carry periods that end no sentence: mask
+    # them before the check.
+    probe = re.sub(r"\b(?:Dr|Mr|Mrs|Ms|St|Prof|Sr|Jr|Mt|Ft|"
+                   r"Gen|Sen|Rep|Gov|Capt|Lt|Col)\.", "X", name)
+    probe = re.sub(r"\b[A-Z]\.", "X", probe)
+    if re.search(r"[.!?]\s+[A-Za-z]", probe):
+        return ("entity spans a sentence boundary "
+                f"({name!r}) — a fragment, not a name")
+    low = name.strip().lower()
+    if low in _OUTLET_ENTITIES or \
+            low.removeprefix("the ") in _OUTLET_ENTITIES:
+        return (f"{name!r} is a news outlet — outlets are "
+                "sources, never picture subjects")
+    toks = name.split()
+    if toks:
+        first = toks[0].strip(".,'’-").lower()
+        last = toks[-1].strip(".,'’-").lower()
+        if first in _EDGE_STOPWORDS or last in _EDGE_STOPWORDS:
+            return (f"entity {name!r} begins or ends on a "
+                    "stopword — a phrase fragment, not a name")
+        if toks[-1].lower().endswith(("'s", "’s")):
+            return (f"entity {name!r} is a possessive form — "
+                    "the possessed name is the entity, not "
+                    "its owner fragment")
+    return None
+
+
+def _possessive_fragment(name, texts):
+    """True when EVERY verbatim occurrence of `name` in the
+    article texts sits immediately after a possessive 's —
+    the 'entity' is the tail of a possessive phrase
+    ('Secret Toronto' occurs only inside "Victoria's Secret
+    Toronto"). A name that also occurs standing on its own
+    is a real entity."""
+    occ = 0
+    for t in texts:
+        if not t:
+            continue
+        i = t.find(name)
+        while i != -1:
+            occ += 1
+            if t[max(0, i - 3):i] not in ("'s ", "’s "):
+                return False
+            i = t.find(name, i + 1)
+    return occ > 0
+
+
+_ATTR_VERBS = ("said", "says", "told", "according to", "noted",
+               "argued", "wrote", "explained", "added",
+               "pointed out", "estimates", "expects", "warned",
+               "urged", "claimed", "observed", "reckons")
+
+
+def _is_quoted_source(name, body_text):
+    """True when every mention of `name` in the body sits
+    inside quotation marks or beside an attribution verb —
+    the person is a QUOTED SOURCE (an analyst cited for a
+    view), not the story's subject. Quoted sources are never
+    hero subjects (the redistricting story's hero was sourced
+    to a photo keyed to its quoted analyst)."""
+    if not name or not body_text:
+        return False
+    starts = [m.start()
+              for m in re.finditer(re.escape(name), body_text)]
+    if not starts:
+        return False
+    for i in starts:
+        window = body_text[max(0, i - 90):i + len(name) + 90]
+        low = window.lower()
+        if any(v in low for v in _ATTR_VERBS):
+            continue
+        if any(q in window for q in ('"', "“", "”", "‘", "’")):
+            continue
+        return False
+    return True
+
+
 # ── entity extraction + ranking (pure) ──────────────────────────────
 def _sane_image_entity(raw):
     """image_entities is trusted only when sane: a clean short
@@ -161,6 +290,8 @@ def _sane_image_entity(raw):
     if not e or e.lower() in _CATEGORY_JUNK:
         return None
     if len(e) > 60 or len(e.split()) > 5 or "/" in e:
+        return None
+    if _entity_hygiene_reject(e):
         return None
     return e
 
@@ -258,6 +389,10 @@ def extract_article_entities(article):
             return
         if name.lower() in _CATEGORY_JUNK:
             return
+        if _entity_hygiene_reject(name):
+            return
+        if _possessive_fragment(name, (headline, body_text)):
+            return
         if source != "image_entities" and any(
                 t.strip(".,'’-").lower() in _PHRASE_TOKEN_DENY
                 for t in name.split()):
@@ -350,6 +485,12 @@ def extract_article_entities(article):
                         for other, otoks in tok_sets):
             continue
         kept.append(e)
+    # Quoted-source tag: a person the body only QUOTES (an
+    # analyst cited for a view) is not the story's subject —
+    # the hero gate refuses them even if they rank highly.
+    for e in kept:
+        e["quoted_source"] = e["kind"] == "person" and \
+            _is_quoted_source(e["name"], body_text)
     return kept[:MAX_ENTITIES]
 
 
@@ -695,7 +836,9 @@ def evaluate_article_candidate(page, entity, route, min_w, min_h,
                                hint_terms=frozenset(),
                                entity_kind=None,
                                person_context=None,
-                               person_domain=None):
+                               person_domain=None,
+                               story_years=frozenset(),
+                               story_historical=False):
     """One Commons search hit -> (candidate | None, ledger_row).
     Same gates as reel_entity_sourcing.evaluate_commons_page
     (photograph type, subject denylist, license, exact identity,
@@ -807,6 +950,60 @@ def evaluate_article_candidate(page, entity, route, min_w, min_h,
                           f"{person}, a specific person who is "
                           "not the entity — association is not "
                           "depiction")
+    # Era gate (2026-10-26 live-run lesson): a dated file
+    # whose date is not the story's date is a different event,
+    # however well the name matches — a 1939 archival Queen
+    # Street photograph inside a 2026 Diwali story, a 2022
+    # White House Diwali photo captioned as Times Square
+    # 2026. A year in the file TITLE is the file dating
+    # itself: pre-2000 means archival; a modern year disjoint
+    # from the headline's years means a different year's
+    # event. Historical stories (story_historical) are
+    # exempt — a look-back piece may carry archival pictures.
+    if not story_historical:
+        # A person's birth/lifespan years in a title
+        # ('(born 1993)', '(1939–2021)') date the PERSON,
+        # not the photograph — strip them before dating
+        # the file.
+        title_dated = re.sub(
+            r"\(\s*(?:born\s+)?\d{4}\s*[–—-]\s*\d{4}\s*\)"
+            r"|\(\s*born\s+\d{4}\s*\)"
+            r"|\b(?:born|died)\s+\d{4}\b",
+            " ", title)
+        title_years = {int(y) for y in re.findall(
+            r"\b(?:18|19|20)\d{2}\b", title_dated)}
+        archival_years = {y for y in title_years if y < 2000}
+        if archival_years:
+            return reject(
+                "era: the file is dated "
+                f"{sorted(archival_years)[0]} in its title — "
+                "an archival/historical photograph, not this "
+                "current story's event")
+        if title_years and story_years and \
+                title_years.isdisjoint(story_years):
+            return reject(
+                "era: the file is dated "
+                f"{sorted(title_years)[0]} in its title but "
+                "this story is dated "
+                f"{sorted(story_years)[0]} — a different "
+                "year's event, not this story's")
+        arch_text = f"{title} {cats}".lower()
+        if any(m in arch_text for m in
+               ("archival", "glass negative", "glass plate",
+                "vintage photograph")):
+            return reject(
+                "era: the file's title/categories mark it as "
+                "an archival/vintage photograph, not this "
+                "current story's event")
+        m = re.search(
+            r"\b(?:photograph|photo|taken|image)\s+"
+            r"(?:in|from|of)\s+((?:18|19)\d{2})\b",
+            RES._strip_html(desc).lower())
+        if m:
+            return reject(
+                f"era: the file's description dates the "
+                f"photograph to {m.group(1)} — an archival "
+                "photograph, not this current story's event")
     if hint_terms:
         evidence = (f"{title} {RES._strip_html(desc)} {cats}"
                     ).lower()
@@ -940,6 +1137,19 @@ def source_entity_images(entity_rec, article, hint, net, min_w,
     person_context = _person_context_terms(
         article, name, all_entities=all_entities) if is_person \
         else None
+    # Era context for the candidate era gate: the years the
+    # HEADLINE dates the story to, and whether the story is
+    # itself a historical/look-back piece (exempt — archival
+    # pictures are legitimate there).
+    _headline = article.get("headline") or ""
+    story_years = frozenset(
+        int(y) for y in re.findall(r"\b(?:19|20)\d{2}\b",
+                                   _headline))
+    story_historical = bool(
+        any(y < 2000 for y in story_years)
+        or re.search(r"\b(history|historical|anniversary|"
+                     r"years ago|throwback|archives?|vintage|"
+                     r"centenary)\b", _headline.lower()))
 
     def consider(cand, row):
         ledger.append(row)
@@ -971,7 +1181,9 @@ def source_entity_images(entity_rec, article, hint, net, min_w,
                     entity_kind=entity_rec.get("kind"),
                     person_context=person_context,
                     person_domain=(article.get("category") or "")
-                    .strip().lower())
+                    .strip().lower(),
+                    story_years=story_years,
+                    story_historical=story_historical)
                 consider(cand, row)
     except Exception as e:
         ledger.append({"candidate": "(route A)", "entity": name,
@@ -1005,7 +1217,9 @@ def source_entity_images(entity_rec, article, hint, net, min_w,
                     entity_kind=entity_rec.get("kind"),
                     person_context=person_context,
                     person_domain=(article.get("category") or "")
-                    .strip().lower())
+                    .strip().lower(),
+                    story_years=story_years,
+                    story_historical=story_historical)
                 consider(cand, row)
         except Exception as e:
             ledger.append({"candidate": "(route C)", "entity": name,
@@ -1255,7 +1469,8 @@ def process_article(article, net=None, apply=False, log=print,
         picks = _source_inlines(article, entities, hint, net,
                                 want, seen_titles, rec, log,
                                 hero_url=hero_url,
-                                hero_pick=hero_pick)
+                                hero_pick=hero_pick,
+                                exclude_urls=_body_image_urls(body))
         rec["inlines"]["proposed"] = [
             {**_provenance(c, c.get("_verified_size")),
              "caption": build_caption(c["entity"], c, article)}
@@ -1409,14 +1624,65 @@ def _verify_pick(cand, net, download_dir, slug, log,
     return cand
 
 
+def headline_subject_names(article, entities):
+    """The article's SUBJECT entities — the only ones a hero
+    may be sourced for: entities named in the headline
+    (extracted with source='headline', or named there
+    verbatim) plus the writer's declared primary subjects
+    (image_entities). Body-only mentions are NOT subjects:
+    the Oct 25–26 runs filled heroes from a place the story
+    merely mentioned (a Biman Bangladesh 787 keyed to
+    'Toronto Pearson' on an Air India story), a company the
+    story merely cited (a Goldman Sachs building on an
+    Infosys earnings story) and a person the story merely
+    quoted. Those entities stay inline-eligible under the
+    inline gates; they can never carry the hero."""
+    headline = (article.get("headline") or "").lower()
+    subs = set()
+    for e in entities:
+        name = e["name"]
+        if e.get("source") in ("headline", "image_entities"):
+            subs.add(name.lower())
+        elif re.search(r"\b" + re.escape(name.lower()) + r"\b",
+                       headline):
+            subs.add(name.lower())
+    return subs
+
+
 def _source_hero(article, entities, hint, net, floor_w, seen_titles,
                  rec, log, apply=False):
     """Hero sourcing across ranked entities. Person entities go
-    cache → Commons exact-name → (apply only) Source 3.8."""
+    cache → Commons exact-name → (apply only) Source 3.8.
+    HERO SUBJECT GATE: only headline-subject entities are
+    tried (see headline_subject_names); a quoted-source person
+    is refused even then. No subject candidate clearing the
+    gates means the hero stays an honest miss."""
     slug = article.get("slug") or "article"
+    subjects = headline_subject_names(article, entities)
     best = None
     for rec_e in entities:
         name = rec_e["name"]
+        if name.lower() not in subjects:
+            rec["ledger"].append(
+                {"candidate": "(entity)", "route": "hero",
+                 "entity": name, "verdict": "rejected",
+                 "reason": "hero subject gate: not a headline "
+                           "subject — heroes source from the "
+                           "article's headline subjects only; "
+                           "body mentions, quoted sources and "
+                           "place mentions are inline-eligible "
+                           "but never carry the hero"})
+            continue
+        if rec_e.get("quoted_source"):
+            rec["ledger"].append(
+                {"candidate": "(entity)", "route": "hero",
+                 "entity": name, "verdict": "rejected",
+                 "reason": "hero subject gate: the body only "
+                           "QUOTES this person (a cited analyst/"
+                           "source), never makes them the "
+                           "subject — quoted sources are not "
+                           "hero subjects"})
+            continue
         cands = []
         # The person_images cache is an exact-name read-only
         # lookup — a hit is itself identity verification, so it
@@ -1515,10 +1781,24 @@ def _source_hero(article, entities, hint, net, floor_w, seen_titles,
     return best
 
 
+def _body_image_urls(body):
+    """Every image URL already inside the body (markdown
+    images + HTML <img src>) — an inline must never duplicate
+    a picture the article already carries."""
+    urls = set()
+    for m in re.finditer(r"!\[[^\]]*\]\(\s*([^)\s]+)", body or ""):
+        urls.add(m.group(1))
+    for m in re.finditer(r"<img[^>]+src=[\"']([^\"']+)", body or ""):
+        urls.add(m.group(1))
+    return urls
+
+
 def _source_inlines(article, entities, hint, net, want, seen_titles,
-                    rec, log, hero_url=None, hero_pick=None):
+                    rec, log, hero_url=None, hero_pick=None,
+                    exclude_urls=frozenset()):
     """Inline sourcing: at most one pick per entity, distinct
-    files, never the hero's file, inline floors."""
+    files, never the hero's file, never a file already in the
+    body or already picked as an inline, inline floors."""
     slug = article.get("slug") or "article"
     picks = []
     used_entities = {}
@@ -1528,6 +1808,7 @@ def _source_inlines(article, entities, hint, net, want, seen_titles,
     if hero_pick:
         hero_files.add(hero_pick["file_url"])
         hero_files.add(hero_pick["title"])
+    used_urls = set(exclude_urls)
     for rec_e in entities:
         if len(picks) >= want:
             break
@@ -1543,6 +1824,16 @@ def _source_inlines(article, entities, hint, net, want, seen_titles,
             if c["file_url"] in hero_files or \
                     c["title"] in hero_files:
                 continue
+            if c["file_url"] in used_urls:
+                rec["ledger"].append(
+                    {"candidate": c["title"], "route": c["route"],
+                     "entity": c["entity"], "verdict": "rejected",
+                     "reason": "duplicate: this file is already "
+                               "in the article body or was "
+                               "already picked as an inline — "
+                               "never illustrate one article "
+                               "twice with the same picture"})
+                continue
             if _verify_pick(c, net, DOWNLOAD_DIR, slug, log,
                             min_w=INLINE_MIN_W,
                             min_h=INLINE_MIN_H) is None:
@@ -1552,6 +1843,7 @@ def _source_inlines(article, entities, hint, net, want, seen_titles,
                      "reason": "failed verification at the file"})
                 continue
             picks.append(c)
+            used_urls.add(c["file_url"])
             used_entities[rec_e["name"]] = 1
             break
     return picks
