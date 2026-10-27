@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "microsoft-voluntary-buyouts-60000-employees",
+  "name": "microsoft-voluntary-buyouts-60000-employees",
+  "script": "reel-runs/2026-10-26-microsoft-voluntary-buyouts-60000-employees/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000675
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-26-microsoft-voluntary-buyouts-60000-employees/output-v3/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "city-lights-of-the-united-states-2012",
+      "hero": "lincoln-university-sports-scholars-cricket-2",
+      "grid": "microsoft-atlanta",
+      "diaspora": "building92microsoft"
+    }
+  },
+  "manifest": "reel-runs/2026-10-26-microsoft-voluntary-buyouts-60000-employees/output-v3/render-manifest.json",
+  "video": "reel-runs/2026-10-26-microsoft-voluntary-buyouts-60000-employees/output-v3/microsoft-voluntary-buyouts-60000-employees.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-10-26-microsoft-voluntary-buyouts-60000-employees/output-v3/tiktok-caption.txt"
+}

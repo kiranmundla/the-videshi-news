@@ -1,0 +1,29 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "uscis-approving-h1b-petitions-without-100000-fee",
+  "name": "uscis-approving-h1b-petitions-without-100000-fee",
+  "script": "reel-runs/2026-10-25-uscis-approving-h1b-petitions-without-100000-fee/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000729
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-25-uscis-approving-h1b-petitions-without-100000-fee/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "h-1b-visa-updates",
+      "hero": "dhs-senior-official-kristie-canegallo-attend",
+      "diaspora": "figure-2-process-of-obtaining-an-h-1b-visa-5",
+      "payoff": "dhs-senior-official-kristie-canegallo-attend-2"
+    }
+  },
+  "detail": "beat 'hero': block bottom 1715 past the safe zone"
+}

@@ -1602,5 +1602,16 @@
     "top_story_slug": "government-cut-stake-four-psu-banks-75-percent-idbi-fairfax",
     "quick_hit_count": 5,
     "deadline_count": 2
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-26T13:58:11.958885+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 26, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "kumaraswamy-accuses-karnataka-cm-600-crore-plot-deve-gowda-family",
+    "quick_hit_count": 5,
+    "deadline_count": 3
   }
 ]

@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "uscis-approving-h1b-petitions-without-100000-fee",
+  "name": "uscis-approving-h1b-petitions-without-100000-fee",
+  "script": "reel-runs/2026-10-25-uscis-approving-h1b-petitions-without-100000-fee/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "stats[2].label"
+    ],
+    "llm_cost_usd": 0.000736
+  }
+}

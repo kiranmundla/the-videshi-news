@@ -1,0 +1,174 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "microsoft-voluntary-buyouts-60000-employees",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Microsoft Offers Voluntary Buyouts to 60,000 Employees Across Four Countries",
+        "numbers": [
+          60000.0
+        ],
+        "entities": [
+          "Microsoft Offers Voluntary Buyouts",
+          "Employees Across Four Countries"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Microsoft offers buyouts to 60,000 employees across four countries.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The Voluntary Exit Offer covers about a quarter of Microsoft's 223,000-person workforce in the U.S., Canada, India and the U.K., with decisions due in the first week of December.",
+        "numbers": [
+          223000.0
+        ],
+        "entities": [
+          "Voluntary Exit Offer"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the offer covers a quarter of the workforce with a decision deadline.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The Voluntary Exit Offer covers about 60,000 employees, roughly a quarter of Microsoft's 223,000-person workforce",
+        "numbers": [
+          60000.0,
+          223000.0
+        ],
+        "entities": [
+          "Voluntary Exit Offer"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the offer covers 60,000 employees, about a quarter of the workforce.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The offer covers eligible staff at level 70 and below on participating teams in the United States, Canada, India and the United Kingdom",
+        "numbers": [
+          70.0
+        ],
+        "entities": [
+          "United States",
+          "United Kingdom"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article specifies eligibility for staff at level 70 and below in those countries.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The package equals Microsoft's standard severance, including base pay by tenure and level, continued stock vesting and healthcare for a fixed period",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article details that the package includes standard severance components.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Amy Coleman",
+        "numbers": [],
+        "entities": [
+          "Amy Coleman"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Amy Coleman is mentioned in the article as the executive vice president.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Microsoft Executive Vice President and Chief People Officer",
+        "numbers": [],
+        "entities": [
+          "Microsoft Executive Vice President",
+          "Chief People Officer"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Amy Coleman as the Chief People Officer.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Microsoft Offers Voluntary Buyouts to 60,000 Employees Across Four Countries",
+        "numbers": [
+          60000.0
+        ],
+        "entities": [
+          "Microsoft Offers Voluntary Buyouts",
+          "Employees Across Four Countries"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000557,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

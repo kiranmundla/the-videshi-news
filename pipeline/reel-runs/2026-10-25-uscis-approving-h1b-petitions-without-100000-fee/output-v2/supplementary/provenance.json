@@ -1,0 +1,373 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "uscis-approving-h1b-petitions-without-100000-fee",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "USCIS",
+    "H-1B",
+    "First Circuit",
+    "Ninth Circuit",
+    "Petitions Without",
+    "United States"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Congressional Record - 2016-01-28.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Congressional Record Volume 165, Issue 176, 2019-11-05.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:RL30498 (IA RL30498-crs).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:DHS Senior Official Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, Maryland on June 20, 2024 - 10.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (payoff)",
+      "reason": "3500x2333, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:DHS Senior Official Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, Maryland on June 20, 2024 - 13.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "3500x2333, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Glendale Daily Press 1923-01-19 (IA cgl 002012).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Intelligence Bulletin Vol 01 No 03 November 1942 and Intelligence Bulletin Vol 01 No 04 December 1942 (IA 1942-11IntelligenceBulletinVol01No03).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Love eternal (IA loveeternal00hagg).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:NAVY MEDICINE Vol. 90, No. 4 July-August 1999 (IA NavyMedicineVol.90No.4July-august1999).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Numerical experiments in unsteady flows through the use of full Navier-Stokes equations. (IA numericalexperim00putz).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Sierra Madre News 1915-07-02 (IA csie 000520).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Lovecraft Collectors Library, Volume III.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The top management organization of the Bureau of ships. (IA topmanagementorg19507spri).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1920-07-29) (IA victoriadailytimes19200729).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Your wood can last for centuries (IA CAT77685762).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:2023 H-1B admissions by place of birth.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:2e suite d'orchestre, op. 38 - Emile Bernard. 1b, Ronde fantastique - r\u00e9duction pour piano \u00e0 4 mains, H. Fr\u00e8ne - btv1b90744656 (07 of 24).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:2e suite d'orchestre, op. 38 - Emile Bernard. 1b, Ronde fantastique - r\u00e9duction pour piano \u00e0 4 mains, H. Fr\u00e8ne - btv1b90744656 (17 of 24).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:2e suite d'orchestre, op. 38 - Emile Bernard. 1b, Ronde fantastique - r\u00e9duction pour piano \u00e0 4 mains, H. Fr\u00e8ne - btv1b90744656 (20 of 24).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:Charles H. Fowler (1b).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 528x640 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Figure 2- Process of Obtaining an H-1B Visa (5405276752).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "2275x1517, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Frontispiece, Six Masnavis of Jami (1570-72). TSK H.1483 folio 1b-2a.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:Frontispiece from a Hasht bihisht of Amir Khusraw Dihwali, dated 1496-97, probably Herat, Topkapi Sarayi Library, H.676, folios 1b-2a.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:H-1B Visa Updates.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "3375x4219, CC0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:1st Circuit map.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:1st Circuit seal.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 147x144 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ebisu Circuit - Higashi Course.gif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:First Circuit Tester Hioki Model-H Kou Tester 1946.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Illustration of Kirchhoffs circuit laws.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Kirchhoff's first circuit law diagram.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Marconi first transatlantic radio transmitter circuit - Poldhu 1901.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 984x365 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:MoakleyFederalCourthouseRear.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'First Circuit'"
+    },
+    {
+      "candidate": "File:Seal of the United States Court of Appeals for the First Circuit.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:US-CourtOfAppeals-1stCircuit-Seal.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Ninth Circuit Seal color high 092223.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Records and briefs of the United States Circuit Court of Appeals for the Ninth Circuit (2194) (14579448120).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Records and briefs of the United States Circuit Court of Appeals for the Ninth Circuit (2194) (14579684607).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Records and briefs of the United States Circuit Court of Appeals for the Ninth Circuit (2194) (14743138966).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Records and briefs of the United States Circuit Court of Appeals for the Ninth Circuit (2194) (14766150905).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Records and briefs of the United States Circuit Court of Appeals for the Ninth Circuit (2194) (14786015973).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Records and briefs of the United States Circuit Court of Appeals for the Ninth Circuit (2194) (14786019173).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Records and briefs of the United States Circuit Court of Appeals for the Ninth Circuit (2194) (14786025563).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Robert Martin v. City of Boise.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Seal of the United States Courts, Ninth Judicial Circuit.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Mrs Emmeline Pankhurst, Leader of the Women's Suffragette movement, is arrested outside Buckingham Palace while trying to present a petition to King George V in May 1914. Q81486.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Petitions Without'"
+    },
+    {
+      "candidate": "File:NDL10288472 Petitions part1.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Petition for Naturalization of Pasquake Migliozzi - DPLA - 80ea8d96c2630fe2a520b97d1db927e2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "3620x5443, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Petition for Naturalization of YAGODKIN, Marie - DPLA - 4f1728fd37b23a049278a133daf43bbb.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "2682x5156, Public domain, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "h-1b-visa-updates",
+      "path": "h-1b-visa-updates.jpg",
+      "size": [
+        3375,
+        4219
+      ],
+      "role": "establishing",
+      "subject": "From interview mandates to higher fees understand how the new H-1B rules affect your chances.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:H-1B_Visa_Updates.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/H-1B_Visa_Updates.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Immigrationconsultantcalifornia"
+    },
+    {
+      "beat": "hero",
+      "label": "dhs-senior-official-kristie-canegallo-attend",
+      "path": "dhs-senior-official-kristie-canegallo-attend.jpg",
+      "size": [
+        3500,
+        2333
+      ],
+      "role": "interior",
+      "subject": "CAMP SPRINGS (June 20, 2024) Department of Homeland Security (DHS), Senior Official Performing the Duties of the Deputy Secretary, Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, M.D. (DHS ph",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:DHS_Senior_Official_Kristie_Canegallo,_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs,_Maryland_on_June_20,_2024_-_13.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/82/DHS_Senior_Official_Kristie_Canegallo%2C_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs%2C_Maryland_on_June_20%2C_2024_-_13.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "DHSgov"
+    },
+    {
+      "beat": "diaspora",
+      "label": "figure-2-process-of-obtaining-an-h-1b-visa-5",
+      "path": "figure-2-process-of-obtaining-an-h-1b-visa-5.jpg",
+      "size": [
+        2275,
+        1517
+      ],
+      "role": "interior",
+      "subject": "This image is excerpted from a U.S. Government Accountability Office report, available here: www.gao.gov/products/GAO-11-26",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Figure_2-_Process_of_Obtaining_an_H-1B_Visa_(5405276752).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Figure_2-_Process_of_Obtaining_an_H-1B_Visa_%285405276752%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "U.S. Government Accountability Office from Washington, DC, United States"
+    },
+    {
+      "beat": "payoff",
+      "label": "dhs-senior-official-kristie-canegallo-attend-2",
+      "path": "dhs-senior-official-kristie-canegallo-attend-2.jpg",
+      "size": [
+        3500,
+        2333
+      ],
+      "role": "interior",
+      "subject": "CAMP SPRINGS (June 20, 2024) Department of Homeland Security (DHS), Senior Official Performing the Duties of the Deputy Secretary, Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, M.D. (DHS ph",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:DHS_Senior_Official_Kristie_Canegallo,_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs,_Maryland_on_June_20,_2024_-_10.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/DHS_Senior_Official_Kristie_Canegallo%2C_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs%2C_Maryland_on_June_20%2C_2024_-_10.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "DHSgov"
+    }
+  ]
+}

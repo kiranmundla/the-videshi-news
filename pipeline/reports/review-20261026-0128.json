@@ -1,0 +1,39 @@
+[
+  {
+    "id": "e693ba72-d8bd-40eb-9d61-44ff66c80f01",
+    "headline": "Auckland's Diwali Festival Returns October 31 With Fireworks, Sky Tower Lights",
+    "slug": "auckland-diwali-festival-2026-sky-tower-fireworks",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the dates in the headline to avoid confusion; it currently states October 31 and November 1, 2026, but the festival is on October 31 and November 1, 2023.",
+        "Include specific details about transportation options and any potential road closures or public transport changes during the festival to help readers plan their visit effectively.",
+        "Add a quote from an organizer or a participant to provide personal insight and enhance the article's depth."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Auckland Council or the festival organizers announcing the event to provide official confirmation and updates."
+      ]
+    }
+  },
+  {
+    "id": "175e1481-c101-4fcd-9812-bf1f07a1f555",
+    "headline": "Shiprocket's Fastrr Enters Food Ordering, Promising Restaurants Zero Commission",
+    "slug": "shiprocket-fastrr-food-commerce-punjabi-angithi-bikkgane-biryani",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the partnerships and the expected rollout of services. For example, include specific dates for when the restaurants will start using the platform and any anticipated expansion plans.",
+        "Provide more context on the significance of the zero-commission model. Explain how it compares to existing models in more detail, perhaps by including a brief comparison of other major players in the market and their commission structures.",
+        "Ensure that all statistics and claims are accurately attributed to their sources. For instance, clarify the source of the 'December 2025 NCAER study' mentioned in the article, as it appears to be a typographical error for a past date.",
+        "Include a brief quote from a representative of Shiprocket or one of the restaurant partners to add a human element and authority to the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or announcement from Shiprocket regarding the launch of Fastrr in food commerce to provide official context and enhance credibility."
+      ]
+    }
+  }
+]

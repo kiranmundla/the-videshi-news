@@ -1,0 +1,579 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "verizon-q3-2026-earnings-phone-adds-guidance-raised",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Verizon",
+    "Dan Schulman",
+    "Zacks",
+    "Earnings Beat Estimates",
+    "Markets Finance",
+    "PayPal CEO Dan Schulman. The"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:75 FR 43825 anti-circumvention exemption.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:ADDING A REAL ESTATE INVESTMENT TRUST (REIT) INDEX OPTION TO THE THRIFT SAVINGS PLAN- CONSIDERING THE VIEWS AND ADVISORY ROLE OF THE EMPLOYEE THRIFT ADVISORY COUNCIL (ETAC) (IA gov.gpo.fdsys.CHRG-109hhrg29849).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:AN EXAMINATION OF COMPETITION IN THE WIRELESS MARKET (IA gov.gpo.fdsys.CHRG-113shrg95528).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:ARCHITECTING AUTONOMOUS ACTIONS IN NAVY ENTERPRISE NETWORKS (IA architectingauto1094564857).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:CELL PHONES ON AIRCRAFT- NUISANCE OR NECESSITY? (IA gov.gpo.fdsys.CHRG-109hhrg25908).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:CONSUMER WIRELESS ISSUES (IA gov.gpo.fdsys.CHRG-110shrg75972).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Memorandum for the Record (MFR) of the Interview of David A. Rosenzweig of the Verizon Conducted by Team 8 - DPLA - 56f23b0491eb6aae657847e6cf489a69.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:PROTECTING CONSUMERS' PHONE RECORDS (IA gov.gpo.fdsys.CHRG-109shrg27705).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:SAVING THE SAVINGS CLAUSE- CONGRESSIONAL INTENT, THE TRINKO CASE, AND THE ROLE OF THE ANTITRUST LAWS IN PROMOTING COMPETITION IN THE TELECOM SECTOR (IA gov.gpo.fdsys.CHRG-108hhrg90546).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:TELECOMMUNICATIONS POLICY REVIEW- A VIEW FROM INDUSTRY (IA gov.gpo.fdsys.CHRG-108shrg21481).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A modern Verizon retail store in Burlington, Vermont.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "4440x2938, CC BY 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Verizon (2024).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 420x236 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Verizon 2024 (symbol).svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Verizon Building (8156005279).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (payoff)",
+      "reason": "2592x3456, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Antiquit\u00e9s, curiosit\u00e9s et tableaux (IA antiquitescurios00jacq).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Catalogue des collections remarquables d 'armes et objets ethnologiques de Java, d 'Atjeh, des Bataks .. de C. de Rijk et de I. Rink, et de Mme la Baronne v. S. sous la direction .. J. Schulman, M dd 161o.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Christ Resting after Flagellation after Jan Gossart J. Schulman sale.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Dan Schulman'"
+    },
+    {
+      "candidate": "File:Collections de feu Mme J. J. Schreuder-Veen\u0320 d\u00e9c\u00e9d\u00e9e \u00e0 la villa Huizeroog (IA antiquitesetquel00jacq).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Dan Schulman.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "3000x2000, CC BY-SA 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Davos 2016 - The Transformation of Finance.webm",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:Listening to an update from Dan Schulman, CEO of PayPal, at -MWC16 (24854692779).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "2448x3264, CC BY-SA 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:An Index To Unknown And Unknown Worlds By Author And Title - Stuart Hoffman (Sirius Press, 1955).djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Books from the Library of Congress (IA rinaldisguideboo00tamp).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Brown bag - Panthea from Reboot.webm",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:Congressional Record Volume 165, Issue 067, 2019-04-22.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Future Audiences Social Creators Research TikTok FEB 2024.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Our Town, Narberth, PA (April 15, 1915) (IA OurTownNarberthPA19150415).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Polk's Astoria City and Clatsop County Directory 1913, volume VII.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:THE DEFENSE TRAVEL SYSTEM- BOON OR BOONDOGGLE? (IA gov.gpo.fdsys.CHRG-109shrg24241).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Negro Travelers' Green Book 1953.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:USENIX '11 Security Symposium Proceedings.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Firma Alex Zack.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 400x160 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rep. Zack Hawkins.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Zack Forde-Hawkins (2025).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Zack Greinke on July 29, 2009.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Zack Kassian Canucks practice 2012.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Zack Kassian Canucks practice 2012a.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Zack Sabre Jr, IWGP Champion.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Zack Snyder by Gage Skidmore 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Zack Stevenson.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 604x906 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Zack Tabudlo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:2021.07.21 Wayne National Forest Headquarters and Athens Ranger Station.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:7th Army Training Command Headquarters and Headquarters Company holds Change of Command ceremony (6223490).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:7th Army Training Command Headquarters and Headquarters Company holds Change of Command ceremony (6223491).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:7th Army Training Command Headquarters and Headquarters Company holds Change of Command ceremony (6223492).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:7th Army Training Command Headquarters and Headquarters Company holds Change of Command ceremony (6223493).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:7th Army Training Command Headquarters and Headquarters Company holds Change of Command ceremony (6223494).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Death and Interment Record for Zack Straws - NARA - 279640.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:FEMA - 45644 - Mass Care Memorandum of Agreement (MOA) signing at FEMA Headquarters.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Mark Maftei investigates King Eider nest (18164309549).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 697x466 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Zack Yankush, a member of the Bikes Over Baghdad team, rides up a ramp at the U.S. Air Force 379th Air Expeditionary Wing headquarters at an undisclosed location in Southwest Asia Nov. 9, 2013 131109-F-EN483-049.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:2017 ACC Wrestling Tournament at Reynolds Coliseum (32455492523).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Commencement (1915) (IA commencement19151915univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:EtihadCampus.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Exhibitors Herald World (IA exhibitorsherald97unse).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:FromCoL 8234827969.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Get Shawn in the Sky.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:SUFPF2a.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 403x302 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1976univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Radiant (IA radiantjan1909atla).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Zack Zavatsky vs Michael Macchiavello (33228824386).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Annaberg, Zick-Zack-Promenade 4.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Dushanbe, Tajikistan - panoramio - Zack Knowles.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Jeff Landfield and Zack Fields (44899653245).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Michael Duane Zack III.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 313x385 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mildenhall, Post box at the side of Zack FM - geograph.org.uk - 5847647.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Mildenhall, Zack FM - geograph.org.uk - 5847641.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Rachel Zack Nzulezo B1 B006.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Zack Fields (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 597x806 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Zack Holmes House.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:Zack Stansbury House.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Zacks'"
+    },
+    {
+      "candidate": "File:An Irish Catholic's advice to his brethren, how to estimate their present situation, and repel French invasion, civil wars, and slavery (IA irishcatholicsad00scul).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Estimating, cost keeping and profit making in the plumbing, heating, and sheet metal trades; (IA estimatingcostke00unse).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Irfan Qureshi Rapper Biography, Age, Net Worth, Songs, and Achievements.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:LifeMagazine7Apr1910.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Manual of the railroads of the United States (IA bub gb E6koAAAAYAAJ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:NIE 11-23-86, Sept 86, Implications of the Decline in Soviet Hard Currency Earnings.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:PIIGS Mk 4 map.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Scorecard Trump vs. Obama.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Earnings Beat Estimates'"
+    },
+    {
+      "candidate": "File:The American missionary (IA americanmissiona00bear).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1913-06-20) (IA victoriadailytimes19130620).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Andrew Steer & Jos\u00e9 Manuel Entrecanales - Innovate4Climate Finance & Markets Week.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "3600x2400, CC BY-SA 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Exploitation of free markets and globalization to finance terrorists (IA exploitationoffr1094510378).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Finance and Markets Working Group Logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:IP Finance Dialogue \u2013 Expanding Horizons on IP Finance and Valuation - 53346909618.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "6000x4000, CC BY 2.0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "a-modern-verizon-retail-store-in-burlington",
+      "path": "a-modern-verizon-retail-store-in-burlington.jpg",
+      "size": [
+        4440,
+        2938
+      ],
+      "role": "establishing",
+      "subject": "A modern Verizon retail store in Burlington, Vermont",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:A_modern_Verizon_retail_store_in_Burlington,_Vermont.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/A_modern_Verizon_retail_store_in_Burlington%2C_Vermont.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "Harrison Keely"
+    },
+    {
+      "beat": "hero",
+      "label": "dan-schulman",
+      "path": "dan-schulman.jpg",
+      "size": [
+        3000,
+        2000
+      ],
+      "role": "establishing",
+      "subject": "PayPal CEO Dan Schulman.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Dan_Schulman.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Dan_Schulman.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "PopTech, Kris Klug"
+    },
+    {
+      "beat": "payoff",
+      "label": "verizon-building-8156005279",
+      "path": "verizon-building-8156005279.jpg",
+      "size": [
+        2592,
+        3456
+      ],
+      "role": "establishing",
+      "subject": "Verizon Building",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Verizon_Building_(8156005279).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Verizon_Building_%288156005279%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "Eden, Janine and Jim from New York City"
+    }
+  ]
+}

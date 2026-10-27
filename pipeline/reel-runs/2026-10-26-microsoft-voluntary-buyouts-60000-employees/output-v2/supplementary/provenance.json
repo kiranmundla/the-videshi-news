@@ -1,0 +1,247 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "microsoft-voluntary-buyouts-60000-employees",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Microsoft",
+    "Amy Coleman",
+    "Voluntary Exit Offer",
+    "United States",
+    "India and the United Kingdom",
+    "GeekWire. Microsoft"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:126872 The U.S. Newspaper Industry in Transition (IA 126872TheUSNewspaperIndustryinTransition-crs).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Administrative Notes (IA 568391 10 14).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:GOVERNMENT ROLE IN PROMOTING THE FUTURE OF THE TELECOMMUNICATIONS INDUSTRY AND BROADBAND DEPLOYMENT (IA gov.gpo.fdsys.CHRG-107shrg94288).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:LEGISLATIVE BRANCH APPROPRIATIONS FOR FISCAL YEAR 2017 (IA gov.gpo.fdsys.CHRG-114shrg69104675).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:News brief - USACE-p16021coll8-212.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Pacific connection - USACE-p16021coll8-853.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Planning ahead- Notes for the planning and policy community - USACE-p16021coll8-68.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Public Works digest - USACE-p16021coll8-4212.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Rip rap - USACE-p16021coll8-1225.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:U.S. POLICY TOWARD RUSSIA (IA gov.gpo.fdsys.CHRG-109shrg25702).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Building92microsoft.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "5184x3456, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:MicrosoftBanner.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1200x100 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Microsoft Atlanta.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "4032x3024, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Lincoln University sports scholars (cricket) 2005.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "2969x1899, CC BY 3.0 nz, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:POTUS.DSC 2908.6.1.12 (7317205072).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "4288x2848, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:National Voluntary Laboratory Accreditation Program 1993 directory (IA nationalvoluntar810whit 0).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:National Voluntary Laboratory Accreditation Program 1999 directory (IA nationalvoluntar810whit 6).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:National voluntary laboratory accreditation program- carpet and carpet cushion (IA nationalvoluntar1506galo).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:National voluntary laboratory accreditation program- chemical calibration certifiers of spectrophotometric NTRMs (IA nationalvoluntar1502kram).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:National voluntary laboratory accreditation program- commercial products testing (IA nationalvolunta1501knab 0).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:National voluntary laboratory accreditation program- efficiency of electric motors (IA nationalvolunta1501galo 0).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:National voluntary laboratory accreditation program- electromagnetic compatibility and telecommunications; FCC methods (IA nationalvoluntar1501lind).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:National voluntary laboratory accreditation program- fasteners and metals (IA nationalvoluntar1501alde).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:National voluntary laboratory accreditation program- ionizing radiation dosimetry (IA nationalvoluntar1504mart).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:National voluntary laboratory accreditation program- wood based products (IA nationalvoluntar1509knab).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:City Lights of the United States 2012.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "6646x4430, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Constitution of the United States - DPLA - 9ca804144bd5965e992ae3528bc3c6a3 (page 1).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "7258x8785, Public domain, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "constitution-of-the-united-states-dpla-9ca80",
+      "path": "constitution-of-the-united-states-dpla-9ca80.jpg",
+      "size": [
+        7258,
+        8785
+      ],
+      "role": "establishing",
+      "subject": "File:Constitution of the United States - DPLA - 9ca804144bd5965e992ae3528bc3c6a3 (page 1).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Constitution_of_the_United_States_-_DPLA_-_9ca804144bd5965e992ae3528bc3c6a3_(page_1).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Constitution_of_the_United_States_-_DPLA_-_9ca804144bd5965e992ae3528bc3c6a3_%28page_1%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Constitutional Convention"
+    },
+    {
+      "beat": "hero",
+      "label": "city-lights-of-the-united-states-2012",
+      "path": "city-lights-of-the-united-states-2012.jpg",
+      "size": [
+        6646,
+        4430
+      ],
+      "role": "detail",
+      "subject": "NASA image acquired April 18 - October 23, 2012 This image of the United States of America at night is a composite assembled from data acquired by the Suomi NPP satellite in April and October 2012. The image was made possible by the new sat",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:City_Lights_of_the_United_States_2012.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/City_Lights_of_the_United_States_2012.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "NASA Earth Observatory"
+    },
+    {
+      "beat": "grid",
+      "label": "microsoft-atlanta",
+      "path": "microsoft-atlanta.jpg",
+      "size": [
+        4032,
+        3024
+      ],
+      "role": "establishing",
+      "subject": "Microsoft building at Atlantic Station in Atlanta",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Microsoft_Atlanta.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Microsoft_Atlanta.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Tyler Lahti"
+    },
+    {
+      "beat": "diaspora",
+      "label": "building92microsoft",
+      "path": "building92microsoft.jpg",
+      "size": [
+        5184,
+        3456
+      ],
+      "role": "establishing",
+      "subject": "Building 92 at Microsoft Corporation headquarters in Redmond, Washington. Photographed by user Coolcaesar on 30 May 2016.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Building92microsoft.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Building92microsoft.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Coolcaesar"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render_photo_floor",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "jailer-2-highest-grossing-tamil-film-710-crore",
+  "name": "jailer-2-highest-grossing-tamil-film-710-crore",
+  "script": "reel-runs/2026-10-26-jailer-2-highest-grossing-tamil-film-710-crore/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000702
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-26-jailer-2-highest-grossing-tamil-film-710-crore/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "anirudh-ravichander",
+      "hero": "anirudh-ravichander-at-audi-ritz-style-award",
+      "grid": "rajinikanth-at-the-inauguration-of-mgr-statu",
+      "diaspora": "magnificent-cme-erupts-on-the-sun-august-31"
+    }
+  },
+  "detail": "hero photo 559x745 below the 1080x600 floor"
+}

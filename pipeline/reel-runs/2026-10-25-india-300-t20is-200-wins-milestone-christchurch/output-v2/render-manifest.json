@@ -1,0 +1,413 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-300-t20is-200-wins-milestone-christchurch",
+ "article_slug": "india-300-t20is-200-wins-milestone-christchurch",
+ "article_id": "0a7f9fa7-57fe-49a1-a599-72b0ba22dc42",
+ "category": "Sports",
+ "video": "reel-runs/2026-10-25-india-300-t20is-200-wins-milestone-christchurch/output-v2/india-300-t20is-200-wins-milestone-christchurch.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://img.youtube.com/vi/_i74XaWqbig/maxresdefault.jpg",
+  "local_path": "reel-runs/2026-10-25-india-300-t20is-200-wins-milestone-christchurch/output-v2/hero.jpg",
+  "width": 1280,
+  "height": 720,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.85)",
+  "has_face": true,
+  "box_source": [
+   106,
+   138,
+   117,
+   137
+  ],
+  "box_bg": [
+   155,
+   246,
+   76,
+   89
+  ],
+  "chin_bg": 335,
+  "anchor": [
+   0.129,
+   0.287
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 985,
+   "block_bottom": 1258,
+   "text_bbox": [
+    70,
+    985,
+    930,
+    1258
+   ],
+   "texts": [
+    "Sports",
+    "300 MATCHES, 200 WINS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      0,
+      1280,
+      718
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "India played their 300th men's T20 international in Christchurch on Saturday, and the four-wicket win over New Zealand was also their 200th outright T20I win."
+   ],
+   "v7": {
+    "image_source": "extra:beach-new-brighton-new-zealand-06",
+    "track": "full-bleed",
+    "render_scale": 0.616,
+    "photo_px": [
+     5348,
+     3119
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6155819172811798,
+     "window": [
+      1895,
+      0,
+      3649,
+      3119
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Beach, New Brighton , New Zealand",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Beach,_New_Brighton,_New_Zealand_06.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Beach%2C_New_Brighton%2C_New_Zealand_06.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Michal Klajban"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "200",
+    "Outright T20I wins \u2014 the first team to reach that figure"
+   ],
+   "v7": {
+    "image_source": "extra:lake-benmore-new-zealand",
+    "track": "full-bleed",
+    "render_scale": 0.634,
+    "photo_px": [
+     11585,
+     3027
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6342913776015857,
+     "window": [
+      4889,
+      0,
+      6591,
+      3027
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Lake Benmore, New Zealand",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Lake_Benmore,_New_Zealand.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Lake_Benmore%2C_New_Zealand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Michal Klajban"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 784,
+   "block_top": 796,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    796,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "300",
+    "Matches played \u2014 only the second team to reach the mark, after Pakistan",
+    "69 RUNS",
+    "Unbroken seventh-wicket stand, India's highest in T20Is",
+    "68 RUNS",
+    "Scored in the last five overs, the most India have chased in that phase"
+   ],
+   "v7": {
+    "image_source": "extra:delhi-india-khas-mahal-2-red-fort",
+    "track": "full-bleed",
+    "render_scale": 0.938,
+    "photo_px": [
+     3072,
+     2048
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.9375,
+     "window": [
+      433,
+      0,
+      1585,
+      2048
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Khas Mahal of pure white marble, Mughal emperor's private residence, Red Fort, Delhi, India.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Delhi,_India,_Khas_Mahal_2,_Red_Fort.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Delhi%2C_India%2C_Khas_Mahal_2%2C_Red_Fort.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 4.0",
+     "artist": "Vyacheslav Argenberg"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 486,
+   "block_top": 1094,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1094,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Pakistan have played four more T20Is than India but have registered substantially fewer victories",
+    "Teenager Vaibhav Sooryavanshi and pacer Prince Yadav made their debuts in the milestone match"
+   ],
+   "v7": {
+    "image_source": "extra:hampi-india-lotus-mahal",
+    "track": "full-bleed",
+    "render_scale": 0.714,
+    "photo_px": [
+     4032,
+     2688
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7142857142857143,
+     "window": [
+      1682,
+      0,
+      3194,
+      2688
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Hampi, Karnataka, India. Ancient temples at Hampi, Vijayanagara Empire, 14th century, a UNESCO World Heritage Site.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Hampi,_India,_Lotus_Mahal.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Hampi%2C_India%2C_Lotus_Mahal.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 4.0",
+     "artist": "Vyacheslav Argenberg"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "India lead the five-match series 2-0, with the third T20I in Wellington on October 27.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-midnight-celebration.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 159.3,
+ "mp4_bytes": 20476657
+}

@@ -326,5 +326,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "-giMwHp8Jc4",
+    "article_slug": "microsoft-voluntary-buyouts-60000-employees",
+    "article_id": "931f604b-4afa-463b-8801-cb5a4d8e3cf9",
+    "title": "Microsoft Offers Voluntary Buyouts to 60,000 Employees Across Four Countries #Shorts #TechNews",
+    "privacy": "public",
+    "uploaded_at": "2026-10-26T17:19:06.138449+00:00",
+    "video_path": "reel-runs/2026-10-26-microsoft-voluntary-buyouts-60000-employees/output-v3/microsoft-voluntary-buyouts-60000-employees.mp4",
+    "video_sha256": "281585644ff111a149df0fec96aab371e25ed322d59f61e5ae65791999ba0e56",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

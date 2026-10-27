@@ -1,0 +1,35 @@
+{
+  "hook_line": "VERIZON PHONE ADDS HIT FIVE-YEAR HIGH",
+  "hook_stat": {
+    "big": "406,000",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Postpaid phone subscribers added in the third quarter"
+  },
+  "stats": [
+    {
+      "big": "$1.31",
+      "label": "Adjusted earnings per share, up 8.3%"
+    },
+    {
+      "big": "137,000",
+      "label": "Postpaid accounts added in the quarter"
+    },
+    {
+      "big": "$7.8 billion",
+      "label": "Free cash flow, up 12.1%"
+    }
+  ],
+  "diaspora_bullets": [
+    "Broadband added 314,000 connections in the quarter",
+    "Postpaid phone churn improved to 0.94%"
+  ],
+  "key_entities": [
+    "Verizon",
+    "Dan Schulman",
+    "Zacks"
+  ],
+  "news_summary": "Verizon beat third-quarter earnings estimates as it added 406,000 postpaid phone subscribers, its strongest third quarter in five years, and raised its full-year outlook for the third consecutive quarter.",
+  "payoff": "Verizon raised its full-year 2026 adjusted EPS guidance to $5.04 to $5.06.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

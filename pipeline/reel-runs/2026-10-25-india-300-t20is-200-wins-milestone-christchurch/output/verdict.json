@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-300-t20is-200-wins-milestone-christchurch",
+  "name": "india-300-t20is-200-wins-milestone-christchurch",
+  "script": "reel-runs/2026-10-25-india-300-t20is-200-wins-milestone-christchurch/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "stats[0].label",
+      "diaspora_bullets[0]"
+    ],
+    "llm_cost_usd": 0.000702
+  }
+}

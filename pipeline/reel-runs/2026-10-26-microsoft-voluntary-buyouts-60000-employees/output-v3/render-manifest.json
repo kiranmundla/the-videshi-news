@@ -1,0 +1,413 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "microsoft-voluntary-buyouts-60000-employees",
+ "article_slug": "microsoft-voluntary-buyouts-60000-employees",
+ "article_id": "931f604b-4afa-463b-8801-cb5a4d8e3cf9",
+ "category": "Technology",
+ "video": "reel-runs/2026-10-26-microsoft-voluntary-buyouts-60000-employees/output-v3/microsoft-voluntary-buyouts-60000-employees.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://cdn.geekwire.com/wp-content/uploads/2026/10/microsoft-voluntary-exit-offer.jpg",
+  "local_path": "reel-runs/2026-10-26-microsoft-voluntary-buyouts-60000-employees/output-v3/hero.jpg",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.354,0.235) damped=(0.427,0.367)",
+  "has_face": false,
+  "box_source": [
+   176,
+   99,
+   672,
+   270
+  ],
+  "box_bg": [
+   208,
+   223,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.467,
+   0.554
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 348,
+   "block_top": 948,
+   "block_bottom": 1296,
+   "text_bbox": [
+    70,
+    948,
+    930,
+    1296
+   ],
+   "texts": [
+    "Technology",
+    "MICROSOFT OFFERS VOLUNTARY BUYOUTS TO 60,000 EMPLOYEES"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      2,
+      1200,
+      675
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 1202,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1202,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Microsoft is offering a Voluntary Exit Offer to about 60,000 employees, roughly a quarter of its 223,000-person workforce, in the United States, Canada, India and the United Kingdom."
+   ],
+   "v7": {
+    "image_source": "extra:city-lights-of-the-united-states-2012",
+    "track": "full-bleed",
+    "render_scale": 0.433,
+    "photo_px": [
+     6646,
+     4430
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.43340857787810383,
+     "window": [
+      2187,
+      0,
+      4678,
+      4430
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "NASA image acquired April 18 - October 23, 2012 This image of the United States of America at night is a composite assembled from data acquired by the Suomi NPP satellite in April and October 2012. The image was made possible by the new sat",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:City_Lights_of_the_United_States_2012.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/City_Lights_of_the_United_States_2012.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "NASA Earth Observatory"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 903,
+   "block_bottom": 1341,
+   "text_bbox": [
+    70,
+    903,
+    930,
+    1341
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "60,000",
+    "Employees offered voluntary buyouts across four countries"
+   ],
+   "v7": {
+    "image_source": "extra:lincoln-university-sports-scholars-cricket-2",
+    "track": "backdrop",
+    "render_scale": 0.281,
+    "photo_px": [
+     2969,
+     1899
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.2809026608285618,
+     "window": [
+      0,
+      15,
+      2969,
+      1681
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.01x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Lincoln cricket scholars, 2005. Back: Mark Reid, Darren Broom, Adam Coleman. Middle: Amy Satterthwaite, Ben Rae, Todd Astle, Geoff Smith. Front: Michael Harvey, Scott Brownlee, Chris Small, William Lonsdale, Nick Trulon, Richard Abbott, Cra",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Lincoln_University_sports_scholars_(cricket)_2005.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Lincoln_University_sports_scholars_%28cricket%29_2005.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 3.0 nz",
+     "artist": "Photographer: David Hollander"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 837,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    837,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "223,000",
+    "Microsoft's full-time workforce as of June 30",
+    "LEVEL 70",
+    "Offer covers eligible staff at level 70 and below",
+    "4,800",
+    "Microsoft layoffs in July"
+   ],
+   "v7": {
+    "image_source": "extra:microsoft-atlanta",
+    "track": "full-bleed",
+    "render_scale": 0.635,
+    "photo_px": [
+     4032,
+     3024
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6349206349206349,
+     "window": [
+      1177,
+      0,
+      2878,
+      3024
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Microsoft building at Atlantic Station in Atlanta",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Microsoft_Atlanta.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Microsoft_Atlanta.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Tyler Lahti"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 1085,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1085,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Offer covers Microsoft staff in India and Indian employees abroad",
+    "Eligibility depends on team participation and level, not nationality"
+   ],
+   "v7": {
+    "image_source": "extra:building92microsoft",
+    "track": "full-bleed",
+    "render_scale": 0.556,
+    "photo_px": [
+     5184,
+     3456
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5555555555555556,
+     "window": [
+      1461,
+      0,
+      3405,
+      3456
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Building 92 at Microsoft Corporation headquarters in Redmond, Washington. Photographed by user Coolcaesar on 30 May 2016.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Building92microsoft.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Building92microsoft.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Coolcaesar"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Microsoft said the offer is not a sign that it needs fewer employees overall.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 171.9,
+ "mp4_bytes": 22769627
+}

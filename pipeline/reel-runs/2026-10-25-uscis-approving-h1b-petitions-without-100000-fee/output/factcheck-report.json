@@ -1,0 +1,274 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "uscis-approving-h1b-petitions-without-100000-fee",
+  "verdict": "fail",
+  "held_claims": [
+    "stats[2].label"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "H-1B APPROVALS WITHOUT THE $100,000 FEE",
+      "numbers": [
+        1.0,
+        100000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states H-1B approvals without the fee are occurring.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "USCIS has started approving H-1B petitions for workers outside the United States without collecting the $100,000 fee, after weeks in which premium-processing cases sat past their 15-business-day deadline.",
+      "numbers": [
+        1.0,
+        15.0,
+        100000.0
+      ],
+      "entities": [
+        "United States"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms USCIS approvals without the fee after delays.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$100,000",
+      "numbers": [
+        100000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the $100,000 fee multiple times.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Fee USCIS is not collecting on H-1B petitions for workers outside the United States",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "Fee USCIS",
+        "United States"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states USCIS is not collecting the fee for certain petitions.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE PRICE TAG",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "15 BUSINESS DAYS",
+      "numbers": [
+        15.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies a 15-business-day deadline for premium processing.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Premium-processing deadline that stalled petitions sat past with no decision",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article discusses petitions stalling past the 15-business-day deadline.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "2 COURTS",
+      "numbers": [
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions two federal courts blocking the fee.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Federal courts blocking the fee, in Massachusetts and the Northern District of California",
+      "numbers": [],
+      "entities": [
+        "Northern District"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article identifies the courts and their locations blocking the fee.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$103,265",
+      "numbers": [
+        103265.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions a proposed fee of $103,265 by DHS.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Separate DHS-proposed fee for all cap-subject petitions \u2014 still in rulemaking, not in effect",
+      "numbers": [],
+      "entities": [
+        "Separate DHS-proposed"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Separate DHS-proposed"
+        ]
+      },
+      "llm_reason": "Article states the proposed fee is not yet in effect.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Indian nationals receive the largest share of H-1B visas each year",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Indian nationals receive the largest share of H-1B visas.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The stall and its easing fall disproportionately on Indian engineers, physicians and researchers",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states the stall affects Indian professionals significantly.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The government has appealed in both the First and Ninth Circuits, and USCIS says it will collect the fee if the court orders are lifted.",
+      "numbers": [],
+      "entities": [
+        "Ninth Circuits"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms the government's appeals and potential fee collection.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE PRICE TAG",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "USCIS",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "H-1B",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "First Circuit",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ninth Circuit",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000736,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

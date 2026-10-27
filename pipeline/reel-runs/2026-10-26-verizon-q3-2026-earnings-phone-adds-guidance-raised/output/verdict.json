@@ -1,0 +1,28 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "verizon-q3-2026-earnings-phone-adds-guidance-raised",
+  "name": "verizon-q3-2026-earnings-phone-adds-guidance-raised",
+  "script": "reel-runs/2026-10-26-verizon-q3-2026-earnings-phone-adds-guidance-raised/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000707
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-26-verizon-q3-2026-earnings-phone-adds-guidance-raised/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "a-modern-verizon-retail-store-in-burlington",
+      "hero": "dan-schulman",
+      "payoff": "verizon-building-8156005279"
+    }
+  },
+  "detail": "beat 'grid': block bottom 1824 past the safe zone"
+}

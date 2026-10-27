@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "microsoft-voluntary-buyouts-60000-employees",
+  "name": "microsoft-voluntary-buyouts-60000-employees",
+  "script": "reel-runs/2026-10-26-microsoft-voluntary-buyouts-60000-employees/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "stats[2].label"
+    ],
+    "llm_cost_usd": 0.000681
+  }
+}
