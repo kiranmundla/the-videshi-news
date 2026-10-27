@@ -1,0 +1,36 @@
+{
+  "hook_line": "WHITE HOUSE CLEARS PERM GREEN CARD OVERHAUL",
+  "hook_stat": {
+    "big": "2005",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Last comprehensive update of the PERM regulations"
+  },
+  "stats": [
+    {
+      "big": "OCTOBER 23",
+      "label": "White House review of the overhaul completed"
+    },
+    {
+      "big": "8",
+      "label": "Employers suspended from PERM"
+    },
+    {
+      "big": "30 TO 60 DAYS",
+      "label": "Public comment period after publication"
+    }
+  ],
+  "diaspora_bullets": [
+    "PERM is the first step for most EB-2 and EB-3 green cards",
+    "Indian applicants are the largest group in those queues"
+  ],
+  "key_entities": [
+    "Department of Labor",
+    "White House",
+    "Keith Sonderling",
+    "Federal Register"
+  ],
+  "news_summary": "The Department of Labor's proposed PERM overhaul cleared White House review on October 23 and heads to the Federal Register, covering recruitment standards, layoff rules and nondiscrimination requirements.",
+  "payoff": "Current PERM filings continue under the existing rules until a final rule is issued.",
+  "versus": "",
+  "story_mood": "tense"
+}

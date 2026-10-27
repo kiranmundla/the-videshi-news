@@ -1,0 +1,35 @@
+========================================================================
+PERM story (US immigration; PERM = the DOL programme)
+entities: ['Department of Labor', 'White House', 'Keith Sonderling', 'Federal Register']
+story countries: ['india', 'united states']
+-- the namesakes the 2026-10-26 run ACCEPTED (v1 + v2):
+  [rejected] entity='PERM' :: File:Perm. Kama River. Kommunalny Bridge P6232022 2575.jpg
+      reason: namesake/context: the file's evidence places it in russia, which this story is not about (story context: india/united states) — a namesake, not 'PERM' in this story
+  [rejected] entity='PERM' :: File:Perm. Kama River. Passenger river ship Moskva-210 P6242370 2575.jpg
+      reason: namesake/context: the file's evidence places it in russia, which this story is not about (story context: india/united states) — a namesake, not 'PERM' in this story
+  [rejected] entity='White House' :: File:Russian White House and ships on Moskva River.jpg
+      reason: namesake/context: the file's evidence places it in russia, which this story is not about (story context: india/united states) — a namesake, not 'White House' in this story
+-- the same run's GOOD accepts (must stay accepted):
+  [ACCEPTED] entity='Department of Labor' :: File:Frances Perkins Building of the United States Department of Labor in Washington, D.C. - 1.jpg
+      reason: 6720x4480, CC BY 2.0, identity evidenced on the file page
+  [ACCEPTED] entity='Keith Sonderling' :: File:Keith Sonderling (55510883049).jpg
+      reason: 8192x5464, CC BY-SA 4.0, identity evidenced on the file page
+
+========================================================================
+Drishyam 3 story (box office)
+entities: ['Drishyam 3', 'Ajay Devgn', 'Tabu', 'Abhishek Pathak', 'Times of India', 'Vijay Salgaonkar']
+story countries: ['india']
+-- the namesake the run ACCEPTED as hero + grid:
+  [rejected] entity='Times of India' :: File:Jug Suraiya, Indian journalist, formerly with the "Junior Statesmen" and then "Times of India" 02.jpg
+      reason: outlet: 'Times of India' is a news outlet — outlets are sources, never picture subjects
+  [rejected] entity='India' :: File:Jug Suraiya, Indian journalist, formerly with the "Junior Statesmen" and then "Times of India" 02.jpg
+      reason: depicted person: the file is a portrait of Jug Suraiya, who is not one of this story's subjects — association is not depiction ('India')
+-- the run's GOOD accept (must stay accepted):
+  [ACCEPTED] entity='Ajay Devgn' :: File:Ajay Devgn .jpg
+      reason: 1280x720, CC BY-SA 4.0, identity evidenced on the file page
+
+========================================================================
+source_extras end-to-end on the PERM story (real Commons searches; downloads land in this scratch dir)
+extras: [('news', 'whitehousesouthfacade'), ('hero', 'frances-perkins-building-of-the-united-state'), ('grid', 'latrobe-white-house-cropa2'), ('diaspora', 'frances-perkins-building-of-the-united-state-2')]
+Perm-Russia extras present: False
+  ledger namesake rejection: File:Russian White House and ships on Moskva River.jpg — namesake/context: the file's evidence places it in russia, which this story is not about (story context: india/united states) — a namesake, not 'White

@@ -80,6 +80,23 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import reel_entity_sourcing as RES
 import image_sourcer as IS
+# The identity gates shared with the reel sourcer live in
+# picture_gate_shared.py (single source of truth since
+# 2026-10-27 — the reel sourcer never had them, which is how
+# it sourced Perm, Russia for a US immigration story). They
+# are imported back under their historical private names so
+# nothing else in this module changes.
+from picture_gate_shared import (
+    OUTLET_ENTITIES as _OUTLET_ENTITIES,
+    HINT_FUNCTION_WORDS as _HINT_FUNCTION_WORDS,
+    PERSON_DOMAIN_TOKENS as _PERSON_DOMAIN_TOKENS,
+    ctx_token_match as _ctx_token_match,
+    domain_contradiction_markers as
+    _domain_contradiction_markers,
+    title_core as _title_core,
+    head_segment as _head_segment,
+)
+import picture_gate_shared as _SHARED_GATES
 
 STATE_DIR = Path(__file__).resolve().parent / ".state"
 DOWNLOAD_DIR = STATE_DIR / "picture-pass-downloads"
@@ -172,21 +189,8 @@ def patch_article(article_id, payload):
 # ("New Zealand's"), and news OUTLETS standing as subjects
 # (a Reuters vehicle photo + the Reuters Building, sourced for
 # the entity 'Reuters'). None of these may ever be sourced.
-_OUTLET_ENTITIES = {
-    "reuters", "associated press", "press trust of india",
-    "bloomberg", "hindustan times", "times of india",
-    "the times of india", "indian express", "the indian express",
-    "the hindu", "ndtv", "bbc", "bbc news", "cnn",
-    "al jazeera", "the guardian", "new york times",
-    "the new york times", "washington post",
-    "the washington post", "wall street journal",
-    "the wall street journal", "financial times",
-    "the financial times", "the economist", "dow jones",
-    "cnbc", "fox news", "nbc news", "abc news",
-    "deccan chronicle", "deccan herald", "tribune india",
-    "the tribune", "telegraph india", "ani", "ians", "afp",
-    "upi", "xinhua", "ap",
-}
+# The outlet set itself is _OUTLET_ENTITIES, imported from
+# picture_gate_shared.py at the top of this module.
 
 # An entity may not BEGIN or END on a function word ('... of',
 # 'The ...' leftovers): those are phrase fragments, not names.
@@ -552,14 +556,7 @@ def hero_width_floor(current_width):
 
 
 # ── candidate evaluation (reel gates, article floors) ───────────────
-_HINT_FUNCTION_WORDS = {
-    "where", "when", "what", "which", "while", "there", "their",
-    "about", "would", "could", "should", "these", "those",
-    "other", "more", "most", "many", "much", "such", "each",
-    "every", "been", "were", "have", "will", "with", "from",
-    "into", "onto", "upon", "over", "under", "after", "before",
-    "again",
-}
+# (_HINT_FUNCTION_WORDS is imported from picture_gate_shared.py.)
 
 
 def _story_hint_terms(article, entity_name, all_entities=None):
@@ -606,35 +603,8 @@ def _story_hint_terms(article, entity_name, all_entities=None):
 # means Commons cannot distinguish this person from a namesake:
 # reject, and let the verified routes (person cache, Source 3.8
 # profile lookup) or an honest miss carry the story instead.
-_PERSON_DOMAIN_TOKENS = {
-    "sports": ("cricket", "cricketer", "football", "soccer",
-               "tennis", "hockey", "badminton", "kabaddi",
-               "athlete", "olympic", "boxer", "boxing",
-               "wrestler", "wrestling", "golfer", "sprinter",
-               "chess", "squash", "baseball", "basketball",
-               "weightlifting", "archery"),
-    "entertainment": ("actor", "actress", "film", "cinema",
-                      "singer", "singing", "musician", "director",
-                      "composer", "bollywood", "hollywood"),
-    "technology": ("engineer", "scientist", "researcher",
-                   "professor", "founder", "programmer",
-                   "astronaut", "executive", "entrepreneur"),
-    "markets-finance": ("executive", "founder", "entrepreneur",
-                        "businessman", "businesswoman", "investor",
-                        "banker", "economist", "chief"),
-    "news": ("politician", "minister", "diplomat", "ambassador",
-             "activist", "official", "senator", "congressman"),
-    "nri-world": ("politician", "minister", "diplomat",
-                  "ambassador", "activist", "official",
-                  "senator", "congressman"),
-    "immigration": ("politician", "minister", "diplomat",
-                    "ambassador", "activist", "official",
-                    "lawyer", "judge"),
-    "lifestyle-health": ("doctor", "physician", "surgeon",
-                         "scientist", "researcher", "professor",
-                         "chef"),
-    "food": ("chef", "cook", "restaurateur"),
-}
+# (_PERSON_DOMAIN_TOKENS is imported from
+# picture_gate_shared.py at the top of this module.)
 
 
 def _person_context_terms(article, entity_name, all_entities=None):
@@ -652,17 +622,7 @@ def _person_context_terms(article, entity_name, all_entities=None):
     return frozenset(toks)
 
 
-def _ctx_token_match(hint_tok, ev_tokens):
-    """Prefix-tolerant token agreement: 'cricket' matches the
-    evidence token 'cricketers' (and vice versa) via a shared
-    5-character stem; exact equality always matches."""
-    if hint_tok in ev_tokens:
-        return True
-    if len(hint_tok) < 4:
-        return False
-    stem = hint_tok[:5]
-    return any(t.startswith(stem) or hint_tok.startswith(t[:5])
-               for t in ev_tokens if len(t) >= 4)
+# (_ctx_token_match is imported from picture_gate_shared.py.)
 
 
 # ── subject gates (2026-10-25 live-run hardening) ───────────────────
@@ -694,17 +654,8 @@ def _phrase_span(toks, stream):
     return None
 
 
-def _title_core(title):
-    core = (title or "").replace("File:", "", 1).strip()
-    return re.sub(r"\.(jpe?g|png|gif|webp|tiff?)$", "", core,
-                  flags=re.I).strip()
-
-
-def _head_segment(text):
-    """The subject segment of a title/description: the text up
-    to the first comma, parenthesis or dash."""
-    return re.split(r"[,()—–]|\s-\s", text or "",
-                    maxsplit=1)[0].strip()
+# (_title_core and _head_segment are imported from
+# picture_gate_shared.py.)
 
 
 def _phrase_is_trailing_location(toks, text):
@@ -760,31 +711,18 @@ def _subject_position_ok(entity, title, desc):
             toks, first_sentence)
 
 
-_NAME_LEADERS = {"dr", "dr.", "mr", "mr.", "mrs", "mrs.", "ms",
-                 "shri", "smt", "prof", "prof."}
-
-
 def _depicted_person_name(title, entity):
     """When the file's title head is a portrait-style person
     name (2–4 capitalized words, optionally led by an honorific)
     that is NOT the entity, return the name. A posed portrait
     of a specific person cannot illustrate a non-person entity
     merely because the person is associated with it (Bryan
-    Traynor for 'Breakthrough Prize')."""
-    head = _head_segment(_title_core(title))
-    words = head.split()
-    if words and words[0].lower() in _NAME_LEADERS:
-        words = words[1:]
-    if not (2 <= len(words) <= 4):
-        return None
-    if not all(re.fullmatch(r"[A-Z][A-Za-z.'’\-]+", w)
-               for w in words):
-        return None
-    name = " ".join(words)
-    if set(RES.entity_tokens(name)) & set(RES.entity_tokens(
-            entity)):
-        return None
-    return name
+    Traynor for 'Breakthrough Prize'). The heuristic itself
+    lives in picture_gate_shared.py (shared with the reel
+    sourcer); this wrapper pins the tokeniser to
+    RES.entity_tokens, as before."""
+    return _SHARED_GATES.depicted_person_name(
+        title, entity, RES.entity_tokens)
 
 
 def _desc_binomial_subject(desc, entity):
@@ -817,19 +755,8 @@ def _wikimedia_thumb_url(url, width):
     return f"{base}/thumb/{a}/{ab}/{fname}/{width}px-{fname}"
 
 
-def _domain_contradiction_markers(story_domain):
-    """Profession/domain tokens that belong to OTHER domains
-    only (a token shared by 2+ domains — 'founder', 'scientist'
-    — marks no single domain and cannot contradict). An
-    'actor' marker on a sports story's candidate is a
-    contradiction; on an entertainment story it is agreement."""
-    from collections import Counter
-    counts = Counter()
-    for toks in _PERSON_DOMAIN_TOKENS.values():
-        counts.update(set(toks))
-    story = set(_PERSON_DOMAIN_TOKENS.get(story_domain or "", ()))
-    return frozenset(t for t, n in counts.items()
-                     if n == 1 and t not in story)
+# (_domain_contradiction_markers is imported from
+# picture_gate_shared.py.)
 
 
 def evaluate_article_candidate(page, entity, route, min_w, min_h,
@@ -893,7 +820,8 @@ def evaluate_article_candidate(page, entity, route, min_w, min_h,
                       "graphed AT the entity, not the entity "
                       "itself")
     if entity_kind == "person" and person_context is not None:
-        ev_text = f"{title} {RES._strip_html(desc)} {cats}"
+        ev_text = _SHARED_GATES.mask_title_phrases(
+            f"{title} {RES._strip_html(desc)} {cats}")
         ev_tokens = set(RES._tokens(ev_text))
         # 1. Contradiction: the evidence marks a DIFFERENT
         # profession/domain than the story's — a parenthesised

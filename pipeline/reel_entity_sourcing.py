@@ -47,6 +47,20 @@ the first production run, 2026-10-24: a district-map full-bleed
 tripped frame QA's edge_overflow and the reel held — the
 relevance rejections below were added from that run's ledger.)
 
+IDENTITY GATES (2026-10-27, ported from the article picture
+pass via picture_gate_shared.py — the 2026-10-26 pulse run
+proved this module had none of them): a news OUTLET is never a
+picture entity ('Times of India' sourced a portrait of its
+journalist Jug Suraiya); a candidate whose own evidence places
+it in a country/domain the story is not about is a NAMESAKE
+('PERM' the labor programme sourced Perm, Russia; the Moscow
+'White House' sourced for Washington); a portrait of a named
+person who is not one of the story's subjects is rejected
+(depicted-person gate); and a PERSON candidate must pass the
+picture pass's namesake gate — no profession/domain
+contradiction with the story, and a story-context token (or
+the person's own Commons category) in its evidence.
+
 Output: a provenance dict in the exact schema the sample used —
 {"built", "story", "trigger", "candidate_ledger", "extras"} —
 where each extra is {beat, label, path, size, role, subject,
@@ -62,6 +76,14 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import reel_renderer as R   # BEATS / SCENE_TEXTS only (no render)
+import picture_gate_shared as G   # the identity gates shared
+                                  # with the article picture
+                                  # pass (single source of truth)
+
+# Re-exported for parity with article_picture_pass: the outlet
+# blocklist itself lives ONLY in picture_gate_shared.py.
+OUTLET_ENTITIES = G.OUTLET_ENTITIES
+is_outlet_entity = G.is_outlet_entity
 
 TARGET_DISTINCT = 5          # doctrine: >= 4–5 pictures per reel
 MIN_EXTRA_W, MIN_EXTRA_H = R.MIN_PHOTO_W, R.MIN_PHOTO_H   # 1080x600
@@ -328,6 +350,175 @@ def classify_role(title, description):
     return "establishing"
 
 
+# ── story context + the shared identity gates (2026-10-27) ────
+# Ported from article_picture_pass.py (which caught these
+# failure classes on 2026-10-25/26) through
+# picture_gate_shared.py. The reel gates run ONLY when the
+# caller supplies the context built here — source_extras
+# always does; direct evaluator calls (tests, social_card.py)
+# without a context keep the pre-2026-10-27 behaviour.
+
+def build_story_context(article, script, entities):
+    """Everything the shared identity gates need to know about
+    the story: its headline, its category domain, the full
+    entity list, the countries/domains its own text places it
+    in (headline + script + body), and its SUBJECT persons —
+    the script's key_entities / the article's image_entities
+    that read as people (a depicted portrait is legitimate
+    only for one of those, or for the entity being sourced)."""
+    script = script or {}
+    headline = article.get("headline") or article.get("title") \
+        or ""
+    parts = [headline, article.get("summary") or "",
+             article.get("excerpt") or ""]
+    for key in ("hook_line", "news_summary", "payoff"):
+        if script.get(key):
+            parts.append(str(script[key]))
+    for b in script.get("diaspora_bullets") or []:
+        parts.append(str(b))
+    for s in script.get("stats") or []:
+        if isinstance(s, dict):
+            parts.append(str(s.get("label") or ""))
+    parts.append((article.get("body") or "")[:20000])
+    subjects, seen = [], set()
+    raw = list(script.get("key_entities") or []) \
+        + list(article.get("image_entities") or [])
+    for e in raw:
+        e = _clean_entity(e)
+        if not e or e.lower() in seen:
+            continue
+        seen.add(e.lower())
+        toks = e.split()
+        single_person = len(toks) == 1 and re.fullmatch(
+            r"[A-Z][A-Za-z.'\-]+", toks[0]) \
+            and toks[0].lower() not in _ORG_TOKENS \
+            and toks[0].lower() not in _PLACE_TOKENS
+        if _looks_like_person(e) or single_person:
+            subjects.append(frozenset(entity_tokens(e)))
+    domain = str(article.get("category") or "").strip().lower() \
+        .replace(" ", "-")
+    return {"headline": headline, "domain": domain,
+            "entities": list(entities or []),
+            "countries": G.countries_in(" ".join(parts)),
+            "subject_persons": subjects}
+
+
+def _person_context_terms(context, entity):
+    """Context vocabulary for the person namesake gate (the
+    picture pass's _person_context_terms, same construction):
+    headline content words + the OTHER entities' tokens +
+    the story category's domain vocabulary, minus this
+    entity's own tokens (identity already guarantees those —
+    left in, the agreement check would be vacuous)."""
+    toks = set()
+    for w in re.findall(r"[a-z0-9]+",
+                        (context.get("headline") or "").lower()):
+        if len(w) >= 4 and not w.isdigit() \
+                and w not in _HINT_STOP \
+                and w not in G.HINT_FUNCTION_WORDS:
+            toks.add(w)
+    for other in context.get("entities") or []:
+        if other and other.lower() != (entity or "").lower():
+            for t in entity_tokens(other):
+                if len(t) >= 4 and t not in G.HINT_FUNCTION_WORDS:
+                    toks.add(t)
+    cat = context.get("domain") or ""
+    toks.update(G.PERSON_DOMAIN_TOKENS.get(cat, ()))
+    for t in re.findall(r"[a-z]+", cat):
+        if len(t) >= 4:
+            toks.add(t)
+    return frozenset(toks - set(entity_tokens(entity)))
+
+
+def context_reject_reason(entity, title, description,
+                          categories_text, context):
+    """The shared identity gates over one candidate's evidence
+    (Commons title + description + categories). Returns the
+    rejection reason, or None when the candidate agrees with
+    the story's context. Gates, in order:
+
+    1. COUNTRY/DOMAIN CONTRADICTION — the candidate's evidence
+       positively places it in a country the story's own text
+       never places it in (Perm, Russia for the PERM
+       programme; the Moskva River 'White House' for
+       Washington). No placement evidence = no verdict: the
+       gate rejects namesakes, it does not demand proof of
+       place from every file. PERSON entities are exempt —
+       a person's verified portrait is the person wherever
+       it was taken (the story's own Keith Sonderling
+       photographed at the ILO in Geneva); persons are
+       policed by gate 3 instead. (The picture pass splits
+       its gates by entity kind the same way.)
+    2. DEPICTED PERSON — the file is a portrait of a named
+       person who is neither the entity nor one of the
+       story's subject persons (Jug Suraiya, sourced under
+       an outlet entity for a Drishyam story).
+    3. PERSON NAMESAKE — for a person entity, the picture
+       pass's gate: a profession/domain marker unique to a
+       DIFFERENT domain in the evidence is a contradiction,
+       and with no story-context agreement and no own Commons
+       category the file cannot be told apart from a
+       same-name different person."""
+    if not context:
+        return None
+    evidence = G.mask_title_phrases(
+        f"{title} {_strip_html(description)} {categories_text}")
+    cand_countries = G.countries_in(evidence)
+    story_countries = context.get("countries") or frozenset()
+    if not _looks_like_person(entity) \
+            and cand_countries and story_countries \
+            and cand_countries.isdisjoint(story_countries):
+        return ("namesake/context: the file's evidence places "
+                f"it in {'/'.join(sorted(cand_countries))}, "
+                "which this story is not about (story context: "
+                f"{'/'.join(sorted(story_countries))}) — a "
+                f"namesake, not {entity!r} in this story")
+    person = G.depicted_person_name(title, entity,
+                                     entity_tokens)
+    if person:
+        ptoks = frozenset(entity_tokens(person))
+        if not any(ptoks == s or ptoks <= s
+                   for s in context.get("subject_persons")
+                   or ()):
+            return (f"depicted person: the file is a portrait "
+                    f"of {person}, who is not one of this "
+                    f"story's subjects — association is not "
+                    f"depiction ({entity!r})")
+    if _looks_like_person(entity):
+        ev_tokens = set(_tokens(evidence))
+        bad = G.domain_contradiction_markers(
+            context.get("domain"))
+        contra = {t for t in bad
+                  if G.ctx_token_match(t, ev_tokens)}
+        for d in re.findall(r"\(([^)]+)\)", evidence):
+            d_toks = set(_tokens(d))
+            contra |= {t for t in bad
+                       if any(G.ctx_token_match(t, {x})
+                              for x in d_toks)}
+        if contra:
+            return ("namesake guard: the file's evidence marks "
+                    f"a different domain "
+                    f"({', '.join(sorted(contra))}) than this "
+                    f"{context.get('domain') or 'story'} story "
+                    f"— a same-name different person, not "
+                    f"{entity!r} the subject of this story")
+        ctx_terms = _person_context_terms(context, entity)
+        matched = {t for t in ctx_terms
+                   if G.ctx_token_match(t, ev_tokens)}
+        own_cat = any(
+            seg.strip().lower().removeprefix("category:")
+            == (entity or "").strip().lower()
+            for seg in (categories_text or "").split("|"))
+        if not matched and not own_cat:
+            return ("namesake guard: the file page's evidence "
+                    "shares no story-context token with this "
+                    "article and the file is not in the "
+                    "person's own Commons category, so it "
+                    "cannot be told apart from a same-name "
+                    f"different person ({entity!r})")
+    return None
+
+
 # ── entity extraction (article -> picture-worthy entities) ─────────
 _MONTHS = {"january", "february", "march", "april", "may", "june",
            "july", "august", "september", "october", "november",
@@ -412,7 +603,13 @@ _PLACE_TOKENS = {"park", "river", "lake", "lakes", "island",
                  "square", "falls", "bay", "cape", "mount",
                  "fort", "port", "harbor", "harbour", "desert",
                  "canyon", "glacier", "volcano", "forest",
-                 "peninsula", "strait", "peak", "peaks"}
+                 "peninsula", "strait", "peak", "peaks",
+                 # 'house' / 'street': the picture pass's kind
+                 # markers (its _KIND_PLACE_MARKERS lesson) —
+                 # without them 'White House' and 'Main Street'
+                 # read as people's names and take the person
+                 # gates instead of the place gates.
+                 "house", "street"}
 
 
 def _looks_like_person(entity):
@@ -580,10 +777,13 @@ def _meta(info, key):
                         or {}).get("value") or "")
 
 
-def evaluate_commons_page(page, entity, route):
+def evaluate_commons_page(page, entity, route, context=None):
     """One Commons search hit -> (candidate | None, ledger_row).
     The gates, in order: photograph type, title denylist, TRUE
-    dimensions, license, identity at the file page."""
+    dimensions, license, identity at the file page — plus,
+    when a story context is supplied, the shared identity
+    gates (outlet / country contradiction / depicted person
+    / person namesake; see context_reject_reason)."""
     title = page.get("title") or ""
     info = (page.get("imageinfo") or [{}])[0]
     row = {"candidate": title, "route": route}
@@ -592,6 +792,10 @@ def evaluate_commons_page(page, entity, route):
         row.update({"verdict": "rejected", "reason": reason})
         return None, row
 
+    if G.is_outlet_entity(entity):
+        return reject(f"outlet: {entity!r} is a news outlet — "
+                      "outlets are sources, never picture "
+                      "subjects")
     if info.get("mime") not in ("image/jpeg", "image/png"):
         return reject(f"not a photograph file "
                       f"({info.get('mime') or 'unknown type'})")
@@ -616,6 +820,10 @@ def evaluate_commons_page(page, entity, route):
         return reject("identity: the file's subject is wildlife "
                       "photographed AT the entity, not the "
                       "entity itself (species-marked categories)")
+    reason = context_reject_reason(entity, title, desc, cats,
+                                   context)
+    if reason:
+        return reject(reason)
     cand = {
         "entity": entity, "title": title,
         "file_url": info.get("url"), "size": [w, h],
@@ -638,7 +846,7 @@ _CC_PD_RE = re.compile(
     r"(creative commons|cc[ -]by|cc0|public domain)", re.I)
 
 
-def evaluate_hosted_page(url, entity, route, net):
+def evaluate_hosted_page(url, entity, route, net, context=None):
     """Route B/C page gate: fetch the hosting page, find its lead
     image (og:image), and accept ONLY with a license basis —
     US federal .gov/.mil (public domain) or an explicit CC/PD
@@ -647,6 +855,12 @@ def evaluate_hosted_page(url, entity, route, net):
     (candidate | None, ledger_row); the image itself is NOT
     downloaded here (dims verified at assignment download)."""
     row = {"candidate": url, "route": route}
+    if G.is_outlet_entity(entity):
+        row.update({"verdict": "rejected",
+                    "reason": f"outlet: {entity!r} is a news "
+                              "outlet — outlets are sources, "
+                              "never picture subjects"})
+        return None, row
     host = urllib.parse.urlparse(url).netloc.lower()
     page = net["fetch_text"](url)
     if not page:
@@ -689,6 +903,25 @@ def evaluate_hosted_page(url, entity, route, net):
                     "reason": f"identity: the page does not "
                               f"evidence {entity!r}"})
         return None, row
+    if context:
+        # Country/domain contradiction, hosted form: the
+        # page title + lead-image name are the placement
+        # evidence a hosted page offers (its body text is too
+        # noisy to scan — navigation alone names countries).
+        cand_countries = G.countries_in(
+            f"{page_title} {img_name}")
+        story_countries = context.get("countries") \
+            or frozenset()
+        if cand_countries and story_countries \
+                and cand_countries.isdisjoint(story_countries):
+            row.update({"verdict": "rejected",
+                        "reason": "namesake/context: the page "
+                                  "places its subject in "
+                                  f"{'/'.join(sorted(cand_countries))}, "
+                                  "which this story is not "
+                                  "about — a namesake, not "
+                                  f"{entity!r} in this story"})
+            return None, row
     cand = {"entity": entity, "title": page_title or img_url,
             "file_url": img_url, "size": None,
             "source_page": url, "license": basis,
@@ -808,6 +1041,32 @@ def source_extras(article, script, dest_dir, own_count, log=print,
                        "from the article"})
         log("   sourcing: no entities extracted — hero chain only")
         return prov
+    # The shared identity gates' story context, and the
+    # outlet filter: an outlet entity is never even queried
+    # (the evaluators refuse it too, as a second line).
+    context = build_story_context(article, script, entities)
+    sourceable = []
+    for e in entities:
+        if G.is_outlet_entity(e):
+            prov["candidate_ledger"].append(
+                {"candidate": "(entity)", "route": "all",
+                 "verdict": "rejected",
+                 "reason": f"outlet: {e!r} is a news outlet — "
+                           "outlets are sources, never picture "
+                           "subjects; never queried"})
+        else:
+            sourceable.append(e)
+    entities = sourceable
+    if not entities:
+        prov["candidate_ledger"].append(
+            {"candidate": "(entity extraction)",
+             "route": "all",
+             "verdict": "rejected",
+             "reason": "every extracted entity is a news "
+                       "outlet — nothing sourceable"})
+        log("   sourcing: only outlet entities extracted — "
+            "hero chain only")
+        return prov
     log(f"   sourcing: own={own_count} < {TARGET_DISTINCT} — "
         f"entities: {', '.join(entities)}")
     pool = []
@@ -847,7 +1106,8 @@ def source_extras(article, script, dest_dir, own_count, log=print,
                         continue
                     seen_titles.add(page.get("title"))
                     cand, row = evaluate_commons_page(
-                        page, entity, "A — Wikimedia Commons")
+                        page, entity, "A — Wikimedia Commons",
+                        context=context)
                     ledger.append(row)
                     if cand:
                         cand["_row"] = row
@@ -878,7 +1138,8 @@ def source_extras(article, script, dest_dir, own_count, log=print,
                     if not official:
                         continue
                     cand, row = evaluate_hosted_page(
-                        link, entity, "B — official sources", net)
+                        link, entity, "B — official sources", net,
+                        context=context)
                     ledger.append(row)
                     if cand:
                         if any(c["file_url"] == cand["file_url"]
@@ -920,7 +1181,8 @@ def source_extras(article, script, dest_dir, own_count, log=print,
                         continue
                     cand, row = evaluate_commons_page(
                         page, entity,
-                        "C — web search (discovery) → Commons")
+                        "C — web search (discovery) → Commons",
+                        context=context)
                     ledger.append(row)
                     if cand:
                         cand["_row"] = row
