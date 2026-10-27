@@ -32,7 +32,7 @@
       },
       {
         "field": "news_summary",
-        "text": "The letter asks USCIS Director Joseph Edlow for an emergency I-485 expedite pathway after October 1 healthcare cuts left legally present immigrants uninsured while their green cards wait.",
+        "text": "The letter asks USCIS Director Joseph Edlow for an emergency I-485 expedite pathway after October 1 healthcare cuts left legally present immigrants uninsured.",
         "numbers": [
           1.0,
           485.0
@@ -42,7 +42,7 @@
         ],
         "deterministic": "pass",
         "detail": {},
-        "llm_reason": "The article details the letter's request to USCIS Director Edlow regarding I-485 expedite pathways.",
+        "llm_reason": "The article confirms the letter's request to USCIS Director Edlow regarding I-485 expedite.",
         "verdicts": {
           "deterministic": "pass",
           "llm": "supported"
@@ -56,7 +56,7 @@
         "entities": [],
         "deterministic": "pass",
         "detail": {},
-        "llm_reason": "The article confirms 63 members urged USCIS to expedite green-card applications.",
+        "llm_reason": "The article mentions 63 members urging USCIS to expedite green-card applications.",
         "verdicts": {
           "deterministic": "pass",
           "llm": "supported"
@@ -163,7 +163,7 @@
       "model": "gpt-4o-mini",
       "ran": true,
       "error": null,
-      "cost_usd": 0.000582,
+      "cost_usd": 0.000578,
       "rounds": 1,
       "reasked_claims": [],
       "unmatched_verdicts": 0,

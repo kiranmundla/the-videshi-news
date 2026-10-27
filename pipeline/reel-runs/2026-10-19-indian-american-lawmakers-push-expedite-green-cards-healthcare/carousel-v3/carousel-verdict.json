@@ -1,8 +1,8 @@
 {
   "kind": "carousel",
   "article_slug": "indian-american-lawmakers-push-expedite-green-cards-healthcare",
-  "status": "held",
-  "stage": "render_fit",
+  "status": "ready",
+  "stage": "complete",
   "factcheck": {
     "verdict": "pass",
     "quote_present": true,
@@ -10,7 +10,17 @@
     "speaker_grounded": true,
     "role_grounded": true,
     "eyebrow_is_category": true,
-    "llm_cost_usd": 0.000582
+    "llm_cost_usd": 0.000578
   },
-  "detail": "inter cannot fit 'The letter asks USCIS Director Joseph Edlow for an emergency I-485 expedite pathway after October 1 healthcare cuts left legally present immigrants uninsured while their green cards wait.'"
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "cards": [
+    "reel-runs/2026-10-19-indian-american-lawmakers-push-expedite-green-cards-healthcare/carousel-v3/carousel-1.png",
+    "reel-runs/2026-10-19-indian-american-lawmakers-push-expedite-green-cards-healthcare/carousel-v3/carousel-2.png",
+    "reel-runs/2026-10-19-indian-american-lawmakers-push-expedite-green-cards-healthcare/carousel-v3/carousel-3.png",
+    "reel-runs/2026-10-19-indian-american-lawmakers-push-expedite-green-cards-healthcare/carousel-v3/carousel-4.png"
+  ]
 }
