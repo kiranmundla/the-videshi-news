@@ -1,0 +1,86 @@
+[
+  {
+    "id": "e01e2736-a99d-40e7-88ae-a6ee2ab2def9",
+    "headline": "HCA Healthcare Set to Report Q3 Earnings Amid Market Anticipation",
+    "slug": "happening-2026-10-27-hca-healthcare-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by discussing how HCA Healthcare's performance may impact NRIs who invest in U.S. healthcare stocks or have financial interests tied to the healthcare sector. Include specific examples of how fluctuations in HCA's stock price could affect their investments.",
+        "Provide concrete takeaways for NRIs by including potential financial implications of HCA's earnings report, such as projected stock price movements or dividend changes. For instance, detail how a decline in EPS might influence HCA's stock price and what that could mean for NRI investors.",
+        "Include a specific social embed, such as the official HCA Healthcare Twitter account or a relevant tweet discussing the upcoming earnings report, which would provide real-time updates and enhance engagement with the article.",
+        "Revise the headline to make it more compelling and specific, such as 'HCA Healthcare's Q3 Earnings Report: What NRIs Should Know About Market Impacts and Investment Opportunities.'"
+      ],
+      "embed_opportunities": [
+        "Embed the official HCA Healthcare Twitter account or a relevant tweet about the upcoming earnings report for real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "c066028c-5195-4bb5-9746-560dfd990ed2",
+    "headline": "Coca-Cola Earnings Preview: Market Awaits Insights on Growth and Margins",
+    "slug": "happening-2026-10-27-coca-cola-the-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Coca-Cola's performance might impact Indian investors or NRIs holding shares in the company. For example, mention any potential dividend changes or stock price implications that could affect their investments directly.",
+        "Add specific financial figures such as the expected impact on share prices or dividends for NRIs. For instance, if Coca-Cola is expected to increase its dividend from $0.40 to $0.45 per share, detail how this affects NRI shareholders who may rely on these dividends for income.",
+        "Include a section that outlines action steps for NRIs, such as monitoring Coca-Cola's earnings report for specific metrics that could influence their investment decisions or advising them on when to buy/sell shares based on the earnings forecast.",
+        "Provide context on how Coca-Cola's performance is linked to broader economic trends that may affect NRIs, such as currency fluctuations or changes in consumer behavior in India, which could impact their investments."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Coca-Cola's official account or a financial analyst discussing the earnings report to provide real-time insights and reactions."
+      ]
+    }
+  },
+  {
+    "id": "1a9a507f-5a26-4459-b5aa-b19ceddf30a1",
+    "headline": "Boeing Set to Report Q3 Earnings Amid Ongoing Challenges",
+    "slug": "happening-2026-10-27-boeing-the-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Boeing's performance may affect Indian NRIs who are investors or work in the aerospace sector. For example, discuss potential impacts on stock prices or job opportunities in India due to Boeing's recovery efforts.",
+        "Include specific financial details relevant to NRIs, such as the expected impact of Boeing's earnings on its stock price in rupee terms, or how fluctuations in Boeing's performance could affect investment portfolios for Indian investors. For instance, mention what a projected EPS of ($0.21) could mean for share price movement in the coming weeks.",
+        "Add a section that outlines actionable steps for NRIs interested in investing in Boeing or the aerospace sector, including key dates (like the earnings report date) and any relevant financial metrics to watch post-report.",
+        "Provide context on how Boeing's challenges and recovery efforts might influence the broader Indian aerospace industry, including any partnerships or contracts that may be relevant to Indian companies or investors."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Boeing's official account regarding their upcoming earnings report or any recent announcements that could impact investors."
+      ]
+    }
+  },
+  {
+    "id": "18d2a9ac-2c7a-4f55-b8bb-1e24a465366d",
+    "headline": "South Africa Faces Australia in Crucial ODI at Newlands",
+    "slug": "happening-2026-10-27-south-africa-cricket-vs-australia-cricket",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 3,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how the outcome of this match could affect the popularity of cricket among NRIs in regions like the US, UK, and Canada, potentially influencing viewership and engagement in local cricket clubs.",
+        "Add specific details about how NRIs can watch the match live, including streaming options, time zone conversions, and any associated costs, to answer the question 'what does this mean for me?'",
+        "Incorporate a quote or insight from a prominent NRI cricket analyst or former player to provide a personal touch and relevance to the diaspora audience.",
+        "Provide context on the significance of this match in terms of rankings or historical rivalries, which could resonate more with readers who have a deep connection to cricket."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ICC or a cricket analyst discussing the match's importance or predictions, which would engage readers and provide real-time updates."
+      ]
+    }
+  }
+]

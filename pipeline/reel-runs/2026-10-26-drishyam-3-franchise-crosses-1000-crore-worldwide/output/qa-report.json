@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-26-drishyam-3-franchise-crosses-1000-crore-worldwide/output/drishyam-3-franchise-crosses-1000-crore-worldwide.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:diaspora"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1200,
+        675
+      ],
+      "manifest_dims": [
+        1200,
+        675
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 653.2,
+      "url": "https://www.koimoi.com/wp-content/new-galleries/2026/10/drishyam-3-box-office-update-001.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-26-drishyam-3-franchise-crosses-1000-crore-worldwide/output/qa/frames/frame-hook.png",
+      "text_px_detected": 28089,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          419,
+          226,
+          137,
+          194
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-26-drishyam-3-franchise-crosses-1000-crore-worldwide/output/qa/frames/frame-news.png",
+      "text_px_detected": 38429,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          418,
+          223,
+          135,
+          187
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-26-drishyam-3-franchise-crosses-1000-crore-worldwide/output/qa/frames/frame-hero.png",
+      "text_px_detected": 29154,
+      "edge": {
+        "pass": true,
+        "offending_px": 123,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          417,
+          219,
+          136,
+          189
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.4,
+        "bg_luminance": 16.5,
+        "delta": 235.9
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-26-drishyam-3-franchise-crosses-1000-crore-worldwide/output/qa/frames/frame-grid.png",
+      "text_px_detected": 67250,
+      "edge": {
+        "pass": true,
+        "offending_px": 8,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          415,
+          214,
+          138,
+          191
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 170.7,
+        "bg_luminance": 41.2,
+        "delta": 129.5
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-26-drishyam-3-franchise-crosses-1000-crore-worldwide/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 33629,
+      "edge": {
+        "pass": false,
+        "offending_px": 701,
+        "clusters": 3,
+        "largest_cluster": 234
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.84)",
+        "box": [
+          579,
+          785,
+          32,
+          42
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 8.3,
+        "delta": 245.8
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-26-drishyam-3-franchise-crosses-1000-crore-worldwide/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 26453,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          412,
+          205,
+          142,
+          196
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    }
+  ]
+}

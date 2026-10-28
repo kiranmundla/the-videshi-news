@@ -1,0 +1,37 @@
+{
+  "hook_line": "TOP SIX IT FIRMS SHED 24,422 ROLES IN A YEAR",
+  "hook_stat": {
+    "big": "24,422",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Engineering roles shed by India's top six IT firms in one year"
+  },
+  "stats": [
+    {
+      "big": "797,722",
+      "label": "Headcount in October 2026, down from 822,144"
+    },
+    {
+      "big": "92,000",
+      "label": "Exits, against 68,000 hires"
+    },
+    {
+      "big": "11-15%",
+      "label": "Attrition rate, in the normal range"
+    }
+  ],
+  "diaspora_bullets": [
+    "Replacement hiring slowed for maintenance and support roles",
+    "AI, cloud and cybersecurity demand keeps growing"
+  ],
+  "key_entities": [
+    "TCS",
+    "Infosys",
+    "HCLTech",
+    "Wipro",
+    "Xpheno"
+  ],
+  "news_summary": "Combined IT and engineering headcount at TCS, Infosys, HCLTech, Wipro, Tech Mahindra and LTIMindtree fell 24,422 in a year, from 822,144 in October 2025 to 797,722 in October 2026.",
+  "payoff": "Firms left vacant seats unfilled — this is not a layoff count.",
+  "versus": "",
+  "story_mood": "tense"
+}

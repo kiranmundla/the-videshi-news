@@ -1,0 +1,36 @@
+{
+  "hook_line": "SILVER HAS CRASHED 53% FROM ITS JANUARY PEAK",
+  "hook_stat": {
+    "big": "53%",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Silver's fall from its January record peak"
+  },
+  "stats": [
+    {
+      "big": "$54",
+      "label": "Silver per ounce by October 23, down from $117-$121"
+    },
+    {
+      "big": "26%",
+      "label": "Gold's drop from its all-time January peak"
+    },
+    {
+      "big": "Rs 1,94,170",
+      "label": "MCX silver per kg on October 23, down from Rs 4,20,048"
+    }
+  ],
+  "diaspora_bullets": [
+    "Diwali purchases made near the January highs are deeply underwater",
+    "Analysts see $50 as crucial silver support"
+  ],
+  "key_entities": [
+    "Silver",
+    "Gold",
+    "MCX",
+    "Federal Reserve"
+  ],
+  "news_summary": "Silver has fallen more than 53% from its January 2026 record, from a peak near $117-$121 an ounce to around $54 by October 23, while gold has dropped 26% from its all-time January peak.",
+  "payoff": "The reversal was driven by rate-hike expectations, higher energy prices and margin-driven selling.",
+  "versus": "",
+  "story_mood": "tense"
+}

@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "perm-green-card-overhaul-clears-white-house-review",
+  "name": "perm-green-card-overhaul-clears-white-house-review",
+  "script": "reel-runs/2026-10-26-perm-green-card-overhaul-clears-white-house-review/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000657
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-26-perm-green-card-overhaul-clears-white-house-review/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "perm-kama-river-kommunalny-bridge-p6232022-2",
+      "hero": "perm-kama-river-passenger-river-ship-moskva",
+      "grid": "frances-perkins-building-of-the-united-state",
+      "diaspora": "frances-perkins-building-of-the-united-state-2"
+    }
+  },
+  "manifest": "reel-runs/2026-10-26-perm-green-card-overhaul-clears-white-house-review/output/render-manifest.json",
+  "video": "reel-runs/2026-10-26-perm-green-card-overhaul-clears-white-house-review/output/perm-green-card-overhaul-clears-white-house-review.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-10-26-perm-green-card-overhaul-clears-white-house-review/output/tiktok-caption.txt"
+}

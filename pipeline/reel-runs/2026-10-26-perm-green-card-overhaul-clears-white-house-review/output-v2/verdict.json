@@ -1,0 +1,37 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "perm-green-card-overhaul-clears-white-house-review",
+  "name": "perm-green-card-overhaul-clears-white-house-review",
+  "script": "reel-runs/2026-10-26-perm-green-card-overhaul-clears-white-house-review/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000657
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-26-perm-green-card-overhaul-clears-white-house-review/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "russian-white-house-and-ships-on-moskva-rive",
+      "hero": "frances-perkins-building-of-the-united-state",
+      "grid": "latrobe-white-house-cropa2",
+      "diaspora": "frances-perkins-building-of-the-united-state-2"
+    }
+  },
+  "manifest": "reel-runs/2026-10-26-perm-green-card-overhaul-clears-white-house-review/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-10-26-perm-green-card-overhaul-clears-white-house-review/output-v2/perm-green-card-overhaul-clears-white-house-review.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:grid"
+    ]
+  }
+}

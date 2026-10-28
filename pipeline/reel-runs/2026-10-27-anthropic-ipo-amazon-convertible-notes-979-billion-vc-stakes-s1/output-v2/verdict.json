@@ -1,0 +1,38 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1",
+  "name": "anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1",
+  "script": "reel-runs/2026-10-27-anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000699
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-27-anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "secretary-of-state-peter-kyle-visits-anthrop",
+      "grid": "secretary-of-state-peter-kyle-visits-anthrop-2",
+      "diaspora": "googleplex-patio-aug-2014",
+      "payoff": "amazon-spheres-05"
+    }
+  },
+  "manifest": "reel-runs/2026-10-27-anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-10-27-anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1/output-v2/anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:news",
+      "edge_overflow:payoff"
+    ]
+  }
+}

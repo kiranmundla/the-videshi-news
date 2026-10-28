@@ -1,0 +1,631 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "drishyam-3-franchise-crosses-1000-crore-worldwide",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Drishyam 3",
+    "Ajay Devgn",
+    "Tabu",
+    "Abhishek Pathak",
+    "Times of India",
+    "Vijay Salgaonkar"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Ajay Devgan at Media meet of film 'Drishyam'.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 316x278 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ajay Devgn, Tabu & Shriya Saran snapped at promotions of 'Drishyam'.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 486x263 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ajay Devgn, Tabu & Shriya Saran snapped during the promotions of 'Drishyam'.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 493x265 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ajay Devgn promote 'Drishyam'.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 252x220 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:DRISHYAM ARIKKULAM.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "4752x3168, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Darshan Kumar at the special screening of 'Drishyam' at Fun Republic.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x883 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ishita Dutta at the meet of film 'Drishyam' at PVR Juhu.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x883 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Sonnalli Seygall snapped attending the premiere of Drishyam 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x878 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Vatsal Sheth and Ishita Dutta the premiere of Drishyam 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x878 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Vishal Jethwa snapped attending the premiere of Drishyam 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x937 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:AjayDevgan.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 243x407 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ajay Devgn .jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "1280x720, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Ajay Devgn and Kangana Ranaut.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 413x439 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ajay Devgn and Rakul Preet Singh snapped during De De Pyaar De promotions.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x403 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ajay Devgn and Ranbir Kapoor.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 425x417 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ajay Devgn and Rohit Shetty.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 494x439 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ajay Devgn at 'Action Jackson' photoshoot.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 360x389 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ajay Devgn on the sets of 'Jhalak Dikhhlaa Jaa 5'(1).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x393 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ajay Devgn promoting All the Best.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 332x411 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ajay Devgn with Kajol.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 442x229 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Banking 1957-03- Vol 49 Iss 9 (IA sim american-bankers-association-aba-banking-journal 1957-03 49 9).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Banking 1959-04- Vol 51 Iss 10 (IA sim american-bankers-association-aba-banking-journal 1959-04 51 10).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Catalogue of reapers, mowers, and threshing machines (microform) - manufactured by Joseph Hall at his branch establishment, Oshawa, C.W (IA cihm 89450).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Foods and food adulterants, by direction of the Commissioner of Agriculture. Part 3- Fermented alcoholic beverages, malt liquors, wine, and cider (IA foodsfoodadulter13cram).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Old swords (IA oldswords00giel).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Pastoral address of the Rev. Gavin Lang (microform) - on the occasion of the close of a ten years ministry in St. Andrew's Church, (Church of Scotland), Montreal (IA cihm 08168).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1948univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Link (IA link129unse).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Militant Volume 8 No. 52.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1920-07-10) (IA victoriadailytimes19200710).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Kareena Kapoor, Tabu and Kriti Sanon at Crew trailer launch.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "2986x4480, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Tabu 2, 2012.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 293x395 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Tabu 2012.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 450x616 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Tabu LFW 2017.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 369x438 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Tabu at Esha Deol's wedding reception 08.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 555x762 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Tabu in 2024.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 879x1172 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Tabu promoting Andhadhun in 2018.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 394x574 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Tabu snapped during De De Pyaar De promotions.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x482 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Tabu still4.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 592x874 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Tabu still8.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 579x868 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:ARAJS, VIKTORS.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Bundesarchiv Bild 183-1989-1023-021, Schwerin, Demonstration.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 798x475 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Gazeta Warszawska 1905 Numer gwiazdkowy 23 grudnia.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:ILIESCU, NICOLAE.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:NIE 11-3-62, 20 Nov 63, Soviet bloc Air and Missile Defense Capabilities Through Mid-1967.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u0421\u0430\u0436\u0438\u043d \u0418.\u0412. - \u0423\u043c\u0435\u0440\u0435\u043d\u043d\u043e\u0435 \u043f\u043e\u0442\u0440\u0435\u0431\u043b\u0435\u043d\u0438\u0435 \u0441\u043f\u0438\u0440\u0442\u043d\u044b\u0445 \u043d\u0430\u043f\u0438\u0442\u043a\u043e\u0432 \u0438\u043b\u0438 \u043f\u043e\u043b\u043d\u043e\u0435 \u0432\u043e\u0437\u0434\u0435\u0440\u0436\u0430\u043d\u0438\u0435 \u043e\u0442 \u043d\u0438\u0445? - 1910.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:\u0421\u0430\u0436\u0438\u043d \u0418.\u0412. \u0423\u043c\u0435\u0440\u0435\u043d\u043d\u043e\u0435 \u0443\u043f\u043e\u0442\u0440\u0435\u0431\u043b\u0435\u043d\u0438\u0435 \u0441\u043f\u0438\u0440\u0442\u043d\u044b\u0445 \u043d\u0430\u043f\u0438\u0442\u043a\u043e\u0432 \u0438\u043b\u0438 \u043f\u043e\u043b\u043d\u043e\u0435 \u0432\u043e\u0437\u0434\u0435\u0440\u0436\u0430\u043d\u0438\u0435 \u043e\u0442 \u043d\u0438\u0445? (1910).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u0421\u0438\u0431\u0438\u0440\u0441\u043a\u0430\u044f \u0436\u0438\u0437\u043d\u044c. 1903. \u2116073.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u0421\u0438\u0431\u0438\u0440\u0441\u043a\u0430\u044f \u0436\u0438\u0437\u043d\u044c. 1905. \u2116048.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u0421\u0438\u0431\u0438\u0440\u0441\u043a\u0430\u044f \u0436\u0438\u0437\u043d\u044c. 1916. \u2116279.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:C. Musonii Rufi philosophi Stoici reliquiae et apophthegmata .. (IA cmusoniirufiphil00muso).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Catana illustrata, sive sacra, et civilis urbis Catanae historia (IA b30414210 0003).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:De lvdis privatis, ac domesticis veterum liber vnicvs - ad illustrissimum puerum, Ivstvm Lvdovicvm \u00e0 Turnone, Comitem Rossilion\u00e6m, illustriss. Herois Henrici \u00e0 Turnone filium (IA deludisprivatisa00boul).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Movie mirror. (Vol. 1, Nov. 1931-Apr. 1932) (IA moviemirrorvol1n01unse).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Novi Commentarii Academiae Scientiarum Imperialis Petropolitanae. Tomus 09, 1762-1763 (1764) (IA novicommentariac29impe).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Shotinformativoeducacionsexualmexico-conceptoradialshotinformativo-ivoox3566972.ogg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:The University of North Carolina Record. The School of Education. (1924) (IA universityofnort211univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:University studies of the University of Nebraska (IA universitystudie111911univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:University studies of the University of Nebraska (IA universitystudie81908univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Go Ahead Gateshead bus 3771 (C771 OCN), 2009 Metrocentre bus rally.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Tabu'"
+    },
+    {
+      "candidate": "File:Go Ahead Gateshead bus 3771 MCW Metrobus C771 OCN Metrocentre rally 2009 (1).JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Tabu'"
+    },
+    {
+      "candidate": "File:Go Ahead Gateshead bus 3771 MCW Metrobus C771 OCN Metrocentre rally 2009 (4).JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Tabu'"
+    },
+    {
+      "candidate": "File:Julius Klinger (Austrian graphic artist 1876\u20131942) - Tabu. Cigarette paper advertising poster Wien 1919 126 x 94 cm Wolfsonian-FIU WOLF028538 XX1990.4065 000 Public domain.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Julius Klinger (Austrian graphic artist 1876\u20131942) - Tabu. Cigarette paper advertising poster Wien 1919 Wolfsonian-FIU WOLF028538 XX1990.4065 000 Public domain.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:Julius Klinger (Austrian graphic artist 1876\u20131942) - Tabu Antinicotin. Poster 1919 129,5 x 97,2 cm Cigarette paper advertising offset color litograph Wolfsonian-FIU WOLF028537 XX1990.4064 000 Public domain.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Julius Klinger (Austrian graphic artist 1876\u20131942) - Tabu Antinicotin. Poster 1919 129,5 x 97,2 cm Cigarette paper advertising offset color litograph Wolfsonian-FIU WOLF028537 XX1990.4064 000 Public domain.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:Kantor Desa Labuan Tabu, Banjar.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Klinger-Tabu-1919.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 616x794 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Wis\u0142a, Tabu Bar - fotopolska.eu (316559).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "1300x865, CC BY-SA 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Khuda-Hafiz-1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x342 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mulshi Lake - panoramio.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Abhishek Pathak'"
+    },
+    {
+      "candidate": "File:Newly wedded couple Shivaleeka Oberoi and Abhishek Pathak snapped outside their new residence in Andheri.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x878 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Newly wedded couple Shivaleeka Oberoi and Abhishek Pathak snapped outside their new residence in Andheri (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 464x519 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Nursary of Paddy.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Abhishek Pathak'"
+    },
+    {
+      "candidate": "File:Nursary of Paddy by Wet method.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Abhishek Pathak'"
+    },
+    {
+      "candidate": "File:Shivaleeka Oberoi and Abhishek Pathak at the special screening of Tu Jhoothi Main Makkaar.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x744 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Shivaleeka Oberoi and Abhishek Pathak snapped attending the success bash of Drishyam 2 in Juhu.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x878 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:St. philomena church ,mysore, india 07.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Abhishek Pathak'"
+    },
+    {
+      "candidate": "File:The President, Shri Pranab Mukherjee presenting the National Child Award for Exceptional Achievement-2012 to Abhishek Pathak, on the occasion of the Children\u2019s Day, in New Delhi on November 14, 2012.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:In India (IA inindia00steeiala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The New York Times 1915-09-22- Vol 65 Iss 21060 (IA per new-york-times-magazine the-new-york-times 1915-09-22 65 21060).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The New York Times 1928-12-15- Vol 78 Iss 25893 (IA per new-york-times-magazine the-new-york-times 1928-12-15 78 25893).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The New York Times 1929-05-25- Vol 78 Iss 26054 (IA per new-york-times-magazine the-new-york-times 1929-05-25 78 26054).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1901-12-28) (IA victoriadailytimes19011228).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1905-04-05) (IA victoriadailytimes19050405).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1911-06-14) (IA victoriadailytimes19110614).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1916-07-10) (IA victoriadailytimes19160710).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1923-06-13) (IA victoriadailytimes19230613).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1924-06-09) (IA victoriadailytimes19240609).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Jug Suraiya, Indian journalist, formerly with the \"Junior Statesmen\" and then \"Times of India\" 02.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "2432x4320, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Jug Suraiya, Indian journalist, formerly with the \"Junior Statesmen\" and then \"Times of India\" 03.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "2432x4320, CC BY-SA 4.0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "ajay-devgn",
+      "path": "ajay-devgn.jpg",
+      "size": [
+        1280,
+        720
+      ],
+      "role": "establishing",
+      "subject": "Ajay devgn is a bollywood actor, known for blockbuster films like singham, golmaal series",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Ajay_Devgn_.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Ajay_Devgn_.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Becks pinto"
+    },
+    {
+      "beat": "hero",
+      "label": "jug-suraiya-indian-journalist-formerly-with",
+      "path": "jug-suraiya-indian-journalist-formerly-with.jpg",
+      "size": [
+        4320,
+        2432
+      ],
+      "role": "establishing",
+      "subject": "Jug Suraiya, Indian journalist, formerly with the \"Junior Statesmen\" and then \"Times of India\"",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Jug_Suraiya,_Indian_journalist,_formerly_with_the_%22Junior_Statesmen%22_and_then_%22Times_of_India%22_02.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/45/Jug_Suraiya%2C_Indian_journalist%2C_formerly_with_the_%22Junior_Statesmen%22_and_then_%22Times_of_India%22_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Fredericknoronha"
+    },
+    {
+      "beat": "grid",
+      "label": "jug-suraiya-indian-journalist-formerly-with-2",
+      "path": "jug-suraiya-indian-journalist-formerly-with-2.jpg",
+      "size": [
+        4320,
+        2432
+      ],
+      "role": "establishing",
+      "subject": "Jug Suraiya, Indian journalist, formerly with the \"Junior Statesmen\" and then \"Times of India\"",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Jug_Suraiya,_Indian_journalist,_formerly_with_the_%22Junior_Statesmen%22_and_then_%22Times_of_India%22_03.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Jug_Suraiya%2C_Indian_journalist%2C_formerly_with_the_%22Junior_Statesmen%22_and_then_%22Times_of_India%22_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Fredericknoronha"
+    },
+    {
+      "beat": "diaspora",
+      "label": "drishyam-arikkulam",
+      "path": "drishyam-arikkulam.jpg",
+      "size": [
+        4752,
+        3168
+      ],
+      "role": "people",
+      "subject": "Glorious moments of yore have always been an inspiration for today. History also stand by this, as true testimonies of several golden moments have enshrined on it. Drishyam 2010, a national cultural event held at Arikulam two years back hol",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:DRISHYAM_ARIKKULAM.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/22/DRISHYAM_ARIKKULAM.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Baijukarayad"
+    }
+  ]
+}

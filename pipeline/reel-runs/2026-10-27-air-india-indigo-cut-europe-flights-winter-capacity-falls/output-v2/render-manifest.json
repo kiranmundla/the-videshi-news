@@ -1,0 +1,399 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "air-india-indigo-cut-europe-flights-winter-capacity-falls",
+ "article_slug": "air-india-indigo-cut-europe-flights-winter-capacity-falls",
+ "article_id": "08625329-08db-43a8-9c64-81c0c5d701d9",
+ "category": "Travel",
+ "video": "reel-runs/2026-10-27-air-india-indigo-cut-europe-flights-winter-capacity-falls/output-v2/air-india-indigo-cut-europe-flights-winter-capacity-falls.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/4/45/VT-JRF_%40_JFK%2C_2024-11-04_%28cropped%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "local_path": "reel-runs/2026-10-27-air-india-indigo-cut-europe-flights-winter-capacity-falls/output-v2/hero.png",
+  "width": 2990,
+  "height": 1682,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.524,0.549) damped=(0.512,0.524)",
+  "has_face": false,
+  "box_source": [
+   693,
+   512,
+   1674,
+   672
+  ],
+  "box_bg": [
+   279,
+   297,
+   467,
+   187
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.511,
+   0.526
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "Travel",
+    "AIR INDIA AND INDIGO CUT EUROPE FLIGHTS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.279,
+    "photo_px": [
+     2990,
+     1682
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.27892976588628765,
+     "window": [
+      0,
+      5,
+      2990,
+      1682
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.14x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 338,
+   "block_top": 953,
+   "block_bottom": 1291,
+   "text_bbox": [
+    70,
+    953,
+    930,
+    1291
+   ],
+   "texts": [
+    "What Happened",
+    "Air India is cutting four European routes in the winter schedule and IndiGo has suspended Manchester and will pause Heathrow, as India-Europe winter seats fall to 5.63 million, down 6.5% from 6.02 million a year earlier."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.317,
+    "photo_px": [
+     2990,
+     1682
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.3169897377423033,
+     "window": [
+      212,
+      145,
+      2843,
+      1621
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.14x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "6.5%",
+    "Fall in India-Europe winter capacity"
+   ],
+   "v7": {
+    "image_source": "extra:berlin-brandenburg-airport-norse-atlantic-ai",
+    "track": "full-bleed",
+    "render_scale": 0.605,
+    "photo_px": [
+     5637,
+     3173
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6051055783170501,
+     "window": [
+      1895,
+      0,
+      3679,
+      3173
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Die Boeing 787-9 Dreamliner der Fluggesellschaft Norse Atlantic Airways mit dem Kennzeichen LN-FNA im Landeanflug auf die Bahn 25L des Flughafens Berlin Brandenburg. Das Flugzeug f\u00fchrte einen Flug von Los Angeles nach Berlin durch.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Berlin_Brandenburg_Airport_Norse_Atlantic_Airways_Boeing_787-9_Dreamliner_LN-FNA_(DSC02373).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Berlin_Brandenburg_Airport_Norse_Atlantic_Airways_Boeing_787-9_Dreamliner_LN-FNA_%28DSC02373%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "MarcelX42"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 792,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    792,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "5.63 MILLION",
+    "India-Europe two-way winter seats, down from 6.02 million",
+    "OCTOBER 31",
+    "End of the only nonstop link between Austria and India",
+    "207,300",
+    "Birmingham-India two-way passengers, down 8.3 per cent"
+   ],
+   "v7": {
+    "image_source": "extra:berlin-brandenburg-airport-norse-atlantic-ai-2",
+    "track": "full-bleed",
+    "render_scale": 0.618,
+    "photo_px": [
+     5520,
+     3106
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6181584030907921,
+     "window": [
+      1903,
+      0,
+      3650,
+      3106
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Die Boeing 787-9 Dreamliner der Fluggesellschaft Norse Atlantic Airways mit dem Kennzeichen LN-FNA im Landeanflug auf die Bahn 25L des Flughafens Berlin Brandenburg. Das Flugzeug f\u00fchrte einen Flug von Los Angeles nach Berlin durch.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Berlin_Brandenburg_Airport_Norse_Atlantic_Airways_Boeing_787-9_Dreamliner_LN-FNA_(DSC02378).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Berlin_Brandenburg_Airport_Norse_Atlantic_Airways_Boeing_787-9_Dreamliner_LN-FNA_%28DSC02378%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "MarcelX42"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 477,
+   "block_top": 883,
+   "block_bottom": 1360,
+   "text_bbox": [
+    70,
+    883,
+    930,
+    1360
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Expect fewer nonstops and higher loads on remaining India-Europe flights",
+    "Withdrawn nonstops push passengers onto one-stop itineraries via Gulf and European hubs"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.349,
+    "photo_px": [
+     2990,
+     1682
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.3486622073578595,
+     "window": [
+      0,
+      212,
+      2392,
+      1554
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.14x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Foreign carriers are picking up the passengers Air India and IndiGo leave behind.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 112.0,
+ "mp4_bytes": 5959317
+}

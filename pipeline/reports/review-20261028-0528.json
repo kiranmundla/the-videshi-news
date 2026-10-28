@@ -1,0 +1,112 @@
+[
+  {
+    "id": "8261dc79-444a-4f71-94d3-b91174b55c01",
+    "headline": "Deepavali in Singapore: Little India's 2km Light-Up, Festival Village and What t",
+    "slug": "deepavali-singapore-little-india-light-up-festival-village-guide-2026",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the dates mentioned, particularly November 8, by including specific details about what events are happening on that date and why it is important for readers to know about them.",
+        "Provide more context about the cultural importance of Deepavali in Singapore, especially how it is celebrated in a multicultural setting, to enhance reader understanding.",
+        "Include more specific details about the Festival Village, such as the types of snacks and handicrafts available, to give readers a clearer picture of what to expect."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post from the Little India Shop Owners and Heritage Association showcasing the light-up or festival activities to provide visual context."
+      ]
+    }
+  },
+  {
+    "id": "139a6078-8372-444f-8a05-23e4f7ef3295",
+    "headline": "Indian Investors Rush Into Nvidia, SpaceX and Apple as Apps Open US Stock Access",
+    "slug": "indian-investors-us-stocks-groww-zerodha-nvidia-spacex-apple",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for Zerodha's launch of US stock access, specifying the exact date or timeframe instead of just 'within weeks' to enhance completeness.",
+        "Include specific figures or examples regarding the performance of Nvidia, SpaceX, and Apple stocks to provide context on why they are popular choices among investors.",
+        "Add a brief explanation of the implications of the $321 million sent overseas for stock and bond investing, such as how it reflects changing investment strategies among Indian retail investors."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Groww or Zerodha announcing their new US stock trading feature to provide official confirmation and context."
+      ]
+    }
+  },
+  {
+    "id": "6685be53-5748-4e7a-8bb7-1b6a389c4458",
+    "headline": "Amazon's Anthropic Notes Are Worth $97.9 Billion as VCs Split Billions in IPO",
+    "slug": "anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline for the IPO and any relevant dates for investors, such as when the IPO is expected to occur or when the next financial reporting will be released.",
+        "Provide more context on the implications of Anthropic's valuation and the non-cash charge, specifically how this affects Amazon's financial standing and future investments.",
+        "Include a brief explanation of convertible notes for readers who may not be familiar with the term, enhancing clarity and completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Anthropic or Amazon announcing the IPO or related financial details to provide official context."
+      ]
+    }
+  },
+  {
+    "id": "c86e4c09-3234-4d8b-a374-9382d44d92d9",
+    "headline": "Supreme Court Refuses to Restore Immigration Judges' Power to Shelve Deportation",
+    "slug": "supreme-court-administrative-closure-immigration-judges-deportation-cases",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the Supreme Court's decision by including specific statistics or examples of how many cases are affected and the potential impact on individuals currently in deportation proceedings.",
+        "Provide a clearer explanation of what administrative closure entails for readers who may not be familiar with the term, including how it has historically been used and its significance in immigration proceedings.",
+        "Include a quote from an immigration law expert or advocate to provide context and expert opinion on the ramifications of this ruling, enhancing the article's authority and depth."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a legal advocacy group or immigration expert reacting to the Supreme Court's decision to provide real-time commentary and context."
+      ]
+    }
+  },
+  {
+    "id": "34ac7ab4-4c64-45fb-bad7-a09a2021c048",
+    "headline": "Ashes and India Series Power Cricket Australia to Record A$601 Million Revenue",
+    "slug": "cricket-australia-record-revenue-601-million-surplus-ashes-india-series",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the reported financial results by specifying the fiscal year for the A$601.1 million revenue and A$81.8 million surplus, as the article mentions 2025-26 without context on when this report was released. This could help readers understand the relevance of the figures better.",
+        "Provide more context on the expected losses in the next two financial years. Include specific reasons for the decline in media rights revenue and how it may impact Cricket Australia's operations or future events.",
+        "Include a direct quote from Todd Greenberg or another Cricket Australia official regarding the implications of these financial results for the future of Australian cricket. This would enhance the attribution and provide a personal touch to the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official Cricket Australia statement or press release regarding the financial results to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "5224c102-b3f4-4f48-88f5-aea22514eff4",
+    "headline": "Plaintiffs Push for Fast Ruling in $100,000 H-1B Fee Case as Government Seeks Pa",
+    "slug": "h1b-100k-fee-plaintiffs-summary-judgment-government-pause-global-nurse-force",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the case by specifying the implications of the January 14, 2027, stay motion and how it affects the current processing of H-1B petitions. This would help readers understand the urgency and potential delays they might face.",
+        "Provide specific details about the current status of H-1B petitions, including any deadlines or eligibility criteria that might be affected by the ongoing legal proceedings. This would enhance completeness and clarity for readers who are directly impacted.",
+        "Include a brief explanation of the significance of the $100,000 fee and how it compares to existing costs associated with H-1B petitions. This context would help readers grasp the financial implications of the case better."
+      ],
+      "embed_opportunities": [
+        "Embed the official court statement or a relevant tweet from a legal expert discussing the implications of the case for H-1B visa applicants."
+      ]
+    }
+  }
+]

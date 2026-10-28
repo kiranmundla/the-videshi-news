@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-top-six-it-firms-shed-24422-engineering-roles-year",
+  "name": "india-top-six-it-firms-shed-24422-engineering-roles-year",
+  "script": "reel-runs/2026-10-27-india-top-six-it-firms-shed-24422-engineering-roles-year/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000683
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-27-india-top-six-it-firms-shed-24422-engineering-roles-year/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "infosys-4911287704",
+      "hero": "tcs-building-in-varanasi",
+      "grid": "mi6-headquarters-ank-kumar-infosys-limited-0",
+      "diaspora": "tcs-sipcot-building"
+    }
+  },
+  "manifest": "reel-runs/2026-10-27-india-top-six-it-firms-shed-24422-engineering-roles-year/output/render-manifest.json",
+  "video": "reel-runs/2026-10-27-india-top-six-it-firms-shed-24422-engineering-roles-year/output/india-top-six-it-firms-shed-24422-engineering-roles-year.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-10-27-india-top-six-it-firms-shed-24422-engineering-roles-year/output/tiktok-caption.txt"
+}

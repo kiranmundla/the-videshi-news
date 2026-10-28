@@ -188,5 +188,15 @@
     "quick_hit_count": 5,
     "deadline_count": 3,
     "chars": 2403
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-10-27T14:12:59.354618+00:00Z",
+    "subject": "WhatsApp digest \u2014 Oct 27 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "cyclone-arnab-imd-raises-gusts-to-150-kmph-landfall-near-yanam",
+    "quick_hit_count": 5,
+    "deadline_count": 3,
+    "chars": 2811
   }
 ]

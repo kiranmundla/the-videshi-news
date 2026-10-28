@@ -1,0 +1,461 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "air-india-indigo-cut-europe-flights-winter-capacity-falls",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Air India",
+    "IndiGo",
+    "OAG",
+    "Norse Atlantic",
+    "Aviation Week",
+    "Delhi-Zurich and Delhi-Rome"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Air-India-building.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 500x664 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Air India 3.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "12240x16320, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Air India 4.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "12240x16320, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:ER Scidmore--Winter India.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:European acquaintance- being sketches of people in Europe (IA cu31924028083727).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Midsummer motoring in Europe (IA midsummermotorin00thom).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:My garden acquaintance and A good word for winter (IA mygardenacquaint00lowe).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Ontario Fish and Wildlife Review Winter 1969 (IA ontariofishwildlv8n4onta).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Ontario fish and wildlife review Winter 1963 (IA ontariofishwildlv2n4onta).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Winter India (IA cu31924022898294).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Winter India (IA winterindia00scid).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Winter India (IA winterindia00scidrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Winter India (IA winterindia01scid).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Boarding of IndiGo plane VT-IVP at Shaheed Bhagat Singh International Airport.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "4608x3456, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:IndiGo (VT-IJD) Airbus A320-271N MSN-8961.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "4180x2371, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Annual report of the New Jersey State Board of Education (IA annualreportofne1855newj).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Aunt Jo's scrap-bag .. (Vol. 2) (IA auntjosscrapbag00alco 7).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Campbell Interurban Press 1924-08-01 (IA cacblm 000771).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:EUD 2002-746.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Fly Paper - 11 Nov 1918.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Narrative of Events during the Invasion of Russia and the Retreat of the French Army, 1812 (IA dli.granth.70774).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Passion-flowers (IA passionflowers00howe 0).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:RL32497 (IA RL32497-crs).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Recit veritable de la mort du sieur Baron de Heurteva(nt) - decapit\u00e9 \u00e0 Paris, deuant la Croix du Tiror, le Mardy 22. de Mars (IA recitveritablede844lyon).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1919-08-27) (IA victoriadailytimes19190827).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:4X-OAG 02-05-2015.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'OAG'"
+    },
+    {
+      "candidate": "File:4X-OAG 02-05-2015a.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'OAG'"
+    },
+    {
+      "candidate": "File:4X-OAG LLMG 11012019a.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'OAG'"
+    },
+    {
+      "candidate": "File:Bangkok city pillar - 2017-01-19 - 022.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'OAG'"
+    },
+    {
+      "candidate": "File:Kulula B737-4H6 ZS-OAG (6864563125).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x768 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Orange 002 2014 03 19.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'OAG'"
+    },
+    {
+      "candidate": "File:Orange Airport temporary terminal.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'OAG'"
+    },
+    {
+      "candidate": "File:Orange Regional Airport, July 2026 03.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'OAG'"
+    },
+    {
+      "candidate": "File:Orange Spring Mound at Mammoth Hot Springs.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'OAG'"
+    },
+    {
+      "candidate": "File:Orange juice 1 edit1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'OAG'"
+    },
+    {
+      "candidate": "File:ERHARD, LUDWIG, Volume 1.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:IHM, KARL.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:KORPONAY, MIKLOS.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Live, virtual, and constructive-training environment- a vision and strategy for the Marine Corps (IA livevirtualndcon1094543956).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:ROSENAUER, HEINRICH.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u0417\u043e\u0434\u0447\u0438\u0439 1879, \u2116 01-12 \u0441 \u0423\u043a\u0430\u0437.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u041f\u043e\u043b\u043d\u044b\u0439 \u043a\u0443\u0445\u043c\u0438\u0441\u0442\u0435\u0440\u044a \u0438 \u043a\u043e\u043d\u0434\u0438\u0442\u0435\u0440\u044a. 1834.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u0421\u0438\u0431\u0438\u0440\u0441\u043a\u0430\u044f \u0436\u0438\u0437\u043d\u044c. 1904. \u2116176.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u042d\u043b\u0435\u043a\u0442\u0440\u0438\u0447\u0435\u0441\u0442\u0432\u043e. 1901. \u211621.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u042f\u0440\u043e\u0441\u043b\u0430\u0432\u0441\u043a\u0438\u0435 \u0435\u043f\u0430\u0440\u0445\u0438\u0430\u043b\u044c\u043d\u044b\u0435 \u0432\u0435\u0434\u043e\u043c\u043e\u0441\u0442\u0438. 1862. \u211650.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Lexicon Islandico-Latino-Danicum ... (IA b29324671 0002).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The electrochemical equivalent of pure silver - a value of the Faraday (IA jresv85n3p175).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Wireless networking wndw.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u0baa\u0bbe\u0bb5\u0bbe\u0ba3\u0bb0\u0bcd \u0ba4\u0bae\u0bbf\u0bb4\u0bcd\u0b95\u0bcd \u0b95\u0bb3\u0b9e\u0bcd\u0b9a\u0bbf\u0baf\u0bae\u0bcd 17.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u0baa\u0bbe\u0bb5\u0bbe\u0ba3\u0bb0\u0bcd \u0ba4\u0bae\u0bbf\u0bb4\u0bcd\u0b95\u0bcd \u0b95\u0bb3\u0b9e\u0bcd\u0b9a\u0bbf\u0baf\u0bae\u0bcd 18.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u0baa\u0bbe\u0bb5\u0bbe\u0ba3\u0bb0\u0bcd \u0ba4\u0bae\u0bbf\u0bb4\u0bcd\u0b95\u0bcd \u0b95\u0bb3\u0b9e\u0bcd\u0b9a\u0bbf\u0baf\u0bae\u0bcd 19.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u0baa\u0bbe\u0bb5\u0bbe\u0ba3\u0bb0\u0bcd \u0ba4\u0bae\u0bbf\u0bb4\u0bcd\u0b95\u0bcd \u0b95\u0bb3\u0b9e\u0bcd\u0b9a\u0bbf\u0baf\u0bae\u0bcd 21.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u0baa\u0bbe\u0bb5\u0bbe\u0ba3\u0bb0\u0bcd \u0ba4\u0bae\u0bbf\u0bb4\u0bcd\u0b95\u0bcd \u0b95\u0bb3\u0b9e\u0bcd\u0b9a\u0bbf\u0baf\u0bae\u0bcd 22.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u0baa\u0bbe\u0bb5\u0bbe\u0ba3\u0bb0\u0bcd \u0ba4\u0bae\u0bbf\u0bb4\u0bcd\u0b95\u0bcd \u0b95\u0bb3\u0b9e\u0bcd\u0b9a\u0bbf\u0baf\u0bae\u0bcd 36.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\u0baa\u0bbe\u0bb5\u0bbe\u0ba3\u0bb0\u0bcd \u0ba4\u0bae\u0bbf\u0bb4\u0bcd\u0b95\u0bcd \u0b95\u0bb3\u0b9e\u0bcd\u0b9a\u0bbf\u0baf\u0bae\u0bcd 45.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Gardenstate1907.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 508x250 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Installateurzentrum \u00d6AG Radstadt (2009).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'OAG'"
+    },
+    {
+      "candidate": "File:OAG Haus.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "2602x1515, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Oag's Buildings from NE.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'OAG'"
+    },
+    {
+      "candidate": "File:Oag's Buildings from SW.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'OAG'"
+    },
+    {
+      "candidate": "File:Reaction of ceiling tile systems to shocks (IA reactionofceilin15gann).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Spiritfarer Beverly Update Trailer (ESRB).webm",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:Swil+Oag.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1067x592 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ventilation and warming of buildings - upon the principles as designed and patented (IA b28108176).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Berlin Brandenburg Airport Norse Atlantic Airways Boeing 787-9 Dreamliner LN-FNA (DSC02373).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "5637x3173, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Berlin Brandenburg Airport Norse Atlantic Airways Boeing 787-9 Dreamliner LN-FNA (DSC02378).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "5520x3106, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Air India 3.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "download/verify failed: Image size (199756800 pixels) exceeds limit of 178956970 pixels, could be decompression bomb DOS attack."
+    },
+    {
+      "candidate": "File:Air India 4.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "download/verify failed: Image size (199756800 pixels) exceeds limit of 178956970 pixels, could be decompression bomb DOS attack."
+    }
+  ],
+  "extras": [
+    {
+      "beat": "hero",
+      "label": "berlin-brandenburg-airport-norse-atlantic-ai",
+      "path": "berlin-brandenburg-airport-norse-atlantic-ai.jpg",
+      "size": [
+        5637,
+        3173
+      ],
+      "role": "establishing",
+      "subject": "Die Boeing 787-9 Dreamliner der Fluggesellschaft Norse Atlantic Airways mit dem Kennzeichen LN-FNA im Landeanflug auf die Bahn 25L des Flughafens Berlin Brandenburg. Das Flugzeug f\u00fchrte einen Flug von Los Angeles nach Berlin durch.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Berlin_Brandenburg_Airport_Norse_Atlantic_Airways_Boeing_787-9_Dreamliner_LN-FNA_(DSC02373).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Berlin_Brandenburg_Airport_Norse_Atlantic_Airways_Boeing_787-9_Dreamliner_LN-FNA_%28DSC02373%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "MarcelX42"
+    },
+    {
+      "beat": "grid",
+      "label": "berlin-brandenburg-airport-norse-atlantic-ai-2",
+      "path": "berlin-brandenburg-airport-norse-atlantic-ai-2.jpg",
+      "size": [
+        5520,
+        3106
+      ],
+      "role": "establishing",
+      "subject": "Die Boeing 787-9 Dreamliner der Fluggesellschaft Norse Atlantic Airways mit dem Kennzeichen LN-FNA im Landeanflug auf die Bahn 25L des Flughafens Berlin Brandenburg. Das Flugzeug f\u00fchrte einen Flug von Los Angeles nach Berlin durch.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Berlin_Brandenburg_Airport_Norse_Atlantic_Airways_Boeing_787-9_Dreamliner_LN-FNA_(DSC02378).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Berlin_Brandenburg_Airport_Norse_Atlantic_Airways_Boeing_787-9_Dreamliner_LN-FNA_%28DSC02378%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "MarcelX42"
+    }
+  ]
+}

@@ -1,0 +1,301 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-top-six-it-firms-shed-24422-engineering-roles-year",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "TCS",
+    "Infosys",
+    "HCLTech",
+    "Wipro",
+    "Xpheno",
+    "Engineering Roles"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Blanche de Nevers - an opera in four acts - music by M.W. Balfe ; words by John Brougham ; first produced at the Royal English Opera, Covent Garden (IA blanchedeneverso00balf).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Lyrics of the heart- with other poems (IA cu31924013568047).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Merlini Anglici ephemeris 1658. 1658 (IA bim early-english-books-1641-1700 merlini-anglici-ephemeri almanacs-lilly-william 1658).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The American fancier and breeder (IA americanfancierb217unse).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The American natural history; a foundation of useful knowledge of the higher animals of North America (IA cu31924078916685).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The American natural history - a foundation of useful knowledge of the higher animals of North America (IA americannaturalh04hornuoft).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Through India with the Prince (IA throughindiawith00abbo).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Works (IA cu31924064988490).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:World wool prospects (IA worldwoolprospec31unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Zoe?a biological journal. (IA mobot31753003413108).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Aldo Primicerio direttore TCS 1977.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 972x683 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:TATA Consultancy Services Logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:TATA Consultancy Services Logo blue.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:TCS SIPCOT Building.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "4032x2399, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:TCS building in Varanasi.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "4128x2322, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Infosys (4911287704).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "3264x1840, CC BY-SA 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Infosys campus building Mysore karnataka 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus building Mysore karnataka 4.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus mysuru karnataka.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus mysuru karnataka 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 08.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: canada/india/united kingdom/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 11.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: canada/india/united kingdom/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 15.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: canada/india/united kingdom/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 16.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: canada/india/united kingdom/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 19.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: canada/india/united kingdom/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Credit Suisse headquarters at Paradeplatz, Z\u00fcrich, Switzerland (Ank Kumar, Infosys Limited).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1027x897 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "3264x2448, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Cafeteria on rainy day, HCL, Chennai India 2013.jpeg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'HCLTech'"
+    },
+    {
+      "candidate": "File:H&D \u2013 An HCL Technologies Company .svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:HCLTech-new-logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:HCLTech Areas Served.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "1365x707, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:HCL Tech Noida SEZ Campus.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'HCLTech'"
+    },
+    {
+      "candidate": "File:HCL Technologies Manchester United partnership.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'HCLTech'"
+    },
+    {
+      "candidate": "File:HCL Technologies logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Office hcl.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'HCLTech'"
+    },
+    {
+      "candidate": "File:Skylt till HCLTech Arena.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "4000x2250, CC0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "infosys-4911287704",
+      "path": "infosys-4911287704.jpg",
+      "size": [
+        3264,
+        1840
+      ],
+      "role": "establishing",
+      "subject": "Infosys",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Infosys_(4911287704).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Infosys_%284911287704%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Ashwin Kumar from Bangalore, India"
+    },
+    {
+      "beat": "hero",
+      "label": "tcs-building-in-varanasi",
+      "path": "tcs-building-in-varanasi.jpg",
+      "size": [
+        4128,
+        2322
+      ],
+      "role": "establishing",
+      "subject": "Tara consultancy service(TCS) Building in Varanasi.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:TCS_building_in_Varanasi.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/TCS_building_in_Varanasi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Aashijo"
+    },
+    {
+      "beat": "grid",
+      "label": "mi6-headquarters-ank-kumar-infosys-limited-0",
+      "path": "mi6-headquarters-ank-kumar-infosys-limited-0.jpg",
+      "size": [
+        3264,
+        2448
+      ],
+      "role": "establishing",
+      "subject": "MI6 Headquarters (Ank Kumar, Infosys Limited)",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:MI6_Headquarters_(Ank_Kumar,_Infosys_Limited)_01.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/MI6_Headquarters_%28Ank_Kumar%2C_Infosys_Limited%29_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Ank Kumar"
+    },
+    {
+      "beat": "diaspora",
+      "label": "tcs-sipcot-building",
+      "path": "tcs-sipcot-building.jpg",
+      "size": [
+        4032,
+        2399
+      ],
+      "role": "interior",
+      "subject": "SIPCOT TCS OFFICE",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:TCS_SIPCOT_Building.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/TCS_SIPCOT_Building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Naveen.kumar.kotta"
+    }
+  ]
+}

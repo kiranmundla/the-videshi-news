@@ -1,0 +1,185 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "india-top-six-it-firms-shed-24422-engineering-roles-year",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "India's Top Six IT Firms Shed 24,422 Engineering Roles in One Year",
+        "numbers": [
+          24422.0
+        ],
+        "entities": [
+          "India's Top Six IT Firms Shed",
+          "Engineering Roles",
+          "One Year"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the firms shed 24,422 roles in one year.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Exits of about 92,000 outpaced hiring of 68,000 at TCS, Infosys, HCLTech, Wipro, Tech Mahindra and LTIMindtree, Xpheno data show, as firms left vacant seats unfilled.",
+        "numbers": [
+          68000.0,
+          92000.0
+        ],
+        "entities": [
+          "Tech Mahindra"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms exits of 92,000 and hiring of 68,000 at these firms.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Combined headcount fell 24,422 in a year, from 822,144 in October 2025 to 797,722 in October 2026",
+        "numbers": [
+          2025.0,
+          2026.0,
+          24422.0,
+          797722.0,
+          822144.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2025,
+            2026
+          ]
+        },
+        "llm_reason": "The article provides these exact figures for headcount changes.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "About 92,000 people left and about 68,000 were hired, with exits beating hiring in five of the last six months",
+        "numbers": [
+          68000.0,
+          92000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states these numbers and the trend of exits exceeding hiring.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Hiring has slowed most for 5-12 year roles in manual testing, maintenance and L1/L2 support, while AI, cloud and cybersecurity demand keeps growing",
+        "numbers": [
+          1.0,
+          2.0,
+          5.0,
+          12.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article discusses slowed hiring in these roles and growing demand in others.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Francis Padamadan",
+        "numbers": [],
+        "entities": [
+          "Francis Padamadan"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions Francis Padamadan as a source.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Chief Executive, Xpheno",
+        "numbers": [],
+        "entities": [
+          "Chief Executive"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Francis Padamadan as Chief Executive of Xpheno.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "India's Top Six IT Firms Shed 24,422 Engineering Roles in One Year",
+        "numbers": [
+          24422.0
+        ],
+        "entities": [
+          "India's Top Six IT Firms Shed",
+          "Engineering Roles",
+          "One Year"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000558,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

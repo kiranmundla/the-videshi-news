@@ -1,0 +1,219 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-27-anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1/output-v2/anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:news",
+    "edge_overflow:payoff"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1200,
+        899
+      ],
+      "manifest_dims": [
+        1200,
+        899
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 71.3,
+      "url": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-26516,resizemode-75,msid-135249836/tech/technology/anthropics-record-ipo-faces-some-big-questions.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-27-anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1/output-v2/qa/frames/frame-hook.png",
+      "text_px_detected": 29633,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-27-anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1/output-v2/qa/frames/frame-news.png",
+      "text_px_detected": 37219,
+      "edge": {
+        "pass": false,
+        "offending_px": 124,
+        "clusters": 1,
+        "largest_cluster": 105
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.89)",
+        "box": [
+          454,
+          423,
+          185,
+          301
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 36.6,
+        "delta": 217.3
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-27-anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1/output-v2/qa/frames/frame-hero.png",
+      "text_px_detected": 33556,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 170.8,
+        "bg_luminance": 0.0,
+        "delta": 170.8
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-27-anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1/output-v2/qa/frames/frame-grid.png",
+      "text_px_detected": 62464,
+      "edge": {
+        "pass": true,
+        "offending_px": 135,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          934,
+          373,
+          124,
+          174
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 248.9,
+        "bg_luminance": 72.2,
+        "delta": 176.7
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-27-anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1/output-v2/qa/frames/frame-diaspora.png",
+      "text_px_detected": 27409,
+      "edge": {
+        "pass": true,
+        "offending_px": 142,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 30.5,
+        "delta": 223.6
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-27-anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1/output-v2/qa/frames/frame-payoff.png",
+      "text_px_detected": 26691,
+      "edge": {
+        "pass": false,
+        "offending_px": 157,
+        "clusters": 1,
+        "largest_cluster": 97
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 57.6,
+        "delta": 196.1
+      }
+    }
+  ]
+}

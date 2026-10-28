@@ -1,0 +1,150 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "air-india-indigo-cut-europe-flights-winter-capacity-falls",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Air India and IndiGo Cut Europe Flights as Winter Capacity Falls 6.5% \u2014 and Foreign Carriers Take the Passengers",
+        "numbers": [
+          6.5
+        ],
+        "entities": [
+          "Air India",
+          "IndiGo Cut Europe Flights",
+          "Winter Capacity Falls",
+          "Foreign Carriers Take"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article states both airlines cut flights as capacity falls.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Air India ends Delhi-Vienna and its Birmingham services and IndiGo has suspended Manchester and will pause Heathrow, as India-Europe winter seats fall to 5.63 million.",
+        "numbers": [
+          5.63,
+          5630000.0
+        ],
+        "entities": [
+          "Air India"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All mentioned routes and capacity figures are in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Air India is cutting four European routes in the winter schedule, including Delhi-Vienna (ending October 31) and its Birmingham services",
+        "numbers": [
+          31.0
+        ],
+        "entities": [
+          "Air India"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article confirms Air India is cutting these routes.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "IndiGo suspended Delhi-Manchester and Mumbai-Manchester on August 31 and will temporarily suspend London Heathrow",
+        "numbers": [
+          31.0
+        ],
+        "entities": [
+          "London Heathrow"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All suspension dates and routes are confirmed in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "India-Europe winter capacity is 5.63 million two-way seats, down 6.5% from 6.02 million a year earlier",
+        "numbers": [
+          5.63,
+          6.02,
+          6.5,
+          5630000.0,
+          6020000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Capacity figures and percentage drop are directly cited.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Air India and IndiGo Cut Europe Flights as Winter Capacity Falls 6.5% \u2014 and Foreign Carriers Take the Passengers",
+        "numbers": [
+          6.5
+        ],
+        "entities": [
+          "Air India",
+          "IndiGo Cut Europe Flights",
+          "Winter Capacity Falls",
+          "Foreign Carriers Take"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Same as hook_line; supported by article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000471,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

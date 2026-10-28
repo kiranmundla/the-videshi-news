@@ -1,0 +1,204 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "microsoft-buyout-h1b-workers-60-day-grace-period",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Microsoft",
+    "H-1B",
+    "USCIS",
+    "Voluntary Exit Offer",
+    "United States"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:126872 The U.S. Newspaper Industry in Transition (IA 126872TheUSNewspaperIndustryinTransition-crs).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:News brief - USACE-p16021coll8-212.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:PRESERVING AND STRENGTHENING SOCIAL SECURITY (IA gov.gpo.fdsys.CHRG-106hhrg55995).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Rip rap - USACE-p16021coll8-1225.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:State Magazine 1998-02- Iss 411 (IA sim state-magazine 1998-02 411).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:State Magazine July-August 1997- Iss 407 (IA sim state-magazine july-august-1997 407).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Building92microsoft.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (payoff)",
+      "reason": "5184x3456, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:MicrosoftBanner.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1200x100 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Microsoft Atlanta.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "4032x3024, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:2023 H-1B admissions by place of birth.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:2e suite d'orchestre, op. 38 - Emile Bernard. 1b, Ronde fantastique - r\u00e9duction pour piano \u00e0 4 mains, H. Fr\u00e8ne - btv1b90744656 (07 of 24).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:2e suite d'orchestre, op. 38 - Emile Bernard. 1b, Ronde fantastique - r\u00e9duction pour piano \u00e0 4 mains, H. Fr\u00e8ne - btv1b90744656 (08 of 24).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:2e suite d'orchestre, op. 38 - Emile Bernard. 1b, Ronde fantastique - r\u00e9duction pour piano \u00e0 4 mains, H. Fr\u00e8ne - btv1b90744656 (20 of 24).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:Charles H. Fowler (1b).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 528x640 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Figure 2- Process of Obtaining an H-1B Visa (5405276752).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "2275x1517, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Frontispiece, Six Masnavis of Jami (1570-72). TSK H.1483 folio 1b-2a.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:Frontispiece from a Hasht bihisht of Amir Khusraw Dihwali, dated 1496-97, probably Herat, Topkapi Sarayi Library, H.676, folios 1b-2a.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:H-1B Visa Updates.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "3375x4219, CC0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:DHS Senior Official Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, Maryland on June 20, 2024 - 10.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "3500x2333, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:DHS Senior Official Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, Maryland on June 20, 2024 - 12.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "3500x2333, Public domain, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "h-1b-visa-updates",
+      "path": "h-1b-visa-updates.jpg",
+      "size": [
+        3375,
+        4219
+      ],
+      "role": "establishing",
+      "subject": "From interview mandates to higher fees understand how the new H-1B rules affect your chances.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:H-1B_Visa_Updates.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/H-1B_Visa_Updates.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Immigrationconsultantcalifornia"
+    },
+    {
+      "beat": "grid",
+      "label": "figure-2-process-of-obtaining-an-h-1b-visa-5",
+      "path": "figure-2-process-of-obtaining-an-h-1b-visa-5.jpg",
+      "size": [
+        2275,
+        1517
+      ],
+      "role": "interior",
+      "subject": "This image is excerpted from a U.S. Government Accountability Office report, available here: www.gao.gov/products/GAO-11-26",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Figure_2-_Process_of_Obtaining_an_H-1B_Visa_(5405276752).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Figure_2-_Process_of_Obtaining_an_H-1B_Visa_%285405276752%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "U.S. Government Accountability Office from Washington, DC, United States"
+    },
+    {
+      "beat": "diaspora",
+      "label": "microsoft-atlanta",
+      "path": "microsoft-atlanta.jpg",
+      "size": [
+        4032,
+        3024
+      ],
+      "role": "establishing",
+      "subject": "Microsoft building at Atlantic Station in Atlanta",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Microsoft_Atlanta.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Microsoft_Atlanta.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Tyler Lahti"
+    },
+    {
+      "beat": "payoff",
+      "label": "building92microsoft",
+      "path": "building92microsoft.jpg",
+      "size": [
+        5184,
+        3456
+      ],
+      "role": "establishing",
+      "subject": "Building 92 at Microsoft Corporation headquarters in Redmond, Washington. Photographed by user Coolcaesar on 30 May 2016.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Building92microsoft.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Building92microsoft.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Coolcaesar"
+    }
+  ]
+}

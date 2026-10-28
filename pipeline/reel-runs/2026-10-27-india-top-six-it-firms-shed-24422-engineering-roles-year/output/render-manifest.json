@@ -1,0 +1,413 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-top-six-it-firms-shed-24422-engineering-roles-year",
+ "article_slug": "india-top-six-it-firms-shed-24422-engineering-roles-year",
+ "article_id": "0dc5c6a9-4d12-430b-8e9d-f66d9c0e6796",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-10-27-india-top-six-it-firms-shed-24422-engineering-roles-year/output/india-top-six-it-firms-shed-24422-engineering-roles-year.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://img.youtube.com/vi/c4K1YOhmBtQ/maxresdefault.jpg",
+  "local_path": "reel-runs/2026-10-27-india-top-six-it-firms-shed-24422-engineering-roles-year/output/hero.jpg",
+  "width": 1280,
+  "height": 720,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.266,0.403) damped=(0.383,0.452)",
+  "has_face": false,
+  "box_source": [
+   132,
+   166,
+   716,
+   288
+  ],
+  "box_bg": [
+   172,
+   264,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.518,
+   0.476
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "Markets Finance",
+    "TOP SIX IT FIRMS SHED 24,422 ROLES IN A YEAR"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      0,
+      1280,
+      718
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 933,
+   "block_bottom": 1311,
+   "text_bbox": [
+    70,
+    933,
+    930,
+    1311
+   ],
+   "texts": [
+    "What Happened",
+    "Combined IT and engineering headcount at TCS, Infosys, HCLTech, Wipro, Tech Mahindra and LTIMindtree fell 24,422 in a year, from 822,144 in October 2025 to 797,722 in October 2026."
+   ],
+   "v7": {
+    "image_source": "extra:infosys-4911287704",
+    "track": "backdrop",
+    "render_scale": 0.256,
+    "photo_px": [
+     3264,
+     1840
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.2555147058823529,
+     "window": [
+      0,
+      9,
+      3264,
+      1840
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.04x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Infosys",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Infosys_(4911287704).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Infosys_%284911287704%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.0",
+     "artist": "Ashwin Kumar from Bangalore, India"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "24,422",
+    "Engineering roles shed by India's top six IT firms in one year"
+   ],
+   "v7": {
+    "image_source": "extra:tcs-building-in-varanasi",
+    "track": "full-bleed",
+    "render_scale": 0.827,
+    "photo_px": [
+     4128,
+     2322
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8268733850129198,
+     "window": [
+      1417,
+      0,
+      2723,
+      2322
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Tara consultancy service(TCS) Building in Varanasi.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:TCS_building_in_Varanasi.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/TCS_building_in_Varanasi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Aashijo"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 698,
+   "block_top": 882,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    882,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "797,722",
+    "Headcount in October 2026, down from 822,144",
+    "92,000",
+    "Exits, against 68,000 hires",
+    "11-15%",
+    "Attrition rate, in the normal range"
+   ],
+   "v7": {
+    "image_source": "extra:mi6-headquarters-ank-kumar-infosys-limited-0",
+    "track": "full-bleed",
+    "render_scale": 0.784,
+    "photo_px": [
+     3264,
+     2448
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7843137254901961,
+     "window": [
+      463,
+      0,
+      1840,
+      2448
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "MI6 Headquarters (Ank Kumar, Infosys Limited)",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:MI6_Headquarters_(Ank_Kumar,_Infosys_Limited)_01.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/MI6_Headquarters_%28Ank_Kumar%2C_Infosys_Limited%29_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Ank Kumar"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1211,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1211,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Replacement hiring slowed for maintenance and support roles",
+    "AI, cloud and cybersecurity demand keeps growing"
+   ],
+   "v7": {
+    "image_source": "extra:tcs-sipcot-building",
+    "track": "full-bleed",
+    "render_scale": 0.8,
+    "photo_px": [
+     4032,
+     2399
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8003334722801168,
+     "window": [
+      1379,
+      0,
+      2728,
+      2399
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "SIPCOT TCS OFFICE",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:TCS_SIPCOT_Building.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/TCS_SIPCOT_Building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Naveen.kumar.kotta"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "Firms left vacant seats unfilled \u2014 this is not a layoff count.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/tech-corporate-technology.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 149.4,
+ "mp4_bytes": 11491455
+}

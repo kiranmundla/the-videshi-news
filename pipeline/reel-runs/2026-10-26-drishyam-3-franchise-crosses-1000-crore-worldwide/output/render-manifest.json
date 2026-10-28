@@ -1,0 +1,413 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "drishyam-3-franchise-crosses-1000-crore-worldwide",
+ "article_slug": "drishyam-3-franchise-crosses-1000-crore-worldwide",
+ "article_id": "52bfe9bd-2e12-419d-ab8b-c197b7919401",
+ "category": "Entertainment",
+ "video": "reel-runs/2026-10-26-drishyam-3-franchise-crosses-1000-crore-worldwide/output/drishyam-3-franchise-crosses-1000-crore-worldwide.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://www.koimoi.com/wp-content/new-galleries/2026/10/drishyam-3-box-office-update-001.jpg",
+  "local_path": "reel-runs/2026-10-26-drishyam-3-franchise-crosses-1000-crore-worldwide/output/hero.jpg",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.93)",
+  "has_face": true,
+  "box_source": [
+   481,
+   103,
+   192,
+   265
+  ],
+  "box_bg": [
+   420,
+   228,
+   133,
+   184
+  ],
+  "chin_bg": 412,
+  "anchor": [
+   0.481,
+   0.348
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 348,
+   "block_top": 948,
+   "block_bottom": 1296,
+   "text_bbox": [
+    70,
+    948,
+    930,
+    1296
+   ],
+   "texts": [
+    "Entertainment",
+    "DRISHYAM 3 OUT-EARNS FIRST TWO FILMS COMBINED"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      673
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 933,
+   "block_bottom": 1311,
+   "text_bbox": [
+    70,
+    933,
+    930,
+    1311
+   ],
+   "texts": [
+    "What Happened",
+    "Ajay Devgn's Drishyam 3 has reached Rs 578.64 crore worldwide after 24 days, out-earning the first two films combined and taking the franchise past Rs 1,000 crore, according to Koimoi."
+   ],
+   "v7": {
+    "image_source": "extra:ajay-devgn",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      0,
+      1280,
+      718
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Ajay devgn is a bollywood actor, known for blockbuster films like singham, golmaal series",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Ajay_Devgn_.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Ajay_Devgn_.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Becks pinto"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 334,
+   "block_top": 1246,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1246,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "RS 1,028.17 CRORE",
+    "Worldwide total for the three-film Drishyam franchise"
+   ],
+   "v7": {
+    "image_source": "extra:jug-suraiya-indian-journalist-formerly-with",
+    "track": "full-bleed",
+    "render_scale": 0.789,
+    "photo_px": [
+     4320,
+     2432
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7894736842105263,
+     "window": [
+      2333,
+      0,
+      3701,
+      2432
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Jug Suraiya, Indian journalist, formerly with the \"Junior Statesmen\" and then \"Times of India\"",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Jug_Suraiya,_Indian_journalist,_formerly_with_the_%22Junior_Statesmen%22_and_then_%22Times_of_India%22_02.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/45/Jug_Suraiya%2C_Indian_journalist%2C_formerly_with_the_%22Junior_Statesmen%22_and_then_%22Times_of_India%22_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Fredericknoronha"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 698,
+   "block_top": 882,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    882,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "RS 578.64 CRORE",
+    "Drishyam 3 worldwide gross after 24 days",
+    "RS 449.53 CRORE",
+    "First two films combined worldwide",
+    "RS 142.94 CRORE",
+    "Overseas gross after 24 days"
+   ],
+   "v7": {
+    "image_source": "extra:jug-suraiya-indian-journalist-formerly-with-2",
+    "track": "full-bleed",
+    "render_scale": 0.789,
+    "photo_px": [
+     4320,
+     2432
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7894736842105263,
+     "window": [
+      1523,
+      0,
+      2891,
+      2432
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Jug Suraiya, Indian journalist, formerly with the \"Junior Statesmen\" and then \"Times of India\"",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Jug_Suraiya,_Indian_journalist,_formerly_with_the_%22Junior_Statesmen%22_and_then_%22Times_of_India%22_03.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Jug_Suraiya%2C_Indian_journalist%2C_formerly_with_the_%22Junior_Statesmen%22_and_then_%22Times_of_India%22_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Fredericknoronha"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 1148,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1148,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "A Hindi thriller holding international screens for four weeks",
+    "Drishyam 3 alone earned more than the first two films combined"
+   ],
+   "v7": {
+    "image_source": "extra:drishyam-arikkulam",
+    "track": "full-bleed",
+    "render_scale": 0.606,
+    "photo_px": [
+     4752,
+     3168
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6060606060606061,
+     "window": [
+      940,
+      0,
+      2722,
+      3168
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Glorious moments of yore have always been an inspiration for today. History also stand by this, as true testimonies of several golden moments have enshrined on it. Drishyam 2010, a national cultural event held at Arikulam two years back hol",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:DRISHYAM_ARIKKULAM.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/22/DRISHYAM_ARIKKULAM.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Baijukarayad"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "At Rs 578.64 crore, Drishyam 3 sits Rs 21.36 crore short of Rs 600 crore worldwide.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-future-bass-sigma.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 126.6,
+ "mp4_bytes": 9801409
+}

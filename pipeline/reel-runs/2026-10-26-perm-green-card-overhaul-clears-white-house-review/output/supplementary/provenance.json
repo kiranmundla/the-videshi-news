@@ -1,0 +1,541 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "perm-green-card-overhaul-clears-white-house-review",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "PERM",
+    "Department of Labor",
+    "Office of Information and Regulatory Affairs",
+    "Keith Sonderling",
+    "Federal Register",
+    "White House"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Preparation of woodland management plans and related considerations (IA CAT31291359).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Glendale Evening News 1919-02-24 (IA cgl 003701).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Glendale Evening News 1920-05-22 (IA cgl 004084).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Glendale Evening News 1920-08-10 (IA cgl 004150).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Glendale Evening News 1920-12-10 (IA cgl 004251).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Glendale Evening News 1924-07-17 (IA cgl 005363).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Nation (IA nation6186grin).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The New York Times 1898-03-08- Vol 47 Iss 15025 (IA per new-york-times-magazine the-new-york-times 1898-03-08 47 15025).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:UKSRO 1922.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1901-05-21) (IA victoriadailytimes19010521).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:COVID.2019.cumulated.log10.Perm krai (2020-05-16).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 750x750 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Flag of Gubaha (Perm krai).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Flag of Perm Krai.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Khokhlovka is an architectural and ethnographic open-air museum in Perm Krai, Russia.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Perm. Kama River. Kommunalny Bridge P6232022 2575.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "3863x2575, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Perm. Kama River. Passenger river ship Moskva-210 P6242370 2575.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "3862x2575, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:A comparative analysis of the efficiency and effectiveness of the F-14 Tomcat overhaul process (IA comparativeanaly00prue).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A modernization plan for the Technical Data Department of the Naval Ships Weapon Systems Engineering Station (IA modernizationpla00wiel).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A study of inspection and quality control at the Overhaul and Repair Department. U. S. Naval Air Station, Quonset Point, Rhode Island. (IA studyofinspectio19601gray).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:An analysis of claims and claims avoidance techniques in the ship repair and overhaul industry. (IA analysisofclaims00brig).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Annual report of the Board of Health of the Health Department of the City of New York (IA annualreportofbo1903newy).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Annual report of the Board of Health of the Health Department of the City of New York (IA annualreportofbo19041newy).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Budgeting in the Overhaul and Repair Departments. (IA budgetinginoverh19556stew).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:DEPARTMENTS OF LABOR, HEALTH AND HUMAN SERVICES, EDUCATION, AND RELATED AGENCIES APPROPRIATIONS FOR 2003 (IA gov.gpo.fdsys.CHRG-107hhrg80470).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Prineville District Planning Update... United States Department of the Interior... August 1997 (IA doi-report i-532p-93-3-997).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:T-56 turboprop engine overhaul alternatives for the Indonesian Air Force. (IA t56turbopropengi00sisw).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Frances Perkins Building of the United States Department of Labor in Washington, D.C. - 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "6720x4480, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Frances Perkins Building of the United States Department of Labor in Washington, D.C. - 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "6720x4480, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:AMENDING EXECUTIVE ORDER 12866- GOOD GOVERNANCE OR REGULATORY USURPATION? (IA gov.gpo.fdsys.CHRG-110hhrg33312).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:AN UPDATE ON ADMINISTRATION ACTION TO REDUCE UNNECESSARY REGULATORY BURDENS ON AMERICA'S SMALL MANUFACTURERS (IA gov.gpo.fdsys.CHRG-109hhrg30357).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Delivering government solutions in the 21st century- Reform plan and reorganization recommendations - USACE-p16021coll11-2520.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:EXAMINING THE PROPER ROLE OF JUDICIAL REVIEW IN THE FEDERAL REGULATORY PROCESS (IA gov.gpo.fdsys.CHRG-114shrg94906).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:H.R. 2768, THE 'MEDICARE REGULATORY AND CONTRACTING REFORM ACT OF 2001' (IA gov.gpo.fdsys.CHRG-107hhrg76025).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Memos \u2013 Office of Public Liaison (1981-1983 (Dole, Elizabeth)) (3) - DPLA - 9fec971efc59f9c2c2c255e7a7cf689c.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:News releases and other news material - United States Department of Agriculture, Office of Public Affairs. (IA CAT10619378016).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:REDUCING DUPLICATION AND IMPROVING OUTCOMES IN FEDERAL INFORMATION TECHNOLOGY (IA gov.gpo.fdsys.CHRG-113shrg82569).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Selected speeches and news releases - United States Department of Agriculture, Office of Public Affairs. (IA CAT10655231146).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:THE ADMINISTRATION'S PROGRAM TO REDUCE UNNECESSARY REGULATORY BURDEN ON MANUFACTURERS (IA gov.gpo.fdsys.CHRG-109hhrg21289).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Capilla de San Amaro (Oira, Ourense).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Office of Information and Regulatory Affairs'"
+    },
+    {
+      "candidate": "File:Crevoladossola Oira panorama.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1000x556 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Graffiti Oira - Villa Superiore.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Office of Information and Regulatory Affairs'"
+    },
+    {
+      "candidate": "File:OFFICE OF INFORMATION AND REGULATORY AFFAIRS (IA gov.gpo.fdsys.CHRG-114hhrg95483).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Oira 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x614 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Oira Chiesa di San Mattia.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Office of Information and Regulatory Affairs'"
+    },
+    {
+      "candidate": "File:Oira Lavatoio.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Office of Information and Regulatory Affairs'"
+    },
+    {
+      "candidate": "File:Oira Meridiana.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Office of Information and Regulatory Affairs'"
+    },
+    {
+      "candidate": "File:REVIEWING THE OFFICE OF INFORMATION AND REGULATORY AFFAIRS' ROLE IN THE REGULATORY PROCESS (IA gov.gpo.fdsys.CHRG-114shrg96251).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:RIC2026 - NRC Office of Public Affairs Team (55144218330).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Office of Information and Regulatory Affairs'"
+    },
+    {
+      "candidate": "File:Major news releases and speeches - United States Department of Agriculture, Office of Governmental and Public Affairs. (IA CAT82764736054).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Major news releases and speeches - United States Department of Agriculture, Office of Governmental and Public Affairs. (IA CAT82764736104).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Selected speeches and news releases - United States Department of Agriculture, Office of Information. (IA CAT10384738015).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Selected speeches and news releases - United States Department of Agriculture, Office of Information. (IA CAT10384738050).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Selected speeches and news releases - United States Department of Agriculture, Office of Public Affairs. (IA CAT10655231033).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Selected speeches and news releases - United States Department of Agriculture, Office of Public Affairs. (IA CAT10655231071).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Selected speeches and news releases - United States Department of Agriculture, Office of Public Affairs. (IA CAT10655231126).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Speeches and major policy releases - Office of Governmental and Public Affairs, U.S. Dept. of Agriculture. (IA CAT31060396014).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:U.S.-EU COOPERATION ON REGULATORY AFFAIRS (IA gov.gpo.fdsys.CHRG-108shrg91958).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Zamboanga City Ordinances for the Year 1998 (Regulatory).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:News releases and other news material - United States Department of Agriculture, Office of Public Affairs. (IA CAT10619378023).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Selected speeches and news releases - United States Department of Agriculture, Office of Information. (IA CAT10384738017).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Selected speeches and news releases - United States Department of Agriculture, Office of Information. (IA CAT10384738052).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Selected speeches and news releases - United States Department of Agriculture, Office of Information. (IA CAT10384738077).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Selected speeches and news releases - United States Department of Agriculture, Office of Public Affairs. (IA CAT10655231006).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Selected speeches and news releases - United States Department of Agriculture, Office of Public Affairs. (IA CAT10655231019).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Selected speeches and news releases - United States Department of Agriculture, Office of Public Affairs. (IA CAT10655231046).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Selected speeches and news releases - United States Department of Agriculture, Office of Public Affairs. (IA CAT10655231081).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Selected speeches and news releases - United States Department of Agriculture, Office of Public Affairs. (IA CAT10655231089).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:(Memos \u2013 Office of Legislative Affairs) - DPLA - 58b20b7b1e0e1a20be3cb5ba022a6926.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Research and innovation in the building regulatory process (IA researchinnovati518cook).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:S. 59-REGULATORY RIGHT-TO-KNOW ACT OF 1999 AND CONGRESSIONAL OFFICE OF REGULATORY ANALYSIS LEGISLATION (IA gov.gpo.fdsys.CHRG-106shrg57553).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Zamboanga City Ordinances for the Year 1996 (Regulatory).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Zamboanga City Ordinances for the Year 2000 (Regulatory).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Zamboanga City Ordinances for the Year 2003 (Regulatory).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:2025 Keith Sonderling (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 607x807 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Keith Sonderling (55510883049).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "8192x5464, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Keith Sonderling 2025 ILO Plenary.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "2600x1668, CC0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "perm-kama-river-kommunalny-bridge-p6232022-2",
+      "path": "perm-kama-river-kommunalny-bridge-p6232022-2.jpg",
+      "size": [
+        3863,
+        2575
+      ],
+      "role": "establishing",
+      "subject": "Perm. Kama River. Kommunalny Bridge",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Perm._Kama_River._Kommunalny_Bridge_P6232022_2575.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Perm._Kama_River._Kommunalny_Bridge_P6232022_2575.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Alexxx1979"
+    },
+    {
+      "beat": "hero",
+      "label": "perm-kama-river-passenger-river-ship-moskva",
+      "path": "perm-kama-river-passenger-river-ship-moskva.jpg",
+      "size": [
+        3862,
+        2575
+      ],
+      "role": "establishing",
+      "subject": "Perm. Kama River. Passenger river ship \"Moskva-210\"",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Perm._Kama_River._Passenger_river_ship_Moskva-210_P6242370_2575.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Perm._Kama_River._Passenger_river_ship_Moskva-210_P6242370_2575.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Alexxx1979"
+    },
+    {
+      "beat": "grid",
+      "label": "frances-perkins-building-of-the-united-state",
+      "path": "frances-perkins-building-of-the-united-state.jpg",
+      "size": [
+        6720,
+        4480
+      ],
+      "role": "establishing",
+      "subject": "Washington, DC \u2013 frances perkins Building Official Department of Labor Photograph*** Photographs taken by the federal government are generally part of the public domain and may be used, copied and distributed without permission. Unless othe",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Frances_Perkins_Building_of_the_United_States_Department_of_Labor_in_Washington,_D.C._-_1.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Frances_Perkins_Building_of_the_United_States_Department_of_Labor_in_Washington%2C_D.C._-_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "US Department of Labor"
+    },
+    {
+      "beat": "diaspora",
+      "label": "frances-perkins-building-of-the-united-state-2",
+      "path": "frances-perkins-building-of-the-united-state-2.jpg",
+      "size": [
+        6720,
+        4480
+      ],
+      "role": "establishing",
+      "subject": "Washington, DC \u2013 frances perkins Building Official Department of Labor Photograph*** Photographs taken by the federal government are generally part of the public domain and may be used, copied and distributed without permission. Unless othe",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Frances_Perkins_Building_of_the_United_States_Department_of_Labor_in_Washington,_D.C._-_2.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Frances_Perkins_Building_of_the_United_States_Department_of_Labor_in_Washington%2C_D.C._-_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "US Department of Labor"
+    }
+  ]
+}

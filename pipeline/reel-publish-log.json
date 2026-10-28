@@ -339,5 +339,44 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "DiiphB7pgpk",
+    "article_slug": "air-india-indigo-cut-europe-flights-winter-capacity-falls",
+    "article_id": "08625329-08db-43a8-9c64-81c0c5d701d9",
+    "title": "Air India and IndiGo Cut Europe Flights as Winter Capacity Falls 6.5% \u2014 and Foreign #Shorts #Travel",
+    "privacy": "public",
+    "uploaded_at": "2026-10-27T11:19:22.489507+00:00",
+    "video_path": "reel-runs/2026-10-27-air-india-indigo-cut-europe-flights-winter-capacity-falls/output-v2/air-india-indigo-cut-europe-flights-winter-capacity-falls.mp4",
+    "video_sha256": "b4ef4044395679274a527bb189cde834961836b493e06b192d3a16cb2b291a61",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "HWl_1NFHmfA",
+    "article_slug": "india-top-six-it-firms-shed-24422-engineering-roles-year",
+    "article_id": "0dc5c6a9-4d12-430b-8e9d-f66d9c0e6796",
+    "title": "India's Top Six IT Firms Shed 24,422 Engineering Roles in One Year #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-10-27T17:15:42.290524+00:00",
+    "video_path": "reel-runs/2026-10-27-india-top-six-it-firms-shed-24422-engineering-roles-year/output/india-top-six-it-firms-shed-24422-engineering-roles-year.mp4",
+    "video_sha256": "61ae7759939c2d29498fffbe3eba43c2b50b808c1c1ac0a3e433cb3b8da93a92",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "bPvs1ZT0wXU",
+    "article_slug": "microsoft-buyout-h1b-workers-60-day-grace-period",
+    "article_id": "b4d9c84f-efed-44c1-97b7-c9c527c9cf03",
+    "title": "H-1B Workers Taking Microsoft Buyout Face 60-Day Deadline to Stay #Shorts #H1B",
+    "privacy": "public",
+    "uploaded_at": "2026-10-27T23:15:58.200055+00:00",
+    "video_path": "reel-runs/2026-10-27-microsoft-buyout-h1b-workers-60-day-grace-period/output-v2/microsoft-buyout-h1b-workers-60-day-grace-period.mp4",
+    "video_sha256": "18b5c5ec1d8ce1ce94a88cba872f44a7d3b5eb8c102c604ab831c0505526c283",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

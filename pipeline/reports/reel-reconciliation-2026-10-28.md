@@ -1,0 +1,377 @@
+# Reel reconciliation — The Videshi (YouTube @the.videshi)
+
+Generated: 2026-10-28T05:20:03+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+
+## Counts
+
+- Channel uploads (actual, via API): **207**
+- prebuilt_reels rows: 145 (115 with a yt_video_id)
+- Legacy youtube-log.json entries: 205
+- Phase 2 publish-log entries: 28
+- **In sync** (channel video backed by a DB/publish-log record): **96**
+- Unknown — legacy-logged only: 101
+- Unknown — no record anywhere: 10
+- Ghost DB rows (yt_video_id not on channel): 15
+- Superseded DB rows (owner-deleted/replaced; not ghosts): 4
+- Public with no DB record: 111
+- Phase 2 uploads now public (manual flip expected): 0
+
+## (a1) Unknown channel videos — legacy-logged (old upload path) (101)
+
+- `E0_-Wo2WOr4` · public · 2026-05-26 · Mammootty Was Supposed to Receive India's Third-Highest Civilian Honour Today. He Was in Kott #Sh... (log slug: mammootty-skipped-padma-bhushan-ceremony-third-honorary-doctorate-mahatma-gandhi-university-kerala-20260525)
+- `u-OB58pDic8` · public · 2026-05-26 · India and the US Just Signed a Critical Minerals Deal and a Rare Earths Agreement at the Firs #Sh... (log slug: quad-foreign-ministers-delhi-critical-minerals-rare-earths-deal-20260526)
+- `TwszLprZxcQ` · public · 2026-05-26 · Loneliness Inflames the Gut. A UK Biobank Study of 275,000 Adults Found That Social Isolatio #Shorts (log slug: loneliness-inflames-gut-social-isolation-ibd-85-percent-indian-20260526)
+- `7SH4rEKOAhU` · public · 2026-05-26 · India Killed the Blue Booklet — What the New Digital e-OCI Card Means for 4.7 Million Overse #Shorts (log slug: india-digital-eoci-card-nri-qr-code-guide-20260526)
+- `n1pczEcKAzk` · public · 2026-05-26 · Monsoon Hits Kerala May 26 Six Days Early Farmers Rush #Shorts (log slug: unknown)
+- `UXlJ8v0rY_0` · public · 2026-05-26 · Iran Supreme Leader Uranium Surrender Irgc Drone Retaliation #Shorts (log slug: unknown)
+- `K_zZnPBErlg` · public · 2026-05-26 · The Curcumin in Your Supplement Is Not the Same as the Turmeric in Your Dal. A Study of 100… #Shorts (log slug: curcumin-supplement-not-turmeric-dal-food-additive-49-percent-diabetes-20260526)
+- `lezYZfdgziM` · public · 2026-05-27 · Who Ebola Global Emergency India Travel Advisory Bundibugyo #Shorts (log slug: unknown)
+- `Vb2dFMpl_7U` · public · 2026-05-27 · The $110 Billion Deal That Would Merge Marvel, Star Wars, Harry Potter, DC, and HBO Into ... #Shorts (log slug: paramount-warner-bros-110-billion-merger-approved-streaming-india-20260527)
+- `Exd3v2tALfo` · public · 2026-05-27 · Netflix Made a Show About Ultra-Rich Indians in Dubai. Karan Kundrra Proposed to Tejasswi... #Shorts (log slug: netflix-desi-bling-dubai-indian-expats-karan-kundrra-tejasswi-prakash-engagement-nri-wealth-20260527)
+- `TzlzHd4wBWc` · public · 2026-05-27 · Cancún for Desis: Why NRIs Are Trading Goa for Mexico's Caribbean This Summer #Shorts (log slug: cancun-desis-nri-mexico-caribbean-summer-20260527)
+- `Rw6eSgkC7uA` · public · 2026-05-27 · India Oil Supply Chain Latin America Africa Venezuela Hormuz #Shorts (log slug: unknown)
+- `N-xhAGj1ths` · public · 2026-05-27 · India's Supreme Court Just Quashed the ₹202 Crore Penalty on Amazon. The CCI Must Refund t #Shorts (log slug: supreme-court-quashes-cci-202-crore-amazon-penalty-future-coupons-20260527)
+- `A-ep679QDWo` · public · 2026-05-27 · Pm 602 0199 Legal Challenge Court 1967 Case Law #Shorts (log slug: unknown)
+- `ck2rvxVwG7Y` · public · 2026-05-27 · If They Can't Come to America, America Is Going to Them #Shorts (log slug: gcc-boom-india-american-companies-hiring-h1b-alternative-20260527)
+- `aJyE_SqI6c8` · public · 2026-05-27 · India Petrol Crosses 100 Four Hikes 10 Days Hormuz Oil Crisis #Shorts (log slug: unknown)
+- `gcsw1l_gQNY` · public · 2026-05-27 · Karan Johar Bet on Ananya Panday and Lakshya. The Box Office Said No. Chand Mera Dil Is... #Shorts (log slug: chand-mera-dil-box-office-dharma-ananya-panday-lakshya-netflix-nri-20260527)
+- `FbpxG8_TNIM` · public · 2026-05-27 · Canada's Government Just Shrank to a One-Seat Majority. The India Trade Deal Could Be t... #Shorts (log slug: canada-carney-one-seat-majority-india-cepa-trade-deal-20260527)
+- `JmFXrJ9tZro` · public · 2026-05-27 · Foreign Airlines Are Quietly Feasting on India's Aviation Crisis — and NRIs Are the Prize #Shorts (log slug: foreign-airlines-india-aviation-crisis-cathay-singapore-nri-20260527)
+- `wYmFNvEQzoo` · public · 2026-05-28 · 33 Days to File or Lose It Forever — The FY2027 H-1B Petition Window Is Closing and the Rul… #Shorts (log slug: h1b-fy2027-june-30-filing-deadline-guide-indian-20260528)
+- `2E_jkg26oDA` · public · 2026-05-28 · India Oil Supply Chain Rewired Venezuela Africa Uae Hormuz Closed #Shorts (log slug: unknown)
+- `jZDR7uOuW6s` · public · 2026-05-28 · Mamata Refused to Resign After Losing West Bengal. The Governor Dissolved the Assembly ... #Shorts (log slug: west-bengal-bjp-wins-mamata-refuses-resign-governor-dissolves-assembly-20260527)
+- `4p3cIQz9i8k` · public · 2026-05-28 · Consular Processing India Green Card Logistics Crisis #Shorts (log slug: consular-processing-india-green-card-logistics-crisis-20260526)
+- `goI8_uBt0dc` · public · 2026-05-28 · India Just Sold Shares in Coal India at a 10 Per Cent Discount. It Sold Central Bank of #Shorts (log slug: india-coal-india-divestment-ofs-central-bank-800-billion-rupees-nri-20260528)
+- `zgCp8lOKyxg` · public · 2026-05-28 · Trump Anything India Wants They Get Delhi Call Ar Rahman Quad #Shorts (log slug: unknown)
+- `AQgQi65ZuvU` · public · 2026-05-28 · U.S. Inflation Just Hit 3.8 Percent. The Iran War Is Baked Into Every Price Tag in America. #Shorts (log slug: us-pce-inflation-3-8-percent-iran-war-fed-rate-hike-indian-americans-20260528)
+- `n-deTJ7Tw2M` · public · 2026-05-28 · 290,000 Students, One Confirmation Hearing, and the Quiet Death of OPT #Shorts (log slug: opt-end-uscis-edlow-indian-students-work-rights-20260528)
+- `WDnDm86Trzs` · public · 2026-05-28 · American Airlines Will Double Its India Tech Hub to 800 People. It Is Not Alone. #Shorts (log slug: american-airlines-india-hyderabad-gcc-tech-hub-double-800-employees-20260528)
+- `huUCGBYiEsM` · public · 2026-05-29 · India's Supreme Court Just Wiped Out ₹202 Crore in Fines Against Amazon. Foreign Invest... #Shorts (log slug: india-supreme-court-amazon-future-group-cci-penalty-overturned-cross-border-investment-20260529)
+- `l6AYs1agyR8` · public · 2026-05-29 · Europe's New Biometric Border Is Already Broken — and NRIs Are Stuck in the Queue #Shorts (log slug: eu-ees-biometric-border-nri-europe-travel-delays-20260528)
+- `NEJ5ExZlZhk` · public · 2026-05-29 · Permanent Residency in 21 Months #Shorts (log slug: germany-eu-blue-card-indian-engineers-h1b-alternative-20260529)
+- `taAqbmBbKN0` · public · 2026-05-29 · Shrey Parikh Wins the Scripps Spelling Bee 🏆 | Indian American Dynasty (log slug: shrey-parikh-scripps-spelling-bee-2026-indian-american-dynasty)
+- `YSbvFQQXqsM` · public · 2026-05-29 · The US Ambassador to India Says a Trade Deal Is 'Not Too Far Apart.' Here Is What That Ac... #Shorts (log slug: us-india-trade-deal-ambassador-gor-tariffs-nri-businesses-20260529)
+- `-oFziAnFFuY` · public · 2026-05-29 · A Genetic Variant Carried by 1 in 13 South Asians Makes the Standard Diabetes Blood Test... #Shorts (log slug: south-asian-piezo1-g6pd-hba1c-diabetes-underdiagnosis-blood-test-unreliable-20260529)
+- `ZTKvup2acb0` · public · 2026-05-29 · India and South Korea Just Signed a Defense and Cyber Pact in Seoul. The Indo-Pacific Che... #Shorts (log slug: india-south-korea-defense-cyber-mou-rajnath-singh-indo-pacific-20260529)
+- `s5OjC8oe8eo` · public · 2026-05-29 · The New H-1B Wage Floor Is Still a Basement #Shorts (log slug: dol-h1b-prevailing-wage-rule-34th-percentile-indian-20260529)
+- `e-NlbSTAPHc` · public · 2026-05-29 · The Rupee Just Had Its Best Day in Two Months. The Reason: Oil Fell and the RBI Stepped In. #Shorts (log slug: rupee-best-day-two-months-rbi-intervention-oil-iran-deal-20260529)
+- `UWFiYGBWrNk` · public · 2026-05-29 · India's Vande Bharat Sleeper Kills the Waitlist — Confirmed Tickets Only, Fares Above Rajdh… #Shorts (log slug: vande-bharat-sleeper-confirmed-tickets-no-rac-nri-20260529)
+- `OEisEKttFhw` · public · 2026-05-30 · AAP Just Swept Punjab's Municipal Elections. Congress Finished Second. The BJP Barely… #Shorts (log slug: aap-sweeps-punjab-civic-body-elections-congress-bjp-results-20260530)
+- `MoN7aStjXGk` · public · 2026-05-30 · They Showed Up Without Calling — Inside the USCIS Site Visit Surge That's Putting H-1B Wo... #Shorts (log slug: uscis-fdns-site-visits-h1b-deportation-indian-workers-20260530)
+- `WTJLpYhiISM` · public · 2026-05-30 · The Sensex Fell 850 Points in 10 Minutes on Friday. The Explanation That Went Viral Was... #Shorts (log slug: sensex-850-point-crash-msci-rebalance-panic-india-weight-unchanged-20260530)
+- `jmPqRtdJHLc` · public · 2026-05-30 · Air India's 2026 Route Blitz — Mumbai-Tokyo, London-Bengaluru, and Nine Other New Flights  #Shorts (log slug: air-india-2026-route-expansion-mumbai-tokyo-london-bengaluru-nri-20260530)
+- `n4bRvX7gsQc` · public · 2026-05-30 · India's Finance Ministry Has Named the Single Biggest Risk to the Economy. It Is the St... #Shorts (log slug: india-finance-ministry-inflation-warning-hormuz-monsoon-fuel-prices-iran-war-20260530)
+- `BPOVGFWntnE` · public · 2026-05-30 · V2 Final #Shorts (log slug: v2-final)
+- `37Rmjon7xy4` · public · 2026-05-30 · 110,000 and Counting — The 2026 Tech Layoff Wave Is Pushing Indian H-1B Workers to the Edge #Shorts (log slug: tech-layoffs-h1b-60-day-clock-indian-workers-20260530)
+- `X3cFOLFlqhc` · public · 2026-05-30 · The Quad Just Agreed to Build a Port in Fiji and Launch a Critical Minerals Pact. India H... #Shorts (log slug: quad-foreign-ministers-new-delhi-fiji-port-critical-minerals-maritime-surveillance-20260530)
+- `rTSzbV3aP44` · public · 2026-05-30 · Mounjaro Tirzepatide Surpass Early Type 2 Diabetes Glp1 South Asian #Shorts (log slug: unknown)
+- `GahzQaiOwdQ` · public · 2026-05-31 · The US and Iran Have Reached a Ceasefire Extension Deal on Paper. Neither Leader Has Si... #Shorts (log slug: us-iran-ceasefire-extension-mou-hormuz-trump-khamenei-india-oil-20260531)
+- `iRtGZ8GYlNU` · public · 2026-05-31 · The 12-Factor Test USCIS Is Already Using to Decide Who Gets to Stay #Shorts (log slug: uscis-12-factor-rfe-test-aos-green-card-indian-20260531)
+- `80-prrpKdqQ` · public · 2026-05-31 · New York's Indian-Origin Mayor Just Launched His Own DOGE. Jeff Bezos Agreed With Him. #Shorts (log slug: zohran-mamdani-nyc-mayor-coge-government-efficiency-bezos-endorsement-diaspora-20260531)
+- `rXjpfuyHsLY` · public · 2026-05-31 · Enterprise AI Spending Is Showing Its First Cracks. If You Hold US Tech Stocks, Your Portfo… #Shorts (log slug: ai-enterprise-spending-fatigue-nri-portfolio-tech-stocks-rebalancing-20260531)
+- `ljwTYKbQWD0` · public · 2026-05-31 · Mumbai's Dabbawalas Fed the City for 130 Years. Now Only 1,500 Are Left. #Shorts (log slug: mumbai-dabbawalas-disappearing-1500-left-remote-work-app-delivery-bbc-20260531)
+- `Dro95qc9EVw` · public · 2026-05-31 · Skip the Lottery, File Your Own Case — Inside the EB-1A Gold Rush Reshaping Indian Immigrati #Shorts (log slug: eb1a-gold-rush-indian-tech-self-petition-green-card-20260531)
+- `plI06TM_ac0` · public · 2026-05-31 · The US Said Green Card Applicants Must Leave the Country. A Week Later, It Said Never Mind. #Shorts (log slug: uscis-adjustment-of-status-memo-dhs-walkback-green-card-h1b-indians-20260531)
+- `cv14T6xFoq0` · public · 2026-05-31 · The WHO Just Endorsed a $1 Antibiotic Pill That Prevents Syphilis and Chlamydia After Sex.... #Sh... (log slug: who-doxypep-doxycycline-sti-prevention-syphilis-chlamydia-first-recommendation-south-asian-20260531)
+- `D5OB9TKic3k` · public · 2026-06-01 · From Memes to Monarchy: RCB's Dynasty Has Arrived #Shorts (log slug: rcb-ipl-2026-champions-back-to-back-dynasty-kohli-sooryavanshi-editorial)
+- `4gI_8WHNSNU` · public · 2026-06-01 · Orphaned at Five. World Rank Six at Twenty-Five. Rupa Bayor Is the First Indian in the Glob… #Shorts (log slug: rupa-bayor-world-rank-6-asia-1-taekwondo-poomsae-arunachal-pradesh-india-first-nri)
+- `L-jk1WNwKjo` · public · 2026-06-01 · Jim Sarbh Is Xerxes Desai and Naseeruddin Shah Is JRD Tata in Made in India: A Titan Story #Shorts (log slug: made-in-india-titan-story-jim-sarbh-naseeruddin-shah-mx-player-june-3-nri)
+- `hHFvhW9lO6c` · public · 2026-06-01 · Bollywood's Children Are Graduating from NYU, Columbia, and Emory. They're Coming Home to  #Shorts (log slug: bollywood-star-kids-class-2026-nyu-columbia-emory-nri-diaspora-education-20260601)
+- `eI4vItKaiZA` · public · 2026-06-02 · Praggnanandhaa Beat Firouzja in Classical. Gukesh Had So on the Ropes but Ran Out of Time.… #Shorts (log slug: norway-chess-2026-round-7-praggnanandhaa-beats-firouzja-gukesh-misses-so-divya-nri)
+- `J-Hvh8ZFcyY` · public · 2026-06-02 · Naseeruddin Shah Plays JRD Tata in a Show About India's First Watch. Every NRI's Wrist Has #Shorts (log slug: made-in-india-titan-story-naseeruddin-shah-jrd-tata-amazon-mx-june-3-nri-20260602)
+- `lh4FT35FxH4` · public · 2026-06-02 · Ramayana Got a Private Screening Room at CinemaCon. The Audience Was Every Major Distributo… #Shorts (log slug: ramayana-cinemacons-global-push-namit-malhotra-bollywood-nri-20260602)
+- `W6fRWZu6lnk` · public · 2026-06-03 · Gulveer Singh Ran a 3:55 Mile. He Is the First Indian to Break the Four-Minute Barrier.... #Shorts (log slug: gulveer-singh-sub-4-minute-mile-first-indian-athletics-records-week-nri)
+- `2fslGaTkzII` · public · 2026-06-03 · Dhurandhar 2 Hits JioHotstar Tomorrow. India's Second-Biggest Film Ever Just Became a L... #Shorts (log slug: dhurandhar-2-jiohotstar-ott-release-june-4-ranveer-singh-streaming-nri-20260603)
+- `z5NqFylO7MQ` · public · 2026-06-03 · Jacqueline Fernandez Walked Into a Delhi Courtroom Today. The ₹200-Crore Trial She Spent T #Shorts (log slug: jacqueline-fernandez-delhi-court-money-laundering-trial-sukesh-200-crore-nri-20260603)
+- `5YxuQMkCibU` · public · 2026-06-04 · Ten Gold Medals. Nineteen Total. India's U20 Athletes Just Had Their Best Overseas Cham... #Shorts (log slug: india-u20-asian-athletics-championships-2026-hong-kong-19-medals-10-gold-records-nri)
+- `_RNDQNBenxs` · public · 2026-06-04 · The India Story Shreyas Talpade Kajal Aggarwal Food Adulteration Teaser Pesticid #Shorts (log slug: the-india-story-shreyas-talpade-kajal-aggarwal-food-adulteration-teaser-pesticid)
+- `BzpjNk_yoio` · public · 2026-06-05 · Sixty Countries. Four Hundred Athletes. India Just Turned Yoga Into a Competitive Sport... #Shorts (log slug: world-yogasana-championship-2026-ahmedabad-modi-60-countries-olympic-pathway-nri)
+- `z1SB02xajp8` · public · 2026-06-05 · Celina Jaitly Has Fired Back at Her Estranged Husband's Defamation Threats. The Custody Ba #Shorts (log slug: celina-jaitly-peter-haag-defamation-notice-custody-battle-austria-india-nri-20260605)
+- `SDM5K9GjHpA` · public · 2026-06-05 · Naga Chaitanya Just Won a Court Order Against AI Deepfakes. It Is Part of a Larger Reckonin… #Shorts (log slug: naga-chaitanya-delhi-high-court-ai-deepfake-personality-rights-order-nri-20260605)
+- `vCgEuXAiE7Y` · public · 2026-06-06 · 'I Don't Look for Excuses.' Gambhir Confirms Sudharsan at No. 3 and Says the Afghanistan #Shorts (log slug: gambhir-sudharsan-no-3-afghanistan-test-mohali-serious-business-wtc-transition-nri)
+- `XO78Jp1Ri_c` · public · 2026-06-06 · Anushka Sharma Endorsed Homeopathy. A Doctor Called Her an 'Illiterate Celeb.' The #Shorts (log slug: anushka-sharma-homeopathy-controversy-liver-doc-cyriac-philips-celebrity-health-nri-20260606)
+- `JOWJqrGDm0Q` · public · 2026-06-06 · Salim Kumar Is on a Ventilator. The Man Who Made Malayalam Cinema Laugh Is Fighting for... #Shorts (log slug: salim-kumar-ventilator-hospital-ernakulam-malayalam-cinema-national-award-nri-20260606)
+- `ipnbuauMdao` · public · 2026-06-07 · DeepSeek Just Topped America's Fastest-Growing Software List. The Security Implications Are… #Shorts (log slug: deepseek-trending-us-corporate-ai-data-security-indian-tech-20260607)
+- `GhYTqvEkL5s` · public · 2026-06-07 · Nolan's The Odyssey Opens IMAX Ticket Sales Tomorrow. India Gets First Dibs Alongside the... #Shorts (log slug: christopher-nolan-the-odyssey-imax-tickets-india-june-8-matt-damon-nri-20260607)
+- `NQeWdzlW6zA` · public · 2026-06-08 · Prasidh Krishna Had Not Played a Test in India for Three Years. On Sunday, He Reminded ... #Shorts (log slug: prasidh-krishna-test-comeback-india-afghanistan-mullanpur-wickets-day-2-nri)
+- `2lcx7xfvfbk` · public · 2026-06-08 · A New Bill Wants to Kill the H-1B-to-Green-Card Pipeline. Big Tech Should Be Nervous. #Shorts (log slug: h1b-overhaul-bill-green-card-opt-tech-industry-20260608)
+- `HKQIO0655RE` · public · 2026-06-08 · 22M-Follower Creator Leads India's First Cockroach Protest #Shorts (log slug: cockroach-janta-party-first-protest-jantar-mantar-22-million-followers-dipke-20260608)
+- `fU0cTt-FGdY` · public · 2026-06-09 · Manoj Bajpayee Is Playing the Man Who Saved India From Bankruptcy. The Tickets Cost What Th… #Shorts (log slug: governor-manoj-bajpayee-rbi-1990-crisis-ticket-pricing-june-12-nri-20260609)
+- `-pXScWJB8SU` · public · 2026-06-09 · Welcome To The Jungle Drops Its Trailer Wednesday. Bollywood's Most Insane Ensemble Is Fina… #Shorts (log slug: welcome-to-the-jungle-trailer-june-11-akshay-suniel-paresh-ensemble-nri-20260608)
+- `kTyJTd8jNII` · public · 2026-06-09 · The US Just Found a New Legal Route to Tariff India. This Time, It May Stick. #Shorts (log slug: ustr-section-301-forced-labor-tariff-india-12-percent-greer-trade-deal-20260608)
+- `8w71FTQq3u8` · public · 2026-06-09 · Suriya's ₹304 Crore Monster Karuppu Lands on Prime Video Thursday. The Diaspora Finally Get… #Shorts (log slug: karuppu-suriya-prime-video-ott-304-crore-tamil-blockbuster-nri-20260609)
+- `ixHUYZ1QwJg` · public · 2026-06-09 · Malayalam Cinema's Two Hottest Directors Made a Film Together. It Just Played Cannes. #Shorts (log slug: balan-the-boy-chidambaram-jithu-madhavan-cannes-malayalam-multilingual-june-19-nri-20260609)
+- `oHZ8jiCsHMo` · public · 2026-06-09 · NRI Remittances Hit $43.5 Billion in One Quarter. The Gulf Crisis Is the Reason. #Shorts (log slug: nri-remittances-record-43-billion-q4-fy26-current-account-surplus-gulf-crisis-20260609)
+- `gSAykuWacJA` · public · 2026-06-09 · Akshay Kumar Is Making India's First Alien Thriller. The Creature Designer Built the Actua #Shorts (log slug: akshay-kumar-samuk-alien-thriller-alec-gillis-practical-fx-bollywood-nri-20260609)
+- `UMsqCwLUG-M` · public · 2026-06-10 · Cocktail 2 Just Invented the Bollywood Music Festival. Three Cities. One Film. Pure Mayhem #Shorts (log slug: cocktail-2-music-festival-shahid-kriti-rashmika-mumbai-delhi-pune-nri-20260610)
+- `5oLRVj-H4kA` · public · 2026-06-10 · Unavailable — The One Word That Just Froze Half a Million Indian Green Card Dreams #Shorts (log slug: eb2-india-unavailable-june-visa-bulletin-green-card-frozen-20260610)
+- `ls4_NQ7_mnc` · public · 2026-06-10 · ISRO Just Handed Its Biggest Rocket to the Private Sector. India's Launch Cadence Depends  #Shorts (log slug: isro-lvm3-technology-transfer-private-sector-space-20260610)
+- `vO-v4Elnh_Q` · public · 2026-06-20 · The War That Choked India's Oil Lifeline May Be Ending #Shorts (log slug: india-welcomes-us-iran-gulf-peace-deal-strait-hormuz-reopen-oil-falls-20260615)
+- `mr4cA7I1mI8` · public · 2026-06-20 · An H-1B Worker Says He Paid $100,000 to Keep His Job. His Lawsuit Exposes the Visa's Dark Si #Shorts (log slug: h1b-labor-trafficking-lawsuit-telugu-worker-pay-to-stay-michigan-green-card-20260620)
+- `NlQ5lRS3zbs` · public · 2026-07-02 · Apple's $38 Billion India Fine — CCI Antitrust Showdown #Shorts (log slug: apple-cci-antitrust-app-store-copy-pasted-38-billion-20260702)
+- `vEqk-X9_qxY` · public · 2026-10-09 · Microsoft Disputes Vance's 'Foreign Indentured Servants' Claim With Its Own H-1B Data #Shorts (log slug: microsoft-disputes-vance-fraud-claims-h1b-response)
+- `94YJRBwNNY4` · public · 2026-10-09 · TCS Says US Green Card Suspension Won't Disrupt Workforce Strategy or Hiring #Shorts (log slug: tcs-says-us-green-card-suspension-no-workforce-impact)
+- `VlklU4Xpv2k` · public · 2026-10-10 · Kashmiri Filmmaker's Shocking Two-Week ICE Detention! (log slug: arfat-sheikh-released-on-bond-ice-detention-kashmiri-filmmaker)
+- `IGemFdLn2bs` · public · 2026-10-10 · US Green Card Curbs: A Setback for India? (log slug: india-says-us-green-card-curbs-do-not-advance-shared-ambitions)
+- `nZgz3u2iINc` · public · 2026-10-11 · Green Card Curbs: Will India’s Talent Surge? (log slug: nasscom-chief-green-card-curbs-work-india-talent-base-20261010)
+- `E7A6l8BVUVg` · public · 2026-10-11 · OpenAI's Bold Move: Banning Influencers from Russia & Iran (log slug: openai-bans-russian-iranian-chatgpt-influence-campaigns)
+- `gjPPpPt4rOQ` · public · 2026-10-12 · H-1B: A Business Model? Trump Official's Bold Defense (log slug: h1b-business-model-trump-official-defends-suspensions)
+- `mP7Ow3xGpc0` · public · 2026-10-12 · Green Card Freeze: H-1B Workers Face New Challenges (log slug: us-green-card-freeze-eight-tech-firms-h1b-workers)
+- `dOdIzexK70M` · public · 2026-10-13 · GOP's H-1B Visa Shift: 9 Indian-American Republicans Run! (log slug: indian-american-republicans-h-1b-backlash-ballot-2026)
+- `d-Lek2J0Q-g` · public · 2026-10-13 · Hyderabad Man's Family Faces Tragedy in Riyadh Airport Attac (log slug: hyderabad-man-riyadh-airport-attack-funeral-saudi)
+
+## (a2) Unknown channel videos — no record anywhere (10)
+
+- `2XdG6znjzGs` · public · 2026-05-26 · Mammootty Skipped the Padma Bhushan Ceremony for a Kerala Doctorate #Shorts
+- `2PoRwT_MWi0` · public · 2026-06-07 · Rodrigues Has Batted 3, 4, and 5 in Three Consecutive Series. She Says She'll Bat Anywhere … #Shorts
+- `kLDarOkIb9s` · public · 2026-06-08 · A New Bill Wants to Kill the H-1B Pipeline #h1b #immigration #nri #greencard #shorts
+- `jp_jPPjFqr0` · public · 2026-06-21 · SpaceX just pulled off the biggest IPO ever #Shorts
+- `sq1okCjGFmE` · public · 2026-07-05 · Trump Used America's 250th Birthday to Call Immigrants a 'Communist Menace' #Shorts
+- `X2ee9QZDRwg` · public · 2026-07-05 · EB-2 India Unavailable: July Visa Bulletin Green Card Crisis
+- `U2QeKymzYBU` · public · 2026-07-06 · Supreme Court Rules 6-3: Green Card Holders at Risk #Shorts
+- `IJVVEOFsCeQ` · public · 2026-07-06 · Britain, Canada, Germany, Australia. The Countries Lining Up to Take America's Indian Engin #Shorts
+- `jXiFqMOBpXU` · public · 2026-07-06 · Persistent Systems Just Made India's Boldest AI Bet — a $1.4 Billion Gamble on a German Sof #Shorts
+- `SG8Yd6PmDnc` · public · 2026-10-13 · H-1B Crackdown Meets the Ballot Box: 9 Indian-American Republicans in the Middle #Shorts #H1B
+
+## (b) Ghost DB rows — yt_video_id not on the channel (15)
+
+- row `9ac8c1ac-0fa5-49c1-82d9-3606f5373a05` · slug welcome-to-the-jungle-akshay-kumar-ensemble-comedy-june-26-nri-20260603 · yt_video_id `TlA7C-Df2-I` · status pending
+- row `4bc561e2-ca7d-4fdd-86a1-e0341a6fe801` · slug scotus-overturns-humphreys-executor-presidential-power-independent-agencies-2026 · yt_video_id `zoJRBSo2Qkk` · status pending
+- row `e2ba84d7-9e5a-4e48-9817-9d9d83dca73a` · slug scotus-birthright-citizenship-indian-americans-14th-amendment-ruling-20260701 · yt_video_id `YQNfyH78zlg` · status pending
+- row `e9e449db-2031-44cb-9700-d109b49d7632` · slug india-record-foreign-bond-inflows-bloomberg-index-inclusion-tax-reform-20260701 · yt_video_id `PNK46ccY0gQ` · status pending
+- row `c9180676-a333-40d9-93b6-b08941d5d3c0` · slug delhi-ev-policy-2026-petrol-ban-electric-two-wheeler-charging-infrastructure-202 · yt_video_id `o3CSzjC_QUI` · status pending
+- row `38df4d27-3d90-48b9-be48-9f7a15e96dd8` · slug delhi-ev-policy-2026-petrol-two-wheeler-ban-2028-electric-rickshaw-15000-crore-2 · yt_video_id `zThTi1hktRU` · status pending
+- row `e7b42dd5-7d05-4d6d-9165-673ada67a6a3` · slug ram-charan-peddi-netflix-july-9-339-crore-telugu-megastar-ar-rahman-streaming-diaspora-20260706 · yt_video_id `1YRx1ySJ2bQ` · status ready
+- row `2d3151ab-b096-40e8-9cc2-3e48d563df3f` · slug india-private-banks-q1-fy27-hdfc-axis-loan-growth-nri-investor-20260706 · yt_video_id `U6NtZcj472k` · status ready
+- row `c0baf39d-ff7e-4693-b857-90c8138ffe54` · slug manipal-health-ipo-sebi-approval-temasek-india-healthcare-listing-july-nri-investor-20260705 · yt_video_id `Qv32AtPc_4Q` · status pending
+- row `8bc4c787-8f77-4dab-af31-b267938d8c25` · slug nithya-raman-kerala-los-angeles-mayor-runoff-indian-american-20260708 · yt_video_id `dedup-log-8bc4c787-8f77-4dab-af31-b267938d8c25` · status ready · MALFORMED ID
+- row `4d8bd9c5-ecb5-41d4-8ea8-aec009b2dcf2` · slug ai-h1b-enforcement-palantir-project-firewall-compliance-20260708 · yt_video_id `ij-Vr8Jzw1s` · status ready
+- row `ba61a966-a888-4041-8ca6-12e845ec0d36` · slug india-third-chip-plant-cg-semi-sanand-osat-five-billion-20260708 · yt_video_id `mQwtFEhuvuo` · status ready
+- row `6ac4d40a-7ad8-49a0-93a8-d9ce2f78b52c` · slug india-remittance-record-145-billion-america-largest-source-20260708 · yt_video_id `QeO4sLlXZII` · status ready
+- row `21634a8f-8b70-4645-bb38-664eafc8d72a` · slug social-security-totalization-india-h1b-workers-lost-20260709 · yt_video_id `wWi6O6dqYGw` · status ready
+- row `c7713080-09d5-4d70-914a-5090686d7791` · slug nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks · yt_video_id `dB5AYzpRFC8` · status yt_posted
+
+## (c1) Privacy flag — public channel videos with no DB record (111)
+
+- `2XdG6znjzGs` · 2026-05-26 · Mammootty Skipped the Padma Bhushan Ceremony for a Kerala Doctorate #Shorts
+- `E0_-Wo2WOr4` · 2026-05-26 · Mammootty Was Supposed to Receive India's Third-Highest Civilian Honour Today. He Was in Kott #Sh...
+- `u-OB58pDic8` · 2026-05-26 · India and the US Just Signed a Critical Minerals Deal and a Rare Earths Agreement at the Firs #Sh...
+- `TwszLprZxcQ` · 2026-05-26 · Loneliness Inflames the Gut. A UK Biobank Study of 275,000 Adults Found That Social Isolatio #Shorts
+- `7SH4rEKOAhU` · 2026-05-26 · India Killed the Blue Booklet — What the New Digital e-OCI Card Means for 4.7 Million Overse #Shorts
+- `n1pczEcKAzk` · 2026-05-26 · Monsoon Hits Kerala May 26 Six Days Early Farmers Rush #Shorts
+- `UXlJ8v0rY_0` · 2026-05-26 · Iran Supreme Leader Uranium Surrender Irgc Drone Retaliation #Shorts
+- `K_zZnPBErlg` · 2026-05-26 · The Curcumin in Your Supplement Is Not the Same as the Turmeric in Your Dal. A Study of 100… #Shorts
+- `lezYZfdgziM` · 2026-05-27 · Who Ebola Global Emergency India Travel Advisory Bundibugyo #Shorts
+- `Vb2dFMpl_7U` · 2026-05-27 · The $110 Billion Deal That Would Merge Marvel, Star Wars, Harry Potter, DC, and HBO Into ... #Shorts
+- `Exd3v2tALfo` · 2026-05-27 · Netflix Made a Show About Ultra-Rich Indians in Dubai. Karan Kundrra Proposed to Tejasswi... #Shorts
+- `TzlzHd4wBWc` · 2026-05-27 · Cancún for Desis: Why NRIs Are Trading Goa for Mexico's Caribbean This Summer #Shorts
+- `Rw6eSgkC7uA` · 2026-05-27 · India Oil Supply Chain Latin America Africa Venezuela Hormuz #Shorts
+- `N-xhAGj1ths` · 2026-05-27 · India's Supreme Court Just Quashed the ₹202 Crore Penalty on Amazon. The CCI Must Refund t #Shorts
+- `A-ep679QDWo` · 2026-05-27 · Pm 602 0199 Legal Challenge Court 1967 Case Law #Shorts
+- `ck2rvxVwG7Y` · 2026-05-27 · If They Can't Come to America, America Is Going to Them #Shorts
+- `aJyE_SqI6c8` · 2026-05-27 · India Petrol Crosses 100 Four Hikes 10 Days Hormuz Oil Crisis #Shorts
+- `gcsw1l_gQNY` · 2026-05-27 · Karan Johar Bet on Ananya Panday and Lakshya. The Box Office Said No. Chand Mera Dil Is... #Shorts
+- `FbpxG8_TNIM` · 2026-05-27 · Canada's Government Just Shrank to a One-Seat Majority. The India Trade Deal Could Be t... #Shorts
+- `JmFXrJ9tZro` · 2026-05-27 · Foreign Airlines Are Quietly Feasting on India's Aviation Crisis — and NRIs Are the Prize #Shorts
+- `wYmFNvEQzoo` · 2026-05-28 · 33 Days to File or Lose It Forever — The FY2027 H-1B Petition Window Is Closing and the Rul… #Shorts
+- `2E_jkg26oDA` · 2026-05-28 · India Oil Supply Chain Rewired Venezuela Africa Uae Hormuz Closed #Shorts
+- `jZDR7uOuW6s` · 2026-05-28 · Mamata Refused to Resign After Losing West Bengal. The Governor Dissolved the Assembly ... #Shorts
+- `4p3cIQz9i8k` · 2026-05-28 · Consular Processing India Green Card Logistics Crisis #Shorts
+- `goI8_uBt0dc` · 2026-05-28 · India Just Sold Shares in Coal India at a 10 Per Cent Discount. It Sold Central Bank of #Shorts
+- `zgCp8lOKyxg` · 2026-05-28 · Trump Anything India Wants They Get Delhi Call Ar Rahman Quad #Shorts
+- `AQgQi65ZuvU` · 2026-05-28 · U.S. Inflation Just Hit 3.8 Percent. The Iran War Is Baked Into Every Price Tag in America. #Shorts
+- `n-deTJ7Tw2M` · 2026-05-28 · 290,000 Students, One Confirmation Hearing, and the Quiet Death of OPT #Shorts
+- `WDnDm86Trzs` · 2026-05-28 · American Airlines Will Double Its India Tech Hub to 800 People. It Is Not Alone. #Shorts
+- `huUCGBYiEsM` · 2026-05-29 · India's Supreme Court Just Wiped Out ₹202 Crore in Fines Against Amazon. Foreign Invest... #Shorts
+- `l6AYs1agyR8` · 2026-05-29 · Europe's New Biometric Border Is Already Broken — and NRIs Are Stuck in the Queue #Shorts
+- `NEJ5ExZlZhk` · 2026-05-29 · Permanent Residency in 21 Months #Shorts
+- `taAqbmBbKN0` · 2026-05-29 · Shrey Parikh Wins the Scripps Spelling Bee 🏆 | Indian American Dynasty
+- `YSbvFQQXqsM` · 2026-05-29 · The US Ambassador to India Says a Trade Deal Is 'Not Too Far Apart.' Here Is What That Ac... #Shorts
+- `-oFziAnFFuY` · 2026-05-29 · A Genetic Variant Carried by 1 in 13 South Asians Makes the Standard Diabetes Blood Test... #Shorts
+- `ZTKvup2acb0` · 2026-05-29 · India and South Korea Just Signed a Defense and Cyber Pact in Seoul. The Indo-Pacific Che... #Shorts
+- `s5OjC8oe8eo` · 2026-05-29 · The New H-1B Wage Floor Is Still a Basement #Shorts
+- `e-NlbSTAPHc` · 2026-05-29 · The Rupee Just Had Its Best Day in Two Months. The Reason: Oil Fell and the RBI Stepped In. #Shorts
+- `UWFiYGBWrNk` · 2026-05-29 · India's Vande Bharat Sleeper Kills the Waitlist — Confirmed Tickets Only, Fares Above Rajdh… #Shorts
+- `OEisEKttFhw` · 2026-05-30 · AAP Just Swept Punjab's Municipal Elections. Congress Finished Second. The BJP Barely… #Shorts
+- `MoN7aStjXGk` · 2026-05-30 · They Showed Up Without Calling — Inside the USCIS Site Visit Surge That's Putting H-1B Wo... #Shorts
+- `WTJLpYhiISM` · 2026-05-30 · The Sensex Fell 850 Points in 10 Minutes on Friday. The Explanation That Went Viral Was... #Shorts
+- `jmPqRtdJHLc` · 2026-05-30 · Air India's 2026 Route Blitz — Mumbai-Tokyo, London-Bengaluru, and Nine Other New Flights  #Shorts
+- `n4bRvX7gsQc` · 2026-05-30 · India's Finance Ministry Has Named the Single Biggest Risk to the Economy. It Is the St... #Shorts
+- `BPOVGFWntnE` · 2026-05-30 · V2 Final #Shorts
+- `37Rmjon7xy4` · 2026-05-30 · 110,000 and Counting — The 2026 Tech Layoff Wave Is Pushing Indian H-1B Workers to the Edge #Shorts
+- `X3cFOLFlqhc` · 2026-05-30 · The Quad Just Agreed to Build a Port in Fiji and Launch a Critical Minerals Pact. India H... #Shorts
+- `rTSzbV3aP44` · 2026-05-30 · Mounjaro Tirzepatide Surpass Early Type 2 Diabetes Glp1 South Asian #Shorts
+- `GahzQaiOwdQ` · 2026-05-31 · The US and Iran Have Reached a Ceasefire Extension Deal on Paper. Neither Leader Has Si... #Shorts
+- `iRtGZ8GYlNU` · 2026-05-31 · The 12-Factor Test USCIS Is Already Using to Decide Who Gets to Stay #Shorts
+- `80-prrpKdqQ` · 2026-05-31 · New York's Indian-Origin Mayor Just Launched His Own DOGE. Jeff Bezos Agreed With Him. #Shorts
+- `rXjpfuyHsLY` · 2026-05-31 · Enterprise AI Spending Is Showing Its First Cracks. If You Hold US Tech Stocks, Your Portfo… #Shorts
+- `ljwTYKbQWD0` · 2026-05-31 · Mumbai's Dabbawalas Fed the City for 130 Years. Now Only 1,500 Are Left. #Shorts
+- `Dro95qc9EVw` · 2026-05-31 · Skip the Lottery, File Your Own Case — Inside the EB-1A Gold Rush Reshaping Indian Immigrati #Shorts
+- `plI06TM_ac0` · 2026-05-31 · The US Said Green Card Applicants Must Leave the Country. A Week Later, It Said Never Mind. #Shorts
+- `cv14T6xFoq0` · 2026-05-31 · The WHO Just Endorsed a $1 Antibiotic Pill That Prevents Syphilis and Chlamydia After Sex.... #Sh...
+- `D5OB9TKic3k` · 2026-06-01 · From Memes to Monarchy: RCB's Dynasty Has Arrived #Shorts
+- `4gI_8WHNSNU` · 2026-06-01 · Orphaned at Five. World Rank Six at Twenty-Five. Rupa Bayor Is the First Indian in the Glob… #Shorts
+- `L-jk1WNwKjo` · 2026-06-01 · Jim Sarbh Is Xerxes Desai and Naseeruddin Shah Is JRD Tata in Made in India: A Titan Story #Shorts
+- `hHFvhW9lO6c` · 2026-06-01 · Bollywood's Children Are Graduating from NYU, Columbia, and Emory. They're Coming Home to  #Shorts
+- `eI4vItKaiZA` · 2026-06-02 · Praggnanandhaa Beat Firouzja in Classical. Gukesh Had So on the Ropes but Ran Out of Time.… #Shorts
+- `J-Hvh8ZFcyY` · 2026-06-02 · Naseeruddin Shah Plays JRD Tata in a Show About India's First Watch. Every NRI's Wrist Has #Shorts
+- `lh4FT35FxH4` · 2026-06-02 · Ramayana Got a Private Screening Room at CinemaCon. The Audience Was Every Major Distributo… #Shorts
+- `W6fRWZu6lnk` · 2026-06-03 · Gulveer Singh Ran a 3:55 Mile. He Is the First Indian to Break the Four-Minute Barrier.... #Shorts
+- `2fslGaTkzII` · 2026-06-03 · Dhurandhar 2 Hits JioHotstar Tomorrow. India's Second-Biggest Film Ever Just Became a L... #Shorts
+- `z5NqFylO7MQ` · 2026-06-03 · Jacqueline Fernandez Walked Into a Delhi Courtroom Today. The ₹200-Crore Trial She Spent T #Shorts
+- `5YxuQMkCibU` · 2026-06-04 · Ten Gold Medals. Nineteen Total. India's U20 Athletes Just Had Their Best Overseas Cham... #Shorts
+- `_RNDQNBenxs` · 2026-06-04 · The India Story Shreyas Talpade Kajal Aggarwal Food Adulteration Teaser Pesticid #Shorts
+- `BzpjNk_yoio` · 2026-06-05 · Sixty Countries. Four Hundred Athletes. India Just Turned Yoga Into a Competitive Sport... #Shorts
+- `z1SB02xajp8` · 2026-06-05 · Celina Jaitly Has Fired Back at Her Estranged Husband's Defamation Threats. The Custody Ba #Shorts
+- `SDM5K9GjHpA` · 2026-06-05 · Naga Chaitanya Just Won a Court Order Against AI Deepfakes. It Is Part of a Larger Reckonin… #Shorts
+- `vCgEuXAiE7Y` · 2026-06-06 · 'I Don't Look for Excuses.' Gambhir Confirms Sudharsan at No. 3 and Says the Afghanistan #Shorts
+- `XO78Jp1Ri_c` · 2026-06-06 · Anushka Sharma Endorsed Homeopathy. A Doctor Called Her an 'Illiterate Celeb.' The #Shorts
+- `JOWJqrGDm0Q` · 2026-06-06 · Salim Kumar Is on a Ventilator. The Man Who Made Malayalam Cinema Laugh Is Fighting for... #Shorts
+- `2PoRwT_MWi0` · 2026-06-07 · Rodrigues Has Batted 3, 4, and 5 in Three Consecutive Series. She Says She'll Bat Anywhere … #Shorts
+- `ipnbuauMdao` · 2026-06-07 · DeepSeek Just Topped America's Fastest-Growing Software List. The Security Implications Are… #Shorts
+- `GhYTqvEkL5s` · 2026-06-07 · Nolan's The Odyssey Opens IMAX Ticket Sales Tomorrow. India Gets First Dibs Alongside the... #Shorts
+- `NQeWdzlW6zA` · 2026-06-08 · Prasidh Krishna Had Not Played a Test in India for Three Years. On Sunday, He Reminded ... #Shorts
+- `2lcx7xfvfbk` · 2026-06-08 · A New Bill Wants to Kill the H-1B-to-Green-Card Pipeline. Big Tech Should Be Nervous. #Shorts
+- `HKQIO0655RE` · 2026-06-08 · 22M-Follower Creator Leads India's First Cockroach Protest #Shorts
+- `kLDarOkIb9s` · 2026-06-08 · A New Bill Wants to Kill the H-1B Pipeline #h1b #immigration #nri #greencard #shorts
+- `fU0cTt-FGdY` · 2026-06-09 · Manoj Bajpayee Is Playing the Man Who Saved India From Bankruptcy. The Tickets Cost What Th… #Shorts
+- `-pXScWJB8SU` · 2026-06-09 · Welcome To The Jungle Drops Its Trailer Wednesday. Bollywood's Most Insane Ensemble Is Fina… #Shorts
+- `kTyJTd8jNII` · 2026-06-09 · The US Just Found a New Legal Route to Tariff India. This Time, It May Stick. #Shorts
+- `8w71FTQq3u8` · 2026-06-09 · Suriya's ₹304 Crore Monster Karuppu Lands on Prime Video Thursday. The Diaspora Finally Get… #Shorts
+- `ixHUYZ1QwJg` · 2026-06-09 · Malayalam Cinema's Two Hottest Directors Made a Film Together. It Just Played Cannes. #Shorts
+- `oHZ8jiCsHMo` · 2026-06-09 · NRI Remittances Hit $43.5 Billion in One Quarter. The Gulf Crisis Is the Reason. #Shorts
+- `gSAykuWacJA` · 2026-06-09 · Akshay Kumar Is Making India's First Alien Thriller. The Creature Designer Built the Actua #Shorts
+- `UMsqCwLUG-M` · 2026-06-10 · Cocktail 2 Just Invented the Bollywood Music Festival. Three Cities. One Film. Pure Mayhem #Shorts
+- `5oLRVj-H4kA` · 2026-06-10 · Unavailable — The One Word That Just Froze Half a Million Indian Green Card Dreams #Shorts
+- `ls4_NQ7_mnc` · 2026-06-10 · ISRO Just Handed Its Biggest Rocket to the Private Sector. India's Launch Cadence Depends  #Shorts
+- `vO-v4Elnh_Q` · 2026-06-20 · The War That Choked India's Oil Lifeline May Be Ending #Shorts
+- `mr4cA7I1mI8` · 2026-06-20 · An H-1B Worker Says He Paid $100,000 to Keep His Job. His Lawsuit Exposes the Visa's Dark Si #Shorts
+- `jp_jPPjFqr0` · 2026-06-21 · SpaceX just pulled off the biggest IPO ever #Shorts
+- `NlQ5lRS3zbs` · 2026-07-02 · Apple's $38 Billion India Fine — CCI Antitrust Showdown #Shorts
+- `sq1okCjGFmE` · 2026-07-05 · Trump Used America's 250th Birthday to Call Immigrants a 'Communist Menace' #Shorts
+- `X2ee9QZDRwg` · 2026-07-05 · EB-2 India Unavailable: July Visa Bulletin Green Card Crisis
+- `U2QeKymzYBU` · 2026-07-06 · Supreme Court Rules 6-3: Green Card Holders at Risk #Shorts
+- `IJVVEOFsCeQ` · 2026-07-06 · Britain, Canada, Germany, Australia. The Countries Lining Up to Take America's Indian Engin #Shorts
+- `jXiFqMOBpXU` · 2026-07-06 · Persistent Systems Just Made India's Boldest AI Bet — a $1.4 Billion Gamble on a German Sof #Shorts
+- `vEqk-X9_qxY` · 2026-10-09 · Microsoft Disputes Vance's 'Foreign Indentured Servants' Claim With Its Own H-1B Data #Shorts
+- `94YJRBwNNY4` · 2026-10-09 · TCS Says US Green Card Suspension Won't Disrupt Workforce Strategy or Hiring #Shorts
+- `VlklU4Xpv2k` · 2026-10-10 · Kashmiri Filmmaker's Shocking Two-Week ICE Detention!
+- `IGemFdLn2bs` · 2026-10-10 · US Green Card Curbs: A Setback for India?
+- `nZgz3u2iINc` · 2026-10-11 · Green Card Curbs: Will India’s Talent Surge?
+- `E7A6l8BVUVg` · 2026-10-11 · OpenAI's Bold Move: Banning Influencers from Russia & Iran
+- `gjPPpPt4rOQ` · 2026-10-12 · H-1B: A Business Model? Trump Official's Bold Defense
+- `mP7Ow3xGpc0` · 2026-10-12 · Green Card Freeze: H-1B Workers Face New Challenges
+- `dOdIzexK70M` · 2026-10-13 · GOP's H-1B Visa Shift: 9 Indian-American Republicans Run!
+- `d-Lek2J0Q-g` · 2026-10-13 · Hyderabad Man's Family Faces Tragedy in Riyadh Airport Attac
+- `SG8Yd6PmDnc` · 2026-10-13 · H-1B Crackdown Meets the Ballot Box: 9 Indian-American Republicans in the Middle #Shorts #H1B
+
+## (c2) Privacy flag — Phase 2 (unlisted) uploads now public (0)
+
+_None._
+
+## (e) Superseded DB rows — owner-deleted or replaced (not ghosts) (4)
+
+- row `cd31fd35-0ef2-4b97-ac09-678c9027a296` · slug dhs-proposes-ending-deference-prior-h1b-l1-petition-approvals · yt_video_id `9MuNbawE8ac` · on channel: no
+- row `862b5d9e-cd65-4ab9-8be2-1dd6f981bb69` · slug bengaluru-born-ramya-anche-lead-nasa-puffins-mission · yt_video_id `dXT2DW7iSpU` · on channel: no
+- row `cededbdc-e47d-4afd-9d01-5586e1d95785` · slug india-cancer-drug-price-caps-137-medicines-november-9 · yt_video_id `M5UjKqtENwU` · on channel: no
+- row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
+
+## (d) In sync (96)
+
+- `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
+- `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
+- `ADxhex0Ua3w` · public · 2026-06-20 · In Paris, Modi Told the Diaspora They Are India's Soft Power. Then He Made Their Lives a Li #Shorts [prebuilt_reels:0b0f5dbf-a3ab-430b-a4ca-5ffff6bfdd62]
+- `w6S_JW1CftI` · public · 2026-06-21 · Nine Women, Three Cities, One Dance: How Brazil's Indian Diaspora Choreographed a Welcome f #Shorts [prebuilt_reels:52e2e103-9fa2-45a3-8e2f-f0fe4ed9414d]
+- `BFSoTMvonf8` · public · 2026-06-21 · EB-5 Was the Indian Escape Hatch From the Green Card Backlog. It Just Slammed Shut Until Oc #Shorts [prebuilt_reels:5b1e25f5-e00a-4d84-bef7-164986c03436]
+- `ur9fduzX6uI` · public · 2026-06-21 · Indian Families Just Cut Their Study-Abroad Spending to the Lowest in Seven Years. The Reas #Shorts [prebuilt_reels:6ad540fd-db89-4f92-adfc-9dbd62f352a0]
+- `zOP3DJXZ6dc` · public · 2026-06-21 · The Open-Ended Student Visa Is Ending. India's 360,000 Students Are the Most Exposed #Shorts [prebuilt_reels:127c9acf-72d3-4e5c-b462-fcb6be7d9c41]
+- `_LAEloq58YE` · public · 2026-06-22 · Forget the $100,000 Fee. The Quiet Wage Rule Is the H-1B Change That Follows Indians All th #Shorts [prebuilt_reels:3e9a6b62-6dd7-4251-9e67-2eb8c544bbdd]
+- `xa0dMQZQIlo` · public · 2026-06-22 · The H-1B Coin Flip Is Dead. The New System Rewards a Very Specific Indian Applicant #Shorts [prebuilt_reels:60b42ed0-35ad-4266-8dc1-658c07a75d81]
+- `OD5oWa0WMWo` · public · 2026-06-22 · A Third Community Has Been Drawn Into Manipur's War. Now the Kukis Are Begging Modi to Step #Shorts [prebuilt_reels:5f4868ed-7768-4135-bf28-b388bffea3ed]
+- `MNIzqG0jPKg` · public · 2026-06-22 · An Indian Founder Now Runs the App 500 Million Indians Use Every Day #Shorts [prebuilt_reels:b82a6809-d955-406f-ab65-36785048b2b3]
+- `_NBqM6zrIlQ` · public · 2026-06-22 · What an H-1B Actually Costs in 2026, Line by Line #Shorts [prebuilt_reels:daaff254-dd62-4797-b9d6-6e44efb02701]
+- `T5x7JdoOwcM` · public · 2026-06-23 · India Wants the Diaspora's Dollars Back. It's Offering 7.1% — and a $55 Billion Bet — to Ge #Shorts [prebuilt_reels:b1bd3e69-7279-4172-bedb-a9da3a2cb340]
+- `1n8Xtq0ZRNM` · public · 2026-06-23 · Washington Just Built a Machine to Audit H-1B Employers. Indian IT Firms Are the Target #Shorts [prebuilt_reels:6b7080d4-15f7-4c64-bd1d-0595a7fe32de]
+- `FnMG17CefY0` · public · 2026-06-23 · Washington Just Moved to End the Open-Ended Student Visa. India's 360,000 Students Are Firs #Shorts [prebuilt_reels:e4a19937-8175-4d05-98c3-b764147fdfed]
+- `5N9ul4E5bCE` · public · 2026-06-23 · Pay $750, Skip the U.S. Visa Line — but Only if You're a Tourist, Not an H-1B #Shorts [prebuilt_reels:115abf42-be2a-4635-8846-718b4c3ed821]
+- `tytxxfAAWc4` · public · 2026-06-24 · India Is Quietly Telling the Gulf to Pay Its 5 Million Workers More. It's a Billion-Dollar #Shorts [prebuilt_reels:3cb6b457-d303-446c-8c09-dc6c7005df8c]
+- `5e_rP5GjuUg` · public · 2026-06-27 · Day-1 CPT Was the H-1B Lottery's Backup Plan. The Proposed Rules Would Kill It #Shorts [prebuilt_reels:4757dcdc-756c-447e-b0f9-52d0a8268c67]
+- `1HQ3sdpeKz4` · public · 2026-06-27 · He Built a Credit-Card App With $1 Million of His Own Money. Now He Runs WhatsApp for 3 Bil #Shorts [prebuilt_reels:4255c147-3977-482a-839b-a61c9734e63a]
+- `08k14I-fMYU` · public · 2026-06-28 · Modi Wrote in Creole to a Diaspora That Has Been in Seychelles Since Before America Was a C #Shorts [prebuilt_reels:33450671-fa90-40af-a1cb-dcdbc65bd62a]
+- `0v7_kfRC9qw` · public · 2026-06-28 · India Banned Telegram for 150 Million Users to Protect One Exam. A Court Just Said That Was #Shorts [prebuilt_reels:ddbe2174-60e6-4fbe-b1a2-2464ede1aa76]
+- `LrC9HZfOWhc` · public · 2026-06-28 · 'H-1B Isn't Targeting India,' Says America's Envoy. The Numbers Disagree #Shorts [prebuilt_reels:5ce0a119-0689-41ba-b718-fc374fa4d4ce]
+- `wiVR7mASym8` · public · 2026-06-28 · Indian Workers Pay $4 Billion a Year Into Social Security. They Will Never See a Dime #Shorts [prebuilt_reels:80317a51-0a92-4b43-b439-c329ed148d81]
+- `5JT238dKg2E` · public · 2026-06-28 · A Brooklyn Judge Just Told the Trump DOJ It Can't Walk Away From the Adani Case Without Exp #Shorts [prebuilt_reels:5bb12ae1-0e97-441a-b3a6-cb85798063ff]
+- `9l-49XETZLI` · public · 2026-06-29 · The US Banned Its Most Powerful AI From Leaving the Country. India Decided It Was Time to B #Shorts [prebuilt_reels:c38b3077-4b96-468e-a6d6-2be3b809baa7]
+- `308xYl74mdo` · public · 2026-06-29 · Modi Signed 19 Agreements in Seychelles Today. Here's What India Got — and What It Gave. #Shorts [prebuilt_reels:ca8293ac-b56a-4d1a-86b2-ee185f80ed55]
+- `X7eqGv7d4Bc` · public · 2026-06-29 · Rubio Says Washington Is Planning a Trump Visit to India Early Next Year. He'll Fly Out Fir #Shorts [prebuilt_reels:ae4925da-7e88-4992-a056-ff78cbfa32d2]
+- `fG580Ycr_5Y` · public · 2026-06-29 · India's Central Bank Just Gave NRIs a Reason to Move Their Dollars Home. Banks Are in a Fre #Shorts [prebuilt_reels:e6187287-eb8e-4bf8-b1ce-5412ca9934fa]
+- `L_qa3pLsh7w` · public · 2026-06-29 · Persistent Systems Just Bet $1.1 Billion That Indian IT Can Buy Its Way Into Europe #Shorts [prebuilt_reels:628f7bbc-bf18-49bb-8178-79df8e253562]
+- `lcHRMwNNJsE` · public · 2026-06-30 · Lutnick Promises to 'Change' the H-1B Programme. His Gold Card Has Approved One Person #Shorts [prebuilt_reels:5ef97e62-f993-4d79-b62c-e1331dc79407]
+- `kfIxzPwRSCw` · public · 2026-06-30 · India Just Merged Its Two Biggest Power Lenders Into a $130 Billion Giant. Here's What It M #Shorts [prebuilt_reels:b7d94518-c570-49cf-a056-d91657ee1211]
+- `c7pAqYeuKsE` · public · 2026-06-30 · Japan's First Female PM Arrives in India Tomorrow. She's Bringing a $68 Billion Investment #Shorts [prebuilt_reels:1b2966ef-3e3f-4220-a203-e492b4e72410]
+- `SX7SHmctwyg` · public · 2026-06-30 · Modi and Carney Have Met Four Times in Under a Year. Here's What India and Canada Just Agre #Shorts [prebuilt_reels:7ef18f7c-0242-42e1-b7cb-1096348752fd]
+- `pCkG2QKmOOI` · public · 2026-06-30 · His Mother Had Stage 4 Cancer. His Visa Said Don't Move #Shorts [prebuilt_reels:18ce071f-4071-40f1-9bc7-1722f5161bdc]
+- `Y1Cga19L3cM` · public · 2026-06-30 · The Supreme Court Just Told 250,000 Babies a Year They're Still American. Here's What It Me #Shorts [prebuilt_reels:622933e2-dd61-4e39-a308-34c970f1d37a]
+- `EZ7ZGDNWxns` · public · 2026-07-01 · Delhi Just Banned New Petrol Scooters From 2028. The EV Mandate That Takes Effect Tomorrow #Shorts [prebuilt_reels:fc54c35d-7802-47d9-ab94-da741e41e3c9]
+- `AOSglsFWEqM` · public · 2026-07-01 · China's K Visa Wants India's Best Engineers. Washington Barely Noticed #Shorts [prebuilt_reels:d59c0c6b-d3ff-494d-806c-7f656136b753]
+- `f3qncLjtMfc` · public · 2026-07-01 · Iran and Oman Want to Charge Ships $40 Billion a Year to Pass Through the Strait of Hormuz. #Shorts [prebuilt_reels:30c525d3-41f2-4cd0-81ce-d4e6f452af66]
+- `RaCJhySj0vc` · public · 2026-07-01 · Quad Foreign Ministers Will Meet in the Philippines This Month. A Trump Visit to India May #Shorts [prebuilt_reels:1a2e9053-14d0-43ec-8901-fb21826abd8f]
+- `i5XSd_rxiLI` · public · 2026-07-03 · India Just Killed the Physical OCI Booklet. Five Million Cardholders Can Finally Exhale. [prebuilt_reels:1a554170-e7d5-4d1f-8cff-91fc3aecc749]
+- `N1ltHShLFq8` · public · 2026-07-03 · Modi Is Heading to Three Countries Next Week. In One of Them, Indians Are Being Told They're Not Wel [prebuilt_reels:25a01e0d-4cbb-4161-b215-f29ec66c83e0]
+- `fBLLUHuzmUc` · public · 2026-07-03 · Modi Was Personally Invited to Khamenei's Funeral. India Sent a Deputy Minister Instead. [prebuilt_reels:3d683eb6-70a3-4928-ade4-effe2cac456f]
+- `c_aEUAy9r1o` · public · 2026-07-04 · Forty Democrats Told USCIS to Reverse Its Green Card Memo. The Agency Has Not Responded [prebuilt_reels:5f4be0a6-4922-48dd-91d7-79b9e3a84f5b]
+- `EgrQOcuWbAI` · public · 2026-07-04 · America Rejected 61 Per Cent of Indian Student Visas Last Year. The Pipeline Is Bleeding Out [prebuilt_reels:837345cc-1f80-4cdd-91c9-f83dac73aec4]
+- `9TmC83BVn8g` · public · 2026-07-04 · Your Instagram Is Now Part of Your Visa Interview. Consular Officers Have Been Scrolling Since Decem [prebuilt_reels:9234bafb-24ed-4879-86d6-055ed46fb892]
+- `agLxOKxAOwc` · public · 2026-07-05 · Trump Accounts Just Went Live. For Indian-American Families, the Math Is Extraordinarily Good. [prebuilt_reels:1ce25cfe-1835-48aa-a723-73aa22192b2d]
+- `HMBQYx1DbAs` · public · 2026-07-05 · Three Courts. Three Answers. The $100,000 H-1B Fee Is Heading for the Supreme Court [prebuilt_reels:18eb49a0-5399-453e-9e15-c229a37bfb77]
+- `4A3aUsXHtRA` · public · 2026-07-06 · He Knew They'd Kill It. Diljit Dosanjh Released Satluj Anyway — and India Pulled It in 48 H #Shorts [prebuilt_reels:14ecc7dc-593d-4166-a9ac-cc8e43b827e8]
+- `oqQK-XJzDJw` · public · 2026-07-06 · Nadella's Microsoft Cuts 4,800 Jobs. Indian H-1B Workers Have 60 Days to Figure Out What's Next. [prebuilt_reels:68b9904a-c992-4f67-97c7-bf280b9e9c69]
+- `D1oHn01XFmg` · public · 2026-07-07 · Oil Just Fell to Pre-War Levels. For India, the Breathing Room Is Enormous. [prebuilt_reels:7480ce1d-39df-44f8-812e-678e268aa16e]
+- `Q-ZVsDHVxM4` · public · 2026-07-07 · India's Private Banks Just Posted Their Strongest Quarter in Over a Year — and Wall Street Is Raisin [prebuilt_reels:1f707571-0058-4d24-98b1-d8c4b456d657]
+- `99lJ_f06qJ0` · public · 2026-07-08 · She Left Kerala at Six. Now Nithya Raman Wants to Run America's Second-Largest City. #Shorts [prebuilt_reels:da4dddc6-3acc-41cc-b647-405c47ff3772]
+- `t4h3fHLB5Co` · public · 2026-07-08 · An AI Is Now Reading Every H-1B Filing You Ever Made. The Government Just Connected the Dots 🎙️ [prebuilt_reels:cedd7109-5707-4cd8-9f05-e191a40e3993]
+- `VoYNzR0O4Ow` · public · 2026-07-08 · India Just Switched On Its Third Chip Plant in Five Months. The Target: Five Billion Chips a Year 🎙️ [prebuilt_reels:1e8bba81-ec95-4982-96a4-a5d3cf5c1ecd]
+- `Udb6EdcyS4s` · public · 2026-07-09 · India Just Received a Record $145 Billion From Its Diaspora. For the First Time, America Sent the 🎙️ [prebuilt_reels:2563fbd7-a451-4859-9859-d8c1f7e9058c]
+- `X7SGW8bXF1s` · public · 2026-07-09 · You Paid $120,000 in Social Security Taxes. India Has No Deal to Get Any of It Back 🎙️ [prebuilt_reels:ba442993-3e27-4209-8e91-6a72db715e9e]
+- `qRzUUeMPz9s` · public · 2026-07-09 · Pay $750 to Skip the Queue. The State Department Just Put a Price on Visa Interviews 🎙️ [prebuilt_reels:44656854-6a15-44f7-875d-442ded1ac702]
+- `QRtMpscl2Mg` · public · 2026-07-10 · The Date Is Set. Ramayana Drops Its First Trailer July 18 — at India's Grandest Stage. 🎵 [prebuilt_reels:7e37e04d-fbc9-4e1d-b862-95bfd1c02d90]
+- `dX-tn9qtcts` · public · 2026-07-10 · They Took Satluj Off the Internet. Now Gurudwaras Are Screening It Across Five States. 🎙️ [prebuilt_reels:a3a36a6e-3db1-4a39-a982-b1cc99284f70]
+- `yFnGT0lWoco` · public · 2026-07-10 · India Just Survived a Record $48 Billion Foreign Exodus — And Came Out Stronger. 🎵 [prebuilt_reels:3079c9ef-5284-40fa-b3fc-9d67929521cd]
+- `8Vh_ncC9vXA` · public · 2026-07-11 · OpenAI Wants to Give the US Government a $42 Billion Stake. An Indian American Is Helping Broker 🎙️ [prebuilt_reels:4fa4bceb-bb5b-4a00-a4e0-e866b461063f]
+- `NOzHCxUgRo8` · public · 2026-07-11 · India's SIP Machine Hits ₹317.81 Billion — Just ₹3 Billion Short of the All-Time Record as Mid-Cap 🎵 [prebuilt_reels:436e5ecb-dd75-43a6-b3a9-c2dda761e3dd]
+- `YnjlD-Vzrh8` · public · 2026-07-11 · A Bill in Congress Would Kill STEM OPT, End Dual Intent, and Ban Post-Layoff H-1B Hiring. Here Is 🎙️ [prebuilt_reels:433151b4-e97b-40cf-8401-f4dc1953dcda]
+- `CsmavrD-YDs` · public · 2026-07-12 · Amazon Raises Its India Bet to $48 Billion. That Is More Than Most Countries Spend on AI. 🎵 [prebuilt_reels:a76fc13d-14c0-470c-bd1b-682759b3ce5e]
+- `lOX1BBi3dh4` · public · 2026-07-12 · India's Tax Department Can Now See Your Foreign Bank Accounts. Here Is What Every NRI Needs to Kn 🎙️ [prebuilt_reels:1a9e6284-1590-47e3-b754-e2694dd0fcaa]
+- `m1-D9m130so` · public · 2026-07-12 · The First Wage-Weighted H-1B Lottery Is Over. Here Is What It Did to Indian Applicants 🎵 [prebuilt_reels:ed8a3fe7-de6b-4f20-b559-3d04c76fb2dc]
+- `YpjAVIe147A` · public · 2026-07-13 · The Billionaire, the Doctor, and the Toss-Up: Vivek Ramaswamy's Ohio Governor Race Just Got Real 🎙️ [prebuilt_reels:8596ed63-adb4-4481-afa8-d5f2be042ce0]
+- `5eZLLhR060s` · public · 2026-07-13 · Dhamaal 4 Just Crossed ₹65 Crore in Three Days. The Franchise Has Never Done This. 🎵 [prebuilt_reels:d6c6bb87-486f-4598-a572-554f3f8bafe8]
+- `yNl81iWqw8U` · public · 2026-07-13 · Germany, Canada, and the EU Want the Indian Talent America Is Pushing Away 🎙️ [prebuilt_reels:307871fd-1e8c-442e-8f27-b41580aeee43]
+- `JYdFf19RVtw` · public · 2026-07-14 · Rupee Slides to One-Month Low as India's Trade Deficit Balloons to $30.43 Billion — What NRI Remit 🎵 [prebuilt_reels:e6d38716-51ab-4775-8f3a-2abe1d9907bb]
+- `Cq-CwlUarOU` · public · 2026-07-14 · Satya Nadella Is Quietly Building Microsoft's Own AI Models. The Goal: Stop Paying OpenAI and Ant 🎙️ [prebuilt_reels:89fe716f-ffdc-44d2-956f-159e4835289c]
+- `YbpiTLVJWCA` · public · 2026-07-14 · Five Box Office Wars That Will Define the Second Half of 2026 🎵 [prebuilt_reels:30e3cac5-9362-4964-8065-f3acebd2760a]
+- `2MrWgJOsprg` · public · 2026-10-14 · Astrophysicist Sukanya Chakrabarti Elected Fellow of American Physical Society #Shorts #DarkMatter [prebuilt_reels:c236b952-ed9d-4de2-b33b-f266d3884960]
+- `F65YQsTymGw` · public · 2026-10-14 · DHS Proposes Ending Deference to Prior H-1B and L-1 Petition Approvals #Shorts #H1B [prebuilt_reels:cecd5411-672e-4729-b616-f6f85448021c]
+- `l2Kt9NQJhfc` · public · 2026-10-15 · Cabinet Clears 78-Day Diwali Bonus for 11.4 Lakh Railway Employees #Shorts #News [prebuilt_reels:9ff85f0e-fd3c-47f7-be42-31b186520a19]
+- `ch5JcYGZZxE` · public · 2026-10-16 · Microsoft's Brad Smith Hits Back at Vance as Nadella Medal Exposes H-1B Split #Shorts #H1B [prebuilt_reels:4a5e7c4b-e3dc-4946-b4a5-a5d5b5692505]
+- `6dz3MkFtrSY` · public · 2026-10-16 · Court Orders State Department to Reopen 55,000-Visa Green Card Lottery #Shorts #GreenCard [prebuilt_reels:05c15505-d893-4f35-8dc2-01d4bdf77886]
+- `ioSSw3vOlJE` · public · 2026-10-17 · Bengaluru-Born Astronomer Ramya Anche to Lead NASA's $20 Million PUFFINS Mission #Shorts #TechNews [prebuilt_reels:2c934096-1240-412c-b4c7-9d770d08afea]
+- `V7FTpE5qRvc` · public · 2026-10-17 · ICICI Bank Profit Jumps 20% to Rs 14,843 Crore in Second Quarter #Shorts #Markets [prebuilt_reels:2ab35e77-428e-450c-abc2-a0c3645ffd80]
+- `DptW6hsP1E4` · public · 2026-10-18 · Jailer 2 Crosses ₹209 Crore Worldwide in Two Days, Eyes a Record Weekend #Shorts #Entertainment [prebuilt_reels:05ced2bf-5653-481b-b716-1972c26ca8b1]
+- `ad_O6nV9hGg` · public · 2026-10-18 · White House Touts $330 Billion in Indian Investment as 'Trillions Pour In' #Shorts #Markets [prebuilt_reels:4d8cc5ec-2a15-446d-9221-4a86019303b6]
+- `i4cIT_LAcUU` · public · 2026-10-19 · India Caps Margins on 137 Cancer Drugs, Prices to Fall Up to 70% From November 9 #Shorts #News [prebuilt_reels:cd15b49b-7612-4bfb-9153-e2d53a650021]
+- `a_05lp6TNcw` · public · 2026-10-19 · Bajaj Finance Q2 Profit Rises 29% to Rs 6,367 Crore as NII Jumps 24% #Shorts #Markets [prebuilt_reels:b24a1654-1500-4177-9970-9cb7f6a2a0a3]
+- `7ZjdQOJyGAs` · public · 2026-10-20 · Lawmakers Join 63 in Congress Urging Faster Green Cards as Health Coverage Lapses #Shorts #GreenCard [prebuilt_reels:34cad0ab-2041-40cd-a8d5-b9f7cdee4131]
+- `mdUdnvLdZGI` · public · 2026-10-21 · DHS Final Rule Permanently Ends Automatic Work Permit Extensions For Renewals #Shorts #Immigration [prebuilt_reels:d0cf0ace-71bc-4a98-b7fb-10fff0e73b05]
+- `6kGD-tK1y38` · public · 2026-10-21 · Schweikert SMARTER Act Would Replace H-1B Lottery With Merit Points System #Shorts #H1B [prebuilt_reels:4bcbb9cf-4573-4b15-a3d8-de9251a0faf5]
+- `n-yuVnXCf-s` · public · 2026-10-22 · Anahat Singh Stuns Eight-Time World Champion El Sherbini at Silicon Valley Open #Shorts #Sports [prebuilt_reels:f9096a09-e79c-419b-b7fa-c8bc84970eb1]
+- `XLG0m4w2Tdc` · public · 2026-10-23 · Indians Posted to UK Now Avoid Double Social Security for Five Years #Shorts #Immigration [prebuilt_reels:f657b812-87ab-478a-9206-5afdff5143df]
+- `lLsRWWK448I` · public · 2026-10-24 · Harmeet Desai, Yashaswini Ghorpade End India's 72-Year Mixed Doubles Wait #Shorts #Sports [prebuilt_reels:b3c6a659-e9c2-4367-b03f-39dfee176870]
+- `qoeV9bl0MH0` · public · 2026-10-24 · SpaceX Launches 27 Starlink Satellites From California After Three Scrubs #Shorts #TechNews [prebuilt_reels:86042e52-4511-4853-8224-3e0623088f78]
+- `yhTCz7BdS_o` · public · 2026-10-25 · Infosys in Talks With DOJ Over Investigation Into H-1B Classifications #Shorts #H1B [prebuilt_reels:d8f21902-187b-49de-9e21-b366d8c33d56]
+- `OieWYgkZbmQ` · public · 2026-10-25 · New York Bans Horse-Drawn Carriages Under Romanch's Law, Honouring Indian Teen #Shorts #NRI [prebuilt_reels:524f0b93-fd73-4f53-be20-a67004d13532]
+- `-giMwHp8Jc4` · public · 2026-10-26 · Microsoft Offers Voluntary Buyouts to 60,000 Employees Across Four Countries #Shorts #TechNews [prebuilt_reels:718964f2-63d0-48f0-8630-cb95e1ef6bfd]
+- `DiiphB7pgpk` · public · 2026-10-27 · Air India and IndiGo Cut Europe Flights as Winter Capacity Falls 6.5% — and Foreign #Shorts #Travel [prebuilt_reels:f648443b-7017-4241-ab1b-604e1dce8821]
+- `HWl_1NFHmfA` · public · 2026-10-27 · India's Top Six IT Firms Shed 24,422 Engineering Roles in One Year #Shorts #Markets [prebuilt_reels:3bcfa9b7-3781-4edb-b2de-7e4dfadc1fdb]
+- `bPvs1ZT0wXU` · public · 2026-10-27 · H-1B Workers Taking Microsoft Buyout Face 60-Day Deadline to Stay #Shorts #H1B [prebuilt_reels:4799292b-c2df-42c4-a8cd-38d30466fbb9]
+

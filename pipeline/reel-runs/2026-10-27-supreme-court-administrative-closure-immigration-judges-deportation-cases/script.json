@@ -1,0 +1,36 @@
+{
+  "hook_line": "SUPREME COURT WON'T RESTORE DEPORTATION CASE PAUSE",
+  "hook_stat": {
+    "big": "1 SENTENCE",
+    "eyebrow": "THE FALLOUT",
+    "sub": "Emergency order with no public dissent"
+  },
+  "stats": [
+    {
+      "big": "JUNE 22",
+      "label": "Texas settlement approved, blocking the rule nationwide"
+    },
+    {
+      "big": "5TH CIRCUIT",
+      "label": "Appeals court declined to put the agreement on hold"
+    },
+    {
+      "big": "3 CITIES",
+      "label": "Cities that sought to defend the Biden-era rule"
+    }
+  ],
+  "diaspora_bullets": [
+    "Indian nationals in removal proceedings lose a pause tool",
+    "Pending cases now move forward toward a decision"
+  ],
+  "key_entities": [
+    "Supreme Court",
+    "Texas",
+    "Trump administration",
+    "administrative closure"
+  ],
+  "news_summary": "The Supreme Court refused to reinstate immigration judges' power to shelve deportation cases, leaving in place the Trump administration's same-day settlement with Texas that blocked the Biden-era rule nationwide.",
+  "payoff": "Cases can no longer be paused on this ground, so pending deportation cases move forward toward a decision.",
+  "versus": "",
+  "story_mood": "tense"
+}

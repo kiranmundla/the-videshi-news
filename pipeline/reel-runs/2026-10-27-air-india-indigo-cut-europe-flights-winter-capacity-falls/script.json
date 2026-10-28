@@ -1,0 +1,36 @@
+{
+  "hook_line": "AIR INDIA AND INDIGO CUT EUROPE FLIGHTS",
+  "hook_stat": {
+    "big": "6.5%",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Fall in India-Europe winter capacity"
+  },
+  "stats": [
+    {
+      "big": "5.63 MILLION",
+      "label": "India-Europe two-way winter seats, down from 6.02 million"
+    },
+    {
+      "big": "OCTOBER 31",
+      "label": "End of the only nonstop link between Austria and India"
+    },
+    {
+      "big": "207,300",
+      "label": "Birmingham-India two-way passengers, down 8.3 per cent"
+    }
+  ],
+  "diaspora_bullets": [
+    "Expect fewer nonstops and higher loads on remaining India-Europe flights",
+    "Withdrawn nonstops push passengers onto one-stop itineraries via Gulf and European hubs"
+  ],
+  "key_entities": [
+    "Air India",
+    "IndiGo",
+    "OAG",
+    "Norse Atlantic"
+  ],
+  "news_summary": "Air India is cutting four European routes in the winter schedule and IndiGo has suspended Manchester and will pause Heathrow, as India-Europe winter seats fall to 5.63 million, down 6.5% from 6.02 million a year earlier.",
+  "payoff": "Foreign carriers are picking up the passengers Air India and IndiGo leave behind.",
+  "versus": "",
+  "story_mood": "tense"
+}

@@ -1,0 +1,175 @@
+[
+  {
+    "id": "ecae92f1-44c6-45c3-91f4-12c71ad2b8d7",
+    "headline": "Nashville's DJ Neha Turns Diwali Into a Dance Floor for a Growing Community",
+    "slug": "nashville-dj-neha-diwali-dance-floor",
+    "category": "nri-world",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/8887173/pexels-photo-8887173.jpeg?auto=compress"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline for Diwali events by specifying the exact dates for temple celebrations and association gatherings, as well as any notable events leading up to the main Diwali day on November 8, 2026.",
+        "Provide more context about DJ Neha's significance in the community by including quotes or statistics about attendance at her events or the growth of the Diwali celebration in Nashville over the years.",
+        "Include a brief background on the cultural significance of Diwali for readers who may not be familiar with the festival, enhancing the article's completeness and clarity.",
+        "Correct the date mentioned for the Diwali party; it should be October 23, 2023, instead of 2026, to ensure accuracy."
+      ],
+      "embed_opportunities": [
+        "Embed a video or social media post from DJ Neha's recent Diwali party to provide a visual element that captures the atmosphere and engagement of the event."
+      ]
+    }
+  },
+  {
+    "id": "bae11033-41c8-4c01-9efd-988e0644bca0",
+    "headline": "Air Pollution Can Harm Your Kidneys Too, Nephrologists Warn",
+    "slug": "air-pollution-kidneys-ckd-risk-nephrologists",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Include specific statistics on the prevalence of CKD in polluted areas compared to less polluted areas, as this would provide context for the severity of the issue.",
+        "Clarify the recommended precautions for individuals living in high-pollution areas, such as specific actions they can take to mitigate risks (e.g., using air purifiers, wearing masks, etc.).",
+        "Provide a brief overview of the study's methodology to enhance credibility and understanding, including the time frame of the study and how participants were selected.",
+        "Add a quote from a nephrologist or health expert that emphasizes the importance of kidney health in relation to air pollution, which would enhance the article's authority."
+      ],
+      "embed_opportunities": [
+        "Embed the official CDC tweet or post regarding air quality and its health implications, which would provide readers with direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "ef3579b8-d9ed-482e-9332-7adb835bc396",
+    "headline": "Delhi's Winter Pollution Curbs Are Back. Four Winters of Data Question Them",
+    "slug": "delhi-winter-pollution-grap-curbs-data",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of data referenced in the article, particularly the years mentioned (e.g., '2022-23' and '2025-26') to avoid confusion about the reporting period. It seems there is a discrepancy in the years, as '2025-26' is in the future.",
+        "Provide specific statistics or figures regarding the impact of GRAP on air quality, such as the percentage decrease in pollution levels during the implementation of GRAP compared to periods without it, to enhance completeness and clarity.",
+        "Include a brief explanation of what GRAP entails for readers unfamiliar with the term, such as the specific measures it includes and how they are enforced, to improve clarity and completeness."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Central Pollution Control Board (CPCB) regarding current air quality levels or GRAP measures to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "474596c5-15b5-4c2e-a588-5cf60b644f9f",
+    "headline": "Bhuvneshwar Says He Never Chased a Comeback After Four Years Out",
+    "slug": "bhuvneshwar-kumar-comeback-did-not-chase-it",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of Bhuvneshwar Kumar's last match for India, as the article mentions he last played in November 2022 but does not specify the exact date or context of that match, which could provide better clarity for readers.",
+        "Include specific statistics from Bhuvneshwar's recent IPL performances that contributed to his recall, as this would enhance the completeness of the article by providing concrete evidence of his form.",
+        "Provide a quote or context from the press conference regarding his thoughts on the upcoming domestic tournaments, as this would add depth to the article and give readers insight into his immediate plans."
+      ],
+      "embed_opportunities": [
+        "Embed a video clip of Bhuvneshwar Kumar's press conference to provide readers with direct access to his comments and emotions surrounding his comeback."
+      ]
+    }
+  },
+  {
+    "id": "114cf22d-f646-4141-8749-85383454eabd",
+    "headline": "Badoni's Back-to-Back Double Centuries Put Him Alongside Kohli and Gambhir",
+    "slug": "ayush-badoni-back-to-back-double-centuries-ranji",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Badoni's achievement by including a brief explanation of what it means to be among the 21st Indian batters with double centuries in consecutive first-class innings, perhaps mentioning the historical context or records held by Kohli and Gambhir.",
+        "Include more specific statistics about the match, such as the current standings in the Ranji Trophy or the implications of this match for Delhi's chances in the tournament, to provide readers with a clearer understanding of the context.",
+        "Add a quote from Badoni or a coach to provide personal insight into his performance and its importance, which would enhance the article's depth."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight of Badoni's innings or a relevant tweet from a cricket analyst discussing his performance."
+      ]
+    }
+  },
+  {
+    "id": "9bf42f48-d7b7-4432-a13a-1b9f20d2fa36",
+    "headline": "Indian-Origin Leaders Hold Key Roles as Anthropic Heads for Its IPO",
+    "slug": "anthropic-ipo-indian-origin-leaders-rao-patil",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events: The article mentions that Anthropic unveiled its IPO filing on October 26, but also states that it is targeting a mid-November listing. It would be beneficial to specify what this means for investors or stakeholders, such as any key dates for public trading or investor meetings.",
+        "Provide more context on the significance of the revenue figures: The article states that Anthropic's revenue increased from $1.16 billion to $16.29 billion, but does not explain what this means in terms of growth percentage or implications for the company's valuation. Including these details would enhance the completeness of the report.",
+        "Include a quote from a relevant source: Adding a quote from a company representative or an industry expert regarding the IPO could enhance the article's credibility and provide insight into the potential impact of this IPO on the market."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from Anthropic regarding the IPO filing to provide readers with direct access to the source of information."
+      ]
+    }
+  },
+  {
+    "id": "0cf2cb8e-deb1-44d8-88bf-30cfc9f5f190",
+    "headline": "L&T Profit Jumps 33% to Rs 5,202 Crore on Record Order Inflow",
+    "slug": "lt-q2-profit-5202-crore-record-order-inflow",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Add a specific quote from a financial analyst or expert to provide additional context on the implications of the profit jump and order inflow for future performance.",
+        "Include a comparison of L&T's performance with its key competitors in the industry to give readers a clearer picture of its market position.",
+        "Clarify the impact of geopolitical risks mentioned in the article by providing specific examples or potential scenarios that could affect L&T's operations or profitability moving forward."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from L&T's official account announcing their quarterly results to provide direct access to the company's perspective."
+      ]
+    }
+  },
+  {
+    "id": "a05143ad-c35c-450e-be34-10b507e24cbf",
+    "headline": "Modi Opens ESTIC 2026, Urges India to Create Technologies, Not Just Adopt Them",
+    "slug": "modi-estic-2026-india-create-technologies-not-adopt",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Clarify the timeline for the ESTIC 2026 conclave by explicitly stating the dates in the opening paragraph to enhance clarity for readers.",
+        "Provide specific examples of the 12 thematic areas covered in the conclave to give readers a better understanding of the topics being discussed.",
+        "Include direct quotes from Prime Minister Modi's speech to enhance attribution and provide readers with a more vivid account of his message.",
+        "Mention any notable attendees or speakers at the conclave to add depth and context to the event."
+      ],
+      "embed_opportunities": [
+        "Embed a video of Modi's speech or highlights from the conclave to provide a more engaging multimedia experience for readers."
+      ]
+    }
+  },
+  {
+    "id": "0f4c7356-9e43-41a5-8685-161a7c25d7c7",
+    "headline": "Baththa \u2013 Vijay Sethupathi, Lijomol Jose Trailer Out",
+    "slug": "baththa-vijay-sethupathi-lijomol-jose-trailer-out",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Correct the film name in the headline to match the body content.",
+        "Ensure the trailer embed is the correct one for the film Baththa.",
+        "Clarify the drop date in the headline for consistency with the body."
+      ],
+      "embed_opportunities": [
+        "Include the correct YouTube embed link for the Baththa trailer."
+      ]
+    }
+  }
+]

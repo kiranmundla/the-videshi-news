@@ -1,0 +1,422 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1",
+ "article_slug": "anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1",
+ "article_id": "6685be53-5748-4e7a-8bb7-1b6a389c4458",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-10-27-anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1/output-v2/anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-26516,resizemode-75,msid-135249836/tech/technology/anthropics-record-ipo-faces-some-big-questions.jpg",
+  "local_path": "reel-runs/2026-10-27-anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1/output-v2/hero.jpg",
+  "width": 1200,
+  "height": 899,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.482,0.547) damped=(0.491,0.524)",
+  "has_face": false,
+  "box_source": [
+   253,
+   273,
+   672,
+   359
+  ],
+  "box_bg": [
+   262,
+   344,
+   467,
+   250
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.481,
+   0.511
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   624
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 844,
+   "zone_h": 712,
+   "scale": 1.0,
+   "content_h": 348,
+   "block_top": 1026,
+   "block_bottom": 1374,
+   "text_bbox": [
+    70,
+    1026,
+    930,
+    1374
+   ],
+   "texts": [
+    "Markets Finance",
+    "AMAZON'S ANTHROPIC NOTES ARE WORTH $97.9 BILLION"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     899
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 624,
+     "scale": 0.695,
+     "window": [
+      0,
+      2,
+      1200,
+      899
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.14x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 1202,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1202,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Anthropic's S-1 shows Amazon's $6.2 billion in convertible notes were valued at $97.9 billion on June 30, while no venture firm reaches the 5% threshold for the principal stockholders table."
+   ],
+   "v7": {
+    "image_source": "extra:secretary-of-state-peter-kyle-visits-anthrop",
+    "track": "full-bleed",
+    "render_scale": 0.351,
+    "photo_px": [
+     8192,
+     5464
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.3513909224011713,
+     "window": [
+      922,
+      0,
+      3995,
+      5464
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "25/10/2024. San Francisco, United States. Secretary of State Peter Kyle visits Anthropic in San Francisco. Picture by Alecsandra Dragoi / DSIT",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Secretary_of_State_Peter_Kyle_visits_Anthropic_in_San_Francisco._(54099081629).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Secretary_of_State_Peter_Kyle_visits_Anthropic_in_San_Francisco._%2854099081629%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "Department for Science, Innovation and Technology"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 844,
+   "zone_h": 712,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1018,
+   "block_bottom": 1381,
+   "text_bbox": [
+    70,
+    1018,
+    930,
+    1381
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$97.9 BILLION",
+    "Value of Amazon's convertible notes on June 30"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     899
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 624,
+     "scale": 0.7897727272727273,
+     "window": [
+      48,
+      64,
+      1104,
+      854
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.14x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 792,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    792,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "$6.2 BILLION",
+    "Principal on Amazon's convertible notes",
+    "$18 BILLION",
+    "Amazon's total investment in Anthropic",
+    "$965 BILLION",
+    "Anthropic's private valuation in the filing"
+   ],
+   "v7": {
+    "image_source": "extra:secretary-of-state-peter-kyle-visits-anthrop-2",
+    "track": "full-bleed",
+    "render_scale": 0.351,
+    "photo_px": [
+     8192,
+     5464
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.3513909224011713,
+     "window": [
+      1538,
+      0,
+      4611,
+      5464
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "25/10/2024. San Francisco, United States. Secretary of State Peter Kyle visits Anthropic in San Francisco. Picture by Alecsandra Dragoi / DSIT",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Secretary_of_State_Peter_Kyle_visits_Anthropic_in_San_Francisco._(54098999333).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/02/Secretary_of_State_Peter_Kyle_visits_Anthropic_in_San_Francisco._%2854098999333%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "Department for Science, Innovation and Technology"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1211,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1211,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "No venture firm reaches the 5% disclosure threshold",
+    "Google secured $114 billion in cloud commitments"
+   ],
+   "v7": {
+    "image_source": "extra:googleplex-patio-aug-2014",
+    "track": "full-bleed",
+    "render_scale": 0.784,
+    "photo_px": [
+     3264,
+     2448
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7843137254901961,
+     "window": [
+      620,
+      0,
+      1997,
+      2448
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "A view of the Google logo, from the patio area of Googleplex, between buildings 40 and 43.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Googleplex-Patio-Aug-2014.JPG",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Googleplex-Patio-Aug-2014.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Jijithecat"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 1195,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1195,
+    930,
+    1580
+   ],
+   "texts": [
+    "The Takeaway",
+    "Amazon is likely the single largest financial beneficiary of Anthropic's IPO.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "extra:amazon-spheres-05",
+    "track": "full-bleed",
+    "render_scale": 0.674,
+    "photo_px": [
+     4288,
+     2848
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6741573033707865,
+     "window": [
+      1394,
+      0,
+      2996,
+      2848
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Amazon Spheres from the Sixth Avenue side, Seattle, Washington, U.S.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Amazon_Spheres_05.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Amazon_Spheres_05.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Joe Mabel"
+    }
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 166.9,
+ "mp4_bytes": 17411008
+}

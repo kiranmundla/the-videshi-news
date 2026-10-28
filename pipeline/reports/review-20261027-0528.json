@@ -1,0 +1,115 @@
+[
+  {
+    "id": "d01c0370-8e34-4295-bc98-a6bdd33dc13f",
+    "headline": "Raina Sees Dhoni-Yuvraj Quality in Tilak Varma After Record Christchurch Chase",
+    "slug": "raina-tilak-varma-dhoni-yuvraj-comparison-christchurch-t20i",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the record chase by providing context on how it compares to previous performances in T20I history, not just within the series.",
+        "Include a direct quote from Tilak Varma or another player to provide a personal perspective on the match and the pressure of the chase, enhancing the article's depth.",
+        "Specify the date of the next match (October 27) earlier in the article to give readers a clear timeline of upcoming events related to this series.",
+        "Ensure that all statistics are clearly attributed to their sources, particularly the record chase details, to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the BCCI or a relevant sports authority celebrating the victory or highlighting the record chase."
+      ]
+    }
+  },
+  {
+    "id": "25dbadf8-5aba-4e2b-a3d5-275ea5f9494c",
+    "headline": "Gulati Hopes Rhea Chakraborty Feels Vindicated by 'Pooja Meri Jaan'",
+    "slug": "navjot-gulati-rhea-chakraborty-pooja-meri-jaan-vindication",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events related to Rhea Chakraborty's case and how it influenced the film's production to enhance completeness. For example, specify when the film was initially written versus when Chakraborty's media trial occurred.",
+        "Include a direct quote from Rhea Chakraborty or a representative to provide a more balanced perspective and enhance attribution.",
+        "Provide specific details about the film's release, such as its streaming performance or audience reception on ZEE5, to give readers a clearer understanding of its impact."
+      ],
+      "embed_opportunities": [
+        "Embed the official ZEE5 promotional tweet or post about 'Pooja Meri Jaan' to enhance visibility and provide direct access to the film for readers."
+      ]
+    }
+  },
+  {
+    "id": "a0e28073-dc95-4cf3-8634-db7d607595db",
+    "headline": "TCS Named a Leader in Everest Group's Agentic Process Automation Assessment",
+    "slug": "tcs-leader-everest-agentic-process-automation-2026",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of TCS being named a Leader in the context of the industry; for example, what does this mean for TCS's market position or potential future contracts?",
+        "Include a direct quote from the Everest Group report or an analyst to provide third-party validation of TCS's capabilities and the implications of this recognition.",
+        "Provide specific metrics or examples of how TCS's AI solutions have improved operational efficiency or outcomes for clients, which would enhance the article's completeness and clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official Everest Group announcement or report summary to provide readers with direct access to the source of the assessment."
+      ]
+    }
+  },
+  {
+    "id": "5bad3bd2-db7e-4cf2-903d-026211fbd27e",
+    "headline": "SEBI Moves to Let NRIs Complete Investment KYC Online From Abroad",
+    "slug": "sebi-digital-kyc-nri-onboarding-simplification",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Ensure all statements are clearly attributed to specific sources, especially when discussing the implications of the proposed changes. For example, clarify who provided the 400 comments during the consultation process.",
+        "Include a brief background on SEBI and its role in regulating investments in India to provide context for readers unfamiliar with the organization.",
+        "Add a timeline for when the circular is expected to be issued to enhance timeliness and provide readers with a clearer understanding of next steps.",
+        "Consider including quotes from industry experts or stakeholders to provide additional perspectives on the impact of these changes."
+      ],
+      "embed_opportunities": [
+        "Embed relevant tweets or social media posts from SEBI or financial experts discussing the changes to KYC processes.",
+        "Include a video clip from the industry convention where SEBI chairman Tuhin Kanta Pandey spoke, if available, to enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "5d47cf0d-59b4-4162-846b-a3d46c393f51",
+    "headline": "White House Clears Labor Department Plan to Overhaul PERM Green Card Rules",
+    "slug": "perm-green-card-overhaul-clears-white-house-review",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the public comment period by specifying the exact dates it is expected to start and end after the proposal is published in the Federal Register.",
+        "Include a brief explanation of what the current PERM rules entail and how they differ from the proposed changes to provide context for readers unfamiliar with the process.",
+        "Add a quote from a relevant official or expert to provide authoritative attribution and enhance the credibility of the information presented."
+      ],
+      "embed_opportunities": [
+        "Embed the official Department of Labor announcement or tweet regarding the PERM overhaul to provide readers with direct access to primary sources."
+      ]
+    }
+  },
+  {
+    "id": "6fb4acb8-7f40-419a-96bf-8cb3dc132f42",
+    "headline": "PM-Kisan's 24th Instalment of Rs 2,000 Reaches Farmers on October 30",
+    "slug": "pm-kisan-24th-instalment-october-30-2026",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the instalment release; it currently states October 30, 2026, which seems incorrect given the context of the article. It should likely be October 30, 2023.",
+        "Provide a clearer explanation of the verification checks that could prevent payment. For instance, specify what steps farmers can take if they find a 'No' status on the portal, including deadlines for making corrections before the payment date.",
+        "Include a brief statement on the implications of the payment timing, such as how it aligns with the Diwali festival and the rabi sowing season, to enhance the article's relevance to farmers."
+      ],
+      "embed_opportunities": [
+        "Embed the official PM-Kisan tweet announcing the instalment release to provide readers with direct access to the source of the information."
+      ]
+    }
+  }
+]

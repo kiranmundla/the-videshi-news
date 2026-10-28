@@ -1,0 +1,173 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "microsoft-buyout-h1b-workers-60-day-grace-period",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "H-1B Workers Taking Microsoft Buyout Face 60-Day Deadline to Stay",
+        "numbers": [
+          1.0,
+          60.0
+        ],
+        "entities": [
+          "H-1B Workers Taking Microsoft Buyout Face"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states H-1B workers have a 60-day deadline after leaving.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Workers who accept are expected to leave on December 31 \u2014 and the 60-day clock runs from when employment ends, not from the December decision deadline.",
+        "numbers": [
+          31.0,
+          60.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the December 31 exit date and 60-day clock details.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Microsoft's Voluntary Exit Offer is open to about 60,000 employees at level 70 and below in the United States, Canada, India and the United Kingdom",
+        "numbers": [
+          70.0,
+          60000.0
+        ],
+        "entities": [
+          "Microsoft's Voluntary Exit Offer",
+          "United States",
+          "United Kingdom"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the offer is for about 60,000 employees in those countries.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Microsoft has not said whether H-1B holders are eligible, or whether it will offer immigration-related assistance",
+        "numbers": [
+          1.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article explicitly mentions Microsoft's lack of clarity on H-1B eligibility.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "USCIS gives workers up to 60 days after employment ends to find a new sponsor, change status, or depart",
+        "numbers": [
+          60.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article details USCIS rules allowing up to 60 days for these actions.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Amy Coleman",
+        "numbers": [],
+        "entities": [
+          "Amy Coleman"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Amy Coleman is mentioned in the article as the Chief People Officer.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Chief People Officer, Microsoft",
+        "numbers": [],
+        "entities": [
+          "Chief People Officer"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Amy Coleman as Chief People Officer at Microsoft.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "H-1B Workers Taking Microsoft Buyout Face 60-Day Deadline to Stay",
+        "numbers": [
+          1.0,
+          60.0
+        ],
+        "entities": [
+          "H-1B Workers Taking Microsoft Buyout Face"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000558,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

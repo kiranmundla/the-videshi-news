@@ -1,0 +1,29 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render_photo_floor",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "supreme-court-administrative-closure-immigration-judges-deportation-cases",
+  "name": "supreme-court-administrative-closure-immigration-judges-deportation-cases",
+  "script": "reel-runs/2026-10-27-supreme-court-administrative-closure-immigration-judges-deportation-cases/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000664
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-27-supreme-court-administrative-closure-immigration-judges-deportation-cases/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "panorama-of-united-states-supreme-court-buil",
+      "hero": "supreme-court-building-washington-dc",
+      "grid": "iss036-e-9064-view-of-texas",
+      "payoff": "donald-trump-cabinet-meeting-2017-03-13-01"
+    }
+  },
+  "detail": "hero photo 800x533 below the 1080x600 floor"
+}

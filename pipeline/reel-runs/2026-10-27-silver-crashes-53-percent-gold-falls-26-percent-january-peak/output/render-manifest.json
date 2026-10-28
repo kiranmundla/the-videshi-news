@@ -1,0 +1,413 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "silver-crashes-53-percent-gold-falls-26-percent-january-peak",
+ "article_slug": "silver-crashes-53-percent-gold-falls-26-percent-january-peak",
+ "article_id": "1492052b-5247-41ec-a703-3ba4ad3aea68",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-10-27-silver-crashes-53-percent-gold-falls-26-percent-january-peak/output/silver-crashes-53-percent-gold-falls-26-percent-january-peak.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://media.inshorts.com/inshorts/images/v1/variants/jpg/m/2026/10_oct/26_mon/img_1793005514819_803.jpg",
+  "local_path": "reel-runs/2026-10-27-silver-crashes-53-percent-gold-falls-26-percent-january-peak/output/hero.jpg",
+  "width": 1080,
+  "height": 762,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.316,0.648) damped=(0.408,0.574)",
+  "has_face": false,
+  "box_source": [
+   138,
+   270,
+   604,
+   304
+  ],
+  "box_bg": [
+   193,
+   364,
+   466,
+   235
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.408,
+   0.576
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   588
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 808,
+   "zone_h": 748,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1000,
+   "block_bottom": 1363,
+   "text_bbox": [
+    70,
+    1000,
+    930,
+    1363
+   ],
+   "texts": [
+    "Markets Finance",
+    "SILVER HAS CRASHED 53% FROM ITS JANUARY PEAK"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.772,
+    "photo_px": [
+     1080,
+     762
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 588,
+     "scale": 0.7722222222222223,
+     "window": [
+      0,
+      1,
+      1080,
+      762
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.52x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 388,
+   "block_top": 1192,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1192,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Silver has fallen more than 53% from its January 2026 record, from a peak near $117-$121 an ounce to around $54 by October 23, while gold has dropped 26% from its all-time January peak."
+   ],
+   "v7": {
+    "image_source": "extra:ivory-silver-spoon-whiting-manufacturing-co",
+    "track": "full-bleed",
+    "render_scale": 0.22,
+    "photo_px": [
+     5069,
+     8739
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.21970477171301064,
+     "window": [
+      99,
+      0,
+      5014,
+      8739
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "An ivory-handled, silver jelly spoon with decorative gilt made by Whiting Manufacturing Co. in 1890. This example is currently owned by the Dallas Museum of Art.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Ivory_Silver_Spoon_Whiting_Manufacturing_Co.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Ivory_Silver_Spoon_Whiting_Manufacturing_Co.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Whiting Manufacturing Co."
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "53%",
+    "Silver's fall from its January record peak"
+   ],
+   "v7": {
+    "image_source": "extra:united-gold-coast-convention-national-headqu",
+    "track": "full-bleed",
+    "render_scale": 0.63,
+    "photo_px": [
+     4064,
+     3048
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6299212598425197,
+     "window": [
+      1203,
+      0,
+      2917,
+      3048
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "United Gold Coast Convention National Headquarters, Saltpond",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:United_Gold_Coast_Convention_National_Headquarters_2.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/37/United_Gold_Coast_Convention_National_Headquarters_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "HijabGirl1"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 808,
+   "zone_h": 748,
+   "scale": 0.925,
+   "content_h": 734,
+   "block_top": 815,
+   "block_bottom": 1549,
+   "text_bbox": [
+    70,
+    815,
+    930,
+    1549
+   ],
+   "texts": [
+    "By The Numbers",
+    "$54",
+    "Silver per ounce by October 23, down from $117-$121",
+    "26%",
+    "Gold's drop from its all-time January peak",
+    "Rs 1,94,170",
+    "MCX silver per kg on October 23, down from Rs 4,20,048"
+   ],
+   "v7": {
+    "image_source": "extra:d2960-ruston-0-4-0dm-silver-spoon",
+    "track": "backdrop",
+    "render_scale": 0.449,
+    "photo_px": [
+     2353,
+     1309
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 588,
+     "scale": 0.44935344827586204,
+     "window": [
+      497,
+      1,
+      2353,
+      1309
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.47x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "The much-[vaunted \"Magnificent Seven\" diesel-hydraulic gala at the Severn Valley Railway on 29th / 30th September 2023 was reduced to the Magnificent five after D7018 crashed into D7019 at the West Somerset Railway and had to be withdrawn. ",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:D2960_Ruston_0-4-0DM_Silver_Spoon.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/D2960_Ruston_0-4-0DM_Silver_Spoon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "Steve Knight"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 1148,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1148,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Diwali purchases made near the January highs are deeply underwater",
+    "Analysts see $50 as crucial silver support"
+   ],
+   "v7": {
+    "image_source": "extra:united-gold-coast-convention-national-headqu-2",
+    "track": "full-bleed",
+    "render_scale": 0.63,
+    "photo_px": [
+     4064,
+     3048
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6299212598425197,
+     "window": [
+      1166,
+      0,
+      2880,
+      3048
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "United Gold Coast Convention National Headquarters, Saltpond",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:United_Gold_Coast_Convention_National_Headquarters_3.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/United_Gold_Coast_Convention_National_Headquarters_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "HijabGirl1"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 364,
+   "block_top": 678,
+   "block_bottom": 1042,
+   "text_bbox": [
+    70,
+    678,
+    930,
+    1042
+   ],
+   "texts": [
+    "The Takeaway",
+    "The reversal was driven by rate-hike expectations, higher energy prices and margin-driven selling.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 149.1,
+ "mp4_bytes": 17996157
+}

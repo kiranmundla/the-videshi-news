@@ -1,0 +1,337 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "supreme-court-administrative-closure-immigration-judges-deportation-cases",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Supreme Court",
+    "Texas",
+    "Trump administration",
+    "administrative closure",
+    "Shelve Deportation Cases",
+    "US Supreme Court"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:EXAMINING THE ADEQUACY AND ENFORCEMENT OF OUR NATION'S IMMIGRATION LAWS (IA gov.gpo.fdsys.CHRG-114hhrg93080).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Genealogy of the McKinstry family - with a preliminary essay on the Scotch-Irish immigration to America (IA genealogyofmckin00will).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Genealogy of the McKinstry family - with a preliminary essay on the Scotch-Irish immigration to America (IA genealogyofmckin1858will).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Immigration - its evils and consequences (IA immigrationitsev0000unse).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Immigration and Naturalization (5 of 13) - DPLA - 881df22b935ecd7800c39f1b043e605b.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Memoir of Roger Brooke Taney, LL.D. - Chief Justice of the Supreme Court of the United States (IA cu31924020877274).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Memoir of Roger Brooke Taney, LL.D. - chief justice of the Supreme Court of the United States -cby Samuel Tyler (IA memoirofrogerbro7237tyle).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Report on Chinese immigration (IA 101665795.nlm.nih.gov).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Open court (IA opencourt mar1915caru).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Open court (IA opencourt oct1924caru).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Brian Fletcher's opening statements to the Supreme Court in United States v. Zubaydah.ogg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Darwin (AU), Supreme Court -- 2019 -- 4347.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in australia, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Supreme Court' in this story"
+    },
+    {
+      "candidate": "File:Edwin Kneedler's opening statements to the Supreme Court in Haaland v. Brackeen.ogg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Jeff Wall's opening statements to the Supreme Court in Frank v. Gaos.ogg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Panorama of United States Supreme Court Building at Dusk.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "3788x1952, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Supreme Court Building Washington DC.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "3996x2997, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:COMPREHENSIVE IMMIGRATION REFORM (IA gov.gpo.fdsys.CHRG-109shrg46017).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:COMPREHENSIVE IMMIGRATION REFORM (IA gov.gpo.fdsys.CHRG-113shrg85745).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:EXAMINING THE NEED FOR COMPREHENSIVE IMMIGRATION REFORM, PART II (IA gov.gpo.fdsys.CHRG-109shrg31098).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:INTERIOR IMMIGRATION ENFORCEMENT LEGISLATIONINTERIOR IMMIGRATION ENFORCEMENT LEGISLATION (IA gov.gpo.fdsys.CHRG-114hhrg93279).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The book of Texas (IA bookoftexas00bene).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:U.S. IMMIGRATION AND CUSTOMS ENFORCEMENT (IA gov.gpo.fdsys.CHRG-114hhrg94183).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:UNITED STATES AND MEXICO- IMMIGRATION POLICY AND THE BILATERAL RELATIONSHIP (IA gov.gpo.fdsys.CHRG-108shrg94643).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:United States Department of Homeland Security letter to Texas AG Paxton on January 14, 2024.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Greetings from Texas, The Lone Star State - Large Letter Postcard (12084494683).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "1500x943, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Greetings from Texas, The Lone Star State - Large Letter Postcard (4453112457).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1000x638 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Greetings from Texas, The Lone Star State - Large Letter Postcard (4638182099).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1000x631 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Greetings from Texas, The Lone Star State - Large Letter Postcard (5356954440).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1000x635 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Greetings from Texas, The Lone Star State - Large Letter Postcard (8333599614).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1000x639 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:ISS036-E-9064 - View of Texas.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "4256x2832, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:At What Cost? Inside the Trump Administration\u2019s Secret Deportation Deals.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Checking facts and fighting back - Why journalists should defend their profession.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Congressional Record Volume 165, Issue 074, 2019-05-06.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Congressional Record Volume 165, Issue 177, 2019-11-06.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Congressional Record Volume 165, Issue 186, 2019-11-20.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Indivisible on Offense A Practical Guide to the New, Democratic House.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:SF-Sanctuary-City.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:THE FIRST ANNUAL STATE DEPARTMENT REPORT ON INTERNATIONAL RELIGIOUS FREEDOM (IA gov.gpo.fdsys.CHRG-106hhrg64167).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Trump v. Hawaii 17-965 h315.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Deb Haaland speaking against the Trump administration family separation policy.ogv",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Donald Trump Cabinet meeting 2017-03-13 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (payoff)",
+      "reason": "1200x800, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Donald Trump Cabinet meeting 2017-03-13 02.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "1200x800, Public domain, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "panorama-of-united-states-supreme-court-buil",
+      "path": "panorama-of-united-states-supreme-court-buil.jpg",
+      "size": [
+        3788,
+        1952
+      ],
+      "role": "establishing",
+      "subject": "Panorama of the west facade of United States Supreme Court Building at dusk in Washington, D.C., United States of America.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Panorama_of_United_States_Supreme_Court_Building_at_Dusk.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Panorama_of_United_States_Supreme_Court_Building_at_Dusk.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Joe Ravi"
+    },
+    {
+      "beat": "hero",
+      "label": "supreme-court-building-washington-dc",
+      "path": "supreme-court-building-washington-dc.jpg",
+      "size": [
+        3996,
+        2997
+      ],
+      "role": "establishing",
+      "subject": "Supreme Court Building Washington DC, Front of the building.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Supreme_Court_Building_Washington_DC.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Supreme_Court_Building_Washington_DC.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Mathieu Landretti"
+    },
+    {
+      "beat": "grid",
+      "label": "iss036-e-9064-view-of-texas",
+      "path": "iss036-e-9064-view-of-texas.jpg",
+      "size": [
+        4256,
+        2832
+      ],
+      "role": "establishing",
+      "subject": "View of Texas taken during ISS Expedition 36.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:ISS036-E-9064_-_View_of_Texas.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/ISS036-E-9064_-_View_of_Texas.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Earth Science and Remote Sensing Unit , Lyndon B. Johnson Space Center"
+    },
+    {
+      "beat": "payoff",
+      "label": "donald-trump-cabinet-meeting-2017-03-13-01",
+      "path": "donald-trump-cabinet-meeting-2017-03-13-01.jpg",
+      "size": [
+        1200,
+        800
+      ],
+      "role": "establishing",
+      "subject": "Group photo of most of the Trump cabinet in March 2017. Photo was tweeted with the text: \"Proud to welcome our great Cabinet this afternoon for our first meeting. Unfortunately 4 seats were empty because Senate Dems are delaying!\"",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Donald_Trump_Cabinet_meeting_2017-03-13_01.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Donald_Trump_Cabinet_meeting_2017-03-13_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Office of U.S. President"
+    }
+  ]
+}

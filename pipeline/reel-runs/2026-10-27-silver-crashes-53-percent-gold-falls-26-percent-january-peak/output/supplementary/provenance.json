@@ -1,0 +1,378 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "silver-crashes-53-percent-gold-falls-26-percent-january-peak",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Silver",
+    "Gold",
+    "MCX",
+    "Federal Reserve",
+    "Markets Finance"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:A silver brand; (IA silverbrand00mann).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:D2960 Ruston 0-4-0DM Silver Spoon.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "2353x1309, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Legends of the Pike's Peak region; the sacred myths of the Manitou (IA ofpikespelegends00whitrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Pictures of the Peak (IA picturesofpeak00bradiala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Rough trails and silver meadows (IA roughtrailssilve00huck).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Silver rags (IA silverrags00alle 0).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Pike's Peak region in song and myth (IA pikespeakregioni00hilliala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The silver fox (IA silverfox00rossrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The silver fox (IA silverfox00somerich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The tale of silver (IA taleofsilver00ruxt).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:BijouEgyptien MHNT.ETH.2012.24.31.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in france, which this story is not about (story context: india) \u2014 a namesake, not 'Silver' in this story"
+    },
+    {
+      "candidate": "File:Color icon silver.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Color icon silver 2.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Ivory Silver Spoon Whiting Manufacturing Co.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "5069x8739, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:1LT Fred Lacey rappels down the \"rescue chute,\" the only snow covered portion of Gold Dust Peak and the quickest descent route to the helicopter pickup area. 1LT Lacey, a member of - DPLA - 5a7816f99b44959e7550bf9ff606a4dd.jpeg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united states, which this story is not about (story context: india) \u2014 a namesake, not 'Gold' in this story"
+    },
+    {
+      "candidate": "File:A member of the A-10 recovery team checks his heading with a compass and map as he searches for the four 500 pound Mark 82 bombs that were carried by the A-10 that crashed on Gold D - DPLA - 23f1c408cba2de431ae1517c991323d9.jpeg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:California gold-field scenes - selections from Quien Sabe's gold-field manuscripts (IA californigoldfie00bighrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Black and Gold (IA blackgold51915wins).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The black and gold (serial) (IA blackgoldserial05wins 0).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The gold trail (IA goldtrail00bind).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The gold tree (IA goldtree00squi).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Argentina 1828 8 Escudos.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Buddha Dhatu Jadi DJI 0249-1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Gold'"
+    },
+    {
+      "candidate": "File:Fountain pen writing (literacy).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Gold-crystals.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:GoldNuggetUSGOV.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 385x260 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Gold chain with gemstones and enamel, late 16th century, The Royal Armoury, Sweden.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Monnaie de Bactriane, Eucratide I, face.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in france, which this story is not about (story context: india) \u2014 a namesake, not 'Gold' in this story"
+    },
+    {
+      "candidate": "File:Monnaie en or, Lucanie, M\u00e9taponte.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in france, which this story is not about (story context: india) \u2014 a namesake, not 'Gold' in this story"
+    },
+    {
+      "candidate": "File:Silver and gold scrap metal.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:The Sounds of Earth Record Cover - GPN-2000-001978.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:China National Gold Group headquarters (20241007131403).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in china, which this story is not about (story context: india) \u2014 a namesake, not 'Gold' in this story"
+    },
+    {
+      "candidate": "File:Gold Base aerial view from west.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united states, which this story is not about (story context: india) \u2014 a namesake, not 'Gold' in this story"
+    },
+    {
+      "candidate": "File:Golden-era-productions-sign.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 187x132 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Golden Era Productions Chapel.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 685x533 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Golden Era Productions Reception.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1000x533 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rosa Gold Glow 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united states, which this story is not about (story context: india) \u2014 a namesake, not 'Gold' in this story"
+    },
+    {
+      "candidate": "File:United Gold Coast Convention National Headquarters 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "4064x3048, CC0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:United Gold Coast Convention National Headquarters 3.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "4064x3048, CC0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:McMurdo Consolidated Airfields Study- Phase I, basis of design - USACE-p266001coll1-4370.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1896-07-13) (IA victoriadailytimes18960713).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:MCX Plug.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "2037x1746, CC BY-SA 2.5, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Mahkachkala airport - 2024-04-27a.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'MCX'"
+    },
+    {
+      "candidate": "File:Mahkachkala airport - 2024-04-27b.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'MCX'"
+    },
+    {
+      "candidate": "File:Makhachkala airport 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'MCX'"
+    },
+    {
+      "candidate": "File:Makhachkala airport logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:SIG-MCX-Rifle-removebg-preview.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 800x268 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:SIG-MCX-Rifle.jpeg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1244x416 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:SIG MCX conversion kit at IDEX 2023.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "1600x1200, CC BY-SA 4.0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "ivory-silver-spoon-whiting-manufacturing-co",
+      "path": "ivory-silver-spoon-whiting-manufacturing-co.jpg",
+      "size": [
+        5069,
+        8739
+      ],
+      "role": "establishing",
+      "subject": "An ivory-handled, silver jelly spoon with decorative gilt made by Whiting Manufacturing Co. in 1890. This example is currently owned by the Dallas Museum of Art.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Ivory_Silver_Spoon_Whiting_Manufacturing_Co.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Ivory_Silver_Spoon_Whiting_Manufacturing_Co.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Whiting Manufacturing Co."
+    },
+    {
+      "beat": "hero",
+      "label": "united-gold-coast-convention-national-headqu",
+      "path": "united-gold-coast-convention-national-headqu.jpg",
+      "size": [
+        4064,
+        3048
+      ],
+      "role": "establishing",
+      "subject": "United Gold Coast Convention National Headquarters, Saltpond",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:United_Gold_Coast_Convention_National_Headquarters_2.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/37/United_Gold_Coast_Convention_National_Headquarters_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "HijabGirl1"
+    },
+    {
+      "beat": "grid",
+      "label": "d2960-ruston-0-4-0dm-silver-spoon",
+      "path": "d2960-ruston-0-4-0dm-silver-spoon.jpg",
+      "size": [
+        2353,
+        1309
+      ],
+      "role": "establishing",
+      "subject": "The much-[vaunted \"Magnificent Seven\" diesel-hydraulic gala at the Severn Valley Railway on 29th / 30th September 2023 was reduced to the Magnificent five after D7018 crashed into D7019 at the West Somerset Railway and had to be withdrawn. ",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:D2960_Ruston_0-4-0DM_Silver_Spoon.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/D2960_Ruston_0-4-0DM_Silver_Spoon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "Steve Knight"
+    },
+    {
+      "beat": "diaspora",
+      "label": "united-gold-coast-convention-national-headqu-2",
+      "path": "united-gold-coast-convention-national-headqu-2.jpg",
+      "size": [
+        4064,
+        3048
+      ],
+      "role": "establishing",
+      "subject": "United Gold Coast Convention National Headquarters, Saltpond",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:United_Gold_Coast_Convention_National_Headquarters_3.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/United_Gold_Coast_Convention_National_Headquarters_3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "HijabGirl1"
+    }
+  ]
+}

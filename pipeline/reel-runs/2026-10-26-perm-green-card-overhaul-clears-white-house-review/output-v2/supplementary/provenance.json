@@ -1,0 +1,203 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "perm-green-card-overhaul-clears-white-house-review",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Department of Labor",
+    "White House",
+    "Keith Sonderling",
+    "Federal Register"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:A comparative analysis of the efficiency and effectiveness of the F-14 Tomcat overhaul process (IA comparativeanaly00prue).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A modernization plan for the Technical Data Department of the Naval Ships Weapon Systems Engineering Station (IA modernizationpla00wiel).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A study of inspection and quality control at the Overhaul and Repair Department. U. S. Naval Air Station, Quonset Point, Rhode Island. (IA studyofinspectio19601gray).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:An analysis of claims and claims avoidance techniques in the ship repair and overhaul industry. (IA analysisofclaims00brig).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Annual report of the Board of Health of the Health Department of the City of New York (IA annualreportofbo1903newy).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Annual report of the Board of Health of the Health Department of the City of New York (IA annualreportofbo19041newy).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Budgeting in the Overhaul and Repair Departments. (IA budgetinginoverh19556stew).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:DEPARTMENTS OF LABOR, HEALTH AND HUMAN SERVICES, EDUCATION, AND RELATED AGENCIES APPROPRIATIONS FOR 2003 (IA gov.gpo.fdsys.CHRG-107hhrg80470).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Prineville District Planning Update... United States Department of the Interior... August 1997 (IA doi-report i-532p-93-3-997).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:T-56 turboprop engine overhaul alternatives for the Indonesian Air Force. (IA t56turbopropengi00sisw).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Frances Perkins Building of the United States Department of Labor in Washington, D.C. - 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "6720x4480, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Frances Perkins Building of the United States Department of Labor in Washington, D.C. - 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "6720x4480, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Latrobe White House cropa2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "3746x4756, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:President Barack Obama.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'White House'"
+    },
+    {
+      "candidate": "File:Red and white tulip at Myddelton House, Enfield, London.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Russian White House and Comecon building.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Russian White House and ships on Moskva River.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "4488x2970, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:2025 Keith Sonderling (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 607x807 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Keith Sonderling (55510883049).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "8192x5464, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Keith Sonderling 2025 ILO Plenary.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "2600x1668, CC0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "russian-white-house-and-ships-on-moskva-rive",
+      "path": "russian-white-house-and-ships-on-moskva-rive.jpg",
+      "size": [
+        4488,
+        2970
+      ],
+      "role": "establishing",
+      "subject": "Moscow. A view on Krasnopresnenskaya Embankment from Taras Shevchenko Embankment : a North Silver Pro 745 Jet Cabin police boat goes up the Moskva River from the Novoarbatskiy Bridge ; the motor ship Primavera goes up the river; on the rive",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Russian_White_House_and_ships_on_Moskva_River.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Russian_White_House_and_ships_on_Moskva_River.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Dmitry Ivanov ."
+    },
+    {
+      "beat": "hero",
+      "label": "frances-perkins-building-of-the-united-state",
+      "path": "frances-perkins-building-of-the-united-state.jpg",
+      "size": [
+        6720,
+        4480
+      ],
+      "role": "establishing",
+      "subject": "Washington, DC \u2013 frances perkins Building Official Department of Labor Photograph*** Photographs taken by the federal government are generally part of the public domain and may be used, copied and distributed without permission. Unless othe",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Frances_Perkins_Building_of_the_United_States_Department_of_Labor_in_Washington,_D.C._-_1.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Frances_Perkins_Building_of_the_United_States_Department_of_Labor_in_Washington%2C_D.C._-_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "US Department of Labor"
+    },
+    {
+      "beat": "grid",
+      "label": "latrobe-white-house-cropa2",
+      "path": "latrobe-white-house-cropa2.jpg",
+      "size": [
+        3746,
+        4756
+      ],
+      "role": "detail",
+      "subject": "The White House, Washington, D.C. Site plan and principal story plan, architectural design.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Latrobe_White_House_cropa2.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Latrobe_White_House_cropa2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Benjamin Henry Latrobe"
+    },
+    {
+      "beat": "diaspora",
+      "label": "frances-perkins-building-of-the-united-state-2",
+      "path": "frances-perkins-building-of-the-united-state-2.jpg",
+      "size": [
+        6720,
+        4480
+      ],
+      "role": "establishing",
+      "subject": "Washington, DC \u2013 frances perkins Building Official Department of Labor Photograph*** Photographs taken by the federal government are generally part of the public domain and may be used, copied and distributed without permission. Unless othe",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Frances_Perkins_Building_of_the_United_States_Department_of_Labor_in_Washington,_D.C._-_2.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Frances_Perkins_Building_of_the_United_States_Department_of_Labor_in_Washington%2C_D.C._-_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "US Department of Labor"
+    }
+  ]
+}

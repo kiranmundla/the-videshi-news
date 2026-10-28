@@ -1613,5 +1613,16 @@
     "top_story_slug": "kumaraswamy-accuses-karnataka-cm-600-crore-plot-deve-gowda-family",
     "quick_hit_count": 5,
     "deadline_count": 3
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-27T13:58:14.091036+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 27, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "us-midterms-november-3-h1b-green-cards-indians",
+    "quick_hit_count": 5,
+    "deadline_count": 3
   }
 ]

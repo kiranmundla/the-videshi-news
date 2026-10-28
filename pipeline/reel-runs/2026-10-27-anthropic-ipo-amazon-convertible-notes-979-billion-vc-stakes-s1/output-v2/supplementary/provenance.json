@@ -1,0 +1,763 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Amazon",
+    "Anthropic",
+    "Google",
+    "Menlo Ventures",
+    "Anthropic's IPO",
+    "Anthropic's S-"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:A diplomat in London; letters and notes 1871-1877 (IA cu31924028315574).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A diplomat in London; letters and notes 1871-1877 (IA diplomatinlondon00gavarich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Amazon business and GSA Advantage- a comparative analysis (IA amazonbusinessnd1094556880).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Amazon surveillance system (SIVAM) - U.S. and Brazilian cooperation (IA amazonsurveillan00witt).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Incentivizing and evaluating internet-wide network measurements (IA incentivizingnde1094541394).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Internet Security. Hearing Before the Subcommittee on Communications of the Committee on Commerce, Science, and Transportation\u2026 (US Senate, S. Hrg. 106-1092) (US GPO, 2003) (IA gov.gpo.fdsys.CHRG-106shrg78382).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:NASA's AIRS Maps Carbon Monoxide from Brazil Fires August 23 2019 PIA23356.webm",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:PATENT TROLLS- FACT OR FICTION? (IA gov.gpo.fdsys.CHRG-109hhrg28201).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Transatlantic sketches, comprising visits to the most interesting scenes in North and South America, and the West Indies. With notes on negro slavery and Canadian emigration (IA transatlanticske00alex).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Transatlantic sketches - comprising visits to the most interesting scenes in North and South America, and the West Indies - with notes on Negro slavery and Canadian (IA 649bcd9b-e222-4060-9630-63f0bc79c117).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:2022.07.04 Coach carrying Amazon employees, Tomaszow Mazowiecki, Poland.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in poland, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Amazon' in this story"
+    },
+    {
+      "candidate": "File:Amazon.com Logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Amazon Inspire logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Amazon Kids logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Amazon Live logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Amazon Spheres 05.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (payoff)",
+      "reason": "4288x2848, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Amazon distribution centre jandakot gn.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in australia, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Amazon' in this story"
+    },
+    {
+      "candidate": "File:Available at amazon appstore.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 902x312 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Day 1 Tower Seattle WA Jan 17.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "3024x4032, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:At the sign of the dollar; (IA cu31924022488534).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:At the sign of the dollar (IA atsignofdollar00irwi).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Contributions of social sciences to multiple-use management - an update (IA CAT91949270).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:New Tabernacle sermons (IA newtabernacleser00talm).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Prohibition a fallacy, a fanaticism, and an absurdity .. (IA prohibitionfalla00engl).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The King's Speech, 2023.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The great oriental and trans-continental railroad. (A political novel) (IA greatorientaltra00cash).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The relation of the national government to public education- an address delivered before the National teachers' association at Cleveland, Ohio, Aug. 17, 1870 (IA relationofnation00eato).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The science of wealth- a manual of political economy. Embracing the laws of trade, currency, and finance (IA scienceofwealthm00walkiala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The science of wealth- a manual of political economy (IA scienceofwealthm03walk).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Anthropic's corporate structure, updated.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Anthropic Farm Units.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 605x489 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Anthropic corporate structure.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Anthropic gongsi jiagou.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Anthropic logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Beer Mythos Chania.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Anthropic'"
+    },
+    {
+      "candidate": "File:Claude ru wiki.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 776x595 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Fragment of an Egyptian Textile, circa 700-1000 CE, depicting the anthropic figure of Anthousa, a rarely depicted divinity, considered to be the deity of blossoming plants. Fitzwilliam Museum, Cambridge.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Secretary of State Peter Kyle visits Anthropic in San Francisco. (54098999333).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "8192x5464, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Secretary of State Peter Kyle visits Anthropic in San Francisco. (54099081629).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "8192x5464, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Biagi - The Centaurians.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Booth Tarkington - Looking Forward and Others.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Indonesian Affairs Vol 1 Issue 9, Oct-Nov 1951.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Ladies' Home Journal Vol.14 No.04 (March, 1897).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Planning ahead- Notes for the planning and policy community - USACE-p16021coll8-64.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Robert Treat Paine Jr. - Arena magazine (October 1908).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Roy Ralph Hottman - Practical Collection Procedure (1923).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:THE GOOGLE-YAHOO! AGREEMENT AND THE FUTURE OF INTERNET ADVERTISING (IA gov.gpo.fdsys.CHRG-110shrg45092).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The American Letters of a Japanese Parlor-Maid.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:United States v Google 20240805.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Google-Tag-Manager.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 438x424 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Google App Engine icon.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Google Cheque epayservice.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 800x334 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Google Favicon 2025.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Google Gemini icon 2025.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Google Meet.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 192x192 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Google shopping s\u00f8k.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 755x263 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Googleplex HQ (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Google'"
+    },
+    {
+      "candidate": "File:Joseph Ducreux (French) - Self-Portrait, Yawning - Google Art Project.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in france, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Google' in this story"
+    },
+    {
+      "candidate": "File:Pieter Brueghel the Elder - The Dutch Proverbs - Google Art Project.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in germany/netherlands/spain, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Google' in this story"
+    },
+    {
+      "candidate": "File:Google Headquarters in Ireland Building Front Entrance.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in ireland, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Google' in this story"
+    },
+    {
+      "candidate": "File:Googleplex-Patio-Aug-2014.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "3264x2448, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Mountain View (CA, USA), Charleston Road, Abstellplatz f\u00fcr Google-Fahrr\u00e4der -- 2022 -- 2898.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Mountain View, who is not one of this story's subjects \u2014 association is not depiction ('Google')"
+    },
+    {
+      "candidate": "File:Mountain View (CA, USA), Charleston Road, Abstellplatz f\u00fcr Google-Fahrr\u00e4der -- 2022 -- 2899.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Mountain View, who is not one of this story's subjects \u2014 association is not depiction ('Google')"
+    },
+    {
+      "candidate": "File:Mountain View (CA, USA), Charleston Road, Google-Erholungsfl\u00e4che -- 2022 -- 2909.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Mountain View, who is not one of this story's subjects \u2014 association is not depiction ('Google')"
+    },
+    {
+      "candidate": "File:Mountain View (CA, USA), Charleston Road, Google-Fahrr\u00e4der -- 2022 -- 2901.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Mountain View, who is not one of this story's subjects \u2014 association is not depiction ('Google')"
+    },
+    {
+      "candidate": "File:Mountain View (CA, USA), Charleston Road, Google-Fahrr\u00e4der -- 2022 -- 2902.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Mountain View, who is not one of this story's subjects \u2014 association is not depiction ('Google')"
+    },
+    {
+      "candidate": "File:Mountain View (CA, USA), Charleston Road, Google-Fahrr\u00e4der -- 2022 -- 2903.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Mountain View, who is not one of this story's subjects \u2014 association is not depiction ('Google')"
+    },
+    {
+      "candidate": "File:Mountain View (CA, USA), Charleston Road, Google-Schild -- 2022 -- 2896.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Mountain View, who is not one of this story's subjects \u2014 association is not depiction ('Google')"
+    },
+    {
+      "candidate": "File:Electronics for sale at Google Merchandise Store.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Electronics for sale at Google Merchandise Store 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Electronics for sale at Google Merchandise Store 3.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Electronics for sale at Google Merchandise Store 4.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Electronics for sale at Google Merchandise Store 5.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Google campus TLV.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in israel, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Google' in this story"
+    },
+    {
+      "candidate": "File:Google for Startups Campus Warsaw 2018.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in poland, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Google' in this story"
+    },
+    {
+      "candidate": "File:Google for Startups Campus Warsaw cafe 2019.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Google for Startups Campus Warsaw campus community board 2019.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in poland, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Google' in this story"
+    },
+    {
+      "candidate": "File:Google for Startups Warsaw sign 2019.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in poland, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Google' in this story"
+    },
+    {
+      "candidate": "File:Berlin, Haus der Deutschen Wirtschaft 2014-07.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Google'"
+    },
+    {
+      "candidate": "File:Berlin, Mitte, Breite Strasse, Haus der deutschen Wirtschaft.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Google'"
+    },
+    {
+      "candidate": "File:Edgar Degas - Interior - Google Art Project.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Edgar Degas, who is not one of this story's subjects \u2014 association is not depiction ('Google')"
+    },
+    {
+      "candidate": "File:Haus der Deutschen Wirtschaft, Berlin, Kunstfenster.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Google'"
+    },
+    {
+      "candidate": "File:Haus der Deutschen Wirtschaft.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Google'"
+    },
+    {
+      "candidate": "File:HdW April 2011 Breite Stra\u00dfe Ecke Leipziger Stra\u00dfe.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Google'"
+    },
+    {
+      "candidate": "File:HdW Blick vom M\u00fchlendamm.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Google'"
+    },
+    {
+      "candidate": "File:MitteBreiteStra\u00dfe.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Google'"
+    },
+    {
+      "candidate": "File:Rembrandt van Rijn - Self-Portrait - Google Art Project.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Simon Bening - Villagers on Their Way to Church - Google Art Project.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:\"Cool Science\" Dinner- Carlos Slim showing Peter Woit & me how his signature forms an integral (27119411145).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Delicious Modernist Cuisine slow-cooked pastrami (26513898204).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Menlo Ventures'"
+    },
+    {
+      "candidate": "File:Don Valentine in 2009.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 768x1280 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Fistful of liquid nitrogen Nathan Myhrvold magical science dinner (26516294393).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Menlo Ventures'"
+    },
+    {
+      "candidate": "File:Intellectual Ventures Lab Tour with Nathan Myhrvold (26992248211).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Menlo Ventures'"
+    },
+    {
+      "candidate": "File:Menlo Ventures Logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Menlo Ventures logo 2020.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Norman Winarsky - President of SRI Ventures.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Norman Winarsky, who is not one of this story's subjects \u2014 association is not depiction ('Menlo Ventures')"
+    },
+    {
+      "candidate": "File:Perspective Blender at Modernist Cuisine (26966209862).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Menlo Ventures'"
+    },
+    {
+      "candidate": "File:The Modernist Cuisine kitchen deep in the IV Labs.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Menlo Ventures'"
+    },
+    {
+      "candidate": "File:Marius the Epicurean, his sensations and ideas (IA mariusepicureanh00pate).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:United States Copyright Office - Copyright and Artificial Intelligence Part 2 - Copyrightability.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Anthropic Logo 2.webp",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:Everett Katigbak at SXSW London 2025.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence \"Anthropic's S-\""
+    },
+    {
+      "candidate": "File:George S. Hale, A. M.; a memoir (IA georgeshaleammem00elli).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Guido reichstadter sf 2025-09-26 001.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence \"Anthropic's S-\""
+    },
+    {
+      "candidate": "File:Guido reichstadter sf 2025-09-26 003.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence \"Anthropic's S-\""
+    },
+    {
+      "candidate": "File:Guido reichstadter sf 2025-09-26 006.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence \"Anthropic's S-\""
+    },
+    {
+      "candidate": "File:Hammersley sofa animated smooth.gif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Pests or prey? Micromammal species within an ancient anthropic environment at the Norse settlement site of Tuquoy (Westray, Orkney).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Umayya ibn Abi-s Salt (IA umayyaibnabissal00powe).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Woman s Who s who of America.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "https://press.aboutamazon.com/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "license: no license grant on the hosting page"
+    },
+    {
+      "candidate": "https://press.aboutamazon.com/logos",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "https://press.aboutamazon.com/press-release-archive",
+      "route": "B \u2014 official sources",
+      "verdict": "accepted",
+      "reason": "license basis: explicit CC / public-domain statement on the page; dimensions verified at download"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "secretary-of-state-peter-kyle-visits-anthrop",
+      "path": "secretary-of-state-peter-kyle-visits-anthrop.jpg",
+      "size": [
+        8192,
+        5464
+      ],
+      "role": "establishing",
+      "subject": "25/10/2024. San Francisco, United States. Secretary of State Peter Kyle visits Anthropic in San Francisco. Picture by Alecsandra Dragoi / DSIT",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Secretary_of_State_Peter_Kyle_visits_Anthropic_in_San_Francisco._(54099081629).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Secretary_of_State_Peter_Kyle_visits_Anthropic_in_San_Francisco._%2854099081629%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "Department for Science, Innovation and Technology"
+    },
+    {
+      "beat": "grid",
+      "label": "secretary-of-state-peter-kyle-visits-anthrop-2",
+      "path": "secretary-of-state-peter-kyle-visits-anthrop-2.jpg",
+      "size": [
+        8192,
+        5464
+      ],
+      "role": "establishing",
+      "subject": "25/10/2024. San Francisco, United States. Secretary of State Peter Kyle visits Anthropic in San Francisco. Picture by Alecsandra Dragoi / DSIT",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Secretary_of_State_Peter_Kyle_visits_Anthropic_in_San_Francisco._(54098999333).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/02/Secretary_of_State_Peter_Kyle_visits_Anthropic_in_San_Francisco._%2854098999333%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "Department for Science, Innovation and Technology"
+    },
+    {
+      "beat": "diaspora",
+      "label": "googleplex-patio-aug-2014",
+      "path": "googleplex-patio-aug-2014.jpg",
+      "size": [
+        3264,
+        2448
+      ],
+      "role": "establishing",
+      "subject": "A view of the Google logo, from the patio area of Googleplex, between buildings 40 and 43.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Googleplex-Patio-Aug-2014.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Googleplex-Patio-Aug-2014.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Jijithecat"
+    },
+    {
+      "beat": "payoff",
+      "label": "amazon-spheres-05",
+      "path": "amazon-spheres-05.jpg",
+      "size": [
+        4288,
+        2848
+      ],
+      "role": "establishing",
+      "subject": "Amazon Spheres from the Sixth Avenue side, Seattle, Washington, U.S.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Amazon_Spheres_05.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Amazon_Spheres_05.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Joe Mabel"
+    }
+  ]
+}

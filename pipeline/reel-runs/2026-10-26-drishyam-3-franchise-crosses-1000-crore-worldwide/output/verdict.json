@@ -1,0 +1,37 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "drishyam-3-franchise-crosses-1000-crore-worldwide",
+  "name": "drishyam-3-franchise-crosses-1000-crore-worldwide",
+  "script": "reel-runs/2026-10-26-drishyam-3-franchise-crosses-1000-crore-worldwide/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000767
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-26-drishyam-3-franchise-crosses-1000-crore-worldwide/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "ajay-devgn",
+      "hero": "jug-suraiya-indian-journalist-formerly-with",
+      "grid": "jug-suraiya-indian-journalist-formerly-with-2",
+      "diaspora": "drishyam-arikkulam"
+    }
+  },
+  "manifest": "reel-runs/2026-10-26-drishyam-3-franchise-crosses-1000-crore-worldwide/output/render-manifest.json",
+  "video": "reel-runs/2026-10-26-drishyam-3-franchise-crosses-1000-crore-worldwide/output/drishyam-3-franchise-crosses-1000-crore-worldwide.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:diaspora"
+    ]
+  }
+}

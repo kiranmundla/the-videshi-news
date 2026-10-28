@@ -1,0 +1,21 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "supreme-court-administrative-closure-immigration-judges-deportation-cases",
+  "name": "supreme-court-administrative-closure-immigration-judges-deportation-cases",
+  "script": "reel-runs/2026-10-27-supreme-court-administrative-closure-immigration-judges-deportation-cases/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "stats[0].label",
+      "stats[1].big",
+      "stats[1].label"
+    ],
+    "llm_cost_usd": 0.000665
+  }
+}

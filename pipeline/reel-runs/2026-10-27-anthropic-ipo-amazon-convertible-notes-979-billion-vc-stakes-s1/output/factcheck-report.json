@@ -1,0 +1,280 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "anthropic-ipo-amazon-convertible-notes-979-billion-vc-stakes-s1",
+  "verdict": "fail",
+  "held_claims": [
+    "stats[1].label"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "AMAZON'S ANTHROPIC NOTES ARE WORTH $97.9 BILLION",
+      "numbers": [
+        97.9,
+        97900000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Amazon's notes were valued at $97.9 billion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Anthropic's S-1 shows Amazon's $6.2 billion in convertible notes were valued at $97.9 billion on June 30, while no venture firm reaches the 5% threshold for the principal stockholders table.",
+      "numbers": [
+        1.0,
+        5.0,
+        6.2,
+        30.0,
+        97.9,
+        6200000000.0,
+        97900000000.0
+      ],
+      "entities": [
+        "Anthropic's S-1"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Both facts about Amazon's notes and venture firms are confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$97.9 BILLION",
+      "numbers": [
+        97.9,
+        97900000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$97.9 billion is the value of Amazon's notes as stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Value of Amazon's convertible notes on June 30",
+      "numbers": [
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the value of the notes on June 30.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$6.2 BILLION",
+      "numbers": [
+        6.2,
+        6200000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Amazon's convertible notes principal as $6.2 billion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Principal on Amazon's convertible notes",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the principal amount stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$18 BILLION",
+      "numbers": [
+        18.0,
+        18000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The total investment by Amazon is confirmed as $18 billion in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Total Amazon investment in Anthropic",
+      "numbers": [],
+      "entities": [
+        "Total Amazon"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Total Amazon"
+        ]
+      },
+      "llm_reason": "The article states Amazon's total investment is about $18 billion.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$965 BILLION",
+      "numbers": [
+        965.0,
+        965000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Anthropic's private valuation of $965 billion is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Anthropic's private valuation in the filing",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Anthropic's private valuation as $965 billion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "No venture firm reaches the 5% disclosure threshold",
+      "numbers": [
+        5.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states no venture firm owns 5% for the principal stockholders table.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Google secured $114 billion in cloud commitments",
+      "numbers": [
+        114.0,
+        114000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Google has secured at least $114 billion in commitments.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Amazon is likely the single largest financial beneficiary of Anthropic's IPO.",
+      "numbers": [],
+      "entities": [
+        "Anthropic's IPO"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article indicates Amazon is the largest financial beneficiary.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Amazon",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Anthropic",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Google",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Menlo Ventures",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000704,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

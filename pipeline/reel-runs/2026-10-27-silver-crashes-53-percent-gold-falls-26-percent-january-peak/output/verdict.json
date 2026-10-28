@@ -1,0 +1,37 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "silver-crashes-53-percent-gold-falls-26-percent-january-peak",
+  "name": "silver-crashes-53-percent-gold-falls-26-percent-january-peak",
+  "script": "reel-runs/2026-10-27-silver-crashes-53-percent-gold-falls-26-percent-january-peak/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000661
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-27-silver-crashes-53-percent-gold-falls-26-percent-january-peak/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "ivory-silver-spoon-whiting-manufacturing-co",
+      "hero": "united-gold-coast-convention-national-headqu",
+      "grid": "d2960-ruston-0-4-0dm-silver-spoon",
+      "diaspora": "united-gold-coast-convention-national-headqu-2"
+    }
+  },
+  "manifest": "reel-runs/2026-10-27-silver-crashes-53-percent-gold-falls-26-percent-january-peak/output/render-manifest.json",
+  "video": "reel-runs/2026-10-27-silver-crashes-53-percent-gold-falls-26-percent-january-peak/output/silver-crashes-53-percent-gold-falls-26-percent-january-peak.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:hero"
+    ]
+  }
+}

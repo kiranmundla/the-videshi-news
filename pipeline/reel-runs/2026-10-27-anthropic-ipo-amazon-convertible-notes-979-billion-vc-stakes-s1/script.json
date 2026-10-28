@@ -1,0 +1,36 @@
+{
+  "hook_line": "AMAZON'S ANTHROPIC NOTES ARE WORTH $97.9 BILLION",
+  "hook_stat": {
+    "big": "$97.9 BILLION",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Value of Amazon's convertible notes on June 30"
+  },
+  "stats": [
+    {
+      "big": "$6.2 BILLION",
+      "label": "Principal on Amazon's convertible notes"
+    },
+    {
+      "big": "$18 BILLION",
+      "label": "Amazon's total investment in Anthropic"
+    },
+    {
+      "big": "$965 BILLION",
+      "label": "Anthropic's private valuation in the filing"
+    }
+  ],
+  "diaspora_bullets": [
+    "No venture firm reaches the 5% disclosure threshold",
+    "Google secured $114 billion in cloud commitments"
+  ],
+  "key_entities": [
+    "Amazon",
+    "Anthropic",
+    "Google",
+    "Menlo Ventures"
+  ],
+  "news_summary": "Anthropic's S-1 shows Amazon's $6.2 billion in convertible notes were valued at $97.9 billion on June 30, while no venture firm reaches the 5% threshold for the principal stockholders table.",
+  "payoff": "Amazon is likely the single largest financial beneficiary of Anthropic's IPO.",
+  "versus": "",
+  "story_mood": "tense"
+}
