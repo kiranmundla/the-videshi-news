@@ -1,0 +1,413 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "jailer-2-tuesday-drop-india-gross-462-crore",
+ "article_slug": "jailer-2-tuesday-drop-india-gross-462-crore",
+ "article_id": "5e0def0a-e2fc-4cdf-8fd1-a87728c3675c",
+ "category": "Entertainment",
+ "video": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v2/jailer-2-tuesday-drop-india-gross-462-crore.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://images.indianexpress.com/2026/10/Jailer-2-Box-Office-Collection-Day-12-Live-Updates-1.jpg",
+  "local_path": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v2/hero.jpg",
+  "width": 1600,
+  "height": 900,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.91)",
+  "has_face": true,
+  "box_source": [
+   519,
+   154,
+   305,
+   408
+  ],
+  "box_bg": [
+   357,
+   236,
+   159,
+   213
+  ],
+  "chin_bg": 449,
+  "anchor": [
+   0.416,
+   0.398
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 985,
+   "block_bottom": 1258,
+   "text_bbox": [
+    70,
+    985,
+    930,
+    1258
+   ],
+   "texts": [
+    "Entertainment",
+    "JAILER 2 INDIA GROSS HITS RS 462.75 CRORE"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.521,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.52125,
+     "window": [
+      0,
+      0,
+      1600,
+      897
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Rajinikanth's Jailer 2 collected Rs 8.75 crore gross in India on its second Tuesday, down 20 percent, taking its India gross to Rs 462.75 crore, according to Pinkvilla."
+   ],
+   "v7": {
+    "image_source": "extra:dhavani-west-nilgiris-tamil-nadu-nov24-a7cr",
+    "track": "full-bleed",
+    "render_scale": 0.514,
+    "photo_px": [
+     5605,
+     3737
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5137811078405138,
+     "window": [
+      2227,
+      0,
+      4329,
+      3737
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Lower Dhavani from the west, late evening sky, Udhagai taluk, Nilgiris, Tamil Nadu, India",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Dhavani_West_Nilgiris_Tamil_Nadu_Nov24_A7CR_05228_NR.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Dhavani_West_Nilgiris_Tamil_Nadu_Nov24_A7CR_05228_NR.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Timothy A. Gonsalves"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 343,
+   "block_top": 950,
+   "block_bottom": 1293,
+   "text_bbox": [
+    70,
+    950,
+    930,
+    1293
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "RS 462.75 CRORE",
+    "India gross in 13 days, according to Pinkvilla"
+   ],
+   "v7": {
+    "image_source": "extra:rajinikanth-at-the-inauguration-of-mgr-statu",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     1800
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      165,
+      1200,
+      838
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.07x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Rajinikanth at the Inauguration of MGR Statue",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Rajinikanth_at_the_Inauguration_of_MGR_Statue.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Rajinikanth_at_the_Inauguration_of_MGR_Statue.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Dani Charles, Silverscreen Media Inc. (https://silverscreen.in)"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 837,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    837,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "RS 744 CRORE",
+    "Estimated worldwide gross",
+    "RS 8.75 CRORE",
+    "Second-Tuesday gross in India, down 20 percent from Monday",
+    "RS 200 CRORE",
+    "Tamil Nadu club expected in its third weekend"
+   ],
+   "v7": {
+    "image_source": "extra:dhavani-west-nilgiris-tamil-nadu-nov24-a7cr-2",
+    "track": "full-bleed",
+    "render_scale": 0.378,
+    "photo_px": [
+     8127,
+     5079
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.37802717070289427,
+     "window": [
+      2802,
+      0,
+      5658,
+      5079
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Dhavani from the west, Udhagai taluk, Nilgiris, Tamil Nadu, India",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Dhavani_West_Nilgiris_Tamil_Nadu_Nov24_A7CR_05228.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Dhavani_West_Nilgiris_Tamil_Nadu_Nov24_A7CR_05228.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Timothy A. Gonsalves"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1211,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1211,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Overseas collections are roughly Rs 257.50 crore",
+    "Already the record Tamil grosser in Karnataka and Kerala"
+   ],
+   "v7": {
+    "image_source": "extra:karnataka-or-kerala-panjurli-bhuta-mask-18th",
+    "track": "full-bleed",
+    "render_scale": 0.733,
+    "photo_px": [
+     2432,
+     2620
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.732824427480916,
+     "window": [
+      276,
+      0,
+      1749,
+      2620
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Karnataka or Kerala, Panjurli Bhuta (boar spirit deity) mask from India, 18th-19th century, copper alloy, Lowe Art Museum",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Karnataka_or_Kerala,_Panjurli_Bhuta_mask,_18th-19th_century,_Lowe_Art_Museum.JPG",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Karnataka_or_Kerala%2C_Panjurli_Bhuta_mask%2C_18th-19th_century%2C_Lowe_Art_Museum.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "Wmpearl"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "On course for a second-week close near Rs 480 crore in India.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-fun-upbeat-mfcc.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 142.0,
+ "mp4_bytes": 15337744
+}

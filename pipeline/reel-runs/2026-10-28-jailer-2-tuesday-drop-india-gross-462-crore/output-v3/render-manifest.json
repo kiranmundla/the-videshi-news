@@ -1,0 +1,404 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "jailer-2-tuesday-drop-india-gross-462-crore",
+ "article_slug": "jailer-2-tuesday-drop-india-gross-462-crore",
+ "article_id": "5e0def0a-e2fc-4cdf-8fd1-a87728c3675c",
+ "category": "Entertainment",
+ "video": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v3/jailer-2-tuesday-drop-india-gross-462-crore.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://images.indianexpress.com/2026/10/Jailer-2-Box-Office-Collection-Day-12-Live-Updates-1.jpg",
+  "local_path": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/supplied/03-roddy-theme-poster.jpg",
+  "width": 1206,
+  "height": 1213,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.90)",
+  "has_face": true,
+  "box_source": [
+   487,
+   98,
+   149,
+   207
+  ],
+  "box_bg": [
+   423,
+   224,
+   103,
+   143
+  ],
+  "chin_bg": 367,
+  "anchor": [
+   0.466,
+   0.167
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   838
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 1058,
+   "zone_h": 498,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 1170,
+   "block_bottom": 1443,
+   "text_bbox": [
+    70,
+    1170,
+    930,
+    1443
+   ],
+   "texts": [
+    "Entertainment",
+    "JAILER 2 INDIA GROSS HITS RS 462.75 CRORE"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.692,
+    "photo_px": [
+     1206,
+     1213
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 838,
+     "scale": 0.6915422885572139,
+     "window": [
+      0,
+      0,
+      1206,
+      1211
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.58x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 1058,
+   "zone_h": 498,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1095,
+   "block_bottom": 1518,
+   "text_bbox": [
+    70,
+    1095,
+    930,
+    1518
+   ],
+   "texts": [
+    "What Happened",
+    "Rajinikanth's Jailer 2 collected Rs 8.75 crore gross in India on its second Tuesday, down 20 percent, taking its India gross to Rs 462.75 crore, according to Pinkvilla."
+   ],
+   "v7": {
+    "image_source": "extra:rajinikanth-explosion-walk-kiran-supplied",
+    "track": "backdrop",
+    "render_scale": 0.692,
+    "photo_px": [
+     1206,
+     1558
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 838,
+     "scale": 0.6915422885572139,
+     "window": [
+      0,
+      0,
+      1206,
+      1211
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.23x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Rajinikanth Jailer 2 still: walking away from an explosion, sword and gun in hand",
+     "route": "supplied \u2014 Kiran (official still)",
+     "source_page": null,
+     "file_url": null,
+     "license": "Official film still supplied by Kiran",
+     "artist": "Sun Pictures"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 1058,
+   "zone_h": 498,
+   "scale": 1.0,
+   "content_h": 343,
+   "block_top": 1135,
+   "block_bottom": 1478,
+   "text_bbox": [
+    70,
+    1135,
+    930,
+    1478
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "RS 462.75 CRORE",
+    "India gross in 13 days, according to Pinkvilla"
+   ],
+   "v7": {
+    "image_source": "extra:hukum-jailer-2-poster-kiran-supplied",
+    "track": "backdrop",
+    "render_scale": 0.692,
+    "photo_px": [
+     1206,
+     1515
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 838,
+     "scale": 0.6915422885572139,
+     "window": [
+      0,
+      0,
+      1206,
+      1211
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.27x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Jailer 2 'Hukum' poster: Rajinikanth with machete (Sun Pictures)",
+     "route": "supplied \u2014 Kiran (official poster)",
+     "source_page": null,
+     "file_url": null,
+     "license": "Official film poster supplied by Kiran",
+     "artist": "Sun Pictures"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 1058,
+   "zone_h": 498,
+   "scale": 0.625,
+   "content_h": 489,
+   "block_top": 1062,
+   "block_bottom": 1551,
+   "text_bbox": [
+    70,
+    1062,
+    930,
+    1551
+   ],
+   "texts": [
+    "By The Numbers",
+    "RS 744 CRORE",
+    "Estimated worldwide gross",
+    "RS 8.75 CRORE",
+    "Second-Tuesday gross in India, down 20 percent from Monday",
+    "RS 200 CRORE",
+    "Tamil Nadu club expected in its third weekend"
+   ],
+   "v7": {
+    "image_source": "extra:jailer-trio-poster-kiran-supplied",
+    "track": "backdrop",
+    "render_scale": 0.692,
+    "photo_px": [
+     1206,
+     1720
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 838,
+     "scale": 0.6915422885572139,
+     "window": [
+      0,
+      0,
+      1206,
+      1211
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.12x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Jailer official poster: Rajinikanth flanked by Mohanlal and Shiva Rajkumar (Sun Pictures)",
+     "route": "supplied \u2014 Kiran (official poster)",
+     "source_page": null,
+     "file_url": null,
+     "license": "Official film poster supplied by Kiran",
+     "artist": "Sun Pictures"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 1058,
+   "zone_h": 498,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1122,
+   "block_bottom": 1491,
+   "text_bbox": [
+    70,
+    1122,
+    930,
+    1491
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Overseas collections are roughly Rs 257.50 crore",
+    "Already the record Tamil grosser in Karnataka and Kerala"
+   ],
+   "v7": {
+    "image_source": "extra:shiva-rajkumar-jailer-still-kiran-supplied",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1206,
+     1206
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 838,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      1205
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.59x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Shiva Rajkumar still from Jailer (Sun Pictures)",
+     "route": "supplied \u2014 Kiran (official still)",
+     "source_page": null,
+     "file_url": null,
+     "license": "Official film still supplied by Kiran",
+     "artist": "Sun Pictures"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "On course for a second-week close near Rs 480 crore in India.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-fun-upbeat-mfcc.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 117.0,
+ "mp4_bytes": 6982411
+}

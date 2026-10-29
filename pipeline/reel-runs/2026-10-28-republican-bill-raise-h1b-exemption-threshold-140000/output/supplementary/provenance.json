@@ -1,0 +1,277 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "republican-bill-raise-h1b-exemption-threshold-140000",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "H-1B",
+    "Jon Husted",
+    "Glenn Grothman",
+    "Social Security Administration",
+    "Social Security Administration's National Average",
+    "House Judiciary Committee"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Abraham Lincoln's political career through 1860 (IA abrahamlincolnsp18601860linc).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:CONGRESS AND U.S. TARIFF POLICY (IA gov.gpo.fdsys.CHRG-114shrg99678).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:MILITARY BUILD-UP ON GUAM (IA gov.gpo.fdsys.CHRG-110shrg44544).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:PROPOSALS FOR IMPROVING THE ELECTRONIC EMPLOYMENT VERIFICATION AND WORKSITE ENFORCEMENT SYSTEM (IA gov.gpo.fdsys.CHRG-110hhrg34927).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Proceedings of the great Democratic Republican meeting in the city of New York, January 2, 1838 (IA proceedingsofgre00newy).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:THE DIGITAL DIVIDE- BRIDGING THE TECHNOLOGY GAP (IA gov.gpo.fdsys.CHRG-106hhrg60580).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The constitution of Switzerland; (IA constitutionofsw00swit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:U.S.-MEXICO MIGRATION DISCUSSIONS- A HISTORIC OPPORTUNITY (IA gov.gpo.fdsys.CHRG-107shrg81002).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:WHSF- Contested, 26-5 - DPLA - 2c2016bffa24c015dbd24b591f62c1d5.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:WHSF- Contested, 27-3 - DPLA - 025dd6f5618b25294845290f53e947f3.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:2023 H-1B admissions by place of birth.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:2e suite d'orchestre, op. 38 - Emile Bernard. 1b, Ronde fantastique - r\u00e9duction pour piano \u00e0 4 mains, H. Fr\u00e8ne - btv1b90744656 (07 of 24).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:2e suite d'orchestre, op. 38 - Emile Bernard. 1b, Ronde fantastique - r\u00e9duction pour piano \u00e0 4 mains, H. Fr\u00e8ne - btv1b90744656 (08 of 24).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:2e suite d'orchestre, op. 38 - Emile Bernard. 1b, Ronde fantastique - r\u00e9duction pour piano \u00e0 4 mains, H. Fr\u00e8ne - btv1b90744656 (20 of 24).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:Charles H. Fowler (1b).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 528x640 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Figure 2- Process of Obtaining an H-1B Visa (5405276752).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "2275x1517, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Frontispiece, Six Masnavis of Jami (1570-72). TSK H.1483 folio 1b-2a.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:Frontispiece from a Hasht bihisht of Amir Khusraw Dihwali, dated 1496-97, probably Herat, Topkapi Sarayi Library, H.676, folios 1b-2a.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:H-1B Visa Updates.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "3375x4219, CC0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Family of Senator Jon Husted, 2025.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 854x539 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Husted speaking (31790509004).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (director) than this immigration story \u2014 a same-name different person, not 'Jon Husted' the subject of this story"
+    },
+    {
+      "candidate": "File:Jon A. Husted crop 2012-12-17.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 872x892 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Jon Husted 2016-05-12.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "1366x768, CC BY 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Jon Husted 2016-05-12 (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 330x453 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Jon Husted sworn in by JD Vance (2025).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "1503x1080, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Glenn Grothman, Official Portrait, 114th Congress (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Glenn Grothman, official 116th Congress photo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 450x553 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Glenn Grothman 117th Congress portrait.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (payoff)",
+      "reason": "3360x4200, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Glenn Grothman 117th Congress portrait (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Glenn Grothman Grafton Town Hall.webm",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:Glenn Grothman Sheboygan Town Hall.webm",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:Glenn Grothman official congressional photo.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "2002x2502, Public domain, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "glenn-grothman-official-congressional-photo",
+      "path": "glenn-grothman-official-congressional-photo.jpg",
+      "size": [
+        2002,
+        2502
+      ],
+      "role": "establishing",
+      "subject": "Glenn Grothman official photo, 114th Congress",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Glenn_Grothman_official_congressional_photo.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Glenn_Grothman_official_congressional_photo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "United States Congress"
+    },
+    {
+      "beat": "grid",
+      "label": "jon-husted-2016-05-12",
+      "path": "jon-husted-2016-05-12.jpg",
+      "size": [
+        1366,
+        768
+      ],
+      "role": "establishing",
+      "subject": "Screen capture of Jon A. Husted speaking to the City Club of Cleveland on May 12, 2016",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Jon_Husted_2016-05-12.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Jon_Husted_2016-05-12.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 3.0",
+      "artist": "City Club of Cleveland"
+    },
+    {
+      "beat": "diaspora",
+      "label": "figure-2-process-of-obtaining-an-h-1b-visa-5",
+      "path": "figure-2-process-of-obtaining-an-h-1b-visa-5.jpg",
+      "size": [
+        2275,
+        1517
+      ],
+      "role": "interior",
+      "subject": "This image is excerpted from a U.S. Government Accountability Office report, available here: www.gao.gov/products/GAO-11-26",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Figure_2-_Process_of_Obtaining_an_H-1B_Visa_(5405276752).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Figure_2-_Process_of_Obtaining_an_H-1B_Visa_%285405276752%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "U.S. Government Accountability Office from Washington, DC, United States"
+    },
+    {
+      "beat": "payoff",
+      "label": "glenn-grothman-117th-congress-portrait",
+      "path": "glenn-grothman-117th-congress-portrait.jpg",
+      "size": [
+        3360,
+        4200
+      ],
+      "role": "portrait",
+      "subject": "Glenn Grothman, 117th Congress",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Glenn_Grothman_117th_Congress_portrait.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Glenn_Grothman_117th_Congress_portrait.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Leah Herman, House Creative Services"
+    }
+  ]
+}

@@ -1,0 +1,281 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "republican-bill-raise-h1b-exemption-threshold-140000",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "H-1B EXEMPTION THRESHOLD COULD RISE TO $140,000",
+      "numbers": [
+        1.0,
+        140000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the threshold could rise to nearly $140,000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Republican bills in the House and Senate would raise the salary exemption for H-1B-dependent employers from $60,000, set in 1998, to nearly $140,000 today, tied to twice the National Average Wage Index.",
+      "numbers": [
+        1.0,
+        1998.0,
+        60000.0,
+        140000.0
+      ],
+      "entities": [
+        "National Average Wage Index"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          1998
+        ]
+      },
+      "llm_reason": "The article confirms the bills raise the exemption from $60,000 to nearly $140,000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$140,000",
+      "numbers": [
+        140000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$140,000 is mentioned as the proposed new threshold.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Proposed new salary exemption for H-1B-dependent employers, up from $60,000",
+      "numbers": [
+        1.0,
+        60000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the exemption is proposed to rise from $60,000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE PRICE TAG",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$60,000",
+      "numbers": [
+        60000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states $60,000 is the current exemption set in 1998.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Current salary exemption, unchanged since 1998",
+      "numbers": [
+        1998.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          1998
+        ]
+      },
+      "llm_reason": "The article confirms the $60,000 exemption has not changed since 1998.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$70,000",
+      "numbers": [
+        70000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the National Average Wage Index is nearly $70,000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "National Average Wage Index is now nearly $70,000 \u2014 the new threshold would be twice that",
+      "numbers": [
+        70000.0
+      ],
+      "entities": [
+        "National Average Wage Index"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the index is nearly $70,000 and the new threshold is twice that.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "SEPTEMBER 30",
+      "numbers": [
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the Senate version was introduced on September 30.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Senator Jon Husted introduced the Senate version, S. 5638",
+      "numbers": [
+        5638.0
+      ],
+      "entities": [
+        "Senator Jon Husted"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Jon Husted introduced S. 5638.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Indian nationals receive the bulk of H-1B visas each year",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Indian nationals receive most H-1B visas.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The proposal is not law and has no immediate effect on H-1B petitions or extensions",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the proposal is not law and has no immediate effect.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The proposal is not law, and the master's-degree exemption would remain.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the proposal is not law and the exemption remains.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE PRICE TAG",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "H-1B",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Jon Husted",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Glenn Grothman",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Social Security Administration",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00074,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

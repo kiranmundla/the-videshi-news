@@ -1,0 +1,422 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "republican-bill-raise-h1b-exemption-threshold-140000",
+ "article_slug": "republican-bill-raise-h1b-exemption-threshold-140000",
+ "article_id": "59bea026-787c-48ff-a3ac-3386e48f8f0d",
+ "category": "Immigration",
+ "video": "reel-runs/2026-10-28-republican-bill-raise-h1b-exemption-threshold-140000/output/republican-bill-raise-h1b-exemption-threshold-140000.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/House_of_Representatives_Chamber_in_the_United_States_Capitol_building%2C_1868_%2827603231870%29.jpg/1920px-House_of_Representatives_Chamber_in_the_United_States_Capitol_building%2C_1868_%2827603231870%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-10-28-republican-bill-raise-h1b-exemption-threshold-140000/output/hero.jpg",
+  "width": 2846,
+  "height": 1406,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.507,0.477) damped=(0.504,0.488)",
+  "has_face": false,
+  "box_source": [
+   636,
+   377,
+   1593,
+   562
+  ],
+  "box_bg": [
+   272,
+   266,
+   467,
+   165
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.503,
+   0.489
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   411
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 631,
+   "zone_h": 925,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 912,
+   "block_bottom": 1275,
+   "text_bbox": [
+    70,
+    912,
+    930,
+    1275
+   ],
+   "texts": [
+    "Immigration",
+    "H-1B EXEMPTION THRESHOLD COULD RISE TO $140,000"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.293,
+    "photo_px": [
+     2846,
+     1406
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 411,
+     "scale": 0.29304286718200984,
+     "window": [
+      0,
+      0,
+      2846,
+      1402
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.37x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 353,
+   "block_top": 1227,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1227,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Republican bills in the House and Senate would raise the salary exemption for H-1B-dependent employers from $60,000, set in 1998, to nearly $140,000 today, tied to twice the National Average Wage Index."
+   ],
+   "v7": {
+    "image_source": "extra:glenn-grothman-official-congressional-photo",
+    "track": "full-bleed",
+    "render_scale": 0.767,
+    "photo_px": [
+     2002,
+     2502
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7673860911270983,
+     "window": [
+      286,
+      0,
+      1693,
+      2502
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Glenn Grothman official photo, 114th Congress",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Glenn_Grothman_official_congressional_photo.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Glenn_Grothman_official_congressional_photo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "United States Congress"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 631,
+   "zone_h": 925,
+   "scale": 1.0,
+   "content_h": 406,
+   "block_top": 890,
+   "block_bottom": 1296,
+   "text_bbox": [
+    70,
+    890,
+    930,
+    1296
+   ],
+   "texts": [
+    "THE PRICE TAG",
+    "$140,000",
+    "Proposed new salary exemption for H-1B-dependent employers, up from $60,000"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.333,
+    "photo_px": [
+     2846,
+     1406
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 411,
+     "scale": 0.3330670926517572,
+     "window": [
+      179,
+      71,
+      2683,
+      1304
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.37x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 631,
+   "zone_h": 925,
+   "scale": 1.0,
+   "content_h": 764,
+   "block_top": 711,
+   "block_bottom": 1475,
+   "text_bbox": [
+    70,
+    711,
+    930,
+    1475
+   ],
+   "texts": [
+    "By The Numbers",
+    "$60,000",
+    "Current salary exemption, unchanged since 1998",
+    "$70,000",
+    "National Average Wage Index is now nearly $70,000 \u2014 the new threshold would be twice that",
+    "SEPTEMBER 30",
+    "Senator Jon Husted introduced the Senate version, S. 5638"
+   ],
+   "v7": {
+    "image_source": "extra:jon-husted-2016-05-12",
+    "track": "backdrop",
+    "render_scale": 0.611,
+    "photo_px": [
+     1366,
+     768
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 411,
+     "scale": 0.6105417276720352,
+     "window": [
+      0,
+      0,
+      1366,
+      673
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.50x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Screen capture of Jon A. Husted speaking to the City Club of Cleveland on May 12, 2016",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Jon_Husted_2016-05-12.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Jon_Husted_2016-05-12.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 3.0",
+     "artist": "City Club of Cleveland"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 631,
+   "zone_h": 925,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 877,
+   "block_bottom": 1309,
+   "text_bbox": [
+    70,
+    877,
+    930,
+    1309
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Indian nationals receive the bulk of H-1B visas each year",
+    "The proposal is not law and has no immediate effect on H-1B petitions or extensions"
+   ],
+   "v7": {
+    "image_source": "extra:figure-2-process-of-obtaining-an-h-1b-visa-5",
+    "track": "backdrop",
+    "render_scale": 0.367,
+    "photo_px": [
+     2275,
+     1517
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 411,
+     "scale": 0.3665934065934066,
+     "window": [
+      0,
+      0,
+      2275,
+      1121
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.27x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "This image is excerpted from a U.S. Government Accountability Office report, available here: www.gao.gov/products/GAO-11-26",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Figure_2-_Process_of_Obtaining_an_H-1B_Visa_(5405276752).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Figure_2-_Process_of_Obtaining_an_H-1B_Visa_%285405276752%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "U.S. Government Accountability Office from Washington, DC, United States"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 1195,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1195,
+    930,
+    1580
+   ],
+   "texts": [
+    "The Takeaway",
+    "The proposal is not law, and the master's-degree exemption would remain.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "extra:glenn-grothman-117th-congress-portrait",
+    "track": "full-bleed",
+    "render_scale": 0.457,
+    "photo_px": [
+     3360,
+     4200
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.45714285714285713,
+     "window": [
+      554,
+      0,
+      2916,
+      4200
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Glenn Grothman, 117th Congress",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Glenn_Grothman_117th_Congress_portrait.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Glenn_Grothman_117th_Congress_portrait.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Leah Herman, House Creative Services"
+    }
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 125.9,
+ "mp4_bytes": 12225145
+}

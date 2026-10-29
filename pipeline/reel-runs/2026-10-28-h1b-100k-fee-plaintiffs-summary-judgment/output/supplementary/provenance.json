@@ -1,0 +1,560 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "h1b-100k-fee-plaintiffs-summary-judgment-government-pause-global-nurse-force",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "H-1B",
+    "Global Nurse Force v. Trump",
+    "Ninth Circuit",
+    "Judge Gilliam",
+    "For Indian",
+    "Global Nurse Force"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Bridgeport Chronicle-Union 1891-03-21 (IA cammlsmh 000391).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Bridgeport Chronicle-Union 1893-12-23 (IA cammlsmh 000534).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Arena (IA arena6313harr).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Paper Trade Journal 1898-07-02- Vol 27 Iss 27 (IA sim paper-trade-journal 1898-07-02 27 27).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Paper Trade Journal 1898-12-17- Vol 27 Iss 51 (IA sim paper-trade-journal 1898-12-17 27 51).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Paper Trade Journal 1899-06-10- Vol 29 Iss 2 (IA sim paper-trade-journal 1899-06-10 29 2).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The chemist and druggist (electronic resource) (IA b19974760M0461).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The chemist and druggist (electronic resource) (IA b19974760M0471).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1909-09-21) (IA victoriadailytimes19090921).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1915-10-14) (IA victoriadailytimes19151014).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:APOLLO SOYUZ SATURN 1B - NARA - 17444863.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:Catalog of Copyright Entries 1950 Pamphlets, Serials Etc. Jan-Dec 3D Ser Vol 4 Pt 1B (IA catalogofcopyri341libr).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Catalog of Copyright Entries 1953 Books and Pamphlets Jan-June 3D Ser Vol 7 Pt 1B (IA catalogofcopyrig371libr).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:EQUIPMENT ON OV-1B AIRPLANE - NARA - 17449943.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:EQUIPMENT ON OV-1B AIRPLANE - NARA - 17449944.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:EQUIPMENT ON OV-1B AIRPLANE - NARA - 17449945.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:EQUIPMENT ON OV-1B AIRPLANE - NARA - 17449946.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:EXAMINING THE IMPORTANCE OF THE H-1B VISA TO THE AMERICAN ECONOMY (IA gov.gpo.fdsys.CHRG-108shrg93082).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Hydroplanes - Miscellaneous - SEAPLANES MADE FOR USE OF THE U.S.NAVY. 1000 1b. Torpedo dummy. Dropped in test from the Naval Aircraft Factory, Philadelphia, Pennsylvania - NARA - 31485199.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:WMacht H Inf OR4-1 Mannschaften01 h 1945.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:Blondi Flauii ... De Roma instaurata libri tres ... ; Blondi Flauii ... De Italia illustrata opus - tum propter historia(rum) cognitionem, tum propter loco(rum) descriptionem valde necessarium (IA ARes55107).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Bob Dexter (2) And The Beacon Beach Mystery 1925.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Development of design criteria for reinforced concrete box culverts- Part II, recommendations for design - USACE-p266001coll1-7743.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Evaluating germ plasm for beef production, cycle 1 - progress report no. 3 (IA evaluatinggermpl41unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Evaluation of a portable retinal imaging device - towards a comparative quantitative analysis for morphological measurements of retinal blood vessels.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Moving Picture World (Apr-May 11 1918) (IA movingpicturewor36unse).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:RIT NandE Vol14Num17 1982 May13 Complete.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:SHOULD CONGRESS RAISE THE H-1B CAP? (IA gov.gpo.fdsys.CHRG-109hhrg26768).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The globalization of naval provisioning - ancient DNA and stable isotope analyses of stored cod from the wreck of the Mary Rose, AD 1545.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:WHSF- Contested, 29-3 - DPLA - 6f36798435510d129ab361f3379b0051.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Central courtyard looking southeast at sections I and H. - Chanute Air Force Base, White Hall, Jolly Green Street, Rantoul, Champaign County, IL HABS ILL,10-RAN.V,1B-16.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:FIRST FLOOR, CORRIDOR, LOOKING EAST - Ohio Soldiers' and Sailors' Home, Cottage H, U.S. Route 250 at DeWitt Avenue, Sandusky, Erie County, OH HABS OHIO,22-SAND,1B-6.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:Frognerveien 1B og 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'H-1B'"
+    },
+    {
+      "candidate": "File:GENERAL VIEW, FROM NORTHWEST - Florida Southern College, William H. Danforth Chapel, McDonald and Johnson Avenues, Lakeland, Polk County, FL HABS FLA,53-LAKE,1B-1.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:GENERAL VIEW, LOOKING NORTH - Florida Southern College, William H. Danforth Chapel, McDonald and Johnson Avenues, Lakeland, Polk County, FL HABS FLA,53-LAKE,1B-2.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:NAVE AND ALTAR - Florida Southern College, William H. Danforth Chapel, McDonald and Johnson Avenues, Lakeland, Polk County, FL HABS FLA,53-LAKE,1B-3.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:Syllabus of lectures; History 1A, (1B) .. (IA stephenslectures00steprich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:VIEW TO NORTHEAST - Florida Southern College, William H. Danforth Chapel, McDonald and Johnson Avenues, Lakeland, Polk County, FL HABS FLA,53-LAKE,1B-4 (CT).tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:Evaluation of the DoD Internal Controls Related to Patient Eligibility and Pharmaceutical Management Within the National Capital Region Executive Medicine Services.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Military Preventive Medicine- Mobilization and Deployment Volume 2 (IA MilitaryPreventiveMedicineVolume2).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:NAVY MEDICINE Vol. 93, No. 5 September-October 2002 (IA NawMedicineVol.93No.5September-october2002).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Neglected issues and possible strategies for the Iraqi economy after the 2003 invasion (IA neglectedissuesn109453783).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Nurse Corps News Vol 4 Issue 4 (IA NCNEWSDec232010).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Survival, volume 1 no. 9 1963- May-Jun. (IA survivalvolume1n19albe).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Journal v. 29, no. 24, June 15, 2017 (IA Journal170615).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Journal v. 29, no. 28, July 13, 2017 (IA Journal170713).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Journal v. 29, no. 29, July 20, 2017 (IA Journal170720).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Journal v. 29, no. 30, July 27, 2017 (IA Journal170727).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Congressional Record Volume 165, Issue 053, 2019-03-27.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Congressional Record Volume 165, Issue 106, 2019-06-24.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Ninth Circuit Seal color high 092223.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Records and briefs of the United States Circuit Court of Appeals for the Ninth Circuit (2194) (14579448120).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Records and briefs of the United States Circuit Court of Appeals for the Ninth Circuit (2194) (14579684607).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Records and briefs of the United States Circuit Court of Appeals for the Ninth Circuit (2194) (14743138966).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Records and briefs of the United States Circuit Court of Appeals for the Ninth Circuit (2194) (14766150905).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Records and briefs of the United States Circuit Court of Appeals for the Ninth Circuit (2194) (14786015973).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Records and briefs of the United States Circuit Court of Appeals for the Ninth Circuit (2194) (14786019173).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Records and briefs of the United States Circuit Court of Appeals for the Ninth Circuit (2194) (14786025563).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Robert Martin v. City of Boise.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Seal of the United States Courts, Ninth Judicial Circuit.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:2023 U.S. District Court for the Northern District of California En Banc.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:An illustrated history of central Oregon, embracing Wasco, Sherman, Gilliam, Wheeler, Crook, Lake and Klamath counties, state of Oregon (IA illustratedhist00shav).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Donnell Gilliam (1889\u20131960).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 635x902 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Earl B. Gilliam District Judge.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Haywood S. Gilliam Jr., U.S. District Court Judge.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:In war time. Two years in the confederacy and two years north. With many reminiscences of the days long before the war (IA inwartimetwoyear00booth).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:JudgeMagazine29Dec1888.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Judge Haywood S Gilliam.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 570x799 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:The life and character of Edwin Gilliam Booth, a prominent lawyer, legislature and philanthropist (IA lifecharacterofe00dwig).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The life and character of Edwin Gilliam Booth, a prominent lawyer, legislature and philanthropist (IA lifecharacterofe00dwight).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:009 Pod of Spinner dolphins swimming in the Indian ocean Photo by Giles Laurent.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Crack climbing in Indian Creek, Utah.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Indian Blackbird in Saswad August 2025 by Tisha Mukherjee 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Indian Bushlark in Bhigwan August 2025 by Tisha Mukherjee 05.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Indian Courser in Bhigwan August 2025 by Tisha Mukherjee 07.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Indian elephant in Kaziranga National Park March 2025 by Tisha Mukherjee 06.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('For Indian')"
+    },
+    {
+      "candidate": "File:Indian giant squirrel in Kuldiha Wildlife Sanctuary March 2025 by Tisha Mukherjee 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Indian rhinoceros (Rhinoceros unicornis) 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Indian rhinoceros in Kaziranga National Park March 2025 by Tisha Mukherjee 06.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('For Indian')"
+    },
+    {
+      "candidate": "File:Thurston, the famous magician - East Indian Rope Trick.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Being A Part Of The Global Force For Good (IA BeingAPartOfTheGlobalForceForGoodNavyMedicine).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Bong Son Village, Thailand. First Lieutenant Linda J. Bowser, an Air Force nurse with the 8th TFW Med-Cap team... - NARA - 542334.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:Exercise GLOBAL MEDIC 120617-F-LR884-012.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Global Nurse Force'"
+    },
+    {
+      "candidate": "File:Global Medic 130726-F-AF679-666.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Global Nurse Force'"
+    },
+    {
+      "candidate": "File:Global Medic 130726-F-AF679-690.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Global Nurse Force'"
+    },
+    {
+      "candidate": "File:LAMAT 25- Reserve Citizen Airmen participate in global health engagement in St Kitts, Nevis (8978356).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Global Nurse Force'"
+    },
+    {
+      "candidate": "File:Nurse Corps News Vol 12 Nurse Corps Year In Review 2018 (IA NurseCorpsYearInReview2018).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Nurse Corps News Year In Review 2016 (IA NurseCorpsYearInReview2016).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Nurse Corps News Year In Review 2017 (IA NurseCorpsYearInReview2017).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:United States Army Nurse flies with wounded - NARA - 535779.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    }
+  ],
+  "extras": []
+}

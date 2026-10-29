@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "jailer-2-tuesday-drop-india-gross-462-crore",
+  "name": "jailer-2-tuesday-drop-india-gross-462-crore",
+  "script": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "stats[0].label"
+    ],
+    "llm_cost_usd": 0.000721
+  }
+}

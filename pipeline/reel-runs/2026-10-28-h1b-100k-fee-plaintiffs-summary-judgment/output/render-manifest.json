@@ -1,0 +1,385 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "h1b-100k-fee-plaintiffs-summary-judgment-government-pause-global-nurse-force",
+ "article_slug": "h1b-100k-fee-plaintiffs-summary-judgment-government-pause-global-nurse-force",
+ "article_id": "5224c102-b3f4-4f48-88f5-aea22514eff4",
+ "category": "Immigration",
+ "video": "reel-runs/2026-10-28-h1b-100k-fee-plaintiffs-summary-judgment/output/h1b-100k-fee-plaintiffs-summary-judgment-government-pause-global-nurse-force.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Ronald_Dellums_Federal_Building.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "local_path": "reel-runs/2026-10-28-h1b-100k-fee-plaintiffs-summary-judgment/output/hero.jpg",
+  "width": 3072,
+  "height": 2304,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.501,0.579) damped=(0.500,0.539)",
+  "has_face": false,
+  "box_source": [
+   677,
+   736,
+   1720,
+   921
+  ],
+  "box_bg": [
+   -188,
+   613,
+   1433,
+   768
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.505,
+   0.542
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   625
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1217,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1217,
+    930,
+    1580
+   ],
+   "texts": [
+    "Immigration",
+    "PLAINTIFFS WANT A FAST RULING ON THE $100,000 H-1B FEE"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.833,
+    "photo_px": [
+     3072,
+     2304
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8333333333333334,
+     "window": [
+      903,
+      0,
+      2199,
+      2304
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 303,
+   "block_top": 1277,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1277,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Employers and workers in Global Nurse Force v. Trump have asked a California federal court to move quickly toward summary judgment on the $100,000 H-1B fee, while the Trump administration wants the case paused until the Ninth Circuit decides its appeal."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "full-bleed",
+    "render_scale": 0.833,
+    "photo_px": [
+     3072,
+     2304
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8333333333333334,
+     "window": [
+      903,
+      0,
+      2199,
+      2304
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 430,
+   "block_top": 1150,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1150,
+    930,
+    1580
+   ],
+   "texts": [
+    "THE PRICE TAG",
+    "$100,000",
+    "Fee on new H-1B petitions, already blocked by two court injunctions"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "full-bleed",
+    "render_scale": 0.833,
+    "photo_px": [
+     3072,
+     2304
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8333333333333334,
+     "window": [
+      903,
+      0,
+      2199,
+      2304
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 792,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    792,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "NOVEMBER 3",
+    "Date plaintiffs want the government to produce the administrative record",
+    "JANUARY 14, 2027",
+    "Hearing date for the government's motion to pause the case",
+    "3",
+    "Appellate fronts where the blocked fee is being contested"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "full-bleed",
+    "render_scale": 0.833,
+    "photo_px": [
+     3072,
+     2304
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8333333333333334,
+     "window": [
+      903,
+      0,
+      2199,
+      2304
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 1148,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1148,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Petitions are being processed without the $100,000 payment for now",
+    "India is the source of the large majority of H-1B workers"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "full-bleed",
+    "render_scale": 0.833,
+    "photo_px": [
+     3072,
+     2304
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8333333333333334,
+     "window": [
+      903,
+      0,
+      2199,
+      2304
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 331,
+   "block_top": 694,
+   "block_bottom": 1025,
+   "text_bbox": [
+    70,
+    694,
+    930,
+    1025
+   ],
+   "texts": [
+    "The Takeaway",
+    "Petitions are being processed without the fee for now, but the relief rests on preliminary orders an appeals court could undo.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 155.3,
+ "mp4_bytes": 15716494
+}

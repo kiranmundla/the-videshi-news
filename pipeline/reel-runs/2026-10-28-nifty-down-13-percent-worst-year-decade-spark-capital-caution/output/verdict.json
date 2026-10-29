@@ -1,0 +1,33 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "nifty-down-13-percent-worst-year-decade-spark-capital-caution",
+  "name": "nifty-down-13-percent-worst-year-decade-spark-capital-caution",
+  "script": "reel-runs/2026-10-28-nifty-down-13-percent-worst-year-decade-spark-capital-caution/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000712
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-28-nifty-down-13-percent-worst-year-decade-spark-capital-caution/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "ip-finance-dialogue-expanding-horizons-on-ip"
+    }
+  },
+  "manifest": "reel-runs/2026-10-28-nifty-down-13-percent-worst-year-decade-spark-capital-caution/output/render-manifest.json",
+  "video": "reel-runs/2026-10-28-nifty-down-13-percent-worst-year-decade-spark-capital-caution/output/nifty-down-13-percent-worst-year-decade-spark-capital-caution.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-10-28-nifty-down-13-percent-worst-year-decade-spark-capital-caution/output/tiktok-caption.txt"
+}

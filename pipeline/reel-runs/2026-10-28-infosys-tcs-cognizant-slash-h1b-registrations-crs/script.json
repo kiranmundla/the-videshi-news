@@ -1,0 +1,37 @@
+{
+  "hook_line": "INFOSYS, TCS AND COGNIZANT SLASH H-1B ENTRIES",
+  "hook_stat": {
+    "big": "38.5%",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Fall in eligible H-1B registrations in the FY2027 lottery"
+  },
+  "stats": [
+    {
+      "big": "759",
+      "label": "Infosys registrations for FY2027, down from 8,886"
+    },
+    {
+      "big": "284",
+      "label": "TCS registrations, down from 5,955"
+    },
+    {
+      "big": "100%",
+      "label": "Cognizant cut — no FY2027 registrations, down from 3,752"
+    }
+  ],
+  "diaspora_bullets": [
+    "Entry-level hires face the steepest decline in chances",
+    "Highest wage level gets four lottery entries, lowest gets one"
+  ],
+  "key_entities": [
+    "Infosys",
+    "TCS",
+    "Cognizant",
+    "H-1B",
+    "Congressional Research Service"
+  ],
+  "news_summary": "Infosys, TCS and Cognizant submitted 91%, 95% and 100% fewer H-1B registrations for the fiscal 2027 lottery than for fiscal 2026, according to a Congressional Research Service report.",
+  "payoff": "Selection now rewards higher-wage offers, so entry-level roles face sharply worse odds.",
+  "versus": "",
+  "story_mood": "tense"
+}

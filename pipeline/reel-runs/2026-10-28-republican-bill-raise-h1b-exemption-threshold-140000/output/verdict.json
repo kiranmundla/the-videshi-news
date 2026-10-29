@@ -1,0 +1,37 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "republican-bill-raise-h1b-exemption-threshold-140000",
+  "name": "republican-bill-raise-h1b-exemption-threshold-140000",
+  "script": "reel-runs/2026-10-28-republican-bill-raise-h1b-exemption-threshold-140000/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.00074
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-28-republican-bill-raise-h1b-exemption-threshold-140000/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "glenn-grothman-official-congressional-photo",
+      "grid": "jon-husted-2016-05-12",
+      "diaspora": "figure-2-process-of-obtaining-an-h-1b-visa-5",
+      "payoff": "glenn-grothman-117th-congress-portrait"
+    }
+  },
+  "manifest": "reel-runs/2026-10-28-republican-bill-raise-h1b-exemption-threshold-140000/output/render-manifest.json",
+  "video": "reel-runs/2026-10-28-republican-bill-raise-h1b-exemption-threshold-140000/output/republican-bill-raise-h1b-exemption-threshold-140000.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:payoff"
+    ]
+  }
+}

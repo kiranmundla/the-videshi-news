@@ -1,0 +1,499 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "jailer-2-tuesday-drop-india-gross-462-crore",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Rajinikanth",
+    "Jailer 2",
+    "Nelson Dilipkumar",
+    "Sun Pictures",
+    "Tamil Nadu",
+    "Karnataka and Kerala"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Aishwarya Rai Robot12.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x439 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rajinikanth Felicitates Writer Kalaignanam.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 800x1200 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rajinikanth Vellalacheruvu.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 387x424 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rajinikanth at the Inauguration of MGR Statue.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "1200x1800, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Rajinikanth at the Inauguration of MGR Statue (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 727x983 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rajinikanth being honored with Dadasaheb Phalke Award.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Rajinikanth in 2019.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 559x745 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rajinikanth snapped at the airport.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x878 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rajinikanth suresh parthasarathy.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "2048x2048, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Capricornia Correctional Centre.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Jailer 2'"
+    },
+    {
+      "candidate": "File:Flandins-cell-in-Fresnes-locked-by-prison-guard-142361308419.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 778x762 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Jailer(^), Inveraray Jail - geograph.org.uk - 983209.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Prison guard LCCN2005684098.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 840x1024 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Prison guard icon.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Prison guard parra jail.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Jailer 2'"
+    },
+    {
+      "candidate": "File:Prison officer's badge from the Meiji period.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Sugamo Prison Guard Soldiers.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 530x355 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:The Jailer's Pretty Wife.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:V.M. Doroshevich-Sakhalin. Part II. Prison Guard Khanov and His Family.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Jailer 2'"
+    },
+    {
+      "candidate": "File:Abraham Lincoln and confederates (IA abrahamlincolncolinc 2).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Documents about Martin Luther King, Jr., Executive Order 14176, 44-hq-38861 hs1-233652821 26-01-part 2 of 5.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Documents about Martin Luther King, Jr., Executive Order 14176, 44-me-1987 hs1-852611265 73-10-part 2 of 2.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Headquarters nights; a record of conversations and experiences at the headquarters of the German army in France and Belgium (IA cu31924027829435).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Headquarters nights; a record of conversations and experiences at the headquarters of the German army in France and Belgium (IA headquartersnigh01kell).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:JGR-President's Task Force on Food Assistance (1 of 2) - DPLA - d3d6503dd09e92324f7c6b5d385b4866.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Napoleon and his family - the story of a Corsican clan - by Walter Geer. (IA napoleonhisfamil00geer 2).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Randolph County business directory, 1894 - in three parts- 1, Alphabetical ... 2, Classified ... 3, Farmers and land owners ... - also a supplement .. (IA randolphcountybu00bran).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Militant Volume 7 No. 2.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The writings of Henry David Thoreau (IA writingsofhenryd07thor 2).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Midsummer nights with the Great dreamer; a pilgrim's progress in the twentieth century (IA midsummernightsw00will).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Sketches of America and Americans (IA sketchesofameric00haig).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:St. Mary's Muse (IA stmarysmuse18801882sain).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Radiant (IA radiantmay1918atla).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Reflector (IA reflector00sout 2).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The first quarter century of the New York state library school, 1887-1912.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:The first quarter century of the New York state library school, 1887-1912 (IA firstquartercent00newyrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1906-09-25) (IA victoriadailytimes19060925).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1914-03-31) (IA victoriadailytimes19140331).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A directory of the Kansas historical exhibit in the Kansas state building.. (IA directoryofkansa00kans).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Albemarle County Jail, 409 East High Street, Charlottesville, Charlottesville, VA HABS VA,2-CHAR,26-; (sheet 2 of 11).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Jailer 2'"
+    },
+    {
+      "candidate": "File:Albemarle County Jail, 409 East High Street, Charlottesville, Charlottesville, VA HABS VA,2-CHAR,26-; (sheet 2 of 11).tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:Albemarle County Jail, 409 East High Street, Charlottesville, Charlottesville, VA HABS VA,2-CHAR,26-; (sheet 5 of 11).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Jailer 2'"
+    },
+    {
+      "candidate": "File:Groningen - Hereweg 132-142 (2).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Jailer 2'"
+    },
+    {
+      "candidate": "File:NORTH FRONT, FROM THE NORTHWEST - Middlesex County Jailer's House, 50 Thorndike Street, Cambridge, Middlesex County, MA HABS MASS,9-CAMB,56-2.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:SECOND FLOOR, NORTHEAST JAILERS' ROOM NO. 2, SOUTH TO NORTH - Charleston County Jail, 21 Magazine Street, Charleston, Charleston County, SC HABS SC,10-CHAR,348-60.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:THIRD FLOOR, NORTHEAST JAILERS' ROOM NO. 2, FROM NORTHWEST - Charleston County Jail, 21 Magazine Street, Charleston, Charleston County, SC HABS SC,10-CHAR,348-76.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:VIEW IN JAILERS ROOM OF FOUR CELLS FROM SOUTHWEST - Sweetwater County Jail, Grant Street, South Pass City, Fremont County, WY HABS WYO,7-SOPAC,23-6.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:Nelson Dilipkumar.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 317x368 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:The Lucky bag (IA luckybag20051unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:13th Century sculptures at Konark Sun Temple Puri district, Odisha, India.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Fish hanging in the sun with black background.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Magnificent CME Erupts on the Sun - August 31.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "1920x1080, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Solar Orbiter\u2019s widest high-res view of the Sun ESA508430.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Sun and Moon Pagodas Guilin November 2017 HDR.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Sun behind the Heel Stone.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1040x794 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Sun poster.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Taro leaf underside, backlit by sun - edit.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:The Sun by the Atmospheric Imaging Assembly of NASA's Solar Dynamics Observatory - 20100819.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:The sun and the moon in South New Brighton's beach, New Zealand.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Sun Pictures')"
+    },
+    {
+      "candidate": "File:A home garden in Puducherry, Tamil Nadu, India.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:A man dyeing silk red in boiling water in Kumbakonam, Tamil Nadu.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (economist) than this entertainment story \u2014 a same-name different person, not 'Tamil Nadu' the subject of this story"
+    },
+    {
+      "candidate": "File:Cemetery Judes Church Chinnathurai Tamil Nadu Mar24 A7C 09997.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Dhavani West Nilgiris Tamil Nadu Nov24 A7CR 05228.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "8127x5079, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Dhavani West Nilgiris Tamil Nadu Nov24 A7CR 05228 NR.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "5605x3737, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Behar Herald 8-02-2021 & 15-02-2021.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Anekkallu. View of Kerala from Karnataka side.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Folk percussionists from Kerala performing at a procession in Bengaluru, Karnataka, India.wav",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (audio/wav)"
+    },
+    {
+      "candidate": "File:GrenzeKarnatakaKerala.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "2786x1602, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Karnataka or Kerala, Panjurli Bhuta mask, 18th-19th century, Lowe Art Museum.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "2432x2620, CC0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "dhavani-west-nilgiris-tamil-nadu-nov24-a7cr",
+      "path": "dhavani-west-nilgiris-tamil-nadu-nov24-a7cr.jpg",
+      "size": [
+        5605,
+        3737
+      ],
+      "role": "establishing",
+      "subject": "Lower Dhavani from the west, late evening sky, Udhagai taluk, Nilgiris, Tamil Nadu, India",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Dhavani_West_Nilgiris_Tamil_Nadu_Nov24_A7CR_05228_NR.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Dhavani_West_Nilgiris_Tamil_Nadu_Nov24_A7CR_05228_NR.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Timothy A. Gonsalves"
+    },
+    {
+      "beat": "hero",
+      "label": "rajinikanth-at-the-inauguration-of-mgr-statu",
+      "path": "rajinikanth-at-the-inauguration-of-mgr-statu.jpg",
+      "size": [
+        1200,
+        1800
+      ],
+      "role": "establishing",
+      "subject": "Rajinikanth at the Inauguration of MGR Statue",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Rajinikanth_at_the_Inauguration_of_MGR_Statue.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Rajinikanth_at_the_Inauguration_of_MGR_Statue.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Dani Charles, Silverscreen Media Inc. (https://silverscreen.in)"
+    },
+    {
+      "beat": "grid",
+      "label": "dhavani-west-nilgiris-tamil-nadu-nov24-a7cr-2",
+      "path": "dhavani-west-nilgiris-tamil-nadu-nov24-a7cr-2.jpg",
+      "size": [
+        8127,
+        5079
+      ],
+      "role": "establishing",
+      "subject": "Dhavani from the west, Udhagai taluk, Nilgiris, Tamil Nadu, India",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Dhavani_West_Nilgiris_Tamil_Nadu_Nov24_A7CR_05228.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Dhavani_West_Nilgiris_Tamil_Nadu_Nov24_A7CR_05228.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Timothy A. Gonsalves"
+    },
+    {
+      "beat": "diaspora",
+      "label": "karnataka-or-kerala-panjurli-bhuta-mask-18th",
+      "path": "karnataka-or-kerala-panjurli-bhuta-mask-18th.jpg",
+      "size": [
+        2432,
+        2620
+      ],
+      "role": "establishing",
+      "subject": "Karnataka or Kerala, Panjurli Bhuta (boar spirit deity) mask from India, 18th-19th century, copper alloy, Lowe Art Museum",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Karnataka_or_Kerala,_Panjurli_Bhuta_mask,_18th-19th_century,_Lowe_Art_Museum.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/Karnataka_or_Kerala%2C_Panjurli_Bhuta_mask%2C_18th-19th_century%2C_Lowe_Art_Museum.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Wmpearl"
+    }
+  ]
+}

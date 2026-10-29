@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "infosys-tcs-cognizant-slash-h1b-registrations-crs",
+  "name": "infosys-tcs-cognizant-slash-h1b-registrations-crs",
+  "script": "reel-runs/2026-10-28-infosys-tcs-cognizant-slash-h1b-registrations-crs/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "diaspora_bullets[0]"
+    ],
+    "llm_cost_usd": 0.000684
+  }
+}

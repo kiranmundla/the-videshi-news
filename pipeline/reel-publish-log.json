@@ -378,5 +378,57 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "AtoaN8gcM14",
+    "article_slug": "indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds",
+    "article_id": "dfdabb71-0bec-48d7-983c-bfe0f244b943",
+    "title": "Indian IT Stocks Plunge Up to 5% as Global AI Rally Resumes #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-10-28T11:15:59.397506+00:00",
+    "video_path": "reel-runs/2026-10-28-indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds/output/indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds.mp4",
+    "video_sha256": "81d2cf542be51fd7f84fc0c10a30dc13275cc9e84285720442032de82d6409de",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "nOEaWpI6twg",
+    "article_slug": "h1b-100k-fee-plaintiffs-summary-judgment-government-pause-global-nurse-force",
+    "article_id": "5224c102-b3f4-4f48-88f5-aea22514eff4",
+    "title": "Plaintiffs Push for Fast Ruling in $100,000 H-1B Fee Case as Government Seeks Pause #Shorts #H1B",
+    "privacy": "public",
+    "uploaded_at": "2026-10-28T17:16:21.850079+00:00",
+    "video_path": "reel-runs/2026-10-28-h1b-100k-fee-plaintiffs-summary-judgment/output/h1b-100k-fee-plaintiffs-summary-judgment-government-pause-global-nurse-force.mp4",
+    "video_sha256": "850d55459054c4a6402dfb1edc51e82d47d1051270d84427bcf85237ca4ea228",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "ulRHwCyhJJI",
+    "article_slug": "nifty-down-13-percent-worst-year-decade-spark-capital-caution",
+    "article_id": "dad9582a-df76-4d1a-a2a1-39890d8e289f",
+    "title": "Nifty Down 13 Percent Faces Worst Year in Decade as Strategists Urge Caution #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-10-28T23:17:56.341064+00:00",
+    "video_path": "reel-runs/2026-10-28-nifty-down-13-percent-worst-year-decade-spark-capital-caution/output/nifty-down-13-percent-worst-year-decade-spark-capital-caution.mp4",
+    "video_sha256": "2d9eb51ff50b6bdbf6e058e98f947e77d30b6116081ffe0566bec0bffb5033bf",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "_g3DuoCXlBI",
+    "article_slug": "jailer-2-tuesday-drop-india-gross-462-crore",
+    "article_id": "5e0def0a-e2fc-4cdf-8fd1-a87728c3675c",
+    "title": "Jailer 2 Dips 20 Percent on Tuesday, India Gross Reaches Rs 462.75 Crore #Shorts #Entertainment",
+    "privacy": "public",
+    "uploaded_at": "2026-10-29T05:29:43.684797+00:00",
+    "video_path": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v2/jailer-2-tuesday-drop-india-gross-462-crore.mp4",
+    "video_sha256": "d1b76c717f4c3f30c998c5e2133f498217968c5d50f5b7a53f6a4384654a4715",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

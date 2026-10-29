@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-10-28T05:20:03+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-10-28T23:19:48+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **207**
-- prebuilt_reels rows: 145 (115 with a yt_video_id)
+- Channel uploads (actual, via API): **210**
+- prebuilt_reels rows: 148 (118 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 28
-- **In sync** (channel video backed by a DB/publish-log record): **96**
+- Phase 2 publish-log entries: 31
+- **In sync** (channel video backed by a DB/publish-log record): **99**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 10
 - Ghost DB rows (yt_video_id not on channel): 15
@@ -276,7 +276,7 @@ _None._
 - row `cededbdc-e47d-4afd-9d01-5586e1d95785` · slug india-cancer-drug-price-caps-137-medicines-november-9 · yt_video_id `M5UjKqtENwU` · on channel: no
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 
-## (d) In sync (96)
+## (d) In sync (99)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -374,4 +374,7 @@ _None._
 - `DiiphB7pgpk` · public · 2026-10-27 · Air India and IndiGo Cut Europe Flights as Winter Capacity Falls 6.5% — and Foreign #Shorts #Travel [prebuilt_reels:f648443b-7017-4241-ab1b-604e1dce8821]
 - `HWl_1NFHmfA` · public · 2026-10-27 · India's Top Six IT Firms Shed 24,422 Engineering Roles in One Year #Shorts #Markets [prebuilt_reels:3bcfa9b7-3781-4edb-b2de-7e4dfadc1fdb]
 - `bPvs1ZT0wXU` · public · 2026-10-27 · H-1B Workers Taking Microsoft Buyout Face 60-Day Deadline to Stay #Shorts #H1B [prebuilt_reels:4799292b-c2df-42c4-a8cd-38d30466fbb9]
+- `AtoaN8gcM14` · public · 2026-10-28 · Indian IT Stocks Plunge Up to 5% as Global AI Rally Resumes #Shorts #Markets [prebuilt_reels:f72d48cc-3a37-4b97-b65a-1b056d1f8bf1]
+- `nOEaWpI6twg` · public · 2026-10-28 · Plaintiffs Push for Fast Ruling in $100,000 H-1B Fee Case as Government Seeks Pause #Shorts #H1B [prebuilt_reels:762d7c4d-99b8-4eeb-a95a-4fc0be3b33b8]
+- `ulRHwCyhJJI` · public · 2026-10-28 · Nifty Down 13 Percent Faces Worst Year in Decade as Strategists Urge Caution #Shorts #Markets [prebuilt_reels:0740babc-bc36-46ba-aa92-5d21fcfd504f]
 

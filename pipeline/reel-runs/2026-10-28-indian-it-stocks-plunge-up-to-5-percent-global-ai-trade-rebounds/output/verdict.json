@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds",
+  "name": "indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds",
+  "script": "reel-runs/2026-10-28-indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000716
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-28-indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "infosys-4911287704",
+      "hero": "osce-headquarters-at-the-hofburg-vienna-ank",
+      "grid": "sk-hynix-h5tc2g83cfr-5939"
+    }
+  },
+  "manifest": "reel-runs/2026-10-28-indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds/output/render-manifest.json",
+  "video": "reel-runs/2026-10-28-indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds/output/indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-10-28-indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds/output/tiktok-caption.txt"
+}

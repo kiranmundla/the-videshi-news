@@ -1,0 +1,29 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render_photo_floor",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "infosys-tcs-cognizant-slash-h1b-registrations-crs",
+  "name": "infosys-tcs-cognizant-slash-h1b-registrations-crs",
+  "script": "reel-runs/2026-10-28-infosys-tcs-cognizant-slash-h1b-registrations-crs/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000698
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-28-infosys-tcs-cognizant-slash-h1b-registrations-crs/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "infosys-4911287704",
+      "hero": "osce-headquarters-at-the-hofburg-vienna-ank",
+      "grid": "cognizant-chennai-11-09",
+      "diaspora": "mime-by-cognizant-employees-at-celebrating-c"
+    }
+  },
+  "detail": "hero photo 835x522 below the 1080x600 floor"
+}

@@ -1,0 +1,64 @@
+[
+  {
+    "id": "097d2140-67c5-4b21-a943-af77d4460c8a",
+    "headline": "Microsoft Corporation Earnings Preview: Q3 2026 Expectations",
+    "slug": "happening-2026-10-28-microsoft-corporation-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Microsoft's performance may impact NRI investors or tech professionals, such as potential stock price fluctuations that could affect their investments or job opportunities in the tech sector.",
+        "Add specific financial metrics relevant to NRIs, such as the expected impact of Microsoft's earnings on the USD/INR exchange rate, which could affect remittances or investment returns for NRIs.",
+        "Include a section on action steps for NRIs, such as when to consider buying or selling Microsoft stock based on the earnings report, or how to leverage this information for investment strategies in the Indian market."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Microsoft or a financial analyst discussing the earnings report to provide real-time insights and context."
+      ]
+    }
+  },
+  {
+    "id": "e79c6461-4a2d-4d10-bb7d-d4353525304a",
+    "headline": "Alphabet Earnings Preview: Analysts Expect Growth Amid Cost Pressures",
+    "slug": "happening-2026-10-28-alphabet-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Incorporate a section that specifically addresses how Alphabet's earnings report could impact NRI investors, such as potential changes in stock prices or dividends that could affect their investments. Include specific dollar/rupee amounts or percentages to make it relatable.",
+        "Add a brief analysis of how Alphabet's performance may influence the Indian tech market or startups, providing NRIs with context on how their investments in Indian tech could be affected by trends in a major player like Alphabet.",
+        "Include a timeline or deadlines for any upcoming investor actions, such as when to expect potential changes in stock prices or dividends following the earnings report, which would help NRIs plan their investment strategies.",
+        "Discuss any tax implications for NRIs investing in U.S. stocks like Alphabet, especially in light of the earnings report, to provide actionable insights."
+      ],
+      "embed_opportunities": [
+        "Embed the official Alphabet earnings report announcement or a relevant tweet from Alphabet's official Twitter account to provide real-time updates and context."
+      ]
+    }
+  },
+  {
+    "id": "edc50d9b-ae24-4034-96da-26478a13cd4e",
+    "headline": "Bangladesh Faces West Indies in Crucial ODI Clash",
+    "slug": "happening-2026-10-28-bangladesh-cricket-vs-west-indies-cricket",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 3,
+      "suggestions": [
+        "The article lacks a strong diaspora/NRI angle. Consider including insights on how this match affects the NRI community's engagement with cricket, such as viewing parties in major cities like New York or London, or how local businesses might benefit from increased interest in the game.",
+        "Include specific details that answer 'what does this mean for ME?' For instance, mention any upcoming matches, ticket prices for viewing parties, or how the outcome could affect the World Cup qualification chances for either team, which may impact fans' travel plans or investments in cricket-related events.",
+        "The headline could be more compelling by incorporating the stakes involved. A suggestion could be: 'Bangladesh vs. West Indies: A Must-Win ODI for Cricket Fans and NRI Communities Alike'. This would attract readers by highlighting the importance of the match not just for the teams, but for the diaspora as well.",
+        "Add context regarding the significance of this match in relation to the ODI series standings and how it may affect the teams' chances in future tournaments, which would provide readers with a deeper understanding of the implications of this game."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ICC or a cricket analyst discussing the importance of this match, which could provide real-time insights and engage readers."
+      ]
+    }
+  }
+]

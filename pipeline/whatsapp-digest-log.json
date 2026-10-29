@@ -198,5 +198,15 @@
     "quick_hit_count": 5,
     "deadline_count": 3,
     "chars": 2811
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-10-28T14:13:01.335854+00:00Z",
+    "subject": "WhatsApp digest \u2014 Oct 28 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "india-133-billion-nri-deposit-haul-fresh-money-2029",
+    "quick_hit_count": 5,
+    "deadline_count": 3,
+    "chars": 2544
   }
 ]

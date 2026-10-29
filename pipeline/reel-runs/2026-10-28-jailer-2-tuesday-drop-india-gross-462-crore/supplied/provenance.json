@@ -1,0 +1,71 @@
+{
+  "built": "hand-built extras for reel_produce.py --extras (Kiran-supplied images, 2026-10-28)",
+  "extras": [
+    {
+      "artist": "Sun Pictures",
+      "beat": "grid",
+      "file_url": null,
+      "label": "jailer-trio-poster-kiran-supplied",
+      "license": "Official film poster supplied by Kiran",
+      "path": "01-trio-poster.jpg",
+      "role": "establishing",
+      "route": "supplied \u2014 Kiran (official poster)",
+      "size": [
+        1206,
+        1720
+      ],
+      "source_page": null,
+      "subject": "Jailer official poster: Rajinikanth flanked by Mohanlal and Shiva Rajkumar (Sun Pictures)"
+    },
+    {
+      "artist": "Sun Pictures",
+      "beat": "news",
+      "file_url": null,
+      "label": "rajinikanth-explosion-walk-kiran-supplied",
+      "license": "Official film still supplied by Kiran",
+      "path": "06-explosion-walk.jpg",
+      "role": "establishing",
+      "route": "supplied \u2014 Kiran (official still)",
+      "size": [
+        1206,
+        1558
+      ],
+      "source_page": null,
+      "subject": "Rajinikanth Jailer 2 still: walking away from an explosion, sword and gun in hand"
+    },
+    {
+      "artist": "Sun Pictures",
+      "beat": "diaspora",
+      "file_url": null,
+      "label": "shiva-rajkumar-jailer-still-kiran-supplied",
+      "license": "Official film still supplied by Kiran",
+      "path": "02-shiva-rajkumar-still.jpg",
+      "role": "establishing",
+      "route": "supplied \u2014 Kiran (official still)",
+      "size": [
+        1206,
+        1206
+      ],
+      "source_page": null,
+      "subject": "Shiva Rajkumar still from Jailer (Sun Pictures)"
+    },
+    {
+      "beat": "hero",
+      "label": "hukum-jailer-2-poster-kiran-supplied",
+      "path": "05-hukum-poster.jpg",
+      "size": [
+        1206,
+        1515
+      ],
+      "role": "establishing",
+      "subject": "Jailer 2 'Hukum' poster: Rajinikanth with machete (Sun Pictures)",
+      "route": "supplied \u2014 Kiran (official poster)",
+      "source_page": null,
+      "file_url": null,
+      "license": "Official film poster supplied by Kiran",
+      "artist": "Sun Pictures"
+    }
+  ],
+  "note": "Images supplied directly by Kiran for this redo: official Jailer / Jailer 2 posters and stills (Sun Pictures). Hook visual pinned via --hero-file (03-roddy-theme-poster.jpg \u2014 the square poster; a portrait hero forces the v7 stage box to its 1020px cap, shrinking every backdrop text zone below the grid beat's 436px minimum). 04-villain-poster.jpg is NOT used: at 1206x2153 it is the only full-bleed-eligible image and its detected face chin maps to y=1561 at scene-end zoom, so no beat's text block can fit under it inside the safe zone (measured block bottom 1997 > 1602 on the grid beat).",
+  "story": "jailer-2-tuesday-drop-india-gross-462-crore"
+}

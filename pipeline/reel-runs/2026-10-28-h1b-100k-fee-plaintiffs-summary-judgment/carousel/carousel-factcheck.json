@@ -1,0 +1,151 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "h1b-100k-fee-plaintiffs-summary-judgment-government-pause-global-nurse-force",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Plaintiffs Push for Fast Ruling in $100,000 H-1B Fee Case as Government Seeks Pause",
+        "numbers": [
+          1.0,
+          100000.0
+        ],
+        "entities": [
+          "Plaintiffs Push",
+          "Fast Ruling",
+          "H-1B Fee Case",
+          "Government Seeks Pause"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states plaintiffs want a fast ruling while the government seeks a pause.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "In Global Nurse Force v. Trump, plaintiffs want a fast final ruling on the $100,000 fee, while the government seeks a pause until the Ninth Circuit rules on its appeal.",
+        "numbers": [
+          100000.0
+        ],
+        "entities": [
+          "In Global Nurse Force",
+          "Ninth Circuit"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions the case name and both parties' requests regarding the fee.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Judge Gilliam's September 30 order already blocks the fee policies, and a separate Massachusetts injunction also bars collection",
+        "numbers": [
+          30.0
+        ],
+        "entities": [
+          "Judge Gilliam's September"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Judge Gilliam's order blocks the fee and mentions the Massachusetts injunction.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Plaintiffs proposed that the government produce the administrative record by November 3, the first step toward summary judgment",
+        "numbers": [
+          3.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states plaintiffs want the record by November 3 as part of their legal strategy.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The stay motion itself is set for a hearing on January 14, 2027",
+        "numbers": [
+          14.0,
+          2027.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027
+          ]
+        },
+        "llm_reason": "The article specifies the stay motion hearing date as January 14, 2027.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Plaintiffs Push for Fast Ruling in $100,000 H-1B Fee Case as Government Seeks Pause",
+        "numbers": [
+          1.0,
+          100000.0
+        ],
+        "entities": [
+          "Plaintiffs Push",
+          "Fast Ruling",
+          "H-1B Fee Case",
+          "Government Seeks Pause"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000501,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

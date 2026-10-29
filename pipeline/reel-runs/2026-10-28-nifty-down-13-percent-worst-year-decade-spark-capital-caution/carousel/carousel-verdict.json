@@ -1,0 +1,16 @@
+{
+  "kind": "carousel",
+  "article_slug": "nifty-down-13-percent-worst-year-decade-spark-capital-caution",
+  "status": "held",
+  "stage": "render_fit",
+  "factcheck": {
+    "verdict": "pass",
+    "quote_present": true,
+    "verbatim_quote": true,
+    "speaker_grounded": true,
+    "role_grounded": true,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000568
+  },
+  "detail": "inter cannot fit 'Spark Capital says slowing growth, high crude and stretched valuations may cap returns despite expected 20% September-quarter profit growth, while brokerages see only a technical November rebound.'"
+}

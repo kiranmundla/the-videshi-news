@@ -1,0 +1,277 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "infosys-tcs-cognizant-slash-h1b-registrations-crs",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Infosys",
+    "TCS",
+    "Cognizant",
+    "H-1B",
+    "Congressional Research Service",
+    "Lottery Entries"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Infosys (4911287704).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "3264x1840, CC BY-SA 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Infosys campus building Mysore karnataka 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus building Mysore karnataka 4.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus mysuru karnataka.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus mysuru karnataka 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 08.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 11.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 15.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 16.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 19.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Credit Suisse headquarters at Paradeplatz, Z\u00fcrich, Switzerland (Ank Kumar, Infosys Limited).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1027x897 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 02.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 03.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 04.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:OSCE Headquarters at The Hofburg, Vienna ( Ank Kumar, Infosys) 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "3456x4608, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:DL 1981 V009 07 final.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Aldo Primicerio direttore TCS 1977.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 972x683 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:TATA Consultancy Services Logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:TATA Consultancy Services Logo blue.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:TCS SIPCOT Building.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "4032x2399, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:TCS building in Varanasi.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "4128x2322, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:The art of fencing (IA artoffencing01sena).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:United States Navy Medical News Letter Vol. 39 No. 8, 20 April 1962 (IA NavyMedicalNewsletter19620420).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Cognizant's Delivery Center in Pune- Hinjewadi.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 800x454 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Cognizant's Delivery Center in Shanghai, China.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 478x319 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Cognizant Argentina - Couple Football.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 960x720 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Cognizant Chennai 11 09.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "3008x2000, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Cognizant logo 2022.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Cognizant won the \u2018Expression Mime\u2019 event that left the audience in awe of their talent.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 960x720 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Fun Activities for Cognizant Employees - Zorbing.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 532x400 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mime by Cognizant employees at Celebrating Cognizant 2012.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "3000x1987, CC BY-SA 2.0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "infosys-4911287704",
+      "path": "infosys-4911287704.jpg",
+      "size": [
+        3264,
+        1840
+      ],
+      "role": "establishing",
+      "subject": "Infosys",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Infosys_(4911287704).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Infosys_%284911287704%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Ashwin Kumar from Bangalore, India"
+    },
+    {
+      "beat": "hero",
+      "label": "osce-headquarters-at-the-hofburg-vienna-ank",
+      "path": "osce-headquarters-at-the-hofburg-vienna-ank.jpg",
+      "size": [
+        3456,
+        4608
+      ],
+      "role": "establishing",
+      "subject": "OSCE Headquarters at The Hofburg, Vienna",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:OSCE_Headquarters_at_The_Hofburg,_Vienna_(_Ank_Kumar,_Infosys)_01.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/OSCE_Headquarters_at_The_Hofburg%2C_Vienna_%28_Ank_Kumar%2C_Infosys%29_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Ank Kumar"
+    },
+    {
+      "beat": "grid",
+      "label": "cognizant-chennai-11-09",
+      "path": "cognizant-chennai-11-09.jpg",
+      "size": [
+        3008,
+        2000
+      ],
+      "role": "establishing",
+      "subject": "Cognizant Technology Solutions building at Chennai , India",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Cognizant_Chennai_11_09.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Cognizant_Chennai_11_09.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Ganeshk"
+    },
+    {
+      "beat": "diaspora",
+      "label": "mime-by-cognizant-employees-at-celebrating-c",
+      "path": "mime-by-cognizant-employees-at-celebrating-c.jpg",
+      "size": [
+        3000,
+        1987
+      ],
+      "role": "people",
+      "subject": "Mime by Cognizant employees at Celebrating Cognizant - 2012 , Chennai MEPZ.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Mime_by_Cognizant_employees_at_Celebrating_Cognizant_2012.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Mime_by_Cognizant_employees_at_Celebrating_Cognizant_2012.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Cognizant"
+    }
+  ]
+}

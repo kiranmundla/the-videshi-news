@@ -1,0 +1,345 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Infosys",
+    "Nifty IT",
+    "SK Hynix",
+    "Anthropic",
+    "BSE Sensex",
+    "Indian IT"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Infosys (4911287704).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "3264x1840, CC BY-SA 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Infosys campus building Mysore karnataka 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus building Mysore karnataka 4.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus mysuru karnataka.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus mysuru karnataka 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 08.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india/korea/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 11.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india/korea/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 15.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india/korea/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 16.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india/korea/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 19.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india/korea/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Credit Suisse headquarters at Paradeplatz, Z\u00fcrich, Switzerland (Ank Kumar, Infosys Limited).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1027x897 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india/korea/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 02.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india/korea/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 03.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india/korea/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 04.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india/korea/united states) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:OSCE Headquarters at The Hofburg, Vienna ( Ank Kumar, Infosys) 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "3456x4608, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:NIFTY 50 Returns Graph.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:NIFTY Next 50 Returns Graph.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Nifty Geyser (31 July 2017).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (sprinter) than this markets-finance story \u2014 a same-name different person, not 'Nifty IT' the subject of this story"
+    },
+    {
+      "candidate": "File:Nifty Geyser (7 August 2015).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nifty IT'"
+    },
+    {
+      "candidate": "File:Nifty Geyser (8 June 2016) 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nifty IT'"
+    },
+    {
+      "candidate": "File:Nifty Geyser (8 June 2016) 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nifty IT'"
+    },
+    {
+      "candidate": "File:Nifty Geyser (early afternoon, 2 June 2017).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (sprinter) than this markets-finance story \u2014 a same-name different person, not 'Nifty IT' the subject of this story"
+    },
+    {
+      "candidate": "File:Nifty Geyser (late morning, 1 June 2013).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nifty IT'"
+    },
+    {
+      "candidate": "File:Nifty Geyser erupting (late morning, 2 June 2013).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nifty IT'"
+    },
+    {
+      "candidate": "File:Nifty Theatre.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nifty IT'"
+    },
+    {
+      "candidate": "File:Antistatische Transportverpackung IMGP1448 smial wp.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: FAL \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:SK HYNIX HMT451S6AFR8A-PB 4GB PC3-12800 DDR3-1600MHz SINGLE RANK MEMORY MODULE FRONT.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('SK Hynix')"
+    },
+    {
+      "candidate": "File:SK HYNIX HMT451S6AFR8A-PB 4GB PC3-12800 DDR3-1600MHz SINGLE RANK MEMORY MODULE REAR.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('SK Hynix')"
+    },
+    {
+      "candidate": "File:SK Hynix.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:SK Hynix DDR5 Tall MRDIMM.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('SK Hynix')"
+    },
+    {
+      "candidate": "File:SK Hynix DDR5 form factors.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('SK Hynix')"
+    },
+    {
+      "candidate": "File:SK Hynix H5TC2G83CFR-5939.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "2576x1932, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:SK Hynix SOCAMM module Computex 2025.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('SK Hynix')"
+    },
+    {
+      "candidate": "File:SK hynix 16GB DDR5-5600 UDIMM HMCG78AGBUA084N BA.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:SK hynix 8 GB DDR5-4800 SO-DIMM HMCG66MEBSA092N.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Anthropic's corporate structure, updated.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Anthropic Farm Units.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 605x489 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Anthropic corporate structure.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Anthropic gongsi jiagou.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Anthropic logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Beer Mythos Chania.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Anthropic'"
+    },
+    {
+      "candidate": "File:Claude ru wiki.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 776x595 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Fragment of an Egyptian Textile, circa 700-1000 CE, depicting the anthropic figure of Anthousa, a rarely depicted divinity, considered to be the deity of blossoming plants. Fitzwilliam Museum, Cambridge.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Secretary of State Peter Kyle visits Anthropic in San Francisco. (54098999333).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "8192x5464, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Secretary of State Peter Kyle visits Anthropic in San Francisco. (54099081629).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "8192x5464, CC BY 2.0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "infosys-4911287704",
+      "path": "infosys-4911287704.jpg",
+      "size": [
+        3264,
+        1840
+      ],
+      "role": "establishing",
+      "subject": "Infosys",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Infosys_(4911287704).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Infosys_%284911287704%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Ashwin Kumar from Bangalore, India"
+    },
+    {
+      "beat": "hero",
+      "label": "osce-headquarters-at-the-hofburg-vienna-ank",
+      "path": "osce-headquarters-at-the-hofburg-vienna-ank.jpg",
+      "size": [
+        3456,
+        4608
+      ],
+      "role": "establishing",
+      "subject": "OSCE Headquarters at The Hofburg, Vienna",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:OSCE_Headquarters_at_The_Hofburg,_Vienna_(_Ank_Kumar,_Infosys)_01.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/OSCE_Headquarters_at_The_Hofburg%2C_Vienna_%28_Ank_Kumar%2C_Infosys%29_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Ank Kumar"
+    },
+    {
+      "beat": "grid",
+      "label": "sk-hynix-h5tc2g83cfr-5939",
+      "path": "sk-hynix-h5tc2g83cfr-5939.jpg",
+      "size": [
+        2576,
+        1932
+      ],
+      "role": "establishing",
+      "subject": "SK Hynix H5TC2G83CFR - 2Gb DDR3L SDRAM. Package: 78ball FBGA",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:SK_Hynix_H5TC2G83CFR-5939.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/SK_Hynix_H5TC2G83CFR-5939.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Raimond Spekking"
+    }
+  ]
+}

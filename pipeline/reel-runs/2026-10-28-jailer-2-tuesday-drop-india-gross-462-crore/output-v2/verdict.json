@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "jailer-2-tuesday-drop-india-gross-462-crore",
+  "name": "jailer-2-tuesday-drop-india-gross-462-crore",
+  "script": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000704
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "dhavani-west-nilgiris-tamil-nadu-nov24-a7cr",
+      "hero": "rajinikanth-at-the-inauguration-of-mgr-statu",
+      "grid": "dhavani-west-nilgiris-tamil-nadu-nov24-a7cr-2",
+      "diaspora": "karnataka-or-kerala-panjurli-bhuta-mask-18th"
+    }
+  },
+  "manifest": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v2/jailer-2-tuesday-drop-india-gross-462-crore.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v2/tiktok-caption.txt"
+}

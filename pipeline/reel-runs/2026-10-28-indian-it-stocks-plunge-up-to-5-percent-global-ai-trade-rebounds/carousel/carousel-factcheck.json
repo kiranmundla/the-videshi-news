@@ -1,0 +1,143 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Indian IT Stocks Plunge Up to 5% as Global AI Rally Resumes",
+        "numbers": [
+          5.0
+        ],
+        "entities": [
+          "Indian IT Stocks Plunge Up",
+          "Global AI Rally Resumes"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Indian IT stocks fell up to 5%.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Infosys has shed about \u20b925,000 crore in market value over two sessions as the global AI trade rebound extends the sell-off in Indian software shares.",
+        "numbers": [
+          25000.0,
+          250000000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Infosys lost \u20b925,000 crore over two sessions.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Mphasis and Infosys fell about 5% each, and the Nifty IT index fell more than 3%",
+        "numbers": [
+          3.0,
+          5.0
+        ],
+        "entities": [
+          "Nifty IT"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Mphasis and Infosys fell about 5%, Nifty IT index fell more than 3%.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Across the two sessions, Infosys has shed about \u20b925,000 crore in market capitalisation",
+        "numbers": [
+          25000.0,
+          250000000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Infosys lost \u20b925,000 crore in market capitalisation.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "SK Hynix reported a more than seven-fold increase in quarterly profit, Samsung gained nearly 9% and the Kospi rose 6%",
+        "numbers": [
+          6.0,
+          9.0
+        ],
+        "entities": [
+          "SK Hynix"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states SK Hynix profit rose seven-fold, Samsung gained nearly 9%, Kospi rose 6%.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Indian IT Stocks Plunge Up to 5% as Global AI Rally Resumes",
+        "numbers": [
+          5.0
+        ],
+        "entities": [
+          "Indian IT Stocks Plunge Up",
+          "Global AI Rally Resumes"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Indian IT stocks fell up to 5%.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000495,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

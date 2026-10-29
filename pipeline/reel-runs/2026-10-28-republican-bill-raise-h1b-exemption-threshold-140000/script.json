@@ -1,0 +1,36 @@
+{
+  "hook_line": "H-1B EXEMPTION THRESHOLD COULD RISE TO $140,000",
+  "hook_stat": {
+    "big": "$140,000",
+    "eyebrow": "THE PRICE TAG",
+    "sub": "Proposed new salary exemption for H-1B-dependent employers, up from $60,000"
+  },
+  "stats": [
+    {
+      "big": "$60,000",
+      "label": "Current salary exemption, unchanged since 1998"
+    },
+    {
+      "big": "$70,000",
+      "label": "National Average Wage Index is now nearly $70,000 — the new threshold would be twice that"
+    },
+    {
+      "big": "SEPTEMBER 30",
+      "label": "Senator Jon Husted introduced the Senate version, S. 5638"
+    }
+  ],
+  "diaspora_bullets": [
+    "Indian nationals receive the bulk of H-1B visas each year",
+    "The proposal is not law and has no immediate effect on H-1B petitions or extensions"
+  ],
+  "key_entities": [
+    "H-1B",
+    "Jon Husted",
+    "Glenn Grothman",
+    "Social Security Administration"
+  ],
+  "news_summary": "Republican bills in the House and Senate would raise the salary exemption for H-1B-dependent employers from $60,000, set in 1998, to nearly $140,000 today, tied to twice the National Average Wage Index.",
+  "payoff": "The proposal is not law, and the master's-degree exemption would remain.",
+  "versus": "",
+  "story_mood": "tense"
+}

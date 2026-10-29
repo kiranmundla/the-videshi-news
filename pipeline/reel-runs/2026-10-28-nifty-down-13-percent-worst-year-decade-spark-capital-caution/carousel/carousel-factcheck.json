@@ -1,0 +1,176 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "nifty-down-13-percent-worst-year-decade-spark-capital-caution",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Nifty Down 13 Percent Faces Worst Year in Decade as Strategists Urge Caution",
+        "numbers": [
+          13.0
+        ],
+        "entities": [
+          "Nifty Down",
+          "Percent Faces Worst Year",
+          "Strategists Urge Caution"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Nifty is down 13% and facing worst performance in a decade.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Spark Capital says slowing growth, high crude and stretched valuations may cap returns despite expected 20% September-quarter profit growth, while brokerages see only a technical November rebound.",
+        "numbers": [
+          20.0
+        ],
+        "entities": [
+          "Spark Capital"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article includes Spark Capital's views on growth, crude, valuations, and profit expectations.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "India's Nifty 50 has fallen about 13% this year and is on course for its worst annual performance in over a decade",
+        "numbers": [
+          13.0,
+          50.0
+        ],
+        "entities": [
+          "India's Nifty"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Nifty 50's 13% decline and worst annual performance in over a decade.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Nifty 50 companies are expected to deliver 20% profit growth in the September quarter, their fastest pace in three years",
+        "numbers": [
+          20.0,
+          50.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states a 20% profit growth expectation for the September quarter.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The Nifty briefly dipped into oversold territory in October, with its relative strength index below 30",
+        "numbers": [
+          30.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions Nifty's oversold condition and relative strength index below 30.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Thyagesh Baba",
+        "numbers": [],
+        "entities": [
+          "Thyagesh Baba"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Thyagesh Baba is mentioned in the article as a source.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Non-Executive Director, Spark Capital",
+        "numbers": [],
+        "entities": [
+          "Non-Executive Director",
+          "Spark Capital"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Thyagesh Baba as Non-Executive Director at Spark Capital.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Nifty Down 13 Percent Faces Worst Year in Decade as Strategists Urge Caution",
+        "numbers": [
+          13.0
+        ],
+        "entities": [
+          "Nifty Down",
+          "Percent Faces Worst Year",
+          "Strategists Urge Caution"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000568,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

@@ -1,0 +1,406 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds",
+ "article_slug": "indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds",
+ "article_id": "dfdabb71-0bec-48d7-983c-bfe0f244b943",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-10-28-indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds/output/indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/BSE_-_Bombay_Stock_Exchange_Building.jpg/1920px-BSE_-_Bombay_Stock_Exchange_Building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-10-28-indian-it-stocks-plunge-up-to-5-percent-global-ai-trade-rebounds/output/hero.jpg",
+  "width": 2291,
+  "height": 1917,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.584,0.567) damped=(0.542,0.533)",
+  "has_face": false,
+  "box_source": [
+   600,
+   601,
+   1282,
+   766
+  ],
+  "box_bg": [
+   304,
+   374,
+   467,
+   279
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.542,
+   0.542
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   697
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 917,
+   "zone_h": 639,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1055,
+   "block_bottom": 1418,
+   "text_bbox": [
+    70,
+    1055,
+    930,
+    1418
+   ],
+   "texts": [
+    "Markets Finance",
+    "INDIAN IT STOCKS PLUNGE UP TO 5% AS AI RALLY RESUMES"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.364,
+    "photo_px": [
+     2291,
+     1917
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 697,
+     "scale": 0.3640331732867743,
+     "window": [
+      0,
+      3,
+      2291,
+      1917
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.00x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 917,
+   "zone_h": 639,
+   "scale": 1.0,
+   "content_h": 328,
+   "block_top": 1072,
+   "block_bottom": 1400,
+   "text_bbox": [
+    70,
+    1072,
+    930,
+    1400
+   ],
+   "texts": [
+    "What Happened",
+    "Indian IT stocks plunged for a second straight session on Wednesday, with Mphasis and Infosys down about 5% each and the Nifty IT index down more than 3%, as a rebound in the global AI trade weighed on software services shares."
+   ],
+   "v7": {
+    "image_source": "extra:infosys-4911287704",
+    "track": "backdrop",
+    "render_scale": 0.379,
+    "photo_px": [
+     3264,
+     1840
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 697,
+     "scale": 0.37891867333030443,
+     "window": [
+      577,
+      1,
+      2778,
+      1840
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.04x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Infosys",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Infosys_(4911287704).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Infosys_%284911287704%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.0",
+     "artist": "Ashwin Kumar from Bangalore, India"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "5%",
+    "Mphasis and Infosys fell about 5% each on Wednesday"
+   ],
+   "v7": {
+    "image_source": "extra:osce-headquarters-at-the-hofburg-vienna-ank",
+    "track": "full-bleed",
+    "render_scale": 0.417,
+    "photo_px": [
+     3456,
+     4608
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4166666666666667,
+     "window": [
+      376,
+      0,
+      2968,
+      4608
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "OSCE Headquarters at The Hofburg, Vienna",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:OSCE_Headquarters_at_The_Hofburg,_Vienna_(_Ank_Kumar,_Infosys)_01.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/OSCE_Headquarters_at_The_Hofburg%2C_Vienna_%28_Ank_Kumar%2C_Infosys%29_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Ank Kumar"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 792,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    792,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "\u20b925,000 crore",
+    "Market value Infosys shed over two sessions",
+    "500",
+    "Points off the Sensex in early trade, at 73,100",
+    "6%",
+    "Rise in South Korea's Kospi as the AI trade rebounded"
+   ],
+   "v7": {
+    "image_source": "extra:sk-hynix-h5tc2g83cfr-5939",
+    "track": "full-bleed",
+    "render_scale": 0.994,
+    "photo_px": [
+     2576,
+     1932
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.9937888198757764,
+     "window": [
+      754,
+      0,
+      1840,
+      1932
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "SK Hynix H5TC2G83CFR - 2Gb DDR3L SDRAM. Package: 78ball FBGA",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:SK_Hynix_H5TC2G83CFR-5939.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/SK_Hynix_H5TC2G83CFR-5939.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Raimond Spekking"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 1085,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1085,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Indian IT earns a large share of revenue from US and Europe clients",
+    "Analysts split between AI-disruption risk and an anti-AI advantage"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.556,
+    "photo_px": [
+     2304,
+     3456
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5555555555555556,
+     "window": [
+      360,
+      0,
+      2304,
+      3456
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "The two-day fall has erased a large block of market value from the sector's biggest names.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 139.6,
+ "mp4_bytes": 14466364
+}

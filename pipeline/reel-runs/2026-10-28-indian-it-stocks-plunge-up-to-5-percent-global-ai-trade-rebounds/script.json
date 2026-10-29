@@ -1,0 +1,37 @@
+{
+  "hook_line": "INDIAN IT STOCKS PLUNGE UP TO 5% AS AI RALLY RESUMES",
+  "hook_stat": {
+    "big": "5%",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Mphasis and Infosys fell about 5% each on Wednesday"
+  },
+  "stats": [
+    {
+      "big": "₹25,000 crore",
+      "label": "Market value Infosys shed over two sessions"
+    },
+    {
+      "big": "500",
+      "label": "Points off the Sensex in early trade, at 73,100"
+    },
+    {
+      "big": "6%",
+      "label": "Rise in South Korea's Kospi as the AI trade rebounded"
+    }
+  ],
+  "diaspora_bullets": [
+    "Indian IT earns a large share of revenue from US and Europe clients",
+    "Analysts split between AI-disruption risk and an anti-AI advantage"
+  ],
+  "key_entities": [
+    "Infosys",
+    "Nifty IT",
+    "SK Hynix",
+    "Anthropic",
+    "BSE Sensex"
+  ],
+  "news_summary": "Indian IT stocks plunged for a second straight session on Wednesday, with Mphasis and Infosys down about 5% each and the Nifty IT index down more than 3%, as a rebound in the global AI trade weighed on software services shares.",
+  "payoff": "The two-day fall has erased a large block of market value from the sector's biggest names.",
+  "versus": "",
+  "story_mood": "tense"
+}

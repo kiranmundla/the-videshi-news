@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 207,
-    "db_rows": 145,
-    "db_rows_with_yt_id": 115,
+    "channel_videos": 210,
+    "db_rows": 148,
+    "db_rows_with_yt_id": 118,
     "legacy_log_entries": 205,
-    "publish_log_entries": 28,
-    "in_sync": 96,
+    "publish_log_entries": 31,
+    "in_sync": 99,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 10,
     "ghost_db_rows": 15,
@@ -685,6 +685,27 @@
       "privacy": "public",
       "video_id": "bPvs1ZT0wXU",
       "record": "prebuilt_reels:4799292b-c2df-42c4-a8cd-38d30466fbb9"
+    },
+    {
+      "title": "Indian IT Stocks Plunge Up to 5% as Global AI Rally Resumes #Shorts #Markets",
+      "published_at": "2026-10-28T11:16:22Z",
+      "privacy": "public",
+      "video_id": "AtoaN8gcM14",
+      "record": "prebuilt_reels:f72d48cc-3a37-4b97-b65a-1b056d1f8bf1"
+    },
+    {
+      "title": "Plaintiffs Push for Fast Ruling in $100,000 H-1B Fee Case as Government Seeks Pause #Shorts #H1B",
+      "published_at": "2026-10-28T17:16:45Z",
+      "privacy": "public",
+      "video_id": "nOEaWpI6twg",
+      "record": "prebuilt_reels:762d7c4d-99b8-4eeb-a95a-4fc0be3b33b8"
+    },
+    {
+      "title": "Nifty Down 13 Percent Faces Worst Year in Decade as Strategists Urge Caution #Shorts #Markets",
+      "published_at": "2026-10-28T23:18:24Z",
+      "privacy": "public",
+      "video_id": "ulRHwCyhJJI",
+      "record": "prebuilt_reels:0740babc-bc36-46ba-aa92-5d21fcfd504f"
     }
   ],
   "unknown_legacy_logged": [
@@ -3594,5 +3615,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-10-28T05:20:03+00:00"
+  "generated_at": "2026-10-28T23:19:48+00:00"
 }
