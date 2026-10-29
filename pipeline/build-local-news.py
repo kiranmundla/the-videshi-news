@@ -106,6 +106,18 @@ _RALEIGH_NC_RX = (
     r"|\b" + _NC_CONTEXT + r"\b.{0,60}\bApex\b"
 )
 
+# Corona, CA (Orange County cluster member, actually Riverside County):
+# bare "Corona" is a trap — Corona Park in Queens, NY (Flushing Meadows)
+# filed a Queens Diwali festival as Orange County news in the 2026-10-28
+# audit, and the word also appears for the beer and the virus. Like
+# Durham/Apex for Raleigh, it leaves the plain aliases in clusters.json
+# and matches only with California / Orange County context nearby.
+_CORONA_CA_RX = (
+    r"\bCorona,?\s+(?:CA|Calif\.)\b"
+    r"|\bCorona\b(?=.{0,60}\b(?:California|Orange County|Riverside|Anaheim|Yorba Linda)\b)"
+    r"|\b(?:California|Orange County|Riverside)\b.{0,60}\bCorona\b"
+)
+
 # Fishers, IN vs "fishers" the occupation: the town matches at title
 # start, after in/at/near, or with Indiana context nearby. The occupation
 # ("What Changes for Fishers") is blocked in cluster_blocked().
@@ -123,8 +135,12 @@ _PROFILE_RX = {
     "dublin_oh": _DUBLIN_OH_RX,
     "raleigh_nc": _RALEIGH_NC_RX,
     "fishers_in": _FISHERS_RX,
-    # san_jose / orange_county profiles affect blocking only (below);
-    # their names match plainly.
+    # orange_county: the profile pattern adds guarded "Corona" (above);
+    # the cluster's other names match plainly, and cluster_blocked()
+    # still rejects FL/NC "Orange County" namesakes.
+    "orange_county": _CORONA_CA_RX,
+    # san_jose profile affects blocking only (below); its names match
+    # plainly.
 }
 
 

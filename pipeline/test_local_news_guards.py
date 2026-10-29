@@ -75,6 +75,12 @@ CASES = [
     ("orange-county-ca", "Orange County, Florida Approves New Budget", False),
     ("orange-county-ca", "Orange County Fair Returns to Costa Mesa", True),
     ("orange-county-ca", "Irvine Approves New Indian Cultural Center", True),
+    # ── 2026-10-28 audit: Corona Park, Queens NY vs Corona, CA ────────
+    ("orange-county-ca", "Arts4All Diwali and Navaratri Festival Draws 2,000 to Queens Unisphere The free World's Fair festival at Flushing Meadows Corona Park paired a light ceremony and parade with vegetarian food", False),
+    ("orange-county-ca", "Corona Beer Sales Rise Ahead of Diwali Weekend", False),
+    ("orange-county-ca", "New Indian Grocery Opens in Corona, CA", True),
+    ("orange-county-ca", "Corona, California Temple Announces Diwali Schedule", True),
+    ("orange-county-ca", "Riverside County Fair in Corona Draws Record Crowds", True),
     # ── Phase 2: Yonkers / Bergen split out of New York ────────────────
     ("yonkers-bergen-ny-nj", "Yonkers Diwali Celebration Lights Up City Hall", True),
     ("new-york-ny", "Yonkers Diwali Celebration Lights Up City Hall", False),
