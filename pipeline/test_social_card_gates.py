@@ -119,6 +119,24 @@ BLANK_DOC = commons_page(
          "a screenshot of the service.",
     cats="Google software|PD shape|PD text|Google services")
 BLANK_DOC["imageinfo"][0]["mime"] = "image/png"
+WIPO_SPEAKER = commons_page(
+    "File:IP Finance Dialogue – Expanding Horizons on IP "
+    "Finance and Valuation - 53346909618.jpg", 6000, 4000,
+    license_short="CC BY 2.0",
+    desc="IP Finance Dialogue – Expanding Horizons on IP "
+         "Finance and Valuation, WIPO, Geneva",
+    cats="World Intellectual Property Organization")
+NIFTY_CTX = {
+    "headline": "Nifty Down 13 Percent Faces Worst Year in "
+                "Decade as Strategists Urge Caution",
+    "body": "<p>Nifty has fallen 13 percent in 2026, its "
+            "worst showing in a decade. Spark Capital "
+            "analysts urged investors to stay cautious, "
+            "citing stretched valuations and weak earnings "
+            "breadth across Indian markets.</p>",
+    "slug": "nifty-down-13-percent",
+    "category": "markets-finance",
+}
 ELEPHANT = commons_page(
     "File:Indian elephant in Kaziranga National Park March "
     "2025 by Tisha Mukherjee 04.jpg", 4942, 3295,
@@ -364,6 +382,19 @@ got = source("For Indian professionals, the fee takes "
              "effect for new petitions.", H1B_CTX,
              entities=["Indian"])
 check("Kaziranga elephant rejected for the H-1B story",
+      got is None)
+
+print("── the category is not an entity ──")
+check("the category pseudo-entity never reaches the card "
+      "entity list",
+      "Markets Finance" not in sc._card_entities(
+          "Nifty 50 is down 13% in 2026, facing worst "
+          "annual performance in over a decade.", NIFTY_CTX))
+stub_pages([WIPO_SPEAKER])
+got = source("Nifty 50 is down 13% in 2026, facing worst "
+             "annual performance in over a decade.", NIFTY_CTX)
+check("no WIPO conference speaker for the subject-less "
+      "Nifty card — honest navy miss",
       got is None)
 
 print("── context is the active ingredient (courts) ──")

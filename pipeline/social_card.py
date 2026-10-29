@@ -681,11 +681,23 @@ def _card_entities(text, article_ctx):
     import reel_entity_sourcing as res
     seen = set()
     own = []
+    # The article's CATEGORY is a section label, not a subject:
+    # the reel extractor surfaces it as a pseudo-entity
+    # ('Markets Finance' from markets-finance), and sourcing a
+    # picture for it returns generic conference stock — an
+    # unidentified WIPO speaker landed on the Nifty deck
+    # (2026-10-29). A card's pictures belong to the card's
+    # subjects or to nothing (navy).
+    cat_toks = {t for t in res.entity_tokens(
+        (article_ctx.get("category") or "").replace("-", " "))}
 
     def add(e, bucket):
         e = res._clean_entity(e)
         if e and e.lower() not in seen:
             if _card_entity_hygiene(e):
+                return
+            if cat_toks and {t for t in res.entity_tokens(e)} \
+                    == cat_toks:
                 return
             seen.add(e.lower())
             bucket.append(e)
