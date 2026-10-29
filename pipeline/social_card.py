@@ -799,26 +799,39 @@ def _entity_image_for_card(text, article_ctx, used, log=None):
     except Exception as e:
         log(f"entity sourcing: story context build failed ({e})")
     # Vocabulary for the single-token agreement gate below:
-    # headline + this card's text + the article's opening —
-    # what THIS card's story is actually about.
+    # the headline + this card's text + the article's LEDE
+    # (first ~600 chars) + the deck's entities — what THIS
+    # card is actually about. The full body is deliberately
+    # NOT scanned: a long window mentions too much of the
+    # world, and coincidence is the failure being gated; the
+    # lede carries the story's own summary vocabulary (the
+    # Microsoft campus keeper agrees via its lede's 'United
+    # States'). Tokens are compared in a light singular form
+    # ('stocks' ~ 'stock') — the live smoke test showed the
+    # exchanges' own building photos dying on that plural.
+    def _aform(w):
+        return w[:-1] if len(w) > 3 and w.endswith("s") \
+            and not w.endswith("ss") else w
+
     agree_base = set()
     try:
         import picture_gate_shared as _G
-        raw_ctx = " ".join([
-            article_ctx.get("headline") or "", text or "",
-            (article_ctx.get("body") or "")[:1500]])
+        raw_ctx = " ".join([article_ctx.get("headline") or "",
+                            text or "",
+                            (article_ctx.get("body") or "")
+                            [:600]])
         for w in re.findall(r"[a-z0-9]+", raw_ctx.lower()):
             if len(w) >= 4 and not w.isdigit() \
                     and w not in _G.HINT_FUNCTION_WORDS:
-                agree_base.add(w)
+                agree_base.add(_aform(w))
         for e in entities:
             for t in res.entity_tokens(e):
                 if len(t) >= 4:
-                    agree_base.add(t)
+                    agree_base.add(_aform(t))
     except Exception:
         agree_base = set()
 
-    def accept(entity, c):
+    def accept(entity, c, page=None):
         """Card-level acceptance on top of the ladder's gates:
         a real photograph, not already in the deck, and — for a
         SINGLE-TOKEN entity — at least one story-context token
@@ -827,7 +840,11 @@ def _entity_image_for_card(text, article_ctx, used, log=None):
         EPS bike brakes; 'NSE' the exchange vs actress Nse
         Ikpe-Etim): identity alone cannot tell them apart, but
         a genuine file's page talks about the story's world and
-        a namesake's never does."""
+        a namesake's never does. The evidence includes the
+        file's Commons categories when the caller has the raw
+        page: an exchange's own building is filed under the
+        exchange's full name ('National Stock Exchange of
+        India'), which is exactly the agreement that counts."""
         if c is None:
             return False
         if not _card_photo_ok(c):
@@ -837,14 +854,22 @@ def _entity_image_for_card(text, article_ctx, used, log=None):
         if is_used(c["file_url"]):
             return False
         if len(entity.split()) == 1 and agree_base:
-            ev = {w for w in re.findall(
-                r"[a-z0-9]+",
-                f"{c.get('title') or ''} "
-                f"{c.get('subject') or ''}".lower())
-                if len(w) >= 4}
-            ev -= set(res.entity_tokens(entity))
+            ev_text = f"{c.get('title') or ''} " \
+                      f"{c.get('subject') or ''}"
+            if page is not None:
+                try:
+                    info = (page.get("imageinfo") or [{}])[0]
+                    ev_text += " " + res._meta(
+                        info, "ImageDescription") + " " \
+                        + res._meta(info, "Categories")
+                except Exception:
+                    pass
+            ev = {_aform(w) for w in re.findall(
+                r"[a-z0-9]+", ev_text.lower()) if len(w) >= 4}
+            ev -= {_aform(t) for t in res.entity_tokens(entity)}
             if not (ev & (agree_base
-                          - set(res.entity_tokens(entity)))):
+                          - {_aform(t) for t
+                             in res.entity_tokens(entity)})):
                 log(f"entity sourcing: single-token entity "
                     f"{entity!r} candidate shares no story "
                     f"token — skip: {(c['title'] or '')[:60]}")
@@ -862,7 +887,7 @@ def _entity_image_for_card(text, article_ctx, used, log=None):
                     c, _row = res.evaluate_commons_page(
                         page, entity, "A — Wikimedia Commons",
                         context=context)
-                    if accept(entity, c):
+                    if accept(entity, c, page=page):
                         cand = c
                         break
         except Exception as e:
@@ -905,7 +930,7 @@ def _entity_image_for_card(text, article_ctx, used, log=None):
                         page, entity,
                         "C — web search (discovery) → Commons",
                         context=context)
-                    if accept(entity, c):
+                    if accept(entity, c, page=page):
                         cand = c
                         break
             except Exception as e:

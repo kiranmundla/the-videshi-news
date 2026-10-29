@@ -161,6 +161,22 @@ MS_CAMPUS = commons_page(
     desc="Microsoft corporate headquarters campus in "
          "Redmond, Washington, United States",
     cats="Microsoft campus|Buildings in Redmond, Washington")
+# The exchanges' OWN buildings (real Commons metadata,
+# fetched 2026-10-29 after the live smoke render showed the
+# first agreement cut rejecting them on a plural: the story
+# says 'stocks', the file says 'Stock Exchange').
+BSE_BUILDING = commons_page(
+    "File:BSE - Bombay Stock Exchange Building.jpg",
+    2291, 1917, license_short="CC BY 2.0",
+    desc="The Bombay Stock Exchange building in Mumbai, "
+         "India",
+    cats="Taken with Olympus FE-150 / X-730|Flickr images "
+         "reviewed by trusted users|Phiroze Jeejeebhoy "
+         "Towers")
+NSE_PLAZA = commons_page(
+    "File:NSE Exchange Plaza.jpg", 5760, 3840,
+    desc="National Stock Exchange of India Corporate Office",
+    cats="Buildings in India|Self-published work")
 
 
 # ── story contexts (as render_card_set builds them) ────────
@@ -384,6 +400,17 @@ got = source("The White House cleared the Labor "
              "Department plan on Monday.", PERM_CTX)
 check("keeper: the Washington White House",
       got is not None and got[2]["entity"] == "White House")
+stub_pages([BSE_BUILDING])
+got = source("BSE Sensex rose 905.01 points, closing at "
+             "74,151.04.", SENSEX_CTX, entities=["BSE"])
+check("keeper: the BSE's own building for 'BSE'",
+      got is not None and got[2]["entity"] == "BSE")
+stub_pages([NSE_PLAZA])
+got = source("NSE Nifty increased by 237.90 points to "
+             "22,936.75.", SENSEX_CTX, entities=["NSE"])
+check("keeper: NSE Exchange Plaza for 'NSE' (the actress "
+      "is rejected, the exchange's own plaza is not)",
+      got is not None and got[2]["entity"] == "NSE")
 stub_pages([MS_CAMPUS])
 got = source("Microsoft is offering a Voluntary Exit "
              "Offer to about 60,000 employees, roughly a "
