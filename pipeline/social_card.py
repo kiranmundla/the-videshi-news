@@ -626,6 +626,49 @@ MAX_CARD_ENTITIES = 3
 _BRAND_TOKEN_RE = re.compile(r"[A-Za-z][A-Za-z&.'-]*")
 
 
+# An entity may not BEGIN or END on a function word: those are
+# phrase fragments, not names ('For Indian' out of 'For Indian
+# workers…' sourced wildlife photos for an H-1B deck,
+# 2026-10-28). Same hygiene the article picture pass shipped
+# 2026-10-26.
+_EDGE_STOPWORDS = {"the", "a", "an", "of", "in", "on", "at",
+                   "to", "and", "for", "by", "with", "from"}
+
+
+def _card_entity_hygiene(e):
+    """Why this card entity may never be sourced, or None:
+    phrase fragments (edge stopwords), possessive forms, and
+    news outlets (sources, never picture subjects)."""
+    if not e:
+        return "empty entity"
+    # Sentence-boundary span (the article pass's rule, same
+    # masking): 'GeekWire. Microsoft' is two fragments glued
+    # by a period, not a name.
+    probe = re.sub(r"\b(?:Dr|Mr|Mrs|Ms|St|Prof|Sr|Jr|Mt|Ft|"
+                   r"Gen|Sen|Rep|Gov|Capt|Lt|Col)\.", "X", e)
+    probe = re.sub(r"\b[A-Z]\.", "X", probe)
+    if re.search(r"[.!?]\s+[A-Za-z]", probe):
+        return ("spans a sentence boundary — a fragment, "
+                "not a name")
+    toks = e.split()
+    if toks:
+        first = toks[0].strip(".,'’-").lower()
+        last = toks[-1].strip(".,'’-").lower()
+        if first in _EDGE_STOPWORDS or last in _EDGE_STOPWORDS:
+            return ("begins or ends on a stopword — a phrase "
+                    "fragment, not a name")
+        if toks[-1].lower().endswith(("'s", "’s")):
+            return "a possessive form — not a name"
+    try:
+        import picture_gate_shared as _G
+        if _G.is_outlet_entity(e):
+            return ("a news outlet — a source, never a picture "
+                    "subject")
+    except Exception:
+        pass
+    return None
+
+
 def _card_entities(text, article_ctx):
     """Picture-worthy entities for ONE takeaway card, best first:
     the card's OWN subjects in text order — capitalized phrases
@@ -642,6 +685,8 @@ def _card_entities(text, article_ctx):
     def add(e, bucket):
         e = res._clean_entity(e)
         if e and e.lower() not in seen:
+            if _card_entity_hygiene(e):
+                return
             seen.add(e.lower())
             bucket.append(e)
 
@@ -667,7 +712,8 @@ def _card_entities(text, article_ctx):
 
 _NON_PHOTO_RE = re.compile(
     r"\b(maps?|diagrams?|charts?|graphs?|logos?|destinations|"
-    r"routes|timetable|flags?|coat of arms)\b", re.I)
+    r"routes|timetable|flags?|coat of arms|screenshots?|"
+    r"blank document)\b", re.I)
 
 
 def _card_photo_ok(cand):
@@ -675,8 +721,13 @@ def _card_photo_ok(cand):
     reject map fragments in descriptions, but a whole-file graphic
     whose subject IS a map/diagram (e.g. an airline's destinations
     map) still passes them — useless as a card picture, so the
-    adapter skips it by title and keeps scanning."""
-    return not _NON_PHOTO_RE.search(cand.get("title") or "")
+    adapter skips it by title and keeps scanning. UI screenshots
+    are the same class: a blank Google Docs page passed every
+    ladder gate for 'Google Services' (2026-10-28) — the check
+    therefore also scans the candidate's subject/description
+    text, where a screenshot declares itself."""
+    return not _NON_PHOTO_RE.search(
+        f"{cand.get('title') or ''} {cand.get('subject') or ''}")
 
 
 def _download_entity_image(url):
@@ -729,6 +780,77 @@ def _entity_image_for_card(text, article_ctx, used, log=None):
         hint = res.topical_hint(article_ctx, entities)
     except Exception:
         pass
+    # ── Story context (2026-10-29, Kiran's go): the shared
+    # identity gates in reel_entity_sourcing are INERT without
+    # a context — context_reject_reason returns None on a falsy
+    # context, so every deck sourced namesakes the reel/article
+    # gates had already killed (Campagnolo bike brakes for
+    # 'EPS', an actress for 'NSE', Gaisano Capital mall photos
+    # for 'Spark Capital', foreign supreme courts for India's).
+    # Build the context exactly as the reel sourcer does: the
+    # article plus a script stub carrying this card's text and
+    # the card's entities as its key entities.
+    context = None
+    try:
+        context = res.build_story_context(
+            article_ctx,
+            {"key_entities": entities, "news_summary": text},
+            entities)
+    except Exception as e:
+        log(f"entity sourcing: story context build failed ({e})")
+    # Vocabulary for the single-token agreement gate below:
+    # headline + this card's text + the article's opening —
+    # what THIS card's story is actually about.
+    agree_base = set()
+    try:
+        import picture_gate_shared as _G
+        raw_ctx = " ".join([
+            article_ctx.get("headline") or "", text or "",
+            (article_ctx.get("body") or "")[:1500]])
+        for w in re.findall(r"[a-z0-9]+", raw_ctx.lower()):
+            if len(w) >= 4 and not w.isdigit() \
+                    and w not in _G.HINT_FUNCTION_WORDS:
+                agree_base.add(w)
+        for e in entities:
+            for t in res.entity_tokens(e):
+                if len(t) >= 4:
+                    agree_base.add(t)
+    except Exception:
+        agree_base = set()
+
+    def accept(entity, c):
+        """Card-level acceptance on top of the ladder's gates:
+        a real photograph, not already in the deck, and — for a
+        SINGLE-TOKEN entity — at least one story-context token
+        in the candidate's own evidence. One token is coincidence
+        bait on Commons ('EPS' the earnings metric vs Campagnolo
+        EPS bike brakes; 'NSE' the exchange vs actress Nse
+        Ikpe-Etim): identity alone cannot tell them apart, but
+        a genuine file's page talks about the story's world and
+        a namesake's never does."""
+        if c is None:
+            return False
+        if not _card_photo_ok(c):
+            log(f"entity sourcing: skipped non-photo graphic "
+                f"for {entity}: {(c['title'] or '')[:60]}")
+            return False
+        if is_used(c["file_url"]):
+            return False
+        if len(entity.split()) == 1 and agree_base:
+            ev = {w for w in re.findall(
+                r"[a-z0-9]+",
+                f"{c.get('title') or ''} "
+                f"{c.get('subject') or ''}".lower())
+                if len(w) >= 4}
+            ev -= set(res.entity_tokens(entity))
+            if not (ev & (agree_base
+                          - set(res.entity_tokens(entity)))):
+                log(f"entity sourcing: single-token entity "
+                    f"{entity!r} candidate shares no story "
+                    f"token — skip: {(c['title'] or '')[:60]}")
+                return False
+        return True
+
     for entity in entities[:MAX_CARD_ENTITIES]:
         cand = None
         # Route A — Wikimedia Commons originals
@@ -738,13 +860,9 @@ def _entity_image_for_card(text, article_ctx, used, log=None):
                     break
                 for page in res.commons_search(q, limit=8):
                     c, _row = res.evaluate_commons_page(
-                        page, entity, "A — Wikimedia Commons")
-                    if c and not _card_photo_ok(c):
-                        log(f"entity sourcing: skipped non-photo "
-                            f"graphic for {entity}: "
-                            f"{(c['title'] or '')[:60]}")
-                        c = None
-                    if c and not is_used(c["file_url"]):
+                        page, entity, "A — Wikimedia Commons",
+                        context=context)
+                    if accept(entity, c):
                         cand = c
                         break
         except Exception as e:
@@ -763,9 +881,8 @@ def _entity_image_for_card(text, article_ctx, used, log=None):
                         continue
                     c, _row = res.evaluate_hosted_page(
                         link, entity, "B — official sources",
-                        res.DEFAULT_NET)
-                    if c and not is_used(c["file_url"]) \
-                            and _card_photo_ok(c):
+                        res.DEFAULT_NET, context=context)
+                    if accept(entity, c):
                         cand = c
                         break
             except Exception as e:
@@ -786,9 +903,9 @@ def _entity_image_for_card(text, article_ctx, used, log=None):
                         continue
                     c, _row = res.evaluate_commons_page(
                         page, entity,
-                        "C — web search (discovery) → Commons")
-                    if c and not is_used(c["file_url"]) \
-                            and _card_photo_ok(c):
+                        "C — web search (discovery) → Commons",
+                        context=context)
+                    if accept(entity, c):
                         cand = c
                         break
             except Exception as e:
