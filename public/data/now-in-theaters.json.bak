@@ -1,6 +1,6 @@
 {
   "editorial_intro": "Spider-Man just dethroned The Force Awakens — $944.5M domestic, the all-time North American record — while Resident Evil took the weekend with a $60M franchise-best opening. In Indian cinema, the weekend's real story is survival: Mandaadi crossed ₹100 Cr worldwide and flattened Sardar 2, Hanuman Ansh hit ₹272 Cr India on 151x its ₹2 Cr budget, and Mirzapur: The Movie is now Pankaj Tripathi's most profitable film ever. Bollywood's Friday newcomers struggled — Vibe's ₹7.45 Cr opening beat Daayra's ₹5.63 Cr, but neither found the audience it needed — and all eyes are on Sept 24, when Nani's The Paradise arrives with record US advance sales.",
-  "generated_at": "2026-10-12T16:01:32Z",
+  "generated_at": "2026-10-26T16:02:39Z",
   "movies": [
     {
       "cast": [
@@ -465,7 +465,8 @@
           "name": "Raghav Juyal",
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Raghav_Juyal_at_the_Zee5_event_in_Mumbai_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
         }
-      ]
+      ],
+      "fandango_url": "https://www.fandango.com/the-paradise-2026-246366/movie-overview"
     },
     {
       "title": "Dorothy",
@@ -499,7 +500,8 @@
           "name": "Rishikanth",
           "photo_url": ""
         }
-      ]
+      ],
+      "fandango_url": "https://www.fandango.com/dorothy-2026-247564/movie-overview"
     },
     {
       "title": "The Vvaan: Force of the Forrest",
@@ -523,7 +525,8 @@
           "name": "Sidharth Malhotra Tamannaah Bhatia Maniesh Paul Sunil Grover Shweta Tiwari Anup Soni",
           "photo_url": ""
         }
-      ]
+      ],
+      "fandango_url": "https://www.fandango.com/the-vvaan-force-of-the-forrest-247541/movie-overview"
     },
     {
       "title": "Drishyam: The Conclusion",
@@ -547,7 +550,8 @@
           "name": "Ajay Devgn Tabu Shriya Saran Jaideep Ahlawat Ishita Dutta Mrunal Jadhav Rajat Kapoor Prakash Raj Kamlesh Sawant",
           "photo_url": ""
         }
-      ]
+      ],
+      "fandango_url": "https://www.fandango.com/drishyam-the-conclusion-2026-247556/movie-overview"
     },
     {
       "cast": [
@@ -599,7 +603,8 @@
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Kerala_School_Kalolsavam_2026_day_5_Mohanlal_%28277%29_%28cropped%29.jpg/300px-Kerala_School_Kalolsavam_2026_day_5_Mohanlal_%28277%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
       ],
-      "review_slug": "jailer-2-review-roundup-critics"
+      "review_slug": "jailer-2-review-roundup-critics",
+      "fandango_url": "https://www.fandango.com/jailer-2-247862/movie-overview"
     },
     {
       "cast": [
@@ -635,7 +640,9 @@
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Arnold_Vosloo_2009.jpg/300px-Arnold_Vosloo_2009.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
       ],
-      "review_slug": "ranabaali-review-roundup-critics"
+      "review_slug": "ranabaali-review-roundup-critics",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/8/82/Ranabaali_2026_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "fandango_url": "https://www.fandango.com/ranabaali-2026-247336/movie-overview"
     },
     {
       "cast": [
@@ -676,7 +683,63 @@
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Sikander_Kher_promoting_Tere_Bin_Laden_2_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
         }
       ],
-      "review_slug": "prahaar-review-roundup-critics"
+      "review_slug": "prahaar-review-roundup-critics",
+      "fandango_url": "https://www.fandango.com/prahaar-the-untold-story-of-ujjwal-nikam-2026-247958/movie-overview"
+    },
+    {
+      "title": "418",
+      "slug": "418-2026",
+      "release_date": "2026-10-23",
+      "status": "opening",
+      "language": "Kannada",
+      "director": "Kirtan Nadagouda",
+      "cast": [
+        "Charan Lakkaraju Chaithra J. Achar Surya Raj Preethi Pagadala Ramesh Indira"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=418%20showtimes%20near%20me",
+      "why_watch": "418 is a Kannada film directed by Kirtan Nadagouda, starring Charan Lakkaraju Chaithra J. Achar Surya Raj Preethi Pagadala Ramesh Indira.",
+      "rating": "Opens Oct 23",
+      "rating_source": "Release date",
+      "poster_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Visigoth_migrations.jpg/500px-Visigoth_migrations.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "trailer_url": "https://www.youtube.com/watch?v=IFgK5ynoe6s",
+      "cast_details": [
+        {
+          "name": "Charan Lakkaraju Chaithra J. Achar Surya Raj Preethi Pagadala Ramesh Indira",
+          "photo_url": ""
+        }
+      ],
+      "review_slug": "418-review-roundup-critics",
+      "fandango_url": "https://www.fandango.com/418-2026-246528/movie-overview"
+    },
+    {
+      "title": "Udta Teer",
+      "slug": "udta-teer-2026",
+      "release_date": "2026-10-23",
+      "status": "opening",
+      "language": "Hindi",
+      "director": "Aakash Kaushik",
+      "cast": [
+        "Ayushmann Khurrana Sara Ali Khan Ram Kapoor Rahul Bose Suhail Nayyar Gulshan Grover Mukul Dev Raghubir Yadav Brijendra Kala Sandeep Anand Supriya Pilgaonkar Smita Tambe"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=Udta%20Teer%20showtimes%20near%20me",
+      "why_watch": "Udta Teer is a Hindi film directed by Aakash Kaushik, starring Ayushmann Khurrana Sara Ali Khan Ram Kapoor Rahul Bose Suhail Nayyar Gulshan Grover Mukul Dev Raghubir Yadav Brijendra Kala Sandeep Anand Supriya Pilgaonkar Smita Tambe.",
+      "rating": "Opens Oct 23",
+      "rating_source": "Release date",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Udta_Teer_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "trailer_url": "https://www.youtube.com/watch?v=hN_ZUElLH44",
+      "cast_details": [
+        {
+          "name": "Ayushmann Khurrana Sara Ali Khan Ram Kapoor Rahul Bose Suhail Nayyar Gulshan Grover Mukul Dev Raghubir Yadav Brijendra Kala Sandeep Anand Supriya Pilgaonkar Smita Tambe",
+          "photo_url": ""
+        }
+      ],
+      "fandango_url": "https://www.fandango.com/udta-teer-247825/movie-overview"
     },
     {
       "title": "Ramayana: Part 1",
@@ -739,7 +802,69 @@
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Nazriya_Nazim_at_neram_audio_launch.jpg/300px-Nazriya_Nazim_at_neram_audio_launch.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
       ]
+    },
+    {
+      "title": "Aakasamlo Oka Tara",
+      "slug": "aakasamlo-oka-tara-2026",
+      "release_date": "2026-11-20",
+      "status": "coming_soon",
+      "language": "Telugu",
+      "director": "Pavan Sadineni",
+      "cast": [
+        "Dulquer Salmaan",
+        "Satvika Veeravalli",
+        "Shruti Haasan"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=Aakasamlo%20Oka%20Tara%20showtimes%20near%20me",
+      "why_watch": "Aakasamlo Oka Tara is a Telugu film directed by Pavan Sadineni, starring Dulquer Salmaan, Satvika Veeravalli.",
+      "rating": "Opens Nov 20",
+      "rating_source": "Release date",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/d/d2/Aakasamlo_Oka_Tara.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "trailer_url": "https://www.youtube.com/watch?v=h3ElWvu31dc",
+      "cast_details": [
+        {
+          "name": "Dulquer Salmaan",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Dulquer_promoting_Zoya_Factor_cropped.jpg/300px-Dulquer_promoting_Zoya_Factor_cropped.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Satvika Veeravalli",
+          "photo_url": ""
+        },
+        {
+          "name": "Shruti Haasan",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Shruti_Haasan_at_the_special_screening_of_the_short_film_Devi_%2832%29.jpg/300px-Shruti_Haasan_at_the_special_screening_of_the_short_film_Devi_%2832%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        }
+      ]
+    },
+    {
+      "title": "King",
+      "slug": "king-2026",
+      "release_date": "2026-12-24",
+      "status": "coming_soon",
+      "language": "Hindi",
+      "director": "Siddharth Anand",
+      "cast": [
+        "Shah Rukh Khan Suhana Khan Deepika Padukone Abhishek Bachchan Anil Kapoor Jackie Shroff Arshad Warsi Rani Mukerji Raghav Juyal Abhay Verma Saurabh Shukla Jaideep Ahlawat Akshay Oberoi Karanvir Malhotra"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=King%20showtimes%20near%20me",
+      "why_watch": "King is a Hindi film directed by Siddharth Anand, starring Shah Rukh Khan Suhana Khan Deepika Padukone Abhishek Bachchan Anil Kapoor Jackie Shroff Arshad Warsi Rani Mukerji Raghav Juyal Abhay Verma Saurabh Shukla Jaideep Ahlawat Akshay Oberoi Karanvir Malhotra.",
+      "rating": "Opens Dec 24",
+      "rating_source": "Release date",
+      "poster_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Aachen_Domschatz_Bueste1.jpg/500px-Aachen_Domschatz_Bueste1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "trailer_url": "https://www.youtube.com/watch?v=Uu2QK9Z9X5E",
+      "cast_details": [
+        {
+          "name": "Shah Rukh Khan Suhana Khan Deepika Padukone Abhishek Bachchan Anil Kapoor Jackie Shroff Arshad Warsi Rani Mukerji Raghav Juyal Abhay Verma Saurabh Shukla Jaideep Ahlawat Akshay Oberoi Karanvir Malhotra",
+          "photo_url": ""
+        }
+      ]
     }
   ],
-  "week_of": "Oct 12 – Oct 18, 2026"
+  "week_of": "Oct 26 – Nov 01, 2026"
 }
