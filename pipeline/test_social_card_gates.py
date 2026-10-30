@@ -29,6 +29,13 @@ Every bad fixture below is the REAL Commons file that shipped
     screenshot (Oct 28, X/Facebook).
   * 'For Indian' (H-1B fee deck) -> Indian elephant /
     rhinoceros wildlife photos (Oct 28, staged decks).
+Extended 2026-10-30 with that morning's two live failures:
+  * 'Hindi' (Jailer 2 Hindi box-office deck) -> a classroom
+    alphabet chart and File:Black hole - Messier 87.jpg —
+    languages are now non-visual in card hygiene.
+  * 'Economic Times' (Samvat 2082 deck) -> the outlet's own
+    logo via route B — card-local outlet supplement plus
+    candidate-level branding rejection on every route.
 Keepers are the reel suite's proven accepts (Frances Perkins
 Building, Keith Sonderling, the Washington White House,
 Microsoft campus) driven through the CARD path: the gates
@@ -451,6 +458,125 @@ check("keeper: Microsoft campus (single-token agreement "
       "does not cost a genuine photo)",
       got is not None and got[2]["entity"] == "Microsoft",
       "" if got else "honest miss — " + "; ".join(LOGS[-3:]))
+
+print("── the Oct 30 failures: languages + outlet branding ──")
+# FAILURE 1 (X, 2026-10-30): the Jailer 2 Hindi box-office
+# deck sourced pictures for the entity 'Hindi' — card 2 a
+# classroom Hindi-alphabet wall chart, card 3 the real file
+# below. A language is not a visual entity: it must never
+# reach the ladder, from the card's own text OR the article
+# fallback list (the black hole arrived via the fallback).
+BLACK_HOLE = commons_page(
+    "File:Black hole - Messier 87.jpg", 7416, 4320,
+    license_short="CC BY 4.0",
+    desc="The first direct image of a black hole, located "
+         "in the core of the supergiant elliptical galaxy "
+         "Messier 87 in the constellation Virgo.",
+    cats="Messier 87|Black holes|Event Horizon Telescope|"
+         "2019 in science")
+JAILER_CTX = {
+    "headline": "Jailer 2 Hindi Box Office Day 15: Profit "
+                "at 68 Percent as Run Continues",
+    "body": "Jailer 2's Hindi version earned Rs 43.8 crore "
+            "in 15 days. The film achieved a profit of "
+            "Rs 17.8 crore, or 68.46 percent, trade "
+            "reports said.",
+    "slug": "jailer-2-hindi-box-office-day-15-profit-68-percent",
+    "category": "entertainment"}
+check("hygiene: language names rejected",
+      sc._card_entity_hygiene("Hindi") is not None
+      and sc._card_entity_hygiene("Telugu") is not None
+      and sc._card_entity_hygiene("English") is not None)
+ents = sc._card_entities(
+    "Jailer 2's Hindi version earned Rs 43.8 crore in "
+    "15 days.", JAILER_CTX)
+check("'Hindi' never reaches a card entity list",
+      "Hindi" not in ents, str(ents))
+stub_pages([BLACK_HOLE])
+got = source("Jailer 2's Hindi version earned Rs 43.8 "
+             "crore in 15 days.", JAILER_CTX)
+check("black hole never sourced for the Jailer 'Hindi' "
+      "card — navy fallback", got is None)
+got = source("The film achieved a profit of Rs 17.8 "
+             "crore, or 68.46%.", JAILER_CTX)
+check("black hole never sourced via the article-entity "
+      "fallback either", got is None)
+
+# FAILURE 2 (X, 2026-10-30): the Samvat 2082 deck carried
+# the Economic Times LOGO as card 2's photo, via route B —
+# 'Economic Times' is missing from the shared outlet list,
+# so the entity passed hygiene and the hosted evaluator
+# returned the outlet's branding og:image. The card path
+# now rejects branding candidates on every route, plus the
+# entity via a card-local outlet supplement.
+SAMVAT_CTX = {
+    "headline": "Samvat 2082: Largecaps Fall as Smallcap "
+                "Multibaggers Steal the Diwali Show",
+    "body": "India's benchmark Nifty fell about 11 percent "
+            "over Samvat 2082, with 83 large-cap stocks "
+            "losing ground, an Economic Times analysis of "
+            "the year since last Diwali shows.",
+    "slug": "samvat-2082-largecaps-fall-smallcap-multibaggers-diwali",
+    "category": "markets-finance"}
+check("hygiene: 'Economic Times' rejected (card-local "
+      "outlet supplement)",
+      sc._card_entity_hygiene("Economic Times") is not None)
+check("branding: outlet-domain URL rejected even with a "
+      "neutral filename",
+      sc._card_url_branding_reject(
+          "https://economictimes.indiatimes.com/photo/"
+          "104857442.cms"))
+check("branding: outlet image-CDN subdomain rejected",
+      sc._card_url_branding_reject(
+          "https://img.etimg.com/thumb/et-image.jpg"))
+check("branding: root social filename rejected",
+      sc._card_url_branding_reject(
+          "https://1stheadlines.com/og.jpg"))
+check("branding: 'logo' in the filename rejected",
+      sc._card_url_branding_reject(
+          "https://example.org/assets/site-logo.png"))
+check("branding: 'logo' as a mere directory marker is "
+      "not, by itself, a rejection",
+      not sc._card_url_branding_reject(
+          "https://cdn.example.org/img/logo/photo_123.jpg"))
+check("branding: a Commons keeper URL passes",
+      not sc._card_url_branding_reject(
+          "https://upload.wikimedia.org/wikipedia/commons/"
+          "2/2e/BSE_-_Bombay_Stock_Exchange_Building.jpg"))
+
+_orig_hosted = res.evaluate_hosted_page
+ET_LOGO_CAND = {
+    "entity": "Economic Times", "title": "The Economic Times",
+    "file_url": "https://img.etimg.com/thumb/msid-104857442,"
+                "width-1200,height-630/et-logo.jpg",
+    "size": None,
+    "source_page": "https://economictimes.indiatimes.com/",
+    "license": "explicit CC / public-domain statement on "
+               "the page",
+    "artist": "", "subject": "The Economic Times",
+    "role": "scene", "route": "B — official sources",
+    "anchor": None, "needs_dims_check": True}
+
+
+def _et_links(query, n):
+    return ["https://economictimes.indiatimes.com/"]
+
+
+def _et_hosted(url, entity, route, net, context=None):
+    return dict(ET_LOGO_CAND), {"verdict": "accepted"}
+
+
+stub_pages([])
+res.brave_links = _et_links
+res.evaluate_hosted_page = _et_hosted
+got = source("India's benchmark Nifty fell about 11 "
+             "percent over Samvat 2082, an Economic Times "
+             "analysis shows.", SAMVAT_CTX,
+             entities=["Economic Times"])
+check("Economic Times logo rejected on the official-"
+      "sources route", got is None)
+res.brave_links = _no_links
+res.evaluate_hosted_page = _orig_hosted
 
 res.commons_search = _orig_search
 res.brave_links = _orig_links

@@ -626,6 +626,29 @@ MAX_CARD_ENTITIES = 3
 _BRAND_TOKEN_RE = re.compile(r"[A-Za-z][A-Za-z&.'-]*")
 
 
+# Languages are not visual entities: there is no photograph OF
+# 'Hindi' — a Commons search for one returns alphabet wall
+# charts and token-coincidence junk (the Jailer 2 Hindi
+# box-office deck carried a classroom Hindi-alphabet chart and
+# the Messier 87 black hole, both sourced for the entity
+# 'Hindi', X 2026-10-30). A card whose only entity is a
+# language falls back to the navy text treatment.
+_LANGUAGE_ENTITIES = {
+    "hindi", "english", "telugu", "tamil", "malayalam",
+    "kannada", "bengali", "marathi", "punjabi", "gujarati",
+    "urdu", "odia", "assamese", "sanskrit", "spanish",
+    "french", "german", "arabic", "persian", "chinese",
+    "japanese", "korean", "russian",
+}
+
+# Card-local supplement to picture_gate_shared.OUTLET_ENTITIES:
+# the shared list has no 'economic times', so the Samvat 2082
+# deck sourced the Economic Times logo for that entity through
+# the official-sources route (X 2026-10-30). The shared list is
+# not edited from here — the card path adds its own misses.
+_CARD_EXTRA_OUTLETS = {"economic times"}
+
+
 # An entity may not BEGIN or END on a function word: those are
 # phrase fragments, not names ('For Indian' out of 'For Indian
 # workers…' sourced wildlife photos for an H-1B deck,
@@ -659,6 +682,12 @@ def _card_entity_hygiene(e):
                     "fragment, not a name")
         if toks[-1].lower().endswith(("'s", "’s")):
             return "a possessive form — not a name"
+    if e.strip().lower() in _LANGUAGE_ENTITIES:
+        return ("a language name — not a visual entity, "
+                "never a picture subject")
+    if e.strip().lower() in _CARD_EXTRA_OUTLETS:
+        return ("a news outlet — a source, never a picture "
+                "subject")
     try:
         import picture_gate_shared as _G
         if _G.is_outlet_entity(e):
@@ -740,6 +769,100 @@ def _card_photo_ok(cand):
     text, where a screenshot declares itself."""
     return not _NON_PHOTO_RE.search(
         f"{cand.get('title') or ''} {cand.get('subject') or ''}")
+
+
+# ── Outlet branding / logo rejection (2026-10-30) ──────────
+# The entity hygiene keeps OUTLETS from becoming picture
+# subjects, but a branding image can still arrive as a
+# CANDIDATE: the Samvat 2082 deck carried the Economic Times
+# logo (the outlet's red share/branding card) as a middle
+# card's photo, sourced through the official-sources route
+# for the entity 'Economic Times' — a name the shared outlet
+# list misses. So every route that can put an image on a card
+# (the entity ladder's accept(), and the article-inline route
+# in make_card_set) also rejects candidates whose URL signals
+# a logo / outlet branding, mirroring the article hero guard
+# in image_sourcer.py (_is_generic_og_image: filename-level
+# blocklist patterns, root social-card filenames at shallow
+# paths, and — for cards — outlet domains outright: an
+# outlet's own og:image/branding asset is never a card photo,
+# and route B's official sources are the entity's OWN sites,
+# never a newsroom's).
+_CARD_ROOT_SOCIAL_FILENAMES = {
+    "og.jpg", "og.jpeg", "og.png", "og.webp",
+    "og-image.jpg", "og-image.jpeg", "og-image.png",
+    "share.jpg", "share.jpeg", "share.png",
+    "default.jpg", "default.jpeg", "default.png",
+    "social.jpg", "social.jpeg", "social.png",
+    "preview.jpg", "thumbnail.jpg",
+}
+_CARD_BRANDING_FILENAME_PATTERNS = [
+    "logo", "default", "placeholder", "social-card",
+    "meta-image", "site-icon", "favicon", "brand-image",
+    "og-default", "share-image", "generic", "fallback",
+    "no-image", "noimage", "missing",
+]
+_CARD_OUTLET_DOMAINS = {
+    "indiatimes.com", "etimg.com", "toiimg.com",
+    "hindustantimes.com", "thehindu.com", "thgim.com",
+    "indianexpress.com", "ndtv.com", "ndtvimg.com",
+    "livemint.com", "moneycontrol.com", "firstpost.com",
+    "news18.com", "theprint.in", "scroll.in", "thewire.in",
+    "deccanherald.com", "deccanchronicle.com",
+    "tribuneindia.com", "business-standard.com",
+    "financialexpress.com", "thehindubusinessline.com",
+    "outlookindia.com", "zeenews.india.com",
+    "reuters.com", "bbc.com", "bbc.co.uk", "cnn.com",
+    "theguardian.com", "nytimes.com", "washingtonpost.com",
+    "aljazeera.com", "apnews.com", "bloomberg.com",
+    "cnbc.com", "espncricinfo.com", "cricbuzz.com",
+}
+
+
+def _card_url_branding_reject(url):
+    """True when an image URL signals a logo / outlet branding
+    asset rather than a photograph: its host is a news-outlet
+    domain, its filename carries a branding pattern (the
+    image_sourcer rule — 'logo' counts in the FILENAME only,
+    never in a directory segment, where CDNs use it as a
+    structural marker), or it is a root-level social-card
+    filename (site branding served at the domain root)."""
+    if not url:
+        return False
+    try:
+        parsed = urllib.parse.urlparse(str(url))
+    except Exception:
+        return False
+    host = (parsed.netloc or "").lower().split("@")[-1] \
+        .split(":")[0]
+    for domain in _CARD_OUTLET_DOMAINS:
+        if host == domain or host.endswith("." + domain):
+            return True
+    segments = [s for s in (parsed.path or "").split("/") if s]
+    filename = segments[-1].lower() if segments else ""
+    dir_segments = [s.lower() for s in segments[:-1]]
+    for pattern in _CARD_BRANDING_FILENAME_PATTERNS:
+        if pattern in filename:
+            return True
+    for pattern in _CARD_BRANDING_FILENAME_PATTERNS:
+        if pattern == "logo":
+            continue
+        if any(pattern in seg for seg in dir_segments):
+            return True
+    if len(segments) <= 2 \
+            and filename in _CARD_ROOT_SOCIAL_FILENAMES:
+        return True
+    return False
+
+
+def _card_branding_reject(cand):
+    """Candidate-level form of _card_url_branding_reject for
+    the entity ladder: checks the candidate's file URL and its
+    hosting/source page."""
+    if not cand:
+        return False
+    return _card_url_branding_reject(cand.get("file_url")) \
+        or _card_url_branding_reject(cand.get("source_page"))
 
 
 def _download_entity_image(url):
@@ -862,6 +985,10 @@ def _entity_image_for_card(text, article_ctx, used, log=None):
         if not _card_photo_ok(c):
             log(f"entity sourcing: skipped non-photo graphic "
                 f"for {entity}: {(c['title'] or '')[:60]}")
+            return False
+        if _card_branding_reject(c):
+            log(f"entity sourcing: skipped outlet/branding "
+                f"image for {entity}: {(c['title'] or '')[:60]}")
             return False
         if is_used(c["file_url"]):
             return False
@@ -1255,8 +1382,15 @@ def make_card_set(headline, category, image_url=None, image_path=None,
     # ── Middle-card pictures: inline -> entity ladder -> navy.
     # The hero is NEVER a middle background; `used` tracks every
     # image identity already in the deck so nothing renders twice.
-    inlines = [u for u in extract_inline_images(body)
-               if not _same_image(u, image_url)]
+    inlines = []
+    for u in extract_inline_images(body):
+        if _same_image(u, image_url):
+            continue
+        if _card_url_branding_reject(u):
+            _elog(f"deck: inline image rejected as outlet "
+                  f"branding/logo: {u[:90]}")
+            continue
+        inlines.append(u)
     article_ctx = {"headline": headline, "body": body or "",
                    "slug": slug, "category": category}
     hook_id = (hook.get("fetched_url") or image_url
