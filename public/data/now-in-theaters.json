@@ -742,6 +742,42 @@
       "fandango_url": "https://www.fandango.com/udta-teer-247825/movie-overview"
     },
     {
+      "title": "Cult",
+      "slug": "cult-2026",
+      "release_date": "2026-10-30",
+      "status": "opening",
+      "language": "Telugu",
+      "director": "Vishwak Sen",
+      "cast": [
+        "Vishwak Sen",
+        "Gayatri Bhardwaj",
+        "Tarak Ponnappa"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=Cult%20showtimes%20near%20me",
+      "why_watch": "Cult is a Telugu film directed by Vishwak Sen, starring Vishwak Sen, Gayatri Bhardwaj.",
+      "rating": "Opens Oct 30",
+      "rating_source": "Release date",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/6/62/Cult_%282026_film%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "trailer_url": "https://www.youtube.com/watch?v=MDv5HHUNsbE",
+      "cast_details": [
+        {
+          "name": "Vishwak Sen",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Vishwak_Sen_%28cropped%29_%28cropped%29.jpg/300px-Vishwak_Sen_%28cropped%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Gayatri Bhardwaj",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Gayatri-Bhardwaj-snapped-attending-the-YOLO-Foundation-Initiative_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+        },
+        {
+          "name": "Tarak Ponnappa",
+          "photo_url": ""
+        }
+      ]
+    },
+    {
       "title": "Ramayana: Part 1",
       "slug": "ramayana-part-1-2026",
       "release_date": "2026-11-05",
