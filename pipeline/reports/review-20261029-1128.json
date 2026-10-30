@@ -1,0 +1,65 @@
+[
+  {
+    "id": "c0fb0adb-e141-4997-89fa-ed2d389a9f9f",
+    "headline": "Coinbase Global Earnings Preview: Market Awaits Key Insights",
+    "slug": "happening-2026-10-29-coinbase-global-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Coinbase's performance and the cryptocurrency market trends specifically impact NRIs, such as potential investment opportunities or risks for Indian investors in cryptocurrencies.",
+        "Include concrete specifics for NRIs, such as the potential impact of Coinbase's earnings on the value of cryptocurrencies in INR, or specific actions they might consider taking based on the earnings report, such as adjusting their investment strategies or timelines for buying/selling cryptocurrencies.",
+        "Add a relevant social embed, such as a tweet from Coinbase or a financial analyst discussing the earnings report, to provide real-time context and engagement for readers.",
+        "Revise the headline to make it more compelling and specific for the NRI audience, such as 'What Coinbase's Earnings Report Means for Indian Investors: Key Insights and Implications for Your Crypto Portfolio.'"
+      ],
+      "embed_opportunities": [
+        "Embed the official Coinbase tweet announcing their earnings report or a tweet from a financial analyst providing insights on the implications for investors."
+      ]
+    }
+  },
+  {
+    "id": "42084bc6-f035-44dd-9dde-613d701f9a66",
+    "headline": "Caterpillar Earnings Preview: Analysts Expect Strong Growth in Q3 2026",
+    "slug": "happening-2026-10-29-caterpillar-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Strengthen the diaspora angle by discussing how Caterpillar's performance may impact Indian NRIs who invest in U.S. markets or have ties to the construction and mining sectors. Include specific examples of how fluctuations in Caterpillar's stock could affect investment portfolios for NRIs.",
+        "Provide concrete takeaways for NRIs, such as potential stock price projections based on the EPS forecast and what that could mean for investment returns. For instance, if the stock is expected to rise, include a hypothetical dollar amount that an NRI could gain or lose based on their investment size.",
+        "Include a specific social embed, such as the official Caterpillar earnings announcement tweet or a relevant financial analyst's tweet that discusses the implications of the earnings report for investors, particularly those in the NRI community.",
+        "Revise the headline to make it more compelling and specific to the NRI audience, such as 'Caterpillar Earnings Preview: What Strong Q3 Growth Means for NRI Investors in 2026'."
+      ],
+      "embed_opportunities": [
+        "Embed the official Caterpillar earnings announcement tweet or a relevant financial analyst's tweet discussing the implications for investors."
+      ]
+    }
+  },
+  {
+    "id": "5c0882bb-aed7-4dba-b8c1-038ae5f1fc46",
+    "headline": "Amazon.com Earnings Preview: Analysts Expect EPS Growth Amid Market Pressures",
+    "slug": "happening-2026-10-29-amazon-com-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including a section that discusses how Amazon's earnings report could impact Indian investors or NRIs who hold Amazon stock. For example, provide insights on how fluctuations in Amazon's stock price might affect their investments or retirement savings in India.",
+        "Include specific financial metrics relevant to NRIs, such as the conversion rate of the EPS forecast from USD to INR, and what that means for Indian investors. For instance, if the EPS is $2.01, convert that to INR and discuss how it might influence the stock's appeal to Indian investors.",
+        "Incorporate a key takeaway that answers 'what does this mean for ME?' by detailing action steps for NRIs, such as monitoring specific dates for earnings announcements or suggesting when to buy or sell Amazon stock based on projected performance.",
+        "Revise the headline to make it more compelling and specific to the NRI audience, such as 'What Amazon's Earnings Report Means for Indian Investors: Key Insights and Action Steps Ahead of Earnings Call.'"
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Amazon or a financial analyst discussing the earnings report to provide real-time insights and enhance engagement."
+      ]
+    }
+  }
+]

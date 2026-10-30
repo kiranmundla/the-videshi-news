@@ -1,0 +1,149 @@
+[
+  {
+    "id": "05033349-d25f-4e0e-8fb6-c60c62a865a4",
+    "headline": "Diwali in London 2026: Greenwich's Free Festival, Dishoom and the Feasts",
+    "slug": "diwali-london-2026-greenwich-dishoom-feasts",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of Diwali in the headline to avoid confusion, as the article states it falls on November 8 but the main events are on November 7. A more specific headline could be 'Diwali Celebrations in London: Free Festival at Greenwich on November 7, 2026.'",
+        "Include specific details about how to book the remaining workshops and storytelling sessions at Dishoom, such as a direct link to the events page or a brief description of the booking process.",
+        "Add a brief mention of any transportation options or tips for getting to the National Maritime Museum and other event locations, as this is relevant for attendees planning to participate."
+      ],
+      "embed_opportunities": [
+        "Embed the official website or social media page of the National Maritime Museum for readers to easily access more information about the Diwali event."
+      ]
+    }
+  },
+  {
+    "id": "d47ac463-de80-4ab2-acde-9373cd06a4e5",
+    "headline": "India Invites Pakistan Minister to SCO Forum, First Since Operation Sindoor",
+    "slug": "india-invites-pakistan-sco-civilisational-forum-delhi",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the invitation by providing context on Operation Sindoor and its implications for India-Pakistan relations, as well as how this invitation may affect future diplomatic engagements.",
+        "Include a direct quote from a relevant official or expert to enhance attribution and provide a clearer perspective on the potential outcomes of this invitation.",
+        "Expand on what the SCO Civilisational Dialogue Forum entails, including specific topics that will be discussed, to give readers a better understanding of its importance and relevance."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian Ministry of External Affairs regarding the invitation to provide authoritative confirmation and context."
+      ]
+    }
+  },
+  {
+    "id": "c5279b00-f478-43db-bcbc-f19fe22711c4",
+    "headline": "At 15, Uma Kashvi Becomes Youngest Player Ever Signed in WPL Auction",
+    "slug": "uma-kashvi-15-youngest-wpl-delhi-capitals",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Kashvi's signing by including a brief statement from a coach or scout about her potential impact on the team or the league.",
+        "Provide more context around the Women's Premier League, such as its significance in women's cricket and how this signing fits into the broader trends of youth participation in the sport.",
+        "Ensure that the statistics and achievements mentioned are clearly sourced or attributed, particularly the performance metrics in the BCCI Women's Under-15 tournament."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight reel of Uma Kashvi's performances in the Under-15 tournament to give readers a visual understanding of her skills."
+      ]
+    }
+  },
+  {
+    "id": "1e1e50ce-5cf4-44ad-89d7-8c9535042cba",
+    "headline": "Damodaran Values Anthropic at $1.48 Trillion, Slams Founder Voting Control",
+    "slug": "damodaran-anthropic-valuation-1475-trillion-voting-structure",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the projected revenue growth by specifying the years mentioned (e.g., 'revenue approaching $1 trillion by 2036' should be clearly stated as a projection for 2036). This will help readers understand the timeframe better.",
+        "Provide a clearer explanation of the governance structure issue, including a brief description of what a Class F share is and why it grants such significant voting power. This context is essential for readers unfamiliar with corporate governance.",
+        "Include a direct quote from Aswath Damodaran regarding his valuation or concerns about the governance structure to enhance attribution and provide a more personal insight into his analysis."
+      ],
+      "embed_opportunities": [
+        "Embed a link to Damodaran's full post, 'The Anthropic IPO Arrives,' for readers who want to explore his detailed analysis further."
+      ]
+    }
+  },
+  {
+    "id": "dceec489-5c26-4e87-9495-a3b22d52a373",
+    "headline": "Bengaluru Tech Summit 2026 Puts 1,000 Startups in Front of Global Investors",
+    "slug": "bengaluru-tech-summit-2026-startups-investor-connect",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include specific registration deadlines and fees for startups interested in participating in the Investor Connect programme to provide actionable information for potential attendees.",
+        "Clarify the significance of the 'AI & Beyond' theme by briefly explaining what specific innovations or discussions are expected to emerge from this focus, enhancing reader understanding of the event's relevance.",
+        "Add a quote from an organizer or a notable speaker to provide a human element and enhance the article's credibility and engagement."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Bengaluru Tech Summit account that highlights key features or announcements related to the event."
+      ]
+    }
+  },
+  {
+    "id": "06b17979-9704-423f-a77e-a71cc3fe7a06",
+    "headline": "Freshworks Buys Robusta to Add AI Outage Investigation to Freshservice",
+    "slug": "freshworks-acquires-robusta-ai-incident-freshservice",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the financial terms of the acquisition, even if they are undisclosed, by providing context on similar acquisitions in the industry to help readers gauge the potential scale of the deal.",
+        "Include a quote from Freshworks' leadership regarding the strategic importance of this acquisition to provide insight into the company's vision and future plans.",
+        "Expand on how the integration of Robusta's technology into Freshservice will specifically benefit users, such as potential improvements in response times or cost savings, to give readers a clearer understanding of the impact."
+      ],
+      "embed_opportunities": [
+        "Embed the official Freshworks announcement regarding the acquisition for direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "0fca847d-3ea5-4082-8e7e-051349d95197",
+    "headline": "India Rejects Patent for Shorter Drug-Resistant TB Treatment BPaL",
+    "slug": "india-rejects-bpal-patent-drug-resistant-tb",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the patent rejection for patients and healthcare providers, including any potential changes in drug availability or pricing. For example, specify how much lower the cost of generic BPaL might be compared to current treatments if generic manufacturers enter the market.",
+        "Provide a brief summary of the significance of the BPaL regimen in the context of drug-resistant TB treatment, including statistics on its effectiveness and how it compares to older treatments to give readers a clearer understanding of its importance."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the World Health Organization or TB Alliance regarding the impact of the patent rejection on TB treatment options."
+      ]
+    }
+  },
+  {
+    "id": "188b0443-751a-46b7-8c4c-0888dac54820",
+    "headline": "PVR INOX Posts Record Quarter as India Box Office Crosses Rs 4,000 Crore",
+    "slug": "pvr-inox-record-q2-india-box-office-4443-crore",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Rs 4,000 crore milestone for the Indian box office. Explain what this means for the industry moving forward, such as potential implications for future film releases or investor confidence.",
+        "Include a brief comparison of PVR INOX's performance with its competitors in the industry to provide context on how this record quarter positions them within the market.",
+        "Add a quote from a film industry analyst or expert to provide additional insight into the implications of these results for the future of cinema in India."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from PVR INOX announcing their quarterly results for direct access to their statement."
+      ]
+    }
+  }
+]

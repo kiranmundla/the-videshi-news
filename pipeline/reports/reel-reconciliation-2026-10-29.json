@@ -1,16 +1,16 @@
 {
   "counts": {
-    "channel_videos": 211,
-    "db_rows": 149,
-    "db_rows_with_yt_id": 119,
+    "channel_videos": 213,
+    "db_rows": 150,
+    "db_rows_with_yt_id": 120,
     "legacy_log_entries": 205,
-    "publish_log_entries": 32,
-    "in_sync": 100,
+    "publish_log_entries": 33,
+    "in_sync": 101,
     "unknown_legacy_logged": 101,
-    "unknown_no_record": 10,
+    "unknown_no_record": 11,
     "ghost_db_rows": 15,
     "superseded_db_rows": 4,
-    "public_without_db_record": 111,
+    "public_without_db_record": 112,
     "phase2_uploads_now_public": 0
   },
   "in_sync": [
@@ -713,6 +713,13 @@
       "privacy": "public",
       "video_id": "_g3DuoCXlBI",
       "record": "prebuilt_reels:861747fa-9361-4338-997a-e872a8117d0d"
+    },
+    {
+      "title": "Sensex Surges 905 Points, Nifty Tops 22,900 as Banking and FMCG Stocks Lead #Shorts #Markets",
+      "published_at": "2026-10-29T17:21:12Z",
+      "privacy": "public",
+      "video_id": "cvlxhwF5HSA",
+      "record": "prebuilt_reels:97b476e3-b509-4357-8c86-9ba19f56bd97"
     }
   ],
   "unknown_legacy_logged": [
@@ -2089,6 +2096,12 @@
       "published_at": "2026-10-13T04:35:32Z",
       "privacy": "public",
       "video_id": "SG8Yd6PmDnc"
+    },
+    {
+      "title": "Jailer 2 Boxoffice",
+      "published_at": "2026-10-29T06:21:49Z",
+      "privacy": "public",
+      "video_id": "9x-Wt7ADC5s"
     }
   ],
   "ghost_db_rows": [
@@ -3619,8 +3632,14 @@
       "published_at": "2026-10-13T04:35:32Z",
       "privacy": "public",
       "video_id": "SG8Yd6PmDnc"
+    },
+    {
+      "title": "Jailer 2 Boxoffice",
+      "published_at": "2026-10-29T06:21:49Z",
+      "privacy": "public",
+      "video_id": "9x-Wt7ADC5s"
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-10-29T05:31:02+00:00"
+  "generated_at": "2026-10-29T23:21:51+00:00"
 }

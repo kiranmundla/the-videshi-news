@@ -430,5 +430,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "cvlxhwF5HSA",
+    "article_slug": "sensex-surges-905-points-nifty-tops-22900-banking-fmcg",
+    "article_id": "1647f644-222e-47e0-a191-d8c9b3ef81a3",
+    "title": "Sensex Surges 905 Points, Nifty Tops 22,900 as Banking and FMCG Stocks Lead #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-10-29T17:20:51.234107+00:00",
+    "video_path": "reel-runs/2026-10-29-sensex-surges-905-points-nifty-tops-22900-banking-fmcg/output/sensex-surges-905-points-nifty-tops-22900-banking-fmcg.mp4",
+    "video_sha256": "c1fd312a286b7dbee101cf51a220c4c27e3a56d23ea75c5d828b8782bc1a7cfd",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

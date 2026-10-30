@@ -1,19 +1,19 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-10-29T05:31:02+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-10-29T23:21:51+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **211**
-- prebuilt_reels rows: 149 (119 with a yt_video_id)
+- Channel uploads (actual, via API): **213**
+- prebuilt_reels rows: 150 (120 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 32
-- **In sync** (channel video backed by a DB/publish-log record): **100**
+- Phase 2 publish-log entries: 33
+- **In sync** (channel video backed by a DB/publish-log record): **101**
 - Unknown — legacy-logged only: 101
-- Unknown — no record anywhere: 10
+- Unknown — no record anywhere: 11
 - Ghost DB rows (yt_video_id not on channel): 15
 - Superseded DB rows (owner-deleted/replaced; not ghosts): 4
-- Public with no DB record: 111
+- Public with no DB record: 112
 - Phase 2 uploads now public (manual flip expected): 0
 
 ## (a1) Unknown channel videos — legacy-logged (old upload path) (101)
@@ -120,7 +120,7 @@ Generated: 2026-10-29T05:31:02+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - `dOdIzexK70M` · public · 2026-10-13 · GOP's H-1B Visa Shift: 9 Indian-American Republicans Run! (log slug: indian-american-republicans-h-1b-backlash-ballot-2026)
 - `d-Lek2J0Q-g` · public · 2026-10-13 · Hyderabad Man's Family Faces Tragedy in Riyadh Airport Attac (log slug: hyderabad-man-riyadh-airport-attack-funeral-saudi)
 
-## (a2) Unknown channel videos — no record anywhere (10)
+## (a2) Unknown channel videos — no record anywhere (11)
 
 - `2XdG6znjzGs` · public · 2026-05-26 · Mammootty Skipped the Padma Bhushan Ceremony for a Kerala Doctorate #Shorts
 - `2PoRwT_MWi0` · public · 2026-06-07 · Rodrigues Has Batted 3, 4, and 5 in Three Consecutive Series. She Says She'll Bat Anywhere … #Shorts
@@ -132,6 +132,7 @@ Generated: 2026-10-29T05:31:02+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - `IJVVEOFsCeQ` · public · 2026-07-06 · Britain, Canada, Germany, Australia. The Countries Lining Up to Take America's Indian Engin #Shorts
 - `jXiFqMOBpXU` · public · 2026-07-06 · Persistent Systems Just Made India's Boldest AI Bet — a $1.4 Billion Gamble on a German Sof #Shorts
 - `SG8Yd6PmDnc` · public · 2026-10-13 · H-1B Crackdown Meets the Ballot Box: 9 Indian-American Republicans in the Middle #Shorts #H1B
+- `9x-Wt7ADC5s` · public · 2026-10-29 · Jailer 2 Boxoffice
 
 ## (b) Ghost DB rows — yt_video_id not on the channel (15)
 
@@ -151,7 +152,7 @@ Generated: 2026-10-29T05:31:02+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - row `21634a8f-8b70-4645-bb38-664eafc8d72a` · slug social-security-totalization-india-h1b-workers-lost-20260709 · yt_video_id `wWi6O6dqYGw` · status ready
 - row `c7713080-09d5-4d70-914a-5090686d7791` · slug nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks · yt_video_id `dB5AYzpRFC8` · status yt_posted
 
-## (c1) Privacy flag — public channel videos with no DB record (111)
+## (c1) Privacy flag — public channel videos with no DB record (112)
 
 - `2XdG6znjzGs` · 2026-05-26 · Mammootty Skipped the Padma Bhushan Ceremony for a Kerala Doctorate #Shorts
 - `E0_-Wo2WOr4` · 2026-05-26 · Mammootty Was Supposed to Receive India's Third-Highest Civilian Honour Today. He Was in Kott #Sh...
@@ -264,6 +265,7 @@ Generated: 2026-10-29T05:31:02+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - `dOdIzexK70M` · 2026-10-13 · GOP's H-1B Visa Shift: 9 Indian-American Republicans Run!
 - `d-Lek2J0Q-g` · 2026-10-13 · Hyderabad Man's Family Faces Tragedy in Riyadh Airport Attac
 - `SG8Yd6PmDnc` · 2026-10-13 · H-1B Crackdown Meets the Ballot Box: 9 Indian-American Republicans in the Middle #Shorts #H1B
+- `9x-Wt7ADC5s` · 2026-10-29 · Jailer 2 Boxoffice
 
 ## (c2) Privacy flag — Phase 2 (unlisted) uploads now public (0)
 
@@ -276,7 +278,7 @@ _None._
 - row `cededbdc-e47d-4afd-9d01-5586e1d95785` · slug india-cancer-drug-price-caps-137-medicines-november-9 · yt_video_id `M5UjKqtENwU` · on channel: no
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 
-## (d) In sync (100)
+## (d) In sync (101)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -378,4 +380,5 @@ _None._
 - `nOEaWpI6twg` · public · 2026-10-28 · Plaintiffs Push for Fast Ruling in $100,000 H-1B Fee Case as Government Seeks Pause #Shorts #H1B [prebuilt_reels:762d7c4d-99b8-4eeb-a95a-4fc0be3b33b8]
 - `ulRHwCyhJJI` · public · 2026-10-28 · Nifty Down 13 Percent Faces Worst Year in Decade as Strategists Urge Caution #Shorts #Markets [prebuilt_reels:0740babc-bc36-46ba-aa92-5d21fcfd504f]
 - `_g3DuoCXlBI` · public · 2026-10-29 · Jailer 2 Dips 20 Percent on Tuesday, India Gross Reaches Rs 462.75 Crore #Shorts #Entertainment [prebuilt_reels:861747fa-9361-4338-997a-e872a8117d0d]
+- `cvlxhwF5HSA` · public · 2026-10-29 · Sensex Surges 905 Points, Nifty Tops 22,900 as Banking and FMCG Stocks Lead #Shorts #Markets [prebuilt_reels:97b476e3-b509-4357-8c86-9ba19f56bd97]
 

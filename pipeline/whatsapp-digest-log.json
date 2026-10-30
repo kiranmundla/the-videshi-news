@@ -208,5 +208,15 @@
     "quick_hit_count": 5,
     "deadline_count": 3,
     "chars": 2544
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-10-29T14:13:04.373795+00:00Z",
+    "subject": "WhatsApp digest \u2014 Oct 29 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "tawang-international-tourism-mart-2026-buyers-22-countries",
+    "quick_hit_count": 5,
+    "deadline_count": 3,
+    "chars": 2593
   }
 ]

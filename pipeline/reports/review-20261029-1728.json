@@ -1,0 +1,156 @@
+[
+  {
+    "id": "3ec173e2-061d-489f-b155-6be65c7f7621",
+    "headline": "Indian Startup Miraqules Wins SLINGSHOT 2026 Grand Prize in Singapore",
+    "slug": "miraqules-seestop-slingshot-2026-grand-prize",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the status of the StopBleed product by providing specific timelines for clinical validation and regulatory approval. This information is crucial for understanding when the product might be available for use.",
+        "Include a quote from Sabir Hossain or another relevant stakeholder to provide a personal perspective on the significance of the win and the future of the product.",
+        "Add context about the SLINGSHOT competition, such as its history or previous notable winners, to help readers understand its importance in the startup ecosystem.",
+        "Ensure that the article mentions the date of the Grand Finals (October 29) earlier in the piece to enhance the timeliness and clarity of the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Enterprise Singapore announcing the winners or highlighting the competition to provide official context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "3f35b23f-d41f-4c30-8369-d319575b76ed",
+    "headline": "Wherever You Go in Queens, Diwali Fills Streets and Halls",
+    "slug": "wherever-you-go-diwali-queens-flushing-richmond-hill",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "Inline caption names venue 'Flushing Town Hall' not supported by the image file name (Flushing_Queens_May_2025_201.jpg\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the date of Diwali in the headline to avoid confusion, as it currently states November 8, 2026, which is not the immediate upcoming Diwali. Consider rephrasing to indicate the current year's celebrations more clearly.",
+        "Include specific details about the Flushing Town Hall festival, such as the types of activities or performances that attendees can expect, to enhance completeness and reader engagement.",
+        "Add quotes from attendees or participants at the events to provide a more personal perspective and enhance the article's depth.",
+        "Provide a brief context about the significance of Diwali for those unfamiliar with the festival, which could improve clarity and completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Arts4All Foundation or a local government official promoting the Diwali events to enhance credibility and engagement."
+      ]
+    }
+  },
+  {
+    "id": "e587f907-99f4-45bb-a860-25bef6aa02ad",
+    "headline": "Talking About Mental Health More, Young Indians Not Seeking Help More",
+    "slug": "young-indians-mental-health-talk-not-help-parikh",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the statistics presented by providing more context around the National Mental Health Survey and its methodology to enhance credibility. For example, specify the sample size and the states involved in the survey.",
+        "Include a direct quote from Dr. Samir Parikh or another expert that encapsulates the key message about the gap between awareness and help-seeking behavior. This would enhance the article's authority and provide a personal touch.",
+        "Add a brief section outlining specific steps that individuals can take if they or someone they know is struggling with mental health issues, such as how to access Tele-MANAS or other resources, including eligibility criteria if applicable.",
+        "Ensure the headline reflects the key findings more explicitly, such as 'Despite Increased Awareness, Young Indians Still Reluctant to Seek Mental Health Help'. This would make the headline more compelling and informative."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the World Health Organization or a relevant mental health organization that highlights the importance of seeking help for mental health issues."
+      ]
+    }
+  },
+  {
+    "id": "0ee6653d-eb65-49e2-8c16-47715a73f092",
+    "headline": "Anthropic Revenue Jumps 14-Fold; Indian IT Faces AI Test",
+    "slug": "anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the IPO filing and the significance of the October 26 registration with the SEC, as this could help readers understand the urgency and relevance of the news.",
+        "Provide specific financial metrics or projections for Indian IT companies in light of Anthropic's revenue growth, such as expected revenue impacts or changes in market share, to give readers a clearer picture of the implications for the sector.",
+        "Include a brief explanation of what the AI-infrastructure trade entails and why it matters to Indian IT, as this context would enhance reader understanding of the market dynamics at play."
+      ],
+      "embed_opportunities": [
+        "Embed the official SEC filing or a relevant tweet from Anthropic regarding their IPO to provide readers with direct access to primary sources."
+      ]
+    }
+  },
+  {
+    "id": "5de2abb4-6f22-40c4-a8bb-134431066e73",
+    "headline": "Statue of Unity Rain Forest Opens With Glass Skywalk, Artificial Rain",
+    "slug": "statue-of-unity-rain-forest-glass-skywalk-ekta-nagar",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the discrepancy in cost by providing a direct comparison between the Rs 9.49 crore and Rs 12 crore figures, explaining why there is a difference and which one is the most accurate.",
+        "Include a specific date for when the Rain Forest attraction will officially open to the public, as this is crucial information for potential visitors.",
+        "Add a brief quote from the Gujarat Chief Minister's Office or Prime Minister Modi regarding the significance of the project to enhance attribution and provide context.",
+        "Ensure that the details about the transportation options to Ekta Nagar are complete by specifying the modes of transport available, such as bus or taxi services from Vadodara and the frequency of trains to Ekta Nagar station."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Gujarat Chief Minister's Office announcing the inauguration of the Rain Forest attraction to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "d9fcaeb9-0508-4b5e-8336-15cfcb59bba2",
+    "headline": "Sacramento Temple Hosts Diwali Annakut With Hundreds of Vegetarian Offerings",
+    "slug": "sacramento-baps-diwali-annakut-celebration-november-2026",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Annakut tradition for readers who may not be familiar with it. A brief explanation of its cultural and religious importance could enhance understanding.",
+        "Include specific details about registration through Eventbrite, such as a link or instructions on how to register, to facilitate attendance.",
+        "Add a brief mention of any expected attendance numbers or community participation to give readers a sense of the event's scale.",
+        "Ensure that the dates mentioned are accurate and consistent throughout the article, as the Diwali date and the Annakut celebration date appear to be close together."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from BAPS Shri Swaminarayan Mandir or a local news outlet previewing the event to provide real-time updates and engage readers."
+      ]
+    }
+  },
+  {
+    "id": "337e2bb7-e6ac-457d-833d-a07e14d70f74",
+    "headline": "IMD Issues Yellow Alert for Delhi-NCR as Rain, Hailstorms Forecast",
+    "slug": "imd-yellow-alert-delhi-ncr-rain-thunderstorms-hailstorms",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the dates mentioned in the article. The article states both October 29 and October 30, but it should specify which day the yellow alert was issued and which day the weather conditions are expected to continue. This will help avoid confusion about the timeline.",
+        "Include specific safety recommendations for residents during the forecasted weather events. For example, suggest staying indoors during thunderstorms or avoiding travel during hailstorms, which would provide actionable advice for readers.",
+        "Provide more context on the significance of the air quality index (AQI) reading of 227. Explain what this means in terms of health implications for residents, especially vulnerable populations, to enhance reader understanding.",
+        "The headline could be more compelling by incorporating the potential impact of the weather. For example, 'IMD Issues Yellow Alert for Delhi-NCR: Rain and Hailstorms Expected, Residents Advised to Stay Cautious' would better convey urgency and relevance."
+      ],
+      "embed_opportunities": [
+        "Embed the official IMD tweet or graphic related to the yellow alert to provide readers with direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "dd7efeb7-4603-42ab-9ac8-310f43f84367",
+    "headline": "Madras High Court Upholds OCI Cancellation Over Unauthorised Missionary Preachin",
+    "slug": "madras-high-court-upholds-oci-cancellation-missionary-preaching",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the date of the court's ruling and the implications of the September 4, 2026 cancellation date, as this could confuse readers about the current status of John Daniel's OCI registration.",
+        "Include a brief explanation of what the OCI card is and its significance for readers unfamiliar with the term, enhancing completeness and clarity.",
+        "Provide a direct quote from Justice D. Bharatha Chakravarthy's ruling to strengthen attribution and give readers insight into the court's reasoning."
+      ],
+      "embed_opportunities": [
+        "Embed the official notification S.O.1050(E) for readers to access the primary source of the legal requirement regarding missionary activities."
+      ]
+    }
+  }
+]
