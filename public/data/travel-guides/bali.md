@@ -6,13 +6,15 @@ Bali has quietly become the Indian diaspora's favourite Southeast Asian escape �
 
 **1. Uluwatu Temple at Sunset** — Perched on a 70-metre cliff above the Indian Ocean, this 11th-century sea temple hosts a nightly Kecak fire dance as the sun drops. The setting is theatrically perfect. Watch your belongings — the resident monkeys are professional thieves. Arrive by 4:30 PM for good seats.
 
-**2. Ubud Rice Terraces & Monkey Forest** — Tegallalang's cascading rice terraces are Bali's most iconic landscape. Walk through in the early morning before the Instagram crowds arrive. Then visit the Sacred Monkey Forest Sanctuary in Ubud — 700 macaques roam through ancient temple ruins draped in banyan trees.
+**2. Ubud Rice Terraces** — Tegallalang's cascading rice terraces are Bali's most iconic landscape. Walk through in the early morning before the Instagram crowds arrive.
 
-**3. Mount Batur Sunrise Trek** — A pre-dawn hike to the summit of an active volcano. You start at 3 AM and reach the crater rim by sunrise, where your guide cooks eggs in volcanic steam. The panorama over Lake Batur and Mount Agung is worth every step. Book through a local guide association, not a resort markup.
+**3. Monkey Forest** — The Sacred Monkey Forest Sanctuary in Ubud — 700 macaques roam through ancient temple ruins draped in banyan trees.
 
-**4. Seminyak Beach Clubs** — Potato Head, Ku De Ta, and La Brisa define Bali's stylish daytime scene. Infinity pools, DJs, cocktails, and Balinese-fusion cuisine against an ocean backdrop. The crowd is young, international, and design-conscious. Reserve a daybed on weekends.
+**4. Mount Batur Sunrise Trek** — A pre-dawn hike to the summit of an active volcano. You start at 3 AM and reach the crater rim by sunrise, where your guide cooks eggs in volcanic steam. The panorama over Lake Batur and Mount Agung is worth every step. Book through a local guide association, not a resort markup.
 
-**5. Tirta Empul Water Temple, Tampaksiring** — A holy spring temple where Balinese Hindus come for ritual purification. Visitors can participate — wear a sarong, follow the sequence of fountains, and immerse yourself in spring water that has been considered sacred for over a thousand years. For Hindu NRIs, this is a profoundly moving experience.
+**5. Seminyak Beach Clubs** — Potato Head, Ku De Ta, and La Brisa define Bali's stylish daytime scene. Infinity pools, DJs, cocktails, and Balinese-fusion cuisine against an ocean backdrop. The crowd is young, international, and design-conscious. Reserve a daybed on weekends.
+
+**6. Tirta Empul Water Temple, Tampaksiring** — A holy spring temple where Balinese Hindus come for ritual purification. Visitors can participate — wear a sarong, follow the sequence of fountains, and immerse yourself in spring water that has been considered sacred for over a thousand years. For Hindu NRIs, this is a profoundly moving experience.
 
 ## Getting There
 
