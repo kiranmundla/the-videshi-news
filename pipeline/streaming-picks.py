@@ -6,6 +6,13 @@ Automatically discovers this week's new Indian/diaspora-relevant streaming
 releases via web search + GPT-4o-mini curation. Enriches with Wikipedia
 poster images (CC-licensed) and YouTube trailer URLs.
 
+CORROBORATION (added 2026-10-31, after a hallucinated entry shipped):
+GPT curation is a PROPOSAL step only. Every pick then passes through
+corroborate_picks(), which fetches independent evidence (Wikipedia page +
+infobox, platform-neutral press search) and verifies platform, cast,
+director and synopsis against it. Picks that cannot be corroborated are
+DROPPED, never published on model knowledge alone (fail-closed).
+
 Run: python3 -u pipeline/streaming-picks.py
 Output: public/data/streaming-picks.json
 
@@ -200,6 +207,7 @@ CRITICAL:
 - Only include titles you are CONFIDENT are actually streaming NOW or this week. If you're unsure about availability, skip it.
 - Do NOT make up cast, directors, or plot details. If you don't know, use empty arrays/strings.
 - Do NOT include titles that have been streaming for months — only recent additions.
+- Every pick is INDEPENDENTLY VERIFIED after this step against Wikipedia and press sources. Any pick whose platform, cast or synopsis cannot be corroborated from a fetched source is dropped automatically — an unverifiable pick is worse than one fewer pick.
 
 SEARCH RESULTS:
 {search_results[:12000]}
@@ -245,6 +253,407 @@ Respond as JSON: {{"picks": [...], "editorial_intro": "2-3 sentence summary of t
         return [], ""
 
 
+# ── Corroboration: fail-closed verification of every pick ────────────────────
+#
+# Why this exists (2026-10-31): the previous pipeline published whatever
+# GPT-4o-mini proposed. The model had paired REAL titles found in search
+# snippets with cast/synopsis/platform details from its own imagination —
+# e.g. "Gajab Raat" shipped with an invented cast (Rajkummar Rao, Bhumi
+# Pednekar, Vikrant Massey), a fabricated heist-comedy synopsis and the
+# wrong platform; 5 of the other 6 picks that week had fully invented
+# casts too, and one title presented as a Zee5 streaming pick was a film
+# still playing in cinemas. Nothing downstream checked any field.
+#
+# The rule now: a pick is emitted ONLY with platform, cast and synopsis
+# corroborated by a fetched source (Wikipedia page/infobox and/or press
+# coverage). Unverifiable titles are dropped, never filled in.
+
+WIKI_API_ACTION = "https://en.wikipedia.org/w/api.php"
+
+PLATFORM_ALIASES = {
+    "netflix": ("netflix",),
+    "prime video": ("prime video", "amazon prime"),
+    "jiohotstar": ("jiohotstar", "hotstar"),
+    "zee5": ("zee5",),
+    "sonyliv": ("sonyliv", "sony liv"),
+    "disney+": ("disney+", "disney plus"),
+    "apple tv+": ("apple tv+",),
+    "paramount+": ("paramount+",),
+    "sunnxt": ("sunnxt", "sun nxt"),
+    "jiocinema": ("jiocinema", "jio cinema"),
+    "mubi": ("mubi",),
+    "lionsgate play": ("lionsgate",),
+}
+
+_SYNOPSIS_STOPWORDS = set(
+    "the a an and or of to in on for with as at by from is are was were be been "
+    "it its this that their they them he she his her who when while into over "
+    "after before between must can will would story film series movie show "
+    "one two new life love world journey".split()
+)
+
+
+def _norm(s):
+    """Lowercase, punctuation-stripped, whitespace-collapsed text."""
+    s = re.sub(r"[^a-z0-9 ]", " ", (s or "").lower())
+    return re.sub(r"\s+", " ", s).strip()
+
+
+def _lev_le1(a, b):
+    """True if a and b are within edit distance 1 (and lengths differ by <=1)."""
+    if abs(len(a) - len(b)) > 1:
+        return False
+    if len(a) > len(b):
+        a, b = b, a
+    diffs = 0
+    i = j = 0
+    while i < len(a) and j < len(b):
+        if a[i] == b[j]:
+            i += 1
+            j += 1
+        else:
+            diffs += 1
+            if diffs > 1:
+                return False
+            if len(a) == len(b):
+                i += 1
+            j += 1
+    return diffs + (len(b) - j) <= 1
+
+
+def _token_in(token, words):
+    if token in words:
+        return True
+    # Surname carried inside a longer evidence word ("krishnan" in
+    # "sundarakrishnan") still corroborates.
+    if len(token) >= 5 and any(token in w for w in words):
+        return True
+    # One-letter transliteration variants ("Madhumitha" vs "Madhumita").
+    if len(token) >= 6 and any(_lev_le1(token, w) for w in words if abs(len(w) - len(token)) <= 1):
+        return True
+    return False
+
+
+def _name_in(name, text_norm):
+    """True if a person's name is corroborated by evidence text.
+
+    Every significant token of the name must be evidenced (handles
+    'Gouri G. Kishan' vs 'Gouri Kishan'). Invented names still fail:
+    none of their tokens appear in the evidence in any of these forms."""
+    tokens = [t for t in _norm(name).split() if len(t) > 1]
+    if not tokens:
+        return False
+    words = set(text_norm.split())
+    return all(_token_in(t, words) for t in tokens)
+
+
+def _content_words(text):
+    return {t for t in _norm(text).split() if len(t) > 3 and t not in _SYNOPSIS_STOPWORDS}
+
+
+def _clean_wiki_markup(s):
+    s = re.sub(r"<ref[^>]*>.*?</ref>", " ", s or "", flags=re.DOTALL)
+    s = re.sub(r"<ref[^>]*/>", " ", s)
+    s = re.sub(r"\[\[(?:[^\]|]*\|)?([^\]]*)\]\]", r"\1", s)
+    # Templates can nest (e.g. {{Plainlist| ... {{ubl|...}} }}): peel the
+    # innermost layer repeatedly until none remain.
+    for _ in range(6):
+        stripped = re.sub(r"\{\{[^{}]*\}\}", " ", s)
+        if stripped == s:
+            break
+        s = stripped
+    s = re.sub(r"\{\{[^|]*\|", " ", s)  # any unclosed template opener left over
+    s = re.sub(r"<br\s*/?>", ", ", s)
+    s = re.sub(r"<[^>]+>", " ", s)
+    s = s.replace("'''", "").replace("''", "")
+    return re.sub(r"\s+", " ", s).strip(" ,;")
+
+
+def _infobox_field(block, *names):
+    """Extract an infobox field, whose value may span several lines
+    (e.g. a {{Plainlist}} cast list) up to the next field or the box end."""
+    for name in names:
+        m = re.search(rf"^\|\s*{name}\s*=\s*(.*?)(?=^\||^\}}\}})",
+                      block, flags=re.MULTILINE | re.DOTALL)
+        if m:
+            return _clean_wiki_markup(m.group(1))
+    return ""
+
+
+def _split_people(field):
+    if not field:
+        return []
+    parts = re.split(r",|\n|\*", field)
+    return [p.strip() for p in parts if 2 < len(p.strip()) < 60][:6]
+
+
+def fetch_wikipedia_page(page_title):
+    """Fetch a Wikipedia page summary via REST. Returns dict or None."""
+    encoded = quote(page_title.replace(" ", "_"), safe="/_:()%")
+    code, body = curl_get(f"{WIKI_API}/{encoded}", headers={"User-Agent": UA}, timeout=8)
+    if code != 200 or not body:
+        return None
+    try:
+        return json.loads(body)
+    except json.JSONDecodeError:
+        return None
+
+
+def _title_bases(title):
+    """Acceptable Wikipedia page names for a pick title: the title itself,
+    the part before a colon, and the title minus a trailing Season/Part N
+    (series pages are named for the show, not the season)."""
+    bases = {title.strip()}
+    if ":" in title:
+        bases.add(title.split(":")[0].strip())
+    stripped = re.sub(r"\s*[:\-]?\s*(season|part|chapter)\s+\d+\s*$", "", title, flags=re.I).strip()
+    if stripped:
+        bases.add(stripped)
+        if ":" in stripped:
+            bases.add(stripped.split(":")[0].strip())
+    return {_norm(b) for b in bases if b}
+
+
+def search_wikipedia_titles(title, year=0):
+    """Wikipedia full-text search → candidate page titles for a work."""
+    bases = _title_bases(title)
+    queries = []
+    for b in sorted(bases, key=len, reverse=True):
+        queries += [f"{b} film", f"{b} series", b]
+    found = []
+    for q in queries:
+        url = (f"{WIKI_API_ACTION}?action=query&list=search&format=json"
+               f"&srlimit=5&srsearch={quote(q)}")
+        code, body = curl_get(url, headers={"User-Agent": UA}, timeout=8)
+        if code == 200 and body:
+            try:
+                for hit in json.loads(body).get("query", {}).get("search", []):
+                    t = hit.get("title", "")
+                    if t and t not in found:
+                        found.append(t)
+            except json.JSONDecodeError:
+                pass
+        # Only pages actually about this title (allowing "(2026 film)" suffixes)
+        matches = [t for t in found
+                   if _norm(re.sub(r"\(.*?\)", "", t)).strip() in bases]
+        if matches:
+            return matches
+        time.sleep(0.3)
+    return []
+
+
+def fetch_wikipedia_infobox(page_title):
+    """Parse director/starring/language/release-year from a page's infobox."""
+    url = (f"{WIKI_API_ACTION}?action=query&prop=revisions&rvprop=content"
+           f"&rvsection=0&format=json&titles={quote(page_title)}")
+    code, body = curl_get(url, headers={"User-Agent": UA}, timeout=8)
+    if code != 200 or not body:
+        return {}
+    try:
+        pages = json.loads(body).get("query", {}).get("pages", {})
+        wikitext = ""
+        for page in pages.values():
+            revs = page.get("revisions", [])
+            if revs:
+                wikitext = revs[0].get("*", "") or revs[0].get("content", "")
+    except (json.JSONDecodeError, AttributeError):
+        return {}
+    if "nfobox" not in wikitext:
+        return {}
+    block = wikitext[:8000]
+    director = _infobox_field(block, "director", "directors", "directed by")
+    starring = _infobox_field(block, "starring", "cast", "stars")
+    language = _infobox_field(block, "language", "languages")
+    dates = _infobox_field(block, "released", "release date", "release_date",
+                           "first_aired", "first aired")
+    year = 0
+    m = re.search(r"\b(19|20)\d{2}\b", dates) or re.search(r"\b(19|20)\d{2}\b", block[:2000])
+    if m:
+        year = int(m.group(0))
+    return {
+        "director": director,
+        "starring": _split_people(starring),
+        "language": language.split(",")[0].strip() if language else "",
+        "year": year,
+    }
+
+
+def fetch_title_evidence(pick):
+    """Fetch independent evidence for a proposed pick.
+
+    Sources: the work's Wikipedia page (summary + infobox) and a
+    platform-neutral press search (the claimed platform is deliberately
+    NOT in the query, so coverage cannot be steered into confirming it).
+    Returns an evidence dict; evidence['found'] is the existence gate."""
+    title = pick.get("title", "").strip()
+    year = pick.get("year", 0) or 0
+    evidence = {
+        "found": False,
+        "wiki_title": "",
+        "wiki_extract": "",
+        "wiki_thumb": "",
+        "infobox": {},
+        "press_text": "",
+        "text": "",
+    }
+    if not title:
+        return evidence
+
+    # Wikipedia: pick the candidate page that is actually about a film/series
+    for page_title in search_wikipedia_titles(title, year):
+        summary = fetch_wikipedia_page(page_title)
+        if not summary:
+            continue
+        desc = (summary.get("description") or "").lower()
+        extract = summary.get("extract") or ""
+        looks_like_work = any(k in desc for k in ("film", "series", "television", "programme", "program")) \
+            or any(k in extract[:300].lower() for k in ("film", "series", "television"))
+        if not looks_like_work:
+            continue
+        evidence["wiki_title"] = page_title
+        evidence["wiki_extract"] = extract
+        evidence["wiki_thumb"] = (summary.get("thumbnail") or {}).get("source", "")
+        evidence["infobox"] = fetch_wikipedia_infobox(page_title)
+        break
+
+    # Press coverage (platform-neutral queries; also try the colon-base
+    # title, since series coverage often omits the ": Season N" suffix)
+    press_bits = []
+    press_titles = {title, title.split(":")[0].strip()}
+    for pt in press_titles:
+        for q in (f'"{pt}" OTT release cast', f'"{pt}" where to watch streaming',
+                  f'"{pt}" review cast director'):
+            txt = web_search(q)
+            if txt:
+                press_bits.append(txt)
+            time.sleep(0.3)
+    evidence["press_text"] = "\n".join(press_bits)
+
+    # A Wikipedia infobox/summary for a DIFFERENT work with the same title
+    # (e.g. the 1990 film vs a 2026 namesake) must not corroborate this pick.
+    wiki_year = evidence["infobox"].get("year", 0)
+    if evidence["wiki_title"] and wiki_year and year and abs(wiki_year - year) > 1:
+        print(f"    ⚠ Wikipedia page '{evidence['wiki_title']}' is a {wiki_year} work, "
+              f"not the {year} pick — ignoring it")
+        evidence["wiki_title"] = ""
+        evidence["wiki_extract"] = ""
+        evidence["wiki_thumb"] = ""
+        evidence["infobox"] = {}
+
+    text_parts = [evidence["wiki_extract"], evidence["press_text"]]
+    ib = evidence["infobox"]
+    if ib:
+        text_parts.append(ib.get("director", ""))
+        text_parts.append(" ".join(ib.get("starring", [])))
+        text_parts.append(ib.get("language", ""))
+    evidence["text"] = "\n".join(p for p in text_parts if p)
+
+    title_norm = _norm(title)
+    evidence["found"] = bool(evidence["wiki_title"]) or title_norm in _norm(evidence["press_text"])
+    return evidence
+
+
+def verify_pick(pick, evidence):
+    """Verify one proposed pick against fetched evidence.
+
+    Returns (cleaned_pick, "") on success or (None, reason) when the pick
+    must be dropped. Pure function of (pick, evidence) — unit-testable
+    without network. Fail-closed on every leg."""
+    title = pick.get("title", "").strip()
+    if not evidence or not evidence.get("found"):
+        return None, "no corroborating source found for the title"
+
+    text_norm = _norm(evidence.get("text", ""))
+    ib = evidence.get("infobox") or {}
+
+    # ── Platform must be corroborated by the evidence ──
+    platform = (pick.get("platform") or "").strip()
+    aliases = PLATFORM_ALIASES.get(platform.lower(), (_norm(platform),))
+    if not any(_norm(a) in text_norm for a in aliases if a):
+        return None, f"platform '{platform}' not corroborated by any source"
+
+    # ── Cast: keep only names the evidence names; require >= 2 ──
+    proposed = [c for c in (pick.get("cast") or []) if c and c.strip()]
+    cast = [c for c in proposed if _name_in(c, text_norm)]
+    dropped_names = [c for c in proposed if c not in cast]
+    if dropped_names:
+        print(f"    ⚠ {title}: uncorroborated cast removed: {dropped_names}")
+    # Infobox starring is a RESCUE source only (when the proposal named
+    # almost nobody real) — never an enrichment source: a series page's
+    # infobox lists every season's cast, so supplementing freely would
+    # re-add past-season names to a new season's pick.
+    if len(cast) < 2:
+        for name in ib.get("starring", []):
+            if len(cast) >= 5:
+                break
+            if name not in cast and _name_in(name, text_norm):
+                cast.append(name)
+    if len(cast) < 2:
+        return None, f"fewer than 2 corroborated cast members ({len(cast)} found)"
+    pick["cast"] = cast[:5]
+
+    # ── Director: keep only if corroborated, else infobox, else blank ──
+    director = (pick.get("director") or "").strip()
+    if director and not _name_in(director, text_norm):
+        print(f"    ⚠ {title}: uncorroborated director '{director}' cleared")
+        director = ""
+    if not director and ib.get("director"):
+        director = ib["director"].split(",")[0].strip()
+    pick["director"] = director
+
+    # ── Synopsis must be grounded in the evidence ──
+    # The hard gates above (existence, platform, >=2 evidence-named cast)
+    # carry the safety; this overlap is a grounding tripwire. 0.20 because
+    # press-snippet evidence is thin — measured 2026-10-31: the CORRECTED
+    # Gajab Raat synopsis scores 0.24 against fetched coverage, while the
+    # fabricated heist-comedy original scores ~0. A fabricated plot shares
+    # almost no content words with real coverage.
+    synopsis = (pick.get("synopsis") or "").strip()
+    words = _content_words(synopsis)
+    overlap = (len(words & _content_words(evidence.get("text", ""))) / len(words)) if words else 0.0
+    if overlap < 0.20:
+        extract = (evidence.get("wiki_extract") or "").strip()
+        if extract:
+            sentences = re.split(r"(?<=[.!?])\s+", extract)
+            grounded = " ".join(sentences[:2]).strip()
+            if len(grounded) > 340:
+                grounded = grounded[:337].rsplit(" ", 1)[0] + "..."
+            print(f"    ⚠ {title}: synopsis overlap {overlap:.2f} — replaced with Wikipedia extract")
+            pick["synopsis"] = grounded
+        else:
+            return None, f"synopsis not grounded in any source (overlap {overlap:.2f})"
+
+    # ── Language from the infobox when available (it is sourced) ──
+    if ib.get("language"):
+        pick["language"] = ib["language"]
+
+    # Carry the verified page's poster forward for the enrichment step
+    if evidence.get("wiki_thumb"):
+        pick["_wiki_thumb"] = evidence["wiki_thumb"]
+    return pick, ""
+
+
+def corroborate_picks(picks, evidence_fetcher=fetch_title_evidence):
+    """Verify every proposed pick; drop the ones that fail. Fail-closed."""
+    verified = []
+    for pick in picks:
+        title = pick.get("title", "?")
+        print(f"  🔎 Corroborating: {title}")
+        try:
+            evidence = evidence_fetcher(pick)
+        except Exception as e:
+            print(f"    ❌ Dropped '{title}': evidence fetch failed ({e})")
+            continue
+        cleaned, reason = verify_pick(pick, evidence)
+        if cleaned is None:
+            print(f"    ❌ Dropped '{title}': {reason}")
+        else:
+            print(f"    ✅ Corroborated '{title}'")
+            verified.append(cleaned)
+    print(f"  Corroboration: {len(verified)}/{len(picks)} picks survived")
+    return verified
+
+
 # ── Wikipedia poster fetching (via curl) ──────────────────────────────────────
 
 def fetch_wikipedia_image(title, year=0, media_type="auto"):
@@ -286,8 +695,20 @@ def fetch_wikipedia_image(title, year=0, media_type="auto"):
                 data = json.loads(body)
                 thumb = data.get("thumbnail", {}).get("source", "")
                 if thumb:
-                    print(f"  ✅ Wikipedia image: {candidate}")
-                    return thumb
+                    # Guard against same-title wrong-work pages: a bare title
+                    # like "Love Always" once resolved to a music single's
+                    # cover art. Only accept pages that are about a film/series
+                    # (per their Wikidata description) or were reached via an
+                    # explicit film/series candidate name.
+                    desc = (data.get("description") or "").lower()
+                    is_work_page = any(k in desc for k in
+                                       ("film", "series", "television", "programme", "program"))
+                    explicit = any(k in candidate for k in ("film)", "TV series", "web series"))
+                    if is_work_page or explicit:
+                        print(f"  ✅ Wikipedia image: {candidate}")
+                        return thumb
+                    print(f"  ⚠ Wikipedia page '{candidate}' is not a film/series page "
+                          f"(description: {desc[:60]}) — skipping its image")
             except json.JSONDecodeError:
                 pass
         time.sleep(0.3)
@@ -328,6 +749,36 @@ def try_find_youtube_trailer(title, year=0, language=""):
         time.sleep(0.5)
 
     print(f"  📎 Using YouTube search URL: {title}")
+    return youtube_search_url(title)
+
+
+def verify_youtube_trailer(url, title):
+    """Confirm a scraped watch URL is really this title's trailer, via oEmbed.
+
+    The results-page scrape can misalign video IDs with titles, so an
+    unverified first-hit once attached wrong videos. If oEmbed resolves
+    the video and its title does not name this work, downgrade to a
+    (non-embeddable) search URL rather than embedding a wrong video."""
+    m = re.search(r"watch\?v=([A-Za-z0-9_-]{11})", url or "")
+    if not m:
+        return url
+    code, body = curl_get(
+        f"https://www.youtube.com/oembed?url={quote(url, safe='')}&format=json",
+        headers={"User-Agent": UA}, timeout=8)
+    if code != 200 or not body:
+        return url  # cannot verify either way; keep, log nothing
+    try:
+        video_title = json.loads(body).get("title", "")
+    except json.JSONDecodeError:
+        return url
+    base = _norm(title.split(":")[0])
+    if base and base in _norm(video_title):
+        return url
+    tokens = [t for t in _norm(title).split() if len(t) > 3 and t not in ("season", "part")]
+    vt = _norm(video_title)
+    if tokens and sum(1 for t in tokens if t in vt) >= max(1, len(tokens) // 2):
+        return url
+    print(f"  ⚠ Trailer mismatch for '{title}': video is '{video_title}' — using search URL")
     return youtube_search_url(title)
 
 
@@ -413,6 +864,14 @@ def build():
         print("  ❌ No valid picks after validation. Keeping existing data.")
         return False
 
+    # Step 3.5: Corroborate every field against fetched sources (fail-closed).
+    # GPT proposals are NOT publishable on their own — see corroborate_picks().
+    print(f"\n── Step 3.5: Corroborating picks against sources ──")
+    valid_picks = corroborate_picks(valid_picks)
+    if not valid_picks:
+        print("  ❌ No picks survived corroboration. Keeping existing data.")
+        return False
+
     # Step 4: Enrich with Wikipedia posters and YouTube trailers
     print(f"\n── Step 4: Enriching with posters and trailers ──")
     for pick in valid_picks:
@@ -423,14 +882,15 @@ def build():
 
         print(f"\n  Processing: {title}")
 
-        # Wikipedia poster
-        poster = fetch_wikipedia_image(title, year, media_type)
+        # Wikipedia poster — prefer the poster of the page that corroborated
+        # this pick (guaranteed same work); fall back to the guarded search.
+        poster = pick.pop("_wiki_thumb", "") or fetch_wikipedia_image(title, year, media_type)
         pick["poster_url"] = poster
         pick["backdrop_url"] = poster  # Same image for backdrop
 
-        # YouTube trailer
+        # YouTube trailer (oEmbed-verified; wrong videos downgrade to search)
         trailer = try_find_youtube_trailer(title, year, language)
-        pick["trailer_url"] = trailer
+        pick["trailer_url"] = verify_youtube_trailer(trailer, title)
 
         time.sleep(0.3)
 
