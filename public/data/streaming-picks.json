@@ -8,22 +8,24 @@
    "slug": "love-always",
    "platform": "JioHotstar",
    "platform_icon": "hotstar",
-   "genre": "Romantic Drama",
+   "genre": "Romantic Fantasy",
    "year": 2026,
-   "synopsis": "In this Tamil adaptation of the popular Korean webtoon 'Here We Go', a young couple navigates the ups and downs of love while dealing with family expectations and societal pressures. Their journey is filled with heartfelt moments and challenges that test their bond.",
+   "synopsis": "A long-married couple, Kannan and Manjula, whose relationship has reached a breaking point, are magically given the chance to revisit their youth — reliving their romance as their younger selves while their present-day marriage is tested. It is the first Tamil adaptation of the Korean webtoon 'Here We Go Again'.",
    "cast": [
-    "Vikram Prabhu",
-    "Aditi Rao Hydari",
-    "Vani Bhojan"
+    "Gouri G. Kishan",
+    "Ramzan Muhammed",
+    "Jayaprakash",
+    "Jayasudha",
+    "Maya Krishnan"
    ],
-   "director": "",
-   "why_watch": "If you're a fan of romantic dramas, this series beautifully captures the nuances of love and relationships, making it a must-watch for anyone who enjoys heartfelt storytelling.",
+   "director": "Madhumitha",
+   "why_watch": "A warm, quirky age-reversal romance — the first Korean-webtoon adaptation in Tamil streaming — with Jayasudha and Jayaprakash as the older couple and Gouri Kishan and Ramzan Muhammed as their younger selves.",
    "is_indian": true,
    "watch_url": "https://www.jio.com/search?q=love+always",
    "language": "Tamil",
    "trending": true,
-   "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/cb/Love_Always_K-Ci_%26_JoJo.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-   "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/c/cb/Love_Always_K-Ci_%26_JoJo.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+   "poster_url": "",
+   "backdrop_url": "",
    "trailer_url": "https://www.youtube.com/watch?v=VcwSOA7URHU",
    "rank": 1
   },
@@ -61,16 +63,18 @@
    "slug": "chaar-yaar",
    "platform": "Prime Video",
    "platform_icon": "prime",
-   "genre": "Action Comedy",
+   "genre": "Crime Drama",
    "year": 2026,
-   "synopsis": "Four childhood friends reunite for a road trip that takes unexpected turns when they stumble upon a criminal conspiracy. Their camaraderie and quick wit help them navigate through the chaos, leading to hilarious and action-packed moments.",
+   "synopsis": "Set in early-2000s Mumbai, four friends from modest backgrounds — Jay, Tony, Saahil and Sameer — turn to stealing luxury cars to escape their financial struggles. One decision pulls them into a dangerous world of gangsters and a relentless police pursuit that tests their friendship.",
    "cast": [
-    "Arshad Warsi",
-    "Sharman Joshi",
-    "Vivek Oberoi"
+    "Purav Jha",
+    "Naman Jain",
+    "Saqib Ayub",
+    "Prayrak Mehta",
+    "Sikandar Kher"
    ],
-   "director": "",
-   "why_watch": "With a mix of action and comedy, this film promises a fun ride that highlights the importance of friendship amidst chaos.",
+   "director": "Vinay Waikul",
+   "why_watch": "A gritty, Satya-style crime saga told through a young cast — eight episodes of friendship, ambition and bad decisions in millennium-era Mumbai.",
    "is_indian": true,
    "watch_url": "https://www.amazon.com/search?q=chaar+yaar",
    "language": "Hindi",
@@ -81,73 +85,54 @@
    "rank": 3
   },
   {
-   "title": "Tum Mere Ho",
-   "slug": "tum-mere-ho",
-   "platform": "Zee5",
-   "platform_icon": "zee5",
-   "genre": "Romantic Drama",
-   "year": 2026,
-   "synopsis": "A poignant love story unfolds between two individuals from different backgrounds who must confront their families' disapproval and societal norms. Their journey is filled with emotional highs and lows as they fight for their love.",
-   "cast": [
-    "Kartik Aaryan",
-    "Kiara Advani"
-   ],
-   "director": "",
-   "why_watch": "This film beautifully portrays the struggles of love against societal expectations, making it relatable and heartfelt.",
-   "is_indian": true,
-   "watch_url": "https://www.zee5.com/search?q=tum+mere+ho",
-   "language": "Hindi",
-   "trending": false,
-   "poster_url": "https://upload.wikimedia.org/wikipedia/en/b/b5/Tum_Mere_Ho_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-   "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/b/b5/Tum_Mere_Ho_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-   "trailer_url": "https://www.youtube.com/watch?v=K3wqtAWeveU",
-   "rank": 4
-  },
-  {
    "title": "Pooja Meri Jaan",
    "slug": "pooja-meri-jaan",
-   "platform": "JioHotstar",
-   "platform_icon": "hotstar",
-   "genre": "Romantic Comedy",
+   "platform": "Zee5",
+   "platform_icon": "zee5",
+   "genre": "Crime Thriller",
    "year": 2026,
-   "synopsis": "A quirky romantic comedy that follows the misadventures of a young woman named Pooja, who is on a quest to find true love while juggling her career and family expectations. Her journey is filled with humorous encounters and unexpected twists.",
+   "synopsis": "Pooja Dogra's rejection of her close friend Aniket's romantic advances ends in tragedy when he dies by suicide — and Pooja is arrested for abetment. Corporate lawyer Sana takes up her defence in a courtroom fight over obsession, rejection and consent.",
    "cast": [
-    "Sidharth Malhotra",
-    "Kriti Sanon"
+    "Mrunal Thakur",
+    "Huma Qureshi",
+    "Vikram Singh Chauhan",
+    "Vijay Raaz"
    ],
-   "director": "",
-   "why_watch": "This film is a light-hearted take on modern romance, filled with humor and relatable situations that will keep you entertained.",
+   "director": "Navjot Gulati",
+   "why_watch": "A sobering thriller about stalking and consent, anchored by Mrunal Thakur and Huma Qureshi — far darker than its title suggests.",
    "is_indian": true,
-   "watch_url": "https://www.jio.com/search?q=pooja+meri+jaan",
+   "watch_url": "https://www.zee5.com/search?q=pooja+meri+jaan",
    "language": "Hindi",
    "trending": false,
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/6/6a/Pooja_Meri_Jaan_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/6/6a/Pooja_Meri_Jaan_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "trailer_url": "https://www.youtube.com/watch?v=urDzsrt17IQ",
-   "rank": 5
+   "rank": 4
   },
   {
    "title": "Ashakal Aayiram",
    "slug": "ashakal-aayiram",
-   "platform": "SonyLiv",
-   "platform_icon": "sonyliv",
-   "genre": "Drama",
+   "platform": "Zee5",
+   "platform_icon": "zee5",
+   "genre": "Comedy Drama",
    "year": 2026,
-   "synopsis": "This Malayalam drama explores the life of a middle-aged man who reflects on his past choices and the impact they have had on his family. As he seeks redemption, he must confront the ghosts of his past.",
+   "synopsis": "Ajeesh Hariharan, a carefree youngster who dreams of stardom as his social-media persona 'Junior Prince', sees his ordinary life upended when a superstar's film shoot arrives in his neighbourhood — and his bond with his father Hariharan is tested and rebuilt along the way.",
    "cast": [
-    "Mohanlal",
-    "Manju Warrier"
+    "Jayaram",
+    "Kalidas Jayaram",
+    "Asha Sharath",
+    "Sharaf U Dheen"
    ],
-   "director": "",
-   "why_watch": "A deeply moving narrative that resonates with anyone who has ever questioned their life choices, making it a must-watch for drama enthusiasts.",
+   "director": "G. Prajith",
+   "why_watch": "Real-life father and son Jayaram and Kalidas Jayaram share the screen in this warm Malayalam family comedy-drama, reuniting as leads more than two decades after Ente Veedu Appuvinteyum.",
    "is_indian": true,
-   "watch_url": "https://www.sonyliv.com/search?q=ashakal+aayiram",
+   "watch_url": "https://www.zee5.com/search?q=ashakal+aayiram",
    "language": "Malayalam",
    "trending": false,
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/06/Ashakal_Aayiram_Movie_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/0/06/Ashakal_Aayiram_Movie_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "trailer_url": "https://www.youtube.com/watch?v=qqA_xXRxcsk",
-   "rank": 6
+   "rank": 5
   },
   {
    "title": "The Terminal List: Season 2",
@@ -156,11 +141,13 @@
    "platform_icon": "prime",
    "genre": "Action Thriller",
    "year": 2026,
-   "synopsis": "In the second season, former Navy SEAL James Reece continues his quest for vengeance against those who wronged him. As he uncovers deeper conspiracies, he must confront his own demons while navigating a web of betrayal.",
+   "synopsis": "Adapting Jack Carr's novel 'True Believer', Season 2 picks up months after James Reece finished his list: offered a pardon if he hunts down a terrorist he once trained, Reece is pulled back into a globetrotting mission alongside Raife Hastings.",
    "cast": [
     "Chris Pratt",
     "Constance Wu",
-    "Taylor Kitsch"
+    "Tom Hopper",
+    "Gabriel Luna",
+    "Luke Hemsworth"
    ],
    "director": "",
    "why_watch": "With intense action sequences and a gripping storyline, this series keeps you on the edge of your seat while exploring themes of loyalty and revenge.",
@@ -171,7 +158,7 @@
    "poster_url": "https://upload.wikimedia.org/wikipedia/en/e/ed/The_Terminal_List.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/e/ed/The_Terminal_List.jpeg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
    "trailer_url": "https://www.youtube.com/watch?v=sGmhziz9MoE",
-   "rank": 7
+   "rank": 6
   }
  ]
 }
