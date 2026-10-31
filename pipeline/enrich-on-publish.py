@@ -1636,8 +1636,41 @@ def main():
         # tweet or IG post can still outrank a mediocre video.
         pending_embeds = []  # [(score, platform, embed_url, change_label)]
 
+        # ── Roster trailer (2026-10-31) ──
+        # A movie review's official trailer comes from the film's
+        # now-in-theaters roster entry, gated by review_trailer.py
+        # (allowlisted channel + trailer title naming the film + US
+        # region). Neither route below can substitute: the registry
+        # search only finds videos for registered people/orgs (a film
+        # title is never one), and the official-video pass maps
+        # channels by studio names in the body, which a review
+        # synthesis may never mention. This runs at production time —
+        # both producers (movie-reviews.py, v3 writer) call this
+        # script on publish — so reviews ship with their trailer
+        # instead of waiting on a catch-up lottery.
+        roster_trailer_done = False
+        if not has_embed(body, "youtube") \
+                and (article.get("category") or "").lower() == "entertainment":
+            try:
+                import review_trailer
+                rt = review_trailer.review_trailer_for_article(article)
+                if rt.get("status") == "accepted":
+                    print(f"     YT-trailer: {rt['url']} — "
+                          f"\"{rt['title'][:50]}\" via {rt['channel']} "
+                          f"(roster film: {rt['film_title']})")
+                    pending_embeds.append(
+                        (12, "youtube", rt["url"],
+                         f"YT-trailer({rt['film_title'][:20]})"))
+                    report["yt_embeds"] += 1
+                    roster_trailer_done = True
+                elif rt.get("status") == "rejected":
+                    print(f"     YT-trailer: roster trailer rejected — "
+                          f"{rt.get('reason')}")
+            except Exception as e:
+                print(f"     YT-trailer: pass error (non-fatal): {e}")
+
         # ── YouTube enrichment ──
-        if not has_embed(body, "youtube"):
+        if not has_embed(body, "youtube") and not roster_trailer_done:
             has_x = has_embed(body, "x")
             has_ig = has_embed(body, "instagram")
             if not (has_x and has_ig):
