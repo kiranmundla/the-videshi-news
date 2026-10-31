@@ -1,0 +1,29 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "sensex-adds-308-points-nifty-reclaims-23000-second-rally",
+  "name": "sensex-adds-308-points-nifty-reclaims-23000-second-rally",
+  "script": "reel-runs/2026-10-30-sensex-adds-308-points-nifty-reclaims-23000-second-rally/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000716
+  },
+  "sourcing": {
+    "mode": "skipped",
+    "extras": {}
+  },
+  "manifest": "reel-runs/2026-10-30-sensex-adds-308-points-nifty-reclaims-23000-second-rally/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-10-30-sensex-adds-308-points-nifty-reclaims-23000-second-rally/output-v2/sensex-adds-308-points-nifty-reclaims-23000-second-rally.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-10-30-sensex-adds-308-points-nifty-reclaims-23000-second-rally/output-v2/tiktok-caption.txt"
+}

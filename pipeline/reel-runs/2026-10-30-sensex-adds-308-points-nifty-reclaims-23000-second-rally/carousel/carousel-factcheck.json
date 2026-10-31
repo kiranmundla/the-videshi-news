@@ -1,0 +1,153 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "sensex-adds-308-points-nifty-reclaims-23000-second-rally",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Sensex Adds 308 Points as Nifty Reclaims 23,000 in Second Straight Rally",
+        "numbers": [
+          308.0,
+          23000.0
+        ],
+        "entities": [
+          "Sensex Adds",
+          "Nifty Reclaims",
+          "Second Straight Rally"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Both Sensex and Nifty movements are accurately reported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Two-day Sensex gains top 1,200 points as IT and pharma lead, Trent jumps 5.2% on earnings, and October snaps a two-month losing streak \u2014 even as midcaps and smallcaps fall.",
+        "numbers": [
+          5.2,
+          1200.0
+        ],
+        "entities": [
+          "Two-day Sensex"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All elements of the summary are present in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The Sensex closed 308.49 points higher at 74,459.53 and the Nifty rose 116.35 points to 23,053.10 on Friday",
+        "numbers": [
+          116.35,
+          308.49,
+          23053.1,
+          74459.53
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Exact closing points for Sensex and Nifty are provided.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The Nifty IT index rose 2.3% and Nifty Pharma 1.8%, while midcap and smallcap indices fell 0.8% and 1.8%",
+        "numbers": [
+          0.8,
+          1.8,
+          2.3
+        ],
+        "entities": [
+          "Nifty IT",
+          "Nifty Pharma"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Percentage changes for indices are accurately reported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Trent jumped 5.20% after reporting a 25% rise in quarterly net profit to Rs 468 crore",
+        "numbers": [
+          5.2,
+          25.0,
+          468.0,
+          4680000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Trent's performance and profit increase are correctly stated.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Sensex Adds 308 Points as Nifty Reclaims 23,000 in Second Straight Rally",
+        "numbers": [
+          308.0,
+          23000.0
+        ],
+        "entities": [
+          "Sensex Adds",
+          "Nifty Reclaims",
+          "Second Straight Rally"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This is a repetition of the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000483,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

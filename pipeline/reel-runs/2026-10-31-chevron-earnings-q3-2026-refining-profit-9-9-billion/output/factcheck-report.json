@@ -1,0 +1,284 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "chevron-earnings-q3-2026-refining-profit-9-9-billion",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "CHEVRON EARNINGS BEAT ESTIMATES AS REFINING LIFTS PROFIT TO $9.9 BILLION ON $67.8 BILLION REVENUE",
+      "numbers": [
+        9.9,
+        67.8,
+        9900000000.0,
+        67800000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Earnings and revenue figures are accurately reported in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Chevron reported third-quarter earnings of $9.9 billion, up from $3.5 billion a year earlier, as revenue rose 36.3% to $67.8 billion on a refining surge.",
+      "numbers": [
+        3.5,
+        9.9,
+        36.3,
+        67.8,
+        3500000000.0,
+        9900000000.0,
+        67800000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All figures and comparisons are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$9.9 BILLION",
+      "numbers": [
+        9.9,
+        9900000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$9.9 billion is the reported earnings in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Chevron third-quarter earnings, nearly tripled",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Earnings increased significantly compared to the previous year.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$67.8 BILLION",
+      "numbers": [
+        67.8,
+        67800000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Revenue of $67.8 billion is stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Revenue, up 36.3% and above the $60.5 billion consensus",
+      "numbers": [
+        36.3,
+        60.5,
+        60500000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Revenue increase and consensus comparison are confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$5.28",
+      "numbers": [
+        5.28
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Adjusted earnings per share of $5.28 is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Adjusted earnings per share, beating the $4.78 consensus by 10.5%",
+      "numbers": [
+        4.78,
+        10.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Earnings per share and consensus comparison are accurately reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$4.9 BILLION",
+      "numbers": [
+        4.9,
+        4900000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Downstream earnings of $4.9 billion are stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Downstream earnings, up from $1.1 billion a year earlier",
+      "numbers": [
+        1.1,
+        1100000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Comparison of downstream earnings is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Free cash flow surged to $12 billion in the quarter",
+      "numbers": [
+        12.0,
+        12000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Free cash flow figure is accurately reported in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Total debt fell to $33.5 billion from $40.8 billion at the end of 2025",
+      "numbers": [
+        33.5,
+        40.8,
+        2025.0,
+        33500000000.0,
+        40800000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "Debt reduction figures are confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Chevron declared a $1.78 quarterly dividend payable December 10.",
+      "numbers": [
+        1.78,
+        10.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Dividend declaration and payment date are stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Chevron",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Mike Wirth",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Venezuela",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000708,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,406 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "chevron-earnings-q3-2026-refining-profit-9-9-billion",
+ "article_slug": "chevron-earnings-q3-2026-refining-profit-9-9-billion",
+ "article_id": "4beee72a-7bb9-4ff5-a368-2a89a28020e1",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-10-31-chevron-earnings-q3-2026-refining-profit-9-9-billion/output/chevron-earnings-q3-2026-refining-profit-9-9-billion.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Chevron_Headquarters_2022.jpg/1920px-Chevron_Headquarters_2022.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-10-31-chevron-earnings-q3-2026-refining-profit-9-9-billion/output/hero.jpg",
+  "width": 4000,
+  "height": 2250,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.490,0.496) damped=(0.495,0.498)",
+  "has_face": false,
+  "box_source": [
+   860,
+   625,
+   2240,
+   900
+  ],
+  "box_bg": [
+   -422,
+   533,
+   1911,
+   768
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.497,
+   0.497
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 246,
+   "block_top": 1334,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1334,
+    930,
+    1580
+   ],
+   "texts": [
+    "Markets Finance",
+    "CHEVRON EARNINGS BEAT ESTIMATES AS REFINING LIFTS PROFIT TO $9.9 BILLION ON $67.8 BILLION REVENUE"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.853,
+    "photo_px": [
+     4000,
+     2250
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8533333333333334,
+     "window": [
+      1355,
+      0,
+      2620,
+      2250
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 910,
+   "block_bottom": 1333,
+   "text_bbox": [
+    70,
+    910,
+    930,
+    1333
+   ],
+   "texts": [
+    "What Happened",
+    "Chevron reported third-quarter earnings of $9.9 billion, up from $3.5 billion a year earlier, as revenue rose 36.3% to $67.8 billion on a refining surge."
+   ],
+   "v7": {
+    "image_source": "extra:chevron-185th-gvtbap",
+    "track": "backdrop",
+    "render_scale": 0.742,
+    "photo_px": [
+     1124,
+     1124
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7419928825622776,
+     "window": [
+      0,
+      223,
+      1124,
+      853
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.71x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "\u0428\u0435\u0432\u0440\u043e\u043d 185 \u0412\u0411\u0410\u041f",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Chevron_185th_GvTBAP.png",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Chevron_185th_GvTBAP.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Sergienkod"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 372,
+   "block_top": 936,
+   "block_bottom": 1308,
+   "text_bbox": [
+    70,
+    936,
+    930,
+    1308
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$9.9 BILLION",
+    "Chevron third-quarter earnings, nearly tripled"
+   ],
+   "v7": {
+    "image_source": "extra:hovedbygningen-ntnu-stonemasonry",
+    "track": "backdrop",
+    "render_scale": 0.407,
+    "photo_px": [
+     2048,
+     1536
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.4072265625,
+     "window": [
+      0,
+      157,
+      2048,
+      1306
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.25x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Stone masonry. Chevron pattern, inspired by romanesque architecture, in Hovedbygningen(=the main building) at Campus NTNU Gl\u00f8shaugen, Trondheim. The building was erected as main building for NTH(=The Norwegian Institute of Technology) in 19",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Hovedbygningen_NTNU_stonemasonry.JPG",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Hovedbygningen_NTNU_stonemasonry.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "NAPkjersti"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 827,
+   "zone_h": 753,
+   "scale": 0.925,
+   "content_h": 734,
+   "block_top": 846,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    846,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "$67.8 BILLION",
+    "Revenue, up 36.3% and above the $60.5 billion consensus",
+    "$5.28",
+    "Adjusted earnings per share, beating the $4.78 consensus by 10.5%",
+    "$4.9 BILLION",
+    "Downstream earnings, up from $1.1 billion a year earlier"
+   ],
+   "v7": {
+    "image_source": "extra:ip-finance-dialogue-expanding-horizons-on-ip",
+    "track": "full-bleed",
+    "render_scale": 0.48,
+    "photo_px": [
+     6000,
+     4000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.48,
+     "window": [
+      983,
+      0,
+      3233,
+      4000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Juni Tingting Zhu, Senior Economist at Markets, Competition and Technology Global Unit of World Bank Group, Washington, United States of America, speaks at the panel discussion entitled \u201cIP Finance on the Ground \u2013 IP Financing in the Creati",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "WIPO | OMPI"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1211,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1211,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Free cash flow surged to $12 billion in the quarter",
+    "Total debt fell to $33.5 billion from $40.8 billion at the end of 2025"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "full-bleed",
+    "render_scale": 0.853,
+    "photo_px": [
+     4000,
+     2250
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8533333333333334,
+     "window": [
+      1355,
+      0,
+      2620,
+      2250
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Chevron declared a $1.78 quarterly dividend payable December 10.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 138.4,
+ "mp4_bytes": 24539568
+}

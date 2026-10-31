@@ -1,0 +1,135 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "dallas-baps-mandir-diwali-annakut-fireworks-november-10",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "BAPS Shri Swaminarayan Mandir",
+    "Irving",
+    "Diwali",
+    "Irving Cares",
+    "Light Beyond Lamps",
+    "Journey Through Hindu Sanskruti"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:20230307 164814 BAPS Shri Swaminarayan Mandir Auckland.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in new zealand, which this story is not about (story context: india/singapore/united states) \u2014 a namesake, not 'BAPS Shri Swaminarayan Mandir' in this story"
+    },
+    {
+      "candidate": "File:20230307 164826 BAPS Shri Swaminarayan Mandir Auckland.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in new zealand, which this story is not about (story context: india/singapore/united states) \u2014 a namesake, not 'BAPS Shri Swaminarayan Mandir' in this story"
+    },
+    {
+      "candidate": "File:Annakut at BAPS Shri Swaminarayan Mandir Chicago.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 750x750 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:BAPS Shri Swaminarayan Hindu Mandir Night View.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:BAPS Shri Swaminarayan Mandir Naenae 01 TA 2025-04-16.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in new zealand, which this story is not about (story context: india/singapore/united states) \u2014 a namesake, not 'BAPS Shri Swaminarayan Mandir' in this story"
+    },
+    {
+      "candidate": "File:BAPS Shri Swaminarayan Mandir Naenae 03 TA 2025-07-19.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "4327x2868, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:BAPS Shri Swaminarayan Mandir Naenae 04 TA 2025-07-19.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "5184x3456, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Irving Berlin Portrait2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "1194x1858, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Irving Heritage Park June 2019 06 (Irving Public Library).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "6000x4000, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Diwali 11.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "1600x1066, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Diwali Diyas 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "2701x2577, CC BY-SA 4.0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "baps-shri-swaminarayan-mandir-naenae-03-ta-2",
+      "path": "baps-shri-swaminarayan-mandir-naenae-03-ta-2.jpg",
+      "size": [
+        4327,
+        2868
+      ],
+      "role": "establishing",
+      "subject": "BAPS Shri Swamanarayan Mandir",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:BAPS_Shri_Swaminarayan_Mandir_Naenae_03_TA_2025-07-19.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/BAPS_Shri_Swaminarayan_Mandir_Naenae_03_TA_2025-07-19.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Tom Ackroyd"
+    },
+    {
+      "beat": "hero",
+      "label": "irving-heritage-park-june-2019-06-irving-pub",
+      "path": "irving-heritage-park-june-2019-06-irving-pub.jpg",
+      "size": [
+        6000,
+        4000
+      ],
+      "role": "establishing",
+      "subject": "The former Irving Public Library at Heritage Park in Irving , Texas ( United States ).",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Irving_Heritage_Park_June_2019_06_(Irving_Public_Library).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Irving_Heritage_Park_June_2019_06_%28Irving_Public_Library%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Michael Barera"
+    },
+    {
+      "beat": "grid",
+      "label": "diwali-11",
+      "path": "diwali-11.jpg",
+      "size": [
+        1600,
+        1066
+      ],
+      "role": "establishing",
+      "subject": "Diwali is the five-day Festival of Lights, celebrated by millions of Hindus, Sikhs and Jains across the world. Diwali, which for some also coincides with harvest and new year celebrations, is a festival of new beginnings and the triumph of ",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Diwali_11.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Diwali_11.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Pratap Public School, India"
+    }
+  ]
+}

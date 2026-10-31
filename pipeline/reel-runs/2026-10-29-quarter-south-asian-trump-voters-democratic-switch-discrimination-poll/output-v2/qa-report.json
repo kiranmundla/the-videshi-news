@@ -1,0 +1,219 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/output-v2/quarter-south-asian-trump-voters-democratic-switch-discrimination-poll.mp4",
+  "qa_passed": false,
+  "qa_score": 5.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:grid",
+    "face_overlap:payoff"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1638,
+        2048
+      ],
+      "manifest_dims": [
+        1638,
+        2048
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 192.3,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/output-v2/qa/frames/frame-hook.png",
+      "text_px_detected": 24905,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.83)",
+        "box": [
+          355,
+          424,
+          354,
+          426
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/output-v2/qa/frames/frame-news.png",
+      "text_px_detected": 32836,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          428,
+          336,
+          124,
+          152
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/output-v2/qa/frames/frame-hero.png",
+      "text_px_detected": 14883,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          336,
+          390,
+          369,
+          512
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 171.3,
+        "bg_luminance": 0.0,
+        "delta": 171.3
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/output-v2/qa/frames/frame-grid.png",
+      "text_px_detected": 50063,
+      "edge": {
+        "pass": false,
+        "offending_px": 974,
+        "clusters": 2,
+        "largest_cluster": 256
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.89)",
+        "box": [
+          393,
+          221,
+          265,
+          337
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 25.6,
+        "delta": 228.3
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/output-v2/qa/frames/frame-diaspora.png",
+      "text_px_detected": 15734,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          330,
+          385,
+          379,
+          525
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/output-v2/qa/frames/frame-payoff.png",
+      "text_px_detected": 14686,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": false,
+        "method": "manifest-mapped",
+        "box": [
+          328,
+          383,
+          383,
+          531
+        ],
+        "overlap_px": 1913
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    }
+  ]
+}

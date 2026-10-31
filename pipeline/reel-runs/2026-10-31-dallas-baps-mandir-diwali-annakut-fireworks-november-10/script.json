@@ -1,0 +1,36 @@
+{
+ "hook_line": "DALLAS BAPS MANDIR EXPECTS 12,000 FOR DIWALI ANNAKUT AND FIREWORKS",
+ "hook_stat": {
+  "big": "12,000",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Visitors expected at the Irving mandir on November 10"
+ },
+ "stats": [
+  {
+   "big": "November 10",
+   "label": "Diwali and Hindu New Year celebration in Irving"
+  },
+  {
+   "big": "5 hours",
+   "label": "Celebration runs from 3:00 p.m. to 8:00 p.m. on November 10"
+  },
+  {
+   "big": "2,000 pounds",
+   "label": "Food collected for Irving Cares in the October 2025 Dallas-area drive"
+  }
+ ],
+ "diaspora_bullets": [
+  "Annakut offering of hundreds of vegetarian dishes prepared by devotees",
+  "BAPS Charities will make a food donation to Irving Cares as part of the event"
+ ],
+ "key_entities": [
+  "BAPS Shri Swaminarayan Mandir",
+  "Irving",
+  "Diwali",
+  "Irving Cares"
+ ],
+ "news_summary": "The BAPS Shri Swaminarayan Mandir in Irving expects roughly 12,000 visitors for its Diwali and Hindu New Year celebration on Tuesday, November 10, built around the Annakut offering of hundreds of vegetarian dishes.",
+ "payoff": "The celebration closes with a fireworks show and a light-and-sound experience.",
+ "versus": "",
+ "story_mood": "celebratory"
+}

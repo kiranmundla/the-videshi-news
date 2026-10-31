@@ -1,0 +1,219 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-29-256-lawmakers-back-july-indian-american-heritage-month/output-v2/256-lawmakers-back-july-indian-american-heritage-month.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:news",
+    "edge_overflow:grid"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        4515,
+        2397
+      ],
+      "manifest_dims": [
+        4515,
+        2397
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 407.9,
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/US_Capitol_east_side.JPG/3840px-US_Capitol_east_side.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-29-256-lawmakers-back-july-indian-american-heritage-month/output-v2/qa/frames/frame-hook.png",
+      "text_px_detected": 27637,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 119.0,
+        "delta": 134.8
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-29-256-lawmakers-back-july-indian-american-heritage-month/output-v2/qa/frames/frame-news.png",
+      "text_px_detected": 41938,
+      "edge": {
+        "pass": false,
+        "offending_px": 2761,
+        "clusters": 1,
+        "largest_cluster": 2761
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 64.0,
+        "delta": 189.9
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-29-256-lawmakers-back-july-indian-american-heritage-month/output-v2/qa/frames/frame-hero.png",
+      "text_px_detected": 22445,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 111.3,
+        "delta": 142.3
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-29-256-lawmakers-back-july-indian-american-heritage-month/output-v2/qa/frames/frame-grid.png",
+      "text_px_detected": 48760,
+      "edge": {
+        "pass": false,
+        "offending_px": 5457,
+        "clusters": 2,
+        "largest_cluster": 2733
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 88.4,
+        "delta": 165.3
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-29-256-lawmakers-back-july-indian-american-heritage-month/output-v2/qa/frames/frame-diaspora.png",
+      "text_px_detected": 18646,
+      "edge": {
+        "pass": true,
+        "offending_px": 5,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 122.9,
+        "delta": 131.2
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-29-256-lawmakers-back-july-indian-american-heritage-month/output-v2/qa/frames/frame-payoff.png",
+      "text_px_detected": 24008,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.94)",
+        "box": [
+          403,
+          183,
+          264,
+          362
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    }
+  ]
+}

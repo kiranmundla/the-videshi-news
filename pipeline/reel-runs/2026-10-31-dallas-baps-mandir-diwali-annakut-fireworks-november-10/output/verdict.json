@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "dallas-baps-mandir-diwali-annakut-fireworks-november-10",
+  "name": "dallas-baps-mandir-diwali-annakut-fireworks-november-10",
+  "script": "reel-runs/2026-10-31-dallas-baps-mandir-diwali-annakut-fireworks-november-10/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000705
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-31-dallas-baps-mandir-diwali-annakut-fireworks-november-10/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "baps-shri-swaminarayan-mandir-naenae-03-ta-2",
+      "hero": "irving-heritage-park-june-2019-06-irving-pub",
+      "grid": "diwali-11"
+    }
+  },
+  "manifest": "reel-runs/2026-10-31-dallas-baps-mandir-diwali-annakut-fireworks-november-10/output/render-manifest.json",
+  "video": "reel-runs/2026-10-31-dallas-baps-mandir-diwali-annakut-fireworks-november-10/output/dallas-baps-mandir-diwali-annakut-fireworks-november-10.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:hero"
+    ]
+  }
+}

@@ -1,0 +1,415 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "256-lawmakers-back-july-indian-american-heritage-month",
+ "article_slug": "256-lawmakers-back-july-indian-american-heritage-month",
+ "article_id": "39c4e2e3-ddc6-4980-98f1-8634d6a5a09c",
+ "category": "Nri World",
+ "video": "reel-runs/2026-10-29-256-lawmakers-back-july-indian-american-heritage-month/output-v2/256-lawmakers-back-july-indian-american-heritage-month.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/US_Capitol_east_side.JPG/3840px-US_Capitol_east_side.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-10-29-256-lawmakers-back-july-indian-american-heritage-month/output-v2/hero.JPG",
+  "width": 4515,
+  "height": 2397,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.497,0.771) damped=(0.498,0.635)",
+  "has_face": false,
+  "box_source": [
+   986,
+   996,
+   2528,
+   958
+  ],
+  "box_bg": [
+   -477,
+   798,
+   2025,
+   767
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.5,
+   0.431
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   442
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 1259,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1259,
+    930,
+    1580
+   ],
+   "texts": [
+    "Nri World",
+    "256 US LAWMAKERS BACK JULY AS INDIAN AMERICAN HERITAGE MONTH"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.801,
+    "photo_px": [
+     4515,
+     2397
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8010012515644556,
+     "window": [
+      1581,
+      0,
+      2929,
+      2397
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 403,
+   "block_top": 1177,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1177,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "A bipartisan House resolution to designate July as Indian American Heritage Month has 256 cosponsors, more than half of the 435-member House of Representatives."
+   ],
+   "v7": {
+    "image_source": "extra:house-of-representatives-office-building-lcc",
+    "track": "full-bleed",
+    "render_scale": 0.373,
+    "photo_px": [
+     6451,
+     5147
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.37303283466096754,
+     "window": [
+      1761,
+      0,
+      4656,
+      5147
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Title: House of Representatives Office Bulding Abstract/medium: 1 photographic print.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:House_of_Representatives_Office_Building_LCCN2007683623.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/House_of_Representatives_Office_Building_LCCN2007683623.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Fawcett, Waldon, photographer"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "256",
+    "US lawmakers backing July as Indian American Heritage Month"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "full-bleed",
+    "render_scale": 0.801,
+    "photo_px": [
+     4515,
+     2397
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8010012515644556,
+     "window": [
+      1581,
+      0,
+      2929,
+      2397
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 837,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    837,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "435",
+    "Members of the House of Representatives",
+    "5.2 MILLION",
+    "Indian Americans recognised by the resolution",
+    "JULY 2, 1946",
+    "Truman signed the Luce-Celler Act"
+   ],
+   "v7": {
+    "image_source": "extra:house-of-representatives-office-building-lcc-2",
+    "track": "full-bleed",
+    "render_scale": 0.297,
+    "photo_px": [
+     5159,
+     6457
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.29735171132104693,
+     "window": [
+      699,
+      0,
+      4331,
+      6457
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Title: House of Representatives Office Bulding Abstract/medium: 1 photographic print.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:House_of_Representatives_Office_Building_LCCN2007683622.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/70/House_of_Representatives_Office_Building_LCCN2007683622.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Fawcett, Waldon, photographer"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 306,
+   "block_top": 1274,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1274,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "More than half the House backs it",
+    "July marks the 1946 Luce-Celler Act"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "full-bleed",
+    "render_scale": 0.801,
+    "photo_px": [
+     4515,
+     2397
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8010012515644556,
+     "window": [
+      1581,
+      0,
+      2929,
+      2397
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 662,
+   "zone_h": 894,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 916,
+   "block_bottom": 1301,
+   "text_bbox": [
+    70,
+    916,
+    930,
+    1301
+   ],
+   "texts": [
+    "The Takeaway",
+    "The resolution has been referred to a House committee for consideration.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "extra:rep-krishnamoorthi-public-headshot",
+    "track": "backdrop",
+    "render_scale": 0.298,
+    "photo_px": [
+     2795,
+     2437
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 442,
+     "scale": 0.29838998211091233,
+     "window": [
+      0,
+      370,
+      2795,
+      1851
+     ]
+    },
+    "track_note": "layout demotion: no full-bleed fit in the 155px zone below the dominant chin \u2014 backdrop composition instead",
+    "provenance": {
+     "subject": "Official Portrait of Rep. Krishnamoorthi",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Rep._Krishnamoorthi_Public_Headshot.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Rep._Krishnamoorthi_Public_Headshot.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Eric Connolly"
+    }
+   }
+  }
+ },
+ "music": {
+  "path": "/home/hatch/workspace/the-videshi-news/pipeline/music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 155.4,
+ "mp4_bytes": 14314655
+}

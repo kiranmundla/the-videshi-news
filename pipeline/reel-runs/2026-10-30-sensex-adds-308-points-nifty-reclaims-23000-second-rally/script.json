@@ -1,0 +1,36 @@
+{
+  "hook_line": "SENSEX ADDS 308 POINTS AS NIFTY RECLAIMS 23,000 IN SECOND STRAIGHT RALLY",
+  "hook_stat": {
+    "big": "308.49",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Points the Sensex rose on Friday to close at 74,459.53"
+  },
+  "stats": [
+    {
+      "big": "23,053.10",
+      "label": "Nifty close after rising 116.35 points"
+    },
+    {
+      "big": "2.3%",
+      "label": "Climb in the Nifty IT index on Friday"
+    },
+    {
+      "big": "5.20%",
+      "label": "Jump in Trent shares after a 25% rise in quarterly net profit"
+    }
+  ],
+  "diaspora_bullets": [
+    "October snapped a two-month losing streak for Indian benchmarks",
+    "The rupee firmed 33 paise to 94.93 per dollar on Friday"
+  ],
+  "key_entities": [
+    "BSE Sensex",
+    "NSE Nifty",
+    "Trent",
+    "Infosys"
+  ],
+  "news_summary": "The Sensex closed 308.49 points higher at 74,459.53 and the Nifty rose 116.35 points to 23,053.10 on Friday, a second straight gain led by IT and pharma stocks.",
+  "payoff": "A rally carried by a handful of heavyweights, with midcaps and smallcaps falling, needs broader participation to hold.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-31-chevron-earnings-q3-2026-refining-profit-9-9-billion/output/chevron-earnings-q3-2026-refining-profit-9-9-billion.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        4000,
+        2250
+      ],
+      "manifest_dims": [
+        4000,
+        2250
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 1304.5,
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Chevron_Headquarters_2022.jpg/1920px-Chevron_Headquarters_2022.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-31-chevron-earnings-q3-2026-refining-profit-9-9-billion/output/qa/frames/frame-hook.png",
+      "text_px_detected": 22582,
+      "edge": {
+        "pass": true,
+        "offending_px": 39,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 67.2,
+        "delta": 186.5
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-31-chevron-earnings-q3-2026-refining-profit-9-9-billion/output/qa/frames/frame-news.png",
+      "text_px_detected": 41146,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-31-chevron-earnings-q3-2026-refining-profit-9-9-billion/output/qa/frames/frame-hero.png",
+      "text_px_detected": 27306,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 171.2,
+        "bg_luminance": 0.0,
+        "delta": 171.2
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-31-chevron-earnings-q3-2026-refining-profit-9-9-billion/output/qa/frames/frame-grid.png",
+      "text_px_detected": 56017,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          350,
+          302,
+          376,
+          458
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.9,
+        "bg_luminance": 95.8,
+        "delta": 157.1
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-31-chevron-earnings-q3-2026-refining-profit-9-9-billion/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 32512,
+      "edge": {
+        "pass": true,
+        "offending_px": 496,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.64)",
+        "box": [
+          778,
+          560,
+          37,
+          45
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.0,
+        "bg_luminance": 63.3,
+        "delta": 190.7
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-31-chevron-earnings-q3-2026-refining-profit-9-9-billion/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 22565,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 0.0,
+        "delta": 253.7
+      }
+    }
+  ]
+}

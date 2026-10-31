@@ -1,0 +1,406 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "sensex-adds-308-points-nifty-reclaims-23000-second-rally",
+ "article_slug": "sensex-adds-308-points-nifty-reclaims-23000-second-rally",
+ "article_id": "f73ca770-6286-462d-96d1-3ff45a226f4f",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-10-30-sensex-adds-308-points-nifty-reclaims-23000-second-rally/output/sensex-adds-308-points-nifty-reclaims-23000-second-rally.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://images.thedailyjagran.com/images/2026/05/25/article/image/Share-Price-Rally--1779698321847.webp",
+  "local_path": "reel-runs/2026-10-30-sensex-adds-308-points-nifty-reclaims-23000-second-rally/output/hero.webp",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.410,0.375) damped=(0.455,0.438)",
+  "has_face": false,
+  "box_source": [
+   210,
+   146,
+   672,
+   270
+  ],
+  "box_bg": [
+   232,
+   257,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.457,
+   0.434
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 300,
+   "block_top": 972,
+   "block_bottom": 1272,
+   "text_bbox": [
+    70,
+    972,
+    930,
+    1272
+   ],
+   "texts": [
+    "Markets Finance",
+    "SENSEX ADDS 308 POINTS AS NIFTY RECLAIMS 23,000 IN SECOND STRAIGHT RALLY"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      673
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 910,
+   "block_bottom": 1333,
+   "text_bbox": [
+    70,
+    910,
+    930,
+    1333
+   ],
+   "texts": [
+    "What Happened",
+    "The Sensex closed 308.49 points higher at 74,459.53 and the Nifty rose 116.35 points to 23,053.10 on Friday, a second straight gain led by IT and pharma stocks."
+   ],
+   "v7": {
+    "image_source": "extra:infosys-4911287704",
+    "track": "backdrop",
+    "render_scale": 0.256,
+    "photo_px": [
+     3264,
+     1840
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.2555147058823529,
+     "window": [
+      0,
+      9,
+      3264,
+      1840
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.04x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Infosys",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Infosys_(4911287704).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Infosys_%284911287704%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.0",
+     "artist": "Ashwin Kumar from Bangalore, India"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "308.49",
+    "Points the Sensex rose on Friday to close at 74,459.53"
+   ],
+   "v7": {
+    "image_source": "extra:osce-headquarters-at-the-hofburg-vienna-ank",
+    "track": "full-bleed",
+    "render_scale": 0.417,
+    "photo_px": [
+     3456,
+     4608
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4166666666666667,
+     "window": [
+      376,
+      0,
+      2968,
+      4608
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "OSCE Headquarters at The Hofburg, Vienna",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:OSCE_Headquarters_at_The_Hofburg,_Vienna_(_Ank_Kumar,_Infosys)_01.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/OSCE_Headquarters_at_The_Hofburg%2C_Vienna_%28_Ank_Kumar%2C_Infosys%29_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Ank Kumar"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 827,
+   "zone_h": 753,
+   "scale": 1.0,
+   "content_h": 698,
+   "block_top": 882,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    882,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "23,053.10",
+    "Nifty close after rising 116.35 points",
+    "2.3%",
+    "Climb in the Nifty IT index on Friday",
+    "5.20%",
+    "Jump in Trent shares after a 25% rise in quarterly net profit"
+   ],
+   "v7": {
+    "image_source": "extra:ip-finance-dialogue-expanding-horizons-on-ip",
+    "track": "full-bleed",
+    "render_scale": 0.48,
+    "photo_px": [
+     6000,
+     4000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.48,
+     "window": [
+      983,
+      0,
+      3233,
+      4000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Juni Tingting Zhu, Senior Economist at Markets, Competition and Technology Global Unit of World Bank Group, Washington, United States of America, speaks at the panel discussion entitled \u201cIP Finance on the Ground \u2013 IP Financing in the Creati",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "WIPO | OMPI"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 906,
+   "block_bottom": 1338,
+   "text_bbox": [
+    70,
+    906,
+    930,
+    1338
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "October snapped a two-month losing streak for Indian benchmarks",
+    "The rupee firmed 33 paise to 94.93 per dollar on Friday"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7897727272727273,
+     "window": [
+      20,
+      0,
+      1076,
+      592
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 337,
+   "block_top": 691,
+   "block_bottom": 1028,
+   "text_bbox": [
+    70,
+    691,
+    930,
+    1028
+   ],
+   "texts": [
+    "The Takeaway",
+    "A rally carried by a handful of heavyweights, with midcaps and smallcaps falling, needs broader participation to hold.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 146.4,
+ "mp4_bytes": 11101414
+}

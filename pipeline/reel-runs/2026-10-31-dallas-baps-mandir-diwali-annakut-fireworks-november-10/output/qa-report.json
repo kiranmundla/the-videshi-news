@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-31-dallas-baps-mandir-diwali-annakut-fireworks-november-10/output/dallas-baps-mandir-diwali-annakut-fireworks-november-10.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:hero"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1672,
+        941
+      ],
+      "manifest_dims": [
+        1672,
+        941
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 1966.2,
+      "url": "https://d11n2py6p6cfxh.cloudfront.net/Diwali_Night_at_the_Illuminated_Temple_d40205d95f.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-31-dallas-baps-mandir-diwali-annakut-fireworks-november-10/output/qa/frames/frame-hook.png",
+      "text_px_detected": 28838,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-31-dallas-baps-mandir-diwali-annakut-fireworks-november-10/output/qa/frames/frame-news.png",
+      "text_px_detected": 28143,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 21.1,
+        "delta": 232.3
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-31-dallas-baps-mandir-diwali-annakut-fireworks-november-10/output/qa/frames/frame-hero.png",
+      "text_px_detected": 30014,
+      "edge": {
+        "pass": false,
+        "offending_px": 1942,
+        "clusters": 3,
+        "largest_cluster": 208
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.1,
+        "bg_luminance": 49.9,
+        "delta": 202.1
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-31-dallas-baps-mandir-diwali-annakut-fireworks-november-10/output/qa/frames/frame-grid.png",
+      "text_px_detected": 70254,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          126,
+          322,
+          34,
+          42
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.9,
+        "bg_luminance": 0.0,
+        "delta": 252.9
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-31-dallas-baps-mandir-diwali-annakut-fireworks-november-10/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 38354,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-31-dallas-baps-mandir-diwali-annakut-fireworks-november-10/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 27156,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    }
+  ]
+}

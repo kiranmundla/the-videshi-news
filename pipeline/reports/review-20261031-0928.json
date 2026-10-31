@@ -1,0 +1,164 @@
+[
+  {
+    "id": "566de784-a2cb-42f3-b265-a06afcea639a",
+    "headline": "Kuldeep and Varun Stay Benched as India Weigh Hamilton Call for Final T20I",
+    "slug": "kuldeep-varun-benched-india-hamilton-final-t20i-bahutule",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the final T20I by explicitly stating the date and time of the match in Hamilton, as well as any relevant details about ticket availability or broadcast information for viewers.",
+        "Provide more context on the significance of the series win and the implications of the final match for both teams, including potential rankings or future matchups.",
+        "Include a direct quote from Kuldeep Yadav or Varun Chakaravarthy to give insight into their perspectives on being benched, which would enhance the completeness of the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official BCCI account announcing the final T20I details or a relevant update on the series."
+      ]
+    }
+  },
+  {
+    "id": "5ffc7b8c-105f-471a-a269-c8f31ce7d259",
+    "headline": "German Firms Eye Hyderabad as Innovation Base as Indo-German Ties Hit New High",
+    "slug": "german-companies-hyderabad-innovation-consul-general-hasper",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the upcoming EU-India Free Trade Agreement. Include specific dates or expected milestones to give readers a clearer understanding of when these opportunities might arise.",
+        "Provide more context on what specific sectors or industries the German firms are focusing on in Hyderabad. This would enhance completeness and give readers a better idea of the innovation landscape.",
+        "Include direct quotes or data from additional stakeholders, such as representatives from the German companies or local government officials, to strengthen attribution and provide a broader perspective on the significance of this development.",
+        "Mention any potential impacts on local employment or economic growth in Hyderabad as a result of this increased investment from German firms, which would add depth and relevance to the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the German Consulate in Chennai that highlights this event or the statements made by Consul General Michael Hasper to provide real-time updates and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "a6f86324-0a88-44f1-a130-b79eadd227c2",
+    "headline": "Manisha Bhanwala's Comeback Gold Caps India's Best-Ever Women's Wrestling Worlds",
+    "slug": "manisha-bhanwala-gold-india-best-womens-wrestling-worlds",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image",
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Clarify the significance of Manisha Bhanwala's victory by including a brief context about the history of Indian women's wrestling and previous achievements, which would help readers understand the magnitude of this win.",
+        "Include specific quotes from Manisha Bhanwala or her coach immediately following the match to provide a more personal and emotional perspective on her victory.",
+        "Add a brief mention of the implications of this victory for the future of women's wrestling in India, such as potential funding, support for athletes, or upcoming competitions, to provide readers with a sense of what this means moving forward."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight of Manisha Bhanwala's final match to give readers a visual representation of her comeback victory."
+      ]
+    }
+  },
+  {
+    "id": "72d0dc35-fb94-4e67-aae0-14527679001e",
+    "headline": "Canada Reminds International Students: You Can Work Only If Your Study Permit Sa",
+    "slug": "canada-ircc-international-students-work-study-permit-conditions",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the consequences of violating work permit conditions by providing specific examples or statistics on how many students have faced repercussions in the past. This would enhance the completeness and urgency of the message.",
+        "Include a direct quote from the IRCC's official post on X to strengthen attribution and provide readers with authoritative context.",
+        "Add a brief explanation of how students can apply for an amendment to their study permit if the work condition is missing, including any necessary steps or contact information for IRCC. This would improve clarity and provide actionable steps for affected students."
+      ],
+      "embed_opportunities": [
+        "Embed the official IRCC tweet about the reminder to provide direct access to the source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "abd84eb8-0b62-4aa5-8815-5da68283724f",
+    "headline": "H-1B Visas and Green Cards After the Midterms: What Indian Professionals Should ",
+    "slug": "h1b-green-cards-us-midterms-indian-professionals-watch",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline for the proposed bills, including when they were introduced and any expected dates for committee discussions or votes, to provide readers with a clearer understanding of urgency and next steps.",
+        "Include specific details about the potential impact of the proposed salary threshold increase on H-1B workers, such as how many workers might be affected or what industries would be most impacted.",
+        "Provide context on the current status of H-1B visa issuance and the implications of a three-year pause, including how many visas are typically issued annually and what this pause could mean for applicants.",
+        "Ensure that the article clearly distinguishes between the proposals and the current laws to avoid confusion for readers unfamiliar with the immigration process."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a relevant immigration policy expert or organization discussing the implications of the midterm elections on immigration policy."
+      ]
+    }
+  },
+  {
+    "id": "9b7b83a9-884c-4edd-baeb-210fc8ea7983",
+    "headline": "Priyanka Chopra and Nick Jonas Host Diwali Party for Hollywood Friends in Los An",
+    "slug": "priyanka-chopra-nick-jonas-diwali-party-los-angeles",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the Diwali party to enhance the article's timeliness and context.",
+        "Include more specific details about the Diwali celebration, such as the type of food served or any traditional rituals performed, to provide a fuller picture of the event.",
+        "Ensure consistent attribution by confirming all sources are clearly cited, particularly for quotes or specific details about the outfits and guest list."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post from Priyanka Chopra or Nick Jonas showcasing highlights from the Diwali party to enhance visual engagement."
+      ]
+    }
+  },
+  {
+    "id": "717d8770-2fbd-42da-9b25-29a67f16ea5b",
+    "headline": "Indian-American-Led ST LNG Wins US Approval for $8.2 Billion Texas Deepwater Por",
+    "slug": "st-lng-indian-american-8-2-billion-texas-deepwater-port-approval",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for construction by specifying the start date in 2027 and the expected operational date in 2029 in a more prominent way, possibly in a bullet point format for clarity.",
+        "Include a quote from a representative of ST LNG or Sharad Tak to provide a direct perspective from the developer, enhancing attribution and depth.",
+        "Add a brief explanation of the significance of the project in terms of its impact on US energy exports and the broader economic implications, which would provide necessary context for readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement from the US Maritime Administration or a relevant tweet from the Transportation Secretary to provide authoritative context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "52ad3975-cbef-479c-9824-e7d871078b9b",
+    "headline": "Sanjay Gupta, Director of Kaante and Kaabil, Dies in Mumbai at 57",
+    "slug": "sanjay-gupta-director-kaante-kaabil-dies-mumbai-57",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events surrounding Gupta's death. For example, specify the time he was found and any medical assistance he received, if available.",
+        "Provide more context about Gupta's impact on the film industry, perhaps by including quotes from industry peers or notable figures beyond just Ashoke Pandit and Milap Zaveri to give a broader perspective on his legacy.",
+        "Ensure that the information about Gupta's last film, The Miranda Brothers, includes details such as its reception or box office performance to give readers a sense of his recent work.",
+        "Correct the repetition in the article regarding the circumstances of his death. The information about slipping in the bathroom and the police report is mentioned multiple times; consolidating this will enhance clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post from Ashoke Pandit or Milap Zaveri confirming Gupta's death to provide immediate, credible reactions from the film community."
+      ]
+    }
+  }
+]

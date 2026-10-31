@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "chevron-earnings-q3-2026-refining-profit-9-9-billion",
+  "name": "chevron-earnings-q3-2026-refining-profit-9-9-billion",
+  "script": "reel-runs/2026-10-31-chevron-earnings-q3-2026-refining-profit-9-9-billion/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000708
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-31-chevron-earnings-q3-2026-refining-profit-9-9-billion/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "chevron-185th-gvtbap",
+      "hero": "hovedbygningen-ntnu-stonemasonry",
+      "grid": "ip-finance-dialogue-expanding-horizons-on-ip"
+    }
+  },
+  "manifest": "reel-runs/2026-10-31-chevron-earnings-q3-2026-refining-profit-9-9-billion/output/render-manifest.json",
+  "video": "reel-runs/2026-10-31-chevron-earnings-q3-2026-refining-profit-9-9-billion/output/chevron-earnings-q3-2026-refining-profit-9-9-billion.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-10-31-chevron-earnings-q3-2026-refining-profit-9-9-billion/output/tiktok-caption.txt"
+}

@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "256-lawmakers-back-july-indian-american-heritage-month",
+  "name": "256-lawmakers-back-july-indian-american-heritage-month",
+  "script": "reel-runs/2026-10-29-256-lawmakers-back-july-indian-american-heritage-month/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000647
+  },
+  "sourcing": {
+    "mode": "provided",
+    "provenance": "reel-runs/2026-10-29-256-lawmakers-back-july-indian-american-heritage-month/output/supplementary/provenance.json",
+    "extras": {
+      "news": "house-of-representatives-office-building-lcc",
+      "grid": "house-of-representatives-office-building-lcc-2",
+      "payoff": "rep-krishnamoorthi-public-headshot"
+    }
+  },
+  "manifest": "reel-runs/2026-10-29-256-lawmakers-back-july-indian-american-heritage-month/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-10-29-256-lawmakers-back-july-indian-american-heritage-month/output-v2/256-lawmakers-back-july-indian-american-heritage-month.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:news",
+      "edge_overflow:grid"
+    ]
+  }
+}

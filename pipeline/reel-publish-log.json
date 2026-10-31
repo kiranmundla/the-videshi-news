@@ -482,5 +482,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "5ZXFH31VoEk",
+    "article_slug": "sensex-adds-308-points-nifty-reclaims-23000-second-rally",
+    "article_id": "f73ca770-6286-462d-96d1-3ff45a226f4f",
+    "title": "Sensex Adds 308 Points as Nifty Reclaims 23,000 in Second Straight Rally #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-10-31T05:19:03.815293+00:00",
+    "video_path": "reel-runs/2026-10-30-sensex-adds-308-points-nifty-reclaims-23000-second-rally/output-v2/sensex-adds-308-points-nifty-reclaims-23000-second-rally.mp4",
+    "video_sha256": "d3443d005844c73b3c3ecea7e00def652a9ba8a069182239cf037fa2fc7bcd0c",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

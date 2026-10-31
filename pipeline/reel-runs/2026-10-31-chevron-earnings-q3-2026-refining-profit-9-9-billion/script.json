@@ -1,0 +1,35 @@
+{
+ "hook_line": "CHEVRON EARNINGS BEAT ESTIMATES AS REFINING LIFTS PROFIT TO $9.9 BILLION ON $67.8 BILLION REVENUE",
+ "hook_stat": {
+  "big": "$9.9 BILLION",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Chevron third-quarter earnings, nearly tripled"
+ },
+ "stats": [
+  {
+   "big": "$67.8 BILLION",
+   "label": "Revenue, up 36.3% and above the $60.5 billion consensus"
+  },
+  {
+   "big": "$5.28",
+   "label": "Adjusted earnings per share, beating the $4.78 consensus by 10.5%"
+  },
+  {
+   "big": "$4.9 BILLION",
+   "label": "Downstream earnings, up from $1.1 billion a year earlier"
+  }
+ ],
+ "diaspora_bullets": [
+  "Free cash flow surged to $12 billion in the quarter",
+  "Total debt fell to $33.5 billion from $40.8 billion at the end of 2025"
+ ],
+ "key_entities": [
+  "Chevron",
+  "Mike Wirth",
+  "Venezuela"
+ ],
+ "news_summary": "Chevron reported third-quarter earnings of $9.9 billion, up from $3.5 billion a year earlier, as revenue rose 36.3% to $67.8 billion on a refining surge.",
+ "payoff": "Chevron declared a $1.78 quarterly dividend payable December 10.",
+ "versus": "",
+ "story_mood": "celebratory"
+}

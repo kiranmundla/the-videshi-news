@@ -1,0 +1,399 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "quarter-south-asian-trump-voters-democratic-switch-discrimination-poll",
+ "article_slug": "quarter-south-asian-trump-voters-democratic-switch-discrimination-poll",
+ "article_id": "0dbb3aae-230f-4a25-b406-705d5ae59adf",
+ "category": "Nri World",
+ "video": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/output-v2/quarter-south-asian-trump-voters-democratic-switch-discrimination-poll.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "local_path": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/output-v2/hero.jpg",
+  "width": 1638,
+  "height": 2048,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.92)",
+  "has_face": true,
+  "box_source": [
+   496,
+   480,
+   723,
+   1001
+  ],
+  "box_bg": [
+   341,
+   395,
+   360,
+   499
+  ],
+  "chin_bg": 894,
+  "anchor": [
+   0.522,
+   0.474
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   815,
+   1020
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 1240,
+   "zone_h": 316,
+   "scale": 1.0,
+   "content_h": 252,
+   "block_top": 1272,
+   "block_bottom": 1524,
+   "text_bbox": [
+    70,
+    1272,
+    930,
+    1524
+   ],
+   "texts": [
+    "Nri World",
+    "QUARTER OF SOUTH ASIAN TRUMP VOTERS PLAN DEMOCRATIC SWITCH AS DISCRIMINATION CONCERNS RISE"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.498,
+    "photo_px": [
+     1638,
+     2048
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 95,
+     "y": 156,
+     "w": 815,
+     "h": 1020,
+     "scale": 0.49816625916870416,
+     "window": [
+      2,
+      0,
+      1638,
+      2047
+     ]
+    },
+    "track_note": "layout demotion: no full-bleed fit in the 137px zone below the dominant chin \u2014 backdrop composition instead",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 1240,
+   "zone_h": 316,
+   "scale": 0.75,
+   "content_h": 289,
+   "block_top": 1253,
+   "block_bottom": 1542,
+   "text_bbox": [
+    70,
+    1253,
+    930,
+    1542
+   ],
+   "texts": [
+    "What Happened",
+    "An Indian American Impact poll of 800 South Asian American registered voters found 60 percent of likely voters back Democrats for Congress against 22 percent for Republicans."
+   ],
+   "v7": {
+    "image_source": "extra:donald-trump-swearing-in-ceremony",
+    "track": "backdrop",
+    "render_scale": 0.958,
+    "photo_px": [
+     1600,
+     1066
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 95,
+     "y": 156,
+     "w": 815,
+     "h": 1020,
+     "scale": 0.9576968272620446,
+     "window": [
+      0,
+      0,
+      851,
+      1065
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.80x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "President Donald Trump being sworn in on January 20, 2017 at the U.S. Capitol building in Washington, D.C. Melania Trump wears a sky-blue cashmere Ralph Lauren ensemble. He holds his left hand on two versions of the Bible , one childhood Bi",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Donald_Trump_swearing_in_ceremony.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Donald_Trump_swearing_in_ceremony.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "The White House"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 1240,
+   "zone_h": 316,
+   "scale": 0.775,
+   "content_h": 313,
+   "block_top": 1241,
+   "block_bottom": 1554,
+   "text_bbox": [
+    70,
+    1241,
+    930,
+    1554
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "60%",
+    "Likely voters backing Democrats for Congress"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.566,
+    "photo_px": [
+     1638,
+     2048
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 95,
+     "y": 156,
+     "w": 815,
+     "h": 1020,
+     "scale": 0.56636553161918,
+     "window": [
+      136,
+      71,
+      1575,
+      1871
+     ]
+    },
+    "track_note": "layout demotion: no full-bleed fit in the 118px zone below the dominant chin \u2014 backdrop composition instead",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 623,
+   "zone_h": 957,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 792,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    792,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "25%",
+    "Of 2024 Trump voters plan to vote Democratic",
+    "90%",
+    "Have faced or know someone who faced discrimination",
+    "800",
+    "South Asian American registered voters surveyed"
+   ],
+   "v7": {
+    "image_source": "extra:donald-trump-rnc-july-2016",
+    "track": "full-bleed",
+    "render_scale": 0.73,
+    "photo_px": [
+     3144,
+     2630
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7300380228136882,
+     "window": [
+      680,
+      0,
+      2159,
+      2630
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Trump promised to bring sweeping political change, to create wealth, and to make America safe again in a speech that excited delegates on the fourth and final day of the convention. (A. Shaker/VOA)",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Donald_Trump_RNC_July_2016.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Donald_Trump_RNC_July_2016.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Ali Shaker/VOA"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 1240,
+   "zone_h": 316,
+   "scale": 1.0,
+   "content_h": 243,
+   "block_top": 1276,
+   "block_bottom": 1519,
+   "text_bbox": [
+    70,
+    1276,
+    930,
+    1519
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Cost of living leads at 65%",
+    "Healthcare second at 53%"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.623,
+    "photo_px": [
+     1638,
+     2048
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 95,
+     "y": 156,
+     "w": 815,
+     "h": 1020,
+     "scale": 0.6230886850152905,
+     "window": [
+      0,
+      152,
+      1308,
+      1789
+     ]
+    },
+    "track_note": "layout demotion: no full-bleed fit in the 95px zone below the dominant chin \u2014 backdrop composition instead",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "Election Day is Tuesday, November 3.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "/home/hatch/workspace/the-videshi-news/pipeline/music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 140.1,
+ "mp4_bytes": 8179955
+}

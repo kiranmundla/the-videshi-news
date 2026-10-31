@@ -1,0 +1,34 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "verizon-q3-2026-earnings-phone-adds-guidance-raised",
+  "name": "verizon-q3-2026-earnings-phone-adds-guidance-raised",
+  "script": "reel-runs/2026-10-26-verizon-q3-2026-earnings-phone-adds-guidance-raised/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000706
+  },
+  "sourcing": {
+    "mode": "provided",
+    "provenance": "reel-runs/2026-10-26-verizon-q3-2026-earnings-phone-adds-guidance-raised/output/supplementary/provenance.json",
+    "extras": {
+      "news": "a-modern-verizon-retail-store-in-burlington",
+      "hero": "dan-schulman",
+      "payoff": "verizon-building-8156005279"
+    }
+  },
+  "manifest": "reel-runs/2026-10-26-verizon-q3-2026-earnings-phone-adds-guidance-raised/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-10-26-verizon-q3-2026-earnings-phone-adds-guidance-raised/output-v2/verizon-q3-2026-earnings-phone-adds-guidance-raised.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-10-26-verizon-q3-2026-earnings-phone-adds-guidance-raised/output-v2/tiktok-caption.txt"
+}

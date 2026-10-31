@@ -1,0 +1,783 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "sensex-adds-308-points-nifty-reclaims-23000-second-rally",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "BSE Sensex",
+    "NSE Nifty",
+    "Trent",
+    "Infosys",
+    "Markets Finance",
+    "Nifty Pharma"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Bombay-Stock-Exchange.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'BSE Sensex'"
+    },
+    {
+      "candidate": "File:Bombay Stock Exchange.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'BSE Sensex'"
+    },
+    {
+      "candidate": "File:Bombay Stock Exchange 3.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 428x572 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Bombay Stock Exchange logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Kirron Kher Saas Bahu aur Sensex launch.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 600x896 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Kirron Kher Saas Bahu aur Sensex launch (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 221x295 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:S&P BSE SENSEX.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 671x609 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:S&P BSE SENSEX.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 154x41 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:S&P BSE SENSEX chart.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:S&P BSE Sensex Logo 2022.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:2016-366-192 Give It Up for the Bokeh Backup Band! (28156813631).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'NSE Nifty'"
+    },
+    {
+      "candidate": "File:500 logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Fireside Portrait (6074945869).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'NSE Nifty'"
+    },
+    {
+      "candidate": "File:Flickr 13 (48052316447).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 811x1000 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Index Logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Index funds icon.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:NIFTY 50 Returns Graph.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:National Stock exchange Mumbai.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'NSE Nifty'"
+    },
+    {
+      "candidate": "File:OJ L 24 of 2020 - BG Bulgarian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Glendale Evening News 1921-06-29 (IA cgl 004418).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Essays in ecclesiastical biography (IA essaysinecclesia0002step).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:History of the Council of Trent (IA historyofcouncilbung).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Journal of a voyage into the Mediterranean (IA trent 0116401962679 96).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Letters from America (IA lettersfromameri0000godl h0r7).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Notes on some questions suggested by the case of the \"Trent\" (microform) (IA cihm 22952).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Posthumous memoirs of his own time (IA posthumousmemoir0000wrax t9q3).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Council of Trent - comprising an account of the proceedings of that assembly; and illustrating the spirit and tendency of popery (IA counciloftrentco00cramuoft).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The points rationing scheme (IA CAT31068894).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The repressor of over much blaming of the clergy (IA repressorofoverm0001peco).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The works of Francis Bacon (IA worksoffrancisba0005baco).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:By the Trent in Stoke-on-Trent - geograph.org.uk - 7672821.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:RiverTrentNottingham.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 500x404 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:River Trent, Carlton-on-Trent - geograph.org.uk - 4098430.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:River Trent - geograph.org.uk - 3214490.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:River Trent in Newark-on-Trent - geograph.org.uk - 5123141.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Stoke-on-Trent, cycleway and River Trent - geograph.org.uk - 4991689.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:The Trent and Trent Bridge Quays - geograph.org.uk - 7297218.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Trent, St Andrew's Church - geograph.org.uk - 88714.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Trent Bridge crossing the River Trent - geograph.org.uk - 5121646.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Trento visione d'insieme 6.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Trent'"
+    },
+    {
+      "candidate": "File:Brigadier General John Trent Kelly.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 610x764 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Bundesarchiv Bild 146-2005-0132, Trent Park Camp.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 800x574 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Federally Employed Women (FEW), Rhonda Trent, visiting HUD headquarters for speech, conversations with HUD staff 207-DP-10587 Few-38 fromDNG.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Federally Employed Women, who is not one of this story's subjects \u2014 association is not depiction ('Trent')"
+    },
+    {
+      "candidate": "File:Federally Employed Women (FEW) (activist, and former national president), Rhonda Trent, (visiting HUD headquarters for speech, conversations with HUD staff) - DPLA - 2f16a7503f1d0dda499b5514e9d443cf.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Federally Employed Women (FEW) (activist, and former national president), Rhonda Trent, (visiting HUD headquarters for speech, conversations with HUD staff) - DPLA - 7b01948760e24d107719c4be89251b00.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united states, which this story is not about (story context: india) \u2014 a namesake, not 'Trent' in this story"
+    },
+    {
+      "candidate": "File:Federally Employed Women (FEW) (activist, and former national president), Rhonda Trent, (visiting HUD headquarters for speech, conversations with HUD staff) - DPLA - c34149c8d49bcfdb425817a319558169.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Maj Gen Trent C. Davis.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united states, which this story is not about (story context: india) \u2014 a namesake, not 'Trent' in this story"
+    },
+    {
+      "candidate": "File:Severn Trent Centre.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Trent' in this story"
+    },
+    {
+      "candidate": "File:Stoke on Trent Station - geograph.org.uk - 1134117.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Trent House, Station Street, Nottingham - geograph.org.uk - 4117889.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Brackenhurst Campus, Nottingham Trent University - geograph.org.uk - 1760048.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Brackenhurst Campus, Nottingham Trent University - geograph.org.uk - 6965093.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Brackenhurst Hall (Nottingham Trent University Campus). - geograph.org.uk - 6267810.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Brackenhurst Hall (Nottingham Trent University Campus) - geograph.org.uk - 6268437.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Brackenhurst Hall (Nottingham Trent University Campus) - geograph.org.uk - 6269196.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Brackenhurst Hall (Nottingham Trent University Campus) - geograph.org.uk - 6269209.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Brackenhurst Hall (Nottingham Trent University Campus) - geograph.org.uk - 6270224.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Brackenhurst Hall (Nottingham Trent University Campus) - geograph.org.uk - 6270241.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Brackenhurst Hall (Nottingham Trent University Campus) - geograph.org.uk - 6270257.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Brackenhurst Hall (Nottingham Trent University Campus) - geograph.org.uk - 6270269.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Highfields Park Trent Building 9099.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Trent' in this story"
+    },
+    {
+      "candidate": "File:Trent Building, University Of Nottingham (1).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Trent' in this story"
+    },
+    {
+      "candidate": "File:Trent Building, University Of Nottingham (2).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Trent' in this story"
+    },
+    {
+      "candidate": "File:Trent Building, University Of Nottingham (3).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Trent' in this story"
+    },
+    {
+      "candidate": "File:Trent Building, University Of Nottingham (5).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Trent' in this story"
+    },
+    {
+      "candidate": "File:Trent Building, University Of Nottingham (7).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Trent' in this story"
+    },
+    {
+      "candidate": "File:Trent Building, University Of Nottingham (8).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Trent' in this story"
+    },
+    {
+      "candidate": "File:University Park MMB L1 Trent Building.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Trent' in this story"
+    },
+    {
+      "candidate": "File:University Park MMB \u00ab76 Trent Building.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in ireland/united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Trent' in this story"
+    },
+    {
+      "candidate": "File:University Park MMB \u00bb13 Trent Building.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Trent' in this story"
+    },
+    {
+      "candidate": "File:Infosys (4911287704).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "3264x1840, CC BY-SA 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Infosys campus building Mysore karnataka 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus building Mysore karnataka 4.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus mysuru karnataka.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus mysuru karnataka 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 08.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 11.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 15.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 16.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 19.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Credit Suisse headquarters at Paradeplatz, Z\u00fcrich, Switzerland (Ank Kumar, Infosys Limited).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1027x897 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 02.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 03.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 04.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:OSCE Headquarters at The Hofburg, Vienna ( Ank Kumar, Infosys) 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "3456x4608, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Andrew Steer & Jos\u00e9 Manuel Entrecanales - Innovate4Climate Finance & Markets Week.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (director) than this markets-finance story \u2014 a same-name different person, not 'Markets Finance' the subject of this story"
+    },
+    {
+      "candidate": "File:Exploitation of free markets and globalization to finance terrorists (IA exploitationoffr1094510378).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Finance and Markets Working Group Logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:IP Finance Dialogue \u2013 Expanding Horizons on IP Finance and Valuation - 53346909618.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "6000x4000, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Prediction market - example GUI - 2.gif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Social finance market structure.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1175x556 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Telia finance logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley addressing at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of India (SEBI).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of India (SEBI).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley releasing the publication at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Purdue debris (IA purduedebris00purd 9).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1897-02-03) (IA victoriadailytimes18970203).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "https://www.bseindia.com/markets/MarketInfo/MediaRelease",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "https://www.bseindia.com/sensex/code/77",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "https://www.bseindia.com/sensex/code/16/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "https://www.nseindia.com/resources/exchange-communication-press-releases",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "license: no license grant on the hosting page"
+    },
+    {
+      "candidate": "https://www.nseindia.com",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.nseindia.com/market-data/top-gainers-losers",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "license: no license grant on the hosting page"
+    },
+    {
+      "candidate": "https://trent.ai/press-center/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "license: no license grant on the hosting page"
+    },
+    {
+      "candidate": "https://www.infosys.com/newsroom.html",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.infosys.com/newsroom/press-releases.html",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.niftyindices.com/indices/equity/sectoral-indices/nifty-pharma",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "File:BSE logo new.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:S&P BSE 500 (1999 to 2020).png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'BSE Sensex'"
+    },
+    {
+      "candidate": "File:National Stock Exchange NSE India.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'NSE Nifty'"
+    },
+    {
+      "candidate": "File:National Stock Exchange.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'NSE Nifty'"
+    },
+    {
+      "candidate": "File:NSE-logo.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:National Stock Exchange of India 2.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x768 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:90039 at Rugeley Trent Valley.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Trent' in this story"
+    },
+    {
+      "candidate": "File:Infosys.JPG",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "accepted",
+      "reason": "2560x1920, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Infosys Consulting Logo.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Thiruvananthapuram Infosys.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "accepted",
+      "reason": "1600x1200, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Infosys India.JPG",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "accepted",
+      "reason": "2560x1920, CC BY-SA 3.0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "infosys-4911287704",
+      "path": "infosys-4911287704.jpg",
+      "size": [
+        3264,
+        1840
+      ],
+      "role": "establishing",
+      "subject": "Infosys",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Infosys_(4911287704).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Infosys_%284911287704%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Ashwin Kumar from Bangalore, India"
+    },
+    {
+      "beat": "hero",
+      "label": "osce-headquarters-at-the-hofburg-vienna-ank",
+      "path": "osce-headquarters-at-the-hofburg-vienna-ank.jpg",
+      "size": [
+        3456,
+        4608
+      ],
+      "role": "establishing",
+      "subject": "OSCE Headquarters at The Hofburg, Vienna",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:OSCE_Headquarters_at_The_Hofburg,_Vienna_(_Ank_Kumar,_Infosys)_01.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/OSCE_Headquarters_at_The_Hofburg%2C_Vienna_%28_Ank_Kumar%2C_Infosys%29_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Ank Kumar"
+    },
+    {
+      "beat": "grid",
+      "label": "ip-finance-dialogue-expanding-horizons-on-ip",
+      "path": "ip-finance-dialogue-expanding-horizons-on-ip.jpg",
+      "size": [
+        6000,
+        4000
+      ],
+      "role": "establishing",
+      "subject": "Juni Tingting Zhu, Senior Economist at Markets, Competition and Technology Global Unit of World Bank Group, Washington, United States of America, speaks at the panel discussion entitled \u201cIP Finance on the Ground \u2013 IP Financing in the Creati",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "WIPO | OMPI"
+    }
+  ]
+}

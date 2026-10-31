@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "quarter-south-asian-trump-voters-democratic-switch-discrimination-poll",
+  "name": "quarter-south-asian-trump-voters-democratic-switch-discrimination-poll",
+  "script": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000669
+  },
+  "sourcing": {
+    "mode": "provided",
+    "provenance": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/output/supplementary/provenance.json",
+    "extras": {
+      "news": "donald-trump-swearing-in-ceremony",
+      "grid": "donald-trump-rnc-july-2016"
+    }
+  },
+  "manifest": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/output-v2/quarter-south-asian-trump-voters-democratic-switch-discrimination-poll.mp4",
+  "qa": {
+    "score": 5.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:grid",
+      "face_overlap:payoff"
+    ]
+  }
+}

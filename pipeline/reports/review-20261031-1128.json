@@ -1,0 +1,25 @@
+[
+  {
+    "id": "17b9813c-8551-4738-8faf-7717d2507ca2",
+    "headline": "Dune Movie \u2013 #FilmedForIMAX Trailer Out",
+    "slug": "dune-movie-filmedforimax-trailer-out",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 7 embed(s) placed in the bottom 30% \u2014 move higher for engagement",
+      "Two embeds clustered within 200 chars of each other"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Correct the film name to 'Dune: Part Three' instead of 'Dune Movie \u2013 #FilmedForIMAX'.",
+        "Ensure the trailer drop date is clearly stated as October 26, 2026, and matches the content.",
+        "Include a proper YouTube embed for the trailer instead of just mentioning it.",
+        "Revise the headline to follow the 'Film Teaser/Trailer Out' format, e.g., 'Dune: Part Three Trailer Out'.",
+        "Remove any fluff or promotional language that doesn't directly inform about the trailer."
+      ],
+      "embed_opportunities": [
+        "Embed the official YouTube trailer link directly in the article."
+      ]
+    }
+  }
+]

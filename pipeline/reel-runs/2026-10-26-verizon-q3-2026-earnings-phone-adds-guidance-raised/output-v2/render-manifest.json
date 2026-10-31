@@ -1,0 +1,415 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "verizon-q3-2026-earnings-phone-adds-guidance-raised",
+ "article_slug": "verizon-q3-2026-earnings-phone-adds-guidance-raised",
+ "article_id": "0f2b0127-ad9b-495e-b20a-80ec55f107b1",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-10-26-verizon-q3-2026-earnings-phone-adds-guidance-raised/output-v2/verizon-q3-2026-earnings-phone-adds-guidance-raised.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://ss7.vzw.com/is/image/VerizonWireless/verizon-2026-update?resMode=sharp2&scl=1",
+  "local_path": "reel-runs/2026-10-26-verizon-q3-2026-earnings-phone-adds-guidance-raised/output-v2/hero.jpg",
+  "width": 1230,
+  "height": 690,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.638,0.492) damped=(0.569,0.496)",
+  "has_face": false,
+  "box_source": [
+   355,
+   190,
+   688,
+   276
+  ],
+  "box_bg": [
+   327,
+   285,
+   466,
+   187
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.569,
+   0.496
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   467
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 687,
+   "zone_h": 869,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "Markets Finance",
+    "VERIZON PHONE ADDS HIT FIVE-YEAR HIGH"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.678,
+    "photo_px": [
+     1230,
+     690
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 467,
+     "scale": 0.6780487804878049,
+     "window": [
+      0,
+      0,
+      1230,
+      688
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.78x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 353,
+   "block_top": 1227,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1227,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Verizon beat third-quarter earnings estimates as it added 406,000 postpaid phone subscribers, its strongest third quarter in five years, and raised its full-year outlook for the third consecutive quarter."
+   ],
+   "v7": {
+    "image_source": "extra:a-modern-verizon-retail-store-in-burlington",
+    "track": "full-bleed",
+    "render_scale": 0.654,
+    "photo_px": [
+     4440,
+     2938
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6535057862491491,
+     "window": [
+      1267,
+      0,
+      2919,
+      2938
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "A modern Verizon retail store in Burlington, Vermont",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:A_modern_Verizon_retail_store_in_Burlington,_Vermont.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/A_modern_Verizon_retail_store_in_Burlington%2C_Vermont.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 4.0",
+     "artist": "Harrison Keely"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 1119,
+   "zone_h": 461,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "406,000",
+    "Postpaid phone subscribers added in the third quarter"
+   ],
+   "v7": {
+    "image_source": "extra:dan-schulman",
+    "track": "full-bleed",
+    "render_scale": 0.96,
+    "photo_px": [
+     3000,
+     2000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.96,
+     "window": [
+      897,
+      0,
+      2022,
+      2000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "PayPal CEO Dan Schulman.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Dan_Schulman.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Dan_Schulman.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.0",
+     "artist": "PopTech, Kris Klug"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 1126,
+   "zone_h": 454,
+   "scale": 0.6,
+   "content_h": 445,
+   "block_top": 1135,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1135,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "$1.31",
+    "Adjusted earnings per share, up 8.3%",
+    "137,000",
+    "Postpaid accounts added in the quarter",
+    "$7.8 billion",
+    "Free cash flow, up 12.1%"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.96,
+    "photo_px": [
+     3000,
+     2000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.96,
+     "window": [
+      897,
+      0,
+      2022,
+      2000
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 687,
+   "zone_h": 869,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 937,
+   "block_bottom": 1306,
+   "text_bbox": [
+    70,
+    937,
+    930,
+    1306
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Broadband added 314,000 connections in the quarter",
+    "Postpaid phone churn improved to 0.94%"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.771,
+    "photo_px": [
+     1230,
+     690
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 467,
+     "scale": 0.7707948243992606,
+     "window": [
+      148,
+      39,
+      1230,
+      644
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.78x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 1195,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1195,
+    930,
+    1580
+   ],
+   "texts": [
+    "The Takeaway",
+    "Verizon raised its full-year 2026 adjusted EPS guidance to $5.04 to $5.06.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "extra:verizon-building-8156005279",
+    "track": "full-bleed",
+    "render_scale": 0.556,
+    "photo_px": [
+     2592,
+     3456
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5555555555555556,
+     "window": [
+      0,
+      0,
+      1944,
+      3456
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Verizon Building",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Verizon_Building_(8156005279).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Verizon_Building_%288156005279%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "Eden, Janine and Jim from New York City"
+    }
+   }
+  }
+ },
+ "music": {
+  "path": "/home/hatch/workspace/the-videshi-news/pipeline/music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 147.8,
+ "mp4_bytes": 13636215
+}

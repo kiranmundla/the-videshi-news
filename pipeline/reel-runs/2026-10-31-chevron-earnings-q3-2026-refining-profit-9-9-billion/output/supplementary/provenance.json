@@ -1,0 +1,500 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "chevron-earnings-q3-2026-refining-profit-9-9-billion",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Chevron",
+    "Mike Wirth",
+    "Venezuela",
+    "Markets Finance",
+    "Revenue Rises"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Charlotte medical journal (serial) (IA charlottemedical771918char).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The silver on the iron cross (IA silveronironcros00vanc).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Blason-azur-chevron-argent-3-\u00e9toiles-or.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Blason-azur-chevron-argent.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Blason-azur-chevron-or-3-molettes-argent.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Blason-azur-chevron-or-3-roses-argent.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Blason-azur-chevron-or-3-tr\u00e8fles.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Blason-or-chevron-sable.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Chevron 185th GvTBAP.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "1124x1124, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Chevron 20231124 172053 02.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in new zealand, which this story is not about (story context: united states) \u2014 a namesake, not 'Chevron' in this story"
+    },
+    {
+      "candidate": "File:EB1 Plate LXV Fig. 3 Chevron.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 242x230 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Type pi\u00e8ce Chevron.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:CHEVRON Jean-No\u00ebl, Salle acad\u00e9mique de l'Universit\u00e9 de Li\u00e8ge, 1827.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 450x301 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:COA Sutton.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 678x768 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Hovedbygningen NTNU stonemasonry.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "2048x1536, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Boxing Blade (1923-10-06).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Boxing Blade (1923-10-27).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Boxing Blade (1923-11-10).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Boxing Blade (1923-12-01).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Goodfellow Field - 43K Classbook.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Horrible nevves from Warwick-shire. ... 1642 (IA bim early-english-books-1641-1700 horrible-nevves-from-war 1642).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:How a Bill Becomes a Law Mike Wirth - ru.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Noun project - USB.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Pan Flute (2531) - The Noun Project.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Pennsylvania- ALLEGHENY County, Enumeration District 378, Sheet No. 16B - DPLA - c563531b3b906b6982847370f666f5c0.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Economic and sociologic relations of the Canadian states and the United States prospectively considered address by Charles S. Hill Vice President Section I (IA 101693126.nlm.nih.gov).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Effective industrial reform (IA effectiveindustr00reidiala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Engineering News-Record and American Railway Journal July-December 1898- Vol 40 Index (IA sim enr july-december-1898 40 index).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Engineering and Mining Journal 1922-03-11- Vol 113 Iss 10 (IA sim engineering-and-mining-journal 1922-03-11 113 10).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:PIIGS Mk 4 map.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:The Engineering and Mining Journal 1884-12-06- Vol 38 Iss 23 (IA sim engineering-and-mining-journal 1884-12-06 38 23).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Enterprise 1901-08-17 (IA cssf 000321).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The New York Times 1923-10-21- Vol 73 Iss 24011 (IA per new-york-times-magazine the-new-york-times 1923-10-21 73 24011).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1902-10-17) (IA victoriadailytimes19021017).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1902-11-10) (IA victoriadailytimes19021110).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:(2020) Detailed findings of the independent international factfinding mission on the Bolivarian Republic of Venezuela*.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Ambassador of the Bolivarian Republic of Venezuela (16285217575).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: united states) \u2014 a namesake, not 'Venezuela' in this story"
+    },
+    {
+      "candidate": "File:Ambassador of the Bolivarian Republic of Venezuela (52199790022) (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 919x1225 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ambassador to the Bolivarian Republic of Venezuela (5715641526).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: OGL v1.0 \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Backlit Margarita Island Sunset in Las Guevaras, Venezuela CaptureNX2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Calle en centro de Maracaibo.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "5336x5779, CC0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Constitution of the Bolivarian republic of Venezuela.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Morrocoy from Venezuela 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Official map of the Bolivarian Republic of Venezuela after the 2023 referendum.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Woman of Bolivarian Armed Forces in a presidential meeting.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:(2024) Detailed findings of the independent international fact- finding mission on the Bolivarian Republic of Venezuela.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:7 December 2014 Venezuela protest.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: Attribution \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Bundesarchiv B 145 Bild-F075013-0021, Venezuela, Genscher mit Pr\u00e4sident Lusinchi.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 800x566 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Headquarters Bol\u00edvar Film.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "4288x2336, CC0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Andrew Steer & Jos\u00e9 Manuel Entrecanales - Innovate4Climate Finance & Markets Week.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (director) than this markets-finance story \u2014 a same-name different person, not 'Markets Finance' the subject of this story"
+    },
+    {
+      "candidate": "File:Exploitation of free markets and globalization to finance terrorists (IA exploitationoffr1094510378).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Finance and Markets Working Group Logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:IP Finance Dialogue \u2013 Expanding Horizons on IP Finance and Valuation - 53346909618.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "6000x4000, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Prediction market - example GUI - 2.gif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Social finance market structure.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1175x556 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Telia finance logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley addressing at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of India (SEBI).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of India (SEBI).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley releasing the publication at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Fiscal activism in the Federal Government - an analysis of the REvenue act of 1964 and the Revenue and Expenditure control act of 1968. (IA fiscalactivismin00smit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Inland Revenue Offices, Portsmouth - geograph.org.uk - 657923.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Preliminary digest of suggestions for internal revenue revision submitted to the Joint Committee on Internal Revenue Taxation (IA preliminarydiges353unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Report of the Joint Committee on Internal Revenue Taxation - pursuant to the Revenue Act of 1926 (IA reportofjointcom412unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Report of the cruise of the U.S. revenue cutter Bear and the overland expedition for the relief of the whalers in the Arctic ocean, from November 27, 1897, to September 13, 1898 (IA reportofcruiseof03unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Report of the cruise of the U.S. revenue steamer Thomas Corwin, in the Arctic Ocean, 1881 (1884) (14761405401).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Revenue of the Scottish crown, 1681 (IA revenueofscottis00purv).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Revenue reform- an essay (IA revenuereformess00atkirich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Land Revenue Of Bombay Vol-I (IA TheLandRevenueOfBombayVolI).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Zamboanga City Ordinances for the Year 2017 (Revenue).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Visualization-of-How-a-Bill-Becomes-a-Law Mike-WIRTH.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Nick Wirth.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 431x721 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Heinrich Wirth.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Mike Wirth'"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "chevron-185th-gvtbap",
+      "path": "chevron-185th-gvtbap.png",
+      "size": [
+        1124,
+        1124
+      ],
+      "role": "establishing",
+      "subject": "\u0428\u0435\u0432\u0440\u043e\u043d 185 \u0412\u0411\u0410\u041f",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Chevron_185th_GvTBAP.png",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Chevron_185th_GvTBAP.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Sergienkod"
+    },
+    {
+      "beat": "hero",
+      "label": "hovedbygningen-ntnu-stonemasonry",
+      "path": "hovedbygningen-ntnu-stonemasonry.jpg",
+      "size": [
+        2048,
+        1536
+      ],
+      "role": "establishing",
+      "subject": "Stone masonry. Chevron pattern, inspired by romanesque architecture, in Hovedbygningen(=the main building) at Campus NTNU Gl\u00f8shaugen, Trondheim. The building was erected as main building for NTH(=The Norwegian Institute of Technology) in 19",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Hovedbygningen_NTNU_stonemasonry.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Hovedbygningen_NTNU_stonemasonry.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "NAPkjersti"
+    },
+    {
+      "beat": "grid",
+      "label": "ip-finance-dialogue-expanding-horizons-on-ip",
+      "path": "ip-finance-dialogue-expanding-horizons-on-ip.jpg",
+      "size": [
+        6000,
+        4000
+      ],
+      "role": "establishing",
+      "subject": "Juni Tingting Zhu, Senior Economist at Markets, Competition and Technology Global Unit of World Bank Group, Washington, United States of America, speaks at the panel discussion entitled \u201cIP Finance on the Ground \u2013 IP Financing in the Creati",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "WIPO | OMPI"
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "dallas-baps-mandir-diwali-annakut-fireworks-november-10",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "DALLAS BAPS MANDIR EXPECTS 12,000 FOR DIWALI ANNAKUT AND FIREWORKS",
+      "numbers": [
+        12000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the mandir expects 12,000 visitors for the event.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The BAPS Shri Swaminarayan Mandir in Irving expects roughly 12,000 visitors for its Diwali and Hindu New Year celebration on Tuesday, November 10, built around the Annakut offering of hundreds of vegetarian dishes.",
+      "numbers": [
+        10.0,
+        12000.0
+      ],
+      "entities": [
+        "BAPS Shri Swaminarayan Mandir",
+        "Hindu New Year"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about the event and Annakut offering are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "12,000",
+      "numbers": [
+        12000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions 12,000 visitors expected.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Visitors expected at the Irving mandir on November 10",
+      "numbers": [
+        10.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms visitors are expected on November 10.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "November 10",
+      "numbers": [
+        10.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the event date as November 10.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Diwali and Hindu New Year celebration in Irving",
+      "numbers": [],
+      "entities": [
+        "Hindu New Year"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article describes the event as a Diwali and Hindu New Year celebration.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "5 hours",
+      "numbers": [
+        5.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the event runs for 5 hours.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Celebration runs from 3:00 p.m. to 8:00 p.m. on November 10",
+      "numbers": [
+        0.0,
+        3.0,
+        8.0,
+        10.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article provides the exact time for the celebration.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2,000 pounds",
+      "numbers": [
+        2000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2000
+        ]
+      },
+      "llm_reason": "The article mentions 2,000 pounds of food collected.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Food collected for Irving Cares in the October 2025 Dallas-area drive",
+      "numbers": [
+        2025.0
+      ],
+      "entities": [
+        "Irving Cares"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article details the food collection for Irving Cares.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Annakut offering of hundreds of vegetarian dishes prepared by devotees",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article describes the Annakut offering as hundreds of vegetarian dishes.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "BAPS Charities will make a food donation to Irving Cares as part of the event",
+      "numbers": [],
+      "entities": [
+        "BAPS Charities",
+        "Irving Cares"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states BAPS Charities will donate food to Irving Cares.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The celebration closes with a fireworks show and a light-and-sound experience.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the event concludes with fireworks and light-and-sound.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "BAPS Shri Swaminarayan Mandir",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Irving",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Diwali",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Irving Cares",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000705,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}
