@@ -211,6 +211,17 @@ def process_article(article):
         print(f"  🚫 HELD by ≥2-source gate — NOT inserted: {_gate_reason}")
         return False
 
+    # Pre-publish content gate (ROOT-CAUSE PROGRAM part 2, 2026-10-30)
+    # — refuse before any image/network work, same as the source gate.
+    # See pipeline/content_gate.py.
+    import content_gate
+    _content_failures = content_gate.check_article(article)
+    if _content_failures:
+        print(f"  🚫 HELD by content gate — NOT inserted:")
+        for _f in _content_failures:
+            print(f"     - {_f}")
+        return False
+
     # Image sourcing
     image_url = None
     image_caption = article.get("image_caption", "")

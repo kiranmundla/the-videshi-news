@@ -25,6 +25,16 @@ def main():
         print(f"   {_gate_reason}", file=sys.stderr)
         sys.exit(2)
 
+    # Pre-publish content gate (ROOT-CAUSE PROGRAM part 2, 2026-10-30)
+    # — same rule as v3-insert-article.py. See pipeline/content_gate.py.
+    import content_gate
+    _content_failures = content_gate.check_article(article)
+    if _content_failures:
+        print(f"🚫 HELD by content gate — NOT inserted: {article.get('headline')}", file=sys.stderr)
+        for _f in _content_failures:
+            print(f"   - {_f}", file=sys.stderr)
+        sys.exit(2)
+
     # Set defaults
     article.setdefault('vertical', article['category'])
     article.setdefault('image_url', None)

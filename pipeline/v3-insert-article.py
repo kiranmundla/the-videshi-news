@@ -151,6 +151,23 @@ def main():
               file=sys.stderr)
         sys.exit(2)
 
+    # Pre-publish content gate (ROOT-CAUSE PROGRAM part 2, 2026-10-30):
+    # deterministic failure-case checks — unknown-value comparisons,
+    # inferred free admission, sub-event start-time invention,
+    # unestablished superlative ledes, estimates stated as fact. Same
+    # hold semantics as the source gate. See pipeline/content_gate.py.
+    import content_gate
+    _content_failures = content_gate.check_article(article)
+    if _content_failures:
+        print(f"🚫 HELD by content gate — NOT inserted: "
+              f"{article.get('headline')}", file=sys.stderr)
+        for _f in _content_failures:
+            print(f"   - {_f}", file=sys.stderr)
+        print("   Fix the flagged claim(s) in the staged JSON and "
+              "re-run. Do NOT rephrase to dodge the check — verify the "
+              "claim against the sources.", file=sys.stderr)
+        sys.exit(2)
+
     now = datetime.now(timezone.utc).isoformat()
 
     # Insert article

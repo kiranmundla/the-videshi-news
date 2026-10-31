@@ -54,6 +54,17 @@ def insert_article(article_data):
             print(f"🚫 HELD by ≥2-source gate — NOT inserted: "
                   f"{article_data.get('headline')} — {_gate_reason}")
             return None
+        # Pre-publish content gate (ROOT-CAUSE PROGRAM part 2,
+        # 2026-10-30) — same rule as v3-insert-article.py. Drafts are
+        # exempt, like the source gate. See pipeline/content_gate.py.
+        import content_gate
+        _content_failures = content_gate.check_article(article_data)
+        if _content_failures:
+            print(f"🚫 HELD by content gate — NOT inserted: "
+                  f"{article_data.get('headline')}")
+            for _f in _content_failures:
+                print(f"   - {_f}")
+            return None
     result = supabase_req("POST", "/rest/v1/p2_articles", article_data)
     if result and isinstance(result, list) and len(result) > 0:
         return result[0]
