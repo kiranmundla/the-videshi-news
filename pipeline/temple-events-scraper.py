@@ -136,6 +136,28 @@ def extract_page_city_state(html):
     return (city.strip(), abbr) if abbr else ("", "")
 
 
+VALID_STATE_ABBRS = set(STATE_NAME_TO_ABBR.values())
+_NON_CITY_TOKENS = {"mandir", "temple", "church", "mosque", "gurudwara",
+                    "gurdwara", "center", "centre", "hall"}
+
+
+def city_state_valid(city, state):
+    """True only when state is a real US abbreviation and city is a
+    plausible city name. The 41-city expansion (2026-10-10) produced a
+    garbled entry (BAPS Orlando: city='Mandir', state='Orlando' — the
+    venue string split on the wrong token) whose non-empty fields sailed
+    past both the page-recovery check and the empty-field insert guard,
+    publishing events under a nonsense city. Validity, not non-emptiness,
+    is the bar (2026-10-30)."""
+    if not city or not state:
+        return False
+    if state.strip().upper() not in VALID_STATE_ABBRS:
+        return False
+    if city.strip().lower() in _NON_CITY_TOKENS:
+        return False
+    return True
+
+
 def slugify(text):
     s = text.lower().strip()
     s = re.sub(r"[^\w\s-]", "", s)
@@ -324,7 +346,8 @@ def scrape_temple(temple):
             return []
         # Directory entries without city/state: recover both from the
         # page itself (og:description states the temple's real city).
-        if not temple.get("city") or not temple.get("state"):
+        # Invalid (garbled/swapped) fields get the same recovery chance.
+        if not city_state_valid(temple.get("city", ""), temple.get("state", "")):
             city, state = extract_page_city_state(html)
             if city and state:
                 temple = {**temple, "city": city, "state": state}
@@ -467,12 +490,15 @@ def main():
     if before != len(new):
         print(f"  Title+date+city dedupe skipped {before - len(new)} more")
 
-    # Never insert an event with no city/state: it is invisible to
-    # every city feed and pollutes the table.
-    located = [e for e in new if e.get("city") and e.get("state")]
+    # Never insert an event with empty or invalid city/state: it is
+    # invisible to every city feed and pollutes the table. (Invalid =
+    # state not a US abbreviation or city a venue word like 'Mandir' —
+    # the BAPS Orlando garble, 2026-10-30.)
+    located = [e for e in new
+               if city_state_valid(e.get("city", ""), e.get("state", ""))]
     if len(located) != len(new):
         print(f"  ⚠ Dropped {len(new) - len(located)} events with "
-              "empty city/state")
+              "empty/invalid city/state")
     new = located
     print(f"  New: {len(new)} (skipping {len(unique) - len(new)} existing)")
 
