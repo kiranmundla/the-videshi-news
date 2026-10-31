@@ -4,48 +4,6 @@
   "movies": [
     {
       "cast": [
-        "Nivin Pauly",
-        "Mamitha Baiju",
-        "Sangeeth Prathap",
-        "Suresh Krishna"
-      ],
-      "director": "Girish A D",
-      "genre": "Romantic Comedy",
-      "is_indian": true,
-      "language": "Malayalam",
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/b/b4/Bethlehem_Kudumba_Unit_Movie_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "₹157.45 Cr worldwide",
-      "rating_source": "India box office",
-      "release_date": "2026-08-21",
-      "slug": "bethlehem-kudumba-unit",
-      "status": "now_playing",
-      "ticket_url": "https://www.google.com/search?q=Bethlehem+Kudumba+Unit+movie+showtimes+near+me",
-      "title": "Bethlehem Kudumba Unit",
-      "why_watch": "The highest-grossing Malayalam film of ALL TIME — ₹157.45 Cr worldwide — is still pulling crowds in limited US shows in its fifth weekend. Nivin Pauly's age-gap rom-com from the Premalu director turned out to be the crossover comedy that cracked every market. Diaspora audiences, this is your victory lap: the biggest Malayalam hit ever, still in theaters near you.",
-      "year": 2026,
-      "trailer_url": "https://www.youtube.com/watch?v=fk0JHh1P9H0",
-      "cast_details": [
-        {
-          "name": "Nivin Pauly",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Nivin_Pauly_latest.jpg/300px-Nivin_Pauly_latest.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Mamitha Baiju",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Mamitha2024.jpg/300px-Mamitha2024.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Sangeeth Prathap",
-          "photo_url": ""
-        },
-        {
-          "name": "Suresh Krishna",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Suresh_10.jpg/300px-Suresh_10.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        }
-      ],
-      "fandango_url": "https://www.fandango.com/bethlehem-kudumba-unit-2026-246692/movie-overview"
-    },
-    {
-      "cast": [
         "Will Forte",
         "John Cena",
         "Lana Condor",
@@ -740,6 +698,29 @@
         }
       ],
       "fandango_url": "https://www.fandango.com/udta-teer-247825/movie-overview"
+    },
+    {
+      "title": "Tu Hai Meri Kiran",
+      "slug": "tu-hai-meri-kiran-2026",
+      "release_date": "2026-10-23",
+      "status": "now_playing",
+      "language": "Hindi",
+      "director": "Karan Rawal",
+      "cast": [
+        "Sonakshi Sinha Zaheer Iqbal Ankit Gupta Sherlin Seth Zarina Wahab Purnendu Bhattacharya"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=Tu%20Hai%20Meri%20Kiran%20showtimes%20near%20me",
+      "why_watch": "Tu Hai Meri Kiran is a Hindi film directed by Karan Rawal, starring Sonakshi Sinha Zaheer Iqbal Ankit Gupta Sherlin Seth Zarina Wahab Purnendu Bhattacharya.",
+      "trailer_url": "https://www.youtube.com/watch?v=_Hmds6apet4",
+      "cast_details": [
+        {
+          "name": "Sonakshi Sinha Zaheer Iqbal Ankit Gupta Sherlin Seth Zarina Wahab Purnendu Bhattacharya",
+          "photo_url": ""
+        }
+      ]
     },
     {
       "title": "Cult",
