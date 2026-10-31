@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30",
+  "generated_at": "2026-10-31",
   "current_month": 10,
   "current_year": 2026,
   "destination_count": 50,
@@ -1146,8 +1146,12 @@
           "snippet": "Perched on a 70-metre cliff above the Indian Ocean, this 11th-century sea temple hosts a nightly Kecak fire dance as the sun drops. The setting is theatrically perfect."
         },
         {
-          "title": "Ubud Rice Terraces & Monkey Forest",
+          "title": "Ubud Rice Terraces",
           "snippet": "Tegallalang's cascading rice terraces are Bali's most iconic landscape. Walk through in the early morning before the Instagram crowds arrive."
+        },
+        {
+          "title": "Monkey Forest",
+          "snippet": "The Sacred Monkey Forest Sanctuary in Ubud \u2014 700 macaques roam through ancient temple ruins draped in banyan trees."
         },
         {
           "title": "Mount Batur Sunrise Trek",
@@ -1156,10 +1160,6 @@
         {
           "title": "Seminyak Beach Clubs",
           "snippet": "Potato Head, Ku De Ta, and La Brisa define Bali's stylish daytime scene. Infinity pools, DJs, cocktails, and Balinese-fusion cuisine against an ocean backdrop."
-        },
-        {
-          "title": "Tirta Empul Water Temple, Tampaksiring",
-          "snippet": "A holy spring temple where Balinese Hindus come for ritual purification. Visitors can participate \u2014 wear a sarong, follow the sequence of fountains, and immerse yourself in spring water that has be\u2026"
         }
       ],
       "photo_count": 12,
@@ -3266,7 +3266,7 @@
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
         "weeks": null,
-        "as_of": "2026-10-30",
+        "as_of": "2026-10-31",
         "cadence": "daily"
       },
       "fares_by_origin": {
@@ -3278,7 +3278,7 @@
           "date_range": "Jan 12 \u2192 Feb 1",
           "duration_days": 20,
           "weeks": null,
-          "as_of": "2026-10-30",
+          "as_of": "2026-10-31",
           "cadence": "daily"
         }
       },
@@ -6061,7 +6061,7 @@
       "dest_metro": "Hyderabad",
       "date_range": "Jan 26 \u2192 Feb 15",
       "duration_days": 20,
-      "as_of": "2026-10-29",
+      "as_of": "2026-10-30",
       "cadence": "weekly",
       "indicative": true
     },
@@ -6073,7 +6073,7 @@
         "dest_metro": "Hyderabad",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-10-29",
+        "as_of": "2026-10-30",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6084,7 +6084,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-10-30",
+        "as_of": "2026-10-31",
         "cadence": "daily"
       },
       "ORD": {
@@ -6094,7 +6094,7 @@
         "dest_metro": "Delhi",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-10-30",
+        "as_of": "2026-10-31",
         "cadence": "daily"
       },
       "DFW": {
@@ -6104,7 +6104,7 @@
         "dest_metro": "Bengaluru",
         "date_range": "Oct 28 \u2192 Nov 17",
         "duration_days": 20,
-        "as_of": "2026-10-29",
+        "as_of": "2026-10-30",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6115,7 +6115,7 @@
         "dest_metro": "Bengaluru",
         "date_range": "Jan 26 \u2192 Feb 17",
         "duration_days": 22,
-        "as_of": "2026-10-29",
+        "as_of": "2026-10-30",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6126,7 +6126,7 @@
         "dest_metro": "Delhi",
         "date_range": "Jan 26 \u2192 Feb 17",
         "duration_days": 22,
-        "as_of": "2026-10-30",
+        "as_of": "2026-10-31",
         "cadence": "daily"
       },
       "EWR": {
@@ -6136,7 +6136,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-10-30",
+        "as_of": "2026-10-31",
         "cadence": "daily"
       },
       "IAD": {
@@ -6146,17 +6146,17 @@
         "dest_metro": "Delhi",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-10-30",
+        "as_of": "2026-10-31",
         "cadence": "daily"
       },
       "ATL": {
-        "price_min": 1110,
+        "price_min": 1115,
         "route": "ATL-DEL",
         "origin_metro": "Atlanta",
         "dest_metro": "Delhi",
         "date_range": "Jan 26 \u2192 Feb 17",
         "duration_days": 22,
-        "as_of": "2026-10-30",
+        "as_of": "2026-10-31",
         "cadence": "daily"
       },
       "BOS": {
@@ -6166,7 +6166,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Nov 10 \u2192 Dec 2",
         "duration_days": 22,
-        "as_of": "2026-10-29",
+        "as_of": "2026-10-30",
         "cadence": "weekly",
         "indicative": true
       }
@@ -6182,7 +6182,7 @@
     "trending": {
       "month": 10,
       "year": 2026,
-      "score": 94,
+      "score": 93,
       "max_score": 100,
       "components": [
         {
@@ -6199,9 +6199,9 @@
         },
         {
           "id": "fare_drop",
-          "points": 29,
+          "points": 28,
           "max": 30,
-          "reason": "Fares down 19.2% on SFO-BOM ($1545 \u2192 $1248) vs 2026-10-22"
+          "reason": "Fares down 18.8% on SEA-DEL ($1711 \u2192 $1389) vs 2026-10-30"
         }
       ]
     },
