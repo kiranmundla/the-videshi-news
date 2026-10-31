@@ -137,6 +137,207 @@ _PIRATE_BAIT_RE = re.compile(
 _TRAILERISH_RE = re.compile(r"\b(?:trailer|teaser)\b", re.IGNORECASE)
 
 _OFFICIAL_CHANNELS_CACHE = None
+_OFFICIAL_IDS_CACHE = None
+_OFFICIAL_NAMES_CACHE = None
+
+
+def _load_channel_configs():
+    """Parsed channel configs: (trailer-channels.json, official-video-channels.json)."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    out = []
+    for fname in ("trailer-channels.json", "official-video-channels.json"):
+        try:
+            with open(os.path.join(here, fname)) as f:
+                out.append(json.load(f))
+        except Exception:
+            out.append({})
+    return out
+
+
+def official_channel_ids():
+    """Channel IDs from BOTH channel allowlists (trailer + official-video).
+
+    This is the merged channel-authority universe for embed gates: a
+    video whose channelId is in here is on a verified official channel,
+    whichever surface (trailer rail or rights-holder pass) vetted it.
+    """
+    global _OFFICIAL_IDS_CACHE
+    if _OFFICIAL_IDS_CACHE is None:
+        ids = set()
+        for cfg in _load_channel_configs():
+            for c in cfg.get("channels", []):
+                cid = (c.get("channel_id") or "").strip()
+                if cid:
+                    ids.add(cid)
+        _OFFICIAL_IDS_CACHE = ids
+    return _OFFICIAL_IDS_CACHE
+
+
+def official_channel_names():
+    """Lowercased channel names + aliases from BOTH channel allowlists."""
+    global _OFFICIAL_NAMES_CACHE
+    if _OFFICIAL_NAMES_CACHE is None:
+        names = set()
+        for cfg in _load_channel_configs():
+            for c in cfg.get("channels", []):
+                if c.get("name"):
+                    names.add(c["name"].strip().lower())
+                for alias in c.get("aliases") or []:
+                    if alias and alias.strip():
+                        names.add(alias.strip().lower())
+        _OFFICIAL_NAMES_CACHE = names
+    return _OFFICIAL_NAMES_CACHE
+
+
+def region_allows_us(region_restriction):
+    """Pure rule: may this video play for a US viewer?
+
+    Twin of official_video_pass.region_allows_us (kept there because
+    that module imports this one — the rule is 8 lines and must agree;
+    the 2026-10-25 Shadab/PCB incident is why it exists: an `allowed`
+    list is exhaustive, a `blocked` list plays everywhere else, and
+    neither field means no restriction).
+    """
+    rr = region_restriction or {}
+    allowed = rr.get("allowed")
+    if allowed is not None:
+        return "US" in allowed
+    blocked = rr.get("blocked")
+    if blocked is not None:
+        return "US" not in blocked
+    return True
+
+
+# Established news organisations whose channels are verified official
+# sources for a generic (non-trailer) news embed — the NDTV Profit
+# pattern (an entity's results video on a broadcaster's channel). This
+# is NOT a trailer authority: trailer/teaser embeds still require the
+# channel allowlists above, enforced by youtube_embed_reject_reason
+# and trailer_embed_gate. Fan/news-aggregator channels (Narayanatv,
+# Rahil Store, Filmy Star, ...) are deliberately absent.
+NEWS_ORG_CHANNELS = {
+    "ndtv", "ndtv profit", "ndtv india", "ndtv 24x7",
+    "times now", "times now navbharat", "times now world",
+    "india today", "aaj tak", "zee news", "zee business", "zee 24 taas",
+    "cnbc-tv18", "cnbc awaaz", "cnbc bajar", "et now", "et now swadesh",
+    "republic tv", "republic bharat", "republic world", "wion",
+    "firstpost", "moneycontrol", "ani news", "news18", "news18 india",
+    "news18 punjab", "abp news", "abp live", "abp ananda", "abp majha",
+    "sun news", "thanthi tv", "polimer news", "news7 tamil",
+    "puthiya thalaimurai", "asianet news", "manorama news",
+    "mathrubhumi news", "media one", "24 news", "etv bharat",
+    "tv9 bharatvarsh", "tv9 telugu", "tv9 kannada", "tv9 marathi",
+    "tv9 bangla", "tv5 news telugu", "ntv telugu", "abn telugu",
+    "sakshi tv", "10tv news telugu", "v6 news telugu", "raj news telugu",
+    "reuters", "associated press", "bbc news", "cnn", "al jazeera english",
+    "bloomberg television", "bloomberg podcasts", "the hindu",
+    "hindustan times", "the indian express", "india tv", "newsx",
+    "mirchi", "good news today", "the quint", "the wire", "scroll india",
+    "deccan herald", "the print", "livemint", "business today",
+    "business standard", "the economic times", "financial express",
+    "dd news", "sansad tv", "pib india",
+}
+
+
+def _norm_channel(text):
+    return re.sub(r"\s+", " ", (text or "").strip().lower())
+
+
+def channel_authority_reason(channel_title, channel_id=None, entity_name=None):
+    """Channel authority for a SEARCH-selected embed. Returns a reject
+    reason, or None when the channel is a verified official source:
+
+      1. channelId on the merged official allowlists, or
+      2. channel name/alias on the merged official allowlists, or
+      3. the entity's OWN channel (the full entity name appears in the
+         channel title — Air India's announcements on 'Air India',
+         ISRO footage on 'ISRO', a representative's own channel), or
+      4. an established news organisation's channel (NEWS_ORG_CHANNELS).
+
+    Anything else — fan channels, aggregators, random uploaders — has
+    no verifiable authority and must not carry an embed. Added
+    2026-10-31 after a Narayanatv box-office video was embedded as the
+    Jailer 2 'trailer': the shared gate's channel rule only fired on
+    trailer/teaser TITLES, so a non-trailer video from a fan channel
+    sailed through every search-based route.
+    """
+    ch = _norm_channel(channel_title)
+    if channel_id and channel_id.strip() in official_channel_ids():
+        return None
+    if ch and ch in official_channel_names():
+        return None
+    ent = _norm_channel(entity_name)
+    if ent and len(ent) >= 3 and re.search(
+            r"\b" + re.escape(ent) + r"\b", ch):
+        return None
+    if ch in NEWS_ORG_CHANNELS:
+        return None
+    return (f"channel '{channel_title}' has no verified authority "
+            f"(not allowlisted, not the entity's own channel, "
+            f"not a recognized news channel)")
+
+
+# Words that carry no film-identity signal in a title.
+_FILM_TITLE_STOPWORDS = {"the", "a", "an", "of", "part", "chapter"}
+
+
+def title_names_film(video_title, film_title):
+    """True when every significant token of the film title appears in
+    the video title (the wrong-film-on-the-right-channel check)."""
+    def toks(text):
+        words = re.sub(r"[^a-z0-9]+", " ", (text or "").lower()).split()
+        return [w for w in words if w not in _FILM_TITLE_STOPWORDS]
+    significant = [t for t in toks(film_title) if len(t) >= 3] \
+        or toks(film_title)
+    vtoks = set(toks(video_title))
+    return all(t in vtoks for t in significant)
+
+
+def trailer_embed_gate(title, channel_title, channel_id=None,
+                       region_restriction=None, region_checked=False,
+                       film_title=None):
+    """THE gate for any embed PRESENTED AS A TRAILER (the trailer pass
+    in enrich-articles, source-image --trailer, media-sources). Returns
+    a reject reason, or None when the video may be embedded as a
+    trailer. Fail-closed on every leg:
+
+      1. the shared gate (pirate-bait / unofficial-trailer /
+         first-person) — WITHOUT the generic route's topical-overlap
+         rule: a trailer's identity anchor is legs 2–4, and a
+         box-office headline legitimately shares only the film's name
+         with its trailer's title;
+      2. the VERIFIED title must actually say trailer/teaser — the
+         search snippet that surfaced the candidate is not evidence
+         (the scrape's title array misaligns with its video IDs);
+      3. channel authority: channelId or channel name on the merged
+         official allowlists ONLY (news-org status does not make a
+         trailer official);
+      4. when the film is known, the title must name it;
+      5. US region: the caller must have LOOKED (region_checked) and
+         the restriction must allow US — an embed that renders is not
+         an embed that plays.
+
+    The 2026-10-31 Narayanatv case failed legs 2+3 simultaneously and
+    the old _verify_official_trailer checked neither.
+    """
+    reason = youtube_embed_reject_reason(title, channel_title)
+    if reason:
+        return reason
+    if not _TRAILERISH_RE.search((title or "").lower()):
+        return "video title does not say trailer/teaser — not a trailer"
+    ch = _norm_channel(channel_title)
+    id_ok = bool(channel_id) and channel_id.strip() \
+        in official_channel_ids()
+    if not id_ok and ch not in official_channel_names():
+        return (f"trailer channel '{channel_title}' is not on the "
+                f"official-channel allowlist")
+    if film_title and not title_names_film(title, film_title):
+        return f"video title does not name the film '{film_title}'"
+    if not region_checked:
+        return "region restriction unverified — rejected (fail-closed)"
+    if not region_allows_us(region_restriction):
+        return f"region-blocked for US audience: {region_restriction}"
+    return None
 
 
 def official_trailer_channels():
@@ -367,10 +568,13 @@ def youtube_embed_accept(result, entity_name, keywords, headline=None):
     Returns (score, None) if the video may be embedded, else
     (score_or_0, reason). Applies, in order: the shared reject gate
     (pirate-bait / unofficial trailer / first-person-rant / topical
-    overlap with the headline), the English-title filter, the canonical
-    score threshold (>=6, or >=8 for single-word entity names), and a
-    floor of >=2 headline-keyword matches in the title — so an
-    off-topic video can never ride in on channel authority alone.
+    overlap with the headline), the English-title filter, channel
+    authority (channel_authority_reason — allowlisted, entity's own,
+    or recognized news channel), the canonical score threshold (>=6,
+    or >=8 for single-word entity names), and a floor of >=2
+    headline-keyword matches in the title — so an off-topic video can
+    never ride in on channel authority alone, and an on-topic video
+    can never ride in from a fan channel.
     """
     title = result.get("title", "")
     channel = result.get("channelTitle", "")
@@ -379,6 +583,15 @@ def youtube_embed_accept(result, entity_name, keywords, headline=None):
         return 0, reason
     if is_non_english_title(title):
         return 0, "non-English title"
+    # Channel authority (2026-10-31): a search result may only embed
+    # from a verified official source — allowlisted channel, the
+    # entity's own channel, or a recognized news organisation. Runs
+    # AFTER the reject gate so the standing specific reasons (pirate-
+    # bait, unofficial trailer, first-person, topical) keep precedence.
+    authority = channel_authority_reason(
+        channel, result.get("channelId"), entity_name)
+    if authority:
+        return 0, authority
     score = score_youtube_result(result, entity_name, keywords)
     title_lower = title.lower()
     kw_hits = sum(1 for kw in keywords if kw and kw in title_lower)

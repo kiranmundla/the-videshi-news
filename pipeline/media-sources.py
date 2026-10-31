@@ -166,6 +166,15 @@ def search_youtube_trailer(headline, content_type="movie", body=""):
     Returns: YouTube URL string or None
     """
     title = extract_title_from_headline(headline, content_type)
+    # The names-the-film gate leg may only use a PLAUSIBLE film title:
+    # when extraction falls back to the whole headline (box-office
+    # shape: 'Jailer 2 Dips 20 Percent on Tuesday, India Gross...'),
+    # its tokens are story words, not a title, and requiring them in
+    # the trailer's title would reject the real trailer. In that case
+    # the gate runs without the film-name leg (channel allowlist +
+    # trailer/teaser title + region still apply, fail-closed).
+    film_title = title if (title != headline.strip()
+                           and 2 < len(title) <= 60) else None
     search_queries = []
 
     if content_type == "series":
@@ -186,12 +195,12 @@ def search_youtube_trailer(headline, content_type="movie", body=""):
         try:
             # Use Google Custom Search API if available
             if GOOGLE_CSE_KEY and GOOGLE_CSE_ID:
-                url = search_youtube_via_google_cse(query)
+                url = search_youtube_via_google_cse(query, film_title=film_title)
                 if url:
                     return url
 
             # Fallback: use yt-dlp for YouTube search
-            url = search_youtube_via_ytdlp(query)
+            url = search_youtube_via_ytdlp(query, film_title=film_title)
             if url:
                 return url
 
@@ -213,15 +222,8 @@ def _looks_like_trailer(title):
     return "trailer" in t or "teaser" in t
 
 
-def _verify_official_trailer(vid_id):
-    """Verify a trailer candidate's real title + channel via oEmbed and run
-    the shared embed guard (embed_placement.youtube_embed_reject_reason).
-
-    Returns the watch URL if the video passes, else None. Fails CLOSED:
-    this function's only job is finding OFFICIAL trailers, so an
-    unverifiable candidate is not embeddable. Added 2026-10-12 after a
-    pirate-bait "full movie" upload was embedded as an official trailer.
-    """
+def _oembed_lookup(vid_id):
+    """oEmbed title + author for one video, or None on any failure."""
     try:
         r = requests.get(
             "https://www.youtube.com/oembed",
@@ -231,21 +233,64 @@ def _verify_official_trailer(vid_id):
         if r.status_code != 200:
             return None
         data = r.json()
-        title, author = data.get("title", ""), data.get("author_name", "")
+        return {"title": data.get("title", ""),
+                "author": data.get("author_name", "")}
     except Exception:
         return None
+
+
+def _verify_official_trailer(vid_id, film_title=None, meta_fetcher=None,
+                              oembed_fetcher=None):
+    """Verify a trailer candidate against the FULL standing trailer gate
+    (embed_placement.trailer_embed_gate) and return its watch URL, or
+    None. Fails CLOSED on every leg: oEmbed lookup, Data API metadata
+    (channel identity + US region), shared reject gate.
+
+    History: added 2026-10-12 after a pirate-bait "full movie" upload
+    was embedded as an official trailer — but it only ran
+    youtube_embed_reject_reason on the oEmbed title/channel, and that
+    gate's channel rule fires solely on trailer/teaser titles. On
+    2026-10-31 a Narayanatv box-office video ('Jailer 2' box office
+    collection worldwide gross reaches Rs 733.35 cr) passed this check
+    untouched — its title says neither trailer nor teaser, so no
+    channel rule ever fired — and was embedded as the Jailer 2
+    article's "trailer". The gate now requires the VERIFIED title to
+    say trailer/teaser, the channel to be on the official allowlists,
+    and US playability to be confirmed via the Data API.
+    """
+    oe = (oembed_fetcher or _oembed_lookup)(vid_id)
+    if not oe or not oe.get("title"):
+        return None
+    if meta_fetcher is None:
+        try:
+            from review_trailer import fetch_video_meta
+            meta_fetcher = fetch_video_meta
+        except Exception:
+            meta_fetcher = None
+    meta = meta_fetcher(vid_id) if meta_fetcher else None
+    if not meta:
+        print(f"  ✗ Trailer candidate rejected: {vid_id} — metadata "
+              f"lookup failed (region/channel unverifiable, fail-closed)")
+        return None
     try:
-        from embed_placement import youtube_embed_reject_reason
-        reason = youtube_embed_reject_reason(title, author)
-    except Exception:
-        reason = None
+        from embed_placement import trailer_embed_gate
+        reason = trailer_embed_gate(
+            meta.get("title") or oe["title"],
+            meta.get("channel_title") or oe.get("author", ""),
+            channel_id=meta.get("channel_id"),
+            region_restriction=meta.get("region_restriction"),
+            region_checked=True,
+            film_title=film_title)
+    except Exception as e:
+        print(f"  ✗ Trailer candidate rejected: {vid_id} — gate error: {e}")
+        return None
     if reason:
         print(f"  ✗ Trailer candidate rejected: {vid_id} — {reason}")
         return None
     return f"https://youtube.com/watch?v={vid_id}"
 
 
-def search_youtube_via_google_cse(query):
+def search_youtube_via_google_cse(query, film_title=None):
     """Search YouTube via Google CSE API."""
     try:
         r = requests.get(
@@ -270,7 +315,7 @@ def search_youtube_via_google_cse(query):
                 title_lower = item.get("title", "").lower()
                 # Prefer official trailers — verified via oEmbed + shared guard
                 if "trailer" in title_lower or "official" in title_lower:
-                    url = _verify_official_trailer(vid_id)
+                    url = _verify_official_trailer(vid_id, film_title=film_title)
                     if url:
                         print(f"  ✓ YouTube trailer (Google CSE): {url}")
                         return url
@@ -284,7 +329,7 @@ def search_youtube_via_google_cse(query):
                 continue
             vid_id = _extract_youtube_id(link)
             if vid_id:
-                url = _verify_official_trailer(vid_id)
+                url = _verify_official_trailer(vid_id, film_title=film_title)
                 if url:
                     print(f"  ✓ YouTube video (Google CSE): {url}")
                     return url
@@ -293,7 +338,7 @@ def search_youtube_via_google_cse(query):
     return None
 
 
-def search_youtube_via_ytdlp(query, max_results=3):
+def search_youtube_via_ytdlp(query, max_results=3, film_title=None):
     """Search YouTube via direct page scrape (no API key needed)."""
     try:
         search_url = f"https://www.youtube.com/results?search_query={quote_plus(query)}"
@@ -324,7 +369,7 @@ def search_youtube_via_ytdlp(query, max_results=3):
         for r_item in results:
             title_lower = r_item["title"].lower()
             if "trailer" in title_lower or "official" in title_lower:
-                url = _verify_official_trailer(r_item['id'])
+                url = _verify_official_trailer(r_item['id'], film_title=film_title)
                 if url:
                     print(f"  ✓ YouTube trailer (scrape): {url}")
                     return url
@@ -333,7 +378,7 @@ def search_youtube_via_ytdlp(query, max_results=3):
         # Never embed a random video — returning None is safer.
         for r_item in results:
             if _looks_like_trailer(r_item["title"]):
-                url = _verify_official_trailer(r_item['id'])
+                url = _verify_official_trailer(r_item['id'], film_title=film_title)
                 if not url:
                     continue
                 print(f"  ✓ YouTube video (scrape): {url}")

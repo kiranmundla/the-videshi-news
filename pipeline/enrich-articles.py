@@ -1808,6 +1808,7 @@ def search_youtube_data_api(query, max_results=5, published_after_days=60):
                 "videoId": item["id"]["videoId"],
                 "title": item["snippet"]["title"],
                 "channelTitle": item["snippet"]["channelTitle"],
+                "channelId": item["snippet"].get("channelId", ""),
                 "publishedAt": item["snippet"]["publishedAt"],
                 "description": item["snippet"].get("description", ""),
             })
@@ -1874,8 +1875,12 @@ def find_matching_entities(headline, registry):
 from embed_placement import is_non_english_title as _is_non_english_yt_title
 
 
-def _check_yt_video_language_api(video_ids: list) -> dict:
-    """Check defaultAudioLanguage for a batch of video IDs via videos.list. Returns {id: lang_code}."""
+def _fetch_yt_video_meta_api(video_ids: list) -> dict:
+    """Batch metadata for video IDs via videos.list (one call):
+    {id: {"lang": str, "region": regionRestriction-or-None,
+    "channel_id": str}}. An id ABSENT from the result means the lookup
+    did not verify it (missing video or failed call) — callers treat
+    absence as fail-closed for the US region gate (2026-10-31)."""
     global _YT_QUOTA_USED
     if not video_ids or _YT_QUOTA_USED >= _YT_QUOTA_LIMIT:
         return {}
@@ -1888,7 +1893,7 @@ def _check_yt_video_language_api(video_ids: list) -> dict:
              "https://www.googleapis.com/youtube/v3/videos",
              "-H", f"Authorization: Bearer {token}",
              "-G",
-             "-d", "part=snippet",
+             "-d", "part=snippet,contentDetails",
              "-d", f"id={','.join(video_ids[:10])}"],
             capture_output=True, text=True, timeout=15,
         )
@@ -1896,11 +1901,23 @@ def _check_yt_video_language_api(video_ids: list) -> dict:
         data = json.loads(r.stdout)
         result = {}
         for item in data.get("items", []):
-            lang = item.get("snippet", {}).get("defaultAudioLanguage") or item.get("snippet", {}).get("defaultLanguage") or ""
-            result[item["id"]] = lang.lower()
+            snip = item.get("snippet", {})
+            lang = snip.get("defaultAudioLanguage") or snip.get("defaultLanguage") or ""
+            result[item["id"]] = {
+                "lang": lang.lower(),
+                "region": (item.get("contentDetails") or {}).get(
+                    "regionRestriction"),
+                "channel_id": snip.get("channelId") or "",
+            }
         return result
-    except:
+    except Exception:
         return {}
+
+
+def _check_yt_video_language_api(video_ids: list) -> dict:
+    """Check defaultAudioLanguage for a batch of video IDs via videos.list. Returns {id: lang_code}."""
+    return {vid: m["lang"] for vid, m in
+            _fetch_yt_video_meta_api(video_ids).items()}
 
 
 def find_best_youtube_embed(entity_name, headline, max_results=5):
@@ -1918,10 +1935,29 @@ def find_best_youtube_embed(entity_name, headline, max_results=5):
     if not results:
         return None
 
-    # Step 2: Check audio language via API, drop confirmed non-English
+    # Step 2: Batch metadata via API — drop confirmed non-English
+    # audio, and enforce the US region gate FAIL-CLOSED (2026-10-31):
+    # a candidate whose metadata could not be verified, or whose
+    # regionRestriction blocks US viewers, is not embeddable. An embed
+    # that renders is not an embed that plays.
     video_ids = [r["videoId"] for r in results]
-    lang_map = _check_yt_video_language_api(video_ids)
-    results = [r for r in results if not lang_map.get(r["videoId"], "").startswith(("hi", "te", "ta", "bn", "kn", "ml", "mr", "gu", "pa", "ur", "ar", "zh", "ja", "ko", "th"))]
+    meta_map = _fetch_yt_video_meta_api(video_ids)
+    from embed_placement import region_allows_us
+    kept = []
+    for r in results:
+        m = meta_map.get(r["videoId"])
+        if not m:
+            print(f"     YT rejected: \"{r['title'][:60]}\" — metadata unverified (fail-closed)")
+            continue
+        if m["lang"].startswith(("hi", "te", "ta", "bn", "kn", "ml", "mr", "gu", "pa", "ur", "ar", "zh", "ja", "ko", "th")):
+            continue
+        if not region_allows_us(m["region"]):
+            print(f"     YT rejected: \"{r['title'][:60]}\" — region-blocked for US audience: {m['region']}")
+            continue
+        if m.get("channel_id") and not r.get("channelId"):
+            r["channelId"] = m["channel_id"]
+        kept.append(r)
+    results = kept
     if not results:
         return None
 
@@ -2131,8 +2167,35 @@ def main():
 
             print(f"\n  🎬 [{ctype}] {headline[:65]}")
 
-            # Search for trailer
-            trailer_url = media_sources.search_youtube_trailer(headline, ctype, body)
+            # Roster first (2026-10-31): a film on the now-in-theaters
+            # roster gets its OFFICIAL trailer via review_trailer's
+            # strict gate (allowlisted channel + title naming the film
+            # + US region). If the roster film matches but its trailer
+            # FAILS the gate, the search fallback is BLOCKED — a
+            # rejected official trailer must not be replaced by the
+            # search lottery below. That fall-through is how a
+            # Narayanatv box-office video became the Jailer 2
+            # article's "trailer" on 2026-10-31: this pass had no
+            # roster route at all and its search verifier never
+            # checked channel authority or trailer-ness.
+            trailer_url = None
+            roster_blocked = False
+            try:
+                import review_trailer
+                rt = review_trailer.review_trailer_for_article(article)
+                if rt.get("status") == "accepted":
+                    trailer_url = rt["url"]
+                    print(f"     → Trailer (roster): {trailer_url} — "
+                          f"\"{rt['title'][:50]}\" via {rt['channel']}")
+                elif rt.get("status") == "rejected":
+                    roster_blocked = True
+                    print(f"     — Roster trailer rejected, search "
+                          f"fallback blocked: {rt.get('reason')}")
+            except Exception as e:
+                print(f"     ⚠ Roster trailer pass error (non-fatal): {e}")
+            if not trailer_url and not roster_blocked:
+                trailer_url = media_sources.search_youtube_trailer(
+                    headline, ctype, body)
             if not trailer_url:
                 print(f"     — No trailer found")
                 continue

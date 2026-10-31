@@ -225,15 +225,18 @@ def fetch_google_cse(query, cc_only=True):
 
 
 def _verify_trailer_candidate(vid):
-    """Verify a trailer candidate's real title + channel via oEmbed and run
-    the shared embed guard (embed_placement.youtube_embed_reject_reason).
+    """Verify a trailer candidate against the FULL standing trailer gate
+    (embed_placement.trailer_embed_gate): oEmbed for the real title +
+    channel, Data API metadata for channel identity + US region.
 
-    Returns (title, author) if embeddable, else None. Fails CLOSED: this
-    path exists to find OFFICIAL trailers, so an unverifiable or
-    guard-rejected candidate is not embeddable. Mirrors
-    media-sources._verify_official_trailer (2026-10-12); extended to this
-    path 2026-10-15 — fetch_youtube_trailer previously embedded the first
-    scrape result with no verification at all.
+    Returns (title, author) if embeddable, else None. Fails CLOSED on
+    every leg — including gate/metadata errors (the previous version
+    failed OPEN when the guard import raised, and its reject-reason-only
+    check never fired on non-trailer titles: the hole that let a
+    Narayanatv box-office video pose as the Jailer 2 trailer on
+    2026-10-31, and a 'Rahil Store' fan video onto the Salman article
+    on 2026-10-30). Mirrors media-sources._verify_official_trailer —
+    both delegate to the one shared gate; do not re-fork the rules.
     """
     try:
         r = requests.get(
@@ -250,10 +253,25 @@ def _verify_trailer_candidate(vid):
     if not title:
         return None
     try:
-        from embed_placement import youtube_embed_reject_reason
-        reason = youtube_embed_reject_reason(title, author)
+        from review_trailer import fetch_video_meta
+        meta = fetch_video_meta(vid)
     except Exception:
-        reason = None
+        meta = None
+    if not meta:
+        print(f"  ✗ Trailer candidate rejected: {vid} — metadata lookup "
+              f"failed (region/channel unverifiable, fail-closed)")
+        return None
+    try:
+        from embed_placement import trailer_embed_gate
+        reason = trailer_embed_gate(
+            meta.get("title") or title,
+            meta.get("channel_title") or author,
+            channel_id=meta.get("channel_id"),
+            region_restriction=meta.get("region_restriction"),
+            region_checked=True)
+    except Exception as e:
+        print(f"  ✗ Trailer candidate rejected: {vid} — gate error: {e}")
+        return None
     if reason:
         print(f"  ✗ Trailer candidate rejected: {vid} — {reason} (\"{title[:60]}\")")
         return None

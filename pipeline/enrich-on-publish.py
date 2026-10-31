@@ -1008,6 +1008,7 @@ def search_youtube(query, max_results=5, published_after_days=60):
                 "videoId": item["id"]["videoId"],
                 "title": item["snippet"]["title"],
                 "channelTitle": item["snippet"]["channelTitle"],
+                "channelId": item["snippet"].get("channelId", ""),
                 "publishedAt": item["snippet"]["publishedAt"],
             })
         return results
@@ -1022,8 +1023,12 @@ def search_youtube(query, max_results=5, published_after_days=60):
 from embed_placement import is_non_english_title as _is_non_english_title
 
 
-def _check_yt_video_language(video_ids: list) -> dict:
-    """Check defaultAudioLanguage for a batch of video IDs. Returns {id: lang_code}."""
+def _fetch_yt_video_meta(video_ids: list) -> dict:
+    """Batch metadata for video IDs via videos.list (one call):
+    {id: {"lang": str, "region": regionRestriction-or-None,
+    "channel_id": str}}. An id ABSENT from the result means the lookup
+    did not verify it — callers treat absence as fail-closed for the
+    US region gate (2026-10-31)."""
     if not video_ids:
         return {}
     global _YT_QUOTA_USED
@@ -1038,7 +1043,7 @@ def _check_yt_video_language(video_ids: list) -> dict:
              "https://www.googleapis.com/youtube/v3/videos",
              "-H", f"Authorization: Bearer {token}",
              "-G",
-             "-d", "part=snippet",
+             "-d", "part=snippet,contentDetails",
              "-d", f"id={','.join(video_ids[:10])}"],
             capture_output=True, text=True, timeout=15,
         )
@@ -1046,11 +1051,23 @@ def _check_yt_video_language(video_ids: list) -> dict:
         data = json.loads(r.stdout)
         result = {}
         for item in data.get("items", []):
-            lang = item.get("snippet", {}).get("defaultAudioLanguage") or item.get("snippet", {}).get("defaultLanguage") or ""
-            result[item["id"]] = lang.lower()
+            snip = item.get("snippet", {})
+            lang = snip.get("defaultAudioLanguage") or snip.get("defaultLanguage") or ""
+            result[item["id"]] = {
+                "lang": lang.lower(),
+                "region": (item.get("contentDetails") or {}).get(
+                    "regionRestriction"),
+                "channel_id": snip.get("channelId") or "",
+            }
         return result
-    except:
+    except Exception:
         return {}
+
+
+def _check_yt_video_language(video_ids: list) -> dict:
+    """Check defaultAudioLanguage for a batch of video IDs. Returns {id: lang_code}."""
+    return {vid: m["lang"] for vid, m in
+            _fetch_yt_video_meta(video_ids).items()}
 
 
 # score_youtube_result: canonical version lives in embed_placement.py
@@ -1125,15 +1142,28 @@ def enrich_youtube(article, registry):
         if not results:
             continue
 
-        # Step 2: Check audio language via API for remaining candidates
+        # Step 2: Batch metadata via API — drop confirmed non-English
+        # audio, and enforce the US region gate FAIL-CLOSED
+        # (2026-10-31): a candidate whose metadata could not be
+        # verified, or whose regionRestriction blocks US viewers, is
+        # not embeddable. An embed that renders is not an embed that
+        # plays.
         video_ids = [r["videoId"] for r in results]
-        lang_map = _check_yt_video_language(video_ids)
-        # Keep videos that are English, unlabeled, or have no language data
+        meta_map = _fetch_yt_video_meta(video_ids)
+        from embed_placement import region_allows_us
         english_results = []
         for r in results:
-            lang = lang_map.get(r["videoId"], "")
-            if lang and not lang.startswith("en"):
+            m = meta_map.get(r["videoId"])
+            if not m:
+                print(f"     YT rejected: \"{r['title'][:60]}\" — metadata unverified (fail-closed)")
+                continue
+            if m["lang"] and not m["lang"].startswith("en"):
                 continue  # skip confirmed non-English
+            if not region_allows_us(m["region"]):
+                print(f"     YT rejected: \"{r['title'][:60]}\" — region-blocked for US audience: {m['region']}")
+                continue
+            if m.get("channel_id") and not r.get("channelId"):
+                r["channelId"] = m["channel_id"]
             english_results.append(r)
         results = english_results
         if not results:
@@ -1649,6 +1679,7 @@ def main():
         # script on publish — so reviews ship with their trailer
         # instead of waiting on a catch-up lottery.
         roster_trailer_done = False
+        roster_film_blocked = False
         if not has_embed(body, "youtube") \
                 and (article.get("category") or "").lower() == "entertainment":
             try:
@@ -1664,13 +1695,22 @@ def main():
                     report["yt_embeds"] += 1
                     roster_trailer_done = True
                 elif rt.get("status") == "rejected":
+                    # The article IS about a roster film and its
+                    # official trailer failed the gate (or its metadata
+                    # could not be verified). The search route must NOT
+                    # substitute a lottery video for it — that
+                    # fall-through embedded a Narayanatv box-office
+                    # video as a film "trailer" on 2026-10-31.
+                    roster_film_blocked = True
                     print(f"     YT-trailer: roster trailer rejected — "
-                          f"{rt.get('reason')}")
+                          f"{rt.get('reason')} (search route blocked "
+                          f"for this roster-film article)")
             except Exception as e:
                 print(f"     YT-trailer: pass error (non-fatal): {e}")
 
         # ── YouTube enrichment ──
-        if not has_embed(body, "youtube") and not roster_trailer_done:
+        if not has_embed(body, "youtube") and not roster_trailer_done \
+                and not roster_film_blocked:
             has_x = has_embed(body, "x")
             has_ig = has_embed(body, "instagram")
             if not (has_x and has_ig):
@@ -1680,6 +1720,10 @@ def main():
                     print(f"     YT: {yt_url} — \"{info['title'][:50]}\" [score:{info['score']}→{yt_score}]")
                     pending_embeds.append((yt_score, "youtube", yt_url, f"YT({info['entity'][:20]})"))
                     report["yt_embeds"] += 1
+        elif roster_trailer_done:
+            print(f"     YT: roster trailer selected above")
+        elif roster_film_blocked:
+            print(f"     YT: search route blocked (roster film, trailer rejected)")
         else:
             print(f"     YT: already has embed")
 
@@ -1690,7 +1734,8 @@ def main():
         # dry-run tested 2026-10-22; NOT enabled for the cron yet — runs
         # only when VIDESHI_OFFICIAL_VIDEO_PASS=1 is set in the job env.
         if (os.environ.get("VIDESHI_OFFICIAL_VIDEO_PASS") == "1"
-                and not has_embed(body, "youtube")):
+                and not has_embed(body, "youtube")
+                and not roster_trailer_done):
             try:
                 from official_video_pass import official_video_for_article
                 ov = official_video_for_article(article)
