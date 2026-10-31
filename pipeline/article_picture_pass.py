@@ -566,11 +566,32 @@ def extract_article_entities(article):
     # subset of another's is a phrase fragment, not an entity
     # ('Mann'/'Baat' inside 'Mann Ki Baat', 'Aamir' inside
     # 'Aamir Khan').
+    # EXCEPTION (extractor-recall fix, 2026-10-31): a headline
+    # subject is not a fragment of a body-only derivative phrase
+    # that happens to contain its token. The shadow run failed
+    # closed on the Dallas BAPS story because 'BAPS' — the
+    # headline's subject — was suppressed as a subset of the
+    # body phrase 'BAPS Charities', and on the Sensex story
+    # 'Nifty' was suppressed under the body phrase 'Nifty
+    # Pharma'. When the subset is headline material and no
+    # superset is, the subset is the entity and the superset is
+    # the derivative (an index variant, a charity arm). When a
+    # superset is ALSO headline material the original rule
+    # stands — the headline's own fuller name is the entity
+    # ('Aamir' inside the headline's 'Aamir Khan').
+    hl_lower = headline.lower()
+
+    def _headline_material(e):
+        return e.get("source") == "headline" or \
+            _name_in_text(e["name"], hl_lower)
+
     tok_sets = [(e, set(RES.entity_tokens(e["name"]))) for e in out]
     kept = []
     for e, toks in tok_sets:
-        if toks and any(other is not e and toks < otoks
-                        for other, otoks in tok_sets):
+        supersets = [o for o, otoks in tok_sets
+                     if o is not e and toks and toks < otoks]
+        if supersets and not (_headline_material(e) and not any(
+                _headline_material(o) for o in supersets)):
             continue
         kept.append(e)
     # Headline-subject promotion: entities the headline names

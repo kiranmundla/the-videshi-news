@@ -3239,6 +3239,70 @@
    "confusables": [],
    "blocked_files": [],
    "notes": "Curated 2026-10-31 from corpus-replay-live.json curation list (#23) — the fixed live run's verified resolution, applied deliberately. P18 is the official judicial portrait (1500px, GODL-India), visually verified in the live replay; alias 'Justice Vikram Nath' is the item's own Wikidata alias (the honorific-prefix case)."
+  },
+  {
+   "name": "Gmail",
+   "aliases": [
+    "Gmail"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q9334",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Chrome Can Now Pull Booking Codes and Order Numbers From Your Gmail Chrome's enhanced autofill, powered by Gemini, now suggests order numbers, tracking details, flight bookings and vehicle details pulled from your Gmail while you fill in web forms. It is opt-in and US-only for now: you must use Gemini in Chrome with Personal Intelligence turned on, be 18 or older, and use a personal Google account",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: \"Chrome Can Now Pull Booking Codes and Order Numbers From Your Gmail Chrome's enhanced autofill, powered by Gemini, now suggests order numbers, tracking details, flight bookings and vehicle details pul\"; description: email service developed by Google"
+  },
+  {
+   "name": "S&P BSE Sensex",
+   "aliases": [
+    "S&P BSE Sensex",
+    "Sensex",
+    "BSE Sensex"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q796994",
+   "p18_file": "Bombay Stock Exchange 3.jpg",
+   "p18_quality": 428,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Curated 2026-10-31 (extractor-recall fix). The item bears 'Sensex' as its own Wikidata alias; live adjudication is unstable for this name (one run's sitelink primacy picked 'asexuality', Q724351), so the identity is pinned here. P18 is the Bombay Stock Exchange building photo."
+  },
+  {
+   "name": "Google Chrome",
+   "aliases": [
+    "Google Chrome",
+    "Chrome"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q777",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Curated 2026-10-31 (extractor-recall fix). Live resolution lands Q777 reliably, but the item's en aliases carry only 'Chrome Browser', so the cache-back name guard refused the extractor's short name 'Chrome'; this entry is the deliberate adjudication that in a news context 'Chrome' is the browser. Item has no P18 (its former P18 is the product icon, a logo — not a photo); depicts files are browser screenshots."
+  },
+  {
+   "name": "BAPS",
+   "aliases": [
+    "BAPS",
+    "Bochasanwasi Shri Akshar Purushottam Swaminarayan Sanstha",
+    "BAPS Swaminarayan Sanstha"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q4936220",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Curated 2026-10-31 (extractor-recall fix). ORG-LEVEL identity: the BAPS Shri Swaminarayan Mandir in Irving/Dallas has NO Wikidata item (searched 2026-10-31) — this entry is the parent organisation, whose item bears 'BAPS' as its own alias. Live adjudication for 'BAPS' picked the Toronto mandir item (Q4834612), a namesake VENUE, and the cache-back name guard refused it; do not register venue items under the org's name. Item has no P18; its depicts files are photographs of individual BAPS temples."
   }
  ]
 }
