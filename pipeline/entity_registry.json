@@ -1073,7 +1073,9 @@
    "p18_quality": null,
    "official_domain": null,
    "confusables": [],
-   "blocked_files": [],
+   "blocked_files": [
+    "Magnificent CME Erupts on the Sun - August 31.jpg"
+   ],
    "notes": "primary topic by sitelinks (10 vs 0)"
   },
   {
@@ -2812,7 +2814,10 @@
      "why": "US town. Its downtown photo was sourced as a reel extra for the same story (corpus #121)."
     }
    ],
-   "blocked_files": [],
+   "blocked_files": [
+    "Blackstone Free Public Library, Blackstone MA.jpg",
+    "Blackstone, VA - commercial downtown.JPG"
+   ],
    "notes": "P18 filename's 'Avenu' truncation is the file's real Commons title."
   },
   {
@@ -2951,7 +2956,10 @@
      "why": "A hookah-caterpillar illustration and a moth caterpillar photo were sourced for the Caterpillar Inc. earnings reel (corpus #120); 'EPS' cards aside, the bare name also drew insect photos in the earnings preview deck."
     }
    ],
-   "blocked_files": [],
+   "blocked_files": [
+    "Alice 05a-1116x1492.jpg",
+    "Chenille chevrefeuille.jpg"
+   ],
    "notes": ""
   },
   {
@@ -2967,9 +2975,11 @@
    "context_hints": [],
    "confusables": [],
    "blocked_files": [
-    "black hole - messier 87 crop max res.jpg"
+    "black hole - messier 87 crop max res.jpg",
+    "Hindi aksharamala.jpg",
+    "Hindi language native speakers.png"
    ],
-   "notes": "NON-VISUAL entity: a language must never be pictured from open search. Corpus #113 served the Messier 87 black hole photo and #114 a Hindi alphabet chart for the card entity 'Hindi'. Blocked file note: the corpus describes #113's image by content, not filename; the blocked key is the canonical EHT Messier 87 Commons file (verified on Commons 2026-10-31, 4320x4320, CC BY 4.0) — it is never a valid image for this entity. The alphabet chart's exact filename was not recorded, so it is not seeded."
+   "notes": "NON-VISUAL entity: a language must never be pictured from open search. Corpus #113 served the Messier 87 black hole photo and #114 a Hindi alphabet chart for the card entity 'Hindi'. Blocked file note: the corpus describes #113's image by content, not filename; the blocked key is the canonical EHT Messier 87 Commons file (verified on Commons 2026-10-31, 4320x4320, CC BY 4.0) — it is never a valid image for this entity. The alphabet chart's exact filename was not recorded, so it is not seeded. The alphabet chart and the language-speakers map were later named exactly by the 2026-10-31 Jailer 2 reel provenance (the old reel sourcer used both for this entity) and are now seeded above."
   },
   {
    "name": "OTT",
@@ -3304,6 +3314,137 @@
    "confusables": [],
    "blocked_files": [],
    "notes": "Curated 2026-10-31 (extractor-recall fix). ORG-LEVEL identity: the BAPS Shri Swaminarayan Mandir in Irving/Dallas has NO Wikidata item (searched 2026-10-31) — this entry is the parent organisation, whose item bears 'BAPS' as its own alias. Live adjudication for 'BAPS' picked the Toronto mandir item (Q4834612), a namesake VENUE, and the cache-back name guard refused it; do not register venue items under the org's name. Item has no P18; its depicts files are photographs of individual BAPS temples."
+  },
+  {
+   "name": "Chevron Corporation",
+   "aliases": [
+    "Chevron",
+    "Chevron Corporation"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q319642",
+   "p18_file": "Chevron Headquarters 2022.jpg",
+   "p18_quality": 4000,
+   "official_domain": null,
+   "context_hints": [
+    "earnings",
+    "refining",
+    "oil",
+    "energy",
+    "gas",
+    "profit",
+    "guidance"
+   ],
+   "confusables": [
+    {
+     "name": "chevron (heraldry)",
+     "qid_or_note": "Q1348031",
+     "why": "The heraldic/pattern word-sense: an NTNU masonry 'chevron pattern' photo and a Ukrainian military chevron (shoulder patch) photo were sourced as reel extras for the Chevron Corp earnings story (2026-10-31 pulse run, withheld on visual check)."
+    },
+    {
+     "name": "Chevron (bryozoan genus)",
+     "qid_or_note": "Q10449135",
+     "why": "A genus of Phidoloporidae sharing the bare name."
+    },
+    {
+     "name": "Chevron, Belgium",
+     "qid_or_note": "Q2436370",
+     "why": "A section of Stoumont, Belgium sharing the bare name."
+    }
+   ],
+   "blocked_files": [
+    "Chevron 185th GvTBAP.png",
+    "Hovedbygningen NTNU stonemasonry.JPG",
+    "IP Finance Dialogue – Expanding Horizons on IP Finance and Valuation - 53346909618.jpg"
+   ],
+   "notes": "Verified via the Wikidata API 2026-10-31: label 'Chevron Corporation', description 'American multinational energy corporation', 60 sitelinks, P18 'Chevron Headquarters 2022.jpg' (4000px). The bare query name 'Chevron' does NOT names_agree with the label (the 'Corporation' remainder is not a generic type token), so live resolution alone fails the identity guard — this curated entry (alias 'Chevron') is what makes the company sourceable. Blocked files: the three wrong files the old open-search reel sourcer used on the 2026-10-31 earnings reel (military patch, NTNU masonry, and the WIPO IP-finance panel photo — the last also poisoned the AbbVie reel the same day)."
+  },
+  {
+   "name": "AbbVie",
+   "aliases": [
+    "AbbVie",
+    "AbbVie Inc.",
+    "AbbVie Inc"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q14662364",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [
+    "earnings",
+    "skyrizi",
+    "rinvoq",
+    "pharmaceutical",
+    "revenue",
+    "guidance"
+   ],
+   "confusables": [
+    {
+     "name": "AbbVie s.r.o. (and other national subsidiaries)",
+     "qid_or_note": "Q58206524",
+     "why": "Same-name national subsidiaries of the group; the US parent (Q14662364) is the earnings subject."
+    }
+   ],
+   "blocked_files": [
+    "IP Finance Dialogue – Expanding Horizons on IP Finance and Valuation - 53346909618.jpg"
+   ],
+   "notes": "Verified via the Wikidata API 2026-10-31: label 'AbbVie', description 'pharmaceutical company', 23 sitelinks, no P18. Depicts yield (2026-10-31) is logos only, so the identity route normally yields no scene photo and sourcing fails closed — that is expected, not a gap. Blocked file: the WIPO IP-finance panel photo the old open-search sourcer used as this story's hero-stat scene (2026-10-31 pulse run, withheld on visual check); it reached the story via the 'Markets Finance' category pseudo-entity."
+  },
+  {
+   "name": "Rajinikanth",
+   "aliases": [
+    "Rajinikanth"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q60068",
+   "p18_file": "Rajinikanth Felicitates Writer Kalaignanam.jpg",
+   "p18_quality": 800,
+   "official_domain": null,
+   "context_hints": [
+    "actor",
+    "film",
+    "jailer",
+    "tamil",
+    "cinema",
+    "kollywood",
+    "box office"
+   ],
+   "confusables": [
+    {
+     "name": "Rajinikanth filmography",
+     "qid_or_note": "Q7286175",
+     "why": "A filmography list item, not the person. Live context adjudication picked it over the actor on 'film' context (2026-10-31) — names_agree vetoes it, but the actor must be the curated identity so the story keeps its real pictures."
+    },
+    {
+     "name": "Rajinikanth Mohan (researcher)",
+     "qid_or_note": "Q125316889",
+     "why": "A researcher sharing the name."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "Verified via the Wikidata API 2026-10-31: label 'Rajinikanth', description 'Indian actor (born 1950)', 61 sitelinks, P18 as recorded (800px — below the reel floor; the depicts route carries the usable portraits, e.g. the MGR Statue inauguration photo, 1200x1800)."
+  },
+  {
+   "name": "risankizumab",
+   "aliases": [
+    "Skyrizi",
+    "risankizumab",
+    "BI 655066",
+    "BI-655066"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q25112466",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "AbbVie Earnings Beat Estimates, Revenue Rises 10% to $17.4 Billion and 2026 EPS Guidance Is Raised Adjusted EPS of $3.82 topped estimates as Skyrizi and Rinvoq grew more than 22% each, prompting a guidance raise, a higher Skyrizi target and a 5.2% dividend increase. Adjusted EPS of $3.82 topped estimates as Skyrizi and Rinvoq grew more than 22% each, prompting a guidance raise, a higher Skyrizi ta",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'AbbVie Earnings Beat Estimates, Revenue Rises 10% to $17.4 Billion and 2026 EPS Guidance Is Raised Adjusted EPS of $3.82 topped estimates as Skyrizi and Rinvoq grew more than 22% each, prompting a gui'; description: chemical compound"
   }
  ]
 }

@@ -9,8 +9,9 @@ Reels v7 (2026-10-24):
     shape reel_publish.py gates on.
   * The rollback switch (USE_V7_RENDERER = False) routes the
     same produce flow to the v6 renderer.
-  * reel_entity_sourcing.py: route order (Commons -> official
-    -> discovery), the identity / license / resolution gates
+  * reel_entity_sourcing.py: the identity route (entity
+    resolution -> P18/depicts only; open search abolished
+    2026-10-31), the license / resolution / blocklist gates
     rejecting for the right reasons, beat assignment, and the
     never-block-the-reel fallback when sourcing fails outright.
 
@@ -202,7 +203,7 @@ reel_produce.reel_renderer.render_reel = _orig["render_v6"]
 reel_produce.reel_frame_qa.run_qa = _orig["run_qa"]
 
 
-# ── Part 2: sourcing gates + route order (stubbed network) ─────────
+# ── Part 2: sourcing gates + identity route (stubbed network) ─────
 print("── sourcing: gates reject for the right reasons ──")
 
 
@@ -224,36 +225,69 @@ def cpage(title, w, h, lic, desc, mime="image/jpeg",
 
 CALLS = []
 
+# Identity-route fixtures (2026-10-31): the fictional entities
+# resolve through the stub resolver to fabricated Wikidata
+# items; the only candidates are each item's P18 and depicts
+# files, served by the stub file-info lookup. The open-search
+# seams are stubbed to record-and-return-nothing — the checks
+# below assert source_extras never calls them at all.
+PAGES = {
+    "File:Acme Corp Campus.jpg": cpage(
+        "File:Acme Corp Campus.jpg", 4160, 3120, "CC BY 4.0",
+        "Acme Corp headquarters campus in Bengaluru",
+        cats="Category:Acme Corp"),
+    "File:Acme Corp Old Building.jpg": cpage(
+        "File:Acme Corp Old Building.jpg", 2200, 1500, "GFDL",
+        "Acme Corp building, older wing",
+        cats="Category:Acme Corp"),
+    "File:Acme Corp Front.jpg": cpage(
+        "File:Acme Corp Front.jpg", 1024, 768, "CC BY 4.0",
+        "Acme Corp front view", cats="Category:Acme Corp"),
+    "File:Acme Corp Annex.jpg": cpage(
+        "File:Acme Corp Annex.jpg", 2400, 1600, "CC BY 4.0",
+        "Acme Corp annex building", cats="Category:Acme Corp"),
+    "File:Jane Doe portrait.jpg": cpage(
+        "File:Jane Doe portrait.jpg", 2000, 2500, "CC BY-SA 4.0",
+        "Jane Doe, chief executive of Acme Corp"),
+}
 
-def fake_commons_search(query, limit=10):
-    CALLS.append(("commons", query))
-    if "Acme" in query:
-        return [
-            cpage("File:Acme Corp Campus.jpg", 4160, 3120,
-                  "CC BY 4.0",
-                  "Acme Corp headquarters campus in Bengaluru",
-                  cats="Category:Acme Corp"),
-            cpage("File:Acme Corp Old Building.jpg", 2200, 1500,
-                  "GFDL", "Acme Corp building, older wing",
-                  cats="Category:Acme Corp"),
-            cpage("File:Acme Corp Front.jpg", 1024, 768,
-                  "CC BY 4.0", "Acme Corp front view",
-                  cats="Category:Acme Corp"),
-            cpage("File:Neoscona sp 01.JPG", 3000, 2000,
-                  "CC BY 4.0", "Neoscona spider macro on a leaf"),
-            cpage("File:Acme Corp logo.png", 2000, 2000,
-                  "CC BY 4.0", "Acme Corp logo",
-                  mime="image/png"),
-        ]
-    if "Jane Doe" in query:
-        return [
-            cpage("File:John Doe at conference.jpg", 2400, 1600,
-                  "CC BY 4.0", "John Doe speaking at a conference"),
-            cpage("File:Jane Doe portrait.jpg", 2000, 2500,
-                  "CC BY-SA 4.0",
-                  "Jane Doe, chief executive of Acme Corp"),
-        ]
-    return []
+RESOLUTIONS = {
+    "Acme Corp": {
+        "name": "Acme Corp", "qid": "Q990001", "type": "company",
+        "method": "registry", "confidence": "high",
+        "p18_file": "Acme Corp Campus.jpg", "p18_quality": 4160,
+        "aliases": ["Acme Corp"],
+        "blocked_files": ["Acme Corp Annex.jpg"],
+        "confusables": [], "notes": ""},
+    "Jane Doe": {
+        "name": "Jane Doe", "qid": "Q990002", "type": "person",
+        "method": "registry", "confidence": "high",
+        "p18_file": None, "p18_quality": None,
+        "aliases": ["Jane Doe"], "blocked_files": [],
+        "confusables": [], "notes": ""},
+}
+
+DEPICTS = {
+    "Q990001": [{"title": "File:Acme Corp Old Building.jpg"},
+                {"title": "File:Acme Corp Front.jpg"},
+                {"title": "File:Acme Corp Annex.jpg"}],
+    "Q990002": [{"title": "File:Jane Doe portrait.jpg"}],
+}
+
+
+def fake_resolve(name, ctx=""):
+    CALLS.append(("resolve", name))
+    return RESOLUTIONS.get(name)
+
+
+def fake_depicts(qid, limit=10):
+    CALLS.append(("depicts", qid))
+    return DEPICTS.get(qid, [])
+
+
+def fake_file_info(title):
+    CALLS.append(("file_info", title))
+    return PAGES.get(title)
 
 
 def fake_download(url, dest):
@@ -262,12 +296,15 @@ def fake_download(url, dest):
 
 
 FAKE_NET = {
-    "commons_search": fake_commons_search,
-    "commons_file_info": lambda title: None,
+    "commons_search": lambda q, limit=10:
+        (CALLS.append(("commons", q)) or []),
+    "commons_file_info": fake_file_info,
     "brave_links": lambda q, max_results=8:
         (CALLS.append(("brave", q)) or []),
     "fetch_text": lambda url, timeout=15: "",
     "download": fake_download,
+    "resolve_entity": fake_resolve,
+    "depicts": fake_depicts,
 }
 
 with tempfile.TemporaryDirectory() as tmp:
@@ -283,21 +320,20 @@ with tempfile.TemporaryDirectory() as tmp:
           str(extras.keys()))
     reasons = " | ".join(r.get("reason", "")
                           for r in prov["candidate_ledger"])
-    check("GFDL file rejected on license",
+    check("GFDL depicts file rejected on license",
           "license" in reasons and "GFDL" in reasons)
-    check("1024x768 file rejected on resolution",
+    check("1024x768 depicts file rejected on resolution",
           "resolution" in reasons and "1024x768" in reasons)
-    check("spider macro rejected on identity",
-          "identity" in reasons)
-    check("wrong-person file rejected on identity",
-          reasons.count("identity") >= 2)
+    check("blocklisted depicts file rejected on the corpus "
+          "blocklist", "blocklist" in reasons)
     used = [r for r in prov["candidate_ledger"]
             if str(r.get("verdict", "")).startswith("USED")]
     check_eq("two extras marked USED in the ledger", len(used), 2)
     kinds = [c[0] for c in CALLS]
-    check("route order: Commons searched before Brave discovery",
-          kinds.index("commons") < kinds.index("brave")
-          if "brave" in kinds else True)
+    check("identity route only: resolver consulted, open "
+          "search (Commons search / Brave) never called",
+          "resolve" in kinds and "commons" not in kinds
+          and "brave" not in kinds, str(kinds))
     for e in prov["extras"]:
         check(f"extra {e['label']} carries full provenance",
               all(e.get(k) for k in ("source_page", "file_url",
@@ -307,13 +343,16 @@ with tempfile.TemporaryDirectory() as tmp:
 print("── sourcing: failure falls back, never raises ──")
 
 
-def dead_commons(query, limit=10):
+def dead_resolve(name, ctx=""):
     raise RuntimeError("network down")
 
 
-DEAD_NET = {**FAKE_NET, "commons_search": dead_commons,
-            "brave_links": lambda q, max_results=8: (_ for _ in ())
-            .throw(RuntimeError("search down"))}
+def dead_depicts(qid, limit=10):
+    raise RuntimeError("network down")
+
+
+DEAD_NET = {**FAKE_NET, "resolve_entity": dead_resolve,
+            "depicts": dead_depicts}
 with tempfile.TemporaryDirectory() as tmp:
     try:
         prov = S.source_extras(ARTICLE, SCRIPT, Path(tmp) / "supp",

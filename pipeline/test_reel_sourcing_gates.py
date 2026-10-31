@@ -139,7 +139,11 @@ stub_net = {"commons_search": recording_search,
             "commons_file_info": lambda title: None,
             "brave_links": lambda q, n=8: [],
             "fetch_text": lambda url, timeout=15: "",
-            "download": lambda url, dest: None}
+            "download": lambda url, dest: None,
+            # Identity route (2026-10-31): nothing resolves
+            # offline in this suite — entities fail closed.
+            "resolve_entity": lambda name, ctx="": None,
+            "depicts": lambda qid, limit=10: []}
 with tempfile.TemporaryDirectory() as tmp:
     prov = S.source_extras(drish_article, drish_script,
                            Path(tmp) / "supp", own_count=1,

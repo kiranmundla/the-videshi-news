@@ -1,0 +1,35 @@
+{
+ "hook_line": "ABBVIE EARNINGS BEAT ESTIMATES, REVENUE RISES 10% TO $17.4 BILLION AND 2026 EPS GUIDANCE IS RAISED",
+ "hook_stat": {
+  "big": "$17.404 BILLION",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "AbbVie third-quarter revenue, up 10.3%"
+ },
+ "stats": [
+  {
+   "big": "$3.82",
+   "label": "Adjusted earnings per share, beating the $3.74 consensus"
+  },
+  {
+   "big": "$5.776 BILLION",
+   "label": "Skyrizi revenue, up 22.9% in the quarter"
+  },
+  {
+   "big": "$13.95-$13.99",
+   "label": "Raised full-year 2026 adjusted EPS guidance"
+  }
+ ],
+ "diaspora_bullets": [
+  "Dividend raised 5.2% to $1.82 per share from $1.73",
+  "Neuroscience revenue grew 19.5% to $3.389 billion"
+ ],
+ "key_entities": [
+  "AbbVie",
+  "Skyrizi",
+  "Rinvoq"
+ ],
+ "news_summary": "AbbVie reported third-quarter adjusted earnings of $3.82 per share, beating the $3.74 consensus, on revenue of $17.404 billion, up 10.3%, powered by Skyrizi and Rinvoq.",
+ "payoff": "AbbVie raised full-year 2026 adjusted EPS guidance to $13.95-$13.99 and lifted its revenue outlook to about $67.8 billion.",
+ "versus": "",
+ "story_mood": "celebratory"
+}

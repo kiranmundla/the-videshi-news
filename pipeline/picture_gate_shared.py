@@ -57,6 +57,30 @@ def is_outlet_entity(name):
         or low.removeprefix("the ") in OUTLET_ENTITIES
 
 
+# ── language names are not visual entities ───────────────────
+# (The 22-name list from social_card.py, commit 129c06101,
+# moved here 2026-10-31 so the reel sourcer shares it: there
+# is no photograph OF 'Hindi' — a search for one returns
+# alphabet wall charts and token-coincidence junk; the
+# Jailer 2 Hindi box-office reel sourced a Hindi alphabet
+# chart and a language-speakers map for the entity 'Hindi'.)
+LANGUAGE_ENTITIES = {
+    "hindi", "english", "telugu", "tamil", "malayalam",
+    "kannada", "bengali", "marathi", "punjabi", "gujarati",
+    "urdu", "odia", "assamese", "sanskrit", "spanish",
+    "french", "german", "arabic", "persian", "chinese",
+    "japanese", "korean", "russian",
+}
+
+
+def is_language_entity(name):
+    """True when the entity string is a language name.
+    Languages are non-visual: they never source an image."""
+    if not name:
+        return False
+    return name.strip().lower() in LANGUAGE_ENTITIES
+
+
 # ── person namesake-gate vocabulary ──────────────────────────
 # (Moved verbatim from article_picture_pass.py, 2026-10-27.)
 HINT_FUNCTION_WORDS = {

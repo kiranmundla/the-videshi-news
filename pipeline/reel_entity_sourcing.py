@@ -12,27 +12,38 @@ the second rung — it runs INSIDE reel_produce.py when the story's
 own assets (hero + inline images) total fewer than TARGET_DISTINCT
 usable scene images.
 
-THE LADDER (route order measured on the Infosys/DOJ test story,
-2026-10-24 — see the sample run's supplementary/provenance.json):
-  A. Wikimedia Commons originals — curl -A "TheVideshi/1.0",
-     metadata straight from the Commons API (the file page's own
-     description/categories = the identity evidence), true
-     dimensions screened from imageinfo, CC / public-domain only.
-     On the test story this route carried everything (6 usable).
-  B. Official sources — newsroom / org pages and .gov sites found
-     via web search. An asset is accepted ONLY if it is actually
-     retrievable AND carries a license basis (US federal .gov/.mil
-     = public domain, or an explicit CC/PD statement on the page).
-     Test-story yield: 0 (bot-walled pages, no license basis) —
-     attempted and ledgered regardless.
-  C. General web search (Brave, discovery ONLY) — surfaces Commons
-     file pages the API search missed (the DOJ wall-sign file was
-     found this way) and official/hosting pages; anything fetched
-     passes the SAME gates at the hosting page. Rights-managed
-     results (Getty/Alamy et al.) reject on license.
-  TODO hooks (deliberately NOT attempted — separate route repairs):
-  Openverse (api.openverse.org is Cloudflare-walled from this
-  server) and Flickr CC (no API key configured on this box).
+THE LADDER (2026-10-31 — identity route ONLY; the open-search
+routes this module originally ran are abolished):
+  Supplementary images come exclusively from identity by
+  construction, the standard the article/card paths adopted in
+  the image rebuild (design.md, 2026-10-30): each extracted
+  entity is resolved through entity_resolve.py +
+  entity_registry.json (registry first, then sitelink-primacy
+  Wikidata adjudication), and the only candidates are the
+  resolved item's screened P18 and its depicts (P180) Commons
+  files, each re-run through this module's file gates
+  (photograph type, title denylist, true dimensions, CC /
+  public-domain license, corpus blocklist). An entity that
+  cannot be resolved to a verified Wikidata identity — or
+  whose resolution fails the names_agree standard, is
+  ambiguous, is a language (non-visual), or has no QID —
+  sources NOTHING: the scene falls back to the article's own
+  imagery / a navy text card. There is no Commons text search,
+  no Brave discovery, and no official-page route in this
+  ladder anymore. (commons_search / brave_links /
+  evaluate_hosted_page survive below as library functions for
+  article_picture_pass.py and social_card.py, which gate their
+  own routes; source_extras never calls them.)
+
+  Why: five reels passed fact-check + frame QA 10.0 and were
+  withheld on visual check (2026-10-29→31) because keyword
+  search cannot tell a word's senses apart — Caterpillar the
+  company sourced insect photos, Blackstone the firm sourced
+  Blackstone, MA/VA town photos, Chevron sourced a military
+  shoulder patch and a chevron-pattern masonry photo, the
+  pseudo-entity 'Markets Finance' sourced a World Bank panel
+  portrait into two earnings reels, and 'Sun Pictures'
+  decomposed to 'Sun' sourced a NASA solar eruption.
 
 HARD RULES (never relaxed): provably the named entity or skip —
 and the entity must be the file's SUBJECT (a warbler photographed
@@ -79,6 +90,10 @@ import reel_renderer as R   # BEATS / SCENE_TEXTS only (no render)
 import picture_gate_shared as G   # the identity gates shared
                                   # with the article picture
                                   # pass (single source of truth)
+import entity_resolve as ER   # identity by construction:
+                              # registry + Wikidata resolution,
+                              # depicts candidates, blocklist,
+                              # the names_agree standard
 
 # Re-exported for parity with article_picture_pass: the outlet
 # blocklist itself lives ONLY in picture_gate_shared.py.
@@ -768,7 +783,13 @@ DEFAULT_NET = {"commons_search": commons_search,
                "commons_file_info": commons_file_info,
                "brave_links": brave_links,
                "fetch_text": fetch_text,
-               "download": download_file}
+               "download": download_file,
+               # The identity route (2026-10-31): entity
+               # resolution + depicts candidates. source_extras
+               # uses ONLY these two network seams plus
+               # commons_file_info / download.
+               "resolve_entity": ER.resolve,
+               "depicts": ER.depicts_candidates}
 
 
 # ── candidate evaluation ────────────────────────────────────────────
@@ -777,13 +798,29 @@ def _meta(info, key):
                         or {}).get("value") or "")
 
 
-def evaluate_commons_page(page, entity, route, context=None):
-    """One Commons search hit -> (candidate | None, ledger_row).
+def evaluate_commons_page(page, entity, route, context=None,
+                          identity_verified=False,
+                          blocked_keys=None):
+    """One Commons file page -> (candidate | None, ledger_row).
     The gates, in order: photograph type, title denylist, TRUE
     dimensions, license, identity at the file page — plus,
     when a story context is supplied, the shared identity
     gates (outlet / country contradiction / depicted person
-    / person namesake; see context_reject_reason)."""
+    / person namesake; see context_reject_reason).
+
+    identity_verified=True is the identity-route form
+    (2026-10-31): the file reached us as the resolved entity's
+    P18 or a depicts (P180) file OF the entity's Wikidata
+    item, so identity is established by construction and the
+    token-identity + story-context gates are skipped (they
+    exist to police search hits, and their country scan would
+    false-reject a verified file photographed abroad). Every
+    other gate still runs — photograph type, denylist,
+    dimensions, license, wildlife subject — plus the corpus
+    blocklist: a file whose canonical key is in blocked_keys
+    (the resolved registry entry's blocked_files) rejects even
+    on this route, because the blocklist records files proven
+    wrong for this entity in the failure corpus."""
     title = page.get("title") or ""
     info = (page.get("imageinfo") or [{}])[0]
     row = {"candidate": title, "route": route}
@@ -796,6 +833,14 @@ def evaluate_commons_page(page, entity, route, context=None):
         return reject(f"outlet: {entity!r} is a news outlet — "
                       "outlets are sources, never picture "
                       "subjects")
+    if G.is_language_entity(entity):
+        return reject(f"non-visual: {entity!r} is a language "
+                      "name — languages are never picture "
+                      "subjects")
+    if blocked_keys and ER.file_key(title) in blocked_keys:
+        return reject("blocklist: this file is on the entity's "
+                      "corpus blocklist — proven wrong for "
+                      f"{entity!r} in a prior run")
     if info.get("mime") not in ("image/jpeg", "image/png"):
         return reject(f"not a photograph file "
                       f"({info.get('mime') or 'unknown type'})")
@@ -813,17 +858,19 @@ def evaluate_commons_page(page, entity, route, context=None):
     ok, label = license_verdict(info.get("extmetadata"))
     if not ok:
         return reject(f"license: {label} — not CC / public domain")
-    if not identity_ok(entity, title, desc, cats):
+    if not identity_verified and not identity_ok(
+            entity, title, desc, cats):
         return reject(f"identity: the file page's description/"
                       f"categories do not evidence {entity!r}")
     if wildlife_subject(entity, cats):
         return reject("identity: the file's subject is wildlife "
                       "photographed AT the entity, not the "
                       "entity itself (species-marked categories)")
-    reason = context_reject_reason(entity, title, desc, cats,
-                                   context)
-    if reason:
-        return reject(reason)
+    if not identity_verified:
+        reason = context_reject_reason(entity, title, desc, cats,
+                                       context)
+        if reason:
+            return reject(reason)
     cand = {
         "entity": entity, "title": title,
         "file_url": info.get("url"), "size": [w, h],
@@ -837,8 +884,13 @@ def evaluate_commons_page(page, entity, route, context=None):
         "route": route, "anchor": None,
     }
     row.update({"verdict": "accepted",
-                "reason": f"{w}x{h}, {label}, identity evidenced "
-                          f"on the file page"})
+                "reason": f"{w}x{h}, {label}, "
+                          + ("identity by construction "
+                             "(P18/depicts of the resolved "
+                             "Wikidata item)"
+                             if identity_verified else
+                             "identity evidenced on the file "
+                             "page")})
     return cand, row
 
 
@@ -1041,44 +1093,135 @@ def source_extras(article, script, dest_dir, own_count, log=print,
                        "from the article"})
         log("   sourcing: no entities extracted — hero chain only")
         return prov
-    # The shared identity gates' story context, and the
-    # outlet filter: an outlet entity is never even queried
-    # (the evaluators refuse it too, as a second line).
+    # The shared identity gates' story context, built once.
     context = build_story_context(article, script, entities)
+    ledger = prov["candidate_ledger"]
+
+    # ── Entity triage (2026-10-31): an entity may source ONLY
+    # with a verified identity. In order: outlet (never a
+    # picture subject) → language (non-visual, the card path's
+    # rule ported via picture_gate_shared) → category label
+    # (a body-phrase pseudo-entity equal to the article's own
+    # category — 'Markets Finance' on a markets-finance story
+    # is the section name, not a subject; it sourced a World
+    # Bank panel portrait into two earnings reels) → shared
+    # resolution through entity_resolve, with verified_
+    # sourcer.decide()'s checks: unresolved → fail closed;
+    # a LIVE resolution must bear the queried name
+    # (names_agree; registry resolutions are exact by
+    # construction and exempt); low-confidence + ambiguous →
+    # abstain; resolved type language → non-visual; no QID →
+    # no identity anchor, fail closed. Compound entities are
+    # resolved AS WHOLES ('Sun Pictures' the studio) — nothing
+    # here ever decomposes an entity into a bare token.
+    ctx_parts = [article.get("headline") or article.get("title")
+                 or "", article.get("summary") or "",
+                 article.get("excerpt") or ""]
+    for key in ("hook_line", "news_summary", "payoff"):
+        if script.get(key):
+            ctx_parts.append(str(script[key]))
+    for b in script.get("diaspora_bullets") or []:
+        ctx_parts.append(str(b))
+    ctx_parts.append((article.get("body") or "")[:4000])
+    resolve_context = " ".join(p for p in ctx_parts if p)
+    category_toks = set(entity_tokens(
+        str(article.get("category") or "").replace("-", " ")))
+    resolved = {}
     sourceable = []
     for e in entities:
+        def triage_reject(reason):
+            ledger.append({"candidate": "(entity)",
+                           "route": "identity — entity triage",
+                           "verdict": "rejected",
+                           "reason": reason})
+
         if G.is_outlet_entity(e):
-            prov["candidate_ledger"].append(
-                {"candidate": "(entity)", "route": "all",
-                 "verdict": "rejected",
-                 "reason": f"outlet: {e!r} is a news outlet — "
-                           "outlets are sources, never picture "
-                           "subjects; never queried"})
-        else:
-            sourceable.append(e)
+            triage_reject(
+                f"outlet: {e!r} is a news outlet — outlets are "
+                "sources, never picture subjects; never queried")
+            continue
+        if G.is_language_entity(e):
+            triage_reject(
+                f"non-visual: {e!r} is a language name — "
+                "languages are never picture subjects")
+            continue
+        if category_toks \
+                and set(entity_tokens(e)) == category_toks:
+            triage_reject(
+                f"category label: {e!r} is this article's "
+                "category name, not a picture subject")
+            continue
+        try:
+            res = net["resolve_entity"](e, resolve_context)
+        except Exception as ex:
+            triage_reject(f"identity: resolution failed for "
+                          f"{e!r} ({ex}) — fail closed"[:200])
+            continue
+        if not res:
+            triage_reject(
+                f"identity: {e!r} has no verified identity "
+                "(no registry entry, no Wikidata resolution) "
+                "— fail closed, no open-search fallback")
+            continue
+        method = res.get("method") or ""
+        if not method.startswith("registry") \
+                and not ER.names_agree(e, res.get("name"),
+                                       res.get("aliases")):
+            triage_reject(
+                f"namesake: live resolution of {e!r} named "
+                f"{res.get('name')!r}, which does not bear the "
+                "queried name — not an identity; fail closed")
+            continue
+        if res.get("confidence") == "low" \
+                and "ambiguous" in (res.get("notes") or ""):
+            triage_reject(
+                f"ambiguous: {e!r} is ambiguous between "
+                "confusables and the story context did not "
+                "discriminate — abstaining (fail closed)")
+            continue
+        if res.get("type") == "language":
+            triage_reject(
+                f"non-visual: {e!r} resolves to a language — "
+                "languages are never picture subjects")
+            continue
+        if not res.get("qid"):
+            triage_reject(
+                f"identity: {e!r} has no Wikidata identity "
+                "anchor (QID null) — identity routes "
+                "unavailable; fail closed")
+            continue
+        resolved[e] = res
+        sourceable.append(e)
     entities = sourceable
     if not entities:
-        prov["candidate_ledger"].append(
+        ledger.append(
             {"candidate": "(entity extraction)",
-             "route": "all",
+             "route": "identity — entity triage",
              "verdict": "rejected",
-             "reason": "every extracted entity is a news "
-                       "outlet — nothing sourceable"})
-        log("   sourcing: only outlet entities extracted — "
+             "reason": "no extracted entity carried a verified "
+                       "identity — nothing sourceable"})
+        log("   sourcing: no identity-verified entities — "
             "hero chain only")
         return prov
     log(f"   sourcing: own={own_count} < {TARGET_DISTINCT} — "
-        f"entities: {', '.join(entities)}")
+        f"identity-verified entities: {', '.join(entities)}")
     pool = []
-    ledger = prov["candidate_ledger"]
-    seen_titles = set()   # query variants overlap — a file is
-                          # evaluated once per run, however many
-                          # queries surface it
+    seen_titles = set()   # a file is evaluated once per run,
+                          # however many routes surface it
 
     def pool_full():
         return len(pool) >= min(MAX_POOL, need + 2)
 
-    # ── Route A: Wikimedia Commons originals ──
+    # ── Identity route: screened P18, then depicts ──
+    # The ONLY candidate sources (2026-10-31): for each
+    # identity-verified entity, its Wikidata item's P18 image
+    # and the Commons files whose depicts (P180) statement IS
+    # that item — identity by construction. Each file is
+    # fetched by exact title and run through the file gates
+    # (evaluate_commons_page with identity_verified=True plus
+    # the entity's corpus blocklist). No text search of any
+    # kind: a file that is not the resolved item's P18 or a
+    # depicts file of it can never enter the pool.
     hint = topical_hint(article, entities)
     if hint:
         log(f"   sourcing: topical hint {hint!r}")
@@ -1086,112 +1229,67 @@ def source_extras(article, script, dest_dir, own_count, log=print,
         for entity in entities:
             if pool_full():
                 break
+            res = resolved[entity]
+            qid = res["qid"]
+            blocked_keys = {ER.file_key(b)
+                            for b in res.get("blocked_files")
+                            or [] if ER.file_key(b)}
+            cand_in = []
+            p18 = res.get("p18_file")
+            if p18:
+                title = p18 if p18.startswith("File:") \
+                    else "File:" + p18
+                cand_in.append(
+                    (title, f"identity — Wikidata P18 ({qid})"))
+            try:
+                deps = net["depicts"](qid) or []
+            except Exception as ex:
+                ledger.append(
+                    {"candidate": f"depicts lookup ({qid})",
+                     "route": "identity — depicts",
+                     "verdict": "rejected",
+                     "reason": f"depicts lookup failed: {ex}"[:200]})
+                deps = []
+            for d in deps:
+                t = d.get("title") if isinstance(d, dict) \
+                    else None
+                if t:
+                    cand_in.append(
+                        (t, f"identity — depicts (P180={qid})"))
             got_for_entity = 0
-            for q in queries_for(entity, hint):
-                if pool_full() or got_for_entity >= PER_ENTITY_CAP:
+            for title, route in cand_in:
+                if pool_full() \
+                        or got_for_entity >= PER_ENTITY_CAP:
                     break
+                if title in seen_titles:
+                    continue
+                seen_titles.add(title)
                 try:
-                    pages = net["commons_search"](q)
-                except Exception as e:
+                    page = net["commons_file_info"](title)
+                except Exception:
+                    page = None
+                if not page:
                     ledger.append(
-                        {"candidate": f"Commons search {q!r}",
-                         "route": "A — Wikimedia Commons",
+                        {"candidate": title, "route": route,
                          "verdict": "rejected",
-                         "reason": f"search failed: {e}"[:200]})
-                    break
-                for page in pages:
-                    if got_for_entity >= PER_ENTITY_CAP:
-                        break
-                    if page.get("title") in seen_titles:
-                        continue
-                    seen_titles.add(page.get("title"))
-                    cand, row = evaluate_commons_page(
-                        page, entity, "A — Wikimedia Commons",
-                        context=context)
-                    ledger.append(row)
-                    if cand:
-                        cand["_row"] = row
-                        pool.append(cand)
-                        got_for_entity += 1
+                         "reason": "file info unavailable on "
+                                   "Commons — cannot verify the "
+                                   "file; fail closed"})
+                    continue
+                cand, row = evaluate_commons_page(
+                    page, entity, route, context=context,
+                    identity_verified=True,
+                    blocked_keys=blocked_keys)
+                ledger.append(row)
+                if cand:
+                    cand["_row"] = row
+                    pool.append(cand)
+                    got_for_entity += 1
     except Exception as e:                      # never block the reel
-        ledger.append({"candidate": "(route A)",
-                       "route": "A — Wikimedia Commons",
+        ledger.append({"candidate": "(identity route)",
+                       "route": "identity — P18/depicts",
                        "verdict": "rejected",
                        "reason": f"route error: {e}"[:200]})
-
-    # ── Route B: official sources (newsroom / org / .gov) ──
-    # TODO(route-repair): Openverse + Flickr CC belong in this
-    # tier once reachable (Openverse is Cloudflare-walled from
-    # this server; Flickr needs an API key). Not attempted here.
-    if not pool_full():
-        try:
-            for entity in entities:
-                if pool_full():
-                    break
-                links = net["brave_links"](
-                    f"{entity} official newsroom press media", 6)
-                for link in links[:3]:
-                    host = urllib.parse.urlparse(link).netloc.lower()
-                    ent_tok = entity_tokens(entity)
-                    official = host.endswith((".gov", ".mil")) or (
-                        ent_tok and ent_tok[0] in host)
-                    if not official:
-                        continue
-                    cand, row = evaluate_hosted_page(
-                        link, entity, "B — official sources", net,
-                        context=context)
-                    ledger.append(row)
-                    if cand:
-                        if any(c["file_url"] == cand["file_url"]
-                               for c in pool):
-                            continue
-                        cand["_row"] = row
-                        pool.append(cand)
-                        break
-        except Exception as e:
-            ledger.append({"candidate": "(route B)",
-                           "route": "B — official sources",
-                           "verdict": "rejected",
-                           "reason": f"route error: {e}"[:200]})
-
-    # ── Route C: web search as discovery only ──
-    if not pool_full():
-        try:
-            for entity in entities:
-                if pool_full():
-                    break
-                links = net["brave_links"](
-                    f"{entity} site:commons.wikimedia.org", 6)
-                for link in links:
-                    if pool_full():
-                        break
-                    m = re.search(r"/wiki/(File:[^/?#]+)", link)
-                    if not m:
-                        continue
-                    title = urllib.parse.unquote(
-                        m.group(1)).replace("_", " ")
-                    if title in seen_titles:
-                        continue
-                    seen_titles.add(title)
-                    try:
-                        page = net["commons_file_info"](title)
-                    except Exception:
-                        page = None
-                    if not page:
-                        continue
-                    cand, row = evaluate_commons_page(
-                        page, entity,
-                        "C — web search (discovery) → Commons",
-                        context=context)
-                    ledger.append(row)
-                    if cand:
-                        cand["_row"] = row
-                        pool.append(cand)
-        except Exception as e:
-            ledger.append({"candidate": "(route C)",
-                           "route": "C — web search (discovery)",
-                           "verdict": "rejected",
-                           "reason": f"route error: {e}"[:200]})
 
     # ── assignment + download (true dims verified at the file) ──
     category = str(article.get("category") or "News") \

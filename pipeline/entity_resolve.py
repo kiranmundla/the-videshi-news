@@ -263,6 +263,10 @@ def _name_tokens(name):
     return toks
 
 
+def _numerals(name):
+    return set(re.findall(r"\d+", str(name or "")))
+
+
 def names_agree(query, resolved_name, aliases=None):
     """Does the resolved item actually BEAR the queried name?
     Sitelink primacy picks the most-linked item a name search
@@ -275,11 +279,23 @@ def names_agree(query, resolved_name, aliases=None):
     the name — SEBI is the alias of 'Securities and Exchange
     Board of India'), or the label adds only generic type words
     ('Republican' → 'Republican Party'), or the query adds only
-    an honorific ('Justice Vikram Nath' → 'Vikram Nath')."""
+    an honorific ('Justice Vikram Nath' → 'Vikram Nath').
+
+    NUMERAL MISMATCH VETO (2026-10-31, the reel-sourcer fix's
+    live dry-run): numerals are ignored for token equality,
+    but when BOTH names carry numerals and they DIFFER, the
+    names cannot agree — 'Jailer 2' (Nelson Dilipkumar's film)
+    resolved by sitelink primacy to 'Jailer 3' (a different
+    film, by Atlee) and the digit-stripping token comparison
+    waved it through into the registry. A sequel number is
+    part of the name."""
     q = _name_tokens(query)
     if not q:
         return False
+    q_nums = _numerals(query)
     for nm in [resolved_name] + list(aliases or []):
+        if q_nums and _numerals(nm) and _numerals(nm) != q_nums:
+            continue
         n = _name_tokens(nm)
         if not n:
             continue

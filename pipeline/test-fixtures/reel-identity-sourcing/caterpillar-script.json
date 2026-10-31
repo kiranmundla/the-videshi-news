@@ -1,0 +1,35 @@
+{
+  "hook_line": "CATERPILLAR EARNINGS BEAT ESTIMATES AS REVENUE RISES 17% TO $20.68 BILLION ON RECORD BACKLOG",
+  "hook_stat": {
+    "big": "$20.68 BILLION",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Caterpillar sales and revenues, up 17%"
+  },
+  "stats": [
+    {
+      "big": "$78.1 BILLION",
+      "label": "Record backlog, up 96%"
+    },
+    {
+      "big": "$7.20",
+      "label": "Adjusted earnings per share, up 45%"
+    },
+    {
+      "big": "18%",
+      "label": "Rise in Power & Energy sales to $8.78 billion"
+    }
+  ],
+  "diaspora_bullets": [
+    "Highest sales quarter ever for Caterpillar",
+    "Shares fell about 10% in pre-market trading"
+  ],
+  "key_entities": [
+    "Caterpillar",
+    "Power & Energy",
+    "Joe Creed"
+  ],
+  "news_summary": "Caterpillar reported third-quarter sales and revenues of $20.68 billion, up 17% from $17.64 billion a year earlier.",
+  "payoff": "The record $78.1 billion backlog says demand is real.",
+  "versus": "",
+  "story_mood": "tense"
+}
