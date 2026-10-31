@@ -90,6 +90,25 @@ REVISION (2026-10-24 late, Kiran's spot-check of the first sample):
      cover_crop with a wrong signature — dead code, because no
      scene in that sample earned full-bleed; the path is live now
      that high-res supplementary originals can earn it).
+
+REVISION (2026-10-30, Kiran — layout holds): reels kept dying at
+render AFTER passing fact-check (the lawmakers payoff, the voters
+hook, the Verizon grid, the PVR diaspora): the text fit ran
+against the full safe height and the face chin rule then pushed
+the fitted block past the safe bottom. Two geometry fixes, no
+gate changes:
+  1. DOMINANT-FACE CHIN RULE ONLY — the chin limit is derived
+     from the dominant subject's face alone (dominant_face_box);
+     secondary/background faces never move or block the block.
+  2. FIT INSIDE THE ZONE THE CHIN LEAVES — on full-bleed scenes
+     the fit shrinks/wraps the beat into the zone below the
+     dominant chin; when that zone is smaller than the beat's
+     minimum content, the scene takes the backdrop composition
+     instead (LAYOUT DEMOTION — photo in the constant stage box,
+     text in the clear zone below it). The chin rule, the safe
+     zone and MIN_FONT are unchanged; only composition changes,
+     exactly as the crispness gate already demotes scenes it
+     cannot fill cleanly.
 """
 import json, math, subprocess, sys, time
 from pathlib import Path
@@ -821,6 +840,57 @@ def _subject_rect(box_xywh):
     return (x, y, x + w, y + h)
 
 
+def dominant_face_box(img):
+    """(box_xywh, method) of the DOMINANT face in a scene image,
+    or (None, method) when no real face is detected.
+
+    The layout chin rule constrains text against ONE face only:
+    the dominant subject's (Kiran, 2026-10-30 — layout holds kept
+    firing on compositions where a non-subject face set the
+    limit). Dominant = the largest YuNet detection; ties break
+    on detector score, then on closeness to frame centre.
+    Secondary/background faces are ignored for layout. The
+    normalization mirrors detect_face_box (RGB, <=800px working
+    size) so the box agrees with the v6 detector on the same
+    image; when YuNet is unavailable the v6 Haar fallback box is
+    used. The focal-heuristic/static boxes are NOT faces and
+    return None."""
+    if img.mode != "RGB":
+        img = img.convert("RGB")
+    try:
+        import cv2
+        import numpy as np
+    except ImportError:
+        cv2 = None
+    if cv2 is not None:
+        arr = np.array(img)
+        h, w = arr.shape[:2]
+        scale = 1.0
+        if max(h, w) > 800:
+            scale = 800 / max(h, w)
+            arr = cv2.resize(arr, (int(w * scale), int(h * scale)))
+        faces = R.yunet_faces(arr)
+        if faces is not None:
+            if not faces:
+                return None, "yunet (no face detected)"
+            iw, ih = arr.shape[1], arr.shape[0]
+
+            def rank(f):
+                fx, fy, fw, fh, score = f
+                d2 = (fx + fw / 2 - iw / 2) ** 2 \
+                    + (fy + fh / 2 - ih / 2) ** 2
+                return (fw * fh, score, -d2)
+
+            fx, fy, fw, fh, score = max(faces, key=rank)
+            box = tuple(int(round(v / scale))
+                        for v in (fx, fy, fw, fh))
+            return box, f"yunet dominant (score {score:.2f})"
+    box, method = R.detect_face_box(img)
+    if method.startswith("haar"):
+        return box, method
+    return None, method
+
+
 # ── Main entry ───────────────────────────────────────────────────────
 def render_reel_v7(script, hero_path, inline_paths, music_path,
                    outdir, name="reel", category="News",
@@ -860,6 +930,10 @@ def render_reel_v7(script, hero_path, inline_paths, music_path,
     # the detector's XYWH to XYXY).
     has_face = face_method.startswith(("yunet", "haar"))
     hero_subject = _subject_rect(face_box)
+    # The dominant subject's face for LAYOUT (the chin rule) —
+    # dominant_face_box; the detect_face_box record above still
+    # feeds the manifest/QA contract unchanged.
+    hero_dom_box, _hero_dom_method = dominant_face_box(hero_raw)
 
     box = stage_box(hero_src_size)     # THE composed size (all
                                        # backdrop scenes)
@@ -921,59 +995,103 @@ def render_reel_v7(script, hero_path, inline_paths, music_path,
         track, gate_scale, track_note = scene_track(plan["source_px"])
         img = scene_src[key]
         anchor = scene_anchor[key]
-        window = None
-        if track == "backdrop" and img is not None:
-            window, dscale = backdrop_window(
-                img.size, box, anchor, region=plan.get("region",
-                                                      "subject"),
+
+        def backdrop_window_for():
+            """This scene's stage-box crop window, or None for a
+            contain-fit at native scale (never upscale)."""
+            if img is None:
+                return None
+            win, dscale = backdrop_window(
+                img.size, box, anchor,
+                region=plan.get("region", "subject"),
                 frac=plan.get("frac", 1.0),
                 subject=scene_subject[key])
-            if dscale > 1.0:
-                window = None   # contain-fit at native (no upscale)
+            return win if dscale <= 1.0 else None
+
+        window = backdrop_window_for() if track == "backdrop" \
+            else None
         bg, placement = compose_scene_bg(
             img, track, anchor, stage_rgb, box=box, window=window)
-        bg.save(outdir / f"bg-{key}.jpg", quality=92)
-        if key == "hook":
-            bg.save(outdir / "background.jpg", quality=92)
 
-        # Text zone for this scene's composition.
+        # Dominant-face chin limit (full-bleed only): the highest
+        # output y the text block's top may reach — the dominant
+        # subject's chin mapped through the scene-end zoom (the
+        # v6 plan_layout geometry). ONLY the dominant face sets
+        # it; secondary/background faces never move the block
+        # (Kiran, 2026-10-30).
+        chin_limit = None
+        if track == "full-bleed" and img is not None:
+            if plan["source"] in ("hero",) or \
+                    plan["source"].startswith("hero-win:"):
+                dbox = hero_dom_box
+            else:
+                dbox, _dm = dominant_face_box(img)
+            if dbox is not None:
+                fmap = map_face_to_bg(dbox, img.size, track,
+                                      placement,
+                                      placement.get("window"))
+                if fmap:
+                    chin_out = R.bg_to_out_y(
+                        fmap[1] + fmap[3],
+                        R.zoom_at(start + dur, TOTAL))
+                    chin_limit = math.ceil(chin_out) + R.FACE_MARGIN
+
+        # Text zone for this scene's composition. On full-bleed
+        # the zone is what the dominant chin leaves below it, and
+        # the fit shrinks/wraps the block INTO that zone (the old
+        # code fit against the full safe height and the chin then
+        # pushed the fitted block past the safe bottom — the
+        # layout hold this revision removes).
         if track == "backdrop":
             zone_top = placement["y"] + placement["h"] + ZONE_TOP_GAP
             zone_h = (SAFE_BOTTOM - ZONE_BOTTOM_PAD) - zone_top
+        elif track == "full-bleed":
+            zone_top = max(SAFE_TOP, chin_limit or SAFE_TOP)
+            zone_h = SAFE_BOTTOM - zone_top
         else:
             zone_top = SAFE_TOP
             zone_h = SAFE_BOTTOM - zone_top
         fit = fit_scene_v7(key, stats, category, zone_h)
+        if fit is None and track == "full-bleed":
+            # LAYOUT DEMOTION: no legal full-bleed text zone (the
+            # dominant chin leaves less than the beat's minimum
+            # content, or the content overflows the zone at every
+            # scale) — the scene takes the backdrop composition
+            # instead of holding the reel: photo in the constant
+            # stage box, text in the clear zone below it. The chin
+            # rule and the safe zone are not bent; the composition
+            # changes, exactly as the crispness gate already
+            # demotes scenes it cannot fill cleanly.
+            fb_zone_h = zone_h
+            track = "backdrop"
+            window = backdrop_window_for()
+            bg, placement = compose_scene_bg(
+                img, track, anchor, stage_rgb, box=box,
+                window=window)
+            zone_top = placement["y"] + placement["h"] + ZONE_TOP_GAP
+            zone_h = (SAFE_BOTTOM - ZONE_BOTTOM_PAD) - zone_top
+            fit = fit_scene_v7(key, stats, category, zone_h)
+            track_note = ((track_note + "; ") if track_note
+                          else "") + (
+                f"layout demotion: no full-bleed fit in the "
+                f"{fb_zone_h}px zone below the dominant chin — "
+                f"backdrop composition instead")
         if fit is None:
             c_min, _ = MEASURERS_V7[key](stats, 0.5, category)
             raise R.TextFitError(
                 f"beat '{key}': content needs {c_min}px > zone "
                 f"{zone_h}px (track {track}) even at scale 0.5")
         scale, content_h, painter = fit
+        bg.save(outdir / f"bg-{key}.jpg", quality=92)
+        if key == "hook":
+            bg.save(outdir / "background.jpg", quality=92)
         if track == "full-bleed":
             block_top = SAFE_BOTTOM - content_h
-            # Face-aware: the block must start below the chin,
-            # mapped through the scene-end zoom (v6 plan_layout).
-            fmap = None
-            if img is not None:
-                if plan["source"] in ("hero",) or \
-                        plan["source"].startswith("hero-win:"):
-                    if has_face:
-                        fmap = map_face_to_bg(
-                            face_box, hero_src_size, track, placement,
-                            placement.get("window"))
-                else:
-                    fb2, fm2 = R.detect_face_box(img)
-                    if fm2.startswith(("yunet", "haar")):
-                        fmap = map_face_to_bg(
-                            fb2, img.size, track, placement,
-                            placement.get("window"))
-            if fmap:
-                chin_out = R.bg_to_out_y(
-                    fmap[1] + fmap[3],
-                    R.zoom_at(start + dur, TOTAL))
-                block_top = max(block_top,
-                                math.ceil(chin_out) + R.FACE_MARGIN)
+            if chin_limit is not None:
+                # The fit above already guarantees block_top >=
+                # chin_limit; this max() is the explicit chin-rule
+                # assertion, kept from the old code.
+                block_top = max(block_top, chin_limit)
         else:
             block_top = zone_top + max(
                 0, (zone_h - content_h) // 2)
