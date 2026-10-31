@@ -1646,5 +1646,16 @@
     "top_story_slug": "pvr-inox-record-q2-india-box-office-4443-crore",
     "quick_hit_count": 5,
     "deadline_count": 3
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-30T13:58:14.682239+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 30, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "indian-airlines-saudi-suspensions-indigo-november-14",
+    "quick_hit_count": 5,
+    "deadline_count": 3
   }
 ]

@@ -1,0 +1,172 @@
+[
+  {
+    "id": "65bdf1c6-b8a9-4bd9-99a1-05d40df9b902",
+    "headline": "Doctors Explain How Gut Health and Mental Well-Being Are Linked",
+    "slug": "gut-health-mental-wellbeing-gut-brain-connection-doctors-explain",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/12231827/pexels-photo-12231827.jpeg?auto=compre"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline for the 2026 review mentioned; is it a study that has already been published or is it upcoming? Providing a publication date would enhance timeliness and clarity.",
+        "Include specific examples of fermented foods and fiber-rich meals to give readers actionable steps they can take immediately.",
+        "Add a brief explanation or definition of psychobiotics for readers who may not be familiar with the term, enhancing completeness and clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a health organization or expert discussing the gut-brain axis to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "aead16d6-6a86-44b9-bebf-15a7b00ca171",
+    "headline": "Indian Woman Fined S$2,500 for Molesting Singapore Nightclub Server",
+    "slug": "indian-woman-fined-2500-molesting-singapore-nightclub-server",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the incident in March when the molestation occurred, as well as the date when the victim reported it to the police, to provide a clearer context for readers.",
+        "Include a brief explanation of the legal process in Singapore regarding molestation cases, such as what the victim's options are for pursuing additional compensation, to enhance completeness and provide readers with necessary context.",
+        "Ensure that the headline reflects the outcome of the court case more clearly, such as 'Indian Woman Fined S$2,500 for Molesting Nightclub Server in Singapore,' to improve specificity and clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a link to the official court ruling or a relevant news report from CNA or The Straits Times for readers seeking more detailed information."
+      ]
+    }
+  },
+  {
+    "id": "05974d9b-96dc-4aa9-9a21-868154021df6",
+    "headline": "Assam Minister's ULFA Remarks Spark Row, Sarma Issues Clarification",
+    "slug": "assam-minister-ulfa-remarks-sarma-clarifies-pro-talks-faction",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of Daimary's original remarks and the date of Sarma's clarification to enhance the article's completeness and timeliness.",
+        "Provide direct quotes from both Daimary and Sarma to improve accuracy and clarity, allowing readers to understand the context and nuances of the statements made.",
+        "Include background information on the ULFA factions to give readers a clearer understanding of the significance of the remarks and the political implications involved."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Assam Chief Minister or the Assam Pradesh Mahila Congress regarding the controversy for real-time updates and official responses."
+      ]
+    }
+  },
+  {
+    "id": "1daae4ac-8f8d-48ba-9a59-2487188ae8c7",
+    "headline": "Infosys Opens 1.1 Million Sq Ft Block at Hyderabad Pocharam Campus",
+    "slug": "infosys-opens-1-1-million-sq-ft-block-pocharam-hyderabad",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the new block by including specific details about how it impacts Infosys's operations or client services, such as expected project timelines or specific clients that will benefit from the expansion.",
+        "Provide a more detailed quote from Jayesh Sanghrajka or other officials present at the inauguration to enhance the article's authority and depth.",
+        "Include a brief mention of any future plans for the campus or additional expansions that Infosys may be considering, to give readers a sense of the company's growth trajectory."
+      ],
+      "embed_opportunities": [
+        "Embed the official Infosys tweet about the inauguration to provide readers with direct access to the company's announcement and visuals from the event."
+      ]
+    }
+  },
+  {
+    "id": "1fc8e3ad-ab25-4f98-b13d-8cf84948bda0",
+    "headline": "Five Fresh Diwali Design Ideas From Tablescapes to Cosy Corners",
+    "slug": "five-fresh-diwali-design-ideas-tablescapes-cosy-corners",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the design ideas by providing specific attribution to designers or publications beyond just 'IMP News' and 'NewsPoint' to enhance credibility.",
+        "Include specific examples of where to purchase materials or decorations mentioned, such as links to stores or online retailers, to provide actionable steps for readers.",
+        "Add a brief section on the significance of Diwali decorations and how they can enhance the festive experience, providing cultural context for the suggestions."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Instagram post showcasing Diwali decorations for visual inspiration."
+      ]
+    }
+  },
+  {
+    "id": "af45cdb1-a812-4e8a-9c9a-bc40ede73eb6",
+    "headline": "Prasidh Krishna Ruled Out of New Zealand ODI Series",
+    "slug": "prasidh-krishna-ruled-out-new-zealand-odi-series-siraj-india-a",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image",
+      "Inline caption names venue 'Melbourne Cricket Ground' not supported by the image file name (Nitish_Kumar_Reddy_BGT_2024_%28cropped%29.jpg\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for Prasidh Krishna's recovery by specifying how long he is expected to take before he can participate in the Return to Play assessment and subsequently join India A.",
+        "Include a brief explanation of the Return to Play assessment process for readers who may not be familiar with it, as this could provide valuable context regarding the player's recovery.",
+        "Mention the impact of Prasidh's absence on the Indian ODI squad, such as how it may affect team dynamics or performance against New Zealand."
+      ],
+      "embed_opportunities": [
+        "Embed the official BCCI tweet announcing Prasidh Krishna's injury status to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "f4ebb74f-cfa2-44d6-abed-348f2d68bed8",
+    "headline": "Yuvraj Singh Says India Must Give Young Batters ODI Chances",
+    "slug": "yuvraj-singh-india-odi-chances-abhishek-kishan-sooryavanshi",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding Ishan Kishan's last ODI appearance; the date mentioned (July 19, 2026) seems to be a typographical error as it is in the future. It should be corrected to a past date for accuracy.",
+        "Provide more context on the significance of the upcoming ODI series against New Zealand, such as its implications for the World Cup or rankings, to enhance completeness.",
+        "Include a direct quote from Yuvraj Singh regarding the selectors' decision-making process or criteria for team selection to improve attribution and depth."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Yuvraj Singh or the official BCCI account regarding the ODI series or player selections to enhance engagement and provide real-time context."
+      ]
+    }
+  },
+  {
+    "id": "ec0a2177-e1b5-41e1-a0fe-471a0de8b974",
+    "headline": "Modi Vows to Serve India's People Until His Last Breath",
+    "slug": "modi-vows-serve-india-people-till-last-breath-banaskantha",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the context of the Rs 14,000 crore projects by providing specific details about what these projects entail and their expected impact on the community or economy.",
+        "Include direct quotes from Modi's speech to enhance attribution and provide a more vivid representation of his statements.",
+        "Add a brief background on Modi's political journey and achievements over the past 25 years to give readers a clearer understanding of his significance in Indian politics."
+      ],
+      "embed_opportunities": [
+        "Embed a video clip of Modi's speech or a relevant tweet from his official account to provide direct access to his statements and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "5193f27b-1eda-4f89-81a5-e00e8db9089f",
+    "headline": "GAIL Profit More Than Doubles as Gas Marketing Revenue Jumps 31%",
+    "slug": "gail-profit-more-than-doubles-gas-marketing-q2-fy27",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the expected IPO launch of GAIL Gas by specifying a month or quarter in FY28, as this would provide readers with a clearer timeframe.",
+        "Include a brief explanation of what the increase in gas marketing revenue means for the overall market or for consumers, such as potential impacts on gas prices or availability.",
+        "Ensure that all financial figures are consistently presented in both rupees and dollars for clarity, especially for international readers who may not be familiar with the Indian currency.",
+        "Provide context on how GAIL's performance compares to industry trends or competitors, which would help readers understand the significance of the reported profit increase."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from GAIL (India) or a financial news outlet that highlights the key financial results or the upcoming IPO announcement."
+      ]
+    }
+  }
+]

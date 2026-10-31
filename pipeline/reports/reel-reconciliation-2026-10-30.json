@@ -1,16 +1,16 @@
 {
   "counts": {
-    "channel_videos": 213,
-    "db_rows": 150,
-    "db_rows_with_yt_id": 120,
+    "channel_videos": 217,
+    "db_rows": 153,
+    "db_rows_with_yt_id": 123,
     "legacy_log_entries": 205,
-    "publish_log_entries": 33,
-    "in_sync": 101,
+    "publish_log_entries": 36,
+    "in_sync": 103,
     "unknown_legacy_logged": 101,
-    "unknown_no_record": 11,
-    "ghost_db_rows": 15,
+    "unknown_no_record": 13,
+    "ghost_db_rows": 16,
     "superseded_db_rows": 4,
-    "public_without_db_record": 112,
+    "public_without_db_record": 114,
     "phase2_uploads_now_public": 0
   },
   "in_sync": [
@@ -720,6 +720,20 @@
       "privacy": "public",
       "video_id": "cvlxhwF5HSA",
       "record": "prebuilt_reels:97b476e3-b509-4357-8c86-9ba19f56bd97"
+    },
+    {
+      "title": "Sold-Out Eden Park Crowd to Break New Zealand Bilateral Record for India T20I #Shorts #Cricket",
+      "published_at": "2026-10-30T11:15:30Z",
+      "privacy": "public",
+      "video_id": "OzKQOQ-ZPXs",
+      "record": "prebuilt_reels:8eec698f-7f3c-473a-9995-99d0700cd2b7"
+    },
+    {
+      "title": "Anil Menon Completes NASA's 100th US Spacewalk, Installing Seventh ISS Solar Array #Shorts #NRI",
+      "published_at": "2026-10-30T23:19:06Z",
+      "privacy": "public",
+      "video_id": "qSKmK0O9QaQ",
+      "record": "prebuilt_reels:a788bce1-eca7-46d3-8e61-991d2cd22884"
     }
   ],
   "unknown_legacy_logged": [
@@ -2102,6 +2116,18 @@
       "published_at": "2026-10-29T06:21:49Z",
       "privacy": "public",
       "video_id": "9x-Wt7ADC5s"
+    },
+    {
+      "title": "JAILER 2 INDIA GROSS HITS RS 462.75 CRORE",
+      "published_at": "2026-10-30T16:35:55Z",
+      "privacy": "public",
+      "video_id": "YL5GuMqOGxE"
+    },
+    {
+      "title": "October 30, 2026",
+      "published_at": "2026-10-30T21:29:27Z",
+      "privacy": "public",
+      "video_id": "PSIJz9xcE5c"
     }
   ],
   "ghost_db_rows": [
@@ -2223,6 +2249,14 @@
       "yt_video_id": "dB5AYzpRFC8",
       "status": "yt_posted",
       "yt_posted_at": "2026-10-23T05:30:34.929983+00:00",
+      "malformed_id": false
+    },
+    {
+      "row_id": "97cd9bb0-7820-4435-a26f-5e9b8454f259",
+      "article_slug": "samvat-2082-largecaps-fall-smallcap-multibaggers-diwali",
+      "yt_video_id": "guB2GssTJoo",
+      "status": "yt_posted",
+      "yt_posted_at": "2026-10-30T17:26:52.275763+00:00",
       "malformed_id": false
     }
   ],
@@ -3638,8 +3672,20 @@
       "published_at": "2026-10-29T06:21:49Z",
       "privacy": "public",
       "video_id": "9x-Wt7ADC5s"
+    },
+    {
+      "title": "JAILER 2 INDIA GROSS HITS RS 462.75 CRORE",
+      "published_at": "2026-10-30T16:35:55Z",
+      "privacy": "public",
+      "video_id": "YL5GuMqOGxE"
+    },
+    {
+      "title": "October 30, 2026",
+      "published_at": "2026-10-30T21:29:27Z",
+      "privacy": "public",
+      "video_id": "PSIJz9xcE5c"
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-10-30T05:14:49+00:00"
+  "generated_at": "2026-10-30T23:20:39+00:00"
 }

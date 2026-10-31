@@ -1,19 +1,19 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-10-30T05:14:49+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-10-30T23:20:39+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **213**
-- prebuilt_reels rows: 150 (120 with a yt_video_id)
+- Channel uploads (actual, via API): **217**
+- prebuilt_reels rows: 153 (123 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 33
-- **In sync** (channel video backed by a DB/publish-log record): **101**
+- Phase 2 publish-log entries: 36
+- **In sync** (channel video backed by a DB/publish-log record): **103**
 - Unknown — legacy-logged only: 101
-- Unknown — no record anywhere: 11
-- Ghost DB rows (yt_video_id not on channel): 15
+- Unknown — no record anywhere: 13
+- Ghost DB rows (yt_video_id not on channel): 16
 - Superseded DB rows (owner-deleted/replaced; not ghosts): 4
-- Public with no DB record: 112
+- Public with no DB record: 114
 - Phase 2 uploads now public (manual flip expected): 0
 
 ## (a1) Unknown channel videos — legacy-logged (old upload path) (101)
@@ -120,7 +120,7 @@ Generated: 2026-10-30T05:14:49+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - `dOdIzexK70M` · public · 2026-10-13 · GOP's H-1B Visa Shift: 9 Indian-American Republicans Run! (log slug: indian-american-republicans-h-1b-backlash-ballot-2026)
 - `d-Lek2J0Q-g` · public · 2026-10-13 · Hyderabad Man's Family Faces Tragedy in Riyadh Airport Attac (log slug: hyderabad-man-riyadh-airport-attack-funeral-saudi)
 
-## (a2) Unknown channel videos — no record anywhere (11)
+## (a2) Unknown channel videos — no record anywhere (13)
 
 - `2XdG6znjzGs` · public · 2026-05-26 · Mammootty Skipped the Padma Bhushan Ceremony for a Kerala Doctorate #Shorts
 - `2PoRwT_MWi0` · public · 2026-06-07 · Rodrigues Has Batted 3, 4, and 5 in Three Consecutive Series. She Says She'll Bat Anywhere … #Shorts
@@ -133,8 +133,10 @@ Generated: 2026-10-30T05:14:49+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - `jXiFqMOBpXU` · public · 2026-07-06 · Persistent Systems Just Made India's Boldest AI Bet — a $1.4 Billion Gamble on a German Sof #Shorts
 - `SG8Yd6PmDnc` · public · 2026-10-13 · H-1B Crackdown Meets the Ballot Box: 9 Indian-American Republicans in the Middle #Shorts #H1B
 - `9x-Wt7ADC5s` · public · 2026-10-29 · Jailer 2 Boxoffice
+- `YL5GuMqOGxE` · public · 2026-10-30 · JAILER 2 INDIA GROSS HITS RS 462.75 CRORE
+- `PSIJz9xcE5c` · public · 2026-10-30 · October 30, 2026
 
-## (b) Ghost DB rows — yt_video_id not on the channel (15)
+## (b) Ghost DB rows — yt_video_id not on the channel (16)
 
 - row `9ac8c1ac-0fa5-49c1-82d9-3606f5373a05` · slug welcome-to-the-jungle-akshay-kumar-ensemble-comedy-june-26-nri-20260603 · yt_video_id `TlA7C-Df2-I` · status pending
 - row `4bc561e2-ca7d-4fdd-86a1-e0341a6fe801` · slug scotus-overturns-humphreys-executor-presidential-power-independent-agencies-2026 · yt_video_id `zoJRBSo2Qkk` · status pending
@@ -151,8 +153,9 @@ Generated: 2026-10-30T05:14:49+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - row `6ac4d40a-7ad8-49a0-93a8-d9ce2f78b52c` · slug india-remittance-record-145-billion-america-largest-source-20260708 · yt_video_id `QeO4sLlXZII` · status ready
 - row `21634a8f-8b70-4645-bb38-664eafc8d72a` · slug social-security-totalization-india-h1b-workers-lost-20260709 · yt_video_id `wWi6O6dqYGw` · status ready
 - row `c7713080-09d5-4d70-914a-5090686d7791` · slug nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks · yt_video_id `dB5AYzpRFC8` · status yt_posted
+- row `97cd9bb0-7820-4435-a26f-5e9b8454f259` · slug samvat-2082-largecaps-fall-smallcap-multibaggers-diwali · yt_video_id `guB2GssTJoo` · status yt_posted
 
-## (c1) Privacy flag — public channel videos with no DB record (112)
+## (c1) Privacy flag — public channel videos with no DB record (114)
 
 - `2XdG6znjzGs` · 2026-05-26 · Mammootty Skipped the Padma Bhushan Ceremony for a Kerala Doctorate #Shorts
 - `E0_-Wo2WOr4` · 2026-05-26 · Mammootty Was Supposed to Receive India's Third-Highest Civilian Honour Today. He Was in Kott #Sh...
@@ -266,6 +269,8 @@ Generated: 2026-10-30T05:14:49+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - `d-Lek2J0Q-g` · 2026-10-13 · Hyderabad Man's Family Faces Tragedy in Riyadh Airport Attac
 - `SG8Yd6PmDnc` · 2026-10-13 · H-1B Crackdown Meets the Ballot Box: 9 Indian-American Republicans in the Middle #Shorts #H1B
 - `9x-Wt7ADC5s` · 2026-10-29 · Jailer 2 Boxoffice
+- `YL5GuMqOGxE` · 2026-10-30 · JAILER 2 INDIA GROSS HITS RS 462.75 CRORE
+- `PSIJz9xcE5c` · 2026-10-30 · October 30, 2026
 
 ## (c2) Privacy flag — Phase 2 (unlisted) uploads now public (0)
 
@@ -278,7 +283,7 @@ _None._
 - row `cededbdc-e47d-4afd-9d01-5586e1d95785` · slug india-cancer-drug-price-caps-137-medicines-november-9 · yt_video_id `M5UjKqtENwU` · on channel: no
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 
-## (d) In sync (101)
+## (d) In sync (103)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -381,4 +386,6 @@ _None._
 - `ulRHwCyhJJI` · public · 2026-10-28 · Nifty Down 13 Percent Faces Worst Year in Decade as Strategists Urge Caution #Shorts #Markets [prebuilt_reels:0740babc-bc36-46ba-aa92-5d21fcfd504f]
 - `_g3DuoCXlBI` · public · 2026-10-29 · Jailer 2 Dips 20 Percent on Tuesday, India Gross Reaches Rs 462.75 Crore #Shorts #Entertainment [prebuilt_reels:861747fa-9361-4338-997a-e872a8117d0d]
 - `cvlxhwF5HSA` · public · 2026-10-29 · Sensex Surges 905 Points, Nifty Tops 22,900 as Banking and FMCG Stocks Lead #Shorts #Markets [prebuilt_reels:97b476e3-b509-4357-8c86-9ba19f56bd97]
+- `OzKQOQ-ZPXs` · public · 2026-10-30 · Sold-Out Eden Park Crowd to Break New Zealand Bilateral Record for India T20I #Shorts #Cricket [prebuilt_reels:8eec698f-7f3c-473a-9995-99d0700cd2b7]
+- `qSKmK0O9QaQ` · public · 2026-10-30 · Anil Menon Completes NASA's 100th US Spacewalk, Installing Seventh ISS Solar Array #Shorts #NRI [prebuilt_reels:a788bce1-eca7-46d3-8e61-991d2cd22884]
 

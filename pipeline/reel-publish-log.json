@@ -443,5 +443,44 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "OzKQOQ-ZPXs",
+    "article_slug": "eden-park-sold-out-india-new-zealand-t20i-record",
+    "article_id": "7ceb9975-e3a4-45cb-8058-818023ff320c",
+    "title": "Sold-Out Eden Park Crowd to Break New Zealand Bilateral Record for India T20I #Shorts #Cricket",
+    "privacy": "public",
+    "uploaded_at": "2026-10-30T11:15:03.601135+00:00",
+    "video_path": "reel-runs/2026-10-30-eden-park-sold-out-india-new-zealand-t20i-record/output/eden-park-sold-out-india-new-zealand-t20i-record.mp4",
+    "video_sha256": "c46e4b10f7d861ba7d8428c570e8b16207b6cde8b2da947f400b9f28d25a5da2",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "guB2GssTJoo",
+    "article_slug": "samvat-2082-largecaps-fall-smallcap-multibaggers-diwali",
+    "article_id": "9b2a9652-baab-4851-a1bf-60a05984c8fe",
+    "title": "Samvat 2082 Ends in Red: 83 Large-Caps Fall Up to 60% as Small-Caps Mint #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-10-30T17:26:52.275763+00:00",
+    "video_path": "reel-runs/2026-10-30-samvat-2082-largecaps-fall-smallcap-multibaggers-diwali/output-v2/samvat-2082-largecaps-fall-smallcap-multibaggers-diwali.mp4",
+    "video_sha256": "88c987b0c8680d86dd4f92d6936628bf92a522a975a83d1a68a4945121f86b98",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "qSKmK0O9QaQ",
+    "article_slug": "nasa-anil-menon-joshua-kutryk-100th-spacewalk-solar-array",
+    "article_id": "b8e76984-b9c7-4fd2-aa6a-813efe9f0cde",
+    "title": "Anil Menon Completes NASA's 100th US Spacewalk, Installing Seventh ISS Solar Array #Shorts #NRI",
+    "privacy": "public",
+    "uploaded_at": "2026-10-30T23:18:39.294090+00:00",
+    "video_path": "reel-runs/2026-10-30-nasa-anil-menon-joshua-kutryk-100th-spacewalk-solar-array/output/nasa-anil-menon-joshua-kutryk-100th-spacewalk-solar-array.mp4",
+    "video_sha256": "d7b69b4cd48f6ad7f5b6eeb084921b84450a78631c2208acafeb75dee36d84cd",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

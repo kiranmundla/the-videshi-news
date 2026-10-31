@@ -1,0 +1,200 @@
+[
+  {
+    "id": "c4e9832a-a9f5-4825-a00a-284ebda2cddf",
+    "headline": "In Texas's Rio Grande Valley, the Deportation Drive Is Galvanising the Midterm V",
+    "slug": "rio-grande-valley-texas-deportation-drive-midterm-vote",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events leading up to the midterms, including specific dates related to the deportation drive and its impact on voter sentiment.",
+        "Provide more specific statistics or quotes from the ACLU poll to enhance the completeness of the argument regarding community safety perceptions.",
+        "Include a brief background on the Caminos Institute and its credibility to strengthen the attribution of the economic impact figure mentioned.",
+        "Add a quote or statement from a local official or immigration lawyer to provide a broader perspective on the situation and its implications."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the ACLU of Texas regarding the poll results or community safety perceptions."
+      ]
+    }
+  },
+  {
+    "id": "7fa63b39-2e67-4cf9-8d0f-9b33ceb306d1",
+    "headline": "Chocolate Phuljhadi: The No-Bake Sparkler Sweet Children Can Make for Diwali",
+    "slug": "chocolate-phuljhadi-recipe-diwali-no-bake",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the recipe instructions by breaking them down into numbered steps for easier readability and following, especially for readers who may be new to cooking.",
+        "Provide specific measurements for the types of chocolate (e.g., dark, milk, or white chocolate) to guide readers in their choices and enhance the recipe's clarity.",
+        "Include a brief note on the storage instructions for the chocolate phuljhadi, such as how long they can be kept and the best way to store them to maintain freshness.",
+        "Add a sentence or two about the cultural significance of phuljhadi in Diwali celebrations to provide context and enrich the reader's understanding."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "13222d35-d22b-483e-9430-b73d67049e48",
+    "headline": "Selling Indian Property to Another NRI? The Buyer Must Still Deduct TDS \u2014 at 12.",
+    "slug": "nri-selling-property-to-nri-tax-tds-rules",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Ensure all legal references are up-to-date and accurately cited, particularly regarding the Income Tax Act, to avoid confusion about the applicability of the laws mentioned.",
+        "Clarify the terms 'surcharge' and 'cess' for readers who may not be familiar with these tax concepts, enhancing completeness and clarity.",
+        "Include specific examples or scenarios to illustrate how TDS is applied in different situations, which would improve clarity and completeness.",
+        "Provide a brief explanation of what a Lower Deduction Certificate is and how it can be obtained, to enhance the practical advice given to readers."
+      ],
+      "embed_opportunities": [
+        "Consider embedding a relevant infographic that visually explains the TDS rates and exemptions for NRIs selling property in India.",
+        "Include a link to the ICICI Bank NRI guide mentioned for readers to access more detailed information."
+      ],
+      "rubric_violation": true
+    }
+  },
+  {
+    "id": "d4021d8c-ff8c-4629-8629-a10711dde6ed",
+    "headline": "Jailer 2 Hindi Earns Rs 43.8 Crore in 15 Days, Books 68% Profit Over Breakeven",
+    "slug": "jailer-2-hindi-box-office-day-15-profit-68-percent",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of the film's release by explicitly stating the release date at the beginning of the article, as it currently appears later in the text and may confuse readers.",
+        "Provide a more detailed breakdown of the film's performance, including comparisons to similar films or historical performance metrics, to give readers context on what 'successful' means in this case.",
+        "Include the source of the profit percentage calculation to enhance credibility, as the current attribution to Koimoi lacks specific details on how these figures were derived."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Koimoi or Sacnilk that highlights the film's box office performance for real-time updates and credibility."
+      ]
+    }
+  },
+  {
+    "id": "0c3703a3-ceec-45c7-8623-eeeb54816448",
+    "headline": "Austin Accountant Arun Mago Gets 41 Months for COVID Loan Fraud and Money Launde",
+    "slug": "arun-mago-austin-accountant-41-months-ppp-fraud",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events, particularly the dates of the fraudulent activities and the laundering to enhance completeness and clarity. For example, specify the exact dates for when the fraudulent loans were applied for and when the laundering occurred in relation to the closure of the emergency programs.",
+        "Provide more context on the implications of the sentence, such as what the restitution and fines mean for Mago's financial situation or any potential impact on similar cases, to enhance the article's completeness.",
+        "Include a quote from the US Attorney's Office or another relevant authority to strengthen attribution and provide additional perspectives on the case, which would enhance the reporting quality."
+      ],
+      "embed_opportunities": [
+        "Embed the official press release from the US Attorney's Office for the Western District of Texas regarding this case to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "92f27f2b-5b83-49f6-8589-2b5de1615663",
+    "headline": "Binance Sets Aside $6.34 Billion After $6.3 Billion Hack, the Largest Crypto The",
+    "slug": "binance-6-3-billion-hack-largest-crypto-theft",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the attack occurred and when Binance expects to resume withdrawals. This will provide readers with a clearer understanding of the situation's urgency.",
+        "Include a brief explanation of how the Secure Asset Fund for Users (SAFU) works and its significance in the context of this incident. This will enhance reader comprehension of Binance's financial safety measures.",
+        "Correct the repetition in the article where it states that Binance has set aside more than $6.34 billion twice. Streamlining this information will improve clarity and conciseness.",
+        "Provide a more detailed breakdown of the types of assets stolen in the hack, including specific amounts of each cryptocurrency involved. This would give readers a clearer picture of the impact of the theft."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Binance or a relevant blockchain security expert discussing the hack and its implications for the crypto market."
+      ]
+    }
+  },
+  {
+    "id": "8d7488ce-1463-4398-9c3c-53b7a412c007",
+    "headline": "India's Fiscal Deficit Hits Rs 7.14 Lakh Crore, 42.1% of Full-Year Target in Fir",
+    "slug": "india-fiscal-deficit-7-14-lakh-crore-first-half-fy27",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the fiscal year being reported on. The article mentions '2026-27' but does not clearly indicate that it refers to the fiscal year starting in April 2026 and ending in March 2027. This could confuse readers unfamiliar with India's fiscal calendar.",
+        "Provide a brief explanation of what a fiscal deficit means and its implications for the economy. This would help readers who may not be familiar with economic terminology understand the significance of the reported figures.",
+        "Include a comparison of the current fiscal deficit figures with previous years to provide context. For example, how does the current deficit compare to the same period in previous fiscal years beyond just last year?",
+        "Ensure consistency in the reporting of figures by converting all amounts to either rupees or dollars throughout the article. Currently, the article switches between rupees and dollars, which may confuse readers."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Ministry of Finance or an official government account that summarizes the fiscal deficit data to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "f6e7f44b-5b15-4a01-9945-d4cf1237e5f3",
+    "headline": "Phillips' 107 Powers New Zealand to Record 259/7 and 87-Run Win Over India",
+    "slug": "new-zealand-record-259-india-fourth-t20i-phillips-century",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the match result in the context of the series, such as implications for the final match or overall team standings.",
+        "Include more detailed statistics for the Indian players, particularly those who performed well or poorly, to provide a fuller picture of the match dynamics.",
+        "Provide context about the venue, Eden Park, and its significance in T20I matches, which could enhance readers' understanding of the achievement."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ICC or a sports news outlet summarizing the match highlights or key performances."
+      ]
+    }
+  },
+  {
+    "id": "0b69cba6-1b3f-430d-8427-89e4ca947ebe",
+    "headline": "Helicopters Airdrop Food as Cyclone Arnab Flooding Maroons Thousands in Odisha",
+    "slug": "odisha-ganjam-floods-helicopters-airdrop-food-cyclone-arnab",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the discrepancy in the number of affected people reported by the Minister and district figures. Ensure that the article states which source is more reliable or provide context for the difference.",
+        "Include specific details about the timeline for the central team's visit on November 2. What will they be assessing, and when can we expect further updates on relief efforts?",
+        "Provide more context on the scale of the flooding by including comparisons to previous cyclones or floods in the region, if applicable. This would help readers understand the severity of the situation.",
+        "Ensure that quotes from officials are attributed correctly and provide context for their statements. For example, clarify if the quote from Suresh Pujari is from a press conference or an interview."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Odisha government or disaster management authority providing real-time updates on the situation or relief efforts."
+      ]
+    }
+  },
+  {
+    "id": "056b0189-7ff3-4aed-8554-7e92b56fb4ad",
+    "headline": "Indian Airlines Extend Saudi Suspensions, IndiGo Cancels Till November 14",
+    "slug": "indian-airlines-saudi-suspensions-indigo-november-14",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the dates for the suspensions, as the mention of 'November 7, 2026' for Riyadh and Dammam seems to be a typographical error; it should likely be November 7, 2023. This could confuse readers.",
+        "Provide a clearer breakdown of the rebooking process, including specific steps passengers need to take to obtain refunds or rebookings, as well as any deadlines associated with these actions.",
+        "Include a brief statement about the security situation in Saudi Arabia to give context to the flight suspensions, as readers may want to understand the reasons behind these decisions."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweets or announcements from Air India, IndiGo, and other relevant airlines regarding the flight suspensions for real-time updates."
+      ]
+    }
+  }
+]
