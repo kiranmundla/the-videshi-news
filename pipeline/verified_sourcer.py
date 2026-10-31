@@ -13,7 +13,17 @@ Decision logic, in order (verified or nothing):
      (image_entities, else the "Must show: …" line of
      image_must_show), else the picture pass's own extractor
      (extract_article_entities + headline_subject_names). Body-only
-     mentions are never hero subjects.
+     mentions are never hero subjects. Extractor-derived subjects
+     must additionally be ELIGIBLE (_subject_eligible): the
+     extractor's sourceable contract, with a curated-registry
+     exception — live replay showed headline common nouns
+     ('Ordering', 'Profit', 'SEBI') otherwise manufacture
+     identities for words. And a LIVE resolution counts only
+     when the item it picked actually bears the queried name
+     (identity_agrees) — sitelink primacy alone resolved the
+     guitarist Adrian Abraham to a rugby player of a different
+     name. inline_decide() applies the same guards to the
+     subjects + named co-subjects it sources for inlines.
   2. Per subject, identity by construction only:
        resolver (entity_resolve.resolve) → Wikidata QID, then
        a. the item's P18, if it passes the quality screen;
@@ -132,12 +142,83 @@ def headline_subjects(article):
         entities = APP.extract_article_entities(article)
         subs = APP.headline_subject_names(article, entities)
         ordered = [e["name"] for e in entities
-                   if e["name"].lower() in subs]
+                   if e["name"].lower() in subs
+                   and _subject_eligible(e)]
         if ordered:
             return ordered
     except Exception:
         pass
     return []
+
+
+def _subject_eligible(entity):
+    """May this extracted entity be SOURCED as a subject at all?
+    The extractor's own contract: single tokens and fragments are
+    recorded but never sourced — a lone capitalized token is not
+    identity proof ('Mann', 'Host'). Live replay of the corpus
+    (2026-10-31) showed why this matters here: fed to the
+    resolver as subjects, headline common nouns manufactured
+    confident identities for words, not stories — 'Ordering' →
+    partial order (mathematics), 'Profit' → income tax, 'SEBI'
+    → Serbia, 'Yulu' → fish sauce, 'President' → the US
+    presidency on an Indian president's story. The one exception
+    is a name the curated registry itself carries (exact
+    name/alias match): curation IS an identity adjudication, so
+    a registry single token ('Nifty') is a verified subject,
+    while an unregistered one is a common noun the headline
+    happens to capitalize."""
+    if entity.get("sourceable"):
+        return True
+    try:
+        return bool(er._candidates(entity["name"]))
+    except Exception:
+        return False
+
+
+_TYPE_TOKENS = {"party", "city", "state", "district", "county",
+                "university", "bank", "group", "company", "inc",
+                "ltd", "river", "island", "airport", "national",
+                "of", "the", "and"}
+_TITLE_TOKENS = {"justice", "judge", "dr", "mr", "mrs", "ms",
+                 "shri", "sri", "prof", "professor"}
+
+
+def _name_tokens(name):
+    toks = set()
+    for t in re.findall(r"[a-z0-9]+", (name or "").lower()):
+        if t.isdigit():
+            continue
+        if len(t) > 3 and t.endswith("s"):
+            t = t[:-1]
+        toks.add(t)
+    return toks
+
+
+def identity_agrees(query, res):
+    """Does a LIVE resolution actually bear the queried name?
+    Sitelink primacy picks the most-linked item a name search
+    returns; nothing in that guarantees the item IS the name —
+    live replay resolved 'Adrian Abraham' (a 9-year-old
+    guitarist) to Adrian Jacobs (a rugby player) and 'SEBI' to
+    Serbia. Agreement = token-set equality (plural-insensitive,
+    numerals ignored), or the label adds only generic type
+    words ('Republican' → 'Republican Party'), or the query
+    adds only an honorific ('Justice Vikram Nath' → 'Vikram
+    Nath'). Registry resolutions are exempt: the registry
+    matched the name/alias exactly, by construction."""
+    if (res.get("method") or "").startswith("registry"):
+        return True
+    q = _name_tokens(query)
+    n = _name_tokens(res.get("name"))
+    if not q or not n:
+        return False
+    if q == n:
+        return True
+    if q < n and (n - q) <= _TYPE_TOKENS:
+        return True
+    if n < q and (q - n) <= _TITLE_TOKENS:
+        return True
+    return False
 
 
 # ── registry-only resolution (offline; mirrors er.resolve's
@@ -311,11 +392,12 @@ def candidates_for(res, depicts_fn=None, info_fn=None):
 
 
 # ── shadow ledger ────────────────────────────────────────────────
-def _write_shadow(result, slug, path=None):
+def _write_shadow(result, slug, path=None, surface="hero"):
     rec = {
         "ts": datetime.now(timezone.utc).isoformat(),
         "producer": PRODUCER,
         "slug": slug,
+        "surface": surface,
         "decision": result["decision"],
         "route": result["route"],
         "entity": result["entity"],
@@ -387,6 +469,16 @@ def decide(article, resolver=None, depicts_fn=None, info_fn=_UNSET,
             result["attempts"].append(
                 {"entity": name, "outcome": "unresolved"})
             continue
+        if not identity_agrees(name, res):
+            notes.append(f"{name}: live resolution named "
+                         f"'{res.get('name')}' — the item does "
+                         f"not bear the queried name; not an "
+                         f"identity")
+            result["attempts"].append(
+                {"entity": name, "outcome": "name-mismatch",
+                 "resolved_name": res.get("name"),
+                 "qid": res.get("qid")})
+            continue
         ent_name = res.get("name") or name
         if (res.get("confidence") == "low"
                 and "ambiguous" in (res.get("notes") or "")):
@@ -432,6 +524,152 @@ def decide(article, resolver=None, depicts_fn=None, info_fn=_UNSET,
                      f"screen (see attempts)")
     result["entity"] = subjects[0]
     return finish("no verified candidate — " + "; ".join(notes))
+
+
+# ── the inline decision (shadow) ─────────────────────────────────
+MAX_INLINES = 3
+
+
+def _inline_roles(article):
+    """Ordered [(name, role)] for inline sourcing: headline
+    subjects first (headline_subjects — the hero set, same
+    eligibility rules), then named co-subjects (the picture
+    pass's subject_and_cosubject_names: lede-named, sourceable,
+    not quoted sources). Mentioned-only entities are absent by
+    construction — the open-search inline route that produced
+    73 of the 123 corpus failures is not replaced by a wider
+    net; it is replaced by this list."""
+    roles = []
+    seen = set()
+    try:
+        import article_picture_pass as APP
+        entities = APP.extract_article_entities(article)
+        _, co = APP.subject_and_cosubject_names(article, entities)
+    except Exception:
+        entities, co = [], set()
+    for name in headline_subjects(article):
+        if name.lower() not in seen:
+            seen.add(name.lower())
+            roles.append((name, "subject"))
+    for e in entities:
+        nm = e["name"].lower()
+        if nm in co and nm not in seen:
+            seen.add(nm)
+            roles.append((e["name"], "co-subject"))
+    return roles
+
+
+def inline_decide(article, resolver=None, depicts_fn=None,
+                  info_fn=_UNSET, write_log=True, log_path=None,
+                  hero=None):
+    """What the new path would place as this article's INLINES.
+    Shadow only — see module docstring.
+
+    Subjects + named co-subjects only; each entity sourced
+    per-entity via P18/depicts through the resolver (the same
+    identity routes and quality screen as the hero), at most
+    MAX_INLINES, deduped against the hero decision and against
+    each other by canonical file key — the same file can never
+    be placed twice on one article. Per-entity failures skip
+    that entity (no abstention cascade: one unresolvable
+    co-subject must not starve the others). Logs one shadow
+    record per placed inline (surface="inline"), plus a single
+    decision="none" record when nothing is placed, so shadow
+    analysis can count zero-inline articles.
+
+    hero: an optional decide() result for the same article; when
+    absent it is computed here (without its own shadow record —
+    inline_decide logs only inline records)."""
+    resolver = resolver or er.resolve
+    if depicts_fn is None:
+        depicts_fn = er.depicts_candidates
+    if info_fn is _UNSET:
+        info_fn = p18_info
+    slug = article.get("slug") if isinstance(article, dict) else None
+    if hero is None:
+        hero = decide(article, resolver=resolver,
+                      depicts_fn=depicts_fn, info_fn=info_fn,
+                      write_log=False)
+    used_keys = set()
+    if hero.get("file_key"):
+        used_keys.add(hero["file_key"])
+    context = article_context(article)
+    placed, attempts = [], []
+    for name, role in _inline_roles(article):
+        if len(placed) >= MAX_INLINES:
+            attempts.append({"entity": name, "role": role,
+                             "outcome": "skipped: inline cap"})
+            continue
+        try:
+            res = resolver(name, context)
+        except Exception as e:
+            attempts.append({"entity": name, "role": role,
+                             "outcome": f"resolver error: {e}"})
+            continue
+        if not res:
+            attempts.append({"entity": name, "role": role,
+                             "outcome": "unresolved"})
+            continue
+        if not identity_agrees(name, res):
+            attempts.append({"entity": name, "role": role,
+                             "outcome": "name-mismatch",
+                             "resolved_name": res.get("name"),
+                             "qid": res.get("qid")})
+            continue
+        ent_name = res.get("name") or name
+        if (res.get("confidence") == "low"
+                and "ambiguous" in (res.get("notes") or "")):
+            attempts.append({"entity": ent_name, "role": role,
+                             "outcome": "ambiguous"})
+            continue
+        if res.get("type") == "language":
+            attempts.append({"entity": ent_name, "role": role,
+                             "outcome": "non-visual"})
+            continue
+        if not res.get("qid"):
+            attempts.append({"entity": ent_name, "role": role,
+                             "outcome": "no-qid"})
+            continue
+        cand, atts = candidates_for(res, depicts_fn, info_fn)
+        attempts.extend(atts)
+        if not cand:
+            attempts.append({"entity": ent_name, "role": role,
+                             "outcome": "no candidate passed screen"})
+            continue
+        if cand["file_key"] in used_keys:
+            attempts.append({"entity": ent_name, "role": role,
+                             "outcome": "duplicate of hero/earlier "
+                                        "inline (canonical file key)",
+                             "file": cand["file_key"]})
+            continue
+        used_keys.add(cand["file_key"])
+        placed.append({"entity": ent_name, "role": role,
+                       "url": cand["url"],
+                       "file_key": cand["file_key"],
+                       "route": cand["route"],
+                       "reason": cand["reason"]})
+    result = {"decision": "image" if placed else "none",
+              "inlines": placed,
+              "hero_file_key": hero.get("file_key"),
+              "hero_entity": hero.get("entity"),
+              "attempts": attempts}
+    if write_log:
+        if placed:
+            for p in placed:
+                _write_shadow(
+                    {"decision": "image", "route": p["route"],
+                     "entity": p["entity"], "file_key": p["file_key"],
+                     "url": p["url"],
+                     "reason": f"inline ({p['role']}): {p['reason']}"},
+                    slug, log_path, surface="inline")
+        else:
+            _write_shadow(
+                {"decision": "none", "route": None, "entity": None,
+                 "file_key": None, "url": None,
+                 "reason": "no subject/co-subject produced a "
+                           "verified inline candidate"},
+                slug, log_path, surface="inline")
+    return result
 
 
 def _main(argv):

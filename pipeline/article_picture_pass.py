@@ -380,6 +380,90 @@ def _is_fragment_entity(name):
         for t in toks)
 
 
+def _name_in_text(name, text_lower):
+    """Whole-phrase, case-insensitive containment (the same match
+    headline_subject_names uses against the headline)."""
+    if not name or not text_lower:
+        return False
+    return re.search(r"\b" + re.escape(name.lower()) + r"\b",
+                     text_lower) is not None
+
+
+def _first_paragraph_text(article):
+    """The article's lede: the first <p> block's text, else the
+    opening of the stripped body."""
+    body = article.get("body") or ""
+    m = re.search(r"<p[^>]*>(.*?)</p>", body,
+                  flags=re.IGNORECASE | re.DOTALL)
+    if m:
+        return RES._strip_html(m.group(1))
+    return RES._strip_html(body)[:600]
+
+
+def _promote_headline_subjects(kept, headline):
+    """Re-tag body-extracted entities the HEADLINE names as
+    headline subjects (source='headline').
+
+    Root cause this fixes (inline dry run, 2026-10-30 — Rafale
+    Marine, Yuvraj Singh, Josh Inglis, Eric Schmidt, Statue of
+    Unity all mis-tagged 'body'): step 1 of the extractor only
+    tags a headline phrase when the body repeats it VERBATIM,
+    and RES._PHRASE_RE matches maximal capitalized runs — in a
+    title-case headline the run absorbs the verb ('Yuvraj Singh
+    Says India Must', 'Rafale Marine Lands'), which the body
+    never repeats, so the true subject fell through to body
+    counting and carried the mention tag. The body's own
+    extraction is the reliable entity source; the headline is
+    the authority on which of those entities are subjects.
+
+    Two promotions:
+      1. the entity's name appears in the headline (whole
+         phrase) — it IS a headline subject, whatever the body
+         count said;
+      2. a descriptor-prefixed name ('Former Google CEO Eric
+         Schmidt' — an appositive the body extractor swallowed,
+         whose clean form fragment suppression then ate as a
+         subset) whose trailing name-form appears in the
+         headline: the entity is renamed to the headline's own
+         form and promoted. If the clean form already exists as
+         its own entity, the polluted duplicate is dropped."""
+    hl = (headline or "").lower()
+    if not hl:
+        return kept
+    out = []
+    for e in kept:
+        if e.get("source") == "body":
+            if _name_in_text(e["name"], hl):
+                e["source"] = "headline"
+            else:
+                toks = e["name"].split()
+                for k in range(1, len(toks) - 1):
+                    rem = " ".join(toks[k:])
+                    if not _name_in_text(rem, hl):
+                        continue
+                    if any(o is not e
+                           and o["name"].lower() == rem.lower()
+                           for o in kept):
+                        e = None  # clean twin exists; drop this
+                    else:
+                        e["name"] = rem
+                        e["source"] = "headline"
+                        kind = "person" if RES._looks_like_person(
+                            rem) else "org/place"
+                        if kind == "person" and any(
+                                t.strip(".,'’-").lower()
+                                in _KIND_PLACE_MARKERS
+                                for t in rem.split()):
+                            kind = "org/place"
+                        e["kind"] = kind
+                        e["sourceable"] = \
+                            not _is_fragment_entity(rem)
+                    break
+        if e is not None:
+            out.append(e)
+    return out
+
+
 def extract_article_entities(article):
     """Ranked picture-worthy entities for one article:
     headline-named first, then sane image_entities, then frequent
@@ -489,6 +573,16 @@ def extract_article_entities(article):
                         for other, otoks in tok_sets):
             continue
         kept.append(e)
+    # Headline-subject promotion: entities the headline names
+    # are subjects, not body mentions (see
+    # _promote_headline_subjects for the failure this repairs).
+    kept = _promote_headline_subjects(kept, headline)
+    # Lede tag: an entity named in the first paragraph has a
+    # story-central role (the lede states who the story is
+    # about) — the co-subject signal for inline sourcing.
+    lede_lower = _first_paragraph_text(article).lower()
+    for e in kept:
+        e["lede"] = _name_in_text(e["name"], lede_lower)
     # Quoted-source tag: a person the body only QUOTES (an
     # analyst cited for a view) is not the story's subject —
     # the hero gate refuses them even if they rank highly.
@@ -1632,6 +1726,38 @@ def headline_subject_names(article, entities):
                        headline):
             subs.add(name.lower())
     return subs
+
+
+def subject_and_cosubject_names(article, entities):
+    """Role split for sourcing beyond the hero: (subjects,
+    co-subjects), both lowercased name sets.
+
+    SUBJECTS are headline_subject_names (the hero set). Named
+    CO-SUBJECTS are the story's secondary principals: sourceable
+    entities named in the first paragraph — the lede states who
+    the story is about, so a name carried there has a
+    story-central role (the pace-bowling group around an injured
+    bowler; a film's female lead and director in a shoot story;
+    the CEO whose projections a results story reports). Passing
+    mentions — body-only names that never reach the lede — are
+    neither, and quoted sources are excluded: a person the body
+    only quotes is not a co-subject. Inline sourcing (design.md
+    Rung 4) draws from subjects + co-subjects only."""
+    subjects = headline_subject_names(article, entities)
+    lede_lower = _first_paragraph_text(article).lower()
+    co = set()
+    for e in entities:
+        nm = e["name"].lower()
+        if nm in subjects or not e.get("sourceable"):
+            continue
+        if e.get("quoted_source"):
+            continue
+        if "lede" in e:
+            if e["lede"]:
+                co.add(nm)
+        elif _name_in_text(e["name"], lede_lower):
+            co.add(nm)
+    return subjects, co
 
 
 def _source_hero(article, entities, hint, net, floor_w, seen_titles,
