@@ -1,0 +1,3041 @@
+{
+ "version": 1,
+ "generated": "2026-10-31",
+ "source": "wikidata-coverage.json (169 measured entities) + failure-corpus.json traps; corrections/additions verified against the live Wikidata API 2026-10-31",
+ "entities": [
+  {
+   "name": "Mumbai",
+   "aliases": [
+    "Mumbai"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q1156",
+   "p18_file": "Panoramic view of Taj Palace Hotel and Taj Tower with the iconic Gateway of India in the background (cropped).jpg",
+   "p18_quality": 5515,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Donald Trump",
+   "aliases": [
+    "Donald Trump",
+    "Trump"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q22686",
+   "p18_file": "Official Presidential Portrait of President Donald J. Trump (2025) (3x4).jpg",
+   "p18_quality": 1536,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (334 vs 6)"
+  },
+  {
+   "name": "New Delhi",
+   "aliases": [
+    "New Delhi"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q987",
+   "p18_file": "India Gate Legendary Saga Of Supreme Sacrifice.jpg",
+   "p18_quality": 6000,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (221 vs 3)"
+  },
+  {
+   "name": "New York City",
+   "aliases": [
+    "New York City",
+    "New York"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q60",
+   "p18_file": "NYC Downtown Manhattan Skyline seen from Paulus Hook 2019-12-20 IMG 7347 FRD (cropped).jpg",
+   "p18_quality": 3869,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (325 vs 1)"
+  },
+  {
+   "name": "Narendra Modi",
+   "aliases": [
+    "Narendra Modi",
+    "Modi"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q1058",
+   "p18_file": "Official Photograph of Prime Minister Narendra Modi Portrait.png",
+   "p18_quality": 337,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Google",
+   "aliases": [
+    "Google"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q95",
+   "p18_file": "Googleplex HQ (cropped).jpg",
+   "p18_quality": 3024,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Infosys",
+   "aliases": [
+    "Infosys",
+    "Infosys Limited",
+    "Infosys Ltd"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q26989",
+   "p18_file": "Infosys (4911287704).jpg",
+   "p18_quality": 3264,
+   "official_domain": null,
+   "confusables": [
+    {
+     "name": "Infosys (French computer wholesaler)",
+     "qid_or_note": "Q134655575",
+     "why": "Label-exact Wikidata hit — 'a foreign company wholesaling computers in France'. The Indian IT company is Q26989 (44 sitelinks). Label-exact matching actively misleads; sitelink primacy over all hits is mandatory."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "Label-exact item Q134655575 is 'a foreign company wholesaling computers in France'. The Indian IT company is Q26989 ('Infosys limited', 44 sitelinks), which HAS a P18 photo ('Infosys (4911287704).jpg'). Label-exact matching actively misleads; sitelink primacy over all hits fixes it."
+  },
+  {
+   "name": "Microsoft",
+   "aliases": [
+    "Microsoft"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q2283",
+   "p18_file": "Aerial Microsoft West Campus August 2009.jpg",
+   "p18_quality": 4752,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Saudi Arabia",
+   "aliases": [
+    "Saudi Arabia"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q851",
+   "p18_file": "Arabian Desert.jpg",
+   "p18_quality": 500,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Air India",
+   "aliases": [
+    "Air India"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q69906",
+   "p18_file": "Boeing 777-337ER - Air India (VT-ALK).JPG",
+   "p18_quality": 3596,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Middle East",
+   "aliases": [
+    "Middle East"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q7204",
+   "p18_file": "Colorful shaded map of Middle East.jpg",
+   "p18_quality": 2700,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "West Indies cricket team",
+   "aliases": [
+    "West Indies cricket team",
+    "West Indies"
+   ],
+   "type": "team",
+   "wikidata_qid": "Q912881",
+   "p18_file": "West Indies cricket team 1930-31.jpg",
+   "p18_quality": 451,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Tata Consultancy Services",
+   "aliases": [
+    "Tata Consultancy Services",
+    "TCS"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q13227919",
+   "p18_file": "TCS SIPCOT Building.jpg",
+   "p18_quality": 4032,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "New Zealand",
+   "aliases": [
+    "New Zealand"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q664",
+   "p18_file": "New Zealand Topography.jpg",
+   "p18_quality": 4500,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Supreme Court",
+   "aliases": [
+    "Supreme Court",
+    "Supreme Court of India",
+    "SCI"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q213380",
+   "p18_file": "Supreme Court of India 01.jpg",
+   "p18_quality": 2638,
+   "official_domain": null,
+   "confusables": [
+    {
+     "name": "supreme court (generic concept)",
+     "qid_or_note": "Q190752",
+     "why": "Label-exact hit for 'Supreme Court'; its P18 is the US Supreme Court building — wrong for our mostly-Indian court coverage. Default resolution for this registry entry is the Supreme Court of India (Q213380, 47 sitelinks); a genuinely US story must resolve explicitly, not via this entry."
+    },
+    {
+     "name": "Foreign supreme-court buildings (US / Darwin, Australia)",
+     "qid_or_note": "no single QID — corpus incident #108",
+     "why": "Entity 'Supreme Court' was served the US Supreme Court Building and the Darwin (Australia) Supreme Court building on an Indian firecracker-ruling story."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "resolves to the generic concept item 'supreme court'; its P18 is the US Supreme Court building — wrong for our mostly-Indian court coverage"
+  },
+  {
+   "name": "Cricket World Cup",
+   "aliases": [
+    "Cricket World Cup",
+    "ODI World Cup",
+    "World Cup"
+   ],
+   "type": "event",
+   "wikidata_qid": "Q192202",
+   "p18_file": "Bangladesh v. Ireland (5522416435).jpg",
+   "p18_quality": 2592,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Asian Games",
+   "aliases": [
+    "Asian Games"
+   ],
+   "type": "event",
+   "wikidata_qid": "Q483463",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (84 vs 1)"
+  },
+  {
+   "name": "North America",
+   "aliases": [
+    "North America"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q49",
+   "p18_file": "North America satellite orthographic.jpg",
+   "p18_quality": 1624,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (303 vs 0)"
+  },
+  {
+   "name": "Wipro",
+   "aliases": [
+    "Wipro"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q1364176",
+   "p18_file": "S3 and S4 Building SJP2 Wipro Sarjapur office Photo 182805.jpg",
+   "p18_quality": 3264,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "White House",
+   "aliases": [
+    "White House"
+   ],
+   "type": "building",
+   "wikidata_qid": "Q35525",
+   "p18_file": "WhiteHouseSouthFacade.JPG",
+   "p18_quality": 1614,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (143 vs 0)"
+  },
+  {
+   "name": "Navratri",
+   "aliases": [
+    "Navratri",
+    "Sharad Navratri"
+   ],
+   "type": "event",
+   "wikidata_qid": "Q10269",
+   "p18_file": "Shardiya Navratri at Shri Bande Mahakali Temple (2026) 28.jpg",
+   "p18_quality": 3264,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Tamil Nadu",
+   "aliases": [
+    "Tamil Nadu"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1445",
+   "p18_file": "Tea Fields Nilgiris Ranges Mynala Dec25 A7CR 09866.jpg",
+   "p18_quality": 8904,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (159 vs 0)"
+  },
+  {
+   "name": "Sri Lanka",
+   "aliases": [
+    "Sri Lanka"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q854",
+   "p18_file": "Topography Sri Lanka.jpg",
+   "p18_quality": 3000,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (309 vs 21)"
+  },
+  {
+   "name": "Los Angeles",
+   "aliases": [
+    "Los Angeles"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q65",
+   "p18_file": "Los Angeles with Mount Baldy.jpg",
+   "p18_quality": 8267,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (280 vs 8)"
+  },
+  {
+   "name": "Jailer (film)",
+   "aliases": [
+    "Jailer (film)",
+    "Jailer"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q113625011",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "film item exists (4th hit under plain 'Jailer'); no P18 (non-free poster)"
+  },
+  {
+   "name": "South Africa",
+   "aliases": [
+    "South Africa"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q258",
+   "p18_file": "Ciudad del Cabo desde Cabeza de León, Sudáfrica, 2018-07-22, DD 34.jpg",
+   "p18_quality": 8688,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (368 vs 0)"
+  },
+  {
+   "name": "JD Vance",
+   "aliases": [
+    "JD Vance",
+    "J. D. Vance"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q28935729",
+   "p18_file": "March 2026 Official Vice Presidential Portrait of JD Vance.jpg",
+   "p18_quality": 2000,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "S. Jaishankar",
+   "aliases": [
+    "S. Jaishankar",
+    "Jaishankar",
+    "Subrahmanyam Jaishankar"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q16186720",
+   "p18_file": "The official portrait of External Minister Subrahmanyam Jaishankar.jpg",
+   "p18_quality": 610,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Embassy of India",
+   "aliases": [
+    "Embassy of India",
+    "Indian Embassy",
+    "Embassy of India in Niger"
+   ],
+   "type": "org",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "no generic item; only per-country embassy items (naive pick landed on the Niger embassy)"
+  },
+  {
+   "name": "Nvidia",
+   "aliases": [
+    "Nvidia"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q182477",
+   "p18_file": "NVIDIA Headquarters.jpg",
+   "p18_quality": 4662,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "United States Department of Homeland Security",
+   "aliases": [
+    "United States Department of Homeland Security",
+    "Department of Homeland Security"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q11231",
+   "p18_file": "DHS Secretary Alejandro Mayorkas Flag Raising Ceremony (50914852532).jpg",
+   "p18_quality": 2328,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Strait of Hormuz",
+   "aliases": [
+    "Strait of Hormuz"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q79883",
+   "p18_file": "تابش آفتاب از بین ابرها - panoramio.jpg",
+   "p18_quality": 1024,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "New Jersey",
+   "aliases": [
+    "New Jersey"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1408",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (231 vs 25)"
+  },
+  {
+   "name": "Shreyas Iyer",
+   "aliases": [
+    "Shreyas Iyer"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q18705305",
+   "p18_file": "Shreyas Iyer 2021.jpg",
+   "p18_quality": 324,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "South Korea",
+   "aliases": [
+    "South Korea"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q884",
+   "p18_file": "Seoul (175734251).jpeg",
+   "p18_quality": 2048,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Ministry of External Affairs (India)",
+   "aliases": [
+    "Ministry of External Affairs (India)",
+    "Ministry of External Affairs"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q3524953",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "plain-name retry resolves to India's MEA"
+  },
+  {
+   "name": "Tilak Varma",
+   "aliases": [
+    "Tilak Varma"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q60286914",
+   "p18_file": "Tilak Varma in March 2026.png",
+   "p18_quality": 858,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Gyanesh Kumar",
+   "aliases": [
+    "Gyanesh Kumar"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q124883782",
+   "p18_file": "Election Commissioner Shri Gyanesh Kumar.jpg",
+   "p18_quality": 369,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "plain-name retry: hit #1 is the 26th Chief Election Commissioner"
+  },
+  {
+   "name": "Reserve Bank of India",
+   "aliases": [
+    "Reserve Bank of India"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q944085",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (47 vs 0)"
+  },
+  {
+   "name": "Abhishek Sharma",
+   "aliases": [
+    "Abhishek Sharma"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q19803999",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [
+    {
+     "name": "Abhishek Sharma (physicist / CEO / director / ORCID stubs)",
+     "qid_or_note": "multiple low-sitelink items; cricketer is Q19803999",
+     "why": "In wbsearchentities the cricketer ranks #8, behind a physicist, a CEO, a director and ORCID researcher stubs. Label rank must never decide; use sitelinks + cricket context."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "cricketer item exists but ranks #8 behind a physicist, a CEO, a director and ORCID stubs"
+  },
+  {
+   "name": "United States Department of Labor",
+   "aliases": [
+    "United States Department of Labor",
+    "Labor Department"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q628807",
+   "p18_file": "Frances Perkins Building.JPG",
+   "p18_quality": 3548,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Drishyam (franchise)",
+   "aliases": [
+    "Drishyam (franchise)",
+    "Drishyam"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [
+    {
+     "name": "Drishyam (2013 Malayalam film)",
+     "qid_or_note": "item exists; QID not captured in coverage pass",
+     "why": "One of three Drishyam items (2013 Malayalam film, 2015 Hindi film, series). Context (language/cast) must decide; none carries a P18."
+    },
+    {
+     "name": "Drishyam (2015 Hindi film)",
+     "qid_or_note": "item exists; QID not captured in coverage pass",
+     "why": "See above — franchise-level coverage name maps to several film items."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "two Drishyam film items (2013 Malayalam, 2015 Hindi) + a series item; no P18 on any"
+  },
+  {
+   "name": "Delhi Police",
+   "aliases": [
+    "Delhi Police"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q3764926",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "United States Department of State",
+   "aliases": [
+    "United States Department of State",
+    "State Department"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q789915",
+   "p18_file": "United States Department of State headquarters.jpg",
+   "p18_quality": 1024,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Air India Express",
+   "aliases": [
+    "Air India Express"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q407343",
+   "p18_file": "AIR INDIA EXPRESS BOEING 737.jpg",
+   "p18_quality": 1000,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (38 vs 0)"
+  },
+  {
+   "name": "Andhra Pradesh",
+   "aliases": [
+    "Andhra Pradesh"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1159",
+   "p18_file": "Kambalakonda.jpg",
+   "p18_quality": 2048,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (150 vs 0)"
+  },
+  {
+   "name": "Special Intensive Revision",
+   "aliases": [
+    "Special Intensive Revision"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q136735545",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Rahul Gandhi",
+   "aliases": [
+    "Rahul Gandhi"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q10218",
+   "p18_file": "Rahul Gandhi.png",
+   "p18_quality": 963,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "San Francisco",
+   "aliases": [
+    "San Francisco"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q62",
+   "p18_file": "San Francisco from the Marin Headlands in March 2019.jpg",
+   "p18_quality": 2048,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (238 vs 25)"
+  },
+  {
+   "name": "King Khalid International Airport",
+   "aliases": [
+    "King Khalid International Airport"
+   ],
+   "type": "building",
+   "wikidata_qid": "Q47157",
+   "p18_file": "Riyadh-airport.jpg",
+   "p18_quality": 967,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (45 vs 0)"
+  },
+  {
+   "name": "Election Commission of India",
+   "aliases": [
+    "Election Commission of India",
+    "Election Commission"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q2724317",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Nelson Dilipkumar",
+   "aliases": [
+    "Nelson Dilipkumar"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q63698985",
+   "p18_file": "Nelson Dilipkumar.png",
+   "p18_quality": 317,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Sanju Samson",
+   "aliases": [
+    "Sanju Samson"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q7418593",
+   "p18_file": "Sanju Samson in PMO New Delhi.jpg",
+   "p18_quality": 611,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Claude Opus",
+   "aliases": [
+    "Claude Opus",
+    "Claude"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q118876059",
+   "p18_file": "Claude Opus 4.1 output example screenshot.webp",
+   "p18_quality": 1164,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Vladimir Putin",
+   "aliases": [
+    "Vladimir Putin",
+    "Putin"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q7747",
+   "p18_file": "Putin V 2026 08 10.png",
+   "p18_quality": 1110,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (315 vs 3)"
+  },
+  {
+   "name": "BCCI",
+   "aliases": [
+    "BCCI",
+    "Board of Control for Cricket in India"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q2907539",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Jio Platforms",
+   "aliases": [
+    "Jio Platforms"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q96418672",
+   "p18_file": "Jio LYF building.jpg",
+   "p18_quality": 1224,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Jantar Mantar",
+   "aliases": [
+    "Jantar Mantar"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q2045115",
+   "p18_file": "India Delhi Jantar Mantar observatory 1.jpg",
+   "p18_quality": 5950,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "three Jantar Mantar site items (Jaipur/Delhi/instruments); corpus context is the Delhi observatory/protest site"
+  },
+  {
+   "name": "West Bengal",
+   "aliases": [
+    "West Bengal"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1356",
+   "p18_file": "West Bengal outline map.svg",
+   "p18_quality": 1382,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (158 vs 0)"
+  },
+  {
+   "name": "Bhuvneshwar Kumar",
+   "aliases": [
+    "Bhuvneshwar Kumar"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q2003153",
+   "p18_file": "Bhuvneshwar kumar With Rashid Zirak (Bhuvneshwar Kumar cropped).jpg",
+   "p18_quality": 951,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Axar Patel",
+   "aliases": [
+    "Axar Patel"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q16225109",
+   "p18_file": "Axar.Patel.jpg",
+   "p18_quality": 4255,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Abu Dhabi",
+   "aliases": [
+    "Abu Dhabi"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1519",
+   "p18_file": "Абу-Даби (Abu Dhabi) - panoramio (1).jpg",
+   "p18_quality": 1280,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (186 vs 2)"
+  },
+  {
+   "name": "Uttar Pradesh",
+   "aliases": [
+    "Uttar Pradesh"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1498",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (149 vs 0)"
+  },
+  {
+   "name": "Arshdeep Singh",
+   "aliases": [
+    "Arshdeep Singh"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q60734086",
+   "p18_file": "Arshdeep Singh in PMO New Delhi.jpg",
+   "p18_quality": 590,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (14 vs 2)"
+  },
+  {
+   "name": "United Nations",
+   "aliases": [
+    "United Nations"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q1065",
+   "p18_file": "Secretary Kerry Addresses Delegates Before Signing the COP21 Climate Change Agreement on Earth Day in New York (26514585581).jpg",
+   "p18_quality": 4832,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Marco Rubio",
+   "aliases": [
+    "Marco Rubio"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q324546",
+   "p18_file": "Official portrait of Secretary Marco Rubio.jpg",
+   "p18_quality": 4438,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Vaibhav Sooryavanshi",
+   "aliases": [
+    "Vaibhav Sooryavanshi",
+    "Vaibhav Suryavanshi"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q130390376",
+   "p18_file": "Vaibhav Suryavanshi meets PM Modi.jpg",
+   "p18_quality": 407,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "ICICI Bank",
+   "aliases": [
+    "ICICI Bank",
+    "ICICI"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q1653258",
+   "p18_file": "Icici-bandra kurla complex.jpg",
+   "p18_quality": 1598,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Reliance Industries",
+   "aliases": [
+    "Reliance Industries",
+    "Reliance Industries Limited"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q908931",
+   "p18_file": "RELIANCE PETROL PUMP - panoramio.jpg",
+   "p18_quality": 1024,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "resolved via partial-label match: Reliance Industries Limited"
+  },
+  {
+   "name": "Durga Puja",
+   "aliases": [
+    "Durga Puja"
+   ],
+   "type": "event",
+   "wikidata_qid": "Q1145922",
+   "p18_file": "আহিরীটোলা সার্বজনীন দূর্গা পুজো ২০১৮.jpg",
+   "p18_quality": 3569,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "HDFC Bank",
+   "aliases": [
+    "HDFC Bank",
+    "HDFC Bank‬"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q631047",
+   "p18_file": "EXCON 2025, Bangalore International Exhibition Centre (396).jpg",
+   "p18_quality": 3264,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Sun Pictures",
+   "aliases": [
+    "Sun Pictures"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q7638437",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (10 vs 0)"
+  },
+  {
+   "name": "West Asia",
+   "aliases": [
+    "West Asia"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q27293",
+   "p18_file": "Oman 2014 (16222028112).jpg",
+   "p18_quality": 3456,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Vidya Balan",
+   "aliases": [
+    "Vidya Balan"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q159166",
+   "p18_file": "Vidya Balan at BB3 interviews, 2024 (cropped).jpg",
+   "p18_quality": 387,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "United States Department of Justice",
+   "aliases": [
+    "United States Department of Justice",
+    "Justice Department"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1553390",
+   "p18_file": "Robert F. Kennedy Department of Justice Building.jpg",
+   "p18_quality": 3769,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (54 vs 0)"
+  },
+  {
+   "name": "Virat Kohli",
+   "aliases": [
+    "Virat Kohli",
+    "Kohli"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q213854",
+   "p18_file": "Virat Kohli in PMO New Delhi.jpg",
+   "p18_quality": 552,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (69 vs 0)"
+  },
+  {
+   "name": "Black Sea",
+   "aliases": [
+    "Black Sea"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q166",
+   "p18_file": "Black Sea Nasa May 25 2004.jpg",
+   "p18_quality": 4800,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (240 vs 18)"
+  },
+  {
+   "name": "Red Sea",
+   "aliases": [
+    "Red Sea"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [
+    {
+     "name": "Red Sea (Sudanese state)",
+     "qid_or_note": "Q310120",
+     "why": "Label-exact candidate with 44 sitelinks vs the sea's 192 (Q23406). Geography/shipping context = the sea; Sudanese politics context = the state."
+    },
+    {
+     "name": "Red Sea (third label-exact item)",
+     "qid_or_note": "Q135015367",
+     "why": "0-sitelink label-exact item recorded in the coverage pass."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "label-exact candidates: Red Sea [Q23406, 192 sitelinks] — seawater inlet of the Indian Ocean; Red Sea [Q310120, 44 sitelinks] — state in Sudan; Red Sea [Q135015367, 0 sitelinks] — 2023 video game developed by Eternal Sands Media"
+  },
+  {
+   "name": "South Asia",
+   "aliases": [
+    "South Asia"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q771405",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (176 vs 0)"
+  },
+  {
+   "name": "Nifty IT",
+   "aliases": [
+    "Nifty IT"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "no Wikidata item found (plain + qualified searches)"
+  },
+  {
+   "name": "Smriti Mandhana",
+   "aliases": [
+    "Smriti Mandhana"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q16224802",
+   "p18_file": "Ms. Smriti Mandhana, Arjun Awardee (Cricket), in New Delhi on July 16, 2019 (cropped).jpg",
+   "p18_quality": 610,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Cockroach Janta Party",
+   "aliases": [
+    "Cockroach Janta Party"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q139857349",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Federal Register",
+   "aliases": [
+    "Federal Register"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q5440362",
+   "p18_file": "Cover of the Federal Register.jpg",
+   "p18_quality": 1522,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Jasprit Bumrah",
+   "aliases": [
+    "Jasprit Bumrah"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q16227998",
+   "p18_file": "Jasprit Bumrah in PMO New Delhi.jpg",
+   "p18_quality": 595,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Shubman Gill",
+   "aliases": [
+    "Shubman Gill"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q28840013",
+   "p18_file": "Shubman Gill 2023 (cropped).jpg",
+   "p18_quality": 220,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Delhi High Court",
+   "aliases": [
+    "Delhi High Court"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q1184183",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Shafali Verma",
+   "aliases": [
+    "Shafali Verma"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q68462628",
+   "p18_file": "Shafali Verma in 2025.jpg",
+   "p18_quality": 853,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Ranji Trophy",
+   "aliases": [
+    "Ranji Trophy"
+   ],
+   "type": "event",
+   "wikidata_qid": "Q3051958",
+   "p18_file": "Ranji trophy.jpg",
+   "p18_quality": 576,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Akasa Air",
+   "aliases": [
+    "Akasa Air"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q109536115",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Premier League",
+   "aliases": [
+    "Premier League"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [
+    {
+     "name": "Premier League (Ukraine)",
+     "qid_or_note": "Q206073",
+     "why": "Label-exact candidate (53 sitelinks) vs the English league Q9448 (114). Default for our coverage is the English league; resolve by context."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "label-exact candidates: Premier League [Q9448, 114 sitelinks] — English men's association top football league; Premier League [Q206073, 53 sitelinks] — top division in Ukrainian football; Premier League [Q126188048, 0 sitelinks] — 1993 video game"
+  },
+  {
+   "name": "Deepika Padukone",
+   "aliases": [
+    "Deepika Padukone"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q159178",
+   "p18_file": "Deepika Padukone 2025 (1).png",
+   "p18_quality": 1080,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Tech Mahindra",
+   "aliases": [
+    "Tech Mahindra",
+    "Tech Mahindra India"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q1131463",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "resolved via partial-label match: Tech Mahindra India"
+  },
+  {
+   "name": "Abhijeet Dipke",
+   "aliases": [
+    "Abhijeet Dipke"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q139881668",
+   "p18_file": "Abhijeet Dipke during an interview with LetsUpp Marathi on YouTube (in Marathi).jpg",
+   "p18_quality": 1071,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Permanent Labor Certification",
+   "aliases": [
+    "Permanent Labor Certification"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q6467209",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "the US labor-certification process item"
+  },
+  {
+   "name": "JPMorgan",
+   "aliases": [
+    "JPMorgan",
+    "J.P. Morgan",
+    "JPMorgan Chase"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q192314",
+   "p18_file": "383 Madison Ave New York.jpg",
+   "p18_quality": 2874,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Amazon Prime Video",
+   "aliases": [
+    "Amazon Prime Video",
+    "Prime Video"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q4740856",
+   "p18_file": "Amazon Prime Video example screenshot.png",
+   "p18_quality": 1849,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Gulf of Oman",
+   "aliases": [
+    "Gulf of Oman"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q79948",
+   "p18_file": "Gulf of Oman (SeaWiFS).jpg",
+   "p18_quality": 736,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Connaught Place, New Delhi",
+   "aliases": [
+    "Connaught Place, New Delhi",
+    "Connaught Place"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q2341950",
+   "p18_file": "Skyline at Rajiv Chowk.JPG",
+   "p18_quality": 2454,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Mitchell Santner",
+   "aliases": [
+    "Mitchell Santner"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q19860904",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "North Carolina",
+   "aliases": [
+    "North Carolina"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1454",
+   "p18_file": "Grandfather Mountain hairpins, Oct 2016 2.jpg",
+   "p18_quality": 5184,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (216 vs 0)"
+  },
+  {
+   "name": "Ajay Devgn",
+   "aliases": [
+    "Ajay Devgn"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q146929",
+   "p18_file": "Ajay Devgn promoting All the Best.jpg",
+   "p18_quality": 332,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Rohit Sharma",
+   "aliases": [
+    "Rohit Sharma"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q3520045",
+   "p18_file": "Rohit Sharma in PMO New Delhi.jpg",
+   "p18_quality": 643,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (38 vs 1)"
+  },
+  {
+   "name": "Ranbir Kapoor",
+   "aliases": [
+    "Ranbir Kapoor"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q1063412",
+   "p18_file": "Ranbir Kapoor snapped at Kalina airport.jpg",
+   "p18_quality": 245,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Nirmala Sitharaman",
+   "aliases": [
+    "Nirmala Sitharaman"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q7040049",
+   "p18_file": "Am 11. April 2025 empfing Außenministerin Beate Meinl-Reisinger die indische Finanzministerin Nirmala Sitharaman in Wien (54445397025) (cropped).jpg",
+   "p18_quality": 536,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Mumbai Police",
+   "aliases": [
+    "Mumbai Police"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [
+    {
+     "name": "Mumbai Police (2013 film)",
+     "qid_or_note": "Q6935310",
+     "why": "Label-exact candidate (5 sitelinks) vs the police department Q6935316 (7). News context = the department; film context = the movie."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "label-exact candidates: Mumbai Police [Q6935316, 7 sitelinks] — Police department of the city of Mumbai; Mumbai Police [Q6935310, 5 sitelinks] — 2013 film by Rosshan Andrrews"
+  },
+  {
+   "name": "Hanuman Ansh",
+   "aliases": [
+    "Hanuman Ansh"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q138527176",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "film vs its own soundtrack album; film is the intended item"
+  },
+  {
+   "name": "Rama",
+   "aliases": [
+    "Rama",
+    "Lord Ram",
+    "Lord Rama"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q160213",
+   "p18_file": "An early 20th century Hindu deity Rama painting.jpg",
+   "p18_quality": 543,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (118 vs 2)"
+  },
+  {
+   "name": "Madhya Pradesh",
+   "aliases": [
+    "Madhya Pradesh"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1188",
+   "p18_file": "Stupa 1 - West Side - Sanchi Hill 2013-02-21 4311.JPG",
+   "p18_quality": 4288,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (147 vs 0)"
+  },
+  {
+   "name": "Mukesh Ambani",
+   "aliases": [
+    "Mukesh Ambani"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q298547",
+   "p18_file": "Mukesh Ambani.jpg",
+   "p18_quality": 268,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Asia Cup",
+   "aliases": [
+    "Asia Cup"
+   ],
+   "type": "event",
+   "wikidata_qid": "Q2866609",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "resolves with 'cricket' context in query"
+  },
+  {
+   "name": "Bombay High Court",
+   "aliases": [
+    "Bombay High Court"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q695852",
+   "p18_file": "Mumbai 03-2016 41 Bombay High Court.jpg",
+   "p18_quality": 5098,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Shah Rukh Khan",
+   "aliases": [
+    "Shah Rukh Khan"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q9535",
+   "p18_file": "Shah Rukh Khan graces the launch of the new Santro.jpg",
+   "p18_quality": 369,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Asian Para Games",
+   "aliases": [
+    "Asian Para Games"
+   ],
+   "type": "event",
+   "wikidata_qid": "Q1209093",
+   "p18_file": "2018 Asian Para Games PH.jpg",
+   "p18_quality": 3600,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "India Mobile Congress",
+   "aliases": [
+    "India Mobile Congress"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q65080497",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "King Fahd International Airport",
+   "aliases": [
+    "King Fahd International Airport"
+   ],
+   "type": "building",
+   "wikidata_qid": "Q911155",
+   "p18_file": "King Fahd Airport mosque 2.jpg",
+   "p18_quality": 2976,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Sony Pictures",
+   "aliases": [
+    "Sony Pictures"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q822314",
+   "p18_file": "Sony Pictures Entertainment (51637461343).jpg",
+   "p18_quality": 5895,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Bhai Dooj",
+   "aliases": [
+    "Bhai Dooj"
+   ],
+   "type": "event",
+   "wikidata_qid": "Q31023",
+   "p18_file": "Tihar Celebration in Nepal (Brother and Sister).jpg",
+   "p18_quality": 1544,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Pranavi Urs",
+   "aliases": [
+    "Pranavi Urs"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q87725660",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Hagley Oval",
+   "aliases": [
+    "Hagley Oval"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q5638760",
+   "p18_file": "Hagley Oval, Christchurch, New Zealand.jpg",
+   "p18_quality": 11120,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Arunachal Pradesh",
+   "aliases": [
+    "Arunachal Pradesh"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1162",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (146 vs 0)"
+  },
+  {
+   "name": "Bay of Bengal",
+   "aliases": [
+    "Bay of Bengal"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q38684",
+   "p18_file": "India satellite image.png",
+   "p18_quality": 1278,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (130 vs 2)"
+  },
+  {
+   "name": "Food Safety and Standards Act",
+   "aliases": [
+    "Food Safety and Standards Act"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q13113724",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Mohammed Shami",
+   "aliases": [
+    "Mohammed Shami"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q7487531",
+   "p18_file": "Mohammed Shami (Indian Cricket team training SCG 2015).jpg",
+   "p18_quality": 4928,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (23 vs 1)"
+  },
+  {
+   "name": "Indian Air Force",
+   "aliases": [
+    "Indian Air Force"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q330658",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (47 vs 2)"
+  },
+  {
+   "name": "Gandhi Jayanti",
+   "aliases": [
+    "Gandhi Jayanti"
+   ],
+   "type": "event",
+   "wikidata_qid": "Q658185",
+   "p18_file": "Gandhi Juhu May1944.jpg",
+   "p18_quality": 579,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Elon Musk",
+   "aliases": [
+    "Elon Musk"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q317521",
+   "p18_file": "Elon Musk (54816836217) (cropped 2) (b).jpg",
+   "p18_quality": 3363,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Amitabh Bachchan",
+   "aliases": [
+    "Amitabh Bachchan"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q9570",
+   "p18_file": "Amitabh Bachchan.jpg",
+   "p18_quality": 668,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Bhavina Patel",
+   "aliases": [
+    "Bhavina Patel",
+    "Bhavina Hasmukhbhai Patel"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q15093215",
+   "p18_file": "Smt. Bhavina Patel Table Tennis medalist.jpg",
+   "p18_quality": 378,
+   "official_domain": null,
+   "confusables": [
+    {
+     "name": "Bhavina Patel (researcher)",
+     "qid_or_note": "Q102067867",
+     "why": "Name-exact Wikidata hit (0 sitelinks) is a researcher. The para table-tennis player is Q15093215 (16 sitelinks), under her fuller name."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "name-exact item is a researcher (0 sitelinks); the para table-tennis player is Q15093215 under her fuller name 'Bhavina Hasmukhbhai Patel'"
+  },
+  {
+   "name": "IDBI Bank",
+   "aliases": [
+    "IDBI Bank"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q3633485",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Tesla",
+   "aliases": [
+    "Tesla"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q478214",
+   "p18_file": "Tesla Visit 3 (9267529364).jpg",
+   "p18_quality": 2048,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (112 vs 0)"
+  },
+  {
+   "name": "Home Office",
+   "aliases": [
+    "Home Office"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [
+    {
+     "name": "home office (room)",
+     "qid_or_note": "Q1759167",
+     "why": "Label-exact candidate (24 sitelinks) vs the UK department Q763388 (27). Immigration/news context = the department."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "label-exact candidates: Home Office [Q763388, 27 sitelinks] — British government ministerial department; home office [Q1759167, 24 sitelinks] — room in a house dedicated for work, like paperwork, computer work, or reading; Home Office [Q135022468, 0 sitelinks] — 2021 video game developed by UnderLight"
+  },
+  {
+   "name": "Smit Machchhar",
+   "aliases": [
+    "Smit Machchhar"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q141610089",
+   "p18_file": "Smit Machchhar in hospital call with Prime Minister Modi.png",
+   "p18_quality": 450,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Pramod Bhagat",
+   "aliases": [
+    "Pramod Bhagat"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q66527150",
+   "p18_file": "Pramod Bhagat.jpg",
+   "p18_quality": 192,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Embassy of the United States",
+   "aliases": [
+    "Embassy of the United States",
+    "US Embassy"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q113065939",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Bajaj Finance",
+   "aliases": [
+    "Bajaj Finance"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q28173355",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Mythri Movie Makers",
+   "aliases": [
+    "Mythri Movie Makers"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q21190867",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Google Cloud",
+   "aliases": [
+    "Google Cloud",
+    "Google Cloud Platform"
+   ],
+   "type": "building",
+   "wikidata_qid": "Q17054505",
+   "p18_file": "Google Cloud logo text.png",
+   "p18_quality": 450,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (30 vs 1)"
+  },
+  {
+   "name": "United States Court of Appeals for the First Circuit",
+   "aliases": [
+    "United States Court of Appeals for the First Circuit",
+    "First Circuit"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q250492",
+   "p18_file": "MoakleyFederalCourthouseRear.JPG",
+   "p18_quality": 1600,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Vijay Deverakonda",
+   "aliases": [
+    "Vijay Deverakonda"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q20090578",
+   "p18_file": "Vijay Deverakonda at NOTA pressmeet (cropped).jpg",
+   "p18_quality": 994,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Jamboo Savari",
+   "aliases": [
+    "Jamboo Savari"
+   ],
+   "type": "event",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [
+    {
+     "name": "Jamboo Savari (2014 film)",
+     "qid_or_note": "Q17058643",
+     "why": "The only Wikidata item with this name is the 2014 film. The Mysuru Dasara procession our articles cover has no Wikidata item — do not resolve to the film."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "Only Wikidata item is the 2014 film of the same name; the Mysuru Dasara procession our articles cover has no item."
+  },
+  {
+   "name": "Kapil Dev",
+   "aliases": [
+    "Kapil Dev"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q558189",
+   "p18_file": "Kapil Dev at Equation sports auction.jpg",
+   "p18_quality": 585,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (37 vs 0)"
+  },
+  {
+   "name": "NDTV World Summit",
+   "aliases": [
+    "NDTV World Summit"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "no Wikidata item found (plain + qualified searches)"
+  },
+  {
+   "name": "Reliance Jio Infocomm",
+   "aliases": [
+    "Reliance Jio Infocomm",
+    "Jio"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q18643672",
+   "p18_file": "Jio LYF building.jpg",
+   "p18_quality": 1224,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "resolved via partial-label match: Jio"
+  },
+  {
+   "name": "Jamieson Greer",
+   "aliases": [
+    "Jamieson Greer"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q131339945",
+   "p18_file": "Official portrait of U.S. Trade Representative Jamieson Greer (cropped 2).jpg",
+   "p18_quality": 603,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "United States Chamber of Commerce",
+   "aliases": [
+    "United States Chamber of Commerce",
+    "US Chamber of Commerce"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q1800288",
+   "p18_file": "U.S. Chamber of Commerce building.JPG",
+   "p18_quality": 3264,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Cape Town",
+   "aliases": [
+    "Cape Town"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q5465",
+   "p18_file": "Ciudad del Cabo desde Cabeza de León, Sudáfrica, 2018-07-22, DD 34.jpg",
+   "p18_quality": 8688,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (218 vs 0)"
+  },
+  {
+   "name": "Anupam Kher",
+   "aliases": [
+    "Anupam Kher"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q560163",
+   "p18_file": "Anupam Kher and Kirron Kher.jpg",
+   "p18_quality": 510,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Gavin Newsom",
+   "aliases": [
+    "Gavin Newsom"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q461391",
+   "p18_file": "Gavin Newsom official photo.jpg",
+   "p18_quality": 1365,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Kautilya Economic Conclave",
+   "aliases": [
+    "Kautilya Economic Conclave"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "no Wikidata item found (plain + qualified searches)"
+  },
+  {
+   "name": "Anil Kapoor",
+   "aliases": [
+    "Anil Kapoor"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q313956",
+   "p18_file": "Anil Kapoor snapped at Race 3 interviews at Sun N Sand hotel in Juhu.jpg",
+   "p18_quality": 585,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (62 vs 0)"
+  },
+  {
+   "name": "IIT Bombay",
+   "aliases": [
+    "IIT Bombay",
+    "Indian Institute of Technology Bombay"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q1661242",
+   "p18_file": "IITBMainBuildingCROP.jpg",
+   "p18_quality": 800,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Adani Enterprises",
+   "aliases": [
+    "Adani Enterprises"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q107646415",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Taran Adarsh",
+   "aliases": [
+    "Taran Adarsh"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q7685374",
+   "p18_file": "TaranAdarsh.jpg",
+   "p18_quality": 249,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Vandenberg Space Force Base",
+   "aliases": [
+    "Vandenberg Space Force Base"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q461492",
+   "p18_file": "Vandenberg Air Force Base, California ESA22324690 (cropped2).jpeg",
+   "p18_quality": 2650,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Oscar Belgal",
+   "aliases": [
+    "Oscar Belgal"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "no Wikidata item found (plain + qualified searches)"
+  },
+  {
+   "name": "Diwali Bazaar",
+   "aliases": [
+    "Diwali Bazaar"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "no Wikidata item found (plain + qualified searches)"
+  },
+  {
+   "name": "Guinness World Records",
+   "aliases": [
+    "Guinness World Records"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q41675",
+   "p18_file": "6764 Guinness.JPG",
+   "p18_quality": 400,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Saint Paul, Minnesota",
+   "aliases": [
+    "Saint Paul, Minnesota",
+    "St. Paul",
+    "Saint Paul"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q28848",
+   "p18_file": "Saint Paul, Minnesota.jpg",
+   "p18_quality": 6851,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "DMI Finance",
+   "aliases": [
+    "DMI Finance"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "no Wikidata item found (plain + qualified searches)"
+  },
+  {
+   "name": "Sahil Wakode",
+   "aliases": [
+    "Sahil Wakode"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "no Wikidata item found (plain + qualified searches)"
+  },
+  {
+   "name": "Navi Mumbai International Airport",
+   "aliases": [
+    "Navi Mumbai International Airport"
+   ],
+   "type": "building",
+   "wikidata_qid": "Q3015728",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Busan International Film Festival",
+   "aliases": [
+    "Busan International Film Festival"
+   ],
+   "type": "event",
+   "wikidata_qid": "Q482633",
+   "p18_file": "Opening ceremony.JPG",
+   "p18_quality": 3888,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Fluzone",
+   "aliases": [
+    "Fluzone"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q4118672",
+   "p18_file": "Fluzone vaccine extracting.jpg",
+   "p18_quality": 700,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Radhakrishna Hotel",
+   "aliases": [
+    "Radhakrishna Hotel"
+   ],
+   "type": "building",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "no Wikidata item found (plain + qualified searches)"
+  },
+  {
+   "name": "Chess Olympiad",
+   "aliases": [
+    "Chess Olympiad"
+   ],
+   "type": "event",
+   "wikidata_qid": "Q428303",
+   "p18_file": "Sahovska olimpiada Bled 2002 1.JPG",
+   "p18_quality": 512,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "India Gate",
+   "aliases": [
+    "India Gate"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q245347",
+   "p18_file": "India Gate in New Delhi 03-2016.jpg",
+   "p18_quality": 3200,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (51 vs 1)"
+  },
+  {
+   "name": "Indian Parliament House",
+   "aliases": [
+    "Indian Parliament House",
+    "Parliament House"
+   ],
+   "type": "building",
+   "wikidata_qid": "Q106103956",
+   "p18_file": "Glimpses of the new Parliament Building, in New Delhi (2).jpg",
+   "p18_quality": 1280,
+   "official_domain": null,
+   "confusables": [
+    {
+     "name": "Old Parliament House, New Delhi",
+     "qid_or_note": "Q15275136",
+     "why": "Near-tie namesake (19 vs 22 sitelinks) of the new Parliament House (Q106103956). Articles about the old building must not take the new building's images, and vice versa."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "Name resolves to the NEW Parliament House (Q106103956, label-exact). The Old Parliament House (Q15275136) is a near-tie namesake (19 vs 22 sitelinks) — articles about the old building would be mis-served."
+  },
+  {
+   "name": "United States Central Command",
+   "aliases": [
+    "United States Central Command"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q1476046",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Golden Gate Bridge",
+   "aliases": [
+    "Golden Gate Bridge"
+   ],
+   "type": "building",
+   "wikidata_qid": "Q44440",
+   "p18_file": "GoldenGateBridge-001.jpg",
+   "p18_quality": 3264,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "primary topic by sitelinks (110 vs 1)"
+  },
+  {
+   "name": "Mandeep Singh (field hockey)",
+   "aliases": [
+    "Mandeep Singh"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q6747936",
+   "p18_file": "Mandeep Singh in August 2022.jpg",
+   "p18_quality": 145,
+   "official_domain": null,
+   "context_hints": [
+    "hockey",
+    "field hockey",
+    "drag-flick",
+    "drag flick",
+    "asian champions trophy",
+    "hockey india",
+    "pro league hockey"
+   ],
+   "confusables": [
+    {
+     "name": "Mandeep Singh (cricketer)",
+     "qid_or_note": "Q6747933",
+     "why": "Indian cricketer. His Commons photos (Commons caption itself says Vijay Hazare Trophy) were served as BOTH hero and inline for the hockey player's article (corpus #21, #71). Sitelinks favour the hockey player (18 vs 12) but only context decides reliably."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "P18 is 145px wide — below any usable floor; identity anchor only, not a servable photo."
+  },
+  {
+   "name": "Mandeep Singh (cricketer)",
+   "aliases": [
+    "Mandeep Singh"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q6747933",
+   "p18_file": "Mandeep Singh 2019.jpg",
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [
+    "cricket",
+    "cricketer",
+    "ipl",
+    "vijay hazare",
+    "ranji",
+    "punjab kings",
+    "batsman",
+    "t20"
+   ],
+   "confusables": [
+    {
+     "name": "Mandeep Singh (field hockey)",
+     "qid_or_note": "Q6747936",
+     "why": "Indian field hockey player — see his entry. Same-name pair; resolve by sport context."
+    }
+   ],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Shahbaz Ahmed (cricketer)",
+   "aliases": [
+    "Shahbaz Ahmed",
+    "Sahabaz Ahmed"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q56678507",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [
+    "cricket",
+    "cricketer",
+    "bengal",
+    "ranji",
+    "rcb",
+    "all-rounder",
+    "allrounder"
+   ],
+   "confusables": [
+    {
+     "name": "Shahbaz Ahmed (field hockey)",
+     "qid_or_note": "Q7461476",
+     "why": "Pakistani field hockey legend ('Shabaz Ahmed Senior'). His portrait was served in a Bengal Ranji article about the cricketer (corpus #77). Note the spelling minefield: Wikidata labels the CRICKETER 'Sahabaz Ahmed' and the hockey legend 'Shahbaz Ahmed'."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "Wikidata label for the cricketer is misspelled 'Sahabaz Ahmed' — alias kept so label searches still land here."
+  },
+  {
+   "name": "Shahbaz Ahmed (field hockey)",
+   "aliases": [
+    "Shahbaz Ahmed",
+    "Shabaz Ahmed",
+    "Shabaz Ahmed Senior"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q7461476",
+   "p18_file": "Shabaz Ahmed Senior.jpg",
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [
+    "hockey",
+    "field hockey",
+    "pakistan hockey",
+    "olympic hockey"
+   ],
+   "confusables": [
+    {
+     "name": "Shahbaz Ahmed (cricketer)",
+     "qid_or_note": "Q56678507",
+     "why": "Bengal/RCB cricketer — see his entry. Same-name (and near-same-spelling) pair."
+    }
+   ],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Vijay Kumar (chef)",
+   "aliases": [
+    "Vijay Kumar",
+    "Chef Vijay Kumar"
+   ],
+   "type": "person",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [
+    "chef",
+    "semma",
+    "restaurant",
+    "michelin",
+    "tamil food",
+    "cooking"
+   ],
+   "confusables": [
+    {
+     "name": "K. Vijay Kumar (IPS officer)",
+     "qid_or_note": "Q6324218",
+     "why": "Indian Police Service officer. His portrait (with police staff) was served in an article about chef Vijay Kumar of Semma (corpus #66). The chef has no Wikidata item (checked 2026-10-31) — never let the officer's item answer for him."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "Chef of Semma, New York. No Wikidata item found 2026-10-31."
+  },
+  {
+   "name": "K. Vijay Kumar",
+   "aliases": [
+    "K Vijay Kumar",
+    "K. Vijay Kumar IPS"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q6324218",
+   "p18_file": "The DG, CRPF, Shri K. Vijay Kumar addressing the recruits after reviewing the Passing Out- cum -Attestation Parade of 664 recruits, at RTC – AVADI, CRPF, in Chennai on August 31, 2012 (cropped).jpg",
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [
+    "ips",
+    "police",
+    "crpf",
+    "dg"
+   ],
+   "confusables": [
+    {
+     "name": "Vijay Kumar (chef)",
+     "qid_or_note": "no Wikidata item",
+     "why": "Chef of Semma — see his entry. Same-name pair with the IPS officer."
+    }
+   ],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Federation Square (Melbourne)",
+   "aliases": [
+    "Federation Square",
+    "Fed Square"
+   ],
+   "type": "building",
+   "wikidata_qid": "Q923304",
+   "p18_file": "Fed Square August 2007.jpg",
+   "p18_quality": 1200,
+   "official_domain": null,
+   "context_hints": [
+    "melbourne",
+    "victoria",
+    "diwali",
+    "flinders"
+   ],
+   "confusables": [
+    {
+     "name": "Federation Square, Nicholls (ACT)",
+     "qid_or_note": "Q120485616",
+     "why": "A shopping complex in Nicholls, Canberra with the same name. Its pond photo was served in a Diwali Victoria (Melbourne) guide (corpus #38)."
+    }
+   ],
+   "blocked_files": [
+    "federation square, nicholls 14.jpg"
+   ],
+   "notes": "Blocked file is the Nicholls item's own P18 — the file served for the Melbourne square in corpus #38's class of failure."
+  },
+  {
+   "name": "Federation Square, Nicholls",
+   "aliases": [
+    "Federation Square"
+   ],
+   "type": "building",
+   "wikidata_qid": "Q120485616",
+   "p18_file": "Federation Square, Nicholls 14.jpg",
+   "p18_quality": 1024,
+   "official_domain": null,
+   "context_hints": [
+    "nicholls",
+    "canberra",
+    "act",
+    "gungahlin"
+   ],
+   "confusables": [
+    {
+     "name": "Federation Square (Melbourne)",
+     "qid_or_note": "Q923304",
+     "why": "The famous Melbourne civic square (17 sitelinks vs 1). Default 'Federation Square' in our coverage is Melbourne; Nicholls needs explicit ACT context."
+    }
+   ],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Krishna Mandir, Bur Dubai",
+   "aliases": [
+    "Krishna Mandir",
+    "Krishna Mandir Dubai",
+    "Hindu Temple Dubai"
+   ],
+   "type": "building",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [
+    "dubai",
+    "bur dubai",
+    "uae"
+   ],
+   "confusables": [
+    {
+     "name": "Krishna Mandir, Patan (Nepal)",
+     "qid_or_note": "Q13183200",
+     "why": "The 17th-century stone temple in Patan Durbar Square, Lalitpur. Its photo was captioned as the Bur Dubai Krishna Mandir in a UAE Diwali guide (corpus #30). The Bur Dubai temple has no Wikidata item (checked 2026-10-31) — never let the Patan item answer for it."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "No Wikidata item for the Bur Dubai temple (checked 2026-10-31)."
+  },
+  {
+   "name": "Krishna Mandir, Patan",
+   "aliases": [
+    "Krishna Mandir"
+   ],
+   "type": "building",
+   "wikidata_qid": "Q13183200",
+   "p18_file": "Lalitpur Patan Durbar Square 2023 02.jpg",
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [
+    "patan",
+    "lalitpur",
+    "nepal",
+    "durbar square"
+   ],
+   "confusables": [
+    {
+     "name": "Krishna Mandir, Bur Dubai",
+     "qid_or_note": "no Wikidata item",
+     "why": "Dubai temple sharing the name — see its entry (corpus #30)."
+    }
+   ],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Blackstone",
+   "aliases": [
+    "Blackstone",
+    "Blackstone Inc",
+    "Blackstone Inc."
+   ],
+   "type": "company",
+   "wikidata_qid": "Q880942",
+   "p18_file": "Blackstone HQ - 345 Park Avenu.jpg",
+   "p18_quality": 846,
+   "official_domain": null,
+   "context_hints": [
+    "investment",
+    "private equity",
+    "india",
+    "fund",
+    "billion"
+   ],
+   "confusables": [
+    {
+     "name": "Blackstone, Massachusetts",
+     "qid_or_note": "Q3640815",
+     "why": "US town. Its Free Public Library photo was sourced as a reel extra for the Blackstone Inc. $50B-India story (corpus #121)."
+    },
+    {
+     "name": "Blackstone, Virginia",
+     "qid_or_note": "Q1373412",
+     "why": "US town. Its downtown photo was sourced as a reel extra for the same story (corpus #121)."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "P18 filename's 'Avenu' truncation is the file's real Commons title."
+  },
+  {
+   "name": "Jonathan Gray",
+   "aliases": [
+    "Jonathan Gray",
+    "Jonathan D. Gray"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q16211302",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [
+    "blackstone",
+    "president",
+    "coo",
+    "private equity"
+   ],
+   "confusables": [
+    {
+     "name": "Jonathan Gray (media scholar)",
+     "qid_or_note": "no QID captured in seed pass; media-studies professor",
+     "why": "The scholar's portrait (Comic NY symposium, Columbia) was captioned as Blackstone president/COO Jonathan Gray in a Blackstone article (corpus #88)."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "Blackstone president & COO (Jonathan D. Gray)."
+  },
+  {
+   "name": "National Stock Exchange of India",
+   "aliases": [
+    "NSE",
+    "National Stock Exchange"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q638740",
+   "p18_file": "National Stock Exchange of India 2.jpg",
+   "p18_quality": 1024,
+   "official_domain": null,
+   "context_hints": [
+    "nifty",
+    "sensex",
+    "stock",
+    "shares",
+    "mumbai"
+   ],
+   "confusables": [
+    {
+     "name": "Nse Ikpe-Etim",
+     "qid_or_note": "Q7067552",
+     "why": "Nigerian actress. Her photo was served for the card entity 'NSE' on a Sensex story (corpus #107) — the single-token 'NSE' matched her first name."
+    }
+   ],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Shadab Khan (cricketer)",
+   "aliases": [
+    "Shadab Khan"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q24005995",
+   "p18_file": "Shadab Khan.png",
+   "p18_quality": 416,
+   "official_domain": null,
+   "context_hints": [
+    "cricket",
+    "cricketer",
+    "pakistan",
+    "leg-spin",
+    "leg spin",
+    "psl",
+    "all-rounder"
+   ],
+   "confusables": [
+    {
+     "name": "Shadab Khan (actor)",
+     "qid_or_note": "Q18044406",
+     "why": "Indian actor/model. His photo-shoot portrait was served in a Pakistan-v-England match report about the cricketer (corpus #35)."
+    }
+   ],
+   "blocked_files": [
+    "shadab khan at photo shoot.jpg"
+   ],
+   "notes": "Blocked file is the actor's P18 — the exact file served for the cricketer in corpus #35."
+  },
+  {
+   "name": "Shadab Khan (actor)",
+   "aliases": [
+    "Shadab Khan"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q18044406",
+   "p18_file": "Shadab Khan at photo shoot.jpg",
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [
+    "actor",
+    "film",
+    "model",
+    "bollywood"
+   ],
+   "confusables": [
+    {
+     "name": "Shadab Khan (cricketer)",
+     "qid_or_note": "Q24005995",
+     "why": "Pakistani cricketer — see his entry (corpus #35)."
+    }
+   ],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Caterpillar Inc.",
+   "aliases": [
+    "Caterpillar",
+    "Caterpillar Inc"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q459965",
+   "p18_file": "Caterpillarhq.JPG",
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [
+    "earnings",
+    "machinery",
+    "construction equipment",
+    "inc"
+   ],
+   "confusables": [
+    {
+     "name": "caterpillar (insect larva)",
+     "qid_or_note": "generic concept — never a valid image source for the company",
+     "why": "A hookah-caterpillar illustration and a moth caterpillar photo were sourced for the Caterpillar Inc. earnings reel (corpus #120); 'EPS' cards aside, the bare name also drew insect photos in the earnings preview deck."
+    }
+   ],
+   "blocked_files": [],
+   "notes": ""
+  },
+  {
+   "name": "Hindi",
+   "aliases": [
+    "Hindi"
+   ],
+   "type": "language",
+   "wikidata_qid": "Q1568",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [],
+   "confusables": [],
+   "blocked_files": [
+    "black hole - messier 87 crop max res.jpg"
+   ],
+   "notes": "NON-VISUAL entity: a language must never be pictured from open search. Corpus #113 served the Messier 87 black hole photo and #114 a Hindi alphabet chart for the card entity 'Hindi'. Blocked file note: the corpus describes #113's image by content, not filename; the blocked key is the canonical EHT Messier 87 Commons file (verified on Commons 2026-10-31, 4320x4320, CC BY 4.0) — it is never a valid image for this entity. The alphabet chart's exact filename was not recorded, so it is not seeded."
+  },
+  {
+   "name": "OTT",
+   "aliases": [
+    "OTT",
+    "over-the-top"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [],
+   "confusables": [
+    {
+     "name": "Ott Järvela",
+     "qid_or_note": "Estonian sports journalist (person)",
+     "why": "His photo was served for the card entity 'OTT' (streaming abbreviation) on a Manoj Bajpayee story (corpus #116) — first-name token collision."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "NON-VISUAL entity in card decks: 'OTT' is a streaming abbreviation, not a depictable subject."
+  },
+  {
+   "name": "EPS",
+   "aliases": [
+    "EPS",
+    "earnings per share"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [],
+   "confusables": [
+    {
+     "name": "Campagnolo Super Record EPS (bicycle groupset)",
+     "qid_or_note": "product line sharing the EPS name",
+     "why": "Bicycle brake photos were served for the financial metric 'EPS' three times (corpus #101, #102, #109). The exact Commons filenames were not recorded, so no blocked file is seeded."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "NON-VISUAL entity: a financial metric abbreviation, not a depictable subject."
+  },
+  {
+   "name": "Ajay Kumar Srivastava",
+   "aliases": [
+    "Ajay Kumar Srivastava"
+   ],
+   "type": "person",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [
+    "indian overseas bank",
+    "iob",
+    "bank",
+    "md & ceo"
+   ],
+   "confusables": [],
+   "blocked_files": [
+    "ajay kumar srivastava and hon. yogi adityanath.jpg"
+   ],
+   "notes": "Indian Overseas Bank MD & CEO. Wrong-CONTEXT class: felicitation-ceremony photos (with UP CM Yogi Adityanath; a second with Deputy CM Keshav Prasad Maurya) were used as hero, twice as inlines, and in the reel for an earnings story (corpus #27, #100, #123) — right person, wrong occasion entirely. Blocked key is the Yogi felicitation file stripped from the article on 2026-10-30; the Maurya file's exact Commons title was not recorded. QID not captured in the seed pass."
+  }
+ ]
+}
