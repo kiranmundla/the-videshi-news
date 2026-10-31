@@ -78,6 +78,189 @@ body_tba_alone = {"headline": "X", "data_cards": [], "body":
 check("honest 'not been announced' without a comparison passes",
       "unknown-value comparison" not in kinds(body_tba_alone))
 
+print("A1b. unknown-value comparison — real emitted card schemas")
+# Regression for the schema blindness found by the BAPS acceptance
+# test (2026-10-30): the pipeline emits card_type + items[] of
+# {name, value} dicts (article-polish), NOT the type + rows shape the
+# gate was first tested against. Fixtures below mirror the surveyed
+# schemas (6,202 cards): each gets a positive + negative case.
+baps_live_card = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "comparison", "card_title": "Food Donation History",
+     "items": [{"name": "October 2025 Drive", "value": "2,000 pounds"},
+               {"name": "Current Event Donation",
+                "value": "To be determined"}]}]}
+check("VERBATIM live BAPS card (card_type + sibling items) -> HELD",
+      "unknown-value comparison" in kinds(baps_live_card),
+      str(kinds(baps_live_card)))
+baps_fixed_card = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "comparison", "card_title": "Food Donation History",
+     "items": [{"name": "October 2025 Drive", "value": "2,000 pounds"}]}]}
+check("corrected card (unknown side dropped) passes",
+      "unknown-value comparison" not in kinds(baps_fixed_card))
+cmp_num = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "comparison", "card_title": "Fares",
+     "items": [{"name": "2025", "value": "$1,200", "numeric_value": 1200},
+               {"name": "2026", "value": "To be announced",
+                "numeric_value": None}]}]}
+check("comparison items with numeric_value: TBD sibling -> HELD",
+      "unknown-value comparison" in kinds(cmp_num))
+cmp_num_ok = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "comparison", "card_title": "Fares",
+     "items": [{"name": "2025", "value": "$1,200", "numeric_value": 1200},
+               {"name": "2026", "value": "$1,350",
+                "numeric_value": 1350}]}]}
+check("comparison items all real (numeric_value) passes",
+      "unknown-value comparison" not in kinds(cmp_num_ok))
+sg_sibling = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "stat_grid", "card_title": "Offering",
+     "items": [{"label": "2025 offering", "value": "2,000 pounds"},
+               {"label": "2026 offering", "value": "Unknown"}]}]}
+check("stat_grid {label,value}: placeholder sibling of figure -> HELD",
+      "unknown-value comparison" in kinds(sg_sibling))
+sg_hero = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "stat_grid", "card_title": "Offering",
+     "hero_stat": {"value": "To be determined", "label": "2026 offering"},
+     "items": [{"label": "2025 offering", "value": "2,000 pounds"}]}]}
+check("stat_grid hero_stat placeholder + item figure -> HELD",
+      "unknown-value comparison" in kinds(sg_hero))
+sg_ok = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "stat_grid", "card_title": "Offering",
+     "hero_stat": {"value": "2,500 pounds", "label": "2026 offering"},
+     "items": [{"label": "2025 offering", "value": "2,000 pounds"}]}]}
+check("stat_grid hero_stat + items all real passes",
+      "unknown-value comparison" not in kinds(sg_ok))
+tl_honest = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "timeline", "card_title": "Weekend",
+     "items": [{"date": "November 9, 2026", "event": "Diya lighting"},
+               {"date": "November 10, 2026",
+                "event": "Fireworks; venue to be announced"}]}]}
+check("timeline: TBA venue among dated events passes (dates != figures)",
+      "unknown-value comparison" not in kinds(tl_honest))
+tl_same = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "timeline", "card_title": "Drive",
+     "items": [{"date": "November 9, 2026",
+                "event": "2,000 pounds collected; 2026 total to be "
+                         "determined"}]}]}
+check("timeline: figure + placeholder in the SAME event -> HELD",
+      "unknown-value comparison" in kinds(tl_same))
+hl_stat = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "highlights", "card_title": "At a glance",
+     "items": [{"text": "Expected crowd", "stat": "12,000"},
+               {"text": "Ticket price", "stat": "To be announced"}]}]}
+check("highlights {text,stat}: TBD stat sibling of figure stat -> HELD",
+      "unknown-value comparison" in kinds(hl_stat))
+hl_strings_ok = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "highlights", "card_title": "Notes",
+     "items": ["Over 12,000 visitors expected across the weekend",
+               "Parking details to be announced"]}]}
+check("highlights prose strings: sibling placeholder passes (prose "
+      "entries judged within themselves)",
+      "unknown-value comparison" not in kinds(hl_strings_ok))
+rows_notype = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"title": "Capacity and Price", "headers": ["Item", "Value"],
+     "rows": [["Hall capacity", "500 seats"],
+              ["2026 ticket price", "To be determined"]]}]}
+check("price_compare-style rows (no type key): TBD row -> HELD",
+      "unknown-value comparison" in kinds(rows_notype))
+kd_dates_ok = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"type": "key_dates", "title": "Key Dates",
+     "dates": [{"date": "2026-11-10", "event": "Diwali celebration"},
+               {"date": "To be announced",
+                "event": "Registration opens"}]}]}
+check("key_dates dates[]: one TBA date among real dates passes",
+      "unknown-value comparison" not in kinds(kd_dates_ok))
+kd_items_bad = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"type": "key_dates", "title": "Donations",
+     "items": [{"label": "2025 drive", "value": "2,000 pounds"},
+               {"label": "2026 drive", "value": "To be determined"}]}]}
+check("key_dates items[] {label,value} variant: TBD sibling -> HELD",
+      "unknown-value comparison" in kinds(kd_items_bad))
+kd_times_ok = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"type": "key_dates", "title": "Schedule",
+     "items": [{"label": "Temple hours", "value": "3:00-8:00 p.m."},
+               {"label": "Fireworks", "value": "To be announced"}]}]}
+check("key_dates: time-range sibling is not a figure -> passes",
+      "unknown-value comparison" not in kinds(kd_times_ok))
+howto_ok = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"type": "how_to", "title": "Apply",
+     "steps": [{"step": "Pay the fee", "detail": "The fee is $50"},
+               {"step": "Wait", "detail": "Dates to be announced by "
+                                          "the board"}]}]}
+check("how_to steps: prose siblings with placeholder pass",
+      "unknown-value comparison" not in kinds(howto_ok))
+flat_bad = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"label": "2026 food offering", "value": "To be determined",
+     "context": "vs 2,000 pounds in 2025", "category": "donations"}]}
+check("flat untyped {label,value,context} card: TBD + context figure "
+      "-> HELD", "unknown-value comparison" in kinds(flat_bad))
+flat_ok = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"type": "match_scorecard", "result": "Match drawn",
+     "venue": "Eden Park", "teams": "India vs New Zealand"}]}
+check("flat match_scorecard-style card passes",
+      "unknown-value comparison" not in kinds(flat_ok))
+dv_bad = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"type": "comparison", "title": "Rates",
+     "items": [{"label": "2025", "display_value": "$40",
+                "value": 40},
+               {"label": "2026", "display_value": "Unknown",
+                "value": None}]}]}
+check("type-family comparison {display_value,label,value}: TBD -> HELD",
+      "unknown-value comparison" in kinds(dv_bad))
+date_not_figure = {"headline": "X", "body": "<p>Text.</p>",
+                   "data_cards": [
+    {"card_type": "comparison", "card_title": "Pricing",
+     "items": [{"name": "Early bird ends", "value": "November 2026"},
+               {"name": "Regular price", "value": "To be announced"}]}]}
+check("comparison: date-valued sibling is not a figure -> passes",
+      "unknown-value comparison" not in kinds(date_not_figure))
+
+print("A1c. corpus-eyeball regressions (14,688-article precision scan)")
+# Verbatim shapes from real published cards the scan surfaced.
+celestin = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "comparison", "card_title": "Third-Country "
+     "Deportation Risks", "items": [
+        {"name": "Ghana", "value": "3 years", "numeric_value": 3},
+        {"name": "Cameroon", "value": "Unknown", "numeric_value": 0},
+        {"name": "Uganda", "value": "Harsh anti-LGBT laws",
+         "numeric_value": 0}]}]}
+check("bare-count value figure ('3 years') vs 'Unknown' -> HELD",
+      "unknown-value comparison" in kinds(celestin), str(kinds(celestin)))
+ages = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "comparison", "card_title": "Victims' Background",
+     "items": [{"name": "Anjali S. Joy", "value": "27",
+                "numeric_value": 27},
+               {"name": "Sivin Johny", "value": "unknown",
+                "numeric_value": 0}]}]}
+check("age values ('27') vs 'unknown' -> HELD",
+      "unknown-value comparison" in kinds(ages))
+junk_nv = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "comparison", "card_title": "Coaching Changes",
+     "items": [{"name": "Mahela Jayawardene", "value": "Mumbai Indians",
+                "numeric_value": 1},
+               {"name": "Delhi Capitals Coach", "value": "Unknown",
+                "numeric_value": 1}]}]}
+check("categorical values + junk numeric_value=1: no figure -> passes",
+      "unknown-value comparison" not in kinds(junk_nv))
+year_nv = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"card_type": "comparison", "card_title": "Community Engagement",
+     "items": [{"name": "Chamak Diwali 2025", "value": "Oct. 25",
+                "numeric_value": 2025},
+               {"name": "Proposed Festival", "value": "TBD",
+                "numeric_value": 2025}]}]}
+check("date value + year-artifact numeric_value: no figure -> passes",
+      "unknown-value comparison" not in kinds(year_nv))
+card_tbc = {"headline": "X", "body": "<p>Text.</p>", "data_cards": [
+    {"type": "key_dates", "title": "Fees",
+     "items": [{"label": "Application fee", "value": "$50"},
+               {"label": "Registration opens", "value": "TBC"}]}]}
+check("card value-position 'TBC' vs figure -> HELD",
+      "unknown-value comparison" in kinds(card_tbc))
+prose_tbc = {"headline": "X", "data_cards": [], "body":
+             "<p>Qualifier 2 — Friday, May 29: Loser of Qualifier 1 vs "
+             "Winner of Eliminator. Venue TBC | 7:30 PM IST.</p>"}
+check("prose fixture 'Venue TBC' + team 'vs' passes (card-only vocab)",
+      "unknown-value comparison" not in kinds(prose_tbc))
+
 print("A2. inferred admission")
 adm_bad = {"headline": "X", "data_cards": [], "body":
            "<p>The festival takes place on Sunday. Admission is free "

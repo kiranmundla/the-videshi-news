@@ -20,6 +20,18 @@ Covered (brief failure cases d, e, and 5-related):
      unknown placeholder ("to be determined", "TBD", "unknown",
      "not announced") in body text or data_cards. Brief case: the
      "2,000 pounds (2025) vs to be determined (2026)" card.
+     SCHEMA NOTE (2026-10-30, BAPS acceptance test): the card scan is
+     schema-agnostic — it evaluates comparison units across every card
+     shape the pipeline actually emits (surveyed 6,202 cards: the
+     polish/enrich `card_type`+`items[]` family, the writer
+     `type`+`rows[]`/`dates[]`/`steps[]` family, and flat field dicts).
+     The original scan keyed on `type` and treated one dict as one
+     unit, so the live BAPS card (`card_type` + sibling `{name,
+     value}` items) passed silently. Checks 2–5 were audited for the
+     same assumption: they read body prose only and make no data-card
+     schema assumptions; card-carried instances of those constructions
+     are out of their scope by design (a card's label/value pairs carry
+     no sentence context for attribution judgement).
   2. inferred admission — an event article affirmatively asserting
      free admission/entry with no attribution in the sentence.
      LIMIT (honest): sources at insert time carry only name+URL — the
@@ -119,6 +131,16 @@ def _snippet(sentence, limit=130):
 _PLACEHOLDER = re.compile(
     r"\b(to be determined|t\.?b\.?d\.?|yet to be announced|"
     r"not yet announced|not announced|to be announced|unknown)\b", re.I)
+# Card values carry a wider placeholder vocabulary than prose: a
+# value-position "TBC" / "to be confirmed" is the unknown side of a
+# card. In PROSE the same words are routine fixture-schedule language
+# ("Venue TBC", "opponent to be confirmed") next to team "vs" cues —
+# the 2026-10-30 corpus scan false-fired on exactly those — so the
+# prose check keeps the original conservative set above.
+_CARD_PLACEHOLDER = re.compile(
+    r"\b(to be determined|t\.?b\.?d\.?|yet to be (?:announced|determined)|"
+    r"not yet (?:announced|determined)|not announced|to be announced|"
+    r"to be confirmed|t\.?b\.?c\.?|unknown)\b", re.I)
 _COMPARISON_CUE = re.compile(
     r"\b(vs\.?|versus|compared (?:to|with|against)|up from|down from|"
     r"outpac\w+|surpass\w+|higher than|lower than)\b", re.I)
@@ -129,57 +151,185 @@ def _has_number(s):
     return bool(re.search(r"\d", s or ""))
 
 
-def _card_scalar_groups(node, groups):
-    """Yield groups of scalar values that sit side-by-side in a data
-    card (a dict's own values, or a list of scalars) — the units a
-    reader sees as one comparison."""
-    if isinstance(node, dict):
-        scalars = [v for v in node.values()
-                   if isinstance(v, (str, int, float))]
-        if scalars:
-            groups.append([str(v) for v in scalars])
-        for v in node.values():
-            if isinstance(v, (dict, list)):
-                _card_scalar_groups(v, groups)
-    elif isinstance(node, list):
-        scalars = [v for v in node if isinstance(v, (str, int, float))]
-        if scalars and len(scalars) == len(node):
-            groups.append([str(v) for v in scalars])
-        else:
-            for v in node:
-                if isinstance(v, (dict, list)):
-                    _card_scalar_groups(v, groups)
+# --- card comparison units, across every emitted schema ----------------
+#
+# Surveyed shapes (2026-10-30; 6,202 cards in published + staged +
+# built articles, 152 structural signatures):
+#   polish/enrich family — card_type + card_title, items[] of
+#     {label, value} (stat_grid), {name, value, numeric_value?}
+#     (comparison), {date, event} (timeline), {text, stat?} /
+#     {text, optional_stat} / plain strings (highlights); optional
+#     hero_stat {value, label, trend?}.
+#   writer family — type + title, price_compare headers[] + rows[] of
+#     scalar lists; key_dates dates[] of {date, event} (variant:
+#     items[] of {label, value}); how_to steps[] of {step, detail};
+#     checklist items[] of {text, note?}; stat_grid/comparison
+#     variants with items[] of {context, label, value} /
+#     {display_value, label, value}; per-item context/note fields may
+#     carry the figure ("vs 2,000 pounds in 2025").
+#   flat dicts — match_scorecard, movie_review_ratings, recipe, and an
+#     untyped {label, value, context} stat: no entry container; the
+#     card's own scalar fields are its single entry.
+#
+# An ENTRY is one data point as a reader sees it (one item dict, one
+# table row, the hero stat). An entry is a VALUE entry when it is a
+# table row or carries a value-position field; prose entries (timeline
+# events, highlight text without a stat, how-to steps, checklist text)
+# are judged only within themselves — a schedule with one 'to be
+# announced' entry among dated ones is an honest unknown, not half of
+# a comparison. VALUE entries are parallel values for parallel
+# subjects, so a placeholder in one while a concrete figure sits in a
+# sibling is exactly the banned construction, whatever the card type
+# is called.
+
+_CARD_CONTAINERS = ("items", "rows", "dates", "steps")
+_CARD_VALUE_FIELDS = ("value", "display_value", "stat", "optional_stat",
+                      "optional stat", "numeric_value")
+
+_DATE_TIME_SPAN = re.compile(
+    r"\d{4}-\d{2}-\d{2}"                                   # ISO date
+    r"|\d{1,2}/\d{1,2}(?:/\d{2,4})?"                       # 11/10/2026
+    r"|\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?"
+    r"\s+\d{1,2}(?:st|nd|rd|th)?\b"                        # November 10
+    r"|\b\d{1,2}(?:st|nd|rd|th)?\s+"
+    r"(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\b"
+    r"|\b\d{1,2}:\d{2}(?::\d{2})?\s*(?:[ap]\.?m\.?)?\b"    # 3:00 p.m.
+    r"|\b\d{1,2}\s*[ap]\.?m\.?\b"                          # 8 p.m.
+    r"|\b(?:19|20)\d\d\b",                                 # bare year
+    re.I)
+_MONEY_OR_PCT = re.compile(r"[$₹€£]\s*\d|\d\s*%")
+_DIGIT_LETTER = re.compile(r"\d[a-zA-Z]")
+
+
+def _has_quantity(s):
+    """True when s carries a concrete figure — a quantity a reader
+    could compare. Dates, clock times and bare years are NOT figures
+    ('November 10, 2026', '3:00-8:00 p.m.'); a number counts when it
+    is digit-grouped (2,000), 3+ digits (500), decimal (4.5),
+    money/percent-adjacent ($10, 42%), or digit+unit (2000lbs). Bare
+    1–2 digit counts ('50 seats') are deliberately not figures —
+    conservative, as elsewhere in this gate."""
+    if not s:
+        return False
+    if _MONEY_OR_PCT.search(s):
+        return True
+    residue = _DATE_TIME_SPAN.sub(" ", s)
+    if _DIGIT_LETTER.search(residue):
+        return True
+    for tok in re.findall(r"\d[\d,]*(?:\.\d+)?", residue):
+        if "," in tok or "." in tok or len(tok.replace(",", "")) >= 3:
+            return True
+    return False
+
+
+def _has_value_figure(s):
+    """Figure test for VALUE-position strings (a card entry's value /
+    display_value / stat field, a table-row cell): once dates, clock
+    times and bare years are stripped, any remaining digit is the
+    entry's figure — including bare counts the prose-grade test
+    ignores ('3 years', age '27', '60'). Producers park junk in
+    numeric_value (0 for unknown, 1 for unranked, 2025 for a year),
+    so that field never counts as a figure."""
+    if not s:
+        return False
+    return bool(re.search(r"\d", _DATE_TIME_SPAN.sub(" ", s)))
+
+
+def _entry_strings(el):
+    """(strings, value_strings, is_value_entry) for one card entry.
+    value_strings are the strings sitting in value positions, judged
+    by _has_value_figure; numeric_value is excluded from them (see
+    above) but still marks the entry as a value entry."""
+    if isinstance(el, dict):
+        strings, vstrings = [], []
+        for k, v in el.items():
+            if not isinstance(v, (str, int, float)) or isinstance(v, bool):
+                continue
+            strings.append(str(v))
+            if k in _CARD_VALUE_FIELDS and k != "numeric_value":
+                vstrings.append(str(v))
+        is_value = any(k in el for k in _CARD_VALUE_FIELDS)
+        return strings, vstrings, is_value
+    if isinstance(el, list):
+        cells = [str(v) for v in el
+                 if isinstance(v, (str, int, float))
+                 and not isinstance(v, bool)]
+        # table row: every cell is a value position
+        return cells, cells, True
+    if isinstance(el, (str, int, float)) and not isinstance(el, bool):
+        return [str(el)], [], False
+    return [], [], False
+
+
+def _card_entries(card):
+    """All comparison entries of a card across the observed schemas."""
+    entries = []
+    for key in _CARD_CONTAINERS:
+        v = card.get(key)
+        if isinstance(v, list):
+            entries.extend(_entry_strings(el) for el in v)
+    hs = card.get("hero_stat")
+    if isinstance(hs, dict):
+        strings, vstrings, _ = _entry_strings(hs)
+        entries.append((strings, vstrings, True))
+    if not entries:
+        # flat card: its own scalar fields are the single entry
+        entries.append(_entry_strings(card))
+    return entries
+
+
+def _card_violation(card):
+    """(figure, placeholder) if the card pairs a concrete figure with
+    an unknown placeholder, else None. Fires when a placeholder and a
+    figure share one entry (any entry kind), or when a placeholder
+    sits in a value entry while any sibling value entry of the same
+    card carries a figure."""
+    value_figure = None
+    value_placeholder = None
+    for strings, vstrings, is_value in _card_entries(card):
+        placeholder = next(
+            (s for s in strings if _CARD_PLACEHOLDER.search(s)), None)
+        figure = next((s for s in vstrings if _has_value_figure(s)), None)
+        if figure is None:
+            figure = next((s for s in strings if _has_quantity(s)), None)
+        if placeholder and figure:
+            return figure, placeholder
+        if is_value:
+            value_placeholder = value_placeholder or placeholder
+            value_figure = value_figure or figure
+    if value_placeholder and value_figure:
+        return value_figure, value_placeholder
+    return None
 
 
 def check_unknown_value_comparison(article):
     """Brief case: '2,000 pounds in 2025' vs 'to be determined' in 2026 —
     a comparison with an unknown value is not a comparison."""
     failures = []
-    # (a) data cards
+    # (a) data cards — every schema the pipeline emits (see survey
+    # note above); the polish step's card_type + items[] shape is the
+    # one the original type-keyed scan missed on the live BAPS card.
     cards = article.get("data_cards") or []
+    if isinstance(cards, dict):
+        cards = [cards]
     if isinstance(cards, list):
         for card in cards:
             if not isinstance(card, dict):
                 continue
-            groups = []
-            _card_scalar_groups(card, groups)
-            card_type = str(card.get("type") or "")
-            title = str(card.get("title") or card_type or "data card")
-            for group in groups:
-                placeholders = [g for g in group if _PLACEHOLDER.search(g)]
-                if not placeholders:
-                    continue
-                numeric = [g for g in group if _has_number(g)]
-                figures = [g for g in numeric
-                           if not re.fullmatch(r"(?:19|20)\d\d", g.strip())]
-                if numeric or card_type == "price_compare":
-                    failures.append(
-                        "unknown-value comparison: data card "
-                        f"'{title}' pairs '{_snippet(figures[0], 40) if figures else 'a compared value'}' "
-                        f"with unknown placeholder '{_snippet(placeholders[0], 40)}' "
-                        "— a comparison containing an unknown value is "
-                        "not publishable; drop the card or the unknown side")
-                    break
+            hit = _card_violation(card)
+            if not hit:
+                continue
+            figure, placeholder = hit
+            card_type = str(card.get("card_type") or card.get("type")
+                            or "")
+            title = str(card.get("card_title") or card.get("title")
+                        or card_type or "data card")
+            failures.append(
+                "unknown-value comparison: data card "
+                f"'{title}' pairs '{_snippet(figure, 40)}' "
+                f"with unknown placeholder '{_snippet(placeholder, 40)}' "
+                "— a comparison containing an unknown value is "
+                "not publishable; drop the card or the unknown side")
     # (b) body prose: placeholder in a sentence that also carries a
     # concrete figure AND a real comparison frame — a cue word
     # (vs/compared/up from…), or a 'while' contrast with figures on
