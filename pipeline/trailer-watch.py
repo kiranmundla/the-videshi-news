@@ -521,6 +521,33 @@ def _video_is_live(video_id):
         return False
 
 
+def _best_hero_thumb(video_id):
+    """Hero thumbnail URL for a trailer brief: the maxres still
+    (1280x720) when the video actually has one, else hqdefault.
+
+    maxresdefault.jpg cannot be trusted by name — i.ytimg serves a
+    120x90 placeholder at that URL for videos with no maxres — so
+    the candidate is downloaded and byte-measured (the film_hero
+    rule: a film article's hero must truly measure >=800px). Any
+    measurement failure keeps the previous hqdefault behaviour;
+    downstream sourcing replaces sub-floor heroes regardless.
+    """
+    maxres = f"https://i.ytimg.com/vi/{video_id}/maxresdefault.jpg"
+    try:
+        r = subprocess.run(
+            ["curl", "-sS", "-L", "--max-time", "12", "-A", "TheVideshi/1.0",
+             maxres], capture_output=True, timeout=18)
+        if r.returncode == 0 and len(r.stdout) > 1000:
+            from PIL import Image
+            from io import BytesIO
+            w, _h = Image.open(BytesIO(r.stdout)).size
+            if w >= 800:
+                return maxres
+    except Exception:
+        pass
+    return f"https://i.ytimg.com/vi/{video_id}/hqdefault.jpg"
+
+
 def _trim_credit_tail(value):
     """Cut a prose credit capture at its non-name tail: '& Others',
     ', only on Netflix', ', on 23 October' would otherwise validate as
@@ -1144,7 +1171,7 @@ def build_brief_article(drops, channels_by_name):
         "category": "entertainment",
         "tags": ["trailers", main_ch.get("industry", ""), film] + [l.lower() for l in langs],
         "sources": brief_sources,
-        "image_url": f"https://i.ytimg.com/vi/{thumb_vid}/hqdefault.jpg",
+        "image_url": _best_hero_thumb(thumb_vid),
         "image_caption": f"Still from the official {kind.lower()} of {film}.",
         "image_attribution": f"{html.escape(versions[0]['channel'])} / YouTube",
         "diaspora_angle": "US theatrical release tracking for diaspora audiences.",

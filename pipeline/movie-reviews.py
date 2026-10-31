@@ -551,10 +551,24 @@ def publish_article(article_data, movie_data):
               f"(≥2-source gate). Widen the review search or skip this film.")
         return None
 
-    # Get poster from theater data for image_url
-    poster_url = movie_data.get("poster_url", "")
+    # Hero resolution (2026-10-31, film_hero.py): the roster poster
+    # is a Wikipedia fair-use file, often ~283px wide — it must not
+    # ship as a full-width hero. film_hero applies the one rule:
+    # poster >=800px ships; below the floor, the gated official
+    # trailer's maxres still ships (honest caption); otherwise no
+    # hero (fail-closed). The Udta Teer review shipped the 283x354
+    # poster and rendered blurry — Kiran flagged it from his phone.
+    import film_hero
+    _hero = film_hero.resolve_film_hero(
+        movie_data, {"slug": slug, "headline": headline})
+    poster_url = _hero["image_url"] or ""
     image_caption = None
-    if poster_url:
+    if _hero["hero_kind"] == "trailer_still":
+        image_caption = _hero["image_caption"]
+        print(f"    🎞 Hero: trailer still ({_hero['reason']})")
+    elif _hero["hero_kind"] == "none" and movie_data.get("poster_url"):
+        print(f"    🎞 Hero: none ({_hero['reason']})")
+    if poster_url and _hero["hero_kind"] == "poster":
         director = article_data.get("director", movie_data.get("director", ""))
         title = article_data.get("title", movie_data.get("title", ""))
         if director:

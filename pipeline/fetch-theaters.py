@@ -29,8 +29,20 @@ YT_HEADERS = {
 }
 
 
-def fetch_wikipedia_image(title: str, year: int = 0) -> str:
-    """Get poster/thumbnail from Wikipedia. Returns URL or empty string."""
+def fetch_wikipedia_image(title: str, year: int = 0):
+    """Get poster/thumbnail from Wikipedia.
+
+    Returns (url, width, height) — width/height are the TRUE pixel
+    size of the poster file itself, from the REST summary's
+    originalimage (falling back to the thumbnail's dims). Recording
+    them matters: en.wikipedia posters are non-free files whose
+    stored size is capped by policy (~283px for Udta Teer), and for
+    such files the summary's "thumbnail" IS the raw file, so the
+    /500px- rewrite below is a no-op and the URL alone hides the
+    fact that the poster can never fill a hero slot. film_hero.py
+    reads poster_width at publish time to apply the >=800px rule
+    without a live lookup. Returns ("", 0, 0) when no poster.
+    """
     candidates = [title]
     base = title.split(":")[0].strip() if ":" in title else title
     if base != title:
@@ -59,15 +71,21 @@ def fetch_wikipedia_image(title: str, year: int = 0) -> str:
                 if thumb:
                     # Get higher resolution version
                     hi_res = thumb.replace("/330px-", "/500px-")
-                    print(f"  ✅ Poster found: {candidate}")
-                    return hi_res
+                    orig = data.get("originalimage", {})
+                    width = orig.get("width") or \
+                        data.get("thumbnail", {}).get("width") or 0
+                    height = orig.get("height") or \
+                        data.get("thumbnail", {}).get("height") or 0
+                    print(f"  ✅ Poster found: {candidate} "
+                          f"({width}x{height})")
+                    return hi_res, width, height
             time.sleep(0.3)
         except Exception as e:
             print(f"  ⚠️ Error for '{candidate}': {e}")
             continue
 
     print(f"  ❌ No poster found: {title}")
-    return ""
+    return "", 0, 0
 
 
 def youtube_search_url(title: str, suffix: str = "official trailer") -> str:
@@ -177,13 +195,34 @@ def main():
         print(f"Processing: {title}")
         print(f"{'='*50}")
 
-        # 1. Poster
-        if movie.get("poster_url"):
-            print(f"  ⏭️ Already has poster")
+        # 1. Poster (+ its true dimensions — see fetch_wikipedia_image)
+        if movie.get("poster_url") and movie.get("poster_width"):
+            print(f"  ⏭️ Already has poster ({movie['poster_width']}px)")
+        elif movie.get("poster_url"):
+            # Poster predates dimension recording: measure it once
+            # via the API (film_hero caches by URL) and store the
+            # width so publish-time decisions need no live lookup.
+            try:
+                import film_hero
+                w, h = film_hero.fetch_wikimedia_dims(movie["poster_url"])
+            except Exception:
+                w, h = None, None
+            if w:
+                movie["poster_width"] = w
+                if h:
+                    movie["poster_height"] = h
+                updated += 1
+                print(f"  📐 Poster dimensions recorded: {w}x{h}")
+            else:
+                print(f"  ⏭️ Already has poster (dimensions unmeasured)")
         else:
-            poster = fetch_wikipedia_image(title, year)
+            poster, p_width, p_height = fetch_wikipedia_image(title, year)
             if poster:
                 movie["poster_url"] = poster
+                if p_width:
+                    movie["poster_width"] = p_width
+                if p_height:
+                    movie["poster_height"] = p_height
                 updated += 1
 
         # 2. YouTube trailer

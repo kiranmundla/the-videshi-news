@@ -83,10 +83,22 @@ def search_wikipedia_image(term):
     if r.returncode == 0:
         try:
             data = json.loads(r.stdout)
+            img = None
             if "originalimage" in data:
-                return data["originalimage"]["source"], data.get("title", term)
+                img = data["originalimage"]
             elif "thumbnail" in data:
-                return data["thumbnail"]["source"], data.get("title", term)
+                img = data["thumbnail"]
+            if img:
+                # Minimum resolution guard (2026-10-31): the REST
+                # summary carries the file's true width; a sub-800px
+                # file (e.g. a 283px fair-use film poster) must never
+                # be inserted as a hero. Mirrors image_sourcer's bar.
+                _w = img.get("width") or 0
+                if _w and _w < 800:
+                    print(f"    ⊘ Wikipedia image for '{term}' too small "
+                          f"({_w}px wide, minimum 800px)")
+                    return None, None
+                return img["source"], data.get("title", term)
         except:
             pass
     return None, None

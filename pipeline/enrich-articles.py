@@ -284,6 +284,20 @@ def fetch_wikipedia_image(subject, article_context=None, article_headline=None):
             if not img:
                 return None
 
+            # ── Minimum resolution guard (2026-10-31) ──
+            # Mirror image_sourcer.fetch_wikipedia_image's guard,
+            # which this fork lacked: the REST summary carries the
+            # file's true width, and a sub-800px file (e.g. a 278px
+            # fair-use film poster) must never become a hero or a
+            # full-width inline. This route placed the 278px Jailer 2
+            # poster on box-office articles before the guard existed.
+            _w = data.get("originalimage", {}).get("width") or \
+                data.get("thumbnail", {}).get("width") or 0
+            if _w and _w < 800:
+                print(f"    ⊘ Skipping Wikipedia image for '{subject}' — "
+                      f"too small ({_w}px wide, minimum 800px)")
+                return None
+
             # ── Filename-vs-entity cross-check ──
             # Wikipedia sometimes returns a page with a photo of the wrong
             # person (e.g., search "Devendra Nath Mahto" → file Sanjay_Seth.jpg).

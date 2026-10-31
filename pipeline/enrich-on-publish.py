@@ -1826,6 +1826,30 @@ def main():
             else:
                 print(f"     🖼 Hero: stock, but no tweets found")
 
+        # ── Film hero resolution backstop (2026-10-31, film_hero.py) ──
+        # A film article's hero can arrive below the 800px floor from
+        # routes this script does not control (the roster poster via
+        # movie-reviews — now fixed at that producer — or a legacy
+        # Wikipedia-summary fetch in enrich-articles/v3-batch-insert
+        # that placed e.g. the 278px Jailer 2 poster on box-office
+        # pieces). One rule, all paths: a roster-film article whose
+        # hero measures <800px gets the film's gated trailer still,
+        # or no hero — never the blurry original. Runs only when the
+        # stock hero upgrade did not already replace the hero.
+        film_hero_fix = None
+        if not hero_upgrade and image_url:
+            try:
+                import film_hero
+                film_hero_fix = film_hero.fix_article_hero(article)
+                if film_hero_fix:
+                    changes.append("FilmHero(trailer-still)"
+                                   if film_hero_fix["image_url"]
+                                   else "FilmHero(cleared)")
+                    print(f"     🎞 Film hero fix applied: "
+                          f"{film_hero_fix['image_url']}")
+            except Exception as e:
+                print(f"     🎞 Film hero pass error (non-fatal): {e}")
+
         # ── Fix 3 (2026-10-11): Drop social_embeds whose URL already renders inline
         # in the body — the frontend renders inline embeds AND the social_embeds
         # block at the bottom, so a URL in both places shows twice on the page.
@@ -1881,6 +1905,9 @@ def main():
                 if hero_upgrade:
                     updates["image_url"] = hero_upgrade["new_hero"]
                     updates["image_caption"] = hero_upgrade["caption"]
+                if film_hero_fix:
+                    updates["image_url"] = film_hero_fix["image_url"]
+                    updates["image_caption"] = film_hero_fix["image_caption"]
                 if sb_patch(article["id"], updates):
                     print(f"     ✅ Applied: {change_desc}")
                     # Rung 0 provenance (records only — see
@@ -1910,6 +1937,31 @@ def main():
                                 extra={"detail": "x_photo",
                                        "source_handle": hero_upgrade.get(
                                            "source_handle")})
+                        except Exception:
+                            pass
+                    if film_hero_fix:
+                        try:
+                            import image_ledger
+                            image_ledger.record_removal(
+                                article_id=article["id"],
+                                slug=article.get("slug"),
+                                surface="hero",
+                                removed_url=image_url,
+                                producer="enrich-on-publish",
+                                reason="sub-floor film hero replaced by "
+                                       "gated trailer still / cleared "
+                                       "(film_hero rule)")
+                            if film_hero_fix["image_url"]:
+                                image_ledger.record_provenance(
+                                    article_id=article["id"],
+                                    slug=article.get("slug"),
+                                    surface="hero",
+                                    producer="enrich-on-publish",
+                                    source_route="other",
+                                    image_url=film_hero_fix["image_url"],
+                                    attribution=film_hero_fix.get(
+                                        "image_caption"),
+                                    extra={"detail": "trailer_still"})
                         except Exception:
                             pass
                 else:
