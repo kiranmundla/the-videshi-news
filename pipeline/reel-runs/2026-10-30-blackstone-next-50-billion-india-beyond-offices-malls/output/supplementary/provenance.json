@@ -1,0 +1,366 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "blackstone-next-50-billion-india-beyond-offices-malls",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Blackstone",
+    "Jonathan Gray",
+    "Bengaluru",
+    "India",
+    "Markets Finance"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:A letter to the Honorable Judge Story, LL. D., discovering and correcting the errors of Blackstone and his editors (IA lettertohonorabl00leej).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:An address of temperance (IA addressoftempera00chaniala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Federal Register 1996-11-05- Vol 61 Iss 215 (IA sim federal-register-find 1996-11-05 61 215).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Federal Register 1997-09-02- Vol 62 Iss 169 (IA sim federal-register-find 1997-09-02 62 169).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Massachusetts- a typical American commonwealth (IA massachusettstyp00grif).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:REFORMING KEY INTERNATIONAL FINANCIAL INSTITUTIONS FOR THE 21ST CENTURY (IA gov.gpo.fdsys.CHRG-110shrg50355).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Statistical Reporter 1981-10- Vol 82 Iss 1 (IA sim statistical-reporter 1981-10 82 1).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Editor and Publisher 1913-12-13- Vol 13 Iss 26 (IA sim editor-publisher 1913-12-13 13 26).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The New York Times 1920-06-10- Vol 69 Iss 22783 (IA per new-york-times-magazine the-new-york-times 1920-06-10 69 22783).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The impact of outpatient prescription drug coverage on total and specific health care expenditure and service use of Medicare beneficiaries, age sixty-five and older (IA impactofoutpatie00artz).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Baptist Church, Blackstone, Massachusetts - postcard.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Baptist Church, who is not one of this story's subjects \u2014 association is not depiction ('Blackstone')"
+    },
+    {
+      "candidate": "File:Blackstone, VA - commercial downtown.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "2405x1532, CC BY 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Blackstone Free Public Library, Blackstone MA.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "3264x2448, CC BY 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:3.24.12JonathanGrayByLuigiNovi1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1023x1370 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:3.24.12JonathanGrayByLuigiNovi2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1051x1418 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Clearwater Lake, Wells Gray Provincial Park.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Jonathan Gray'"
+    },
+    {
+      "candidate": "File:Jonathan D. Gray.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 372x658 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Jonathan Gray, a member of the Peabody Board of Jurors, May 2015.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Jonathan Gray')"
+    },
+    {
+      "candidate": "File:Jonathan Gray (8965118076).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x1018 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Jonathan Gray (8965118076) (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x969 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Jonathan Gray and Monica Grant, May 2015.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Jonathan Gray')"
+    },
+    {
+      "candidate": "File:Jonathan Grayer.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Jonathan Gray'"
+    },
+    {
+      "candidate": "File:Tayvon Gray Jonathan Bamba NYCFC v Chicago 25 July 2026-264.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (soccer) than this markets-finance story \u2014 a same-name different person, not 'Jonathan Gray' the subject of this story"
+    },
+    {
+      "candidate": "File:Behar Herald 15-06-2017.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Behar Herald 22-07-2021 & 31-07-2021.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Behar Herald 31-07-2016.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Behar Herald 7-04-2021 & 15-04-2021.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Code Swaraj - Carl Malamud - Sam Pitroda.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Journal of the Bombay Natural History Societ (IA journalofbombayn1061bomb).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Pitting People Against Nature - Madhav Gadgil.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A photo of a city scene in Bengaluru.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "6092x4569, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:BangaloreMontage.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 441x905 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Bangalore Turf Club, Bengaluru, Karnataka, India ( Ank Kumar, Infosys Limited) 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Bangalore Turf Club, who is not one of this story's subjects \u2014 association is not depiction ('Bengaluru')"
+    },
+    {
+      "candidate": "File:Bengaluru from Night Sky.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "4000x3000, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:A TRANSFORMATION- AFGHANISTAN BEYOND 2014 (IA gov.gpo.fdsys.CHRG-113shrg91298).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:COMMERCIAL SPACE TRANSPORTATION- BEYOND THE X PRIZE (IA gov.gpo.fdsys.CHRG-109hhrg20870).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:CRISIS IN SOUTH ASIA- INDIA'S NUCLEAR TESTS; PAKISTAN'S NUCLEAR TESTS; INDIA AND PAKISTAN- WHAT NEXT? (IA gov.gpo.fdsys.CHRG-105shrg48627).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:India awakening (IA indiaawakening00eddy).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:India in Primitive Christianity.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:James Oneal - Labor and the Next War (1922).djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Sowing the seeds of soft power- the United States and India in the next great game (IA sowingseedsofsof1094547906).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The evolving relations of Japan and India (IA theevolvingrelat1094544603).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The next step; a plan for economic world federation (IA nextstepplanfore00neariala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:WTO 2000- THE NEXT ROUND (IA gov.gpo.fdsys.CHRG-106hhrg61042).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Darjeeling, India, Tea plantations on hills.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Delhi, India, Khas Mahal 2, Red Fort.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "3072x2048, CC BY 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Hampi, India, Lotus Mahal.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "4032x2688, CC BY 4.0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "delhi-india-khas-mahal-2-red-fort",
+      "path": "delhi-india-khas-mahal-2-red-fort.jpg",
+      "size": [
+        3072,
+        2048
+      ],
+      "role": "establishing",
+      "subject": "Khas Mahal of pure white marble, Mughal emperor's private residence, Red Fort, Delhi, India.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Delhi,_India,_Khas_Mahal_2,_Red_Fort.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Delhi%2C_India%2C_Khas_Mahal_2%2C_Red_Fort.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "Vyacheslav Argenberg"
+    },
+    {
+      "beat": "hero",
+      "label": "hampi-india-lotus-mahal",
+      "path": "hampi-india-lotus-mahal.jpg",
+      "size": [
+        4032,
+        2688
+      ],
+      "role": "establishing",
+      "subject": "Hampi, Karnataka, India. Ancient temples at Hampi, Vijayanagara Empire, 14th century, a UNESCO World Heritage Site.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Hampi,_India,_Lotus_Mahal.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Hampi%2C_India%2C_Lotus_Mahal.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "Vyacheslav Argenberg"
+    },
+    {
+      "beat": "grid",
+      "label": "blackstone-free-public-library-blackstone-ma",
+      "path": "blackstone-free-public-library-blackstone-ma.jpg",
+      "size": [
+        3264,
+        2448
+      ],
+      "role": "establishing",
+      "subject": "Blackstone Free Public Library, Blackstone Massachusetts",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Blackstone_Free_Public_Library,_Blackstone_MA.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Blackstone_Free_Public_Library%2C_Blackstone_MA.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "John Phelan"
+    },
+    {
+      "beat": "diaspora",
+      "label": "blackstone-va-commercial-downtown",
+      "path": "blackstone-va-commercial-downtown.jpg",
+      "size": [
+        2405,
+        1532
+      ],
+      "role": "establishing",
+      "subject": "Nottoway County, Virginia, April, 2015 GEDSC DIGITAL CAMERA",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Blackstone,_VA_-_commercial_downtown.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Blackstone%2C_VA_-_commercial_downtown.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 3.0",
+      "artist": "self"
+    }
+  ]
+}

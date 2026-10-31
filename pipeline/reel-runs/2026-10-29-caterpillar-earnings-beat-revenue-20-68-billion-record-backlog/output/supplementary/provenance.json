@@ -1,0 +1,583 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "caterpillar-earnings-beat-revenue-20-68-billion-record-backlog",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Caterpillar",
+    "Power & Energy",
+    "Joe Creed",
+    "Revenue Rises",
+    "Record Backlog",
+    "Markets Finance"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:21October2007.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Campbell Interurban Press 1909-08-06 (IA cacblm 000192).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Engineering and Mining Journal-Press 1925-11-07- Vol 120 Iss 19 (IA sim engineering-and-mining-journal 1925-11-07 120 19).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OVERSIGHT FOR THE EXPORT-IMPORT BANK OF THE UNITED STATES (IA gov.gpo.fdsys.CHRG-109hhrg26236).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Observations on the Andamanese (IA observationsonan00dayfrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Poems and rhythmical expressions (IA poemsrhythmicale00davi).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Masses, Volume 3, Issue 6.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Official record of the United States Department of Agriculture (IA officialrecordof02unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Vietnam Magazine Vol. VII, N\u00ba 2 1974.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Wild justice (IA wildjustice00woodiala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Alice 05a-1116x1492.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "1116x1492, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Arctiidae caterpillar.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GFDL 1.2 \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Bird-cherry ermine moth (Yponomeuta evonymella) caterpillars.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Calliteara pudibunda caterpillar - Keila1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Chenille chevrefeuille.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "1845x1644, CC BY-SA 2.5, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:An Irish Catholic's advice to his brethren, how to estimate their present situation, and repel French invasion, civil wars, and slavery (IA irishcatholicsad00scul).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:An Irish Catholic's advice to his brethren - how to estimate their present situation, and repel French invasion, civil wars and slavery (IA irishcatholicsad00scul 0).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Draft environmental impact statement, Killen Electric Generating Station, units 1 and 2, Ohio River, Adams County, Ohio - USACE-p16021coll7-18180.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:NIE 11-23-86, Sept 86, Implications of the Decline in Soviet Hard Currency Earnings.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Puritanism in power, an argument in three books (IA puritanisminpowe00wiseiala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Railway and locomotive engineering - a practical journal of railway motive power and rolling stock (IA railwaylocomotiv26newy).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:THE NEAR-TERM OUTLOOK FOR ENERGY AND COMMODITY MARKETS (IA gov.gpo.fdsys.CHRG-114shrg98966).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:TITLE II- 21ST CENTURY WORKFORCE (IA gov.gpo.fdsys.CHRG-114hhrg96084).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:TRIPLE THREAT TO WORKERS AND HOUSEHOLDS- IMPACTS OF FEDERAL REGULATIONS ON JOBS, WAGES AND STARTUPS (IA gov.gpo.fdsys.CHRG-114hhrg98826).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The dissolution of the Union. A sober address to all those who have any interest in the welfare, the power, the glory, or the happiness of the United States .. (IA dissolutionofuni00care).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:2022-07-27 PLAT-I in-stream tidal energy platform - Westport, NS CAN.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:20241201 Power grid storage energy flow - daily.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Beacon Power New York - 20 MW Flywheel Energy Storage.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "4817x3211, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Energy-Optimization-of-Power-Station-for-a-Small-Research-Institute.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Power County Wind Farm 002.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "1920x1349, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:2015 Newark Comic Con Cosplay of Assassin's Creed and Snake Eyes.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Joe Creed')"
+    },
+    {
+      "candidate": "File:AMERICA'S CREED AWARD, APRIL 3, 1918. MATTHEW PAGE ANDREWS; C.J. KOCH; MAYOR PRESTON; CHAMP CLARK; PHILANDER P. CLAXTON; REP. JOE CANNON; J.W. CHAPMAN; WILLIAM J. SEARS; WILLIAM TYLER PAGE, LCCN2016869042.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:AMERICA'S CREED AWARD, APRIL 3, 1918.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:AMERICA'S CREED AWARD, APRIL 3, 1918 (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Chiefs Military Appreciation (7984089).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Chiefs Military Appreciation, who is not one of this story's subjects \u2014 association is not depiction ('Joe Creed')"
+    },
+    {
+      "candidate": "File:President Joe Biden attends a celebration of the Kansas City Chiefs\u2019 Super Bowl LVII championship on June 5, 2023, on the South Lawn of the White House - P20230605HF-0520.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (football) than this markets-finance story \u2014 a same-name different person, not 'Joe Creed' the subject of this story"
+    },
+    {
+      "candidate": "File:Remarks by the President and the Vice President in Presentation of the Medal of Freedom to Vice President Joe Biden, January 12, 2017.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Sheldon creed (52866409931).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (engineer) than this markets-finance story \u2014 a same-name different person, not 'Joe Creed' the subject of this story"
+    },
+    {
+      "candidate": "File:Sheldon creed (53337523120).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Sheldon creed three wide (53644000345).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (cook) than this markets-finance story \u2014 a same-name different person, not 'Joe Creed' the subject of this story"
+    },
+    {
+      "candidate": "File:Fiscal activism in the Federal Government - an analysis of the REvenue act of 1964 and the Revenue and Expenditure control act of 1968. (IA fiscalactivismin00smit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Inland Revenue Offices, Portsmouth - geograph.org.uk - 657923.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Preliminary digest of suggestions for internal revenue revision submitted to the Joint Committee on Internal Revenue Taxation (IA preliminarydiges353unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Report of the Joint Committee on Internal Revenue Taxation - pursuant to the Revenue Act of 1926 (IA reportofjointcom412unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Report of the cruise of the U.S. revenue cutter Bear and the overland expedition for the relief of the whalers in the Arctic ocean, from November 27, 1897, to September 13, 1898 (IA reportofcruiseof03unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Report of the cruise of the U.S. revenue steamer Thomas Corwin, in the Arctic Ocean, 1881 (1884) (14761405401).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Revenue reform- an essay (IA revenuereformess00atkirich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Taxation in Canada. Report to the Joint Committee on Internal Revenue Taxation, pursuant to Internal Revenue Code, section 5011 (c) (IA taxationincanada511unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Land Revenue Of Bombay Vol-I (IA TheLandRevenueOfBombayVolI).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Zamboanga City Ordinances for the Year 2017 (Revenue).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:December 2013 GAN Backlog Drive Chart.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Ecan-backlog-Dec31-2009v2.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 750x500 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:GOCE Backlog drive articles copy edited.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 577x337 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:NATIONAL PARKS BACKLOG (IA gov.gpo.fdsys.CHRG-108shrg89076).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:NPP Backlog Drive - July 2022.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 750x497 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:NPP Backlog Drive - November 2021.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 437x481 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:NPP Backlog Drive - October 2022.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 434x261 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:October 2010 Wikification Backlog Elimination Drive Total Tags Graph.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Unreferenced article backlog since April 2008.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Record Backlog'"
+    },
+    {
+      "candidate": "File:Veteran Affairs backlog report - VAOIG-12-00244-241a.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Andrew Steer & Jos\u00e9 Manuel Entrecanales - Innovate4Climate Finance & Markets Week.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (director) than this markets-finance story \u2014 a same-name different person, not 'Markets Finance' the subject of this story"
+    },
+    {
+      "candidate": "File:Exploitation of free markets and globalization to finance terrorists (IA exploitationoffr1094510378).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Finance and Markets Working Group Logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:IP Finance Dialogue \u2013 Expanding Horizons on IP Finance and Valuation - 53346909618.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "6000x4000, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Prediction market - example GUI - 2.gif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Social finance market structure.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1175x556 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Telia finance logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of India (SEBI).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley lighting the lamp at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of India.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley releasing the publication at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "https://www.caterpillar.com/en/news.html",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.caterpillar.com/en/news/corporate-press-releases.html",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.caterpillar.com/en/news/media-contacts.html",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.energy.gov/newsroom",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "identity: the page does not evidence 'Power & Energy'"
+    },
+    {
+      "candidate": "https://www.energy.gov/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "identity: the page does not evidence 'Power & Energy'"
+    },
+    {
+      "candidate": "https://www.energy.gov/national-laboratories",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "identity: the page does not evidence 'Power & Energy'"
+    },
+    {
+      "candidate": "https://www.irs.gov/newsroom",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "https://www.state.gov/newsroom/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "identity: the page does not evidence 'Record Backlog'"
+    },
+    {
+      "candidate": "File:Power-energy for energy storage systems.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 693x599 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Plug-in power and energy monitor in socket.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Demand Curve with Income Increase.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 390x241 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Revenue bar graph.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:NASDAQ.JPG",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 426x640 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "alice-05a-1116x1492",
+      "path": "alice-05a-1116x1492.jpg",
+      "size": [
+        1116,
+        1492
+      ],
+      "role": "establishing",
+      "subject": "The Caterpillar. One of John Tenniel's illustrations from the first edition of Alice's Adventures in Wonderland (1865). The illustration is noted for its ambiguous central figure, whose head can be viewed as being a human male's face with p",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Alice_05a-1116x1492.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Alice_05a-1116x1492.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Sir John Tenniel"
+    },
+    {
+      "beat": "hero",
+      "label": "chenille-chevrefeuille",
+      "path": "chenille-chevrefeuille.jpg",
+      "size": [
+        1845,
+        1644
+      ],
+      "role": "establishing",
+      "subject": "Fox moth caterpillar eating a honeysuckle leaf.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Chenille_chevrefeuille.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Chenille_chevrefeuille.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.5",
+      "artist": "Jodelet/L\u00e9pinay"
+    },
+    {
+      "beat": "grid",
+      "label": "beacon-power-new-york-20-mw-flywheel-energy",
+      "path": "beacon-power-new-york-20-mw-flywheel-energy.jpg",
+      "size": [
+        4817,
+        3211
+      ],
+      "role": "establishing",
+      "subject": "A 20 MW flywheel energy storage plant operated by Beacon Power in Stephentown, New York.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Beacon_Power_New_York_-_20_MW_Flywheel_Energy_Storage.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/02/Beacon_Power_New_York_-_20_MW_Flywheel_Energy_Storage.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Z22"
+    },
+    {
+      "beat": "diaspora",
+      "label": "power-county-wind-farm-002",
+      "path": "power-county-wind-farm-002.jpg",
+      "size": [
+        1920,
+        1349
+      ],
+      "role": "establishing",
+      "subject": "An aerial view of of the Power County wind farm - Power County, Idaho with Nordex N100/2500 turbines.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Power_County_Wind_Farm_002.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Power_County_Wind_Farm_002.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "ENERGY.GOV"
+    }
+  ]
+}

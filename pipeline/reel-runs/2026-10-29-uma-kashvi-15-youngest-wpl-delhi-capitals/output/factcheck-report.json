@@ -1,0 +1,278 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "uma-kashvi-15-youngest-wpl-delhi-capitals",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "AT 15, YOUNGEST EVER WPL SIGNING",
+      "numbers": [
+        15.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Kashvi is confirmed as the youngest WPL signing at 15 years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Delhi Capitals signed Karnataka all-rounder Uma Kashvi for Rs 10 lakh at the WPL 2027 mini-auction in Kochi, at 15 years and 202 days, making her the youngest player ever to secure a Women's Premier League contract.",
+      "numbers": [
+        10.0,
+        15.0,
+        202.0,
+        2027.0,
+        1000000.0
+      ],
+      "entities": [
+        "Delhi Capitals",
+        "Uma Kashvi",
+        "Women's Premier League"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "All details about Kashvi's signing and age are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "15",
+      "numbers": [
+        15.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Kashvi's age of 15 is explicitly stated.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Years and 202 days old, the youngest in WPL history",
+      "numbers": [
+        202.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Her age of 15 years and 202 days is confirmed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "516",
+      "numbers": [
+        516.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Kashvi scored 516 runs in the under-15 tournament.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Runs at an average of 172 in the Under-15 tournament",
+      "numbers": [
+        15.0,
+        172.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Her average of 172 in the tournament is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "RS 10 LAKH",
+      "numbers": [
+        10.0,
+        1000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Delhi Capitals paid Rs 10 lakh for Kashvi.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Delhi Capitals paid at her base price in Kochi",
+      "numbers": [],
+      "entities": [
+        "Delhi Capitals"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The payment was made at her base price in Kochi.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "158",
+      "numbers": [
+        158.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Kashvi scored an unbeaten 158 against Manipur.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Unbeaten runs off 66 balls against Manipur",
+      "numbers": [
+        66.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim about her unbeaten score is accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "A Karnataka all-rounder signed by Delhi Capitals",
+      "numbers": [],
+      "entities": [
+        "Delhi Capitals"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Kashvi is identified as a Karnataka all-rounder signed by Delhi.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "She has already played for India Under-19",
+      "numbers": [
+        19.0
+      ],
+      "entities": [
+        "India Under-19"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Kashvi's participation with India Under-19 is confirmed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Delhi called it a long-term investment.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The signing was described as a long-term investment by Delhi.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Uma Kashvi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Delhi Capitals",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Women's Premier League",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Karnataka",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00069,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

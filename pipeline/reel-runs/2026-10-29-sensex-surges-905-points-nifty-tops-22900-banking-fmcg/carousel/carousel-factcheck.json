@@ -1,0 +1,186 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "sensex-surges-905-points-nifty-tops-22900-banking-fmcg",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Sensex Surges 905 Points, Nifty Tops 22,900 as Banking and FMCG Stocks Lead",
+        "numbers": [
+          905.0,
+          22900.0
+        ],
+        "entities": [
+          "Sensex Surges",
+          "Nifty Tops",
+          "FMCG Stocks Lead"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Claim matches article's summary of market performance.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The rally snapped a two-day losing streak as a US Fed rate hold, easing crude and Adani Ports strong results lifted sentiment.",
+        "numbers": [],
+        "entities": [
+          "US Fed",
+          "Adani Ports"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All elements of the claim are present in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The BSE Sensex jumped 905.01 points, or 1.24%, to close at 74,151.04 on Thursday",
+        "numbers": [
+          1.24,
+          905.01,
+          74151.04
+        ],
+        "entities": [
+          "BSE Sensex"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Exact figures and details are provided in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The NSE Nifty rose 237.90 points, or 1.05%, to 22,936.75",
+        "numbers": [
+          1.05,
+          237.9,
+          22936.75
+        ],
+        "entities": [
+          "NSE Nifty"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Exact figures and details are provided in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Adani Ports was the top Sensex gainer, rising over 5% after reporting an 18% increase in quarterly net profit to Rs 3,682.44 crore",
+        "numbers": [
+          5.0,
+          18.0,
+          3682.44,
+          36824400000.0
+        ],
+        "entities": [
+          "Adani Ports"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All details about Adani Ports are accurate as per the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Ajit Mishra",
+        "numbers": [],
+        "entities": [
+          "Ajit Mishra"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Name is mentioned in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "SVP Research, Religare Broking",
+        "numbers": [],
+        "entities": [
+          "SVP Research",
+          "Religare Broking"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Title and affiliation are mentioned in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Sensex Surges 905 Points, Nifty Tops 22,900 as Banking and FMCG Stocks Lead",
+        "numbers": [
+          905.0,
+          22900.0
+        ],
+        "entities": [
+          "Sensex Surges",
+          "Nifty Tops",
+          "FMCG Stocks Lead"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Claim matches article's summary of market performance.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.00052,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

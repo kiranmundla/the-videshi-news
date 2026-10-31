@@ -1,0 +1,399 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "samvat-2082-largecaps-fall-smallcap-multibaggers-diwali",
+ "article_slug": "samvat-2082-largecaps-fall-smallcap-multibaggers-diwali",
+ "article_id": "9b2a9652-baab-4851-a1bf-60a05984c8fe",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-10-30-samvat-2082-largecaps-fall-smallcap-multibaggers-diwali/output-v2/samvat-2082-largecaps-fall-smallcap-multibaggers-diwali.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/BSE_-_Bombay_Stock_Exchange_Building.jpg/1920px-BSE_-_Bombay_Stock_Exchange_Building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-10-30-samvat-2082-largecaps-fall-smallcap-multibaggers-diwali/output-v2/hero.jpg",
+  "width": 2291,
+  "height": 1917,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.584,0.567) damped=(0.542,0.533)",
+  "has_face": false,
+  "box_source": [
+   600,
+   601,
+   1282,
+   766
+  ],
+  "box_bg": [
+   304,
+   374,
+   467,
+   279
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.542,
+   0.542
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   697
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 917,
+   "zone_h": 639,
+   "scale": 1.0,
+   "content_h": 258,
+   "block_top": 1107,
+   "block_bottom": 1365,
+   "text_bbox": [
+    70,
+    1107,
+    930,
+    1365
+   ],
+   "texts": [
+    "Markets Finance",
+    "SAMVAT 2082 ENDS IN RED: 83 LARGE-CAPS FALL UP TO 60% AS SMALL-CAPS MINT MULTIBAGGERS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.364,
+    "photo_px": [
+     2291,
+     1917
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 697,
+     "scale": 0.3640331732867743,
+     "window": [
+      0,
+      3,
+      2291,
+      1917
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.00x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 413,
+   "block_top": 1167,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1167,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "The Nifty 50 fell about 11 percent over Samvat 2082, with 83 large-cap stocks declining \u2014 some by up to 60 percent \u2014 while 60 small-cap stocks more than doubled."
+   ],
+   "v7": {
+    "image_source": "extra:ip-finance-dialogue-expanding-horizons-on-ip",
+    "track": "full-bleed",
+    "render_scale": 0.48,
+    "photo_px": [
+     6000,
+     4000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.48,
+     "window": [
+      983,
+      0,
+      3233,
+      4000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Juni Tingting Zhu, Senior Economist at Markets, Competition and Technology Global Unit of World Bank Group, Washington, United States of America, speaks at the panel discussion entitled \u201cIP Finance on the Ground \u2013 IP Financing in the Creati",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "WIPO | OMPI"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 917,
+   "zone_h": 639,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1017,
+   "block_bottom": 1455,
+   "text_bbox": [
+    70,
+    1017,
+    930,
+    1455
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "11%",
+    "Fall in the Nifty 50 over Samvat 2082"
+   ],
+   "v7": {
+    "image_source": "extra:black-rock-hq",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     1600
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 697,
+     "scale": 0.695,
+     "window": [
+      0,
+      300,
+      1200,
+      1302
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.20x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "BlackRock Group",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Black-rock-hq.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Black-rock-hq.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Americasroof ( talk )"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 917,
+   "zone_h": 639,
+   "scale": 0.825,
+   "content_h": 628,
+   "block_top": 922,
+   "block_bottom": 1550,
+   "text_bbox": [
+    70,
+    922,
+    930,
+    1550
+   ],
+   "texts": [
+    "By The Numbers",
+    "83",
+    "Large-cap stocks that declined over the Samvat year",
+    "650%",
+    "Top small-cap gain over the year",
+    "9.34%",
+    "Average fall in large-cap mutual funds over the same period"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.414,
+    "photo_px": [
+     2291,
+     1917
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 697,
+     "scale": 0.41369047619047616,
+     "window": [
+      234,
+      197,
+      2250,
+      1881
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.00x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 917,
+   "zone_h": 639,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 1020,
+   "block_bottom": 1452,
+   "text_bbox": [
+    70,
+    1020,
+    930,
+    1452
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "60 small-cap stocks more than doubled over the year",
+    "Small-cap funds were the only major equity category in positive territory on average"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.455,
+    "photo_px": [
+     2291,
+     1917
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 697,
+     "scale": 0.45524017467248906,
+     "window": [
+      50,
+      273,
+      1882,
+      1804
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.00x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "India VIX above 30 signals traders expect the swings to continue.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 122.3,
+ "mp4_bytes": 13114439
+}

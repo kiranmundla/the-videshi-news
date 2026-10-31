@@ -1,0 +1,143 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "eden-park-sold-out-india-new-zealand-t20i-record",
+  "trigger": {
+    "own_images": 3,
+    "target_distinct": 5,
+    "extras_needed": 2
+  },
+  "entities": [
+    "Eden Park",
+    "New Zealand Cricket",
+    "India",
+    "Glenn Critchley",
+    "New Zealand",
+    "New Zealand and India"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Around the world, garden of Eden, latter day prophecies and missions (IA aroundworldgarde00godb).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Autographs, mainly American, including letters from the estate of Henry C. Bowen, editor of the the N.Y. Independent, to be sold March 17, 1908 (IA cu31924031351640).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:California redwood park, sometimes called Sempervirens park; an appreciation (IA californiaredwoo00tayl).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:California redwood park (IA californiaredwoo00tay).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:California redwood park (IA californiaredwoo01tayl).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Park's floral magazine (IA CAT30999385041).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Park's floral magazine (IA CAT30999385284).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Park's floral magazine (IA CAT30999385288).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Sophia - or, The reign of woman. Sold at the Metropolitan fair for the benefit of the United States sanitary commission (IA sophiaorreignofw00jarv).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The garden of Eden - Max Brand's masterpiece (IA gardenofedenmaxb00branrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Eden Park, Auckland, South Stand.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "1536x1024, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Eden Park.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "2272x1704, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Australia v New Zealand Test at the Gabba.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "2656x1580, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Cricket Green at Cornwall Park, Hastings, New Zealand, July 2024.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'New Zealand Cricket'"
+    },
+    {
+      "candidate": "File:England v New Zealand at Lord's.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "3648x2736, CC BY-SA 3.0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "eden-park-auckland-south-stand",
+      "path": "eden-park-auckland-south-stand.jpg",
+      "size": [
+        1536,
+        1024
+      ],
+      "role": "establishing",
+      "subject": "Looking at Eden Park\u2019s South Stand from the North Stand, during the warm-up for the 2015 Cricket World Cup semifinal, New Zealand vs South Africa",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Eden_Park,_Auckland,_South_Stand.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Eden_Park%2C_Auckland%2C_South_Stand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "TimBray"
+    },
+    {
+      "beat": "hero",
+      "label": "eden-park",
+      "path": "eden-park.jpg",
+      "size": [
+        2272,
+        1704
+      ],
+      "role": "establishing",
+      "subject": "File:Eden Park.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Eden_Park.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Eden_Park.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": ""
+    }
+  ]
+}

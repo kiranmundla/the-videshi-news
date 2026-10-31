@@ -1,0 +1,465 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "nasa-anil-menon-joshua-kutryk-100th-spacewalk-solar-array",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Anil Menon",
+    "NASA",
+    "International Space Station",
+    "Joshua Kutryk",
+    "US Spacewalk",
+    "Anil Menon and Canadian"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:ASCAN 2021 Class Wilderness Survival Training - Anil Menon (2).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Airman Spotlight--Maj. (Dr.) Anil Menon 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Airman Spotlight--Maj., who is not one of this story's subjects \u2014 association is not depiction ('Anil Menon')"
+    },
+    {
+      "candidate": "File:Airman Spotlight--Maj. (Dr.) Anil Menon 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Airman Spotlight--Maj., who is not one of this story's subjects \u2014 association is not depiction ('Anil Menon')"
+    },
+    {
+      "candidate": "File:Anil Menon astronaut.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Anil Menon portrait.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Anil and Anna Menon at NASA Mission Control Houston Texas to direct ISS US EVA 28.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 799x441 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Anil and Anna Menon at NASA Mission Control Houston Texas to direct ISS US EVA 28 25.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (director) than this nri-world story \u2014 a same-name different person, not 'Anil Menon' the subject of this story"
+    },
+    {
+      "candidate": "File:Anil and Anna Menon at NASA Mission Control Houston Texas to direct ISS US EVA 28 27.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (director) than this nri-world story \u2014 a same-name different person, not 'Anil Menon' the subject of this story"
+    },
+    {
+      "candidate": "File:Anil and Anna Menon at NASA Mission Control Houston Texas to direct ISS US EVA 28 28.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (director) than this nri-world story \u2014 a same-name different person, not 'Anil Menon' the subject of this story"
+    },
+    {
+      "candidate": "File:NASA astronaut candidate Anil Menon at the Artemis Launch Pad.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut) than this nri-world story \u2014 a same-name different person, not 'Anil Menon' the subject of this story"
+    },
+    {
+      "candidate": "File:KSC's SPACEPORT magazine - April 2017.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:NASA STS-121 press kit.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:NASA STS-125 press kit.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:NASA STS-129 press kit.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:NASA STS-131 press kit.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:RIT NandE Vol16Num26 1985 Jul25 Complete.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Scientific and Technical Information Office Astronautics and aeronautics 1974.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:U.S. Human Spaceflight- A Record of Achievement, 1961-2006 - NASA Monographs in Aerospace History, No. 41 (2007).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Walking to Olympus, An EVA Chronology - NASA Monographs in Aerospace History, No. 7 (1997).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Wilbur and Orville Wright- A Chronology Commemorating... - NASA Monographs in Aerospace History, No. 32 (2003).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Apollo 11 Lunar Lander - 5927 NASA.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "2349x2362, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Buzz Aldrin and Apollo 11 Lunar Lander, AS11-40-5927.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "10569x12612, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Dramatic Views of Hurricane Florence from the International Space Station From 9 12 (42828603210).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (director) than this nri-world story \u2014 a same-name different person, not 'International Space Station' the subject of this story"
+    },
+    {
+      "candidate": "File:Dramatic Views of Hurricane Florence from the International Space Station From 9 12 (42828603210) (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Gigantic jet photographed by Nichole Ayers on the International Space Station, some edits.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:ISS Aug2005.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut) than this nri-world story \u2014 a same-name different person, not 'International Space Station' the subject of this story"
+    },
+    {
+      "candidate": "File:ISS March 2009.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut) than this nri-world story \u2014 a same-name different person, not 'International Space Station' the subject of this story"
+    },
+    {
+      "candidate": "File:International Space Station star trails - JSC2012E039800.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut, composer, engineer) than this nri-world story \u2014 a same-name different person, not 'International Space Station' the subject of this story"
+    },
+    {
+      "candidate": "File:STS-130 EVA3 Nicholas Patrick 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut) than this nri-world story \u2014 a same-name different person, not 'International Space Station' the subject of this story"
+    },
+    {
+      "candidate": "File:STS-134 International Space Station after undocking.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut) than this nri-world story \u2014 a same-name different person, not 'International Space Station' the subject of this story"
+    },
+    {
+      "candidate": "File:STS-135 final flyaround of ISS 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut, engineer) than this nri-world story \u2014 a same-name different person, not 'International Space Station' the subject of this story"
+    },
+    {
+      "candidate": "File:Tracy Caldwell Dyson in Cupola ISS.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Astronaut Joshua Kutryk for an official portrait in a blue flight suit (jsc2026e034992 alt).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut) than this nri-world story \u2014 a same-name different person, not 'Joshua Kutryk' the subject of this story"
+    },
+    {
+      "candidate": "File:Astronaut Joshua Kutryk poses for an official portrait while wearing a spacesuit (jsc2025e081360 alt).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut) than this nri-world story \u2014 a same-name different person, not 'Joshua Kutryk' the subject of this story"
+    },
+    {
+      "candidate": "File:Astronaut candidates during earth and planetary science training (1).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:CSA astronaut Joshua Kutryk pedals on an exercise cycle inside the International Space Station (iss075e0227303).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut, engineer) than this nri-world story \u2014 a same-name different person, not 'Joshua Kutryk' the subject of this story"
+    },
+    {
+      "candidate": "File:CSA astronaut Joshua Kutryk tries on a spacesuit to ensure a good fit (iss075e0227188).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut, engineer) than this nri-world story \u2014 a same-name different person, not 'Joshua Kutryk' the subject of this story"
+    },
+    {
+      "candidate": "File:CSA astronaut Joshua Kutryk tries on a spacesuit to ensure a good fit (iss075e0227203).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut, engineer) than this nri-world story \u2014 a same-name different person, not 'Joshua Kutryk' the subject of this story"
+    },
+    {
+      "candidate": "File:CSA astronaut Joshua Kutryk tries on a spacesuit to ensure a good fit (iss075e0227257).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut, engineer) than this nri-world story \u2014 a same-name different person, not 'Joshua Kutryk' the subject of this story"
+    },
+    {
+      "candidate": "File:Josh Kutryk official portrait.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut) than this nri-world story \u2014 a same-name different person, not 'Joshua Kutryk' the subject of this story"
+    },
+    {
+      "candidate": "File:Josh Kutryk official portrait (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Jsc2026m000152 Meet CSA Astronaut Joshua Kutryk Crew13 Mission Specialist SOCIAL.webm",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:STS-116 spacewalk 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (astronaut, cook) than this nri-world story \u2014 a same-name different person, not 'US Spacewalk' the subject of this story"
+    },
+    {
+      "candidate": "File:VKD-51 spacewalk 02.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 600x337 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:VKD-51 spacewalk 09.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 600x375 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:VKD-51 spacewalk 13.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 600x337 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:VKD-51 spacewalk 22.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 600x337 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:VKD-51 spacewalk 23.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 600x337 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:VKD-51 spacewalk 30.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 600x337 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:VKD-51 spacewalk 37.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "1249x716, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:VKD-51 spacewalk 42.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "1268x704, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Canada (microform) - physical, economic and social (IA cihm 37267).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Commercial Crew-13 Astronauts in VAB (KSC-20260512-PH-KLS02 0026).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Anil Menon and Canadian'"
+    },
+    {
+      "candidate": "File:Commercial Crew-13 Astronauts in VAB (KSC-20260512-PH-KLS02 0077).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Anil Menon and Canadian'"
+    },
+    {
+      "candidate": "File:Copies of all acts passed by the Legislature of Upper Canada recognizing any of the various denominations of Christians existing in that province (microform) (IA cihm 48430).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:NASA's SpaceX Crew-12 and Crew-13 members pose together for a portrait (iss075e0157731).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Anil Menon and Canadian'"
+    },
+    {
+      "candidate": "File:The voyages of the Cabots in 1497 and 1498 (microform) - with an attempt to determine their landfall and to identify their island of St. John (IA cihm 03777).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1896-02-03) (IA victoriadailytimes18960203).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1897-11-27) (IA victoriadailytimes18971127).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1901-02-21) (IA victoriadailytimes19010221).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1923-06-28) (IA victoriadailytimes19230628).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:2026 Partial Solar Eclipse - ISS Transit (NHQ202608120100).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Anil Menon and Canadian'"
+    },
+    {
+      "candidate": "File:2026 Partial Solar Eclipse - ISS Transit (NHQ202608120101).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Anil Menon and Canadian'"
+    },
+    {
+      "candidate": "File:Commercial Crew-13 Astronauts in VAB (KSC-20260512-PH-KLS02 0015).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Anil Menon and Canadian'"
+    },
+    {
+      "candidate": "File:Commercial Crew-13 Astronauts in VAB (KSC-20260512-PH-KLS02 0041).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Anil Menon and Canadian'"
+    },
+    {
+      "candidate": "https://www.nasa.gov/news-release/nasa-astronaut-anil-menon-to-discuss-upcoming-launch-mission/",
+      "route": "B \u2014 official sources",
+      "verdict": "USED (news)",
+      "reason": "license basis: US federal government work \u2014 public domain; dimensions verified at download"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "nasa-astronaut-anil-menon-to-discuss-upcomin",
+      "path": "nasa-astronaut-anil-menon-to-discuss-upcomin.jpg",
+      "size": [
+        2048,
+        1365
+      ],
+      "role": "establishing",
+      "subject": "NASA Astronaut Anil Menon to Discuss Upcoming Launch, Mission - NASA",
+      "route": "B \u2014 official sources",
+      "source_page": "https://www.nasa.gov/news-release/nasa-astronaut-anil-menon-to-discuss-upcoming-launch-mission/",
+      "file_url": "https://www.nasa.gov/wp-content/uploads/2026/04/55142906490-f1d1527d9e-k.jpg",
+      "license": "US federal government work \u2014 public domain",
+      "artist": ""
+    },
+    {
+      "beat": "hero",
+      "label": "vkd-51-spacewalk-37",
+      "path": "vkd-51-spacewalk-37.jpg",
+      "size": [
+        1249,
+        716
+      ],
+      "role": "establishing",
+      "subject": "Station views of Russian Modules during VKD-51 spacewalk",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:VKD-51_spacewalk_37.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/VKD-51_spacewalk_37.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "NASA/Mark T. Vande Hei (taking some images by himself and operating the station "
+    },
+    {
+      "beat": "grid",
+      "label": "vkd-51-spacewalk-42",
+      "path": "vkd-51-spacewalk-42.jpg",
+      "size": [
+        1268,
+        704
+      ],
+      "role": "establishing",
+      "subject": "Station views of Russian Modules during VKD-51 spacewalk",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:VKD-51_spacewalk_42.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/VKD-51_spacewalk_42.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "NASA/Mark T. Vande Hei (taking some images by himself and operating the station "
+    }
+  ]
+}

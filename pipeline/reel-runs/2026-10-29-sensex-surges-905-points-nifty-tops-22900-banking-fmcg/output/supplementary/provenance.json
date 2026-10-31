@@ -1,0 +1,471 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "sensex-surges-905-points-nifty-tops-22900-banking-fmcg",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "BSE Sensex",
+    "NSE Nifty",
+    "Adani Ports",
+    "US Federal Reserve",
+    "Sensex Surges",
+    "Markets Finance"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Bombay-Stock-Exchange.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'BSE Sensex'"
+    },
+    {
+      "candidate": "File:Bombay Stock Exchange.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'BSE Sensex'"
+    },
+    {
+      "candidate": "File:Bombay Stock Exchange 3.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 428x572 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Bombay Stock Exchange logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Kirron Kher Saas Bahu aur Sensex launch.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 600x896 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Kirron Kher Saas Bahu aur Sensex launch (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 221x295 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:S&P BSE SENSEX.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 671x609 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:S&P BSE SENSEX.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 154x41 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:S&P BSE SENSEX chart.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:S&P BSE Sensex Logo 2022.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:2016-366-192 Give It Up for the Bokeh Backup Band! (28156813631).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'NSE Nifty'"
+    },
+    {
+      "candidate": "File:500 logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Fireside Portrait (6074945869).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'NSE Nifty'"
+    },
+    {
+      "candidate": "File:Flickr 13 (48052316447).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 811x1000 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Index Logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Index funds icon.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:NIFTY 50 Returns Graph.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:National Stock exchange Mumbai.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'NSE Nifty'"
+    },
+    {
+      "candidate": "File:OJ L 24 of 2020 - PT Portuguese.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Glendale Evening News 1921-06-29 (IA cgl 004418).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Adani Mundra Port Kutch Gujarat.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 500x334 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Adani Ports Logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Adani Ports Logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Adani port.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Adani Ports')"
+    },
+    {
+      "candidate": "File:Apsez logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Ashwani Gupta, Whole-time Director and CEO Adani Ports and SEZ.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Ashwani Gupta, who is not one of this story's subjects \u2014 association is not depiction ('Adani Ports')"
+    },
+    {
+      "candidate": "File:Ashwani Gupta at APSEZ Q4.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Adani Ports'"
+    },
+    {
+      "candidate": "File:G.K. Vasan witnessing the signing of the Concession agreement between the Kamarajar Port Limited and Adani Ennore Container Terminal Pvt. Ltd for development of Container Terminal, at a function, in Chennai on March 01, 2014.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Karan Adani.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Adani Ports'"
+    },
+    {
+      "candidate": "File:Karan Adani APSEZ.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Adani Ports'"
+    },
+    {
+      "candidate": "File:Federal Reserve Board (Board of Governors of the Federal Reserve System) open meeting, April 2019.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "1200x674, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Federal Reserve Board (Board of Governors of the Federal Reserve System) open meeting, July 2013.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('US Federal Reserve')"
+    },
+    {
+      "candidate": "File:Federal Reserve Board (Board of Governors of the Federal Reserve System) open meeting, July 2023.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('US Federal Reserve')"
+    },
+    {
+      "candidate": "File:Federal Reserve Board (Board of Governors of the Federal Reserve System) open meeting, May 2018.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x683 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Federal Reserve Board (Board of Governors of the Federal Reserve System) open meeting, October 2023.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('US Federal Reserve')"
+    },
+    {
+      "candidate": "File:Federal Reserve Board (Board of Governors of the Federal Reserve System) open meeting, October 2023 (3).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('US Federal Reserve')"
+    },
+    {
+      "candidate": "File:Federal Reserve Board (Board of Governors of the Federal Reserve System) open meeting, October 2023 (4).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('US Federal Reserve')"
+    },
+    {
+      "candidate": "File:Federal Reserve Board (Board of Governors of the Federal Reserve System) open meeting, October 2023 (5).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('US Federal Reserve')"
+    },
+    {
+      "candidate": "File:Federal Reserve Board (Board of Governors of the Federal Reserve System) open meeting, September 2017.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "4176x2784, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:RS21589 (IA RS21589-crs).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Andrew Steer & Jos\u00e9 Manuel Entrecanales - Innovate4Climate Finance & Markets Week.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (director) than this markets-finance story \u2014 a same-name different person, not 'Markets Finance' the subject of this story"
+    },
+    {
+      "candidate": "File:Exploitation of free markets and globalization to finance terrorists (IA exploitationoffr1094510378).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Finance and Markets Working Group Logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:IP Finance Dialogue \u2013 Expanding Horizons on IP Finance and Valuation - 53346909618.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "6000x4000, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Prediction market - example GUI - 2.gif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Social finance market structure.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1175x556 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Telia finance logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of India (SEBI).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley lighting the lamp at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of India.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley releasing the publication at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "https://www.bseindia.com/publicissue",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "https://beta.bseindia.com/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.nseindia.com/resources/exchange-communication-press-releases",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "license: no license grant on the hosting page"
+    },
+    {
+      "candidate": "https://www.nseindia.com",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.nseindia.com/market-data/top-gainers-losers",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "license: no license grant on the hosting page"
+    },
+    {
+      "candidate": "https://www.adaniports.com/newsroom/media-releases",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "license: no license grant on the hosting page"
+    },
+    {
+      "candidate": "https://www.adaniports.com/newsroom",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.federalreserve.gov/newsevents/pressreleases.htm",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "https://www.federalreserve.gov/newsevents.htm",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "https://www.federalreserve.gov/newsevents/calendar.htm",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "File:BSE logo new.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:National Stock Exchange NSE India.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'NSE Nifty'"
+    },
+    {
+      "candidate": "File:National Stock Exchange of India 2.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x768 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:NSE-logo.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:US Federal Reserve balance sheet total.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 806x453 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Federal Reserve Districts Map - Banks & Branches.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Organization of the Federal Reserve System.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 309x249 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "federal-reserve-board-board-of-governors-of",
+      "path": "federal-reserve-board-board-of-governors-of.jpg",
+      "size": [
+        1200,
+        674
+      ],
+      "role": "establishing",
+      "subject": "The Board of Governors discuss proposed rules on prudential standards for foreign banking organizations and resolution plan requirements for foreign and domestic banking organizations. www.federalreserve.gov/aboutthefed/boardmeetings/201904",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Federal_Reserve_Board_(Board_of_Governors_of_the_Federal_Reserve_System)_open_meeting,_April_2019.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/99/Federal_Reserve_Board_%28Board_of_Governors_of_the_Federal_Reserve_System%29_open_meeting%2C_April_2019.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Federalreserve"
+    },
+    {
+      "beat": "hero",
+      "label": "federal-reserve-board-board-of-governors-of-2",
+      "path": "federal-reserve-board-board-of-governors-of-2.jpg",
+      "size": [
+        4176,
+        2784
+      ],
+      "role": "establishing",
+      "subject": "Board members met today to adopt a final rule to enhance financial stability. Learn more: www.federalreserve.gov/newsevents/pressreleases/bcreg2017...",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Federal_Reserve_Board_(Board_of_Governors_of_the_Federal_Reserve_System)_open_meeting,_September_2017.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Federal_Reserve_Board_%28Board_of_Governors_of_the_Federal_Reserve_System%29_open_meeting%2C_September_2017.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Federalreserve"
+    },
+    {
+      "beat": "grid",
+      "label": "ip-finance-dialogue-expanding-horizons-on-ip",
+      "path": "ip-finance-dialogue-expanding-horizons-on-ip.jpg",
+      "size": [
+        6000,
+        4000
+      ],
+      "role": "establishing",
+      "subject": "Juni Tingting Zhu, Senior Economist at Markets, Competition and Technology Global Unit of World Bank Group, Washington, United States of America, speaks at the panel discussion entitled \u201cIP Finance on the Ground \u2013 IP Financing in the Creati",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "WIPO | OMPI"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "hook_line": "BOX OFFICE CROSSES RS 4,000 CRORE",
+  "hook_stat": {
+    "big": "RS 4,443 CRORE",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "India's gross box office in the quarter"
+  },
+  "stats": [
+    {
+      "big": "RS 2,133 CRORE",
+      "label": "PVR INOX highest-ever quarterly revenue"
+    },
+    {
+      "big": "111%",
+      "label": "Rise in profit after tax to Rs 273.3 crore"
+    },
+    {
+      "big": "46.3 MILLION",
+      "label": "Admissions in the quarter, up 4%"
+    }
+  ],
+  "diaspora_bullets": [
+    "Hollywood, Hindi and regional films all grew",
+    "English films rose 87% to Rs 1,024 crore"
+  ],
+  "key_entities": [
+    "PVR INOX",
+    "Ormax Media",
+    "Spider-Man: Brand New Day",
+    "Ajay Bijli"
+  ],
+  "news_summary": "India's gross box office reached Rs 4,443 crore in July-September, the first quarter above Rs 4,000 crore, as PVR INOX posted record revenue of Rs 2,133 crore.",
+  "payoff": "Spend per visit, not footfall, drove the growth.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

@@ -1,0 +1,36 @@
+{
+  "hook_line": "SENSEX SURGES 905 POINTS, NIFTY TOPS 22,900 AS BANKING AND FMCG STOCKS LEAD",
+  "hook_stat": {
+    "big": "905",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Points the Sensex jumped on Thursday"
+  },
+  "stats": [
+    {
+      "big": "74,151.04",
+      "label": "Sensex close on Thursday"
+    },
+    {
+      "big": "22,936.75",
+      "label": "Nifty close on Thursday"
+    },
+    {
+      "big": "OVER 5%",
+      "label": "Rise in Adani Ports, the top Sensex gainer"
+    }
+  ],
+  "diaspora_bullets": [
+    "Banking and FMCG stocks led the rally",
+    "Foreign investors bought Rs 872 crore of shares"
+  ],
+  "key_entities": [
+    "BSE Sensex",
+    "NSE Nifty",
+    "Adani Ports",
+    "US Federal Reserve"
+  ],
+  "news_summary": "The BSE Sensex jumped 905.01 points, or 1.24%, to close at 74,151.04 on Thursday, while the NSE Nifty rose 237.90 points to 22,936.75.",
+  "payoff": "The short-term outlook stays positive while the Nifty holds above 22,800.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

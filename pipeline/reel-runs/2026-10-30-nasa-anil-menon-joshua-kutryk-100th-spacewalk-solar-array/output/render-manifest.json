@@ -1,0 +1,392 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "nasa-anil-menon-joshua-kutryk-100th-spacewalk-solar-array",
+ "article_slug": "nasa-anil-menon-joshua-kutryk-100th-spacewalk-solar-array",
+ "article_id": "b8e76984-b9c7-4fd2-aa6a-813efe9f0cde",
+ "category": "Nri World",
+ "video": "reel-runs/2026-10-30-nasa-anil-menon-joshua-kutryk-100th-spacewalk-solar-array/output/nasa-anil-menon-joshua-kutryk-100th-spacewalk-solar-array.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://media.pubninja.com/articles/brand-7/covers/1793333473013_97c9e8eb6424.jpg",
+  "local_path": "reel-runs/2026-10-30-nasa-anil-menon-joshua-kutryk-100th-spacewalk-solar-array/output/hero.jpg",
+  "width": 1200,
+  "height": 630,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.375,0.415) damped=(0.438,0.458)",
+  "has_face": false,
+  "box_source": [
+   189,
+   149,
+   672,
+   252
+  ],
+  "box_bg": [
+   217,
+   260,
+   467,
+   175
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.428,
+   0.474
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   437
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 657,
+   "zone_h": 899,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 925,
+   "block_bottom": 1288,
+   "text_bbox": [
+    70,
+    925,
+    930,
+    1288
+   ],
+   "texts": [
+    "Nri World",
+    "ANIL MENON COMPLETES NASA'S 100TH US SPACEWALK"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     630
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 437,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      628
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.05x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 657,
+   "zone_h": 899,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 917,
+   "block_bottom": 1295,
+   "text_bbox": [
+    70,
+    917,
+    930,
+    1295
+   ],
+   "texts": [
+    "What Happened",
+    "NASA astronaut Anil Menon and Canada's Joshua Kutryk spent 7 hours and 11 minutes outside the International Space Station on October 29, installing its seventh roll-out solar array."
+   ],
+   "v7": {
+    "image_source": "extra:nasa-astronaut-anil-menon-to-discuss-upcomin",
+    "track": "backdrop",
+    "render_scale": 0.407,
+    "photo_px": [
+     2048,
+     1365
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 437,
+     "scale": 0.4072265625,
+     "window": [
+      0,
+      4,
+      2048,
+      1077
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.41x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "NASA Astronaut Anil Menon to Discuss Upcoming Launch, Mission - NASA",
+     "route": "B \u2014 official sources",
+     "source_page": "https://www.nasa.gov/news-release/nasa-astronaut-anil-menon-to-discuss-upcoming-launch-mission/",
+     "file_url": "https://www.nasa.gov/wp-content/uploads/2026/04/55142906490-f1d1527d9e-k.jpg",
+     "license": "US federal government work \u2014 public domain",
+     "artist": ""
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 657,
+   "zone_h": 899,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 887,
+   "block_bottom": 1325,
+   "text_bbox": [
+    70,
+    887,
+    930,
+    1325
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "100th",
+    "US spacewalk conducted from the station's Quest airlock"
+   ],
+   "v7": {
+    "image_source": "extra:vkd-51-spacewalk-37",
+    "track": "backdrop",
+    "render_scale": 0.668,
+    "photo_px": [
+     1249,
+     716
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 437,
+     "scale": 0.6677341873498799,
+     "window": [
+      0,
+      62,
+      1249,
+      716
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.68x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Station views of Russian Modules during VKD-51 spacewalk",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:VKD-51_spacewalk_37.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/VKD-51_spacewalk_37.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "NASA/Mark T. Vande Hei (taking some images by himself and operating the station "
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 657,
+   "zone_h": 899,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 712,
+   "block_bottom": 1500,
+   "text_bbox": [
+    70,
+    712,
+    930,
+    1500
+   ],
+   "texts": [
+    "By The Numbers",
+    "285th",
+    "Spacewalk in support of the ISS overall",
+    "63-foot",
+    "Full length of the roll-out solar array installed",
+    "30 percent",
+    "More station power once the eighth and final array is installed"
+   ],
+   "v7": {
+    "image_source": "extra:vkd-51-spacewalk-42",
+    "track": "backdrop",
+    "render_scale": 0.658,
+    "photo_px": [
+     1268,
+     704
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 437,
+     "scale": 0.6577287066246057,
+     "window": [
+      0,
+      0,
+      1268,
+      664
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.73x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Station views of Russian Modules during VKD-51 spacewalk",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:VKD-51_spacewalk_42.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/VKD-51_spacewalk_42.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "NASA/Mark T. Vande Hei (taking some images by himself and operating the station "
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 607,
+   "zone_h": 949,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 897,
+   "block_bottom": 1266,
+   "text_bbox": [
+    70,
+    897,
+    930,
+    1266
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "It was Menon's fourth spacewalk and Kutryk's first",
+    "The final array, due November 5, completes the power upgrade"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "backdrop",
+    "render_scale": 1.0,
+    "photo_px": [
+     600,
+     338
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop-contain",
+     "x": 203,
+     "y": 205,
+     "w": 600,
+     "h": 338,
+     "scale": 1.0,
+     "window": null
+    },
+    "track_note": "9:16 cover-crop would upscale 5.68x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 337,
+   "block_top": 691,
+   "block_bottom": 1028,
+   "text_bbox": [
+    70,
+    691,
+    930,
+    1028
+   ],
+   "texts": [
+    "The Takeaway",
+    "Once the eighth and final array is installed on November 5, the upgrade will raise the station's available power by up to 30 percent.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 103.1,
+ "mp4_bytes": 5380703
+}

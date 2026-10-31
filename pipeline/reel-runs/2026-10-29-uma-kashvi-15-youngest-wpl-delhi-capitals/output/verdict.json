@@ -1,0 +1,37 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "uma-kashvi-15-youngest-wpl-delhi-capitals",
+  "name": "uma-kashvi-15-youngest-wpl-delhi-capitals",
+  "script": "reel-runs/2026-10-29-uma-kashvi-15-youngest-wpl-delhi-capitals/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.00069
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-29-uma-kashvi-15-youngest-wpl-delhi-capitals/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "runs-scored-for-delhi-daredevils-in-2012",
+      "hero": "hampi-village-karnataka-india",
+      "grid": "wickets-taken-for-delhi-daredevils-in-2012",
+      "diaspora": "hampi-street-karnataka-india"
+    }
+  },
+  "manifest": "reel-runs/2026-10-29-uma-kashvi-15-youngest-wpl-delhi-capitals/output/render-manifest.json",
+  "video": "reel-runs/2026-10-29-uma-kashvi-15-youngest-wpl-delhi-capitals/output/uma-kashvi-15-youngest-wpl-delhi-capitals.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:diaspora"
+    ]
+  }
+}

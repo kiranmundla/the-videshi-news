@@ -1,0 +1,16 @@
+{
+  "kind": "carousel",
+  "article_slug": "sensex-surges-905-points-nifty-tops-22900-banking-fmcg",
+  "status": "held",
+  "stage": "render_fit",
+  "factcheck": {
+    "verdict": "pass",
+    "quote_present": true,
+    "verbatim_quote": true,
+    "speaker_grounded": true,
+    "role_grounded": true,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000538
+  },
+  "detail": "inter cannot fit \"The Sensex closed at 74,151.04 and the Nifty at 22,936.75 on Thursday, snapping a two-day losing streak as a US Fed rate hold, easing crude and Adani Ports' strong results lifted sentiment.\""
+}

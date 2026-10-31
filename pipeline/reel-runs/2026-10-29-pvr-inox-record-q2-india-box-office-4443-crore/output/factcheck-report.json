@@ -1,0 +1,272 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "pvr-inox-record-q2-india-box-office-4443-crore",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "BOX OFFICE CROSSES RS 4,000 CRORE",
+      "numbers": [
+        4000.0,
+        40000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "India's box office crossed Rs 4,000 crore for the first time.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "India's gross box office reached Rs 4,443 crore in July-September, the first quarter above Rs 4,000 crore, as PVR INOX posted record revenue of Rs 2,133 crore.",
+      "numbers": [
+        2133.0,
+        4000.0,
+        4443.0,
+        21330000000.0,
+        40000000000.0,
+        44430000000.0
+      ],
+      "entities": [
+        "PVR INOX"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All facts about box office and PVR INOX revenue are present.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "RS 4,443 CRORE",
+      "numbers": [
+        4443.0,
+        44430000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the reported gross box office figure.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "India's gross box office in the quarter",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the gross box office for the quarter.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "RS 2,133 CRORE",
+      "numbers": [
+        2133.0,
+        21330000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the reported revenue for PVR INOX.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "PVR INOX highest-ever quarterly revenue",
+      "numbers": [],
+      "entities": [
+        "PVR INOX"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this is PVR INOX's highest revenue.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "111%",
+      "numbers": [
+        111.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the reported increase in profit after tax.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Rise in profit after tax to Rs 273.3 crore",
+      "numbers": [
+        273.3,
+        2733000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this profit figure.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "46.3 MILLION",
+      "numbers": [
+        46.3,
+        46300000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the reported number of admissions.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Admissions in the quarter, up 4%",
+      "numbers": [
+        4.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states admissions rose by 4%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Hollywood, Hindi and regional films all grew",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions growth in all these film categories.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "English films rose 87% to Rs 1,024 crore",
+      "numbers": [
+        87.0,
+        1024.0,
+        10240000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Spend per visit, not footfall, drove the growth.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article explains growth was due to spending per visit.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "PVR INOX",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ormax Media",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Spider-Man: Brand New Day",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ajay Bijli",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.0007,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,413 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test",
+ "article_slug": "anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test",
+ "article_id": "0ee6653d-eb65-49e2-8c16-47715a73f092",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-10-29-anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test/output-v2/anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://static.startuptalky.com/2026/10/anthropic-moves-toward-ipo-Startuptalky.jpg",
+  "local_path": "reel-runs/2026-10-29-anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test/output-v2/hero.jpg",
+  "width": 1200,
+  "height": 800,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.047,0.219) damped=(0.273,0.359)",
+  "has_face": false,
+  "box_source": [
+   0,
+   111,
+   672,
+   320
+  ],
+  "box_bg": [
+   86,
+   233,
+   467,
+   222
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.274,
+   0.36
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   556
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 342,
+   "block_top": 995,
+   "block_bottom": 1337,
+   "text_bbox": [
+    70,
+    995,
+    930,
+    1337
+   ],
+   "texts": [
+    "Markets Finance",
+    "ANTHROPIC REVENUE JUMPS 14-FOLD; INDIAN IT FACES AI TEST"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      800
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Anthropic reported first-half revenue of $16.3 billion, up 14-fold year on year, in disclosures tied to its US IPO filing, while Indian IT shares fell up to 3%."
+   ],
+   "v7": {
+    "image_source": "extra:tcs-building-in-varanasi",
+    "track": "full-bleed",
+    "render_scale": 0.827,
+    "photo_px": [
+     4128,
+     2322
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8268733850129198,
+     "window": [
+      1417,
+      0,
+      2723,
+      2322
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Tara consultancy service(TCS) Building in Varanasi.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:TCS_building_in_Varanasi.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/TCS_building_in_Varanasi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Aashijo"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "14-FOLD",
+    "Anthropic revenue jump year on year in the first half"
+   ],
+   "v7": {
+    "image_source": "extra:osce-headquarters-at-the-hofburg-vienna-ank",
+    "track": "full-bleed",
+    "render_scale": 0.417,
+    "photo_px": [
+     3456,
+     4608
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4166666666666667,
+     "window": [
+      376,
+      0,
+      2968,
+      4608
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "OSCE Headquarters at The Hofburg, Vienna",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:OSCE_Headquarters_at_The_Hofburg,_Vienna_(_Ank_Kumar,_Infosys)_01.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/OSCE_Headquarters_at_The_Hofburg%2C_Vienna_%28_Ank_Kumar%2C_Infosys%29_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Ank Kumar"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 698,
+   "block_top": 817,
+   "block_bottom": 1515,
+   "text_bbox": [
+    70,
+    817,
+    930,
+    1515
+   ],
+   "texts": [
+    "By The Numbers",
+    "$16.3 BILLION",
+    "Anthropic revenue for the first half",
+    "$3.1 BILLION",
+    "TCS annualised AI revenue",
+    "10.5%",
+    "Infosys AI revenue as a share of its total"
+   ],
+   "v7": {
+    "image_source": "extra:infosys-4911287704",
+    "track": "backdrop",
+    "render_scale": 0.302,
+    "photo_px": [
+     3264,
+     1840
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.30217391304347824,
+     "window": [
+      297,
+      0,
+      3057,
+      1840
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.04x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Infosys",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Infosys_(4911287704).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Infosys_%284911287704%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.0",
+     "artist": "Ashwin Kumar from Bangalore, India"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 1148,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1148,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "AI crossed 10% of revenue at both TCS and Infosys for the first time",
+    "HCLTech reported $219 million in advanced AI revenue, up 28.4% sequentially"
+   ],
+   "v7": {
+    "image_source": "extra:skylt-till-hcltech-arena",
+    "track": "full-bleed",
+    "render_scale": 0.853,
+    "photo_px": [
+     4000,
+     2250
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8533333333333334,
+     "window": [
+      1417,
+      0,
+      2682,
+      2250
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Skylt till HCLTech Arena (JM-hallen) p\u00e5 Stora mossens IP i v\u00e4stra Stockholm",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Skylt_till_HCLTech_Arena.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Skylt_till_HCLTech_Arena.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "Sabel\u00f6ga"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "AI revenue must grow faster than AI-driven deflation shrinks traditional work.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/tech-corporate-technology.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 159.3,
+ "mp4_bytes": 9636208
+}

@@ -1,0 +1,269 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "256-lawmakers-back-july-indian-american-heritage-month",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "256 US LAWMAKERS BACK JULY AS INDIAN AMERICAN HERITAGE MONTH",
+      "numbers": [
+        256.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "256 lawmakers support the resolution for July as Indian American Heritage Month.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "A bipartisan House resolution to designate July as Indian American Heritage Month has 256 cosponsors, more than half of the 435-member House of Representatives.",
+      "numbers": [
+        256.0,
+        435.0
+      ],
+      "entities": [
+        "Indian American Heritage Month"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the resolution has 256 cosponsors, more than half of 435 members.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "256",
+      "numbers": [
+        256.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms 256 cosponsors for the resolution.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "US lawmakers backing July as Indian American Heritage Month",
+      "numbers": [],
+      "entities": [
+        "Indian American Heritage Month"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses US lawmakers backing July for this designation.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "435",
+      "numbers": [
+        435.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the House has 435 members.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Members of the House of Representatives",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article refers to the 435 members as the House of Representatives.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "5.2 MILLION",
+      "numbers": [
+        5.2,
+        5200000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the resolution recognizes over 5.2 million Indian Americans.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Indian Americans recognised by the resolution",
+      "numbers": [],
+      "entities": [
+        "Indian Americans"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the resolution recognizes Indian Americans.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "JULY 2, 1946",
+      "numbers": [
+        2.0,
+        1946.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          1946
+        ]
+      },
+      "llm_reason": "The article states Truman signed the Luce-Celler Act on this date.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Truman signed the Luce-Celler Act",
+      "numbers": [],
+      "entities": [
+        "Luce-Celler Act"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Truman signed the act on July 2, 1946.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "More than half the House backs it",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states more than half of the House supports the resolution.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "July marks the 1946 Luce-Celler Act",
+      "numbers": [
+        1946.0
+      ],
+      "entities": [
+        "Luce-Celler Act"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          1946
+        ]
+      },
+      "llm_reason": "The article explains July is linked to the Luce-Celler Act of 1946.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The resolution has been referred to a House committee for consideration.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the resolution has been referred to a committee.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Raja Krishnamoorthi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Luce-Celler Act",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "House of Representatives",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000647,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

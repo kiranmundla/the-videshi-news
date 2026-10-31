@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test",
+  "name": "anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test",
+  "script": "reel-runs/2026-10-29-anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "diaspora_bullets[0]",
+      "diaspora_bullets[1]"
+    ],
+    "llm_cost_usd": 0.00072
+  }
+}

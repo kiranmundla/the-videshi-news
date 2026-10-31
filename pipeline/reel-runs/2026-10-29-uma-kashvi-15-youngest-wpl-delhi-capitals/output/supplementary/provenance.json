@@ -1,0 +1,301 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "uma-kashvi-15-youngest-wpl-delhi-capitals",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Uma Kashvi",
+    "Delhi Capitals",
+    "Women's Premier League",
+    "Karnataka",
+    "WPL Auction",
+    "Uma Kashvi for Rs"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Delhi Capitals Logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Delhi Capitals colours.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Delhi Daredevils colours.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Delhi Daredevils colours 2008.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Kit body dc23.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 38x59 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Kit trousers dc22.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 100x80 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:PWI VS DD.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 960x720 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Runs scored for Delhi Daredevils in 2012.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "1502x1127, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:WPL Team Picture.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of WPL Team Picture, who is not one of this story's subjects \u2014 association is not depiction ('Delhi Capitals')"
+    },
+    {
+      "candidate": "File:Wickets taken for Delhi Daredevils in 2012.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "1502x1127, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:NSW Women's Premier League Grand Final (7991246003).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person (\"Women's Premier League\")"
+    },
+    {
+      "candidate": "File:NSW Women's Premier League Grand Final (7991258979).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person (\"Women's Premier League\")"
+    },
+    {
+      "candidate": "File:NSW Women's Premier League Grand Final (7991270174).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person (\"Women's Premier League\")"
+    },
+    {
+      "candidate": "File:NSW Women's Premier League Grand Final (7991282383).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person (\"Women's Premier League\")"
+    },
+    {
+      "candidate": "File:NSW Women's Premier League Grand Final (7991292805).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person (\"Women's Premier League\")"
+    },
+    {
+      "candidate": "File:NSW Women's Premier League Grand Final (7991300933).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person (\"Women's Premier League\")"
+    },
+    {
+      "candidate": "File:NSW Women's Premier League Grand Final (7991303822).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person (\"Women's Premier League\")"
+    },
+    {
+      "candidate": "File:NSW Women's Premier League Grand Final (7991304007).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person (\"Women's Premier League\")"
+    },
+    {
+      "candidate": "File:NSW Women's Premier League Grand Final (7991305820).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person (\"Women's Premier League\")"
+    },
+    {
+      "candidate": "File:Women's Premier Soccer League wordmark black.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Behar Herald 30-06-2017.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Districts-of-karnataka-en 02.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Hampi, India, Rocky landscape of Hampi, Granite rocks of Matanga Hill.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Hampi, Woman, Karnataka, India.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Hampi street, Karnataka, India.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "4032x2688, CC BY 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Hampi village, Karnataka, India.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "4032x2688, CC BY 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:American bibliography (Evans) (Vol 1) (IA americanbibliogr01evanrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:BCCI President Shri Roger Binny & BCCI Hon. Secretary Shri Jay Shah at the inaugural WPL Auctions.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'WPL Auction'"
+    },
+    {
+      "candidate": "File:Geo. Francis Train, unionist, on T. Colley Grattan, secessionist (IA geofrancistrainu00trai 0).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Seventh Annual Report of the Social Service Department of the Massachusetts General Hospital (IA seventhannualrep07mass).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The tenth annual report of the United Committee of Visitors - being the report for the year 1858 with list of visitors and officers of the institution, medical and financial statements, etc (IA b30308926).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1897-12-18) (IA victoriadailytimes18971218).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1900-01-09) (IA victoriadailytimes19000109).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1901-01-03) (IA victoriadailytimes19010103).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1901-12-18) (IA victoriadailytimes19011218).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1925-06-06) (IA victoriadailytimes19250606).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "runs-scored-for-delhi-daredevils-in-2012",
+      "path": "runs-scored-for-delhi-daredevils-in-2012.png",
+      "size": [
+        1502,
+        1127
+      ],
+      "role": "establishing",
+      "subject": "Player-wise overview of runs scored for Delhi Daredevils (DD) in 2012",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Runs_scored_for_Delhi_Daredevils_in_2012.png",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Runs_scored_for_Delhi_Daredevils_in_2012.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Vibhijain"
+    },
+    {
+      "beat": "hero",
+      "label": "hampi-village-karnataka-india",
+      "path": "hampi-village-karnataka-india.jpg",
+      "size": [
+        4032,
+        2688
+      ],
+      "role": "establishing",
+      "subject": "Hampi village, Karnataka, India.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Hampi_village,_Karnataka,_India.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Hampi_village%2C_Karnataka%2C_India.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "Vyacheslav Argenberg"
+    },
+    {
+      "beat": "grid",
+      "label": "wickets-taken-for-delhi-daredevils-in-2012",
+      "path": "wickets-taken-for-delhi-daredevils-in-2012.png",
+      "size": [
+        1502,
+        1127
+      ],
+      "role": "establishing",
+      "subject": "Player-wise overview of wickets taken for Delhi Daredevils (DD) in 2012",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Wickets_taken_for_Delhi_Daredevils_in_2012.png",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Wickets_taken_for_Delhi_Daredevils_in_2012.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Vibhijain"
+    },
+    {
+      "beat": "diaspora",
+      "label": "hampi-street-karnataka-india",
+      "path": "hampi-street-karnataka-india.jpg",
+      "size": [
+        4032,
+        2688
+      ],
+      "role": "establishing",
+      "subject": "Hampi street, Karnataka, India.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Hampi_street,_Karnataka,_India.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Hampi_street%2C_Karnataka%2C_India.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "Vyacheslav Argenberg"
+    }
+  ]
+}

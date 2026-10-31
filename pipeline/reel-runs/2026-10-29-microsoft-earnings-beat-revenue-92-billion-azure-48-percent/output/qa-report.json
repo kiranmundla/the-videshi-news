@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-29-microsoft-earnings-beat-revenue-92-billion-azure-48-percent/output/microsoft-earnings-beat-revenue-92-billion-azure-48-percent.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:diaspora"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        4752,
+        3168
+      ],
+      "manifest_dims": [
+        4752,
+        3168
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 324.1,
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Aerial_Microsoft_West_Campus_August_2009.jpg/3840px-Aerial_Microsoft_West_Campus_August_2009.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-29-microsoft-earnings-beat-revenue-92-billion-azure-48-percent/output/qa/frames/frame-hook.png",
+      "text_px_detected": 23356,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 33.9,
+        "delta": 219.8
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-29-microsoft-earnings-beat-revenue-92-billion-azure-48-percent/output/qa/frames/frame-news.png",
+      "text_px_detected": 41107,
+      "edge": {
+        "pass": true,
+        "offending_px": 65,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 69.1,
+        "delta": 184.8
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-29-microsoft-earnings-beat-revenue-92-billion-azure-48-percent/output/qa/frames/frame-hero.png",
+      "text_px_detected": 26269,
+      "edge": {
+        "pass": true,
+        "offending_px": 5,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 251.1,
+        "bg_luminance": 32.2,
+        "delta": 218.9
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-29-microsoft-earnings-beat-revenue-92-billion-azure-48-percent/output/qa/frames/frame-grid.png",
+      "text_px_detected": 45715,
+      "edge": {
+        "pass": true,
+        "offending_px": 15,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 110.9,
+        "delta": 142.5
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-29-microsoft-earnings-beat-revenue-92-billion-azure-48-percent/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 41110,
+      "edge": {
+        "pass": false,
+        "offending_px": 3574,
+        "clusters": 6,
+        "largest_cluster": 585
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.68)",
+        "box": [
+          59,
+          805,
+          9,
+          11
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 121.6,
+        "delta": 132.4
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-29-microsoft-earnings-beat-revenue-92-billion-azure-48-percent/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 23680,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    }
+  ]
+}

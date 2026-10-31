@@ -1,0 +1,195 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "pvr-inox-record-q2-india-box-office-4443-crore",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "PVR INOX",
+    "Ormax Media",
+    "Spider-Man: Brand New Day",
+    "Ajay Bijli",
+    "Brand New Day",
+    "New York. English-language"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Flora Pyrenaea per ordines naturales gradatim digesta -P. Bubani ; opus posthumum editum O. Penzig. (IA mobot31753000504701).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:PVR INOX Logo After Merger.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:PVR INOX Pacific Mall in Jasola.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "3428x2285, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:PVR INOX Superplex Mall of India in Noida.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "6720x4480, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Officia sanctorum in Breviario Romano ex mandato summorum Pontificum apponenda, tam de praecepto, quam ad libitum recitanda. - Et alia quae in regnis Hispaniarum (IA officiasanctorum00cath).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A confident to-morrow; a novel of New York (IA cu31924022035772).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A confident tomorrow - a novel of New York (IA confidenttomorro00mattiala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A few thoughts for a young man; (IA fewthoughtsforyo00mann).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Harper's New Monthly Magazine, Volume 92.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Knickerbocker's History of New York (IA knickerbockershi02irvi).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Entomologist's record and journal of variation (IA entomologistsrec391927tutt).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The New York Times 1900-01-21- Vol 49 Iss 15611 (IA per new-york-times-magazine the-new-york-times 1900-01-21 49 15611).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The new Shakespeare and other travesties (IA newshakespeareot00cris).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The spider of Truxillo. (The passing show) Exciting adventures on land and sea (IA spideroftruxillo00sava).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Three months with the New York herald; or, Old news on board of a homeward-bounder (IA cu31924030264844).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Movie set of Spider-Man Brand New Day (2025) (1).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "4000x6000, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Movie set of Spider-Man Brand New Day (2025) (10).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "6000x4000, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Ajay Bijli at 2021 MAMI Mumbai Film Festival.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 350x350 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mr Ajay Bijli won the EY award for Business Transformation.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Movie set of Spider-Man Brand New Day (2025) (3).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "6000x4000, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Movie set of Spider-Man Brand New Day (2025) (4).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "6000x4000, CC BY-SA 4.0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "pvr-inox-pacific-mall-in-jasola",
+      "path": "pvr-inox-pacific-mall-in-jasola.jpg",
+      "size": [
+        3428,
+        2285
+      ],
+      "role": "establishing",
+      "subject": "PVR INOX Pacific Mall in Jasola",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:PVR_INOX_Pacific_Mall_in_Jasola.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/PVR_INOX_Pacific_Mall_in_Jasola.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Pooja.sirsat26"
+    },
+    {
+      "beat": "hero",
+      "label": "movie-set-of-spider-man-brand-new-day-2025-1",
+      "path": "movie-set-of-spider-man-brand-new-day-2025-1.jpg",
+      "size": [
+        6000,
+        4000
+      ],
+      "role": "establishing",
+      "subject": "On the set of Spider-Man: Brand New Day in the streets of Glasgow, resembling New York.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Movie_set_of_Spider-Man_Brand_New_Day_(2025)_(1).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Movie_set_of_Spider-Man_Brand_New_Day_%282025%29_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "S. Perquin"
+    },
+    {
+      "beat": "grid",
+      "label": "pvr-inox-superplex-mall-of-india-in-noida",
+      "path": "pvr-inox-superplex-mall-of-india-in-noida.jpg",
+      "size": [
+        6720,
+        4480
+      ],
+      "role": "establishing",
+      "subject": "PVR INOX Superplex Mall of India in Noida",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:PVR_INOX_Superplex_Mall_of_India_in_Noida.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/PVR_INOX_Superplex_Mall_of_India_in_Noida.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Pooja.sirsat26"
+    }
+  ]
+}

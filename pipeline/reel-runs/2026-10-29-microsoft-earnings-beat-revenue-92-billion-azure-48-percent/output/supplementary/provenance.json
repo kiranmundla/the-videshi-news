@@ -1,0 +1,379 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "microsoft-earnings-beat-revenue-92-billion-azure-48-percent",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Microsoft",
+    "Azure",
+    "Microsoft Cloud",
+    "Satya Nadella",
+    "Visible Alpha",
+    "Markets Finance"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:A colonist's plea for land nationalisation (IA colonistspleafor00ogilrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Behar Herald 7-08-2023 & 15-08-2023.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Edinburgh Review; or, Critical Journal (IA edinburghreview191londuoft).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Effective industrial reform (IA effectiveindustr00reidiala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Facts about silver (IA factsaboutsilver00natirich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Financial giants of America (IA financialgiantso00redm2).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:THE NEAR-TERM OUTLOOK FOR ENERGY AND COMMODITY MARKETS (IA gov.gpo.fdsys.CHRG-114shrg98966).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:THE SARBANES-OXLEY ACT 4 YEARS LATER- WHAT HAVE WE LEARNED? (IA gov.gpo.fdsys.CHRG-109hhrg30899).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The domestic and financial condition of Great Britain; pre- ceded by a brief sketch of her foreign policy (IA domesticfinancia00browuoft).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The folly of building temples of peace with untempered mortar- the necessity of building temples of peace with tempered mortar- (IA cu31924030185536).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Building92microsoft.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "5184x3456, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:MicrosoftBanner.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1200x100 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Microsoft Atlanta.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "4032x3024, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Books from the Library of Congress (IA automobilepainti01vand).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:In French-Africa, scenes and memories (IA infrenchafricasc00bethrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:In French-Africa; scenes and memories (IA infrenchafricasc00beth).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Robert Merry's Museum (IA robertmerrysmuse06goodrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Sir Walter Scott's Marmion (IA sirwalterscottsm01scot).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Editor and Publisher 1910-07-30- Vol 10 Iss 5 (IA sim editor-publisher 1910-07-30 10 5).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Paper Trade Journal 1899-07-13- Vol 29 Iss 7 (IA sim paper-trade-journal 1899-07-13 29 7).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Popular Magazine 1908-09.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The fortunes of Glencore (IA fortunesofglenco00leve).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The fortunes of Glencore (IA fortunesofglenco01leve).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Azure Alberta Grain Elevator (24836375781).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in canada/china, which this story is not about (story context: united states) \u2014 a namesake, not 'Azure' in this story"
+    },
+    {
+      "candidate": "File:Azure SQL cloud icon.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Malta Gozo, Azure Window (10264176345).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in spain, which this story is not about (story context: united states) \u2014 a namesake, not 'Azure' in this story"
+    },
+    {
+      "candidate": "File:Malta Gozo Azure Window BW 2011-10-08 11-08-29.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "3630x2420, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Microsoft Azure Logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Microsoft azure-icon.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Pedra Azul Milky Way.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Azure'"
+    },
+    {
+      "candidate": "File:Windows Azure Caching (Co-located).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 349x352 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Windows Azure Caching (Dedicated).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 509x348 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Windows Azure logo and wordmark - 2012.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Arkansas National Guard - Emblem2.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 506x365 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Coat of Arms of the 12th Brigade Guadarrama Headquarters Battalion.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Coat of Arms of the BRIPAC Headquarters.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:February azure by Igor Grabar at the Grabar exhibition in Tretyakov Gallery IMG 7817.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "3264x2448, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Cloud-blue-24.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Microsoft SQL Server-fr.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Microsoft SQL Server.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Microsoft SQL Server 1 11 Network Enhancements.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 614x571 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Microsoft SQL Server 1 1 Network Enhancements.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Microsoft SQL Server 2025 icon.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Microsoft SQL Server Logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:SQL Azure Client Access Architecture.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 960x720 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:SQL Server.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:SQL Server FTS.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:MS-Exec-Nadella-Satya-2017-08-31-14-2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "4480x6720, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:MS-Exec-Nadella-Satya-2017-08-31-14.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "4480x6720, CC BY-SA 4.0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "microsoft-atlanta",
+      "path": "microsoft-atlanta.jpg",
+      "size": [
+        4032,
+        3024
+      ],
+      "role": "establishing",
+      "subject": "Microsoft building at Atlantic Station in Atlanta",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Microsoft_Atlanta.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Microsoft_Atlanta.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Tyler Lahti"
+    },
+    {
+      "beat": "hero",
+      "label": "building92microsoft",
+      "path": "building92microsoft.jpg",
+      "size": [
+        5184,
+        3456
+      ],
+      "role": "establishing",
+      "subject": "Building 92 at Microsoft Corporation headquarters in Redmond, Washington. Photographed by user Coolcaesar on 30 May 2016.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Building92microsoft.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Building92microsoft.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Coolcaesar"
+    },
+    {
+      "beat": "grid",
+      "label": "malta-gozo-azure-window-bw-2011-10-08-11-08",
+      "path": "malta-gozo-azure-window-bw-2011-10-08-11-08.jpg",
+      "size": [
+        3630,
+        2420
+      ],
+      "role": "establishing",
+      "subject": "Malta, Gozo, Azure Window.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Malta_Gozo_Azure_Window_BW_2011-10-08_11-08-29.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Malta_Gozo_Azure_Window_BW_2011-10-08_11-08-29.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Berthold Werner"
+    },
+    {
+      "beat": "diaspora",
+      "label": "february-azure-by-igor-grabar-at-the-grabar",
+      "path": "february-azure-by-igor-grabar-at-the-grabar.jpg",
+      "size": [
+        3264,
+        2448
+      ],
+      "role": "establishing",
+      "subject": "\"February azure\" (painting by Igor Grabar, 1904) at the Grabar exhibition in Tretyakov Gallery",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:February_azure_by_Igor_Grabar_at_the_Grabar_exhibition_in_Tretyakov_Gallery_IMG_7817.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/February_azure_by_Igor_Grabar_at_the_Grabar_exhibition_in_Tretyakov_Gallery_IMG_7817.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Adavyd"
+    }
+  ]
+}

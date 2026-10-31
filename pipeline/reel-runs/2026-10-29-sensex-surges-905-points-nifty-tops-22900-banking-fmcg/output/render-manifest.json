@@ -1,0 +1,406 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "sensex-surges-905-points-nifty-tops-22900-banking-fmcg",
+ "article_slug": "sensex-surges-905-points-nifty-tops-22900-banking-fmcg",
+ "article_id": "1647f644-222e-47e0-a191-d8c9b3ef81a3",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-10-29-sensex-surges-905-points-nifty-tops-22900-banking-fmcg/output/sensex-surges-905-points-nifty-tops-22900-banking-fmcg.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://nation-press.s3.ap-south-1.amazonaws.com/sensex_climbs_over_900_points_nifty_tops_22900_on_fmcg_psu_bank_rally_banner_d10b8788_d20d_4565_8a09_f9b862cc1e80_49d8556bb6.webp",
+  "local_path": "reel-runs/2026-10-29-sensex-surges-905-points-nifty-tops-22900-banking-fmcg/output/hero.webp",
+  "width": 1200,
+  "height": 900,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.930,0.508) damped=(0.715,0.504)",
+  "has_face": false,
+  "box_source": [
+   522,
+   255,
+   672,
+   360
+  ],
+  "box_bg": [
+   449,
+   333,
+   467,
+   250
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.721,
+   0.6
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   625
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 279,
+   "block_top": 1061,
+   "block_bottom": 1340,
+   "text_bbox": [
+    70,
+    1061,
+    930,
+    1340
+   ],
+   "texts": [
+    "Markets Finance",
+    "SENSEX SURGES 905 POINTS, NIFTY TOPS 22,900 AS BANKING AND FMCG STOCKS LEAD"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     900
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.695,
+     "window": [
+      0,
+      1,
+      1200,
+      900
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 989,
+   "block_bottom": 1412,
+   "text_bbox": [
+    70,
+    989,
+    930,
+    1412
+   ],
+   "texts": [
+    "What Happened",
+    "The BSE Sensex jumped 905.01 points, or 1.24%, to close at 74,151.04 on Thursday, while the NSE Nifty rose 237.90 points to 22,936.75."
+   ],
+   "v7": {
+    "image_source": "extra:federal-reserve-board-board-of-governors-of",
+    "track": "backdrop",
+    "render_scale": 0.928,
+    "photo_px": [
+     1200,
+     674
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.9276974416017798,
+     "window": [
+      0,
+      0,
+      899,
+      673
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.85x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "The Board of Governors discuss proposed rules on prudential standards for foreign banking organizations and resolution plan requirements for foreign and domestic banking organizations. www.federalreserve.gov/aboutthefed/boardmeetings/201904",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Federal_Reserve_Board_(Board_of_Governors_of_the_Federal_Reserve_System)_open_meeting,_April_2019.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/99/Federal_Reserve_Board_%28Board_of_Governors_of_the_Federal_Reserve_System%29_open_meeting%2C_April_2019.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Federalreserve"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1149,
+   "block_bottom": 1587,
+   "text_bbox": [
+    70,
+    1149,
+    930,
+    1587
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "905",
+    "Points the Sensex jumped on Thursday"
+   ],
+   "v7": {
+    "image_source": "extra:federal-reserve-board-board-of-governors-of-2",
+    "track": "full-bleed",
+    "render_scale": 0.69,
+    "photo_px": [
+     4176,
+     2784
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6896551724137931,
+     "window": [
+      607,
+      0,
+      2173,
+      2784
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Board members met today to adopt a final rule to enhance financial stability. Learn more: www.federalreserve.gov/newsevents/pressreleases/bcreg2017...",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Federal_Reserve_Board_(Board_of_Governors_of_the_Federal_Reserve_System)_open_meeting,_September_2017.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Federal_Reserve_Board_%28Board_of_Governors_of_the_Federal_Reserve_System%29_open_meeting%2C_September_2017.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Federalreserve"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 698,
+   "block_top": 882,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    882,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "74,151.04",
+    "Sensex close on Thursday",
+    "22,936.75",
+    "Nifty close on Thursday",
+    "OVER 5%",
+    "Rise in Adani Ports, the top Sensex gainer"
+   ],
+   "v7": {
+    "image_source": "extra:ip-finance-dialogue-expanding-horizons-on-ip",
+    "track": "full-bleed",
+    "render_scale": 0.48,
+    "photo_px": [
+     6000,
+     4000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.48,
+     "window": [
+      983,
+      0,
+      3233,
+      4000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Juni Tingting Zhu, Senior Economist at Markets, Competition and Technology Global Unit of World Bank Group, Washington, United States of America, speaks at the panel discussion entitled \u201cIP Finance on the Ground \u2013 IP Financing in the Creati",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "WIPO | OMPI"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1016,
+   "block_bottom": 1385,
+   "text_bbox": [
+    70,
+    1016,
+    930,
+    1385
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Banking and FMCG stocks led the rally",
+    "Foreign investors bought Rs 872 crore of shares"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     900
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.7897727272727273,
+     "window": [
+      144,
+      109,
+      1200,
+      900
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "The short-term outlook stays positive while the Nifty holds above 22,800.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 122.1,
+ "mp4_bytes": 12407686
+}

@@ -1,0 +1,29 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render_photo_floor",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "new-zealand-record-259-india-fourth-t20i-phillips-century",
+  "name": "new-zealand-record-259-india-fourth-t20i-phillips-century",
+  "script": "reel-runs/2026-10-30-new-zealand-record-259-india-fourth-t20i-phillips-century/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000714
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-30-new-zealand-record-259-india-fourth-t20i-phillips-century/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "eden-park-auckland-south-stand",
+      "hero": "eden-park",
+      "grid": "hampi-india-lotus-mahal",
+      "diaspora": "delhi-india-khas-mahal-2-red-fort"
+    }
+  },
+  "detail": "hero photo 800x600 below the 1080x600 floor"
+}

@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v4/jailer-2-tuesday-drop-india-gross-462-crore.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1206,
+        1206
+      ],
+      "manifest_dims": [
+        1206,
+        1206
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 86.2,
+      "url": "https://images.indianexpress.com/2026/10/Jailer-2-Box-Office-Collection-Day-12-Live-Updates-1.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v4/qa/frames/frame-hook.png",
+      "text_px_detected": 24755,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.68)",
+        "box": [
+          379,
+          465,
+          244,
+          337
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v4/qa/frames/frame-news.png",
+      "text_px_detected": 45916,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          422,
+          252,
+          103,
+          126
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v4/qa/frames/frame-hero.png",
+      "text_px_detected": 28067,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          323,
+          330,
+          320,
+          414
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 170.9,
+        "bg_luminance": 0.0,
+        "delta": 170.9
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v4/qa/frames/frame-grid.png",
+      "text_px_detected": 39727,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.88)",
+        "box": [
+          464,
+          503,
+          77,
+          97
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 170.7,
+        "bg_luminance": 0.0,
+        "delta": 170.7
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v4/qa/frames/frame-diaspora.png",
+      "text_px_detected": 28374,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          373,
+          278,
+          181,
+          222
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-28-jailer-2-tuesday-drop-india-gross-462-crore/output-v4/qa/frames/frame-payoff.png",
+      "text_px_detected": 21084,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          416,
+          235,
+          109,
+          132
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    }
+  ]
+}

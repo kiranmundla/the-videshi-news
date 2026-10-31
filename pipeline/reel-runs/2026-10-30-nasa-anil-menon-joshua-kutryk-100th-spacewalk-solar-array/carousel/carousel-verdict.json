@@ -1,0 +1,16 @@
+{
+  "kind": "carousel",
+  "article_slug": "nasa-anil-menon-joshua-kutryk-100th-spacewalk-solar-array",
+  "status": "held",
+  "stage": "render_fit",
+  "factcheck": {
+    "verdict": "pass",
+    "quote_present": false,
+    "verbatim_quote": null,
+    "speaker_grounded": null,
+    "role_grounded": null,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000497
+  },
+  "detail": "inter cannot fit \"NASA astronaut Anil Menon and Canada's Joshua Kutryk spent 7 hours 11 minutes outside the International Space Station on October 29, deploying the seventh roll-out solar array in the station's power upgrade.\""
+}

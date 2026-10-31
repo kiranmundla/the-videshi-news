@@ -1,0 +1,661 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "new-zealand-record-259-india-fourth-t20i-phillips-century",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Glenn Phillips",
+    "New Zealand",
+    "India",
+    "Eden Park",
+    "Jacob Duffy",
+    "Run Win Over India"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Canadian Ambassador Glenn Davidson visits DFIP 121026-A-JE610-011.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Glenn Phillips'"
+    },
+    {
+      "candidate": "File:Canadian Ambassador Glenn Davidson visits DFIP 121026-A-JE610-094.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Glenn Phillips'"
+    },
+    {
+      "candidate": "File:Charles Thau (right) and helper Glenn at Captial Drive Phillips 66 garage circa 1970.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Charles Thau, who is not one of this story's subjects \u2014 association is not depiction ('Glenn Phillips')"
+    },
+    {
+      "candidate": "File:Del. Eric Phillips and Governor Glenn Youngkin, December 2024.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Glenn Phillips')"
+    },
+    {
+      "candidate": "File:Glenn O. Coleman - Battery Park - Google Art Project.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Glenn O. Coleman - Dirigible Over New York - Google Art Project.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Glenn O. Coleman - Election Night Bonfire - Google Art Project.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Glenn V. Davidson.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 360x540 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Glenn Youngkin and Phillip Scott (2025-06-04).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Glenn Phillips'"
+    },
+    {
+      "candidate": "File:Kimberly Phillips, 2011 (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 755x1068 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Beach, New Brighton, New Zealand 06.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('New Zealand')"
+    },
+    {
+      "candidate": "File:Lake Benmore, New Zealand.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Lake Benmore, who is not one of this story's subjects \u2014 association is not depiction ('New Zealand')"
+    },
+    {
+      "candidate": "File:Lake Clearwater, Canterbury, New Zealand 02.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Lake Mystery, Canterbury, New Zealand 05.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Lake Mystery, who is not one of this story's subjects \u2014 association is not depiction ('New Zealand')"
+    },
+    {
+      "candidate": "File:Law Courts during blue hour, Christchurch, New Zealand.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('New Zealand')"
+    },
+    {
+      "candidate": "File:Lyttelton Harbour (Whakaraup\u014d) from Mt Ada, Canterbury, New Zealand.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Paradise shelduck portrait, New Zealand.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Satellite image of New Zealand in December 2002.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (cook) than this sports story \u2014 a same-name different person, not 'New Zealand' the subject of this story"
+    },
+    {
+      "candidate": "File:The sun and the moon in South New Brighton's beach, New Zealand.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('New Zealand')"
+    },
+    {
+      "candidate": "File:View of Kaikoura Ranges, New Zealand.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('New Zealand')"
+    },
+    {
+      "candidate": "File:A Collection of the Acts passed by the Governor General of India in Council, 1883.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Constitution of India (9 Sep 2020).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:INDIA AS A FUTURE SUPER POWER.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:India and its faiths (microform) - a traveler's record (IA indiaitsfaithstr00pratrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:India and its faiths - a traveler's record (IA indiaitsfaithstr00prat 0).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:List of factory records of the late East India Company - preserved in the Record Department of the India Office, London (IA listoffactoryrec00grea).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern India (F.E.Penny).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Acts of the Legislative Council of India in 1861.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The first book of botany - designed to cultivate the observing powers of children (IA firstbookofbot00youm).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Treaty between the principal Allied and associated powers and Czecho-Slovakia.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Darjeeling, India, Tea plantations on hills.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Delhi, India, Khas Mahal 2, Red Fort.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "3072x2048, CC BY 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Hampi, India, Lotus Mahal.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "4032x2688, CC BY 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Engineering News-Record and American Railway Journal 1898-08-04- Vol 40 Supplement (IA sim enr engineering-news-record- 1898-08-04 40 supplement).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Engineering News-Record and American Railway Journal 1898-12-08- Vol 40 Iss 23 (IA sim enr engineering-news-record- 1898-12-08 40 23).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Engineering News-Record and American Railway Journal 1899-01-19- Vol 41 Supplement (IA sim enr engineering-news-record- 1899-01-19 41 supplement).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Engineering news-record (IA engineeringnewsr88newy).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Fishing in Eden, a record of fifty years with rod and line in the valleys of the Eden and Eamont; to which are added some practical notes on flies and tackle (IA fishinginedenrec00nelsiala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Man in America. Six thousand years from Eden to Independence Hall .. (IA maninamericasixt00fern).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Manitoba Water-powers. Water Resources Paper No. 7. (IA 1914v48i21p25e 1040).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Palestine and the powers; or, The intentions and aims of Russia, Germany, Britain, and Turkey, regarding the Zionist movement, in the light of prophecy (IA palestinepowerso00jann).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Special Powers and Contracts Act 1884 (Local).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The steam-engine; or, The powers of flame. An original poem in ten cantos (IA steamengineorpow00bake).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Eden Park, Auckland, South Stand.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "1536x1024, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Eden Park.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "2272x1704, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:1 01 Jacob Duffy.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "1252x1658, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Boston and Bostonians ; with illustrations, 1894 (IA bostonbostonians00amer).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:C. Jac Young - A Final Edition of Young Ireland by Charles Gavan Duffy.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1000x868 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:CabarEng \"My Man\" Boston 2011.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 997x715 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:In the Supreme Court of Pennsylvania. Jacob Born et al. vs. Lucas Shaw (IA jstor-3301773).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:New York- NEW YORK County, Enumeration District 1391, Sheet No. 11B - DPLA - c53ed7b544358c871bfdd9414e62a8b1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:New York- NEW YORK County, Enumeration District 1430, Sheet No. 8B - DPLA - d0ad67dc2013045ad741ceb5ee0fd4de.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Olympia Hotel, Wenatchee, WA.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Olympia Hotel, who is not one of this story's subjects \u2014 association is not depiction ('Jacob Duffy')"
+    },
+    {
+      "candidate": "File:Rockwell Kent Painting and Drawing Signs and Posters to Raise Fund for the Relief Ship for Republic of Spain in front of Father Duffy Monument (Times Square, New York). 1938 Slide 6.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:The ballad poetry of Ireland (IA balladpoetryofir00duffrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Architectural record (IA gri 33125005937038).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:CREDIT FOR EARLY ACTION- WIN-WIN OR KYOTO THROUGH THE FRONT DOOR (IA gov.gpo.fdsys.CHRG-106hhrg60254).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:East India Company Records Vol-Iv (IA EastIndiaCompanyRecordsVolIV).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Mammals of India, A natural history of all the animals known to inhabit continental India (IA pli.kerala.rare.13834).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:PAKISTAN AND INDIA- STEPS TOWARD RAPPROCHEMENT (IA gov.gpo.fdsys.CHRG-108shrg93067).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Mammals of India; a Natural History of all the Animals known to Inhabit Continental India (IA dli.granth.74546).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The four great powers- England, France, Russia, and America; (IA fourgreatpowerse01boyn).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The mammals of India - a natural history of all the animals known to inhabit continental India (IA cu31924022910461).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The record (IA record00valp).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Winter in India (IA winterinindia00spen).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Anandamath (Dawn over India).djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Gandhi - Young India, v. 11, 1929.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Gandhi - Young India, v. 12, 1930.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Gandhi - Young India, v. 3, 1921.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Lew Wallace - The Prince of India, Volume II.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Lighted to lighten the hope of India; a study of conditions among women in India (IA lightedtolighten00vand).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Ms. Enantesh Tadesse of Ethiopia finishing run to win the Women\u2019s title of the 42.195 k.m. New Delhi full marathon at Jawahar Lal Nehru Stadium, in New Delhi on February 12, 2006.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:The India Chronicles (300dpi).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Through the heart of Asia- over the Pamir to India (IA throughheartofas01bonv).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:British work in India (IA britishworkinind00carsiala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:California and Alaska, and over the Canadian Pacific railway (IA californiaalaska00webbrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Colombo, Ceylon India (IA colomboceylonind00unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:FM 90-5 Jungle Operations (Field Manual No. 90-5), Headquarters Department of the Army Washington, DC, 16 August 1982.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Frontier and overseas expeditions from India (IA frontieroverseas03indi).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Kipling in India - E. Kay Robinson - McClure's Magazine - July 1896 - pp 99-109.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Roughing it in southern India (IA roughingitinsout00handrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The India of the queen, and other essays (IA indiaofqueenothe00hunt).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:WINTER IS COMING- ENSURING U.S. SPECIAL FORCES ARE PREPARED TO FIGHT AND WIN IN A COLD WEATHER ENVIRONMENT (IA winteriscomingen1094561294).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1947univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1951univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1960univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1962univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1965univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1966suppuniv).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1966univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1967univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1968univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1970univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:BUILDING A STRATEGIC PARTNERSHIP- U.S.-INDIA RELATIONS IN THE WAKE OF MUMBAI (IA gov.gpo.fdsys.CHRG-111hhrg47666).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Bandobast And Khabar Reminiscences Of India (IA BandobastAndKhabarReminiscencesOfIndia).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "https://glennphillips.myfreesites.net/",
+      "route": "B \u2014 official sources",
+      "verdict": "accepted",
+      "reason": "license basis: explicit CC / public-domain statement on the page; dimensions verified at download"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "eden-park-auckland-south-stand",
+      "path": "eden-park-auckland-south-stand.jpg",
+      "size": [
+        1536,
+        1024
+      ],
+      "role": "establishing",
+      "subject": "Looking at Eden Park\u2019s South Stand from the North Stand, during the warm-up for the 2015 Cricket World Cup semifinal, New Zealand vs South Africa",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Eden_Park,_Auckland,_South_Stand.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Eden_Park%2C_Auckland%2C_South_Stand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "TimBray"
+    },
+    {
+      "beat": "hero",
+      "label": "eden-park",
+      "path": "eden-park.jpg",
+      "size": [
+        2272,
+        1704
+      ],
+      "role": "establishing",
+      "subject": "File:Eden Park.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Eden_Park.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Eden_Park.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": ""
+    },
+    {
+      "beat": "grid",
+      "label": "hampi-india-lotus-mahal",
+      "path": "hampi-india-lotus-mahal.jpg",
+      "size": [
+        4032,
+        2688
+      ],
+      "role": "establishing",
+      "subject": "Hampi, Karnataka, India. Ancient temples at Hampi, Vijayanagara Empire, 14th century, a UNESCO World Heritage Site.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Hampi,_India,_Lotus_Mahal.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Hampi%2C_India%2C_Lotus_Mahal.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "Vyacheslav Argenberg"
+    },
+    {
+      "beat": "diaspora",
+      "label": "delhi-india-khas-mahal-2-red-fort",
+      "path": "delhi-india-khas-mahal-2-red-fort.jpg",
+      "size": [
+        3072,
+        2048
+      ],
+      "role": "establishing",
+      "subject": "Khas Mahal of pure white marble, Mughal emperor's private residence, Red Fort, Delhi, India.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Delhi,_India,_Khas_Mahal_2,_Red_Fort.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Delhi%2C_India%2C_Khas_Mahal_2%2C_Red_Fort.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "Vyacheslav Argenberg"
+    }
+  ]
+}

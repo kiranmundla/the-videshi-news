@@ -1,0 +1,36 @@
+{
+  "hook_line": "MICROSOFT EARNINGS BEAT ESTIMATES AS REVENUE RISES 19% TO $92.3 BILLION AND AZURE JUMPS 48%",
+  "hook_stat": {
+    "big": "$92.3 BILLION",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Microsoft revenue in the fiscal first quarter, up 19%"
+  },
+  "stats": [
+    {
+      "big": "48%",
+      "label": "Rise in Azure revenue to $33.17 billion"
+    },
+    {
+      "big": "$63.9 BILLION",
+      "label": "Microsoft Cloud revenue, up 30%"
+    },
+    {
+      "big": "$4.89",
+      "label": "Adjusted earnings per share, ahead of $4.73 expected"
+    }
+  ],
+  "diaspora_bullets": [
+    "Free cash flow was $18.6 billion despite $45.2 billion of capital spending",
+    "Microsoft returned $10.2 billion to shareholders in the quarter"
+  ],
+  "key_entities": [
+    "Microsoft",
+    "Azure",
+    "Microsoft Cloud",
+    "Satya Nadella"
+  ],
+  "news_summary": "Microsoft reported revenue of $92.3 billion for the quarter ended September 30, up 19% from a year earlier, with operating income up 21% to $45.9 billion.",
+  "payoff": "Microsoft guided to second-quarter revenue of $96 billion to $97.1 billion.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

@@ -1,0 +1,36 @@
+{
+  "hook_line": "SOLD-OUT EDEN PARK CROWD TO BREAK NEW ZEALAND BILATERAL RECORD FOR INDIA T20I",
+  "hook_stat": {
+    "big": "40,000",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Fans expected at Eden Park on Friday"
+  },
+  "stats": [
+    {
+      "big": "36,523",
+      "label": "Previous bilateral record, set at Eden Park in 2019"
+    },
+    {
+      "big": "126,000+",
+      "label": "Tickets sold across India's full tour"
+    },
+    {
+      "big": "71,000+",
+      "label": "Tickets sold for the five-match T20I series alone"
+    }
+  ],
+  "diaspora_bullets": [
+    "The sell-out underlines the commercial weight India now carry as a touring side",
+    "The fixture is the fourth sell-out of the five-match T20I series"
+  ],
+  "key_entities": [
+    "Eden Park",
+    "New Zealand Cricket",
+    "India",
+    "Glenn Critchley"
+  ],
+  "news_summary": "New Zealand Cricket has confirmed a complete sell-out for Friday's fourth T20 International against India at Eden Park, where a crowd of nearly 40,000 will set a new bilateral series attendance record.",
+  "payoff": "India have already won the series, leading 3-0 \u2014 Friday's match cannot change the series result.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

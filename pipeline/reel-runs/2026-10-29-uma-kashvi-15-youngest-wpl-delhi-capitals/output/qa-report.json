@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-29-uma-kashvi-15-youngest-wpl-delhi-capitals/output/uma-kashvi-15-youngest-wpl-delhi-capitals.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:diaspora"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1600,
+        900
+      ],
+      "manifest_dims": [
+        1600,
+        900
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 141.4,
+      "url": "https://images.indianexpress.com/2026/10/uma-kashvi.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-29-uma-kashvi-15-youngest-wpl-delhi-capitals/output/qa/frames/frame-hook.png",
+      "text_px_detected": 18338,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.69)",
+        "box": [
+          716,
+          197,
+          38,
+          45
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-29-uma-kashvi-15-youngest-wpl-delhi-capitals/output/qa/frames/frame-news.png",
+      "text_px_detected": 32239,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          290,
+          219,
+          57,
+          72
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-29-uma-kashvi-15-youngest-wpl-delhi-capitals/output/qa/frames/frame-hero.png",
+      "text_px_detected": 18936,
+      "edge": {
+        "pass": true,
+        "offending_px": 441,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.67)",
+        "box": [
+          372,
+          729,
+          35,
+          61
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 62.9,
+        "delta": 190.6
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-29-uma-kashvi-15-youngest-wpl-delhi-capitals/output/qa/frames/frame-grid.png",
+      "text_px_detected": 48742,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          283,
+          210,
+          58,
+          74
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-29-uma-kashvi-15-youngest-wpl-delhi-capitals/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 29834,
+      "edge": {
+        "pass": false,
+        "offending_px": 3806,
+        "clusters": 9,
+        "largest_cluster": 147
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          453,
+          445,
+          179,
+          265
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 67.7,
+        "delta": 186.4
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-29-uma-kashvi-15-youngest-wpl-delhi-capitals/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 15828,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          277,
+          201,
+          60,
+          76
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    }
+  ]
+}

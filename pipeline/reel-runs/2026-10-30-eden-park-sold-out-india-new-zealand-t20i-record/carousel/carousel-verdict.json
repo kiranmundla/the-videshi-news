@@ -1,0 +1,25 @@
+{
+  "kind": "carousel",
+  "article_slug": "eden-park-sold-out-india-new-zealand-t20i-record",
+  "status": "ready",
+  "stage": "complete",
+  "factcheck": {
+    "verdict": "pass",
+    "quote_present": false,
+    "verbatim_quote": null,
+    "speaker_grounded": null,
+    "role_grounded": null,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000495
+  },
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "cards": [
+    "reel-runs/2026-10-30-eden-park-sold-out-india-new-zealand-t20i-record/carousel/carousel-1.png",
+    "reel-runs/2026-10-30-eden-park-sold-out-india-new-zealand-t20i-record/carousel/carousel-2.png",
+    "reel-runs/2026-10-30-eden-park-sold-out-india-new-zealand-t20i-record/carousel/carousel-3.png"
+  ]
+}

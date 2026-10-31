@@ -1,0 +1,36 @@
+{
+  "hook_line": "ANIL MENON COMPLETES NASA'S 100TH US SPACEWALK",
+  "hook_stat": {
+    "big": "100th",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "US spacewalk conducted from the station's Quest airlock"
+  },
+  "stats": [
+    {
+      "big": "285th",
+      "label": "Spacewalk in support of the ISS overall"
+    },
+    {
+      "big": "63-foot",
+      "label": "Full length of the roll-out solar array installed"
+    },
+    {
+      "big": "30 percent",
+      "label": "More station power once the eighth and final array is installed"
+    }
+  ],
+  "diaspora_bullets": [
+    "It was Menon's fourth spacewalk and Kutryk's first",
+    "The final array, due November 5, completes the power upgrade"
+  ],
+  "key_entities": [
+    "Anil Menon",
+    "NASA",
+    "International Space Station",
+    "Joshua Kutryk"
+  ],
+  "news_summary": "NASA astronaut Anil Menon and Canada's Joshua Kutryk spent 7 hours and 11 minutes outside the International Space Station on October 29, installing its seventh roll-out solar array.",
+  "payoff": "Once the eighth and final array is installed on November 5, the upgrade will raise the station's available power by up to 30 percent.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

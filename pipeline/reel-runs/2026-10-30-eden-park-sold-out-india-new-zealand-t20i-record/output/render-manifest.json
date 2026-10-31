@@ -1,0 +1,399 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "eden-park-sold-out-india-new-zealand-t20i-record",
+ "article_slug": "eden-park-sold-out-india-new-zealand-t20i-record",
+ "article_id": "7ceb9975-e3a4-45cb-8058-818023ff320c",
+ "category": "Sports",
+ "video": "reel-runs/2026-10-30-eden-park-sold-out-india-new-zealand-t20i-record/output/eden-park-sold-out-india-new-zealand-t20i-record.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Eden_Park_at_Dusk%2C_2013.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "local_path": "reel-runs/2026-10-30-eden-park-sold-out-india-new-zealand-t20i-record/output/hero.jpg",
+  "width": 7347,
+  "height": 1918,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.484,0.519) damped=(0.492,0.510)",
+  "has_face": false,
+  "box_source": [
+   1557,
+   555,
+   4114,
+   767
+  ],
+  "box_bg": [
+   263,
+   217,
+   467,
+   87
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.49,
+   0.508
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   216
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 436,
+   "zone_h": 1120,
+   "scale": 1.0,
+   "content_h": 264,
+   "block_top": 864,
+   "block_bottom": 1128,
+   "text_bbox": [
+    70,
+    864,
+    930,
+    1128
+   ],
+   "texts": [
+    "Sports",
+    "SOLD-OUT EDEN PARK CROWD TO BREAK NEW ZEALAND BILATERAL RECORD FOR INDIA T20I"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.114,
+    "photo_px": [
+     7347,
+     1918
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 216,
+     "scale": 0.11351572070232747,
+     "window": [
+      0,
+      16,
+      7347,
+      1918
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.00x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 436,
+   "zone_h": 1120,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 814,
+   "block_bottom": 1177,
+   "text_bbox": [
+    70,
+    814,
+    930,
+    1177
+   ],
+   "texts": [
+    "What Happened",
+    "New Zealand Cricket has confirmed a complete sell-out for Friday's fourth T20 International against India at Eden Park, where a crowd of nearly 40,000 will set a new bilateral series attendance record."
+   ],
+   "v7": {
+    "image_source": "extra:eden-park-auckland-south-stand",
+    "track": "backdrop",
+    "render_scale": 0.543,
+    "photo_px": [
+     1536,
+     1024
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 216,
+     "scale": 0.54296875,
+     "window": [
+      0,
+      342,
+      1536,
+      739
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.88x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Looking at Eden Park\u2019s South Stand from the North Stand, during the warm-up for the 2015 Cricket World Cup semifinal, New Zealand vs South Africa",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Eden_Park,_Auckland,_South_Stand.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Eden_Park%2C_Auckland%2C_South_Stand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "TimBray"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 436,
+   "zone_h": 1120,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 777,
+   "block_bottom": 1215,
+   "text_bbox": [
+    70,
+    777,
+    930,
+    1215
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "40,000",
+    "Fans expected at Eden Park on Friday"
+   ],
+   "v7": {
+    "image_source": "extra:eden-park",
+    "track": "backdrop",
+    "render_scale": 0.367,
+    "photo_px": [
+     2272,
+     1704
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 216,
+     "scale": 0.3670774647887324,
+     "window": [
+      0,
+      590,
+      2272,
+      1178
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "File:Eden Park.jpg",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Eden_Park.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Eden_Park.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": ""
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 837,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    837,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "36,523",
+    "Previous bilateral record, set at Eden Park in 2019",
+    "126,000+",
+    "Tickets sold across India's full tour",
+    "71,000+",
+    "Tickets sold for the five-match T20I series alone"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.702,
+    "photo_px": [
+     3648,
+     2736
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7017543859649122,
+     "window": [
+      1129,
+      0,
+      2668,
+      2736
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 436,
+   "zone_h": 1120,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 780,
+   "block_bottom": 1212,
+   "text_bbox": [
+    70,
+    780,
+    930,
+    1212
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "The sell-out underlines the commercial weight India now carry as a touring side",
+    "The fixture is the fourth sell-out of the five-match T20I series"
+   ],
+   "v7": {
+    "image_source": "inline:2",
+    "track": "backdrop",
+    "render_scale": 0.521,
+    "photo_px": [
+     1600,
+     1200
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 216,
+     "scale": 0.52125,
+     "window": [
+      0,
+      476,
+      1600,
+      890
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.60x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 379,
+   "block_top": 670,
+   "block_bottom": 1049,
+   "text_bbox": [
+    70,
+    670,
+    930,
+    1049
+   ],
+   "texts": [
+    "The Takeaway",
+    "India have already won the series, leading 3-0 \u2014 Friday's match cannot change the series result.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-fun-viacheslav.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 118.4,
+ "mp4_bytes": 8165940
+}

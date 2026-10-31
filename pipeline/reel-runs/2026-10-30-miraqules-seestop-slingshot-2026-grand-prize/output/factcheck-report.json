@@ -1,0 +1,283 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "miraqules-seestop-slingshot-2026-grand-prize",
+  "verdict": "fail",
+  "held_claims": [
+    "stats[1].label"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIAN STARTUP MIRAQULES WINS SLINGSHOT 2026 GRAND PRIZE IN SINGAPORE",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "Miraqules won the Slingshot 2026 grand prize in Singapore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Indian medtech Miraqules MedSolutions was named Grand Winner of SLINGSHOT 2026, Enterprise Singapore's global deep-tech pitching competition, at the Grand Finals during SWITCH in Singapore on October 29.",
+      "numbers": [
+        29.0,
+        2026.0
+      ],
+      "entities": [
+        "Miraqules MedSolutions",
+        "Grand Winner",
+        "Enterprise Singapore's",
+        "Grand Finals"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "Details about Miraqules winning on October 29 at SWITCH are in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "5,000+",
+      "numbers": [
+        5000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Miraqules beat more than 5,000 startups in the competition.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Startups beaten in the global competition",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Miraqules beat over 5,000 startups.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "S$400,000",
+      "numbers": [
+        400000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The grand winner receives a S$400,000 startup SG grant.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Startup SG Grant for the Grand Winner",
+      "numbers": [],
+      "entities": [
+        "Startup SG Grant",
+        "Grand Winner"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the S$400,000 grant for the grand winner.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "ABOUT A MINUTE",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "StopBleed powder is designed to stop bleeding within about a minute.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Time StopBleed powder is designed to take to stop severe bleeding",
+      "numbers": [],
+      "entities": [
+        "Time StopBleed"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Time StopBleed"
+        ]
+      },
+      "llm_reason": "The article states the powder stops severe bleeding in about a minute.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "S$2.2M",
+      "numbers": [
+        2.2
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The total grant prizes offered at Slingshot 2026 is over S$2.2 million.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Total grant prizes offered at SLINGSHOT 2026",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article mentions total grant prizes exceeding S$2.2 million.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "The win plugs an Indian medtech into Singapore hospital and investor networks",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses the importance of Singapore's networks for Miraqules.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "A marker for Indian clinician-founders and health-tech investors in Singapore and the US",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article describes the win as significant for Indian clinician-founders.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Clinical validation and regulatory approval are still ahead before StopBleed can be sold.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states clinical validation and regulatory clearance are pending.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Miraqules MedSolutions",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "SLINGSHOT 2026",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Enterprise Singapore",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sabir Hossain",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "StopBleed",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000689,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

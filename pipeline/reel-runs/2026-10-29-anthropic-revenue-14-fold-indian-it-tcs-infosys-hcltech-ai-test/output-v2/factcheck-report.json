@@ -1,0 +1,270 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ANTHROPIC REVENUE JUMPS 14-FOLD; INDIAN IT FACES AI TEST",
+      "numbers": [
+        14.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Anthropic's revenue increased 14-fold; Indian IT is facing challenges.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Anthropic reported first-half revenue of $16.3 billion, up 14-fold year on year, in disclosures tied to its US IPO filing, while Indian IT shares fell up to 3%.",
+      "numbers": [
+        3.0,
+        14.0,
+        16.3,
+        16300000000.0
+      ],
+      "entities": [
+        "US IPO",
+        "Indian IT"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All facts about Anthropic's revenue and Indian IT shares are present.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "14-FOLD",
+      "numbers": [
+        14.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states a 14-fold increase in revenue.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Anthropic revenue jump year on year in the first half",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the year-on-year revenue jump.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$16.3 BILLION",
+      "numbers": [
+        16.3,
+        16300000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$16.3 billion is the reported revenue for Anthropic.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Anthropic revenue for the first half",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately describes Anthropic's revenue.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$3.1 BILLION",
+      "numbers": [
+        3.1,
+        3100000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the reported annualised AI revenue for TCS.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "TCS annualised AI revenue",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects TCS's AI revenue.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "10.5%",
+      "numbers": [
+        10.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This percentage is confirmed as Infosys's AI revenue share.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Infosys AI revenue as a share of its total",
+      "numbers": [],
+      "entities": [
+        "Infosys AI"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately describes Infosys's AI revenue share.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "AI crossed 10% of revenue at both TCS and Infosys for the first time",
+      "numbers": [
+        10.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states AI revenue crossed 10% for both companies.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "HCLTech reported $219 million in advanced AI revenue, up 28.4% sequentially",
+      "numbers": [
+        28.4,
+        219.0,
+        219000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim matches the reported revenue for HCLTech.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "AI revenue must grow faster than AI-driven deflation shrinks traditional work.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses this necessity for AI revenue growth.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Anthropic",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "TCS",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Infosys",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "HCLTech",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nasdaq",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000714,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

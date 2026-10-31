@@ -1,0 +1,611 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "quarter-south-asian-trump-voters-democratic-switch-discrimination-poll",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Indian American Impact",
+    "Donald Trump",
+    "South Asian voters",
+    "South Asian",
+    "South Asian American",
+    "Nri World"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Indian American Impact Gala (53726923847).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Indian American Impact')"
+    },
+    {
+      "candidate": "File:Indian American Impact Gala (53726925127).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Indian American Impact')"
+    },
+    {
+      "candidate": "File:Indian American Impact Gala (53726926697).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Indian American Impact')"
+    },
+    {
+      "candidate": "File:Indian American Impact Gala (53727827791).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Indian American Impact')"
+    },
+    {
+      "candidate": "File:Indian American Impact Gala (53727835091).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Indian American Impact')"
+    },
+    {
+      "candidate": "File:Indian American Impact Gala (53728042933).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Indian American Impact')"
+    },
+    {
+      "candidate": "File:Indian American Impact Gala (53728174024).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Indian American Impact')"
+    },
+    {
+      "candidate": "File:Indian American Impact Gala (53728175224).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Indian American Impact')"
+    },
+    {
+      "candidate": "File:Indian American Impact Gala (53728274175).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Indian American Impact')"
+    },
+    {
+      "candidate": "File:Indian American Impact Gala (53728280560).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Indian American Impact')"
+    },
+    {
+      "candidate": "File:Coat of Arms of Trump International Golf Club.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Donald Trump NYMA.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 780x1024 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Donald Trump Pentagon 2017.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 732x1008 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Donald Trump RNC July 2016.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "3144x2630, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Donald Trump mugshot.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Donald Trump official portrait.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Donald Trump official portrait (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Donald Trump swearing in ceremony.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "1600x1066, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:1977-V005-01-dem-left.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A plan to stop the present and prevent future wars (IA plantostoppresen00beasrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Banquet by the Democratic Club, in celebration of the 156th birthday of Thomas Jefferson, on Thursday, April 13th, 1899, at the Metropolitan Opera House, New York (IA banquetbydemocra00natiiala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:LEBANON REBORN? DEFINING NATIONAL PRIORITIES AND PROSPECTS FOR DEMOCRATIC RENEWAL IN THE WAKE OF MARCH 14, 2005 (IA gov.gpo.fdsys.CHRG-109hhrg22657).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:POLITICAL CRISES IN SOUTH ASIA- PAKISTAN, BANGLADESH, SRI LANKA AND NEPAL (IA gov.gpo.fdsys.CHRG-110hhrg37067).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:REGIONAL SECUIRTY IN SOUTH ASIA (IA gov.gpo.fdsys.CHRG-106hhrg61551).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The South before and at the battle of the Wilderness (IA southbeforeatbat00robi).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The commission of inquiry- the Wilson-Bryan peace plan, its origin and development (IA commissionofinqu00myerrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The voter's guide for the campaign of 1900 - great issues and national leaders (IA votersguideforca192025morr).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:UNREST IN SOUTH ASIA- RECENT DEVELOPMENTS IN NEPAL AND SRI LANKA (IA gov.gpo.fdsys.CHRG-109hhrg26651).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:CONTINUING NEED FOR SECTION 203'S PROVISIONS FOR LIMITED ENGLISH PROFICIENT VOTERS (IA gov.gpo.fdsys.CHRG-109shrg30760).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:How-the-pro-beijing-media-influences-voters-evidence-from-a-randomized-field-experiment.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Issues Related to State Voter Identification Laws.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Marion County Voters' Pamphlet, 1966.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Oregon Primary Voters' Pamphlet 1928 R.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Chief Election Commissioner, Dr. Nasim Zaidi unveiling the \u201cFace book Voter Registration\u201d Notification for special Drive to enroll Left-out Voters, in New Delhi.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:The Wild East - Criminal Political Economies in South Asia.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:To the voters in Sturbridge, Worcester County, Massachusetts (IA tovotersinsturbr00core).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Vindication of An address to the Catholic voters of Baltimore (IA vindicationofadd00jenk).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Achievements of the Campaign of Denunciation of Communist Subversive Activities, First Phase.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:An exploratory study of Hispanic officer recruiting in the Mexican-American community of South-Central Los Angeles- implications for the officer corps of the future (IA anexploratorystu10945974).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Finland, a little land that is true to itself; a study of Finland under Russia in comparison with the South of the United States (IA finlandlittlelan00gray).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:One-party dominance- future political implications for the conservatives in South Korea (IA onepartydominanc1094551642).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The elusive China-Japan-South Korea free trade agreement (IA theelusivechinaj1094547266).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The mid-South and its builders, being the story of the development and a forecast of the future of the richest agricultural region in the world; (IA midsouthitsbuild00moon).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Vietnam Magazine Vol. IV, N\u00ba 10 1971.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Vietnam Magazine Vol. V, N\u00ba 11 1972.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Vietnam Magazine Vol. V, N\u00ba 12 1972.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Zamboanga City Ordinances for the Year 1987 (Regulatory).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Commanders Digest 1971-02-20- Vol 9 Iss 19 (IA sim commanders-digest 1971-02-20 9 19).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Congressional Record Volume 165, Issue 041, 2019-03-07.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:DEPARTMENTS OF COMMERCE, JUSTICE, AND STATE, THE JUDICIARY, AND RELATED AGENCIES APPROPRIATIONS FOR FISCAL YEAR 2002 (IA gov.gpo.fdsys.CHRG-107shrg70709).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Narrative and critical history of America (IA narrativecritica71wins).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Press Releases - April 1969 - DPLA - 1d8a10786b84afcf84c9354a62c4e6ea.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1952univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1980univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:State 2009-01- Iss 530 (IA sim state-magazine 2009-01 530).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:United States national interests in the Republic of Korea. (IA unitedstatesnati00sudd).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:WHSF- Returned, 40-5 - DPLA - 7d1839e87382a9ae258b4f41c531dd1a.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Northern south asia.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 712x750 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Reversed Map of South Asia.gif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:South Asia, 1744.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'South Asian'"
+    },
+    {
+      "candidate": "File:South Asia (orthographic projection) without national boundaries, with ambiguities indicated.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:South Asia 260 BCE.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'South Asian'"
+    },
+    {
+      "candidate": "File:South Asia non political, with rivers.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'South Asian'"
+    },
+    {
+      "candidate": "File:South Asia urban map.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:South Asian Language Families.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 637x695 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:South Asian Language Families Map.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:South Asian Writers (44425979715).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('South Asian')"
+    },
+    {
+      "candidate": "File:City Lights of Asia and Middle East 2016.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'South Asian American'"
+    },
+    {
+      "candidate": "File:Number of asian elephants, South America, 1983.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Number of asian elephants, South America, 1985.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Number of asian elephants, South America, 1989.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Number of asian elephants, South America, 1995.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Number of asian elephants, South America, 2002.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Number of asian elephants, South America, 2003.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Number of asian elephants, South America, 2012.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:South Asia (orthographic projection) with national boundaries.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:South Asia (orthographic projection) without national boundaries.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:2015 -WorldFoodDay in South-South Nigeria.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:FAO World Food Day 1981 3pc Set Silver.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:FAO World Food Day 2003 Silver Obverse.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 291x296 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana 10.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana 5.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana 8.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day 2017 Botswana 9.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "File:World Food Day barnstar.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:World Food day 2017, Kalakamati, Botswana 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nri World'"
+    },
+    {
+      "candidate": "https://indianz.com/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://nripress.com/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "license: no license grant on the hosting page"
+    },
+    {
+      "candidate": "File:Indian American Impact Gala (53727840431).jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Indian American Impact')"
+    },
+    {
+      "candidate": "File:South Asian ancestry map.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:NRI en Logo.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Nri ogaranya.ogg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "donald-trump-swearing-in-ceremony",
+      "path": "donald-trump-swearing-in-ceremony.jpg",
+      "size": [
+        1600,
+        1066
+      ],
+      "role": "establishing",
+      "subject": "President Donald Trump being sworn in on January 20, 2017 at the U.S. Capitol building in Washington, D.C. Melania Trump wears a sky-blue cashmere Ralph Lauren ensemble. He holds his left hand on two versions of the Bible , one childhood Bi",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Donald_Trump_swearing_in_ceremony.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Donald_Trump_swearing_in_ceremony.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "The White House"
+    },
+    {
+      "beat": "grid",
+      "label": "donald-trump-rnc-july-2016",
+      "path": "donald-trump-rnc-july-2016.jpg",
+      "size": [
+        3144,
+        2630
+      ],
+      "role": "detail",
+      "subject": "Trump promised to bring sweeping political change, to create wealth, and to make America safe again in a speech that excited delegates on the fourth and final day of the convention. (A. Shaker/VOA)",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Donald_Trump_RNC_July_2016.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Donald_Trump_RNC_July_2016.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Ali Shaker/VOA"
+    }
+  ]
+}

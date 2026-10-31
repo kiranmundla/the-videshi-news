@@ -1,0 +1,160 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "eden-park-sold-out-india-new-zealand-t20i-record",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Sold-Out Eden Park Crowd to Break New Zealand Bilateral Record for India T20I",
+        "numbers": [
+          20.0
+        ],
+        "entities": [
+          "Sold-Out Eden Park Crowd",
+          "Break New Zealand Bilateral Record",
+          "India T20I"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the crowd will break the bilateral record.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Nearly 40,000 fans will watch Friday's fourth T20I in Auckland, passing the 36,523 mark set in 2019 \u2014 for a series India have already won.",
+        "numbers": [
+          20.0,
+          2019.0,
+          36523.0,
+          40000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2019
+          ]
+        },
+        "llm_reason": "The article confirms nearly 40,000 fans and India leading the series 3-0.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Friday's fourth T20I between New Zealand and India at Eden Park is sold out, with nearly 40,000 fans expected in Auckland",
+        "numbers": [
+          20.0,
+          40000.0
+        ],
+        "entities": [
+          "New Zealand",
+          "Eden Park"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the match is sold out with nearly 40,000 fans expected.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The crowd will break New Zealand's bilateral series attendance record of 36,523, set at an Eden Park double-header against India in 2019",
+        "numbers": [
+          2019.0,
+          36523.0
+        ],
+        "entities": [
+          "New Zealand's",
+          "Eden Park"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2019
+          ]
+        },
+        "llm_reason": "The article mentions breaking the 36,523 record set in 2019.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "More than 126,000 tickets have been sold across India's full tour, including over 71,000 for the five-match T20I series alone; India already lead the series 3-0",
+        "numbers": [
+          0.0,
+          3.0,
+          20.0,
+          71000.0,
+          126000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides ticket sales figures and confirms India leads 3-0.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Sold-Out Eden Park Crowd to Break New Zealand Bilateral Record for India T20I",
+        "numbers": [
+          20.0
+        ],
+        "entities": [
+          "Sold-Out Eden Park Crowd",
+          "Break New Zealand Bilateral Record",
+          "India T20I"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the crowd will break the bilateral record.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000495,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

@@ -1,0 +1,157 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "samvat-2082-largecaps-fall-smallcap-multibaggers-diwali",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Samvat 2082 Ends in Red: 83 Large-Caps Fall Up to 60% as Small-Caps Mint Multibaggers",
+        "numbers": [
+          60.0,
+          83.0,
+          2082.0
+        ],
+        "entities": [
+          "Large-Caps Fall Up",
+          "Small-Caps Mint Multibaggers"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2082
+          ]
+        },
+        "llm_reason": "Article states 83 large-caps fell up to 60% and small-caps performed well.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "India's benchmark Nifty fell about 11 percent over Samvat 2082, with 83 large-cap stocks losing ground \u2014 some by up to 60 percent \u2014 while 60 small-cap stocks more than doubled.",
+        "numbers": [
+          11.0,
+          60.0,
+          83.0,
+          2082.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2082
+          ]
+        },
+        "llm_reason": "All facts about Nifty, large-caps, and small-caps are present in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The Nifty 50 fell about 11 percent over the Samvat year, with 83 large-cap stocks in the red and only 43 gainers",
+        "numbers": [
+          11.0,
+          43.0,
+          50.0,
+          83.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Nifty's decline and the number of large-cap gainers.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Sixty small-cap stocks more than doubled over the year, with the best performers gaining as much as 650 percent",
+        "numbers": [
+          650.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states 60 small-caps doubled and some gained 650%.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Large-cap mutual funds fell an average of 9.34 percent over the same period",
+        "numbers": [
+          9.34
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions large-cap mutual funds fell by 9.34%.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Samvat 2082 Ends in Red: 83 Large-Caps Fall Up to 60% as Small-Caps Mint Multibaggers",
+        "numbers": [
+          60.0,
+          83.0,
+          2082.0
+        ],
+        "entities": [
+          "Large-Caps Fall Up",
+          "Small-Caps Mint Multibaggers"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2082
+          ]
+        },
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000477,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

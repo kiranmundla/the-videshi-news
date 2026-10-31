@@ -1,0 +1,265 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "quarter-south-asian-trump-voters-democratic-switch-discrimination-poll",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "QUARTER OF SOUTH ASIAN TRUMP VOTERS PLAN DEMOCRATIC SWITCH AS DISCRIMINATION CONCERNS RISE",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states one in four Trump voters plan to switch.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "An Indian American Impact poll of 800 South Asian American registered voters found 60 percent of likely voters back Democrats for Congress against 22 percent for Republicans.",
+      "numbers": [
+        22.0,
+        60.0,
+        800.0
+      ],
+      "entities": [
+        "Indian American Impact",
+        "South Asian American"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Poll results for 800 voters are accurately reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "60%",
+      "numbers": [
+        60.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "60% of likely voters back Democrats as stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Likely voters backing Democrats for Congress",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Claim reflects the article's findings on voter preferences.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "25%",
+      "numbers": [
+        25.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "25% of Trump voters plan to vote Democratic as per the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Of 2024 Trump voters plan to vote Democratic",
+      "numbers": [
+        2024.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2024
+        ]
+      },
+      "llm_reason": "Accurate representation of the article's findings.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "90%",
+      "numbers": [
+        90.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "90% have faced or know someone who faced discrimination.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Have faced or know someone who faced discrimination",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Directly supported by the article's statistics.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "800",
+      "numbers": [
+        800.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions a poll of 800 voters.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "South Asian American registered voters surveyed",
+      "numbers": [],
+      "entities": [
+        "South Asian American"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Accurate description of the surveyed group in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Cost of living leads at 65%",
+      "numbers": [
+        65.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states cost of living is the top issue at 65%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Healthcare second at 53%",
+      "numbers": [
+        53.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Healthcare is reported as the second issue at 53%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Election Day is Tuesday, November 3.",
+      "numbers": [
+        3.0
+      ],
+      "entities": [
+        "Election Day"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Election Day is confirmed as November 3 in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Indian American Impact",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Donald Trump",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "South Asian voters",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000663,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

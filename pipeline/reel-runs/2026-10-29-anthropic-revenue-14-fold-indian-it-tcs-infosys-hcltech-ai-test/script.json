@@ -1,0 +1,37 @@
+{
+  "hook_line": "ANTHROPIC REVENUE JUMPS 14-FOLD; INDIAN IT FACES AI TEST",
+  "hook_stat": {
+    "big": "14-FOLD",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Anthropic revenue jump year on year in the first half"
+  },
+  "stats": [
+    {
+      "big": "$16.3 BILLION",
+      "label": "Anthropic revenue for the first half"
+    },
+    {
+      "big": "$3.1 BILLION",
+      "label": "TCS annualised AI revenue"
+    },
+    {
+      "big": "10.5%",
+      "label": "Infosys AI revenue as a share of its total"
+    }
+  ],
+  "diaspora_bullets": [
+    "AI crossed 10% of revenue at both TCS and Infosys for the first time",
+    "HCLTech reported $219 million in advanced AI revenue, up 28.4% sequentially"
+  ],
+  "key_entities": [
+    "Anthropic",
+    "TCS",
+    "Infosys",
+    "HCLTech",
+    "Nasdaq"
+  ],
+  "news_summary": "Anthropic reported first-half revenue of $16.3 billion, up 14-fold year on year, in disclosures tied to its US IPO filing, while Indian IT shares fell up to 3%.",
+  "payoff": "AI revenue must grow faster than AI-driven deflation shrinks traditional work.",
+  "versus": "",
+  "story_mood": "tense"
+}

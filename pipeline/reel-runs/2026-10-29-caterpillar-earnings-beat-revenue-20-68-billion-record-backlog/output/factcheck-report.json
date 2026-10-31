@@ -1,0 +1,270 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "caterpillar-earnings-beat-revenue-20-68-billion-record-backlog",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "CATERPILLAR EARNINGS BEAT ESTIMATES AS REVENUE RISES 17% TO $20.68 BILLION ON RECORD BACKLOG",
+      "numbers": [
+        17.0,
+        20.68,
+        20680000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Earnings beat estimates; revenue rose 17% to $20.68 billion with a record backlog.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Caterpillar reported third-quarter sales and revenues of $20.68 billion, up 17% from $17.64 billion a year earlier.",
+      "numbers": [
+        17.0,
+        17.64,
+        20.68,
+        17640000000.0,
+        20680000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Sales and revenues of $20.68 billion, up 17% from $17.64 billion year earlier.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$20.68 BILLION",
+      "numbers": [
+        20.68,
+        20680000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$20.68 billion is the reported revenue figure.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Caterpillar sales and revenues, up 17%",
+      "numbers": [
+        17.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Sales and revenues increased by 17%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$78.1 BILLION",
+      "numbers": [
+        78.1,
+        78100000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The backlog is reported as $78.1 billion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Record backlog, up 96%",
+      "numbers": [
+        96.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Backlog increased by 96% to a record $78.1 billion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$7.20",
+      "numbers": [
+        7.2
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Adjusted earnings per share reported as $7.20.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Adjusted earnings per share, up 45%",
+      "numbers": [
+        45.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Adjusted earnings per share rose 45% to $7.20.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "18%",
+      "numbers": [
+        18.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Power & Energy sales rose by 18%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Rise in Power & Energy sales to $8.78 billion",
+      "numbers": [
+        8.78,
+        8780000000.0
+      ],
+      "entities": [
+        "Power Energy"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Power & Energy sales rose to $8.78 billion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Highest sales quarter ever for Caterpillar",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Caterpillar posted its highest sales quarter ever.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Shares fell about 10% in pre-market trading",
+      "numbers": [
+        10.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Shares fell about 10% in pre-market trading.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The record $78.1 billion backlog says demand is real.",
+      "numbers": [
+        78.1,
+        78100000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The backlog indicates strong demand.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Caterpillar",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Power & Energy",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Joe Creed",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000691,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

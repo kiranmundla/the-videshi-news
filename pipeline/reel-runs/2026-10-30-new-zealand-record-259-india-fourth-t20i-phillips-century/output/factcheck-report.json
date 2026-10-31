@@ -1,0 +1,295 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "new-zealand-record-259-india-fourth-t20i-phillips-century",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "PHILLIPS' 107 POWERS NEW ZEALAND TO RECORD 259/7 AND 87-RUN WIN OVER INDIA",
+      "numbers": [
+        7.0,
+        87.0,
+        107.0,
+        259.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Phillips scored 107, leading New Zealand to 259/7 and an 87-run win.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "New Zealand posted 259/7 at Eden Park, their highest-ever T20I total and the highest score ever made against India, and beat India by 87 runs in the fourth T20I.",
+      "numbers": [
+        7.0,
+        20.0,
+        87.0,
+        259.0
+      ],
+      "entities": [
+        "New Zealand",
+        "Eden Park"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All facts about the score, venue, and win are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "259/7",
+      "numbers": [
+        7.0,
+        259.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states New Zealand scored 259/7.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "New Zealand's highest-ever T20I total, at Eden Park",
+      "numbers": [
+        20.0
+      ],
+      "entities": [
+        "New Zealand's",
+        "Eden Park"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this is New Zealand's highest T20I total.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "107",
+      "numbers": [
+        107.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Phillips scored 107 runs as stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Glenn Phillips' runs off 49 balls, his third T20I century",
+      "numbers": [
+        20.0,
+        49.0
+      ],
+      "entities": [
+        "Glenn Phillips'"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Phillips' runs, balls faced, and century count.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "65",
+      "numbers": [
+        65.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Bracewell scored 65 runs as stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Michael Bracewell's runs off 25 balls in a 115-run fifth-wicket stand",
+      "numbers": [
+        25.0,
+        115.0
+      ],
+      "entities": [
+        "Michael Bracewell's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Bracewell's runs, balls faced, and partnership details.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "4/23",
+      "numbers": [
+        4.0,
+        23.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Duffy's bowling figures of 4/23 are mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Jacob Duffy's figures as India were restricted to 172",
+      "numbers": [
+        172.0
+      ],
+      "entities": [
+        "Jacob Duffy's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Duffy's figures and India's total.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "India still lead the series 3-1 with one match to play",
+      "numbers": [
+        1.0,
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms India leads the series 3-1.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Arshdeep Singh became the first Indian to 150 T20I wickets",
+      "numbers": [
+        20.0,
+        150.0
+      ],
+      "entities": [
+        "Arshdeep Singh"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Singh's achievement in T20I wickets.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "India still lead the series 3-1, with one match to play.",
+      "numbers": [
+        1.0,
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This claim is directly supported by the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Glenn Phillips",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "New Zealand",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "India",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Eden Park",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Jacob Duffy",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000714,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

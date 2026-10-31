@@ -1,0 +1,279 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "samvat-2082-largecaps-fall-smallcap-multibaggers-diwali",
+  "verdict": "fail",
+  "held_claims": [
+    "diaspora_bullets[1]"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "SAMVAT 2082 ENDS IN RED: 83 LARGE-CAPS FALL UP TO 60% AS SMALL-CAPS MINT MULTIBAGGERS",
+      "numbers": [
+        60.0,
+        83.0,
+        2082.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2082
+        ]
+      },
+      "llm_reason": "All facts about large-caps and small-caps are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The Nifty 50 fell about 11 percent over Samvat 2082, with 83 large-cap stocks declining \u2014 some by up to 60 percent \u2014 while 60 small-cap stocks more than doubled.",
+      "numbers": [
+        11.0,
+        50.0,
+        60.0,
+        83.0,
+        2082.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2082
+        ]
+      },
+      "llm_reason": "All statistics and facts are directly supported by the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "11%",
+      "numbers": [
+        11.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This percentage is explicitly mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Fall in the Nifty 50 over Samvat 2082",
+      "numbers": [
+        50.0,
+        2082.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2082
+        ]
+      },
+      "llm_reason": "The article states the Nifty 50 fell about 11 percent.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "83",
+      "numbers": [
+        83.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms 83 large-cap stocks declined.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Large-cap stocks that declined over the Samvat year",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies 83 large-cap stocks declined.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "650%",
+      "numbers": [
+        650.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions top small-cap gainers rose as much as 650%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Top small-cap gain over the year",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the best performers gained up to 650%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "9.34%",
+      "numbers": [
+        9.34
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states large-cap mutual funds fell an average of 9.34%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Average fall in large-cap mutual funds over the same period",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the average fall of 9.34% in large-cap mutual funds.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "60 small-cap stocks more than doubled over the year",
+      "numbers": [
+        60.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 60 small-cap stocks more than doubled.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Most diversified India portfolios held by NRI investors shrank too",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article does not specify the impact on NRI portfolios.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "payoff",
+      "text": "India VIX above 30 signals traders expect the swings to continue.",
+      "numbers": [
+        30.0
+      ],
+      "entities": [
+        "India VIX"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the India VIX above 30 indicating expected swings.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Nifty 50",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Samvat 2082",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "India VIX",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "BlackRock",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000664,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "pvr-inox-record-q2-india-box-office-4443-crore",
+  "name": "pvr-inox-record-q2-india-box-office-4443-crore",
+  "script": "reel-runs/2026-10-29-pvr-inox-record-q2-india-box-office-4443-crore/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.0007
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-29-pvr-inox-record-q2-india-box-office-4443-crore/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "pvr-inox-pacific-mall-in-jasola",
+      "hero": "movie-set-of-spider-man-brand-new-day-2025-1",
+      "grid": "pvr-inox-superplex-mall-of-india-in-noida"
+    }
+  },
+  "detail": "beat 'diaspora': block bottom 2207 past the safe zone"
+}

@@ -1,0 +1,37 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "microsoft-earnings-beat-revenue-92-billion-azure-48-percent",
+  "name": "microsoft-earnings-beat-revenue-92-billion-azure-48-percent",
+  "script": "reel-runs/2026-10-29-microsoft-earnings-beat-revenue-92-billion-azure-48-percent/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000706
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-29-microsoft-earnings-beat-revenue-92-billion-azure-48-percent/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "microsoft-atlanta",
+      "hero": "building92microsoft",
+      "grid": "malta-gozo-azure-window-bw-2011-10-08-11-08",
+      "diaspora": "february-azure-by-igor-grabar-at-the-grabar"
+    }
+  },
+  "manifest": "reel-runs/2026-10-29-microsoft-earnings-beat-revenue-92-billion-azure-48-percent/output/render-manifest.json",
+  "video": "reel-runs/2026-10-29-microsoft-earnings-beat-revenue-92-billion-azure-48-percent/output/microsoft-earnings-beat-revenue-92-billion-azure-48-percent.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:diaspora"
+    ]
+  }
+}

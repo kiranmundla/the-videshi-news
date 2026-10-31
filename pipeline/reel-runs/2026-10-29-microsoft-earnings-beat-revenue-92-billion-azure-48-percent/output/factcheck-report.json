@@ -1,0 +1,285 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "microsoft-earnings-beat-revenue-92-billion-azure-48-percent",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "MICROSOFT EARNINGS BEAT ESTIMATES AS REVENUE RISES 19% TO $92.3 BILLION AND AZURE JUMPS 48%",
+      "numbers": [
+        19.0,
+        48.0,
+        92.3,
+        92300000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Earnings beat estimates with revenue rising 19% and Azure jumping 48%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Microsoft reported revenue of $92.3 billion for the quarter ended September 30, up 19% from a year earlier, with operating income up 21% to $45.9 billion.",
+      "numbers": [
+        19.0,
+        21.0,
+        30.0,
+        45.9,
+        92.3,
+        45900000000.0,
+        92300000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Revenue and operating income figures match the article's details.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$92.3 BILLION",
+      "numbers": [
+        92.3,
+        92300000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$92.3 billion is the reported revenue for the quarter.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Microsoft revenue in the fiscal first quarter, up 19%",
+      "numbers": [
+        19.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Revenue increased by 19% as stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "48%",
+      "numbers": [
+        48.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Azure revenue growth of 48% is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Rise in Azure revenue to $33.17 billion",
+      "numbers": [
+        33.17,
+        33170000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Azure revenue reached $33.17 billion as reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$63.9 BILLION",
+      "numbers": [
+        63.9,
+        63900000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Microsoft Cloud revenue of $63.9 billion is stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Microsoft Cloud revenue, up 30%",
+      "numbers": [
+        30.0
+      ],
+      "entities": [
+        "Microsoft Cloud"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Cloud revenue increased by 30% as mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$4.89",
+      "numbers": [
+        4.89
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Adjusted earnings per share of $4.89 is confirmed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Adjusted earnings per share, ahead of $4.73 expected",
+      "numbers": [
+        4.73
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Earnings per share exceeded the expected $4.73.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Free cash flow was $18.6 billion despite $45.2 billion of capital spending",
+      "numbers": [
+        18.6,
+        45.2,
+        18600000000.0,
+        45200000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Free cash flow and capital spending figures are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Microsoft returned $10.2 billion to shareholders in the quarter",
+      "numbers": [
+        10.2,
+        10200000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The return of $10.2 billion to shareholders is stated.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Microsoft guided to second-quarter revenue of $96 billion to $97.1 billion.",
+      "numbers": [
+        96.0,
+        97.1,
+        96000000000.0,
+        97100000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Guidance for second-quarter revenue is provided in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Microsoft",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Azure",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Microsoft Cloud",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Satya Nadella",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000706,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

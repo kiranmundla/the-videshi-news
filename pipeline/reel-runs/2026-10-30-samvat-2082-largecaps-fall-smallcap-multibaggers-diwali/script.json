@@ -1,0 +1,36 @@
+{
+  "hook_line": "SAMVAT 2082 ENDS IN RED: 83 LARGE-CAPS FALL UP TO 60% AS SMALL-CAPS MINT MULTIBAGGERS",
+  "hook_stat": {
+    "big": "11%",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Fall in the Nifty 50 over Samvat 2082"
+  },
+  "stats": [
+    {
+      "big": "83",
+      "label": "Large-cap stocks that declined over the Samvat year"
+    },
+    {
+      "big": "650%",
+      "label": "Top small-cap gain over the year"
+    },
+    {
+      "big": "9.34%",
+      "label": "Average fall in large-cap mutual funds over the same period"
+    }
+  ],
+  "diaspora_bullets": [
+    "60 small-cap stocks more than doubled over the year",
+    "Small-cap funds were the only major equity category in positive territory on average"
+  ],
+  "key_entities": [
+    "Nifty 50",
+    "Samvat 2082",
+    "India VIX",
+    "BlackRock"
+  ],
+  "news_summary": "The Nifty 50 fell about 11 percent over Samvat 2082, with 83 large-cap stocks declining — some by up to 60 percent — while 60 small-cap stocks more than doubled.",
+  "payoff": "India VIX above 30 signals traders expect the swings to continue.",
+  "versus": "",
+  "story_mood": "tense"
+}

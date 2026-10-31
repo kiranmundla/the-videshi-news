@@ -1,0 +1,493 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Anthropic",
+    "TCS",
+    "Infosys",
+    "HCLTech",
+    "Nasdaq",
+    "Markets Finance"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Victoria Daily Times (1909-11-02) (IA victoriadailytimes19091102).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Anthropic's corporate structure, updated.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Anthropic Farm Units.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 605x489 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Anthropic corporate structure.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Anthropic gongsi jiagou.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Anthropic logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Beer Mythos Chania.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Anthropic'"
+    },
+    {
+      "candidate": "File:Claude ru wiki.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 776x595 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Fragment of an Egyptian Textile, circa 700-1000 CE, depicting the anthropic figure of Anthousa, a rarely depicted divinity, considered to be the deity of blossoming plants. Fitzwilliam Museum, Cambridge.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Secretary of State Peter Kyle visits Anthropic in San Francisco. (54098999333).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united states, which this story is not about (story context: india) \u2014 a namesake, not 'Anthropic' in this story"
+    },
+    {
+      "candidate": "File:Secretary of State Peter Kyle visits Anthropic in San Francisco. (54099081629).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united states, which this story is not about (story context: india) \u2014 a namesake, not 'Anthropic' in this story"
+    },
+    {
+      "candidate": "File:Annual report of the Bureau of American Ethnology to the Secretary of the Smithsonian Institution (IA annualreportofbu1908smit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Forty-six years in the Methodist ministry- life of Rev. J. B. Graw, D. D. 1832-1911 .. (IA fortysixyearsinm00graw).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Glendale Daily Press 1923-02-07 (IA cgl 002028).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:History of Idaho - the gem of the mountains (IA historyofidahoge03hawlrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:International Committee on Oxisols, final report (IA CAT31381781).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Management impacts on water quality of forests and rangelands (IA CAT10662831).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:NCPTT, National Center for Preservation Technology and Training... Notes From the Center... United States Department of the Interior... July August 1995 (IA doi-report i-291368-995).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Crisis, Volume 18, Issue 3.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The King's Speech, 2023.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1905-12-18) (IA victoriadailytimes19051218).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Astronomy 2018.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:From species descriptions to diversity patterns - the validation of taxonomic data as a keystone for ant diversity studies reproducibility and accuracy.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Journal of Big History, Volume 2, Number 3, 2018.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Record of the class of 1894, New York university, 25th anniversary class book (IA recordofclassof100newy).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The University Record (1903) (IA universityrecord22univ 0).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The alumni review (serial) (IA alumnireviewseri0302chap).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The crucible, a southerner's impression of Hampton (IA cruciblesouthern01chur).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A timelapse of the Milky Way's movement against the backdrop of the Assy-Turgen Observatory at an altitude of 2,750 m. Kazakhstan.webm",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:Buildings for the insane - a report read at the Saratoga Conference of Charities, September 6, 1877 (IA 9605532.nlm.nih.gov).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:California musical journal (IA ach3746.0001.011.umich.edu).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Education for life; the story of Hampton Institute, told in connection with the fiftieth anniversary of the foundation of the school (IA educationforlife00peab).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Galactical model of matter.gif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Journal.pone.0247965.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:KI-generiertes Infoposter zur Stadtgeschichte von Schongau.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Management of subalpine forests - building on 50 years of research - proceedings of a technical conference, Silver Creek, Colorado, July 6-9, 1987 (IA CAT31299823).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Pests or prey? Micromammal species within an ancient anthropic environment at the Norse settlement site of Tuquoy (Westray, Orkney).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The-emergence-of-monumental-architecture-in-atlantic-europe-a-fortified-fifth-millennium-bc-enclosure-in-western-france.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Aldo Primicerio direttore TCS 1977.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 972x683 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:TATA Consultancy Services Logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:TATA Consultancy Services Logo blue.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:TCS SIPCOT Building.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "4032x2399, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:TCS building in Varanasi.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "4128x2322, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Infosys (4911287704).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "3264x1840, CC BY-SA 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Infosys campus building Mysore karnataka 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus building Mysore karnataka 4.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus mysuru karnataka.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys campus mysuru karnataka 1.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 08.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 11.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 15.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 16.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Infosys limited Zurich Switzerland ( Ank Kumar ) 19.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in switzerland, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:Credit Suisse headquarters at Paradeplatz, Z\u00fcrich, Switzerland (Ank Kumar, Infosys Limited).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1027x897 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 02.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 03.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:MI6 Headquarters (Ank Kumar, Infosys Limited) 04.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: india) \u2014 a namesake, not 'Infosys' in this story"
+    },
+    {
+      "candidate": "File:OSCE Headquarters at The Hofburg, Vienna ( Ank Kumar, Infosys) 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "3456x4608, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Cafeteria on rainy day, HCL, Chennai India 2013.jpeg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'HCLTech'"
+    },
+    {
+      "candidate": "File:H&D \u2013 An HCL Technologies Company .svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:HCLTech-new-logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:HCLTech Areas Served.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "accepted",
+      "reason": "1365x707, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:HCL Tech Noida SEZ Campus.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'HCLTech'"
+    },
+    {
+      "candidate": "File:HCL Technologies Manchester United partnership.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'HCLTech'"
+    },
+    {
+      "candidate": "File:HCL Technologies logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Office hcl.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'HCLTech'"
+    },
+    {
+      "candidate": "File:Skylt till HCLTech Arena.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "4000x2250, CC0, identity evidenced on the file page"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "tcs-building-in-varanasi",
+      "path": "tcs-building-in-varanasi.jpg",
+      "size": [
+        4128,
+        2322
+      ],
+      "role": "establishing",
+      "subject": "Tara consultancy service(TCS) Building in Varanasi.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:TCS_building_in_Varanasi.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/TCS_building_in_Varanasi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Aashijo"
+    },
+    {
+      "beat": "hero",
+      "label": "osce-headquarters-at-the-hofburg-vienna-ank",
+      "path": "osce-headquarters-at-the-hofburg-vienna-ank.jpg",
+      "size": [
+        3456,
+        4608
+      ],
+      "role": "establishing",
+      "subject": "OSCE Headquarters at The Hofburg, Vienna",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:OSCE_Headquarters_at_The_Hofburg,_Vienna_(_Ank_Kumar,_Infosys)_01.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/OSCE_Headquarters_at_The_Hofburg%2C_Vienna_%28_Ank_Kumar%2C_Infosys%29_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Ank Kumar"
+    },
+    {
+      "beat": "grid",
+      "label": "infosys-4911287704",
+      "path": "infosys-4911287704.jpg",
+      "size": [
+        3264,
+        1840
+      ],
+      "role": "establishing",
+      "subject": "Infosys",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Infosys_(4911287704).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Infosys_%284911287704%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Ashwin Kumar from Bangalore, India"
+    },
+    {
+      "beat": "diaspora",
+      "label": "skylt-till-hcltech-arena",
+      "path": "skylt-till-hcltech-arena.jpg",
+      "size": [
+        4000,
+        2250
+      ],
+      "role": "interior",
+      "subject": "Skylt till HCLTech Arena (JM-hallen) p\u00e5 Stora mossens IP i v\u00e4stra Stockholm",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Skylt_till_HCLTech_Arena.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Skylt_till_HCLTech_Arena.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Sabel\u00f6ga"
+    }
+  ]
+}

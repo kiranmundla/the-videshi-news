@@ -1,0 +1,265 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "sensex-surges-905-points-nifty-tops-22900-banking-fmcg",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "SENSEX SURGES 905 POINTS, NIFTY TOPS 22,900 AS BANKING AND FMCG STOCKS LEAD",
+      "numbers": [
+        905.0,
+        22900.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Sensex surged 905 points; banking and FMCG stocks led the rally.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The BSE Sensex jumped 905.01 points, or 1.24%, to close at 74,151.04 on Thursday, while the NSE Nifty rose 237.90 points to 22,936.75.",
+      "numbers": [
+        1.24,
+        237.9,
+        905.01,
+        22936.75,
+        74151.04
+      ],
+      "entities": [
+        "BSE Sensex",
+        "NSE Nifty"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Exact figures for Sensex and Nifty closing values are provided.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "905",
+      "numbers": [
+        905.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The Sensex jumped 905 points on Thursday.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Points the Sensex jumped on Thursday",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the Sensex jumped 905 points.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "74,151.04",
+      "numbers": [
+        74151.04
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the closing value of the Sensex on Thursday.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Sensex close on Thursday",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The closing value of the Sensex is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "22,936.75",
+      "numbers": [
+        22936.75
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the closing value of the Nifty on Thursday.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Nifty close on Thursday",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The closing value of the Nifty is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "OVER 5%",
+      "numbers": [
+        5.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Adani Ports rose over 5% as stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Rise in Adani Ports, the top Sensex gainer",
+      "numbers": [],
+      "entities": [
+        "Adani Ports"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Adani Ports was the top gainer as reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Banking and FMCG stocks led the rally",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states these sectors led the rally.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Foreign investors bought Rs 872 crore of shares",
+      "numbers": [
+        872.0,
+        8720000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article cites this exact figure for foreign investments.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The short-term outlook stays positive while the Nifty holds above 22,800.",
+      "numbers": [
+        22800.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the outlook depends on holding above 22,800.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "BSE Sensex",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "NSE Nifty",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Adani Ports",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "US Federal Reserve",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00066,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

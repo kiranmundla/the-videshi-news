@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "blackstone-next-50-billion-india-beyond-offices-malls",
+  "name": "blackstone-next-50-billion-india-beyond-offices-malls",
+  "script": "reel-runs/2026-10-30-blackstone-next-50-billion-india-beyond-offices-malls/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000697
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-30-blackstone-next-50-billion-india-beyond-offices-malls/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "delhi-india-khas-mahal-2-red-fort",
+      "hero": "hampi-india-lotus-mahal",
+      "grid": "blackstone-free-public-library-blackstone-ma",
+      "diaspora": "blackstone-va-commercial-downtown"
+    }
+  },
+  "manifest": "reel-runs/2026-10-30-blackstone-next-50-billion-india-beyond-offices-malls/output/render-manifest.json",
+  "video": "reel-runs/2026-10-30-blackstone-next-50-billion-india-beyond-offices-malls/output/blackstone-next-50-billion-india-beyond-offices-malls.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-10-30-blackstone-next-50-billion-india-beyond-offices-malls/output/tiktok-caption.txt"
+}

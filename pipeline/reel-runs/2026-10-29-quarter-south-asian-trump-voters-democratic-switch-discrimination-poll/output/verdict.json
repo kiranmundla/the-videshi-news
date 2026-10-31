@@ -1,0 +1,27 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "quarter-south-asian-trump-voters-democratic-switch-discrimination-poll",
+  "name": "quarter-south-asian-trump-voters-democratic-switch-discrimination-poll",
+  "script": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000663
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-29-quarter-south-asian-trump-voters-democratic-switch-discrimination-poll/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "donald-trump-swearing-in-ceremony",
+      "grid": "donald-trump-rnc-july-2016"
+    }
+  },
+  "detail": "beat 'hook': block bottom 1695 past the safe zone"
+}

@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-29-sensex-surges-905-points-nifty-tops-22900-banking-fmcg/output/sensex-surges-905-points-nifty-tops-22900-banking-fmcg.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1200,
+        900
+      ],
+      "manifest_dims": [
+        1200,
+        900
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 1146.5,
+      "url": "https://nation-press.s3.ap-south-1.amazonaws.com/sensex_climbs_over_900_points_nifty_tops_22900_on_fmcg_psu_bank_rally_banner_d10b8788_d20d_4565_8a09_f9b862cc1e80_49d8556bb6.webp"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-29-sensex-surges-905-points-nifty-tops-22900-banking-fmcg/output/qa/frames/frame-hook.png",
+      "text_px_detected": 24980,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.8,
+        "bg_luminance": 0.0,
+        "delta": 253.8
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-29-sensex-surges-905-points-nifty-tops-22900-banking-fmcg/output/qa/frames/frame-news.png",
+      "text_px_detected": 40899,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.87)",
+        "box": [
+          374,
+          420,
+          25,
+          32
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-29-sensex-surges-905-points-nifty-tops-22900-banking-fmcg/output/qa/frames/frame-hero.png",
+      "text_px_detected": 18881,
+      "edge": {
+        "pass": true,
+        "offending_px": 42,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.88)",
+        "box": [
+          490,
+          968,
+          97,
+          119
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 53.3,
+        "delta": 200.1
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-29-sensex-surges-905-points-nifty-tops-22900-banking-fmcg/output/qa/frames/frame-grid.png",
+      "text_px_detected": 41661,
+      "edge": {
+        "pass": true,
+        "offending_px": 7,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          350,
+          302,
+          376,
+          459
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.4,
+        "bg_luminance": 145.6,
+        "delta": 106.9
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-29-sensex-surges-905-points-nifty-tops-22900-banking-fmcg/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 26148,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-29-sensex-surges-905-points-nifty-tops-22900-banking-fmcg/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 24322,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    }
+  ]
+}

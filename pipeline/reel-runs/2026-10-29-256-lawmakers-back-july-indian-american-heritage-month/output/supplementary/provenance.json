@@ -1,0 +1,939 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "256-lawmakers-back-july-indian-american-heritage-month",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Raja Krishnamoorthi",
+    "Luce-Celler Act",
+    "House of Representatives",
+    "Indian American Heritage Month",
+    "Indian Americans",
+    "United States"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Congressman Raja Krishnamoorthi Promotes Perkins Grant Funding, Career and Technical Educational Opportunities at College of DuPage 18.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Congressman Raja Krishnamoorthi Promotes Perkins Grant Funding, Career and Technical Educational Opportunities at College of DuPage 18 (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Deb Conroy with Representative Raja Krishnamoorthi.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Raja Krishnamoorthi, official photo, 115th Congress (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Raja Krishnamoorthi 116th Congress.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 335x410 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Raja Krishnamoorthi and Chris Welch 2021.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 640x353 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Raja Krishnamoorthi official photo.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 400x601 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Raja Krishnamoorthi official photo (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 221x312 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rep. Krishnamoorthi Public Headshot.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (payoff)",
+      "reason": "2795x2437, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Rep. Raja Krishnamoorthi Honors Dr. Govindappa Venkataswamy.ogg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Actes de la Socie?te? linne?enne de Bordeaux. (IA mobot31753002145867).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Actes de la Socilinnnne de Bordeaux (IA actesdelasocilin3783soci).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Birds of passage - Flower-de-luce ; A book of sonnets ; the masque of Pandora and other poems ; K\u00e9ramos ; Ultima Thule ; and In the harbor (IA birdsofpassagefl00long).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Chroniques de J. Froissart, publi\u00e9es pour la Soci\u00e9t\u00e9 par Sim\u00e9on Luce (IA chroniquesdejfro11froi).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Flower-de-Luce.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Flower-de-luce (IA flowerdeluce00longrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Luce de Lancival, \u0152uvres, tome 1, 1826.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Rolland - Pierre et Luce.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:TRUMANLUCECELLER.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 800x636 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Un po' pi\u00f9 di luce sugli eventi politici e militari dell' anno 1866 (IA unpopidilucesu00ferr).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:\"Democracy versus autocracy,\" and other patriotic addresses - delivered in New York city, July 4, 1917 (IA democracyversusa01hill).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Address delivered before the Senate and House of representatives and invited guests, on Thursday, Jan. 19, 1905 (IA addressdelivered00lclodg).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Black Americans In Congress.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:CTRL0000087481 - Transcribed Interview of Jason Van Tatenhove, (July 7, 2022).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Chiswick, 1764. Apthorp, 1770. Littleton, 1784. Exercises at the centennial celebration of the incorporation of the town of Littleton, July 4th, 1884 (IA chiswick1764apth1884litt).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Congressional Research Service Report RL30666 - The Role of the House Minority Leader - An Overview.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:HOUSE RESOLUTION ON THE APPROPRIATE ROLE OF FOREIGN JUDGMENTS IN THE INTERPRETATION OF THE CONSTITUTION OF THE UNITED STATES (IA gov.gpo.fdsys.CHRG-109hhrg22494).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Home Missionary, The (July 1900-April 1901) (IA homemissionaryju73amer).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Nation's Business 1919-07.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The world's representative assemblies of to-day- a study in comparative legislation (IA worldsrepresenta00alderich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:1817 United States House of Representatives election in Indiana.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:1818 United States House of Representatives election in Indiana.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:1820 United States House of Representatives election in Indiana.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:2024 United States House of Representatives election by majority delegations.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Australian House of Representatives - Parliament of Australia.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in australia, which this story is not about (story context: india/united states) \u2014 a namesake, not 'House of Representatives' in this story"
+    },
+    {
+      "candidate": "File:Chamber of the House of Representatives of Japan.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in japan, which this story is not about (story context: india/united states) \u2014 a namesake, not 'House of Representatives' in this story"
+    },
+    {
+      "candidate": "File:First meeting of the Australian House of Representatives-2.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:House of Representatives of Japan 2025-04-18 (6).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in japan, which this story is not about (story context: india/united states) \u2014 a namesake, not 'House of Representatives' in this story"
+    },
+    {
+      "candidate": "File:Information Office, House of Representatives of Japan.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in japan, which this story is not about (story context: india/united states) \u2014 a namesake, not 'House of Representatives' in this story"
+    },
+    {
+      "candidate": "File:United States House of Representatives chamber.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1080x566 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Batasang Pambansa Plenary Hall.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "depicted person: the file is a portrait of Batasang Pambansa Plenary Hall, who is not one of this story's subjects \u2014 association is not depiction ('House of Representatives')"
+    },
+    {
+      "candidate": "File:Batasang pambansa session hall - 2022.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'House of Representatives'"
+    },
+    {
+      "candidate": "File:Commonwealth and Batasan Hills, Quezon City 39.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'House of Representatives'"
+    },
+    {
+      "candidate": "File:Commonwealth and Batasan Hills, Quezon City 40.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'House of Representatives'"
+    },
+    {
+      "candidate": "File:House of Representatives of the People of Annam (Undated).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 192x115 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Philippine Assembly historical marker.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'House of Representatives'"
+    },
+    {
+      "candidate": "File:S06 Batasan station May 3, 2026 under-construction Batasang Pambansa Complex side 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'House of Representatives'"
+    },
+    {
+      "candidate": "File:S06 Batasan station May 3, 2026 under-construction Batasang Pambansa Complex side 02.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'House of Representatives'"
+    },
+    {
+      "candidate": "File:S06 Batasan station May 3, 2026 under-construction Batasang Pambansa Complex side 03.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'House of Representatives'"
+    },
+    {
+      "candidate": "File:State of the Nation Address Philippines (2023-07-24) E911a 39.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'House of Representatives'"
+    },
+    {
+      "candidate": "File:Activities of the Committee on the District of Columbia, House of Representatives (IA activitiesofcomm00unit 0).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Flickr - USCapitol - Beauty at the Ford House Office Building, magnolia in bloom..jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 612x612 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Flickr - USCapitol - Ford House Office Building.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x680 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ford House Office Building, Washington, DC (2006).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 150x105 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ford House Office Building.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'House of Representatives'"
+    },
+    {
+      "candidate": "File:Journal of the House of Representatives of the General Assembly of the State of North Carolina (serial) (IA journalofhouseof19651966).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Oregon House District 16.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Oregon House District 36.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Oregon House District 38.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Oregon House District 44.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:House of Representatives Office Building LCCN2007683622.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "5159x6457, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:House of Representatives Office Building LCCN2007683623.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "6451x5147, Public domain, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:(Court Cases re First Amendment Establishment Clause) (2) - DPLA - a7280578f7f58419b7a03e2a6794df4b.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:ACCOUNTABILITY, POLICIES, AND TACTICS OF LAW ENFORCEMENT WITHIN THE DEPARTMENT OF THE INTERIOR AND THE U.S. FOREST SERVICE (IA gov.gpo.fdsys.CHRG-114hhrg95713).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Abraham Lincoln's administrative problems (IA abrahamlincolnsalinc 2).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Abraham Lincoln (IA abrahamlin2940schu).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Annual report of the Board of Regents of the Smithsonian Institution (IA annualreportofbo1906smit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Bulletin Of The Pan American Union 1943-02- Vol 77 Iss 2 (IA sim bulletin-of-the-pan-american-union 1943-02 77 2).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Forest and stream (IA Foreststreamv55).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Forest and stream (IA foreststream721909newy).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Portland, Oregon, its History and Builders volume 2.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Ansbach community celebrates Native American Indian Heritage Month (5928145).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Bagram celebrates Native American Indian Heritage Month 131122-D-ZQ898-363.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Garrison Wiesbaden celebrates Native American Indian Heritage Month (6952238).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Garrison Wiesbaden celebrates Native American Indian Heritage Month (6952239).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:National American Indian Heritage Month Dallas 2024.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:National Native American Heritage Month 121129-F-FF749-002.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:RAF Mildenhall library holds storytime for Native American Indian Heritage Month (8121713).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:RAF Mildenhall library holds storytime for Native American Indian Heritage Month (8121714).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:RAF Mildenhall library holds storytime for Native American Indian Heritage Month (8121715).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:U.S. Soldiers celebrate Native American Heritage Month DVIDS12772.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Indian Heritage Month Program - Indian Heritage Month Closing Program, \"Celebrating Tribal Nations, Our Country's Great Partners\" theme - DPLA - 03f33415ba20910c2f64280b64f3b693.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Indian Heritage Month Program - Indian Heritage Month Closing Program, \"Celebrating Tribal Nations, Our Country's Great Partners\" theme - DPLA - 064d6cc4e33c871113780c26ceb8e1a5.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Indian Heritage Month Program - Indian Heritage Month Closing Program, \"Celebrating Tribal Nations, Our Country's Great Partners\" theme - DPLA - 291fa8125d5ad10420995d538580307a.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Indian Heritage Month Program - Indian Heritage Month Closing Program, \"Celebrating Tribal Nations, Our Country's Great Partners\" theme - DPLA - 5b544ac984375e9523627bbd5136d69f.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Indian Heritage Month Program - Indian Heritage Month Closing Program, \"Celebrating Tribal Nations, Our Country's Great Partners\" theme - DPLA - 67753a244d285ac1accb04a019725736.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Indian Heritage Month Program - Indian Heritage Month Closing Program, \"Celebrating Tribal Nations, Our Country's Great Partners\" theme - DPLA - 6de48f5ec8a9ab4d100e82fa74545d5b.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Indian Heritage Month Program - Indian Heritage Month Closing Program, \"Celebrating Tribal Nations, Our Country's Great Partners\" theme - DPLA - 7deb137e768903b61c2c6c0e8d463162.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Indian Heritage Month Program - Indian Heritage Month Closing Program, \"Celebrating Tribal Nations, Our Country's Great Partners\" theme - DPLA - e0dae921003bf6f524389a30634d52ad.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Indian Heritage Month Program - Indian Heritage Month Opening Program at HUD Headquarters, \"Celebrating Tribal Nations, Our Country's Great Partners\" theme - DPLA - 5c452c997532aa5358936a905e59eb00.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Indian Heritage Month Program - Indian Heritage Month Opening Program at HUD Headquarters, \"Celebrating Tribal Nations, Our Country's Great Partners\" theme - DPLA - 8e8671e70139fad1ae8b2f0d7d6670eb.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Annual report of the Bureau of American Ethnology to the Secretary of the Smithsonian Institution (IA annualrepor7081195264smit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Bulletin Of The Pan American Union 1941-05- Vol 75 Iss 5 (IA sim bulletin-of-the-pan-american-union 1941-05 75 5).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Bulletin Of The Pan American Union 1948-05- Vol 82 Iss 5 (IA sim bulletin-of-the-pan-american-union 1948-05 82 5).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Indian summer (IA indiansummer00hutciala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Nutrition, growth, and development of North American Indian children (IA nutritiongrowthd00moor).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1966suppuniv).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Southern campus (IA southerncampus1966univ).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The North American review (IA northamreview226miscrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The West American scientist (IA westamericanscie752orcu).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The value of a great heritage (IA valueofgreatheri00fosd).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Californian Indian Museum overview video - 2019.ogv",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Letters and notes on the manners, customs, and condition of the North American Indians (IA 39002055099593.med.yale.edu).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Memoirs of a captivity among the Indians of North America, from childhood to the age of nineteen, with anecdotes descriptive of their manners and customs. To which is added (IA b29349527).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:RundelLibraryNativeAmericanHeritageMonthSandMandalaDissolutionCeremony2023a.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:RundelLibraryNativeAmericanHeritageMonthSandMandalaDissolutionCeremony2023b.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:RundelLibraryNativeAmericanHeritageMonthSandMandalaDissolutionCeremony2023c.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:The substance of a journal during a residence at the Red River colony, British North America , and frequent excursions among the North West American Indians in the years 1820 (IA substanceofjour00west).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Travels in the East Indian Archipelago (IA TravelsEastIndi00Bick).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:United States Department of Agriculture (USDA) Native American Heritage Month observance event in Washington, D.C. on November 16, 2023 - 20.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:United States Department of Agriculture (USDA) Native American Heritage Month observance event in Washington, D.C. on November 16, 2023 - 21.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "File:Americans with Asian Indian Ancestry by state.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Anu Peshwaria, Indian - American Lawyer.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 622x541 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Indian American diaspora in 2020 by state or territory.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Indian Land Areas Judicially Established 1978 and American Indian Reservations.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:J'Ouvert and West Indian American Day Carnival 2024.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian Americans'"
+    },
+    {
+      "candidate": "File:Mid-America All-Indian Museum 01.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian Americans'"
+    },
+    {
+      "candidate": "File:Minneapolis American Indian Center logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:National Museum of the American Indian (Sunset).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian Americans'"
+    },
+    {
+      "candidate": "File:National Museum of the American Indian 2.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian Americans'"
+    },
+    {
+      "candidate": "File:National Museum of the American Indian 3.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian Americans'"
+    },
+    {
+      "candidate": "File:City Lights of the United States 2012.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (composer) than this nri-world story \u2014 a same-name different person, not 'United States' the subject of this story"
+    },
+    {
+      "candidate": "File:Constitution of the United States - DPLA - 9ca804144bd5965e992ae3528bc3c6a3 (page 1).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (programmer) than this nri-world story \u2014 a same-name different person, not 'United States' the subject of this story"
+    },
+    {
+      "candidate": "File:Great Seal of the United States (reverse).svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Lower Manhattan from Governors Island with a fishing boat (46294p).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:National Park Service 9-11 Statue of Liberty and WTC fire.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 350x265 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Public Roads of the contiguous United States, from the 2018 TIGER GIS dataset.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:US Capitol dome Jan 2006.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('United States')"
+    },
+    {
+      "candidate": "File:United States Declaration of Independence.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (programmer) than this nri-world story \u2014 a same-name different person, not 'United States' the subject of this story"
+    },
+    {
+      "candidate": "File:United States of Iran \u0645\u0645\u0627\u0644\u06a9 \u0645\u062a\u0641\u0642\u0647 \u0627\u06cc\u0631\u0627\u0646.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:World War I veteran Joseph Ambrose, 86, at the dedication day parade for the Vietnam Veterans Memorial in 1982.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "https://krishnamoorthi.house.gov/media/press-releases",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "identity: the page does not evidence 'Raja Krishnamoorthi'"
+    },
+    {
+      "candidate": "https://krishnamoorthi.house.gov/media",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "identity: the page does not evidence 'Raja Krishnamoorthi'"
+    },
+    {
+      "candidate": "https://krishnamoorthi.house.gov/media/press-releases?page=87",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "identity: the page does not evidence 'Raja Krishnamoorthi'"
+    },
+    {
+      "candidate": "https://www.house.gov/media",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.house.gov/committees",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.house.gov/leadership",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.nsa.gov/Press-Room/News-Highlights/Tag/103521/national-american-indian-heritage-month/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.bia.gov/NNAHM",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "https://www.ihs.gov/newsroom/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "identity: the page does not evidence 'Indian Americans'"
+    },
+    {
+      "candidate": "https://www.state.gov/newsroom/",
+      "route": "B \u2014 official sources",
+      "verdict": "accepted",
+      "reason": "license basis: US federal government work \u2014 public domain; dimensions verified at download"
+    },
+    {
+      "candidate": "File:DIG13785-073 (21704809748).jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Luce-Celler Act'"
+    },
+    {
+      "candidate": "File:Flag of the United States House of Representatives.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Grand Canyon Native American Heritage Day 0298 (5188445791).jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Indian American Heritage Month'"
+    },
+    {
+      "candidate": "Newsroom - United States Department of State",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "download/verify failed: cannot identify image file '/home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-10-29-256-lawmakers-back-july-indian-american-heritage-month/output/supplementary/new"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "house-of-representatives-office-building-lcc",
+      "path": "house-of-representatives-office-building-lcc.jpg",
+      "size": [
+        6451,
+        5147
+      ],
+      "role": "interior",
+      "subject": "Title: House of Representatives Office Bulding Abstract/medium: 1 photographic print.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:House_of_Representatives_Office_Building_LCCN2007683623.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/House_of_Representatives_Office_Building_LCCN2007683623.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Fawcett, Waldon, photographer"
+    },
+    {
+      "beat": "grid",
+      "label": "house-of-representatives-office-building-lcc-2",
+      "path": "house-of-representatives-office-building-lcc-2.jpg",
+      "size": [
+        5159,
+        6457
+      ],
+      "role": "interior",
+      "subject": "Title: House of Representatives Office Bulding Abstract/medium: 1 photographic print.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:House_of_Representatives_Office_Building_LCCN2007683622.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/70/House_of_Representatives_Office_Building_LCCN2007683622.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Fawcett, Waldon, photographer"
+    },
+    {
+      "beat": "payoff",
+      "label": "rep-krishnamoorthi-public-headshot",
+      "path": "rep-krishnamoorthi-public-headshot.jpg",
+      "size": [
+        2795,
+        2437
+      ],
+      "role": "portrait",
+      "subject": "Official Portrait of Rep. Krishnamoorthi",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Rep._Krishnamoorthi_Public_Headshot.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Rep._Krishnamoorthi_Public_Headshot.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Eric Connolly"
+    }
+  ]
+}

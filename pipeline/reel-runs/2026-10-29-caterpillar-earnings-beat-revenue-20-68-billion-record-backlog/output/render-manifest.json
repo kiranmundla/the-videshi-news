@@ -1,0 +1,413 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "caterpillar-earnings-beat-revenue-20-68-billion-record-backlog",
+ "article_slug": "caterpillar-earnings-beat-revenue-20-68-billion-record-backlog",
+ "article_id": "56fd5d7f-f0f3-4471-8599-e2037a4d9d1b",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-10-29-caterpillar-earnings-beat-revenue-20-68-billion-record-backlog/output/caterpillar-earnings-beat-revenue-20-68-billion-record-backlog.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Caterpillarhq.JPG/3840px-Caterpillarhq.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-10-29-caterpillar-earnings-beat-revenue-20-68-billion-record-backlog/output/hero.JPG",
+  "width": 4000,
+  "height": 3000,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.289,0.272) damped=(0.394,0.386)",
+  "has_face": false,
+  "box_source": [
+   457,
+   498,
+   2240,
+   1200
+  ],
+  "box_bg": [
+   -180,
+   319,
+   1434,
+   768
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.395,
+   0.387
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   625
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 246,
+   "block_top": 1334,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1334,
+    930,
+    1580
+   ],
+   "texts": [
+    "Markets Finance",
+    "CATERPILLAR EARNINGS BEAT ESTIMATES AS REVENUE RISES 17% TO $20.68 BILLION ON RECORD BACKLOG"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.64,
+    "photo_px": [
+     4000,
+     3000
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.64,
+     "window": [
+      738,
+      0,
+      2425,
+      3000
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 357,
+   "block_top": 1022,
+   "block_bottom": 1379,
+   "text_bbox": [
+    70,
+    1022,
+    930,
+    1379
+   ],
+   "texts": [
+    "What Happened",
+    "Caterpillar reported third-quarter sales and revenues of $20.68 billion, up 17% from $17.64 billion a year earlier."
+   ],
+   "v7": {
+    "image_source": "extra:alice-05a-1116x1492",
+    "track": "backdrop",
+    "render_scale": 0.747,
+    "photo_px": [
+     1116,
+     1492
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.7473118279569892,
+     "window": [
+      0,
+      378,
+      1116,
+      1214
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.29x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "The Caterpillar. One of John Tenniel's illustrations from the first edition of Alice's Adventures in Wonderland (1865). The illustration is noted for its ambiguous central figure, whose head can be viewed as being a human male's face with p",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Alice_05a-1116x1492.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Alice_05a-1116x1492.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Sir John Tenniel"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 351,
+   "block_top": 1025,
+   "block_bottom": 1376,
+   "text_bbox": [
+    70,
+    1025,
+    930,
+    1376
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$20.68 BILLION",
+    "Caterpillar sales and revenues, up 17%"
+   ],
+   "v7": {
+    "image_source": "extra:chenille-chevrefeuille",
+    "track": "backdrop",
+    "render_scale": 0.452,
+    "photo_px": [
+     1845,
+     1644
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.45203252032520325,
+     "window": [
+      0,
+      149,
+      1845,
+      1531
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.17x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Fox moth caterpillar eating a honeysuckle leaf.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Chenille_chevrefeuille.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Chenille_chevrefeuille.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.5",
+     "artist": "Jodelet/L\u00e9pinay"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 698,
+   "block_top": 882,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    882,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "$78.1 BILLION",
+    "Record backlog, up 96%",
+    "$7.20",
+    "Adjusted earnings per share, up 45%",
+    "18%",
+    "Rise in Power & Energy sales to $8.78 billion"
+   ],
+   "v7": {
+    "image_source": "extra:beacon-power-new-york-20-mw-flywheel-energy",
+    "track": "full-bleed",
+    "render_scale": 0.598,
+    "photo_px": [
+     4817,
+     3211
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5979445655559016,
+     "window": [
+      1507,
+      0,
+      3313,
+      3211
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "A 20 MW flywheel energy storage plant operated by Beacon Power in Stephentown, New York.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Beacon_Power_New_York_-_20_MW_Flywheel_Energy_Storage.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/02/Beacon_Power_New_York_-_20_MW_Flywheel_Energy_Storage.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Z22"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1016,
+   "block_bottom": 1385,
+   "text_bbox": [
+    70,
+    1016,
+    930,
+    1385
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Highest sales quarter ever for Caterpillar",
+    "Shares fell about 10% in pre-market trading"
+   ],
+   "v7": {
+    "image_source": "extra:power-county-wind-farm-002",
+    "track": "backdrop",
+    "render_scale": 0.463,
+    "photo_px": [
+     1920,
+     1349
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.4633333333333333,
+     "window": [
+      61,
+      1,
+      1861,
+      1349
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.42x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "An aerial view of of the Power County wind farm - Power County, Idaho with Nordex N100/2500 turbines.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Power_County_Wind_Farm_002.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Power_County_Wind_Farm_002.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "ENERGY.GOV"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "The record $78.1 billion backlog says demand is real.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 120.8,
+ "mp4_bytes": 15646129
+}

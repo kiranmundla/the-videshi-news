@@ -1,0 +1,37 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test",
+  "name": "anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test",
+  "script": "reel-runs/2026-10-29-anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000714
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-29-anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "tcs-building-in-varanasi",
+      "hero": "osce-headquarters-at-the-hofburg-vienna-ank",
+      "grid": "infosys-4911287704",
+      "diaspora": "skylt-till-hcltech-arena"
+    }
+  },
+  "manifest": "reel-runs/2026-10-29-anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-10-29-anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test/output-v2/anthropic-revenue-14-fold-indian-it-tcs-infosys-hcltech-ai-test.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:diaspora"
+    ]
+  }
+}

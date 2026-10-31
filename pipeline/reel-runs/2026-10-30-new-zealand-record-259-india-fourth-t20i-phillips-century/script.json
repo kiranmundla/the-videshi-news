@@ -1,0 +1,37 @@
+{
+  "hook_line": "PHILLIPS' 107 POWERS NEW ZEALAND TO RECORD 259/7 AND 87-RUN WIN OVER INDIA",
+  "hook_stat": {
+    "big": "259/7",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "New Zealand's highest-ever T20I total, at Eden Park"
+  },
+  "stats": [
+    {
+      "big": "107",
+      "label": "Glenn Phillips' runs off 49 balls, his third T20I century"
+    },
+    {
+      "big": "65",
+      "label": "Michael Bracewell's runs off 25 balls in a 115-run fifth-wicket stand"
+    },
+    {
+      "big": "4/23",
+      "label": "Jacob Duffy's figures as India were restricted to 172"
+    }
+  ],
+  "diaspora_bullets": [
+    "India still lead the series 3-1 with one match to play",
+    "Arshdeep Singh became the first Indian to 150 T20I wickets"
+  ],
+  "key_entities": [
+    "Glenn Phillips",
+    "New Zealand",
+    "India",
+    "Eden Park",
+    "Jacob Duffy"
+  ],
+  "news_summary": "New Zealand posted 259/7 at Eden Park, their highest-ever T20I total and the highest score ever made against India, and beat India by 87 runs in the fourth T20I.",
+  "payoff": "India still lead the series 3-1, with one match to play.",
+  "versus": "",
+  "story_mood": "celebratory"
+}
