@@ -149,6 +149,20 @@ check("gate: 'honest review' rejected",
 check("gate: plain news title passes",
       youtube_embed_reject_reason("ISRO Launches Gaganyaan Mission",
                                   "ISRO") is None)
+# 2026-10-30: config aliases count as the channel — Sun Pictures uploads
+# appear under the "Sun TV" display name; the gate rejected an official
+# Sun TV trailer and a fan video took its place.
+check("gate: alias-channel trailer passes (Sun TV = Sun Pictures)",
+      youtube_embed_reject_reason(
+          "JAILER 2 - Official Trailer | Superstar Rajinikanth | "
+          "Nelson | Anirudh", "Sun TV") is None)
+check("gate: alias does not rescue pirate-bait",
+      youtube_embed_reject_reason("Jailer 2 Full Movie Watch Online",
+                                  "Sun TV") == "pirate-bait title")
+check("gate: near-name fan channel still rejected",
+      "non-official channel" in
+      (youtube_embed_reject_reason("JAILER 2 - Official Trailer",
+                                   "Sun TV Official Fan") or ""))
 
 print(f"\n{total - fails}/{total} passed")
 sys.exit(1 if fails else 0)

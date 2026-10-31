@@ -140,7 +140,15 @@ _OFFICIAL_CHANNELS_CACHE = None
 
 
 def official_trailer_channels():
-    """Lowercased official channel names from pipeline/trailer-channels.json."""
+    """Lowercased official channel names from pipeline/trailer-channels.json.
+
+    A channel's "aliases" count as that channel: YouTube's live display
+    name can differ from the config label (Sun Pictures uploads under
+    "Sun TV"). Aliases extend acceptance only — a trailer/teaser title
+    is still required, and pirate-bait is still rejected first.
+    (2026-10-30: the gate rejected an official Sun TV trailer and a fan
+    video was embedded in its place.)
+    """
     global _OFFICIAL_CHANNELS_CACHE
     if _OFFICIAL_CHANNELS_CACHE is None:
         names = set()
@@ -149,8 +157,12 @@ def official_trailer_channels():
                                 "trailer-channels.json")
             with open(path) as f:
                 cfg = json.load(f)
-            names = {c["name"].strip().lower()
-                     for c in cfg.get("channels", []) if c.get("name")}
+            for c in cfg.get("channels", []):
+                if c.get("name"):
+                    names.add(c["name"].strip().lower())
+                for alias in c.get("aliases") or []:
+                    if alias and alias.strip():
+                        names.add(alias.strip().lower())
         except Exception:
             names = set()
         _OFFICIAL_CHANNELS_CACHE = names

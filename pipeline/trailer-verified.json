@@ -23,5 +23,21 @@
   "media_type": "Series",
   "director": "Kim Da-min",
   "cast": "Lee Jae-wook, Go Min-si, Kim Min-ha, Lee Hee-jun"
+ },
+ "dunemovie": {
+  "_verified": "Same film as 'dunepartthree' — the @dunemovie handle keys to it. Warner Bros. verified facts as registered there.",
+  "cast": "Timothée Chalamet, Zendaya, Jason Momoa, Florence Pugh, Rebecca Ferguson, Isaach de Bankolé, Charlotte Rampling, Anya Taylor-Joy, Robert Pattinson, Javier Bardem",
+  "director": "Denis Villeneuve",
+  "media_type": "Movie",
+  "release": "Dec 18, 2026",
+  "screenplay": "Denis Villeneuve and Brian K. Vaughan"
+ },
+ "dunepartthree": {
+  "_verified": "Warner Bros. Pictures, Dune: Part Three — director, screenplay, cast and North America release date (Dec 18, 2026) verified from the studio's official final-trailer description on YouTube (video uJqaGLmZpGo, spot-checked 2026-10-30).",
+  "cast": "Timothée Chalamet, Zendaya, Jason Momoa, Florence Pugh, Rebecca Ferguson, Isaach de Bankolé, Charlotte Rampling, Anya Taylor-Joy, Robert Pattinson, Javier Bardem",
+  "director": "Denis Villeneuve",
+  "media_type": "Movie",
+  "release": "Dec 18, 2026",
+  "screenplay": "Denis Villeneuve and Brian K. Vaughan"
  }
 }

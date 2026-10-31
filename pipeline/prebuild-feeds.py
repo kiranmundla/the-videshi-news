@@ -717,7 +717,14 @@ def _load_official_trailer_channels():
     names = set()
     try:
         cfg = json.loads((REPO_ROOT / "pipeline" / "trailer-channels.json").read_text())
-        names = {c["name"].strip().lower() for c in cfg.get("channels", []) if c.get("name")}
+        for c in cfg.get("channels", []):
+            if c.get("name"):
+                names.add(c["name"].strip().lower())
+            # Config aliases count as the channel (e.g. Sun Pictures'
+            # uploads appear under the "Sun TV" display name).
+            for alias in c.get("aliases") or []:
+                if alias and alias.strip():
+                    names.add(alias.strip().lower())
     except Exception:
         names = set()
     return names | {
