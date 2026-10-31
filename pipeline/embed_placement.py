@@ -231,6 +231,7 @@ NEWS_ORG_CHANNELS = {
     "sakshi tv", "10tv news telugu", "v6 news telugu", "raj news telugu",
     "reuters", "associated press", "bbc news", "cnn", "al jazeera english",
     "bloomberg television", "bloomberg podcasts", "the hindu",
+    "the shillong times", "shethepeople tv",
     "hindustan times", "the indian express", "india tv", "newsx",
     "mirchi", "good news today", "the quint", "the wire", "scroll india",
     "deccan herald", "the print", "livemint", "business today",
