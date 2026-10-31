@@ -3296,6 +3296,7 @@
     "BAPS Swaminarayan Sanstha"
    ],
    "type": "org",
+   "has_local_instances": true,
    "wikidata_qid": "Q4936220",
    "p18_file": null,
    "p18_quality": null,

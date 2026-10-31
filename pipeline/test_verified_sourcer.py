@@ -19,6 +19,16 @@ B. inline_decide: subjects + named co-subjects only (fixed
    the hero, blocklist refusal, the 3-inline cap, and shadow
    records carrying surface="inline".
 
+C. Venue identity (baps-acceptance.md case 1): an org-level
+   identity must not present, unlabeled, as a venue-specific
+   story's venue. Venue-specific = org (or has_local_instances)
+   primary + a city co-subject / headline venue pattern. The
+   BAPS/Dallas fixture serves its org depicts ONLY as a labeled
+   file photo; a generic BAPS story serves unlabeled; a Toronto
+   mandir file never serves unlabeled for a Dallas story; a
+   venue-tied file serves unlabeled; no candidate at all is
+   none/venue-unverified.
+
 Run: python3 -u test_verified_sourcer.py
 """
 import json
@@ -236,6 +246,203 @@ vs.decide(sebi_art, resolver=lambda n, c: _res("Serbia", p18=None),
 hrec = json.loads(open(shadow).read().strip().splitlines()[-1])
 check("hero shadow records carry surface=hero",
       hrec.get("surface") == "hero")
+
+# ── C. venue identity ──────────────────────────────────────────
+print("C. venue identity (org-level identity, venue story)")
+BAPS_ART = {
+    "slug": "baps-dallas",
+    "headline": "Dallas BAPS Mandir Expects 12,000 for Diwali "
+                "Annakut and Fireworks on November 10",
+    "image_entities": ["BAPS", "Dallas"],
+    "body": ("<p>The BAPS Shri Swaminarayan Mandir in Irving "
+             "hosts its Diwali celebration on Tuesday.</p>"),
+}
+BAPS_RES = _res("BAPS", qid="Q4936220", p18=None, width=None,
+                etype="org")
+BAPS_RES["has_local_instances"] = True
+DALLAS_RES = _res("Dallas", qid="Q16558", p18=None, width=None,
+                  etype="place")
+VENUE_RES = {"BAPS": BAPS_RES, "Dallas": DALLAS_RES}
+venue_resolver = lambda n, c: VENUE_RES.get(n)  # noqa: E731
+
+AKSHAR_DEPICTS = lambda qid: [{  # noqa: E731
+    "title": "File:Akshar_pursotam.jpg",
+    "file_key": "akshar pursotam.jpg",
+    "url": "https://upload.wikimedia.org/akshar.jpg",
+    "width": 3000, "height": 2000, "license": "CC BY-SA 4.0"}]
+# the acceptance case's actual evidence: an unidentified BAPS
+# mandir's shrine — description/categories name NO location
+AKSHAR_EVIDENCE = lambda ref: {  # noqa: E731
+    "description": "Humanity Goal of entire life",
+    "categories": ["Hindu saints", "Self-published work"],
+    "depicts_qids": ["Q4936220"]}
+
+r = vs.decide(BAPS_ART, resolver=venue_resolver,
+              depicts_fn=AKSHAR_DEPICTS, info_fn=None,
+              evidence_fn=AKSHAR_EVIDENCE, log_path=shadow)
+check("BAPS/Dallas: org-level depicts serves ONLY as a labeled "
+      "file photo", r["decision"] == "image"
+      and r["route"] == "wikidata_depicts"
+      and r["label"] == "file_photo",
+      f"got {r['decision']}/{r['route']}/{r['label']}")
+check("BAPS/Dallas: label_text names the org generically",
+      r["label_text"] == "File photo: a BAPS mandir",
+      f"got {r['label_text']!r}")
+check("BAPS/Dallas: caption does not claim the story's venue",
+      bool(r["caption"]) and "not the Dallas venue" in r["caption"]
+      and "Irving" not in r["caption"],
+      f"got {r['caption']!r}")
+rec = json.loads(open(shadow).read().strip().splitlines()[-1])
+check("BAPS/Dallas: shadow record carries the label fields",
+      rec.get("label") == "file_photo"
+      and rec.get("label_text") == "File photo: a BAPS mandir")
+
+BAPS_GENERIC = {
+    "slug": "baps-generic",
+    "headline": "BAPS Charities Launches Nationwide Food Drive",
+    "image_entities": ["BAPS"],
+    "body": "<p>BAPS Charities announced the drive.</p>",
+}
+r = vs.decide(BAPS_GENERIC, resolver=venue_resolver,
+              depicts_fn=AKSHAR_DEPICTS, info_fn=None,
+              evidence_fn=AKSHAR_EVIDENCE, log_path=shadow)
+check("generic BAPS org story (no city co-subject) still serves "
+      "unlabeled", r["decision"] == "image" and r["label"] is None
+      and r["label_text"] is None and r["caption"] is None)
+
+TORONTO_DEPICTS = lambda qid: [{  # noqa: E731
+    "title": "File:BAPS Shri Swaminarayan Mandir Toronto.jpg",
+    "file_key": "baps shri swaminarayan mandir toronto.jpg",
+    "url": "https://upload.wikimedia.org/toronto.jpg",
+    "width": 2600, "height": 1800, "license": "CC BY-SA 4.0"}]
+TORONTO_EVIDENCE = lambda ref: {  # noqa: E731
+    "description": "BAPS Shri Swaminarayan Mandir in Toronto, "
+                   "Ontario",
+    "categories": ["BAPS Shri Swaminarayan Mandir, Toronto"],
+    "depicts_qids": ["Q4936220", "Q4834612"]}
+r = vs.decide(BAPS_ART, resolver=venue_resolver,
+              depicts_fn=TORONTO_DEPICTS, info_fn=None,
+              evidence_fn=TORONTO_EVIDENCE, log_path=shadow)
+check("different-city venue file (Toronto mandir) never serves "
+      "unlabeled for a Dallas story",
+      r["decision"] == "image" and r["label"] == "file_photo",
+      f"got label={r['label']!r}")
+
+DALLAS_DEPICTS = lambda qid: [{  # noqa: E731
+    "title": "File:Dallas BAPS Mandir Diwali.jpg",
+    "file_key": "dallas baps mandir diwali.jpg",
+    "url": "https://upload.wikimedia.org/dallas.jpg",
+    "width": 2800, "height": 1900, "license": "CC BY-SA 4.0"}]
+DALLAS_EVIDENCE = lambda ref: {  # noqa: E731
+    "description": "Diwali annakut celebrations at the Dallas "
+                   "BAPS mandir",
+    "categories": ["BAPS temples in Texas"],
+    "depicts_qids": ["Q4936220"]}
+r = vs.decide(BAPS_ART, resolver=venue_resolver,
+              depicts_fn=DALLAS_DEPICTS, info_fn=None,
+              evidence_fn=DALLAS_EVIDENCE, log_path=shadow)
+check("venue-tied file (its own record names Dallas) serves "
+      "unlabeled", r["decision"] == "image" and r["label"] is None
+      and "venue-tied" in r["reason"])
+
+r = vs.decide(BAPS_ART, resolver=venue_resolver,
+              depicts_fn=NO_DEPICTS, info_fn=None,
+              evidence_fn=AKSHAR_EVIDENCE, log_path=shadow)
+check("venue-specific story with no candidate at all -> "
+      "none/venue-unverified",
+      r["decision"] == "none"
+      and r["reason"].startswith("venue-unverified"),
+      f"got {r['decision']}/{r['reason'][:40]}")
+
+BAPS_PATTERN_ART = {
+    "slug": "baps-pattern",
+    "headline": "Dallas BAPS Mandir Hosts Diwali Celebration",
+    "image_entities": ["BAPS"],
+    "body": "<p>The mandir hosts its Diwali celebration.</p>",
+}
+r = vs.decide(BAPS_PATTERN_ART,
+              resolver=lambda n, c: BAPS_RES if n == "BAPS" else None,
+              depicts_fn=AKSHAR_DEPICTS, info_fn=None,
+              evidence_fn=AKSHAR_EVIDENCE, log_path=shadow)
+check("headline pattern alone (<City> <Org> <venue>) triggers "
+      "the venue rule", r["decision"] == "image"
+      and r["label"] == "file_photo"
+      and r["label_text"] == "File photo: a BAPS mandir",
+      f"got {r['decision']}/{r['label']}/{r['label_text']!r}")
+
+# the registry flag extends venue-capability beyond type "org";
+# an unflagged company is NOT venue-capable
+STORE_ART = {
+    "slug": "megamart-dallas",
+    "headline": "Dallas MegaMart Store Opens to Long Lines",
+    "image_entities": ["MegaMart", "Dallas"],
+    "body": "<p>Story.</p>",
+}
+MEGA_RES = _res("MegaMart", qid="Q777",
+                p18="MegaMart Storefront.jpg", etype="company")
+
+
+def _mega_resolver(flag):
+    def r_(n, c):
+        if n == "MegaMart":
+            d = dict(MEGA_RES)
+            d["has_local_instances"] = flag
+            return d
+        if n == "Dallas":
+            return DALLAS_RES
+        return None
+    return r_
+
+
+r = vs.decide(STORE_ART, resolver=_mega_resolver(False),
+              depicts_fn=NO_DEPICTS, info_fn=None,
+              evidence_fn=None, log_path=shadow)
+check("company WITHOUT has_local_instances: city story "
+      "unaffected (unlabeled)", r["decision"] == "image"
+      and r["label"] is None)
+r = vs.decide(STORE_ART, resolver=_mega_resolver(True),
+              depicts_fn=NO_DEPICTS, info_fn=None,
+              evidence_fn=lambda ref: {
+                  "description": "A MegaMart storefront at dusk",
+                  "categories": [], "depicts_qids": []},
+              log_path=shadow)
+check("company WITH has_local_instances: org P18 serves only "
+      "as a labeled file photo", r["decision"] == "image"
+      and r["label"] == "file_photo"
+      and r["label_text"] == "File photo: a MegaMart store",
+      f"got {r['label']}/{r['label_text']!r}")
+
+# classification never writes the registry: with the default
+# (caching) resolver, a registry place name classifies from the
+# registry alone and the registry file is byte-identical after
+import entity_resolve as _er  # noqa: E402
+
+_reg_bytes_before = open(_er.REGISTRY_PATH, "rb").read()
+_cls = vs._classify("Nashik", "", _er.resolve)
+check("_classify: registry place classifies via the default "
+      "resolver without touching the registry file",
+      _cls is not None and _cls.get("type") == "place"
+      and open(_er.REGISTRY_PATH, "rb").read() == _reg_bytes_before)
+_cls2 = vs._classify("Dallas", "", venue_resolver)
+check("_classify: non-default resolvers pass through",
+      _cls2 is not None and _cls2.get("type") == "place")
+
+# _all_candidates ordering agrees with candidates_for's winner
+MIX_DEPICTS = lambda qid: [  # noqa: E731
+    {"title": "File:Narrow Hall.jpg", "file_key": "narrow hall.jpg",
+     "url": "https://upload.wikimedia.org/narrow.jpg",
+     "width": 1600, "height": 900, "license": "CC BY 4.0"},
+    {"title": "File:Wide Hall.jpg", "file_key": "wide hall.jpg",
+     "url": "https://upload.wikimedia.org/wide.jpg",
+     "width": 3000, "height": 2000, "license": "CC BY 4.0"}]
+mix_res = _res("Mix Org", qid="Q9", p18="Mix Org logo.png",
+               width=3000, etype="org")
+one, _ = vs.candidates_for(mix_res, MIX_DEPICTS, None)
+allc, _ = vs._all_candidates(mix_res, MIX_DEPICTS, None)
+check("_all_candidates[0] is candidates_for's winner",
+      one is not None and allc and one["file_key"]
+      == allc[0]["file_key"] == "wide hall.jpg"
+      and len(allc) == 2)
 
 print()
 if FAILURES:

@@ -38,6 +38,35 @@ Decision logic, in order (verified or nothing):
      Rung 3 integration is a separate, deliberate step.
   3. NOTHING comes from open metadata search. There is no search
      call in this module.
+  3b. VENUE IDENTITY (acceptance gap, baps-acceptance.md case 1):
+     identity routes verify the unit they resolve — and for an
+     organization with local instances (a temple network, a chain)
+     that unit is the ORG, while the story may be about one
+     specific VENUE (the Dallas mandir's Diwali). An org-level
+     depicts/P18 then presents an unidentified instance as the
+     story's venue. So when _venue_context() classifies the story
+     as venue-specific — primary subject is an org (registry type
+     "org", or any type flagged has_local_instances) AND a city
+     signal exists (a place/building co-subject among the
+     subjects or headline names, or the headline's "<City> <Org>"
+     / "<Org> <City>" / "in <City>" venue pattern) — candidates
+     face a venue test on TOP of the quality screen:
+       - a candidate serves UNLABELED only when its own evidence
+         ties it to that venue: the file's Commons description or
+         categories name the story's city, or the file depicts a
+         co-subject venue/place item's QID (file_evidence);
+       - otherwise the best org-level candidate may still serve,
+         but ONLY as a labeled file photo: the decision carries
+         label="file_photo", a label_text naming the org
+         generically ("File photo: a BAPS mandir") and a caption
+         that does not claim the story's venue. Downstream
+         surfaces are REQUIRED to render the label;
+       - with no candidate at all, decide "none" with reason
+         "venue-unverified" — never fall through to another
+         subject (a skyline of the city would be the same
+         venue-blindness in another form).
+     Non-venue-specific org stories are untouched: org depicts /
+     P18 serve unlabeled, exactly as before.
   4. Fail closed (decision "none") when:
        - a candidate's canonical file key is on the entity's
          corpus blocklist (entity_resolve blocked_files);
@@ -75,8 +104,11 @@ and never touches the network or the registry file.
 
 Returns from decide():
   {decision: "image"|"none", url, file_key, route, entity, reason,
-   attempts: [...]}
-route ∈ wikidata_p18 | wikidata_depicts | None.
+   attempts: [...], label, label_text, caption}
+route ∈ wikidata_p18 | wikidata_depicts | None. label is None for
+an ordinary serve; label == "file_photo" (with label_text and
+caption populated) for a labeled organization file photo under
+the venue rule above.
 """
 
 import json
@@ -364,6 +396,375 @@ def candidates_for(res, depicts_fn=None, info_fn=None):
     return None, attempts
 
 
+# ── venue identity (org-level identity vs venue-specific story) ─
+# Local-instance nouns: the physical unit an org-with-instances
+# story is usually about. Presence in the headline (with a city
+# signal) is what turns an org story into a venue story.
+VENUE_WORDS = {
+    "mandir", "temple", "church", "mosque", "masjid", "gurdwara",
+    "gurudwara", "synagogue", "cathedral", "chapel", "monastery",
+    "ashram", "campus", "branch", "store", "outlet", "showroom",
+    "dealership", "restaurant", "clinic", "hospital", "school",
+    "library", "center", "centre",
+}
+_HEADLINE_RUN_STOP = {
+    "the", "a", "an", "for", "in", "on", "at", "of", "to", "and",
+    "vs", "january", "february", "march", "april", "may", "june",
+    "july", "august", "september", "october", "november",
+    "december", "monday", "tuesday", "wednesday", "thursday",
+    "friday", "saturday", "sunday",
+}
+
+
+def file_evidence(file_ref):
+    """What a Commons file ITSELF says it is: its description
+    text, its category names, and its own depicts (P180) target
+    QIDs — the venue test's evidence. One or two Commons API
+    calls; {} on any failure (callers treat no evidence as
+    not-venue-tied: fail closed)."""
+    if not file_ref:
+        return {}
+    title = str(file_ref)
+    if title.lower().startswith(("http://", "https://")):
+        title = title.rsplit("/", 1)[-1]
+    if not title.lower().startswith("file:"):
+        title = "File:" + title.replace("_", " ")
+    data = er._commons_api({
+        "action": "query", "format": "json",
+        "prop": "imageinfo|categories", "iiprop": "extmetadata",
+        "cllimit": "500", "titles": title,
+    }) or {}
+    for pid, p in (data.get("query", {}).get("pages") or {}).items():
+        ii = (p.get("imageinfo") or [{}])[0]
+        em = (ii or {}).get("extmetadata") or {}
+        desc = _strip_html((em.get("ImageDescription") or {})
+                           .get("value", ""))
+        cats = []
+        for c in p.get("categories") or []:
+            t = (c.get("title") or "").split(":", 1)[-1].strip()
+            if t:
+                cats.append(t)
+        qids = []
+        if str(pid).isdigit():
+            mi = er._commons_api({
+                "action": "wbgetentities", "format": "json",
+                "ids": f"M{pid}", "props": "claims",
+            }) or {}
+            ent = (mi.get("entities") or {}).get(f"M{pid}") or {}
+            for c in ((ent.get("claims") or {}).get("P180") or []):
+                try:
+                    qids.append(
+                        c["mainsnak"]["datavalue"]["value"]["id"])
+                except Exception:
+                    pass
+        return {"description": desc, "categories": cats,
+                "depicts_qids": qids}
+    return {}
+
+
+def _venue_word_in(text):
+    for tok in re.findall(r"[a-z]+", (text or "").lower()):
+        if tok in VENUE_WORDS:
+            return tok
+    return None
+
+
+def _headline_venue_pattern(headline, primary_name, res):
+    """The headline's own venue naming: "<City> <Org> <venue…>"
+    ("Dallas BAPS Mandir …"), "<Org> <City> <venue…>", or "… in
+    <City>" — returns (city, venue_word), city None when the
+    headline carries no such pattern. A venue word must be
+    present: a bare leading capitalized token ("Diwali BAPS …")
+    is not a city-named venue."""
+    venue_word = _venue_word_in(headline)
+    if not headline or not venue_word:
+        return None, venue_word
+    org_names = [primary_name, res.get("name")] + list(
+        res.get("aliases") or [])
+    variants = []
+    for nm in org_names:
+        if nm:
+            variants.append(re.findall(r"[a-z0-9]+", nm.lower()))
+    org_toks = {t for v in variants for t in v}
+    words = [w.strip(" ,;:\"'()") for w in headline.split()]
+    words = [w for w in words if w]
+    lower = [w.lower() for w in words]
+    start = end = None
+    for i in range(len(lower)):
+        for v in variants:
+            if v and lower[i:i + len(v)] == v:
+                start, end = i, i + len(v)
+                break
+        if start is not None:
+            break
+    if start is None:
+        return None, venue_word
+
+    def cap_run(idxs):
+        run = []
+        for j in idxs:
+            w = words[j]
+            if not w[0].isupper() or w.lower() in org_toks \
+                    or w.lower() in _HEADLINE_RUN_STOP:
+                break
+            run.append(w)
+        return run
+
+    pre = cap_run(range(start - 1, -1, -1))
+    if pre:
+        return " ".join(reversed(pre)), venue_word
+    post = cap_run(range(end, len(words)))
+    if post:
+        nxt = end + len(post)
+        if nxt < len(words) and lower[nxt] == venue_word:
+            return " ".join(post), venue_word
+    m = re.search(r"\bin ([A-Z][A-Za-z'.-]*(?: [A-Z][A-Za-z'.-]*)?)\b",
+                  headline)
+    if m and m.group(1).lower() not in org_toks:
+        return m.group(1), venue_word
+    return None, venue_word
+
+
+def _classify(name, context, resolver):
+    """Resolve a headline name ONLY to learn its type — never to
+    source from it, and NEVER through the caching resolver: the
+    default resolver (entity_resolve.resolve) writes live winners
+    back into the registry, and a classification lookup must not
+    mint subject-grade registry truth. (Live BAPS run, 2026-10-31:
+    classification resolved 'Dallas' to Dallas, North Carolina —
+    a namesake town — and 'Mandir' to the Hindu-temple concept,
+    and resolve() cached both, which then made a NC town an
+    ELIGIBLE headline subject. The poisoning guard in
+    entity_resolve cannot catch this: the cached items DO bear
+    the queried names; they are simply the wrong namesakes, and
+    classification never adjudicated them as subjects.)
+    Default resolver → registry-only first, then the resolver's
+    own non-caching live path. Any other resolver (test stubs,
+    registry_only_resolve) is used as passed."""
+    if resolver is er.resolve:
+        r = registry_only_resolve(name, context)
+        if r is not None:
+            return r
+        try:
+            return er._resolve_live(name, context)
+        except Exception:
+            return None
+    return resolver(name, context)
+
+
+def _venue_context(article, subjects, primary_name, primary_res,
+                   resolver, context):
+    """Classify the story as venue-specific. Returns
+    {cities, city, qids, venue_word} or None.
+
+    Venue-capable primary: registry type "org" (temple networks,
+    charities, church bodies — organizations whose stories are
+    usually about one local instance) or any resolution flagged
+    has_local_instances (the registry schema's explicit signal,
+    e.g. a retail chain's curated entry). City signal, any of:
+      - another subject, or another extractor headline name,
+        classifies (via _classify — no registry writes) as a
+        place or building and bears its name;
+      - the headline names the venue by city (pattern above).
+    The venue word (mandir/temple/…) comes from the headline."""
+    if not (primary_res.get("type") == "org"
+            or primary_res.get("has_local_instances")):
+        return None
+    headline = article.get("headline") or ""
+    cities, qids = [], set()
+    names = [s for s in subjects if s != primary_name]
+    try:
+        import article_picture_pass as APP
+        entities = APP.extract_article_entities(article)
+        subs = APP.headline_subject_names(article, entities)
+        for e in entities:
+            nm = e["name"]
+            if (nm.lower() in subs and nm != primary_name
+                    and nm not in names):
+                names.append(nm)
+    except Exception:
+        pass
+    for nm in names:
+        try:
+            r2 = _classify(nm, context, resolver)
+        except Exception:
+            continue
+        if not r2 or r2.get("type") not in ("place", "building"):
+            continue
+        if not identity_agrees(nm, r2):
+            continue
+        disp = r2.get("name") or nm
+        if disp not in cities:
+            cities.append(disp)
+        if r2.get("qid"):
+            qids.add(r2["qid"])
+    pat_city, venue_word = _headline_venue_pattern(
+        headline, primary_name, primary_res)
+    if pat_city and pat_city not in cities:
+        cities.insert(0, pat_city)
+    if not cities:
+        return None
+    return {"cities": cities, "city": cities[0], "qids": qids,
+            "venue_word": venue_word or _venue_word_in(headline)}
+
+
+def _all_candidates(res, depicts_fn=None, info_fn=None):
+    """(candidates, attempts): EVERY candidate that passes the
+    quality screen for one entity, best first — the screened P18,
+    then depicts in candidates_for's preference order (preferred
+    width first, then widest). candidates_for() picks [0] of an
+    equivalent list for the ordinary path; the venue path needs
+    the whole list because a later candidate may be the
+    venue-tied one. Each candidate additionally carries "file"
+    (source file name / Commons title) for evidence lookups."""
+    attempts = []
+    name = res.get("name")
+    blocked_keys = {er.file_key(b) for b in res.get("blocked_files")
+                    or [] if er.file_key(b)}
+    out = []
+    p18 = res.get("p18_file")
+    if p18:
+        width = res.get("p18_quality")
+        width = width if isinstance(width, int) else None
+        lic = None
+        if width is None and info_fn is not None:
+            info = info_fn(p18)
+            if info:
+                width = info.get("width")
+                lic = (info.get("license"),
+                       info.get("license_short"))
+        ok, note = screen_candidate(p18, width, blocked_keys, lic)
+        attempts.append({"entity": name, "route": "wikidata_p18",
+                         "file": p18, "ok": ok, "note": note})
+        if ok:
+            out.append({"url": file_url_for(p18),
+                        "file_key": er.file_key(p18),
+                        "route": "wikidata_p18", "file": p18,
+                        "reason": f"P18 of {name} ({res.get('qid')}) "
+                                  f"via {res.get('method')}; {note}"})
+    else:
+        attempts.append({"entity": name, "route": "wikidata_p18",
+                         "file": None, "ok": False,
+                         "note": "entity has no P18"})
+    if depicts_fn is not None and res.get("qid"):
+        try:
+            cands = depicts_fn(res["qid"]) or []
+        except Exception:
+            cands = []
+        screened = []
+        for c in cands:
+            ok, note = screen_candidate(
+                c.get("title") or c.get("url"), c.get("width"),
+                blocked_keys)
+            if ok:
+                screened.append((c, note))
+        attempts.append({"entity": name, "route": "wikidata_depicts",
+                         "count": len(cands),
+                         "passed": len(screened),
+                         "note": "depicts(P180) candidates screened"})
+        screened.sort(key=lambda cn: (
+            1 if (cn[0].get("width") or 0) >= WIDTH_PREFERRED
+            else 0, cn[0].get("width") or 0), reverse=True)
+        for c, note in screened:
+            out.append({"url": c.get("url"),
+                        "file_key": c.get("file_key")
+                        or er.file_key(c.get("title")),
+                        "route": "wikidata_depicts",
+                        "file": c.get("title"),
+                        "reason": f"depicts(P180={res.get('qid')}) "
+                                  f"file for {name}; {note}; "
+                                  f"license {c.get('license')}"})
+    return out, attempts
+
+
+def _venue_tied(ev, venue):
+    """Does the file's own evidence tie it to the story's venue?
+    Either it depicts a co-subject venue/place item (its QID is
+    in the venue context), or its Commons description/categories
+    name the story's city. The candidate pool is already bound
+    to the org (P18 / depicts of the org QID), so a city name in
+    the file's own record is the venue signal. Anything less —
+    no evidence, another city's name — is NOT tied."""
+    if not ev:
+        return False
+    if set(ev.get("depicts_qids") or []) & (venue.get("qids")
+                                            or set()):
+        return True
+    hay = " ".join([ev.get("description") or ""]
+                   + list(ev.get("categories") or []))
+    for city in venue.get("cities") or []:
+        if city and re.search(r"(?<![A-Za-z])" + re.escape(city)
+                              + r"(?![A-Za-z])", hay, re.IGNORECASE):
+            return True
+    return False
+
+
+def _file_photo_label(ent_name, venue):
+    """(label_text, caption) for a labeled org file photo: names
+    the organization generically ("File photo: a BAPS mandir")
+    and explicitly does NOT claim the story's venue."""
+    vw = venue.get("venue_word")
+    label_text = (f"File photo: a {ent_name} {vw}" if vw
+                  else f"File photo: {ent_name}")
+    caption = (f"{label_text} — not the {venue['city']} venue "
+               f"in this story.")
+    return label_text, caption
+
+
+def _apply_venue_decision(result, res, ent_name, venue, depicts_fn,
+                          info_fn, evidence_fn):
+    """Finalize result for a venue-specific story about an org.
+    Venue-tied candidate → unlabeled serve. Otherwise the best
+    org-level candidate serves ONLY as a labeled file photo.
+    No candidate at all → none, reason "venue-unverified".
+    Mutates result; always final (decide returns it as-is)."""
+    result["entity"] = ent_name
+    cands, atts = _all_candidates(res, depicts_fn, info_fn)
+    result["attempts"].extend(atts)
+    city = venue["city"]
+    if not cands:
+        result["decision"] = "none"
+        result["reason"] = (
+            f"venue-unverified: venue-specific story ({ent_name} "
+            f"in {city}) — no candidate image exists at all, so "
+            f"neither a venue-tied photo nor a labeled org file "
+            f"photo can be served")
+        return
+    for cand in cands:
+        ev = {}
+        if evidence_fn is not None:
+            try:
+                ev = evidence_fn(cand.get("file")
+                                 or cand.get("file_key")) or {}
+            except Exception:
+                ev = {}
+        tied = _venue_tied(ev, venue)
+        result["attempts"].append({
+            "entity": ent_name, "route": cand["route"],
+            "file": cand["file_key"], "venue_tied": tied,
+            "note": "venue evidence: the file's own Commons "
+                    "description/categories/depicts"})
+        if tied:
+            result.update({
+                "decision": "image", "url": cand["url"],
+                "file_key": cand["file_key"], "route": cand["route"],
+                "reason": cand["reason"] + f"; venue-tied: the "
+                          f"file's own evidence names {city}, the "
+                          f"story's venue city"})
+            return
+    cand = cands[0]
+    label_text, caption = _file_photo_label(ent_name, venue)
+    result.update({
+        "decision": "image", "url": cand["url"],
+        "file_key": cand["file_key"], "route": cand["route"],
+        "label": "file_photo", "label_text": label_text,
+        "caption": caption,
+        "reason": cand["reason"] + f"; venue-specific story "
+                  f"({city}) and no candidate is tied to that "
+                  f"venue — org-level image served ONLY as a "
+                  f"labeled file photo"})
+
+
 # ── shadow ledger ────────────────────────────────────────────────
 def _write_shadow(result, slug, path=None, surface="hero"):
     rec = {
@@ -377,6 +778,9 @@ def _write_shadow(result, slug, path=None, surface="hero"):
         "file_key": result["file_key"],
         "url": result["url"],
         "reason": result["reason"],
+        "label": result.get("label"),
+        "label_text": result.get("label_text"),
+        "caption": result.get("caption"),
     }
     p = Path(path) if path else shadow_path()
     try:
@@ -401,20 +805,26 @@ _UNSET = object()
 
 
 def decide(article, resolver=None, depicts_fn=None, info_fn=_UNSET,
-           write_log=True, log_path=None):
+           evidence_fn=_UNSET, write_log=True, log_path=None):
     """What the new path would serve as this article's hero.
     Shadow only — see module docstring. info_fn=None explicitly
     means NO live width/license lookup (offline callers: unknown
-    widths fail the screen closed)."""
+    widths fail the screen closed). evidence_fn=None explicitly
+    means NO live venue-evidence lookup (venue-specific stories
+    then fail toward the labeled file photo, never toward an
+    unlabeled serve)."""
     resolver = resolver or er.resolve
     if depicts_fn is None:
         depicts_fn = er.depicts_candidates
     if info_fn is _UNSET:
         info_fn = p18_info
+    if evidence_fn is _UNSET:
+        evidence_fn = file_evidence
     slug = article.get("slug") if isinstance(article, dict) else None
     result = {"decision": "none", "url": None, "file_key": None,
               "route": None, "entity": None, "reason": "",
-              "attempts": []}
+              "attempts": [], "label": None, "label_text": None,
+              "caption": None}
 
     def finish(reason):
         result["reason"] = reason
@@ -482,6 +892,16 @@ def decide(article, resolver=None, depicts_fn=None, info_fn=_UNSET,
             result["attempts"].append(
                 {"entity": ent_name, "outcome": "no-qid"})
             continue
+        if idx == 0:
+            venue = _venue_context(article, subjects, name, res,
+                                   resolver, context)
+            if venue is not None:
+                _apply_venue_decision(result, res, ent_name, venue,
+                                      depicts_fn, info_fn,
+                                      evidence_fn)
+                if write_log:
+                    _write_shadow(result, slug, log_path)
+                return result
         cand, atts = candidates_for(res, depicts_fn, info_fn)
         result["attempts"].extend(atts)
         if cand:
@@ -533,7 +953,8 @@ def _inline_roles(article):
 
 
 def inline_decide(article, resolver=None, depicts_fn=None,
-                  info_fn=_UNSET, write_log=True, log_path=None,
+                  info_fn=_UNSET, evidence_fn=_UNSET,
+                  write_log=True, log_path=None,
                   hero=None):
     """What the new path would place as this article's INLINES.
     Shadow only — see module docstring.
@@ -558,10 +979,13 @@ def inline_decide(article, resolver=None, depicts_fn=None,
         depicts_fn = er.depicts_candidates
     if info_fn is _UNSET:
         info_fn = p18_info
+    if evidence_fn is _UNSET:
+        evidence_fn = file_evidence
     slug = article.get("slug") if isinstance(article, dict) else None
     if hero is None:
         hero = decide(article, resolver=resolver,
                       depicts_fn=depicts_fn, info_fn=info_fn,
+                      evidence_fn=evidence_fn,
                       write_log=False)
     used_keys = set()
     if hero.get("file_key"):
