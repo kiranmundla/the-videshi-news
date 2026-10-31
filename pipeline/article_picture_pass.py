@@ -1721,22 +1721,123 @@ def _body_image_urls(body):
     return urls
 
 
+def _wikimedia_file_key(text):
+    """Canonical identity of a Wikimedia Commons file from
+    any of its surface forms: a 'File:' title, the original
+    upload URL, a thumb URL at any width, any of them with
+    tracking query params (the Commons API appends
+    ?utm_source=... to the URLs it returns). Returns a
+    normalized 'name.ext' key, or None when the text does
+    not resolve to a filename. Duplicate detection must
+    compare THESE keys, never raw URL strings: the same
+    file reaches an article body as an original in one run
+    and as a 1920px thumb in another, and exact-string
+    comparison waves the second copy through."""
+    if not text:
+        return None
+    t = urllib.parse.unquote(str(text))
+    t = t.split("?")[0].split("#")[0].strip()
+    if "/" in t:
+        t = t.rsplit("/", 1)[-1]
+    t = re.sub(r"^\d+px-", "", t)  # thumb rendition prefix
+    t = re.sub(r"^file:", "", t, flags=re.IGNORECASE)
+    t = re.sub(r"\s+", " ", t.replace("_", " ")).strip().lower()
+    if "." not in t:
+        return None
+    return t
+
+
+def _file_stem_slug(text):
+    """Alnum-only stem slug of a file title/URL — the form
+    a self-hosted storage filename embeds (the
+    self-compress path names its upload slugify(article +
+    Commons title) + '-web.jpg'), so a Commons candidate
+    can still be recognised when an earlier run served it
+    from Supabase Storage instead of upload.wikimedia.org."""
+    if not text:
+        return ""
+    t = urllib.parse.unquote(str(text))
+    t = t.split("?")[0].split("#")[0].strip()
+    if "/" in t:
+        t = t.rsplit("/", 1)[-1]
+    t = re.sub(r"^\d+px-", "", t)
+    t = re.sub(r"^file:", "", t, flags=re.IGNORECASE)
+    stem = t.rsplit(".", 1)[0] if "." in t else t
+    return re.sub(r"[^a-z0-9]", "", stem.lower())
+
+
+def _same_file(candidate_texts, used_keys, used_slugs):
+    """True when any candidate text names a file already
+    in the used sets — by canonical Wikimedia key, or by
+    stem-slug containment against the SELF-HOSTED forms in
+    used_slugs (those are collected only from
+    non-Wikimedia URLs, whose filenames embed the
+    slugified Commons title; Wikimedia-to-Wikimedia
+    sameness is exact via the key, so containment is
+    never needed there and cannot false-positive on
+    prefix-related filenames). The candidate slug must
+    be long enough for containment to be meaningful."""
+    for t in candidate_texts:
+        k = _wikimedia_file_key(t)
+        if k and k in used_keys:
+            return True
+        s = _file_stem_slug(t)
+        if len(s) >= 18 and any(s in u for u in used_slugs):
+            return True
+    return False
+
+
 def _source_inlines(article, entities, hint, net, want, seen_titles,
                     rec, log, hero_url=None, hero_pick=None,
                     exclude_urls=frozenset()):
     """Inline sourcing: at most one pick per entity, distinct
     files, never the hero's file, never a file already in the
-    body or already picked as an inline, inline floors."""
+    body or already picked as an inline, inline floors.
+    Sameness is judged by canonical file identity (see
+    _wikimedia_file_key), not raw URL strings — the
+    2026-10-26 IOB article carried the same Commons file
+    twice because one run's original-URL figure was
+    invisible to the next run's comparison, and a hero
+    served as a thumb can still be re-picked as an inline
+    in its original form."""
     slug = article.get("slug") or "article"
     picks = []
     used_entities = {}
-    hero_files = set()
-    if hero_url:
-        hero_files.add(hero_url)
-    if hero_pick:
-        hero_files.add(hero_pick["file_url"])
-        hero_files.add(hero_pick["title"])
     used_urls = set(exclude_urls)
+    hero_exact = set()
+    if hero_url:
+        hero_exact.add(hero_url)
+    if hero_pick:
+        hero_exact.add(hero_pick["file_url"])
+        hero_exact.add(hero_pick["title"])
+    used_keys, used_slugs = set(), set()
+
+    def _note_used(text):
+        if not text:
+            return
+        k = _wikimedia_file_key(text)
+        if k:
+            used_keys.add(k)
+        # Stem slugs are collected only from self-hosted
+        # storage URLs (never from 'File:' titles or
+        # Wikimedia URLs — title-to-title sameness is
+        # exact via the canonical key). See _same_file.
+        if "://" in str(text) and \
+                "wikimedia.org" not in str(text):
+            s = _file_stem_slug(text)
+            if s:
+                used_slugs.add(s)
+
+    for u in exclude_urls:
+        _note_used(u)
+    if hero_url:
+        used_urls.add(hero_url)
+        _note_used(hero_url)
+    if hero_pick:
+        used_urls.add(hero_pick["file_url"])
+        used_urls.add(hero_pick["title"])
+        _note_used(hero_pick["file_url"])
+        _note_used(hero_pick["title"])
     for rec_e in entities:
         if len(picks) >= want:
             break
@@ -1749,18 +1850,23 @@ def _source_inlines(article, entities, hint, net, want, seen_titles,
             all_entities=entities)
         rec["ledger"].extend(rows)
         for c in cands:
-            if c["file_url"] in hero_files or \
-                    c["title"] in hero_files:
+            if c["file_url"] in hero_exact or \
+                    c["title"] in hero_exact:
                 continue
-            if c["file_url"] in used_urls:
+            if c["file_url"] in used_urls or \
+                    _same_file((c["title"], c["file_url"]),
+                               used_keys, used_slugs):
                 rec["ledger"].append(
                     {"candidate": c["title"], "route": c["route"],
                      "entity": c["entity"], "verdict": "rejected",
                      "reason": "duplicate: this file is already "
-                               "in the article body or was "
-                               "already picked as an inline — "
-                               "never illustrate one article "
-                               "twice with the same picture"})
+                               "in the article body, is the "
+                               "article's hero, or was already "
+                               "picked as an inline (matched by "
+                               "canonical file identity, not "
+                               "the raw URL) — never illustrate "
+                               "one article twice with the "
+                               "same picture"})
                 continue
             if _verify_pick(c, net, DOWNLOAD_DIR, slug, log,
                             min_w=INLINE_MIN_W,
@@ -1772,6 +1878,8 @@ def _source_inlines(article, entities, hint, net, want, seen_titles,
                 continue
             picks.append(c)
             used_urls.add(c["file_url"])
+            _note_used(c["title"])
+            _note_used(c["file_url"])
             used_entities[rec_e["name"]] = 1
             break
     return picks

@@ -462,6 +462,195 @@ picks_dup2 = P._source_inlines(
 check_eq("a file already in the body is never re-added",
          picks_dup2, [])
 
+# ── E. IOB felicitation photos (2026-10-26 root-cause fix) ─────────
+# The IOB earnings story (a COMPANY story) shipped with two
+# self-published CC0 ceremony photos of its CEO Ajay Kumar
+# Srivastava with UP politicians — the Maurya file as hero,
+# the Yogi file TWICE as inlines. Two systemic holes:
+#   1. The person namesake gate's agreement was satisfied by
+#      the markets-finance domain token 'chief' matching
+#      'Chief Minister' / 'Deputy Chief Minister' in the
+#      files' descriptions — a political office falsely
+#      'agreeing' with a banking story. mask_title_phrases
+#      now masks the phrase (shared gate module: the reel
+#      sourcer is fixed by the same change).
+#   2. Inline dedup compared raw URL strings; the same
+#      Commons file in a different URL form (original with
+#      utm params vs 1920px thumb vs self-hosted storage
+#      URL) was invisible to it. Dedup now compares
+#      canonical file identity.
+# Fixtures below use the files' REAL Commons metadata
+# (fetched 2026-10-30): titles, dimensions, descriptions,
+# categories, licenses.
+print("IOB felicitation-photo regressions")
+import re as _re_iob
+G = P._SHARED_GATES
+
+
+def _toks(text):
+    return set(_re_iob.findall(r"[a-z]+", (text or "").lower()))
+
+
+check("'Chief Minister' no longer yields a bare 'chief'",
+      "chief" not in _toks(G.mask_title_phrases(
+          "Hon. Chief Minister of Uttar Pradesh")))
+check("'Deputy Chief Minister' is masked too",
+      "chief" not in _toks(G.mask_title_phrases(
+          "with Deputy Chief Minister of Uttar Pradesh")))
+check("'chief minister' becomes 'minister' (multi-domain, "
+      "cannot agree or contradict alone)",
+      "minister" in _toks(G.mask_title_phrases(
+          "Chief Minister")))
+check("a bare 'chief' (fund chief) still registers",
+      "chief" in _toks(G.mask_title_phrases(
+          "the fund chief spoke")))
+check("'Chief Executive Officer' still masks to 'executive'",
+      "chief" not in _toks(G.mask_title_phrases(
+          "Chief Executive Officer"))
+      and "executive" in _toks(G.mask_title_phrases(
+          "Chief Executive Officer")))
+
+IOB_ART = {
+    "headline": "Indian Overseas Bank Profit Jumps 56% as It "
+                "Targets $500 Million Fundraise",
+    "body": "<p>Indian Overseas Bank's profit surged. "
+            "Managing Director and CEO Ajay Kumar "
+            "Srivastava said the bank targets a $500 "
+            "million fundraise.</p>",
+    "category": "markets-finance",
+    "slug": "indian-overseas-bank-profit-jumps-56-targets-"
+            "500-million",
+}
+IOB_ENTS = [
+    {"name": "Indian Overseas Bank", "kind": "org/place",
+     "source": "headline", "sourceable": True},
+    {"name": "Ajay Kumar Srivastava", "kind": "person",
+     "source": "body", "sourceable": True},
+]
+SRIV_CTX = P._person_context_terms(
+    IOB_ART, "Ajay Kumar Srivastava", all_entities=IOB_ENTS)
+check("the trap is real: the story's person context does "
+      "contain the domain token 'chief'",
+      "chief" in SRIV_CTX)
+_FELICITATION_CATS = (
+    "CC-Zero|Self-published work|All media needing "
+    "categories as of 2026|Media needing categories as of "
+    "25 July 2026")
+YOGI_PAGE = commons_page(
+    "File:Ajay Kumar Srivastava and hon. Yogi "
+    "Adityanath.jpg", 1077, 1129, license_short="CC0",
+    desc="Hon. Chief Minister of Uttar Pradesh with Ajay "
+         "Kumar Srivastava",
+    cats=_FELICITATION_CATS, artist="Ajay Srivastava.2026")
+MAURYA_PAGE = commons_page(
+    "File:Ajay Kumar Srivastava and Keshav Prasad "
+    "Maurya.jpg", 1348, 758, license_short="CC0",
+    desc="Ajay Kumar srivastava with Deputy Chief "
+         "Minister of Uttar Pradesh",
+    cats=_FELICITATION_CATS, artist="Ajay Srivastava.2026")
+for _page, _label in ((YOGI_PAGE, "Yogi"), (MAURYA_PAGE,
+                                          "Maurya")):
+    cand, row = P.evaluate_article_candidate(
+        _page, "Ajay Kumar Srivastava",
+        "A — Wikimedia Commons", P.INLINE_MIN_W,
+        P.INLINE_MIN_H, hint_terms=frozenset(),
+        entity_kind="person", person_context=SRIV_CTX,
+        person_domain="markets-finance")
+    check(f"{_label} felicitation photo REJECTED as an "
+          "inline for the bank-earnings story",
+          cand is None
+          and "namesake guard" in row.get("reason", ""),
+          row.get("reason", ""))
+cand, row = P.evaluate_article_candidate(
+    MAURYA_PAGE, "Ajay Kumar Srivastava",
+    "A — Wikimedia Commons", 1200, P.HERO_MIN_H,
+    hint_terms=frozenset(), entity_kind="person",
+    person_context=SRIV_CTX, person_domain="markets-finance")
+check("Maurya felicitation photo REJECTED at hero floors "
+      "too (gate-level; the subject gate is a second wall)",
+      cand is None
+      and "namesake guard" in row.get("reason", ""),
+      row.get("reason", ""))
+BANKER_PAGE = commons_page(
+    "File:Ajay Kumar Srivastava at Indian Overseas Bank "
+    "headquarters.jpg", 2400, 1500,
+    desc="Ajay Kumar Srivastava, the bank's chief "
+         "executive and a career banker, at the Indian "
+         "Overseas Bank headquarters in Chennai.",
+    cats="Ajay Kumar Srivastava|Indian Overseas Bank")
+cand, row = P.evaluate_article_candidate(
+    BANKER_PAGE, "Ajay Kumar Srivastava",
+    "A — Wikimedia Commons", P.INLINE_MIN_W,
+    P.INLINE_MIN_H, hint_terms=frozenset(),
+    entity_kind="person", person_context=SRIV_CTX,
+    person_domain="markets-finance")
+check("a genuine bank-context photo of the same CEO is "
+      "still ACCEPTED (agreement via the story's own "
+      "vocabulary, not the political title)",
+      cand is not None, row.get("reason", ""))
+
+# Canonical-identity dedup: the same file in another URL
+# form must read as the same file.
+_LEMELLE_ORIG = (
+    "https://upload.wikimedia.org/wikipedia/commons/6/63/"
+    "Indian_Overseas_Bank_at_Lemelle.jpg"
+    "?utm_source=commons.wikimedia.org"
+    "&utm_campaign=imageinfo&utm_content=original")
+_LEMELLE_THUMB = (
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/"
+    "6/63/Indian_Overseas_Bank_at_Lemelle.jpg/"
+    "1920px-Indian_Overseas_Bank_at_Lemelle.jpg")
+_LEMELLE_STORAGE = (
+    "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/"
+    "object/public/article-images/indian-overseas-bank-"
+    "profit-jumps-56-targets-500-million-indian-overseas-"
+    "bank-at-lemelle-web.jpg")
+check_eq("file key: API original with utm params",
+         P._wikimedia_file_key(_LEMELLE_ORIG),
+         "indian overseas bank at lemelle.jpg")
+check_eq("file key: 1920px thumb form is the same file",
+         P._wikimedia_file_key(_LEMELLE_THUMB),
+         "indian overseas bank at lemelle.jpg")
+check_eq("file key: the Commons title is the same file",
+         P._wikimedia_file_key(
+             "File:Indian Overseas Bank at Lemelle.jpg"),
+         "indian overseas bank at lemelle.jpg")
+LEMELLE_PAGE = commons_page(
+    "File:Indian Overseas Bank at Lemelle.jpg", 5969, 3979,
+    url=_LEMELLE_ORIG,
+    desc="Image of Indian Overseas Bank, Lemelle branch — "
+         "the bank's profit centre for its overseas "
+         "fundraise business.",
+    cats="Indian Overseas Bank|Bank branches in India")
+_IOB_ORG_ENTS = IOB_ENTS[:1]
+for _label, _kwargs in (
+        ("thumb form already in the body",
+         {"exclude_urls": frozenset({_LEMELLE_THUMB})}),
+        ("self-hosted storage form already in the body",
+         {"exclude_urls": frozenset({_LEMELLE_STORAGE})}),
+        ("the file is the article's hero (thumb form)",
+         {"hero_url": _LEMELLE_THUMB})):
+    net_iob, _c = stub_net(pages_by_query={
+        "Indian Overseas Bank": [LEMELLE_PAGE]})
+    rec_iob = {"ledger": [], "notes": []}
+    picks_iob = P._source_inlines(
+        IOB_ART, _IOB_ORG_ENTS, "", net_iob, 2, set(),
+        rec_iob, lambda *a: None, **_kwargs)
+    check_eq(f"duplicate by identity, not URL string: "
+             f"{_label}", picks_iob, [])
+    check(f"the identity-duplicate rejection is ledgered "
+          f"({_label})",
+          any("duplicate" in r.get("reason", "")
+              for r in rec_iob["ledger"]))
+net_iob, _c = stub_net(pages_by_query={
+    "Indian Overseas Bank": [LEMELLE_PAGE]})
+rec_iob = {"ledger": [], "notes": []}
+picks_iob = P._source_inlines(
+    IOB_ART, _IOB_ORG_ENTS, "", net_iob, 2, set(), rec_iob,
+    lambda *a: None)
+check_eq("the same candidate IS picked when the article "
+         "does not already carry it", len(picks_iob), 1)
+
 print()
 if FAILS:
     print(f"FAILED: {len(FAILS)} check(s): {FAILS}")

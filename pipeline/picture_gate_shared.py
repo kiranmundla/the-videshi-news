@@ -113,7 +113,9 @@ def ctx_token_match(hint_tok, ev_tokens):
 
 
 _TITLE_PHRASE_RE = re.compile(r"\bchief executive"
-                              r"(?: officer)?\b")
+                              r"(?: officer)?\b", re.IGNORECASE)
+_CHIEF_MINISTER_RE = re.compile(r"\bchief minister\b",
+                                re.IGNORECASE)
 
 
 def mask_title_phrases(text):
@@ -126,8 +128,27 @@ def mask_title_phrases(text):
     executive' as a markets-finance marker and rejects the
     story's own CEO on a technology story. The phrase is
     replaced by 'executive', so context agreement on the
-    title still registers."""
-    return _TITLE_PHRASE_RE.sub("executive", text or "")
+    title still registers.
+
+    'Chief Minister' (and 'Deputy Chief Minister') is the
+    mirror-image trap on the AGREEMENT side: it is a
+    POLITICAL office (news domain), but its bare 'chief'
+    token satisfies the markets-finance domain vocabulary
+    ('chief' as in fund chief / chief economist). Without
+    the mask, a political felicitation photo of a bank CEO
+    — '...with Deputy Chief Minister of Uttar Pradesh' —
+    'agrees' with an earnings story's context on the word
+    'chief' alone and passes the person namesake gate
+    (2026-10-26: the IOB earnings story shipped two such
+    self-published ceremony photos of its CEO as hero +
+    inlines). The phrase is replaced by 'minister' — a
+    token three domains share, so it can neither agree
+    with a single domain nor contradict one. Matching is
+    case-insensitive: file descriptions capitalise both
+    phrases, and the un-masked capitals were exactly how
+    the 2026-10-26 files slipped through."""
+    t = _TITLE_PHRASE_RE.sub("executive", text or "")
+    return _CHIEF_MINISTER_RE.sub("minister", t)
 
 
 def domain_contradiction_markers(story_domain):
