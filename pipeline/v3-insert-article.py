@@ -168,6 +168,17 @@ def main():
               "claim against the sources.", file=sys.stderr)
         sys.exit(2)
 
+    # Rung 0 intent (image rebuild, 2026-10-30): state what the
+    # article's image must show, at insert, in the schema's intent
+    # columns. Writer-supplied values win; derivation fills gaps.
+    # Records only — never holds or alters the article. See
+    # pipeline/image_ledger.py.
+    try:
+        import image_ledger
+        _intent = image_ledger.intent_columns(article)
+    except Exception:
+        _intent = {}
+
     now = datetime.now(timezone.utc).isoformat()
 
     # Insert article
@@ -183,6 +194,9 @@ def main():
         'image_url': article.get('image_url') or None,
         'image_caption': article.get('image_caption', ''),
         'image_attribution': article.get('image_attribution', ''),
+        'image_entities': _intent.get('image_entities'),
+        'image_must_show': _intent.get('image_must_show'),
+        'image_search_query': _intent.get('image_search_query'),
         'word_count': article.get('word_count', 0),
         'diaspora_angle': article.get('diaspora_angle', ''),
         'llm_score': article.get('llm_score', 0),
@@ -199,7 +213,21 @@ def main():
         article_id = result[0]['id'] if isinstance(result, list) else result['id']
         print(f"✅ Article inserted: {article['headline']}")
         print(f"   ID: {article_id}")
-        
+
+        # Rung 0 provenance: a writer-supplied hero is a placement.
+        if article.get('image_url'):
+            try:
+                import image_ledger
+                image_ledger.record_provenance(
+                    article_id=article_id, slug=article.get('slug'),
+                    surface="hero", producer="v3-insert-article",
+                    source_route=image_ledger.route_for_url(
+                        article['image_url']),
+                    image_url=article['image_url'],
+                    attribution=article.get('image_attribution'))
+            except Exception:
+                pass
+
         # Update topic status
         if article.get('topic_id'):
             topic_path = f"p2_topics?id=eq.{article['topic_id']}"

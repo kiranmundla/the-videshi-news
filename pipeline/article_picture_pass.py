@@ -1300,6 +1300,7 @@ def _provenance(cand, verified_size=None):
         "entity": cand["entity"],
         "title": cand["title"],
         "file_url": cand["file_url"],
+        "original_file_url": cand.get("original_file_url"),
         "source_page": cand["source_page"],
         "license": cand["license"],
         "attribution": cand["attribution"],
@@ -1309,6 +1310,57 @@ def _provenance(cand, verified_size=None):
         "depicts": cand["entity"],
         "verified_how": cand["verification"],
     }
+
+
+# ── Rung 0 provenance writes (records only — image_ledger.py) ────
+def _ledger_hero(article, cand, replaced_url):
+    """Record a hero placement this pass just applied; a replaced
+    hero gets a removal event first so its history is preserved."""
+    try:
+        import image_ledger
+        if replaced_url and replaced_url != cand["file_url"]:
+            image_ledger.record_removal(
+                article_id=article.get("id"), slug=article.get("slug"),
+                surface="hero", removed_url=replaced_url,
+                producer="article_picture_pass",
+                reason="replaced by picture-pass hero pick")
+        image_ledger.record_provenance(
+            article_id=article.get("id"), slug=article.get("slug"),
+            surface="hero", producer="article_picture_pass",
+            source_route=image_ledger.route_from_picture_pass(
+                cand.get("route")),
+            image_url=cand["file_url"],
+            source_page_url=cand.get("source_page"),
+            original_file_url=cand.get("original_file_url"),
+            license_text=cand.get("license"),
+            attribution=cand.get("attribution"),
+            entity=cand.get("entity"),
+            extra={"title": cand.get("title"),
+                   "verified_how": cand.get("verification")})
+    except Exception:
+        pass
+
+
+def _ledger_inlines(article, proposed):
+    """Record each inline placement this pass just applied."""
+    try:
+        import image_ledger
+        for p in proposed:
+            image_ledger.record_provenance(
+                article_id=article.get("id"), slug=article.get("slug"),
+                surface="inline", producer="article_picture_pass",
+                source_route=image_ledger.route_from_picture_pass(
+                    p.get("route")),
+                image_url=p.get("file_url"),
+                source_page_url=p.get("source_page"),
+                original_file_url=p.get("original_file_url"),
+                license_text=p.get("license"),
+                attribution=p.get("attribution"),
+                entity=p.get("entity"),
+                extra={"title": p.get("title"),
+                       "verified_how": p.get("verified_how")})
+    except Exception:
+        pass
 
 
 def process_article(article, net=None, apply=False, log=print,
@@ -1424,11 +1476,13 @@ def process_article(article, net=None, apply=False, log=print,
             }
             if patch_fn(article["id"], payload):
                 rec["applied"].append("hero")
+                _ledger_hero(article, hero_pick, hero_url)
         if rec.get("_proposed_body") and \
                 rec["_proposed_body"] != body:
             if patch_fn(article["id"],
                         {"body": rec["_proposed_body"]}):
                 rec["applied"].append("body-inlines")
+                _ledger_inlines(article, rec["inlines"]["proposed"])
     # The proposed body is a working string, never report data.
     rec.pop("_proposed_body", None)
     return rec
@@ -1537,6 +1591,9 @@ def _verify_pick(cand, net, download_dir, slug, log,
         log(f"    ⇓ {cand['title'][:50]}: self-compressed "
             f"{cand['oversize_original']} -> {len(data)} bytes "
             f"({new_size[0]}x{new_size[1]}), self-hosted")
+        # Rung 0: remember the pre-swap original for the provenance
+        # ledger (records only — see image_ledger.py).
+        cand.setdefault("original_file_url", cand["file_url"])
         cand["file_url"] = stored_url
         cand["size"] = new_size
         cand["serve_variant"] = True

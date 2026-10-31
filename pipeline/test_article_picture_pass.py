@@ -16,12 +16,21 @@ All network is stubbed. Run:
   python3 test_article_picture_pass.py   (exit 0 = all pass)
 """
 import json
+import os
 import sys
 import tempfile
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import article_picture_pass as P
+
+# Rung 0 (2026-10-30): the apply-path test below exercises the
+# picture pass's provenance-ledger writes — isolate them to a
+# throwaway ledger so fixture records never land in the real one
+# (pipeline/.state/image-provenance.jsonl).
+os.environ["IMAGE_LEDGER_PATH"] = str(
+    Path(tempfile.mkdtemp(prefix="app-test-ledger-"))
+    / "ledger.jsonl")
 
 FAILS = []
 

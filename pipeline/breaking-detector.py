@@ -515,10 +515,31 @@ def insert_article(article):
         print(f"  🚫 HELD by ≥2-source gate — NOT inserted: "
               f"{article.get('headline', '')[:70]} — {_gate_reason}")
         return None
+    # Rung 0 intent (image rebuild, 2026-10-30) — records only.
+    # See image_ledger.py.
+    try:
+        import image_ledger
+        for _k, _v in image_ledger.intent_columns(article).items():
+            article[_k] = _v
+    except Exception:
+        pass
     url = f"{SUPABASE_URL}/rest/v1/p2_articles"
     result = curl_json(url, method="POST", data=article, headers=HEADERS, timeout=30)
     if result and isinstance(result, list) and result:
         print(f"  ✓ Inserted: {result[0].get('slug', 'unknown')}")
+        if article.get("image_url"):
+            try:
+                import image_ledger
+                image_ledger.record_provenance(
+                    article_id=result[0].get('id'),
+                    slug=article.get('slug'), surface="hero",
+                    producer="breaking-detector",
+                    source_route=image_ledger.route_for_url(
+                        article["image_url"]),
+                    image_url=article["image_url"],
+                    attribution=article.get("image_attribution"))
+            except Exception:
+                pass
         return result[0]
     elif result and isinstance(result, dict) and result.get("slug"):
         print(f"  ✓ Inserted: {result.get('slug', 'unknown')}")

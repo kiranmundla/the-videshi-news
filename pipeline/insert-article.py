@@ -35,6 +35,15 @@ def main():
             print(f"   - {_f}", file=sys.stderr)
         sys.exit(2)
 
+    # Rung 0 intent (image rebuild, 2026-10-30) — same rule as
+    # v3-insert-article.py. Records only. See image_ledger.py.
+    try:
+        import image_ledger
+        for _k, _v in image_ledger.intent_columns(article).items():
+            article[_k] = _v
+    except Exception:
+        pass
+
     # Set defaults
     article.setdefault('vertical', article['category'])
     article.setdefault('image_url', None)
@@ -68,6 +77,19 @@ def main():
         if isinstance(resp, list) and len(resp) > 0:
             art = resp[0]
             print(f"SUCCESS: id={art['id']} slug={art['slug']} headline={art['headline']}")
+            # Rung 0 provenance: a writer-supplied hero is a placement.
+            if article.get('image_url'):
+                try:
+                    import image_ledger
+                    image_ledger.record_provenance(
+                        article_id=art['id'], slug=article.get('slug'),
+                        surface="hero", producer="insert-article",
+                        source_route=image_ledger.route_for_url(
+                            article['image_url']),
+                        image_url=article['image_url'],
+                        attribution=article.get('image_attribution'))
+                except Exception:
+                    pass
             # Write ID to a sidecar file
             with open(path + '.id', 'w') as f:
                 f.write(art['id'])

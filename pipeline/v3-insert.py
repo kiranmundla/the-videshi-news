@@ -63,9 +63,17 @@ def main():
             print(f"   - {_f}")
         sys.exit(2)
 
+    # Rung 0 intent (image rebuild, 2026-10-30) — same rule as
+    # v3-insert-article.py. Records only. See image_ledger.py.
+    try:
+        import image_ledger
+        _intent = image_ledger.intent_columns(article)
+    except Exception:
+        _intent = {}
+
     from datetime import datetime, timezone
     now = datetime.now(timezone.utc).isoformat()
-    
+
     insert_data = {
         'headline': article['headline'],
         'subheadline': article['subheadline'],
@@ -78,6 +86,9 @@ def main():
         'image_url': article.get('image_url', ''),
         'image_caption': article.get('image_caption', ''),
         'image_attribution': article.get('image_attribution', ''),
+        'image_entities': _intent.get('image_entities'),
+        'image_must_show': _intent.get('image_must_show'),
+        'image_search_query': _intent.get('image_search_query'),
         'word_count': article.get('word_count', 0),
         'diaspora_angle': article.get('diaspora_angle', ''),
         'topic_id': article.get('topic_id', ''),
@@ -91,7 +102,21 @@ def main():
         aid = result[0]['id'] if isinstance(result, list) else result['id']
         print(f"OK Article inserted: {article['headline'][:70]}")
         print(f"   ID: {aid}")
-        
+
+        # Rung 0 provenance: a writer-supplied hero is a placement.
+        if article.get('image_url'):
+            try:
+                import image_ledger
+                image_ledger.record_provenance(
+                    article_id=aid, slug=article.get('slug'),
+                    surface="hero", producer="v3-insert",
+                    source_route=image_ledger.route_for_url(
+                        article['image_url']),
+                    image_url=article['image_url'],
+                    attribution=article.get('image_attribution'))
+            except Exception:
+                pass
+
         if article.get('topic_id'):
             supabase_patch_curl(
                 f"p2_topics?id=eq.{article['topic_id']}",

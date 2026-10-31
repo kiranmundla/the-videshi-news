@@ -226,11 +226,21 @@ def process_article(article):
     image_url = None
     image_caption = article.get("image_caption", "")
     image_attribution = article.get("image_attribution", "")
-    
+    # Rung 0 provenance tracking (records only — see image_ledger.py):
+    # which route produced the hero, and the pre-upload original URL.
+    _prov_route = None
+    _prov_original = None
+
     # Writer-supplied image (e.g. official YouTube thumbnail for trailer drops).
     # Still goes through download+upload below; sourcing steps are skipped.
     if article.get("image_url"):
         image_url = article["image_url"]
+        _prov_original = image_url
+        try:
+            import image_ledger
+            _prov_route = image_ledger.route_for_url(image_url)
+        except Exception:
+            _prov_route = "other"
         print(f"  Image: pre-set by writer ({image_url[:70]})")
 
     # Try person_images first
@@ -238,6 +248,8 @@ def process_article(article):
         pi = search_person_image(person)
         if pi:
             image_url = pi["image_url"]
+            _prov_route = "person_profile"
+            _prov_original = image_url
             image_attribution = pi.get("attribution", f"Photo of {person}")
             print(f"  Image: person_images hit for '{person}'")
             # Update use count
@@ -253,6 +265,8 @@ def process_article(article):
             wiki_url, wiki_title = search_wikipedia_image(term)
             if wiki_url:
                 image_url = wiki_url
+                _prov_route = "wikimedia"
+                _prov_original = wiki_url
                 image_attribution = f"Wikimedia Commons"
                 print(f"  Image: Wikipedia hit for '{term}'")
                 break
@@ -263,6 +277,8 @@ def process_article(article):
             pexels_url, photographer = search_pexels(query)
             if pexels_url:
                 image_url = pexels_url
+                _prov_route = "pexels"
+                _prov_original = pexels_url
                 image_attribution = f"Photo by {photographer} / Pexels"
                 print(f"  Image: Pexels hit for '{query}'")
                 break
@@ -286,6 +302,14 @@ def process_article(article):
     # Calculate word count
     wc = count_words(article["body"])
     
+    # Rung 0 intent (image rebuild, 2026-10-30) — records only.
+    # See image_ledger.py.
+    try:
+        import image_ledger
+        _intent = image_ledger.intent_columns(article)
+    except Exception:
+        _intent = {}
+
     # Insert article
     now_iso = datetime.now(timezone.utc).isoformat()
     row = {
@@ -301,6 +325,9 @@ def process_article(article):
         "image_url": image_url,
         "image_caption": image_caption,
         "image_attribution": image_attribution,
+        "image_entities": _intent.get("image_entities"),
+        "image_must_show": _intent.get("image_must_show"),
+        "image_search_query": _intent.get("image_search_query"),
         "word_count": wc,
         "diaspora_angle": article.get("diaspora_angle", ""),
         "topic_id": article.get("topic_id"),
@@ -316,7 +343,20 @@ def process_article(article):
     
     article_id = result.get("id")
     print(f"  Inserted: id={article_id}, {wc} words")
-    
+
+    # Rung 0 provenance for this path's own hero sourcing.
+    if image_url:
+        try:
+            import image_ledger
+            image_ledger.record_provenance(
+                article_id=article_id, slug=slug, surface="hero",
+                producer="v3-batch-insert",
+                source_route=_prov_route or "other",
+                image_url=image_url, original_file_url=_prov_original,
+                attribution=image_attribution)
+        except Exception:
+            pass
+
     # Update topic status
     if article.get("topic_id"):
         sb_patch(f"p2_topics?id=eq.{article['topic_id']}", {

@@ -3632,6 +3632,21 @@ if __name__ == "__main__":
                     try:
                         if _patch_article_and_verify(f"slug=eq.{args.slug}", patch):
                             print("  DB update: ✅ confirmed (1 row updated)")
+                            # Rung 0 provenance (records only — see
+                            # image_ledger.py).
+                            try:
+                                import image_ledger
+                                _route = image_ledger.route_from_sourcer_name(src_name)
+                                image_ledger.record_provenance(
+                                    article_id=article.get("id"),
+                                    slug=args.slug, surface="hero",
+                                    producer="image_sourcer",
+                                    source_route=_route,
+                                    image_url=url,
+                                    source_page_url=image_ledger.commons_file_page_url(url),
+                                    attribution=attr)
+                            except Exception:
+                                pass
                         else:
                             print("  DB update: ⚠ PATCH matched no rows — image NOT saved")
                     finally:
@@ -3690,6 +3705,22 @@ if __name__ == "__main__":
                             if _patch_article_and_verify(f"id=eq.{article['id']}", patch):
                                 fixed += 1
                                 print(f"    ✅ DB updated")
+                                # Rung 0 provenance (records only —
+                                # see image_ledger.py).
+                                try:
+                                    import image_ledger
+                                    _route = image_ledger.route_from_sourcer_name(_src)
+                                    image_ledger.record_provenance(
+                                        article_id=article.get('id'),
+                                        slug=article.get('slug'),
+                                        surface="hero",
+                                        producer="image_sourcer",
+                                        source_route=_route,
+                                        image_url=url,
+                                        source_page_url=image_ledger.commons_file_page_url(url),
+                                        attribution=attr)
+                                except Exception:
+                                    pass
                             else:
                                 failed += 1
                                 print(f"    ⚠ PATCH matched no rows — image NOT saved")

@@ -1805,6 +1805,35 @@ def main():
                     updates["image_caption"] = hero_upgrade["caption"]
                 if sb_patch(article["id"], updates):
                     print(f"     ✅ Applied: {change_desc}")
+                    # Rung 0 provenance (records only — see
+                    # image_ledger.py): the X-photo hero upgrade is
+                    # a placement; the stock hero it replaced gets
+                    # a removal event so its history is preserved.
+                    if hero_upgrade:
+                        try:
+                            import image_ledger
+                            image_ledger.record_removal(
+                                article_id=article["id"],
+                                slug=article.get("slug"),
+                                surface="hero",
+                                removed_url=hero_upgrade.get("old_hero"),
+                                producer="enrich-on-publish",
+                                reason="replaced by X-photo hero upgrade")
+                            image_ledger.record_provenance(
+                                article_id=article["id"],
+                                slug=article.get("slug"),
+                                surface="hero",
+                                producer="enrich-on-publish",
+                                source_route="other",
+                                image_url=hero_upgrade["new_hero"],
+                                original_file_url=hero_upgrade.get(
+                                    "source_photo"),
+                                attribution=hero_upgrade.get("caption"),
+                                extra={"detail": "x_photo",
+                                       "source_handle": hero_upgrade.get(
+                                           "source_handle")})
+                        except Exception:
+                            pass
                 else:
                     print(f"     ❌ Patch failed")
             else:

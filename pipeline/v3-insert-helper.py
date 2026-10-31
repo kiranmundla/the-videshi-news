@@ -65,8 +65,31 @@ def insert_article(article_data):
             for _f in _content_failures:
                 print(f"   - {_f}")
             return None
+    # Rung 0 intent (image rebuild, 2026-10-30) — same rule as
+    # v3-insert-article.py; applies to drafts too (records only).
+    # See image_ledger.py.
+    try:
+        import image_ledger
+        for _k, _v in image_ledger.intent_columns(article_data).items():
+            article_data[_k] = _v
+    except Exception:
+        pass
     result = supabase_req("POST", "/rest/v1/p2_articles", article_data)
     if result and isinstance(result, list) and len(result) > 0:
+        # Rung 0 provenance: a writer-supplied hero is a placement.
+        if article_data.get("image_url"):
+            try:
+                import image_ledger
+                image_ledger.record_provenance(
+                    article_id=result[0].get("id"),
+                    slug=article_data.get("slug"), surface="hero",
+                    producer="v3-insert-helper",
+                    source_route=image_ledger.route_for_url(
+                        article_data["image_url"]),
+                    image_url=article_data["image_url"],
+                    attribution=article_data.get("image_attribution"))
+            except Exception:
+                pass
         return result[0]
     return result
 

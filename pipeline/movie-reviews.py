@@ -657,6 +657,15 @@ def publish_article(article_data, movie_data):
         "created_at": NOW.isoformat(),
     }
 
+    # Rung 0 intent (image rebuild, 2026-10-30) — records only.
+    # See image_ledger.py.
+    try:
+        import image_ledger
+        for _k, _v in image_ledger.intent_columns(row).items():
+            row[_k] = _v
+    except Exception:
+        pass
+
     # Remove None values
     row = {k: v for k, v in row.items() if v is not None}
 
@@ -673,6 +682,19 @@ def publish_article(article_data, movie_data):
         print(f"    ✅ Published: {headline}")
         print(f"       ID: {article_id}")
         print(f"       Slug: {slug}")
+        # Rung 0 provenance: the review poster is a placement.
+        if row.get("image_url"):
+            try:
+                import image_ledger
+                image_ledger.record_provenance(
+                    article_id=article_id, slug=slug, surface="hero",
+                    producer="movie-reviews",
+                    source_route=image_ledger.route_for_url(
+                        row["image_url"]),
+                    image_url=row["image_url"],
+                    attribution=row.get("image_caption"))
+            except Exception:
+                pass
         return article_id
     else:
         print(f"    ❌ Failed to insert: {headline}")

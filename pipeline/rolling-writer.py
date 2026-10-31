@@ -935,14 +935,38 @@ def insert_article(article):
         print(f"  🚫 HELD by ≥2-source gate — NOT inserted: "
               f"{article.get('headline', '')[:70]} — {_gate_reason}")
         return None
-    # Clean up internal fields not in DB
-    db_article = {k: v for k, v in article.items()
-                  if k not in ('image_search_query', 'image_must_show', 'image_entities')}
+    # Rung 0 intent (image rebuild, 2026-10-30): image_search_query /
+    # image_must_show / image_entities ARE p2_articles columns — the
+    # old "not in DB" cleanup below this comment discarded the
+    # writer's stated image intent on every article. Keep them, and
+    # fill any gap from headline subjects. Records only — see
+    # image_ledger.py.
+    try:
+        import image_ledger
+        for _k, _v in image_ledger.intent_columns(article).items():
+            article[_k] = _v
+    except Exception:
+        pass
+    db_article = dict(article)
 
     result = sb_rest("POST", "p2_articles", data=db_article)
     if result and isinstance(result, list) and len(result) > 0:
         art = result[0]
         print(f"  ✓ Inserted: {art.get('headline', '')[:60]} (id: {art.get('id', '?')[:8]}...)")
+        # Rung 0 provenance: the hero sourced above is a placement.
+        if db_article.get("image_url"):
+            try:
+                import image_ledger
+                image_ledger.record_provenance(
+                    article_id=art.get('id'),
+                    slug=db_article.get('slug'), surface="hero",
+                    producer="rolling-writer",
+                    source_route=image_ledger.route_for_url(
+                        db_article["image_url"]),
+                    image_url=db_article["image_url"],
+                    attribution=db_article.get("image_attribution"))
+            except Exception:
+                pass
         return art
     elif result and isinstance(result, dict):
         if 'error' in result or 'message' in result:
@@ -1142,10 +1166,10 @@ def run(dry_run=False):
             # No image — still publish, no image > wrong image
             article.pop("image_url", None)
 
-        # Clean up non-DB fields
-        article.pop("image_entities", None)
-        article.pop("image_search_query", None)
-        article.pop("image_must_show", None)
+        # Rung 0 (2026-10-30): image_entities / image_search_query /
+        # image_must_show are real p2_articles columns and carry the
+        # writer's image intent — they are no longer popped here;
+        # insert_article() writes them (see image_ledger.py).
 
         # Step 5: Insert
         inserted = insert_article(article)
