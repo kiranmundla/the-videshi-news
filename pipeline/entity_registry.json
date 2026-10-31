@@ -1,7 +1,7 @@
 {
  "version": 1,
  "generated": "2026-10-31",
- "source": "wikidata-coverage.json (169 measured entities) + failure-corpus.json traps; corrections/additions verified against the live Wikidata API 2026-10-31",
+ "source": "wikidata-coverage.json (169 measured entities) + failure-corpus.json traps; corrections/additions verified against the live Wikidata API 2026-10-31 Corpus-replay-live curation list applied 2026-10-31 (13 entries: 11 verified resolutions + Cheeni/Yulu no-identity records).",
  "entities": [
   {
    "name": "Mumbai",
@@ -3036,6 +3036,209 @@
     "ajay kumar srivastava and hon. yogi adityanath.jpg"
    ],
    "notes": "Indian Overseas Bank MD & CEO. Wrong-CONTEXT class: felicitation-ceremony photos (with UP CM Yogi Adityanath; a second with Deputy CM Keshav Prasad Maurya) were used as hero, twice as inlines, and in the reel for an earnings story (corpus #27, #100, #123) — right person, wrong occasion entirely. Blocked key is the Yogi felicitation file stripped from the article on 2026-10-30; the Maurya file's exact Commons title was not recorded. QID not captured in the seed pass."
+  },
+  {
+   "name": "NIFTY 50",
+   "aliases": [
+    "NIFTY 50",
+    "Nifty",
+    "S&P CNX Nifty",
+    "CNX Nifty"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1853402",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Curated 2026-10-31 from corpus-replay-live.json curation list (#106/#119). The item has no P18; its depicts(P180) set was verified live to contain exactly 'NIFTY 50 Returns Graph.png' (public domain). Alias 'Nifty' makes the single-token headline subject eligible — before curation the path failed closed on every Nifty story."
+  },
+  {
+   "name": "Securities and Exchange Board of India",
+   "aliases": [
+    "Securities and Exchange Board of India",
+    "SEBI"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q2615692",
+   "p18_file": "SEBI Bhavan.jpg",
+   "p18_quality": 2048,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Curated 2026-10-31 from corpus-replay-live.json curation list (#16). The curation list described this item's P18 as a logo (photo:none class); live verification 2026-10-31 shows the P18 is 'SEBI Bhavan.jpg' (2048px, CC BY-SA 3.0), visually verified as a photograph of SEBI Bhavan, the regulator's HQ building in BKC, Mumbai (facade SEBI logos visible) — precisely the corpus prescription for #16 ('a photo of SEBI headquarters, or none'). The depicts set also carries 'Securities Exchange Board of India.jpg'. Alias 'SEBI' is the item's own Wikidata alias, so the acronym resolves by construction — the unguarded live run had resolved 'SEBI' to Serbia."
+  },
+  {
+   "name": "Indian Overseas Bank",
+   "aliases": [
+    "Indian Overseas Bank",
+    "IOB"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q2003611",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Curated 2026-10-31 from corpus-replay-live.json curation list (#27/#123) — the fixed live run's verified resolution, applied deliberately. No P18; the depicts(P180) set was verified live and contains 'Indian Overseas Bank, Srirangam.jpg' (a genuine branch photo, CC BY-SA 4.0 — the corpus prescription: 'a bank/branch photo'). A second depicts file (a 2015 meeting photo) is also tagged to this QID — depicts data noise, recorded under the replay's residual risks. The MD & CEO's felicitation files are corpus-blocklisted on the Ajay Kumar Srivastava person entry, not here."
+  },
+  {
+   "name": "Nashik",
+   "aliases": [
+    "Nashik",
+    "Nasik"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q200235",
+   "p18_file": "Gandhi Talav Godavari Nashik Maharashtra (cropped).jpg",
+   "p18_quality": 8000,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Curated 2026-10-31 from corpus-replay-live.json curation list (#111). P18 is a Nashik Godavari riverfront photo (Gandhi Talav; 8000px, CC BY-SA 4.0). Before curation 'Nashik' was an unregistered single token and the story was pictured with Ahmedabad metro photos by open search."
+  },
+  {
+   "name": "Maldives",
+   "aliases": [
+    "Maldives",
+    "Republic of Maldives"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q826",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Curated 2026-10-31 from corpus-replay-live.json curation list (#117). No P18; the depicts(P180) set was verified live — atoll aerials (Baa/Raa Atoll) are topically correct for our Maldives coverage."
+  },
+  {
+   "name": "Diwali",
+   "aliases": [
+    "Diwali",
+    "Deepawali",
+    "Dipavali"
+   ],
+   "type": "event",
+   "wikidata_qid": "Q10244",
+   "p18_file": "Crackers at Diwali in Guntur.jpg",
+   "p18_quality": 4640,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Curated 2026-10-31 from corpus-replay-live.json curation list (#112/#15/#117): festival entry — makes Diwali eligible where it is a genuine headline subject. P18 4640px, CC BY-SA 4.0."
+  },
+  {
+   "name": "Delhi",
+   "aliases": [
+    "Delhi"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1353",
+   "p18_file": "Red Fort in Delhi 03-2016 img3.jpg",
+   "p18_quality": 5387,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Curated 2026-10-31 from corpus-replay-live.json curation list: single-token place eligibility generally (#23 was served via its person subject regardless). P18 is the Red Fort (5387px); its license is the Free Art License — recorded as a curation fact; it sits outside the CC0/PD/BY/BY-SA set the depicts route filters by."
+  },
+  {
+   "name": "Durham, North Carolina",
+   "aliases": [
+    "Durham, North Carolina",
+    "Durham",
+    "Durham, NC"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q49229",
+   "p18_file": "SKYL038 Durham Overcast Skyline DiscoverDurham.jpg",
+   "p18_quality": 5150,
+   "official_domain": null,
+   "confusables": [
+    {
+     "name": "Durham, England",
+     "qid_or_note": "Q179815",
+     "why": "Label-identical English city (county town of County Durham). This curated entry is the North Carolina city; a UK story must not source from it."
+    }
+   ],
+   "blocked_files": [],
+   "notes": "Curated 2026-10-31 from corpus-replay-live.json curation list (#5): context-adjudicated to the NC city over Durham, England (Q179815) in live resolution, matching our US-diaspora coverage. Registering 'Durham' makes the Cheeni story's true place subject eligible AHEAD of the state-level fallback (North Carolina's P18 is a Blue Ridge mountain road — serving it for a Durham restaurant story was the #5 still-wrong). P18 is the Durham, NC skyline (5150px, CC BY 4.0, Discover Durham)."
+  },
+  {
+   "name": "Cheeni",
+   "aliases": [
+    "Cheeni"
+   ],
+   "type": "company",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Durham, NC Indian restaurant (corpus #5). NO Wikidata identity exists or is expected for a local restaurant — recorded as an explicit no-identity entry so the path abstains fast on this name (instant registry hit, QID null) instead of live-resolving into a namesake: the unguarded live run resolved 'Cheeni' to the film 'Cheeni Kum'. Fail-closed on Cheeni itself is the correct outcome; the story's image comes from its place subject (Durham).",
+   "no_wikidata_identity": true
+  },
+  {
+   "name": "Yulu",
+   "aliases": [
+    "Yulu"
+   ],
+   "type": "company",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Indian EV delivery company (corpus #111). NO Wikidata item bears this name — live search's sitelink winner was the fish-sauce item, a namesake trap the unguarded run fell for. Recorded as an explicit no-identity entry so the path abstains fast; source only via official routes if ever.",
+   "no_wikidata_identity": true
+  },
+  {
+   "name": "World Polio Day",
+   "aliases": [
+    "World Polio Day"
+   ],
+   "type": "event",
+   "wikidata_qid": "Q15853942",
+   "p18_file": "End polio Awareness hike and school sensitization by Rotary and Rotaract Clubs of Ekiti State, Nigeria (October 2025) 21 (cropped).jpg",
+   "p18_quality": 2610,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Curated 2026-10-31 from corpus-replay-live.json curation list (#3) — the fixed live run's verified resolution, applied deliberately. P18 visually verified in the live replay: a genuine END POLIO awareness-hike photo (Rotary/Rotaract clubs, Ekiti State, Nigeria, Oct 2025; 2610px, CC BY-SA 4.0). File-photo grade for non-Nigeria stories — a quality caveat recorded in the replay, not an identity error."
+  },
+  {
+   "name": "Storm Boelo",
+   "aliases": [
+    "Storm Boelo",
+    "Storm Manja"
+   ],
+   "type": "event",
+   "wikidata_qid": "Q141877497",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Curated 2026-10-31 from corpus-replay-live.json curation list (#10) — the fixed live run's verified resolution, applied deliberately. Genuine October 2026 UK storm item; no P18 and the depicts set was empty at replay time — the path fails closed for it until imagery exists."
+  },
+  {
+   "name": "Vikram Nath",
+   "aliases": [
+    "Vikram Nath",
+    "Justice Vikram Nath"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q63108298",
+   "p18_file": "Justice Vikram Nath.jpg",
+   "p18_quality": 1500,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "notes": "Curated 2026-10-31 from corpus-replay-live.json curation list (#23) — the fixed live run's verified resolution, applied deliberately. P18 is the official judicial portrait (1500px, GODL-India), visually verified in the live replay; alias 'Justice Vikram Nath' is the item's own Wikidata alias (the honorific-prefix case)."
   }
  ]
 }

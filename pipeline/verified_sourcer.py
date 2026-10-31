@@ -175,50 +175,23 @@ def _subject_eligible(entity):
         return False
 
 
-_TYPE_TOKENS = {"party", "city", "state", "district", "county",
-                "university", "bank", "group", "company", "inc",
-                "ltd", "river", "island", "airport", "national",
-                "of", "the", "and"}
-_TITLE_TOKENS = {"justice", "judge", "dr", "mr", "mrs", "ms",
-                 "shri", "sri", "prof", "professor"}
-
-
-def _name_tokens(name):
-    toks = set()
-    for t in re.findall(r"[a-z0-9]+", (name or "").lower()):
-        if t.isdigit():
-            continue
-        if len(t) > 3 and t.endswith("s"):
-            t = t[:-1]
-        toks.add(t)
-    return toks
-
-
 def identity_agrees(query, res):
     """Does a LIVE resolution actually bear the queried name?
     Sitelink primacy picks the most-linked item a name search
     returns; nothing in that guarantees the item IS the name —
     live replay resolved 'Adrian Abraham' (a 9-year-old
     guitarist) to Adrian Jacobs (a rugby player) and 'SEBI' to
-    Serbia. Agreement = token-set equality (plural-insensitive,
-    numerals ignored), or the label adds only generic type
-    words ('Republican' → 'Republican Party'), or the query
-    adds only an honorific ('Justice Vikram Nath' → 'Vikram
-    Nath'). Registry resolutions are exempt: the registry
-    matched the name/alias exactly, by construction."""
+    Serbia. The agreement standard itself is
+    entity_resolve.names_agree (token-set equality against the
+    label or an alias, plural-insensitive; generic type-word
+    suffixes and honorific prefixes allowed) — ONE standard,
+    shared with the resolver's cache-back guard, so a name this
+    guard vetoes here can never become registry truth there.
+    Registry resolutions are exempt: the registry matched the
+    name/alias exactly, by construction."""
     if (res.get("method") or "").startswith("registry"):
         return True
-    q = _name_tokens(query)
-    n = _name_tokens(res.get("name"))
-    if not q or not n:
-        return False
-    if q == n:
-        return True
-    if q < n and (n - q) <= _TYPE_TOKENS:
-        return True
-    if n < q and (q - n) <= _TITLE_TOKENS:
-        return True
-    return False
+    return er.names_agree(query, res.get("name"), res.get("aliases"))
 
 
 # ── registry-only resolution (offline; mirrors er.resolve's

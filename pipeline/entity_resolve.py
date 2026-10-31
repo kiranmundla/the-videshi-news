@@ -17,7 +17,13 @@ matches. Two paths:
      Mandeep Singh), with type/context agreement (description + P31
      labels vs the article context) able to override when it
      discriminates and the sitelink gap is not overwhelming.
-     Successful live resolutions cache back into the registry.
+     Successful live resolutions cache back into the registry —
+     but ONLY when the winner bears the queried name (the
+     names_agree standard, shared with verified_sourcer's
+     identity guard): an unguarded cache-back once wrote a
+     vetoed namesake into the registry, where registry-method
+     results are exempt from the guard — poisoning by design
+     accident (corpus-replay-live.json residual risk #1).
 
 Also: depicts_candidates(qid) — Commons files carrying a depicts
 (P180) statement for the item, license read from extmetadata with
@@ -116,6 +122,7 @@ def _from_entry(entry, method, confidence):
     return {
         "query": None,
         "name": entry.get("name"),
+        "aliases": list(entry.get("aliases") or []),
         "qid": entry.get("wikidata_qid"),
         "p18_file": entry.get("p18_file"),
         "p18_quality": entry.get("p18_quality"),
@@ -124,6 +131,7 @@ def _from_entry(entry, method, confidence):
         "confidence": confidence,
         "confusables": [c.get("name") for c in entry.get("confusables") or []],
         "blocked_files": list(entry.get("blocked_files") or []),
+        "no_wikidata_identity": bool(entry.get("no_wikidata_identity")),
         "notes": entry.get("notes") or "",
     }
 
@@ -227,6 +235,62 @@ def _adjudicate(hits, context_text, query_name):
     return winner, method, confidence
 
 
+# ── name agreement (the identity standard) ───────────────────────
+# ONE standard, two enforcement points: verified_sourcer's
+# identity guard applies it at decision time, and _cache_back
+# applies it before a live resolution may become registry truth.
+# (The logic lived in verified_sourcer first; it moved here so
+# the resolver — the module that writes the registry — can
+# enforce it without a circular import. verified_sourcer now
+# delegates.)
+_TYPE_TOKENS = {"party", "city", "state", "district", "county",
+                "university", "bank", "group", "company", "inc",
+                "ltd", "river", "island", "airport", "national",
+                "of", "the", "and"}
+_TITLE_TOKENS = {"justice", "judge", "dr", "mr", "mrs", "ms",
+                 "shri", "sri", "prof", "professor"}
+
+
+def _name_tokens(name):
+    toks = set()
+    for t in re.findall(r"[a-z0-9]+", (name or "").lower()):
+        if t.isdigit():
+            continue
+        if len(t) > 3 and t.endswith("s"):
+            t = t[:-1]
+        toks.add(t)
+    return toks
+
+
+def names_agree(query, resolved_name, aliases=None):
+    """Does the resolved item actually BEAR the queried name?
+    Sitelink primacy picks the most-linked item a name search
+    returns; nothing in that guarantees the item IS the name —
+    live replay resolved 'Adrian Abraham' (a 9-year-old
+    guitarist) to Adrian Jacobs (a rugby player) and 'SEBI' to
+    Serbia. Agreement = token-set equality (plural-insensitive,
+    numerals ignored) against the item's label OR any of its
+    aliases (an item bearing the queried name as an alias bears
+    the name — SEBI is the alias of 'Securities and Exchange
+    Board of India'), or the label adds only generic type words
+    ('Republican' → 'Republican Party'), or the query adds only
+    an honorific ('Justice Vikram Nath' → 'Vikram Nath')."""
+    q = _name_tokens(query)
+    if not q:
+        return False
+    for nm in [resolved_name] + list(aliases or []):
+        n = _name_tokens(nm)
+        if not n:
+            continue
+        if q == n:
+            return True
+        if q < n and (n - q) <= _TYPE_TOKENS:
+            return True
+        if n < q and (q - n) <= _TITLE_TOKENS:
+            return True
+    return False
+
+
 _P31_TYPE = {
     "Q5": "person",            # human
     "Q43229": "org",           # organization
@@ -321,6 +385,7 @@ def _resolve_live(name, context_text=""):
     return {
         "query": name,
         "name": winner.get("label") or name,
+        "aliases": list(winner.get("aliases") or []),
         "qid": winner["qid"],
         "p18_file": winner.get("p18_file"),
         "p18_quality": p18_width,
@@ -338,17 +403,45 @@ def _resolve_live(name, context_text=""):
     }
 
 
-def _cache_back(query_name, result):
+def _cache_back(query_name, result, context_text=""):
     """Persist a successful live resolution into the registry file.
-    Never overwrites an existing entry; failure is silent (caching
-    must not break resolution)."""
+
+    POISONING GUARD (corpus-replay-live.json residual risk #1):
+    the winner is cached ONLY when it bears the queried name —
+    names_agree() against its label or aliases, the same
+    standard verified_sourcer.identity_agrees applies at
+    decision time. Before this guard, resolve() cached the
+    sitelink winner unconditionally: the replay's fixed run
+    vetoed 'Adrian Abraham' → Adrian Jacobs at decision time
+    while _cache_back was already writing Q2825029 into the
+    registry under that alias — and registry-method results are
+    EXEMPT from the decision-time guard (exact by construction),
+    so a retained entry would have promoted a namesake error to
+    curated-grade truth. The veto has to happen here, before
+    the write, or it does not happen at all.
+
+    Provenance: every write records the resolution method, the
+    confidence, and the context the adjudication ran against
+    (resolved_method / resolved_confidence / resolved_context,
+    the context also quoted in the human-readable notes).
+    Never overwrites an existing entry. Returns True when an
+    entry was written. Failure is silent (caching must not
+    break resolution)."""
     try:
+        if not result or not result.get("qid"):
+            return False
+        if not names_agree(query_name, result.get("name"),
+                           result.get("aliases")):
+            return False
         reg = load_registry()
         if _candidates(query_name, reg):
-            return
+            return False
         aliases = [query_name]
         if result.get("name") and result["name"] != query_name:
             aliases.append(result["name"])
+        for a in result.get("aliases") or []:
+            if a and a not in aliases:
+                aliases.append(a)
         reg.setdefault("entities", []).append({
             "name": result.get("name") or query_name,
             "aliases": aliases,
@@ -359,18 +452,29 @@ def _cache_back(query_name, result):
             "official_domain": None,
             "confusables": [],
             "blocked_files": [],
+            "resolved_method": result.get("method"),
+            "resolved_confidence": result.get("confidence"),
+            "resolved_context": (context_text or "")[:400],
             "notes": f"auto-resolved via {result.get('method')} "
                      f"(confidence {result.get('confidence')}); "
+                     f"context: {(context_text or '')[:200]!r}; "
                      f"description: {result.get('description', '')}",
         })
-        fd, tmp = tempfile.mkstemp(dir=HERE, suffix=".tmp")
+        # Temp file in the REGISTRY's directory, not HERE: an
+        # atomic os.replace cannot cross filesystems (a registry
+        # path outside the pipeline tree — as in tests — would
+        # silently fail the write on a cross-device link).
+        fd, tmp = tempfile.mkstemp(
+            dir=os.path.dirname(os.path.abspath(REGISTRY_PATH)),
+            suffix=".tmp")
         with os.fdopen(fd, "w") as f:
             json.dump(reg, f, indent=1, ensure_ascii=False)
         os.replace(tmp, REGISTRY_PATH)
         global _registry_cache
         _registry_cache = reg
+        return True
     except Exception:
-        pass
+        return False
 
 
 # ── public resolution ────────────────────────────────────────────
@@ -401,7 +505,7 @@ def resolve(name, context_text=""):
         # adjudication rather than guessing between namesakes.
     live = _resolve_live(name, context_text)
     if live:
-        _cache_back(name, live)
+        _cache_back(name, live, context_text)
         return live
     if cands:
         r = _from_entry(cands[0], "registry", "low")

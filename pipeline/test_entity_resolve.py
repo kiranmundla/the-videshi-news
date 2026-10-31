@@ -303,6 +303,91 @@ if LIVE:
     check("LIVE _resolve_live Mandeep Singh + hockey -> Q6747936",
           r and r["qid"] == "Q6747936", f"got {r and r['qid']}")
 
+# ── G. cache-back poisoning guard (offline, canned live) ─────
+print("G. cache-back poisoning guard (canned live resolutions)")
+import tempfile
+_g_tmp = tempfile.mkdtemp()
+_g_reg_path = os.path.join(_g_tmp, "entity_registry.json")
+with open(_g_reg_path, "w") as f:
+    json.dump({"version": 1, "entities": []}, f)
+_orig_reg_path = er.REGISTRY_PATH
+_orig_live = er._resolve_live
+er.REGISTRY_PATH = _g_reg_path
+er._registry_cache = None
+
+
+def _canned(name, qid, aliases=None, method="wikidata-sitelinks"):
+    return {"query": None, "name": name, "aliases": aliases or [],
+            "qid": qid, "p18_file": None, "p18_quality": None,
+            "type": "person", "method": method,
+            "confidence": "high", "confusables": [],
+            "blocked_files": [], "notes": "",
+            "description": "canned fixture", "sitelinks": 10}
+
+
+try:
+    # The verbatim poison case from corpus-replay-live.json: the
+    # 9-year-old guitarist Adrian Abraham's sitelink winner was
+    # the rugby player Adrian Jacobs. decide() vetoed it — but
+    # the unguarded _cache_back had already written Q2825029
+    # into the registry under the 'Adrian Abraham' alias, where
+    # registry-method results are exempt from the veto. The
+    # write itself must now refuse.
+    er._resolve_live = lambda n, c="": _canned(  # noqa: E731
+        "Adrian Jacobs", "Q2825029")
+    r = er.resolve("Adrian Abraham",
+                   "Adrian Abraham, nine, of Manchester attempts "
+                   "the grade 8 guitar world record")
+    written = json.load(open(_g_reg_path))
+    check("poisoned winner (Adrian Abraham -> Adrian Jacobs) is "
+          "NOT cached into the registry",
+          r and r["qid"] == "Q2825029"
+          and all(e.get("wikidata_qid") != "Q2825029"
+                  for e in written["entities"])
+          and not er._candidates("Adrian Abraham", written),
+          f"registry now: {written['entities']}")
+    check("_cache_back returns False for the vetoed namesake",
+          er._cache_back("Adrian Abraham",
+                         _canned("Adrian Jacobs", "Q2825029"),
+                         "guitar record context") is False)
+    # A legitimate new resolution IS cached, with provenance.
+    # SEBI's label does not contain the query token — its alias
+    # does, and bearing the queried name as an alias IS bearing
+    # the name (the standard names_agree applies).
+    sebi = _canned("Securities and Exchange Board of India",
+                   "Q2615692", aliases=["SEBI"])
+    sebi["type"] = "org"
+    sebi["description"] = "Indian securities market regulator"
+    er._resolve_live = lambda n, c="": dict(sebi)  # noqa: E731
+    ctx = ("SEBI simplifies digital KYC for NRI onboarding; the "
+           "securities regulator said markets participants must "
+           "comply by March")
+    r = er.resolve("SEBI", ctx)
+    written = json.load(open(_g_reg_path))
+    sebi_entries = [e for e in written["entities"]
+                    if e.get("wikidata_qid") == "Q2615692"]
+    check("legitimate resolution (SEBI -> Q2615692, alias-"
+          "bearing) IS cached",
+          r and r["qid"] == "Q2615692" and len(sebi_entries) == 1,
+          f"registry now: {written['entities']}")
+    if sebi_entries:
+        e0 = sebi_entries[0]
+        check("cached entry records method + context provenance",
+              e0.get("resolved_method") == "wikidata-sitelinks"
+              and "digital KYC" in (e0.get("resolved_context")
+                                    or "")
+              and "SEBI" in (e0.get("aliases") or []),
+              f"entry: {e0}")
+    check("_cache_back returns True for a label-agreeing winner",
+          er._cache_back("Nashik",
+                         _canned("Nashik", "Q200235",
+                                 aliases=["Nasik"]),
+                         "Nashik launches EV delivery") is True)
+finally:
+    er._resolve_live = _orig_live
+    er.REGISTRY_PATH = _orig_reg_path
+    er._registry_cache = None
+
 print()
 if FAILURES:
     print(f"{len(FAILURES)} FAILURE(S): {FAILURES}")

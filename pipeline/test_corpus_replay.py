@@ -201,7 +201,6 @@ for cid, mech in [(35, "corpus-blocklist"), (38, "corpus-blocklist"),
                   (113, "non-visual-entity"),
                   (114, "non-visual-entity"),
                   (21, "confusable-adjudication"),
-                  (30, "confusable-adjudication"),
                   (77, "confusable-adjudication"),
                   (108, "confusable-adjudication")]:
     check(f"#{cid} rejected via {mech}",
@@ -209,20 +208,61 @@ for cid, mech in [(35, "corpus-blocklist"), (38, "corpus-blocklist"),
           and by_id[cid]["mechanism"] == mech,
           f"got {by_id[cid]['determination']}/{by_id[cid]['mechanism']}")
 
-check("#27 honestly not replayable (unblocked sibling file; "
-      "bank unregistered)",
-      by_id[27]["determination"] == "not_replayable")
-check("#123 honestly not replayable (thin record)",
-      by_id[123]["determination"] == "not_replayable")
+# #27/#123 were "honestly not replayable" ONLY because the bank
+# was unregistered and the sibling (Maurya) felicitation file is
+# unblocked. The corpus-replay-live curation list directed
+# registering Indian Overseas Bank (Q2003611), with the explicit
+# note that doing so changes these cases' premise — they are
+# replayable now, and the wrong files (open-route products, not
+# in {P18} ∪ depicts(Q2003611)) are rejected. The person-entry
+# blocklist discipline is unchanged (#100 still pins it).
+check("#27 replayable after IOB curation: rejected, bank "
+      "adjudicated, depicts recall plausible",
+      by_id[27]["determination"] == "rejected"
+      and by_id[27]["mechanism"] == "route-abolition"
+      and by_id[27]["intended_entities"] == ["Indian Overseas Bank"]
+      and by_id[27]["recall"] == "found_depicts_plausible",
+      f"got {by_id[27]}")
+check("#123 replayable after IOB curation: rejected",
+      by_id[123]["determination"] == "rejected"
+      and by_id[123]["intended_entities"] == ["Indian Overseas Bank"],
+      f"got {by_id[123]}")
+# #30 (and its twin #29): registering Diwali (curation list)
+# changed the replay's READING, not the outcome. The descriptor
+# 'Diwali 2026 in the UAE' now text-matches the curated festival
+# entry, so the replay adjudicates Diwali as the story entity
+# and the Patan photo is rejected via the inline route-abolition
+# branch before confusable adjudication is reached (the live
+# path's subject is the extractor's/intent's, not the replay's
+# text match). What must not regress: the wrong file is still
+# positively identified as the Patan temple's own P18, the
+# determination is still rejected, and the Bur Dubai temple's
+# data gap is still real — asserted at the registry level,
+# where it does not depend on text matching.
+check("#30 still rejected; wrong file still identified as the "
+      "Patan temple P18",
+      by_id[30]["determination"] == "rejected"
+      and by_id[30]["wrong_file_key"]
+      == er.file_key("Lalitpur Patan Durbar Square 2023 02.jpg"),
+      f"got {by_id[30]['determination']}/{by_id[30]['wrong_file_key']}")
+_bur_dubai = next(e for e in reg["entities"]
+                  if e["name"] == "Krishna Mandir, Bur Dubai")
+check("#30 data gap persists in the registry itself (Bur Dubai "
+      "temple: no QID, no P18)",
+      _bur_dubai["wikidata_qid"] is None
+      and _bur_dubai["p18_file"] is None)
 check("#19 recall: Infosys campus P18 found",
       by_id[19]["recall"] == "found_p18")
 check("#26 recall: the swapped-in TCS SIPCOT file IS the "
       "registry P18",
       by_id[26]["recall"] == "found_p18"
       and by_id[26]["recall_entity"] == "Tata Consultancy Services")
-check("#30 recall: Bur Dubai temple has no verified image "
-      "offline (data gap, surfaced)",
-      by_id[30]["recall"] == "not_found")
+# #30's recall is deliberately NOT pinned anymore: with Diwali
+# curated, the replay credits the festival's P18 for the
+# descriptor 'Diwali 2026 in the UAE' — a plausible image for a
+# Diwali guide, but not the temple photo the corpus asked for.
+# The temple gap itself is pinned at the registry level above,
+# where text matching cannot mask it.
 expl_ids = {r["id"] for r in results if r["explicit_correct_existed"]}
 check("explicit correct-existed set is {18,19,26,27,50,88}",
       expl_ids == {18, 19, 26, 27, 50, 88}, f"got {sorted(expl_ids)}")
