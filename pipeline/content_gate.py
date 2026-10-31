@@ -62,8 +62,9 @@ Covered (brief failure cases d, e, and 5-related):
 
 NOT covered here (other parts of the program): image venue identity
 and image rights (brief cases a–c — picture gate, part 3), related-
-coverage relevance (case f — related_coverage logic). This module
-never touches images or related links.
+coverage relevance (case f — enforced as a hard filter in
+related_coverage.find_related since 2026-10-31, not in this gate).
+This module never touches images or related links.
 """
 import html as _html
 import re
