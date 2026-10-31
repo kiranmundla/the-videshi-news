@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-10-30T12:26:48Z",
-  "as_of": "2026-10-30",
+  "generated_at": "2026-10-31T12:26:13Z",
+  "as_of": "2026-10-31",
   "market": "india-metros",
   "band": {
     "id": "in-3wk",
@@ -1027,41 +1027,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-27 \u2192 2026-11-18",
-          "dep_date": "2026-10-27",
-          "ret_date": "2026-11-18",
-          "duration_days": 22,
-          "band": "in-3wk",
-          "price_min": 874,
-          "price_max": 1086,
-          "cheapest_airline": "Etihad Airways",
-          "num_samples": 4,
-          "fetched_as_of": "2026-10-24",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "JFK-HYD",
-          "origin_metro": "New York",
-          "dest_metro": "Hyderabad",
-          "cheapest_month": true,
-          "change_vs_prev": {
-            "prev_price_min": 748,
-            "prev_as_of": "2026-10-15",
-            "delta": -126,
-            "delta_pct": -16.8
-          }
-        },
-        {
           "date_range": "2026-11-10 \u2192 2026-12-02",
           "dep_date": "2026-11-10",
           "ret_date": "2026-12-02",
           "duration_days": 22,
           "band": "in-3wk",
-          "price_min": 899,
-          "price_max": 1134,
-          "cheapest_airline": "Etihad Airways",
+          "price_min": 1019,
+          "price_max": 1316,
+          "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-24",
+          "fetched_as_of": "2026-10-31",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1069,10 +1044,10 @@
           "origin_metro": "New York",
           "dest_metro": "Hyderabad",
           "change_vs_prev": {
-            "prev_price_min": 911,
-            "prev_as_of": "2026-10-15",
-            "delta": 12,
-            "delta_pct": 1.3
+            "prev_price_min": 899,
+            "prev_as_of": "2026-10-24",
+            "delta": -120,
+            "delta_pct": -13.3
           }
         },
         {
@@ -1081,11 +1056,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1530,
-          "price_max": 2052,
-          "cheapest_airline": "Emirates",
+          "price_min": 1493,
+          "price_max": 2226,
+          "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-24",
+          "fetched_as_of": "2026-10-31",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1093,20 +1068,39 @@
           "origin_metro": "New York",
           "dest_metro": "Hyderabad",
           "change_vs_prev": {
-            "prev_price_min": 1403,
-            "prev_as_of": "2026-10-15",
-            "delta": -127,
-            "delta_pct": -9.1
+            "prev_price_min": 1530,
+            "prev_as_of": "2026-10-24",
+            "delta": 37,
+            "delta_pct": 2.4
           }
+        },
+        {
+          "date_range": "2027-01-26 \u2192 2027-02-17",
+          "dep_date": "2027-01-26",
+          "ret_date": "2027-02-17",
+          "duration_days": 22,
+          "band": "in-3wk",
+          "price_min": 849,
+          "price_max": 1019,
+          "cheapest_airline": "Etihad Airways",
+          "num_samples": 4,
+          "fetched_as_of": "2026-10-31",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "JFK-HYD",
+          "origin_metro": "New York",
+          "dest_metro": "Hyderabad",
+          "cheapest_month": true
         }
       ],
       "cheapest_overall": {
-        "year": 2026,
-        "month": 10,
+        "year": 2027,
+        "month": 1,
         "band": "in-3wk",
         "duration_days": 22,
-        "price_min": 874,
-        "date_range": "2026-10-27 \u2192 2026-11-18"
+        "price_min": 849,
+        "date_range": "2027-01-26 \u2192 2027-02-17"
       }
     },
     "JFK-CCU": {
@@ -1117,52 +1111,27 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-27 \u2192 2026-11-16",
-          "dep_date": "2026-10-27",
-          "ret_date": "2026-11-16",
-          "duration_days": 20,
-          "band": "in-3wk",
-          "price_min": 1038,
-          "price_max": 1265,
-          "cheapest_airline": "Qatar Airways",
-          "num_samples": 4,
-          "fetched_as_of": "2026-10-24",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "JFK-CCU",
-          "origin_metro": "New York",
-          "dest_metro": "Kolkata",
-          "change_vs_prev": {
-            "prev_price_min": 929,
-            "prev_as_of": "2026-10-15",
-            "delta": -109,
-            "delta_pct": -11.7
-          }
-        },
-        {
-          "date_range": "2026-11-10 \u2192 2026-12-02",
-          "dep_date": "2026-11-10",
-          "ret_date": "2026-12-02",
+          "date_range": "2026-11-24 \u2192 2026-12-16",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-16",
           "duration_days": 22,
           "band": "in-3wk",
-          "price_min": 1001,
-          "price_max": 1493,
-          "cheapest_airline": "JetBlue Airways",
+          "price_min": 1181,
+          "price_max": 1456,
+          "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-24",
+          "fetched_as_of": "2026-10-31",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "JFK-CCU",
           "origin_metro": "New York",
           "dest_metro": "Kolkata",
-          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 1070,
-            "prev_as_of": "2026-10-15",
-            "delta": 69,
-            "delta_pct": 6.4
+            "prev_price_min": 1001,
+            "prev_as_of": "2026-10-24",
+            "delta": -180,
+            "delta_pct": -18.0
           }
         },
         {
@@ -1171,11 +1140,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1551,
-          "price_max": 2200,
-          "cheapest_airline": "Etihad Airways",
-          "num_samples": 4,
-          "fetched_as_of": "2026-10-24",
+          "price_min": 1814,
+          "price_max": 2374,
+          "cheapest_airline": "Qatar Airways",
+          "num_samples": 3,
+          "fetched_as_of": "2026-10-31",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1183,20 +1152,39 @@
           "origin_metro": "New York",
           "dest_metro": "Kolkata",
           "change_vs_prev": {
-            "prev_price_min": 1679,
-            "prev_as_of": "2026-10-15",
-            "delta": 128,
-            "delta_pct": 7.6
+            "prev_price_min": 1551,
+            "prev_as_of": "2026-10-24",
+            "delta": -263,
+            "delta_pct": -17.0
           }
+        },
+        {
+          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "dep_date": "2027-01-26",
+          "ret_date": "2027-02-15",
+          "duration_days": 20,
+          "band": "in-3wk",
+          "price_min": 1006,
+          "price_max": 1070,
+          "cheapest_airline": "Etihad Airways",
+          "num_samples": 4,
+          "fetched_as_of": "2026-10-31",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "JFK-CCU",
+          "origin_metro": "New York",
+          "dest_metro": "Kolkata",
+          "cheapest_month": true
         }
       ],
       "cheapest_overall": {
-        "year": 2026,
-        "month": 11,
+        "year": 2027,
+        "month": 1,
         "band": "in-3wk",
-        "duration_days": 22,
-        "price_min": 1001,
-        "date_range": "2026-11-10 \u2192 2026-12-02"
+        "duration_days": 20,
+        "price_min": 1006,
+        "date_range": "2027-01-26 \u2192 2027-02-15"
       }
     },
     "EWR-DEL": {
@@ -1207,41 +1195,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-27 \u2192 2026-11-16",
-          "dep_date": "2026-10-27",
-          "ret_date": "2026-11-16",
-          "duration_days": 20,
-          "band": "in-3wk",
-          "price_min": 1619,
-          "price_max": 2082,
-          "cheapest_airline": "KLM",
-          "num_samples": 4,
-          "fetched_as_of": "2026-10-24",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "EWR-DEL",
-          "origin_metro": "New York",
-          "dest_metro": "Delhi",
-          "cheapest_month": true,
-          "change_vs_prev": {
-            "prev_price_min": 1614,
-            "prev_as_of": "2026-10-15",
-            "delta": -5,
-            "delta_pct": -0.3
-          }
-        },
-        {
-          "date_range": "2026-11-10 \u2192 2026-12-02",
-          "dep_date": "2026-11-10",
-          "ret_date": "2026-12-02",
+          "date_range": "2026-11-24 \u2192 2026-12-16",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-16",
           "duration_days": 22,
           "band": "in-3wk",
-          "price_min": 1739,
-          "price_max": 1906,
+          "price_min": 1479,
+          "price_max": 2247,
           "cheapest_airline": "KLM",
-          "num_samples": 2,
-          "fetched_as_of": "2026-10-24",
+          "num_samples": 3,
+          "fetched_as_of": "2026-10-31",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1249,23 +1212,23 @@
           "origin_metro": "New York",
           "dest_metro": "Delhi",
           "change_vs_prev": {
-            "prev_price_min": 1534,
-            "prev_as_of": "2026-10-15",
-            "delta": -205,
-            "delta_pct": -13.4
+            "prev_price_min": 1739,
+            "prev_as_of": "2026-10-24",
+            "delta": 260,
+            "delta_pct": 15.0
           }
         },
         {
-          "date_range": "2026-12-24 \u2192 2027-01-13",
-          "dep_date": "2026-12-24",
-          "ret_date": "2027-01-13",
+          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "dep_date": "2026-12-08",
+          "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 2034,
-          "price_max": 2366,
-          "cheapest_airline": "LOT Polish Airlines",
+          "price_min": 1689,
+          "price_max": 2317,
+          "cheapest_airline": "KLM",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-24",
+          "fetched_as_of": "2026-10-31",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1273,20 +1236,39 @@
           "origin_metro": "New York",
           "dest_metro": "Delhi",
           "change_vs_prev": {
-            "prev_price_min": 1924,
-            "prev_as_of": "2026-10-15",
-            "delta": -110,
-            "delta_pct": -5.7
+            "prev_price_min": 2034,
+            "prev_as_of": "2026-10-24",
+            "delta": 345,
+            "delta_pct": 17.0
           }
+        },
+        {
+          "date_range": "2027-01-26 \u2192 2027-02-17",
+          "dep_date": "2027-01-26",
+          "ret_date": "2027-02-17",
+          "duration_days": 22,
+          "band": "in-3wk",
+          "price_min": 1358,
+          "price_max": 1528,
+          "cheapest_airline": "British Airways",
+          "num_samples": 4,
+          "fetched_as_of": "2026-10-31",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "EWR-DEL",
+          "origin_metro": "New York",
+          "dest_metro": "Delhi",
+          "cheapest_month": true
         }
       ],
       "cheapest_overall": {
-        "year": 2026,
-        "month": 10,
+        "year": 2027,
+        "month": 1,
         "band": "in-3wk",
-        "duration_days": 20,
-        "price_min": 1619,
-        "date_range": "2026-10-27 \u2192 2026-11-16"
+        "duration_days": 22,
+        "price_min": 1358,
+        "date_range": "2027-01-26 \u2192 2027-02-17"
       }
     },
     "EWR-BLR": {
@@ -1297,16 +1279,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-12-08 \u2192 2026-12-30",
+          "date_range": "2026-12-08 \u2192 2026-12-28",
           "dep_date": "2026-12-08",
-          "ret_date": "2026-12-30",
-          "duration_days": 22,
+          "ret_date": "2026-12-28",
+          "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 2551,
-          "price_max": 2766,
-          "cheapest_airline": "British Airways",
-          "num_samples": 3,
-          "fetched_as_of": "2026-10-24",
+          "price_min": 1912,
+          "price_max": 2207,
+          "cheapest_airline": "Air India",
+          "num_samples": 2,
+          "fetched_as_of": "2026-10-31",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1315,10 +1297,10 @@
           "dest_metro": "Bengaluru",
           "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 2240,
-            "prev_as_of": "2026-10-15",
-            "delta": -311,
-            "delta_pct": -13.9
+            "prev_price_min": 2551,
+            "prev_as_of": "2026-10-24",
+            "delta": 639,
+            "delta_pct": 25.0
           }
         }
       ],
@@ -1326,9 +1308,9 @@
         "year": 2026,
         "month": 12,
         "band": "in-3wk",
-        "duration_days": 22,
-        "price_min": 2551,
-        "date_range": "2026-12-08 \u2192 2026-12-30"
+        "duration_days": 20,
+        "price_min": 1912,
+        "date_range": "2026-12-08 \u2192 2026-12-28"
       }
     },
     "EWR-HYD": {
@@ -1339,38 +1321,80 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-12-24 \u2192 2027-01-13",
-          "dep_date": "2026-12-24",
-          "ret_date": "2027-01-13",
+          "date_range": "2026-11-10 \u2192 2026-11-30",
+          "dep_date": "2026-11-10",
+          "ret_date": "2026-11-30",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 2808,
-          "price_max": 5762,
+          "price_min": 1458,
+          "price_max": 1740,
           "cheapest_airline": "Air India",
-          "num_samples": 3,
-          "fetched_as_of": "2026-10-24",
+          "num_samples": 4,
+          "fetched_as_of": "2026-10-31",
+          "cache_samples": 0,
+          "year": 2026,
+          "month": 11,
+          "route": "EWR-HYD",
+          "origin_metro": "New York",
+          "dest_metro": "Hyderabad",
+          "change_vs_prev": {
+            "prev_price_min": 2218,
+            "prev_as_of": "2026-10-15",
+            "delta": 760,
+            "delta_pct": 34.3
+          }
+        },
+        {
+          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "dep_date": "2026-12-08",
+          "ret_date": "2026-12-28",
+          "duration_days": 20,
+          "band": "in-3wk",
+          "price_min": 1740,
+          "price_max": 3306,
+          "cheapest_airline": "Air India",
+          "num_samples": 4,
+          "fetched_as_of": "2026-10-31",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
           "route": "EWR-HYD",
           "origin_metro": "New York",
           "dest_metro": "Hyderabad",
-          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 2682,
-            "prev_as_of": "2026-10-15",
-            "delta": -126,
-            "delta_pct": -4.7
+            "prev_price_min": 2808,
+            "prev_as_of": "2026-10-24",
+            "delta": 1068,
+            "delta_pct": 38.0
           }
+        },
+        {
+          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "dep_date": "2027-01-26",
+          "ret_date": "2027-02-15",
+          "duration_days": 20,
+          "band": "in-3wk",
+          "price_min": 1260,
+          "price_max": 1320,
+          "cheapest_airline": "Air India",
+          "num_samples": 4,
+          "fetched_as_of": "2026-10-31",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "EWR-HYD",
+          "origin_metro": "New York",
+          "dest_metro": "Hyderabad",
+          "cheapest_month": true
         }
       ],
       "cheapest_overall": {
-        "year": 2026,
-        "month": 12,
+        "year": 2027,
+        "month": 1,
         "band": "in-3wk",
         "duration_days": 20,
-        "price_min": 2808,
-        "date_range": "2026-12-24 \u2192 2027-01-13"
+        "price_min": 1260,
+        "date_range": "2027-01-26 \u2192 2027-02-15"
       }
     },
     "EWR-CCU": {
@@ -1381,38 +1405,80 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-12-24 \u2192 2027-01-13",
-          "dep_date": "2026-12-24",
-          "ret_date": "2027-01-13",
+          "date_range": "2026-11-24 \u2192 2026-12-14",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-14",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 2874,
-          "price_max": 3151,
+          "price_min": 1432,
+          "price_max": 1556,
           "cheapest_airline": "Air India",
-          "num_samples": 3,
-          "fetched_as_of": "2026-10-24",
+          "num_samples": 4,
+          "fetched_as_of": "2026-10-31",
+          "cache_samples": 0,
+          "year": 2026,
+          "month": 11,
+          "route": "EWR-CCU",
+          "origin_metro": "New York",
+          "dest_metro": "Kolkata",
+          "change_vs_prev": {
+            "prev_price_min": 2804,
+            "prev_as_of": "2026-10-15",
+            "delta": 1372,
+            "delta_pct": 48.9
+          }
+        },
+        {
+          "date_range": "2026-12-08 \u2192 2026-12-28",
+          "dep_date": "2026-12-08",
+          "ret_date": "2026-12-28",
+          "duration_days": 20,
+          "band": "in-3wk",
+          "price_min": 1556,
+          "price_max": 3192,
+          "cheapest_airline": "Air India",
+          "num_samples": 4,
+          "fetched_as_of": "2026-10-31",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
           "route": "EWR-CCU",
           "origin_metro": "New York",
           "dest_metro": "Kolkata",
-          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 2595,
-            "prev_as_of": "2026-10-15",
-            "delta": -279,
-            "delta_pct": -10.8
+            "prev_price_min": 2874,
+            "prev_as_of": "2026-10-24",
+            "delta": 1318,
+            "delta_pct": 45.9
           }
+        },
+        {
+          "date_range": "2027-01-26 \u2192 2027-02-15",
+          "dep_date": "2027-01-26",
+          "ret_date": "2027-02-15",
+          "duration_days": 20,
+          "band": "in-3wk",
+          "price_min": 1117,
+          "price_max": 1341,
+          "cheapest_airline": "Air India",
+          "num_samples": 4,
+          "fetched_as_of": "2026-10-31",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "EWR-CCU",
+          "origin_metro": "New York",
+          "dest_metro": "Kolkata",
+          "cheapest_month": true
         }
       ],
       "cheapest_overall": {
-        "year": 2026,
-        "month": 12,
+        "year": 2027,
+        "month": 1,
         "band": "in-3wk",
         "duration_days": 20,
-        "price_min": 2874,
-        "date_range": "2026-12-24 \u2192 2027-01-13"
+        "price_min": 1117,
+        "date_range": "2027-01-26 \u2192 2027-02-15"
       }
     },
     "ORD-BOM": {
@@ -3180,7 +3246,120 @@
       }
     }
   },
-  "biggest_drops": [],
+  "biggest_drops": [
+    {
+      "route": "EWR-CCU",
+      "origin_metro": "New York",
+      "dest_metro": "Kolkata",
+      "year": 2026,
+      "month": 11,
+      "band": "in-3wk",
+      "duration_days": 20,
+      "date_range": "2026-11-24 \u2192 2026-12-14",
+      "was": 2804,
+      "now": 1432,
+      "drop_abs": 1372,
+      "drop_pct": 48.9,
+      "baseline_as_of": "2026-10-15",
+      "cheapest_airline": "Air India"
+    },
+    {
+      "route": "EWR-CCU",
+      "origin_metro": "New York",
+      "dest_metro": "Kolkata",
+      "year": 2026,
+      "month": 12,
+      "band": "in-3wk",
+      "duration_days": 20,
+      "date_range": "2026-12-08 \u2192 2026-12-28",
+      "was": 2874,
+      "now": 1556,
+      "drop_abs": 1318,
+      "drop_pct": 45.9,
+      "baseline_as_of": "2026-10-24",
+      "cheapest_airline": "Air India"
+    },
+    {
+      "route": "EWR-HYD",
+      "origin_metro": "New York",
+      "dest_metro": "Hyderabad",
+      "year": 2026,
+      "month": 12,
+      "band": "in-3wk",
+      "duration_days": 20,
+      "date_range": "2026-12-08 \u2192 2026-12-28",
+      "was": 2808,
+      "now": 1740,
+      "drop_abs": 1068,
+      "drop_pct": 38.0,
+      "baseline_as_of": "2026-10-24",
+      "cheapest_airline": "Air India"
+    },
+    {
+      "route": "EWR-HYD",
+      "origin_metro": "New York",
+      "dest_metro": "Hyderabad",
+      "year": 2026,
+      "month": 11,
+      "band": "in-3wk",
+      "duration_days": 20,
+      "date_range": "2026-11-10 \u2192 2026-11-30",
+      "was": 2218,
+      "now": 1458,
+      "drop_abs": 760,
+      "drop_pct": 34.3,
+      "baseline_as_of": "2026-10-15",
+      "cheapest_airline": "Air India"
+    },
+    {
+      "route": "EWR-BLR",
+      "origin_metro": "New York",
+      "dest_metro": "Bengaluru",
+      "year": 2026,
+      "month": 12,
+      "band": "in-3wk",
+      "duration_days": 20,
+      "date_range": "2026-12-08 \u2192 2026-12-28",
+      "was": 2551,
+      "now": 1912,
+      "drop_abs": 639,
+      "drop_pct": 25.0,
+      "baseline_as_of": "2026-10-24",
+      "cheapest_airline": "Air India"
+    },
+    {
+      "route": "EWR-DEL",
+      "origin_metro": "New York",
+      "dest_metro": "Delhi",
+      "year": 2026,
+      "month": 12,
+      "band": "in-3wk",
+      "duration_days": 20,
+      "date_range": "2026-12-08 \u2192 2026-12-28",
+      "was": 2034,
+      "now": 1689,
+      "drop_abs": 345,
+      "drop_pct": 17.0,
+      "baseline_as_of": "2026-10-24",
+      "cheapest_airline": "KLM"
+    },
+    {
+      "route": "EWR-DEL",
+      "origin_metro": "New York",
+      "dest_metro": "Delhi",
+      "year": 2026,
+      "month": 11,
+      "band": "in-3wk",
+      "duration_days": 22,
+      "date_range": "2026-11-24 \u2192 2026-12-16",
+      "was": 1739,
+      "now": 1479,
+      "drop_abs": 260,
+      "drop_pct": 15.0,
+      "baseline_as_of": "2026-10-24",
+      "cheapest_airline": "KLM"
+    }
+  ],
   "festival_seasons": [
     {
       "id": "diwali-2026",
@@ -3278,6 +3457,6 @@
   },
   "cadence": "weekly",
   "indicative": true,
-  "fetched_as_of_oldest": "2026-10-24",
-  "fetched_as_of_newest": "2026-10-30"
+  "fetched_as_of_oldest": "2026-10-25",
+  "fetched_as_of_newest": "2026-10-31"
 }
