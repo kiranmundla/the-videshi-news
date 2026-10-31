@@ -5,6 +5,9 @@ interface XOfficialEmbedProps {
   /** When true, adds data-media-max-width="560" for video-optimized embed */
   video?: boolean;
   caption?: string;
+  /** Render without the figure margins — for use inside a card
+      (e.g. click-to-load video inside a tweet card). */
+  bare?: boolean;
 }
 
 declare global {
@@ -36,7 +39,7 @@ function ensureWidgetsScript(): Promise<void> {
   });
 }
 
-export default function XOfficialEmbed({ url, video, caption }: XOfficialEmbedProps) {
+export default function XOfficialEmbed({ url, video, caption, bare }: XOfficialEmbedProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -46,6 +49,19 @@ export default function XOfficialEmbed({ url, video, caption }: XOfficialEmbedPr
       }
     });
   }, [url]);
+
+  if (bare) {
+    return (
+      <div ref={containerRef} className="w-full x-official-embed" style={{ maxWidth: 550, margin: "0 auto" }}>
+        <blockquote
+          className="twitter-tweet"
+          {...(video ? { "data-media-max-width": "560" } : {})}
+        >
+          <a href={url}>{url}</a>
+        </blockquote>
+      </div>
+    );
+  }
 
   return (
     <figure className="my-6 flex flex-col items-center x-official-embed">

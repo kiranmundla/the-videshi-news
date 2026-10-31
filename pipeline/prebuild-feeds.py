@@ -1047,6 +1047,19 @@ def main():
 
     print(f"  ✓ {written} article JSONs written, {skipped} unchanged, {removed} stale removed")
 
+    # 3b. Build tweet-media.json — full media sets (every photo at the
+    # largest served size, video flag + poster) for the tweets referenced
+    # by the articles just rebuilt, so article pages can render X photos
+    # in place (strip + lightbox) and video posters without any runtime
+    # API call. Source is X's syndication endpoint (zero cost — no
+    # TwitterAPI.io calls). See pipeline/tweet_media.py.
+    print("  Building tweet-media.json...")
+    try:
+        from tweet_media import build_tweet_media
+        build_tweet_media(recent_articles)
+    except Exception as e:
+        print(f"  WARN: tweet-media build failed: {e}")
+
     # 4. Build cars.json
     print("  Building cars.json...")
     cars = fetch_table(url, key, "cars", order="sort_order.asc,name.asc")

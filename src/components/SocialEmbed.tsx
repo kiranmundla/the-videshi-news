@@ -1,5 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useTweet } from "react-tweet";
+import { TweetPhotos, TweetVideoPlayer } from "@/components/TweetMedia";
+import {
+  useStaticTweet,
+  type StaticTweet,
+  type TweetPhoto,
+  type TweetVideo,
+} from "@/lib/tweetMedia";
 
 interface SocialEmbedProps {
   platform: "instagram" | "twitter";
@@ -63,79 +70,94 @@ function XIcon() {
   );
 }
 
-/* ── Photo grid ── */
-function PhotoGrid({ photos, tweetUrl }: { photos: { url: string; width: number; height: number }[]; tweetUrl: string }) {
-  const count = photos.length;
-  if (!count) return null;
+/* ── Unified tweet view model ───────────────────────────────────────
+   Both data sources — the static prebuild JSON (preferred, no runtime
+   call) and react-tweet's runtime syndication fetch (fallback) — map
+   into this shape, and both card variants render from it. Photos are
+   browsed IN PLACE (strip + lightbox) and videos play via X's official
+   embed on tap; see TweetMedia.tsx. */
 
-  const gridStyle: React.CSSProperties =
-    count === 1
-      ? { gridTemplateColumns: "1fr" }
-      : { gridTemplateColumns: "1fr 1fr", gridTemplateRows: count > 2 ? "1fr 1fr" : "1fr" };
-
-  return (
-    <a href={tweetUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}>
-      <div style={{
-        display: "grid", gap: 2, margin: "0 16px 12px", borderRadius: 12, overflow: "hidden",
-        ...gridStyle,
-      }}>
-        {photos.slice(0, 4).map((p, i) => (
-          <img
-            key={i}
-            src={p.url}
-            alt=""
-            loading="lazy"
-            style={{
-              width: "100%",
-              height: count === 1 ? "auto" : "100%",
-              maxHeight: count === 1 ? 500 : "none",
-              objectFit: count === 1 ? "contain" : "cover",
-              display: "block",
-              aspectRatio: count === 1 ? undefined : "4/3",
-              background: count === 1 ? "#0a0a0a" : undefined,
-            }}
-          />
-        ))}
-      </div>
-    </a>
-  );
+interface TweetView {
+  name: string;
+  screenName: string;
+  avatar: string;
+  verified: boolean;
+  verifiedType?: string;
+  text: string;
+  createdAt: string;
+  favoriteCount: number;
+  conversationCount: number;
+  tweetUrl: string;
+  photos: TweetPhoto[];
+  video: TweetVideo | null;
 }
 
-/* ── Custom tweet card — matches X's embed layout with enhancements ── */
-function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
-  const { data: tweet, isLoading, error } = useTweet(tweetId);
-  const [expanded, setExpanded] = useState(false);
-
-  if (isLoading) {
-    return (
-      <div style={{
-        background: "#0f0f0f", border: "1px solid rgba(255,255,255,0.08)",
-        borderRadius: 14, padding: 32, textAlign: "center", color: "rgba(255,255,255,0.4)", fontSize: 13,
-      }}>
-        Loading post…
-      </div>
-    );
+function largePhotoUrl(url: string): string {
+  const base = (url || "").split("?")[0];
+  if (base.includes("/media/")) {
+    const fmt = base.toLowerCase().endsWith(".png") ? "png" : "jpg";
+    return `${base}?format=${fmt}&name=large`;
   }
+  return url;
+}
 
-  if (error || !tweet) {
-    return (
-      <div style={{
-        background: "#0f0f0f", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 20, textAlign: "center",
-      }}>
-        <a href={url} target="_blank" rel="noopener noreferrer" style={{ color: "#1DA1F2", fontSize: 13 }}>
-          View post on 𝕏 →
-        </a>
-      </div>
-    );
-  }
-
+function runtimeToView(tweet: any): TweetView {
   const user = tweet.user;
-  const avatarUrl = hiResAvatar(user.profile_image_url_https);
-  const tweetUrl = `https://x.com/${user.screen_name}/status/${tweet.id_str}`;
-  const hasPhotos = (tweet.photos?.length ?? 0) > 0;
-  const hasVideo = !!(tweet as any).video?.poster;
+  const video = tweet.video?.poster
+    ? {
+        poster: tweet.video.poster as string,
+        aspect: (Array.isArray(tweet.video.aspectRatio)
+          ? tweet.video.aspectRatio
+          : [16, 9]) as [number, number],
+        duration_ms: 0,
+        type: "video",
+      }
+    : null;
+  return {
+    name: user.name,
+    screenName: user.screen_name,
+    avatar: hiResAvatar(user.profile_image_url_https),
+    verified: !!(user.is_blue_verified || user.verified_type),
+    verifiedType: user.verified_type,
+    text: tweet.text ?? "",
+    createdAt: tweet.created_at ?? "",
+    favoriteCount: tweet.favorite_count ?? 0,
+    conversationCount: tweet.conversation_count ?? 0,
+    tweetUrl: `https://x.com/${user.screen_name}/status/${tweet.id_str}`,
+    photos: (tweet.photos ?? []).map((p: any) => ({
+      url: largePhotoUrl(p.url),
+      width: p.width ?? 0,
+      height: p.height ?? 0,
+    })),
+    video,
+  };
+}
+
+function staticToView(s: StaticTweet): TweetView {
+  return {
+    name: s.user.name,
+    screenName: s.user.screen_name,
+    avatar: hiResAvatar(s.user.avatar),
+    verified: s.user.verified,
+    verifiedType: s.user.verified_type ?? undefined,
+    text: s.text,
+    createdAt: s.created_at,
+    favoriteCount: s.favorite_count,
+    conversationCount: s.conversation_count,
+    tweetUrl: s.url,
+    photos: s.photos,
+    video: s.video,
+  };
+}
+
+/* ── Dark tweet card (markdown-body articles) ── */
+function TweetCard({ view }: { view: TweetView }) {
+  const [expanded, setExpanded] = useState(false);
+  const { tweetUrl } = view;
+  const hasPhotos = view.photos.length > 0;
+  const hasVideo = !!view.video;
   const hasMedia = hasPhotos || hasVideo;
-  const bodyText = tweet.text?.replace(/https:\/\/t\.co\/\S+/g, "").trim();
+  const bodyText = view.text?.replace(/https:\/\/t\.co\/\S+/g, "").trim();
 
   return (
     <div style={{
@@ -147,11 +169,11 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
     }}>
       {/* Header — matches X embed: avatar | name+handle | X icon */}
       <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "14px 16px 6px" }}>
-        <a href={`https://x.com/${user.screen_name}`} target="_blank" rel="noopener noreferrer"
+        <a href={`https://x.com/${view.screenName}`} target="_blank" rel="noopener noreferrer"
            style={{ flexShrink: 0 }}>
           <img
-            src={avatarUrl}
-            alt={user.name}
+            src={view.avatar}
+            alt={view.name}
             width={48}
             height={48}
             style={{
@@ -165,16 +187,14 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
           <div style={{ display: "flex", alignItems: "center" }}>
             <a href={tweetUrl} target="_blank" rel="noopener noreferrer"
                style={{ color: "#fff", textDecoration: "none", fontWeight: 700, fontSize: 15, lineHeight: 1.3 }}>
-              {user.name}
+              {view.name}
             </a>
-            {(user.is_blue_verified || user.verified_type) && (
-              <VerifiedBadge type={user.verified_type} />
-            )}
+            {view.verified && <VerifiedBadge type={view.verifiedType} />}
           </div>
           <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 14, lineHeight: 1.3, display: "flex", alignItems: "center", gap: 2 }}>
-            <a href={`https://x.com/${user.screen_name}`} target="_blank" rel="noopener noreferrer"
+            <a href={`https://x.com/${view.screenName}`} target="_blank" rel="noopener noreferrer"
                style={{ color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>
-              @{user.screen_name}
+              @{view.screenName}
             </a>
             <span style={{ color: "rgba(255,255,255,0.35)" }}> · </span>
             <a href={tweetUrl} target="_blank" rel="noopener noreferrer"
@@ -189,34 +209,26 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
         </a>
       </div>
 
-      {/* Photos */}
-      {hasPhotos && <PhotoGrid photos={tweet.photos!} tweetUrl={tweetUrl} />}
+      {/* Photos — in place: strip + lightbox, no tap-out */}
+      {hasPhotos && (
+        <div style={{ margin: "0 16px 12px", borderRadius: 12, overflow: "hidden" }}>
+          <TweetPhotos
+            photos={view.photos}
+            tweetUrl={tweetUrl}
+            authorLabel={`@${view.screenName} on X`}
+            dark
+          />
+        </div>
+      )}
 
-      {/* Video — poster with play button linking to X (inline <video> blocked by CORS) */}
-      {hasVideo && !hasPhotos && (() => {
-        const video = (tweet as any).video;
-        return (
-          <a href={tweetUrl} target="_blank" rel="noopener noreferrer"
-             style={{ display: "block", position: "relative", cursor: "pointer", margin: "0 16px 12px", borderRadius: 12, overflow: "hidden" }}>
-            <img
-              src={video.poster}
-              alt="Video thumbnail"
-              style={{ width: "100%", display: "block", objectFit: "cover" }}
-            />
-            <div style={{
-              position: "absolute", top: "50%", left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: 60, height: 60, borderRadius: "50%",
-              background: "rgba(29, 161, 242, 0.9)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-            }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          </a>
-        );
-      })()}
+      {/* Video — poster + play; tap swaps in the official X embed in
+          place. Renders alongside photos too: X allows mixed-media
+          tweets (photos + one video in a single post). */}
+      {hasVideo && (
+        <div style={{ margin: "0 16px 12px", borderRadius: 12, overflow: "hidden" }}>
+          <TweetVideoPlayer url={tweetUrl} video={view.video!} dark />
+        </div>
+      )}
 
       {/* Text — always visible when no media, collapsible when media present */}
       {bodyText && (
@@ -249,14 +261,15 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
         padding: "8px 16px 12px", borderTop: "1px solid rgba(255,255,255,0.08)",
       }}>
         <div style={{ display: "flex", gap: 14, fontSize: 13, color: "rgba(255,255,255,0.4)" }}>
-          {tweet.favorite_count > 0 && <span>❤️ {formatCount(tweet.favorite_count)}</span>}
-          {tweet.conversation_count > 0 && <span>💬 {formatCount(tweet.conversation_count)}</span>}
-          {tweet.created_at && (
-            <span style={{ color: "rgba(255,255,255,0.3)" }}>{timeAgo(tweet.created_at)}</span>
+          {view.favoriteCount > 0 && <span>❤️ {formatCount(view.favoriteCount)}</span>}
+          {view.conversationCount > 0 && <span>💬 {formatCount(view.conversationCount)}</span>}
+          {view.createdAt && (
+            <span style={{ color: "rgba(255,255,255,0.3)" }}>{timeAgo(view.createdAt)}</span>
           )}
         </div>
         <a
-          href={tweetUrl} target="_blank" rel="noopener noreferrer"
+          href={tweetUrl}
+          target="_blank" rel="noopener noreferrer"
           style={{
             display: "inline-flex", alignItems: "center", color: "#fff", textDecoration: "none",
             fontWeight: 600, fontSize: 12, background: "rgba(255,255,255,0.12)", padding: "6px 16px",
@@ -270,6 +283,53 @@ function TweetCard({ tweetId, url }: { tweetId: string; url: string }) {
       </div>
     </div>
   );
+}
+
+function RuntimeTweetCard({ tweetId, url }: { tweetId: string; url: string }) {
+  const { data: tweet, isLoading, error } = useTweet(tweetId);
+
+  if (isLoading) {
+    return (
+      <div style={{
+        background: "#0f0f0f", border: "1px solid rgba(255,255,255,0.08)",
+        borderRadius: 14, padding: 32, textAlign: "center", color: "rgba(255,255,255,0.4)", fontSize: 13,
+      }}>
+        Loading post…
+      </div>
+    );
+  }
+
+  if (error || !tweet) {
+    return (
+      <div style={{
+        background: "#0f0f0f", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 14, padding: 20, textAlign: "center",
+      }}>
+        <a href={url} target="_blank" rel="noopener noreferrer" style={{ color: "#1DA1F2", fontSize: 13 }}>
+          View post on 𝕏 →
+        </a>
+      </div>
+    );
+  }
+
+  return <TweetCard view={runtimeToView(tweet)} />;
+}
+
+/** Static-first: render from /data/tweet-media.json when the prebuild
+    covered this tweet; otherwise the runtime syndication fetch. */
+function TweetCardRouter({ tweetId, url }: { tweetId: string; url: string }) {
+  const entry = useStaticTweet(tweetId);
+  if (entry === undefined) {
+    return (
+      <div style={{
+        background: "#0f0f0f", border: "1px solid rgba(255,255,255,0.08)",
+        borderRadius: 14, padding: 32, textAlign: "center", color: "rgba(255,255,255,0.4)", fontSize: 13,
+      }}>
+        Loading post…
+      </div>
+    );
+  }
+  if (entry) return <TweetCard view={staticToView(entry)} />;
+  return <RuntimeTweetCard tweetId={tweetId} url={url} />;
 }
 
 /* ------------------------------------------------------------------ */
@@ -387,7 +447,7 @@ function TwitterEmbed({ url, caption }: { url: string; caption?: string }) {
   return (
     <figure className="my-6 flex flex-col items-center">
       <div className="w-full max-w-[550px]">
-        <TweetCard tweetId={tweetId} url={url} />
+        <TweetCardRouter tweetId={tweetId} url={url} />
       </div>
       {caption && (
         <figcaption className="mt-2 text-sm text-muted-foreground text-center">
@@ -418,51 +478,13 @@ export function detectSocialUrl(line: string): { platform: "instagram" | "twitte
   return null;
 }
 
-/* ── Minimal inline tweet card for article bodies ── */
+/* ── Minimal inline tweet card for article bodies (HTML-body path) ── */
 
-export function MinimalTweetEmbed({ url }: { url: string }) {
-  const tweetId = extractTweetId(url);
-  const handle = url.match(/(?:twitter\.com|x\.com)\/(\w+)\//)?.[1] ?? "";
-
-  if (!tweetId) return null;
-
-  const { data: tweet, isLoading, error } = useTweet(tweetId);
-
-  /* Loading / error fallback — just a styled link */
-  if (isLoading || error || !tweet) {
-    return (
-      <div style={{ margin: "24px auto", maxWidth: 480 }}>
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: "flex", alignItems: "center", gap: 10,
-            padding: "14px 18px", borderRadius: 10,
-            border: "1px solid #e0ddd8", background: "#faf9f7",
-            textDecoration: "none", color: "#333",
-          }}
-        >
-          <svg viewBox="0 0 24 24" width="18" height="18" style={{ flexShrink: 0 }}>
-            <path fill="#000" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg>
-          <span style={{ flex: 1, fontSize: 14, color: "#555" }}>
-            {handle ? `@${handle}` : "Post"}
-          </span>
-          <span style={{ fontSize: 13, color: "#1d9bf0", fontWeight: 500 }}>
-            {isLoading ? "Loading…" : "View on X →"}
-          </span>
-        </a>
-      </div>
-    );
-  }
-
-  const user = tweet.user;
-  const bodyText = tweet.text?.replace(/https:\/\/t\.co\/\S+/g, "").trim();
-  const tweetUrl = `https://x.com/${user.screen_name}/status/${tweet.id_str}`;
-  const photos = tweet.photos ?? [];
-  const videoData = (tweet as any).video;
-  const hasVideo = !!(videoData?.poster);
+function MinimalTweetCard({ view }: { view: TweetView }) {
+  const { tweetUrl } = view;
+  const bodyText = view.text?.replace(/https:\/\/t\.co\/\S+/g, "").trim();
+  const photos = view.photos;
+  const hasVideo = !!view.video;
 
   return (
     <div style={{ margin: "24px auto", maxWidth: 480 }}>
@@ -484,13 +506,13 @@ export function MinimalTweetEmbed({ url }: { url: string }) {
               <svg viewBox="0 0 24 24" width="16" height="16" style={{ flexShrink: 0 }}>
                 <path fill="#000" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
-              <span style={{ fontWeight: 600, fontSize: 14 }}>{user.name}</span>
-              {(user.is_blue_verified || user.verified_type) && (
+              <span style={{ fontWeight: 600, fontSize: 14 }}>{view.name}</span>
+              {view.verified && (
                 <svg viewBox="0 0 22 22" width="14" height="14" style={{ flexShrink: 0 }}>
                   <path fill="#1d9bf0" d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.855-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.607-.274 1.264-.144 1.897.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z" />
                 </svg>
               )}
-              <span style={{ color: "#888", fontSize: 13 }}>@{user.screen_name}</span>
+              <span style={{ color: "#888", fontSize: 13 }}>@{view.screenName}</span>
             </div>
             {bodyText && (
               <p style={{ margin: 0, fontSize: 14, lineHeight: 1.55, color: "#444" }}>
@@ -499,56 +521,19 @@ export function MinimalTweetEmbed({ url }: { url: string }) {
             )}
           </div>
         </a>
+        {/* Photos — in place: strip + lightbox, no tap-out */}
         {photos.length > 0 && (
-          <a href={tweetUrl} target="_blank" rel="noopener noreferrer" style={{ display: "block" }}>
-            <div style={{
-              display: "grid",
-              gap: 2,
-              gridTemplateColumns: photos.length === 1 ? "1fr" : "1fr 1fr",
-            }}>
-              {photos.slice(0, 4).map((p, i) => (
-                <img
-                  key={i}
-                  src={p.url}
-                  alt=""
-                  loading="lazy"
-                  style={{
-                    width: "100%",
-                    height: photos.length === 1 ? "auto" : "100%",
-                    maxHeight: photos.length === 1 ? 400 : 180,
-                    objectFit: photos.length === 1 ? "contain" : "cover",
-                    display: "block",
-                    background: "#f0eeeb",
-                  }}
-                />
-              ))}
-            </div>
-          </a>
+          <TweetPhotos
+            photos={photos}
+            tweetUrl={tweetUrl}
+            authorLabel={`@${view.screenName} on X`}
+          />
         )}
-        {hasVideo && photos.length === 0 && (() => {
-          // Always use poster+play-button linking to X (inline <video> blocked by CORS on video.twimg.com)
-          return (
-            <a href={tweetUrl} target="_blank" rel="noopener noreferrer" style={{ display: "block", position: "relative" }}>
-              <img
-                src={videoData.poster}
-                alt="Video thumbnail"
-                loading="lazy"
-                style={{ width: "100%", display: "block", objectFit: "cover", maxHeight: 400, background: "#f0eeeb" }}
-              />
-              <div style={{
-                position: "absolute", top: "50%", left: "50%",
-                transform: "translate(-50%, -50%)",
-                width: 48, height: 48, borderRadius: "50%",
-                background: "rgba(29, 161, 242, 0.9)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-              }}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </div>
-            </a>
-          );
-        })()}
+        {/* Video — poster + play; tap swaps in the official X embed in
+            place. Also renders with photos (X mixed-media tweets). */}
+        {hasVideo && (
+          <TweetVideoPlayer url={tweetUrl} video={view.video!} />
+        )}
         <a href={tweetUrl} target="_blank" rel="noopener noreferrer" style={{ display: "block", textDecoration: "none" }}>
           <div style={{ padding: "10px 18px 14px", fontSize: 13, color: "#1d9bf0", fontWeight: 500 }}>
             View on X →
@@ -557,4 +542,56 @@ export function MinimalTweetEmbed({ url }: { url: string }) {
       </div>
     </div>
   );
+}
+
+function MinimalTweetFallback({ url, handle, loading }: { url: string; handle: string; loading?: boolean }) {
+  return (
+    <div style={{ margin: "24px auto", maxWidth: 480 }}>
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{
+          display: "flex", alignItems: "center", gap: 10,
+          padding: "14px 18px", borderRadius: 10,
+          border: "1px solid #e0ddd8", background: "#faf9f7",
+          textDecoration: "none", color: "#333",
+        }}
+      >
+        <svg viewBox="0 0 24 24" width="18" height="18" style={{ flexShrink: 0 }}>
+          <path fill="#000" d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+        <span style={{ flex: 1, fontSize: 14, color: "#555" }}>
+          {handle ? `@${handle}` : "Post"}
+        </span>
+        <span style={{ fontSize: 13, color: "#1d9bf0", fontWeight: 500 }}>
+          {loading ? "Loading…" : "View on X →"}
+        </span>
+      </a>
+    </div>
+  );
+}
+
+function RuntimeMinimalTweetEmbed({ url, tweetId, handle }: { url: string; tweetId: string; handle: string }) {
+  const { data: tweet, isLoading, error } = useTweet(tweetId);
+
+  if (isLoading || error || !tweet) {
+    return <MinimalTweetFallback url={url} handle={handle} loading={isLoading} />;
+  }
+
+  return <MinimalTweetCard view={runtimeToView(tweet)} />;
+}
+
+export function MinimalTweetEmbed({ url }: { url: string }) {
+  const tweetId = extractTweetId(url);
+  const handle = url.match(/(?:twitter\.com|x\.com)\/(\w+)\//)?.[1] ?? "";
+  const entry = useStaticTweet(tweetId);
+
+  if (!tweetId) return null;
+
+  if (entry === undefined) {
+    return <MinimalTweetFallback url={url} handle={handle} loading />;
+  }
+  if (entry) return <MinimalTweetCard view={staticToView(entry)} />;
+  return <RuntimeMinimalTweetEmbed url={url} tweetId={tweetId} handle={handle} />;
 }
