@@ -51,7 +51,9 @@
           "name": "Martha Kelly",
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Martha_Kelly_by_Gage_Skidmore.jpg/300px-Martha_Kelly_by_Gage_Skidmore.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
-      ]
+      ],
+      "poster_width": 260,
+      "poster_height": 385
     },
     {
       "cast": [
@@ -103,7 +105,9 @@
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Rasika_Dugal_at_Grazia_Young_Fashion_Awards_2024.jpg/300px-Rasika_Dugal_at_Grazia_Young_Fashion_Awards_2024.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
       ],
-      "fandango_url": "https://www.fandango.com/mirzapur-the-movie-2026-246627/movie-overview"
+      "fandango_url": "https://www.fandango.com/mirzapur-the-movie-2026-246627/movie-overview",
+      "poster_width": 2100,
+      "poster_height": 1596
     },
     {
       "cast": [
@@ -145,7 +149,9 @@
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Sathiyaraj.JPG/300px-Sathiyaraj.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
       ],
-      "fandango_url": "https://www.fandango.com/mandaadi-2026-247228/movie-overview"
+      "fandango_url": "https://www.fandango.com/mandaadi-2026-247228/movie-overview",
+      "poster_width": 220,
+      "poster_height": 344
     },
     {
       "cast": [
@@ -198,7 +204,9 @@
           "name": "Xolo Maridueña",
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Xolo_Maridue%C3%B1a.jpg/300px-Xolo_Maridue%C3%B1a.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
-      ]
+      ],
+      "poster_width": 260,
+      "poster_height": 385
     },
     {
       "cast": [
@@ -244,7 +252,9 @@
           "name": "Johnno Wilson",
           "photo_url": ""
         }
-      ]
+      ],
+      "poster_width": 260,
+      "poster_height": 385
     },
     {
       "cast": [
@@ -291,7 +301,9 @@
           "photo_url": ""
         }
       ],
-      "review_slug": "bad-apples-review-roundup-critics"
+      "review_slug": "bad-apples-review-roundup-critics",
+      "poster_width": 258,
+      "poster_height": 387
     },
     {
       "cast": [
@@ -334,7 +346,9 @@
         }
       ],
       "fandango_url": "https://www.fandango.com/daayra-2026-247367/movie-overview",
-      "review_slug": "daayra-review-roundup-critics"
+      "review_slug": "daayra-review-roundup-critics",
+      "poster_width": 283,
+      "poster_height": 354
     },
     {
       "cast": [
@@ -382,7 +396,9 @@
         }
       ],
       "fandango_url": "https://www.fandango.com/vibe-2026-247384/movie-overview",
-      "review_slug": "vibe-review-roundup-critics"
+      "review_slug": "vibe-review-roundup-critics",
+      "poster_width": 283,
+      "poster_height": 354
     },
     {
       "cast": [
@@ -424,7 +440,9 @@
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Raghav_Juyal_at_the_Zee5_event_in_Mumbai_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
         }
       ],
-      "fandango_url": "https://www.fandango.com/the-paradise-2026-246366/movie-overview"
+      "fandango_url": "https://www.fandango.com/the-paradise-2026-246366/movie-overview",
+      "poster_width": 258,
+      "poster_height": 387
     },
     {
       "title": "Dorothy",
@@ -459,7 +477,9 @@
           "photo_url": ""
         }
       ],
-      "fandango_url": "https://www.fandango.com/dorothy-2026-247564/movie-overview"
+      "fandango_url": "https://www.fandango.com/dorothy-2026-247564/movie-overview",
+      "poster_width": 220,
+      "poster_height": 330
     },
     {
       "title": "The Vvaan: Force of the Forrest",
@@ -484,7 +504,9 @@
           "photo_url": ""
         }
       ],
-      "fandango_url": "https://www.fandango.com/the-vvaan-force-of-the-forrest-247541/movie-overview"
+      "fandango_url": "https://www.fandango.com/the-vvaan-force-of-the-forrest-247541/movie-overview",
+      "poster_width": 283,
+      "poster_height": 354
     },
     {
       "title": "Drishyam: The Conclusion",
@@ -509,7 +531,9 @@
           "photo_url": ""
         }
       ],
-      "fandango_url": "https://www.fandango.com/drishyam-the-conclusion-2026-247556/movie-overview"
+      "fandango_url": "https://www.fandango.com/drishyam-the-conclusion-2026-247556/movie-overview",
+      "poster_width": 283,
+      "poster_height": 354
     },
     {
       "cast": [
@@ -562,7 +586,9 @@
         }
       ],
       "review_slug": "jailer-2-review-roundup-critics",
-      "fandango_url": "https://www.fandango.com/jailer-2-247862/movie-overview"
+      "fandango_url": "https://www.fandango.com/jailer-2-247862/movie-overview",
+      "poster_width": 278,
+      "poster_height": 358
     },
     {
       "cast": [
@@ -600,7 +626,9 @@
       ],
       "review_slug": "ranabaali-review-roundup-critics",
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/8/82/Ranabaali_2026_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "fandango_url": "https://www.fandango.com/ranabaali-2026-247336/movie-overview"
+      "fandango_url": "https://www.fandango.com/ranabaali-2026-247336/movie-overview",
+      "poster_width": 260,
+      "poster_height": 346
     },
     {
       "cast": [
@@ -698,7 +726,9 @@
         }
       ],
       "fandango_url": "https://www.fandango.com/udta-teer-247825/movie-overview",
-      "review_slug": "udta-teer-review-roundup-critics"
+      "review_slug": "udta-teer-review-roundup-critics",
+      "poster_width": 283,
+      "poster_height": 354
     },
     {
       "title": "Tu Hai Meri Kiran",
@@ -757,7 +787,9 @@
           "name": "Tarak Ponnappa",
           "photo_url": ""
         }
-      ]
+      ],
+      "poster_width": 295,
+      "poster_height": 339
     },
     {
       "title": "Ramayana: Part 1",
@@ -783,7 +815,9 @@
           "name": "Ranbir Kapoor Yash Sai Pallavi Ravi Dubey Sunny Deol Arun Govil Lara Dutta Sheeba Chaddha Anupam Kher",
           "photo_url": ""
         }
-      ]
+      ],
+      "poster_width": 283,
+      "poster_height": 354
     },
     {
       "title": "Scene",
@@ -819,7 +853,9 @@
           "name": "Nazriya Nazim",
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Nazriya_Nazim_at_neram_audio_launch.jpg/300px-Nazriya_Nazim_at_neram_audio_launch.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
-      ]
+      ],
+      "poster_width": 330,
+      "poster_height": 183
     },
     {
       "title": "Aakasamlo Oka Tara",
@@ -855,7 +891,9 @@
           "name": "Shruti Haasan",
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Shruti_Haasan_at_the_special_screening_of_the_short_film_Devi_%2832%29.jpg/300px-Shruti_Haasan_at_the_special_screening_of_the_short_film_Devi_%2832%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
-      ]
+      ],
+      "poster_width": 283,
+      "poster_height": 353
     },
     {
       "title": "King",
