@@ -228,5 +228,15 @@
     "quick_hit_count": 5,
     "deadline_count": 3,
     "chars": 2414
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-10-31T14:13:00.530807+00:00Z",
+    "subject": "WhatsApp digest \u2014 Oct 31 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "indian-woman-fined-2500-molesting-singapore-nightclub-server",
+    "quick_hit_count": 5,
+    "deadline_count": 3,
+    "chars": 2688
   }
 ]

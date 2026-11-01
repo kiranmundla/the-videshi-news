@@ -1657,5 +1657,16 @@
     "top_story_slug": "indian-airlines-saudi-suspensions-indigo-november-14",
     "quick_hit_count": 5,
     "deadline_count": 3
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-10-31T13:58:11.768201+00:00Z",
+    "subject": "The Videshi Daily \u2014 October 31, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "dallas-baps-mandir-diwali-annakut-fireworks-november-10",
+    "quick_hit_count": 5,
+    "deadline_count": 3
   }
 ]

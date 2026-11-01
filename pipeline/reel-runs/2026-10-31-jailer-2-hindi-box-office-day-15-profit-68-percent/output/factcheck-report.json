@@ -1,0 +1,286 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "jailer-2-hindi-box-office-day-15-profit-68-percent",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "JAILER 2 HINDI EARNS RS 43.8 CRORE IN 15 DAYS, BOOKS 68% PROFIT OVER BREAKEVEN",
+      "numbers": [
+        2.0,
+        15.0,
+        43.8,
+        68.0,
+        438000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All figures and claims are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The Hindi dubbed version of Rajinikanth's Jailer 2 has earned Rs 43.8 crore net in India in 15 days, booking a profit of Rs 17.8 crore, or 68.46 percent, over its Rs 26 crore breakeven, according to Koimoi.",
+      "numbers": [
+        2.0,
+        15.0,
+        17.8,
+        26.0,
+        43.8,
+        68.46,
+        178000000.0,
+        260000000.0,
+        438000000.0
+      ],
+      "entities": [
+        "Rajinikanth's Jailer"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details match the article's content.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "68.46%",
+      "numbers": [
+        68.46
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This percentage is directly stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Profit over the Rs 26 crore breakeven for Jailer 2 Hindi",
+      "numbers": [
+        2.0,
+        26.0,
+        260000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this profit over breakeven.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "RS 43.8 CRORE",
+      "numbers": [
+        43.8,
+        438000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This net collection figure is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Hindi net collection in India in 15 days",
+      "numbers": [
+        15.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies this collection timeframe and amount.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "RS 766.65 CRORE",
+      "numbers": [
+        766.65,
+        7666500000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This worldwide gross figure is provided in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Worldwide gross after 15 days across all languages",
+      "numbers": [
+        15.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this gross amount and timeframe.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "RS 52 CRORE",
+      "numbers": [
+        52.0,
+        520000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This figure is mentioned as needed for a hit verdict.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Hindi net needed for a hit verdict on Koimoi's parameters",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses this requirement for a hit.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "The run is playing in North American and Gulf theatres",
+      "numbers": [],
+      "entities": [
+        "North American"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the film's overseas run.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Overseas gross reached Rs 264 crore after 15 days",
+      "numbers": [
+        15.0,
+        264.0,
+        2640000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This overseas gross figure is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The Hindi version needs Rs 52 crore net for a hit verdict, with about six days of open run before Ramayana Part One releases.",
+      "numbers": [
+        52.0,
+        520000000.0
+      ],
+      "entities": [
+        "Ramayana Part One"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this requirement and timeframe.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Jailer 2",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Rajinikanth",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sun Pictures",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nelson Dilipkumar",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000703,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -3445,6 +3445,31 @@
    "resolved_confidence": "medium",
    "resolved_context": "AbbVie Earnings Beat Estimates, Revenue Rises 10% to $17.4 Billion and 2026 EPS Guidance Is Raised Adjusted EPS of $3.82 topped estimates as Skyrizi and Rinvoq grew more than 22% each, prompting a guidance raise, a higher Skyrizi target and a 5.2% dividend increase. Adjusted EPS of $3.82 topped estimates as Skyrizi and Rinvoq grew more than 22% each, prompting a guidance raise, a higher Skyrizi ta",
    "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'AbbVie Earnings Beat Estimates, Revenue Rises 10% to $17.4 Billion and 2026 EPS Guidance Is Raised Adjusted EPS of $3.82 topped estimates as Skyrizi and Rinvoq grew more than 22% each, prompting a gui'; description: chemical compound"
+  },
+  {
+   "name": "Uganda",
+   "aliases": [
+    "Uganda",
+    "Republic of Uganda",
+    "ug",
+    "The Republic of Uganda",
+    "Ugandah",
+    "+256",
+    "Ouganda",
+    "Pearl of Africa"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1036",
+   "p18_file": "Uganda - Location Map (2013) - UGA - UNOCHA.svg",
+   "p18_quality": 250,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "India Beat Sri Lanka and Uganda to Complete Commonwealth Kabaddi Double India won the men's final 54-20 over Sri Lanka and the women's final 35-15 over Uganda in Ahmedabad to claim both titles at the inaugural Commonwealth Kabaddi Championship. India won the men's final 54-20 over Sri Lanka and the women's final 35-15 over Uganda in Ahmedabad to claim both titles at the inaugural Commonwealth Kaba",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: \"India Beat Sri Lanka and Uganda to Complete Commonwealth Kabaddi Double India won the men's final 54-20 over Sri Lanka and the women's final 35-15 over Uganda in Ahmedabad to claim both titles at the \"; description: country in East Africa"
   }
  ]
 }

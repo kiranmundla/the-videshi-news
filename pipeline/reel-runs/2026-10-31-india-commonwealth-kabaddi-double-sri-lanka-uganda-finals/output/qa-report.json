@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-31-india-commonwealth-kabaddi-double-sri-lanka-uganda-finals/output/india-commonwealth-kabaddi-double-sri-lanka-uganda-finals.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:grid"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1280,
+        720
+      ],
+      "manifest_dims": [
+        1280,
+        720
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 4505.4,
+      "url": "https://img.youtube.com/vi/7TvX6RQc-fQ/maxresdefault.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-31-india-commonwealth-kabaddi-double-sri-lanka-uganda-finals/output/qa/frames/frame-hook.png",
+      "text_px_detected": 19809,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.86)",
+        "box": [
+          657,
+          288,
+          45,
+          54
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-31-india-commonwealth-kabaddi-double-sri-lanka-uganda-finals/output/qa/frames/frame-news.png",
+      "text_px_detected": 43680,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          659,
+          280,
+          48,
+          58
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 0.0,
+        "delta": 253.7
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-31-india-commonwealth-kabaddi-double-sri-lanka-uganda-finals/output/qa/frames/frame-hero.png",
+      "text_px_detected": 23432,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          660,
+          276,
+          48,
+          58
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 57.6,
+        "delta": 195.8
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-31-india-commonwealth-kabaddi-double-sri-lanka-uganda-finals/output/qa/frames/frame-grid.png",
+      "text_px_detected": 42987,
+      "edge": {
+        "pass": false,
+        "offending_px": 739,
+        "clusters": 1,
+        "largest_cluster": 94
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          662,
+          273,
+          49,
+          59
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.6,
+        "bg_luminance": 101.2,
+        "delta": 151.3
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-31-india-commonwealth-kabaddi-double-sri-lanka-uganda-finals/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 47925,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.89)",
+        "box": [
+          625,
+          290,
+          58,
+          69
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.0,
+        "bg_luminance": 0.0,
+        "delta": 254.0
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-31-india-commonwealth-kabaddi-double-sri-lanka-uganda-finals/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 24766,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          665,
+          265,
+          50,
+          61
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    }
+  ]
+}

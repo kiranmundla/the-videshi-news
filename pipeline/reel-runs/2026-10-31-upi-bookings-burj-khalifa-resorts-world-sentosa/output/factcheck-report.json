@@ -1,0 +1,242 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "upi-bookings-burj-khalifa-resorts-world-sentosa",
+  "verdict": "fail",
+  "held_claims": [
+    "stats[0].big",
+    "stats[0].label"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIANS CAN NOW BOOK BURJ KHALIFA, SENTOSA TICKETS ONLINE USING UPI",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states Indians can book tickets online using UPI.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Indian travellers can now use UPI apps to book online tickets for At the Top, Burj Khalifa in Dubai and for Resorts World Sentosa attractions in Singapore, the Finance Ministry said on October 30.",
+      "numbers": [
+        30.0
+      ],
+      "entities": [
+        "Burj Khalifa",
+        "Resorts World Sentosa",
+        "Finance Ministry"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Claim accurately reflects the article's content and date.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "10 COUNTRIES",
+      "numbers": [
+        10.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states UPI is accepted in 10 countries.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Now accept UPI, with Uzbekistan set to become the 11th",
+      "numbers": [
+        11.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article mentions Uzbekistan will be the 11th country for UPI acceptance.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "JANUARY 26, 2024",
+      "numbers": [
+        26.0,
+        2024.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2024
+        ]
+      },
+      "llm_reason": "Date refers to future event not mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "UPI-based ticket booking for the Eiffel Tower in France was launched",
+      "numbers": [],
+      "entities": [
+        "Eiffel Tower"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Claim about Eiffel Tower booking is not supported by the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "FIRST IN THE UAE",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states Burj Khalifa is the first UAE attraction to implement UPI.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "At the Top, Burj Khalifa is the first attraction in the UAE to implement UPI for e-commerce",
+      "numbers": [],
+      "entities": [
+        "Burj Khalifa"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Claim is directly supported by the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Travellers can pay for these bookings from a UPI app instead of relying only on an international card",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states UPI allows payment without an international card.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "In Singapore the facility covers Universal Studios Singapore, the Singapore Oceanarium and Adventure Cove Waterpark",
+      "numbers": [],
+      "entities": [
+        "In Singapore",
+        "Universal Studios Singapore",
+        "Singapore Oceanarium",
+        "Adventure Cove Waterpark"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article lists these attractions covered by UPI in Singapore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "UPI is now accepted in 10 countries, and Uzbekistan is set to become the 11th.",
+      "numbers": [
+        10.0,
+        11.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Claim accurately reflects the article's information.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "UPI",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Burj Khalifa",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Resorts World Sentosa",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Universal Studios Singapore",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000635,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "jailer-2-hindi-box-office-day-15-profit-68-percent",
+  "name": "jailer-2-hindi-box-office-day-15-profit-68-percent",
+  "script": "reel-runs/2026-10-31-jailer-2-hindi-box-office-day-15-profit-68-percent/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000703
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-31-jailer-2-hindi-box-office-day-15-profit-68-percent/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "hindi-aksharamala",
+      "hero": "hindi-language-native-speakers",
+      "grid": "rajinikanth-at-the-inauguration-of-mgr-statu",
+      "diaspora": "magnificent-cme-erupts-on-the-sun-august-31"
+    }
+  },
+  "manifest": "reel-runs/2026-10-31-jailer-2-hindi-box-office-day-15-profit-68-percent/output/render-manifest.json",
+  "video": "reel-runs/2026-10-31-jailer-2-hindi-box-office-day-15-profit-68-percent/output/jailer-2-hindi-box-office-day-15-profit-68-percent.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-10-31-jailer-2-hindi-box-office-day-15-profit-68-percent/output/tiktok-caption.txt"
+}

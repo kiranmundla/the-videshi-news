@@ -1,0 +1,34 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "abbvie-earnings-q3-2026-skyrizi-revenue-guidance-raised",
+  "name": "abbvie-earnings-q3-2026-skyrizi-revenue-guidance-raised",
+  "script": "reel-runs/2026-10-31-abbvie-earnings-q3-2026-skyrizi-revenue-guidance-raised/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000745
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-31-abbvie-earnings-q3-2026-skyrizi-revenue-guidance-raised/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "abbvie",
+      "hero": "ip-finance-dialogue-expanding-horizons-on-ip"
+    }
+  },
+  "manifest": "reel-runs/2026-10-31-abbvie-earnings-q3-2026-skyrizi-revenue-guidance-raised/output/render-manifest.json",
+  "video": "reel-runs/2026-10-31-abbvie-earnings-q3-2026-skyrizi-revenue-guidance-raised/output/abbvie-earnings-q3-2026-skyrizi-revenue-guidance-raised.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-10-31-abbvie-earnings-q3-2026-skyrizi-revenue-guidance-raised/output/tiktok-caption.txt"
+}

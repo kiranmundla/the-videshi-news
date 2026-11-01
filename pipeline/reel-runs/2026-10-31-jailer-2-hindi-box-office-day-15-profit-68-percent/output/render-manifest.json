@@ -1,0 +1,404 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "jailer-2-hindi-box-office-day-15-profit-68-percent",
+ "article_slug": "jailer-2-hindi-box-office-day-15-profit-68-percent",
+ "article_id": "d4021d8c-ff8c-4629-8629-a10711dde6ed",
+ "category": "Entertainment",
+ "video": "reel-runs/2026-10-31-jailer-2-hindi-box-office-day-15-profit-68-percent/output/jailer-2-hindi-box-office-day-15-profit-68-percent.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://www.koimoi.com/wp-content/new-galleries/2026/10/jailer-2-hindi-box-office-day-15-enjoys-a-profit-of-68-in-2-weeks-001.jpg",
+  "local_path": "reel-runs/2026-10-31-jailer-2-hindi-box-office-day-15-profit-68-percent/output/hero.jpg",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.90)",
+  "has_face": true,
+  "box_source": [
+   499,
+   104,
+   190,
+   251
+  ],
+  "box_bg": [
+   433,
+   228,
+   132,
+   174
+  ],
+  "chin_bg": 402,
+  "anchor": [
+   0.494,
+   0.336
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 294,
+   "block_top": 975,
+   "block_bottom": 1269,
+   "text_bbox": [
+    70,
+    975,
+    930,
+    1269
+   ],
+   "texts": [
+    "Entertainment",
+    "JAILER 2 HINDI EARNS RS 43.8 CRORE IN 15 DAYS, BOOKS 68% PROFIT OVER BREAKEVEN"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      673
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "What Happened",
+    "The Hindi dubbed version of Rajinikanth's Jailer 2 has earned Rs 43.8 crore net in India in 15 days, booking a profit of Rs 17.8 crore, or 68.46 percent, over its Rs 26 crore breakeven, according to Koimoi."
+   ],
+   "v7": {
+    "image_source": "extra:hindi-aksharamala",
+    "track": "backdrop",
+    "render_scale": 0.351,
+    "photo_px": [
+     2378,
+     1840
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.3507148864592094,
+     "window": [
+      0,
+      184,
+      2378,
+      1518
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.04x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Hindi alphabet",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Hindi_aksharamala.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Hindi_aksharamala.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "K.Venkataramana"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 903,
+   "block_bottom": 1341,
+   "text_bbox": [
+    70,
+    903,
+    930,
+    1341
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "68.46%",
+    "Profit over the Rs 26 crore breakeven for Jailer 2 Hindi"
+   ],
+   "v7": {
+    "image_source": "extra:hindi-language-native-speakers",
+    "track": "backdrop",
+    "render_scale": 0.475,
+    "photo_px": [
+     1754,
+     1628
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.475484606613455,
+     "window": [
+      0,
+      160,
+      1754,
+      1144
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.18x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "This map shows the geographical extent of various languages within Western Hindi languages with native speakers of the Hindi language (Hindustani) colored red.",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Hindi_language_native_speakers.png",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Hindi_language_native_speakers.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "PadFoot2008"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 750,
+   "block_bottom": 1493,
+   "text_bbox": [
+    70,
+    750,
+    930,
+    1493
+   ],
+   "texts": [
+    "By The Numbers",
+    "RS 43.8 CRORE",
+    "Hindi net collection in India in 15 days",
+    "RS 766.65 CRORE",
+    "Worldwide gross after 15 days across all languages",
+    "RS 52 CRORE",
+    "Hindi net needed for a hit verdict on Koimoi's parameters"
+   ],
+   "v7": {
+    "image_source": "extra:rajinikanth-at-the-inauguration-of-mgr-statu",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     1800
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      165,
+      1200,
+      838
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.07x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Rajinikanth at the Inauguration of MGR Statue",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Rajinikanth_at_the_Inauguration_of_MGR_Statue.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Rajinikanth_at_the_Inauguration_of_MGR_Statue.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Dani Charles, Silverscreen Media Inc. (https://silverscreen.in)"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 937,
+   "block_bottom": 1306,
+   "text_bbox": [
+    70,
+    937,
+    930,
+    1306
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "The run is playing in North American and Gulf theatres",
+    "Overseas gross reached Rs 264 crore after 15 days"
+   ],
+   "v7": {
+    "image_source": "extra:magnificent-cme-erupts-on-the-sun-august-31",
+    "track": "backdrop",
+    "render_scale": 0.434,
+    "photo_px": [
+     1920,
+     1080
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.434375,
+     "window": [
+      0,
+      0,
+      1920,
+      1077
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.78x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "On August 31, 2012 a long filament of solar material that had been hovering in the sun's atmosphere, the corona, erupted out into space at 4:36 p.m. EDT. The coronal mass ejection, or CME, traveled at over 900 miles per second. The CME did ",
+     "route": "A \u2014 Wikimedia Commons",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Magnificent_CME_Erupts_on_the_Sun_-_August_31.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Magnificent_CME_Erupts_on_the_Sun_-_August_31.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "NASA Goddard Space Flight Center"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 337,
+   "block_top": 691,
+   "block_bottom": 1028,
+   "text_bbox": [
+    70,
+    691,
+    930,
+    1028
+   ],
+   "texts": [
+    "The Takeaway",
+    "The Hindi version needs Rs 52 crore net for a hit verdict, with about six days of open run before Ramayana Part One releases.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-midnight-celebration.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 108.8,
+ "mp4_bytes": 7857830
+}

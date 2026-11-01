@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "upi-bookings-burj-khalifa-resorts-world-sentosa",
+  "name": "upi-bookings-burj-khalifa-resorts-world-sentosa",
+  "script": "reel-runs/2026-10-31-upi-bookings-burj-khalifa-resorts-world-sentosa/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "stats[0].big",
+      "stats[0].label"
+    ],
+    "llm_cost_usd": 0.000635
+  }
+}

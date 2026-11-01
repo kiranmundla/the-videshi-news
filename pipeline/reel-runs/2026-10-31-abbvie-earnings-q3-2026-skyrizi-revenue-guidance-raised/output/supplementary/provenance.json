@@ -1,0 +1,833 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "abbvie-earnings-q3-2026-skyrizi-revenue-guidance-raised",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "AbbVie",
+    "Skyrizi",
+    "Rinvoq",
+    "Revenue Rises",
+    "Markets Finance",
+    "Apogee Therapeutics"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Bridgeport Chronicle-Union 1891-02-28 (IA cammlsmh 000388).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:R43568 Corporate Expatriation, Inversions, and Mergers Tax Issues (IA R43568CorporateExpatriationInversionsandMergersTaxIssues-crs).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1901-05-20) (IA victoriadailytimes19010520).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1904-04-21) (IA victoriadailytimes19040421).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:AbbVie.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "4032x3024, CC BY 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:AbbVie logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Abbed Millot 11.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:BIERMANN(1914) Abb.1309 FAMILIENBILD DIE VIER KINDER DES KURF\u00dcRSTEN MAXIMILIAN VON PFALZ-BAYERN (14779645751).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x607 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Der Meister von Messkirch-Staatsgalerie-Kat.-69-68-Abb. 145-Die Heilige Agatha von Catania-EP-Scanjet.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 496x1403 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Dresdens Festungswerke im Jahre 1811 Abb 11.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'AbbVie'"
+    },
+    {
+      "candidate": "File:Gregory Willocq rejoint pharma.be.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 631x462 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Installatiedraad.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 800x600 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Seewasserwerk Frasnacht Trinkwasserpumpe.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'AbbVie'"
+    },
+    {
+      "candidate": "File:The captives of Abb's Valley (microform) - a legend of frontier life (IA cihm 27772).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Carmen; Ars\u00e8ne Guillot; Abb\u00e9 Aubain (IA cu31924088398783).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Documents about Martin Luther King, Jr., Executive Order 14176, 44-me-1987 hs1-852611265 88-05-part 2 of 4.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Engineer update - USACE-p16021coll8-2232.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Life of Ernest Renan (IA lifeofernestrena00espirich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:SKORZENY, OTTO, Volume 2.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Srednevekovye v yego pamyatnikakh.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The New York Times 1917-12-07- Vol 67 Iss 21867 (IA per new-york-times-magazine the-new-york-times 1917-12-07 67 21867).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1903-11-16) (IA victoriadailytimes19031116).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1915-02-22) (IA victoriadailytimes19150222).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 188 of 2018 - CS Czech.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 202401495 of 2024 - LV Latvian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 202500476 of 2025 - FI Finnish.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 202500476 of 2025 - FR French.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 202500476 of 2025 - RO Romanian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 202504668 of 2025 - HU Hungarian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 334 of 2019 - FR French.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 349 of 2018 - FR French.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 349 of 2018 - SL Slovenian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 401 of 2012 - CS Czech.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A new and easy method to understand the Roman history, ... 1700 (IA bim early-english-books-1641-1700 a-new-and-easy-method-to fourcroy-abb 1700).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:D. Felicis Nerinii, abbatis Hieronymiani, De templo et coenobio sanctorum Bonifacii et Alexii historica monumenta (IA dfelicisneriniia00neri).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Die Schlossbauten zu Raesfeld und Honstorff und die Herrensitze des 17. Jahrhunderts der Maastal-Backstein-Architektur (IA dieschlossbauten00klap).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Friedrich Wilhelm Marpurgs. Versuch \u00fcber die musikalische Temperatur, nebst einem Anhang \u00fcber den Rameauund Kirnbergerschen Grundbass, und vier Tabellen (IA friedrichwilhelm00marp).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Praetorium Mobeni, Grundri\u00dfplan, Limes Arabicus, Mediatus.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Specimens of Gothic architecture and ancient buildings in England - comprised in one hundred and twenty views (IA specimensofgothi01cart).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Specimens of Gothic architecture and ancient buildings in England - comprised in one hundred and twenty views (IA specimensofgothi03cart).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Abb\u00e9 Aubain, and Mosaics (IA abbeaubainmosaic00meriiala).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Westfranz\u00f6sische Kuppelkirchen (IA westfranzosische00witt).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Biomedicines-11-01769-g004.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 750x446 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Cancers-13-04418-g002.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 719x528 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Intradermal injection.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x860 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:OJ C 202401116 of 2024 - LT Lithuanian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 202405166 of 2024 - IT Italian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 29 of 2022 - GA Irish.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 29 of 2022 - LV Latvian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 318 of 2020 - RO Romanian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 457 of 2022 - EN English.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 202401495 of 2024 - BG Bulgarian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 202501266 of 2025 - EL Greek.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 202501266 of 2025 - EN English.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 202501266 of 2025 - MT Maltese.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 249 of 2021 - CS Czech.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 318 of 2020 - EN English.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 318 of 2020 - LV Latvian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 527 of 2021 - CS Czech.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 202405166 of 2024 - FI Finnish.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 457 of 2022 - BG Bulgarian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 457 of 2022 - RO Romanian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Age and Socioeconomic Deprivation as Key Predictors of Cardiovascular Risk in Patients With Autoimmune Rheumatic Diseases on JAK Inhibitors.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Rinvoq'"
+    },
+    {
+      "candidate": "File:En-Upadacitinib.ogg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Key Determinants of Cardiovascular Outcomes in Multi-Ethnic Patients With Rheumatic Disease Using JAK Inhibitors.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Rinvoq'"
+    },
+    {
+      "candidate": "File:OJ C 202400910 of 2024 - MT Maltese.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 202403877 of 2024 - BG Bulgarian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 249 of 2022 - BG Bulgarian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 331 of 2022 - CS Czech.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 331 of 2022 - EN English.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Upadacitinib.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 300x300 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Upadacitinib.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:OJ C 202400910 of 2024 - LT Lithuanian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 202406277 of 2024 - SL Slovenian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 331 of 2022 - MT Maltese.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 33 of 2020 - MT Maltese.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 50 of 2022 - CS Czech.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 50 of 2022 - FR French.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:OJ C 394 of 2021 - IT Italian.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Fiscal activism in the Federal Government - an analysis of the REvenue act of 1964 and the Revenue and Expenditure control act of 1968. (IA fiscalactivismin00smit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Inland Revenue Offices, Portsmouth - geograph.org.uk - 657923.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Manual for the guidance of revenue officers in the Punjab.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Preliminary digest of suggestions for internal revenue revision submitted to the Joint Committee on Internal Revenue Taxation (IA preliminarydiges353unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Report of the Joint Committee on Internal Revenue Taxation - pursuant to the Revenue Act of 1926 (IA reportofjointcom412unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Report of the cruise of the U.S. revenue cutter Bear and the overland expedition for the relief of the whalers in the Arctic ocean, from November 27, 1897, to September 13, 1898 (IA reportofcruiseof03unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Report of the cruise of the U.S. revenue steamer Thomas Corwin, in the Arctic Ocean, 1881 (1884) (14761405401).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: No restrictions \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Revenue reform- an essay (IA revenuereformess00atkirich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Land Revenue Of Bombay Vol-I (IA TheLandRevenueOfBombayVolI).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Zamboanga City Ordinances for the Year 2017 (Revenue).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Andrew Steer & Jos\u00e9 Manuel Entrecanales - Innovate4Climate Finance & Markets Week.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file's evidence marks a different domain (director) than this markets-finance story \u2014 a same-name different person, not 'Markets Finance' the subject of this story"
+    },
+    {
+      "candidate": "File:Exploitation of free markets and globalization to finance terrorists (IA exploitationoffr1094510378).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Finance and Markets Working Group Logo.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:IP Finance Dialogue \u2013 Expanding Horizons on IP Finance and Valuation - 53346909618.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "6000x4000, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Prediction market - example GUI - 2.gif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Social finance market structure.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1175x556 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Telia finance logo.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley addressing at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of India (SEBI).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of India (SEBI).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:The Union Minister for Finance, Corporate Affairs and Information & Broadcasting, Shri Arun Jaitley releasing the publication at a function to mark the merger of Forward Markets Commission with Securities & Exchange Board of.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:A practical manual of mental medicine (IA b21963009).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A practical manual of mental medicine (IA cu31924031268109).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A practical manual of mental medicine (IA practicalmanualo00rgis).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Annuaire de th\u00e9rapeutique, de mati\u00e8re m\u00e9dicale et de pharmacie ... (IA s7363id1398903).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Bulletin g\u00e9n\u00e9ral de th\u00e9rapeutique m\u00e9dicale et chirurgicale (IA s5249id1397788).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Le\u00e7ons de th\u00e9rapeutique (IA b21922068 0004).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Le\u00e7ons de th\u00e9rapeutique (electronic resource) (IA b2041433x 004).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:New century reference library of the world's most important knowledge ... (Vol. 8, TOPICAL INDEX) (IA newcenturyrefere08unse).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:North Carolina Baptist almanac for the year ... (serial) (IA northcarolinabap1899bail).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Trait\u00e9 de th\u00e9rapeutique appliqu\u00e9e (IA b21984578 0019).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "https://news.abbvie.com/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://news.abbvie.com/pr-contacts",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://news.abbvie.com/image-gallery",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://www.rinvoq.com/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "https://www.rinvoq.com/atopic-dermatitis/rinvoq-results/patient-stories/helen-video-transcript",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "the page's lead image is a map/diagram-type graphic, not a scene photograph"
+    },
+    {
+      "candidate": "https://www.pa.gov/agencies/revenue/newsroom",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "identity: the page does not evidence 'Revenue Rises'"
+    },
+    {
+      "candidate": "https://investors.apogeetherapeutics.com/news-events/news",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "https://apogeetherapeutics.com/investors/news-releases",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "no lead image (og:image) on the page"
+    },
+    {
+      "candidate": "File:Abbvie logo.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Delegation of Croats and Serbs to Emperor Basil I, Skylitzes.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1081x533 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Skyr.is me\u00f0 vanillu.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 978x743 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Icelandic Skyr.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 630x640 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ravoq(Jomboy).jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x768 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Sv-rinna.ogg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Rin Kaneto (JAP) 2022.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Rinvoq'"
+    },
+    {
+      "candidate": "File:Revenue Image.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Revenue Rises'"
+    },
+    {
+      "candidate": "File:Revenue bar graph.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Graph of the Annual Revenue of the Byzantine Empire.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Logo apogee 2022.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:APOGEE Logo.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Rocket apogee.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 414x429 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "abbvie",
+      "path": "abbvie.jpg",
+      "size": [
+        4032,
+        3024
+      ],
+      "role": "establishing",
+      "subject": "AbbVie Headquarters",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:AbbVie.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/43/AbbVie.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "LittleT889"
+    },
+    {
+      "beat": "hero",
+      "label": "ip-finance-dialogue-expanding-horizons-on-ip",
+      "path": "ip-finance-dialogue-expanding-horizons-on-ip.jpg",
+      "size": [
+        6000,
+        4000
+      ],
+      "role": "establishing",
+      "subject": "Juni Tingting Zhu, Senior Economist at Markets, Competition and Technology Global Unit of World Bank Group, Washington, United States of America, speaks at the panel discussion entitled \u201cIP Finance on the Ground \u2013 IP Financing in the Creati",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/IP_Finance_Dialogue_%E2%80%93_Expanding_Horizons_on_IP_Finance_and_Valuation_-_53346909618.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "WIPO | OMPI"
+    }
+  ]
+}

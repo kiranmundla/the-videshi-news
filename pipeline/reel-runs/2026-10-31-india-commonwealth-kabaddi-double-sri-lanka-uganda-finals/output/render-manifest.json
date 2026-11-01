@@ -1,0 +1,406 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-commonwealth-kabaddi-double-sri-lanka-uganda-finals",
+ "article_slug": "india-commonwealth-kabaddi-double-sri-lanka-uganda-finals",
+ "article_id": "da9299f4-a151-47a3-adc5-ccd5b1498c9a",
+ "category": "Sports",
+ "video": "reel-runs/2026-10-31-india-commonwealth-kabaddi-double-sri-lanka-uganda-finals/output/india-commonwealth-kabaddi-double-sri-lanka-uganda-finals.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://img.youtube.com/vi/7TvX6RQc-fQ/maxresdefault.jpg",
+  "local_path": "reel-runs/2026-10-31-india-commonwealth-kabaddi-double-sri-lanka-uganda-finals/output/hero.jpg",
+  "width": 1280,
+  "height": 720,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.88)",
+  "has_face": true,
+  "box_source": [
+   876,
+   197,
+   72,
+   88
+  ],
+  "box_bg": [
+   657,
+   284,
+   47,
+   57
+  ],
+  "chin_bg": 341,
+  "anchor": [
+   0.898,
+   0.266
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 252,
+   "block_top": 996,
+   "block_bottom": 1248,
+   "text_bbox": [
+    70,
+    996,
+    930,
+    1248
+   ],
+   "texts": [
+    "Sports",
+    "INDIA BEAT SRI LANKA AND UGANDA TO COMPLETE COMMONWEALTH KABADDI DOUBLE"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      0,
+      1280,
+      718
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 933,
+   "block_bottom": 1311,
+   "text_bbox": [
+    70,
+    933,
+    930,
+    1311
+   ],
+   "texts": [
+    "What Happened",
+    "India won both titles at the inaugural Commonwealth Kabaddi Championship in Ahmedabad on October 31, beating Sri Lanka 54-20 in the men's final and Uganda 35-15 in the women's final."
+   ],
+   "v7": {
+    "image_source": "extra:ancient-kurundi-viharaya",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     900
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      114,
+      1200,
+      787
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Ancient Kurundi Viharaya",
+     "route": "identity \u2014 depicts (P180=Q854)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Ancient_Kurundi_Viharaya.png",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Ancient_Kurundi_Viharaya.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "Wijaya Kumara"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "54-20",
+    "India's men's final win over Sri Lanka in Ahmedabad"
+   ],
+   "v7": {
+    "image_source": "extra:boxcar-at-ambewela-railway-station",
+    "track": "full-bleed",
+    "render_scale": 0.413,
+    "photo_px": [
+     6976,
+     4652
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.412725709372313,
+     "window": [
+      2197,
+      0,
+      4813,
+      4652
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Boxcar at Ambewela Railway Station",
+     "route": "identity \u2014 depicts (P180=Q854)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Boxcar_at_Ambewela_Railway_Station.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Boxcar_at_Ambewela_Railway_Station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "C.J.Hatton"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 944,
+   "zone_h": 636,
+   "scale": 0.825,
+   "content_h": 628,
+   "block_top": 952,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    952,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "35-15",
+    "Women's final win over Uganda in Ahmedabad",
+    "380 POINTS",
+    "Scored by the men's team across the tournament, conceding 193",
+    "52 POINTS",
+    "Sakshi's total from six matches in the championship"
+   ],
+   "v7": {
+    "image_source": "extra:a-boy-carrying-firewood-20",
+    "track": "full-bleed",
+    "render_scale": 0.847,
+    "photo_px": [
+     4032,
+     2268
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8465608465608465,
+     "window": [
+      1953,
+      0,
+      3228,
+      2268
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "A boy carrying firewood on the head",
+     "route": "identity \u2014 depicts (P180=Q1036)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:A_boy_carrying_firewood_20.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/A_boy_carrying_firewood_20.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Denis kasozi"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 874,
+   "block_bottom": 1369,
+   "text_bbox": [
+    70,
+    874,
+    930,
+    1369
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "India became the first champions of the Commonwealth Kabaddi Championship",
+    "The women's team also finished unbeaten, winning six matches from six"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.741,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7406749555950266,
+     "window": [
+      154,
+      0,
+      1280,
+      631
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 337,
+   "block_top": 691,
+   "block_bottom": 1028,
+   "text_bbox": [
+    70,
+    691,
+    930,
+    1028
+   ],
+   "texts": [
+    "The Takeaway",
+    "India became the first champions of the Commonwealth Kabaddi Championship in both the men's and women's competitions.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/indian-beat.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 138.9,
+ "mp4_bytes": 18058229
+}

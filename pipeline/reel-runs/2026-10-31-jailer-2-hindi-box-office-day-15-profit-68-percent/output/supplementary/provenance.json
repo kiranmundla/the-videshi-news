@@ -1,0 +1,642 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "jailer-2-hindi-box-office-day-15-profit-68-percent",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Jailer 2",
+    "Rajinikanth",
+    "Sun Pictures",
+    "Nelson Dilipkumar",
+    "Hindi"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Capricornia Correctional Centre.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Jailer 2'"
+    },
+    {
+      "candidate": "File:Flandins-cell-in-Fresnes-locked-by-prison-guard-142361308419.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 778x762 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Jailer(^), Inveraray Jail - geograph.org.uk - 983209.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Prison guard LCCN2005684098.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 840x1024 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Prison guard icon.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Prison guard parra jail.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Jailer 2'"
+    },
+    {
+      "candidate": "File:Prison officer's badge from the Meiji period.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Sugamo Prison Guard Soldiers.JPG",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 530x355 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:The Jailer's Pretty Wife.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:V.M. Doroshevich-Sakhalin. Part II. Prison Guard Khanov and His Family.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Jailer 2'"
+    },
+    {
+      "candidate": "File:Abraham Lincoln and confederates (IA abrahamlincolncolinc 2).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Documents about Martin Luther King, Jr., Executive Order 14176, 44-hq-38861 hs1-233652821 26-01-part 2 of 5.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Documents about Martin Luther King, Jr., Executive Order 14176, 44-me-1987 hs1-852611265 73-10-part 2 of 2.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Headquarters nights; a record of conversations and experiences at the headquarters of the German army in France and Belgium (IA cu31924027829435).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Headquarters nights; a record of conversations and experiences at the headquarters of the German army in France and Belgium (IA headquartersnigh01kell).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:JGR-President's Task Force on Food Assistance (1 of 2) - DPLA - d3d6503dd09e92324f7c6b5d385b4866.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Napoleon and his family - the story of a Corsican clan - by Walter Geer. (IA napoleonhisfamil00geer 2).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Randolph County business directory, 1894 - in three parts- 1, Alphabetical ... 2, Classified ... 3, Farmers and land owners ... - also a supplement .. (IA randolphcountybu00bran).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Militant Volume 7 No. 2.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The writings of Henry David Thoreau (IA writingsofhenryd07thor 2).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Midsummer nights with the Great dreamer; a pilgrim's progress in the twentieth century (IA midsummernightsw00will).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Sketches of America and Americans (IA sketchesofameric00haig).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:St. Mary's Muse (IA stmarysmuse18801882sain).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Radiant (IA radiantmay1918atla).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Reflector (IA reflector00sout 2).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The first quarter century of the New York state library school, 1887-1912.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:The first quarter century of the New York state library school, 1887-1912 (IA firstquartercent00newyrich).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1906-09-25) (IA victoriadailytimes19060925).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Victoria Daily Times (1914-03-31) (IA victoriadailytimes19140331).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A directory of the Kansas historical exhibit in the Kansas state building.. (IA directoryofkansa00kans).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Albemarle County Jail, 409 East High Street, Charlottesville, Charlottesville, VA HABS VA,2-CHAR,26-; (sheet 2 of 11).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Jailer 2'"
+    },
+    {
+      "candidate": "File:Albemarle County Jail, 409 East High Street, Charlottesville, Charlottesville, VA HABS VA,2-CHAR,26-; (sheet 2 of 11).tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:Albemarle County Jail, 409 East High Street, Charlottesville, Charlottesville, VA HABS VA,2-CHAR,26-; (sheet 5 of 11).png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Jailer 2'"
+    },
+    {
+      "candidate": "File:Groningen - Hereweg 132-142 (2).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Jailer 2'"
+    },
+    {
+      "candidate": "File:NORTH FRONT, FROM THE NORTHWEST - Middlesex County Jailer's House, 50 Thorndike Street, Cambridge, Middlesex County, MA HABS MASS,9-CAMB,56-2.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:SECOND FLOOR, NORTHEAST JAILERS' ROOM NO. 2, SOUTH TO NORTH - Charleston County Jail, 21 Magazine Street, Charleston, Charleston County, SC HABS SC,10-CHAR,348-60.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:THIRD FLOOR, NORTHEAST JAILERS' ROOM NO. 2, FROM NORTHWEST - Charleston County Jail, 21 Magazine Street, Charleston, Charleston County, SC HABS SC,10-CHAR,348-76.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:VIEW IN JAILERS ROOM OF FOUR CELLS FROM SOUTHWEST - Sweetwater County Jail, Grant Street, South Pass City, Fremont County, WY HABS WYO,7-SOPAC,23-6.tif",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/tiff)"
+    },
+    {
+      "candidate": "File:Rajinikanth Felicitates Writer Kalaignanam.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 800x1200 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rajinikanth Vellalacheruvu.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 387x424 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rajinikanth at the Inauguration of MGR Statue.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (grid)",
+      "reason": "1200x1800, CC BY-SA 3.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Rajinikanth at the Inauguration of MGR Statue (cropped).jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 727x983 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rajinikanth being honored with Dadasaheb Phalke Award.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Rajinikanth in 2019.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 559x745 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rajinikanth snapped at the airport.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 585x878 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Soundarya Rajinikanth at NDTV Indian Of The Year 2013 awards.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 215x390 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Soundarya Rajinikanth promotes VIP2 in Delhi.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 330x496 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Wikipedia-VideoWiki-Rajinikanth.webm",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:12May2007.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:17June2007.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Prime Minister, Dr. Manmohan Singh presented the Entertainer of the Year Award to Shri Rajnikanth, at the 'NDTV Indian of the Year Awards Function', in New Delhi on January 17, 2008.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:13th Century sculptures at Konark Sun Temple Puri district, Odisha, India.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Fish hanging in the sun with black background.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Magnificent CME Erupts on the Sun - August 31.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (diaspora)",
+      "reason": "1920x1080, CC BY 2.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Solar Orbiter\u2019s widest high-res view of the Sun ESA508430.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Sun and Moon Pagodas Guilin November 2017 HDR.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Sun behind the Heel Stone.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 1040x794 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Sun poster.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Taro leaf underside, backlit by sun - edit.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:The Sun by the Atmospheric Imaging Assembly of NASA's Solar Dynamics Observatory - 20100819.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:The sun and the moon in South New Brighton's beach, New Zealand.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Sun Pictures')"
+    },
+    {
+      "candidate": "File:Nelson Dilipkumar.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 317x368 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:The Lucky bag (IA luckybag20051unit).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A glossary of the tribes and castes of the Punjab and North-West frontier province (IA glossaryoftribes03rose).pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Appeal to the Brahmins and Rajputs of Aauadh (Urdu text poster) Art.IWMPST12575.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Behar Herald 15-01-2017.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Behar Herald 15-02-2018.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Behar Herald 15-07-2018.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Behar Herald 22-03-2022 & 31-03-2022.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Behar Herald 23-05-2020 & 31-05-2020.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Behar Herald 30-09-2016.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Behar Herald 31-12-2017.pdf",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:The Collected Works of Mahatma Gandhi, vol. 20.djvu",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/vnd.djvu)"
+    },
+    {
+      "candidate": "File:Book of Mormon - Hindi.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Hindi.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Hindi (hi) language icon 01.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Hindi 2011 Indian Census by district.svg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Hindi Zuban in Deva Nagree and Nastaleeq.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Hindi aksharamala.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (news)",
+      "reason": "2378x1840, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Hindi language classes in chandiagrh.jpg",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 552x414 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Hindi language native speakers.png",
+      "route": "A \u2014 Wikimedia Commons",
+      "verdict": "USED (hero)",
+      "reason": "1754x1628, CC BY-SA 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "https://www.sunpictures.in/",
+      "route": "B \u2014 official sources",
+      "verdict": "rejected",
+      "reason": "retrieval: page not fetchable"
+    },
+    {
+      "candidate": "File:Danse Macabre - Guyot Marchand18 (Procurator and Jailer).jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 512x763 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Anirudh in Jailer Audio launch.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Simon Louis XVII.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in france, which this story is not about (story context: canada/india/united states) \u2014 a namesake, not 'Jailer 2' in this story"
+    },
+    {
+      "candidate": "File:Scotty Beckett in jail, 1948.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "accepted",
+      "reason": "1370x1113, CC BY 4.0, identity evidenced on the file page"
+    },
+    {
+      "candidate": "File:Poyais royalty in quad, or the cacique waiting for bail (BM 1868,0808.8817).jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "namesake/context: the file's evidence places it in united kingdom, which this story is not about (story context: canada/india/united states) \u2014 a namesake, not 'Jailer 2' in this story"
+    },
+    {
+      "candidate": "File:Sun Pictures.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "namesake guard: the file page's evidence shares no story-context token with this article and the file is not in the person's own Commons category, so it cannot be told apart from a same-name different person ('Sun Pictures')"
+    },
+    {
+      "candidate": "File:Sun Pictures, Broome.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 960x720 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:KADANA DAM WATER RESERVOIR AT KADANA PANCHMAHALS - panoramio.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nelson Dilipkumar'"
+    },
+    {
+      "candidate": "File:Dilipkumar Viraji Thakor.jpg",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "identity: the file page's description/categories do not evidence 'Nelson Dilipkumar'"
+    },
+    {
+      "candidate": "File:WIKITONGUES- Krishna speaking Hindi.webm",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:Hindi Indoarisch.png",
+      "route": "C \u2014 web search (discovery) \u2192 Commons",
+      "verdict": "rejected",
+      "reason": "resolution: 877x919 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "hindi-aksharamala",
+      "path": "hindi-aksharamala.jpg",
+      "size": [
+        2378,
+        1840
+      ],
+      "role": "establishing",
+      "subject": "Hindi alphabet",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Hindi_aksharamala.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Hindi_aksharamala.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "K.Venkataramana"
+    },
+    {
+      "beat": "hero",
+      "label": "hindi-language-native-speakers",
+      "path": "hindi-language-native-speakers.png",
+      "size": [
+        1754,
+        1628
+      ],
+      "role": "establishing",
+      "subject": "This map shows the geographical extent of various languages within Western Hindi languages with native speakers of the Hindi language (Hindustani) colored red.",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Hindi_language_native_speakers.png",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Hindi_language_native_speakers.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "PadFoot2008"
+    },
+    {
+      "beat": "grid",
+      "label": "rajinikanth-at-the-inauguration-of-mgr-statu",
+      "path": "rajinikanth-at-the-inauguration-of-mgr-statu.jpg",
+      "size": [
+        1200,
+        1800
+      ],
+      "role": "establishing",
+      "subject": "Rajinikanth at the Inauguration of MGR Statue",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Rajinikanth_at_the_Inauguration_of_MGR_Statue.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Rajinikanth_at_the_Inauguration_of_MGR_Statue.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Dani Charles, Silverscreen Media Inc. (https://silverscreen.in)"
+    },
+    {
+      "beat": "diaspora",
+      "label": "magnificent-cme-erupts-on-the-sun-august-31",
+      "path": "magnificent-cme-erupts-on-the-sun-august-31.jpg",
+      "size": [
+        1920,
+        1080
+      ],
+      "role": "establishing",
+      "subject": "On August 31, 2012 a long filament of solar material that had been hovering in the sun's atmosphere, the corona, erupted out into space at 4:36 p.m. EDT. The coronal mass ejection, or CME, traveled at over 900 miles per second. The CME did ",
+      "route": "A \u2014 Wikimedia Commons",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Magnificent_CME_Erupts_on_the_Sun_-_August_31.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Magnificent_CME_Erupts_on_the_Sun_-_August_31.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "NASA Goddard Space Flight Center"
+    }
+  ]
+}

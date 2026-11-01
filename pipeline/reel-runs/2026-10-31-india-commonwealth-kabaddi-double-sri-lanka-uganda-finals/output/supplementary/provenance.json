@@ -1,0 +1,153 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-commonwealth-kabaddi-double-sri-lanka-uganda-finals",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "India",
+    "Sri Lanka",
+    "Uganda",
+    "Commonwealth Kabaddi Championship",
+    "Aditya Shinde",
+    "Sri Lanka's"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'India' named 'UTC+05:30', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Commonwealth Kabaddi Championship' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Aditya Shinde' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of \"Sri Lanka's\" named 'UTC+05:30', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Topography Sri Lanka.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q854)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:02 Galle AmbalangodaUC.jpg",
+      "route": "identity \u2014 depicts (P180=Q854)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Ancient Kurundi Viharaya.png",
+      "route": "identity \u2014 depicts (P180=Q854)",
+      "verdict": "USED (news)",
+      "reason": "1200x900, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Batwadana Nilame flag.svg",
+      "route": "identity \u2014 depicts (P180=Q854)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Boxcar at Ambewela Railway Station.jpg",
+      "route": "identity \u2014 depicts (P180=Q854)",
+      "verdict": "USED (hero)",
+      "reason": "6976x4652, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Uganda - Location Map (2013) - UGA - UNOCHA.svg",
+      "route": "identity \u2014 Wikidata P18 (Q1036)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:20261008 Uganda EU humanitarian interventions Oct 2026.pdf",
+      "route": "identity \u2014 depicts (P180=Q1036)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:A boy carrying firewood 20.jpg",
+      "route": "identity \u2014 depicts (P180=Q1036)",
+      "verdict": "USED (grid)",
+      "reason": "4032x2268, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Aloe vera medicinal plant 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q1036)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Avocado fruit.jpg",
+      "route": "identity \u2014 depicts (P180=Q1036)",
+      "verdict": "accepted",
+      "reason": "8256x5504, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "ancient-kurundi-viharaya",
+      "path": "ancient-kurundi-viharaya.png",
+      "size": [
+        1200,
+        900
+      ],
+      "role": "establishing",
+      "subject": "Ancient Kurundi Viharaya",
+      "route": "identity \u2014 depicts (P180=Q854)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Ancient_Kurundi_Viharaya.png",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Ancient_Kurundi_Viharaya.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Wijaya Kumara"
+    },
+    {
+      "beat": "hero",
+      "label": "boxcar-at-ambewela-railway-station",
+      "path": "boxcar-at-ambewela-railway-station.jpg",
+      "size": [
+        6976,
+        4652
+      ],
+      "role": "establishing",
+      "subject": "Boxcar at Ambewela Railway Station",
+      "route": "identity \u2014 depicts (P180=Q854)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Boxcar_at_Ambewela_Railway_Station.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Boxcar_at_Ambewela_Railway_Station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "C.J.Hatton"
+    },
+    {
+      "beat": "grid",
+      "label": "a-boy-carrying-firewood-20",
+      "path": "a-boy-carrying-firewood-20.jpg",
+      "size": [
+        4032,
+        2268
+      ],
+      "role": "establishing",
+      "subject": "A boy carrying firewood on the head",
+      "route": "identity \u2014 depicts (P180=Q1036)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:A_boy_carrying_firewood_20.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/A_boy_carrying_firewood_20.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Denis kasozi"
+    }
+  ]
+}

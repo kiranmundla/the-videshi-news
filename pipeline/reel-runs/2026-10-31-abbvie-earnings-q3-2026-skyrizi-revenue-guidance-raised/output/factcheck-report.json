@@ -1,0 +1,290 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "abbvie-earnings-q3-2026-skyrizi-revenue-guidance-raised",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ABBVIE EARNINGS BEAT ESTIMATES, REVENUE RISES 10% TO $17.4 BILLION AND 2026 EPS GUIDANCE IS RAISED",
+      "numbers": [
+        10.0,
+        17.4,
+        2026.0,
+        17400000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "Earnings beat estimates, revenue rose 10.3%, and EPS guidance was raised.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "AbbVie reported third-quarter adjusted earnings of $3.82 per share, beating the $3.74 consensus, on revenue of $17.404 billion, up 10.3%, powered by Skyrizi and Rinvoq.",
+      "numbers": [
+        3.74,
+        3.82,
+        10.3,
+        17.404,
+        17404000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All figures and claims about earnings and revenue are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$17.404 BILLION",
+      "numbers": [
+        17.404,
+        17404000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$17.404 billion is the reported revenue in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "AbbVie third-quarter revenue, up 10.3%",
+      "numbers": [
+        10.3
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states revenue increased by 10.3%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$3.82",
+      "numbers": [
+        3.82
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Adjusted earnings per share of $3.82 is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Adjusted earnings per share, beating the $3.74 consensus",
+      "numbers": [
+        3.74
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the earnings and consensus from the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$5.776 BILLION",
+      "numbers": [
+        5.776,
+        5776000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Skyrizi revenue of $5.776 billion is reported in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Skyrizi revenue, up 22.9% in the quarter",
+      "numbers": [
+        22.9
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Skyrizi revenue increased by 22.9%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$13.95-$13.99",
+      "numbers": [
+        13.95,
+        13.99
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This range for adjusted EPS guidance is provided in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Raised full-year 2026 adjusted EPS guidance",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article confirms the adjustment of EPS guidance.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Dividend raised 5.2% to $1.82 per share from $1.73",
+      "numbers": [
+        1.73,
+        1.82,
+        5.2
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the dividend increase and new amount.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Neuroscience revenue grew 19.5% to $3.389 billion",
+      "numbers": [
+        3.389,
+        19.5,
+        3389000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article reports neuroscience revenue growth and amount.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "AbbVie raised full-year 2026 adjusted EPS guidance to $13.95-$13.99 and lifted its revenue outlook to about $67.8 billion.",
+      "numbers": [
+        13.95,
+        13.99,
+        67.8,
+        2026.0,
+        67800000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "Both adjustments are confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "AbbVie",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Skyrizi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Rinvoq",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000745,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,265 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "india-commonwealth-kabaddi-double-sri-lanka-uganda-finals",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA BEAT SRI LANKA AND UGANDA TO COMPLETE COMMONWEALTH KABADDI DOUBLE",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "India beat Sri Lanka and Uganda to win both titles.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "India won both titles at the inaugural Commonwealth Kabaddi Championship in Ahmedabad on October 31, beating Sri Lanka 54-20 in the men's final and Uganda 35-15 in the women's final.",
+      "numbers": [
+        15.0,
+        20.0,
+        31.0,
+        35.0,
+        54.0
+      ],
+      "entities": [
+        "Commonwealth Kabaddi Championship",
+        "Sri Lanka"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about the championship and scores are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "54-20",
+      "numbers": [
+        20.0,
+        54.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This score is correctly stated for the men's final.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "India's men's final win over Sri Lanka in Ahmedabad",
+      "numbers": [],
+      "entities": [
+        "Sri Lanka"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the men's final win.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "35-15",
+      "numbers": [
+        15.0,
+        35.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This score is correctly stated for the women's final.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Women's final win over Uganda in Ahmedabad",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the women's final win.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "380 POINTS",
+      "numbers": [
+        380.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This total points scored by the men's team is accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Scored by the men's team across the tournament, conceding 193",
+      "numbers": [
+        193.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Both scoring and conceding stats are correctly stated.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "52 POINTS",
+      "numbers": [
+        52.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is Sakshi's total points from the championship.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Sakshi's total from six matches in the championship",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This accurately reflects Sakshi's performance.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "India became the first champions of the Commonwealth Kabaddi Championship",
+      "numbers": [],
+      "entities": [
+        "Commonwealth Kabaddi Championship"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The women's team also finished unbeaten, winning six matches from six",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This accurately reflects the women's team's performance.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "India became the first champions of the Commonwealth Kabaddi Championship in both the men's and women's competitions.",
+      "numbers": [],
+      "entities": [
+        "Commonwealth Kabaddi Championship"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "India",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sri Lanka",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Uganda",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Commonwealth Kabaddi Championship",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000664,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}
