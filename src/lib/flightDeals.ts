@@ -279,6 +279,19 @@ export function googleFlightsUrl(origin: string, dest: string, dep: string, ret:
 /* passengers=/fareType= variant: that variant parses the route but    */
 /* searches with 0 travelers and lands on an empty results page.       */
 /* Evidence: research/airline-link-check-2026-10-15.md.                */
+/*                                                                     */
+/* United — verified 2026-11-01 (link-check pass #2) in a real         */
+/* browser: SFO→NRT 2026-12-13→2026-12-21 landed on United's           */
+/* "Flight Search Results" with real listings (UA 837 nonstop), and    */
+/* DFW→NRT 2026-12-14→2026-12-22 returned 35 listings — both with      */
+/* From/To/Dates and "1 Adult" prefilled. The /en/us/fsr/choose-       */
+/* flights contract is f/t IATA + d/r ISO dates + px=1 (tqp=R =        */
+/* round trip). Note: United may show nearby-airport arrivals in       */
+/* results (e.g. HND for an NRT search, flagged on the page) — the      */
+/* requested destination stays the search's To field. The rendered-    */
+/* fetch proxy shows a false "unable to complete" error for           */
+/* united.com; verification needs a real browser. Evidence:            */
+/* research/airline-link-check-2026-11-01.md.                          */
 /* ------------------------------------------------------------------ */
 
 function mmddyyyy(iso: string): string {
@@ -301,6 +314,10 @@ export const AIRLINE_LINK_TEMPLATES: Record<
     `?from=${origin}&to=${dest}&depart=${dep}&return=${ret}` +
     "&isMultiCity=false&noOfRoute=1&adults=1&children=0&infants=0" +
     "&roundTripFaresFlag=false&sharedMarket=false&usePoints=false",
+  united: (origin, dest, dep, ret) =>
+    "https://www.united.com/en/us/fsr/choose-flights" +
+    `?f=${origin}&t=${dest}&d=${dep}&r=${ret}` +
+    "&px=1&taxng=1&newHP=True&clm=7&st=bestmatches&tqp=R",
 };
 
 /** Direct booking URL on the airline's own site for this fare, or

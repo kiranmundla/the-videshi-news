@@ -18,7 +18,12 @@ import {
  * (research/airline-link-check-2026-10-15.md): the constructed URL was
  * rendered and landed on JetBlue's "Select Flights" results carrying
  * the requested route, dates and "1 Traveler" — for the live fare
- * cell JFK→DEL 2026-11-24→2026-12-16 and for JFK→LHR. */
+ * cell JFK→DEL 2026-11-24→2026-12-16 and for JFK→LHR.
+ * United — verified 2026-11-01, link-check pass #2
+ * (research/airline-link-check-2026-11-01.md): real-browser landings
+ * on "Flight Search Results" with actual listings for SFO→NRT
+ * 2026-12-13→2026-12-21 and DFW→NRT 2026-12-14→2026-12-22, both
+ * prefilled with route, dates and "1 Adult". */
 
 describe("airlineBookingUrl — verified templates", () => {
   it("builds the verified Delta deep link (MM/DD/YYYY dates)", () => {
@@ -52,6 +57,27 @@ describe("airlineBookingUrl — verified templates", () => {
         "&isMultiCity=false&noOfRoute=1&adults=1&children=0&infants=0" +
         "&roundTripFaresFlag=false&sharedMarket=false&usePoints=false",
     );
+  });
+
+  it("builds the verified United deep link (ISO dates, FSR contract)", () => {
+    const url = airlineBookingUrl(
+      "United Airlines",
+      "SFO",
+      "NRT",
+      "2026-12-13",
+      "2026-12-21",
+    );
+    expect(url).toBe(
+      "https://www.united.com/en/us/fsr/choose-flights" +
+        "?f=SFO&t=NRT&d=2026-12-13&r=2026-12-21" +
+        "&px=1&taxng=1&newHP=True&clm=7&st=bestmatches&tqp=R",
+    );
+  });
+
+  it("United link searches for 1 traveler on a round trip", () => {
+    const url = airlineBookingUrl("United", "DFW", "NRT", "2026-12-14", "2026-12-22");
+    expect(url).toContain("px=1");
+    expect(url).toContain("tqp=R");
   });
 
   it("JetBlue link searches for 1 adult — never the 0-traveler variant", () => {
