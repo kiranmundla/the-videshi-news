@@ -48,9 +48,10 @@ hook (<600px) means no set at all; surfaces fall back to today's
 single-image behavior. Each middle card carries its OWN picture,
 sourced for that card's subject (Kiran's cross-format doctrine,
 2026-10-25 — the Reels v7 per-scene model applied to decks): the
-article's inline body images in order, else the ENTITY-SOURCING
-ladder (reel_entity_sourcing: Commons -> official -> Brave
-discovery, license-gated, provenance recorded), else a plain navy
+article's inline body images in order, else ENTITY SOURCING
+(identity by construction only since 2026-11-01: entity_resolve
+registry-first Wikidata resolution, the item's own P18 / depicts
+files, license-gated, provenance recorded), else a plain navy
 text card. The hero appears ONLY on the hook card and no image is
 ever rendered twice in one deck. Theme-gated per card — never
 upscaled.
@@ -618,7 +619,7 @@ def _elog(msg):
     print(f"social_card: {msg}", file=sys.stderr)
 
 
-# ── Per-card entity sourcing (the Reels v7 ladder, adapted) ──────
+# ── Per-card entity sourcing (identity by construction, 2026-11-01) ──
 ENTITY_CACHE_DIR = CACHE_DIR / "entity"
 MAX_CARD_ENTITIES = 3
 
@@ -632,14 +633,10 @@ _BRAND_TOKEN_RE = re.compile(r"[A-Za-z][A-Za-z&.'-]*")
 # box-office deck carried a classroom Hindi-alphabet chart and
 # the Messier 87 black hole, both sourced for the entity
 # 'Hindi', X 2026-10-30). A card whose only entity is a
-# language falls back to the navy text treatment.
-_LANGUAGE_ENTITIES = {
-    "hindi", "english", "telugu", "tamil", "malayalam",
-    "kannada", "bengali", "marathi", "punjabi", "gujarati",
-    "urdu", "odia", "assamese", "sanskrit", "spanish",
-    "french", "german", "arabic", "persian", "chinese",
-    "japanese", "korean", "russian",
-}
+# language falls back to the navy text treatment. The list
+# itself moved to picture_gate_shared.LANGUAGE_ENTITIES on
+# 2026-10-31 (shared with the reel sourcer); the hygiene check
+# below consumes the shared predicate, never a local copy.
 
 # Card-local supplement to picture_gate_shared.OUTLET_ENTITIES:
 # the shared list has no 'economic times', so the Samvat 2082
@@ -682,14 +679,14 @@ def _card_entity_hygiene(e):
                     "fragment, not a name")
         if toks[-1].lower().endswith(("'s", "’s")):
             return "a possessive form — not a name"
-    if e.strip().lower() in _LANGUAGE_ENTITIES:
-        return ("a language name — not a visual entity, "
-                "never a picture subject")
     if e.strip().lower() in _CARD_EXTRA_OUTLETS:
         return ("a news outlet — a source, never a picture "
                 "subject")
     try:
         import picture_gate_shared as _G
+        if _G.is_language_entity(e):
+            return ("a language name — not a visual entity, "
+                    "never a picture subject")
         if _G.is_outlet_entity(e):
             return ("a news outlet — a source, never a picture "
                     "subject")
@@ -877,26 +874,85 @@ def _download_entity_image(url):
     return load_local_image(dest)
 
 
-def _entity_image_for_card(text, article_ctx, used, log=None):
-    """Source ONE picture for a takeaway card's own subject via
-    the Reels v7 entity ladder (reel_entity_sourcing — Kiran's
-    cross-format doctrine, 2026-10-25, proven on the Infosys
-    reel): Route A Wikimedia Commons originals, Route B official
-    sources, Route C Brave discovery -> Commons. Every candidate
-    passes the ladder's gates at its hosting page (provably the
-    entity, license clean CC/PD with attribution, true dimensions
-    at the file) and must not duplicate an image already in the
-    deck (`used` — the hero included).
+def _card_net():
+    """The card entity route's network seams — identity ONLY.
 
-    Returns (img, raw, prov) with prov = {entity, route,
-    source_page, file_url, license, artist, bg_px}, or None on an
-    honest miss (logged). NEVER raises."""
+    Deliberately NO commons_search / brave_links keys: open
+    search by entity name is abolished on the card path
+    (2026-11-01, mirroring the reel fix afc1c643e), so there is
+    no seam through which a keyword search could come back.
+    Resolution is entity_resolve (registry-first Wikidata);
+    candidates are the resolved item's own P18 / depicts files;
+    file metadata comes from reel_entity_sourcing (the shared
+    Commons client)."""
+    import reel_entity_sourcing as res
+    import entity_resolve as ER
+    return {"resolve_entity": ER.resolve,
+            "depicts": ER.depicts_candidates,
+            "commons_file_info": res.commons_file_info}
+
+
+def _entity_image_for_card(text, article_ctx, used, log=None,
+                           net=None):
+    """Source ONE picture for a takeaway card's own subject —
+    identity by construction ONLY (2026-11-01; the card-path
+    twin of the reel fix afc1c643e).
+
+    The old ladder keyword-searched Commons / Brave by entity
+    name and policed the hits with token gates. The gates kept
+    losing to namesakes and token collisions — Campagnolo bike
+    brakes for 'EPS', an actress for 'NSE', the Economic Times
+    logo, a Hindi alphabet chart and the Messier 87 black hole
+    for 'Hindi', Ott Järvela for 'OTT', a 9/11 WTC photo for
+    'New York', an 1835 2 Mohurs coin and a Kathleen Hicks
+    portrait on the Ramayana deck, Maharaja Ranjit Singh and
+    Hugh Trenchard portraits on the IAF-chief deck, a Dudda RS
+    town photo for 'Karnataka Rs' and a Darasuram temple photo
+    for 'South India' on the Jailer 2 decks, and a Hubble
+    starburst galaxy for 'STAR' on the Green Crackers post
+    (X, 2026-10-28 → 2026-11-01). Search is now abolished here
+    exactly as on the reel path:
+
+      1. TRIAGE — outlets (shared picture_gate_shared list +
+         the card-local supplement, via _card_entities hygiene
+         and re-checked here), language names (the SHARED
+         LANGUAGE_ENTITIES), the article's category label, and
+         phrase fragments never reach resolution.
+      2. RESOLUTION — entity_resolve, registry-first. A
+         non-registry (live) resolution must still pass
+         names_agree (numeral veto included); an ambiguous
+         low-confidence resolution fails; a language-typed
+         resolution fails; a resolution with no Wikidata item
+         fails. A SINGLE-TOKEN entity may source only through
+         the curated registry: live label agreement on one bare
+         word cannot tell a company from a common noun ('STAR'
+         the cracker acronym vs 'Star' Q523, the celestial
+         body), so live single-token resolutions fail closed.
+      3. CANDIDATES — only the resolved item's own P18 image
+         and its depicts (P180) files, each re-run through the
+         shared file gates (evaluate_commons_page with
+         identity_verified=True) PLUS the entity's corpus
+         blocklist from entity_registry.json, the card
+         photograph check and the outlet-branding rejection.
+         A place entity therefore yields only pictures OF the
+         place itself — never an event or object associated
+         with it (the 'New York' → 9/11 failure mode).
+
+    Anything unresolved, ambiguous, low-confidence or
+    identity-mismatched FAILS CLOSED: the card renders as a
+    navy text card. Returns (img, raw, prov) with prov =
+    {entity, route, source_page, file_url, license, artist,
+    bg_px}, or None on an honest miss (logged). NEVER raises."""
     log = log or _elog
     try:
         import reel_entity_sourcing as res
+        import entity_resolve as ER
+        import picture_gate_shared as G
     except Exception as e:
         log(f"entity sourcing unavailable ({e})")
         return None
+    if net is None:
+        net = _card_net()
     used = [u for u in (used or []) if u]
 
     def is_used(url):
@@ -910,21 +966,23 @@ def _entity_image_for_card(text, article_ctx, used, log=None):
     if not entities:
         log("entity sourcing: no entities for this card — navy")
         return None
-    hint = ""
-    try:
-        hint = res.topical_hint(article_ctx, entities)
-    except Exception:
-        pass
-    # ── Story context (2026-10-29, Kiran's go): the shared
-    # identity gates in reel_entity_sourcing are INERT without
-    # a context — context_reject_reason returns None on a falsy
-    # context, so every deck sourced namesakes the reel/article
-    # gates had already killed (Campagnolo bike brakes for
-    # 'EPS', an actress for 'NSE', Gaisano Capital mall photos
-    # for 'Spark Capital', foreign supreme courts for India's).
-    # Build the context exactly as the reel sourcer does: the
-    # article plus a script stub carrying this card's text and
-    # the card's entities as its key entities.
+    # Resolution context (mirrors the reel sourcer): headline +
+    # summary + this card's text + the article lede/body —
+    # entity_resolve adjudicates same-name registry entries and
+    # live namesakes against it.
+    resolve_context = " ".join([
+        article_ctx.get("headline") or "",
+        article_ctx.get("summary") or "",
+        article_ctx.get("excerpt") or "",
+        text or "",
+        re.sub(r"<[^>]+>", " ",
+               (article_ctx.get("body") or "")[:4000]),
+    ])
+    # Story context for the evaluator's ledger rows, built
+    # exactly as before (the identity route evaluates with
+    # identity_verified=True, so the token/context gates stay
+    # inert BY DESIGN now — identity is established by the
+    # resolution, not re-litigated per file).
     context = None
     try:
         context = res.build_story_context(
@@ -933,53 +991,16 @@ def _entity_image_for_card(text, article_ctx, used, log=None):
             entities)
     except Exception as e:
         log(f"entity sourcing: story context build failed ({e})")
-    # Vocabulary for the single-token agreement gate below:
-    # the headline + this card's text + the article's LEDE
-    # (first ~600 chars) + the deck's entities — what THIS
-    # card is actually about. The full body is deliberately
-    # NOT scanned: a long window mentions too much of the
-    # world, and coincidence is the failure being gated; the
-    # lede carries the story's own summary vocabulary (the
-    # Microsoft campus keeper agrees via its lede's 'United
-    # States'). Tokens are compared in a light singular form
-    # ('stocks' ~ 'stock') — the live smoke test showed the
-    # exchanges' own building photos dying on that plural.
-    def _aform(w):
-        return w[:-1] if len(w) > 3 and w.endswith("s") \
-            and not w.endswith("ss") else w
+    cat_toks = {t for t in res.entity_tokens(
+        (article_ctx.get("category") or "").replace("-", " "))}
 
-    agree_base = set()
-    try:
-        import picture_gate_shared as _G
-        raw_ctx = " ".join([article_ctx.get("headline") or "",
-                            text or "",
-                            (article_ctx.get("body") or "")
-                            [:600]])
-        for w in re.findall(r"[a-z0-9]+", raw_ctx.lower()):
-            if len(w) >= 4 and not w.isdigit() \
-                    and w not in _G.HINT_FUNCTION_WORDS:
-                agree_base.add(_aform(w))
-        for e in entities:
-            for t in res.entity_tokens(e):
-                if len(t) >= 4:
-                    agree_base.add(_aform(t))
-    except Exception:
-        agree_base = set()
-
-    def accept(entity, c, page=None):
-        """Card-level acceptance on top of the ladder's gates:
-        a real photograph, not already in the deck, and — for a
-        SINGLE-TOKEN entity — at least one story-context token
-        in the candidate's own evidence. One token is coincidence
-        bait on Commons ('EPS' the earnings metric vs Campagnolo
-        EPS bike brakes; 'NSE' the exchange vs actress Nse
-        Ikpe-Etim): identity alone cannot tell them apart, but
-        a genuine file's page talks about the story's world and
-        a namesake's never does. The evidence includes the
-        file's Commons categories when the caller has the raw
-        page: an exchange's own building is filed under the
-        exchange's full name ('National Stock Exchange of
-        India'), which is exactly the agreement that counts."""
+    def accept(entity, c):
+        """Card-level acceptance for an identity-route
+        candidate: a real photograph (not a map / diagram /
+        chart / logo / screenshot), not outlet branding, and
+        not already rendered in this deck. Identity itself is
+        NOT re-checked here — it is established by construction
+        (the file is the resolved item's P18 or depicts it)."""
         if c is None:
             return False
         if not _card_photo_ok(c):
@@ -992,89 +1013,109 @@ def _entity_image_for_card(text, article_ctx, used, log=None):
             return False
         if is_used(c["file_url"]):
             return False
-        if len(entity.split()) == 1 and agree_base:
-            ev_text = f"{c.get('title') or ''} " \
-                      f"{c.get('subject') or ''}"
-            if page is not None:
-                try:
-                    info = (page.get("imageinfo") or [{}])[0]
-                    ev_text += " " + res._meta(
-                        info, "ImageDescription") + " " \
-                        + res._meta(info, "Categories")
-                except Exception:
-                    pass
-            ev = {_aform(w) for w in re.findall(
-                r"[a-z0-9]+", ev_text.lower()) if len(w) >= 4}
-            ev -= {_aform(t) for t in res.entity_tokens(entity)}
-            if not (ev & (agree_base
-                          - {_aform(t) for t
-                             in res.entity_tokens(entity)})):
-                log(f"entity sourcing: single-token entity "
-                    f"{entity!r} candidate shares no story "
-                    f"token — skip: {(c['title'] or '')[:60]}")
-                return False
         return True
 
     for entity in entities[:MAX_CARD_ENTITIES]:
-        cand = None
-        # Route A — Wikimedia Commons originals
+        # ── triage: non-visual entities never source ──────
+        # (_card_entities already applied the hygiene checks;
+        # they are repeated here because the entity list is the
+        # trust boundary — pinned or future callers must not be
+        # able to route around them.)
+        if G.is_outlet_entity(entity) \
+                or entity.strip().lower() in _CARD_EXTRA_OUTLETS:
+            log(f"entity sourcing: {entity!r} is a news outlet "
+                f"— a source, never a picture subject — skip")
+            continue
+        if G.is_language_entity(entity):
+            log(f"entity sourcing: {entity!r} is a language — "
+                f"non-visual, never a picture subject — skip")
+            continue
+        if cat_toks and {t for t in res.entity_tokens(entity)} \
+                == cat_toks:
+            log(f"entity sourcing: {entity!r} is the article's "
+                f"category label, not a subject — skip")
+            continue
+        # ── resolution: identity by construction ──────────
         try:
-            for q in res.queries_for(entity, hint):
-                if cand:
-                    break
-                for page in res.commons_search(q, limit=8):
-                    c, _row = res.evaluate_commons_page(
-                        page, entity, "A — Wikimedia Commons",
-                        context=context)
-                    if accept(entity, c, page=page):
-                        cand = c
-                        break
+            r = net["resolve_entity"](entity, resolve_context)
         except Exception as e:
-            log(f"entity sourcing route A failed ({entity}): {e}")
-        # Route B — official sources (newsroom / org / .gov)
-        if cand is None:
+            log(f"entity sourcing: resolution failed "
+                f"({entity}): {e}")
+            continue
+        if not r:
+            log(f"entity sourcing: {entity!r} has no verified "
+                f"identity — fail closed to navy")
+            continue
+        method = r.get("method") or ""
+        if len(entity.split()) == 1 \
+                and not method.startswith("registry"):
+            log(f"entity sourcing: single-token entity "
+                f"{entity!r} resolved only via live search "
+                f"({method}) — cards require a curated registry "
+                f"identity for a bare token (common-noun "
+                f"collision risk) — fail closed to navy")
+            continue
+        if not method.startswith("registry") \
+                and not ER.names_agree(entity, r.get("name"),
+                                       r.get("aliases")):
+            log(f"entity sourcing: {entity!r} resolved to "
+                f"{r.get('name')!r}, which does not agree with "
+                f"the name — namesake risk, fail closed to navy")
+            continue
+        if r.get("confidence") == "low" \
+                and "ambiguous" in (r.get("notes") or ""):
+            log(f"entity sourcing: {entity!r} identity is "
+                f"ambiguous — fail closed to navy")
+            continue
+        if r.get("type") == "language":
+            log(f"entity sourcing: {entity!r} resolved to a "
+                f"language — non-visual, fail closed to navy")
+            continue
+        qid = r.get("qid")
+        if not qid:
+            log(f"entity sourcing: {entity!r} identity "
+                f"({r.get('name')!r} via {method}) carries no "
+                f"Wikidata item — fail closed to navy")
+            continue
+        blocked = {ER.file_key(b)
+                   for b in (r.get("blocked_files") or [])}
+        blocked.discard(None)
+        # ── candidates: the item's P18, then its depicts ──
+        # (depicts_candidates yields {title, ...} dicts — the
+        # same shape the reel path consumes.)
+        cand_in = []
+        p18 = r.get("p18_file")
+        if p18:
+            cand_in.append(
+                (p18 if str(p18).startswith("File:")
+                 else f"File:{p18}",
+                 f"identity — P18 ({qid})"))
+        try:
+            for d in net["depicts"](qid) or []:
+                t = d.get("title") if isinstance(d, dict) else d
+                if t and all(t != seen for seen, _r in cand_in):
+                    cand_in.append(
+                        (t, f"identity — depicts (P180={qid})"))
+        except Exception as e:
+            log(f"entity sourcing: depicts lookup failed "
+                f"({entity}): {e}")
+        cand = None
+        for title, route in cand_in:
             try:
-                links = res.brave_links(
-                    f"{entity} official newsroom press media", 6)
-                ent_tok = res.entity_tokens(entity)
-                for link in links[:3]:
-                    host = urllib.parse.urlparse(
-                        link).netloc.lower()
-                    if not (host.endswith((".gov", ".mil"))
-                            or (ent_tok and ent_tok[0] in host)):
-                        continue
-                    c, _row = res.evaluate_hosted_page(
-                        link, entity, "B — official sources",
-                        res.DEFAULT_NET, context=context)
-                    if accept(entity, c):
-                        cand = c
-                        break
-            except Exception as e:
-                log(f"entity sourcing route B failed ({entity}): {e}")
-        # Route C — web search as discovery only -> Commons gates
+                page = net["commons_file_info"](title)
+            except Exception:
+                page = None
+            if not page:
+                continue
+            c, _row = res.evaluate_commons_page(
+                page, entity, route, context=context,
+                identity_verified=True, blocked_keys=blocked)
+            if accept(entity, c):
+                cand = c
+                break
         if cand is None:
-            try:
-                links = res.brave_links(
-                    f"{entity} site:commons.wikimedia.org", 6)
-                for link in links:
-                    m = re.search(r"/wiki/(File:[^/?#]+)", link)
-                    if not m:
-                        continue
-                    title = urllib.parse.unquote(
-                        m.group(1)).replace("_", " ")
-                    page = res.commons_file_info(title)
-                    if not page:
-                        continue
-                    c, _row = res.evaluate_commons_page(
-                        page, entity,
-                        "C — web search (discovery) → Commons",
-                        context=context)
-                    if accept(entity, c, page=page):
-                        cand = c
-                        break
-            except Exception as e:
-                log(f"entity sourcing route C failed ({entity}): {e}")
-        if cand is None:
+            log(f"entity sourcing: {entity!r} ({qid}) offered "
+                f"no file that passed the gates — navy")
             continue
         try:
             img, raw = _download_entity_image(cand["file_url"])
@@ -1349,10 +1390,12 @@ def make_card_set(headline, category, image_url=None, image_path=None,
       a. inline images from the article body, in body order
          (hero and its thumbnail variants excluded) — middle i
          uses inline i;
-      b. else ENTITY SOURCING for that card's subject via the
-         Reels v7 ladder (_entity_image_for_card — Commons ->
-         official -> Brave discovery, license-gated, provenance
-         recorded on the card entry as bg_provenance);
+      b. else ENTITY SOURCING for that card's subject via
+         _entity_image_for_card — identity by construction
+         ONLY (entity_resolve registry-first resolution; the
+         resolved item's P18 / depicts files; license-gated,
+         corpus-blocklisted, provenance recorded on the card
+         entry as bg_provenance);
       c. else the plain navy text card.
     The hero renders ONLY on the hook card, exactly once per
     deck, and no image renders on more than one card (a deck-level

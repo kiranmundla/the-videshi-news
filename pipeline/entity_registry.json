@@ -57,8 +57,16 @@
    "p18_file": "NYC Downtown Manhattan Skyline seen from Paulus Hook 2019-12-20 IMG 7347 FRD (cropped).jpg",
    "p18_quality": 3869,
    "official_domain": null,
-   "confusables": [],
-   "blocked_files": [],
+   "confusables": [
+    {
+     "name": "September 11 attacks / World Trade Center imagery",
+     "qid_or_note": "File:September 14 2001.jpg (Ground Zero, 2001-09-14)",
+     "why": "Served as the picture for the place entity 'New York' on a Bhavitha Mandava fashion deck (X 2026-10-31) — an event associated with the place, not the place itself. SHA1-exact identification from the card download cache, 2026-11-01."
+    }
+   ],
+   "blocked_files": [
+    "September 14 2001.jpg"
+   ],
    "notes": "primary topic by sitelinks (325 vs 1)"
   },
   {
@@ -1834,8 +1842,17 @@
    "p18_file": null,
    "p18_quality": null,
    "official_domain": null,
-   "confusables": [],
-   "blocked_files": [],
+   "confusables": [
+    {
+     "name": "Maharaja Ranjit Singh / Hugh Trenchard portraits",
+     "qid_or_note": "Files blocked below (SHA1-exact, 2026-11-01)",
+     "why": "Both portraits were served as card pictures on the Ashutosh Dixit IAF-chief deck (X 2026-11-01) via open Commons search — historical air-power adjacency is not identity."
+    }
+   ],
+   "blocked_files": [
+    "A portrait of Maharaja Ranjit Singh seated with Dhian Singh and Kharak Singh.jpg",
+    "Hugh Trenchard was the first Chief of the Air Staff, presiding over the foundation of the RAF in 1918, when the Royal Naval Air Service and the Royal Flying Corps were united as the new Royal Air Force. Art.IWMART325.jpg"
+   ],
    "notes": "primary topic by sitelinks (47 vs 2)"
   },
   {
@@ -3000,7 +3017,9 @@
      "why": "His photo was served for the card entity 'OTT' (streaming abbreviation) on a Manoj Bajpayee story (corpus #116) — first-name token collision."
     }
    ],
-   "blocked_files": [],
+   "blocked_files": [
+    "Ott Järvela at the Opinion Festival 2022 in Paide, Estonia.jpg"
+   ],
    "notes": "NON-VISUAL entity in card decks: 'OTT' is a streaming abbreviation, not a depictable subject."
   },
   {
@@ -3470,6 +3489,209 @@
    "resolved_confidence": "medium",
    "resolved_context": "India Beat Sri Lanka and Uganda to Complete Commonwealth Kabaddi Double India won the men's final 54-20 over Sri Lanka and the women's final 35-15 over Uganda in Ahmedabad to claim both titles at the inaugural Commonwealth Kabaddi Championship. India won the men's final 54-20 over Sri Lanka and the women's final 35-15 over Uganda in Ahmedabad to claim both titles at the inaugural Commonwealth Kaba",
    "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: \"India Beat Sri Lanka and Uganda to Complete Commonwealth Kabaddi Double India won the men's final 54-20 over Sri Lanka and the women's final 35-15 over Uganda in Ahmedabad to claim both titles at the \"; description: country in East Africa"
+  },
+  {
+   "name": "Ashutosh Dixit",
+   "aliases": [
+    "Ashutosh Dixit"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q140076608",
+   "p18_file": "Air Marshal Ashutosh Dixit, VCAS.png",
+   "p18_quality": 1145,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Ashutosh Dixit Takes Charge as 29th IAF Chief Amid Modernisation Push Air Chief Marshal Ashutosh Dixit succeeded A.P. Singh on October 31 after serving as Vice Chief, taking over the Indian Air Force during a programme of new aircraft, air defence and indigenous manufacturing. Air Chief Marshal Ashutosh Dixit succeeded A.P. Singh on October 31 after serving as Vice Chief, taking over the Indian Ai",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Ashutosh Dixit Takes Charge as 29th IAF Chief Amid Modernisation Push Air Chief Marshal Ashutosh Dixit succeeded A.P. Singh on October 31 after serving as Vice Chief, taking over the Indian Air Force '; description: Vice Chief of the Air Staff"
+  },
+  {
+   "name": "Tejas",
+   "aliases": [
+    "Tejas",
+    "HAL Tejas"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q175940",
+   "p18_file": "HAL Tejas.jpg",
+   "p18_quality": 1824,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Ashutosh Dixit Takes Charge as 29th IAF Chief Amid Modernisation Push Air Chief Marshal Ashutosh Dixit succeeded A.P. Singh on October 31 after serving as Vice Chief, taking over the Indian Air Force during a programme of new aircraft, air defence and indigenous manufacturing. Air Chief Marshal Ashutosh Dixit succeeded A.P. Singh on October 31 after serving as Vice Chief, taking over the Indian Ai",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Ashutosh Dixit Takes Charge as 29th IAF Chief Amid Modernisation Push Air Chief Marshal Ashutosh Dixit succeeded A.P. Singh on October 31 after serving as Vice Chief, taking over the Indian Air Force '; description: aircraft family by the Aeronautical Development Agency and Hindustan Aeronautics Limited"
+  },
+  {
+   "name": "Operation Sindoor",
+   "aliases": [
+    "Operation Sindoor"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q134459237",
+   "p18_file": "Operation Sindoor.jpg",
+   "p18_quality": 2048,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Ashutosh Dixit Takes Charge as 29th IAF Chief Amid Modernisation Push Air Chief Marshal Ashutosh Dixit succeeded A.P. Singh on October 31 after serving as Vice Chief, taking over the Indian Air Force during a programme of new aircraft, air defence and indigenous manufacturing. Air Chief Marshal Ashutosh Dixit succeeded A.P. Singh on October 31 after serving as Vice Chief, taking over the Indian Ai",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Ashutosh Dixit Takes Charge as 29th IAF Chief Amid Modernisation Push Air Chief Marshal Ashutosh Dixit succeeded A.P. Singh on October 31 after serving as Vice Chief, taking over the Indian Air Force '; description: military operation by Indian armed forces in 2025"
+  },
+  {
+   "name": "Vande Bharat Sleeper",
+   "aliases": [
+    "Vande Bharat Sleeper"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q60775933",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Bengaluru-Mumbai Vande Bharat Sleeper Bookings Open, Fares Start at Rs 2,810 The first regular train leaves Bengaluru at 7:45 p.m. on November 3 and Mumbai on November 2, with confirmed berths only and full-route fares from Rs 2,810 to Rs 4,450. The first regular train leaves Bengaluru at 7:45 p.m. on November 3 and Mumbai on November 2, with confirmed berths only and full-route fares from Rs 2,81",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Bengaluru-Mumbai Vande Bharat Sleeper Bookings Open, Fares Start at Rs 2,810 The first regular train leaves Bengaluru at 7:45 p.m. on November 3 and Mumbai on November 2, with confirmed berths only an'; description: Indian Railways’ semi‑high‑speed long‑distance EMU sleeper train"
+  },
+  {
+   "name": "Bengaluru",
+   "aliases": [
+    "Bengaluru",
+    "Bangalore",
+    "Bendakaaluru",
+    "Silicon Valley of India"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1355",
+   "p18_file": "UB City.jpg",
+   "p18_quality": 800,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Bengaluru-Mumbai Vande Bharat Sleeper Bookings Open, Fares Start at Rs 2,810 The first regular train leaves Bengaluru at 7:45 p.m. on November 3 and Mumbai on November 2, with confirmed berths only and full-route fares from Rs 2,810 to Rs 4,450. The first regular train leaves Bengaluru at 7:45 p.m. on November 3 and Mumbai on November 2, with confirmed berths only and full-route fares from Rs 2,81",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Bengaluru-Mumbai Vande Bharat Sleeper Bookings Open, Fares Start at Rs 2,810 The first regular train leaves Bengaluru at 7:45 p.m. on November 3 and Mumbai on November 2, with confirmed berths only an'; description: capital city of Karnataka state in India"
+  },
+  {
+   "name": "STAR",
+   "aliases": [
+    "STAR"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [],
+   "confusables": [
+    {
+     "name": "Star (celestial body, Q523)",
+     "qid_or_note": "astronomical object",
+     "why": "Same-token collision: a bare 'STAR' token is a common noun / acronym, never a curated identity."
+    }
+   ],
+   "blocked_files": [
+    "Starburst in NGC 4449 (captured by the Hubble Space Telescope).jpg"
+   ],
+   "notes": "NON-VISUAL entity in card decks: in the green-cracker context 'STAR' is the NEERI cracker-formulation acronym (Safe Thermite Cracker), not a depictable subject. The Hubble starburst galaxy photo blocked below was served for it on the Green Crackers deck (X 2026-11-01, tweet 2116916453488075016); SHA1-exact identification from the card download cache, 2026-11-01."
+  },
+  {
+   "name": "Ramayana",
+   "aliases": [
+    "Ramayana"
+   ],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [],
+   "confusables": [
+    {
+     "name": "India 1835 2 Mohurs coin",
+     "qid_or_note": "File:India 1835 2 Mohurs.jpg",
+     "why": "Numismatic depiction of Rama — a depiction OF the epic's subject on a coin is not a picture of the work or film."
+    }
+   ],
+   "blocked_files": [
+    "India 1835 2 Mohurs.jpg"
+   ],
+   "notes": "NO-IDENTITY guard (2026-11-01): the 1835 East India Company 2 Mohurs coin blocked below (its reverse depicts Rama) was served as a card picture on the Ramayana Part 1 film-review deck via open Commons search (X 2026-11-01). The name spans the epic, films and series; card/reel sourcing fails closed until a curated identity is added. SHA1-exact file identification from the card download cache."
+  },
+  {
+   "name": "Kathleen Hicks",
+   "aliases": [
+    "Kathleen Hicks"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q104587353",
+   "p18_file": "Kathleen H. Hicks, Deputy Secretary of Defense.jpg",
+   "p18_quality": 2240,
+   "official_domain": null,
+   "context_hints": [],
+   "confusables": [],
+   "blocked_files": [
+    "United States Deputy Secretary of Defense Kathleen Hicks meets with India Foreign Secretary Vikram Misri at the Pentagon, USA on September 25, 2024 - 1.jpg"
+   ],
+   "notes": "Verified against the live Wikidata API 2026-11-01. The blocked file (Hicks meeting Indian Foreign Secretary Vikram Misri at the Pentagon, 2024-09-25) was served as a card picture on the Ramayana Part 1 review deck (X 2026-11-01), a story she has no part in; SHA1-exact identification from the card download cache. Blocked here so her own depicts set can never re-serve it."
+  },
+  {
+   "name": "Karnataka",
+   "aliases": [
+    "Karnataka"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1185",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [],
+   "confusables": [
+    {
+     "name": "Dudda RS town, Hassan",
+     "qid_or_note": "File:Dudda RS town, Hassan.jpg",
+     "why": "A single small town is not a picture of the state."
+    }
+   ],
+   "blocked_files": [
+    "Dudda RS town, Hassan.jpg"
+   ],
+   "notes": "Verified against the live Wikidata API 2026-11-01 (P18 is a location map SVG, not a photo — left null). The blocked Dudda RS town photo was served for the fragment card entity 'Karnataka Rs' on the Jailer 2 deck (2026-11-01): 'RS' token collision (Dudda RS is a place in Hassan district). SHA1-exact identification from the card download cache."
+  },
+  {
+   "name": "South India",
+   "aliases": [
+    "South India"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q542146",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "context_hints": [],
+   "confusables": [
+    {
+     "name": "Airavatesvara Temple, Darasuram",
+     "qid_or_note": "File:Darasuram, Airavatesvara Temple, Mandapa at night 4, India.jpg",
+     "why": "A part-for-whole substitution: the temple depicts itself, not the region."
+    }
+   ],
+   "blocked_files": [
+    "Darasuram, Airavatesvara Temple, Mandapa at night 4, India.jpg"
+   ],
+   "notes": "Verified against the live Wikidata API 2026-11-01 (P18 is a territory map SVG, not a photo — left null). The blocked Darasuram Airavatesvara Temple night photo was served as the picture FOR the region 'South India' on the Jailer 2 deck (2026-11-01) — one temple in the region is not the region. SHA1-exact identification from the card download cache."
   }
  ]
 }

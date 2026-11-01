@@ -41,6 +41,25 @@ Building, Keith Sonderling, the Washington White House,
 Microsoft campus) driven through the CARD path: the gates
 must reject namesakes without costing real pictures.
 
+Re-based 2026-11-01 for the identity-only card path
+(social_card.py, mirroring the reel fix afc1c643e): routes
+A/B/C (open Commons / Brave search by entity name) are
+ABOLISHED — the wrong photos kept coming through search
+('STAR' -> Hubble starburst, 'New York' -> a 9/11 photo,
+'OTT' -> Ott Järvela; see test_card_identity_sourcing.py for
+that battery). This suite now drives the identity seams
+(entity_resolve registry resolution + P18/depicts fixtures):
+every Oct 28–30 failure file below is still rejected —
+structurally, because it is no entity's P18/depicts file —
+and the shared evaluator's story-context gates are still
+exercised directly in the courts section. Two former keepers
+changed status, documented in place: 'Department of Labor'
+and 'Keith Sonderling' are not in the entity registry, so
+offline (registry-only) resolution fails closed to navy
+until they are curated in — the same behaviour as the reel
+path; production live resolution by exact name agreement is
+covered in test_card_identity_sourcing.py.
+
 All network is stubbed. Run:
   python3 test_social_card_gates.py   (exit 0 = all pass)
 """
@@ -284,7 +303,16 @@ MS_CTX = {"headline": MS_ARTICLE.get("headline"),
 
 
 # ── stubbed network ────────────────────────────────────────
-_PAGES = []
+# Since 2026-11-01 the card path's only network seams are the
+# identity ones: entity_resolve resolution (here the REAL
+# registry via registry_only_resolve), depicts candidates and
+# Commons file info (fixtures, keyed by exact title). The old
+# open-search seams are rigged to raise: if any code path ever
+# calls them again, this suite fails loudly.
+from verified_sourcer import registry_only_resolve  # noqa: E402
+
+_PAGES = {}
+_DEPICTS = {}
 _orig_search = res.commons_search
 _orig_links = res.brave_links
 _orig_download = sc._download_entity_image
@@ -292,38 +320,54 @@ _orig_card_entities = sc._card_entities
 
 
 def stub_pages(pages):
-    global _PAGES
-    _PAGES = pages
+    _PAGES.clear()
+    for p in pages:
+        _PAGES[p["title"]] = p
+    _DEPICTS.clear()
 
 
-def _fake_search(query, limit=8):
-    return list(_PAGES)
+def stub_depicts(mapping):
+    _DEPICTS.clear()
+    _DEPICTS.update(mapping)
 
 
-def _no_links(query, n):
-    return []
+def _card_test_net():
+    def _file_info(title):
+        return _PAGES.get(
+            title if title.startswith("File:")
+            else f"File:{title}")
+    return {"resolve_entity": registry_only_resolve,
+            "depicts": lambda qid: [
+                {"title": t} if isinstance(t, str) else t
+                for t in _DEPICTS.get(qid, [])],
+            "commons_file_info": _file_info}
+
+
+def _boom(*a, **k):
+    raise AssertionError("open search called on the card path")
 
 
 def _fake_download(url):
     return Image.new("RGB", (1600, 1000)), b"stub"
 
 
-res.commons_search = _fake_search
-res.brave_links = _no_links
+res.commons_search = _boom
+res.brave_links = _boom
 sc._download_entity_image = _fake_download
 LOGS = []
 
 
 def source(text, ctx, entities=None):
-    """Run the card sourcer with the stubbed ladder. When
-    `entities` is given, pin _card_entities to it (the unit
-    seam for entity strings production extraction produced
-    verbatim on the failure days)."""
+    """Run the card sourcer with the stubbed identity seams.
+    When `entities` is given, pin _card_entities to it (the
+    unit seam for entity strings production extraction
+    produced verbatim on the failure days)."""
     if entities is not None:
         sc._card_entities = lambda t, c: list(entities)
     try:
         return sc._entity_image_for_card(
-            text, ctx, [], log=LOGS.append)
+            text, ctx, [], log=LOGS.append,
+            net=_card_test_net())
     finally:
         sc._card_entities = _orig_card_entities
 
@@ -420,42 +464,73 @@ check("with the story context the US court file is "
       "rejected", cand is None, row.get("reason", ""))
 
 print("── keepers survive the card path ──")
+# Two former keepers changed status with the identity-only
+# path (2026-11-01): neither 'Department of Labor' nor
+# 'Keith Sonderling' is in the entity registry, so offline
+# (registry-only) resolution fails closed to navy — the
+# Frances Perkins Building and the Sonderling portrait were
+# OPEN-SEARCH finds, and search is abolished. In production
+# the live resolver may still resolve a multi-token exact
+# name (Sonderling); the short-form 'Department of Labor'
+# additionally fails names_agree against the live label
+# 'United States Department of Labor'. Both source again the
+# day they are curated into entity_registry.json — the same
+# fail-closed behaviour as the reel path.
 stub_pages([PERKINS])
 got = source("The Department of Labor will publish the "
              "final rule in the Federal Register.", PERM_CTX)
-check("keeper: Frances Perkins Building (Dept of Labor)",
-      got is not None and got[2]["entity"]
-      == "Department of Labor",
-      "" if got else "honest miss — " + "; ".join(LOGS[-3:]))
+check("former keeper, now fail-closed: 'Department of "
+      "Labor' is unregistered -> navy (Perkins Building is "
+      "no entity's P18/depicts)", got is None)
 stub_pages([KEITH])
 got = source("Keith Sonderling said the plan protects "
              "American workers.", PERM_CTX)
-check("keeper: Keith Sonderling portrait",
-      got is not None and got[2]["entity"]
-      == "Keith Sonderling")
+check("former keeper, now fail-closed offline: 'Keith "
+      "Sonderling' is unregistered -> navy",
+      got is None)
 stub_pages([DC_WH])
+stub_depicts({"Q35525": [DC_WH["title"]]})
 got = source("The White House cleared the Labor "
              "Department plan on Monday.", PERM_CTX)
-check("keeper: the Washington White House",
+check("keeper: the Washington White House (a depicts file "
+      "of the resolved item)",
       got is not None and got[2]["entity"] == "White House")
-stub_pages([BSE_BUILDING])
+# The exchange building still lands on the markets deck —
+# via the Sensex's registry identity (its P18 IS the BSE
+# building), not via the ambiguous bare acronym 'BSE'.
+BSE_P18 = commons_page(
+    "File:Bombay Stock Exchange 3.jpg", 2291, 1917,
+    license_short="CC BY 2.0",
+    desc="The Bombay Stock Exchange building in Mumbai, "
+         "India",
+    cats="Taken with Olympus FE-150 / X-730|Flickr images "
+         "reviewed by trusted users|Phiroze Jeejeebhoy "
+         "Towers")
+stub_pages([BSE_P18])
+got = source("BSE Sensex rose 905.01 points, closing at "
+             "74,151.04.", SENSEX_CTX, entities=["Sensex"])
+check("keeper: the BSE's own building via the Sensex P18",
+      got is not None and got[2]["entity"] == "Sensex")
 got = source("BSE Sensex rose 905.01 points, closing at "
              "74,151.04.", SENSEX_CTX, entities=["BSE"])
-check("keeper: the BSE's own building for 'BSE'",
-      got is not None and got[2]["entity"] == "BSE")
+check("bare acronym 'BSE' fails closed (ambiguous: "
+      "exchange vs bovine disease, unregistered)",
+      got is None)
 stub_pages([NSE_PLAZA])
+stub_depicts({"Q638740": [NSE_PLAZA["title"]]})
 got = source("NSE Nifty increased by 237.90 points to "
              "22,936.75.", SENSEX_CTX, entities=["NSE"])
 check("keeper: NSE Exchange Plaza for 'NSE' (the actress "
       "is rejected, the exchange's own plaza is not)",
       got is not None and got[2]["entity"] == "NSE")
 stub_pages([MS_CAMPUS])
+stub_depicts({"Q2283": [MS_CAMPUS["title"]]})
 got = source("Microsoft is offering a Voluntary Exit "
              "Offer to about 60,000 employees, roughly a "
              "quarter of its 223,000-person workforce.",
              MS_CTX, entities=["Microsoft"])
-check("keeper: Microsoft campus (single-token agreement "
-      "does not cost a genuine photo)",
+check("keeper: Microsoft campus (the identity route does "
+      "not cost a genuine photo)",
       got is not None and got[2]["entity"] == "Microsoft",
       "" if got else "honest miss — " + "; ".join(LOGS[-3:]))
 
@@ -544,39 +619,18 @@ check("branding: a Commons keeper URL passes",
           "https://upload.wikimedia.org/wikipedia/commons/"
           "2/2e/BSE_-_Bombay_Stock_Exchange_Building.jpg"))
 
-_orig_hosted = res.evaluate_hosted_page
-ET_LOGO_CAND = {
-    "entity": "Economic Times", "title": "The Economic Times",
-    "file_url": "https://img.etimg.com/thumb/msid-104857442,"
-                "width-1200,height-630/et-logo.jpg",
-    "size": None,
-    "source_page": "https://economictimes.indiatimes.com/",
-    "license": "explicit CC / public-domain statement on "
-               "the page",
-    "artist": "", "subject": "The Economic Times",
-    "role": "scene", "route": "B — official sources",
-    "anchor": None, "needs_dims_check": True}
-
-
-def _et_links(query, n):
-    return ["https://economictimes.indiatimes.com/"]
-
-
-def _et_hosted(url, entity, route, net, context=None):
-    return dict(ET_LOGO_CAND), {"verdict": "accepted"}
-
-
+# Since 2026-11-01 there IS no official-sources route on the
+# card path (route B abolished with the rest of open search):
+# 'Economic Times' is triaged as an outlet before any
+# sourcing happens, so its logo can never be a candidate.
 stub_pages([])
-res.brave_links = _et_links
-res.evaluate_hosted_page = _et_hosted
 got = source("India's benchmark Nifty fell about 11 "
              "percent over Samvat 2082, an Economic Times "
              "analysis shows.", SAMVAT_CTX,
              entities=["Economic Times"])
-check("Economic Times logo rejected on the official-"
-      "sources route", got is None)
-res.brave_links = _no_links
-res.evaluate_hosted_page = _orig_hosted
+check("Economic Times logo unreachable: the outlet entity "
+      "is triaged before sourcing (no route B anymore)",
+      got is None)
 
 res.commons_search = _orig_search
 res.brave_links = _orig_links
