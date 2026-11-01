@@ -1,0 +1,284 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "jailer-2-first-film-75-crore-all-four-south-markets",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "JAILER 2 FIRST INDIAN FILM TO CROSS RS 75 CRORE IN ALL FOUR SOUTH MARKETS",
+      "numbers": [
+        2.0,
+        75.0,
+        750000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states Jailer 2 is the first Indian film to achieve this.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Rajinikanth's Jailer 2 has become the first Indian film to gross over Rs 75 crore individually in each of the four major South Indian markets, according to Sacnilk.",
+      "numbers": [
+        2.0,
+        75.0,
+        750000000.0
+      ],
+      "entities": [
+        "Rajinikanth's Jailer",
+        "South Indian"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this claim with details from Sacnilk.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "Rs 75 crore",
+      "numbers": [
+        75.0,
+        750000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This figure is mentioned in the context of the film's earnings.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Gross in each of the four major South Indian markets",
+      "numbers": [],
+      "entities": [
+        "South Indian"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses gross earnings in all four markets.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "Rs 776.95 crore",
+      "numbers": [
+        776.95,
+        7769500000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This worldwide gross figure is provided in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Worldwide gross after 16 days, according to Sacnilk",
+      "numbers": [
+        16.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article attributes this figure to Sacnilk after 16 days.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "Rs 267.50 crore",
+      "numbers": [
+        267.5,
+        2675000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This overseas gross figure is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Overseas gross in 16 days, per Sacnilk",
+      "numbers": [
+        16.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this figure is from Sacnilk.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "Rs 75.20 crore",
+      "numbers": [
+        75.2,
+        752000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This figure is specifically mentioned as Kerala's gross.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Kerala gross on day 16, the last market to cross",
+      "numbers": [
+        16.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this was Kerala's gross on day 16.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Overseas gross hit Rs 267.50 crore in 16 days",
+      "numbers": [
+        16.0,
+        267.5,
+        2675000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This overseas gross figure is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Four south markets together gave Rs 454.75 crore",
+      "numbers": [
+        454.75,
+        4547500000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this total for the four markets.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "In Kerala, it ended Baahubali 2's nine-year run as the top non-Malayalam film.",
+      "numbers": [
+        2.0
+      ],
+      "entities": [
+        "In Kerala"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this claim regarding Baahubali 2.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Jailer 2",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Rajinikanth",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sacnilk",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nelson Dilipkumar",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sun Pictures",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000705,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,413 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor",
+ "article_slug": "who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor",
+ "article_id": "b63eea2a-7f2a-4a49-9564-49b1d64736a0",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-01-who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor/output-v2/who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Vivek_Ramaswamy_%2855241367373%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "local_path": "reel-runs/2026-11-01-who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor/output-v2/hero.jpg",
+  "width": 2348,
+  "height": 3128,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.94)",
+  "has_face": true,
+  "box_source": [
+   683,
+   630,
+   1041,
+   1338
+  ],
+  "box_bg": [
+   220,
+   387,
+   639,
+   821
+  ],
+  "chin_bg": 1208,
+  "anchor": [
+   0.513,
+   0.411
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   765,
+   1020
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 1262,
+   "zone_h": 318,
+   "scale": 1.0,
+   "content_h": 285,
+   "block_top": 1295,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1295,
+    930,
+    1580
+   ],
+   "texts": [
+    "Nri World",
+    "RAMASWAMY TWO DAYS FROM BID TO BE OHIO'S FIRST INDIAN-AMERICAN GOVERNOR"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.614,
+    "photo_px": [
+     2348,
+     3128
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6138107416879796,
+     "window": [
+      324,
+      0,
+      2083,
+      3128
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 933,
+   "zone_h": 647,
+   "scale": 1.0,
+   "content_h": 403,
+   "block_top": 1177,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1177,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Vivek Ramaswamy, 41, the Cincinnati-born son of immigrants from Palakkad, Kerala, is the Republican nominee for governor of Ohio, facing Democrat Amy Acton."
+   ],
+   "v7": {
+    "image_source": "extra:americafest-2025-vivek-ramaswamy-01",
+    "track": "full-bleed",
+    "render_scale": 0.569,
+    "photo_px": [
+     6000,
+     3376
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5687203791469194,
+     "window": [
+      1858,
+      0,
+      3757,
+      3376
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Vivek Ramaswamy at AmericaFest 2025 in Phoenix, AZ (December 20, 2025)",
+     "route": "identity \u2014 depicts (P180=Q27881473)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:AmericaFest_2025_-_Vivek_Ramaswamy_01.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/82/AmericaFest_2025_-_Vivek_Ramaswamy_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Xuthoria"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 1240,
+   "zone_h": 316,
+   "scale": 0.625,
+   "content_h": 306,
+   "block_top": 1245,
+   "block_bottom": 1551,
+   "text_bbox": [
+    70,
+    1245,
+    930,
+    1551
+   ],
+   "texts": [
+    "ELECTIONS 2026",
+    "44%",
+    "Ramaswamy in a Suffolk University poll of 500 likely voters \u2014 behind Amy Acton at 48%"
+   ],
+   "v7": {
+    "image_source": "extra:archer-building-suffolk-university",
+    "track": "backdrop",
+    "render_scale": 0.59,
+    "photo_px": [
+     2304,
+     1728
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 120,
+     "y": 156,
+     "w": 765,
+     "h": 1020,
+     "scale": 0.5902777777777778,
+     "window": [
+      985,
+      0,
+      2281,
+      1728
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.11x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "My 2008 photo of the Archer Building at Suffolk University in Boston, MA.",
+     "route": "identity \u2014 Wikidata P18 (Q1056123)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Archer_Building_Suffolk_University.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/43/Archer_Building_Suffolk_University.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Swampyank at English Wikipedia"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 837,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    837,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "$2.3 billion",
+    "Forbes estimate of Ramaswamy's net worth in September 2026",
+    "37",
+    "His age when he ran for president",
+    "November 3",
+    "Election Day in Ohio \u2014 the winner will be inaugurated on January 11, 2027"
+   ],
+   "v7": {
+    "image_source": "extra:iss007-e-16092-view-of-ohio",
+    "track": "full-bleed",
+    "render_scale": 0.93,
+    "photo_px": [
+     3032,
+     2064
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.9302325581395349,
+     "window": [
+      1035,
+      0,
+      2196,
+      2064
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "View of Ohio taken during ISS Expedition 7.",
+     "route": "identity \u2014 Wikidata P18 (Q1397)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:ISS007-E-16092_-_View_of_Ohio.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/ISS007-E-16092_-_View_of_Ohio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Earth Science and Remote Sensing Unit , Lyndon B. Johnson Space Center"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 1148,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1148,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Cincinnati-born son of immigrants from Palakkad, Kerala",
+    "A win would make him the first Hindu governor in the United States"
+   ],
+   "v7": {
+    "image_source": "extra:americafest-2025-vivek-ramaswamy-02",
+    "track": "full-bleed",
+    "render_scale": 0.569,
+    "photo_px": [
+     6000,
+     3376
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5687203791469194,
+     "window": [
+      1231,
+      0,
+      3130,
+      3376
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Vivek Ramaswamy at AmericaFest 2025 in Phoenix, AZ (December 20, 2025)",
+     "route": "identity \u2014 depicts (P180=Q27881473)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:AmericaFest_2025_-_Vivek_Ramaswamy_02.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/AmericaFest_2025_-_Vivek_Ramaswamy_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Xuthoria"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 304,
+   "block_top": 708,
+   "block_bottom": 1012,
+   "text_bbox": [
+    70,
+    708,
+    930,
+    1012
+   ],
+   "texts": [
+    "The Takeaway",
+    "Ohioans vote on Tuesday, November 3, 2026, and a win would make him Ohio's first Indian-American governor and the first Hindu governor in the United States.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 160.0,
+ "mp4_bytes": 14533193
+}

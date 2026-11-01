@@ -1,0 +1,422 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "ashutosh-dixit-takes-charge-29th-iaf-chief",
+ "article_slug": "ashutosh-dixit-takes-charge-29th-iaf-chief",
+ "article_id": "68ad40c8-1fe6-4b03-bdb6-b571a6ddbac0",
+ "category": "News",
+ "video": "reel-runs/2026-10-31-ashutosh-dixit-takes-charge-29th-iaf-chief/output/ashutosh-dixit-takes-charge-29th-iaf-chief.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://www.hindustantimes.com/ht-img/img/2026/10/31/1600x900/logo/Ashutosh_Dixit_1793438873251_yvH9_1793438879294_h98C_6ab8b8f0-7c0e-43d5-bfe6-be577610296d_nsBw.jpg",
+  "local_path": "reel-runs/2026-10-31-ashutosh-dixit-takes-charge-29th-iaf-chief/output/hero.jpg",
+  "width": 1599,
+  "height": 900,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.93)",
+  "has_face": true,
+  "box_source": [
+   571,
+   246,
+   428,
+   552
+  ],
+  "box_bg": [
+   384,
+   283,
+   223,
+   288
+  ],
+  "chin_bg": 571,
+  "anchor": [
+   0.493,
+   0.584
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "News",
+    "ASHUTOSH DIXIT TAKES CHARGE AS 29TH IAF CHIEF"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.522,
+    "photo_px": [
+     1599,
+     900
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.5215759849906192,
+     "window": [
+      0,
+      3,
+      1599,
+      900
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 388,
+   "block_top": 1192,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1192,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Air Chief Marshal Ashutosh Dixit assumed charge as the 29th Chief of the Air Staff on October 31, succeeding A.P. Singh, who superannuated after 42 years of service."
+   ],
+   "v7": {
+    "image_source": "extra:hal-tejas-mark-1a-3-view-line-drawing",
+    "track": "full-bleed",
+    "render_scale": 0.889,
+    "photo_px": [
+     3840,
+     2160
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8888888888888888,
+     "window": [
+      1312,
+      0,
+      2527,
+      2160
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "3-view line drawing of HAL Tejas Mark 1A",
+     "route": "identity \u2014 depicts (P180=Q175940)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:HAL_Tejas_Mark_1A_3-view_line_drawing.png",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/97/HAL_Tejas_Mark_1A_3-view_line_drawing.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 4.0",
+     "artist": "FoxtAl"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 735,
+   "zone_h": 845,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "29th",
+    "Chief of the Air Staff of the Indian Air Force"
+   ],
+   "v7": {
+    "image_source": "extra:dr-edmond-fernandes-addressing-the-bangalore",
+    "track": "full-bleed",
+    "render_scale": 0.362,
+    "photo_px": [
+     7952,
+     5304
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.36199095022624433,
+     "window": [
+      2812,
+      0,
+      5795,
+      5304
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Dr Edmond Fernandes addressing the Bangalore Medical Congress of the Indian Air Force",
+     "route": "identity \u2014 depicts (P180=Q330658)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Dr_Edmond_Fernandes_addressing_the_Bangalore_Medical_Congress_of_the_Indian_Air_Force.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Dr_Edmond_Fernandes_addressing_the_Bangalore_Medical_Congress_of_the_Indian_Air_Force.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Ginevrajocosa88"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 728,
+   "block_bottom": 1516,
+   "text_bbox": [
+    70,
+    728,
+    930,
+    1516
+   ],
+   "texts": [
+    "By The Numbers",
+    "3,300",
+    "Hours of flying experience as a fighter and experimental test pilot",
+    "42 years",
+    "Of service completed by A.P. Singh before he superannuated",
+    "2028",
+    "Dixit's tenure as Air Chief runs until December 31 of that year"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.593,
+    "photo_px": [
+     1599,
+     900
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.5927505330490405,
+     "window": [
+      85,
+      111,
+      1492,
+      900
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 937,
+   "block_bottom": 1306,
+   "text_bbox": [
+    70,
+    937,
+    930,
+    1306
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "He held the IAF's joint-staff post during Operation Sindoor",
+    "He was instrumental in the LCA Mk-I Tejas operational clearances"
+   ],
+   "v7": {
+    "image_source": "extra:hal-tejas",
+    "track": "backdrop",
+    "render_scale": 0.529,
+    "photo_px": [
+     1824,
+     885
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.528852251109702,
+     "window": [
+      207,
+      0,
+      1784,
+      884
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.17x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "HAL Tejas at Aero India 2009",
+     "route": "identity \u2014 Wikidata P18 (Q175940)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:HAL_Tejas.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/HAL_Tejas.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 3.0",
+     "artist": "Rahuldevnath"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 310,
+   "block_top": 967,
+   "block_bottom": 1277,
+   "text_bbox": [
+    70,
+    967,
+    930,
+    1277
+   ],
+   "texts": [
+    "The Takeaway",
+    "Dixit, who held the joint-staff post during Operation Sindoor, now leads the IAF through its next phase of aircraft induction and air-defence strengthening.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "extra:dinesh-patnaik-ambassador-of-india-to-spain",
+    "track": "backdrop",
+    "render_scale": 0.194,
+    "photo_px": [
+     4290,
+     2874
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.1944055944055944,
+     "window": [
+      0,
+      467,
+      4290,
+      2874
+     ]
+    },
+    "track_note": "layout demotion: no full-bleed fit in the 204px zone below the dominant chin \u2014 backdrop composition instead",
+    "provenance": {
+     "subject": "Dinesh Patnaik, Ambassador of India to Spain with Roshan Bhondekar at the Embassy of India in Madrid, Spain",
+     "route": "identity \u2014 depicts (P180=Q134459237)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Dinesh_Patnaik,_Ambassador_of_India_to_Spain_with_Roshan_Bhondekar,_an_entrepreneur_and_writer_at_the_Embassy_of_India_in_Madrid.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Dinesh_Patnaik%2C_Ambassador_of_India_to_Spain_with_Roshan_Bhondekar%2C_an_entrepreneur_and_writer_at_the_Embassy_of_India_in_Madrid.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Envision Studio"
+    }
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 131.5,
+ "mp4_bytes": 8943470
+}

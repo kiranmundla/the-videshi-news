@@ -1,0 +1,95 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-semiconductor-12-projects-164-lakh-crore-semicon-2",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Semicon 2.0",
+    "Micron",
+    "Kaynes",
+    "CG Semi",
+    "Gujarat",
+    "SEMICON India"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Semicon 2.0' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Micron' named 'Micron Technology', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'CG Semi' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'SEMICON India' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Gujarat Satellite Imagery 2012.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1061)",
+      "verdict": "USED (diaspora)",
+      "reason": "5000x5000, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Administrative map of Gujarat GU.png",
+      "route": "identity \u2014 depicts (P180=Q1061)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Arqueta del taller de Gujarat, Catedral de Sevilla.jpg",
+      "route": "identity \u2014 depicts (P180=Q1061)",
+      "verdict": "USED (news)",
+      "reason": "3812x2859, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "arqueta-del-taller-de-gujarat-catedral-de-se",
+      "path": "arqueta-del-taller-de-gujarat-catedral-de-se.jpg",
+      "size": [
+        3812,
+        2859
+      ],
+      "role": "establishing",
+      "subject": "Arqueta producida por taller de Gujarat , mediados del siglo XVI, empleando n\u00e1car y placa.",
+      "route": "identity \u2014 depicts (P180=Q1061)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Arqueta_del_taller_de_Gujarat,_Catedral_de_Sevilla.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Arqueta_del_taller_de_Gujarat%2C_Catedral_de_Sevilla.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "Jl FilpoC"
+    },
+    {
+      "beat": "diaspora",
+      "label": "gujarat-satellite-imagery-2012",
+      "path": "gujarat-satellite-imagery-2012.jpg",
+      "size": [
+        5000,
+        5000
+      ],
+      "role": "establishing",
+      "subject": "An image taken by NASA of Gujarat, India.",
+      "route": "identity \u2014 Wikidata P18 (Q1061)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Gujarat_Satellite_Imagery_2012.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/Gujarat_Satellite_Imagery_2012.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "NASA, MODIS"
+    }
+  ]
+}

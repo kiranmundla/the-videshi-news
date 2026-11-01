@@ -1,0 +1,151 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ashutosh-dixit-takes-charge-29th-iaf-chief",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Ashutosh Dixit",
+    "Indian Air Force",
+    "A.P. Singh",
+    "Tejas",
+    "Operation Sindoor",
+    "Vice Chief of the Air"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'A.P. Singh' named 'A.P. Singh Degree College, Maharajpur Hathigawan', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Vice Chief of the Air' named 'Vice Chief of the Air Staff', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Air Marshal Ashutosh Dixit, VCAS.png",
+      "route": "identity \u2014 Wikidata P18 (Q140076608)",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Dassault Mirage 2000I \u2018KF118\u2019.jpg",
+      "route": "identity \u2014 depicts (P180=Q330658)",
+      "verdict": "accepted",
+      "reason": "3398x2265, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Dr Edmond Fernandes addressing the Bangalore Medical Congress of the Indian Air Force.jpg",
+      "route": "identity \u2014 depicts (P180=Q330658)",
+      "verdict": "USED (hero)",
+      "reason": "7952x5304, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:HAL Tejas.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q175940)",
+      "verdict": "USED (diaspora)",
+      "reason": "1824x885, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:HALTEDBFAeroindia2021.png",
+      "route": "identity \u2014 depicts (P180=Q175940)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:HAL Tejas Mark 1A 3-view line drawing.png",
+      "route": "identity \u2014 depicts (P180=Q175940)",
+      "verdict": "USED (news)",
+      "reason": "3840x2160, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Operation Sindoor.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q134459237)",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Dinesh Patnaik, Ambassador of India to Spain with Roshan Bhondekar, an entrepreneur and writer at the Embassy of India in Madrid.jpg",
+      "route": "identity \u2014 depicts (P180=Q134459237)",
+      "verdict": "USED (payoff)",
+      "reason": "4290x2874, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Dinesh Patnaik, Ambassador of India to Spain with Roshan Bhondekar, an entrepreneur and writer based in Spain at the Embassy of India in Madrid.jpg",
+      "route": "identity \u2014 depicts (P180=Q134459237)",
+      "verdict": "accepted",
+      "reason": "5184x3456, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "hal-tejas-mark-1a-3-view-line-drawing",
+      "path": "hal-tejas-mark-1a-3-view-line-drawing.png",
+      "size": [
+        3840,
+        2160
+      ],
+      "role": "establishing",
+      "subject": "3-view line drawing of HAL Tejas Mark 1A",
+      "route": "identity \u2014 depicts (P180=Q175940)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:HAL_Tejas_Mark_1A_3-view_line_drawing.png",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/97/HAL_Tejas_Mark_1A_3-view_line_drawing.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "FoxtAl"
+    },
+    {
+      "beat": "hero",
+      "label": "dr-edmond-fernandes-addressing-the-bangalore",
+      "path": "dr-edmond-fernandes-addressing-the-bangalore.jpg",
+      "size": [
+        7952,
+        5304
+      ],
+      "role": "establishing",
+      "subject": "Dr Edmond Fernandes addressing the Bangalore Medical Congress of the Indian Air Force",
+      "route": "identity \u2014 depicts (P180=Q330658)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Dr_Edmond_Fernandes_addressing_the_Bangalore_Medical_Congress_of_the_Indian_Air_Force.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Dr_Edmond_Fernandes_addressing_the_Bangalore_Medical_Congress_of_the_Indian_Air_Force.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Ginevrajocosa88"
+    },
+    {
+      "beat": "diaspora",
+      "label": "hal-tejas",
+      "path": "hal-tejas.jpg",
+      "size": [
+        1824,
+        885
+      ],
+      "role": "establishing",
+      "subject": "HAL Tejas at Aero India 2009",
+      "route": "identity \u2014 Wikidata P18 (Q175940)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:HAL_Tejas.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/78/HAL_Tejas.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 3.0",
+      "artist": "Rahuldevnath"
+    },
+    {
+      "beat": "payoff",
+      "label": "dinesh-patnaik-ambassador-of-india-to-spain",
+      "path": "dinesh-patnaik-ambassador-of-india-to-spain.jpg",
+      "size": [
+        4290,
+        2874
+      ],
+      "role": "establishing",
+      "subject": "Dinesh Patnaik, Ambassador of India to Spain with Roshan Bhondekar at the Embassy of India in Madrid, Spain",
+      "route": "identity \u2014 depicts (P180=Q134459237)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Dinesh_Patnaik,_Ambassador_of_India_to_Spain_with_Roshan_Bhondekar,_an_entrepreneur_and_writer_at_the_Embassy_of_India_in_Madrid.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Dinesh_Patnaik%2C_Ambassador_of_India_to_Spain_with_Roshan_Bhondekar%2C_an_entrepreneur_and_writer_at_the_Embassy_of_India_in_Madrid.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Envision Studio"
+    }
+  ]
+}

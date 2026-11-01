@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor",
+  "name": "who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor",
+  "script": "reel-runs/2026-11-01-who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "stats[1].big",
+      "stats[1].label"
+    ],
+    "llm_cost_usd": 0.000787
+  }
+}

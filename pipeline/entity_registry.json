@@ -3692,6 +3692,145 @@
     "Darasuram, Airavatesvara Temple, Mandapa at night 4, India.jpg"
    ],
    "notes": "Verified against the live Wikidata API 2026-11-01 (P18 is a territory map SVG, not a photo — left null). The blocked Darasuram Airavatesvara Temple night photo was served as the picture FOR the region 'South India' on the Jailer 2 deck (2026-11-01) — one temple in the region is not the region. SHA1-exact identification from the card download cache."
+  },
+  {
+   "name": "Vivek Ramaswamy",
+   "aliases": [
+    "Vivek Ramaswamy",
+    "Vivek G. Ramaswamy",
+    "Vivek Ganapathy Ramaswamy"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q27881473",
+   "p18_file": "Vivek Ramaswamy (55241367373) (cropped).jpg",
+   "p18_quality": 2348,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Who Is Vivek Ramaswamy? The Cincinnati-Born Biotech Billionaire Who Ran for President — and Is Now Two Days From a Bid to Become Ohio's First Indian-American Governor His parents came from Palakkad, Kerala — an engineer and a psychiatrist who raised a Hindu valedictorian in Cincinnati. He made a fortune buying shelved drug patents, wrote the book that launched the anti-woke movement, ran for presi",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: \"Who Is Vivek Ramaswamy? The Cincinnati-Born Biotech Billionaire Who Ran for President — and Is Now Two Days From a Bid to Become Ohio's First Indian-American Governor His parents came from Palakkad, K\"; description: American presidential candidate and businessman (born 1985)"
+  },
+  {
+   "name": "Amy Acton",
+   "aliases": [
+    "Amy Acton"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q87773723",
+   "p18_file": "Amy Acton (cropped).jpg",
+   "p18_quality": 284,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Who Is Vivek Ramaswamy? The Cincinnati-Born Biotech Billionaire Who Ran for President — and Is Now Two Days From a Bid to Become Ohio's First Indian-American Governor His parents came from Palakkad, Kerala — an engineer and a psychiatrist who raised a Hindu valedictorian in Cincinnati. He made a fortune buying shelved drug patents, wrote the book that launched the anti-woke movement, ran for presi",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: \"Who Is Vivek Ramaswamy? The Cincinnati-Born Biotech Billionaire Who Ran for President — and Is Now Two Days From a Bid to Become Ohio's First Indian-American Governor His parents came from Palakkad, K\"; description: American physician and politician (born 1966)"
+  },
+  {
+   "name": "Ohio",
+   "aliases": [
+    "Ohio",
+    "State of Ohio",
+    "OH",
+    "Ohio, United States",
+    "Buckeye State",
+    "US-OH"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1397",
+   "p18_file": "ISS007-E-16092 - View of Ohio.jpg",
+   "p18_quality": 3032,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Who Is Vivek Ramaswamy? The Cincinnati-Born Biotech Billionaire Who Ran for President — and Is Now Two Days From a Bid to Become Ohio's First Indian-American Governor His parents came from Palakkad, Kerala — an engineer and a psychiatrist who raised a Hindu valedictorian in Cincinnati. He made a fortune buying shelved drug patents, wrote the book that launched the anti-woke movement, ran for presi",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: \"Who Is Vivek Ramaswamy? The Cincinnati-Born Biotech Billionaire Who Ran for President — and Is Now Two Days From a Bid to Become Ohio's First Indian-American Governor His parents came from Palakkad, K\"; description: state of the United States of America"
+  },
+  {
+   "name": "Roivant",
+   "aliases": [
+    "Roivant Sciences",
+    "Roivant",
+    "Roivant Sciences Ltd."
+   ],
+   "type": "company",
+   "wikidata_qid": "Q53308720",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Who Is Vivek Ramaswamy? The Cincinnati-Born Biotech Billionaire Who Ran for President — and Is Now Two Days From a Bid to Become Ohio's First Indian-American Governor His parents came from Palakkad, Kerala — an engineer and a psychiatrist who raised a Hindu valedictorian in Cincinnati. He made a fortune buying shelved drug patents, wrote the book that launched the anti-woke movement, ran for presi",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: \"Who Is Vivek Ramaswamy? The Cincinnati-Born Biotech Billionaire Who Ran for President — and Is Now Two Days From a Bid to Become Ohio's First Indian-American Governor His parents came from Palakkad, K\"; description: American pharmaceuticals company"
+  },
+  {
+   "name": "Suffolk University",
+   "aliases": [
+    "Suffolk University"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1056123",
+   "p18_file": "Archer Building Suffolk University.jpg",
+   "p18_quality": 2304,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Who Is Vivek Ramaswamy? The Cincinnati-Born Biotech Billionaire Who Ran for President — and Is Now Two Days From a Bid to Become Ohio's First Indian-American Governor His parents came from Palakkad, Kerala — an engineer and a psychiatrist who raised a Hindu valedictorian in Cincinnati. He made a fortune buying shelved drug patents, wrote the book that launched the anti-woke movement, ran for presi",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: \"Who Is Vivek Ramaswamy? The Cincinnati-Born Biotech Billionaire Who Ran for President — and Is Now Two Days From a Bid to Become Ohio's First Indian-American Governor His parents came from Palakkad, K\"; description: private university located in Boston, Massachusetts"
+  },
+  {
+   "name": "Kaynes",
+   "aliases": [
+    "Kaynes"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q112598908",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "India's Rs 1.64 Lakh Crore Chip Bet Now Has 12 Projects — and Its First Production Lines Twelve approved semiconductor projects span six states, Gujarat holds the largest share, and Micron, Kaynes and CG Semi have started commercial production under Semicon 2.0's Rs 1.275 lakh crore outlay. Twelve approved semiconductor projects span six states, Gujarat holds the largest share, and Micron, Kaynes ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: \"India's Rs 1.64 Lakh Crore Chip Bet Now Has 12 Projects — and Its First Production Lines Twelve approved semiconductor projects span six states, Gujarat holds the largest share, and Micron, Kaynes and\"; description: family name"
+  },
+  {
+   "name": "Gujarat",
+   "aliases": [
+    "Gujarat",
+    "State of Gujarat",
+    "Guzerat",
+    "Guzeratte",
+    "IN-GJ"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1061",
+   "p18_file": "Gujarat Satellite Imagery 2012.jpg",
+   "p18_quality": 5000,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "India's Rs 1.64 Lakh Crore Chip Bet Now Has 12 Projects — and Its First Production Lines Twelve approved semiconductor projects span six states, Gujarat holds the largest share, and Micron, Kaynes and CG Semi have started commercial production under Semicon 2.0's Rs 1.275 lakh crore outlay. Twelve approved semiconductor projects span six states, Gujarat holds the largest share, and Micron, Kaynes ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: \"India's Rs 1.64 Lakh Crore Chip Bet Now Has 12 Projects — and Its First Production Lines Twelve approved semiconductor projects span six states, Gujarat holds the largest share, and Micron, Kaynes and\"; description: state of India"
   }
  ]
 }

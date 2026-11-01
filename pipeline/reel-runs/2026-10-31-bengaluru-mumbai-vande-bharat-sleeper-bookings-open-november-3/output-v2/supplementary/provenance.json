@@ -1,0 +1,123 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "bengaluru-mumbai-vande-bharat-sleeper-bookings-open-november-3",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Vande Bharat Sleeper",
+    "IRCTC",
+    "Bengaluru",
+    "Mumbai",
+    "SMVT Bengaluru",
+    "Bengaluru-Mumbai Vande Bharat Sleeper"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'IRCTC' named 'Tatkal scheme', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'SMVT Bengaluru' named 'SMVT Bengaluru\u2013Balurghat Weekly Express', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Bengaluru-Mumbai Vande Bharat Sleeper' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:UB City.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1355)",
+      "verdict": "rejected",
+      "reason": "resolution: 800x546 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:A photo of a city scene in Bengaluru.jpg",
+      "route": "identity \u2014 depicts (P180=Q1355)",
+      "verdict": "USED (hero)",
+      "reason": "6092x4569, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Aerial view of Bangalore in 2011 (18).jpg",
+      "route": "identity \u2014 depicts (P180=Q1355)",
+      "verdict": "USED (news)",
+      "reason": "5184x3456, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Panoramic view of Taj Palace Hotel and Taj Tower with the iconic Gateway of India in the background (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1156)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:A Plan of Bombay-Harbour on the Coast of Malabar.jpg",
+      "route": "identity \u2014 depicts (P180=Q1156)",
+      "verdict": "USED (grid)",
+      "reason": "4146x3000, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:A Street is Bombay, 1875.jpg",
+      "route": "identity \u2014 depicts (P180=Q1156)",
+      "verdict": "accepted",
+      "reason": "5157x3743, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "aerial-view-of-bangalore-in-2011-18",
+      "path": "aerial-view-of-bangalore-in-2011-18.jpg",
+      "size": [
+        5184,
+        3456
+      ],
+      "role": "establishing",
+      "subject": "IMG_0418",
+      "route": "identity \u2014 depicts (P180=Q1355)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Aerial_view_of_Bangalore_in_2011_(18).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Aerial_view_of_Bangalore_in_2011_%2818%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Vinu Thomas from Bangalore, India"
+    },
+    {
+      "beat": "hero",
+      "label": "a-photo-of-a-city-scene-in-bengaluru",
+      "path": "a-photo-of-a-city-scene-in-bengaluru.jpg",
+      "size": [
+        6092,
+        4569
+      ],
+      "role": "establishing",
+      "subject": "A photo of a city scene in Bengaluru",
+      "route": "identity \u2014 depicts (P180=Q1355)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:A_photo_of_a_city_scene_in_Bengaluru.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/97/A_photo_of_a_city_scene_in_Bengaluru.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Matthew T Rader"
+    },
+    {
+      "beat": "grid",
+      "label": "a-plan-of-bombay-harbour-on-the-coast-of-mal",
+      "path": "a-plan-of-bombay-harbour-on-the-coast-of-mal.jpg",
+      "size": [
+        4146,
+        3000
+      ],
+      "role": "establishing",
+      "subject": "A Plan of Bombay-Harbour on the Coast of Malabar",
+      "route": "identity \u2014 depicts (P180=Q1156)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:A_Plan_of_Bombay-Harbour_on_the_Coast_of_Malabar.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/A_Plan_of_Bombay-Harbour_on_the_Coast_of_Malabar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Nicholson, William (s. XVIII) Watson, Captain George Robert Laurie and James Whi"
+    }
+  ]
+}

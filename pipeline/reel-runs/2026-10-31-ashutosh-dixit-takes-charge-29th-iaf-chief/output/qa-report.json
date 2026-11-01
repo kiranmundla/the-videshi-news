@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-10-31-ashutosh-dixit-takes-charge-29th-iaf-chief/output/ashutosh-dixit-takes-charge-29th-iaf-chief.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:news"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1599,
+        900
+      ],
+      "manifest_dims": [
+        1599,
+        900
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 235.4,
+      "url": "https://www.hindustantimes.com/ht-img/img/2026/10/31/1600x900/logo/Ashutosh_Dixit_1793438873251_yvH9_1793438879294_h98C_6ab8b8f0-7c0e-43d5-bfe6-be577610296d_nsBw.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-10-31-ashutosh-dixit-takes-charge-29th-iaf-chief/output/qa/frames/frame-hook.png",
+      "text_px_detected": 26319,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          387,
+          282,
+          220,
+          287
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-10-31-ashutosh-dixit-takes-charge-29th-iaf-chief/output/qa/frames/frame-news.png",
+      "text_px_detected": 41241,
+      "edge": {
+        "pass": false,
+        "offending_px": 1421,
+        "clusters": 3,
+        "largest_cluster": 767
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          382,
+          279,
+          226,
+          292
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 3.1,
+        "delta": 250.8
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-10-31-ashutosh-dixit-takes-charge-29th-iaf-chief/output/qa/frames/frame-hero.png",
+      "text_px_detected": 21074,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          491,
+          549,
+          107,
+          136
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.3,
+        "bg_luminance": 132.2,
+        "delta": 121.0
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-10-31-ashutosh-dixit-takes-charge-29th-iaf-chief/output/qa/frames/frame-grid.png",
+      "text_px_detected": 62385,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          374,
+          231,
+          258,
+          324
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-10-31-ashutosh-dixit-takes-charge-29th-iaf-chief/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 32681,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          376,
+          267,
+          235,
+          303
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-10-31-ashutosh-dixit-takes-charge-29th-iaf-chief/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 22490,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          464,
+          346,
+          63,
+          83
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    }
+  ]
+}

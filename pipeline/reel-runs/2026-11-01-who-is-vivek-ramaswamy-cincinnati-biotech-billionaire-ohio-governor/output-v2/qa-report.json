@@ -1,0 +1,220 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-01-who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor/output-v2/who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor.mp4",
+  "qa_passed": false,
+  "qa_score": 8.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "face_overlap:grid",
+    "face_overlap:diaspora",
+    "face_overlap:payoff"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        2348,
+        3128
+      ],
+      "manifest_dims": [
+        2348,
+        3128
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 65.1,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Vivek_Ramaswamy_%2855241367373%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-01-who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor/output-v2/qa/frames/frame-hook.png",
+      "text_px_detected": 27603,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.82)",
+        "box": [
+          306,
+          476,
+          552,
+          612
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 32.9,
+        "delta": 221.0
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-01-who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor/output-v2/qa/frames/frame-news.png",
+      "text_px_detected": 38450,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.89)",
+        "box": [
+          334,
+          364,
+          429,
+          509
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 26.9,
+        "delta": 227.1
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-01-who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor/output-v2/qa/frames/frame-hero.png",
+      "text_px_detected": 14239,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          212,
+          382,
+          656,
+          842
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 251.4,
+        "bg_luminance": 0.0,
+        "delta": 251.4
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-01-who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor/output-v2/qa/frames/frame-grid.png",
+      "text_px_detected": 51183,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": false,
+        "method": "manifest-mapped",
+        "box": [
+          208,
+          380,
+          664,
+          853
+        ],
+        "overlap_px": 6624
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 67.6,
+        "delta": 186.3
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-01-who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor/output-v2/qa/frames/frame-diaspora.png",
+      "text_px_detected": 31868,
+      "edge": {
+        "pass": true,
+        "offending_px": 5,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": false,
+        "method": "manifest-mapped",
+        "box": [
+          203,
+          377,
+          673,
+          865
+        ],
+        "overlap_px": 752
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 27.2,
+        "delta": 226.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-01-who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor/output-v2/qa/frames/frame-payoff.png",
+      "text_px_detected": 16095,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": false,
+        "method": "manifest-mapped",
+        "box": [
+          199,
+          375,
+          681,
+          874
+        ],
+        "overlap_px": 3727
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.0,
+        "bg_luminance": 0.0,
+        "delta": 253.0
+      }
+    }
+  ]
+}

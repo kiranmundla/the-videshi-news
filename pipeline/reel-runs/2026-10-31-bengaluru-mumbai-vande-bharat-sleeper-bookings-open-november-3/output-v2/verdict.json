@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "bengaluru-mumbai-vande-bharat-sleeper-bookings-open-november-3",
+  "name": "bengaluru-mumbai-vande-bharat-sleeper-bookings-open-november-3",
+  "script": "reel-runs/2026-10-31-bengaluru-mumbai-vande-bharat-sleeper-bookings-open-november-3/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.00072
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-10-31-bengaluru-mumbai-vande-bharat-sleeper-bookings-open-november-3/output-v2/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "aerial-view-of-bangalore-in-2011-18",
+      "hero": "a-photo-of-a-city-scene-in-bengaluru",
+      "grid": "a-plan-of-bombay-harbour-on-the-coast-of-mal"
+    }
+  },
+  "manifest": "reel-runs/2026-10-31-bengaluru-mumbai-vande-bharat-sleeper-bookings-open-november-3/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-10-31-bengaluru-mumbai-vande-bharat-sleeper-bookings-open-november-3/output-v2/bengaluru-mumbai-vande-bharat-sleeper-bookings-open-november-3.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:diaspora"
+    ]
+  }
+}

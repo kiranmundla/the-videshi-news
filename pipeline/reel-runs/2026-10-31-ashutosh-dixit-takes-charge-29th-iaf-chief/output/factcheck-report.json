@@ -1,0 +1,275 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "ashutosh-dixit-takes-charge-29th-iaf-chief",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ASHUTOSH DIXIT TAKES CHARGE AS 29TH IAF CHIEF",
+      "numbers": [
+        29.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Dixit took charge as the 29th IAF chief.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Air Chief Marshal Ashutosh Dixit assumed charge as the 29th Chief of the Air Staff on October 31, succeeding A.P. Singh, who superannuated after 42 years of service.",
+      "numbers": [
+        29.0,
+        31.0,
+        42.0
+      ],
+      "entities": [
+        "Air Chief Marshal Ashutosh Dixit",
+        "Air Staff",
+        "A.P Singh"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about Dixit's assumption of charge and Singh's superannuation are present.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "29th",
+      "numbers": [
+        29.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Dixit is the 29th Chief of the Air Staff.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Chief of the Air Staff of the Indian Air Force",
+      "numbers": [],
+      "entities": [
+        "Air Staff",
+        "Indian Air Force"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Dixit is the Chief of the Air Staff of the IAF.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "3,300",
+      "numbers": [
+        3300.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Dixit has over 3,300 hours of flying experience.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Hours of flying experience as a fighter and experimental test pilot",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately describes Dixit's flying experience.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "42 years",
+      "numbers": [
+        42.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Singh completed 42 years of service before superannuation.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Of service completed by A.P. Singh before he superannuated",
+      "numbers": [],
+      "entities": [
+        "A.P Singh"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects Singh's service duration.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2028",
+      "numbers": [
+        2028.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2028
+        ]
+      },
+      "llm_reason": "Dixit's tenure runs until December 31, 2028.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Dixit's tenure as Air Chief runs until December 31 of that year",
+      "numbers": [
+        31.0
+      ],
+      "entities": [
+        "Air Chief"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately states the end date of Dixit's tenure.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "He held the IAF's joint-staff post during Operation Sindoor",
+      "numbers": [],
+      "entities": [
+        "Operation Sindoor"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Dixit held the joint-staff post during Operation Sindoor.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "He was instrumental in the LCA Mk-I Tejas operational clearances",
+      "numbers": [],
+      "entities": [
+        "LCA Mk-I Tejas"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Dixit was instrumental in the Tejas operational clearances.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Dixit, who held the joint-staff post during Operation Sindoor, now leads the IAF through its next phase of aircraft induction and air-defence strengthening.",
+      "numbers": [],
+      "entities": [
+        "Operation Sindoor"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects Dixit's current role and past position.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Ashutosh Dixit",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Indian Air Force",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "A.P. Singh",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Tejas",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000701,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,175 @@
+[
+  {
+    "id": "ae759519-f34d-4db1-bf0c-6fb082b78432",
+    "headline": "Zoho's Sridhar Vembu Wants India to Shut Down Its Business Schools",
+    "slug": "sridhar-vembu-zoho-shut-down-business-schools-india",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the context of Vembu's remarks by specifying whether he is speaking in a personal capacity or representing Zoho, as this distinction can affect the weight of his opinion.",
+        "Provide a clearer summary of the key arguments made by Chris Marquis in the New York Times piece, as well as any notable counterarguments from other academics to give readers a more rounded understanding of the debate.",
+        "Include a direct quote from Vembu to enhance the article's credibility and provide readers with a more personal insight into his views.",
+        "Ensure that the article maintains a consistent structure by avoiding repetitive phrases and ensuring that each paragraph contributes new information or context."
+      ],
+      "embed_opportunities": [
+        "Embed the original New York Times opinion piece by Chris Marquis to allow readers to access the source material directly."
+      ]
+    }
+  },
+  {
+    "id": "a8fa3b19-90e3-42d8-86af-d01a783ae26b",
+    "headline": "Michelin Guide Chef Quits Fine Dining to Sell \u20b9520 Chole Bhature in Dubai",
+    "slug": "pradeep-khullar-bhaturewala-chole-bhature-dubai",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the opening date of Bhaturewala by confirming if it is indeed October 16, 2026, as stated, or if it should be a past date (e.g., October 16, 2023). This is crucial for timeliness and accuracy.",
+        "Provide more context about the significance of the Michelin Guide listing for Nazaara and how it might relate to Khullar's decision to leave fine dining. This would enhance completeness and depth.",
+        "Include a quote from Chef Pradeep Khullar or Saubhagi Veer about their vision for Bhaturewala to add a personal touch and improve clarity on their motivations."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post from Chef Pradeep Khullar announcing the opening of Bhaturewala or showcasing the dishes, which would enhance engagement and provide visual context."
+      ]
+    }
+  },
+  {
+    "id": "38b2d833-0661-4800-9ff6-6397586553ae",
+    "headline": "AR Rahman on Ramayana: Two Themes Each With Hans Zimmer, and No Rush to Judge",
+    "slug": "ar-rahman-ramayana-hans-zimmer-mangal-rang-interview",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the release date by specifying the year along with November 5, as it may not be clear to all readers which year is being referenced.",
+        "Provide more context about the significance of the Ramayana in Indian culture for readers who may not be familiar with it, enhancing completeness.",
+        "Include a quote or statement from Hans Zimmer to balance the perspectives of both composers, which would improve attribution and depth."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official announcement from AR Rahman or the film's production team regarding the collaboration with Hans Zimmer."
+      ]
+    }
+  },
+  {
+    "id": "4e458c18-8284-48f9-93a7-51e1cb5d2ba8",
+    "headline": "Chopper Crash Probe Widens as Operators Threaten to Ground Char Dham Flights",
+    "slug": "uttarakhand-chopper-crash-probe-widens-two-pilot-rule-operators",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date and time of the helicopter crash and when the new regulations will take effect to enhance completeness.",
+        "Include a direct quote from a relevant authority or official regarding the new regulations or the investigation to improve attribution and credibility.",
+        "Provide specific details about the potential financial implications for passengers, such as estimated costs or refunds related to the disruption of services, to answer the 'what does this mean for ME?' question."
+      ],
+      "embed_opportunities": [
+        "Embed the official DGCA tweet regarding the new regulations for Char Dham flights to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "dfe1ca38-a62e-4f77-9bce-80a77a5e5997",
+    "headline": "Supreme Court Clears Reopening of Tax Probe Against Former CJI's Sons",
+    "slug": "supreme-court-clears-tax-probe-former-cji-sabharwal-sons",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the dates of the original tax assessments and the subsequent appeals, as well as the significance of the October 28, 2026 ruling in relation to the 2015 notices.",
+        "Include a brief explanation of Section 54F and Section 143(1) for readers who may not be familiar with tax law, enhancing the article's completeness and clarity.",
+        "Add a statement regarding the implications of this ruling for the Sabharwal brothers, such as potential next steps they may take in response to the Supreme Court's decision."
+      ],
+      "embed_opportunities": [
+        "Embed the official Supreme Court ruling or a relevant government statement regarding the tax probe for direct access to primary sources."
+      ]
+    }
+  },
+  {
+    "id": "20d9b98e-3c57-4723-9e40-d550dc1ea1f3",
+    "headline": "Reliance Foundation to Build Lifelong Home for 5,000 in Karjat",
+    "slug": "reliance-foundation-anant-ashray-karjat-lifelong-home-5000",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the project's phases and provide any available deadlines for completion or milestones, as this information is currently missing.",
+        "Include specific details about the admission process, eligibility criteria, and any potential fees or costs associated with the program, even if they are not finalized yet.",
+        "Provide more context on the significance of this project within the broader landscape of social services in India, such as statistics on the current state of care for orphans, seniors, and persons with disabilities."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from Reliance Foundation regarding the project to enhance credibility and provide direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "e632d33b-1787-457a-b135-419f6c8f6971",
+    "headline": "More Than 300 Arrested at Palestine Action Protest Outside US Embassy in London",
+    "slug": "palestine-action-protest-us-embassy-london-325-arrested",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the protest and the significance of the upcoming Supreme Court appeal on November 4, including what the appeal entails and its potential implications for the protesters.",
+        "Provide more context on the proscription of Palestine Action in July 2025, including the reasons behind the ban and any relevant legal background that would help readers understand the situation better.",
+        "Include direct quotes from key stakeholders, such as representatives from Defend Our Juries, the Home Office, or Amnesty International UK, to enhance attribution and provide multiple perspectives on the issue."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Metropolitan Police regarding the arrests or the protest for real-time updates and official statements."
+      ]
+    }
+  },
+  {
+    "id": "c9d01d4c-6452-4da2-ab80-534649a810e3",
+    "headline": "Gambhir Lauds India's 'Ruthlessness' After 3-2 T20I Series Win in New Zealand",
+    "slug": "gambhir-india-ruthlessness-t20i-series-win-new-zealand",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the series by explicitly stating the dates of each match, including the final match and the upcoming ODI series start date, to provide readers with a clearer context of the events.",
+        "Include a brief summary of the significance of the T20I series win for India, such as its impact on rankings or team morale, to give readers a better understanding of the broader implications of the victory.",
+        "Add a direct quote from Gautam Gambhir about the team's performance in the final match to provide a more comprehensive view of his perspective on the series as a whole."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official BCCI or Gautam Gambhir regarding the series win or the team's performance for real-time updates and authenticity."
+      ]
+    }
+  },
+  {
+    "id": "9b35f482-63d1-4f5c-9553-79f4a93dfaf5",
+    "headline": "Rishabh Pant Ruled Out of Final India A Match, Doubtful for Wellington Test",
+    "slug": "rishabh-pant-ruled-out-india-a-doubtful-first-test-new-zealand",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for Pant's recovery by including specific dates or a more detailed prognosis from the BCCI medical team, which would help readers understand the potential impact on his future participation.",
+        "Provide a direct quote from Rishabh Pant or a BCCI official regarding his condition or recovery process to enhance attribution and credibility.",
+        "Include more context about the significance of Pant's absence for the team, such as how it affects India's strategy or lineup for the upcoming Test against New Zealand."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the BCCI or a relevant cricket authority confirming Pant's injury status or updates on his recovery."
+      ]
+    }
+  }
+]

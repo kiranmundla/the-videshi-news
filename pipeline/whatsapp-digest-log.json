@@ -238,5 +238,15 @@
     "quick_hit_count": 5,
     "deadline_count": 3,
     "chars": 2688
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-01T15:13:01.289516+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 01 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "udta-teer-review-roundup-critics",
+    "quick_hit_count": 5,
+    "deadline_count": 3,
+    "chars": 2484
   }
 ]

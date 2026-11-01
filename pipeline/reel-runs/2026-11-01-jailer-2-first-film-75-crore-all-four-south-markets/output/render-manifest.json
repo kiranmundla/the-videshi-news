@@ -1,0 +1,383 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "jailer-2-first-film-75-crore-all-four-south-markets",
+ "article_slug": "jailer-2-first-film-75-crore-all-four-south-markets",
+ "article_id": "2513a494-4649-49a1-8f6f-a4983faf8181",
+ "category": "Entertainment",
+ "video": "reel-runs/2026-11-01-jailer-2-first-film-75-crore-all-four-south-markets/output/jailer-2-first-film-75-crore-all-four-south-markets.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://www.pinkvilla.com/images/2026-11/246477308_904514413_jailer-2-webp-1-1.webp",
+  "local_path": "reel-runs/2026-11-01-jailer-2-first-film-75-crore-all-four-south-markets/output/hero.webp",
+  "width": 1280,
+  "height": 720,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.89)",
+  "has_face": true,
+  "box_source": [
+   531,
+   86,
+   234,
+   278
+  ],
+  "box_bg": [
+   432,
+   212,
+   152,
+   181
+  ],
+  "chin_bg": 393,
+  "anchor": [
+   0.508,
+   0.311
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 306,
+   "block_top": 969,
+   "block_bottom": 1275,
+   "text_bbox": [
+    70,
+    969,
+    930,
+    1275
+   ],
+   "texts": [
+    "Entertainment",
+    "JAILER 2 FIRST INDIAN FILM TO CROSS RS 75 CRORE IN ALL FOUR SOUTH MARKETS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      0,
+      1280,
+      718
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 910,
+   "block_bottom": 1333,
+   "text_bbox": [
+    70,
+    910,
+    930,
+    1333
+   ],
+   "texts": [
+    "What Happened",
+    "Rajinikanth's Jailer 2 has become the first Indian film to gross over Rs 75 crore individually in each of the four major South Indian markets, according to Sacnilk."
+   ],
+   "v7": {
+    "image_source": "extra:rajinikanth-at-the-inauguration-of-mgr-statu",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     1800
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      165,
+      1200,
+      838
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.07x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Rajinikanth at the Inauguration of MGR Statue",
+     "route": "identity \u2014 depicts (P180=Q60068)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Rajinikanth_at_the_Inauguration_of_MGR_Statue.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Rajinikanth_at_the_Inauguration_of_MGR_Statue.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Dani Charles, Silverscreen Media Inc. (https://silverscreen.in)"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 411,
+   "block_top": 916,
+   "block_bottom": 1327,
+   "text_bbox": [
+    70,
+    916,
+    930,
+    1327
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "Rs 75 crore",
+    "Gross in each of the four major South Indian markets"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.741,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7406749555950266,
+     "window": [
+      87,
+      0,
+      1213,
+      631
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 750,
+   "block_bottom": 1493,
+   "text_bbox": [
+    70,
+    750,
+    930,
+    1493
+   ],
+   "texts": [
+    "By The Numbers",
+    "Rs 776.95 crore",
+    "Worldwide gross after 16 days, according to Sacnilk",
+    "Rs 267.50 crore",
+    "Overseas gross in 16 days, per Sacnilk",
+    "Rs 75.20 crore",
+    "Kerala gross on day 16, the last market to cross"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.814,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.814453125,
+     "window": [
+      0,
+      0,
+      1024,
+      574
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 937,
+   "block_bottom": 1306,
+   "text_bbox": [
+    70,
+    937,
+    930,
+    1306
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Overseas gross hit Rs 267.50 crore in 16 days",
+    "Four south markets together gave Rs 454.75 crore"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.814,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.814453125,
+     "window": [
+      256,
+      0,
+      1280,
+      574
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "In Kerala, it ended Baahubali 2's nine-year run as the top non-Malayalam film.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-fun-upbeat-inplus.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 102.5,
+ "mp4_bytes": 8385356
+}

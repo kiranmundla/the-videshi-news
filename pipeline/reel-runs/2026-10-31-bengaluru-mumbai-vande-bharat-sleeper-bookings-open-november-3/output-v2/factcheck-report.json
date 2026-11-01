@@ -1,0 +1,262 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "bengaluru-mumbai-vande-bharat-sleeper-bookings-open-november-3",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "BENGALURU-MUMBAI VANDE BHARAT SLEEPER BOOKINGS OPEN",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Bookings for the Bengaluru-Mumbai Vande Bharat Sleeper are indeed open.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Bookings are open for the Bengaluru-Mumbai Vande Bharat Sleeper, an overnight service covering the route in about 16 hours.",
+      "numbers": [
+        16.0
+      ],
+      "entities": [
+        "Bengaluru-Mumbai Vande Bharat Sleeper"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states bookings are open and the journey takes about 16 hours.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "Rs 2,810",
+      "numbers": [
+        2810.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The fare for AC 3-tier is confirmed as Rs 2,810.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "AC 3-Tier fare for the full SMVT Bengaluru to CSMT Mumbai journey",
+      "numbers": [
+        3.0
+      ],
+      "entities": [
+        "SMVT Bengaluru",
+        "CSMT Mumbai"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the AC 3-tier fare for the full journey.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE PRICE TAG",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "16 hours",
+      "numbers": [
+        16.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The journey duration is stated as approximately 16 hours.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Overnight journey, against 22 to 24 hours on existing trains",
+      "numbers": [
+        22.0,
+        24.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article compares the journey time to existing trains.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "Rs 4,450",
+      "numbers": [
+        4450.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The fare for AC First Class is confirmed as Rs 4,450.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "AC First Class fare for the full route",
+      "numbers": [],
+      "entities": [
+        "AC First Class"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the AC First Class fare for the full route.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "6 days",
+      "numbers": [
+        6.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The service runs six days a week as stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "A week the sleeper service runs between the two cities",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the service operates six days a week.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Only confirmed berths are sold \u2014 no RAC or waiting list",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states only confirmed tickets are issued with no RAC or waiting list.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Book on the IRCTC website or the Rail Connect and RailOne apps",
+      "numbers": [],
+      "entities": [
+        "Rail Connect"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions booking through these platforms.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Only confirmed berths are sold, with no RAC or waiting list \u2014 a sold-out train has no waitlist to join.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the absence of RAC or waiting list for sold-out trains.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE PRICE TAG",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Vande Bharat Sleeper",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "IRCTC",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Bengaluru",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Mumbai",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00072,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

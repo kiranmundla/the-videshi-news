@@ -1,0 +1,27 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render_photo_floor",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-semiconductor-12-projects-164-lakh-crore-semicon-2",
+  "name": "india-semiconductor-12-projects-164-lakh-crore-semicon-2",
+  "script": "reel-runs/2026-11-01-india-semiconductor-12-projects-164-lakh-crore-semicon-2/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000686
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-01-india-semiconductor-12-projects-164-lakh-crore-semicon-2/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "arqueta-del-taller-de-gujarat-catedral-de-se",
+      "diaspora": "gujarat-satellite-imagery-2012"
+    }
+  },
+  "detail": "hero photo 800x600 below the 1080x600 floor"
+}

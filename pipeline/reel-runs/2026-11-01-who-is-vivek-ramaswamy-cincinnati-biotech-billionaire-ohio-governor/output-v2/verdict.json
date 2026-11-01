@@ -1,0 +1,39 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor",
+  "name": "who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor",
+  "script": "reel-runs/2026-11-01-who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000777
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-01-who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "americafest-2025-vivek-ramaswamy-01",
+      "hero": "archer-building-suffolk-university",
+      "grid": "iss007-e-16092-view-of-ohio",
+      "diaspora": "americafest-2025-vivek-ramaswamy-02"
+    }
+  },
+  "manifest": "reel-runs/2026-11-01-who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-11-01-who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor/output-v2/who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor.mp4",
+  "qa": {
+    "score": 8.0,
+    "passed": false,
+    "failing_checks": [
+      "face_overlap:grid",
+      "face_overlap:diaspora",
+      "face_overlap:payoff"
+    ]
+  }
+}

@@ -1,0 +1,304 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "who-is-vivek-ramaswamy-cincinnati-biotech-billionaire-ohio-governor",
+  "verdict": "fail",
+  "held_claims": [
+    "stats[1].big",
+    "stats[1].label"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "RAMASWAMY TWO DAYS FROM BID TO BE OHIO'S FIRST INDIAN-AMERICAN GOVERNOR",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states he is two days from the election for governor.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Vivek Ramaswamy, 41, the Cincinnati-born son of immigrants from Palakkad, Kerala, is the Republican nominee for governor of Ohio, facing Democrat Amy Acton.",
+      "numbers": [
+        41.0
+      ],
+      "entities": [
+        "Vivek Ramaswamy",
+        "Democrat Amy Acton"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about Ramaswamy and Acton are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "44%",
+      "numbers": [
+        44.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This percentage is mentioned in the context of the poll results.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Ramaswamy in a Suffolk University poll of 500 likely voters \u2014 behind Amy Acton at 48%",
+      "numbers": [
+        48.0,
+        500.0
+      ],
+      "entities": [
+        "Suffolk University",
+        "Amy Acton"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article includes this specific poll information.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "ELECTIONS 2026",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$2.3 billion",
+      "numbers": [
+        2.3,
+        2300000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Forbes estimated his net worth at this amount in September 2026.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Forbes estimate of Ramaswamy's net worth in September 2026",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article confirms this Forbes estimate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "82.4%",
+      "numbers": [
+        82.4
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article does not mention this percentage.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "His share of the vote in the May 5, 2026 Republican primary",
+      "numbers": [
+        5.0,
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "No mention of the May 5, 2026 primary or its results.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "November 3",
+      "numbers": [
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the election date is November 3, 2026.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Election Day in Ohio \u2014 the winner will be inaugurated on January 11, 2027",
+      "numbers": [
+        11.0,
+        2027.0
+      ],
+      "entities": [
+        "Election Day"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The inauguration date is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Cincinnati-born son of immigrants from Palakkad, Kerala",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is directly stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "A win would make him the first Hindu governor in the United States",
+      "numbers": [],
+      "entities": [
+        "United States"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this fact about his potential win.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Ohioans vote on Tuesday, November 3, 2026, and a win would make him Ohio's first Indian-American governor and the first Hindu governor in the United States.",
+      "numbers": [
+        3.0,
+        2026.0
+      ],
+      "entities": [
+        "United States"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "All details about the election and its implications are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "ELECTIONS 2026",
+    "ok": true,
+    "detail": "ELECTIONS <grounded year>"
+  },
+  "key_entities": [
+    {
+      "entity": "Vivek Ramaswamy",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Amy Acton",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ohio",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Roivant Sciences",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Suffolk University",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000787,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

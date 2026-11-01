@@ -1,0 +1,156 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "jailer-2-first-film-75-crore-all-four-south-markets",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Jailer 2 First Indian Film to Cross Rs 75 Crore in All Four South Markets",
+        "numbers": [
+          2.0,
+          75.0,
+          750000000.0
+        ],
+        "entities": [
+          "First Indian Film",
+          "Cross Rs",
+          "All Four South Markets"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Jailer 2 is the first Indian film to achieve this.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Rajinikanth's sequel completed the milestone in Kerala on its 16th day, finishing a four-market run that eluded Baahubali 2, KGF Chapter 2 and Pushpa 2, according to Sacnilk.",
+        "numbers": [
+          2.0,
+          16.0
+        ],
+        "entities": [
+          "KGF Chapter"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the milestone was reached on day 16 in Kerala.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Jailer 2 has become the first Indian film to gross over Rs 75 crore individually in each of the four major South Indian markets, according to Sacnilk",
+        "numbers": [
+          2.0,
+          75.0,
+          750000000.0
+        ],
+        "entities": [
+          "South Indian"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Jailer 2 grossed over Rs 75 crore in all four markets.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Kerala was the last market to cross, reaching Rs 75.20 crore on day 16; the four markets together contributed Rs 454.75 crore",
+        "numbers": [
+          16.0,
+          75.2,
+          454.75,
+          752000000.0,
+          4547500000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides these specific figures for Kerala and total contributions.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Worldwide, Sacnilk puts the film at Rs 776.95 crore after 16 days, including Rs 267.50 crore overseas",
+        "numbers": [
+          16.0,
+          267.5,
+          776.95,
+          2675000000.0,
+          7769500000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the worldwide total and overseas earnings.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Jailer 2 First Indian Film to Cross Rs 75 Crore in All Four South Markets",
+        "numbers": [
+          2.0,
+          75.0,
+          750000000.0
+        ],
+        "entities": [
+          "First Indian Film",
+          "Cross Rs",
+          "All Four South Markets"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000509,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

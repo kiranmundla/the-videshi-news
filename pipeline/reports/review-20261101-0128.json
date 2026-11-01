@@ -1,0 +1,60 @@
+[
+  {
+    "id": "7c025024-378d-45b0-9d3e-f201db40c094",
+    "headline": "Syhiba in Wakefield Earns 4.8 Stars for Authentic Punjabi and Indian Food",
+    "slug": "syhiba-wakefield-authentic-punjabi-indian-restaurant",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the 4.8 rating on Tripadvisor by including a direct link to the page or a screenshot of the rating to enhance credibility.",
+        "Provide more context about the restaurant's significance in the local community or its history, such as any awards it has received or notable mentions in food guides, to enrich the narrative.",
+        "Include specific details about the restaurant's early bird menu, such as the exact items included in the deal, to give readers a clearer idea of what to expect.",
+        "Add a quote from the restaurant owner or chef about their philosophy or approach to cooking to personalize the story and provide a human element."
+      ],
+      "embed_opportunities": [
+        "Embed a link to the restaurant's official website or social media page for readers to explore more about the menu and offerings."
+      ]
+    }
+  },
+  {
+    "id": "fc6e338d-6bc3-4a64-8435-90bf5e49203e",
+    "headline": "DeepMind's AI Agent Hunts Drug-Resistant Bacteria and Surfaces a New Candidate",
+    "slug": "deepmind-antigravity-antimicrobial-peptide-drug-resistance",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for lab validation of the candidate antimicrobial peptide. The article mentions that there are no results or timeline provided by DeepMind; including any estimated timelines for validation would enhance completeness.",
+        "Provide more context on the implications of the findings. For example, how does the identification of this specific antimicrobial peptide compare to existing treatments or other candidates in development? This would help readers understand the significance of this discovery.",
+        "Include a brief explanation of the Antigravity agentic platform and how it works, as this is a key part of the story but may not be familiar to all readers. A sentence or two summarizing its purpose and functionality would improve clarity.",
+        "The headline could be more compelling by incorporating a sense of urgency or significance. Consider revising it to something like 'DeepMind's AI Identifies Promising Antimicrobial Candidate Amid Growing Drug-Resistant Bacteria Crisis'."
+      ],
+      "embed_opportunities": [
+        "Embed the official DeepMind announcement or technical walkthrough to provide readers direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "5c3437a5-d2c4-40a9-b0ea-363ad560685c",
+    "headline": "Google's Suncatcher Satellite Answers First Prompt From Orbit With a Haiku",
+    "slug": "google-suncatcher-satellite-first-ai-response-haiku",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the haiku response in the context of AI and space exploration. What does this milestone mean for future AI applications in orbit?",
+        "Include specific details about the next steps for the Project Suncatcher satellite, such as the timeline for the thermal stress and radiation tests and what the implications of these tests are for the planned satellites in 2027.",
+        "Provide a brief explanation of what Tensor Processing Units (TPUs) are and their role in AI processing, as this may not be familiar to all readers."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Sundar Pichai announcing the haiku response to enhance the article's credibility and provide a direct source for readers."
+      ]
+    }
+  }
+]

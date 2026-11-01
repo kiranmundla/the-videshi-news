@@ -495,5 +495,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "ZFm4TJG3vpc",
+    "article_slug": "jailer-2-first-film-75-crore-all-four-south-markets",
+    "article_id": "2513a494-4649-49a1-8f6f-a4983faf8181",
+    "title": "Jailer 2 First Indian Film to Cross Rs 75 Crore in All Four South Markets #Shorts #Entertainment",
+    "privacy": "public",
+    "uploaded_at": "2026-11-01T11:14:26.654580+00:00",
+    "video_path": "reel-runs/2026-11-01-jailer-2-first-film-75-crore-all-four-south-markets/output/jailer-2-first-film-75-crore-all-four-south-markets.mp4",
+    "video_sha256": "e07c3868f5fd662e22d3e3d3bebcf9ed362c89d2c90b5d21e9db0da0766c999c",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]
