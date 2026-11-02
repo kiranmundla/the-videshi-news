@@ -4,48 +4,6 @@
   "movies": [
     {
       "cast": [
-        "Nivin Pauly",
-        "Mamitha Baiju",
-        "Sangeeth Prathap",
-        "Suresh Krishna"
-      ],
-      "director": "Girish A D",
-      "genre": "Romantic Comedy",
-      "is_indian": true,
-      "language": "Malayalam",
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/b/b4/Bethlehem_Kudumba_Unit_Movie_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "₹157.45 Cr worldwide",
-      "rating_source": "India box office",
-      "release_date": "2026-08-21",
-      "slug": "bethlehem-kudumba-unit",
-      "status": "now_playing",
-      "ticket_url": "https://www.google.com/search?q=Bethlehem+Kudumba+Unit+movie+showtimes+near+me",
-      "title": "Bethlehem Kudumba Unit",
-      "why_watch": "The highest-grossing Malayalam film of ALL TIME — ₹157.45 Cr worldwide — is still pulling crowds in limited US shows in its fifth weekend. Nivin Pauly's age-gap rom-com from the Premalu director turned out to be the crossover comedy that cracked every market. Diaspora audiences, this is your victory lap: the biggest Malayalam hit ever, still in theaters near you.",
-      "year": 2026,
-      "trailer_url": "https://www.youtube.com/watch?v=fk0JHh1P9H0",
-      "cast_details": [
-        {
-          "name": "Nivin Pauly",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Nivin_Pauly_latest.jpg/300px-Nivin_Pauly_latest.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Mamitha Baiju",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Mamitha2024.jpg/300px-Mamitha2024.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Sangeeth Prathap",
-          "photo_url": ""
-        },
-        {
-          "name": "Suresh Krishna",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Suresh_10.jpg/300px-Suresh_10.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        }
-      ],
-      "fandango_url": "https://www.fandango.com/bethlehem-kudumba-unit-2026-246692/movie-overview"
-    },
-    {
-      "cast": [
         "Will Forte",
         "John Cena",
         "Lana Condor",
@@ -93,7 +51,9 @@
           "name": "Martha Kelly",
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Martha_Kelly_by_Gage_Skidmore.jpg/300px-Martha_Kelly_by_Gage_Skidmore.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
-      ]
+      ],
+      "poster_width": 260,
+      "poster_height": 385
     },
     {
       "cast": [
@@ -145,7 +105,9 @@
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Rasika_Dugal_at_Grazia_Young_Fashion_Awards_2024.jpg/300px-Rasika_Dugal_at_Grazia_Young_Fashion_Awards_2024.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
       ],
-      "fandango_url": "https://www.fandango.com/mirzapur-the-movie-2026-246627/movie-overview"
+      "fandango_url": "https://www.fandango.com/mirzapur-the-movie-2026-246627/movie-overview",
+      "poster_width": 2100,
+      "poster_height": 1596
     },
     {
       "cast": [
@@ -187,7 +149,9 @@
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8b/Sathiyaraj.JPG/300px-Sathiyaraj.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
       ],
-      "fandango_url": "https://www.fandango.com/mandaadi-2026-247228/movie-overview"
+      "fandango_url": "https://www.fandango.com/mandaadi-2026-247228/movie-overview",
+      "poster_width": 220,
+      "poster_height": 344
     },
     {
       "cast": [
@@ -240,7 +204,9 @@
           "name": "Xolo Maridueña",
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Xolo_Maridue%C3%B1a.jpg/300px-Xolo_Maridue%C3%B1a.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
-      ]
+      ],
+      "poster_width": 260,
+      "poster_height": 385
     },
     {
       "cast": [
@@ -286,7 +252,9 @@
           "name": "Johnno Wilson",
           "photo_url": ""
         }
-      ]
+      ],
+      "poster_width": 260,
+      "poster_height": 385
     },
     {
       "cast": [
@@ -333,7 +301,9 @@
           "photo_url": ""
         }
       ],
-      "review_slug": "bad-apples-review-roundup-critics"
+      "review_slug": "bad-apples-review-roundup-critics",
+      "poster_width": 258,
+      "poster_height": 387
     },
     {
       "cast": [
@@ -376,7 +346,9 @@
         }
       ],
       "fandango_url": "https://www.fandango.com/daayra-2026-247367/movie-overview",
-      "review_slug": "daayra-review-roundup-critics"
+      "review_slug": "daayra-review-roundup-critics",
+      "poster_width": 283,
+      "poster_height": 354
     },
     {
       "cast": [
@@ -424,7 +396,9 @@
         }
       ],
       "fandango_url": "https://www.fandango.com/vibe-2026-247384/movie-overview",
-      "review_slug": "vibe-review-roundup-critics"
+      "review_slug": "vibe-review-roundup-critics",
+      "poster_width": 283,
+      "poster_height": 354
     },
     {
       "cast": [
@@ -466,7 +440,9 @@
           "photo_url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Raghav_Juyal_at_the_Zee5_event_in_Mumbai_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
         }
       ],
-      "fandango_url": "https://www.fandango.com/the-paradise-2026-246366/movie-overview"
+      "fandango_url": "https://www.fandango.com/the-paradise-2026-246366/movie-overview",
+      "poster_width": 258,
+      "poster_height": 387
     },
     {
       "title": "Dorothy",
@@ -501,7 +477,9 @@
           "photo_url": ""
         }
       ],
-      "fandango_url": "https://www.fandango.com/dorothy-2026-247564/movie-overview"
+      "fandango_url": "https://www.fandango.com/dorothy-2026-247564/movie-overview",
+      "poster_width": 220,
+      "poster_height": 330
     },
     {
       "title": "The Vvaan: Force of the Forrest",
@@ -526,7 +504,9 @@
           "photo_url": ""
         }
       ],
-      "fandango_url": "https://www.fandango.com/the-vvaan-force-of-the-forrest-247541/movie-overview"
+      "fandango_url": "https://www.fandango.com/the-vvaan-force-of-the-forrest-247541/movie-overview",
+      "poster_width": 283,
+      "poster_height": 354
     },
     {
       "title": "Drishyam: The Conclusion",
@@ -551,7 +531,9 @@
           "photo_url": ""
         }
       ],
-      "fandango_url": "https://www.fandango.com/drishyam-the-conclusion-2026-247556/movie-overview"
+      "fandango_url": "https://www.fandango.com/drishyam-the-conclusion-2026-247556/movie-overview",
+      "poster_width": 283,
+      "poster_height": 354
     },
     {
       "cast": [
@@ -604,7 +586,9 @@
         }
       ],
       "review_slug": "jailer-2-review-roundup-critics",
-      "fandango_url": "https://www.fandango.com/jailer-2-247862/movie-overview"
+      "fandango_url": "https://www.fandango.com/jailer-2-247862/movie-overview",
+      "poster_width": 278,
+      "poster_height": 358
     },
     {
       "cast": [
@@ -642,7 +626,9 @@
       ],
       "review_slug": "ranabaali-review-roundup-critics",
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/8/82/Ranabaali_2026_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "fandango_url": "https://www.fandango.com/ranabaali-2026-247336/movie-overview"
+      "fandango_url": "https://www.fandango.com/ranabaali-2026-247336/movie-overview",
+      "poster_width": 260,
+      "poster_height": 346
     },
     {
       "cast": [
@@ -739,7 +725,71 @@
           "photo_url": ""
         }
       ],
-      "fandango_url": "https://www.fandango.com/udta-teer-247825/movie-overview"
+      "fandango_url": "https://www.fandango.com/udta-teer-247825/movie-overview",
+      "review_slug": "udta-teer-review-roundup-critics",
+      "poster_width": 283,
+      "poster_height": 354
+    },
+    {
+      "title": "Tu Hai Meri Kiran",
+      "slug": "tu-hai-meri-kiran-2026",
+      "release_date": "2026-10-23",
+      "status": "now_playing",
+      "language": "Hindi",
+      "director": "Karan Rawal",
+      "cast": [
+        "Sonakshi Sinha Zaheer Iqbal Ankit Gupta Sherlin Seth Zarina Wahab Purnendu Bhattacharya"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=Tu%20Hai%20Meri%20Kiran%20showtimes%20near%20me",
+      "why_watch": "Tu Hai Meri Kiran is a Hindi film directed by Karan Rawal, starring Sonakshi Sinha Zaheer Iqbal Ankit Gupta Sherlin Seth Zarina Wahab Purnendu Bhattacharya.",
+      "trailer_url": "https://www.youtube.com/watch?v=_Hmds6apet4",
+      "cast_details": [
+        {
+          "name": "Sonakshi Sinha Zaheer Iqbal Ankit Gupta Sherlin Seth Zarina Wahab Purnendu Bhattacharya",
+          "photo_url": ""
+        }
+      ]
+    },
+    {
+      "title": "Cult",
+      "slug": "cult-2026",
+      "release_date": "2026-10-30",
+      "status": "opening",
+      "language": "Telugu",
+      "director": "Vishwak Sen",
+      "cast": [
+        "Vishwak Sen",
+        "Gayatri Bhardwaj",
+        "Tarak Ponnappa"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=Cult%20showtimes%20near%20me",
+      "why_watch": "Cult is a Telugu film directed by Vishwak Sen, starring Vishwak Sen, Gayatri Bhardwaj.",
+      "rating": "Opens Oct 30",
+      "rating_source": "Release date",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/6/62/Cult_%282026_film%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "trailer_url": "https://www.youtube.com/watch?v=MDv5HHUNsbE",
+      "cast_details": [
+        {
+          "name": "Vishwak Sen",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Vishwak_Sen_%28cropped%29_%28cropped%29.jpg/300px-Vishwak_Sen_%28cropped%29_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Gayatri Bhardwaj",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Gayatri-Bhardwaj-snapped-attending-the-YOLO-Foundation-Initiative_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+        },
+        {
+          "name": "Tarak Ponnappa",
+          "photo_url": ""
+        }
+      ],
+      "poster_width": 295,
+      "poster_height": 339
     },
     {
       "title": "Ramayana: Part 1",
@@ -765,7 +815,9 @@
           "name": "Ranbir Kapoor Yash Sai Pallavi Ravi Dubey Sunny Deol Arun Govil Lara Dutta Sheeba Chaddha Anupam Kher",
           "photo_url": ""
         }
-      ]
+      ],
+      "poster_width": 283,
+      "poster_height": 354
     },
     {
       "title": "Scene",
@@ -801,7 +853,9 @@
           "name": "Nazriya Nazim",
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Nazriya_Nazim_at_neram_audio_launch.jpg/300px-Nazriya_Nazim_at_neram_audio_launch.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
-      ]
+      ],
+      "poster_width": 330,
+      "poster_height": 183
     },
     {
       "title": "Aakasamlo Oka Tara",
@@ -837,7 +891,9 @@
           "name": "Shruti Haasan",
           "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5d/Shruti_Haasan_at_the_special_screening_of_the_short_film_Devi_%2832%29.jpg/300px-Shruti_Haasan_at_the_special_screening_of_the_short_film_Devi_%2832%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
         }
-      ]
+      ],
+      "poster_width": 283,
+      "poster_height": 353
     },
     {
       "title": "King",
