@@ -751,7 +751,8 @@
           "name": "Sonakshi Sinha Zaheer Iqbal Ankit Gupta Sherlin Seth Zarina Wahab Purnendu Bhattacharya",
           "photo_url": ""
         }
-      ]
+      ],
+      "fandango_url": "https://www.fandango.com/tu-hai-meri-kiran-248127/movie-overview"
     },
     {
       "title": "Cult",
@@ -789,7 +790,8 @@
         }
       ],
       "poster_width": 295,
-      "poster_height": 339
+      "poster_height": 339,
+      "fandango_url": "https://www.fandango.com/cult-248221/movie-overview"
     },
     {
       "title": "Ramayana: Part 1",
