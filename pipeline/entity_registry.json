@@ -1635,8 +1635,10 @@
    "p18_quality": 268,
    "official_domain": null,
    "confusables": [],
-   "blocked_files": [],
-   "notes": ""
+   "blocked_files": [
+    "2015-07-13 09 54 15 View northeast along the North Loop Trail about 8.1 miles west of the trailhead in the Mount Charleston Wilderness, Nevada.jpg"
+   ],
+   "notes": "blocked_files: the Mount Charleston (Nevada) trail photo carries a polluted Commons depicts (P180=Q298547) statement and leaked into both an article inline (removed by review, 2026-11-02) and the Ambani reel's news scene (2026-11-02; reel deleted on Kiran's order). Its title/description/categories never mention Ambani."
   },
   {
    "name": "Asia Cup",
@@ -4549,6 +4551,332 @@
    "resolved_confidence": "medium",
    "resolved_context": "Microsoft Expects 3,000 or Fewer Takers for Exit Offer Open to 60,000 Staff The voluntary offer covers staff in India, the US, Canada and the UK at level 70 and below; India employees are reported to have until December 1 to decide. The voluntary offer covers staff in India, the US, Canada and the UK at level 70 and below; India employees are reported to have until December 1 to decide. MICROSOFT ",
    "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Microsoft Expects 3,000 or Fewer Takers for Exit Offer Open to 60,000 Staff The voluntary offer covers staff in India, the US, Canada and the UK at level 70 and below; India employees are reported to '; description: country in South Asia"
+  },
+  {
+   "name": "National Payments Corporation of India",
+   "aliases": [
+    "National Payments Corporation of India",
+    "NPCI",
+    "npci.org.in"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q6974841",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "UPI Crosses Rs 1 Lakh Crore a Day for the First Time in Record October   <div class=\"key-takeaways\"><ul><li>UPI processed a record 25.47 billion transactions in October, up 23% from a year earlier and 5.8% from September, according to National Payments Corporation of India data.</li><li>Transaction value reached a record Rs 31.53 lakh crore, up 16% year-on-year; average daily value crossed Rs 1 la",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'UPI Crosses Rs 1 Lakh Crore a Day for the First Time in Record October   <div class=\"key-takeaways\"><ul><li>UPI processed a record 25.47 billion transactions in October, up 23% from a year earlier and'; description: NPCI payment system"
+  },
+  {
+   "name": "pollution",
+   "aliases": [
+    "Pollution",
+    "pollution",
+    "environmental pollution"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q58734",
+   "p18_file": "Factory.gif",
+   "p18_quality": 328,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Delhi's Winter Pollution Curbs Begin: Vehicle Ban and 50% Work From Home   <div class=\"key-takeaways\"><ul><li>Delhi's seasonal winter pollution framework is in force from November 1: petrol and diesel vehicles registered outside Delhi that do not meet BS-VI standards are barred from entering or plying in the capital until January 31.</li><li>Government and private offices must limit physical atten",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Delhi\\'s Winter Pollution Curbs Begin: Vehicle Ban and 50% Work From Home   <div class=\"key-takeaways\"><ul><li>Delhi\\'s seasonal winter pollution framework is in force from November 1: petrol and diesel'; description: introduction of contaminants into the natural environment that cause adverse change"
+  },
+  {
+   "name": "A. R. Rahman",
+   "aliases": [
+    "A.R. Rahman",
+    "A. R. Rahman",
+    "Allahrakka Rahman",
+    "Allah Rakha Rahman",
+    "A. S. Dileep Kumar",
+    "Dileep Kumar Rajagopala"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q108560",
+   "p18_file": "AR Rahman At The ‘Marvel Anthem’ Launch.jpg",
+   "p18_quality": 800,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "A.R. Rahman Becomes the Face of Brooke Bond Taj Mahal Tea   <div class=\"key-takeaways\"><ul><li>Brooke Bond Taj Mahal Tea, owned by Hindustan Unilever, announced A.R. Rahman as its brand ambassador on November 2, launching a new platform called \"Awaken Your Masterpiece.\"</li><li>In the campaign film, Rahman works through a creative block, pauses over a freshly brewed cup, and finds a melody — endin",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'A.R. Rahman Becomes the Face of Brooke Bond Taj Mahal Tea   <div class=\"key-takeaways\"><ul><li>Brooke Bond Taj Mahal Tea, owned by Hindustan Unilever, announced A.R. Rahman as its brand ambassador on '; description: Indian composer and musician"
+  },
+  {
+   "name": "Wah Taj",
+   "aliases": [
+    "Wah Taj"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q16255274",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "A.R. Rahman Becomes the Face of Brooke Bond Taj Mahal Tea   <div class=\"key-takeaways\"><ul><li>Brooke Bond Taj Mahal Tea, owned by Hindustan Unilever, announced A.R. Rahman as its brand ambassador on November 2, launching a new platform called \"Awaken Your Masterpiece.\"</li><li>In the campaign film, Rahman works through a creative block, pauses over a freshly brewed cup, and finds a melody — endin",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'A.R. Rahman Becomes the Face of Brooke Bond Taj Mahal Tea   <div class=\"key-takeaways\"><ul><li>Brooke Bond Taj Mahal Tea, owned by Hindustan Unilever, announced A.R. Rahman as its brand ambassador on '; description: 2014 film"
+  },
+  {
+   "name": "Zakir Hussain",
+   "aliases": [
+    "Ustad Zakir Hussain",
+    "Zakir Hussain",
+    "Zakir Hussain Allarakha Qureshi",
+    "Zakir Allarakha Qureshi",
+    "Zakir Hussain Qureshi",
+    "Zakir Allaraka Qureshi"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q144719",
+   "p18_file": "Ustad Zakir Hussain 1.jpg",
+   "p18_quality": 3000,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "A.R. Rahman Becomes the Face of Brooke Bond Taj Mahal Tea   <div class=\"key-takeaways\"><ul><li>Brooke Bond Taj Mahal Tea, owned by Hindustan Unilever, announced A.R. Rahman as its brand ambassador on November 2, launching a new platform called \"Awaken Your Masterpiece.\"</li><li>In the campaign film, Rahman works through a creative block, pauses over a freshly brewed cup, and finds a melody — endin",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'A.R. Rahman Becomes the Face of Brooke Bond Taj Mahal Tea   <div class=\"key-takeaways\"><ul><li>Brooke Bond Taj Mahal Tea, owned by Hindustan Unilever, announced A.R. Rahman as its brand ambassador on '; description: Indian tabla player, musical producer, film actor, and composer (1951–2024)"
+  },
+  {
+   "name": "Hindustan Unilever",
+   "aliases": [
+    "Hindustan Unilever",
+    "Hindustan Unilever Limited",
+    "HUL",
+    "Unilever (India)"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1619376",
+   "p18_file": "Unilever House 2020.jpg",
+   "p18_quality": 5139,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "A.R. Rahman Becomes the Face of Brooke Bond Taj Mahal Tea   <div class=\"key-takeaways\"><ul><li>Brooke Bond Taj Mahal Tea, owned by Hindustan Unilever, announced A.R. Rahman as its brand ambassador on November 2, launching a new platform called \"Awaken Your Masterpiece.\"</li><li>In the campaign film, Rahman works through a creative block, pauses over a freshly brewed cup, and finds a melody — endin",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'A.R. Rahman Becomes the Face of Brooke Bond Taj Mahal Tea   <div class=\"key-takeaways\"><ul><li>Brooke Bond Taj Mahal Tea, owned by Hindustan Unilever, announced A.R. Rahman as its brand ambassador on '; description: Indiconsumer goods company"
+  },
+  {
+   "name": "gift",
+   "aliases": [
+    "Gift",
+    "gift",
+    "present"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q184303",
+   "p18_file": "Klein meisje geeft groot cadeau aan haar vader - Little girl handing over a big present to her father (6437677653).jpg",
+   "p18_quality": 2676,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Diwali Gift Guide 2026: Craft, Textiles and Food Gifts Beyond the Mithai Box   <div class=\"key-takeaways\"><ul><li>Three published Diwali 2026 gift guides — from Grazia India, Homegrown and HELLO! India — converge on craft-led gifts: Indian textiles, handcrafted tableware and small-batch food.</li><li>For food gifts, the named picks include Bombay Sweet Shop's gourmet hamper, Manam Chocolate's Diwa",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Diwali Gift Guide 2026: Craft, Textiles and Food Gifts Beyond the Mithai Box   <div class=\"key-takeaways\"><ul><li>Three published Diwali 2026 gift guides — from Grazia India, Homegrown and HELLO! Indi'; description: object given without the expectation of payment"
+  },
+  {
+   "name": "textile",
+   "aliases": [
+    "Textiles",
+    "textile",
+    "textiles",
+    "textile material",
+    "fabric"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q28823",
+   "p18_file": "Mantas artesanales en la ciudad de Salta.jpg",
+   "p18_quality": 3072,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Diwali Gift Guide 2026: Craft, Textiles and Food Gifts Beyond the Mithai Box   <div class=\"key-takeaways\"><ul><li>Three published Diwali 2026 gift guides — from Grazia India, Homegrown and HELLO! India — converge on craft-led gifts: Indian textiles, handcrafted tableware and small-batch food.</li><li>For food gifts, the named picks include Bombay Sweet Shop's gourmet hamper, Manam Chocolate's Diwa",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Diwali Gift Guide 2026: Craft, Textiles and Food Gifts Beyond the Mithai Box   <div class=\"key-takeaways\"><ul><li>Three published Diwali 2026 gift guides — from Grazia India, Homegrown and HELLO! Indi'; description: various fiber-based materials"
+  },
+  {
+   "name": "National Capital Region",
+   "aliases": [
+    "Delhi-NCR",
+    "National Capital Region",
+    "NCR"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1249481",
+   "p18_file": "India Habitat Centre, Delhi.jpg",
+   "p18_quality": 6000,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Supreme Court Allows Green Crackers in Delhi-NCR for Two Diwali Days Only   <div class=\"key-takeaways\"><ul><li>The Supreme Court has allowed certified green firecrackers in Delhi-NCR on November 7 and 8 only, between 6 and 7 a.m. and 8 and 10 p.m. each day.</li><li>Only crackers certified by CSIR-NEERI may be made, sold or burst; crackers containing barium and joined series crackers (ladis) remain",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Supreme Court Allows Green Crackers in Delhi-NCR for Two Diwali Days Only   <div class=\"key-takeaways\"><ul><li>The Supreme Court has allowed certified green firecrackers in Delhi-NCR on November 7 and'; description: region in India"
+  },
+  {
+   "name": "Nitesh",
+   "aliases": [
+    "Nitesh"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q123378666",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Ramayana: Part 1 — Critics Hail Nitesh Tiwari's Epic as a Visual Masterpiece   <div class=\"key-takeaways\"><ul><li>Nitesh Tiwari's adaptation of Ramayana is visually stunning and ambitious.</li><li>Ranbir Kapoor and Yash deliver strong performances, particularly Yash as Ravana.</li><li>Critics praise the film's grand scale but note uneven pacing and a lack of emotional depth.</li><li>The film's mus",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Ramayana: Part 1 — Critics Hail Nitesh Tiwari\\'s Epic as a Visual Masterpiece   <div class=\"key-takeaways\"><ul><li>Nitesh Tiwari\\'s adaptation of Ramayana is visually stunning and ambitious.</li><li>Ran'; description: family name"
+  },
+  {
+   "name": "Cinépolis",
+   "aliases": [
+    "Cinepolis",
+    "Cinépolis"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q5686673",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Ramayana Advance Booking Crosses 2 Lakh Tickets in National Chains for Opening Day PVR Inox and Cinepolis sales for the November 5 opener rose from 1.70 lakh on Saturday to about 2 lakh by Sunday night, with all-India advances at 4.58 lakh tickets. PVR Inox and Cinepolis sales for the November 5 opener rose from 1.70 lakh on Saturday to about 2 lakh by Sunday night, with all-India advances at 4.58",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Ramayana Advance Booking Crosses 2 Lakh Tickets in National Chains for Opening Day PVR Inox and Cinepolis sales for the November 5 opener rose from 1.70 lakh on Saturday to about 2 lakh by Sunday nigh'; description: Mexican chain of movie theaters"
+  },
+  {
+   "name": "Nitesh Tiwari",
+   "aliases": [
+    "Nitesh Tiwari"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q16908467",
+   "p18_file": "Nitesh Tiwari at the ‘Khidkiyaan’ movie festival launch.jpg",
+   "p18_quality": 585,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Ramayana Advance Booking Crosses 2 Lakh Tickets in National Chains for Opening Day PVR Inox and Cinepolis sales for the November 5 opener rose from 1.70 lakh on Saturday to about 2 lakh by Sunday night, with all-India advances at 4.58 lakh tickets. PVR Inox and Cinepolis sales for the November 5 opener rose from 1.70 lakh on Saturday to about 2 lakh by Sunday night, with all-India advances at 4.58",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Ramayana Advance Booking Crosses 2 Lakh Tickets in National Chains for Opening Day PVR Inox and Cinepolis sales for the November 5 opener rose from 1.70 lakh on Saturday to about 2 lakh by Sunday nigh'; description: Indian film director, screenwriter, and lyricist"
+  },
+  {
+   "name": "Steve Jobs",
+   "aliases": [
+    "Steve Jobs"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q18754959",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "'Go Sell Ice Cream': AR Rahman Answers Ramayana Song Critics With a Steve Jobs Line   <div class=\"key-takeaways\"><ul>\n<li>A.R. Rahman has answered criticism of 'Mangal Rang', a song from Ramayana: Rise of a Legend, quoting Steve Jobs: \"If you want to satisfy everyone, go sell ice cream.\"</li>\n<li>In an interview with Screen, Rahman said he is his own first critic and that some tunes improve with t",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: '\\'Go Sell Ice Cream\\': AR Rahman Answers Ramayana Song Critics With a Steve Jobs Line   <div class=\"key-takeaways\"><ul>\\n<li>A.R. Rahman has answered criticism of \\'Mangal Rang\\', a song from Ramayana: Ris'; description: 2015 film directed by Danny Boyle"
+  },
+  {
+   "name": "United States Congress",
+   "aliases": [
+    "Congress",
+    "United States Congress",
+    "US Congress",
+    "U.S. Congress",
+    "American Congress",
+    "Congress of the United States",
+    "Legislature of the United States",
+    "American legislature",
+    "United states legislative branch"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q11268",
+   "p18_file": "US Capitol west side.JPG",
+   "p18_quality": 3865,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "US Midterms 2026: What a Congress Flip Would, and Would Not, Change for India   <div class=\"key-takeaways\"><ul>\n<li>US voters decide control of Congress on Tuesday, November 3, with all 435 House seats and 35 Senate seats on the ballot.</li>\n<li>Even if Democrats take a chamber, analysts say Trump's tariffs on India largely stay: they rest on executive powers under Sections 232 and 301 that bypass",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'US Midterms 2026: What a Congress Flip Would, and Would Not, Change for India   <div class=\"key-takeaways\"><ul>\\n<li>US voters decide control of Congress on Tuesday, November 3, with all 435 House seat'; description: bicameral legislature of the United States"
+  },
+  {
+   "name": "Gautam Adani",
+   "aliases": [
+    "Gautam Adani",
+    "Gautam Shantilal Adani",
+    "Gautambhai Shantilal Adani",
+    "Gautambhai Adani"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q5527865",
+   "p18_file": "Gautam Adani.jpg",
+   "p18_quality": 392,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Ambani Adds $6.3 Billion in a Day as Reliance Shares Jump 11.6% on Record Quarterly Profit   <div class=\"key-takeaways\"><ul>\n<li>Mukesh Ambani added $6.3 billion to his fortune on Monday, the biggest one-day gain on Forbes' Real-Time Billionaires list, taking his net worth to $88.8 billion.</li>\n<li>Reliance Industries shares jumped 11.6% to close at Rs 1,300, their strongest session in more than ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Ambani Adds $6.3 Billion in a Day as Reliance Shares Jump 11.6% on Record Quarterly Profit   <div class=\"key-takeaways\"><ul>\\n<li>Mukesh Ambani added $6.3 billion to his fortune on Monday, the biggest '; description: Indian businessman"
+  },
+  {
+   "name": "Forbes",
+   "aliases": [
+    "Forbes",
+    "Forbes magazine"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q25161472",
+   "p18_file": "Forbes building in NYC.jpg",
+   "p18_quality": 1949,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Ambani Adds $6.3 Billion in a Day as Reliance Shares Jump 11.6% on Record Quarterly Profit Reliance's best trading session in over six years, driven by a 40.6% rise in September-quarter profit, made Mukesh Ambani the world's biggest gainer on Forbes' real-time rich list and kept him India's richest person. Reliance's best trading session in over six years, driven by a 40.6% rise in September-quart",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: \"Ambani Adds $6.3 Billion in a Day as Reliance Shares Jump 11.6% on Record Quarterly Profit Reliance's best trading session in over six years, driven by a 40.6% rise in September-quarter profit, made M\"; description: American business magazine"
   }
  ]
 }

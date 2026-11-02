@@ -139,21 +139,34 @@ _BINOMIAL_TAIL = {"heads", "head", "male", "female", "juvenile",
 _BINOMIAL_GENUS_STOP = {"quality", "featured", "valued", "self",
                         "taken", "files", "images", "pictures",
                         "photographs", "commons", "wikipedia",
-                        "media", "category"}
+                        "media", "category",
+                        # Descriptive category starters, not
+                        # genera (2026-11-02 false positives:
+                        # 'Blurred images' on a CNBC award photo
+                        # of Mukesh Ambani, 'People smiling' on a
+                        # Clinton/Tata/Ambani meeting photo — both
+                        # read as Latin binomials and cost the
+                        # Ambani reel its genuine depicts photos).
+                        "blurred", "people"}
 
 
 def _binomial_subject(seg):
     """True when a category segment names a species: an exact
-    Latin binomial, or a binomial plus a descriptor tail."""
+    Latin binomial, or a binomial plus a descriptor tail. A
+    segment whose first word is a category-administration /
+    descriptive starter (see _BINOMIAL_GENUS_STOP) is never a
+    species, on EITHER path — the exact-match path used to skip
+    that guard, which is how 'Blurred images' and 'People
+    smiling' vetoed genuine person photos (2026-11-02)."""
+    words = seg.split()
+    if words and words[0].lower() in _BINOMIAL_GENUS_STOP:
+        return False
     if _BINOMIAL_RE.match(seg):
         return True
-    words = seg.split()
     if not (3 <= len(words) <= 5):
         return False
     if not re.fullmatch(r"[A-Z][a-z]+", words[0]) \
             or not re.fullmatch(r"[a-z]{3,}", words[1]):
-        return False
-    if words[0].lower() in _BINOMIAL_GENUS_STOP:
         return False
     return all(w.lower() in _BINOMIAL_TAIL for w in words[2:])
 _WILDLIFE_WORDS = {"bird", "birds", "eagle", "owl", "fish", "deer",
@@ -789,7 +802,11 @@ DEFAULT_NET = {"commons_search": commons_search,
                # uses ONLY these two network seams plus
                # commons_file_info / download.
                "resolve_entity": ER.resolve,
-               "depicts": ER.depicts_candidates}
+               "depicts": ER.depicts_candidates,
+               # Inline resolution (2026-11-02): a file's own
+               # depicts statements + an item's label/type.
+               "file_depicts": ER.file_depicts_qids,
+               "item_info": ER.item_label_and_type}
 
 
 # ── candidate evaluation ────────────────────────────────────────────
@@ -798,9 +815,27 @@ def _meta(info, key):
                         or {}).get("value") or "")
 
 
+def _is_depicts_route(route):
+    """True when a route string names the depicts (P180) route
+    (all three identity consumers word it so: 'identity —
+    depicts (P180=…)'). P18 routes never contain 'depicts'."""
+    return "depicts" in (route or "").lower()
+
+
+def _entity_is_person(entity, entity_type=None):
+    """Person determination for the file gates: the resolved
+    type when the caller supplies it (registry / Wikidata type
+    of the item the file was sourced from), else this module's
+    person-shape heuristic on the entity string."""
+    if entity_type:
+        return entity_type == "person"
+    return _looks_like_person(entity)
+
+
 def evaluate_commons_page(page, entity, route, context=None,
                           identity_verified=False,
-                          blocked_keys=None):
+                          blocked_keys=None,
+                          entity_type=None, entity_aliases=None):
     """One Commons file page -> (candidate | None, ledger_row).
     The gates, in order: photograph type, title denylist, TRUE
     dimensions, license, identity at the file page — plus,
@@ -820,7 +855,25 @@ def evaluate_commons_page(page, entity, route, context=None,
     blocklist: a file whose canonical key is in blocked_keys
     (the resolved registry entry's blocked_files) rejects even
     on this route, because the blocklist records files proven
-    wrong for this entity in the failure corpus."""
+    wrong for this entity in the failure corpus.
+
+    DEPICTS NAME AGREEMENT (2026-11-02): a depicts statement
+    is only as trustworthy as the Commons editor who wrote
+    it — the Mount Charleston Wilderness trail file carries
+    a depicts (P180) statement for Mukesh Ambani (Q298547)
+    although nothing in its title, description or categories
+    mentions him, and it was the only depicts candidate that
+    cleared the reel size floor, so identity-by-construction
+    alone put a Nevada trail in the Ambani article AND reel.
+    On the depicts route, a PERSON candidate must therefore
+    ALSO name the person (the entity's name or a registry
+    alias, identity_ok token semantics) in its own title,
+    description or categories. P18 is exempt: it is the
+    item's own image property, identity by construction
+    proper. Place/company depicts are unchanged — their
+    failure classes are policed by the locality/context
+    gates, and scoping to persons is what the evidence
+    supports."""
     title = page.get("title") or ""
     info = (page.get("imageinfo") or [{}])[0]
     row = {"candidate": title, "route": route}
@@ -858,6 +911,20 @@ def evaluate_commons_page(page, entity, route, context=None,
     ok, label = license_verdict(info.get("extmetadata"))
     if not ok:
         return reject(f"license: {label} — not CC / public domain")
+    if identity_verified and _is_depicts_route(route) \
+            and _entity_is_person(entity, entity_type):
+        names = [entity] + [a for a in entity_aliases or []
+                            if a and a != entity]
+        if not any(identity_ok(n, title, desc, cats)
+                   for n in names):
+            return reject(
+                "identity: depicts (P180) file for a person "
+                "whose own title/description/categories never "
+                f"name {entity!r} (or a known alias) — a "
+                "depicts statement alone is not identity "
+                "(polluted Commons structured data: the Mount "
+                "Charleston trail file 'depicts' Mukesh "
+                "Ambani); fail closed")
     if not identity_verified and not identity_ok(
             entity, title, desc, cats):
         return reject(f"identity: the file page's description/"
@@ -988,6 +1055,53 @@ def evaluate_hosted_page(url, entity, route, net, context=None):
 
 
 # ── beat assignment (editorial scoring) ─────────────────────────────
+def _text_token_set(text):
+    """Whole-word tokens of a text, possessives normalised
+    ('Ambani's' -> 'ambani') so a name check is not defeated
+    by the apostrophe the beat text legitimately carries."""
+    out = set()
+    for t in _tokens(text):
+        if t.endswith("'s"):
+            t = t[:-2]
+        if t:
+            out.add(t)
+    return out
+
+
+def entity_named_in_text(names, text):
+    """True when a name (any of `names` — an entity and its
+    aliases) is NAMED in `text`: every significant token of
+    the name appears as a whole word. The scene-person rule's
+    one test, shared by assign_beats (supplementary extras),
+    the v7 planner (article inlines + extras) and the inline
+    resolver's consumers."""
+    toks = _text_token_set(text)
+    if not toks:
+        return False
+    for name in names or []:
+        ent_toks = entity_tokens(name)
+        if ent_toks and all(t in toks for t in ent_toks):
+            return True
+    return False
+
+
+def _cand_is_person(cand):
+    """Person determination for a pooled candidate: the
+    resolved entity type recorded at sourcing time, else the
+    person-shape heuristic on the entity string (direct
+    assign_beats callers that never went through
+    source_extras)."""
+    t = cand.get("entity_type")
+    if t:
+        return t == "person"
+    return _looks_like_person(cand.get("entity") or "")
+
+
+def _cand_names(cand):
+    return [cand.get("entity")] + list(
+        cand.get("entity_aliases") or [])
+
+
 def _beat_texts(script, category):
     texts = {}
     for beat in _BEATS_NEEDING:
@@ -1035,7 +1149,17 @@ def assign_beats(pool, script, category, need, topical=""):
     At most one image per beat, at most PER_ENTITY_CAP images per
     entity, never more than `need` extras; a pair must clear the
     relevance bar (role affinity alone can qualify — the pool is
-    entity-verified by construction)."""
+    entity-verified by construction).
+
+    SCENE-PERSON RULE (2026-11-02): a candidate whose entity
+    is a PERSON is eligible ONLY for a beat whose rendered
+    text names that person. Relevance scoring alone assigned
+    by role affinity + title overlap, which is how the Ambani
+    reel's payoff scene — text about Reliance's quarter,
+    naming nobody — took a 'Stop Adani' protest photo as
+    filler. A person photo behind text about someone else
+    (or no one) is a wrong-person picture; the beat falls
+    back to the hero chain / stage instead."""
     if need <= 0 or not pool:
         return {}
     texts = _beat_texts(script, category)
@@ -1043,6 +1167,10 @@ def assign_beats(pool, script, category, need, topical=""):
     pairs = []
     for beat in _BEATS_NEEDING:
         for cand in pool:
+            if _cand_is_person(cand) \
+                    and not entity_named_in_text(
+                        _cand_names(cand), texts[beat]):
+                continue
             s = _score(beat, cand, texts[beat], topical_toks)
             if s >= 5:
                 pairs.append((s, beat, cand))
@@ -1279,10 +1407,18 @@ def source_extras(article, script, dest_dir, own_count, log=print,
                 cand, row = evaluate_commons_page(
                     page, entity, route, context=context,
                     identity_verified=True,
-                    blocked_keys=blocked_keys)
+                    blocked_keys=blocked_keys,
+                    entity_type=res.get("type"),
+                    entity_aliases=res.get("aliases"))
                 ledger.append(row)
                 if cand:
                     cand["_row"] = row
+                    # The resolved identity rides on the
+                    # candidate: beat assignment (assign_beats)
+                    # reads it for the scene-person rule.
+                    cand["entity_type"] = res.get("type")
+                    cand["entity_aliases"] = list(
+                        res.get("aliases") or [])
                     pool.append(cand)
                     got_for_entity += 1
     except Exception as e:                      # never block the reel
@@ -1342,7 +1478,14 @@ def source_extras(article, script, dest_dir, own_count, log=print,
                  "source_page": cand["source_page"],
                  "file_url": cand["file_url"],
                  "license": cand["license"],
-                 "artist": cand.get("artist") or ""}
+                 "artist": cand.get("artist") or "",
+                 # The resolved identity, for the v7 planner's
+                 # scene-person check (2026-11-02) and for
+                 # provenance audits.
+                 "entity": cand["entity"],
+                 "entity_type": cand.get("entity_type"),
+                 "entity_aliases": list(
+                     cand.get("entity_aliases") or [])}
         if cand.get("anchor"):
             entry["anchor"] = cand["anchor"]
         prov["extras"].append(entry)
@@ -1352,3 +1495,127 @@ def source_extras(article, script, dest_dir, own_count, log=print,
         log("   sourcing: no supplementary image cleared the "
             "gates — hero chain only")
     return prov
+
+
+# ── article inline resolution (the scene-person rule) ─────────────
+def _commons_file_title(url):
+    """The 'File:…' title for a Wikimedia-hosted image URL
+    (original or thumb rendition), or None when the URL is
+    not a Wikimedia file at all — a non-Commons inline (a
+    person_images portrait, a source-site hotlink) carries no
+    resolvable depicts identity and stays generic."""
+    try:
+        p = urllib.parse.urlparse(url or "")
+    except Exception:
+        return None
+    host = (p.netloc or "").lower()
+    if not (host == "upload.wikimedia.org"
+            or host == "commons.wikimedia.org"
+            or host == "thumb.wikimedia.org"
+            or host.endswith(".wikimedia.org")):
+        return None
+    parts = [seg for seg in p.path.split("/") if seg]
+    if not parts:
+        return None
+    if "thumb" in parts and len(parts) >= 2:
+        # /…/thumb/<a>/<ab>/<file>/<rendition>
+        fname = parts[-2]
+    else:
+        fname = parts[-1]
+    fname = urllib.parse.unquote(fname)
+    if "." not in fname:
+        return None
+    return "File:" + fname
+
+
+def resolve_inline_persons(urls, article, script, net=None):
+    """Entity-resolve the article's inline images for the v7
+    planner's scene-person rule. Returns {url_index: person
+    name} for every inline that resolves to a PERSON; inlines
+    absent from the dict have no resolvable person entity and
+    are generic scene material.
+
+    Resolution is identity-only, the same standard as the
+    rest of the ladder: the story's extracted entities are
+    resolved through entity_resolve, and an inline is a
+    person's photo when its canonical file key IS that
+    person's P18 or one of their depicts (P180) files — or
+    when the file's OWN Commons structured data depicts an
+    item that is one of those persons, or any person at all
+    (a depicted person outside the story's entity list is
+    still a person photo, under their own name: no scene in
+    the reel names them, so the planner will not place the
+    photo). NEVER raises — resolution failure leaves the
+    inline generic, and the reel falls back as it does today.
+    (2026-11-02: the Ambani article's inline #1 was a Gautam
+    Adani portrait — legitimate in the article as the
+    comparison mention — and the planner put it behind the
+    '$6.3 BILLION / Mukesh Ambani's one-day gain' stat scene
+    because inlines arrived as bare pixels with no identity.)
+    """
+    net = {**DEFAULT_NET, **(net or {})}
+    out = {}
+    try:
+        entities = extract_entities(article, script)
+        ctx_parts = [article.get("headline")
+                     or article.get("title") or "",
+                     article.get("summary") or "",
+                     article.get("excerpt") or ""]
+        for key in ("hook_line", "news_summary", "payoff"):
+            if (script or {}).get(key):
+                ctx_parts.append(str(script[key]))
+        for b in (script or {}).get("diaspora_bullets") or []:
+            ctx_parts.append(str(b))
+        ctx_parts.append((article.get("body") or "")[:4000])
+        context = " ".join(p for p in ctx_parts if p)
+        persons = {}        # qid -> canonical name
+        key_to_person = {}  # canonical file key -> name
+        for e in entities:
+            try:
+                res = net["resolve_entity"](e, context)
+            except Exception:
+                res = None
+            if not res or res.get("type") != "person" \
+                    or not res.get("qid"):
+                continue
+            name = res.get("name") or e
+            persons[res["qid"]] = name
+            p18k = ER.file_key(res.get("p18_file"))
+            if p18k:
+                key_to_person.setdefault(p18k, name)
+            try:
+                deps = net["depicts"](res["qid"]) or []
+            except Exception:
+                deps = []
+            for d in deps:
+                t = d.get("title") if isinstance(d, dict) \
+                    else None
+                k = ER.file_key(t) if t else None
+                if k:
+                    key_to_person.setdefault(k, name)
+        for i, url in enumerate(urls):
+            title = _commons_file_title(url)
+            if not title:
+                continue
+            k = ER.file_key(title)
+            if k and k in key_to_person:
+                out[i] = key_to_person[k]
+                continue
+            try:
+                qids = net["file_depicts"](title) or []
+            except Exception:
+                qids = []
+            for q in qids:
+                if q in persons:
+                    out[i] = persons[q]
+                    break
+                try:
+                    label, typ = net["item_info"](q)
+                except Exception:
+                    label, typ = None, None
+                if typ == "person" and label:
+                    out[i] = label
+                    break
+    except Exception:
+        return out
+    return out

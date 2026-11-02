@@ -169,15 +169,23 @@ def download_hero(url, dest):
     download(url, dest)
 
 
+def _inline_urls(article):
+    """The article's inline body image URLs in body order
+    (hero excluded) — the one extraction both the downloader
+    and the inline person resolver consume, so their indices
+    always agree."""
+    import social_card as SC    # lazy: see the import note above
+    hero_url = article.get("image_url")
+    return [u for u in SC.extract_inline_images(article.get("body"))
+            if not SC._same_image(u, hero_url)]
+
+
 def fetch_inline_images(article, outdir, log=print):
     """Download the article's inline body images (originals at
     render time, hero excluded) -> [(path, (w, h)), ...] in body
     order. Unusable downloads are skipped, never fatal: the v7
     planner falls back down its chain."""
-    import social_card as SC    # lazy: see the import note above
-    hero_url = article.get("image_url")
-    urls = [u for u in SC.extract_inline_images(article.get("body"))
-            if not SC._same_image(u, hero_url)]
+    urls = _inline_urls(article)
     paths = []
     for i, url in enumerate(urls):
         dest = outdir / f"inline-{i + 1}.jpg"
@@ -194,7 +202,9 @@ def fetch_inline_images(article, outdir, log=print):
 def load_extras(extras_path):
     """provenance.json -> the v7 renderer's extras dict, with
     local paths resolved against the provenance file's directory.
-    Only entries carrying a beat assignment are used."""
+    Only entries carrying a beat assignment are used. The
+    resolved entity identity rides along (2026-11-02) so the
+    planner can apply the scene-person rule to extras too."""
     extras_path = Path(extras_path)
     data = json.loads(extras_path.read_text())
     out = {}
@@ -206,6 +216,9 @@ def load_extras(extras_path):
             "path": str(extras_path.parent / e["path"]),
             "size": e["size"], "role": e.get("role"),
             "anchor": e.get("anchor"),
+            "entity": e.get("entity"),
+            "entity_type": e.get("entity_type"),
+            "entity_aliases": e.get("entity_aliases"),
             "provenance": {k: e.get(k) for k in
                            ("subject", "route", "source_page",
                             "file_url", "license", "artist")}}
@@ -213,7 +226,7 @@ def load_extras(extras_path):
 
 
 def render(script, article, hero, inline_paths, extras, music,
-           outdir, name, stage, log=print):
+           outdir, name, stage, log=print, inline_persons=None):
     """The render dispatch — the ONLY place production chooses a
     renderer (see USE_V7_RENDERER). Returns the manifest dict
     (with a 'video' path) in both branches."""
@@ -226,7 +239,8 @@ def render(script, article, hero, inline_paths, extras, music,
             category=category, photo_url=article.get("image_url"),
             article_slug=article.get("slug"),
             article_id=article.get("id"), stage=stage,
-            extras=extras, log=log)
+            extras=extras, log=log,
+            inline_persons=inline_persons)
         manifest = dict(manifest)
         manifest["video"] = str(video)
         return manifest
@@ -340,6 +354,32 @@ def main():
             return finish(1)
     inline_paths = fetch_inline_images(article, outdir)
 
+    # ── Inline person resolution (scene-person rule) ────────
+    # Each downloaded inline's filename encodes its URL index
+    # (inline-<i+1>.jpg); resolve_inline_persons maps URL
+    # indices to the person an inline depicts (identity-only),
+    # so the v7 planner can keep a person's photo off scenes
+    # whose text is about someone else. Resolution failure
+    # leaves every inline generic — never blocks the reel.
+    inline_persons = None
+    if USE_V7_RENDERER and inline_paths:
+        try:
+            by_index = reel_entity_sourcing.resolve_inline_persons(
+                _inline_urls(article), article, script)
+            inline_persons = []
+            for path, _size in inline_paths:
+                stem = Path(path).stem          # inline-<i+1>
+                idx = int(stem.rsplit("-", 1)[-1]) - 1
+                inline_persons.append(by_index.get(idx))
+            named = {p for p in inline_persons if p}
+            if named:
+                print(f"   inline persons resolved: "
+                      f"{sorted(named)}")
+        except Exception as e:      # never block the reel
+            print(f"   ⚠ inline person resolution failed ({e}) "
+                  f"— inlines stay generic")
+            inline_persons = None
+
     # ── Supplementary entity sourcing (v7 production step) ────
     extras = {}
     own_count = 1 + len(inline_paths)
@@ -380,7 +420,8 @@ def main():
     try:
         manifest = render(script, article, hero, inline_paths,
                           extras, args.music, outdir, name,
-                          args.stage)
+                          args.stage,
+                          inline_persons=inline_persons)
     except reel_renderer.PhotoTooSmallError as e:
         verdict["stage"] = "render_photo_floor"
         verdict["detail"] = str(e)

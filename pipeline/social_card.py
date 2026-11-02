@@ -1109,7 +1109,9 @@ def _entity_image_for_card(text, article_ctx, used, log=None,
                 continue
             c, _row = res.evaluate_commons_page(
                 page, entity, route, context=context,
-                identity_verified=True, blocked_keys=blocked)
+                identity_verified=True, blocked_keys=blocked,
+                entity_type=r.get("type"),
+                entity_aliases=r.get("aliases"))
             if accept(entity, c):
                 cand = c
                 break

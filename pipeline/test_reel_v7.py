@@ -267,6 +267,77 @@ for _mode_name, _img, _fmt in (
               f"gradient ({_method})",
               not _method.startswith(("yunet", "haar")))
 
+print("── planner: scene-person rule (2026-11-02) ──")
+# The Ambani reel's stat scene took the article's Gautam
+# Adani inline because inlines arrived as bare sizes. With
+# inline_persons + beat_texts supplied, a person inline is
+# placed only on a scene whose text names that person.
+_R = V7.R
+_AMBANI_SCRIPT = {
+    "hook_line": "AMBANI ADDS $6.3 BILLION IN A DAY",
+    "hook_stat": {"big": "$6.3 BILLION",
+                  "eyebrow": "BY THE NUMBERS",
+                  "sub": "Mukesh Ambani's one-day gain, the "
+                         "biggest on Forbes' real-time "
+                         "billionaires list"},
+    "stats": [{"big": "11.6%",
+               "label": "Reliance share jump"}],
+    "diaspora_bullets": [
+        "Ambani stays India's richest person, ahead of "
+        "Gautam Adani at 26th"],
+    "news_summary": "Mukesh Ambani added $6.3 billion in a "
+                    "single session as Reliance Industries "
+                    "shares surged 11.6%.",
+    "payoff": "The quarter, not the rich list, is the story.",
+}
+_BEAT_TEXTS = {k: " ".join(_R.SCENE_TEXTS[k](_AMBANI_SCRIPT,
+                                             "Markets Finance"))
+               for k in BEATS}
+plans = V7.plan_scene_images(
+    BEATS, [2400, 1600], [[1280, 900], [1600, 1000]],
+    inline_persons=["Gautam Adani", None],
+    beat_texts=_BEAT_TEXTS)
+_src = sources(plans)
+check_eq("news scene skips the Adani inline (text is about "
+         "Ambani) and takes the generic inline",
+         _src[1], "inline:2")
+check("stat/hero scene does NOT take the Adani inline",
+      not _src[2].startswith("inline:1"))
+check_eq("diaspora scene takes the Adani inline — its "
+         "bullet names Gautam Adani", _src[4], "inline:1")
+check_eq("payoff stays the plain-stage closer", _src[5],
+         "stage")
+plans = V7.plan_scene_images(
+    BEATS, [2400, 1600], [[1280, 900]],
+    inline_persons=["Gautam Adani"], beat_texts=_BEAT_TEXTS)
+_src = sources(plans)
+check("an inline whose person only the diaspora scene "
+      "names is held until that scene",
+      _src[1] != "inline:1" and _src[2] != "inline:1"
+      and _src[4] == "inline:1")
+# Extras carrying a person identity obey the same rule.
+_adani_extra = {"label": "adani-protest", "size": [4928, 3280],
+                "entity_type": "person",
+                "entity_names": ["Gautam Adani"]}
+plans = V7.plan_scene_images(
+    BEATS, [1599, 1200], [],
+    {"payoff": dict(_adani_extra)}, beat_texts=_BEAT_TEXTS)
+check_eq("a person extra is refused on the payoff scene "
+         "(text names nobody) — stage closer instead",
+         sources(plans)[5], "stage")
+plans = V7.plan_scene_images(
+    BEATS, [1599, 1200], [],
+    {"diaspora": dict(_adani_extra)}, beat_texts=_BEAT_TEXTS)
+check_eq("the same extra is accepted on the scene that "
+         "names him", sources(plans)[4], "extra:adani-protest")
+plans = V7.plan_scene_images(
+    BEATS, [1599, 1200], [],
+    {"payoff": {"label": "ceo", "size": [1200, 1500]}},
+    beat_texts=_BEAT_TEXTS)
+check_eq("an extra with NO entity identity keeps the legacy "
+         "behaviour (assignment honoured)",
+         sources(plans)[5], "extra:ceo")
+
 print()
 if FAILS:
     print(f"❌ {len(FAILS)} FAILURE(S): {FAILS}")

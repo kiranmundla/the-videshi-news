@@ -389,6 +389,302 @@ for entity, title in BLOCKED_CASES:
     check(f"blocklist rejects {title} for {entity!r}",
           cand is None and ok_reason, row["reason"])
 
+# ── 2026-11-02: the Ambani reel (three wrong pictures) ─────
+# The published reel (deleted on Kiran's order) carried: the
+# Mount Charleston Wilderness (Nevada) trail photo as its news
+# scene — a depicts (P180=Q298547) file for Mukesh Ambani
+# whose own metadata never mentions him (polluted Commons
+# structured data), and the only depicts candidate clearing
+# the size floor after the wildlife veto false-rejected the
+# two genuine Ambani photos below; a Gautam Adani portrait
+# behind the '$6.3 BILLION' stat scene (the article's inline,
+# placed with no scene check); and a 'Stop Adani' protest
+# photo as the payoff filler (assignment by role affinity,
+# the payoff text names nobody). Metadata below is the real
+# Commons record for each file, fetched 2026-11-02.
+print("── 2026-11-02 ambani: depicts name agreement + "
+      "blocklist ──")
+NEVADA = ("2015-07-13 09 54 15 View northeast along the "
+          "North Loop Trail about 8.1 miles west of the "
+          "trailhead in the Mount Charleston Wilderness, "
+          "Nevada.jpg")
+NEVADA_PAGE = commons_page(
+    f"File:{NEVADA}", 3264, 2448,
+    desc="View northeast along the North Loop Trail about "
+         "8.1 miles west of the trailhead in the Mount "
+         "Charleston Wilderness, Nevada",
+    cats="Self-published work|July 2015 in Nevada|Files with "
+         "coordinates missing SDC location of creation|"
+         "United States photographs taken on 2015-07-13|"
+         "North Loop Trail (Spring Mountains National "
+         "Recreation Area)|Famartin's 2015 photos|Famartin's "
+         "July 2015 photos")
+CNBC_CATS = ("Taken with Canon EOS 5D|CC-Zero|Mukesh Ambani|"
+             "Blurred images|Self-published work|Kamal Nath "
+             "in 2007|Men holding awards")
+CNBC_PAGE = commons_page(
+    "File:Mukesh Ambani Receives CNBC India Business Award, "
+    "2007.jpg", 2790, 1829, license_short="CC0",
+    desc="Mukesh Ambani is given the CNBC India Business "
+         "Award, 2007 by the then Minister Kamal Nath.",
+    cats=CNBC_CATS)
+CLINTON_CATS = ("Taken with Nikon D300|PD US Government|"
+                "Mukesh Ambani|Ratan Naval Tata|Files with "
+                "derivative versions|People smiling|CC-PD-Mark|"
+                "3 people in India|India photographs taken on "
+                "2008-07-18|People sitting in India|Hillary "
+                "Rodham Clinton with businesspeople|Hillary "
+                "Rodham Clinton in July 2009|Hillary Rodham "
+                "Clinton in Mumbai")
+CLINTON_PAGE = commons_page(
+    "File:ClintonTataAmbani.jpg", 3216, 2136,
+    license_short="Public domain",
+    desc="Secretary Clinton meets with India's business "
+         "leaders. From left to right: Ratan Tata, Charmain "
+         "of the Tata Group; Secretary Clinton; Mukesh "
+         "Ambani, Chairman and Managing Director of Reliance "
+         "Industries.",
+    cats=CLINTON_CATS)
+AMBANI_RES = registry_only_resolve("Mukesh Ambani", "")
+AMBANI_BLOCKED = {ER.file_key(b)
+                  for b in AMBANI_RES.get("blocked_files") or []
+                  if ER.file_key(b)}
+DEPICTS_ROUTE = "identity — depicts (P180=Q298547)"
+
+check("registry: the Nevada trail file is on Mukesh "
+      "Ambani's corpus blocklist",
+      ER.file_key(NEVADA) in AMBANI_BLOCKED)
+cand, row = S.evaluate_commons_page(
+    NEVADA_PAGE, "Mukesh Ambani", DEPICTS_ROUTE,
+    identity_verified=True, blocked_keys=AMBANI_BLOCKED,
+    entity_type="person",
+    entity_aliases=AMBANI_RES.get("aliases"))
+check("Nevada trail file rejected for Ambani (blocklist)",
+      cand is None and "blocklist" in row["reason"],
+      row["reason"])
+cand, row = S.evaluate_commons_page(
+    NEVADA_PAGE, "Mukesh Ambani", DEPICTS_ROUTE,
+    identity_verified=True, blocked_keys=set(),
+    entity_type="person",
+    entity_aliases=AMBANI_RES.get("aliases"))
+check("Nevada trail file rejected by depicts NAME "
+      "AGREEMENT alone (no blocklist): its metadata never "
+      "names Ambani", cand is None
+      and "never" in row["reason"]
+      and "depicts" in row["reason"], row["reason"])
+cand, row = S.evaluate_commons_page(
+    NEVADA_PAGE, "Mukesh Ambani",
+    "identity — Wikidata P18 (Q298547)",
+    identity_verified=True, blocked_keys=set(),
+    entity_type="person",
+    entity_aliases=AMBANI_RES.get("aliases"))
+check("P18 route is EXEMPT from the depicts name check "
+      "(identity by construction proper)",
+      cand is not None, row["reason"])
+
+print("── 2026-11-02 ambani: wildlife-veto false positives ──")
+check("'Blurred images' category is not a species "
+      "(CNBC award photo)", not S.wildlife_subject(
+          "Mukesh Ambani", CNBC_CATS))
+check("'People smiling' category is not a species "
+      "(Clinton/Tata/Ambani photo)",
+      not S.wildlife_subject("Mukesh Ambani", CLINTON_CATS))
+check("a real binomial category still marks wildlife",
+      S.wildlife_subject("Tamil Nadu",
+                         "Corvus splendens heads|Birds of "
+                         "India"))
+for page, label in ((CNBC_PAGE, "CNBC award photo"),
+                    (CLINTON_PAGE, "Clinton/Tata/Ambani photo")):
+    cand, row = S.evaluate_commons_page(
+        page, "Mukesh Ambani", DEPICTS_ROUTE,
+        identity_verified=True, blocked_keys=AMBANI_BLOCKED,
+        entity_type="person",
+        entity_aliases=AMBANI_RES.get("aliases"))
+    check(f"keeper: the genuine {label} passes the depicts "
+          "route (names him; no wildlife veto)",
+          cand is not None, row["reason"])
+
+# ── 2026-11-02: scene-person rule (assignment) ──────────────
+print("── 2026-11-02 ambani: scene-person rule ──")
+AMBANI_SCRIPT = {
+    "hook_line": "AMBANI ADDS $6.3 BILLION IN A DAY AS "
+                 "RELIANCE SHARES JUMP 11.6% ON RECORD "
+                 "QUARTERLY PROFIT",
+    "hook_stat": {"big": "$6.3 BILLION",
+                  "eyebrow": "BY THE NUMBERS",
+                  "sub": "Mukesh Ambani's one-day gain, the "
+                         "biggest on Forbes' real-time "
+                         "billionaires list"},
+    "stats": [{"big": "11.6%",
+               "label": "Reliance share jump, closing at "
+                        "Rs 1,300"},
+              {"big": "40.6%",
+               "label": "Profit rise to Rs 25,548 crore"},
+              {"big": "$88.8 BILLION",
+               "label": "Ambani net worth, ranked 23rd "
+                        "globally"}],
+    "diaspora_bullets": [
+        "Ambani stays India's richest person, ahead of "
+        "Gautam Adani at 26th",
+        "Reliance was the biggest gainer on the Nifty 50"],
+    "key_entities": ["Mukesh Ambani", "Reliance Industries",
+                     "Forbes", "Nifty 50"],
+    "news_summary": "Mukesh Ambani added $6.3 billion in a "
+                    "single session as Reliance Industries "
+                    "shares surged 11.6% after a stronger-"
+                    "than-expected September quarter, "
+                    "according to Forbes' real-time "
+                    "billionaires list.",
+    "payoff": "The quarter, not the rich list, is the story "
+              "— a refining-led beat and record group profit.",
+    "versus": "", "story_mood": "celebratory",
+}
+ADANI_RES = registry_only_resolve("Gautam Adani", "")
+ADANI_CAND = {
+    "entity": "Gautam Adani", "entity_type": "person",
+    "entity_aliases": ADANI_RES.get("aliases") or [],
+    "title": "File:Gautam Adani Net Worth.jpg",
+    "subject": "Gautam Adani", "role": "establishing",
+    "file_url": "https://upload.wikimedia.org/x/"
+                "Gautam_Adani_Net_Worth.jpg",
+    "size": [1280, 900], "route": DEPICTS_ROUTE,
+    "license": "CC BY-SA 4.0", "artist": ""}
+PROTEST_CAND = {
+    "entity": "Gautam Adani", "entity_type": "person",
+    "entity_aliases": ADANI_RES.get("aliases") or [],
+    "title": "File:Gautam Adani outside Frydenberg's office "
+             "- Frydenberg-jmp 5531.jpg",
+    "subject": "Stop Adani protest outside Josh Frydenberg's "
+               "Camberwell office, Melbourne",
+    "role": "people",
+    "file_url": "https://upload.wikimedia.org/x/protest.jpg",
+    "size": [4928, 3280], "route": DEPICTS_ROUTE,
+    "license": "CC BY-SA 2.0", "artist": "Julian Meehan"}
+assigned = S.assign_beats([ADANI_CAND], AMBANI_SCRIPT,
+                           "Markets Finance", need=4)
+check("Adani portrait NOT assigned to the hero/stat scene "
+      "(its text is about Ambani's gain)",
+      "hero" not in assigned)
+check("Adani portrait NOT assigned to the payoff scene",
+      "payoff" not in assigned)
+check("Adani portrait NOT assigned to news/grid either "
+      "(neither names him)",
+      "news" not in assigned and "grid" not in assigned)
+check("Adani portrait MAY back the diaspora scene — its "
+      "bullet names Gautam Adani",
+      assigned.get("diaspora") is ADANI_CAND)
+assigned = S.assign_beats([PROTEST_CAND], AMBANI_SCRIPT,
+                           "Markets Finance", need=4)
+check("'Stop Adani' protest photo NOT used as payoff "
+      "filler (payoff names nobody)",
+      "payoff" not in assigned)
+
+# ── 2026-11-02: the full ladder on the Ambani story ────────
+print("── 2026-11-02 ambani: full ladder ──")
+AMBANI_ARTICLE = {
+    "slug": "ambani-adds-6-3-billion-reliance",
+    "headline": AMBANI_SCRIPT["hook_line"],
+    "title": AMBANI_SCRIPT["hook_line"],
+    "category": "markets-finance",
+    "summary": AMBANI_SCRIPT["news_summary"],
+    "body": "Mukesh Ambani added $6.3 billion. Reliance "
+            "Industries shares surged. Forbes now ranks "
+            "Ambani 23rd in the world and India's richest "
+            "person, ahead of Gautam Adani at 26th. Gautam "
+            "Adani has $79.12 billion.",
+}
+AMBANI_PAGES = dict(PAGES)
+AMBANI_PAGES.update({
+    "File:Mukesh Ambani.jpg": commons_page(
+        "File:Mukesh Ambani.jpg", 268, 355,
+        desc="Mukesh Ambani", cats="Mukesh Ambani"),
+    f"File:{NEVADA}": NEVADA_PAGE,
+    "File:Mukesh Ambani Receives CNBC India Business Award, "
+    "2007.jpg": CNBC_PAGE,
+    "File:ClintonTataAmbani.jpg": CLINTON_PAGE,
+})
+AMBANI_DEPICTS = {
+    "Q298547": [{"title": f"File:{NEVADA}"},
+                {"title": "File:Mukesh Ambani Receives CNBC "
+                          "India Business Award, 2007.jpg"},
+                {"title": "File:ClintonTataAmbani.jpg"}],
+}
+
+
+def ambani_net(calls):
+    net = make_net(calls)
+    net["commons_file_info"] = \
+        lambda title: AMBANI_PAGES.get(title)
+    net["depicts"] = lambda qid, limit=10: \
+        AMBANI_DEPICTS.get(qid, [])
+    return net
+
+
+calls = []
+with tempfile.TemporaryDirectory() as tmp:
+    prov = S.source_extras(AMBANI_ARTICLE, AMBANI_SCRIPT,
+                           Path(tmp), own_count=1,
+                           log=lambda *a: None,
+                           net=ambani_net(calls))
+keys = extra_keys(prov)
+check("ladder: the Nevada trail file is NOT produced",
+      ER.file_key(NEVADA) not in keys)
+check("ladder: Nevada rejection is ledgered (blocklist)",
+      "blocklist" in ledger_reasons(prov)
+      and NEVADA[:30] in " | ".join(
+          str(r.get("candidate", ""))
+          for r in prov["candidate_ledger"]))
+check("ladder: genuine Ambani depicts photos ARE produced "
+      "(CNBC / Clinton)",
+      any("cnbc" in (e.get("path") or "").lower()
+          or "clintontataambani" in (e.get("path") or "").lower()
+          for e in prov["extras"]),
+      str([e.get("path") for e in prov["extras"]]))
+check("ladder: Ambani person photos land ONLY on scenes "
+      "whose text names him (news/hero)",
+      all(e["beat"] in ("news", "hero")
+          for e in prov["extras"]),
+      str([(e["beat"], e.get("path"))
+           for e in prov["extras"]]))
+
+# ── 2026-11-02: inline person resolution ───────────────────
+print("── 2026-11-02 ambani: inline person resolution ──")
+INLINE_URLS = [
+    "https://upload.wikimedia.org/wikipedia/commons/0/0e/"
+    "Gautam_Adani_Net_Worth.jpg?utm_source=commons."
+    "wikimedia.org&utm_campaign=imageinfo",
+    "https://upload.wikimedia.org/wikipedia/commons/9/99/"
+    "Random_Person_at_Event.jpg",
+    "https://images.thedailyjagran.com/images/2026/11/02/"
+    "template/image/Mukesh-Ambani-PTI-1793626671501.webp",
+]
+
+
+def inline_net():
+    net = make_net([])
+    net["depicts"] = lambda qid, limit=10: \
+        [{"title": "File:Gautam Adani Net Worth.jpg"}] \
+        if qid == "Q5527865" else []
+    net["file_depicts"] = lambda title: \
+        ["Q999999"] if "Random_Person" in title else []
+    net["item_info"] = lambda qid: \
+        ("Random Person", "person") if qid == "Q999999" \
+        else (None, "other")
+    return net
+
+
+persons = S.resolve_inline_persons(
+    INLINE_URLS, AMBANI_ARTICLE, AMBANI_SCRIPT,
+    net=inline_net())
+check("inline #1 resolves to Gautam Adani (it is his "
+      "depicts file)", persons.get(0) == "Gautam Adani",
+      str(persons))
+check("an inline depicting a person outside the story "
+      "still resolves, under that person's own name",
+      persons.get(1) == "Random Person", str(persons))
+check("a non-Wikimedia inline stays generic (no person)",
+      2 not in persons, str(persons))
+
 # ── the names_agree numeral veto (live dry-run find) ───────
 print("── names_agree numeral veto ──")
 check("'Jailer 2' does NOT agree with 'Jailer 3' (a "

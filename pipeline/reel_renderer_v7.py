@@ -116,6 +116,7 @@ from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import reel_renderer as R
+import reel_entity_sourcing as RES
 import social_card as SC
 
 W, H, FPS, TOTAL = R.W, R.H, R.FPS, R.TOTAL
@@ -314,8 +315,28 @@ def xfade_plan(beats, fade_s=XFADE_S):
 
 
 # ── Per-scene image planner (Kiran's deck ideal) ─────────────────────
+def _extra_eligible(extra, beat, beat_texts):
+    """The scene-person rule for a supplementary assignment:
+    an extra whose resolved entity is a PERSON may back only
+    a beat whose rendered text names that person. Extras
+    carrying no entity identity (older provenance files) keep
+    the legacy behaviour — assign_beats already enforces the
+    rule for everything the ladder produces."""
+    if beat_texts is None or not extra:
+        return True
+    names = extra.get("entity_names") or []
+    etype = extra.get("entity_type")
+    is_person = etype == "person" if etype else (
+        bool(names) and RES._looks_like_person(names[0]))
+    if not is_person:
+        return True
+    return RES.entity_named_in_text(names,
+                                    beat_texts.get(beat, ""))
+
+
 def plan_scene_images(beat_keys, hero_size, inline_sizes,
-                      extras=None):
+                      extras=None, inline_persons=None,
+                      beat_texts=None):
     """Assign each beat its own image. Order (the approved chain):
     hook -> the hero; a beat with a supplementary assignment
     (extras, from the verified sourcing ladder) takes it; payoff
@@ -323,18 +344,45 @@ def plan_scene_images(beat_keys, hero_size, inline_sizes,
     beat consumes, in order: the article's inline images (body
     order), then hero region windows (constant composed size —
     WINDOW_REGIONS), then the plain stage. Pure function of
-    sizes — unit-tested in test_reel_v7.py."""
+    sizes — unit-tested in test_reel_v7.py.
+
+    SCENE-PERSON RULE (2026-11-02): when inline_persons /
+    beat_texts are supplied, a photo resolved to a PERSON —
+    an article inline (inline_persons, parallel to
+    inline_sizes: person name or None) or a supplementary
+    extra carrying its entity identity — is placed ONLY on a
+    beat whose rendered text names that person. An inline
+    whose person no remaining beat names is simply not used;
+    the beat falls through to the next eligible inline, a
+    hero window, or the stage. (The Ambani reel's stat scene
+    took the article's Gautam Adani inline because inlines
+    arrived as bare sizes with no identity.)"""
     extras = extras or {}
     plans = []
-    inline_i = 0
+    inline_left = list(range(len(inline_sizes)))
     win_i = 0
+
+    def take_inline(beat):
+        for idx in inline_left:
+            person = None
+            if inline_persons and idx < len(inline_persons):
+                person = inline_persons[idx]
+            if person and beat_texts is not None \
+                    and not RES.entity_named_in_text(
+                        [person], beat_texts.get(beat, "")):
+                continue
+            inline_left.remove(idx)
+            return idx
+        return None
+
     for key in beat_keys:
         if key == "hook":
             plans.append({"beat": key, "source": "hero",
                           "source_px": list(hero_size),
                           "region": "wide", "frac": 1.0})
             continue
-        if key in extras:
+        if key in extras and _extra_eligible(extras[key], key,
+                                             beat_texts):
             plans.append({"beat": key,
                           "source": f"extra:{extras[key]['label']}",
                           "extra": extras[key],
@@ -345,13 +393,13 @@ def plan_scene_images(beat_keys, hero_size, inline_sizes,
             plans.append({"beat": key, "source": "stage",
                           "source_px": None})
             continue
-        if inline_i < len(inline_sizes):
+        inline_i = take_inline(key)
+        if inline_i is not None:
             plans.append({"beat": key,
                           "source": f"inline:{inline_i + 1}",
                           "inline_index": inline_i,
                           "source_px": list(inline_sizes[inline_i]),
                           "region": "subject", "frac": 1.0})
-            inline_i += 1
             continue
         placed = False
         box_w = stage_box(hero_size)[0]
@@ -895,12 +943,17 @@ def dominant_face_box(img):
 def render_reel_v7(script, hero_path, inline_paths, music_path,
                    outdir, name="reel", category="News",
                    photo_url=None, article_slug=None, article_id=None,
-                   stage="navy", extras=None, log=print):
+                   stage="navy", extras=None, log=print,
+                   inline_persons=None):
     """Render one v7 reel. inline_paths: [(path, (w, h)), ...] in
     article body order (hero excluded). extras: {beat: {"label",
     "path", "size", "role", "provenance"}} — verified
     supplementary entity photos from the sourcing ladder. stage:
-    "navy" | "black". Returns (video_path, manifest dict) — the
+    "navy" | "black". inline_persons: a list parallel to
+    inline_paths of person names (or None) from
+    reel_entity_sourcing.resolve_inline_persons — the planner
+    places a person inline only on a scene whose text names
+    that person. Returns (video_path, manifest dict) — the
     same contract shape as reel_renderer.render_reel, plus
     per-scene v7 records."""
     t0 = time.time()
@@ -939,11 +992,26 @@ def render_reel_v7(script, hero_path, inline_paths, music_path,
                                        # backdrop scenes)
     beat_keys = [k for k, _s, _d in BEATS]
     inline_sizes = [(p[1]) for p in inline_paths]
-    extras_plan = {b: {"label": e["label"], "size": e["size"]}
-                   for b, e in extras.items()}
+    extras_plan = {}
+    for b, e in extras.items():
+        entry = {"label": e["label"], "size": e["size"]}
+        if e.get("entity"):
+            entry["entity_names"] = [e["entity"]] + list(
+                e.get("entity_aliases") or [])
+            entry["entity_type"] = e.get("entity_type")
+        extras_plan[b] = entry
+    beat_texts = {}
+    for k in beat_keys:
+        try:
+            beat_texts[k] = " ".join(R.SCENE_TEXTS[k](stats,
+                                                      category))
+        except Exception:
+            beat_texts[k] = ""
     plans = plan_scene_images(beat_keys, list(hero_src_size),
                               [list(s) for s in inline_sizes],
-                              extras_plan)
+                              extras_plan,
+                              inline_persons=inline_persons,
+                              beat_texts=beat_texts)
     plan_by_beat = {p["beat"]: p for p in plans}
 
     # Materialise each scene's source image (graded hero, graded

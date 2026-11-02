@@ -2436,7 +2436,9 @@ def _source_entity_images_identity(entity_rec, article, net,
             continue
         cand, row = RES.evaluate_commons_page(
             page, name, route, context=None,
-            identity_verified=True, blocked_keys=blocked)
+            identity_verified=True, blocked_keys=blocked,
+            entity_type=res.get("type"),
+            entity_aliases=res.get("aliases"))
         rows.append(row)
         if cand is None:
             continue

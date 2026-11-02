@@ -587,3 +587,56 @@ def depicts_candidates(qid, limit=10):
         if len(out) >= limit:
             break
     return out
+
+
+# ── a file's own depicts statements / an item's identity ─────────
+def file_depicts_qids(file_title):
+    """The depicts (P180) QIDs from a Commons file's OWN
+    structured data (its MediaInfo entity), via wbgetentities
+    on the Commons API. The reverse lookup of
+    depicts_candidates: what does THIS file claim to depict?
+    Used to entity-resolve an article inline a reel wants to
+    place (reel_entity_sourcing.resolve_inline_persons).
+    Returns [] when the file has no MediaInfo depicts data."""
+    if not file_title:
+        return []
+    t = file_title if str(file_title).startswith("File:") \
+        else "File:" + str(file_title)
+    data = _commons_api({
+        "action": "wbgetentities", "sites": "commonswiki",
+        "titles": t, "props": "claims", "format": "json",
+    }) or {}
+    out = []
+    for e in (data.get("entities") or {}).values():
+        for c in (e.get("claims") or {}).get("P180", []):
+            try:
+                qid = c["mainsnak"]["datavalue"]["value"]["id"]
+            except Exception:
+                continue
+            if qid and qid not in out:
+                out.append(qid)
+    return out
+
+
+def item_label_and_type(qid):
+    """(English label, inferred type) for one Wikidata item —
+    the identity summary needed to name a depicted item the
+    story never mentioned (an inline that depicts a person
+    outside the story's entity list is still a person photo,
+    with that person's name). (None, 'other') on failure."""
+    if not qid:
+        return None, "other"
+    data = _wikidata_api({
+        "action": "wbgetentities", "ids": qid,
+        "props": "labels|claims", "languages": "en",
+        "format": "json",
+    }) or {}
+    e = (data.get("entities") or {}).get(qid) or {}
+    label = (e.get("labels", {}).get("en") or {}).get("value")
+    p31 = []
+    for c in (e.get("claims") or {}).get("P31", []):
+        try:
+            p31.append(c["mainsnak"]["datavalue"]["value"]["id"])
+        except Exception:
+            pass
+    return label, _infer_type(p31)
