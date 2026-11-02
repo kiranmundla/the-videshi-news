@@ -1,0 +1,406 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "indiaspora-warns-h1b-targeting-economic-risk-us",
+ "article_slug": "indiaspora-warns-h1b-targeting-economic-risk-us",
+ "article_id": "9922db22-d020-4a61-a18b-46882f585118",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-01-indiaspora-warns-h1b-targeting-economic-risk-us/output-v2/indiaspora-warns-h1b-targeting-economic-risk-us.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-64476,resizemode-75,msid-135415541/nri/work/targeting-h-1b-holders-poses-severe-economic-risks-to-us-indiaspora.jpg",
+  "local_path": "reel-runs/2026-11-01-indiaspora-warns-h1b-targeting-economic-risk-us/output-v2/hero.jpg",
+  "width": 1200,
+  "height": 900,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.450,0.478) damped=(0.475,0.489)",
+  "has_face": false,
+  "box_source": [
+   234,
+   242,
+   672,
+   360
+  ],
+  "box_bg": [
+   249,
+   324,
+   467,
+   250
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.476,
+   0.489
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   625
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 1064,
+   "block_bottom": 1337,
+   "text_bbox": [
+    70,
+    1064,
+    930,
+    1337
+   ],
+   "texts": [
+    "Immigration",
+    "INDIASPORA WARNS TARGETING H-1B HOLDERS POSES 'VERY SERIOUS' RISK TO US ECONOMY"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     900
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      899
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 338,
+   "block_top": 1242,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1242,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Indiaspora warned in an October 30 statement that targeting H-1B holders could have very serious consequences for communities across the United States, and urged leaders to reject anti-Indian rhetoric ahead of the midterms."
+   ],
+   "v7": {
+    "image_source": "extra:h-1b-visa-updates",
+    "track": "full-bleed",
+    "render_scale": 0.455,
+    "photo_px": [
+     3375,
+     4219
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4550841431618867,
+     "window": [
+      534,
+      0,
+      2907,
+      4219
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "From interview mandates to higher fees understand how the new H-1B rules affect your chances.",
+     "route": "identity \u2014 depicts (P180=Q974595)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:H-1B_Visa_Updates.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/H-1B_Visa_Updates.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "Immigrationconsultantcalifornia"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 981,
+   "block_bottom": 1419,
+   "text_bbox": [
+    70,
+    981,
+    930,
+    1419
+   ],
+   "texts": [
+    "THE STAKES",
+    "71%",
+    "Share of approved H-1B visas in FY24 held by Indian nationals"
+   ],
+   "v7": {
+    "image_source": "extra:view-of-the-empire-state-building-from-the-r",
+    "track": "backdrop",
+    "render_scale": 0.34,
+    "photo_px": [
+     2759,
+     1839
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.3399918467183041,
+     "window": [
+      0,
+      1,
+      2453,
+      1839
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.04x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "View of the Empire State Building from the Rockefeller Center observation deck, New York City, August 2009.",
+     "route": "identity \u2014 Wikidata P18 (Q188540)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:View_of_the_Empire_State_Building_from_the_Rockefeller_Center_observation_deck_NYC_-_18_August_2009.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/View_of_the_Empire_State_Building_from_the_Rockefeller_Center_observation_deck_NYC_-_18_August_2009.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "Francisco Diez from New York City, USA"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 698,
+   "block_top": 882,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    882,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "$100,000",
+    "H-1B petition payment already in force",
+    "$70,000",
+    "Proposed fees on OPT and STEM extensions",
+    "60-day",
+    "Grace period a proposal would scrap"
+   ],
+   "v7": {
+    "image_source": "extra:bigriver",
+    "track": "full-bleed",
+    "render_scale": 0.938,
+    "photo_px": [
+     3072,
+     2048
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.9375,
+     "window": [
+      1003,
+      0,
+      2155,
+      2048
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Big River , in the Big River Unit of Mendocino Headlands State Park , Mendocino, California.",
+     "route": "identity \u2014 depicts (P180=Q30)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:BigRiver.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/95/BigRiver.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.5",
+     "artist": "David Eppstein"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 953,
+   "block_bottom": 1448,
+   "text_bbox": [
+    70,
+    953,
+    930,
+    1448
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "H-4 spouses \u2014 most of them women \u2014 face a proposed freeze on their work permits",
+    "Foreign professionals fill rural physician and teacher gaps, including in the Mississippi Delta"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     900
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.7897727272727273,
+     "window": [
+      42,
+      44,
+      1098,
+      835
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 310,
+   "block_top": 705,
+   "block_bottom": 1015,
+   "text_bbox": [
+    70,
+    705,
+    930,
+    1015
+   ],
+   "texts": [
+    "The Takeaway",
+    "The $100,000 payment and wage-weighted selection already apply; the other measures Indiaspora opposes would each need their own rule or law before they bite.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 128.0,
+ "mp4_bytes": 11951093
+}

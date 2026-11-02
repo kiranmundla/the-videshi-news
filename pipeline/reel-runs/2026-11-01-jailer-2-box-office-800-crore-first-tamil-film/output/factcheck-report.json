@@ -1,0 +1,275 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "jailer-2-box-office-800-crore-first-tamil-film",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "JAILER 2 CROSSES RS 800 CRORE, A FIRST FOR TAMIL CINEMA",
+      "numbers": [
+        2.0,
+        800.0,
+        8000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Jailer 2 crossed Rs 800 crore, a first for Tamil cinema.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Rajinikanth's Jailer 2 has crossed Rs 800 crore in worldwide gross, becoming the first Tamil film to reach the mark, TrackTollywood reported on Sunday.",
+      "numbers": [
+        2.0,
+        800.0,
+        8000000000.0
+      ],
+      "entities": [
+        "Rajinikanth's Jailer"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Jailer 2 crossed Rs 800 crore, reported by TrackTollywood.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "Rs 800 crore",
+      "numbers": [
+        800.0,
+        8000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Jailer 2 crossed Rs 800 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Worldwide gross \u2014 the first Tamil film to reach the mark",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states it is the first Tamil film to reach this gross.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "Rs 807.25 crore",
+      "numbers": [
+        807.25,
+        8072500000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article cites Sacnilk's figure of Rs 807.25 crore after day 18.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Worldwide gross after day 18, according to Sacnilk",
+      "numbers": [
+        18.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article attributes the Rs 807.25 crore figure to Sacnilk after day 18.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "Rs 533.75 crore",
+      "numbers": [
+        533.75,
+        5337500000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the India gross is Rs 533.75 crore after day 18.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "India gross after day 18, per Sacnilk",
+      "numbers": [
+        18.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article attributes the Rs 533.75 crore figure to Sacnilk for India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "Rs 273.50 crore",
+      "numbers": [
+        273.5,
+        2735000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the overseas gross is Rs 273.50 crore after day 18.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Overseas gross after day 18, per Sacnilk",
+      "numbers": [
+        18.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article attributes the Rs 273.50 crore figure to Sacnilk for overseas.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Overseas markets supplied about a third of the gross",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states overseas markets supplied roughly a third of the total gross.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "North America and the Gulf remain central to the record run",
+      "numbers": [],
+      "entities": [
+        "North America"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions North America and the Gulf as key markets.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "TrackTollywood framed the next target as Rs 850 crore.",
+      "numbers": [
+        850.0,
+        8500000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states TrackTollywood set the next target at Rs 850 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Jailer 2",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Rajinikanth",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sacnilk",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nelson Dilipkumar",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "TrackTollywood",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000695,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

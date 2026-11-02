@@ -1,0 +1,406 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "microsoft-voluntary-exit-offer-60000-india-staff",
+ "article_slug": "microsoft-voluntary-exit-offer-60000-india-staff",
+ "article_id": "c8ceda95-6e19-47f6-a331-ea70d57d9d8c",
+ "category": "Technology",
+ "video": "reel-runs/2026-11-02-microsoft-voluntary-exit-offer-60000-india-staff/output/microsoft-voluntary-exit-offer-60000-india-staff.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Aerial_Microsoft_West_Campus_August_2009.jpg/3840px-Aerial_Microsoft_West_Campus_August_2009.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-11-02-microsoft-voluntary-exit-offer-60000-india-staff/output/hero.jpg",
+  "width": 4752,
+  "height": 3168,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.484,0.479) damped=(0.492,0.489)",
+  "has_face": false,
+  "box_source": [
+   1007,
+   853,
+   2661,
+   1267
+  ],
+  "box_bg": [
+   -273,
+   517,
+   1613,
+   768
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.494,
+   0.49
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   556
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 285,
+   "block_top": 1295,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1295,
+    930,
+    1580
+   ],
+   "texts": [
+    "Technology",
+    "MICROSOFT EXPECTS 3,000 OR FEWER TAKERS FOR EXIT OFFER OPEN TO 60,000 STAFF"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.606,
+    "photo_px": [
+     4752,
+     3168
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6060606060606061,
+     "window": [
+      1458,
+      0,
+      3240,
+      3168
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 353,
+   "block_top": 1227,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1227,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Microsoft expects 3,000 or fewer employees to accept its new Voluntary Exit Offer, even though about 60,000 employees in Canada, India, the United Kingdom and the United States are eligible."
+   ],
+   "v7": {
+    "image_source": "extra:aerial-microsoft-west-campus-august-2009",
+    "track": "full-bleed",
+    "render_scale": 0.606,
+    "photo_px": [
+     4752,
+     3168
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6060606060606061,
+     "window": [
+      1458,
+      0,
+      3240,
+      3168
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "The west campus of Microsoft, Redmond, Washington, taken from about 1,500'. The photo is looking south-east. The west campus is bounded on the west by 148th Ave, on the east by SR 520, and on the north (foreground) by 40th St.",
+     "route": "identity \u2014 Wikidata P18 (Q2283)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Aerial_Microsoft_West_Campus_August_2009.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Aerial_Microsoft_West_Campus_August_2009.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Jelson25"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 428,
+   "block_top": 952,
+   "block_bottom": 1380,
+   "text_bbox": [
+    70,
+    952,
+    930,
+    1380
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "3,000",
+    "Or fewer employees Microsoft expects to accept its Voluntary Exit Offer"
+   ],
+   "v7": {
+    "image_source": "extra:a-platinum-microsoft-surface-laptop-go",
+    "track": "backdrop",
+    "render_scale": 0.379,
+    "photo_px": [
+     2201,
+     1791
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.37891867333030443,
+     "window": [
+      0,
+      324,
+      2201,
+      1791
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.07x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "a platinum Microsoft Surface Laptop Go",
+     "route": "identity \u2014 depicts (P180=Q2283)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:A_platinum_Microsoft_Surface_Laptop_Go.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/A_platinum_Microsoft_Surface_Laptop_Go.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Ckazemi"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 739,
+   "block_top": 841,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    841,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "60,000",
+    "Employees eligible \u2014 roughly a quarter of Microsoft's 223,000 workforce",
+    "23,000",
+    "Microsoft employees in India",
+    "DECEMBER 1",
+    "Reported deadline for eligible India staff to decide"
+   ],
+   "v7": {
+    "image_source": "extra:close-wing-position-of-loxura-atymnus-stoll",
+    "track": "full-bleed",
+    "render_scale": 0.8,
+    "photo_px": [
+     3600,
+     2400
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8,
+     "window": [
+      945,
+      0,
+      2295,
+      2400
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "This picture was taken during the project Wiki Loves Butterfly in Chintamoni Kar Bird Sanctuary,Kolkata,West Bengal,India.Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly. Subspecies: Loxura atymnus continentalis Fruhstorfer, 1912",
+     "route": "identity \u2014 depicts (P180=Q668)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Close_wing_position_of_Loxura_atymnus_Stoll,_1780_%E2%80%93_Yamfly.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Close_wing_position_of_Loxura_atymnus_Stoll%2C_1780_%E2%80%93_Yamfly.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 3.0",
+     "artist": "Atudu"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 918,
+   "block_bottom": 1413,
+   "text_bbox": [
+    70,
+    918,
+    930,
+    1413
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "The offer covers staff in India, the US, Canada and the UK at level 70 and below",
+    "Microsoft says it is on track to equip 20 million people in India with AI skills by 2030"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "backdrop",
+    "render_scale": 0.379,
+    "photo_px": [
+     2201,
+     1791
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.37891867333030443,
+     "window": [
+      0,
+      324,
+      2201,
+      1791
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.07x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Eligible India staff are reported to have until December 1 to decide on the offer.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/tech-corporate-technology.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 149.9,
+ "mp4_bytes": 15098273
+}

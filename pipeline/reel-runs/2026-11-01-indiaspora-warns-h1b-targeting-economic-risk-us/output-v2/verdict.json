@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "indiaspora-warns-h1b-targeting-economic-risk-us",
+  "name": "indiaspora-warns-h1b-targeting-economic-risk-us",
+  "script": "reel-runs/2026-11-01-indiaspora-warns-h1b-targeting-economic-risk-us/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000736
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-01-indiaspora-warns-h1b-targeting-economic-risk-us/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "h-1b-visa-updates",
+      "hero": "view-of-the-empire-state-building-from-the-r",
+      "grid": "bigriver"
+    }
+  },
+  "manifest": "reel-runs/2026-11-01-indiaspora-warns-h1b-targeting-economic-risk-us/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-11-01-indiaspora-warns-h1b-targeting-economic-risk-us/output-v2/indiaspora-warns-h1b-targeting-economic-risk-us.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:grid"
+    ]
+  }
+}

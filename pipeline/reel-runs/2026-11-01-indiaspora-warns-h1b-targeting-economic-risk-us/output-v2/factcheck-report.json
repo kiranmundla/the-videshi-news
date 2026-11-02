@@ -1,0 +1,264 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "indiaspora-warns-h1b-targeting-economic-risk-us",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIASPORA WARNS TARGETING H-1B HOLDERS POSES 'VERY SERIOUS' RISK TO US ECONOMY",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Indiaspora warned of serious risks to the US economy regarding H-1B holders.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Indiaspora warned in an October 30 statement that targeting H-1B holders could have very serious consequences for communities across the United States, and urged leaders to reject anti-Indian rhetoric ahead of the midterms.",
+      "numbers": [
+        1.0,
+        30.0
+      ],
+      "entities": [
+        "United States"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Indiaspora's warning and urges against anti-Indian rhetoric.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "71%",
+      "numbers": [
+        71.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Indian nationals received 71% of approved H-1B visas in FY24.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Share of approved H-1B visas in FY24 held by Indian nationals",
+      "numbers": [
+        1.0,
+        24.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms 71% of approved H-1B visas in FY24 were held by Indian nationals.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE STAKES",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$100,000",
+      "numbers": [
+        100000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the $100,000 H-1B petition payment is already in force.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "H-1B petition payment already in force",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the $100,000 payment is already in force.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$70,000",
+      "numbers": [
+        70000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states proposed fees on OPT and STEM extensions could be up to $70,000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Proposed fees on OPT and STEM extensions",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses proposed fees of up to $70,000 on OPT and STEM extensions.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "60-day",
+      "numbers": [
+        60.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the 60-day grace period that is proposed to be scrapped.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Grace period a proposal would scrap",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the proposal includes scrapping the 60-day grace period.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "H-4 spouses \u2014 most of them women \u2014 face a proposed freeze on their work permits",
+      "numbers": [
+        4.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions a proposed freeze on H-4 spousal work permits.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Foreign professionals fill rural physician and teacher gaps, including in the Mississippi Delta",
+      "numbers": [],
+      "entities": [
+        "Mississippi Delta"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states foreign professionals fill gaps in rural areas like the Mississippi Delta.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The $100,000 payment and wage-weighted selection already apply; the other measures Indiaspora opposes would each need their own rule or law before they bite.",
+      "numbers": [
+        100000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the $100,000 payment and wage-weighted selection are already in effect.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE STAKES",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Indiaspora",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "H-1B",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sanjeev Joshipura",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "H-4",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000736,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

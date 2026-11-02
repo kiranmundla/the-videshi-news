@@ -1,0 +1,92 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-october-gst-collection-rises-25-6-percent-net-2-03-trillion",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "GST",
+    "Reuters",
+    "Business Standard"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "outlet: 'Reuters' is a news outlet \u2014 outlets are sources, never picture subjects; never queried"
+    },
+    {
+      "candidate": "File:Btw.png",
+      "route": "identity \u2014 Wikidata P18 (Q128635)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:020220213 185152 PiS da.jpg",
+      "route": "identity \u2014 depicts (P180=Q128635)",
+      "verdict": "USED (news)",
+      "reason": "2731x1880, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:European VAT Taxes.svg",
+      "route": "identity \u2014 depicts (P180=Q128635)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:FalatJulian.PortretAntoniegoWodzickiego.1900.ws.jpg",
+      "route": "identity \u2014 depicts (P180=Q128635)",
+      "verdict": "rejected",
+      "reason": "resolution: 332x600 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:MUS C.3.14. Tanda terima bea cukai tembakau, 1947; 2.jpg",
+      "route": "identity \u2014 depicts (P180=Q128635)",
+      "verdict": "rejected",
+      "reason": "resolution: 1000x885 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Sign relating to the 2020 VAT reduction, Cooplands, Bridge Street, Tadcaster (24th July 2020).jpg",
+      "route": "identity \u2014 depicts (P180=Q128635)",
+      "verdict": "USED (grid)",
+      "reason": "3864x5152, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "020220213-185152-pis-da",
+      "path": "020220213-185152-pis-da.jpg",
+      "size": [
+        2731,
+        1880
+      ],
+      "role": "establishing",
+      "subject": "VAT 0",
+      "route": "identity \u2014 depicts (P180=Q128635)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:020220213_185152_PiS_da.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/020220213_185152_PiS_da.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Silar"
+    },
+    {
+      "beat": "grid",
+      "label": "sign-relating-to-the-2020-vat-reduction-coop",
+      "path": "sign-relating-to-the-2020-vat-reduction-coop.jpg",
+      "size": [
+        5152,
+        3864
+      ],
+      "role": "detail",
+      "subject": "Sign relating to the 2020 VAT reduction, Cooplands, High Street, Tadcaster, North Yorkshire. Taken on the afternoon of Friday the 24th of July 2020.",
+      "route": "identity \u2014 depicts (P180=Q128635)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Sign_relating_to_the_2020_VAT_reduction,_Cooplands,_Bridge_Street,_Tadcaster_(24th_July_2020).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Sign_relating_to_the_2020_VAT_reduction%2C_Cooplands%2C_Bridge_Street%2C_Tadcaster_%2824th_July_2020%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Mtaylor848"
+    }
+  ]
+}

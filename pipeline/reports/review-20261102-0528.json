@@ -1,0 +1,103 @@
+[
+  {
+    "id": "5ad9a0f2-78c6-41b4-993a-bcb5d301a318",
+    "headline": "How India Celebrates Diwali: Five Days of Lamps, Legends and Regional Traditions",
+    "slug": "how-india-celebrates-diwali-five-days-regions",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Enhance the diaspora angle by including specific examples of how NRIs celebrate Diwali in different countries, such as community events in the US or UK, and how these celebrations differ from those in India.",
+        "Provide concrete details about the costs associated with celebrating Diwali in the US, such as average expenses for decorations, food, and gifts, as well as any legal considerations for purchasing fireworks, including state-specific regulations.",
+        "Include a section on how NRIs can connect with local Indian communities during Diwali, such as links to local events or organizations that host celebrations, to foster a sense of belonging.",
+        "Add a compelling call-to-action at the end of the article, encouraging readers to share their own Diwali experiences or plans, which could enhance community engagement."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a popular Indian diaspora organization or community leader discussing Diwali celebrations in the diaspora, or an Instagram post showcasing Diwali events in major cities."
+      ]
+    }
+  },
+  {
+    "id": "51ea1b62-4c73-43ea-b31d-b6635895d986",
+    "headline": "Cambridge Scientist Marta Shahbazi Killed in Spain Crash En Route to Prize",
+    "slug": "cambridge-scientist-marta-shahbazi-spain-train-crash",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date of the train crash (October 25) and the date when Dr. Shahbazi's death was confirmed (October 28) to enhance the clarity of the narrative.",
+        "Include more context about the crash itself, such as details on the cause of the collision and the response from Spanish authorities, to provide a fuller picture of the incident.",
+        "Add a quote from a family member or colleague to personalize the story and highlight the impact of Dr. Shahbazi's death on her community and the scientific world.",
+        "Ensure that the article maintains a consistent tense throughout; for instance, the phrase 'was confirmed among the 69 people killed' could be rephrased to 'has been confirmed as one of the 69 people killed' for better clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Spanish authorities or Renfe providing updates on the investigation into the crash or expressing condolences for the victims."
+      ]
+    }
+  },
+  {
+    "id": "ae33699c-5dd6-43de-81fa-08c8e194e0ef",
+    "headline": "Kerala-Born Nithya Raman Ties Karen Bass in Los Angeles Mayor Race",
+    "slug": "nithya-raman-karen-bass-los-angeles-mayor-race-tied",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the election date by explicitly stating that it is November 3, 2023, to avoid any confusion about the timing.",
+        "Include specific numbers or percentages regarding early ballot returns from younger voters to provide context on voter turnout and its potential impact on the election outcome.",
+        "Add a brief background on the BDS movement and why it is significant in the context of Raman's campaign to give readers a clearer understanding of the political stakes involved."
+      ],
+      "embed_opportunities": [
+        "Embed the latest UC Berkeley IGS poll results to provide readers with direct access to the data being referenced."
+      ]
+    }
+  },
+  {
+    "id": "e5af9c7a-ae92-486a-b294-f4efff776d3d",
+    "headline": "Amitabh Bachchan Greets Fans From Behind Bulletproof Shield After Bomb Threat",
+    "slug": "amitabh-bachchan-bulletproof-shield-jalsa-bomb-threat",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the bomb threat was reported and when the protective measures were implemented, as this will help readers understand the urgency of the situation.",
+        "Provide more context about the nature of the bomb threat and the group behind it, as this information is crucial for understanding the potential implications and seriousness of the threat.",
+        "Include a quote from a police spokesperson or a relevant authority to enhance the credibility of the reporting and provide additional insights into the investigation."
+      ],
+      "embed_opportunities": [
+        "Embed the official Mumbai Police tweet or statement regarding the bomb threat and the subsequent security measures for credibility and real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "b834c49b-513e-4bce-a949-bf715620b705",
+    "headline": "Ravindra and Chapman Ruled Out of New Zealand's ODI Series Against India",
+    "slug": "ravindra-chapman-ruled-out-new-zealand-odi-series-india",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the ODI series by explicitly stating the start date and the total duration of the series, as well as the dates of the matches.",
+        "Provide more context on the implications of Ravindra and Chapman's absence for New Zealand's performance, such as their statistics in recent matches or how their replacements have performed historically.",
+        "Include a quote from a player or another coach to provide additional perspectives on the impact of these injuries on the team dynamics.",
+        "Ensure that the article mentions the specific date of the first ODI match clearly at the beginning for better clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official New Zealand Cricket tweet announcing the squad changes or injury updates for real-time updates."
+      ]
+    }
+  }
+]

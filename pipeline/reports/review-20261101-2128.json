@@ -1,0 +1,172 @@
+[
+  {
+    "id": "4bb74fd2-fbe8-4e6d-8680-e4091d82794c",
+    "headline": "Karnataka Takes Tourism Roadshows to Manchester, London and Birmingham",
+    "slug": "karnataka-tourism-uk-roadshows-manchester-london-birmingham",
+    "category": "travel",
+    "structural_issues": [
+      "Caption names venue 'Tower Bridge' not supported by the image file name (London_Skyline_%28125508655%29.jpeg\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the dates of the roadshows to avoid confusion; the article states 'November 2' for Manchester but does not specify the year, which could lead to misunderstanding since the World Travel Market is mentioned for 2026.",
+        "Provide specific details on what the Karnataka Tourism delegation aims to achieve during the roadshows, such as any promotional offers or partnerships that may be established, to give readers a clearer understanding of the potential impact on travel options.",
+        "Include a quote from the Tourism Minister or another official to add authority and a personal touch to the report, enhancing the article's credibility and engagement."
+      ],
+      "embed_opportunities": [
+        "Embed the official Karnataka Tourism announcement or a relevant tweet from the Karnataka government regarding the roadshows for real-time updates and credibility."
+      ]
+    }
+  },
+  {
+    "id": "249759b4-b8c6-4249-b30f-713b182b1059",
+    "headline": "One Year On: The Night India's Women Won the World Cup and Changed the Game",
+    "slug": "india-women-world-cup-win-one-year-anniversary",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the impact of the Women's ODI World Cup win on the women's game in India by including specific statistics or examples of how viewership or participation has changed since the victory.",
+        "Provide more context on the significance of the players' performance, especially Shafali Verma's unexpected role, by including quotes from the coach or players to illustrate the emotional and competitive stakes of the match.",
+        "Add a brief mention of upcoming fixtures or tournaments for the Indian women's cricket team to give readers a sense of what to look forward to in the near future."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ICC or a relevant sports authority celebrating the anniversary of the victory or highlighting key statistics from the World Cup."
+      ]
+    }
+  },
+  {
+    "id": "65080683-d593-406c-a0c2-d0bd14b47395",
+    "headline": "DC Mayor's Office Hosts Diwali Celebration on Friday, November 6",
+    "slug": "dc-mayors-office-diwali-celebration-november-6-moapia",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the year of the event in the headline and throughout the article, as it currently states '2026 Diwali Celebration' which may confuse readers about the timing of the event.",
+        "Include a specific program outline or mention any confirmed performances or activities for the event to provide readers with a clearer picture of what to expect.",
+        "Add a call to action regarding registration, such as a direct link to the Eventbrite page, to facilitate easier access for readers interested in attending."
+      ],
+      "embed_opportunities": [
+        "Embed the official Eventbrite listing for the Diwali celebration to provide readers with direct access to registration and updates."
+      ]
+    }
+  },
+  {
+    "id": "dd30491f-182c-468d-ab5f-e0c3c820794c",
+    "headline": "Ramayana Has a Reported Rs 4,000 Crore Riding on It. Is the Buzz Big Enough?",
+    "slug": "ramayana-4000-crore-budget-advance-booking-buzz",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the film's release by explicitly stating the date in the first paragraph, as it is crucial for readers to know when to expect the film in theaters.",
+        "Provide more context on the significance of the Rs 4,000 crore budget by comparing it to previous high-budget Indian films, which would help readers understand its scale better.",
+        "Include a direct quote or attribution from a credible source regarding the buzz or expectations surrounding the film to enhance the article's credibility and depth."
+      ],
+      "embed_opportunities": [
+        "Embed the official trailer of 'Ramayana: Part One' to give readers a visual preview of the film."
+      ]
+    }
+  },
+  {
+    "id": "e1f1f7bf-e3a5-469d-b397-5f139af49b46",
+    "headline": "Jailer 2 Crosses Rs 800 Crore, a First for Tamil Cinema",
+    "slug": "jailer-2-box-office-800-crore-first-tamil-film",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the date of the report more prominently, as the current mention of 'Sunday, November 1' could confuse readers if they are reading on a different date.",
+        "Include a brief explanation of the significance of crossing the Rs 800 crore mark for Tamil cinema, as this context would enhance the reader's understanding of the milestone.",
+        "Ensure consistent attribution by clearly stating that the figures from TrackTollywood and Sacnilk are estimates and not official numbers, possibly by consolidating this information into one clear statement at the beginning or end of the relevant section.",
+        "Consider rephrasing the section on how the run was built to provide a smoother transition from box office figures to the film's cast and crew, enhancing the overall flow of the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a verified account or a notable film critic discussing the film's success to provide additional context and engagement."
+      ]
+    }
+  },
+  {
+    "id": "32598225-02eb-4a19-bc14-4a05a30289d8",
+    "headline": "Midterm Results 2026: When Will Winners Be Announced, State by State?",
+    "slug": "us-midterm-results-2026-when-winners-announced-state-timings",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for when official results will be available by including specific dates for when states are expected to certify their results, as this is crucial for understanding the overall election timeline.",
+        "Provide a brief explanation of why some states take longer to report results, including specific examples of states that process mail ballots differently, to enhance clarity and completeness.",
+        "Consider including a direct quote or attribution from a credible source, such as an election official or expert, regarding the expected timeline for results, to improve accuracy and credibility."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from a reputable news outlet that provides live updates on the election results as they come in, enhancing the timeliness and engagement of the article."
+      ]
+    }
+  },
+  {
+    "id": "13238738-db62-4a1c-822b-8ecace6111d9",
+    "headline": "US Economy Grows at Fastest Pace in a Year, but Voters Aren't Feeling It",
+    "slug": "us-economy-grows-3-4-percent-third-quarter-voters-unconvinced",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the GDP growth for everyday voters by including specific figures related to cost of living increases or inflation rates, as this would provide a concrete context for readers.",
+        "Ensure that all statistics and quotes are properly attributed to their sources, particularly the Wall Street Journal and Reuters, to enhance credibility and transparency.",
+        "Consider restructuring the article to present the GDP growth data first, followed by the contrasting voter sentiment, to create a clearer narrative flow that emphasizes the disconnect between economic indicators and public perception."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Commerce Department announcing the GDP growth figures to provide readers with direct access to the source of the data."
+      ]
+    }
+  },
+  {
+    "id": "cc9e50ec-21d9-4ded-b72d-7f9e9a2e8ef2",
+    "headline": "India's Net GST Collection Jumps 25.6% to Rs 2.03 Trillion in October",
+    "slug": "india-october-gst-collection-rises-25-6-percent-net-2-03-trillion",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the government statement mentioned in the article. Instead of just stating 'according to a government statement reported by Reuters,' specify which government department issued the statement to enhance credibility.",
+        "Provide a more detailed breakdown of the GST components, such as the specific amounts for Central GST, State GST, and Integrated GST, in a clearer format (e.g., bullet points) to improve readability and comprehension.",
+        "Include a brief explanation of the implications of the 42% increase in import tax revenue. This could help readers understand whether this trend indicates a stronger economy or other factors affecting imports.",
+        "Ensure that the article maintains a consistent structure by avoiding repetitive phrases. For example, the sentence 'India collected Rs 2.03 trillion ($21.40 billion) in net goods and services tax in October, up 25.6% from a year earlier' is mentioned twice and can be streamlined."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Ministry of Finance or the GST Council regarding the GST collection figures to provide readers with direct access to the primary source of information."
+      ]
+    }
+  },
+  {
+    "id": "c64ea5af-bab7-4685-b688-0b5193f237dc",
+    "headline": "Harmanpreet Singh Hat-Trick Powers India to 4-2 Win Over Malaysia",
+    "slug": "harmanpreet-hat-trick-india-beat-malaysia-4-2-asian-champions-trophy",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the victory by including details on how this win impacts India's chances in the tournament, such as potential matchups in the semi-finals or implications for future games.",
+        "Provide more context about the Asian Champions Trophy, including its history or importance in the sport, to help readers understand the stakes of this match better.",
+        "Include quotes from players or coaches to add depth and personal perspectives to the match report, enhancing the narrative and engagement."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight reel of the match or Harmanpreet Singh's hat-trick to provide visual context and enhance reader engagement."
+      ]
+    }
+  }
+]

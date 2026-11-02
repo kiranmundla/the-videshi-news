@@ -508,5 +508,31 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "QUXf7VInd_8",
+    "article_slug": "jailer-2-box-office-800-crore-first-tamil-film",
+    "article_id": "e1f1f7bf-e3a5-469d-b397-5f139af49b46",
+    "title": "Jailer 2 Crosses Rs 800 Crore, a First for Tamil Cinema #Shorts #Entertainment",
+    "privacy": "public",
+    "uploaded_at": "2026-11-01T23:17:22.575604+00:00",
+    "video_path": "reel-runs/2026-11-01-jailer-2-box-office-800-crore-first-tamil-film/output/jailer-2-box-office-800-crore-first-tamil-film.mp4",
+    "video_sha256": "6f6234dc942141127ceca64e6c1f7e09d5a09681886a1c32bcf98a9d787730a8",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "-osb72y3-ME",
+    "article_slug": "india-october-gst-collection-rises-25-6-percent-net-2-03-trillion",
+    "article_id": "cc9e50ec-21d9-4ded-b72d-7f9e9a2e8ef2",
+    "title": "India's Net GST Collection Jumps 25.6% to Rs 2.03 Trillion in October #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-11-02T05:24:08.566120+00:00",
+    "video_path": "reel-runs/2026-11-01-india-october-gst-collection-rises-25-6-percent-net-2-03-trillion/output-v2/india-october-gst-collection-rises-25-6-percent-net-2-03-trillion.mp4",
+    "video_sha256": "fd828d6bdf76c2669ad8d7ca9b2a43bd55477fe3a69f912241cddf53a1010168",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

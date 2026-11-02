@@ -1,0 +1,35 @@
+{
+ "diaspora_bullets": [
+  "Sustained receipts above Rs 2 trillion support the fiscal position heading into the February budget",
+  "For diaspora investors, an input for rupee stability and Indian equity sentiment — not a guarantee"
+ ],
+ "hook_line": "INDIA'S NET GST COLLECTION JUMPS 25.6% TO RS 2.03 TRILLION IN OCTOBER",
+ "hook_stat": {
+  "big": "25.6%",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Rise in India's net GST collection in October, year on year"
+ },
+ "key_entities": [
+  "GST",
+  "Reuters",
+  "Business Standard"
+ ],
+ "news_summary": "India's net GST collection rose 25.6% year on year to Rs 2.03 trillion in October, according to a government statement reported by Reuters, with gross collection up 22.9% to Rs 2.31 trillion.",
+ "payoff": "October was the fourth month of this financial year in which gross GST crossed Rs 2 trillion — a sign of sustained consumption and compliance, not a one-off spike.",
+ "stats": [
+  {
+   "big": "Rs 2.31 trillion",
+   "label": "Gross GST collection, up 22.9%"
+  },
+  {
+   "big": "42%",
+   "label": "Jump in tax revenue from imports"
+  },
+  {
+   "big": "Rs 27,934 crore",
+   "label": "Refunds, up 6.5% year on year"
+  }
+ ],
+ "story_mood": "celebratory",
+ "versus": ""
+}

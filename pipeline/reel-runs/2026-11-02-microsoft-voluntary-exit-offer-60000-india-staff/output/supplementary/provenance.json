@@ -1,0 +1,147 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "microsoft-voluntary-exit-offer-60000-india-staff",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Microsoft",
+    "Amy Hood",
+    "Voluntary Exit Offer",
+    "India",
+    "Microsoft Expects",
+    "United Kingdom and the United"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Voluntary Exit Offer' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Microsoft Expects' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'United Kingdom and the United' named 'United Kingdom and the United Nations', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Aerial Microsoft West Campus August 2009.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q2283)",
+      "verdict": "USED (news)",
+      "reason": "4752x3168, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:10 Largest Corporations by Market Capitalization.png",
+      "route": "identity \u2014 depicts (P180=Q2283)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:A platinum Microsoft Surface Laptop Go.jpg",
+      "route": "identity \u2014 depicts (P180=Q2283)",
+      "verdict": "USED (hero)",
+      "reason": "2201x1791, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Amy Hood.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q16499756)",
+      "verdict": "rejected",
+      "reason": "resolution: 148x189 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:India-locator-map-blank.svg",
+      "route": "identity \u2014 Wikidata P18 (Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:A villain performing in Dashavatara folk theatre.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Aerial photograph of the Himalayas, Ladakh 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Ambigram India Nepal (gray and beige) - animated.gif",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "USED (grid)",
+      "reason": "3600x2400, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Close wing position of Papilio nephelus Boisduval, 1836 \u2013 Yellow Helen.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "accepted",
+      "reason": "2000x1500, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "aerial-microsoft-west-campus-august-2009",
+      "path": "aerial-microsoft-west-campus-august-2009.jpg",
+      "size": [
+        4752,
+        3168
+      ],
+      "role": "establishing",
+      "subject": "The west campus of Microsoft, Redmond, Washington, taken from about 1,500'. The photo is looking south-east. The west campus is bounded on the west by 148th Ave, on the east by SR 520, and on the north (foreground) by 40th St.",
+      "route": "identity \u2014 Wikidata P18 (Q2283)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Aerial_Microsoft_West_Campus_August_2009.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Aerial_Microsoft_West_Campus_August_2009.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Jelson25"
+    },
+    {
+      "beat": "hero",
+      "label": "a-platinum-microsoft-surface-laptop-go",
+      "path": "a-platinum-microsoft-surface-laptop-go.jpg",
+      "size": [
+        2201,
+        1791
+      ],
+      "role": "establishing",
+      "subject": "a platinum Microsoft Surface Laptop Go",
+      "route": "identity \u2014 depicts (P180=Q2283)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:A_platinum_Microsoft_Surface_Laptop_Go.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/A_platinum_Microsoft_Surface_Laptop_Go.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Ckazemi"
+    },
+    {
+      "beat": "grid",
+      "label": "close-wing-position-of-loxura-atymnus-stoll",
+      "path": "close-wing-position-of-loxura-atymnus-stoll.jpg",
+      "size": [
+        3600,
+        2400
+      ],
+      "role": "establishing",
+      "subject": "This picture was taken during the project Wiki Loves Butterfly in Chintamoni Kar Bird Sanctuary,Kolkata,West Bengal,India.Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly. Subspecies: Loxura atymnus continentalis Fruhstorfer, 1912",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Close_wing_position_of_Loxura_atymnus_Stoll,_1780_%E2%80%93_Yamfly.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Close_wing_position_of_Loxura_atymnus_Stoll%2C_1780_%E2%80%93_Yamfly.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 3.0",
+      "artist": "Atudu"
+    }
+  ]
+}

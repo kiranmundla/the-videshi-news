@@ -1,0 +1,189 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "indiaspora-warns-h1b-targeting-economic-risk-us",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Indiaspora",
+    "H-1B",
+    "Sanjeev Joshipura",
+    "H-4",
+    "US Economy",
+    "United States"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Indiaspora' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Sanjeev Joshipura' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'H-4' named 'Mil Mi-8', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:H-1B Visa Updates.jpg",
+      "route": "identity \u2014 depicts (P180=Q974595)",
+      "verdict": "USED (news)",
+      "reason": "3375x4219, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:H1-B visa applications.webp",
+      "route": "identity \u2014 depicts (P180=Q974595)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:View of the Empire State Building from the Rockefeller Center observation deck NYC - 18 August 2009.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q188540)",
+      "verdict": "USED (hero)",
+      "reason": "2759x1839, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Alaska silver mines.webp",
+      "route": "identity \u2014 depicts (P180=Q188540)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:Aluminum mines and smelters.webp",
+      "route": "identity \u2014 depicts (P180=Q188540)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:Arizona metal mines and refineries.webp",
+      "route": "identity \u2014 depicts (P180=Q188540)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:Cargo airports in the United States.svg",
+      "route": "identity \u2014 depicts (P180=Q188540)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Consumer Price Index of the United States.webp",
+      "route": "identity \u2014 depicts (P180=Q188540)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:Copper mines and refineries.webp",
+      "route": "identity \u2014 depicts (P180=Q188540)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:Copper mines in the United States.webp",
+      "route": "identity \u2014 depicts (P180=Q188540)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:Foreign direct investment into the United States by year.webp",
+      "route": "identity \u2014 depicts (P180=Q188540)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:Gold mines and refineries.webp",
+      "route": "identity \u2014 depicts (P180=Q188540)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:Largest manufacturing plants in the US.webp",
+      "route": "identity \u2014 depicts (P180=Q188540)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:United States - Location Map (2013) - USA - UNOCHA.svg",
+      "route": "identity \u2014 Wikidata P18 (Q30)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:American bison in Yellowstone National Park.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:BigRiver.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "USED (grid)",
+      "reason": "3072x2048, CC BY-SA 2.5, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Bodie September 2016 019.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "accepted",
+      "reason": "4280x2940, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "h-1b-visa-updates",
+      "path": "h-1b-visa-updates.jpg",
+      "size": [
+        3375,
+        4219
+      ],
+      "role": "establishing",
+      "subject": "From interview mandates to higher fees understand how the new H-1B rules affect your chances.",
+      "route": "identity \u2014 depicts (P180=Q974595)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:H-1B_Visa_Updates.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/H-1B_Visa_Updates.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Immigrationconsultantcalifornia"
+    },
+    {
+      "beat": "hero",
+      "label": "view-of-the-empire-state-building-from-the-r",
+      "path": "view-of-the-empire-state-building-from-the-r.jpg",
+      "size": [
+        2759,
+        1839
+      ],
+      "role": "establishing",
+      "subject": "View of the Empire State Building from the Rockefeller Center observation deck, New York City, August 2009.",
+      "route": "identity \u2014 Wikidata P18 (Q188540)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:View_of_the_Empire_State_Building_from_the_Rockefeller_Center_observation_deck_NYC_-_18_August_2009.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/View_of_the_Empire_State_Building_from_the_Rockefeller_Center_observation_deck_NYC_-_18_August_2009.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "Francisco Diez from New York City, USA"
+    },
+    {
+      "beat": "grid",
+      "label": "bigriver",
+      "path": "bigriver.jpg",
+      "size": [
+        3072,
+        2048
+      ],
+      "role": "establishing",
+      "subject": "Big River , in the Big River Unit of Mendocino Headlands State Park , Mendocino, California.",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:BigRiver.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/95/BigRiver.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.5",
+      "artist": "David Eppstein"
+    }
+  ]
+}

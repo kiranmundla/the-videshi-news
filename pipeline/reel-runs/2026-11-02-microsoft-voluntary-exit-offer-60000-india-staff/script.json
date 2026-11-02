@@ -1,0 +1,36 @@
+{
+ "hook_line": "MICROSOFT EXPECTS 3,000 OR FEWER TAKERS FOR EXIT OFFER OPEN TO 60,000 STAFF",
+ "hook_stat": {
+  "big": "3,000",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Or fewer employees Microsoft expects to accept its Voluntary Exit Offer"
+ },
+ "stats": [
+  {
+   "big": "60,000",
+   "label": "Employees eligible \u2014 roughly a quarter of Microsoft's 223,000 workforce"
+  },
+  {
+   "big": "23,000",
+   "label": "Microsoft employees in India"
+  },
+  {
+   "big": "DECEMBER 1",
+   "label": "Reported deadline for eligible India staff to decide"
+  }
+ ],
+ "diaspora_bullets": [
+  "The offer covers staff in India, the US, Canada and the UK at level 70 and below",
+  "Microsoft says it is on track to equip 20 million people in India with AI skills by 2030"
+ ],
+ "key_entities": [
+  "Microsoft",
+  "Amy Hood",
+  "Voluntary Exit Offer",
+  "India"
+ ],
+ "news_summary": "Microsoft expects 3,000 or fewer employees to accept its new Voluntary Exit Offer, even though about 60,000 employees in Canada, India, the United Kingdom and the United States are eligible.",
+ "payoff": "Eligible India staff are reported to have until December 1 to decide on the offer.",
+ "versus": "",
+ "story_mood": "tense"
+}

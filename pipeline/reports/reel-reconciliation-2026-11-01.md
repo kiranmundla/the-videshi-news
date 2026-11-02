@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-01T17:20:18+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-01T23:18:46+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **219**
-- prebuilt_reels rows: 155 (125 with a yt_video_id)
+- Channel uploads (actual, via API): **220**
+- prebuilt_reels rows: 156 (126 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 38
-- **In sync** (channel video backed by a DB/publish-log record): **105**
+- Phase 2 publish-log entries: 39
+- **In sync** (channel video backed by a DB/publish-log record): **106**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 13
 - Ghost DB rows (yt_video_id not on channel): 16
@@ -283,7 +283,7 @@ _None._
 - row `cededbdc-e47d-4afd-9d01-5586e1d95785` · slug india-cancer-drug-price-caps-137-medicines-november-9 · yt_video_id `M5UjKqtENwU` · on channel: no
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 
-## (d) In sync (105)
+## (d) In sync (106)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -389,5 +389,6 @@ _None._
 - `OzKQOQ-ZPXs` · public · 2026-10-30 · Sold-Out Eden Park Crowd to Break New Zealand Bilateral Record for India T20I #Shorts #Cricket [prebuilt_reels:8eec698f-7f3c-473a-9995-99d0700cd2b7]
 - `qSKmK0O9QaQ` · public · 2026-10-30 · Anil Menon Completes NASA's 100th US Spacewalk, Installing Seventh ISS Solar Array #Shorts #NRI [prebuilt_reels:a788bce1-eca7-46d3-8e61-991d2cd22884]
 - `5ZXFH31VoEk` · public · 2026-10-31 · Sensex Adds 308 Points as Nifty Reclaims 23,000 in Second Straight Rally #Shorts #Markets [prebuilt_reels:ebd271a2-ccaa-4d31-b53d-a76f029980a0]
-- `ZFm4TJG3vpc` · public · 2026-11-01 · Jailer 2 First Indian Film to Cross Rs 75 Crore in All Four South Markets #Shorts #Entertainment [prebuilt_reels:ce9cd618-ae44-4c10-90db-f93ce6040bc9]
+- `ZFm4TJG3vpc` · unlisted · 2026-11-01 · Jailer 2 First Indian Film to Cross Rs 75 Crore in All Four South Markets #Shorts #Entertainment [prebuilt_reels:ce9cd618-ae44-4c10-90db-f93ce6040bc9]
+- `QUXf7VInd_8` · public · 2026-11-01 · Jailer 2 Crosses Rs 800 Crore, a First for Tamil Cinema #Shorts #Entertainment [prebuilt_reels:161cc8e5-367e-4b35-9d76-f18fb3edb5ea]
 

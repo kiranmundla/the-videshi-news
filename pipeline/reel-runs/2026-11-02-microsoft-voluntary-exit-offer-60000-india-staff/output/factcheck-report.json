@@ -1,0 +1,274 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "microsoft-voluntary-exit-offer-60000-india-staff",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "MICROSOFT EXPECTS 3,000 OR FEWER TAKERS FOR EXIT OFFER OPEN TO 60,000 STAFF",
+      "numbers": [
+        3000.0,
+        60000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Both numbers and context are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Microsoft expects 3,000 or fewer employees to accept its new Voluntary Exit Offer, even though about 60,000 employees in Canada, India, the United Kingdom and the United States are eligible.",
+      "numbers": [
+        3000.0,
+        60000.0
+      ],
+      "entities": [
+        "Voluntary Exit Offer",
+        "United Kingdom",
+        "United States"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the article's content.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "3,000",
+      "numbers": [
+        3000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Microsoft expects 3,000 or fewer takers.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Or fewer employees Microsoft expects to accept its Voluntary Exit Offer",
+      "numbers": [],
+      "entities": [
+        "Voluntary Exit Offer"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this expectation.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "60,000",
+      "numbers": [
+        60000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 60,000 employees are eligible.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Employees eligible \u2014 roughly a quarter of Microsoft's 223,000 workforce",
+      "numbers": [
+        223000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article provides this information.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "23,000",
+      "numbers": [
+        23000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Microsoft has about 23,000 employees in India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Microsoft employees in India",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the number of employees in India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "DECEMBER 1",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions this deadline for India staff.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Reported deadline for eligible India staff to decide",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this deadline.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "The offer covers staff in India, the US, Canada and the UK at level 70 and below",
+      "numbers": [
+        70.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the offer's coverage.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Microsoft says it is on track to equip 20 million people in India with AI skills by 2030",
+      "numbers": [
+        20.0,
+        2030.0,
+        20000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2030
+        ]
+      },
+      "llm_reason": "The article includes this information.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Eligible India staff are reported to have until December 1 to decide on the offer.",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "Eligible India"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this deadline for eligible staff.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Microsoft",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Amy Hood",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Voluntary Exit Offer",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "India",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000656,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

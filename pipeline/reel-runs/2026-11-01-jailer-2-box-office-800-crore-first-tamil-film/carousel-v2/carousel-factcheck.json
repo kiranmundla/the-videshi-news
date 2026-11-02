@@ -1,0 +1,148 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "jailer-2-box-office-800-crore-first-tamil-film",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Jailer 2 Crosses Rs 800 Crore, a First for Tamil Cinema",
+        "numbers": [
+          2.0,
+          800.0,
+          8000000000.0
+        ],
+        "entities": [
+          "Crosses Rs",
+          "Tamil Cinema"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Jailer 2 crossed Rs 800 crore, marking a first for Tamil cinema.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Trade trackers put Rajinikanth's sequel at Rs 800-807 crore worldwide after 18 days, with overseas markets supplying about a third of the gross.",
+        "numbers": [
+          18.0,
+          800.0,
+          807.0,
+          8070000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions trade trackers estimating Rs 800-807 crore after 18 days with overseas contributions.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Sacnilk put the worldwide gross at Rs 807.25 crore after day 18: Rs 533.75 crore in India and Rs 273.50 crore overseas",
+        "numbers": [
+          18.0,
+          273.5,
+          533.75,
+          807.25,
+          2735000000.0,
+          5337500000.0,
+          8072500000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article cites Sacnilk's figures for worldwide gross and breakdown by region.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The film became the highest-grossing Tamil film in India, passing 2.0's domestic gross",
+        "numbers": [
+          2.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Jailer 2 surpassed 2.0's domestic gross, becoming the highest-grossing Tamil film.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Overseas markets supplied roughly a third of the total \u2014 North America and the Gulf remain central to a Tamil film's record run",
+        "numbers": [],
+        "entities": [
+          "North America"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states overseas markets contributed about a third, highlighting North America and the Gulf.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Jailer 2 Crosses Rs 800 Crore, a First for Tamil Cinema",
+        "numbers": [
+          2.0,
+          800.0,
+          8000000000.0
+        ],
+        "entities": [
+          "Crosses Rs",
+          "Tamil Cinema"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim repeats the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000466,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

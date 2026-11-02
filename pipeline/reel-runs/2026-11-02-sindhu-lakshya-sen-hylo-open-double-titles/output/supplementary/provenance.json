@@ -1,0 +1,123 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "sindhu-lakshya-sen-hylo-open-double-titles",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "P. V. Sindhu",
+    "Lakshya Sen",
+    "Hylo Open",
+    "Jonatan Christie",
+    "Line Hojmark Kjaersfeldt",
+    "BWF World Tour"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'P. V. Sindhu' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Line Hojmark Kjaersfeldt' named 'Line Kj\u00e6rsfeldt', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'BWF World Tour' named 'BWF World Tour Finals', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Lakshya Sen (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q27780754)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:2018-10-12 Badminton Boys Singles Final at 2018 Summer Youth Olympics by Sandro Halank\u2013119.jpg",
+      "route": "identity \u2014 depicts (P180=Q27780754)",
+      "verdict": "USED (news)",
+      "reason": "3040x3044, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2018-10-12 Badminton Boys Singles Final at 2018 Summer Youth Olympics by Sandro Halank\u2013131.jpg",
+      "route": "identity \u2014 depicts (P180=Q27780754)",
+      "verdict": "USED (hero)",
+      "reason": "2511x2724, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2017 Sea Games Badminton - Jonatan Christie .jpg",
+      "route": "identity \u2014 Wikidata P18 (Q14978306)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Sea Games Badmintion Final (36951524980).jpg",
+      "route": "identity \u2014 depicts (P180=Q14978306)",
+      "verdict": "USED (grid)",
+      "reason": "6016x4016, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Sea Games Badmintion Final (37158064116).jpg",
+      "route": "identity \u2014 depicts (P180=Q14978306)",
+      "verdict": "accepted",
+      "reason": "6016x4016, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "2018-10-12-badminton-boys-singles-final-at-2",
+      "path": "2018-10-12-badminton-boys-singles-final-at-2.jpg",
+      "size": [
+        3040,
+        3044
+      ],
+      "role": "establishing",
+      "subject": "Final at the Boys Singles Badminton competition: Li Shifeng (China) vs. Lakshya Sen (India)",
+      "route": "identity \u2014 depicts (P180=Q27780754)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2018-10-12_Badminton_Boys_Singles_Final_at_2018_Summer_Youth_Olympics_by_Sandro_Halank%E2%80%93119.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/2018-10-12_Badminton_Boys_Singles_Final_at_2018_Summer_Youth_Olympics_by_Sandro_Halank%E2%80%93119.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Sandro Halank , Wikimedia Commons"
+    },
+    {
+      "beat": "hero",
+      "label": "2018-10-12-badminton-boys-singles-final-at-2-2",
+      "path": "2018-10-12-badminton-boys-singles-final-at-2-2.jpg",
+      "size": [
+        2511,
+        2724
+      ],
+      "role": "establishing",
+      "subject": "Final at the Boys Singles Badminton competition: Li Shifeng (China) vs. Lakshya Sen (India)",
+      "route": "identity \u2014 depicts (P180=Q27780754)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2018-10-12_Badminton_Boys_Singles_Final_at_2018_Summer_Youth_Olympics_by_Sandro_Halank%E2%80%93131.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/2018-10-12_Badminton_Boys_Singles_Final_at_2018_Summer_Youth_Olympics_by_Sandro_Halank%E2%80%93131.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Sandro Halank , Wikimedia Commons"
+    },
+    {
+      "beat": "grid",
+      "label": "sea-games-badmintion-final-36951524980",
+      "path": "sea-games-badmintion-final-36951524980.jpg",
+      "size": [
+        6016,
+        4016
+      ],
+      "role": "establishing",
+      "subject": "Sea Games Badmintion Final",
+      "route": "identity \u2014 depicts (P180=Q14978306)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Sea_Games_Badmintion_Final_(36951524980).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Sea_Games_Badmintion_Final_%2836951524980%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "WIL"
+    }
+  ]
+}

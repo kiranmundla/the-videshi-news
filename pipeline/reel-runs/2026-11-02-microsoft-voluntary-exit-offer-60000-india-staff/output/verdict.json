@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "microsoft-voluntary-exit-offer-60000-india-staff",
+  "name": "microsoft-voluntary-exit-offer-60000-india-staff",
+  "script": "reel-runs/2026-11-02-microsoft-voluntary-exit-offer-60000-india-staff/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000656
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-02-microsoft-voluntary-exit-offer-60000-india-staff/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "aerial-microsoft-west-campus-august-2009",
+      "hero": "a-platinum-microsoft-surface-laptop-go",
+      "grid": "close-wing-position-of-loxura-atymnus-stoll"
+    }
+  },
+  "manifest": "reel-runs/2026-11-02-microsoft-voluntary-exit-offer-60000-india-staff/output/render-manifest.json",
+  "video": "reel-runs/2026-11-02-microsoft-voluntary-exit-offer-60000-india-staff/output/microsoft-voluntary-exit-offer-60000-india-staff.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:grid"
+    ]
+  }
+}

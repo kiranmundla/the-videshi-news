@@ -1,0 +1,399 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-october-gst-collection-rises-25-6-percent-net-2-03-trillion",
+ "article_slug": "india-october-gst-collection-rises-25-6-percent-net-2-03-trillion",
+ "article_id": "cc9e50ec-21d9-4ded-b72d-7f9e9a2e8ef2",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-01-india-october-gst-collection-rises-25-6-percent-net-2-03-trillion/output-v2/india-october-gst-collection-rises-25-6-percent-net-2-03-trillion.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://bsmedia.business-standard.com/_media/bs/img/article/2026-10/06/thumb/fitandfill/1200X628/1791225483-4458.jpg",
+  "local_path": "reel-runs/2026-11-01-india-october-gst-collection-rises-25-6-percent-net-2-03-trillion/output-v2/hero.jpg",
+  "width": 1200,
+  "height": 628,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.418,0.306) damped=(0.459,0.403)",
+  "has_face": false,
+  "box_source": [
+   214,
+   115,
+   672,
+   251
+  ],
+  "box_bg": [
+   235,
+   236,
+   467,
+   174
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.54,
+   0.416
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   436
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 285,
+   "block_top": 963,
+   "block_bottom": 1248,
+   "text_bbox": [
+    70,
+    963,
+    930,
+    1248
+   ],
+   "texts": [
+    "Markets Finance",
+    "INDIA'S NET GST COLLECTION JUMPS 25.6% TO RS 2.03 TRILLION IN OCTOBER"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     628
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      627
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 924,
+   "block_bottom": 1287,
+   "text_bbox": [
+    70,
+    924,
+    930,
+    1287
+   ],
+   "texts": [
+    "What Happened",
+    "India's net GST collection rose 25.6% year on year to Rs 2.03 trillion in October, according to a government statement reported by Reuters, with gross collection up 22.9% to Rs 2.31 trillion."
+   ],
+   "v7": {
+    "image_source": "extra:020220213-185152-pis-da",
+    "track": "backdrop",
+    "render_scale": 0.305,
+    "photo_px": [
+     2731,
+     1880
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.305382643720249,
+     "window": [
+      0,
+      0,
+      2731,
+      1427
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.02x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "VAT 0",
+     "route": "identity \u2014 depicts (P180=Q128635)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:020220213_185152_PiS_da.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/020220213_185152_PiS_da.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Silar"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 887,
+   "block_bottom": 1325,
+   "text_bbox": [
+    70,
+    887,
+    930,
+    1325
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "25.6%",
+    "Rise in India's net GST collection in October, year on year"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     628
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.7897727272727273,
+     "window": [
+      120,
+      0,
+      1176,
+      552
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 653,
+   "block_top": 927,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    927,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "Rs 2.31 trillion",
+    "Gross GST collection, up 22.9%",
+    "42%",
+    "Jump in tax revenue from imports",
+    "Rs 27,934 crore",
+    "Refunds, up 6.5% year on year"
+   ],
+   "v7": {
+    "image_source": "extra:sign-relating-to-the-2020-vat-reduction-coop",
+    "track": "full-bleed",
+    "render_scale": 0.497,
+    "photo_px": [
+     5152,
+     3864
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4968944099378882,
+     "window": [
+      1224,
+      0,
+      3397,
+      3864
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Sign relating to the 2020 VAT reduction, Cooplands, High Street, Tadcaster, North Yorkshire. Taken on the afternoon of Friday the 24th of July 2020.",
+     "route": "identity \u2014 depicts (P180=Q128635)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Sign_relating_to_the_2020_VAT_reduction,_Cooplands,_Bridge_Street,_Tadcaster_(24th_July_2020).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Sign_relating_to_the_2020_VAT_reduction%2C_Cooplands%2C_Bridge_Street%2C_Tadcaster_%2824th_July_2020%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Mtaylor848"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 486,
+   "block_top": 863,
+   "block_bottom": 1349,
+   "text_bbox": [
+    70,
+    863,
+    930,
+    1349
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Sustained receipts above Rs 2 trillion support the fiscal position heading into the February budget",
+    "For diaspora investors, an input for rupee stability and Indian equity sentiment \u2014 not a guarantee"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     628
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.86875,
+     "window": [
+      0,
+      11,
+      960,
+      512
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 295,
+   "block_top": 712,
+   "block_bottom": 1007,
+   "text_bbox": [
+    70,
+    712,
+    930,
+    1007
+   ],
+   "texts": [
+    "The Takeaway",
+    "October was the fourth month of this financial year in which gross GST crossed Rs 2 trillion \u2014 a sign of sustained consumption and compliance, not a one-off spike.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 111.9,
+ "mp4_bytes": 7804877
+}

@@ -1,0 +1,103 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "jailer-2-box-office-800-crore-first-tamil-film",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Jailer 2",
+    "Rajinikanth",
+    "Sacnilk",
+    "Nelson Dilipkumar",
+    "TrackTollywood",
+    "Rajinikanth's Jailer"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Jailer 2' named 'Jailer 3', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Sacnilk' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'TrackTollywood' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: \"Rajinikanth's Jailer\" has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Rajinikanth Felicitates Writer Kalaignanam.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q60068)",
+      "verdict": "rejected",
+      "reason": "resolution: 800x1200 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Aishwarya Rai Robot12.jpg",
+      "route": "identity \u2014 depicts (P180=Q60068)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x439 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rajinikanth at the Inauguration of MGR Statue.jpg",
+      "route": "identity \u2014 depicts (P180=Q60068)",
+      "verdict": "USED (news)",
+      "reason": "1200x1800, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Rajinikanth at the Inauguration of MGR Statue (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q60068)",
+      "verdict": "rejected",
+      "reason": "resolution: 727x983 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Rajinikanth snapped at the airport.jpg",
+      "route": "identity \u2014 depicts (P180=Q60068)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x878 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Vijayan (Guru).jpg",
+      "route": "identity \u2014 depicts (P180=Q60068)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Nelson Dilipkumar.png",
+      "route": "identity \u2014 Wikidata P18 (Q63698985)",
+      "verdict": "rejected",
+      "reason": "resolution: 317x368 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "rajinikanth-at-the-inauguration-of-mgr-statu",
+      "path": "rajinikanth-at-the-inauguration-of-mgr-statu.jpg",
+      "size": [
+        1200,
+        1800
+      ],
+      "role": "establishing",
+      "subject": "Rajinikanth at the Inauguration of MGR Statue",
+      "route": "identity \u2014 depicts (P180=Q60068)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Rajinikanth_at_the_Inauguration_of_MGR_Statue.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Rajinikanth_at_the_Inauguration_of_MGR_Statue.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Dani Charles, Silverscreen Media Inc. (https://silverscreen.in)"
+    }
+  ]
+}

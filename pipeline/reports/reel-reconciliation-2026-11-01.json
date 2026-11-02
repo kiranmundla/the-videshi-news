@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 219,
-    "db_rows": 155,
-    "db_rows_with_yt_id": 125,
+    "channel_videos": 220,
+    "db_rows": 156,
+    "db_rows_with_yt_id": 126,
     "legacy_log_entries": 205,
-    "publish_log_entries": 38,
-    "in_sync": 105,
+    "publish_log_entries": 39,
+    "in_sync": 106,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 13,
     "ghost_db_rows": 16,
@@ -745,9 +745,16 @@
     {
       "title": "Jailer 2 First Indian Film to Cross Rs 75 Crore in All Four South Markets #Shorts #Entertainment",
       "published_at": "2026-11-01T11:14:54Z",
-      "privacy": "public",
+      "privacy": "unlisted",
       "video_id": "ZFm4TJG3vpc",
       "record": "prebuilt_reels:ce9cd618-ae44-4c10-90db-f93ce6040bc9"
+    },
+    {
+      "title": "Jailer 2 Crosses Rs 800 Crore, a First for Tamil Cinema #Shorts #Entertainment",
+      "published_at": "2026-11-01T23:17:49Z",
+      "privacy": "public",
+      "video_id": "QUXf7VInd_8",
+      "record": "prebuilt_reels:161cc8e5-367e-4b35-9d76-f18fb3edb5ea"
     }
   ],
   "unknown_legacy_logged": [
@@ -3701,5 +3708,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-01T17:20:18+00:00"
+  "generated_at": "2026-11-01T23:18:46+00:00"
 }

@@ -1,0 +1,266 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "india-october-gst-collection-rises-25-6-percent-net-2-03-trillion",
+  "verdict": "fail",
+  "held_claims": [
+    "stats[2].big"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA'S NET GST COLLECTION JUMPS 25.6% TO RS 2.03 TRILLION IN OCTOBER",
+      "numbers": [
+        2.03,
+        25.6
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states net GST collection rose 25.6% to Rs 2.03 trillion in October.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "India's net GST collection rose 25.6% year on year to Rs 2.03 trillion in October, according to a government statement reported by Reuters, with gross collection up 22.9% to Rs 2.31 trillion.",
+      "numbers": [
+        2.03,
+        2.31,
+        22.9,
+        25.6
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All facts in the claim are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "25.6%",
+      "numbers": [
+        25.6
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This percentage is mentioned in relation to net GST collection.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Rise in India's net GST collection in October, year on year",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the year-on-year rise in net GST collection.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "Rs 2.31 trillion",
+      "numbers": [
+        2.31
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This figure is stated as the gross GST collection in October.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Gross GST collection, up 22.9%",
+      "numbers": [
+        22.9
+      ],
+      "entities": [
+        "Gross GST"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article reports gross collection increased by 22.9%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "42%",
+      "numbers": [
+        42.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This percentage refers to the increase in tax revenue from imports.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Jump in tax revenue from imports",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states tax revenue from imports rose by 42%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "4th",
+      "numbers": [
+        4.0
+      ],
+      "entities": [],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_numbers": [
+          4.0
+        ]
+      },
+      "llm_reason": "October is noted as the fourth month gross GST crossed Rs 2 trillion.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Month this year gross crossed Rs 2 trillion",
+      "numbers": [
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms October as the fourth month for this milestone.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Sustained receipts above Rs 2 trillion support the fiscal position heading into the February budget",
+      "numbers": [
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses sustained GST receipts supporting fiscal position.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "For diaspora investors, an input for rupee stability and Indian equity sentiment \u2014 not a guarantee",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions this as a consideration for diaspora investors.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "October was the fourth month of this financial year in which gross GST crossed Rs 2 trillion \u2014 a sign of sustained consumption and compliance, not a one-off spike.",
+      "numbers": [
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this fact and its implications.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "GST",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Reuters",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Business Standard",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000655,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

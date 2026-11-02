@@ -1,0 +1,276 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "sindhu-lakshya-sen-hylo-open-double-titles",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "SINDHU AND LAKSHYA SEN COMPLETE AN INDIAN DOUBLE AT THE HYLO OPEN",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Both players won singles titles at the Hylo Open.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "P. V. Sindhu and Lakshya Sen won both singles titles at the Hylo Open in Saarbr\u00fccken on Sunday, November 1, beating Line Hojmark Kjaersfeldt and defending champion Jonatan Christie in straight games.",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "P V Sindhu",
+        "Lakshya Sen",
+        "Hylo Open",
+        "Line Hojmark Kjaersfeldt",
+        "Jonatan Christie"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms both players won titles on November 1.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "21-12, 21-14",
+      "numbers": [
+        12.0,
+        14.0,
+        21.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "These scores are Sindhu's winning scores against Kjaersfeldt.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Sindhu's win over Kjaersfeldt in the women's singles final",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Sindhu won against Kjaersfeldt in the women's final.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "21-17, 21-10",
+      "numbers": [
+        10.0,
+        17.0,
+        21.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "These scores are Sen's winning scores against Christie.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Sen's win over defending champion Christie in the men's final",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Sen won against Christie in the men's final.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "1988",
+      "numbers": [
+        1988.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          1988
+        ]
+      },
+      "llm_reason": "Hylo Open began in 1988 according to the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Hylo Open began \u2014 Sindhu is its first Indian women's winner",
+      "numbers": [],
+      "entities": [
+        "Hylo Open"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Sindhu is the first Indian woman to win since 1988.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "4 YEARS",
+      "numbers": [
+        4.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "It has been four years since two Indians won singles titles.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Since two Indians last won singles titles at the same Super 500 or above event",
+      "numbers": [
+        500.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Last instance was four years ago at the 2022 India Open.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Sindhu did not drop a game all week in Saarbr\u00fccken",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states Sindhu did not lose a game during the tournament.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "India was the only country to win two titles at the Hylo Open",
+      "numbers": [],
+      "entities": [
+        "Hylo Open"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "India was the only country to win both singles titles.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "India finished the Hylo Open with both singles titles \u2014 its first double at a Super 500 or above event in four years.",
+      "numbers": [
+        500.0
+      ],
+      "entities": [
+        "Hylo Open"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the first double at Super 500 level in four years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "P. V. Sindhu",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Lakshya Sen",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Hylo Open",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Jonatan Christie",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Line Hojmark Kjaersfeldt",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00072,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}
