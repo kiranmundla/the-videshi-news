@@ -120,13 +120,6 @@
     "added_date": "2026-05-01"
   },
   {
-    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/onam-kerala-celebration-32455915.jpg",
-    "label": "Elegant South Indian woman in traditional attire adorned with jewelry, celebrating culture. · 📷 Manoj Bharathi",
-    "source": "pexels",
-    "added_date": "2026-05-27",
-    "pexels_id": 32455915
-  },
-  {
     "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/onam-kerala-celebration-12517577.jpg",
     "label": "Captivating scene of a traditional dance festival in Bengaluru, showcasing cultural vibrancy and community spirit. · 📷 Ravi Mittal",
     "source": "pexels",
@@ -258,5 +251,12 @@
     "source": "pexels",
     "added_date": "2026-10-26",
     "pexels_id": 12950219
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/indian-restaurant-kitchen-39025942.jpg",
+    "label": "Chef skillfully preparing traditional Indian street food chaat with various toppings and sauces. · 📷 Diana Teronpi",
+    "source": "pexels",
+    "added_date": "2026-11-02",
+    "pexels_id": 39025942
   }
 ]
