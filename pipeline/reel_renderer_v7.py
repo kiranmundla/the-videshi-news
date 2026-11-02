@@ -109,6 +109,25 @@ gate changes:
      zone and MIN_FONT are unchanged; only composition changes,
      exactly as the crispness gate already demotes scenes it
      cannot fill cleanly.
+
+REVISION (2026-11-02, Ambani reel held at frame QA): the first
+full-bleed hero scene (a Forbes Building photo under the $6.3B
+stat) failed edge_overflow:hero with NO text anywhere near a
+band — the 616 offending pixels were the photo's own white
+clouds against its dark roofline at y<35, which carry the QA
+glyph signature (near-white core within ~4px of near-black).
+A backdrop photo can never do this (the stage box never touches
+a forbidden band); a full-bleed photo reaches every band, and
+only the BOTTOM was protected (the legibility gradient). Fix,
+renderer-side only: full-bleed scenes get the matching TOP
+SCRIM (apply_top_scrim) — a navy fade over the top 320px,
+sized so every source row the max Ken Burns zoom can pull
+into the y<118 band (bg y < ~148) composites below the QA
+white-core threshold. It also keeps the "V." mark (drawn
+after the scrim, at y=150) legible on bright skies. The text
+fit itself was measured innocent: the same fit_playfair_single
+serves both tracks, and the stat's painted pixels sit at
+x 77..915 + stroke on both renders.
 """
 import json, math, subprocess, sys, time
 from pathlib import Path
@@ -148,6 +167,17 @@ PHOTO_TOP = 156                     # backdrop photo top: clears
 ZONE_TOP_GAP = 64                   # photo bottom -> text block gap
 ZONE_BOTTOM_PAD = 24
 MIN_FONT = R.MIN_FONT
+# Full-bleed top scrim (2026-11-02): a full-bleed photo reaches
+# the frame's top edge, where the QA edge bands forbid glyph-like
+# pixels (y<118). At max Ken Burns zoom (1.07, y-anchor 0.30)
+# every bg row y < ~148 can land in that band, so the scrim must
+# still be strong there: TOP_SCRIM_AMAX 128 fading linearly over
+# TOP_SCRIM_H 320 leaves alpha ~68 at y=148, which composites a
+# pure-white pixel to ~188 — below the QA white-core threshold
+# (all channels > 235). The bottom edge needs no twin: the v6
+# legibility gradient already reaches alpha 165 there.
+TOP_SCRIM_H = 320
+TOP_SCRIM_AMAX = 128
 STAGE_COLORS = {"navy": NAVY, "black": (0, 0, 0)}
 XFADE_S = 0.4                       # scene-boundary crossfade (s)
 # Backdrop crop regions, cycled for hero-window scenes: windows of
@@ -708,6 +738,29 @@ def fit_scene_v7(key, stats, category, zone_h, floor=0.5):
     return None
 
 
+def apply_top_scrim(img):
+    """Navy fade over the top TOP_SCRIM_H px of a full-bleed
+    background (the top twin of R.apply_gradient's bottom fade).
+
+    A full-bleed photo reaches the frame edges the design safe
+    zone reserves for text; bright photo detail at the top edge
+    (the Ambani reel's clouds against the Forbes Building
+    roofline, y<35) carries the frame-QA glyph signature —
+    near-white core within ~4px of near-black — and fails
+    edge_overflow even though no text is there. The scrim
+    composites those rows toward GRAD_COLOR hard enough that
+    no pixel in the zoom-reachable band can stay a white core,
+    and as a side effect keeps the "V." mark (drawn at y=150,
+    after the scrim) legible against bright skies."""
+    alpha = Image.new("L", (1, H))
+    for yy in range(H):
+        a = int(TOP_SCRIM_AMAX * max(0.0, 1.0 - yy / TOP_SCRIM_H))
+        alpha.putpixel((0, yy), a)
+    alpha = alpha.resize((W, H))
+    scrim = Image.new("RGB", (W, H), R.GRAD_COLOR)
+    return Image.composite(scrim, img, alpha)
+
+
 # ── Scene background composition ─────────────────────────────────────
 def _brand_chip_stage(img, x, y, stage_rgb):
     """'THE VIDESHI' chip on the photo (backdrop track): pill fill
@@ -732,7 +785,8 @@ def compose_scene_bg(img, track, anchor, stage_rgb, box=None,
     Returns (bg, placement). full-bleed: the 9:16 cover window
     (cover_window) resized to the frame — the track gate has
     already guaranteed scale <= 1.0 — + the v6 smooth gradient +
-    the "V." mark inside the safe zone. backdrop: the scene's
+    the top scrim (apply_top_scrim) + the "V." mark inside the
+    safe zone. backdrop: the scene's
     window of the source resized to the CONSTANT stage box
     (box_w x box_h at PHOTO_TOP) — every backdrop scene in the
     reel shows its photo at this identical size — + the brand
@@ -748,6 +802,7 @@ def compose_scene_bg(img, track, anchor, stage_rgb, box=None,
         crop = img.crop(rect)
         bg = crop.resize((W, H), Image.LANCZOS).convert("RGB")
         bg = R.apply_gradient(bg)
+        bg = apply_top_scrim(bg)
         # "V." mark in the card style (white Playfair V + red dot),
         # shifted from the card corner (52, 36) to y=150 — just
         # inside the reel safe zone the frame-QA gate enforces.
@@ -1251,7 +1306,9 @@ def render_reel_v7(script, hero_path, inline_paths, music_path,
                   "unsharp": list(R.ENH["unsharp"]),
                   "warmth": list(R.ENH["warmth"])},
         "gradient": {"color": R.GRAD_COLOR, "t0": R.GRAD_T0,
-                     "exp": R.GRAD_EXP, "amax": R.GRAD_AMAX}
+                     "exp": R.GRAD_EXP, "amax": R.GRAD_AMAX,
+                     "top_scrim": {"h": TOP_SCRIM_H,
+                                   "amax": TOP_SCRIM_AMAX}}
         if any(s["v7"]["track"] == "full-bleed"
                for s in scenes.values()) else None,
         "safe_zone": {"x": [TEXT_X, TEXT_X + TEXT_MAX_W],

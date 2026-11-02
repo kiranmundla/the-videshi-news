@@ -338,6 +338,91 @@ check_eq("an extra with NO entity identity keeps the legacy "
          "behaviour (assignment honoured)",
          sources(plans)[5], "extra:ceo")
 
+print("── regression: full-bleed top scrim (2026-11-02) ──")
+# The Ambani reel's full-bleed hero scene (Forbes Building
+# photo) was HELD at frame QA with edge_overflow:hero although
+# its text sat well inside the column: the offending pixels
+# were the PHOTO's white clouds against its dark roofline at
+# y<35 — the QA glyph signature (near-white core within ~4px
+# of near-black) inside the y<118 band. A backdrop photo can
+# never reach a band; a full-bleed photo reaches all of them,
+# and only the bottom was protected (the legibility gradient).
+# compose_scene_bg now applies apply_top_scrim on full-bleed
+# scenes. Reproduce the failure shape synthetically and run
+# the gate's own pixel math (imported, never edited) over the
+# composed background exactly as QA does: bg warped into frame
+# coords at the beat midpoint vs a black plate.
+import numpy as _np
+import tempfile as _tf
+import reel_frame_qa as _QA
+
+_sky = Image.new("RGB", (1600, 2400), (148, 142, 132))
+_spx = _sky.load()
+for _y in range(150):                    # near-white sky strip
+    for _x in range(1600):
+        _spx[_x, _y] = (247, 252, 255)
+for _i in range(6):                      # dark roofline posts
+    _x0 = 120 + _i * 240
+    for _y in range(30, 110):
+        for _x in range(_x0, _x0 + 40):
+            _spx[_x, _y] = (8, 9, 11)
+
+
+def _qa_edge_clusters(bg_img, t=13.0):
+    """(offending_px, n_clusters, largest) of the gate's edge
+    check for a text-free scene bg at time t, vs a black plate
+    (the Ambani render's hook plate was black across the top)."""
+    with _tf.TemporaryDirectory() as _td:
+        _bp = Path(_td) / "bg.jpg"
+        bg_img.save(_bp, quality=92)
+        _pp = Path(_td) / "plate.jpg"
+        Image.new("RGB", (V7.W, V7.H), (0, 0, 0)).save(_pp)
+        _frame = _QA.bg_plate(_bp, t)
+        _plate = _QA.bg_plate(_pp, t)
+    _changed = _np.abs(
+        _QA.luminance(_frame.astype(_np.float32))
+        - _QA.luminance(_plate.astype(_np.float32))) > 25
+    _mask = _QA.detect_text_mask(_frame) & _changed
+    return _QA.clusters_in_zones(_mask)
+
+
+_rect = V7.cover_window(_sky.size, (0.5, 0.5))
+_pre = _sky.crop(_rect).resize((V7.W, V7.H),
+                               Image.LANCZOS).convert("RGB")
+_pre = _R.apply_gradient(_pre)           # the pre-fix composition
+_bad, _n, _largest = _qa_edge_clusters(_pre)
+check(f"fixture bites pre-fix: sky/roofline forms "
+      f"{_n} glyph cluster(s) in the bands ({_bad}px)",
+      _n >= 1)
+_bg, _pl = V7.compose_scene_bg(_sky, "full-bleed", (0.5, 0.5),
+                               V7.STAGE_COLORS["black"])
+check_eq("synthetic portrait earns the full-bleed track",
+         _pl["mode"], "cover")
+_bad2, _n2, _ = _qa_edge_clusters(_bg)
+check(f"scrimmed full-bleed bg passes the gate's edge check "
+      f"({_bad2}px in bands, {_n2} clusters)", _n2 == 0)
+_top = _np.array(_bg.convert("RGB"))[:148]
+check("no white-core pixel survives in the zoom-reachable "
+      "band (bg y<148)",
+      int((_top > 235).all(axis=2).sum()) == 0)
+# The stat itself was never the overflow — pin that down too:
+# the hero fit for a wide stat string on a full-bleed zone
+# paints inside the QA bands, stroke included.
+_fit = V7.fit_scene_v7("hero", _AMBANI_SCRIPT, "Markets Finance",
+                       V7.SAFE_BOTTOM - V7.SAFE_TOP)
+check("hero fit succeeds for the $6.3 BILLION stat", _fit is not None)
+if _fit is not None:
+    _scale, _ch, _painter = _fit
+    _ov = Image.new("RGBA", (V7.W, V7.H), (0, 0, 0, 0))
+    _painter(_ov, V7.SAFE_BOTTOM - _ch, dark_bg=False)
+    _bbox = _ov.split()[3].getbbox()
+    check(f"painted stat block x {_bbox[0]}..{_bbox[2]} stays "
+          f"inside the QA x bands",
+          _bbox[0] >= _QA.EDGE_X0 and _bbox[2] <= _QA.EDGE_X1)
+    check(f"painted stat block y {_bbox[1]}..{_bbox[3]} stays "
+          f"inside the QA y bands",
+          _bbox[1] >= _QA.EDGE_Y0 and _bbox[3] <= _QA.EDGE_Y1)
+
 print()
 if FAILS:
     print(f"❌ {len(FAILS)} FAILURE(S): {FAILS}")
