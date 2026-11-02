@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generated": "2026-10-31",
+ "generated": "2026-11-01",
  "source": "wikidata-coverage.json (169 measured entities) + failure-corpus.json traps; corrections/additions verified against the live Wikidata API 2026-10-31 Corpus-replay-live curation list applied 2026-10-31 (13 entries: 11 verified resolutions + Cheeni/Yulu no-identity records).",
  "entities": [
   {
@@ -260,8 +260,10 @@
    "p18_quality": 2592,
    "official_domain": null,
    "confusables": [],
-   "blocked_files": [],
-   "notes": ""
+   "blocked_files": [
+    "2026-01-17 FIS Nordic Combined World Cup Oberhof 2026 – Women's Individual Compact by Sandro Halank–138.jpg"
+   ],
+   "notes": "2026-11-01: a FIS Nordic Combined (skiing) World Cup file was placed as a 'World Cup' INLINE in the India women's cricket World Cup anniversary article by the old open-search route — same trophy name, entirely different sport; corpus-blocked."
   },
   {
    "name": "Asian Games",
@@ -1963,8 +1965,10 @@
      "why": "Label-exact candidate (24 sitelinks) vs the UK department Q763388 (27). Immigration/news context = the department."
     }
    ],
-   "blocked_files": [],
-   "notes": "label-exact candidates: Home Office [Q763388, 27 sitelinks] — British government ministerial department; home office [Q1759167, 24 sitelinks] — room in a house dedicated for work, like paperwork, computer work, or reading; Home Office [Q135022468, 0 sitelinks] — 2021 video game developed by UnderLight"
+   "blocked_files": [
+    "Home Secretary & Prime Minister Diwali visit to Neasden Temple to Neasden Temple in 2021.jpg"
+   ],
+   "notes": "label-exact candidates: Home Office [Q763388, 27 sitelinks] — British government ministerial department; home office [Q1759167, 24 sitelinks] — room in a house dedicated for work, like paperwork, computer work, or reading; Home Office [Q135022468, 0 sitelinks] — 2021 video game developed by UnderLight 2026-11-01: the Neasden Temple Diwali-visit file was placed as a 'Home Office' INLINE in the Palestine Action London-protest article by the old open-search route — a 2021 temple visit is not a picture of the department; corpus-blocked."
   },
   {
    "name": "Smit Machchhar",
@@ -3831,6 +3835,96 @@
    "resolved_confidence": "medium",
    "resolved_context": "India's Rs 1.64 Lakh Crore Chip Bet Now Has 12 Projects — and Its First Production Lines Twelve approved semiconductor projects span six states, Gujarat holds the largest share, and Micron, Kaynes and CG Semi have started commercial production under Semicon 2.0's Rs 1.275 lakh crore outlay. Twelve approved semiconductor projects span six states, Gujarat holds the largest share, and Micron, Kaynes ",
    "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: \"India's Rs 1.64 Lakh Crore Chip Bet Now Has 12 Projects — and Its First Production Lines Twelve approved semiconductor projects span six states, Gujarat holds the largest share, and Micron, Kaynes and\"; description: state of India"
+  },
+  {
+   "name": "London",
+   "aliases": [],
+   "type": "place",
+   "wikidata_qid": "Q84",
+   "p18_file": "London Skyline (125508655).jpeg",
+   "p18_quality": "2048x1152 CC BY-SA skyline, verified 2026-11-01",
+   "official_domain": null,
+   "confusables": [
+    {
+     "name": "London, Ontario",
+     "qid_or_note": "Q92561",
+     "why": "Canadian city of the same name — its police HQ photo was placed on a London, UK protest story (hero slot, 2026-11-01). Locality must be the article's place."
+    }
+   ],
+   "blocked_files": [
+    "London Police Services headquarters, London, Ontario, 2026-07-31.jpg",
+    "London Feb 10 2008 CoS protest AB 6.JPG"
+   ],
+   "notes": "Q84 verified against the live Wikidata API 2026-11-01 ('capital and largest city of England and the United Kingdom'). Blocked files corpus-seeded 2026-11-01: the Ontario police HQ (placed as HERO on the Palestine Action London-protest article) and a 2008 Church of Scientology protest photo (placed as INLINE on the same article) — both by the old open-search route."
+  },
+  {
+   "name": "Char Dham",
+   "aliases": [
+    "Chota Char Dham"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1372264",
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [
+    {
+     "name": "Char Dham, Vrindavan",
+     "qid_or_note": "temple complex in Vrindavan, Uttar Pradesh — separate site, not a Wikidata item for the Uttarakhand circuit",
+     "why": "An aerial photo of the Vrindavan complex was placed as an INLINE in the Uttarakhand Char Dham chopper-crash article (2026-11-01). Same name, different place in a different state."
+    },
+    {
+     "name": "Char Dham (Nepal)",
+     "qid_or_note": "Q105759697",
+     "why": "Four Hindu religious sites in Nepal sharing the name."
+    }
+   ],
+   "blocked_files": [
+    "Aerial View of Char Dham Vrindavan from National Highway.jpg"
+   ],
+   "notes": "Q1372264 verified against the live Wikidata API 2026-11-01 ('four Hindu pilgrimage sites in India' — the Uttarakhand circuit: Yamunotri, Gangotri, Kedarnath, Badrinath). Blocked file corpus-seeded 2026-11-01 (Vrindavan aerial placed by the old open-search route)."
+  },
+  {
+   "name": "Part One",
+   "aliases": [],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [
+    "Mission Impossible – Dead Reckoning Part one (53019462143).jpg"
+   ],
+   "notes": "Headline-phrase fragment ('Ramayana Part One'), not an entity with a Wikidata identity — guard entry so resolution fails closed. Blocked file corpus-seeded 2026-11-01: a Mission: Impossible premiere photo placed as an INLINE under this fragment in TWO Ramayana articles (the Rs 4,000-crore budget piece and an older presales piece) by the old open-search route."
+  },
+  {
+   "name": "Crore Entertainment",
+   "aliases": [],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [
+    "Krash chauhan aagyo ajmer.jpg"
+   ],
+   "notes": "Headline/body extraction fragment from the Jailer 2 Rs 800-crore story, not an entity with a Wikidata identity — guard entry so resolution fails closed. Blocked file corpus-seeded 2026-11-01: an Ajmer fairground photo placed as an INLINE under this fragment by the old open-search route."
+  },
+  {
+   "name": "Election Day",
+   "aliases": [],
+   "type": "other",
+   "wikidata_qid": null,
+   "p18_file": null,
+   "p18_quality": null,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [
+    "A. Dusch Elections à Strasbourg Schwoertag inv. CE LXIII.56 a.jpg"
+   ],
+   "notes": "Generic concept, not an entity with a single Wikidata identity — guard entry so resolution fails closed. Blocked file corpus-seeded 2026-11-01: a centuries-old Strasbourg elections lithograph placed as an INLINE in the US Midterm Results 2026 article by the old open-search route."
   }
  ]
 }

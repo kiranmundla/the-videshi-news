@@ -143,6 +143,12 @@ def stub_net(pages_by_query=None, cache=None, verify=None):
                                               "width": 2400}),
         "person_cache": lambda name: (cache or {}).get(name),
         "download_verify": lambda url, dest: [2400, 1500],
+        # Inline identity seams (2026-11-01): fail closed by
+        # default so no test in this suite can reach the live
+        # resolver through the DEFAULT_NET merge.
+        "resolve_entity": lambda name, context="": None,
+        "depicts": lambda qid, limit=10: [],
+        "wikidata_item": lambda qid: None,
     }
     return net, calls
 

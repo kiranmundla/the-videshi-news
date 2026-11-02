@@ -22,6 +22,13 @@ Every fixture is modeled on a VERIFIED Oct 25–26 live failure:
     Diwali story; a 2022 White House Diwali photo captioned
     as Times Square 2026.
 
+2026-11-01: the inline-exercising fixtures (Air India
+end-to-end, section D duplicates, section E IOB) were re-based
+onto the identity route — open search was abolished for
+inlines, so the same behaviors are now proven through
+registry resolution + P18/depicts candidates. The hero-path
+and evaluator fixtures are unchanged.
+
 All network is stubbed. Run:
   python3 test_picture_pass_guards.py   (exit 0 = all pass)
 """
@@ -68,7 +75,9 @@ def commons_page(title, w, h, license_short="CC BY-SA 4.0",
     return {"title": title, "imageinfo": [info]}
 
 
-def stub_net(pages_by_query=None, cache=None):
+def stub_net(pages_by_query=None, cache=None, resolutions=None,
+             depicts_by_qid=None, pages_by_title=None,
+             items_by_qid=None):
     pages_by_query = pages_by_query or {}
     calls = {"search": []}
 
@@ -81,12 +90,23 @@ def stub_net(pages_by_query=None, cache=None):
 
     net = {
         "commons_search": commons_search,
-        "commons_file_info": lambda title: None,
+        "commons_file_info":
+            lambda title: (pages_by_title or {}).get(title),
         "brave_links": lambda q, n=8: [],
         "fetch_text": lambda url, timeout=15: "",
         "verify_url": lambda url: {"ok": True, "width": 2400},
         "person_cache": lambda name: (cache or {}).get(name),
         "download_verify": lambda url, dest: [2400, 1500],
+        # Inline identity seams (2026-11-01 re-base: open search
+        # abolished for inlines — inline behaviors below are
+        # proven through registry resolution + P18/depicts).
+        "resolve_entity":
+            lambda name, context="": (resolutions or {}).get(name),
+        "depicts":
+            lambda qid, limit=10: (depicts_by_qid or {}).get(qid,
+                                                             []),
+        "wikidata_item":
+            lambda qid: (items_by_qid or {}).get(qid),
     }
     return net, calls
 
@@ -274,9 +294,35 @@ check("non-subject entity never even searched for the hero",
       not any("Toronto Pearson" in q for q in calls_ai["search"]),
       str(calls_ai["search"]))
 # Same article end-to-end: hero stays an honest miss, but the
-# place picture remains INLINE-eligible (inline gates apply).
+# place picture remains INLINE-eligible. 2026-11-01 re-base:
+# inlines are identity-only now, so eligibility is proven the
+# new way — 'Toronto Pearson' resolves through the registry and
+# the Biman photo arrives as a depicts (P180) file OF the
+# airport (a plane photographed on its own ramp). Its
+# description naming the Dhaka flight must NOT trip the
+# locality gate: the file's title names the place itself.
 net_ai2, _c = stub_net(
-    pages_by_query={"Toronto Pearson": [BIMAN_PAGE]})
+    pages_by_query={"Toronto Pearson": [BIMAN_PAGE]},
+    resolutions={
+        "Toronto Pearson": {
+            "name": "Toronto Pearson International Airport",
+            "aliases": ["Toronto Pearson"], "qid": "Q-TEST-TP",
+            "p18_file": None, "type": "place",
+            "method": "registry", "confidence": "high",
+            "blocked_files": [], "notes": "",
+            "description": "international airport in "
+                           "Mississauga, Ontario, Canada"}},
+    depicts_by_qid={"Q-TEST-TP": [
+        {"title": "File:Biman at Toronto Pearson Airport "
+                  "13.jpg"}]},
+    pages_by_title={
+        "File:Biman at Toronto Pearson Airport 13.jpg":
+            BIMAN_PAGE},
+    items_by_qid={"Q-TEST-TP": {
+        "description": "international airport serving "
+                       "Toronto, Ontario, Canada",
+        "located_in": ["Toronto", "Ontario"],
+        "country": "Canada"}})
 rec_ai2 = P.process_article(AIR_INDIA_ART, net=net_ai2,
                             apply=False, log=lambda *a: None)
 check("end-to-end: no hero proposed for the Air India story",
@@ -442,9 +488,40 @@ two_ents = [
     {"name": "Bhubaneswar", "kind": "org/place",
      "source": "headline", "sourceable": True},
 ]
-net_dup, _c = stub_net(pages_by_query={
-    "Reserve Bank of India": [DUP_PAGE_1],
-    "Bhubaneswar": [DUP_PAGE_2]})
+# 2026-11-01 re-base: both files now arrive as depicts (P180)
+# candidates of their entities' registry resolutions — the
+# canonical-identity dedup in _source_inlines is what is under
+# test, exactly as before.
+_DUP_RES = {
+    "Reserve Bank of India": {
+        "name": "Reserve Bank of India", "aliases": [],
+        "qid": "Q-TEST-RBI", "p18_file": None,
+        "type": "company", "method": "registry",
+        "confidence": "high", "blocked_files": [], "notes": ""},
+    "Bhubaneswar": {
+        "name": "Bhubaneswar", "aliases": [],
+        "qid": "Q-TEST-BBSR", "p18_file": None,
+        "type": "place", "method": "registry",
+        "confidence": "high", "blocked_files": [], "notes": ""},
+}
+_DUP_DEPICTS = {
+    "Q-TEST-RBI": [{"title": "File:Reserve Bank of India "
+                             "headquarters Mumbai.jpg"}],
+    "Q-TEST-BBSR": [{"title": "File:Bhubaneswar skyline "
+                              "panorama.jpg"}],
+}
+_DUP_PAGES = {
+    "File:Reserve Bank of India headquarters Mumbai.jpg":
+        DUP_PAGE_1,
+    "File:Bhubaneswar skyline panorama.jpg": DUP_PAGE_2,
+}
+_DUP_ITEMS = {"Q-TEST-BBSR": {
+    "description": "capital city of Odisha, India",
+    "located_in": ["Odisha"], "country": "India"}}
+net_dup, _c = stub_net(resolutions=_DUP_RES,
+                       depicts_by_qid=_DUP_DEPICTS,
+                       pages_by_title=_DUP_PAGES,
+                       items_by_qid=_DUP_ITEMS)
 rec_dup = {"ledger": [], "notes": []}
 picks_dup = P._source_inlines(DUP_ART, two_ents, "", net_dup,
                               3, set(), rec_dup, lambda *a: None)
@@ -453,8 +530,13 @@ check_eq("two entities, same file URL -> only one inline",
 check("the duplicate rejection is ledgered",
       any("duplicate" in r.get("reason", "")
           for r in rec_dup["ledger"]))
-net_dup2, _c = stub_net(pages_by_query={
-    "Reserve Bank of India": [DUP_PAGE_1]})
+net_dup2, _c = stub_net(
+    resolutions={"Reserve Bank of India":
+                 _DUP_RES["Reserve Bank of India"]},
+    depicts_by_qid={"Q-TEST-RBI": _DUP_DEPICTS["Q-TEST-RBI"]},
+    pages_by_title={
+        "File:Reserve Bank of India headquarters Mumbai.jpg":
+            DUP_PAGE_1})
 rec_dup2 = {"ledger": [], "notes": []}
 picks_dup2 = P._source_inlines(
     DUP_ART, two_ents[:1], "", net_dup2, 3, set(), rec_dup2,
@@ -623,6 +705,27 @@ LEMELLE_PAGE = commons_page(
          "fundraise business.",
     cats="Indian Overseas Bank|Bank branches in India")
 _IOB_ORG_ENTS = IOB_ENTS[:1]
+
+
+def _iob_net():
+    # 2026-11-01 re-base: the Lemelle file arrives as a depicts
+    # (P180) candidate of the bank's registry resolution; the
+    # canonical-identity dedup under test is unchanged.
+    return stub_net(
+        resolutions={"Indian Overseas Bank": {
+            "name": "Indian Overseas Bank", "aliases": [],
+            "qid": "Q-TEST-IOB", "p18_file": None,
+            "type": "company", "method": "registry",
+            "confidence": "high", "blocked_files": [],
+            "notes": ""}},
+        depicts_by_qid={"Q-TEST-IOB": [
+            {"title": "File:Indian Overseas Bank at "
+                      "Lemelle.jpg"}]},
+        pages_by_title={
+            "File:Indian Overseas Bank at Lemelle.jpg":
+                LEMELLE_PAGE})[0]
+
+
 for _label, _kwargs in (
         ("thumb form already in the body",
          {"exclude_urls": frozenset({_LEMELLE_THUMB})}),
@@ -630,8 +733,7 @@ for _label, _kwargs in (
          {"exclude_urls": frozenset({_LEMELLE_STORAGE})}),
         ("the file is the article's hero (thumb form)",
          {"hero_url": _LEMELLE_THUMB})):
-    net_iob, _c = stub_net(pages_by_query={
-        "Indian Overseas Bank": [LEMELLE_PAGE]})
+    net_iob = _iob_net()
     rec_iob = {"ledger": [], "notes": []}
     picks_iob = P._source_inlines(
         IOB_ART, _IOB_ORG_ENTS, "", net_iob, 2, set(),
@@ -642,8 +744,7 @@ for _label, _kwargs in (
           f"({_label})",
           any("duplicate" in r.get("reason", "")
               for r in rec_iob["ledger"]))
-net_iob, _c = stub_net(pages_by_query={
-    "Indian Overseas Bank": [LEMELLE_PAGE]})
+net_iob = _iob_net()
 rec_iob = {"ledger": [], "notes": []}
 picks_iob = P._source_inlines(
     IOB_ART, _IOB_ORG_ENTS, "", net_iob, 2, set(), rec_iob,

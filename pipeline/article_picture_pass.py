@@ -20,6 +20,14 @@ WHAT IT DOES per published article (last N hours, default 12, max 30):
      own insert_inline_images() (after the intro, spread across H2
      sections, never clustered, never before the first paragraph),
      with factual two-sentence captions in the enricher's format.
+     IDENTITY-ONLY since 2026-11-01 (Kiran: "Fix the inline route
+     now", mirroring the card fix 1ed2bf866 and the reel fix
+     afc1c643e): open search is abolished for inlines — the only
+     candidates are the verified person_images cache (persons), the
+     resolved entity's P18 file, and files that DEPICT the resolved
+     entity (Commons P180), each through the shared evaluator with
+     identity_verified=True and the entity's corpus blocklist, plus
+     a locality gate for place entities. Unverified -> NO inline.
 
 GATES (never relaxed — inherited from the reel ladder + sourcer):
   * Provably the named entity or skip: the entity must be the file's
@@ -80,6 +88,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import reel_entity_sourcing as RES
 import image_sourcer as IS
+import entity_resolve as ER
 # The identity gates shared with the reel sourcer live in
 # picture_gate_shared.py (single source of truth since
 # 2026-10-27 — the reel sourcer never had them, which is how
@@ -1136,6 +1145,66 @@ def _download_verify(url, dest):
         return list(im.size)
 
 
+_WD_UA = ("TheVideshi/1.0 (news image verification; "
+          "contact editor@thevideshi.com)")
+
+
+def _wikidata_api(params):
+    qs = urllib.parse.urlencode(params)
+    out = subprocess.run(
+        ["curl", "-s", "-m", "30", "-A", _WD_UA,
+         f"https://www.wikidata.org/w/api.php?{qs}"],
+        capture_output=True, text=True, timeout=40)
+    return json.loads(out.stdout)
+
+
+def _default_wikidata_item(qid):
+    """Locality anchors for a Wikidata item: its English
+    description, its located-in (P131) labels (one hop) and its
+    country (P17) label — read from the item ITSELF, never from a
+    candidate's filename. None on any failure; the inline locality
+    gate then applies only the checks its inputs support."""
+    try:
+        data = _wikidata_api({
+            "action": "wbgetentities", "ids": qid,
+            "props": "claims|descriptions", "languages": "en",
+            "format": "json"})
+        ent = (data.get("entities") or {}).get(qid) or {}
+        desc = ((ent.get("descriptions") or {}).get("en")
+                or {}).get("value") or ""
+        claims = ent.get("claims") or {}
+
+        def _targets(prop):
+            out = []
+            for c in claims.get(prop, []):
+                v = ((c.get("mainsnak") or {}).get("datavalue")
+                     or {}).get("value") or {}
+                if isinstance(v, dict) and v.get("id"):
+                    out.append(v["id"])
+            return out
+
+        p131 = _targets("P131")[:2]
+        p17 = _targets("P17")[:1]
+        labels = {}
+        ids = p131 + p17
+        if ids:
+            lab = _wikidata_api({
+                "action": "wbgetentities", "ids": "|".join(ids),
+                "props": "labels", "languages": "en",
+                "format": "json"})
+            for q, e in (lab.get("entities") or {}).items():
+                v = ((e.get("labels") or {}).get("en")
+                     or {}).get("value")
+                if v:
+                    labels[q] = v
+        return {"description": desc,
+                "located_in": [labels[q] for q in p131
+                               if q in labels],
+                "country": labels.get(p17[0]) if p17 else None}
+    except Exception:
+        return None
+
+
 DEFAULT_NET = {
     "commons_search": RES.commons_search,
     "commons_file_info": RES.commons_file_info,
@@ -1145,6 +1214,12 @@ DEFAULT_NET = {
     "verify_url": _verify_url,
     "person_cache": IS.fetch_cached_person_image,
     "upload_image": IS.upload_to_supabase,
+    # Identity seams for the inline route (2026-11-01). The inline
+    # path deliberately has NO search seams: resolution + depicts +
+    # file info + the item's own locality anchors are all it gets.
+    "resolve_entity": ER.resolve,
+    "depicts": ER.depicts_candidates,
+    "wikidata_item": _default_wikidata_item,
 }
 
 
@@ -1991,6 +2066,405 @@ def _same_file(candidate_texts, used_keys, used_slugs):
     return False
 
 
+# ── inline identity route (2026-11-01) ──────────────────────────
+# Kiran: "Fix the inline route now." Open search (Commons search,
+# Brave discovery, Brave official) is ABOLISHED for inlines — the
+# route that produced >=9 wrong inlines on 2026-11-01 alone (a
+# London, Ontario police HQ and a 2008 Scientology protest on a
+# London, UK story; a Vrindavan temple for the Uttarakhand Char
+# Dham; a Nordic-combined skier in a cricket World Cup story; a
+# Mission: Impossible premiere photo in two Ramayana stories; an
+# Ajmer fairground for 'Crore Entertainment'; a centuries-old
+# Strasbourg lithograph for US midterms). Inlines now mirror the
+# card fix (1ed2bf866) and the reel fix (afc1c643e): identity by
+# construction only, fail closed. The hero path above is unchanged.
+
+# First-order administrative regions for the locality gate. If a
+# place candidate's Commons evidence names one of these and the
+# resolved item's own anchors name a different set, the candidate
+# sits in the wrong locality.
+_REGION_NAMES = frozenset([
+    # India — states and union territories
+    "andhra pradesh", "arunachal pradesh", "assam", "bihar",
+    "chhattisgarh", "goa", "gujarat", "haryana",
+    "himachal pradesh", "jharkhand", "karnataka", "kerala",
+    "madhya pradesh", "maharashtra", "manipur", "meghalaya",
+    "mizoram", "nagaland", "odisha", "punjab", "rajasthan",
+    "sikkim", "tamil nadu", "telangana", "tripura",
+    "uttar pradesh", "uttarakhand", "west bengal", "delhi",
+    "ladakh", "puducherry", "jammu and kashmir", "lakshadweep",
+    "chandigarh", "andaman and nicobar islands",
+    # United States — states + DC
+    "alabama", "alaska", "arizona", "arkansas", "california",
+    "colorado", "connecticut", "delaware", "florida", "georgia",
+    "hawaii", "idaho", "illinois", "indiana", "iowa", "kansas",
+    "kentucky", "louisiana", "maine", "maryland",
+    "massachusetts", "michigan", "minnesota", "mississippi",
+    "missouri", "montana", "nebraska", "nevada",
+    "new hampshire", "new jersey", "new mexico", "new york",
+    "north carolina", "north dakota", "ohio", "oklahoma",
+    "oregon", "pennsylvania", "rhode island", "south carolina",
+    "south dakota", "tennessee", "texas", "utah", "vermont",
+    "virginia", "washington", "west virginia", "wisconsin",
+    "wyoming", "district of columbia",
+    # Canada — provinces and territories
+    "ontario", "quebec", "british columbia", "alberta",
+    "manitoba", "saskatchewan", "nova scotia", "new brunswick",
+    "newfoundland and labrador", "prince edward island",
+    "yukon", "northwest territories", "nunavut",
+    # United Kingdom — constituent countries
+    "england", "scotland", "wales", "northern ireland",
+    # Australia — states and territories
+    "new south wales", "victoria", "queensland",
+    "western australia", "south australia", "tasmania",
+    "australian capital territory", "northern territory",
+])
+_REGION_RE = re.compile(
+    r"\b(" + "|".join(re.escape(r) for r in
+                      sorted(_REGION_NAMES, key=len, reverse=True))
+    + r")\b")
+
+
+def _regions_in(text):
+    return set(_REGION_RE.findall((text or "").lower()))
+
+
+def _candidate_evidence_text(page):
+    info = ((page or {}).get("imageinfo") or [{}])[0]
+    return " ".join([page.get("title") or "",
+                     RES._meta(info, "ImageDescription"),
+                     RES._meta(info, "Categories")])
+
+
+def _locality_reject_reason(res, item_info, page, entity_name):
+    """Locality validation for place entities: the candidate must
+    be the ARTICLE'S place, judged against the resolved item's own
+    identity — its Wikidata description, its located-in (P131)
+    labels and its country (P17) — never filename matching alone.
+    Returns a rejection reason, or None when no contradiction is
+    evidenced. Conservative by design: a contradiction rejects;
+    silence does not (identity-by-construction already binds the
+    candidate to the item)."""
+    evidence = _candidate_evidence_text(page)
+    home_parts = [entity_name or "", res.get("description") or ""]
+    if item_info:
+        home_parts += [item_info.get("description") or "",
+                       item_info.get("country") or ""]
+        home_parts += list(item_info.get("located_in") or [])
+    home = " ".join(p for p in home_parts if p)
+    # Country disjointness, judged on evidence with the entity's
+    # own name removed: every candidate for 'London' contains the
+    # word London, which is itself a UK marker — the name proves
+    # nothing about WHICH London the file shows.
+    stripped = evidence
+    for nm in {entity_name, res.get("name")}:
+        if nm:
+            stripped = re.sub(re.escape(nm), " ", stripped,
+                              flags=re.IGNORECASE)
+    # The country rule is skipped when the candidate's TITLE
+    # names the entity itself: the file is then self-evidently
+    # of/at the named place, and a third country in its evidence
+    # is that subject's context, not its location (a Biman
+    # Bangladesh 787 photographed ON the Toronto Pearson ramp,
+    # kept inline-eligible 2026-10-26, must not fall to the word
+    # 'Dhaka' in its description). The region rule below still
+    # applies in that case — it is what catches 'London, Ontario'
+    # (the title names London; the region names the wrong one).
+    title_names_entity = any(
+        nm and nm.lower() in (page.get("title") or "").lower()
+        for nm in {entity_name, res.get("name")})
+    home_countries = _SHARED_GATES.countries_in(home)
+    cand_countries = _SHARED_GATES.countries_in(stripped)
+    if not title_names_entity and home_countries and cand_countries \
+            and cand_countries.isdisjoint(home_countries):
+        return ("locality: the candidate's Commons evidence "
+                f"places it in {sorted(cand_countries)} but the "
+                f"resolved place ({res.get('name') or entity_name}"
+                f", {res.get('qid')}) is in "
+                f"{sorted(home_countries)} — wrong locality, "
+                "rejected")
+    home_regions = _regions_in(home)
+    cand_regions = _regions_in(evidence)
+    extra = cand_regions - home_regions
+    if home_regions and extra:
+        return ("locality: the candidate's Commons evidence "
+                f"names {sorted(extra)} but the resolved place is "
+                f"in {sorted(home_regions)} — wrong locality, "
+                "rejected")
+    return None
+
+
+def _apply_serve_variant(cand, page):
+    """Web-budget serve handling for identity candidates, mirroring
+    evaluate_article_candidate: an original over MAX_SERVE_BYTES is
+    served via its 1920px Commons thumbnail when one is derivable,
+    else flagged oversize so _verify_pick self-compresses it."""
+    info = ((page or {}).get("imageinfo") or [{}])[0]
+    size_bytes = info.get("size") or 0
+    if not size_bytes or size_bytes <= MAX_SERVE_BYTES:
+        return
+    thumb = _wikimedia_thumb_url(cand["file_url"], SERVE_THUMB_W)
+    w, h = (cand.get("size") or [0, 0])
+    if thumb:
+        if w and w > SERVE_THUMB_W:
+            cand["size"] = [SERVE_THUMB_W,
+                            round(h * SERVE_THUMB_W / w)]
+        cand["file_url"] = thumb
+        cand["serve_variant"] = True
+        cand["verification"] += (
+            f"; original {size_bytes} bytes exceeds the web "
+            f"budget — served via its {SERVE_THUMB_W}px variant")
+    else:
+        cand["oversize_original"] = size_bytes
+        cand["needs_dims_check"] = True  # force the download path
+        cand["verification"] += (
+            f"; original {size_bytes} bytes exceeds the web "
+            "budget — flagged for self-compression at verify time")
+
+
+def _source_entity_images_identity(entity_rec, article, net,
+                                   seen_titles, want=2):
+    """Identity-only inline sourcing for one entity. Returns
+    (candidates, ledger_rows) in the same shape source_entity_images
+    returns for the hero path. The ONLY candidate sources:
+
+      (a) persons: the person_images cache (identity-verified
+          portraits, this module's standing verified route);
+      (b) the resolved entity's P18 file;
+      (c) files that DEPICT the resolved entity (Commons P180 of
+          its QID) — each through the shared evaluator with
+          identity_verified=True and the entity's corpus
+          blocklist, plus the locality gate for place entities.
+
+    No search seam is consulted: an entity that cannot be resolved
+    to a Wikidata item through the registry / guarded resolution
+    yields NO candidates (fail closed)."""
+    name = entity_rec["name"]
+    rows = []
+
+    def ledger(verdict, reason, candidate="", route="identity"):
+        rows.append({"entity": name, "route": route,
+                     "candidate": candidate, "verdict": verdict,
+                     "reason": reason})
+
+    if not entity_rec.get("sourceable", True):
+        ledger("rejected",
+               "entity not sourceable (fragment / single-token "
+               "heuristic extraction) — not identity proof; "
+               "fail closed")
+        return [], rows
+    if _SHARED_GATES.is_outlet_entity(name):
+        ledger("rejected",
+               "entity is a news outlet, not a picture subject")
+        return [], rows
+    if _SHARED_GATES.is_language_entity(name):
+        ledger("rejected",
+               "entity is a language — languages are not visual "
+               "subjects")
+        return [], rows
+    cat_toks = {t for t in RES.entity_tokens(
+        (article.get("category") or "").replace("-", " "))}
+    if cat_toks and {t for t in RES.entity_tokens(name)} \
+            == cat_toks:
+        ledger("rejected",
+               "entity is the article's category label, not a "
+               "picture subject")
+        return [], rows
+
+    cands = []
+    # (a) verified person cache — an exact-name hit is itself
+    # identity verification (same doctrine as the hero path).
+    if entity_rec.get("kind") == "person":
+        cached = None
+        try:
+            cached = (net.get("person_cache")
+                      or IS.fetch_cached_person_image)(name)
+        except Exception:
+            cached = None
+        if cached:
+            probe = {"ok": False}
+            try:
+                probe = net["verify_url"](cached)
+            except Exception:
+                pass
+            if probe.get("ok") and \
+                    (probe.get("width") or 0) >= INLINE_MIN_W:
+                cands.append({
+                    "entity": name,
+                    "title": f"{name} (verified portrait, "
+                             "person_images cache)",
+                    "file_url": cached,
+                    "size": [probe["width"], None],
+                    "source_page": "person_images cache "
+                                   "(identity-verified portrait)",
+                    "license": "as recorded in person_images at "
+                               "verification time",
+                    "artist": "",
+                    "subject": f"Portrait of {name}",
+                    "role": "portrait",
+                    "route": "person_images cache",
+                    "attribution": "Portrait via the subject's "
+                                   "verified profile "
+                                   "(person_images cache)",
+                    "verification": "portrait identity-verified "
+                                    "when cached (exact-name "
+                                    "profile gate, Source 3.8 "
+                                    "standard)",
+                })
+                ledger("accepted",
+                       f"cached verified portrait, "
+                       f"{probe['width']}px wide",
+                       candidate=name, route="person_images cache")
+            else:
+                ledger("rejected",
+                       "cached portrait failed verification or "
+                       "the width floor",
+                       candidate=name, route="person_images cache")
+
+    # (b)+(c) identity resolution -> P18 / depicts.
+    resolve = net.get("resolve_entity")
+    if resolve is None:
+        if not cands:
+            ledger("rejected",
+                   "no identity resolver available — fail closed")
+        return cands, rows
+    context = " ".join(
+        str(article.get(k) or "") for k in
+        ("headline", "summary", "excerpt"))
+    context += " " + (article.get("body") or "")[:4000]
+    try:
+        res = resolve(name, context)
+    except Exception as exc:
+        ledger("rejected",
+               f"identity resolution errored ({exc}) — "
+               "fail closed")
+        return cands, rows
+    if not res:
+        ledger("rejected",
+               "no identity resolution (not in the registry, no "
+               "guarded Wikidata match) — fail closed")
+        return cands, rows
+    method = res.get("method") or ""
+    rname = res.get("name") or name
+    if not method.startswith("registry") \
+            and not ER.names_agree(name, rname,
+                                   res.get("aliases") or []):
+        ledger("rejected",
+               f"live resolution named a different entity "
+               f"('{rname}') — names_agree failed (incl. the "
+               "numeral veto); fail closed")
+        return cands, rows
+    if res.get("confidence") == "low" \
+            and "ambiguous" in (res.get("notes") or ""):
+        ledger("rejected",
+               "ambiguous low-confidence resolution — fail closed")
+        return cands, rows
+    if res.get("type") == "language":
+        ledger("rejected",
+               "resolved type is a language — not a visual subject")
+        return cands, rows
+    qid = res.get("qid")
+    if not qid:
+        ledger("rejected",
+               "resolution carries no Wikidata item (no-identity "
+               "record) — nothing to source from; fail closed")
+        return cands, rows
+    if len(name.split()) == 1 and not method.startswith("registry"):
+        ledger("rejected",
+               "single-token entity sources only from the "
+               "curated registry — a live resolution is not "
+               "accepted; fail closed")
+        return cands, rows
+
+    blocked = {ER.file_key(b)
+               for b in (res.get("blocked_files") or [])}
+    cand_in = []
+    p18 = res.get("p18_file")
+    if p18:
+        cand_in.append((p18 if p18.startswith("File:")
+                        else "File:" + p18,
+                        f"identity — P18 of {qid}"))
+    depicts = net.get("depicts")
+    deps = []
+    if depicts is not None:
+        try:
+            deps = depicts(qid, limit=10) or []
+        except Exception:
+            deps = []
+    for d in deps:
+        t = d.get("title") if isinstance(d, dict) else None
+        if t:
+            cand_in.append((t, f"identity — depicts (P180) of "
+                               f"{qid}"))
+    # Intra-result dedup: the same file offered twice in one
+    # result set (as P18 AND as a depicts statement, or repeated
+    # depicts rows) is considered once.
+    seen_here = set()
+    uniq = []
+    for t, route in cand_in:
+        k = ER.file_key(t)
+        if k in seen_here:
+            continue
+        seen_here.add(k)
+        uniq.append((t, route))
+
+    is_place = (res.get("type") == "place")
+    item_info = None
+    if is_place:
+        wi = net.get("wikidata_item")
+        if wi is not None:
+            try:
+                item_info = wi(qid)
+            except Exception:
+                item_info = None
+    file_info = net.get("commons_file_info") or RES.commons_file_info
+    identity_cands = 0
+    for title, route in uniq:
+        if identity_cands >= want:
+            break
+        if title in seen_titles:
+            continue
+        seen_titles.add(title)
+        try:
+            page = file_info(title)
+        except Exception:
+            page = None
+        if not page:
+            ledger("rejected",
+                   "file page could not be read — fail closed",
+                   candidate=title, route=route)
+            continue
+        cand, row = RES.evaluate_commons_page(
+            page, name, route, context=None,
+            identity_verified=True, blocked_keys=blocked)
+        rows.append(row)
+        if cand is None:
+            continue
+        if is_place:
+            reason = _locality_reject_reason(res, item_info, page,
+                                             name)
+            if reason:
+                ledger("rejected", reason, candidate=cand["title"],
+                       route=route)
+                continue
+        label = cand.get("license") or ""
+        cand["attribution"] = (
+            f"Photo: {cand['artist']} via Wikimedia Commons "
+            f"({label})" if cand.get("artist") else
+            f"Wikimedia Commons ({label})")
+        via = ("P18 image" if "P18 of" in route
+               else "depicts (P180) file")
+        cand["verification"] = (
+            f"identity by construction: this file is the {via} "
+            f"of '{rname}'s resolved Wikidata item {qid} "
+            f"(resolution: {method}); license and dimensions "
+            "read from the file page's extmetadata")
+        _apply_serve_variant(cand, page)
+        cands.append(cand)
+        identity_cands += 1
+    return cands, rows
+
+
 def _source_inlines(article, entities, hint, net, want, seen_titles,
                     rec, log, hero_url=None, hero_pick=None,
                     exclude_urls=frozenset()):
@@ -2003,7 +2477,16 @@ def _source_inlines(article, entities, hint, net, want, seen_titles,
     twice because one run's original-URL figure was
     invisible to the next run's comparison, and a hero
     served as a thumb can still be re-picked as an inline
-    in its original form."""
+    in its original form.
+
+    Candidates come ONLY from _source_entity_images_identity
+    (2026-11-01): the verified person cache, the resolved
+    entity's P18, or its depicts (P180) files through the
+    shared evaluator + corpus blocklist + the place locality
+    gate. Open search no longer feeds inlines; an entity with
+    no identity resolution yields no inline. (`hint` is kept
+    in the signature for the hero path's callers; the identity
+    route needs no topicality hints — identity replaces them.)"""
     slug = article.get("slug") or "article"
     picks = []
     used_entities = {}
@@ -2048,10 +2531,8 @@ def _source_inlines(article, entities, hint, net, want, seen_titles,
         if used_entities.get(rec_e["name"], 0) \
                 >= PER_ENTITY_INLINE_CAP:
             continue
-        cands, rows = source_entity_images(
-            rec_e, article, hint, net, INLINE_MIN_W, INLINE_MIN_H,
-            want=2, seen_titles=seen_titles, log=log,
-            all_entities=entities)
+        cands, rows = _source_entity_images_identity(
+            rec_e, article, net, seen_titles, want=2)
         rec["ledger"].extend(rows)
         for c in cands:
             if c["file_url"] in hero_exact or \
