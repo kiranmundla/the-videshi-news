@@ -22,7 +22,7 @@ Progress is checkpointed in pipeline/.state/email-scrape-progress.json
 so runs resume where the previous run left off.
 """
 import json, subprocess, os, sys, re, time, argparse
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin, urlparse, unquote
 
 SUPABASE_URL = os.environ['SUPABASE_URL'].rstrip('/')
 KEY = os.environ['SUPABASE_SERVICE_ROLE_KEY']
@@ -73,7 +73,8 @@ GARBAGE_LOCAL = re.compile(
 # Template placeholder local parts (email@email.com, your@email.com,
 # name@email.com …) — form/template filler, never a real inbox.
 PLACEHOLDER_LOCAL = re.compile(
-    r'^(e-?mail|your|your-?name|your-?e-?mail|name|example|sample|placeholder'
+    r'^(e-?mail|your|your-?name|your-?e-?mail|your-?e-?mail-?address'
+    r'|name|example|sample|placeholder'
     r'|user|user-?name)$',
     re.IGNORECASE)
 IMAGE_EXT = re.compile(r'\.(png|jpe?g|gif|webp|svg|ico|bmp)$', re.IGNORECASE)
@@ -145,7 +146,10 @@ def extract_emails(html):
     """Extract candidate emails from HTML, filtering garbage."""
     found = []
     for m in EMAIL_RE.finditer(html or ""):
-        email = m.group(0).strip().rstrip('.,;:')
+        # URL-decode first: a mailto href like %20info@x.org (encoded
+        # leading space) otherwise stores the %20 as part of the address
+        # (seen live 2026-11-02: "%20Frisco2@kidsusamontessori.org").
+        email = unquote(m.group(0)).strip().rstrip('.,;:')
         if len(email) > 80:
             continue
         local, _, domain = email.partition('@')
