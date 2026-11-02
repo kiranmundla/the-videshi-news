@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-01T13:27:41Z",
-  "as_of": "2026-11-01",
+  "generated_at": "2026-11-02T13:27:11Z",
+  "as_of": "2026-11-02",
   "market": "india-metros",
   "band": {
     "id": "in-3wk",
@@ -1993,41 +1993,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-28 \u2192 2026-11-17",
-          "dep_date": "2026-10-28",
-          "ret_date": "2026-11-17",
-          "duration_days": 20,
-          "band": "in-3wk",
-          "price_min": 1190,
-          "price_max": 1645,
-          "cheapest_airline": "Emirates",
-          "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "DFW-BLR",
-          "origin_metro": "Dallas",
-          "dest_metro": "Bengaluru",
-          "cheapest_month": true,
-          "change_vs_prev": {
-            "prev_price_min": 1150,
-            "prev_as_of": "2026-10-15",
-            "delta": -40,
-            "delta_pct": -3.5
-          }
-        },
-        {
-          "date_range": "2026-11-10 \u2192 2026-12-02",
-          "dep_date": "2026-11-10",
-          "ret_date": "2026-12-02",
+          "date_range": "2026-11-24 \u2192 2026-12-16",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-16",
           "duration_days": 22,
           "band": "in-3wk",
-          "price_min": 1202,
-          "price_max": 1770,
+          "price_min": 1265,
+          "price_max": 1965,
           "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
+          "fetched_as_of": "2026-11-02",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -2035,10 +2010,10 @@
           "origin_metro": "Dallas",
           "dest_metro": "Bengaluru",
           "change_vs_prev": {
-            "prev_price_min": 1265,
-            "prev_as_of": "2026-10-15",
-            "delta": 63,
-            "delta_pct": 5.0
+            "prev_price_min": 1202,
+            "prev_as_of": "2026-10-26",
+            "delta": -63,
+            "delta_pct": -5.2
           }
         },
         {
@@ -2048,10 +2023,10 @@
           "duration_days": 20,
           "band": "in-3wk",
           "price_min": 1927,
-          "price_max": 2821,
+          "price_max": 3379,
           "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
+          "fetched_as_of": "2026-11-02",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -2060,19 +2035,38 @@
           "dest_metro": "Bengaluru",
           "change_vs_prev": {
             "prev_price_min": 1927,
-            "prev_as_of": "2026-10-15",
+            "prev_as_of": "2026-10-26",
             "delta": 0,
             "delta_pct": 0.0
           }
+        },
+        {
+          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "dep_date": "2027-01-12",
+          "ret_date": "2027-02-01",
+          "duration_days": 20,
+          "band": "in-3wk",
+          "price_min": 1075,
+          "price_max": 1365,
+          "cheapest_airline": "Emirates",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-02",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "DFW-BLR",
+          "origin_metro": "Dallas",
+          "dest_metro": "Bengaluru",
+          "cheapest_month": true
         }
       ],
       "cheapest_overall": {
-        "year": 2026,
-        "month": 10,
+        "year": 2027,
+        "month": 1,
         "band": "in-3wk",
         "duration_days": 20,
-        "price_min": 1190,
-        "date_range": "2026-10-28 \u2192 2026-11-17"
+        "price_min": 1075,
+        "date_range": "2027-01-12 \u2192 2027-02-01"
       }
     },
     "DFW-CCU": {
@@ -2083,52 +2077,27 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-29 \u2192 2026-11-18",
-          "dep_date": "2026-10-29",
-          "ret_date": "2026-11-18",
-          "duration_days": 20,
-          "band": "in-3wk",
-          "price_min": 2139,
-          "price_max": 2453,
-          "cheapest_airline": "Qatar Airways",
-          "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "DFW-CCU",
-          "origin_metro": "Dallas",
-          "dest_metro": "Kolkata",
-          "change_vs_prev": {
-            "prev_price_min": 2026,
-            "prev_as_of": "2026-10-15",
-            "delta": -113,
-            "delta_pct": -5.6
-          }
-        },
-        {
-          "date_range": "2026-11-10 \u2192 2026-12-02",
-          "dep_date": "2026-11-10",
-          "ret_date": "2026-12-02",
+          "date_range": "2026-11-24 \u2192 2026-12-16",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-16",
           "duration_days": 22,
           "band": "in-3wk",
-          "price_min": 2026,
-          "price_max": 2567,
+          "price_min": 2218,
+          "price_max": 3282,
           "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
+          "fetched_as_of": "2026-11-02",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "DFW-CCU",
           "origin_metro": "Dallas",
           "dest_metro": "Kolkata",
-          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 2139,
-            "prev_as_of": "2026-10-15",
-            "delta": 113,
-            "delta_pct": 5.3
+            "prev_price_min": 2026,
+            "prev_as_of": "2026-10-26",
+            "delta": -192,
+            "delta_pct": -9.5
           }
         },
         {
@@ -2137,11 +2106,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 2695,
-          "price_max": 3613,
+          "price_min": 2544,
+          "price_max": 3354,
           "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
+          "fetched_as_of": "2026-11-02",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -2149,20 +2118,39 @@
           "origin_metro": "Dallas",
           "dest_metro": "Kolkata",
           "change_vs_prev": {
-            "prev_price_min": 2596,
-            "prev_as_of": "2026-10-15",
-            "delta": -99,
-            "delta_pct": -3.8
+            "prev_price_min": 2695,
+            "prev_as_of": "2026-10-26",
+            "delta": 151,
+            "delta_pct": 5.6
           }
+        },
+        {
+          "date_range": "2027-01-26 \u2192 2027-02-17",
+          "dep_date": "2027-01-26",
+          "ret_date": "2027-02-17",
+          "duration_days": 22,
+          "band": "in-3wk",
+          "price_min": 1987,
+          "price_max": 2218,
+          "cheapest_airline": "Emirates",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-02",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "DFW-CCU",
+          "origin_metro": "Dallas",
+          "dest_metro": "Kolkata",
+          "cheapest_month": true
         }
       ],
       "cheapest_overall": {
-        "year": 2026,
-        "month": 11,
+        "year": 2027,
+        "month": 1,
         "band": "in-3wk",
         "duration_days": 22,
-        "price_min": 2026,
-        "date_range": "2026-11-10 \u2192 2026-12-02"
+        "price_min": 1987,
+        "date_range": "2027-01-26 \u2192 2027-02-17"
       }
     },
     "IAD-BLR": {
@@ -2173,41 +2161,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-28 \u2192 2026-11-17",
-          "dep_date": "2026-10-28",
-          "ret_date": "2026-11-17",
-          "duration_days": 20,
-          "band": "in-3wk",
-          "price_min": 976,
-          "price_max": 1305,
-          "cheapest_airline": "Emirates",
-          "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "IAD-BLR",
-          "origin_metro": "Washington DC",
-          "dest_metro": "Bengaluru",
-          "cheapest_month": true,
-          "change_vs_prev": {
-            "prev_price_min": 959,
-            "prev_as_of": "2026-10-15",
-            "delta": -17,
-            "delta_pct": -1.8
-          }
-        },
-        {
           "date_range": "2026-11-10 \u2192 2026-12-02",
           "dep_date": "2026-11-10",
           "ret_date": "2026-12-02",
           "duration_days": 22,
           "band": "in-3wk",
           "price_min": 976,
-          "price_max": 1249,
+          "price_max": 1363,
           "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
+          "fetched_as_of": "2026-11-02",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -2215,10 +2178,10 @@
           "origin_metro": "Washington DC",
           "dest_metro": "Bengaluru",
           "change_vs_prev": {
-            "prev_price_min": 959,
-            "prev_as_of": "2026-10-15",
-            "delta": -17,
-            "delta_pct": -1.8
+            "prev_price_min": 976,
+            "prev_as_of": "2026-10-26",
+            "delta": 0,
+            "delta_pct": 0.0
           }
         },
         {
@@ -2227,11 +2190,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1478,
-          "price_max": 2114,
+          "price_min": 1498,
+          "price_max": 2224,
           "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
+          "fetched_as_of": "2026-11-02",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -2239,20 +2202,39 @@
           "origin_metro": "Washington DC",
           "dest_metro": "Bengaluru",
           "change_vs_prev": {
-            "prev_price_min": 1460,
-            "prev_as_of": "2026-10-15",
-            "delta": -18,
-            "delta_pct": -1.2
+            "prev_price_min": 1478,
+            "prev_as_of": "2026-10-26",
+            "delta": -20,
+            "delta_pct": -1.4
           }
+        },
+        {
+          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "dep_date": "2027-01-12",
+          "ret_date": "2027-02-01",
+          "duration_days": 20,
+          "band": "in-3wk",
+          "price_min": 959,
+          "price_max": 1019,
+          "cheapest_airline": "Emirates",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-02",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "IAD-BLR",
+          "origin_metro": "Washington DC",
+          "dest_metro": "Bengaluru",
+          "cheapest_month": true
         }
       ],
       "cheapest_overall": {
-        "year": 2026,
-        "month": 10,
+        "year": 2027,
+        "month": 1,
         "band": "in-3wk",
         "duration_days": 20,
-        "price_min": 976,
-        "date_range": "2026-10-28 \u2192 2026-11-17"
+        "price_min": 959,
+        "date_range": "2027-01-12 \u2192 2027-02-01"
       }
     },
     "IAD-HYD": {
@@ -2263,52 +2245,27 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-28 \u2192 2026-11-17",
-          "dep_date": "2026-10-28",
-          "ret_date": "2026-11-17",
-          "duration_days": 20,
-          "band": "in-3wk",
-          "price_min": 1092,
-          "price_max": 1529,
-          "cheapest_airline": "Etihad Airways",
-          "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "IAD-HYD",
-          "origin_metro": "Washington DC",
-          "dest_metro": "Hyderabad",
-          "change_vs_prev": {
-            "prev_price_min": 926,
-            "prev_as_of": "2026-10-15",
-            "delta": -166,
-            "delta_pct": -17.9
-          }
-        },
-        {
           "date_range": "2026-11-10 \u2192 2026-12-02",
           "dep_date": "2026-11-10",
           "ret_date": "2026-12-02",
           "duration_days": 22,
           "band": "in-3wk",
           "price_min": 961,
-          "price_max": 1516,
+          "price_max": 1484,
           "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
+          "fetched_as_of": "2026-11-02",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "IAD-HYD",
           "origin_metro": "Washington DC",
           "dest_metro": "Hyderabad",
-          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 946,
-            "prev_as_of": "2026-10-15",
-            "delta": -15,
-            "delta_pct": -1.6
+            "prev_price_min": 961,
+            "prev_as_of": "2026-10-26",
+            "delta": 0,
+            "delta_pct": 0.0
           }
         },
         {
@@ -2317,11 +2274,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1510,
-          "price_max": 2488,
+          "price_min": 1507,
+          "price_max": 2902,
           "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
+          "fetched_as_of": "2026-11-02",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -2330,19 +2287,38 @@
           "dest_metro": "Hyderabad",
           "change_vs_prev": {
             "prev_price_min": 1510,
-            "prev_as_of": "2026-10-15",
-            "delta": 0,
-            "delta_pct": 0.0
+            "prev_as_of": "2026-10-26",
+            "delta": 3,
+            "delta_pct": 0.2
           }
+        },
+        {
+          "date_range": "2027-01-26 \u2192 2027-02-17",
+          "dep_date": "2027-01-26",
+          "ret_date": "2027-02-17",
+          "duration_days": 22,
+          "band": "in-3wk",
+          "price_min": 879,
+          "price_max": 965,
+          "cheapest_airline": "Etihad Airways",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-02",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "IAD-HYD",
+          "origin_metro": "Washington DC",
+          "dest_metro": "Hyderabad",
+          "cheapest_month": true
         }
       ],
       "cheapest_overall": {
-        "year": 2026,
-        "month": 11,
+        "year": 2027,
+        "month": 1,
         "band": "in-3wk",
         "duration_days": 22,
-        "price_min": 961,
-        "date_range": "2026-11-10 \u2192 2026-12-02"
+        "price_min": 879,
+        "date_range": "2027-01-26 \u2192 2027-02-17"
       }
     },
     "IAD-CCU": {
@@ -2353,41 +2329,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-28 \u2192 2026-11-17",
-          "dep_date": "2026-10-28",
-          "ret_date": "2026-11-17",
-          "duration_days": 20,
-          "band": "in-3wk",
-          "price_min": 1112,
-          "price_max": 1806,
-          "cheapest_airline": "Qatar Airways",
-          "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "IAD-CCU",
-          "origin_metro": "Washington DC",
-          "dest_metro": "Kolkata",
-          "cheapest_month": true,
-          "change_vs_prev": {
-            "prev_price_min": 1056,
-            "prev_as_of": "2026-10-15",
-            "delta": -56,
-            "delta_pct": -5.3
-          }
-        },
-        {
           "date_range": "2026-11-10 \u2192 2026-12-02",
           "dep_date": "2026-11-10",
           "ret_date": "2026-12-02",
           "duration_days": 22,
           "band": "in-3wk",
           "price_min": 1177,
-          "price_max": 1736,
+          "price_max": 1554,
           "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
+          "fetched_as_of": "2026-11-02",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -2395,10 +2346,10 @@
           "origin_metro": "Washington DC",
           "dest_metro": "Kolkata",
           "change_vs_prev": {
-            "prev_price_min": 1048,
-            "prev_as_of": "2026-10-15",
-            "delta": -129,
-            "delta_pct": -12.3
+            "prev_price_min": 1177,
+            "prev_as_of": "2026-10-26",
+            "delta": 0,
+            "delta_pct": 0.0
           }
         },
         {
@@ -2407,11 +2358,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1714,
-          "price_max": 2935,
-          "cheapest_airline": "Emirates",
+          "price_min": 1756,
+          "price_max": 2744,
+          "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
+          "fetched_as_of": "2026-11-02",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -2419,20 +2370,39 @@
           "origin_metro": "Washington DC",
           "dest_metro": "Kolkata",
           "change_vs_prev": {
-            "prev_price_min": 1546,
-            "prev_as_of": "2026-10-15",
-            "delta": -168,
-            "delta_pct": -10.9
+            "prev_price_min": 1714,
+            "prev_as_of": "2026-10-26",
+            "delta": -42,
+            "delta_pct": -2.5
           }
+        },
+        {
+          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "dep_date": "2027-01-12",
+          "ret_date": "2027-02-01",
+          "duration_days": 20,
+          "band": "in-3wk",
+          "price_min": 1048,
+          "price_max": 1284,
+          "cheapest_airline": "Emirates",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-02",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "IAD-CCU",
+          "origin_metro": "Washington DC",
+          "dest_metro": "Kolkata",
+          "cheapest_month": true
         }
       ],
       "cheapest_overall": {
-        "year": 2026,
-        "month": 10,
+        "year": 2027,
+        "month": 1,
         "band": "in-3wk",
         "duration_days": 20,
-        "price_min": 1112,
-        "date_range": "2026-10-28 \u2192 2026-11-17"
+        "price_min": 1048,
+        "date_range": "2027-01-12 \u2192 2027-02-01"
       }
     },
     "ATL-BOM": {
@@ -3127,52 +3097,27 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-28 \u2192 2026-11-17",
-          "dep_date": "2026-10-28",
-          "ret_date": "2026-11-17",
-          "duration_days": 20,
-          "band": "in-3wk",
-          "price_min": 1183,
-          "price_max": 1374,
-          "cheapest_airline": "Qatar Airways",
-          "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "IAD-BOM",
-          "origin_metro": "Washington DC",
-          "dest_metro": "Mumbai",
-          "change_vs_prev": {
-            "prev_price_min": 843,
-            "prev_as_of": "2026-10-15",
-            "delta": -340,
-            "delta_pct": -40.3
-          }
-        },
-        {
           "date_range": "2026-11-10 \u2192 2026-12-02",
           "dep_date": "2026-11-10",
           "ret_date": "2026-12-02",
           "duration_days": 22,
           "band": "in-3wk",
-          "price_min": 970,
-          "price_max": 1376,
-          "cheapest_airline": "Etihad Airways",
+          "price_min": 1136,
+          "price_max": 1401,
+          "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
+          "fetched_as_of": "2026-11-02",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "IAD-BOM",
           "origin_metro": "Washington DC",
           "dest_metro": "Mumbai",
-          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 878,
-            "prev_as_of": "2026-10-15",
-            "delta": -92,
-            "delta_pct": -10.5
+            "prev_price_min": 970,
+            "prev_as_of": "2026-10-26",
+            "delta": -166,
+            "delta_pct": -17.1
           }
         },
         {
@@ -3181,11 +3126,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1565,
-          "price_max": 2282,
+          "price_min": 1689,
+          "price_max": 2272,
           "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-26",
+          "fetched_as_of": "2026-11-02",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -3193,39 +3138,58 @@
           "origin_metro": "Washington DC",
           "dest_metro": "Mumbai",
           "change_vs_prev": {
-            "prev_price_min": 1499,
-            "prev_as_of": "2026-10-15",
-            "delta": -66,
-            "delta_pct": -4.4
+            "prev_price_min": 1565,
+            "prev_as_of": "2026-10-26",
+            "delta": -124,
+            "delta_pct": -7.9
           }
+        },
+        {
+          "date_range": "2027-01-12 \u2192 2027-02-03",
+          "dep_date": "2027-01-12",
+          "ret_date": "2027-02-03",
+          "duration_days": 22,
+          "band": "in-3wk",
+          "price_min": 848,
+          "price_max": 893,
+          "cheapest_airline": "Etihad Airways",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-02",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "IAD-BOM",
+          "origin_metro": "Washington DC",
+          "dest_metro": "Mumbai",
+          "cheapest_month": true
         }
       ],
       "cheapest_overall": {
-        "year": 2026,
-        "month": 11,
+        "year": 2027,
+        "month": 1,
         "band": "in-3wk",
         "duration_days": 22,
-        "price_min": 970,
-        "date_range": "2026-11-10 \u2192 2026-12-02"
+        "price_min": 848,
+        "date_range": "2027-01-12 \u2192 2027-02-03"
       }
     }
   },
   "biggest_drops": [
     {
-      "route": "DFW-DEL",
+      "route": "DFW-CCU",
       "origin_metro": "Dallas",
-      "dest_metro": "Delhi",
+      "dest_metro": "Kolkata",
       "year": 2026,
-      "month": 11,
+      "month": 12,
       "band": "in-3wk",
-      "duration_days": 22,
-      "date_range": "2026-11-10 \u2192 2026-12-02",
-      "was": 1473,
-      "now": 1316,
-      "drop_abs": 157,
-      "drop_pct": 10.7,
-      "baseline_as_of": "2026-10-25",
-      "cheapest_airline": "JAL"
+      "duration_days": 20,
+      "date_range": "2026-12-08 \u2192 2026-12-28",
+      "was": 2695,
+      "now": 2544,
+      "drop_abs": 151,
+      "drop_pct": 5.6,
+      "baseline_as_of": "2026-10-26",
+      "cheapest_airline": "Qatar Airways"
     }
   ],
   "festival_seasons": [
@@ -3325,6 +3289,6 @@
   },
   "cadence": "weekly",
   "indicative": true,
-  "fetched_as_of_oldest": "2026-10-26",
-  "fetched_as_of_newest": "2026-11-01"
+  "fetched_as_of_oldest": "2026-10-27",
+  "fetched_as_of_newest": "2026-11-02"
 }
