@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-02T13:27:11Z",
-  "as_of": "2026-11-02",
+  "generated_at": "2026-11-03T13:27:02Z",
+  "as_of": "2026-11-03",
   "market": "india-metros",
   "band": {
     "id": "in-3wk",
@@ -2413,40 +2413,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-29 \u2192 2026-11-18",
-          "dep_date": "2026-10-29",
-          "ret_date": "2026-11-18",
-          "duration_days": 20,
-          "band": "in-3wk",
-          "price_min": 1503,
-          "price_max": 1556,
-          "cheapest_airline": "KLM",
-          "num_samples": 2,
-          "fetched_as_of": "2026-10-27",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "ATL-BOM",
-          "origin_metro": "Atlanta",
-          "dest_metro": "Mumbai",
-          "change_vs_prev": {
-            "prev_price_min": 946,
-            "prev_as_of": "2026-10-15",
-            "delta": -557,
-            "delta_pct": -58.9
-          }
-        },
-        {
-          "date_range": "2026-11-24 \u2192 2026-12-16",
-          "dep_date": "2026-11-24",
-          "ret_date": "2026-12-16",
+          "date_range": "2026-11-11 \u2192 2026-12-03",
+          "dep_date": "2026-11-11",
+          "ret_date": "2026-12-03",
           "duration_days": 22,
           "band": "in-3wk",
-          "price_min": 1194,
-          "price_max": 1535,
-          "cheapest_airline": "Delta Air Lines",
+          "price_min": 1052,
+          "price_max": 1548,
+          "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-27",
+          "fetched_as_of": "2026-11-03",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -2455,10 +2431,10 @@
           "dest_metro": "Mumbai",
           "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 992,
-            "prev_as_of": "2026-10-15",
-            "delta": -202,
-            "delta_pct": -20.4
+            "prev_price_min": 1194,
+            "prev_as_of": "2026-10-27",
+            "delta": 142,
+            "delta_pct": 11.9
           }
         },
         {
@@ -2467,11 +2443,11 @@
           "ret_date": "2027-01-13",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1770,
-          "price_max": 2427,
+          "price_min": 1887,
+          "price_max": 2553,
           "cheapest_airline": "British Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-27",
+          "fetched_as_of": "2026-11-03",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -2479,11 +2455,29 @@
           "origin_metro": "Atlanta",
           "dest_metro": "Mumbai",
           "change_vs_prev": {
-            "prev_price_min": 1997,
-            "prev_as_of": "2026-10-15",
-            "delta": 227,
-            "delta_pct": 11.4
+            "prev_price_min": 1770,
+            "prev_as_of": "2026-10-27",
+            "delta": -117,
+            "delta_pct": -6.6
           }
+        },
+        {
+          "date_range": "2027-01-26 \u2192 2027-02-17",
+          "dep_date": "2027-01-26",
+          "ret_date": "2027-02-17",
+          "duration_days": 22,
+          "band": "in-3wk",
+          "price_min": 1161,
+          "price_max": 1413,
+          "cheapest_airline": "Delta Air Lines",
+          "num_samples": 2,
+          "fetched_as_of": "2026-11-03",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "ATL-BOM",
+          "origin_metro": "Atlanta",
+          "dest_metro": "Mumbai"
         }
       ],
       "cheapest_overall": {
@@ -2491,8 +2485,8 @@
         "month": 11,
         "band": "in-3wk",
         "duration_days": 22,
-        "price_min": 1194,
-        "date_range": "2026-11-24 \u2192 2026-12-16"
+        "price_min": 1052,
+        "date_range": "2026-11-11 \u2192 2026-12-03"
       }
     },
     "ATL-BLR": {
@@ -2503,52 +2497,28 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-29 \u2192 2026-11-18",
-          "dep_date": "2026-10-29",
-          "ret_date": "2026-11-18",
-          "duration_days": 20,
+          "date_range": "2026-11-11 \u2192 2026-12-03",
+          "dep_date": "2026-11-11",
+          "ret_date": "2026-12-03",
+          "duration_days": 22,
           "band": "in-3wk",
-          "price_min": 1202,
-          "price_max": 1431,
+          "price_min": 1065,
+          "price_max": 1694,
           "cheapest_airline": "Etihad Airways",
-          "num_samples": 2,
-          "fetched_as_of": "2026-10-27",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "ATL-BLR",
-          "origin_metro": "Atlanta",
-          "dest_metro": "Bengaluru",
-          "cheapest_month": true,
-          "change_vs_prev": {
-            "prev_price_min": 931,
-            "prev_as_of": "2026-10-15",
-            "delta": -271,
-            "delta_pct": -29.1
-          }
-        },
-        {
-          "date_range": "2026-11-24 \u2192 2026-12-14",
-          "dep_date": "2026-11-24",
-          "ret_date": "2026-12-14",
-          "duration_days": 20,
-          "band": "in-3wk",
-          "price_min": 1343,
-          "price_max": 2025,
-          "cheapest_airline": "Etihad Airways",
-          "num_samples": 3,
-          "fetched_as_of": "2026-10-27",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-03",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "ATL-BLR",
           "origin_metro": "Atlanta",
           "dest_metro": "Bengaluru",
+          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 930,
-            "prev_as_of": "2026-10-15",
-            "delta": -413,
-            "delta_pct": -44.4
+            "prev_price_min": 1343,
+            "prev_as_of": "2026-10-27",
+            "delta": 278,
+            "delta_pct": 20.7
           }
         },
         {
@@ -2557,11 +2527,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 2026,
-          "price_max": 2455,
+          "price_min": 1811,
+          "price_max": 2333,
           "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-27",
+          "fetched_as_of": "2026-11-03",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -2569,20 +2539,38 @@
           "origin_metro": "Atlanta",
           "dest_metro": "Bengaluru",
           "change_vs_prev": {
-            "prev_price_min": 1949,
-            "prev_as_of": "2026-10-15",
-            "delta": -77,
-            "delta_pct": -4.0
+            "prev_price_min": 2026,
+            "prev_as_of": "2026-10-27",
+            "delta": 215,
+            "delta_pct": 10.6
           }
+        },
+        {
+          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "dep_date": "2027-01-12",
+          "ret_date": "2027-02-01",
+          "duration_days": 20,
+          "band": "in-3wk",
+          "price_min": 1177,
+          "price_max": 1202,
+          "cheapest_airline": "Virgin Atlantic",
+          "num_samples": 2,
+          "fetched_as_of": "2026-11-03",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "ATL-BLR",
+          "origin_metro": "Atlanta",
+          "dest_metro": "Bengaluru"
         }
       ],
       "cheapest_overall": {
         "year": 2026,
-        "month": 10,
+        "month": 11,
         "band": "in-3wk",
-        "duration_days": 20,
-        "price_min": 1202,
-        "date_range": "2026-10-29 \u2192 2026-11-18"
+        "duration_days": 22,
+        "price_min": 1065,
+        "date_range": "2026-11-11 \u2192 2026-12-03"
       }
     },
     "ATL-HYD": {
@@ -2593,52 +2581,28 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-29 \u2192 2026-11-18",
-          "dep_date": "2026-10-29",
-          "ret_date": "2026-11-18",
-          "duration_days": 20,
+          "date_range": "2026-11-11 \u2192 2026-12-03",
+          "dep_date": "2026-11-11",
+          "ret_date": "2026-12-03",
+          "duration_days": 22,
           "band": "in-3wk",
-          "price_min": 1450,
-          "price_max": 1852,
-          "cheapest_airline": "Etihad Airways",
-          "num_samples": 1,
-          "fetched_as_of": "2026-10-27",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "ATL-HYD",
-          "origin_metro": "Atlanta",
-          "dest_metro": "Hyderabad",
-          "cheapest_month": true,
-          "change_vs_prev": {
-            "prev_price_min": 946,
-            "prev_as_of": "2026-10-15",
-            "delta": -504,
-            "delta_pct": -53.3
-          }
-        },
-        {
-          "date_range": "2026-11-24 \u2192 2026-12-14",
-          "dep_date": "2026-11-24",
-          "ret_date": "2026-12-14",
-          "duration_days": 20,
-          "band": "in-3wk",
-          "price_min": 1516,
-          "price_max": 2160,
+          "price_min": 1267,
+          "price_max": 1763,
           "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-27",
+          "fetched_as_of": "2026-11-03",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "ATL-HYD",
           "origin_metro": "Atlanta",
           "dest_metro": "Hyderabad",
+          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 960,
-            "prev_as_of": "2026-10-15",
-            "delta": -556,
-            "delta_pct": -57.9
+            "prev_price_min": 1516,
+            "prev_as_of": "2026-10-27",
+            "delta": 249,
+            "delta_pct": 16.4
           }
         },
         {
@@ -2647,11 +2611,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1895,
-          "price_max": 5586,
+          "price_min": 1700,
+          "price_max": 5864,
           "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-27",
+          "fetched_as_of": "2026-11-03",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -2659,20 +2623,20 @@
           "origin_metro": "Atlanta",
           "dest_metro": "Hyderabad",
           "change_vs_prev": {
-            "prev_price_min": 2226,
-            "prev_as_of": "2026-10-15",
-            "delta": 331,
-            "delta_pct": 14.9
+            "prev_price_min": 1895,
+            "prev_as_of": "2026-10-27",
+            "delta": 195,
+            "delta_pct": 10.3
           }
         }
       ],
       "cheapest_overall": {
         "year": 2026,
-        "month": 10,
+        "month": 11,
         "band": "in-3wk",
-        "duration_days": 20,
-        "price_min": 1450,
-        "date_range": "2026-10-29 \u2192 2026-11-18"
+        "duration_days": 22,
+        "price_min": 1267,
+        "date_range": "2026-11-11 \u2192 2026-12-03"
       }
     },
     "ATL-CCU": {
@@ -2683,62 +2647,38 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-29 \u2192 2026-11-18",
-          "dep_date": "2026-10-29",
-          "ret_date": "2026-11-18",
+          "date_range": "2026-11-11 \u2192 2026-12-01",
+          "dep_date": "2026-11-11",
+          "ret_date": "2026-12-01",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 2061,
-          "price_max": 2152,
+          "price_min": 2048,
+          "price_max": 2298,
           "cheapest_airline": "Etihad Airways",
           "num_samples": 2,
-          "fetched_as_of": "2026-10-27",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "ATL-CCU",
-          "origin_metro": "Atlanta",
-          "dest_metro": "Kolkata",
-          "cheapest_month": true,
-          "change_vs_prev": {
-            "prev_price_min": 1324,
-            "prev_as_of": "2026-10-15",
-            "delta": -737,
-            "delta_pct": -55.7
-          }
-        },
-        {
-          "date_range": "2026-11-24 \u2192 2026-12-16",
-          "dep_date": "2026-11-24",
-          "ret_date": "2026-12-16",
-          "duration_days": 22,
-          "band": "in-3wk",
-          "price_min": 2518,
-          "price_max": 2951,
-          "cheapest_airline": "Etihad Airways",
-          "num_samples": 3,
-          "fetched_as_of": "2026-10-27",
+          "fetched_as_of": "2026-11-03",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "ATL-CCU",
           "origin_metro": "Atlanta",
           "dest_metro": "Kolkata",
+          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 2170,
-            "prev_as_of": "2026-10-15",
-            "delta": -348,
-            "delta_pct": -16.0
+            "prev_price_min": 2518,
+            "prev_as_of": "2026-10-27",
+            "delta": 470,
+            "delta_pct": 18.7
           }
         }
       ],
       "cheapest_overall": {
         "year": 2026,
-        "month": 10,
+        "month": 11,
         "band": "in-3wk",
         "duration_days": 20,
-        "price_min": 2061,
-        "date_range": "2026-10-29 \u2192 2026-11-18"
+        "price_min": 2048,
+        "date_range": "2026-11-11 \u2192 2026-12-01"
       }
     },
     "BOS-BOM": {
@@ -2749,52 +2689,27 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-29 \u2192 2026-11-20",
-          "dep_date": "2026-10-29",
-          "ret_date": "2026-11-20",
-          "duration_days": 22,
+          "date_range": "2026-11-24 \u2192 2026-12-14",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-14",
+          "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1235,
-          "price_max": 1624,
-          "cheapest_airline": "SAS",
-          "num_samples": 2,
-          "fetched_as_of": "2026-10-27",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "BOS-BOM",
-          "origin_metro": "Boston",
-          "dest_metro": "Mumbai",
-          "change_vs_prev": {
-            "prev_price_min": 849,
-            "prev_as_of": "2026-10-15",
-            "delta": -386,
-            "delta_pct": -45.5
-          }
-        },
-        {
-          "date_range": "2026-11-10 \u2192 2026-12-02",
-          "dep_date": "2026-11-10",
-          "ret_date": "2026-12-02",
-          "duration_days": 22,
-          "band": "in-3wk",
-          "price_min": 889,
-          "price_max": 1069,
+          "price_min": 1157,
+          "price_max": 1688,
           "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-27",
+          "fetched_as_of": "2026-11-03",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "BOS-BOM",
           "origin_metro": "Boston",
           "dest_metro": "Mumbai",
-          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 849,
-            "prev_as_of": "2026-10-15",
-            "delta": -40,
-            "delta_pct": -4.7
+            "prev_price_min": 889,
+            "prev_as_of": "2026-10-27",
+            "delta": -268,
+            "delta_pct": -30.1
           }
         },
         {
@@ -2803,11 +2718,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1406,
-          "price_max": 2368,
+          "price_min": 1338,
+          "price_max": 2194,
           "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-27",
+          "fetched_as_of": "2026-11-03",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -2815,20 +2730,39 @@
           "origin_metro": "Boston",
           "dest_metro": "Mumbai",
           "change_vs_prev": {
-            "prev_price_min": 1366,
-            "prev_as_of": "2026-10-15",
-            "delta": -40,
-            "delta_pct": -2.9
+            "prev_price_min": 1406,
+            "prev_as_of": "2026-10-27",
+            "delta": 68,
+            "delta_pct": 4.8
           }
+        },
+        {
+          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "dep_date": "2027-01-12",
+          "ret_date": "2027-02-01",
+          "duration_days": 20,
+          "band": "in-3wk",
+          "price_min": 878,
+          "price_max": 878,
+          "cheapest_airline": "Emirates",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-03",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "BOS-BOM",
+          "origin_metro": "Boston",
+          "dest_metro": "Mumbai",
+          "cheapest_month": true
         }
       ],
       "cheapest_overall": {
-        "year": 2026,
-        "month": 11,
+        "year": 2027,
+        "month": 1,
         "band": "in-3wk",
-        "duration_days": 22,
-        "price_min": 889,
-        "date_range": "2026-11-10 \u2192 2026-12-02"
+        "duration_days": 20,
+        "price_min": 878,
+        "date_range": "2027-01-12 \u2192 2027-02-01"
       }
     },
     "BOS-BLR": {
@@ -2839,52 +2773,27 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-10-29 \u2192 2026-11-20",
-          "dep_date": "2026-10-29",
-          "ret_date": "2026-11-20",
-          "duration_days": 22,
+          "date_range": "2026-11-11 \u2192 2026-12-01",
+          "dep_date": "2026-11-11",
+          "ret_date": "2026-12-01",
+          "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1156,
-          "price_max": 1253,
-          "cheapest_airline": "Delta Air Lines",
-          "num_samples": 2,
-          "fetched_as_of": "2026-10-27",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 10,
-          "route": "BOS-BLR",
-          "origin_metro": "Boston",
-          "dest_metro": "Bengaluru",
-          "change_vs_prev": {
-            "prev_price_min": 916,
-            "prev_as_of": "2026-10-15",
-            "delta": -240,
-            "delta_pct": -26.2
-          }
-        },
-        {
-          "date_range": "2026-11-10 \u2192 2026-12-02",
-          "dep_date": "2026-11-10",
-          "ret_date": "2026-12-02",
-          "duration_days": 22,
-          "band": "in-3wk",
-          "price_min": 965,
-          "price_max": 1338,
-          "cheapest_airline": "Etihad Airways",
+          "price_min": 1032,
+          "price_max": 1450,
+          "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-27",
+          "fetched_as_of": "2026-11-03",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "BOS-BLR",
           "origin_metro": "Boston",
           "dest_metro": "Bengaluru",
-          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 925,
-            "prev_as_of": "2026-10-15",
-            "delta": -40,
-            "delta_pct": -4.3
+            "prev_price_min": 965,
+            "prev_as_of": "2026-10-27",
+            "delta": -67,
+            "delta_pct": -6.9
           }
         },
         {
@@ -2893,11 +2802,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1342,
-          "price_max": 2566,
+          "price_min": 1319,
+          "price_max": 2369,
           "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-10-27",
+          "fetched_as_of": "2026-11-03",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -2905,20 +2814,39 @@
           "origin_metro": "Boston",
           "dest_metro": "Bengaluru",
           "change_vs_prev": {
-            "prev_price_min": 1302,
-            "prev_as_of": "2026-10-15",
-            "delta": -40,
-            "delta_pct": -3.1
+            "prev_price_min": 1342,
+            "prev_as_of": "2026-10-27",
+            "delta": 23,
+            "delta_pct": 1.7
           }
+        },
+        {
+          "date_range": "2027-01-12 \u2192 2027-02-01",
+          "dep_date": "2027-01-12",
+          "ret_date": "2027-02-01",
+          "duration_days": 20,
+          "band": "in-3wk",
+          "price_min": 965,
+          "price_max": 1117,
+          "cheapest_airline": "Etihad Airways",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-03",
+          "cache_samples": 0,
+          "year": 2027,
+          "month": 1,
+          "route": "BOS-BLR",
+          "origin_metro": "Boston",
+          "dest_metro": "Bengaluru",
+          "cheapest_month": true
         }
       ],
       "cheapest_overall": {
-        "year": 2026,
-        "month": 11,
+        "year": 2027,
+        "month": 1,
         "band": "in-3wk",
-        "duration_days": 22,
+        "duration_days": 20,
         "price_min": 965,
-        "date_range": "2026-11-10 \u2192 2026-12-02"
+        "date_range": "2027-01-12 \u2192 2027-02-01"
       }
     },
     "BOS-HYD": {
@@ -3176,20 +3104,116 @@
   },
   "biggest_drops": [
     {
-      "route": "DFW-CCU",
-      "origin_metro": "Dallas",
+      "route": "ATL-BLR",
+      "origin_metro": "Atlanta",
+      "dest_metro": "Bengaluru",
+      "year": 2026,
+      "month": 11,
+      "band": "in-3wk",
+      "duration_days": 22,
+      "date_range": "2026-11-11 \u2192 2026-12-03",
+      "was": 1343,
+      "now": 1065,
+      "drop_abs": 278,
+      "drop_pct": 20.7,
+      "baseline_as_of": "2026-10-27",
+      "cheapest_airline": "Etihad Airways"
+    },
+    {
+      "route": "ATL-CCU",
+      "origin_metro": "Atlanta",
       "dest_metro": "Kolkata",
+      "year": 2026,
+      "month": 11,
+      "band": "in-3wk",
+      "duration_days": 20,
+      "date_range": "2026-11-11 \u2192 2026-12-01",
+      "was": 2518,
+      "now": 2048,
+      "drop_abs": 470,
+      "drop_pct": 18.7,
+      "baseline_as_of": "2026-10-27",
+      "cheapest_airline": "Etihad Airways"
+    },
+    {
+      "route": "ATL-HYD",
+      "origin_metro": "Atlanta",
+      "dest_metro": "Hyderabad",
+      "year": 2026,
+      "month": 11,
+      "band": "in-3wk",
+      "duration_days": 22,
+      "date_range": "2026-11-11 \u2192 2026-12-03",
+      "was": 1516,
+      "now": 1267,
+      "drop_abs": 249,
+      "drop_pct": 16.4,
+      "baseline_as_of": "2026-10-27",
+      "cheapest_airline": "Etihad Airways"
+    },
+    {
+      "route": "ATL-BOM",
+      "origin_metro": "Atlanta",
+      "dest_metro": "Mumbai",
+      "year": 2026,
+      "month": 11,
+      "band": "in-3wk",
+      "duration_days": 22,
+      "date_range": "2026-11-11 \u2192 2026-12-03",
+      "was": 1194,
+      "now": 1052,
+      "drop_abs": 142,
+      "drop_pct": 11.9,
+      "baseline_as_of": "2026-10-27",
+      "cheapest_airline": "Etihad Airways"
+    },
+    {
+      "route": "ATL-BLR",
+      "origin_metro": "Atlanta",
+      "dest_metro": "Bengaluru",
       "year": 2026,
       "month": 12,
       "band": "in-3wk",
       "duration_days": 20,
       "date_range": "2026-12-08 \u2192 2026-12-28",
-      "was": 2695,
-      "now": 2544,
-      "drop_abs": 151,
-      "drop_pct": 5.6,
-      "baseline_as_of": "2026-10-26",
-      "cheapest_airline": "Qatar Airways"
+      "was": 2026,
+      "now": 1811,
+      "drop_abs": 215,
+      "drop_pct": 10.6,
+      "baseline_as_of": "2026-10-27",
+      "cheapest_airline": "Etihad Airways"
+    },
+    {
+      "route": "ATL-HYD",
+      "origin_metro": "Atlanta",
+      "dest_metro": "Hyderabad",
+      "year": 2026,
+      "month": 12,
+      "band": "in-3wk",
+      "duration_days": 20,
+      "date_range": "2026-12-08 \u2192 2026-12-28",
+      "was": 1895,
+      "now": 1700,
+      "drop_abs": 195,
+      "drop_pct": 10.3,
+      "baseline_as_of": "2026-10-27",
+      "cheapest_airline": "Etihad Airways"
+    },
+    {
+      "route": "BOS-BOM",
+      "origin_metro": "Boston",
+      "dest_metro": "Mumbai",
+      "year": 2026,
+      "month": 12,
+      "band": "in-3wk",
+      "duration_days": 20,
+      "date_range": "2026-12-08 \u2192 2026-12-28",
+      "was": 1406,
+      "now": 1338,
+      "drop_abs": 68,
+      "drop_pct": 4.8,
+      "baseline_as_of": "2026-10-27",
+      "cheapest_airline": "Etihad Airways"
     }
   ],
   "festival_seasons": [
@@ -3289,6 +3313,6 @@
   },
   "cadence": "weekly",
   "indicative": true,
-  "fetched_as_of_oldest": "2026-10-27",
-  "fetched_as_of_newest": "2026-11-02"
+  "fetched_as_of_oldest": "2026-10-28",
+  "fetched_as_of_newest": "2026-11-03"
 }
