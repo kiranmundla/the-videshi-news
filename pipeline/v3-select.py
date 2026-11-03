@@ -91,8 +91,28 @@ if not SB_URL or not SB_KEY:
     sys.exit(1)
 
 
+# Evidence from the most recent sb_get failure. sb_get's return contract
+# (None on fetch failure / dict on a PostgREST error body / list on success)
+# cannot carry WHY a fetch failed, so the evidence (curl stderr, response
+# body) is recorded here for callers that must distinguish "fetch error"
+# from "no rows" — Step 1 does, see fetch_pending_topics().
+SB_GET_LAST_ERROR = None
+
+
+def _record_sb_error(endpoint, kind, detail):
+    global SB_GET_LAST_ERROR
+    SB_GET_LAST_ERROR = {"endpoint": endpoint, "kind": kind, "detail": detail}
+
+
 def sb_get(endpoint, params=None, range_header=None):
-    """GET from Supabase REST API."""
+    """GET from Supabase REST API.
+
+    Returns the parsed JSON body (a list for row queries, a dict for a
+    PostgREST error body), or None when the fetch itself failed. Failure
+    evidence is recorded in SB_GET_LAST_ERROR instead of being discarded.
+    """
+    global SB_GET_LAST_ERROR
+    SB_GET_LAST_ERROR = None
     url = f"{SB_URL}/rest/v1/{endpoint}"
     if params:
         qs = "&".join(f"{k}={urlquote(str(v), safe='.,()')}" for k, v in params.items())
@@ -104,13 +124,27 @@ def sb_get(endpoint, params=None, range_header=None):
     if range_header:
         headers += ["-H", f"Range: {range_header}"]
     cmd = ["curl", "-sS", "--max-time", "30", url] + headers
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=35)
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True, timeout=35)
+    except subprocess.TimeoutExpired:
+        _record_sb_error(endpoint, "timeout",
+                         f"curl subprocess exceeded 35s (url: {url})")
+        return None
     if r.returncode != 0:
+        _record_sb_error(endpoint, "curl",
+                         f"rc={r.returncode} stderr: {(r.stderr or '').strip()[:300]}")
         return None
     try:
-        return json.loads(r.stdout)
-    except:
+        data = json.loads(r.stdout)
+    except Exception:
+        _record_sb_error(endpoint, "bad_json",
+                         f"unparseable response body: {(r.stdout or '')[:300]}")
         return None
+    if isinstance(data, dict) and ("message" in data or "code" in data):
+        # PostgREST error body — curl still exits 0, so record it here or
+        # the error is indistinguishable from a legitimate response.
+        _record_sb_error(endpoint, "postgrest_error", json.dumps(data)[:300])
+    return data
 
 
 def sb_patch(endpoint, data, match_params):
@@ -776,6 +810,49 @@ def apply_event_freshness_gate(llm_result, topic_title):
     return "pass"
 
 
+# ── Step 1: pending-topic fetch (fail-loud) ───────────────────────────────────
+def fetch_pending_topics(topic_cutoff, eval_cooldown):
+    """Page through ALL pending V3 topics.
+
+    A failed page (sb_get → None) or a PostgREST error body (dict) is a
+    FETCH ERROR, not end-of-pages: log the endpoint, the page offset and
+    the recorded failure evidence, then exit non-zero WITHOUT writing
+    candidates, so the previous candidate file (tmp + persistent backup)
+    survives a transient fetch failure.
+
+    (2026-11-02: a swallowed fetch error made the selector report "0
+    pending topics" and overwrite good candidates with an empty file —
+    twice in one day, while ~9,930 topics were pending.)
+
+    Only a scan that pages through to a short final page returns. An
+    empty return then genuinely means zero pending topics, and the
+    caller may write an empty candidate file.
+    """
+    topics = []
+    offset = 0
+    while True:
+        page = sb_get("p2_topics", {
+            "select": "id,canonical_title,signal_count,status,created_at,last_signal_at",
+            "last_signal_at": f"gte.{topic_cutoff}",
+            "status": "eq.pending",
+            "or": f"(evaluated_at.is.null,evaluated_at.lt.{eval_cooldown})",
+            "order": "last_signal_at.desc",
+        }, range_header=f"{offset}-{offset+999}")
+        if page is None or isinstance(page, dict):
+            err = SB_GET_LAST_ERROR or {}
+            print(f"  ✗ FETCH ERROR loading pending topics from p2_topics "
+                  f"at offset {offset}: kind={err.get('kind', 'unknown')} "
+                  f"detail={err.get('detail', '(no evidence captured)')}")
+            print("  Aborting WITHOUT writing candidates — previous "
+                  "candidate file left untouched.")
+            sys.exit(1)
+        topics.extend(page)
+        if len(page) < 1000:
+            break
+        offset += 1000
+    return topics
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 def main():
     t0 = time.time()
@@ -800,22 +877,10 @@ def main():
     # but re-evaluate older pending topics that were selected but never written.
     eval_cooldown = (datetime.now(timezone.utc) - timedelta(hours=6)).strftime("%Y-%m-%dT%H:%M:%SZ")
     print(f"\n── Step 1: Loading pending V3 topics (last {TOPIC_WINDOW_DAYS}d) ──")
-    topics = []
-    offset = 0
-    while True:
-        page = sb_get("p2_topics", {
-            "select": "id,canonical_title,signal_count,status,created_at,last_signal_at",
-            "last_signal_at": f"gte.{topic_cutoff}",
-            "status": "eq.pending",
-            "or": f"(evaluated_at.is.null,evaluated_at.lt.{eval_cooldown})",
-            "order": "last_signal_at.desc",
-        }, range_header=f"{offset}-{offset+999}")
-        if not page or isinstance(page, dict):
-            break
-        topics.extend(page)
-        if len(page) < 1000:
-            break
-        offset += 1000
+    # Fail-loud: a fetch error exits non-zero inside fetch_pending_topics
+    # and never reaches write_candidates. Reaching the empty branch below
+    # therefore means a completed scan that genuinely found zero topics.
+    topics = fetch_pending_topics(topic_cutoff, eval_cooldown)
 
     print(f"  Found {len(topics)} pending topics (window: {topic_cutoff})")
     if not topics:
