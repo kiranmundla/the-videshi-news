@@ -1,0 +1,25 @@
+{
+  "kind": "carousel",
+  "article_slug": "ramayana-advance-booking-100-crore-worldwide",
+  "status": "ready",
+  "stage": "complete",
+  "factcheck": {
+    "verdict": "pass",
+    "quote_present": false,
+    "verbatim_quote": null,
+    "speaker_grounded": null,
+    "role_grounded": null,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000456
+  },
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "cards": [
+    "reel-runs/2026-11-02-ramayana-advance-booking-100-crore-worldwide/carousel/carousel-1.png",
+    "reel-runs/2026-11-02-ramayana-advance-booking-100-crore-worldwide/carousel/carousel-2.png",
+    "reel-runs/2026-11-02-ramayana-advance-booking-100-crore-worldwide/carousel/carousel-3.png"
+  ]
+}

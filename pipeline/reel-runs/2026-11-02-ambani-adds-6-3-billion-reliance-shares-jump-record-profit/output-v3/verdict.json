@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+  "name": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+  "script": "reel-runs/2026-11-02-ambani-adds-6-3-billion-reliance-shares-jump-record-profit/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000682
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-02-ambani-adds-6-3-billion-reliance-shares-jump-record-profit/output-v3/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "mukesh-ambani-receives-cnbc-india-business-a",
+      "hero": "forbes-building-in-nyc",
+      "diaspora": "gautam-adani-net-worth"
+    }
+  },
+  "manifest": "reel-runs/2026-11-02-ambani-adds-6-3-billion-reliance-shares-jump-record-profit/output-v3/render-manifest.json",
+  "video": "reel-runs/2026-11-02-ambani-adds-6-3-billion-reliance-shares-jump-record-profit/output-v3/ambani-adds-6-3-billion-reliance-shares-jump-record-profit.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:hero"
+    ]
+  }
+}

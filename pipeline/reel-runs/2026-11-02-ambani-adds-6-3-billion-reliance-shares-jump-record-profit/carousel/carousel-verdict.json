@@ -1,0 +1,16 @@
+{
+  "kind": "carousel",
+  "article_slug": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+  "status": "held",
+  "stage": "render_fit",
+  "factcheck": {
+    "verdict": "pass",
+    "quote_present": false,
+    "verbatim_quote": null,
+    "speaker_grounded": null,
+    "role_grounded": null,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000498
+  },
+  "detail": "inter cannot fit \"Reliance's best trading session in over six years, driven by a 40.6% rise in September-quarter profit, made Mukesh Ambani the world's biggest gainer on Forbes' real-time rich list and kept him India's richest person.\""
+}

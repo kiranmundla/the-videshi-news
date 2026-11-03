@@ -1,0 +1,75 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "uk-settlement-wait-doubles-ten-years-care-workers",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Shabana Mahmood",
+    "indefinite leave to remain",
+    "care workers",
+    "Ten Years",
+    "Home Secretary Shabana Mahmood"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'care workers' named 'Care Workers Recognition Month, 2024', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Ten Years' named 'The Vicomte of Bragelonne: Ten Years Later', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Home Secretary Shabana Mahmood' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Shabana Mahmood Official Cabinet Portrait, September 2025 (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q695007)",
+      "verdict": "rejected",
+      "reason": "license: OGL 3 \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:2025 Shabana Mahmood (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q695007)",
+      "verdict": "USED (news)",
+      "reason": "2907x3869, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2025 Shabana Mahmood - (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q695007)",
+      "verdict": "accepted",
+      "reason": "1140x1524, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "2025-shabana-mahmood-cropped",
+      "path": "2025-shabana-mahmood-cropped.jpg",
+      "size": [
+        2907,
+        3869
+      ],
+      "role": "interior",
+      "subject": "08/09/2025. London, UK. Pictured: British Home Secretary, Shabana Mahmood. The Five Country Ministerial 2025 held in Central London. Picture by James Whatling / Parsons Media for the Home Office",
+      "route": "identity \u2014 depicts (P180=Q695007)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2025_Shabana_Mahmood_(cropped).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/2025_Shabana_Mahmood_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "UK Home Office",
+      "entity": "Shabana Mahmood",
+      "entity_type": "person",
+      "entity_aliases": []
+    }
+  ]
+}

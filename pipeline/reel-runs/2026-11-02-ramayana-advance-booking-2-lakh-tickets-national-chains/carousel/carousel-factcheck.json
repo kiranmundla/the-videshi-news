@@ -1,0 +1,195 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "ramayana-advance-booking-2-lakh-tickets-national-chains",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Ramayana Advance Booking Crosses 2 Lakh Tickets in National Chains for Opening Day",
+        "numbers": [
+          2.0,
+          200000.0
+        ],
+        "entities": [
+          "Ramayana Advance Booking Crosses",
+          "Lakh Tickets",
+          "National Chains",
+          "Opening Day"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states advance bookings crossed 2 lakh tickets for opening day.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "PVR Inox and Cinepolis sales for the November 5 opener rose from 1.70 lakh on Saturday to about 2 lakh by Sunday night, with all-India advances at 4.58 lakh tickets.",
+        "numbers": [
+          1.7,
+          2.0,
+          4.58,
+          5.0,
+          170000.0,
+          200000.0,
+          458000.0
+        ],
+        "entities": [
+          "PVR Inox"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Sales figures and dates are confirmed in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Opening-day advance sales across India reached 4.58 lakh tickets and Rs 20.32 crore excluding blocked seats, across 13,317 shows",
+        "numbers": [
+          4.58,
+          20.32,
+          13317.0,
+          458000.0,
+          203200000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides these exact figures for opening-day sales.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "PVR Inox and Cinepolis sales rose from 1.70 lakh tickets on Saturday to about 2 lakh by Sunday night",
+        "numbers": [
+          1.7,
+          2.0,
+          170000.0,
+          200000.0
+        ],
+        "entities": [
+          "PVR Inox"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is directly supported by the article's data.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The Hindi-language epic, directed by Nitesh Tiwari and starring Ranbir Kapoor, Yash and Sai Pallavi, opens on Thursday, November 5",
+        "numbers": [
+          5.0
+        ],
+        "entities": [
+          "Nitesh Tiwari",
+          "Ranbir Kapoor",
+          "Sai Pallavi"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the film's details and release date.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Sanjeev Kumar Bijli",
+        "numbers": [],
+        "entities": [
+          "Sanjeev Kumar Bijli"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions Sanjeev Kumar Bijli by name.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Executive Director, PVR INOX",
+        "numbers": [],
+        "entities": [
+          "Executive Director",
+          "PVR INOX"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies him as the Executive Director of PVR INOX.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Ramayana Advance Booking Crosses 2 Lakh Tickets in National Chains for Opening Day",
+        "numbers": [
+          2.0,
+          200000.0
+        ],
+        "entities": [
+          "Ramayana Advance Booking Crosses",
+          "Lakh Tickets",
+          "National Chains",
+          "Opening Day"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is a repetition of the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000537,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

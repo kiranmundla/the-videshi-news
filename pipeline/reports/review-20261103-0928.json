@@ -1,0 +1,195 @@
+[
+  {
+    "id": "c93cbc1d-dc9d-4e24-aa03-70e1eb229516",
+    "headline": "Want to Give Back This Diwali? How to Find and Vet a Cause That Matters",
+    "slug": "give-back-diwali-find-vet-causes-give-guidestar",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Include specific examples of vetted NGOs that have received positive feedback from donors to enhance credibility and provide concrete options for readers.",
+        "Add a clear call-to-action with a deadline for donations, such as 'Donations made before [specific date] will be eligible for tax deductions in the current financial year.'",
+        "Clarify the process of obtaining Form 10BE for tax relief, including any specific actions donors need to take after making a donation.",
+        "Provide a brief overview of the potential impact of donations, such as how much money can help a specific cause (e.g., 'A donation of \u20b91,000 can provide meals for X number of children')."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a reputable NGO or charity organization that highlights their work during Diwali, which could serve as a real-time example of giving back."
+      ]
+    }
+  },
+  {
+    "id": "6dbedcd1-825b-462f-a573-81cab5a656a1",
+    "headline": "\"It Is an Honour\": York's Parvin Shortlisted for Best Curry House Award Again",
+    "slug": "parvin-haxby-york-best-curry-house-award-shortlist",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline for voting in The Press Best Curry House award, including any deadlines for nominations or voting to provide readers with actionable information.",
+        "Include a brief background on The Press Best Curry House award, such as its significance and how winners are determined, to give readers context about the importance of the nomination.",
+        "Add a quote from a customer or a brief mention of customer feedback to provide a more rounded perspective on the restaurant's impact and reputation in the community."
+      ],
+      "embed_opportunities": [
+        "Embed a link to The Press article or voting page for the Best Curry House award to allow readers to participate easily."
+      ]
+    }
+  },
+  {
+    "id": "1e32738d-9957-48ba-a90d-cbe579c8cfc9",
+    "headline": "Diwali Mithai Guide: What to Buy Early, What to Buy Last, How to Store It",
+    "slug": "diwali-mithai-shopping-guide-buy-store-avoid-waste",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the storage times for sweets by including specific temperature or humidity conditions that affect their longevity, as this information can help readers make better decisions about when to buy and store their mithai.",
+        "Include a brief section on the cultural significance of different sweets mentioned, as this could provide readers with context and enhance their understanding of the traditions surrounding Diwali.",
+        "Add a list of recommended sweet shops or brands for purchasing mithai, which would provide readers with actionable steps to take in preparation for the festival."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a popular Indian sweet shop or a Diwali-related social media post that highlights their offerings or special promotions for the festival."
+      ]
+    }
+  },
+  {
+    "id": "0726dbf4-a8bd-49cb-b6ff-9acf5cdb182c",
+    "headline": "Rare Annapurna Darshan Opens in Kashi for Dhanteras and Diwali 2026",
+    "slug": "annapurna-temple-kashi-dhanteras-diwali-2026-rare-darshan-varanasi",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Annapurna Darshan beyond just the dates, including any historical or cultural context that might enhance reader understanding.",
+        "Include a direct quote from a temple official or a religious authority to provide authoritative attribution and enhance credibility.",
+        "Add a brief explanation of how to participate in the darshan, such as any required rituals or preparations, to give readers actionable steps for their visit."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Shri Kashi Vishwanath Temple Trust announcing the special darshan dates and details."
+      ]
+    }
+  },
+  {
+    "id": "f3ef841b-830c-4b20-b1de-7742865dab65",
+    "headline": "Pujara Backs Kohli for Hundred, Predicts 2-2 Draw in New Zealand ODIs",
+    "slug": "pujara-backs-kohli-hundred-india-new-zealand-odi-2-2-prediction",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the series by explicitly stating the start and end dates in the context of the current date, so readers understand how soon the matches will take place.",
+        "Provide more context on why Pujara believes Kohli's role as an anchor is advantageous in New Zealand conditions, perhaps by including historical data or examples of past performances in similar conditions.",
+        "Include a quote or statement from Virat Kohli or Rohit Sharma to provide direct attribution and enhance the article's credibility.",
+        "Ensure that the article maintains a consistent structure by avoiding repetitive phrases, such as restating Pujara's backing of Kohli multiple times without adding new information."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from JioStar or a video clip of Pujara's comments to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "83da4a4c-290c-46e5-bfa0-cd9cabaff0c5",
+    "headline": "Hardik Pandya Set for Punjab Kings Move in Arshdeep Swap, Reports Say",
+    "slug": "hardik-pandya-punjab-kings-arshdeep-singh-swap-report-ipl-2027",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact date when the official announcement is expected, rather than using vague terms like 'later this week'.",
+        "Include a brief background on Hardik Pandya's performance and significance to the Mumbai Indians to provide context for readers unfamiliar with the player.",
+        "Ensure that all sources are clearly attributed in a consistent manner throughout the article, particularly when citing reports from Sportstar, Sportskeeda, and CricTracker."
+      ],
+      "embed_opportunities": [
+        "Embed the official IPL Twitter account's announcement regarding the retention deadline or any relevant updates on the trade process."
+      ]
+    }
+  },
+  {
+    "id": "668c8b5f-4068-407e-bb0a-e9801cc23cac",
+    "headline": "Jailer 2 Becomes Kollywood's First 2026 Film With Rs 100 Crore ROI",
+    "slug": "jailer-2-kollywood-first-2026-film-rs-100-crore-roi-day-19",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the ROI figures by providing a direct link to Koimoi's report for transparency and verification.",
+        "Include a brief explanation of what ROI means in the context of film finance for readers who may not be familiar with the term.",
+        "Add a comparison to other recent Kollywood films' ROI figures to provide context on how Jailer 2's performance stacks up against its peers.",
+        "Ensure consistency in reported figures by choosing either Koimoi or Sacnilk as the primary source for box office numbers to avoid confusion."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Koimoi or Sacnilk that announces the ROI milestone for Jailer 2 to enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "d72d6f88-0486-4dad-879e-073e6d717d38",
+    "headline": "Google Launches Dreambeans in India, Its First Market Outside US",
+    "slug": "google-dreambeans-india-launch-ai-personal-stories",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include specific user eligibility criteria for the app, such as age restrictions and language availability, in a clear format to enhance clarity.",
+        "Add a brief comparison of how Dreambeans has performed in the US versus expectations in India, providing context for the launch's significance.",
+        "Clarify the limitations of the app, such as the restriction to personal Gmail accounts only, to ensure readers understand who can use it.",
+        "Provide a timeline for when users can expect updates or new features, as well as any promotional activities related to the launch in India."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Google's official account announcing the launch of Dreambeans in India for real-time updates and engagement."
+      ]
+    }
+  },
+  {
+    "id": "f91be2c5-1294-41e3-94ee-6ad3ba792f3e",
+    "headline": "Apple's Foldable iPhone Duo Screens Are Cracking Within Hours, Owners Say",
+    "slug": "apple-foldable-iphone-duo-screens-cracking-applecare",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the issue by specifying when the first reports of cracking began in relation to the phone's release date (October 23, 2026). This will help readers understand the urgency and scale of the problem.",
+        "Provide more specific information about what customers should expect when contacting AppleCare for replacements, such as potential wait times for replacements and whether they will receive a loaner device during the process.",
+        "Include a direct quote from Apple regarding the issue, if available, to enhance attribution and provide readers with a clearer understanding of the company's stance.",
+        "Mention any warranty implications for users experiencing this issue, as this is crucial information for potential buyers and current owners."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a verified source that highlights user experiences or Apple's response to the issue for real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "437c495d-3d72-41ba-8875-fc8995def21c",
+    "headline": "Apple Posts Record India Revenue as Mac and Services Hit Highs",
+    "slug": "apple-record-india-revenue-mac-services-highs-q4-fy26",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the fiscal year mentioned; specify that fiscal 2026 refers to the period ending September 2026 to avoid confusion for readers unfamiliar with Apple's fiscal calendar.",
+        "Include specific revenue figures for India, if available, to provide a clearer picture of Apple's performance in that market, as the article notes that Apple did not publish a separate dollar figure for India.",
+        "Ensure that quotes from executives are clearly attributed to their respective sources, such as the earnings call or press release, to enhance credibility and clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official Apple earnings call transcript or a relevant tweet from Apple's official account to provide readers with direct access to the source of the information."
+      ]
+    }
+  }
+]

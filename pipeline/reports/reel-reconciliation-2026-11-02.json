@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 221,
-    "db_rows": 157,
-    "db_rows_with_yt_id": 127,
+    "channel_videos": 223,
+    "db_rows": 159,
+    "db_rows_with_yt_id": 129,
     "legacy_log_entries": 205,
-    "publish_log_entries": 40,
-    "in_sync": 107,
+    "publish_log_entries": 42,
+    "in_sync": 109,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 13,
     "ghost_db_rows": 16,
@@ -762,6 +762,20 @@
       "privacy": "public",
       "video_id": "-osb72y3-ME",
       "record": "prebuilt_reels:92336cad-a635-46bd-a432-1d00608a3288"
+    },
+    {
+      "title": "Advance Booking Crosses 2 Lakh Tickets in National Chains for Opening Day #Shorts #Entertainment",
+      "published_at": "2026-11-02T17:18:19Z",
+      "privacy": "public",
+      "video_id": "DEfPyH046sw",
+      "record": "prebuilt_reels:350fd18c-6f09-44d7-ba88-8b5b0384c112"
+    },
+    {
+      "title": "Adds $6.3 Billion in a Day as Reliance Shares Jump 11.6% on Record Quarterly Profit #Shorts #Markets",
+      "published_at": "2026-11-02T23:17:34Z",
+      "privacy": "public",
+      "video_id": "B45MLVEFtk4",
+      "record": "prebuilt_reels:3c385175-84c2-48c0-afec-378bee1ba1d6"
     }
   ],
   "unknown_legacy_logged": [
@@ -3715,5 +3729,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-02T11:16:21+00:00"
+  "generated_at": "2026-11-02T23:18:29+00:00"
 }

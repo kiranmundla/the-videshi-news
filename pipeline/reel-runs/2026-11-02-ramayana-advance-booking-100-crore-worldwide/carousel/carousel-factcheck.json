@@ -1,0 +1,152 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "ramayana-advance-booking-100-crore-worldwide",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Ramayana Advance Booking Crosses Rs 100 Crore Worldwide Ahead of Release",
+        "numbers": [
+          100.0,
+          1000000000.0
+        ],
+        "entities": [
+          "Ramayana Advance Booking Crosses Rs",
+          "Crore Worldwide Ahead"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states advance bookings crossed Rs 100 crore worldwide.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The two-part film directed by Nitesh Tiwari opens in cinemas on November 5, 2026.",
+        "numbers": [
+          5.0,
+          2026.0
+        ],
+        "entities": [
+          "Nitesh Tiwari"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "The article confirms the film opens on November 5, 2026, directed by Nitesh Tiwari.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Reported pre-sales stand at approximately Rs 105 crore worldwide, two days before the November 5 release",
+        "numbers": [
+          5.0,
+          105.0,
+          1050000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article reports pre-sales of about Rs 105 crore before the release.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Nearly 15 lakh tickets have been sold across India, including Rs 27 crore for opening day",
+        "numbers": [
+          15.0,
+          27.0,
+          1500000.0,
+          270000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states nearly 15 lakh tickets sold and Rs 27 crore for opening day.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Overseas bookings reached $5 million by Tuesday morning, including more than $1.5 million from US paid previews",
+        "numbers": [
+          1.5,
+          5.0,
+          1500000.0,
+          5000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms overseas bookings of $5 million and $1.5 million from US previews.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Ramayana Advance Booking Crosses Rs 100 Crore Worldwide Ahead of Release",
+        "numbers": [
+          100.0,
+          1000000000.0
+        ],
+        "entities": [
+          "Ramayana Advance Booking Crosses Rs",
+          "Crore Worldwide Ahead"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states advance bookings crossed Rs 100 crore worldwide.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000456,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

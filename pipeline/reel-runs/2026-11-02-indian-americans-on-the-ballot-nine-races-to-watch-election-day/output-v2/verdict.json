@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "indian-americans-on-the-ballot-nine-races-to-watch-election-day",
+  "name": "indian-americans-on-the-ballot-nine-races-to-watch-election-day",
+  "script": "reel-runs/2026-11-02-indian-americans-on-the-ballot-nine-races-to-watch-election-day/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "stats[2].label"
+    ],
+    "llm_cost_usd": 0.000769
+  }
+}

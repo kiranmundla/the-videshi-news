@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-02T11:16:21+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-02T23:18:29+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **221**
-- prebuilt_reels rows: 157 (127 with a yt_video_id)
+- Channel uploads (actual, via API): **223**
+- prebuilt_reels rows: 159 (129 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 40
-- **In sync** (channel video backed by a DB/publish-log record): **107**
+- Phase 2 publish-log entries: 42
+- **In sync** (channel video backed by a DB/publish-log record): **109**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 13
 - Ghost DB rows (yt_video_id not on channel): 16
@@ -283,7 +283,7 @@ _None._
 - row `cededbdc-e47d-4afd-9d01-5586e1d95785` · slug india-cancer-drug-price-caps-137-medicines-november-9 · yt_video_id `M5UjKqtENwU` · on channel: no
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 
-## (d) In sync (107)
+## (d) In sync (109)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -392,4 +392,6 @@ _None._
 - `ZFm4TJG3vpc` · unlisted · 2026-11-01 · Jailer 2 First Indian Film to Cross Rs 75 Crore in All Four South Markets #Shorts #Entertainment [prebuilt_reels:ce9cd618-ae44-4c10-90db-f93ce6040bc9]
 - `QUXf7VInd_8` · public · 2026-11-01 · Jailer 2 Crosses Rs 800 Crore, a First for Tamil Cinema #Shorts #Entertainment [prebuilt_reels:161cc8e5-367e-4b35-9d76-f18fb3edb5ea]
 - `-osb72y3-ME` · public · 2026-11-02 · India's Net GST Collection Jumps 25.6% to Rs 2.03 Trillion in October #Shorts #Markets [prebuilt_reels:92336cad-a635-46bd-a432-1d00608a3288]
+- `DEfPyH046sw` · public · 2026-11-02 · Advance Booking Crosses 2 Lakh Tickets in National Chains for Opening Day #Shorts #Entertainment [prebuilt_reels:350fd18c-6f09-44d7-ba88-8b5b0384c112]
+- `B45MLVEFtk4` · public · 2026-11-02 · Adds $6.3 Billion in a Day as Reliance Shares Jump 11.6% on Record Quarterly Profit #Shorts #Markets [prebuilt_reels:3c385175-84c2-48c0-afec-378bee1ba1d6]
 

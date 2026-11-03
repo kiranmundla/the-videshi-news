@@ -1,0 +1,410 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+ "article_slug": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+ "article_id": "fb5fdc7c-861b-40f8-80f2-891a1850701c",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-02-ambani-adds-6-3-billion-reliance-shares-jump-record-profit/output-v4/ambani-adds-6-3-billion-reliance-shares-jump-record-profit.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://images.thedailyjagran.com/images/2026/11/02/template/image/Mukesh-Ambani-PTI-1793626671501.webp",
+  "local_path": "reel-runs/2026-11-02-ambani-adds-6-3-billion-reliance-shares-jump-record-profit/output-v4/hero.webp",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.93)",
+  "has_face": true,
+  "box_source": [
+   446,
+   171,
+   309,
+   381
+  ],
+  "box_bg": [
+   396,
+   273,
+   215,
+   265
+  ],
+  "chin_bg": 538,
+  "anchor": [
+   0.5,
+   0.534
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 258,
+   "block_top": 993,
+   "block_bottom": 1251,
+   "text_bbox": [
+    70,
+    993,
+    930,
+    1251
+   ],
+   "texts": [
+    "Markets Finance",
+    "AMBANI ADDS $6.3 BILLION IN A DAY AS RELIANCE SHARES JUMP 11.6% ON RECORD QUARTERLY PROFIT"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      2,
+      1200,
+      675
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 353,
+   "block_top": 945,
+   "block_bottom": 1298,
+   "text_bbox": [
+    70,
+    945,
+    930,
+    1298
+   ],
+   "texts": [
+    "What Happened",
+    "Mukesh Ambani added $6.3 billion in a single session as Reliance Industries shares surged 11.6% after a stronger-than-expected September quarter, according to Forbes' real-time billionaires list."
+   ],
+   "v7": {
+    "image_source": "extra:mukesh-ambani-receives-cnbc-india-business-a",
+    "track": "backdrop",
+    "render_scale": 0.299,
+    "photo_px": [
+     2790,
+     1829
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.2989247311827957,
+     "window": [
+      0,
+      0,
+      2790,
+      1565
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.05x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Mukesh Ambani is given the CNBC India Business Award, 2007 by the then Minister Kamal Nath.",
+     "route": "identity \u2014 depicts (P180=Q298547)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Mukesh_Ambani_Receives_CNBC_India_Business_Award,_2007.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Mukesh_Ambani_Receives_CNBC_India_Business_Award%2C_2007.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "Mananshah15"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 350,
+   "block_top": 1230,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1230,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$6.3 BILLION",
+    "Mukesh Ambani's one-day gain, the biggest on Forbes' real-time billionaires list"
+   ],
+   "v7": {
+    "image_source": "extra:forbes-building-in-nyc",
+    "track": "full-bleed",
+    "render_scale": 0.655,
+    "photo_px": [
+     1949,
+     2931
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6550665301944729,
+     "window": [
+      301,
+      0,
+      1949,
+      2931
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Forbes Building (Forbes Magazine and American Heritage magazine) in New York City, at 60 Fifth Avenue.",
+     "route": "identity \u2014 Wikidata P18 (Q25161472)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Forbes_building_in_NYC.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Forbes_building_in_NYC.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.5",
+     "artist": "No machine-readable author provided. Leifern assumed (based on copyright claims)"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 750,
+   "block_bottom": 1493,
+   "text_bbox": [
+    70,
+    750,
+    930,
+    1493
+   ],
+   "texts": [
+    "By The Numbers",
+    "11.6%",
+    "Reliance share jump, closing at Rs 1,300",
+    "40.6%",
+    "Profit rise to Rs 25,548 crore",
+    "$88.8 BILLION",
+    "Ambani net worth, ranked 23rd globally"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7897727272727273,
+     "window": [
+      72,
+      64,
+      1128,
+      656
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 906,
+   "block_bottom": 1338,
+   "text_bbox": [
+    70,
+    906,
+    930,
+    1338
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Ambani stays India's richest person, ahead of Gautam Adani at 26th",
+    "Reliance was the biggest gainer on the Nifty 50"
+   ],
+   "v7": {
+    "image_source": "extra:gautam-adani-net-worth",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1280,
+     900
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      0,
+      1280,
+      718
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "File:Gautam Adani Net Worth.jpg",
+     "route": "identity \u2014 depicts (P180=Q5527865)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Gautam_Adani_Net_Worth.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Gautam_Adani_Net_Worth.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": ""
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "The quarter, not the rich list, is the story \u2014 a refining-led beat and record group profit.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 106.4,
+ "mp4_bytes": 6763145
+}

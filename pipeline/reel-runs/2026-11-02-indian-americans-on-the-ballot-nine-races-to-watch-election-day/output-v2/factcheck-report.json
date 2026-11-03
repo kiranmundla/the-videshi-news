@@ -1,0 +1,286 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "indian-americans-on-the-ballot-nine-races-to-watch-election-day",
+  "verdict": "fail",
+  "held_claims": [
+    "stats[2].label"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIAN AMERICANS ON THE BALLOT: NINE RACES TO WATCH ON ELECTION DAY",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses Indian Americans on the ballot in key races.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "At least 57 Indian American candidates are on the November 3 midterm ballot, including four House incumbents rated Solid D and open-seat candidates Amish Shah in Arizona and Pia Dandiya in Florida.",
+      "numbers": [
+        3.0,
+        57.0
+      ],
+      "entities": [
+        "Indian American",
+        "Solid D",
+        "Amish Shah",
+        "Pia Dandiya"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about candidates and ratings are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "57",
+      "numbers": [
+        57.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states there are at least 57 Indian American candidates.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Indian American candidates on the November 3 ballot",
+      "numbers": [
+        3.0
+      ],
+      "entities": [
+        "Indian American"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Indian American candidates on the November 3 ballot.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "ELECTIONS 2026",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "11",
+      "numbers": [
+        11.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions 11 candidates running for the House.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Indian American candidates running for the House",
+      "numbers": [],
+      "entities": [
+        "Indian American"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the number of Indian American House candidates.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "36",
+      "numbers": [
+        36.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states there are 36 candidates for state legislatures.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Candidates running for state legislatures",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the number of candidates for state legislatures.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "49% TO 45%",
+      "numbers": [
+        45.0,
+        49.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article cites this polling result for Shah and Feely.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Shah ahead of Jay Feely in the final public poll by Keating Research",
+      "numbers": [],
+      "entities": [
+        "Jay Feely",
+        "Keating Research"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim incorrectly states Shah is ahead of Feely, not Jay Feely.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Incumbents Ro Khanna, Pramila Jayapal, Ami Bera and Suhas Subramanyam are rated Solid D",
+      "numbers": [],
+      "entities": [
+        "Incumbents Ro Khanna",
+        "Pramila Jayapal",
+        "Ami Bera",
+        "Suhas Subramanyam",
+        "Solid D"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms these incumbents are rated Solid D.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Vivek Ramaswamy trails narrowly in Ohio's race for governor",
+      "numbers": [],
+      "entities": [
+        "Vivek Ramaswamy"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article indicates Ramaswamy is trailing in polling.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Wins for both Shah and Dandiya would hold the 'Samosa Caucus' at six.",
+      "numbers": [],
+      "entities": [
+        "Samosa Caucus'"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this outcome would maintain the caucus size.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "ELECTIONS 2026",
+    "ok": true,
+    "detail": "ELECTIONS <grounded year>"
+  },
+  "key_entities": [
+    {
+      "entity": "Ro Khanna",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Pramila Jayapal",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Vivek Ramaswamy",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Amish Shah",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Pia Dandiya",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000769,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

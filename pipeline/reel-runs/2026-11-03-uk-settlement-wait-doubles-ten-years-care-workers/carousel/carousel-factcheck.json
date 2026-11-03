@@ -1,0 +1,166 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "uk-settlement-wait-doubles-ten-years-care-workers",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "UK Doubles Settlement Wait to Ten Years, Keeps Five-Year Route for Care Workers",
+        "numbers": [],
+        "entities": [
+          "UK Doubles Settlement Wait",
+          "Ten Years",
+          "Keeps Five-Year Route",
+          "Care Workers"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the settlement wait doubles and care workers retain a five-year route.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The standard settlement wait doubles to ten years, but care workers earning at least \u00a325,000 keep a five-year route.",
+        "numbers": [
+          25000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the settlement wait and conditions for care workers.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The standard wait for UK settlement will double from five years to ten, applied retrospectively to workers already in Britain",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article explicitly states the wait doubles and applies retrospectively.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Care workers keep a five-year route if they earn at least \u00a325,000 a year and have met their visa conditions",
+        "numbers": [
+          25000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article details the conditions for care workers to retain the five-year route.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Earning at least \u00a350,271 a year keeps settlement at five years; more than \u00a3125,000 brings it down to three",
+        "numbers": [
+          50271.0,
+          125000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides specific earnings thresholds for settlement duration.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Shabana Mahmood",
+        "numbers": [],
+        "entities": [
+          "Shabana Mahmood"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Shabana Mahmood is mentioned as the Home Secretary in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Home Secretary",
+        "numbers": [],
+        "entities": [
+          "Home Secretary"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Shabana Mahmood as the Home Secretary.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "UK Doubles Settlement Wait to Ten Years, Keeps Five-Year Route for Care Workers",
+        "numbers": [],
+        "entities": [
+          "UK Doubles Settlement Wait",
+          "Ten Years",
+          "Keeps Five-Year Route",
+          "Care Workers"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is a repetition of the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000544,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

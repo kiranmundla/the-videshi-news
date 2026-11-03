@@ -1,0 +1,396 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "uk-settlement-wait-doubles-ten-years-care-workers",
+ "article_slug": "uk-settlement-wait-doubles-ten-years-care-workers",
+ "article_id": "7dc0e244-6939-46f9-8262-93f9ae426fc9",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-03-uk-settlement-wait-doubles-ten-years-care-workers/output/uk-settlement-wait-doubles-ten-years-care-workers.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://cdn.lapost.com/2026/11/6ae869ee60fac.jpg",
+  "local_path": "reel-runs/2026-11-03-uk-settlement-wait-doubles-ten-years-care-workers/output/hero.jpg",
+  "width": 1230,
+  "height": 820,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.86)",
+  "has_face": true,
+  "box_source": [
+   699,
+   284,
+   36,
+   45
+  ],
+  "box_bg": [
+   560,
+   349,
+   24,
+   31
+  ],
+  "chin_bg": 380,
+  "anchor": [
+   0.583,
+   0.374
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   556
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 984,
+   "block_bottom": 1347,
+   "text_bbox": [
+    70,
+    984,
+    930,
+    1347
+   ],
+   "texts": [
+    "Immigration",
+    "UK SETTLEMENT WAIT DOUBLES TO 10 YEARS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.678,
+    "photo_px": [
+     1230,
+     820
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.6780487804878049,
+     "window": [
+      0,
+      0,
+      1230,
+      820
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.34x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 1281,
+   "zone_h": 299,
+   "scale": 0.675,
+   "content_h": 269,
+   "block_top": 1311,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1311,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Home Secretary Shabana Mahmood's plan doubles the standard UK settlement wait from five years to ten, applied retrospectively, while care workers earning at least \u00a325,000 keep a five-year route."
+   ],
+   "v7": {
+    "image_source": "extra:2025-shabana-mahmood-cropped",
+    "track": "full-bleed",
+    "render_scale": 0.496,
+    "photo_px": [
+     2907,
+     3869
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4962522615662962,
+     "window": [
+      623,
+      0,
+      2799,
+      3869
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "08/09/2025. London, UK. Pictured: British Home Secretary, Shabana Mahmood. The Five Country Ministerial 2025 held in Central London. Picture by James Whatling / Parsons Media for the Home Office",
+     "route": "identity \u2014 depicts (P180=Q695007)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:2025_Shabana_Mahmood_(cropped).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/2025_Shabana_Mahmood_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 4.0",
+     "artist": "UK Home Office"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 434,
+   "block_top": 949,
+   "block_bottom": 1383,
+   "text_bbox": [
+    70,
+    949,
+    930,
+    1383
+   ],
+   "texts": [
+    "THE STAKES",
+    "10 YEARS",
+    "Standard wait for UK settlement, doubled from five years"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.771,
+    "photo_px": [
+     1230,
+     820
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.7707948243992606,
+     "window": [
+      148,
+      0,
+      1230,
+      721
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.34x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 0.975,
+   "content_h": 771,
+   "block_top": 780,
+   "block_bottom": 1551,
+   "text_bbox": [
+    70,
+    780,
+    930,
+    1551
+   ],
+   "texts": [
+    "By The Numbers",
+    "\u00a325,000",
+    "Care workers earning at least this a year keep a five-year route",
+    "\u00a3125,000",
+    "Earn more than this a year and settlement takes three years",
+    "500,000",
+    "People due to settle at five years who will not now do so"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.848,
+    "photo_px": [
+     1230,
+     820
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.8475609756097561,
+     "window": [
+      0,
+      0,
+      984,
+      656
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.34x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 918,
+   "block_bottom": 1413,
+   "text_bbox": [
+    70,
+    918,
+    930,
+    1413
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "The new wait applies retrospectively to workers already in Britain",
+    "Many public sector workers \u2014 doctors, nurses and teachers \u2014 also stay at five years"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.848,
+    "photo_px": [
+     1230,
+     820
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.8475609756097561,
+     "window": [
+      246,
+      0,
+      1230,
+      656
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.34x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "UK settlement is now earned by contribution, not just time served.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 114.4,
+ "mp4_bytes": 10343924
+}

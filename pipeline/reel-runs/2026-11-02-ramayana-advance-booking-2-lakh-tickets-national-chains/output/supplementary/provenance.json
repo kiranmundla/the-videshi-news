@@ -1,0 +1,177 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ramayana-advance-booking-2-lakh-tickets-national-chains",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Ramayana: Part One",
+    "PVR Inox",
+    "Cinepolis",
+    "Ranbir Kapoor",
+    "Nitesh Tiwari",
+    "Lakh Tickets"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Ramayana: Part One' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'PVR Inox' named 'PVR Inox Pictures', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Lakh Tickets' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Cinepolis Janak, Janakpuri, New Delhi.jpg",
+      "route": "identity \u2014 depicts (P180=Q5686673)",
+      "verdict": "USED (news)",
+      "reason": "4080x3072, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Cinepolis imax exterior.jpg",
+      "route": "identity \u2014 depicts (P180=Q5686673)",
+      "verdict": "USED (hero)",
+      "reason": "4032x3024, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Ranbir Kapoor snapped at Kalina airport.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 245x343 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Anurag Basu, Ranbir Kapoor at the launch of 'Barfi!' promo 13.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x388 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Barfi2.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "USED (diaspora)",
+      "reason": "2216x1804, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Filming of Tamasha in Corsica.JPG",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 502x440 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Photos-Ranbir-Kapoor-snapped-at-the-airport-1.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x878 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Photos-Ranbir-Kapoor-snapped-at-the-airport-4.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x775 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Priyanka Chopra, Ranbir Kapoor at the launch of 'Barfi!' promo 05.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 475x288 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:RK at Besharam launch.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 255x345 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ranbir, Jack arrive diwali Bash.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 561x280 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ranbir-kapoor-signature.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:RanbirKapoor.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 240x365 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Nitesh Tiwari at the \u2018Khidkiyaan\u2019 movie festival launch.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q16908467)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x881 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Nitesh Tiwari at the \u2018Khidkiyaan\u2019 movie festival launch (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q16908467)",
+      "verdict": "rejected",
+      "reason": "resolution: 240x320 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "cinepolis-janak-janakpuri-new-delhi",
+      "path": "cinepolis-janak-janakpuri-new-delhi.jpg",
+      "size": [
+        4080,
+        3072
+      ],
+      "role": "establishing",
+      "subject": "Cinepolis movie theatre in Janakpuri, New Delhi, also commonly called as Janak Cinema.",
+      "route": "identity \u2014 depicts (P180=Q5686673)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Cinepolis_Janak,_Janakpuri,_New_Delhi.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Cinepolis_Janak%2C_Janakpuri%2C_New_Delhi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "VartamanVarta"
+    },
+    {
+      "beat": "hero",
+      "label": "cinepolis-imax-exterior",
+      "path": "cinepolis-imax-exterior.jpg",
+      "size": [
+        4032,
+        3024
+      ],
+      "role": "establishing",
+      "subject": "Cinepolis IMAX located at 5500 Grandview Parkway, Davenport, Florida.",
+      "route": "identity \u2014 depicts (P180=Q5686673)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Cinepolis_imax_exterior.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Cinepolis_imax_exterior.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "TzarN64"
+    },
+    {
+      "beat": "diaspora",
+      "label": "barfi2",
+      "path": "barfi2.jpg",
+      "size": [
+        2216,
+        1804
+      ],
+      "role": "establishing",
+      "subject": "Barfi promotions at St.Xaviers College, Kolkata",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Barfi2.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Barfi2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "SXCAA"
+    }
+  ]
+}

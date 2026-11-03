@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+  "name": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+  "script": "reel-runs/2026-11-02-ambani-adds-6-3-billion-reliance-shares-jump-record-profit/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "payoff"
+    ],
+    "llm_cost_usd": 0.00068
+  }
+}

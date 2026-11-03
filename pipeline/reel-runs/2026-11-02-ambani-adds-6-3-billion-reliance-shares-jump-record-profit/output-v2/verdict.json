@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+  "name": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+  "script": "reel-runs/2026-11-02-ambani-adds-6-3-billion-reliance-shares-jump-record-profit/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000682
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-02-ambani-adds-6-3-billion-reliance-shares-jump-record-profit/output-v2/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "2015-07-13-09-54-15-view-northeast-along-the",
+      "diaspora": "gautam-adani-net-worth",
+      "payoff": "gautam-adani-outside-frydenberg-s-office-fry"
+    }
+  },
+  "manifest": "reel-runs/2026-11-02-ambani-adds-6-3-billion-reliance-shares-jump-record-profit/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-11-02-ambani-adds-6-3-billion-reliance-shares-jump-record-profit/output-v2/ambani-adds-6-3-billion-reliance-shares-jump-record-profit.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-02-ambani-adds-6-3-billion-reliance-shares-jump-record-profit/output-v2/tiktok-caption.txt"
+}

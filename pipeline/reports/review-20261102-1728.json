@@ -1,0 +1,21 @@
+[
+  {
+    "id": "f48a3426-0343-4912-9303-6bfe3b7d3bc3",
+    "headline": "Ramayana: Part 1 \u2014 Critics Hail Nitesh Tiwari's Epic as a Visual Masterpiece",
+    "slug": "ramayana-part-1-review-roundup-critics",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Add a direct quote from a critic to enhance attribution and provide a more vivid perspective on the film's strengths and weaknesses.",
+        "Include specific details about the film's release date, runtime, and where it is currently being screened to give readers actionable information.",
+        "Clarify the film's target audience and any relevant cultural significance to provide context for its reception, especially for readers unfamiliar with the Ramayana.",
+        "Mention any notable awards or nominations the film has received or is expected to receive, which could add depth to the discussion of its critical reception."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent film critic or a film industry insider to provide real-time reactions and insights about the film's release."
+      ]
+    }
+  }
+]

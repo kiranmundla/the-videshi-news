@@ -534,5 +534,73 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "DEfPyH046sw",
+    "article_slug": "ramayana-advance-booking-2-lakh-tickets-national-chains",
+    "article_id": "e1b7c2bc-5227-462d-bb98-f33a9af7a725",
+    "title": "Advance Booking Crosses 2 Lakh Tickets in National Chains for Opening Day #Shorts #Entertainment",
+    "privacy": "public",
+    "uploaded_at": "2026-11-02T17:17:50.997502+00:00",
+    "video_path": "reel-runs/2026-11-02-ramayana-advance-booking-2-lakh-tickets-national-chains/output/ramayana-advance-booking-2-lakh-tickets-national-chains.mp4",
+    "video_sha256": "667c44555761a28c3d8c7ac9b756b45eefda4041b79d6623dea9fc16adf4a705",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "B45MLVEFtk4",
+    "article_slug": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+    "article_id": "fb5fdc7c-861b-40f8-80f2-891a1850701c",
+    "title": "Adds $6.3 Billion in a Day as Reliance Shares Jump 11.6% on Record Quarterly Profit #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-11-02T23:17:05.614347+00:00",
+    "video_path": "reel-runs/2026-11-02-ambani-adds-6-3-billion-reliance-shares-jump-record-profit/output-v2/ambani-adds-6-3-billion-reliance-shares-jump-record-profit.mp4",
+    "video_sha256": "ff86218e0da1a855a8d50550ed4b9a4b3e8a7d8343007e7d6f77c5f4a510ad8c",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py",
+    "superseded": "2026-11-02T23:34:25.652530+00:00",
+    "superseded_reason": "owner_deleted_in_studio",
+    "superseded_note": "Deleted 2026-11-02 on Kiran's order: wrong pictures (Adani portrait on Ambani stat scene, Mount Charleston Nevada trail via polluted depicts tag, Stop Adani protest photo on payoff). Pipeline fix + re-produce to follow."
+  },
+  {
+    "video_id": "ZYSFpelgDqU",
+    "article_slug": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+    "article_id": "fb5fdc7c-861b-40f8-80f2-891a1850701c",
+    "title": "Adds $6.3 Billion in a Day as Reliance Shares Jump 11.6% on Record Quarterly Profit #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-11-03T00:42:03.513308+00:00",
+    "video_path": "reel-runs/2026-11-02-ambani-adds-6-3-billion-reliance-shares-jump-record-profit/output-v4/ambani-adds-6-3-billion-reliance-shares-jump-record-profit.mp4",
+    "video_sha256": "acb2c7d20a080df778260a86fcb46eb0acbdf0dd39b98a1a8daae259509fcc3f",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "-U1L4K5B8i4",
+    "article_slug": "ramayana-advance-booking-100-crore-worldwide",
+    "article_id": "34a150ec-ce82-4f06-9943-74acb09aaa9c",
+    "title": "Ramayana Advance Booking Crosses Rs 100 Crore Worldwide Ahead of Release #Shorts #Entertainment",
+    "privacy": "public",
+    "uploaded_at": "2026-11-03T05:16:03.429593+00:00",
+    "video_path": "reel-runs/2026-11-02-ramayana-advance-booking-100-crore-worldwide/output/ramayana-advance-booking-100-crore-worldwide.mp4",
+    "video_sha256": "bbe0b43e413b62164e5cd21269e60e7d677110fe9c0573a80ba8495a22802bd7",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "cPPQZkSk4EE",
+    "article_slug": "uk-settlement-wait-doubles-ten-years-care-workers",
+    "article_id": "7dc0e244-6939-46f9-8262-93f9ae426fc9",
+    "title": "UK Doubles Settlement Wait to Ten Years, Keeps Five-Year Route for Care Workers #Shorts #Immigration",
+    "privacy": "public",
+    "uploaded_at": "2026-11-03T11:17:05.158601+00:00",
+    "video_path": "reel-runs/2026-11-03-uk-settlement-wait-doubles-ten-years-care-workers/output/uk-settlement-wait-doubles-ten-years-care-workers.mp4",
+    "video_sha256": "e78b1f58f1084a4d0b29ceeb279bce7dfeec3279bd27ea66f32c520b91eb88ef",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

@@ -1,0 +1,195 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Mukesh Ambani",
+    "Reliance Industries",
+    "Forbes",
+    "Nifty 50",
+    "Gautam Adani",
+    "Forbes' Real-Time Billionaires"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: \"Forbes' Real-Time Billionaires\" has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Mukesh Ambani.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q298547)",
+      "verdict": "rejected",
+      "reason": "resolution: 268x355 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:2015-07-13 09 54 15 View northeast along the North Loop Trail about 8.1 miles west of the trailhead in the Mount Charleston Wilderness, Nevada.jpg",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "verdict": "USED (news)",
+      "reason": "3264x2448, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Ambani Family at reception of Deepika and Ranveer 2018.jpg",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x390 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:ClintonTataAmbani.jpg",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Flickr - World Economic Forum - Ambani.jpg",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "verdict": "rejected",
+      "reason": "resolution: 800x533 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mukesh Ambani Receives CNBC India Business Award, 2007.jpg",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Mukesh Ambani at Mukesh Ambani's dinner bash for UN Secretary General (12).jpg",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x390 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mukesh Ambani was Awarded the Asia Society Leadership Award.jpg",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "verdict": "rejected",
+      "reason": "resolution: 864x574 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mukesh Ambani was Awarded the Asia Society Leadership Award (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "verdict": "rejected",
+      "reason": "resolution: 246x288 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Narendra Modi with Mukesh Ambani.jpg",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "verdict": "rejected",
+      "reason": "resolution: 851x313 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:RELIANCE PETROL PUMP - panoramio.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q908931)",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x528 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Forbes building in NYC.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q25161472)",
+      "verdict": "accepted",
+      "reason": "1949x2931, CC BY-SA 2.5, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Forbes company logo in New York City.jpg",
+      "route": "identity \u2014 depicts (P180=Q25161472)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Omer Qureshi Forbes.jpg",
+      "route": "identity \u2014 depicts (P180=Q25161472)",
+      "verdict": "accepted",
+      "reason": "4284x5712, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:NIFTY 50 Returns Graph.png",
+      "route": "identity \u2014 depicts (P180=Q1853402)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Gautam Adani.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q5527865)",
+      "verdict": "rejected",
+      "reason": "resolution: 392x525 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Gautam Adani 01.jpg",
+      "route": "identity \u2014 depicts (P180=Q5527865)",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x680 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Gautam Adani 01 cropped.jpg",
+      "route": "identity \u2014 depicts (P180=Q5527865)",
+      "verdict": "rejected",
+      "reason": "resolution: 247x308 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Gautam Adani Net Worth.jpg",
+      "route": "identity \u2014 depicts (P180=Q5527865)",
+      "verdict": "USED (diaspora)",
+      "reason": "1280x900, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Gautam Adani outside Frydenberg's office - Frydenberg-jmp 5531.jpg",
+      "route": "identity \u2014 depicts (P180=Q5527865)",
+      "verdict": "USED (payoff)",
+      "reason": "4928x3280, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "2015-07-13-09-54-15-view-northeast-along-the",
+      "path": "2015-07-13-09-54-15-view-northeast-along-the.jpg",
+      "size": [
+        3264,
+        2448
+      ],
+      "role": "establishing",
+      "subject": "View northeast along the North Loop Trail about 8.1 miles west of the trailhead in the Mount Charleston Wilderness, Nevada",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2015-07-13_09_54_15_View_northeast_along_the_North_Loop_Trail_about_8.1_miles_west_of_the_trailhead_in_the_Mount_Charleston_Wilderness,_Nevada.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/2015-07-13_09_54_15_View_northeast_along_the_North_Loop_Trail_about_8.1_miles_west_of_the_trailhead_in_the_Mount_Charleston_Wilderness%2C_Nevada.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Famartin"
+    },
+    {
+      "beat": "diaspora",
+      "label": "gautam-adani-net-worth",
+      "path": "gautam-adani-net-worth.jpg",
+      "size": [
+        1280,
+        900
+      ],
+      "role": "establishing",
+      "subject": "File:Gautam Adani Net Worth.jpg",
+      "route": "identity \u2014 depicts (P180=Q5527865)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Gautam_Adani_Net_Worth.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Gautam_Adani_Net_Worth.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": ""
+    },
+    {
+      "beat": "payoff",
+      "label": "gautam-adani-outside-frydenberg-s-office-fry",
+      "path": "gautam-adani-outside-frydenberg-s-office-fry.jpg",
+      "size": [
+        4928,
+        3280
+      ],
+      "role": "interior",
+      "subject": "Photo by Julian Meehan Copyright: Creative Commons CC-by-SA Stop Adani protest outside Josh Frydenberg's Camberwell office. We want Josh as the Environment Minister to stop the Adani Carmichael coal mine. 22 major banks refusing to finance ",
+      "route": "identity \u2014 depicts (P180=Q5527865)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Gautam_Adani_outside_Frydenberg%27s_office_-_Frydenberg-jmp_5531.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Gautam_Adani_outside_Frydenberg%27s_office_-_Frydenberg-jmp_5531.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "John Englart"
+    }
+  ]
+}

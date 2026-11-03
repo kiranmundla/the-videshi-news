@@ -1,0 +1,282 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+  "verdict": "fail",
+  "held_claims": [
+    "payoff"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "AMBANI ADDS $6.3 BILLION IN A DAY AS RELIANCE SHARES JUMP 11.6% ON RECORD QUARTERLY PROFIT",
+      "numbers": [
+        6.3,
+        11.6,
+        6300000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All facts are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Mukesh Ambani added $6.3 billion in a single session as Reliance Industries shares surged 11.6% after a stronger-than-expected September quarter, according to Forbes' real-time billionaires list.",
+      "numbers": [
+        6.3,
+        11.6,
+        6300000000.0
+      ],
+      "entities": [
+        "Mukesh Ambani",
+        "Reliance Industries"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All facts are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$6.3 BILLION",
+      "numbers": [
+        6.3,
+        6300000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$6.3 billion gain is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Mukesh Ambani's one-day gain, the biggest on Forbes' real-time billionaires list",
+      "numbers": [],
+      "entities": [
+        "Mukesh Ambani's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states it's the biggest one-day gain.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "11.6%",
+      "numbers": [
+        11.6
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The share jump percentage is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Reliance share jump, closing at Rs 1,300",
+      "numbers": [
+        1300.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The closing price is stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "40.6%",
+      "numbers": [
+        40.6
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Profit rise percentage is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Profit rise to Rs 25,548 crore",
+      "numbers": [
+        25548.0,
+        255480000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Profit amount is stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$88.8 BILLION",
+      "numbers": [
+        88.8,
+        88800000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ambani's net worth is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Ambani net worth, ranked 23rd globally",
+      "numbers": [
+        23.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ranking and net worth are stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Ambani stays India's richest person, ahead of Gautam Adani at 26th",
+      "numbers": [
+        26.0
+      ],
+      "entities": [
+        "Gautam Adani"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ambani's ranking and Adani's position are mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Reliance was the biggest gainer on the Nifty 50",
+      "numbers": [
+        50.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Reliance was the biggest gainer.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "For Reliance holders, the quarter is the story \u2014 a refining-led beat and record group profit, not just the rich-list gain.",
+      "numbers": [],
+      "entities": [
+        "For Reliance"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "For Reliance"
+        ]
+      },
+      "llm_reason": "The article does not contain this specific interpretation.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Mukesh Ambani",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Reliance Industries",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Forbes",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nifty 50",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00068,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

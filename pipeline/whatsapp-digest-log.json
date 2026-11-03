@@ -248,5 +248,15 @@
     "quick_hit_count": 5,
     "deadline_count": 3,
     "chars": 2484
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-02T15:12:59.489677+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 02 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "reliance-foundation-anant-ashray-karjat-lifelong-home-5000",
+    "quick_hit_count": 5,
+    "deadline_count": 1,
+    "chars": 2483
   }
 ]

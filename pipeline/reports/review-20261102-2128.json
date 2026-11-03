@@ -1,0 +1,163 @@
+[
+  {
+    "id": "3238c718-4bdd-47bb-ae87-bfdef76b1d4a",
+    "headline": "'Go Sell Ice Cream': AR Rahman Answers Ramayana Song Critics With a Steve Jobs L",
+    "slug": "ar-rahman-go-sell-ice-cream-ramayana-mangal-rang-criticism",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the context of the criticism surrounding 'Mangal Rang' by providing specific examples of the objections raised on social media. This would give readers a clearer understanding of the controversy.",
+        "Include a brief background on the Ramayana: Rise of a Legend film, such as its plot or significance, to provide context for why the song's treatment is contentious.",
+        "Ensure that the headline reflects the essence of the article more compellingly, perhaps by mentioning the controversy directly, e.g., 'A.R. Rahman Defends 'Mangal Rang' Amid Criticism, Quoting Steve Jobs'.",
+        "Add a direct quote from the interview with Screen to enhance attribution and provide readers with a more personal insight into Rahman's perspective."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet or post from A.R. Rahman or the film's promotional accounts regarding the song or the interview to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "2bc711e1-4d81-484d-9c10-bf167f2a8f3b",
+    "headline": "India in New Zealand: Kohli Needs Four Runs to Reach 600 as ODI Series Opens Wed",
+    "slug": "india-new-zealand-odi-kohli-600-runs-record",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by correcting the date of the ODI series opening. The article states it opens on November 4, which is incorrect as November 4, 2026, is in the future. Ensure the date reflects the actual series start date.",
+        "Provide context about the significance of Kohli reaching 600 runs in terms of his career milestones. This could include a brief mention of how reaching this milestone compares to other players in ODI history or its potential impact on his legacy.",
+        "Include a quote or statement from a relevant figure, such as a coach or sports analyst, regarding Kohli's performance or the importance of this series. This would enhance the article's attribution and provide depth.",
+        "Reorganize the content to improve flow. Start with Kohli's milestone, then provide statistics about his performance in New Zealand, followed by the context of the series and its historical significance."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the official ICC or a sports analyst discussing Kohli's upcoming milestone to enhance engagement and provide real-time commentary."
+      ]
+    }
+  },
+  {
+    "id": "0c2fb201-ac09-44a8-bd8a-c73b19cce12c",
+    "headline": "FIIs Turn Selective Buyers: Stake Hikes in 27 Stocks After Two Quarters of Heavy",
+    "slug": "fiis-selective-buyers-stake-hikes-27-stocks-q2-fy27",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Rs 13,970 crore net buying figure by providing context on how it compares to historical averages or expectations, which would help readers understand its impact better.",
+        "Include a brief explanation of why the factors mentioned (US bond yields, rupee, crude prices, tax structure) influenced FII behavior, as this would provide readers with a clearer understanding of the market dynamics at play.",
+        "Add a summary table or bullet points listing the key companies and their respective FII stake increases to enhance clarity and allow for quick reference.",
+        "Ensure that the headline reflects the selective nature of the buying trend more explicitly, perhaps by mentioning the specific sectors or types of stocks that are attracting FII interest."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or institution discussing the implications of FII behavior on the Indian market."
+      ]
+    }
+  },
+  {
+    "id": "37a54dad-e7d7-4efb-9e42-2c9fa780c09a",
+    "headline": "Delhi's Smog Blind Spot: Farm Fires Now Lit After NASA's Satellites Pass Overhea",
+    "slug": "delhi-smog-farm-fires-after-nasa-satellite-pass",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the shift in stubble burning behavior by providing specific years or dates for the data referenced, particularly the increase from 3% in 2021 to over 90% now.",
+        "Include a direct quote from a farmer or local authority to provide a human perspective on the issue and its implications for air quality and health.",
+        "Add a brief explanation of the health impacts of the increased pollution levels in Delhi due to these evening fires, as this would provide crucial context for readers.",
+        "Consider providing a comparison of pollution levels in Delhi on days with high stubble burning versus days without, to illustrate the impact more clearly."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from NASA or iFOREST summarizing the findings to enhance credibility and engagement."
+      ]
+    }
+  },
+  {
+    "id": "0a7fb93f-af3e-4ab4-8c40-f96268144e1f",
+    "headline": "Eleven Senate Seats Most Likely to Flip as US Midterms Reach Election Eve",
+    "slug": "eleven-senate-seats-most-likely-flip-midterms-election-eve",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Senate seats in terms of potential policy changes or implications for voters, especially in the context of the upcoming elections. This would help readers understand why these flips matter beyond just the numbers.",
+        "Provide more specific details about the polling data, such as the exact dates of the polls mentioned, to enhance accuracy and context. This helps readers gauge the recency and relevance of the information.",
+        "Include a brief explanation of the ranked-choice voting process in Alaska, as this could impact the timeline for determining Senate control and is relevant for readers trying to understand the electoral process."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from CNN or a reputable polling organization that summarizes the latest polling data for the Senate races to provide real-time updates and credibility."
+      ]
+    }
+  },
+  {
+    "id": "11ab6616-be0c-492b-b322-8b5de72eaad5",
+    "headline": "US Midterms 2026: What a Congress Flip Would, and Would Not, Change for India",
+    "slug": "us-midterms-2026-congress-flip-india-tariffs-h1b",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the proposed $100,000 fee for new H-1B applications. Include specific details on the current status of the legal challenges and any potential timelines for resolution.",
+        "Provide a clearer explanation of how the potential change in Congress could affect trade policy and tariffs specifically for India, including any concrete examples or scenarios that might arise from a Democratic-controlled House.",
+        "Add a brief overview of the current political landscape in Congress, including which party currently holds the majority and any relevant statistics that could help contextualize the potential impact of a flip."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a political analyst or expert discussing the implications of the midterms on US-India relations."
+      ]
+    }
+  },
+  {
+    "id": "fb5fdc7c-861b-40f8-80f2-891a1850701c",
+    "headline": "Ambani Adds $6.3 Billion in a Day as Reliance Shares Jump 11.6% on Record Quarte",
+    "slug": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying that the reported figures are for the second quarter of fiscal year 2027, as this could confuse readers unfamiliar with the fiscal calendar.",
+        "Include a brief explanation of what factors contributed to the strong quarterly results, such as specific business segments (e.g., refining, telecommunications) that drove the profit increase, to provide more context.",
+        "Add a comparison of Reliance's performance against its competitors or the broader market to give readers a sense of how significant this gain is in context.",
+        "Ensure that the figures mentioned, such as the market value increase of Rs 1,83,298 crore, are clearly attributed to the stock price movement to enhance accuracy."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Forbes or a financial news outlet that highlights Mukesh Ambani's ranking change and the one-day gain to provide real-time context."
+      ]
+    }
+  },
+  {
+    "id": "af0434cf-1cc9-4757-a684-56d32e02eb0b",
+    "headline": "Marvell to Buy Lumentum in $115 Billion All-Stock Bet on AI Optical Connectivity",
+    "slug": "marvell-buy-lumentum-115-billion-ai-optical-connectivity",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the deal's closing by providing a more specific date or month in 2028, as 'first half of 2028' is vague and may leave readers wanting more precise information.",
+        "Include a brief explanation of the significance of the premium offered to Lumentum shareholders, as well as how it compares to typical premiums in similar acquisitions, to provide context for readers unfamiliar with M&A practices.",
+        "Add a quote from an industry analyst or expert to provide additional perspective on the implications of this acquisition for the semiconductor and AI sectors, enhancing the article's depth."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Marvell or Lumentum that discusses the acquisition or its implications for the industry."
+      ]
+    }
+  }
+]

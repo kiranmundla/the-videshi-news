@@ -1,0 +1,406 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "ramayana-advance-booking-2-lakh-tickets-national-chains",
+ "article_slug": "ramayana-advance-booking-2-lakh-tickets-national-chains",
+ "article_id": "e1b7c2bc-5227-462d-bb98-f33a9af7a725",
+ "category": "Entertainment",
+ "video": "reel-runs/2026-11-02-ramayana-advance-booking-2-lakh-tickets-national-chains/output/ramayana-advance-booking-2-lakh-tickets-national-chains.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://www.pinkvilla.com/images/2026-11/869155612_ramayana.webp",
+  "local_path": "reel-runs/2026-11-02-ramayana-advance-booking-2-lakh-tickets-national-chains/output/hero.webp",
+  "width": 1280,
+  "height": 720,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.84)",
+  "has_face": true,
+  "box_source": [
+   24,
+   370,
+   146,
+   179
+  ],
+  "box_bg": [
+   102,
+   396,
+   95,
+   117
+  ],
+  "chin_bg": 513,
+  "anchor": [
+   0.077,
+   0.64
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 252,
+   "block_top": 996,
+   "block_bottom": 1248,
+   "text_bbox": [
+    70,
+    996,
+    930,
+    1248
+   ],
+   "texts": [
+    "Entertainment",
+    "RAMAYANA ADVANCE BOOKING CROSSES 2 LAKH TICKETS IN NATIONAL CHAINS FOR OPENING DAY"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      2,
+      1280,
+      720
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 344,
+   "zone_h": 1236,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Ramayana: Part One sold about 2 lakh tickets for its opening day in India's top two national chains, PVR Inox and Cinepolis, by Sunday night."
+   ],
+   "v7": {
+    "image_source": "extra:cinepolis-janak-janakpuri-new-delhi",
+    "track": "full-bleed",
+    "render_scale": 0.625,
+    "photo_px": [
+     4080,
+     3072
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.625,
+     "window": [
+      0,
+      0,
+      1728,
+      3072
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Cinepolis movie theatre in Janakpuri, New Delhi, also commonly called as Janak Cinema.",
+     "route": "identity \u2014 depicts (P180=Q5686673)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Cinepolis_Janak,_Janakpuri,_New_Delhi.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Cinepolis_Janak%2C_Janakpuri%2C_New_Delhi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 4.0",
+     "artist": "VartamanVarta"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 418,
+   "block_top": 1162,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1162,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "2 LAKH",
+    "Opening-day tickets sold in PVR Inox and Cinepolis, India's top two national chains"
+   ],
+   "v7": {
+    "image_source": "extra:cinepolis-imax-exterior",
+    "track": "full-bleed",
+    "render_scale": 0.635,
+    "photo_px": [
+     4032,
+     3024
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6349206349206349,
+     "window": [
+      1242,
+      0,
+      2943,
+      3024
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Cinepolis IMAX located at 5500 Grandview Parkway, Davenport, Florida.",
+     "route": "identity \u2014 depicts (P180=Q5686673)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Cinepolis_imax_exterior.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Cinepolis_imax_exterior.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "TzarN64"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 728,
+   "block_bottom": 1516,
+   "text_bbox": [
+    70,
+    728,
+    930,
+    1516
+   ],
+   "texts": [
+    "By The Numbers",
+    "4.58 LAKH",
+    "Opening-day advance tickets sold across all of India",
+    "Rs 20.32 CRORE",
+    "All-India opening-day advance sales, excluding blocked seats",
+    "13,317",
+    "Shows in the all-India opening-day advance"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.741,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7406749555950266,
+     "window": [
+      0,
+      89,
+      1126,
+      720
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 937,
+   "block_bottom": 1306,
+   "text_bbox": [
+    70,
+    937,
+    930,
+    1306
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "US and Canada presales reached 88,772 tickets worth $1.7 million",
+    "The Hindi epic stars Ranbir Kapoor, Yash and Sai Pallavi"
+   ],
+   "v7": {
+    "image_source": "extra:barfi2",
+    "track": "backdrop",
+    "render_scale": 0.376,
+    "photo_px": [
+     2216,
+     1804
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.37635379061371843,
+     "window": [
+      0,
+      0,
+      2216,
+      1243
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Barfi promotions at St.Xaviers College, Kolkata",
+     "route": "identity \u2014 depicts (P180=Q1063412)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Barfi2.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Barfi2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "SXCAA"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "The film opens on Thursday, November 5, in the Diwali festive window.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-fun-viacheslav.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 145.0,
+ "mp4_bytes": 14126579
+}

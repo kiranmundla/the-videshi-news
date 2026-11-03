@@ -1,0 +1,35 @@
+{
+ "hook_line": "UK SETTLEMENT WAIT DOUBLES TO 10 YEARS",
+ "hook_stat": {
+  "big": "10 YEARS",
+  "eyebrow": "THE STAKES",
+  "sub": "Standard wait for UK settlement, doubled from five years"
+ },
+ "stats": [
+  {
+   "big": "£25,000",
+   "label": "Care workers earning at least this a year keep a five-year route"
+  },
+  {
+   "big": "£125,000",
+   "label": "Earn more than this a year and settlement takes three years"
+  },
+  {
+   "big": "500,000",
+   "label": "People due to settle at five years who will not now do so"
+  }
+ ],
+ "diaspora_bullets": [
+  "The new wait applies retrospectively to workers already in Britain",
+  "Many public sector workers — doctors, nurses and teachers — also stay at five years"
+ ],
+ "key_entities": [
+  "Shabana Mahmood",
+  "indefinite leave to remain",
+  "care workers"
+ ],
+ "news_summary": "Home Secretary Shabana Mahmood's plan doubles the standard UK settlement wait from five years to ten, applied retrospectively, while care workers earning at least £25,000 keep a five-year route.",
+ "payoff": "UK settlement is now earned by contribution, not just time served.",
+ "versus": "",
+ "story_mood": "tense"
+}

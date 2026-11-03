@@ -1,0 +1,157 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Ambani Adds $6.3 Billion in a Day as Reliance Shares Jump 11.6% on Record Quarterly Profit",
+        "numbers": [
+          6.3,
+          11.6,
+          6300000000.0
+        ],
+        "entities": [
+          "Ambani Adds",
+          "Reliance Shares Jump",
+          "Record Quarterly Profit"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Claim matches article's details about Ambani's gain and share jump.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Reliance's best trading session in over six years, driven by a 40.6% rise in September-quarter profit, made Mukesh Ambani the world's biggest gainer on Forbes' real-time rich list and kept him India's richest person.",
+        "numbers": [
+          40.6
+        ],
+        "entities": [
+          "Mukesh Ambani"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All facts about trading session, profit rise, and rankings are in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Mukesh Ambani gained $6.3 billion in one day, taking his net worth to $88.8 billion and 23rd place globally on Forbes' real-time billionaires list",
+        "numbers": [
+          6.3,
+          23.0,
+          88.8,
+          6300000000.0,
+          88800000000.0
+        ],
+        "entities": [
+          "Mukesh Ambani"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All figures and rankings are directly stated in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Reliance Industries shares jumped 11.6% to close at Rs 1,300, their strongest session in more than six years",
+        "numbers": [
+          11.6,
+          1300.0
+        ],
+        "entities": [
+          "Reliance Industries"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the share price increase and trading session strength.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Reliance's profit attributable to shareholders rose 40.6% year on year to Rs 25,548 crore, on revenue up 27.8% to Rs 3.62 lakh crore",
+        "numbers": [
+          3.62,
+          27.8,
+          40.6,
+          25548.0,
+          362000.0,
+          255480000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Profit and revenue figures are accurately reported in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Ambani Adds $6.3 Billion in a Day as Reliance Shares Jump 11.6% on Record Quarterly Profit",
+        "numbers": [
+          6.3,
+          11.6,
+          6300000000.0
+        ],
+        "entities": [
+          "Ambani Adds",
+          "Reliance Shares Jump",
+          "Record Quarterly Profit"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000498,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

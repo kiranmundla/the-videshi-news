@@ -1,0 +1,184 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ambani-adds-6-3-billion-reliance-shares-jump-record-profit",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Mukesh Ambani",
+    "Reliance Industries",
+    "Forbes",
+    "Nifty 50",
+    "Gautam Adani",
+    "Forbes' Real-Time Billionaires"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: \"Forbes' Real-Time Billionaires\" has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Mukesh Ambani.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q298547)",
+      "verdict": "rejected",
+      "reason": "resolution: 268x355 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:2015-07-13 09 54 15 View northeast along the North Loop Trail about 8.1 miles west of the trailhead in the Mount Charleston Wilderness, Nevada.jpg",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "verdict": "rejected",
+      "reason": "blocklist: this file is on the entity's corpus blocklist \u2014 proven wrong for 'Mukesh Ambani' in a prior run"
+    },
+    {
+      "candidate": "File:Ambani Family at reception of Deepika and Ranveer 2018.jpg",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x390 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:ClintonTataAmbani.jpg",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "verdict": "accepted",
+      "reason": "3216x2136, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Flickr - World Economic Forum - Ambani.jpg",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "verdict": "rejected",
+      "reason": "resolution: 800x533 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mukesh Ambani Receives CNBC India Business Award, 2007.jpg",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "verdict": "USED (news)",
+      "reason": "2790x1829, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:RELIANCE PETROL PUMP - panoramio.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q908931)",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x528 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Forbes building in NYC.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q25161472)",
+      "verdict": "USED (hero)",
+      "reason": "1949x2931, CC BY-SA 2.5, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Forbes company logo in New York City.jpg",
+      "route": "identity \u2014 depicts (P180=Q25161472)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Omer Qureshi Forbes.jpg",
+      "route": "identity \u2014 depicts (P180=Q25161472)",
+      "verdict": "accepted",
+      "reason": "4284x5712, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:NIFTY 50 Returns Graph.png",
+      "route": "identity \u2014 depicts (P180=Q1853402)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Gautam Adani.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q5527865)",
+      "verdict": "rejected",
+      "reason": "resolution: 392x525 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Gautam Adani 01.jpg",
+      "route": "identity \u2014 depicts (P180=Q5527865)",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x680 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Gautam Adani 01 cropped.jpg",
+      "route": "identity \u2014 depicts (P180=Q5527865)",
+      "verdict": "rejected",
+      "reason": "resolution: 247x308 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Gautam Adani Net Worth.jpg",
+      "route": "identity \u2014 depicts (P180=Q5527865)",
+      "verdict": "USED (diaspora)",
+      "reason": "1280x900, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "mukesh-ambani-receives-cnbc-india-business-a",
+      "path": "mukesh-ambani-receives-cnbc-india-business-a.jpg",
+      "size": [
+        2790,
+        1829
+      ],
+      "role": "establishing",
+      "subject": "Mukesh Ambani is given the CNBC India Business Award, 2007 by the then Minister Kamal Nath.",
+      "route": "identity \u2014 depicts (P180=Q298547)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Mukesh_Ambani_Receives_CNBC_India_Business_Award,_2007.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Mukesh_Ambani_Receives_CNBC_India_Business_Award%2C_2007.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Mananshah15",
+      "entity": "Mukesh Ambani",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Mukesh Ambani"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "forbes-building-in-nyc",
+      "path": "forbes-building-in-nyc.jpg",
+      "size": [
+        1949,
+        2931
+      ],
+      "role": "establishing",
+      "subject": "Forbes Building (Forbes Magazine and American Heritage magazine) in New York City, at 60 Fifth Avenue.",
+      "route": "identity \u2014 Wikidata P18 (Q25161472)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Forbes_building_in_NYC.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Forbes_building_in_NYC.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.5",
+      "artist": "No machine-readable author provided. Leifern assumed (based on copyright claims)",
+      "entity": "Forbes",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Forbes",
+        "Forbes magazine"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "gautam-adani-net-worth",
+      "path": "gautam-adani-net-worth.jpg",
+      "size": [
+        1280,
+        900
+      ],
+      "role": "establishing",
+      "subject": "File:Gautam Adani Net Worth.jpg",
+      "route": "identity \u2014 depicts (P180=Q5527865)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Gautam_Adani_Net_Worth.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Gautam_Adani_Net_Worth.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "",
+      "entity": "Gautam Adani",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Gautam Adani",
+        "Gautam Shantilal Adani",
+        "Gautambhai Shantilal Adani",
+        "Gautambhai Adani"
+      ]
+    }
+  ]
+}
