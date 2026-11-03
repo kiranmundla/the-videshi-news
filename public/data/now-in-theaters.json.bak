@@ -1,6 +1,6 @@
 {
   "editorial_intro": "Spider-Man just dethroned The Force Awakens — $944.5M domestic, the all-time North American record — while Resident Evil took the weekend with a $60M franchise-best opening. In Indian cinema, the weekend's real story is survival: Mandaadi crossed ₹100 Cr worldwide and flattened Sardar 2, Hanuman Ansh hit ₹272 Cr India on 151x its ₹2 Cr budget, and Mirzapur: The Movie is now Pankaj Tripathi's most profitable film ever. Bollywood's Friday newcomers struggled — Vibe's ₹7.45 Cr opening beat Daayra's ₹5.63 Cr, but neither found the audience it needed — and all eyes are on Sept 24, when Nani's The Paradise arrives with record US advance sales.",
-  "generated_at": "2026-10-26T16:02:39Z",
+  "generated_at": "2026-11-02T17:01:00Z",
   "movies": [
     {
       "cast": [
@@ -751,7 +751,8 @@
           "name": "Sonakshi Sinha Zaheer Iqbal Ankit Gupta Sherlin Seth Zarina Wahab Purnendu Bhattacharya",
           "photo_url": ""
         }
-      ]
+      ],
+      "fandango_url": "https://www.fandango.com/tu-hai-meri-kiran-248127/movie-overview"
     },
     {
       "title": "Cult",
@@ -789,13 +790,14 @@
         }
       ],
       "poster_width": 295,
-      "poster_height": 339
+      "poster_height": 339,
+      "fandango_url": "https://www.fandango.com/cult-248221/movie-overview"
     },
     {
       "title": "Ramayana: Part 1",
       "slug": "ramayana-part-1-2026",
       "release_date": "2026-11-05",
-      "status": "coming_soon",
+      "status": "opening",
       "language": "Hindi",
       "director": "Nitesh Tiwari",
       "cast": [
@@ -817,7 +819,8 @@
         }
       ],
       "poster_width": 283,
-      "poster_height": 354
+      "poster_height": 354,
+      "review_slug": "ramayana-part-1-review-roundup-critics"
     },
     {
       "title": "Scene",
@@ -922,5 +925,5 @@
       ]
     }
   ],
-  "week_of": "Oct 26 – Nov 01, 2026"
+  "week_of": "Nov 02 – Nov 08, 2026"
 }
