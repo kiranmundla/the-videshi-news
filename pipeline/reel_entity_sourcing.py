@@ -147,7 +147,12 @@ _BINOMIAL_GENUS_STOP = {"quality", "featured", "valued", "self",
                         # Clinton/Tata/Ambani meeting photo — both
                         # read as Latin binomials and cost the
                         # Ambani reel its genuine depicts photos).
-                        "blurred", "people"}
+                        # Same class, found the same day:
+                        # 'Extracted images' (a Commons
+                        # maintenance category) vetoed the
+                        # Apple Park aerial while regression-
+                        # testing the screenshot/scenery veto.
+                        "blurred", "people", "extracted"}
 
 
 def _binomial_subject(seg):
@@ -368,6 +373,94 @@ def wildlife_subject(entity, categories_text):
                             for m in _WILDLIFE_CAT_MARKERS):
             return True
     return False
+
+
+# Screenshot / UI evidence: Commons files its screenshots
+# honestly — a category segment naming them ("Screenshots of
+# Microsoft Windows", "Screenshots by PantheraLeo1359531 in
+# 2025") or a description saying "screenshot". Software has no
+# physical presence to photograph; a UI capture is text in an
+# application frame, never a picture OF the entity.
+_SCREENSHOT_MARKER = "screenshot"
+# Device-class words: a file whose own title / categories name
+# a personal device as its subject is a picture OF a gadget —
+# on the 2026-11-01 X batch, a Surface Laptop Go displaying a
+# Persian-language Word document was sourced as a depicts file
+# of Microsoft (Q2283) and reached a live card AND an article
+# inline. The screen's content is arbitrary; the company is
+# not its own products' displays.
+_DEVICE_WORDS = {"laptop", "laptops", "notebook", "notebooks",
+                 "smartphone", "smartphones", "tablet",
+                 "tablets", "cellphone", "cellphones"}
+
+
+def ui_capture_subject(entity, title, description,
+                       categories_text):
+    """True when the file's own evidence marks it as a software
+    screenshot / UI capture, or as a photograph whose subject
+    is a personal device displaying content. Metadata evidence
+    ONLY — this pipeline never inspects pixels for identity.
+    An entity that IS the device (its name carries the device
+    word) is exempt, the same shape as wildlife_subject's
+    exemption for wildlife entities."""
+    desc = _strip_html(description or "").lower()
+    if _SCREENSHOT_MARKER in desc:
+        return True
+    for seg in (categories_text or "").split("|"):
+        if _SCREENSHOT_MARKER in seg.lower():
+            return True
+    if set(entity_tokens(entity)) & _DEVICE_WORDS:
+        return False
+    words = set(re.findall(r"[a-z]+",
+                           f"{title} {categories_text}".lower()))
+    return bool(words & _DEVICE_WORDS)
+
+
+# Scenery evidence: natural-feature markers with NO structure
+# or site anywhere in the evidence. A campus, a headquarters
+# building, a named temple or plaza is a STRUCTURE subject —
+# never 'generic scenery' — so any structure word exempts the
+# file from this class entirely.
+_SCENERY_WORDS = {"landscape", "landscapes", "scenery",
+                  "scenic", "forest", "forests", "woodland",
+                  "river", "rivers", "waterfall", "waterfalls",
+                  "canyon", "valley", "valleys", "mountain",
+                  "mountains", "lake", "lakes", "beach",
+                  "beaches", "estuary", "marsh", "marshes",
+                  "wetland", "wetlands", "prairie", "glacier",
+                  "meadow", "meadows", "wilderness", "hillside",
+                  "shoreline", "coast", "coastline", "seashore",
+                  "desert"}
+_SCENERY_PHRASES = ("state park", "national park",
+                    "nature reserve", "national forest")
+_STRUCTURE_WORDS = {"building", "buildings", "campus",
+                    "headquarters", "plaza", "tower", "towers",
+                    "facade", "exterior", "temple", "church",
+                    "mosque", "synagogue", "stadium", "airport",
+                    "station", "bridge", "monument", "memorial",
+                    "museum", "library", "university",
+                    "hospital", "office", "offices", "complex",
+                    "skyscraper", "house", "houses", "castle",
+                    "palace", "fort"}
+
+
+def scenery_subject(title, description, categories_text):
+    """True when the file's own evidence marks its subject as
+    a generic natural landscape: a scenery / natural-feature
+    marker is present and NO structure/site word is. (The Big
+    River estuary file — 'Big River, in the Big River Unit of
+    Mendocino Headlands State Park' — carries river + state
+    park markers and no structure; the TCS SIPCOT campus file
+    carries 'Building'/'Campus' and is exempt by construction.)
+    """
+    text = f"{title} {_strip_html(description)} " \
+           f"{categories_text}".lower()
+    words = set(re.findall(r"[a-z]+", text))
+    if words & _STRUCTURE_WORDS:
+        return False
+    if any(p in text for p in _SCENERY_PHRASES):
+        return True
+    return bool(words & _SCENERY_WORDS)
 
 
 def classify_role(title, description):
@@ -873,7 +966,39 @@ def evaluate_commons_page(page, entity, route, context=None,
     proper. Place/company depicts are unchanged — their
     failure classes are policed by the locality/context
     gates, and scoping to persons is what the evidence
-    supports."""
+    supports.
+
+    SCREENSHOT / UI + DEVICE-FRAME VETO (2026-11-02): the
+    identity fixes closed wrong-person / wrong-place sourcing,
+    but identity-VALID editorial junk still passed — on the
+    2026-11-01 evening X batch, 3 of 24 cards were this class:
+    a Surface Laptop Go displaying a Persian-language Word
+    document (a depicts file of Microsoft), a German Windows
+    Update UI screenshot (the P18 of Windows Update, whose own
+    categories file it under 'Screenshots by …'), and an
+    unrelated forest/river landscape (below). A candidate
+    whose own evidence marks it as a software screenshot / UI
+    capture, or whose named subject is a personal device
+    displaying content, rejects for EVERY entity and route
+    (ui_capture_subject) — software has no physical presence
+    to photograph, and a device's screen shows arbitrary
+    content, not the entity.
+
+    SCENERY RULE (2026-11-02, identity route only): a
+    candidate whose own evidence marks it as generic natural
+    scenery (scenery_subject: a natural-feature marker, no
+    structure or site anywhere in the evidence) passes ONLY
+    when its evidence also NAMES the entity or a registry
+    alias — i.e. the depicted place IS the entity itself or
+    the entity's own named site/campus. A landscape that
+    merely sits inside an entity's territory is a picture of
+    that landscape, not of the entity: 'BigRiver.jpg', an
+    estuary in Mendocino Headlands State Park, was a depicts
+    file of the United States (Q30) and illustrated an
+    Indiaspora H-1B card. Buildings / campuses / own sites
+    are structure subjects, exempt from the scenery class by
+    construction (TCS SIPCOT, NSE plaza, BSE building,
+    Microsoft campus, Apple Park all still source)."""
     title = page.get("title") or ""
     info = (page.get("imageinfo") or [{}])[0]
     row = {"candidate": title, "route": route}
@@ -911,6 +1036,16 @@ def evaluate_commons_page(page, entity, route, context=None,
     ok, label = license_verdict(info.get("extmetadata"))
     if not ok:
         return reject(f"license: {label} — not CC / public domain")
+    if ui_capture_subject(entity, title, desc, cats):
+        return reject("ui-capture: the file's own evidence "
+                      "marks it as a software screenshot / UI "
+                      "capture, or a device displaying content "
+                      f"— not a photograph of {entity!r} (a "
+                      "Surface Laptop Go showing a Persian Word "
+                      "document as 'Microsoft'; a German "
+                      "Windows Update screenshot as the "
+                      "Windows Update P18 — X 2026-11-01); "
+                      "fail closed")
     if identity_verified and _is_depicts_route(route) \
             and _entity_is_person(entity, entity_type):
         names = [entity] + [a for a in entity_aliases or []
@@ -925,6 +1060,20 @@ def evaluate_commons_page(page, entity, route, context=None,
                 "(polluted Commons structured data: the Mount "
                 "Charleston trail file 'depicts' Mukesh "
                 "Ambani); fail closed")
+    if identity_verified and scenery_subject(title, desc, cats):
+        names = [entity] + [a for a in entity_aliases or []
+                            if a and a != entity]
+        if not any(identity_ok(n, title, desc, cats)
+                   for n in names):
+            return reject("scenery: the file's own evidence "
+                          "marks it as a generic landscape "
+                          "(a natural feature — no structure, "
+                          "no site) that never names "
+                          f"{entity!r} — a landscape inside an "
+                          "entity's territory is not a picture "
+                          "OF the entity (the Big River "
+                          "estuary 'depicting' the United "
+                          "States, X 2026-11-01); fail closed")
     if not identity_verified and not identity_ok(
             entity, title, desc, cats):
         return reject(f"identity: the file page's description/"

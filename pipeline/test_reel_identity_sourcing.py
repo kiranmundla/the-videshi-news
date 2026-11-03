@@ -479,8 +479,14 @@ cand, row = S.evaluate_commons_page(
     entity_type="person",
     entity_aliases=AMBANI_RES.get("aliases"))
 check("P18 route is EXEMPT from the depicts name check "
-      "(identity by construction proper)",
-      cand is not None, row["reason"])
+      "(identity by construction proper): the Nevada file "
+      "may fall to the 2026-11-02 SCENERY rule — its own "
+      "evidence is a wilderness trail landscape naming no "
+      "one — but never to depicts name agreement",
+      (cand is not None or row["reason"].startswith(
+          "scenery"))
+      and "depicts statement alone" not in row["reason"],
+      row["reason"])
 
 print("── 2026-11-02 ambani: wildlife-veto false positives ──")
 check("'Blurred images' category is not a species "

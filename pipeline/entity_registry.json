@@ -131,8 +131,10 @@
    "p18_quality": 4752,
    "official_domain": null,
    "confusables": [],
-   "blocked_files": [],
-   "notes": ""
+   "blocked_files": [
+    "A platinum Microsoft Surface Laptop Go.jpg"
+   ],
+   "notes": "blocked_files: the Surface Laptop Go photo (a depicts file of Q2283) shows the laptop displaying a Persian-language Word document — a device displaying unrelated content, not Microsoft; it reached a live X card AND an article inline on the 2026-11-01 exit-offer story."
   },
   {
    "name": "Saudi Arabia",
@@ -3960,7 +3962,9 @@
    "has_local_instances": false,
    "official_domain": null,
    "confusables": [],
-   "blocked_files": [],
+   "blocked_files": [
+    "BigRiver.jpg"
+   ],
    "resolved_method": "wikidata-sitelinks",
    "resolved_confidence": "medium",
    "resolved_context": "H-1B Workers Taking Microsoft Buyout Face 60-Day Deadline to Stay   Microsoft's buyout offer affects around 60,000 employees across multiple countries.    Microsoft announced a Voluntary Exit Offer on October 26, 2026, open to about 60,000 employees at level 70 and below in participating organizations in the United States, Canada, India and the United Kingdom.  The company has not said whether wor",
@@ -4089,7 +4093,9 @@
    "has_local_instances": false,
    "official_domain": null,
    "confusables": [],
-   "blocked_files": [],
+   "blocked_files": [
+    "Windows Update – VirtualBox Windows 11 24H2 (Version 10.0.26100.1742) 04 02 2025 18 22 13crop.png"
+   ],
    "resolved_method": "wikidata-sitelinks",
    "resolved_confidence": "medium",
    "resolved_context": "Windows 11 Gains Cloud Rebuild: Reinstall From the Cloud Even When the PC Won't Boot   <div class=\"key-takeaways\"><ul>\n<li>Microsoft's October 28 preview update KB5127936 adds Cloud rebuild, a recovery option that reinstalls Windows 11 using an image and drivers downloaded from Windows Update — including when the PC cannot start.</li>\n<li>It is available as an optional update for Windows 11 versio",
@@ -4153,7 +4159,9 @@
    "has_local_instances": false,
    "official_domain": null,
    "confusables": [],
-   "blocked_files": [],
+   "blocked_files": [
+    "Windows Update – VirtualBox Windows 11 24H2 (Version 10.0.26100.1742) 04 02 2025 18 22 13crop.png"
+   ],
    "resolved_method": "wikidata-sitelinks",
    "resolved_confidence": "medium",
    "resolved_context": "Windows 11 Gains Cloud Rebuild: Reinstall From the Cloud Even When the PC Won't Boot   <div class=\"key-takeaways\"><ul>\n<li>Microsoft's October 28 preview update KB5127936 adds Cloud rebuild, a recovery option that reinstalls Windows 11 using an image and drivers downloaded from Windows Update — including when the PC cannot start.</li>\n<li>It is available as an optional update for Windows 11 versio",
