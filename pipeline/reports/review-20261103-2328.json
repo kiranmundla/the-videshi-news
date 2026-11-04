@@ -1,0 +1,22 @@
+[
+  {
+    "id": "415a7a84-587b-4eb0-ac77-2bb5a17d0936",
+    "headline": "Pfizer Earnings Beat Estimates as Eliquis Growth Offsets COVID Decline, Guidance",
+    "slug": "pfizer-q3-2026-earnings-guidance-raised",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying that the reported figures are for Q3 2026 and include a brief mention of the previous quarter for context. This will help readers understand the performance trend more clearly.",
+        "Include specific figures for the growth of Eliquis and other newly launched products to provide readers with a clearer picture of what is driving Pfizer's revenue growth. For example, stating how much Eliquis contributed to the $3.8 billion in new product revenue would enhance completeness.",
+        "Add a brief explanation of the significance of the raised guidance for investors, including potential implications for stock performance or dividends, to provide a clearer takeaway for readers interested in financial impacts."
+      ],
+      "embed_opportunities": [
+        "Embed the official Pfizer earnings release or a relevant financial news tweet that summarizes the earnings report for additional context and credibility."
+      ]
+    }
+  }
+]

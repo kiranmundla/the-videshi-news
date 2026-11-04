@@ -1,0 +1,57 @@
+[
+  {
+    "id": "a925ddf4-e7a8-4dc0-978a-8f2e72a3d1a2",
+    "headline": "Diwali in Dubai 2026: Where to Book, From Dhs99 Feasts to Dhs1,260 Tastings",
+    "slug": "diwali-dubai-2026-restaurants-dhs99-to-dhs1260",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the booking process for the restaurants mentioned, including any specific deadlines for reservations, as this is crucial for readers planning to celebrate Diwali.",
+        "Include a brief overview of the significance of Diwali for readers who may not be familiar with the festival, providing context for why these celebrations are important.",
+        "Ensure that all prices mentioned are clearly stated as per person and specify if they include any additional costs, such as service charges or taxes, to avoid confusion."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from one of the featured restaurants announcing their Diwali menu to provide real-time updates and engagement."
+      ]
+    }
+  },
+  {
+    "id": "cd7d1242-e67b-46de-a7de-2012be6e3a35",
+    "headline": "Midterms Put Trump-Era Crypto Boom and Prediction Markets Under Pressure",
+    "slug": "midterms-trump-crypto-boom-prediction-markets-pressure",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the failed CLARITY Act by providing specific details on how it would have impacted crypto regulations if passed, including any potential changes to oversight and investor protections.",
+        "Include specific dollar amounts or percentages related to the financial impact on investors, such as the exact loss in market value for crypto stocks or the potential financial implications of tighter regulations on digital assets.",
+        "Provide a brief context on the significance of the midterm elections for the crypto market, explaining how past election outcomes have influenced crypto regulations and investor sentiment."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or crypto expert discussing the implications of the midterm elections on the crypto market."
+      ]
+    }
+  },
+  {
+    "id": "7e606aea-9238-48a7-abf0-67204ca2fbf1",
+    "headline": "Haryana Destroys 50,000 Kg of Adulterated Sweets and Fake Paneer Before Diwali",
+    "slug": "haryana-destroys-50000-kg-adulterated-sweets-fake-paneer-diwali",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the drive by specifying how long it will continue beyond October 1 and if there are any specific deadlines for consumers to report adulteration before Diwali.",
+        "Include more detailed statistics on the specific types of adulteration found in the sweets and paneer, as well as any potential health risks associated with consuming these products.",
+        "Provide a clearer explanation of the penalties for vendors found selling adulterated products, which would inform consumers about the seriousness of the crackdown.",
+        "Ensure that the information about the safe consumption practices is clearly separated and highlighted, perhaps in a bulleted format, to enhance readability and clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Haryana food safety authorities announcing the drive and its outcomes to provide official confirmation and enhance credibility."
+      ]
+    }
+  }
+]

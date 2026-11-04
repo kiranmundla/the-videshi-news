@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-03-india-gold-demand-six-year-low-2026-wgc-estimate-650-tons/output/india-gold-demand-six-year-low-2026-wgc-estimate-650-tons.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:news"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        4788,
+        3102
+      ],
+      "manifest_dims": [
+        4788,
+        3102
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 1544.7,
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-03-india-gold-demand-six-year-low-2026-wgc-estimate-650-tons/output/qa/frames/frame-hook.png",
+      "text_px_detected": 25105,
+      "edge": {
+        "pass": true,
+        "offending_px": 227,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 60.0,
+        "delta": 193.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-03-india-gold-demand-six-year-low-2026-wgc-estimate-650-tons/output/qa/frames/frame-news.png",
+      "text_px_detected": 55497,
+      "edge": {
+        "pass": false,
+        "offending_px": 4046,
+        "clusters": 1,
+        "largest_cluster": 125
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.60)",
+        "box": [
+          696,
+          1700,
+          20,
+          24
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 64.9,
+        "delta": 188.8
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-03-india-gold-demand-six-year-low-2026-wgc-estimate-650-tons/output/qa/frames/frame-hero.png",
+      "text_px_detected": 30013,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 244.0,
+        "bg_luminance": 0.0,
+        "delta": 244.0
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-03-india-gold-demand-six-year-low-2026-wgc-estimate-650-tons/output/qa/frames/frame-grid.png",
+      "text_px_detected": 57133,
+      "edge": {
+        "pass": true,
+        "offending_px": 342,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 85.0,
+        "delta": 168.7
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-03-india-gold-demand-six-year-low-2026-wgc-estimate-650-tons/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 47996,
+      "edge": {
+        "pass": true,
+        "offending_px": 459,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 63.3,
+        "delta": 190.7
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-03-india-gold-demand-six-year-low-2026-wgc-estimate-650-tons/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 27804,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    }
+  ]
+}

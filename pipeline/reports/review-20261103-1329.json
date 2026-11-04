@@ -1,0 +1,188 @@
+[
+  {
+    "id": "16a71b15-3903-475c-9777-0ca9202edb69",
+    "headline": "Survey: Most Microsoft India Staff Report Hikes Of Five Percent Or Less",
+    "slug": "microsoft-india-hikes-blind-survey-buyouts",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the survey by specifying the year of the previous survey for better context, as the current text mentions 'last year' without a clear date.",
+        "Add a specific quote or statement from Microsoft regarding their pay policy or the voluntary buyout offer to enhance attribution and provide a clearer context for the dissatisfaction reported.",
+        "Include specific details about the voluntary buyout offer, such as the exact deadline for employees to decide and any potential financial implications for those who opt in.",
+        "Reorganize the content to first present the survey findings, followed by the context of the buyout offer, to improve the logical flow and clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official Microsoft announcement regarding the voluntary buyout offer to provide readers with direct access to the source of that information."
+      ]
+    }
+  },
+  {
+    "id": "2b048aef-c3e8-471d-b0da-9fc9564ac4c8",
+    "headline": "Lichtman Predicts Democrats Will Take Both Chambers In Midterms",
+    "slug": "lichtman-predicts-democrats-take-both-chambers-midterms-2026",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the prediction by explicitly stating that it is based on Lichtman's analysis and not on any official polling data, to avoid any potential confusion about the source of the information.",
+        "Include a brief explanation of Lichtman's 13 Keys system for context, as it is referenced but not explained, which may leave some readers unclear about its relevance to his predictions.",
+        "Add a specific call to action for voters, such as a link to a website where they can check their polling place or ballot status, to enhance the article's completeness and utility for readers."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Allan Lichtman or a relevant news outlet that summarizes his predictions for immediate context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "85672876-2e18-4a86-be1d-cd80db9bd3e3",
+    "headline": "Nine Arrested After Mob Attack on BSF Personnel in Tripura's Ashabari",
+    "slug": "nine-arrested-mob-attack-bsf-personnel-tripura-ashabari",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events leading to the mob attack, including the specific circumstances surrounding the apprehension of the alleged smuggler and how it escalated into violence.",
+        "Provide more details on the injuries sustained by the BSF personnel, such as the severity of their injuries and the current status of their treatment, to give readers a clearer understanding of the situation.",
+        "Include a quote or statement from a police spokesperson or an eyewitness to add depth and perspective to the narrative of the incident."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Tripura Police or Chief Minister Manik Saha regarding the ongoing investigation or the arrests to provide real-time updates and official context."
+      ]
+    }
+  },
+  {
+    "id": "1ea982b4-d7fa-47c7-abb6-be50d51e1072",
+    "headline": "Modi Inaugurates Pune Metro Pink Line, Launches Rs 21,800 Crore Expansion",
+    "slug": "modi-inaugurates-pune-metro-pink-line-rs-21800-crore-expansion",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the opening of the remaining stations on the Pink Line, as well as the expected completion dates for the Phase-II corridors to provide readers with a clearer understanding of the project's progression.",
+        "Provide more context on the significance of the Pink Line and Phase-II corridors for daily commuters, such as expected travel time reductions or projected ridership numbers, to enhance the article's relevance.",
+        "Ensure that all figures mentioned are consistent throughout the article, particularly the cost of the Pink Line and the total expansion package, to avoid any potential confusion."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Pune Metropolitan Region Development Authority or a relevant local government official detailing the benefits of the new metro line for commuters."
+      ]
+    }
+  },
+  {
+    "id": "4b95b746-959c-4335-a19f-c5fc69d8b951",
+    "headline": "Delhi Pollution Irritates Children's Eyes As AQI Hits Very Poor Levels",
+    "slug": "delhi-pollution-children-eyes-red-itching-watering-aqi-331",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the source of the AQI data by explicitly stating that it comes from the Central Pollution Control Board (CPCB) and ensure that the citation of HealthandMe is clear and accurate throughout the article.",
+        "Provide specific recommendations for parents, such as the exact duration to keep children indoors during high pollution levels or specific times of day when pollution is typically worse, to enhance the actionable advice for readers.",
+        "Include a brief explanation of what AQI levels mean for the general public, particularly for parents, to contextualize the severity of the reported AQI levels and their implications for children's health."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Central Pollution Control Board (CPCB) or the India Meteorological Department regarding the current AQI levels or health advisories to provide real-time updates and credibility."
+      ]
+    }
+  },
+  {
+    "id": "d4b6bc08-63b9-49d3-8868-3c05385ebc78",
+    "headline": "Your Diwali Week OTT Guide: Eleven Releases, November 2-8",
+    "slug": "ott-releases-november-2-8-2026-netflix-sonyliv-watch-guide",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the release dates for each title by explicitly stating the day of the week alongside the date, as this will help readers quickly identify when to watch each release.",
+        "Include a brief summary or key highlights for each title listed, as this will provide readers with a better understanding of what to expect and help them decide which shows or movies to prioritize.",
+        "Ensure that the sources for the language information are clearly cited within the text, rather than just mentioned at the end, to enhance transparency and credibility.",
+        "Add a concluding section that summarizes the overall significance of these releases during Diwali week, perhaps mentioning any trends in viewership or cultural relevance."
+      ],
+      "embed_opportunities": [
+        "Embed a promotional trailer for 'Haiwaan' or another highlighted title to provide readers with a visual preview of the content."
+      ]
+    }
+  },
+  {
+    "id": "4e6513fb-9b03-4a88-b462-ad5f1ddfc1de",
+    "headline": "Samsung Texas Plant to Make HBM Parts for AMD, Nvidia: Report",
+    "slug": "samsung-texas-plant-hbm-parts-amd-nvidia-report",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for construction and production by providing specific dates for when construction is expected to be completed and when mass production will actually begin, rather than just stating 'expected in 2030.'",
+        "Include a brief explanation of the significance of HBM chips in the context of current technology trends, particularly in AI, to provide readers with a better understanding of why this development matters.",
+        "Ensure that the attribution is clear throughout the article, especially when referencing the information from Maeil Business Newspaper and Stocktwits, to avoid any potential confusion about the source of the claims."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Samsung or AMD/Nvidia that discusses the significance of this new plant or HBM technology, which could provide additional context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "0d747c40-23e5-45fa-b4ef-7a0a1f26c9e5",
+    "headline": "Six Affordable International Trips for the Diwali Long Weekend",
+    "slug": "six-affordable-international-destinations-diwali-long-weekend-2026",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the flight prices by specifying the date range for when these fares were checked to ensure accuracy and timeliness. For example, indicate if these prices are for a specific week or month leading up to Diwali.",
+        "Provide a summary table or bullet points for each destination that includes key details such as flight prices, visa requirements, and estimated total trip costs. This would enhance clarity and completeness for readers comparing options quickly.",
+        "Add a brief note about potential travel restrictions or requirements due to COVID-19 or other factors, as this is relevant for international travel and may affect planning.",
+        "Ensure the headline reflects the content more specifically, such as 'Top 6 Affordable International Destinations for Diwali 2023: Costs and Visa Info Included' to enhance its appeal and clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Skyscanner or Curly Tales that highlights the best deals for Diwali travel, providing readers with real-time information and credibility."
+      ]
+    }
+  },
+  {
+    "id": "f741de2b-b04b-427e-98a1-274361a5668b",
+    "headline": "Goldman Sachs Limits AI Coding Tools To Engineers Only",
+    "slug": "goldman-sachs-limits-ai-coding-tools-engineers",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the access limitation for traders and bankers by specifying what they need to do to continue using AI tools (e.g., how to get an engineer sponsor, or any deadlines for transitioning).",
+        "Provide more context on why the decision was made, such as specific productivity metrics or risk factors that influenced Goldman Sachs' assessment, to enhance completeness.",
+        "Include a quote from a Goldman Sachs representative or a relevant expert to strengthen attribution and provide a clearer perspective on the decision."
+      ],
+      "embed_opportunities": [
+        "Embed the official Goldman Sachs statement or internal memo regarding the policy change to provide readers with direct information from the source."
+      ]
+    }
+  },
+  {
+    "id": "38657b4c-f958-434e-afeb-f231a2992715",
+    "headline": "Air India Wants More Wide-Body Jets, Eyes Profitability Very Soon",
+    "slug": "air-india-more-wide-body-jets-profitability-very-soon",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Provide a specific timeline or target date for when Air India expects to return to profitability, as this is a key takeaway for readers.",
+        "Include more details about the specific types of wide-body aircraft being considered for additional orders, as this would enhance the completeness of the article.",
+        "Clarify the implications of the shift in services from Delhi to Mumbai and the consideration of Bengaluru as a third hub, including how this might affect flight availability or routes for travelers.",
+        "Mention any potential impact on ticket prices or service frequency due to the cost-cutting measures being implemented, as this would provide readers with concrete specifics."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Air India or a relevant aviation authority regarding the aircraft orders or profitability plans to provide official context."
+      ]
+    }
+  }
+]

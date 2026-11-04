@@ -1,0 +1,403 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-first-bullet-train-b28-features-280-kmph",
+ "article_slug": "india-first-bullet-train-b28-features-280-kmph",
+ "article_id": "0cf74759-4b65-4406-bb6f-a158256169a4",
+ "category": "News",
+ "video": "reel-runs/2026-11-03-india-first-bullet-train-b28-features-280-kmph/output/india-first-bullet-train-b28-features-280-kmph.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://aniportalimages.s3.amazonaws.com/media/details/ANI-20261101143314.jpg",
+  "local_path": "reel-runs/2026-11-03-india-first-bullet-train-b28-features-280-kmph/output/hero.jpg",
+  "width": 1600,
+  "height": 1200,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.92)",
+  "has_face": true,
+  "box_source": [
+   1381,
+   180,
+   122,
+   147
+  ],
+  "box_bg": [
+   806,
+   250,
+   64,
+   77
+  ],
+  "chin_bg": 327,
+  "anchor": [
+   0.901,
+   0.214
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   625
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 1064,
+   "block_bottom": 1337,
+   "text_bbox": [
+    70,
+    1064,
+    930,
+    1337
+   ],
+   "texts": [
+    "News",
+    "INDIA'S FIRST BULLET TRAIN REVEALED"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.521,
+    "photo_px": [
+     1600,
+     1200
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.52125,
+     "window": [
+      0,
+      0,
+      1600,
+      1199
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.60x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 353,
+   "block_top": 1227,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1227,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "India's first indigenous bullet train, the B28, is being built by BEML in Bengaluru for the Mumbai-Ahmedabad corridor, with a maximum test speed of 280 kmph and a planned operational speed of 249 kmph."
+   ],
+   "v7": {
+    "image_source": "extra:jr-east-shinkansen-lineup-at-niigata-depot-2",
+    "track": "full-bleed",
+    "render_scale": 0.896,
+    "photo_px": [
+     3488,
+     2144
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8955223880597015,
+     "window": [
+      1203,
+      0,
+      2409,
+      2144
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "JR East Shinkansen Lineup on a Public opening Event (the 30th Anniversary of the J\u014detsu Shinkansen ) at Niigata Shinkansen Rolling Stock Center / (from the Left) E5 Series , 200 Series , E4 Series , E2 Series , E3 Series , E926 Type (East i",
+     "route": "identity \u2014 Wikidata P18 (Q164338)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:JR_East_Shinkansen_lineup_at_Niigata_Depot_201210.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/JR_East_Shinkansen_lineup_at_Niigata_Depot_201210.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Rsa"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 407,
+   "block_top": 1173,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1173,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "280 KMPH",
+    "Maximum test speed of the B28, India's first indigenous bullet train"
+   ],
+   "v7": {
+    "image_source": "extra:august-2007-nozomi-shinkansen",
+    "track": "full-bleed",
+    "render_scale": 0.833,
+    "photo_px": [
+     3072,
+     2304
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8333333333333334,
+     "window": [
+      451,
+      0,
+      1747,
+      2304
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "August 2007, Nozomi Shinkansen",
+     "route": "identity \u2014 depicts (P180=Q164338)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:August_2007,_Nozomi_Shinkansen.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/August_2007%2C_Nozomi_Shinkansen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "Syced"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 0.925,
+   "content_h": 692,
+   "block_top": 854,
+   "block_bottom": 1546,
+   "text_bbox": [
+    70,
+    854,
+    930,
+    1546
+   ],
+   "texts": [
+    "By The Numbers",
+    "249 KMPH",
+    "Planned operational speed in passenger service",
+    "557",
+    "Passengers carried across eight coaches",
+    "202 METRES",
+    "Approximate length of the eight-coach train"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.592,
+    "photo_px": [
+     1600,
+     1200
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.5923295454545454,
+     "window": [
+      192,
+      0,
+      1600,
+      1055
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.60x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1016,
+   "block_bottom": 1385,
+   "text_bbox": [
+    70,
+    1016,
+    930,
+    1385
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Seven standard-class coaches and one executive coach",
+    "Wi-Fi infotainment and level boarding are built in"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1600,
+     1200
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.6515625,
+     "window": [
+      223,
+      0,
+      1503,
+      959
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.60x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "The B28 marks a step toward domestic manufacturing capability in high-speed rail.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 114.4,
+ "mp4_bytes": 11515393
+}

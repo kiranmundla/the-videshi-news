@@ -1,0 +1,426 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-approves-qdenga-first-dengue-vaccine-2027-launch",
+ "article_slug": "india-approves-qdenga-first-dengue-vaccine-2027-launch",
+ "article_id": "9194d0e5-11b0-4397-84ee-21ac55c6d645",
+ "category": "News",
+ "video": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/output/india-approves-qdenga-first-dengue-vaccine-2027-launch.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202611/dengue-vaccine-192114624-16x9.jpg?VersionId=8tBAcmKj7S557VtMnfwTLmhaS0vq915B",
+  "local_path": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/output/hero.jpg",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.523,0.601) damped=(0.512,0.550)",
+  "has_face": false,
+  "box_source": [
+   277,
+   223,
+   672,
+   270
+  ],
+  "box_bg": [
+   279,
+   310,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.512,
+   0.548
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "News",
+    "INDIA APPROVES ITS FIRST DENGUE VACCINE"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      2,
+      1200,
+      675
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "India's drug regulator, the DCGI, has granted market authorisation to Takeda's Qdenga \u2014 the first dengue vaccine approved in India \u2014 for people aged 4 to 60."
+   ],
+   "v7": {
+    "image_source": "extra:aedes-mosquito-and-dengue-virus-particles",
+    "track": "full-bleed",
+    "render_scale": 0.617,
+    "photo_px": [
+     4000,
+     3111
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6171648987463838,
+     "window": [
+      1083,
+      0,
+      2832,
+      3111
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Aedes mosquito and a colorized transmission electron micrograph of dengue virus particles (yellow/red). Aedes mosquitoes are known to transmit dengue virus. Photo by NIAID; micrograph courtesy of CDC; micrograph colorization and visual effe",
+     "route": "identity \u2014 depicts (P180=Q30953)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Aedes_Mosquito_and_Dengue_Virus_Particles.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Aedes_Mosquito_and_Dengue_Virus_Particles.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "NIAID"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "4 TO 60",
+    "Ages approved for Qdenga, India's first dengue vaccine"
+   ],
+   "v7": {
+    "image_source": "extra:aedes-mosquito-and-renderings-of-dengue-viri",
+    "track": "full-bleed",
+    "render_scale": 0.719,
+    "photo_px": [
+     3440,
+     2670
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7191011235955056,
+     "window": [
+      969,
+      0,
+      2470,
+      2670
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Creative layout featuring cryoelectron microscopy renderings of mature dengue virions (DENV-1) and a photo of an Aedes mosquito. Groups of dengue virus particles (purple) captured through transmission electron microscopy (courtesy CDC) appe",
+     "route": "identity \u2014 depicts (P180=Q30953)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Aedes_Mosquito_and_Renderings_of_Dengue_Virions.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Aedes_Mosquito_and_Renderings_of_Dengue_Virions.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "NIAID"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 323,
+   "zone_h": 1257,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 837,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    837,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "34%",
+    "Of the global dengue burden is in India",
+    "43",
+    "Countries where Qdenga is already approved",
+    "13,000+",
+    "Volunteers in DengiAll Phase III trials in India"
+   ],
+   "v7": {
+    "image_source": "extra:08-02-2024-vacina-contra-a-dengue-chega-ao-d",
+    "track": "full-bleed",
+    "render_scale": 0.813,
+    "photo_px": [
+     3543,
+     2362
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8128704487722269,
+     "window": [
+      1459,
+      0,
+      2787,
+      2362
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Doses foram recebidas na tarde desta quinta-feira (8) na Rede de Frio da capital. Imuniza\u00e7\u00e3o come\u00e7a nesta sexta-feira (9) para jovens de 10 a 14 anos em 37 pontos. Foto: Renato Alves/ Ag\u00eancia Bras\u00edlia",
+     "route": "identity \u2014 Wikidata P18 (Q124613341)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:08_02_2024_-_Vacina_contra_a_dengue_chega_ao_DF._Saiba_tudo_sobre_a_vacina%C3%A7%C3%A3o_(53517241183).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/08_02_2024_-_Vacina_contra_a_dengue_chega_ao_DF._Saiba_tudo_sobre_a_vacina%C3%A7%C3%A3o_%2853517241183%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "Ag\u00eancia Bras\u00edlia from Bras\u00edlia, Brasil"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 937,
+   "block_bottom": 1306,
+   "text_bbox": [
+    70,
+    937,
+    930,
+    1306
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "No pre-vaccination screening is needed",
+    "India launch expected in first half of 2027"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7897727272727273,
+     "window": [
+      85,
+      73,
+      1141,
+      665
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 1195,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1195,
+    930,
+    1580
+   ],
+   "texts": [
+    "The Takeaway",
+    "Takeda expects to launch Qdenga in India in the first half of 2027; pricing has not been finalised.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "extra:takeda-global-headquarters",
+    "track": "full-bleed",
+    "render_scale": 0.462,
+    "photo_px": [
+     3120,
+     4160
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.46153846153846156,
+     "window": [
+      404,
+      0,
+      2744,
+      4160
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Takeda Pharmaceutical Company global headquarters (Tokyo)",
+     "route": "identity \u2014 Wikidata P18 (Q899133)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Takeda_global_headquarters.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Takeda_global_headquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "\u5996\u7cbe\u66f8\u58eb"
+    }
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 171.0,
+ "mp4_bytes": 21314455
+}

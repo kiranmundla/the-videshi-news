@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-03-royal-enfield-festive-sales-2-67-lakh-october-record/output/royal-enfield-festive-sales-2-67-lakh-october-record.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:diaspora"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        3000,
+        2250
+      ],
+      "manifest_dims": [
+        3000,
+        2250
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 546.1,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Enfield_Bullet_350%2C_Kathgodam%2C_India.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-03-royal-enfield-festive-sales-2-67-lakh-october-record/output/qa/frames/frame-hook.png",
+      "text_px_detected": 25826,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.61)",
+        "box": [
+          505,
+          688,
+          216,
+          223
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 107.2,
+        "delta": 146.8
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-03-royal-enfield-festive-sales-2-67-lakh-october-record/output/qa/frames/frame-news.png",
+      "text_px_detected": 39838,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.62)",
+        "box": [
+          607,
+          461,
+          37,
+          53
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 21.9,
+        "delta": 232.0
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-03-royal-enfield-festive-sales-2-67-lakh-october-record/output/qa/frames/frame-hero.png",
+      "text_px_detected": 28715,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 249.0,
+        "bg_luminance": 0.0,
+        "delta": 249.0
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-03-royal-enfield-festive-sales-2-67-lakh-october-record/output/qa/frames/frame-grid.png",
+      "text_px_detected": 47283,
+      "edge": {
+        "pass": true,
+        "offending_px": 33,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 41.1,
+        "delta": 212.6
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-03-royal-enfield-festive-sales-2-67-lakh-october-record/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 47384,
+      "edge": {
+        "pass": false,
+        "offending_px": 2860,
+        "clusters": 4,
+        "largest_cluster": 147
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 44.9,
+        "delta": 209.2
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-03-royal-enfield-festive-sales-2-67-lakh-october-record/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 18726,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-gold-demand-six-year-low-2026-wgc-estimate-650-tons",
+  "name": "india-gold-demand-six-year-low-2026-wgc-estimate-650-tons",
+  "script": "reel-runs/2026-11-03-india-gold-demand-six-year-low-2026-wgc-estimate-650-tons/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000707
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-03-india-gold-demand-six-year-low-2026-wgc-estimate-650-tons/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "2016-rangun-pagoda-sule-22",
+      "hero": "as-riquezas-do-brasil-exploradas-para-enriqu"
+    }
+  },
+  "manifest": "reel-runs/2026-11-03-india-gold-demand-six-year-low-2026-wgc-estimate-650-tons/output/render-manifest.json",
+  "video": "reel-runs/2026-11-03-india-gold-demand-six-year-low-2026-wgc-estimate-650-tons/output/india-gold-demand-six-year-low-2026-wgc-estimate-650-tons.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:news"
+    ]
+  }
+}

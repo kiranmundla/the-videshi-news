@@ -1679,5 +1679,16 @@
     "top_story_slug": "microsoft-voluntary-exit-offer-60000-india-staff",
     "quick_hit_count": 5,
     "deadline_count": 1
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-11-03T14:58:24.700680+00:00Z",
+    "subject": "The Videshi Daily \u2014 November 03, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "modi-inaugurates-pune-metro-pink-line-rs-21800-crore-expansion",
+    "quick_hit_count": 5,
+    "deadline_count": 1
   }
 ]

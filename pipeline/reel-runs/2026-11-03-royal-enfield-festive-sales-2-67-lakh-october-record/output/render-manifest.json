@@ -1,0 +1,403 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "royal-enfield-festive-sales-2-67-lakh-october-record",
+ "article_slug": "royal-enfield-festive-sales-2-67-lakh-october-record",
+ "article_id": "dc519b08-f97c-4a29-9fc6-fc9e074a6a76",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-03-royal-enfield-festive-sales-2-67-lakh-october-record/output/royal-enfield-festive-sales-2-67-lakh-october-record.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/Enfield_Bullet_350%2C_Kathgodam%2C_India.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "local_path": "reel-runs/2026-11-03-royal-enfield-festive-sales-2-67-lakh-october-record/output/hero.jpg",
+  "width": 3000,
+  "height": 2250,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.747,0.219) damped=(0.623,0.359)",
+  "has_face": false,
+  "box_source": [
+   1030,
+   313,
+   1680,
+   900
+  ],
+  "box_bg": [
+   -177,
+   267,
+   1434,
+   768
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.624,
+   0.362
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   625
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1217,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1217,
+    930,
+    1580
+   ],
+   "texts": [
+    "Markets Finance",
+    "ROYAL ENFIELD POSTS RECORD FESTIVE SALES"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.853,
+    "photo_px": [
+     3000,
+     2250
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8533333333333334,
+     "window": [
+      1237,
+      0,
+      2502,
+      2250
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 632,
+   "zone_h": 948,
+   "scale": 1.0,
+   "content_h": 413,
+   "block_top": 1167,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1167,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Royal Enfield sold 1,33,442 motorcycles in October, up 7 per cent, taking September-October festive sales to a record 2,67,400 units as exports jumped 47 per cent."
+   ],
+   "v7": {
+    "image_source": "extra:enfield-and-nature",
+    "track": "full-bleed",
+    "render_scale": 0.476,
+    "photo_px": [
+     2688,
+     4033
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4760724026779073,
+     "window": [
+      420,
+      0,
+      2688,
+      4033
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Nature created man, man made Enfield",
+     "route": "identity \u2014 depicts (P180=Q1507823)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Enfield_and_Nature.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Enfield_and_Nature.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "Debojeet Dash"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 424,
+   "block_top": 988,
+   "block_bottom": 1412,
+   "text_bbox": [
+    70,
+    988,
+    930,
+    1412
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "2,67,400",
+    "Motorcycles sold across September and October, a best-ever festive performance"
+   ],
+   "v7": {
+    "image_source": "extra:eicher-8000",
+    "track": "backdrop",
+    "render_scale": 0.439,
+    "photo_px": [
+     2422,
+     1424
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.43894736842105264,
+     "window": [
+      246,
+      1,
+      2146,
+      1424
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.35x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Eicher Pro8055 6x4 tractor unit truck (UD quester)",
+     "route": "identity \u2014 depicts (P180=Q1301821)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Eicher_8000.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Eicher_8000.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "Trucksindiawiki"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 837,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    837,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "1,33,442",
+    "Motorcycles sold in October, up 7% from a year earlier",
+    "+47%",
+    "Jump in October exports, to 11,915 units",
+    "8,42,538",
+    "Motorcycles sold April to October, up 18% year-on-year"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.32,
+    "photo_px": [
+     4000,
+     6000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.32,
+     "window": [
+      346,
+      0,
+      3721,
+      6000
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 447,
+   "block_top": 1133,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1133,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "The September-October festive total already passed last year's entire festive-season total before this season had closed",
+    "A limited Classic 650 edition of 125 units for India sold out in less than six minutes"
+   ],
+   "v7": {
+    "image_source": "inline:2",
+    "track": "full-bleed",
+    "render_scale": 0.648,
+    "photo_px": [
+     3949,
+     2962
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6482106684672518,
+     "window": [
+      1167,
+      0,
+      2833,
+      2962
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "This was Royal Enfield's best-ever festive performance.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-midnight-celebration.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 158.2,
+ "mp4_bytes": 20567120
+}

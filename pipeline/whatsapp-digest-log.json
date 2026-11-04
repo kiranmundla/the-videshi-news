@@ -258,5 +258,15 @@
     "quick_hit_count": 5,
     "deadline_count": 1,
     "chars": 2483
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-03T15:13:12.761389+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 03 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "mukesh-ambani-reclaims-asia-richest-title-88-billion",
+    "quick_hit_count": 5,
+    "deadline_count": 1,
+    "chars": 2396
   }
 ]

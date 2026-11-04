@@ -1,0 +1,35 @@
+{
+ "hook_line": "INDIA GOLD DEMAND SEEN AT SIX-YEAR LOW",
+ "hook_stat": {
+  "big": "650 TONS",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "World Gold Council estimate for India's 2026 demand, the lowest since 2020"
+ },
+ "stats": [
+  {
+   "big": "162.5 TONS",
+   "label": "India's gold demand in the September quarter, down 29% year-on-year"
+  },
+  {
+   "big": "-20%",
+   "label": "Fall in jewellery purchases in the September quarter"
+  },
+  {
+   "big": "-40%",
+   "label": "Fall in investment demand in the September quarter"
+  }
+ ],
+ "diaspora_bullets": [
+  "More than half of India's gold demand comes from rural areas, where jewellery is a traditional store of wealth",
+  "Demand is likely to improve in the December quarter as Diwali and the wedding season drive purchases"
+ ],
+ "key_entities": [
+  "World Gold Council",
+  "Sachin Jain",
+  "gold"
+ ],
+ "news_summary": "The World Gold Council estimates India's gold demand in 2026 will fall to around 650 metric tons, the lowest since 2020, as elevated prices weigh on jewellery and investment demand.",
+ "payoff": "Elevated prices, rising living costs and a weak monsoon are weighing on India's gold demand.",
+ "versus": "",
+ "story_mood": "tense"
+}

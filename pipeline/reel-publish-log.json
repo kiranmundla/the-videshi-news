@@ -602,5 +602,31 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "2zNe2k9ps84",
+    "article_slug": "india-first-bullet-train-b28-features-280-kmph",
+    "article_id": "0cf74759-4b65-4406-bb6f-a158256169a4",
+    "title": "First Bullet Train Revealed: 280 Kmph Test Speed, 557 Passengers, Eight Coaches #Shorts #News",
+    "privacy": "public",
+    "uploaded_at": "2026-11-03T23:22:12.021272+00:00",
+    "video_path": "reel-runs/2026-11-03-india-first-bullet-train-b28-features-280-kmph/output/india-first-bullet-train-b28-features-280-kmph.mp4",
+    "video_sha256": "eb39121e2de4dd183cd949af83a1ab5ec19e1ca6a51edcd252fb0cba70031d36",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "TlrmOkUtMH4",
+    "article_slug": "india-approves-qdenga-first-dengue-vaccine-2027-launch",
+    "article_id": "9194d0e5-11b0-4397-84ee-21ac55c6d645",
+    "title": "India Approves Its First Dengue Vaccine, Qdenga, Ahead of 2027 Launch #Shorts #News",
+    "privacy": "public",
+    "uploaded_at": "2026-11-04T05:16:08.793598+00:00",
+    "video_path": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/output/india-approves-qdenga-first-dengue-vaccine-2027-launch.mp4",
+    "video_sha256": "9be9275e1c362ca726f3d1b6e4b50607e3750a2022d53002c511f8b528e4b9fc",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

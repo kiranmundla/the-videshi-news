@@ -1,0 +1,151 @@
+[
+  {
+    "id": "13d4cf0e-977b-4f7f-8d37-9ca5aa84fea1",
+    "headline": "'Kuch Toh Log Kahenge': Ranbir Kapoor Shrugs Off Ramayana Trolling Before Releas",
+    "slug": "ranbir-kapoor-ramayana-trolling-kuch-toh-log-kahenge",
+    "category": "entertainment",
+    "structural_issues": [
+      "Inline caption names venue 'St.Xaviers College' not supported by the image file name (Barfi2.jpg\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the context of the trolling by providing specific examples of the criticisms faced by the film, such as particular social media posts or comments that have sparked the controversy.",
+        "Include a brief overview of the Ramayana film's plot or significance to provide readers with context about why the casting choices and production elements are being scrutinized.",
+        "Add a direct quote from AR Rahman regarding his response to the criticism to strengthen the article's attribution and provide a more rounded view of the film's team reactions.",
+        "Ensure that the timing of the film's release is emphasized by stating how it relates to current events or trends in the industry, which could enhance the article's timeliness."
+      ],
+      "embed_opportunities": [
+        "Embed the official trailer of the Ramayana film to give readers a visual sense of the project and its production quality."
+      ]
+    }
+  },
+  {
+    "id": "c125075d-be89-4091-85fa-b2b6408c3e8d",
+    "headline": "Six Simple Ways to Add More Protein to Your Child's Diet",
+    "slug": "six-ways-add-protein-kids-diet-breakfast",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Clarify the source of the protein recommendations by directly quoting or linking to the specific Nestle expert guide and WHO figures mentioned, ensuring readers can verify the information.",
+        "Provide a clearer structure by separating each of the six protein-boosting methods into distinct sections with headings for easier navigation and readability.",
+        "Add specific examples of portion sizes or serving suggestions for each method to help parents visualize how to implement these changes in their child's diet."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or post from Nestle or a nutrition expert that highlights the importance of protein in children's diets."
+      ]
+    }
+  },
+  {
+    "id": "9cb8616d-8337-49b7-8dac-5b2595f86935",
+    "headline": "Film Workers' Body Asks PM Modi for Foolproof Bollywood Security After Bachchan ",
+    "slug": "aicwa-pm-modi-bollywood-security-bachchan-bulletproof",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date when the AICWA made the appeal to PM Modi and the context of the threats mentioned. This will help readers understand the urgency of the situation.",
+        "Provide more details on the nature of the threats mentioned in the email received by Mumbai Police, including any official statements or responses from law enforcement regarding the investigation.",
+        "Include a quote or statement from a representative of AICWA or a relevant authority to enhance attribution and provide a personal touch to the appeal, which would add depth to the article.",
+        "Ensure that the headline reflects the urgency and seriousness of the situation. Consider revising it to something like 'AICWA Urges PM Modi for Enhanced Security Measures for Bollywood Stars Following Threats'."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Mumbai Police regarding the investigation into the threats to provide official context and updates."
+      ]
+    }
+  },
+  {
+    "id": "4785d11f-182d-442f-8025-cd1d7201afd7",
+    "headline": "Wall Street Chiefs Split Over AI Boom as Financing Needs Reach Trillions",
+    "slug": "wall-street-ceos-split-ai-risks-hong-kong-summit",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the $10 trillion AI financing projection by specifying what this means for investors or companies in terms of potential returns or risks. For example, include a timeline or specific sectors that might benefit or be adversely affected.",
+        "Provide more context on the contrasting views presented at the summit. A brief summary of the key arguments from both sides would enhance completeness and clarity, helping readers understand the stakes involved.",
+        "Include direct quotes from the speakers to enhance attribution and provide a more vivid account of the discussions at the summit."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Hong Kong Monetary Authority or a key speaker from the summit to provide real-time updates or reactions to the discussions."
+      ]
+    }
+  },
+  {
+    "id": "a4502b26-41c1-457d-9771-f8dff89d61d2",
+    "headline": "Eden Park's 52-Metre Straight Boundaries Pose India's First ODI Test in Auckland",
+    "slug": "eden-park-dimensions-india-new-zealand-first-odi-auckland",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the boundary dimensions in terms of gameplay; for example, explain how these dimensions might affect scoring or strategy in the match.",
+        "Provide a brief background on the historical context of Eden Park's boundary dimensions and how they compare to other international venues, enhancing reader understanding of the venue's uniqueness.",
+        "Include a quote from a New Zealand player or coach to provide a balanced perspective on the challenges posed by the ground's dimensions, as currently, only the Indian captain's viewpoint is presented."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the ICC or a cricket analyst discussing the implications of Eden Park's boundary dimensions on the match."
+      ]
+    }
+  },
+  {
+    "id": "f738561e-c0ea-4f03-a6b3-51385ccab7b3",
+    "headline": "Delhi AQI Hits 451 as Purifier Costs Put Clean Indoor Air Out of Reach",
+    "slug": "delhi-aqi-451-air-purifier-costs-clean-air",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date mentioned in the article; it states 'Tuesday, November 3, 2026,' which is incorrect as November 3, 2026, is a future date. Ensure the date reflects the correct year, which is likely 2023.",
+        "Provide a clearer breakdown of the costs associated with air purifiers, including the average cost of replacement filters and electricity usage, to give readers a more complete picture of the financial burden.",
+        "Include a quote or statement from a government official or environmental agency to provide authoritative context on the air quality situation and any ongoing measures being taken to address it."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Delhi government or an environmental agency regarding the current air quality situation or public health recommendations."
+      ]
+    }
+  },
+  {
+    "id": "5ebf1292-4de0-4a9f-8e06-736219c3aae9",
+    "headline": "Haryana Destroys Unsafe Paneer as Diwali Sweet Checks Intensify",
+    "slug": "haryana-diwali-crackdown-unsafe-paneer-sweets-checks",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the date of the inspections and the subsequent actions expected based on laboratory results. For example, include when the results will be available and what potential penalties or actions could follow if the samples fail testing.",
+        "Provide more context on the significance of the inspections by mentioning any previous incidents of food safety violations in the region or statistics on food safety issues during festive seasons to enhance the urgency and relevance of the article.",
+        "Ensure that the article maintains a consistent focus on the recent actions taken by food safety officials without repeating information unnecessarily. For instance, the mention of the Gurugram destruction could be streamlined to avoid redundancy.",
+        "Include direct quotes from officials or stakeholders involved in the inspections to enhance credibility and provide a human element to the story."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet or announcement from the Food Safety and Standards Authority of India regarding the intensified inspections during the festive season."
+      ]
+    }
+  },
+  {
+    "id": "dc519b08-f97c-4a29-9fc6-fc9e074a6a76",
+    "headline": "Royal Enfield Posts Record Festive Sales of 2.67 Lakh Motorcycles",
+    "slug": "royal-enfield-festive-sales-2-67-lakh-october-record",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying that the sales figures are for October 2026 and the festive season spans September to October 2026, as the current phrasing may confuse readers about which year is being referenced.",
+        "Provide specific figures for the overall sales performance compared to previous years, such as the total sales for the previous festive season, to give readers a clearer context of growth.",
+        "Ensure that all figures are consistently formatted (e.g., using commas or periods for thousands) to enhance readability and clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Royal Enfield or Eicher Motors announcing the record sales to provide official confirmation and enhance credibility."
+      ]
+    }
+  }
+]

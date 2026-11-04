@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-approves-qdenga-first-dengue-vaccine-2027-launch",
+  "name": "india-approves-qdenga-first-dengue-vaccine-2027-launch",
+  "script": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.00066
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "aedes-mosquito-and-dengue-virus-particles",
+      "hero": "aedes-mosquito-and-renderings-of-dengue-viri",
+      "grid": "08-02-2024-vacina-contra-a-dengue-chega-ao-d",
+      "payoff": "takeda-global-headquarters"
+    }
+  },
+  "manifest": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/output/render-manifest.json",
+  "video": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/output/india-approves-qdenga-first-dengue-vaccine-2027-launch.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/output/tiktok-caption.txt"
+}

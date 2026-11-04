@@ -1,0 +1,174 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "india-approves-qdenga-first-dengue-vaccine-2027-launch",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "India Approves Its First Dengue Vaccine, Qdenga, Ahead of 2027 Launch",
+        "numbers": [
+          2027.0
+        ],
+        "entities": [
+          "India Approves Its First Dengue Vaccine"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027
+          ]
+        },
+        "llm_reason": "The article states India approved Qdenga for a 2027 launch.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The DCGI has authorised Takeda's two-dose vaccine for ages 4 to 60, with no screening or prior infection needed.",
+        "numbers": [
+          4.0,
+          60.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms DCGI authorized Qdenga for ages 4 to 60 without prior infection.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Qdenga is given in two doses three months apart and covers all four dengue serotypes",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article details Qdenga's dosing schedule and coverage of all serotypes.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Nearly 34 percent of the global dengue burden is in India, the highest share of any country",
+        "numbers": [
+          34.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article cites a study stating India's dengue burden is 34 percent globally.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "DengiAll, India's indigenous single-dose candidate, is in Phase III trials with more than 13,000 volunteers",
+        "numbers": [
+          13000.0
+        ],
+        "entities": [
+          "Phase III"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions DengiAll is in Phase III trials with over 13,000 volunteers.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Dr. Goh Choo Beng",
+        "numbers": [],
+        "entities": [
+          "Dr Goh Choo Beng"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Dr. Goh Choo Beng is mentioned in the article as Takeda's medical affairs head.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Takeda's head of medical affairs for its Southeast Asia and India cluster",
+        "numbers": [],
+        "entities": [
+          "Southeast Asia"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Dr. Goh Choo Beng as Takeda's head of medical affairs.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "India Approves Its First Dengue Vaccine, Qdenga, Ahead of 2027 Launch",
+        "numbers": [
+          2027.0
+        ],
+        "entities": [
+          "India Approves Its First Dengue Vaccine"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027
+          ]
+        },
+        "llm_reason": "The article states India approved Qdenga for a 2027 launch.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000541,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

@@ -1,22 +1,22 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-03T11:18:18+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-03T23:24:30+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
 - Channel uploads (actual, via API): **225**
-- prebuilt_reels rows: 162 (132 with a yt_video_id)
+- prebuilt_reels rows: 163 (133 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 45
-- **In sync** (channel video backed by a DB/publish-log record): **111**
-- Unknown — legacy-logged only: 101
+- Phase 2 publish-log entries: 46
+- **In sync** (channel video backed by a DB/publish-log record): **112**
+- Unknown — legacy-logged only: 100
 - Unknown — no record anywhere: 13
 - Ghost DB rows (yt_video_id not on channel): 16
 - Superseded DB rows (owner-deleted/replaced; not ghosts): 5
-- Public with no DB record: 114
+- Public with no DB record: 113
 - Phase 2 uploads now public (manual flip expected): 0
 
-## (a1) Unknown channel videos — legacy-logged (old upload path) (101)
+## (a1) Unknown channel videos — legacy-logged (old upload path) (100)
 
 - `E0_-Wo2WOr4` · public · 2026-05-26 · Mammootty Was Supposed to Receive India's Third-Highest Civilian Honour Today. He Was in Kott #Sh... (log slug: mammootty-skipped-padma-bhushan-ceremony-third-honorary-doctorate-mahatma-gandhi-university-kerala-20260525)
 - `u-OB58pDic8` · public · 2026-05-26 · India and the US Just Signed a Critical Minerals Deal and a Rare Earths Agreement at the Firs #Sh... (log slug: quad-foreign-ministers-delhi-critical-minerals-rare-earths-deal-20260526)
@@ -42,7 +42,6 @@ Generated: 2026-11-03T11:18:18+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - `jZDR7uOuW6s` · public · 2026-05-28 · Mamata Refused to Resign After Losing West Bengal. The Governor Dissolved the Assembly ... #Shorts (log slug: west-bengal-bjp-wins-mamata-refuses-resign-governor-dissolves-assembly-20260527)
 - `4p3cIQz9i8k` · public · 2026-05-28 · Consular Processing India Green Card Logistics Crisis #Shorts (log slug: consular-processing-india-green-card-logistics-crisis-20260526)
 - `goI8_uBt0dc` · public · 2026-05-28 · India Just Sold Shares in Coal India at a 10 Per Cent Discount. It Sold Central Bank of #Shorts (log slug: india-coal-india-divestment-ofs-central-bank-800-billion-rupees-nri-20260528)
-- `zgCp8lOKyxg` · public · 2026-05-28 · Trump Anything India Wants They Get Delhi Call Ar Rahman Quad #Shorts (log slug: unknown)
 - `AQgQi65ZuvU` · public · 2026-05-28 · U.S. Inflation Just Hit 3.8 Percent. The Iran War Is Baked Into Every Price Tag in America. #Shorts (log slug: us-pce-inflation-3-8-percent-iran-war-fed-rate-hike-indian-americans-20260528)
 - `n-deTJ7Tw2M` · public · 2026-05-28 · 290,000 Students, One Confirmation Hearing, and the Quiet Death of OPT #Shorts (log slug: opt-end-uscis-edlow-indian-students-work-rights-20260528)
 - `WDnDm86Trzs` · public · 2026-05-28 · American Airlines Will Double Its India Tech Hub to 800 People. It Is Not Alone. #Shorts (log slug: american-airlines-india-hyderabad-gcc-tech-hub-double-800-employees-20260528)
@@ -155,7 +154,7 @@ Generated: 2026-11-03T11:18:18+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - row `c7713080-09d5-4d70-914a-5090686d7791` · slug nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks · yt_video_id `dB5AYzpRFC8` · status yt_posted
 - row `97cd9bb0-7820-4435-a26f-5e9b8454f259` · slug samvat-2082-largecaps-fall-smallcap-multibaggers-diwali · yt_video_id `guB2GssTJoo` · status yt_posted
 
-## (c1) Privacy flag — public channel videos with no DB record (114)
+## (c1) Privacy flag — public channel videos with no DB record (113)
 
 - `2XdG6znjzGs` · 2026-05-26 · Mammootty Skipped the Padma Bhushan Ceremony for a Kerala Doctorate #Shorts
 - `E0_-Wo2WOr4` · 2026-05-26 · Mammootty Was Supposed to Receive India's Third-Highest Civilian Honour Today. He Was in Kott #Sh...
@@ -182,7 +181,6 @@ Generated: 2026-11-03T11:18:18+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - `jZDR7uOuW6s` · 2026-05-28 · Mamata Refused to Resign After Losing West Bengal. The Governor Dissolved the Assembly ... #Shorts
 - `4p3cIQz9i8k` · 2026-05-28 · Consular Processing India Green Card Logistics Crisis #Shorts
 - `goI8_uBt0dc` · 2026-05-28 · India Just Sold Shares in Coal India at a 10 Per Cent Discount. It Sold Central Bank of #Shorts
-- `zgCp8lOKyxg` · 2026-05-28 · Trump Anything India Wants They Get Delhi Call Ar Rahman Quad #Shorts
 - `AQgQi65ZuvU` · 2026-05-28 · U.S. Inflation Just Hit 3.8 Percent. The Iran War Is Baked Into Every Price Tag in America. #Shorts
 - `n-deTJ7Tw2M` · 2026-05-28 · 290,000 Students, One Confirmation Hearing, and the Quiet Death of OPT #Shorts
 - `WDnDm86Trzs` · 2026-05-28 · American Airlines Will Double Its India Tech Hub to 800 People. It Is Not Alone. #Shorts
@@ -284,7 +282,7 @@ _None._
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 - row `3c385175-84c2-48c0-afec-378bee1ba1d6` · slug ambani-adds-6-3-billion-reliance-shares-jump-record-profit · yt_video_id `B45MLVEFtk4` · on channel: no
 
-## (d) In sync (111)
+## (d) In sync (112)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -397,4 +395,5 @@ _None._
 - `ZYSFpelgDqU` · public · 2026-11-03 · Adds $6.3 Billion in a Day as Reliance Shares Jump 11.6% on Record Quarterly Profit #Shorts #Markets [prebuilt_reels:606c7070-4ba4-4e11-a41e-793a4b4a1f05]
 - `-U1L4K5B8i4` · public · 2026-11-03 · Ramayana Advance Booking Crosses Rs 100 Crore Worldwide Ahead of Release #Shorts #Entertainment [prebuilt_reels:0ffe1487-d061-45c4-bbe1-9ae5364801bf]
 - `cPPQZkSk4EE` · public · 2026-11-03 · UK Doubles Settlement Wait to Ten Years, Keeps Five-Year Route for Care Workers #Shorts #Immigration [prebuilt_reels:77dba4a2-620f-452e-9eb4-147a7906f561]
+- `2zNe2k9ps84` · public · 2026-11-03 · First Bullet Train Revealed: 280 Kmph Test Speed, 557 Passengers, Eight Coaches #Shorts #News [prebuilt_reels:fc0ccd81-ed88-45bc-b7fe-bde468fc8eb8]
 

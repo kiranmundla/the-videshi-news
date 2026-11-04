@@ -1,0 +1,118 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "royal-enfield-festive-sales-2-67-lakh-october-record",
+  "trigger": {
+    "own_images": 3,
+    "target_distinct": 5,
+    "extras_needed": 2
+  },
+  "entities": [
+    "Royal Enfield",
+    "Eicher Motors",
+    "Classic 350",
+    "Acko Drive",
+    "Royal Enfield's",
+    "Royal Enfield Bullet Electra"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Classic 350' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of \"Royal Enfield's\" named 'Royal Enfield Super Meteor 650', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Royal Enfield Bullet Electra' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Two ATS (Auxiliary Territorial Service) trainee motorcycle despatch riders and a Royal Army Service Corps instructor at York, 23 May 1941. H9941.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1507823)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Bike (19633587765).jpg",
+      "route": "identity \u2014 depicts (P180=Q1507823)",
+      "verdict": "accepted",
+      "reason": "4000x6000, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Enfield and Nature.jpg",
+      "route": "identity \u2014 depicts (P180=Q1507823)",
+      "verdict": "USED (news)",
+      "reason": "2688x4033, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Royal Enfield Bullet Electra 350, pure black model 05.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1301821)",
+      "verdict": "accepted",
+      "reason": "3949x2962, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Eicher 8000.jpg",
+      "route": "identity \u2014 depicts (P180=Q1301821)",
+      "verdict": "USED (hero)",
+      "reason": "2422x1424, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "enfield-and-nature",
+      "path": "enfield-and-nature.jpg",
+      "size": [
+        2688,
+        4033
+      ],
+      "role": "establishing",
+      "subject": "Nature created man, man made Enfield",
+      "route": "identity \u2014 depicts (P180=Q1507823)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Enfield_and_Nature.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Enfield_and_Nature.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Debojeet Dash",
+      "entity": "Royal Enfield",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Royal Enfield"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "eicher-8000",
+      "path": "eicher-8000.jpg",
+      "size": [
+        2422,
+        1424
+      ],
+      "role": "establishing",
+      "subject": "Eicher Pro8055 6x4 tractor unit truck (UD quester)",
+      "route": "identity \u2014 depicts (P180=Q1301821)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Eicher_8000.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Eicher_8000.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Trucksindiawiki",
+      "entity": "Eicher Motors",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Eicher Motors",
+        "Eicher Motors Limited",
+        "EML",
+        "EIM IN",
+        "EICH.NS",
+        "EICHER",
+        "Eicher Trucks & Buses",
+        "Eicher Trucks and Buses"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+[
+  {
+    "id": "61b4dc8c-0ab5-40bc-9e47-c19190704d51",
+    "headline": "Ballon d'Or Winner Harry Kane Names Virat Kohli Among Stars He Admires",
+    "slug": "harry-kane-virat-kohli-ballon-dor-admiration",
+    "category": "sports",
+    "structural_issues": [
+      "Caption names venue 'Tottenham Hotspur Stadium' not supported by the image file name (Harry_Kane_mural.jpg\u2026) \u2014 verify the venue or reword",
+      "Inline caption names venue 'WACA Ground' not supported by the image file name (2015_CWC_I_v_UAE_02-28_Kohli_%2806%29.JPG\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the Ballon d'Or win by explicitly stating 'on October 26, 2026' to avoid confusion with the current year.",
+        "Include a brief explanation of the significance of the Ballon d'Or award for readers who may not be familiar with it, enhancing completeness and context.",
+        "Add a direct quote from Harry Kane regarding his feelings about Kohli's message to provide more depth and clarity to the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Virat Kohli congratulating Harry Kane for immediate access to the source and to enhance reader engagement."
+      ]
+    }
+  },
+  {
+    "id": "c49d3bc2-f375-44c5-a6dc-e012a2ca0cb8",
+    "headline": "Delhi to Host Two-Day Diwali Festival With Drone Show at Central Park",
+    "slug": "delhi-diwali-festival-drone-show-central-park",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the admission charges for the event, as this information is currently missing. Providing a specific dollar or rupee amount would enhance completeness.",
+        "Include the exact timings for the festival events, as they are currently unspecified. This would improve clarity and help readers plan their visit more effectively.",
+        "Add a brief background on the significance of the Diwali festival and the importance of the drone show to provide context for readers unfamiliar with the event.",
+        "Ensure that the announcement of the competitions includes details on how to enter, such as submission guidelines or links to the relevant pages, to enhance completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Delhi Tourism announcing the festival to provide official confirmation and updates."
+      ]
+    }
+  },
+  {
+    "id": "ce47ec3f-8742-4b5e-bcfe-74f6c7940070",
+    "headline": "What the Midterms Could Mean for Markets, Debt and AI Stocks",
+    "slug": "midterms-markets-debt-gridlock-investors",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding the debt limit; specify the estimated date when the debt limit will be reached, as this is crucial for understanding potential market impacts.",
+        "Include specific projections or expert opinions on how the midterm results could affect AI stock valuations, such as percentage changes or specific stock examples.",
+        "Provide more context on the implications of a Democratic sweep versus a Republican sweep on federal spending and AI regulation, including potential policy changes or legislative actions that could follow."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or economist discussing the potential market impacts of the midterms."
+      ]
+    }
+  },
+  {
+    "id": "8df810c3-ed33-4bff-8e78-8aea24df2acf",
+    "headline": "Surat Steps Up Diwali Food Checks, Seizes 398 Kg of Paneer",
+    "slug": "surat-food-safety-checks-diwali-paneer-seized",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of inspections and actions taken by providing specific dates for when the inspections occurred and when the results are expected. For example, specify the exact date when the hygiene notices were issued.",
+        "Ensure that the article maintains a consistent structure by avoiding repetitive phrases. The sentence about the 398 kg of paneer being seized is mentioned multiple times; consolidate this information to enhance clarity and flow.",
+        "Include a brief context about the significance of the FSSAI's national festive-season drive, such as its goals or previous outcomes, to provide readers with a better understanding of why these inspections are critical at this time.",
+        "Make the headline more compelling by adding a sense of urgency or importance, such as 'Surat Intensifies Food Safety Inspections Ahead of Diwali, Seizes 398 Kg of Unsafe Paneer'."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "9989985c-c0b0-4d35-a6e6-e18f11a47c54",
+    "headline": "Diwali Bonuses Fuel Festive Rush Across Nashik's Markets",
+    "slug": "nashik-diwali-bonus-markets-festive-rush",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the expected increase in shopping activity leading up to Diwali on November 8, including specific days when footfall is anticipated to peak.",
+        "Provide more context on how the bonuses compare to previous years, such as percentage increases or changes in consumer behavior, to give readers a clearer picture of the festive spending trend.",
+        "Include direct quotes from shoppers or traders to add personal perspectives and enhance the article's depth and relatability."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Nashik Industries and Manufacturers Association (NIMA) regarding the bonuses and their impact on local markets."
+      ]
+    }
+  },
+  {
+    "id": "baf5c28c-290f-4cc8-b8f3-14ed27635f27",
+    "headline": "Indian Trio Wins 50m Pistol Team Gold at ISSF World Championship",
+    "slug": "india-50m-pistol-team-gold-issf-world-championship-doha",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the medal standings by providing context on how this performance compares to previous championships or the overall trend of Indian shooting sports.",
+        "Include specific details about the next steps for the athletes, such as upcoming competitions or qualification processes for the Olympics, to enhance the reader's understanding of the implications of this victory.",
+        "Correct the repetition of information regarding the men's 50m pistol team victory. The article mentions the same details about the team's score and composition multiple times, which could be streamlined for clarity.",
+        "Ensure that the article mentions the specific dates of the ISSF World Championship and any relevant deadlines for Olympic qualification to provide a complete picture for readers."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the ISSF or the Indian shooting federation celebrating the team's victory to enhance engagement and provide official recognition."
+      ]
+    }
+  },
+  {
+    "id": "6b754bde-1fcc-48f1-be3b-401e026be239",
+    "headline": "Five Rescued Off Kiribati After Three Months Adrift in the Pacific",
+    "slug": "five-rescued-kiribati-three-months-adrift-pacific",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the dates of the initial departure, the start and end of the search, and the date of the rescue to enhance completeness and clarity.",
+        "Provide more details about the condition of the survivors upon rescue, including specific medical treatment they are receiving, to give readers a better understanding of the situation.",
+        "Include a quote from a Coast Guard representative or a local official to enhance attribution and provide a human element to the story."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the US Coast Guard or a relevant news outlet that confirms the rescue and provides additional context about the search efforts."
+      ]
+    }
+  }
+]

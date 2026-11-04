@@ -1,0 +1,181 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-approves-qdenga-first-dengue-vaccine-2027-launch",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Qdenga",
+    "Takeda",
+    "DengiAll",
+    "dengue",
+    "Phase III",
+    "Takeda's Qdenga"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'DengiAll' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: \"Takeda's Qdenga\" has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:08 02 2024 - Vacina contra a dengue chega ao DF. Saiba tudo sobre a vacina\u00e7\u00e3o (53517241183).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q124613341)",
+      "verdict": "USED (grid)",
+      "reason": "3543x2362, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Takeda global headquarters.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q899133)",
+      "verdict": "USED (payoff)",
+      "reason": "3120x4160, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Dengue.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q30953)",
+      "verdict": "rejected",
+      "reason": "resolution: 290x286 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Aedes Mosquito - 53936523979.jpg",
+      "route": "identity \u2014 depicts (P180=Q30953)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Aedes Mosquito 082024.jpg",
+      "route": "identity \u2014 depicts (P180=Q30953)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Aedes Mosquito and Dengue Virus Particles.jpg",
+      "route": "identity \u2014 depicts (P180=Q30953)",
+      "verdict": "USED (news)",
+      "reason": "4000x3111, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Aedes Mosquito and Renderings of Dengue Virions.jpg",
+      "route": "identity \u2014 depicts (P180=Q30953)",
+      "verdict": "USED (hero)",
+      "reason": "3440x2670, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Adverse Event Severity Grading in the Phase-3 Trial of the Moderna and Novavax Covid-19 Vaccines.png",
+      "route": "identity \u2014 depicts (P180=Q42824827)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Comirnaty2021En.png",
+      "route": "identity \u2014 depicts (P180=Q42824827)",
+      "verdict": "accepted",
+      "reason": "5107x2443, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "aedes-mosquito-and-dengue-virus-particles",
+      "path": "aedes-mosquito-and-dengue-virus-particles.jpg",
+      "size": [
+        4000,
+        3111
+      ],
+      "role": "establishing",
+      "subject": "Aedes mosquito and a colorized transmission electron micrograph of dengue virus particles (yellow/red). Aedes mosquitoes are known to transmit dengue virus. Photo by NIAID; micrograph courtesy of CDC; micrograph colorization and visual effe",
+      "route": "identity \u2014 depicts (P180=Q30953)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Aedes_Mosquito_and_Dengue_Virus_Particles.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Aedes_Mosquito_and_Dengue_Virus_Particles.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "NIAID",
+      "entity": "dengue",
+      "entity_type": "other",
+      "entity_aliases": [
+        "dengue disease",
+        "classic dengue",
+        "classical dengue",
+        "breakbone fever",
+        "dengue",
+        "break-bone fever",
+        "classical dengue fever"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "aedes-mosquito-and-renderings-of-dengue-viri",
+      "path": "aedes-mosquito-and-renderings-of-dengue-viri.jpg",
+      "size": [
+        3440,
+        2670
+      ],
+      "role": "establishing",
+      "subject": "Creative layout featuring cryoelectron microscopy renderings of mature dengue virions (DENV-1) and a photo of an Aedes mosquito. Groups of dengue virus particles (purple) captured through transmission electron microscopy (courtesy CDC) appe",
+      "route": "identity \u2014 depicts (P180=Q30953)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Aedes_Mosquito_and_Renderings_of_Dengue_Virions.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Aedes_Mosquito_and_Renderings_of_Dengue_Virions.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "NIAID",
+      "entity": "dengue",
+      "entity_type": "other",
+      "entity_aliases": [
+        "dengue disease",
+        "classic dengue",
+        "classical dengue",
+        "breakbone fever",
+        "dengue",
+        "break-bone fever",
+        "classical dengue fever"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "08-02-2024-vacina-contra-a-dengue-chega-ao-d",
+      "path": "08-02-2024-vacina-contra-a-dengue-chega-ao-d.jpg",
+      "size": [
+        3543,
+        2362
+      ],
+      "role": "establishing",
+      "subject": "Doses foram recebidas na tarde desta quinta-feira (8) na Rede de Frio da capital. Imuniza\u00e7\u00e3o come\u00e7a nesta sexta-feira (9) para jovens de 10 a 14 anos em 37 pontos. Foto: Renato Alves/ Ag\u00eancia Bras\u00edlia",
+      "route": "identity \u2014 Wikidata P18 (Q124613341)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:08_02_2024_-_Vacina_contra_a_dengue_chega_ao_DF._Saiba_tudo_sobre_a_vacina%C3%A7%C3%A3o_(53517241183).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/08_02_2024_-_Vacina_contra_a_dengue_chega_ao_DF._Saiba_tudo_sobre_a_vacina%C3%A7%C3%A3o_%2853517241183%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "Ag\u00eancia Bras\u00edlia from Bras\u00edlia, Brasil",
+      "entity": "Qdenga",
+      "entity_type": "other",
+      "entity_aliases": []
+    },
+    {
+      "beat": "payoff",
+      "label": "takeda-global-headquarters",
+      "path": "takeda-global-headquarters.jpg",
+      "size": [
+        3120,
+        4160
+      ],
+      "role": "establishing",
+      "subject": "Takeda Pharmaceutical Company global headquarters (Tokyo)",
+      "route": "identity \u2014 Wikidata P18 (Q899133)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Takeda_global_headquarters.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Takeda_global_headquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "\u5996\u7cbe\u66f8\u58eb",
+      "entity": "Takeda",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Takeda"
+      ]
+    }
+  ]
+}

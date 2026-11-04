@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-pakistan-2027-world-cup-8-4-million-ticket-requests-ballot",
+  "name": "india-pakistan-2027-world-cup-8-4-million-ticket-requests-ballot",
+  "script": "reel-runs/2026-11-03-india-pakistan-2027-world-cup-8-4-million-ticket-requests-ballot/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000682
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-03-india-pakistan-2027-world-cup-8-4-million-ticket-requests-ballot/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "the-wanderers-1",
+      "hero": "blue-hour-at-pakistan-monument",
+      "diaspora": "close-wing-position-of-loxura-atymnus-stoll"
+    }
+  },
+  "manifest": "reel-runs/2026-11-03-india-pakistan-2027-world-cup-8-4-million-ticket-requests-ballot/output/render-manifest.json",
+  "video": "reel-runs/2026-11-03-india-pakistan-2027-world-cup-8-4-million-ticket-requests-ballot/output/india-pakistan-2027-world-cup-8-4-million-ticket-requests-ballot.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:diaspora"
+    ]
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "india-first-bullet-train-b28-features-280-kmph",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "India's First Bullet Train Revealed: 280 Kmph Test Speed, 557 Passengers, Eight Coaches",
+        "numbers": [
+          280.0,
+          557.0
+        ],
+        "entities": [
+          "India's First Bullet Train Revealed",
+          "Kmph Test Speed",
+          "Eight Coaches"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All facts about speed, capacity, and coaches are present in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The BEML-built B28 is rated at 280 kmph in testing and 249 kmph in planned service.",
+        "numbers": [
+          28.0,
+          249.0,
+          280.0
+        ],
+        "entities": [
+          "BEML-built B28"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Both speeds and their contexts are clearly stated in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Its maximum test speed is 280 kmph; its planned operational speed is 249 kmph",
+        "numbers": [
+          249.0,
+          280.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article specifies both maximum test speed and planned operational speed.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The eight-coach train carries 557 passengers: seven standard-class coaches and one executive-class coach",
+        "numbers": [
+          557.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the number of passengers and coach types.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The B28 is being built by BEML in Bengaluru for the Mumbai-Ahmedabad High-Speed Rail corridor",
+        "numbers": [
+          28.0
+        ],
+        "entities": [
+          "Mumbai-Ahmedabad High-Speed Rail"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the builder, location, and purpose of the train.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "India's First Bullet Train Revealed: 280 Kmph Test Speed, 557 Passengers, Eight Coaches",
+        "numbers": [
+          280.0,
+          557.0
+        ],
+        "entities": [
+          "India's First Bullet Train Revealed",
+          "Kmph Test Speed",
+          "Eight Coaches"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All facts about speed, capacity, and coaches are present in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.00044,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

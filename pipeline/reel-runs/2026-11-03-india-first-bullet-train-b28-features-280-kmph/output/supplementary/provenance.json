@@ -1,0 +1,101 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-first-bullet-train-b28-features-280-kmph",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "BEML",
+    "Mumbai-Ahmedabad High-Speed Rail",
+    "bullet train",
+    "Eight Coaches"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Mumbai-Ahmedabad High-Speed Rail' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Eight Coaches' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Defence Expo 2020-11.jpg",
+      "route": "identity \u2014 depicts (P180=Q2920445)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:JR East Shinkansen lineup at Niigata Depot 201210.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q164338)",
+      "verdict": "USED (news)",
+      "reason": "3488x2144, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:011 Shinkansen train ticket from Kyoto to Tokyo.jpg",
+      "route": "identity \u2014 depicts (P180=Q164338)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:August 2007, Nozomi Shinkansen.jpg",
+      "route": "identity \u2014 depicts (P180=Q164338)",
+      "verdict": "USED (hero)",
+      "reason": "3072x2304, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "jr-east-shinkansen-lineup-at-niigata-depot-2",
+      "path": "jr-east-shinkansen-lineup-at-niigata-depot-2.jpg",
+      "size": [
+        3488,
+        2144
+      ],
+      "role": "establishing",
+      "subject": "JR East Shinkansen Lineup on a Public opening Event (the 30th Anniversary of the J\u014detsu Shinkansen ) at Niigata Shinkansen Rolling Stock Center / (from the Left) E5 Series , 200 Series , E4 Series , E2 Series , E3 Series , E926 Type (East i",
+      "route": "identity \u2014 Wikidata P18 (Q164338)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:JR_East_Shinkansen_lineup_at_Niigata_Depot_201210.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/JR_East_Shinkansen_lineup_at_Niigata_Depot_201210.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Rsa",
+      "entity": "bullet train",
+      "entity_type": "other",
+      "entity_aliases": [
+        "bullet train",
+        "high-speed rail in Japan",
+        "Sinkansen"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "august-2007-nozomi-shinkansen",
+      "path": "august-2007-nozomi-shinkansen.jpg",
+      "size": [
+        3072,
+        2304
+      ],
+      "role": "establishing",
+      "subject": "August 2007, Nozomi Shinkansen",
+      "route": "identity \u2014 depicts (P180=Q164338)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:August_2007,_Nozomi_Shinkansen.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/August_2007%2C_Nozomi_Shinkansen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Syced",
+      "entity": "bullet train",
+      "entity_type": "other",
+      "entity_aliases": [
+        "bullet train",
+        "high-speed rail in Japan",
+        "Sinkansen"
+      ]
+    }
+  ]
+}

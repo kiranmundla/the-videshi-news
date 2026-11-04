@@ -1,0 +1,410 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-pakistan-2027-world-cup-8-4-million-ticket-requests-ballot",
+ "article_slug": "india-pakistan-2027-world-cup-8-4-million-ticket-requests-ballot",
+ "article_id": "cf66130e-2bed-410d-995d-6e090dfb0594",
+ "category": "Sports",
+ "video": "reel-runs/2026-11-03-india-pakistan-2027-world-cup-8-4-million-ticket-requests-ballot/output/india-pakistan-2027-world-cup-8-4-million-ticket-requests-ballot.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://media.telanganatoday.com/wp-content/uploads/2026/11/ICC.jpg",
+  "local_path": "reel-runs/2026-11-03-india-pakistan-2027-world-cup-8-4-million-ticket-requests-ballot/output/hero.jpg",
+  "width": 1280,
+  "height": 750,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.609,0.644) damped=(0.554,0.572)",
+  "has_face": false,
+  "box_source": [
+   351,
+   264,
+   716,
+   300
+  ],
+  "box_bg": [
+   315,
+   327,
+   467,
+   195
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.553,
+   0.575
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   488
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 708,
+   "zone_h": 848,
+   "scale": 1.0,
+   "content_h": 306,
+   "block_top": 979,
+   "block_bottom": 1285,
+   "text_bbox": [
+    70,
+    979,
+    930,
+    1285
+   ],
+   "texts": [
+    "Sports",
+    "INDIA-PAKISTAN WORLD CUP CLASH DRAWS 8.4 MILLION TICKET REQUESTS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1280,
+     750
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 488,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      2,
+      1280,
+      750
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.56x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 708,
+   "zone_h": 848,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 943,
+   "block_bottom": 1321,
+   "text_bbox": [
+    70,
+    943,
+    930,
+    1321
+   ],
+   "texts": [
+    "What Happened",
+    "The India-Pakistan group match on October 10, 2027 at the Wanderers Stadium in Johannesburg has received 8,397,294 ticket requests, the ICC said, as total ballot requests passed 120 million."
+   ],
+   "v7": {
+    "image_source": "extra:the-wanderers-1",
+    "track": "backdrop",
+    "render_scale": 0.521,
+    "photo_px": [
+     1600,
+     1071
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 488,
+     "scale": 0.52125,
+     "window": [
+      0,
+      0,
+      1600,
+      936
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.79x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "The Wanderers Stadium , Johannesburg , (pictured) during the opening match of the 2007 ICC World Twenty20",
+     "route": "identity \u2014 Wikidata P18 (Q856387)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:The_Wanderers_1.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/45/The_Wanderers_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.0",
+     "artist": "Charles from Sandton, South Africa"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 428,
+   "block_top": 1152,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1152,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "8,397,294",
+    "Ticket requests for the India-Pakistan group match at the Wanderers"
+   ],
+   "v7": {
+    "image_source": "extra:blue-hour-at-pakistan-monument",
+    "track": "full-bleed",
+    "render_scale": 0.48,
+    "photo_px": [
+     6000,
+     4000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.48,
+     "window": [
+      1833,
+      0,
+      4083,
+      4000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "This is a photo of a monument in Pakistan identified as the",
+     "route": "identity \u2014 Wikidata P18 (Q843)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Blue_Hour_at_Pakistan_Monument.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Blue_Hour_at_Pakistan_Monument.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Muhammad Ashar"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 792,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    792,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "120,809,467",
+    "Total ballot requests across the tournament as of November 1",
+    "7,900,944",
+    "Ticket requests for the final at the same venue",
+    "34,000",
+    "Seats at the Wanderers Stadium in Johannesburg"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.331,
+    "photo_px": [
+     8688,
+     5792
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.3314917127071823,
+     "window": [
+      2871,
+      0,
+      6129,
+      5792
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 414,
+   "block_top": 1166,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1166,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Fans from South Africa, the United Kingdom, India, the United States and Australia lead the ballot registrations",
+    "Entry to the ballot is free, and it is not first-come, first-served"
+   ],
+   "v7": {
+    "image_source": "extra:close-wing-position-of-loxura-atymnus-stoll",
+    "track": "full-bleed",
+    "render_scale": 0.8,
+    "photo_px": [
+     3600,
+     2400
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8,
+     "window": [
+      945,
+      0,
+      2295,
+      2400
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "This picture was taken during the project Wiki Loves Butterfly in Chintamoni Kar Bird Sanctuary,Kolkata,West Bengal,India.Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly. Subspecies: Loxura atymnus continentalis Fruhstorfer, 1912",
+     "route": "identity \u2014 depicts (P180=Q668)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Close_wing_position_of_Loxura_atymnus_Stoll,_1780_%E2%80%93_Yamfly.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Close_wing_position_of_Loxura_atymnus_Stoll%2C_1780_%E2%80%93_Yamfly.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 3.0",
+     "artist": "Atudu"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 364,
+   "block_top": 678,
+   "block_bottom": 1042,
+   "text_bbox": [
+    70,
+    678,
+    930,
+    1042
+   ],
+   "texts": [
+    "The Takeaway",
+    "Fans who do not register by November 21 will not be eligible to buy through the ballot once it closes.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/indian-beat.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 146.9,
+ "mp4_bytes": 16681127
+}

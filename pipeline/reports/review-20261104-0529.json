@@ -1,0 +1,176 @@
+[
+  {
+    "id": "ed9fe6b9-b3c7-4e5e-a321-16eb8d63251e",
+    "headline": "Montville's Diwali Drive Passes $7,000 for the Township Food Pantry",
+    "slug": "montville-diwali-fundraiser-kiwanis-food-pantry-7000",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the total amount raised by specifying the initial amount before the matching gift was added, as this could enhance transparency regarding the fundraising efforts.",
+        "Include a direct quote from Dr. Sunil Shah regarding the matching contribution to provide more attribution and insight into the motivation behind the donation.",
+        "Add a brief background on the Montville Kiwanis Food Pantry, including its mission and how it has evolved, to give readers context about the organization benefiting from the fundraiser."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Montville Kiwanis Food Pantry or Deepa Venkatraman to provide real-time updates or additional context about the fundraiser."
+      ]
+    }
+  },
+  {
+    "id": "77433621-738b-4db6-9c92-f2eceae686b8",
+    "headline": "Five Make-Ahead Desserts to Prep the Night Before Your Diwali Party",
+    "slug": "five-make-ahead-overnight-desserts-diwali-party",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the date of Diwali in the introduction for readers who may not be aware of the specific date this year, as it is crucial for timely preparation.",
+        "Ensure consistency in the dessert descriptions by providing a brief overview of each dessert's flavor profile and cultural significance, enhancing completeness.",
+        "Correct the formatting issue in the section about chocolate biscuit pudding where the sentence begins with 'Chocolate biscuit pudding The simplest of the five.' This should be rephrased for clarity and flow.",
+        "Provide a clearer structure by separating each dessert into distinct sections with headings, making it easier for readers to navigate the article."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Instagram post showcasing one of the desserts to provide visual inspiration for readers."
+      ]
+    }
+  },
+  {
+    "id": "9194d0e5-11b0-4397-84ee-21ac55c6d645",
+    "headline": "India Approves Its First Dengue Vaccine, Qdenga, Ahead of 2027 Launch",
+    "slug": "india-approves-qdenga-first-dengue-vaccine-2027-launch",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the vaccine's availability by specifying that Takeda expects to launch Qdenga in the first half of 2027, but also emphasize that pricing has not yet been finalized, which is crucial for understanding accessibility.",
+        "Include a brief explanation of what the approval process entails and why this approval is significant, particularly in the context of dengue's impact in India, to provide readers with a clearer understanding of the importance of this milestone.",
+        "Add a quote from a health official or a Takeda representative regarding the significance of this vaccine approval to enhance attribution and provide expert insight."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from the DCGI regarding the approval of Qdenga to provide readers with direct access to the source of the news."
+      ]
+    }
+  },
+  {
+    "id": "6e23e80f-1338-4200-a58b-3dda0c90ded3",
+    "headline": "China's Soaring Chemical Exports Threaten a New Trade War Front",
+    "slug": "china-chemical-exports-trade-war-rhodium-india-pvc",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of the developments mentioned. For instance, specify the exact dates or timeframes for the EU's anti-dumping investigations and China's response, as well as the timeline for the increase in China's PVC market share.",
+        "Provide specific data points regarding the impact on Indian producers. For example, include figures or percentages that illustrate how the increased competition from China is affecting pricing or market share for Indian chemical producers.",
+        "Include a brief explanation of the implications of these trade tensions for global markets or specific countries, such as how this might affect prices or availability of chemicals in the US or India.",
+        "Ensure that the report attributes the statistics clearly to the Rhodium Group report and the Financial Times, and consider including a link to the original report for readers seeking more detailed information."
+      ],
+      "embed_opportunities": [
+        "Embed the official report from the Rhodium Group or a relevant tweet from the US Chamber of Commerce to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "4dc0291b-f007-4203-bbd5-77a3d060b611",
+    "headline": "Jailer 2 at Rs 816.9 Crore Closes In on Vijay's Tamil Nadu Record",
+    "slug": "jailer-2-day-20-box-office-816-crore-tamil-nadu-record",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the figures reported; while Sacnilk and The Times of India are mentioned, it would enhance credibility to specify if these figures are confirmed or subject to revision.",
+        "Provide a clearer breakdown of how the film's earnings compare to other films in specific regions, especially in Tamil Nadu, to give readers context on its performance relative to local competitors.",
+        "Include a brief statement on what the implications are if 'Jailer 2' surpasses Vijay's record, such as its potential impact on future film releases or industry trends."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a relevant film industry analyst or critic discussing the significance of 'Jailer 2's' box office performance."
+      ]
+    }
+  },
+  {
+    "id": "4c22fc3e-7a76-4cb2-8fd7-7368d1ed8142",
+    "headline": "Prema Rawat Smashes 14-Ball Fifty, the Fastest in Women's T20 History",
+    "slug": "prema-rawat-fastest-fifty-womens-t20-record-14-balls",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the record by providing context on how it compares to other records in women's cricket, particularly mentioning the previous record holders and their achievements.",
+        "Include a quote from Prema Rawat or a coach to provide a personal touch and insight into her performance and its impact on the team.",
+        "Add a brief overview of the Senior Women's T20 Trophy format and its importance in the context of women's cricket to give readers a better understanding of the event."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight of Rawat's record-breaking innings from a reputable sports channel or the official cricket board's account."
+      ]
+    }
+  },
+  {
+    "id": "bb747939-346e-45f3-9ef2-5f67d6fdaa60",
+    "headline": "Sam Altman: Human Control Must Ultimately Constrain AI Progress",
+    "slug": "sam-altman-human-control-constrain-ai-progress",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of Altman's statement by including specific examples of what 'human control' might look like in practice. This could involve outlining potential regulations or frameworks that OpenAI is advocating for.",
+        "Provide a brief background on the context of Altman's statements, such as recent developments in AI safety discussions or relevant legislative efforts. This would help readers understand why his comments are significant at this moment.",
+        "Ensure that all quotes from Altman are accurately attributed and provide the exact source for the ANI wire report to enhance credibility.",
+        "Consider expanding on the potential consequences if AI development proceeds without sufficient human oversight, as this would provide readers with a clearer understanding of the stakes involved."
+      ],
+      "embed_opportunities": [
+        "Embed the official OpenAI tweet regarding Altman's statements to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "e19751aa-79a6-415b-adfb-c1e692e62ad7",
+    "headline": "Anthropic's FlashProve Can Prove Which AI Model Wrote an Answer",
+    "slug": "anthropic-flashprove-provable-inference-open-source",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of FlashProve for end users or businesses by including specific examples of potential applications or implications, such as how it could affect trust in AI-generated content or compliance with regulations.",
+        "Include a timeline for when Anthropic expects to advance FlashProve beyond the prototype stage or any future plans for deployment, if available.",
+        "Add a brief explanation of zkSNARK for readers who may not be familiar with cryptographic concepts, enhancing clarity and understanding."
+      ],
+      "embed_opportunities": [
+        "Embed the official research post from Anthropic's site for readers to access the original source and technical details directly."
+      ]
+    }
+  },
+  {
+    "id": "78303e1e-6aee-4f2e-8260-34678b4b3caf",
+    "headline": "Democrats Capture Both Houses of Congress in Midterm Rebuke of Trump",
+    "slug": "democrats-capture-congress-midterms-2026-indian-american-results",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying when the election results were projected and when the Democrats officially captured both houses. This will enhance the timeliness and context of the article.",
+        "Provide specific details about the implications of Democratic control for immigration policy, including any proposed changes to H-1B visa regulations or other immigration-related legislation that could affect readers.",
+        "Ensure that all statistics and projections are clearly attributed to their sources. For example, when mentioning the flipped Senate seats, clarify if these projections are based on exit polls, official counts, or other methods.",
+        "Reorganize the content to improve flow by grouping information about the election results, the implications for Indian Americans, and the specific races won by Indian-American candidates into distinct sections for better readability."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a reputable news source that provides live updates or reactions to the election results to enhance the article's timeliness and engagement."
+      ]
+    }
+  }
+]

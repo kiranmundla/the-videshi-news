@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/output/india-approves-qdenga-first-dengue-vaccine-2027-launch.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1200,
+        675
+      ],
+      "manifest_dims": [
+        1200,
+        675
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 1975.3,
+      "url": "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202611/dengue-vaccine-192114624-16x9.jpg?VersionId=8tBAcmKj7S557VtMnfwTLmhaS0vq915B"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/output/qa/frames/frame-hook.png",
+      "text_px_detected": 23113,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.72)",
+        "box": [
+          84,
+          305,
+          141,
+          198
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/output/qa/frames/frame-news.png",
+      "text_px_detected": 43481,
+      "edge": {
+        "pass": true,
+        "offending_px": 27,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 51.3,
+        "delta": 202.6
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/output/qa/frames/frame-hero.png",
+      "text_px_detected": 28014,
+      "edge": {
+        "pass": true,
+        "offending_px": 206,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 251.9,
+        "bg_luminance": 98.8,
+        "delta": 153.0
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/output/qa/frames/frame-grid.png",
+      "text_px_detected": 43515,
+      "edge": {
+        "pass": true,
+        "offending_px": 55,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.76)",
+        "box": [
+          861,
+          -9,
+          237,
+          266
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.8,
+        "bg_luminance": 124.9,
+        "delta": 128.9
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 26485,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-03-india-approves-qdenga-first-dengue-vaccine-2027-launch/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 32412,
+      "edge": {
+        "pass": true,
+        "offending_px": 60,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 24.1,
+        "delta": 229.5
+      }
+    }
+  ]
+}

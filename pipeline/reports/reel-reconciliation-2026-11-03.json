@@ -1,16 +1,16 @@
 {
   "counts": {
     "channel_videos": 225,
-    "db_rows": 162,
-    "db_rows_with_yt_id": 132,
+    "db_rows": 163,
+    "db_rows_with_yt_id": 133,
     "legacy_log_entries": 205,
-    "publish_log_entries": 45,
-    "in_sync": 111,
-    "unknown_legacy_logged": 101,
+    "publish_log_entries": 46,
+    "in_sync": 112,
+    "unknown_legacy_logged": 100,
     "unknown_no_record": 13,
     "ghost_db_rows": 16,
     "superseded_db_rows": 5,
-    "public_without_db_record": 114,
+    "public_without_db_record": 113,
     "phase2_uploads_now_public": 0
   },
   "in_sync": [
@@ -790,6 +790,13 @@
       "privacy": "public",
       "video_id": "cPPQZkSk4EE",
       "record": "prebuilt_reels:77dba4a2-620f-452e-9eb4-147a7906f561"
+    },
+    {
+      "title": "First Bullet Train Revealed: 280 Kmph Test Speed, 557 Passengers, Eight Coaches #Shorts #News",
+      "published_at": "2026-11-03T23:22:52Z",
+      "privacy": "public",
+      "video_id": "2zNe2k9ps84",
+      "record": "prebuilt_reels:fc0ccd81-ed88-45bc-b7fe-bde468fc8eb8"
     }
   ],
   "unknown_legacy_logged": [
@@ -1103,19 +1110,6 @@
         "uploaded_at": "2026-05-28T10:59:42.455106+00:00",
         "url": "https://youtube.com/shorts/goI8_uBt0dc",
         "file": "reel-india-coal-india-divestment-ofs-central-bank-800-billion-rupees-nri-20260528.mp4"
-      }
-    },
-    {
-      "title": "Trump Anything India Wants They Get Delhi Call Ar Rahman Quad #Shorts",
-      "published_at": "2026-05-28T13:59:20Z",
-      "privacy": "public",
-      "video_id": "zgCp8lOKyxg",
-      "legacy": {
-        "video_id": "zgCp8lOKyxg",
-        "article_slug": "unknown",
-        "uploaded_at": "2026-05-28T13:59:00.549079+00:00",
-        "url": "https://youtube.com/shorts/zgCp8lOKyxg",
-        "file": "reel-trump-anything-india-wants-they-get-delhi-call-ar-rahman-quad-20260525.mp4"
       }
     },
     {
@@ -2678,19 +2672,6 @@
       }
     },
     {
-      "title": "Trump Anything India Wants They Get Delhi Call Ar Rahman Quad #Shorts",
-      "published_at": "2026-05-28T13:59:20Z",
-      "privacy": "public",
-      "video_id": "zgCp8lOKyxg",
-      "legacy": {
-        "video_id": "zgCp8lOKyxg",
-        "article_slug": "unknown",
-        "uploaded_at": "2026-05-28T13:59:00.549079+00:00",
-        "url": "https://youtube.com/shorts/zgCp8lOKyxg",
-        "file": "reel-trump-anything-india-wants-they-get-delhi-call-ar-rahman-quad-20260525.mp4"
-      }
-    },
-    {
       "title": "U.S. Inflation Just Hit 3.8 Percent. The Iran War Is Baked Into Every Price Tag in America. #Shorts",
       "published_at": "2026-05-28T13:59:21Z",
       "privacy": "public",
@@ -3751,5 +3732,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-03T11:18:18+00:00"
+  "generated_at": "2026-11-03T23:24:30+00:00"
 }
