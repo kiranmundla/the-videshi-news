@@ -128,12 +128,27 @@ _FISHERS_RX = (
     r"|\b(?:Indiana|Indianapolis|Carmel|Hamilton County)\b.{0,60}\bFishers\b"
 )
 
+# Warren, MI (Detroit cluster member) vs Warren the surname: Senator
+# Elizabeth Warren's Anthropic letter filed as Detroit news in the
+# 2026-11-04 audit because bare "Warren" was a plain alias. Like
+# Durham/Apex for Raleigh, it leaves the plain aliases in clusters.json
+# and matches only with Michigan context nearby; the cluster block list
+# also names "elizabeth warren" outright (the Edison/Thomas Edison
+# pattern).
+_MI_CONTEXT = r"(?:Michigan|Macomb County|Metro Detroit|\bMI\b)"
+_DETROIT_MI_RX = (
+    r"\bWarren,?\s+(?:MI|Mich\.)\b"
+    r"|\bWarren\b(?=.{0,60}\b" + _MI_CONTEXT + r"\b)"
+    r"|\b" + _MI_CONTEXT + r"\b.{0,60}\bWarren\b"
+)
+
 _PROFILE_RX = {
     "washington_dc": _WASHINGTON_RX,
     "portland_or": _PORTLAND_RX,
     "dublin_ca": _DUBLIN_CA_RX,
     "dublin_oh": _DUBLIN_OH_RX,
     "raleigh_nc": _RALEIGH_NC_RX,
+    "detroit_mi": _DETROIT_MI_RX,
     "fishers_in": _FISHERS_RX,
     # orange_county: the profile pattern adds guarded "Corona" (above);
     # the cluster's other names match plainly, and cluster_blocked()

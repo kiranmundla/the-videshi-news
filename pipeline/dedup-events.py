@@ -56,6 +56,13 @@ from pathlib import Path
 
 # ── Config ───────────────────────────────────────────────────────────────
 DRY_RUN = "--dry-run" in sys.argv
+# --exact-only: apply fingerprint/exact merges only, skip fuzzy edges.
+# Added 2026-11-04 (weekly audit): the fuzzy batch that day contained
+# ambiguous pairs (a single-day ticket vs its TWO-DAY TICKET variant;
+# gendered Vipassana courses vs the generic course listing) that could
+# not be verified as duplicates — exact merges were verified safe, so
+# the audit needed a way to apply those without the fuzzy set.
+EXACT_ONLY = "--exact-only" in sys.argv
 SB_URL = os.environ["SUPABASE_URL"]
 SB_KEY = os.environ["SUPABASE_SERVICE_ROLE_KEY"]
 TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
@@ -649,6 +656,8 @@ def cluster_group(events):
                 continue
             if stripped_titles_equal(e1["title"], e2["title"]):
                 add_edge(i, j, "exact")
+                continue
+            if EXACT_ONLY:
                 continue
             ok, reason = fuzzy_match(e1, e2)
             if ok:

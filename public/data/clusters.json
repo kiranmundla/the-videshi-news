@@ -3871,7 +3871,6 @@
     "Detroit",
     "Troy",
     "Farmington Hills",
-    "Warren",
     "Rochester Hills",
     "Sterling Heights"
    ],
@@ -4117,8 +4116,10 @@
      "lon": -83.0026
     }
    ],
-   "block": [],
-   "context_guard": null,
+   "block": [
+    "elizabeth warren"
+   ],
+   "context_guard": "detroit_mi",
    "source_ranks": [
     18
    ]

@@ -81,6 +81,14 @@ CASES = [
     ("orange-county-ca", "New Indian Grocery Opens in Corona, CA", True),
     ("orange-county-ca", "Corona, California Temple Announces Diwali Schedule", True),
     ("orange-county-ca", "Riverside County Fair in Corona Draws Record Crowds", True),
+    # ── 2026-11-04 audit: Detroit, MI vs Warren the surname ──────────
+    ("detroit-mi", "Warren Demands Anthropic Answers on Existential AI Risks Before IPO", False),
+    ("detroit-mi", "Senator Elizabeth Warren Questions Anthropic CEO Over IPO Risks", False),
+    ("detroit-mi", "Warren Buffett Donates Record Sum to Charities", False),
+    ("detroit-mi", "New Indian Grocery Opens in Warren, MI", True),
+    ("detroit-mi", "Warren, Michigan Approves Diwali Proclamation", True),
+    ("detroit-mi", "Macomb County Temple Expands in Warren", True),
+    ("detroit-mi", "Detroit Diwali Gala Draws Thousands Downtown", True),
     # ── Phase 2: Yonkers / Bergen split out of New York ────────────────
     ("yonkers-bergen-ny-nj", "Yonkers Diwali Celebration Lights Up City Hall", True),
     ("new-york-ny", "Yonkers Diwali Celebration Lights Up City Hall", False),

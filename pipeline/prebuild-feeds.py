@@ -20,6 +20,7 @@ import subprocess
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlencode
+from zoneinfo import ZoneInfo
 
 import time
 import requests
@@ -1234,7 +1235,12 @@ def main():
     print(f"  ✓ {ev_written} event detail JSONs written, {ev_skipped} unchanged, {ev_removed} stale removed")
 
     # 5b. Build slim events-homepage.json (only fields the homepage strip needs, all upcoming)
-    today_str = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    # "Today" is the audience's day, not UTC's: with a UTC date the strip
+    # dropped ALL of today's events from 16:00 PT onward (found 2026-11-04
+    # weekly audit: 26 events dated today missing from the strip file built
+    # 17:17 PT). Pacific is the latest mainland US day boundary, so no US
+    # reader loses today's events early.
+    today_str = datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
     upcoming = [e for e in events if e.get("date", "") >= today_str]
     slim_fields = ("id", "title", "date", "time", "venue_name", "city", "state", "category", "latitude", "longitude", "slug")
     slim_events = [{k: e.get(k) for k in slim_fields if e.get(k) is not None} for e in upcoming]
