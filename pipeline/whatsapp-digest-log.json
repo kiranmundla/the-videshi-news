@@ -268,5 +268,15 @@
     "quick_hit_count": 5,
     "deadline_count": 1,
     "chars": 2396
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-04T15:13:02.548424+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 04 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "diwali-dubai-2026-restaurants-dhs99-to-dhs1260",
+    "quick_hit_count": 5,
+    "deadline_count": 1,
+    "chars": 2521
   }
 ]

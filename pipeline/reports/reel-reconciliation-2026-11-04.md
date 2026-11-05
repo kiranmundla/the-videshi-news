@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-04T05:18:05+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-04T23:20:06+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **227**
-- prebuilt_reels rows: 164 (134 with a yt_video_id)
+- Channel uploads (actual, via API): **228**
+- prebuilt_reels rows: 165 (135 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 47
-- **In sync** (channel video backed by a DB/publish-log record): **113**
+- Phase 2 publish-log entries: 48
+- **In sync** (channel video backed by a DB/publish-log record): **114**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 13
 - Ghost DB rows (yt_video_id not on channel): 16
@@ -284,7 +284,7 @@ _None._
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 - row `3c385175-84c2-48c0-afec-378bee1ba1d6` · slug ambani-adds-6-3-billion-reliance-shares-jump-record-profit · yt_video_id `B45MLVEFtk4` · on channel: no
 
-## (d) In sync (113)
+## (d) In sync (114)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -399,4 +399,5 @@ _None._
 - `cPPQZkSk4EE` · public · 2026-11-03 · UK Doubles Settlement Wait to Ten Years, Keeps Five-Year Route for Care Workers #Shorts #Immigration [prebuilt_reels:77dba4a2-620f-452e-9eb4-147a7906f561]
 - `2zNe2k9ps84` · public · 2026-11-03 · First Bullet Train Revealed: 280 Kmph Test Speed, 557 Passengers, Eight Coaches #Shorts #News [prebuilt_reels:fc0ccd81-ed88-45bc-b7fe-bde468fc8eb8]
 - `TlrmOkUtMH4` · public · 2026-11-04 · India Approves Its First Dengue Vaccine, Qdenga, Ahead of 2027 Launch #Shorts #News [prebuilt_reels:475514b9-cb22-4137-94fd-d2771fc86924]
+- `Rm8q7E0G5r0` · public · 2026-11-04 · Indian Battery Makers Face Up to 61% Cost Gap With China, NETRA Study Finds #Shorts #Markets [prebuilt_reels:0bd9eea8-80c9-441f-9e85-104e429c2d9a]
 

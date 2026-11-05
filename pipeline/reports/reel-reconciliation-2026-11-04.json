@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 227,
-    "db_rows": 164,
-    "db_rows_with_yt_id": 134,
+    "channel_videos": 228,
+    "db_rows": 165,
+    "db_rows_with_yt_id": 135,
     "legacy_log_entries": 205,
-    "publish_log_entries": 47,
-    "in_sync": 113,
+    "publish_log_entries": 48,
+    "in_sync": 114,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 13,
     "ghost_db_rows": 16,
@@ -804,6 +804,13 @@
       "privacy": "public",
       "video_id": "TlrmOkUtMH4",
       "record": "prebuilt_reels:475514b9-cb22-4137-94fd-d2771fc86924"
+    },
+    {
+      "title": "Indian Battery Makers Face Up to 61% Cost Gap With China, NETRA Study Finds #Shorts #Markets",
+      "published_at": "2026-11-04T11:20:53Z",
+      "privacy": "public",
+      "video_id": "Rm8q7E0G5r0",
+      "record": "prebuilt_reels:0bd9eea8-80c9-441f-9e85-104e429c2d9a"
     }
   ],
   "unknown_legacy_logged": [
@@ -3765,5 +3772,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-04T05:18:05+00:00"
+  "generated_at": "2026-11-04T23:20:06+00:00"
 }

@@ -628,5 +628,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "Rm8q7E0G5r0",
+    "article_slug": "india-battery-cost-gap-china-epsilon-himadri",
+    "article_id": "46bf99e5-4cd2-4b45-85f3-38179da2357d",
+    "title": "Indian Battery Makers Face Up to 61% Cost Gap With China, NETRA Study Finds #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-11-04T11:20:27.389075+00:00",
+    "video_path": "reel-runs/2026-11-04-india-battery-cost-gap-china-epsilon-himadri/output-v2/india-battery-cost-gap-china-epsilon-himadri.mp4",
+    "video_sha256": "ad37740568e7c83ae641a4b48623abd076e231bc7c2debb9aba02adc5bf8fd7c",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]
