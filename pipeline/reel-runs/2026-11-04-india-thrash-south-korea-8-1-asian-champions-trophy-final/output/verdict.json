@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-thrash-south-korea-8-1-asian-champions-trophy-final",
+  "name": "india-thrash-south-korea-8-1-asian-champions-trophy-final",
+  "script": "reel-runs/2026-11-04-india-thrash-south-korea-8-1-asian-champions-trophy-final/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "stats[1].label"
+    ],
+    "llm_cost_usd": 0.000642
+  }
+}

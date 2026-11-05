@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-battery-cost-gap-china-epsilon-himadri",
+ "article_slug": "india-battery-cost-gap-china-epsilon-himadri",
+ "article_id": "46bf99e5-4cd2-4b45-85f3-38179da2357d",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-04-india-battery-cost-gap-china-epsilon-himadri/output-v2/india-battery-cost-gap-china-epsilon-himadri.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://images.financialexpressdigital.com/2026/11/11232.jpg",
+  "local_path": "reel-runs/2026-11-04-india-battery-cost-gap-china-epsilon-himadri/output-v2/hero.jpg",
+  "width": 1326,
+  "height": 746,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.889,0.599) damped=(0.695,0.549)",
+  "has_face": false,
+  "box_source": [
+   549,
+   246,
+   742,
+   298
+  ],
+  "box_bg": [
+   431,
+   309,
+   467,
+   187
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.696,
+   0.549
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "Markets Finance",
+    "INDIA'S BATTERY COST GAP WITH CHINA"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.629,
+    "photo_px": [
+     1326,
+     746
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6289592760180995,
+     "window": [
+      0,
+      2,
+      1326,
+      746
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.57x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 910,
+   "block_bottom": 1333,
+   "text_bbox": [
+    70,
+    910,
+    930,
+    1333
+   ],
+   "texts": [
+    "What Happened",
+    "A NETRA study released by the Ministry of Heavy Industries finds Indian battery component makers face a cost disadvantage of 18% to 61% against landed Chinese prices."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.715,
+    "photo_px": [
+     1326,
+     746
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7152658662092625,
+     "window": [
+      160,
+      82,
+      1326,
+      736
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.57x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 903,
+   "block_bottom": 1341,
+   "text_bbox": [
+    70,
+    903,
+    930,
+    1341
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "61%",
+    "Cost gap in synthetic graphite anodes vs China"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.787,
+    "photo_px": [
+     1326,
+     746
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7867924528301887,
+     "window": [
+      231,
+      112,
+      1291,
+      706
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.57x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 750,
+   "block_bottom": 1493,
+   "text_bbox": [
+    70,
+    750,
+    930,
+    1493
+   ],
+   "texts": [
+    "By The Numbers",
+    "51%",
+    "Cost gap in natural graphite vs China",
+    "425%",
+    "More to build an anode plant in India than in China",
+    "236 GWh",
+    "India's projected battery demand in 2032"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.787,
+    "photo_px": [
+     1326,
+     746
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7867924528301887,
+     "window": [
+      266,
+      112,
+      1326,
+      706
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.57x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 937,
+   "block_bottom": 1306,
+   "text_bbox": [
+    70,
+    937,
+    930,
+    1306
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "China supplied 99% of the world's LFP cathode material in 2025",
+    "The \u20b912,000-crore scheme is a proposal, not approved policy"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.85,
+    "photo_px": [
+     1326,
+     746
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.8501529051987767,
+     "window": [
+      345,
+      196,
+      1326,
+      746
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.57x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "India wants a battery industry that does not run through China.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/tech-corporate-technology.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 91.5,
+ "mp4_bytes": 6894708
+}

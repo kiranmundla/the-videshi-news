@@ -1,0 +1,408 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "google-dismantles-xcpe-botnet-1-3-million-android-tv-boxes",
+ "article_slug": "google-dismantles-xcpe-botnet-1-3-million-android-tv-boxes",
+ "article_id": "a86aa646-bb6b-4e7f-b9d2-932ee7e629f3",
+ "category": "Technology",
+ "video": "reel-runs/2026-11-04-google-dismantles-xcpe-botnet-1-3-million-android-tv-boxes/output/google-dismantles-xcpe-botnet-1-3-million-android-tv-boxes.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://img.youtube.com/vi/iEvtjti7a9c/maxresdefault.jpg",
+  "local_path": "reel-runs/2026-11-04-google-dismantles-xcpe-botnet-1-3-million-android-tv-boxes/output/hero.jpg",
+  "width": 1280,
+  "height": 720,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.288,0.478) damped=(0.394,0.489)",
+  "has_face": false,
+  "box_source": [
+   146,
+   193,
+   716,
+   288
+  ],
+  "box_bg": [
+   181,
+   282,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.394,
+   0.484
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 985,
+   "block_bottom": 1258,
+   "text_bbox": [
+    70,
+    985,
+    930,
+    1258
+   ],
+   "texts": [
+    "Technology",
+    "A BOTNET HID INSIDE TV BOXES"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      0,
+      1280,
+      718
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1217,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1217,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Google and partners dismantled the XCPE botnet, which had enrolled more than 1.3 million set-top boxes, and Google says device maker Videostrong intentionally built the backdoor for financial gain."
+   ],
+   "v7": {
+    "image_source": "extra:boerenwagen-van-achteren-gezien-rp-t-1952-25",
+    "track": "full-bleed",
+    "render_scale": 0.424,
+    "photo_px": [
+     4576,
+     4526
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.42421564295183384,
+     "window": [
+      1123,
+      0,
+      3668,
+      4526
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Identificatie Titel(s): Boerenwagen, van achteren gezien Objecttype: tekening aquarel Objectnummer: RP-T-1952-254 Vervaardiging Vervaardiger: tekenaar: Simon Andreas Krausz Datering: 1770 - 1825 Fysieke kenmerken: penseel in aquarel Materia",
+     "route": "identity \u2014 depicts (P180=Q95)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Boerenwagen,_van_achteren_gezien,_RP-T-1952-254.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Boerenwagen%2C_van_achteren_gezien%2C_RP-T-1952-254.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "Rijksmuseum"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 422,
+   "block_top": 1158,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1158,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "1.3 million",
+    "Android set-top boxes enrolled in the XCPE botnet"
+   ],
+   "v7": {
+    "image_source": "extra:bodie-september-2016-019",
+    "track": "full-bleed",
+    "render_scale": 0.653,
+    "photo_px": [
+     4280,
+     2940
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6530612244897959,
+     "window": [
+      1287,
+      0,
+      2940,
+      2940
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "County Barn, Bodie , California .",
+     "route": "identity \u2014 depicts (P180=Q30)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Bodie_September_2016_019.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Bodie_September_2016_019.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "King of Hearts"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 531,
+   "block_top": 856,
+   "block_bottom": 1387,
+   "text_bbox": [
+    70,
+    856,
+    930,
+    1387
+   ],
+   "texts": [
+    "By The Numbers",
+    "1,472,554",
+    "Infected devices TrendAI counted across 206 models",
+    "10 million",
+    "At least \u2014 more compromised devices Google assesses its legal action will sever access to"
+   ],
+   "v7": {
+    "image_source": "extra:googlestreetviewcar-subaru-impreza-at-google",
+    "track": "backdrop",
+    "render_scale": 0.439,
+    "photo_px": [
+     1900,
+     1231
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.43894736842105264,
+     "window": [
+      0,
+      165,
+      1900,
+      1231
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.56x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "A Google Street View Camera Car (2008 Subaru Impreza Five Door) showcased on Google campus in Mountain View, CA, USA. taken by myself [User:Kowloonese] using a Canon digital camera. The picture was taken on Google Campus in Mountain View, C",
+     "route": "identity \u2014 depicts (P180=Q95)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:GoogleStreetViewCar_Subaru_Impreza_at_Google_Campus.JPG",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/GoogleStreetViewCar_Subaru_Impreza_at_Google_Campus.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Kowloonese at English Wikipedia"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 874,
+   "block_bottom": 1369,
+   "text_bbox": [
+    70,
+    874,
+    930,
+    1369
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Low-cost boxes bought for international channels are exactly the class this botnet used",
+    "Disconnect a suspect box from the internet \u2014 the backdoor reinstalls on reboot"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.741,
+    "photo_px": [
+     1280,
+     720
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7406749555950266,
+     "window": [
+      0,
+      32,
+      1126,
+      663
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "Google has banned Videostrong from certified Android devices.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 148.1,
+ "mp4_bytes": 15058143
+}

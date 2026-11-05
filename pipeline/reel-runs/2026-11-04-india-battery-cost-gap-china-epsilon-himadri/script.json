@@ -1,0 +1,34 @@
+{
+ "hook_line": "INDIA'S BATTERY COST GAP WITH CHINA",
+ "hook_stat": {
+  "big": "61%",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Cost gap in synthetic graphite anodes vs China"
+ },
+ "stats": [
+  {
+   "big": "51%",
+   "label": "Cost gap in natural graphite vs China"
+  },
+  {
+   "big": "425%",
+   "label": "More to build an anode plant in India than in China"
+  },
+  {
+   "big": "236 GWh",
+   "label": "India's projected battery demand in 2032"
+  }
+ ],
+ "diaspora_bullets": [
+  "China supplied 99% of the world's LFP cathode material in 2025",
+  "The \u20b912,000-crore scheme is a proposal, not approved policy"
+ ],
+ "key_entities": [
+  "NETRA",
+  "Ministry of Heavy Industries"
+ ],
+ "news_summary": "A NETRA study released by the Ministry of Heavy Industries finds Indian battery component makers face a cost disadvantage of 18% to 61% against landed Chinese prices.",
+ "payoff": "India wants a battery industry that does not run through China.",
+ "versus": "",
+ "story_mood": "tense"
+}

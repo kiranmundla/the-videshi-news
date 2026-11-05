@@ -1,0 +1,152 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "tanvi-patri-first-indian-woman-youth-olympic-badminton-final",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Tanvi Patri, 15, First Indian Woman to Reach Youth Olympic Badminton Final",
+        "numbers": [
+          15.0
+        ],
+        "entities": [
+          "Tanvi Patri",
+          "First Indian Woman",
+          "Reach Youth Olympic Badminton Final"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article states she is the first Indian woman to reach the final.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The Odisha shuttler beat Japan's second seed Yuzuno Watanabe 21-14, 11-21, 21-19 in 54 minutes, assuring India its first women's singles medal at the Youth Olympic Games.",
+        "numbers": [
+          11.0,
+          14.0,
+          19.0,
+          21.0,
+          54.0
+        ],
+        "entities": [
+          "Yuzuno Watanabe",
+          "Youth Olympic Games"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All details about the match and medal are in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Fifteen-year-old Tanvi Patri beat Japan's second seed Yuzuno Watanabe 21-14, 11-21, 21-19 in a 54-minute semifinal",
+        "numbers": [
+          11.0,
+          14.0,
+          19.0,
+          21.0,
+          54.0
+        ],
+        "entities": [
+          "Fifteen-year-old Tanvi Patri",
+          "Yuzuno Watanabe"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Match details are accurately reported in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The win guarantees India its first-ever women's singles badminton medal at the Youth Olympic Games \u2014 at least a silver is now assured",
+        "numbers": [],
+        "entities": [
+          "Youth Olympic Games"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms this as a guaranteed medal.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Patri now faces China's Yi Xin Zhang, the reigning World Junior champion, in the gold-medal match",
+        "numbers": [],
+        "entities": [
+          "China's Yi Xin Zhang",
+          "World Junior"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states she will face Yi Xin Zhang in the final.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Tanvi Patri, 15, First Indian Woman to Reach Youth Olympic Badminton Final",
+        "numbers": [
+          15.0
+        ],
+        "entities": [
+          "Tanvi Patri",
+          "First Indian Woman",
+          "Reach Youth Olympic Badminton Final"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the first claim and is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000478,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

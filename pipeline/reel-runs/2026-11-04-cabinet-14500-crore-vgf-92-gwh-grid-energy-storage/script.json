@@ -1,0 +1,34 @@
+{
+ "hook_line": "CABINET CLEARS RS 14,500 CRORE STORAGE FUND BACKING 92 GWH OF NEW GRID CAPACITY",
+ "hook_stat": {
+  "big": "92 GWh",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Grid-scale energy storage capacity supported by the scheme"
+ },
+ "stats": [
+  {
+   "big": "Rs 14,500 crore",
+   "label": "Viability gap funding approved by the Union Cabinet on Wednesday"
+  },
+  {
+   "big": "60 GWh",
+   "label": "Pumped hydro storage — the largest share of the capacity"
+  },
+  {
+   "big": "30 GWh",
+   "label": "Battery energy storage systems under the scheme"
+  }
+ ],
+ "diaspora_bullets": [
+  "Battery projects under the scheme must meet a minimum 40 per cent domestic content requirement",
+  "The scheme covers roughly a fifth of the assessed need of 411 GWh by 2031-32"
+ ],
+ "key_entities": [
+  "Union Cabinet",
+  "India"
+ ],
+ "news_summary": "The Union Cabinet on Wednesday approved a Rs 14,500 crore viability gap funding scheme to support 92 GWh of grid-scale energy storage capacity.",
+ "payoff": "The scheme runs from FY 2026-27 to FY 2030-31.",
+ "versus": "",
+ "story_mood": "practical"
+}

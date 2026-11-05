@@ -1,0 +1,36 @@
+{
+ "hook_line": "INDIA'S MIDDLE CLASS BORROWS FASTER THAN INCOMES",
+ "hook_stat": {
+  "big": "46%",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Consumer debt as a share of GDP \u2014 a record"
+ },
+ "stats": [
+  {
+   "big": "36%",
+   "label": "Surge in household borrowing in the year through March"
+  },
+  {
+   "big": "13%",
+   "label": "About \u2014 of household income went to servicing debt, up from 10-11% for much of the previous decade"
+  },
+  {
+   "big": "75-100",
+   "label": "Basis points of further RBI rate hikes economists expect in coming months"
+  }
+ ],
+ "diaspora_bullets": [
+  "Excluding mortgage debt, CLSA estimates Indian consumers are among the most constrained in the world",
+  "Bad-loan ratios at banks are near multi-decade lows, with little evidence so far of widespread repayment stress"
+ ],
+ "key_entities": [
+  "Reserve Bank of India",
+  "CLSA",
+  "Bloomberg",
+  "GDP"
+ ],
+ "news_summary": "Household borrowing in India surged 36% in the year through March, taking consumer debt to a record 46% of GDP, while borrowing rose roughly four times as fast as disposable income in 2025-26.",
+ "payoff": "Economists expect another 75-100 basis points of RBI rate hikes in coming months.",
+ "versus": "",
+ "story_mood": "tense"
+}

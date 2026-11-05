@@ -1,0 +1,119 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-battery-cost-gap-china-epsilon-himadri",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "NETRA",
+    "Ministry of Heavy Industries",
+    "China",
+    "battery"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'NETRA' named 'Netra railway station', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'China' named \"People's Republic of China\", which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Batteries.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q267298)",
+      "verdict": "rejected",
+      "reason": "resolution: 300x214 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:1st UK Artillery Brigade - Organization 2007.png",
+      "route": "identity \u2014 depicts (P180=Q267298)",
+      "verdict": "rejected",
+      "reason": "resolution: 616x600 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:BATERIA.JPG",
+      "route": "identity \u2014 depicts (P180=Q267298)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:BATTERY EXPLOSION IN TEST CELL - NARA - 17443202.jpg",
+      "route": "identity \u2014 depicts (P180=Q267298)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Battery.svg",
+      "route": "identity \u2014 depicts (P180=Q267298)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Battery with polymer separator-es.svg",
+      "route": "identity \u2014 depicts (P180=Q267298)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Candle-lit framed Socorro Cavite Antes (Left) and Federico Abdon Antes Jr. ( Cool Version).jpg",
+      "route": "identity \u2014 depicts (P180=Q267298)",
+      "verdict": "USED (news)",
+      "reason": "4000x3000, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Ce que j'obtiens.jpg",
+      "route": "identity \u2014 depicts (P180=Q267298)",
+      "verdict": "rejected",
+      "reason": "resolution: 1128x433 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Char bat.svg",
+      "route": "identity \u2014 depicts (P180=Q267298)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Discharged battery.gif",
+      "route": "identity \u2014 depicts (P180=Q267298)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:ELECTRIC MOTOR - ELECTRIC VEHICLE CONTROLLER - BATTERY CHARGER - TRANSMISSION - CUTAWAY BATTERY FROM ELECTRIC CAR - NARA - 17419160.jpg",
+      "route": "identity \u2014 depicts (P180=Q267298)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "candle-lit-framed-socorro-cavite-antes-left",
+      "path": "candle-lit-framed-socorro-cavite-antes-left.jpg",
+      "size": [
+        4000,
+        3000
+      ],
+      "role": "establishing",
+      "subject": "Candle and Framed Photographs",
+      "route": "identity \u2014 depicts (P180=Q267298)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Candle-lit_framed_Socorro_Cavite_Antes_(Left)_and_Federico_Abdon_Antes_Jr._(_Cool_Version).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Candle-lit_framed_Socorro_Cavite_Antes_%28Left%29_and_Federico_Abdon_Antes_Jr._%28_Cool_Version%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "XanalaniaW",
+      "entity": "battery",
+      "entity_type": "other",
+      "entity_aliases": [
+        "electric battery",
+        "electrical battery"
+      ]
+    }
+  ]
+}

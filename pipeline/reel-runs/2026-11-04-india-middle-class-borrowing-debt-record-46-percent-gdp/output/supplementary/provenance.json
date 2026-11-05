@@ -1,0 +1,171 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-middle-class-borrowing-debt-record-46-percent-gdp",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Reserve Bank of India",
+    "CLSA",
+    "Bloomberg",
+    "GDP",
+    "Than Incomes",
+    "Navjot Singh"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "outlet: 'Bloomberg' is a news outlet \u2014 outlets are sources, never picture subjects; never queried"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Than Incomes' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Navjot Singh' named 'Navjot Singh Sidhu', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:2018 (\u20b91) Indian 1 Rupee Note, Jamshedpur, Jharkhand ( Ank Kumar, Infosys Limited ) 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q944085)",
+      "verdict": "USED (grid)",
+      "reason": "2756x1815, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Indian New Coins Series.png",
+      "route": "identity \u2014 depicts (P180=Q944085)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:RBI Bhubaneswar.jpg",
+      "route": "identity \u2014 depicts (P180=Q944085)",
+      "verdict": "USED (diaspora)",
+      "reason": "3235x1740, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:How is GDP calculated?.png",
+      "route": "identity \u2014 Wikidata P18 (Q12638)",
+      "verdict": "rejected",
+      "reason": "resolution: 900x2642 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:50 largest U.S. counties by GDP, 2024.png",
+      "route": "identity \u2014 depicts (P180=Q12638)",
+      "verdict": "USED (news)",
+      "reason": "6900x4790, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Autocorrelations of annual growth in real US GDP per capita since 1790.svg",
+      "route": "identity \u2014 depicts (P180=Q12638)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:BRICS-GDP-2000-2022.png",
+      "route": "identity \u2014 depicts (P180=Q12638)",
+      "verdict": "rejected",
+      "reason": "resolution: 658x349 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Bulgarian provinces by nominal GDP per capita, 2021.png",
+      "route": "identity \u2014 depicts (P180=Q12638)",
+      "verdict": "USED (hero)",
+      "reason": "6300x3500, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "50-largest-u-s-counties-by-gdp-2024",
+      "path": "50-largest-u-s-counties-by-gdp-2024.png",
+      "size": [
+        6900,
+        4790
+      ],
+      "role": "establishing",
+      "subject": "50 largest U.S. counties by GDP, 2024",
+      "route": "identity \u2014 depicts (P180=Q12638)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:50_largest_U.S._counties_by_GDP,_2024.png",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/43/50_largest_U.S._counties_by_GDP%2C_2024.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "\u0412\u0430\u0441\u0438\u043b\u0435\u043d\u043a\u043e1990",
+      "entity": "GDP",
+      "entity_type": "other",
+      "entity_aliases": [
+        "GDP"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "bulgarian-provinces-by-nominal-gdp-per-capit",
+      "path": "bulgarian-provinces-by-nominal-gdp-per-capit.png",
+      "size": [
+        6300,
+        3500
+      ],
+      "role": "establishing",
+      "subject": "Bulgarian provinces by nominal GDP per capita, 2021",
+      "route": "identity \u2014 depicts (P180=Q12638)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Bulgarian_provinces_by_nominal_GDP_per_capita,_2021.png",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Bulgarian_provinces_by_nominal_GDP_per_capita%2C_2021.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "\u0412\u0430\u0441\u0438\u043b\u0435\u043d\u043a\u043e1990",
+      "entity": "GDP",
+      "entity_type": "other",
+      "entity_aliases": [
+        "GDP"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "2018-1-indian-1-rupee-note-jamshedpur-jharkh",
+      "path": "2018-1-indian-1-rupee-note-jamshedpur-jharkh.jpg",
+      "size": [
+        2756,
+        1815
+      ],
+      "role": "establishing",
+      "subject": "2018 (\u20b91) Indian 1 Rupee Note in Jamshedpur, Jharkhand. The Indian 1-rupee note (\u20b91) (\u20b91 = 100 paise) is the smallest Indian banknote in circulation and the only one being issued by the Government of India, as all other banknotes in circula",
+      "route": "identity \u2014 depicts (P180=Q944085)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2018_(%E2%82%B91)_Indian_1_Rupee_Note,_Jamshedpur,_Jharkhand_(_Ank_Kumar,_Infosys_Limited_)_02.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/2018_%28%E2%82%B91%29_Indian_1_Rupee_Note%2C_Jamshedpur%2C_Jharkhand_%28_Ank_Kumar%2C_Infosys_Limited_%29_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Ank Kumar",
+      "entity": "Reserve Bank of India",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Reserve Bank of India"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "rbi-bhubaneswar",
+      "path": "rbi-bhubaneswar.jpg",
+      "size": [
+        3235,
+        1740
+      ],
+      "role": "interior",
+      "subject": "Reserve Bank of India Regional Office for Odisha State is located in Unit-3 of Bhubaneswar on Sachivalay Marg. Picture was taken by me on my smartphone.",
+      "route": "identity \u2014 depicts (P180=Q944085)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:RBI_Bhubaneswar.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/RBI_Bhubaneswar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Subhrasingh",
+      "entity": "Reserve Bank of India",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Reserve Bank of India"
+      ]
+    }
+  ]
+}

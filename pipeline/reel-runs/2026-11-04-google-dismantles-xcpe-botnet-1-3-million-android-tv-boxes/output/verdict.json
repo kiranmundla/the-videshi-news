@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "google-dismantles-xcpe-botnet-1-3-million-android-tv-boxes",
+  "name": "google-dismantles-xcpe-botnet-1-3-million-android-tv-boxes",
+  "script": "reel-runs/2026-11-04-google-dismantles-xcpe-botnet-1-3-million-android-tv-boxes/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000644
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-04-google-dismantles-xcpe-botnet-1-3-million-android-tv-boxes/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "boerenwagen-van-achteren-gezien-rp-t-1952-25",
+      "hero": "bodie-september-2016-019",
+      "grid": "googlestreetviewcar-subaru-impreza-at-google"
+    }
+  },
+  "manifest": "reel-runs/2026-11-04-google-dismantles-xcpe-botnet-1-3-million-android-tv-boxes/output/render-manifest.json",
+  "video": "reel-runs/2026-11-04-google-dismantles-xcpe-botnet-1-3-million-android-tv-boxes/output/google-dismantles-xcpe-botnet-1-3-million-android-tv-boxes.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:hero"
+    ]
+  }
+}

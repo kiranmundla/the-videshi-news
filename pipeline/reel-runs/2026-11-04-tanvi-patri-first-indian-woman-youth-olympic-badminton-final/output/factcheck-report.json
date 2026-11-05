@@ -1,0 +1,291 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "tanvi-patri-first-indian-woman-youth-olympic-badminton-final",
+  "verdict": "fail",
+  "held_claims": [
+    "hook_stat.sub",
+    "stats[2].big",
+    "stats[2].label"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "TANVI PATRI, 15, FIRST INDIAN WOMAN IN YOUTH OLYMPIC BADMINTON FINAL",
+      "numbers": [
+        15.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Tanvi Patri is 15 and the first Indian woman in the final.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Fifteen-year-old Tanvi Patri beat Japan's second seed Yuzuno Watanabe 21-14, 11-21, 21-19 in a 54-minute semifinal to become the first Indian woman to reach a Youth Olympic Games badminton final.",
+      "numbers": [
+        11.0,
+        14.0,
+        19.0,
+        21.0,
+        54.0
+      ],
+      "entities": [
+        "Fifteen-year-old Tanvi Patri",
+        "Yuzuno Watanabe",
+        "Youth Olympic Games"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about the match and her achievement are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "15",
+      "numbers": [
+        15.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Tanvi Patri's age is confirmed as 15.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Tanvi Patri's age \u2014 first Indian woman to reach a Youth Olympic badminton final",
+      "numbers": [],
+      "entities": [
+        "Tanvi Patri's",
+        "Youth Olympic"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Tanvi Patri's"
+        ]
+      },
+      "llm_reason": "Her age and achievement are both accurate.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "54",
+      "numbers": [
+        54.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The match duration of 54 minutes is stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Minutes to beat Japan's second seed Yuzuno Watanabe in the semifinal",
+      "numbers": [],
+      "entities": [
+        "Yuzuno Watanabe"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the match duration.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "21-19",
+      "numbers": [
+        19.0,
+        21.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The deciding-game score of 21-19 is confirmed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Deciding-game score in the three-game semifinal",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The score of the deciding game is accurately reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2024",
+      "numbers": [
+        2024.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2024
+        ]
+      },
+      "llm_reason": "The article states she won the U15 title in 2023, not 2024.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Year she clinched the U15 Asia title",
+      "numbers": [
+        15.0
+      ],
+      "entities": [
+        "U15 Asia"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article does not mention 2024 for the U15 title.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "India's first-ever women's singles medal at the Youth Olympic Games is assured \u2014 at least a silver",
+      "numbers": [],
+      "entities": [
+        "Youth Olympic Games"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms that a medal is guaranteed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Patri faces China's Yi Xin Zhang, the reigning World Junior champion, in the gold-medal match",
+      "numbers": [],
+      "entities": [
+        "China's Yi Xin Zhang",
+        "World Junior"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The opponent and her title are accurately mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The win guarantees India its first-ever women's singles badminton medal at the Youth Olympic Games.",
+      "numbers": [],
+      "entities": [
+        "Youth Olympic Games"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This statement is directly supported by the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Tanvi Patri",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Youth Olympic Games",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Yuzuno Watanabe",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Yi Xin Zhang",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Odisha",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000702,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

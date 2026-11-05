@@ -1,0 +1,403 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "tanvi-patri-first-indian-woman-youth-olympic-badminton-final",
+ "article_slug": "tanvi-patri-first-indian-woman-youth-olympic-badminton-final",
+ "article_id": "ec5e2754-0bd1-461f-9b28-e3828a21ea45",
+ "category": "Sports",
+ "video": "reel-runs/2026-11-04-tanvi-patri-first-indian-woman-youth-olympic-badminton-final/output-v2/tanvi-patri-first-indian-woman-youth-olympic-badminton-final.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://assets.khelnow.com/news/uploads/2026/11/Tanvi-Patri.jpg",
+  "local_path": "reel-runs/2026-11-04-tanvi-patri-first-indian-woman-youth-olympic-badminton-final/output-v2/hero.jpg",
+  "width": 2000,
+  "height": 1300,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.93)",
+  "has_face": true,
+  "box_source": [
+   658,
+   91,
+   188,
+   235
+  ],
+  "box_bg": [
+   360,
+   194,
+   78,
+   98
+  ],
+  "chin_bg": 292,
+  "anchor": [
+   0.376,
+   0.161
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   542
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 762,
+   "zone_h": 794,
+   "scale": 1.0,
+   "content_h": 300,
+   "block_top": 1009,
+   "block_bottom": 1309,
+   "text_bbox": [
+    70,
+    1009,
+    930,
+    1309
+   ],
+   "texts": [
+    "Sports",
+    "TANVI PATRI, 15, FIRST INDIAN WOMAN IN YOUTH OLYMPIC BADMINTON FINAL"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.417,
+    "photo_px": [
+     2000,
+     1300
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 542,
+     "scale": 0.417,
+     "window": [
+      0,
+      0,
+      2000,
+      1299
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.48x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1217,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1217,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Fifteen-year-old Tanvi Patri beat Japan's second seed Yuzuno Watanabe 21-14, 11-21, 21-19 in a 54-minute semifinal to become the first Indian woman to reach a Youth Olympic Games badminton final."
+   ],
+   "v7": {
+    "image_source": "extra:2018-10-08-gymnastics-at-2018-summer-youth-o",
+    "track": "full-bleed",
+    "render_scale": 0.601,
+    "photo_px": [
+     3415,
+     3195
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6009389671361502,
+     "window": [
+      834,
+      0,
+      2631,
+      3195
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Rings qualification of the boys' artistic gymnastics at the 2018 Summer Youth Olympics in Buenos Aires on 8 October 2018. Depicted: Byun Seong-won.",
+     "route": "identity \u2014 depicts (P180=Q186196)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:2018-10-08_Gymnastics_at_2018_Summer_Youth_Olympics_%E2%80%93_Boys%27_Artistic_Gymnastics_%E2%80%93_Rings_qualification_(Martin_Rulsch)_0224.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/2018-10-08_Gymnastics_at_2018_Summer_Youth_Olympics_%E2%80%93_Boys%27_Artistic_Gymnastics_%E2%80%93_Rings_qualification_%28Martin_Rulsch%29_0224.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Martin Rulsch , Wikimedia Commons"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "15",
+    "First Indian woman to reach a Youth Olympic badminton final"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.577,
+    "photo_px": [
+     3069,
+     3330
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5765765765765766,
+     "window": [
+      694,
+      0,
+      2567,
+      3330
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 774,
+   "block_top": 806,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    806,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "54",
+    "Minutes to beat Japan's second seed Yuzuno Watanabe in the semifinal",
+    "21-19",
+    "Deciding-game score in the three-game semifinal",
+    "3",
+    "Indians to reach a Youth Olympic badminton final \u2014 after HS Prannoy and Lakshya Sen"
+   ],
+   "v7": {
+    "image_source": "inline:2",
+    "track": "full-bleed",
+    "render_scale": 0.601,
+    "photo_px": [
+     3415,
+     3195
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6009389671361502,
+     "window": [
+      834,
+      0,
+      2631,
+      3195
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 486,
+   "block_top": 1094,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1094,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "India's first-ever women's singles medal at the Youth Olympic Games is assured \u2014 at least a silver",
+    "Patri faces China's Yi Xin Zhang, the reigning World Junior champion, in the gold-medal match"
+   ],
+   "v7": {
+    "image_source": "extra:2018-10-08-gymnastics-at-2018-summer-youth-o-2",
+    "track": "full-bleed",
+    "render_scale": 0.577,
+    "photo_px": [
+     3069,
+     3330
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5765765765765766,
+     "window": [
+      694,
+      0,
+      2567,
+      3330
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Rings qualification of the boys' artistic gymnastics at the 2018 Summer Youth Olympics in Buenos Aires on 8 October 2018. Depicted: Nguy\u1ec5n V\u0103n Kh\u00e1nh Phong.",
+     "route": "identity \u2014 depicts (P180=Q186196)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:2018-10-08_Gymnastics_at_2018_Summer_Youth_Olympics_%E2%80%93_Boys%27_Artistic_Gymnastics_%E2%80%93_Rings_qualification_(Martin_Rulsch)_1141.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/03/2018-10-08_Gymnastics_at_2018_Summer_Youth_Olympics_%E2%80%93_Boys%27_Artistic_Gymnastics_%E2%80%93_Rings_qualification_%28Martin_Rulsch%29_1141.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Martin Rulsch , Wikimedia Commons"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 358,
+   "block_top": 681,
+   "block_bottom": 1039,
+   "text_bbox": [
+    70,
+    681,
+    930,
+    1039
+   ],
+   "texts": [
+    "The Takeaway",
+    "The win guarantees India its first-ever women's singles badminton medal at the Youth Olympic Games.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-fun-upbeat-inplus.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 155.3,
+ "mp4_bytes": 11179655
+}

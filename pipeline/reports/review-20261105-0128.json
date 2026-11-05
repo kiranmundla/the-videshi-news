@@ -1,0 +1,97 @@
+[
+  {
+    "id": "9745a04c-6b9e-43a6-8a63-37ee93d1e6d9",
+    "headline": "Alexander the Great Biography Wins \u00a350,000 Baillie Gifford Non-Fiction Prize",
+    "slug": "baillie-gifford-prize-2026-edmund-richardson-alexander-god-king-man",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the prize by including a brief explanation of the Baillie Gifford Prize's history and its importance in the literary world, especially for non-fiction.",
+        "Add quotes from other notable figures or judges from the prize committee to provide context on why Richardson's work stood out among the shortlisted titles.",
+        "Include information about the publication date of 'Alexander: God, King, Man' to give readers context on when they can access the book.",
+        "Mention any upcoming events or discussions related to the book or the author, such as book signings or lectures, to enhance reader engagement."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official announcement from the Baillie Gifford Prize to provide readers with direct access to the prize's social media presence and further information."
+      ]
+    }
+  },
+  {
+    "id": "ec141209-0f7f-46f2-810f-ba31f2bbe185",
+    "headline": "Qualcomm Edges Past Estimates but Shares Fall 7% on Soft Outlook",
+    "slug": "qualcomm-q4-fy2026-earnings-data-center-ai200-handsets-fall",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include a direct quote from Qualcomm's earnings call or a key executive to enhance attribution and provide insight into the company's outlook.",
+        "Add a brief explanation of the implications of the revenue drop in the handset segment for the broader tech industry, which would provide context for readers.",
+        "Clarify the impact of Apple's switch to its own modem chips on Qualcomm's future revenue, as this is a significant factor in the company's outlook."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Qualcomm's official account or a financial news outlet summarizing the earnings report for real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "dadeaeea-c6f2-45dc-84d7-df9758aaeebf",
+    "headline": "California's First Diwali Under a Partly Struck-Down Holiday Law",
+    "slug": "california-diwali-holiday-law-partly-struck-down-first-diwali",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the implications of the court ruling by specifying which parts of the law were struck down and how that affects the observance of Diwali in California. This will help readers understand the legal context better.",
+        "Include a direct quote from a relevant authority, such as Assemblymember Ash Kalra or a representative from the Hindu American Foundation, to provide attribution and depth to the reporting on the law and its implications.",
+        "Add a brief section summarizing the potential impact on state employees and schools regarding leave policies for Diwali, including any specific dates or actions they should take to ensure they can observe the holiday."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Hindu American Foundation or a related organization discussing the court ruling and its implications for Diwali celebrations in California."
+      ]
+    }
+  },
+  {
+    "id": "5f9d067e-ceb1-46ae-8f15-db68330740fa",
+    "headline": "Google's November Android Update Fixes 216 Flaws, 23 of Them Critical",
+    "slug": "google-november-2026-android-security-bulletin-216-vulnerabilities",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the potential impact of the 'SMS of Death' vulnerability by specifying how users can protect themselves or what steps they should take to ensure their devices are secure against this flaw.",
+        "Include a brief explanation of the significance of the CVSS scores mentioned, particularly the 9.8 scores, to help readers understand the severity of these vulnerabilities in layman's terms.",
+        "Add a timeline for when users can expect to receive these updates on their devices, as this information is crucial for timely action."
+      ],
+      "embed_opportunities": [
+        "Embed a link to Google's official security bulletin for readers to access detailed information directly from the source."
+      ]
+    }
+  },
+  {
+    "id": "38b06eae-950e-4273-8f85-ec3c58a47b3a",
+    "headline": "Haldiram's Marks Diwali in London With a Chai Rave and Mithai Counter",
+    "slug": "haldirams-diwali-london-chai-rave-mithai-counter-leicester-square",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the date of the Afterglow Chai Rave, as it is mentioned as 'next Tuesday' but the article states the date as November 10, 2026, which may not align with the upcoming Tuesday depending on the current date. Ensure that the date is accurate and clearly presented to avoid confusion.",
+        "Provide more context about Haldiram's and its significance in the Indian food scene, especially in London, to enhance the article's completeness and give readers a better understanding of the brand's relevance during Diwali.",
+        "Include a brief description of the types of mithai available at the sweet counter, as well as their cultural significance during Diwali, to enrich the article's content and provide readers with a deeper connection to the festival."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from Haldiram's UK announcing the event or showcasing the sweets available, which would provide official confirmation and enhance engagement."
+      ]
+    }
+  }
+]

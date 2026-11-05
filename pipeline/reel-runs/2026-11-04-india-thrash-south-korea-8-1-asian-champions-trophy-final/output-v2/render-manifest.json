@@ -1,0 +1,410 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-thrash-south-korea-8-1-asian-champions-trophy-final",
+ "article_slug": "india-thrash-south-korea-8-1-asian-champions-trophy-final",
+ "article_id": "f7ea6417-3de3-4a86-99a2-bba95c7ff002",
+ "category": "Sports",
+ "video": "reel-runs/2026-11-04-india-thrash-south-korea-8-1-asian-champions-trophy-final/output-v2/india-thrash-south-korea-8-1-asian-champions-trophy-final.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://www.thenorthnews.in/wp-content/uploads/2026/11/India-Crush-South-Korea-8-0-to-Top-Asian-Champions-Trophy-Pool.jpg",
+  "local_path": "reel-runs/2026-11-04-india-thrash-south-korea-8-1-asian-champions-trophy-final/output-v2/hero.jpg",
+  "width": 1460,
+  "height": 1100,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.91)",
+  "has_face": true,
+  "box_source": [
+   427,
+   119,
+   77,
+   105
+  ],
+  "box_bg": [
+   330,
+   224,
+   44,
+   60
+  ],
+  "chin_bg": 284,
+  "anchor": [
+   0.319,
+   0.156
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   627
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 847,
+   "zone_h": 709,
+   "scale": 1.0,
+   "content_h": 285,
+   "block_top": 1059,
+   "block_bottom": 1344,
+   "text_bbox": [
+    70,
+    1059,
+    930,
+    1344
+   ],
+   "texts": [
+    "Sports",
+    "INDIA THRASH SOUTH KOREA 8-1 TO REACH SEVENTH ASIAN CHAMPIONS TROPHY FINAL"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.571,
+    "photo_px": [
+     1460,
+     1100
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 627,
+     "scale": 0.5712328767123288,
+     "window": [
+      0,
+      0,
+      1460,
+      1097
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.75x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 413,
+   "block_top": 1167,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1167,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "India beat South Korea 8-1 in the Asian Champions Trophy semi-final in Mohali on Wednesday to reach a record-extending seventh final in the tournament."
+   ],
+   "v7": {
+    "image_source": "extra:close-wing-position-of-loxura-atymnus-stoll",
+    "track": "full-bleed",
+    "render_scale": 0.8,
+    "photo_px": [
+     3600,
+     2400
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8,
+     "window": [
+      945,
+      0,
+      2295,
+      2400
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "This picture was taken during the project Wiki Loves Butterfly in Chintamoni Kar Bird Sanctuary,Kolkata,West Bengal,India.Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly. Subspecies: Loxura atymnus continentalis Fruhstorfer, 1912",
+     "route": "identity \u2014 depicts (P180=Q668)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Close_wing_position_of_Loxura_atymnus_Stoll,_1780_%E2%80%93_Yamfly.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Close_wing_position_of_Loxura_atymnus_Stoll%2C_1780_%E2%80%93_Yamfly.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 3.0",
+     "artist": "Atudu"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 847,
+   "zone_h": 709,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 982,
+   "block_bottom": 1420,
+   "text_bbox": [
+    70,
+    982,
+    930,
+    1420
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "8-1",
+    "India's semi-final rout of South Korea in Mohali"
+   ],
+   "v7": {
+    "image_source": "extra:seoul-175734251",
+    "track": "backdrop",
+    "render_scale": 0.408,
+    "photo_px": [
+     2048,
+     1536
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 627,
+     "scale": 0.40822320117474303,
+     "window": [
+      0,
+      0,
+      2043,
+      1535
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.25x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "500px provided description: So many emotions down there [#landscape ,#night ,#skyline ,#korea ,#seoul ,#namhansanseong]",
+     "route": "identity \u2014 Wikidata P18 (Q884)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Seoul_(175734251).jpeg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Seoul_%28175734251%29.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Joon Kyu Park"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 847,
+   "zone_h": 709,
+   "scale": 0.875,
+   "content_h": 699,
+   "block_top": 852,
+   "block_bottom": 1551,
+   "text_bbox": [
+    70,
+    852,
+    930,
+    1551
+   ],
+   "texts": [
+    "By The Numbers",
+    "8-0",
+    "India's league-stage win over the same opponents",
+    "34",
+    "India scored this many goals in their five league matches",
+    "15",
+    "Points from five wins \u2014 maximum, topping the six-team league"
+   ],
+   "v7": {
+    "image_source": "extra:close-wing-position-of-papilio-nephelus-bois",
+    "track": "backdrop",
+    "render_scale": 0.418,
+    "photo_px": [
+     2000,
+     1500
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 627,
+     "scale": 0.4180451127819549,
+     "window": [
+      5,
+      1,
+      2000,
+      1500
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.28x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Close wing of Papilio nephelus Boisduval, 1836 \u2013 Yellow Helen",
+     "route": "identity \u2014 depicts (P180=Q668)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Close_wing_position_of_Papilio_nephelus_Boisduval,_1836_%E2%80%93_Yellow_Helen.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Close_wing_position_of_Papilio_nephelus_Boisduval%2C_1836_%E2%80%93_Yellow_Helen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Tamaghna Sengupta"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 847,
+   "zone_h": 709,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 985,
+   "block_bottom": 1417,
+   "text_bbox": [
+    70,
+    985,
+    930,
+    1417
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "India remain unbeaten in the tournament, having won all five league matches",
+    "India face Japan in the final on Thursday, November 5, in Mohali"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.65,
+    "photo_px": [
+     1460,
+     1100
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 627,
+     "scale": 0.6495327102803738,
+     "window": [
+      0,
+      0,
+      1284,
+      965
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.75x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "India will face Japan in the final on Thursday, November 5, in Mohali.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-future-bass-sigma.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 118.3,
+ "mp4_bytes": 12678555
+}

@@ -1,0 +1,237 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "abdul-el-sayed-first-muslim-us-senate-michigan",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Abdul El-Sayed",
+    "Mike Rogers",
+    "Michigan",
+    "US Senate",
+    "Associated Press"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "outlet: 'Associated Press' is a news outlet \u2014 outlets are sources, never picture subjects; never queried"
+    },
+    {
+      "candidate": "File:Abdul El-Sayed meet-and-greet by Conlan Houston 5 (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q25752879)",
+      "verdict": "rejected",
+      "reason": "resolution: 685x881 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Abdul El-Sayed.jpg",
+      "route": "identity \u2014 depicts (P180=Q25752879)",
+      "verdict": "accepted",
+      "reason": "2400x3600, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Abdul El-Sayed audio sample.ogg",
+      "route": "identity \u2014 depicts (P180=Q25752879)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Abdul El-Sayed meet-and-greet by Conlan Houston 1.jpg",
+      "route": "identity \u2014 depicts (P180=Q25752879)",
+      "verdict": "USED (news)",
+      "reason": "4951x3294, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:MikeDRogers.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q693238)",
+      "verdict": "rejected",
+      "reason": "resolution: 449x548 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mike Rogers, Official Portrait, 111th Congress.png",
+      "route": "identity \u2014 depicts (P180=Q693238)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Mike Rogers lunges at Matt Gaetz.png",
+      "route": "identity \u2014 depicts (P180=Q693238)",
+      "verdict": "rejected",
+      "reason": "resolution: 1121x564 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mike Rogers on the House Floor Voices Support for 2020 NDAA and Space Force.ogg",
+      "route": "identity \u2014 depicts (P180=Q693238)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Rep. Mike Rogers Speaks in Support of the FY2024 National Defense Authorization Act.ogg",
+      "route": "identity \u2014 depicts (P180=Q693238)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Rep. Mike Rogers official portrait, 118th Congress.jpg",
+      "route": "identity \u2014 depicts (P180=Q693238)",
+      "verdict": "rejected",
+      "reason": "resolution: 457x640 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:ISS015-E-6196 - View of Michigan.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1166)",
+      "verdict": "USED (hero)",
+      "reason": "3032x2008, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:1930 Cord 2 (1143373637).jpg",
+      "route": "identity \u2014 depicts (P180=Q1166)",
+      "verdict": "accepted",
+      "reason": "1600x1060, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:United States Senate Floor.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q66096)",
+      "verdict": "rejected",
+      "reason": "resolution: 946x367 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:1865 United States Senate elections.svg",
+      "route": "identity \u2014 depicts (P180=Q66096)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Bernie Sanders speaks out in opposition to the Iraq War.ogg",
+      "route": "identity \u2014 depicts (P180=Q66096)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Bob Menendez speaks on the Iraq War Authorization Repeal.ogg",
+      "route": "identity \u2014 depicts (P180=Q66096)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Brian Schatz on the benefits for Native Americans in the Infrastructure Investment and Jobs Act and the 2022 Budget Reconciliation Bill.ogg",
+      "route": "identity \u2014 depicts (P180=Q66096)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Catherine Cortez Masto questions witnesses on Nuclear Waste disposal.ogg",
+      "route": "identity \u2014 depicts (P180=Q66096)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Chairman of the Joint Chiefs of Staff Gen. Peter Pace, shakes hands with members of the press prior to testifyng before the Senate Appropriations Committee on Capitol Hill.jpg",
+      "route": "identity \u2014 depicts (P180=Q66096)",
+      "verdict": "USED (grid)",
+      "reason": "4100x2733, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Cindy Hyde-Smith Questioning USDA Requirements to Access Federal Aid for Rural Hospitals.ogg",
+      "route": "identity \u2014 depicts (P180=Q66096)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Cynthia Lummis on her husband and their problems with health care.ogg",
+      "route": "identity \u2014 depicts (P180=Q66096)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Dick Durbin speaks on the March on Selma and John Lewis.ogg",
+      "route": "identity \u2014 depicts (P180=Q66096)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Elizabeth Warren on private equity firms and increased rental prices.ogg",
+      "route": "identity \u2014 depicts (P180=Q66096)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "abdul-el-sayed-meet-and-greet-by-conlan-hous",
+      "path": "abdul-el-sayed-meet-and-greet-by-conlan-hous.jpg",
+      "size": [
+        4951,
+        3294
+      ],
+      "role": "establishing",
+      "subject": "US Senate candidate for michigan Abdul El-Sayed meets voters at Michigan Technological University. October 22, 2025",
+      "route": "identity \u2014 depicts (P180=Q25752879)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Abdul_El-Sayed_meet-and-greet_by_Conlan_Houston_1.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Abdul_El-Sayed_meet-and-greet_by_Conlan_Houston_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Conlan Houston",
+      "entity": "Abdul El-Sayed",
+      "entity_type": "person",
+      "entity_aliases": []
+    },
+    {
+      "beat": "hero",
+      "label": "iss015-e-6196-view-of-michigan",
+      "path": "iss015-e-6196-view-of-michigan.jpg",
+      "size": [
+        3032,
+        2008
+      ],
+      "role": "establishing",
+      "subject": "View of Michigan taken during ISS Expedition 15.",
+      "route": "identity \u2014 Wikidata P18 (Q1166)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:ISS015-E-6196_-_View_of_Michigan.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/ISS015-E-6196_-_View_of_Michigan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Earth Science and Remote Sensing Unit , Lyndon B. Johnson Space Center",
+      "entity": "Michigan",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Michigan",
+        "State of Michigan",
+        "Michigan, United States",
+        "Mich.",
+        "Wolverine State",
+        "Great Lakes State",
+        "US-MI"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "chairman-of-the-joint-chiefs-of-staff-gen-pe",
+      "path": "chairman-of-the-joint-chiefs-of-staff-gen-pe.jpg",
+      "size": [
+        4100,
+        2733
+      ],
+      "role": "detail",
+      "subject": "Chairman of the Joint Chiefs of Staff U.S. Marine Gen. Peter Pace shakes hands with members of the press prior to testifyng before the Senate Appropriations Committee on Capitol Hill, Sept. 26, 2007. Pace was joined by Defense Secretary Rob",
+      "route": "identity \u2014 depicts (P180=Q66096)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Chairman_of_the_Joint_Chiefs_of_Staff_Gen._Peter_Pace,_shakes_hands_with_members_of_the_press_prior_to_testifyng_before_the_Senate_Appropriations_Committee_on_Capitol_Hill.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Chairman_of_the_Joint_Chiefs_of_Staff_Gen._Peter_Pace%2C_shakes_hands_with_members_of_the_press_prior_to_testifyng_before_the_Senate_Appropriations_Committee_on_Capitol_Hill.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Cherie A. Thurlby",
+      "entity": "US Senate",
+      "entity_type": "other",
+      "entity_aliases": [
+        "US Senate",
+        "United States Senate",
+        "Senate of the United States",
+        "U.S. Senate",
+        "Senate",
+        "senate.gov",
+        "United States Congress Senate"
+      ]
+    }
+  ]
+}

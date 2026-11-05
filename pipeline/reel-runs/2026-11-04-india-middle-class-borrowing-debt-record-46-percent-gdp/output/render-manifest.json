@@ -1,0 +1,417 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-middle-class-borrowing-debt-record-46-percent-gdp",
+ "article_slug": "india-middle-class-borrowing-debt-record-46-percent-gdp",
+ "article_id": "273738db-70bc-4df0-80d9-052fa4e24cdc",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-04-india-middle-class-borrowing-debt-record-46-percent-gdp/output/india-middle-class-borrowing-debt-record-46-percent-gdp.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i41AjsLFh7QM/v1/1200x800.jpg",
+  "local_path": "reel-runs/2026-11-04-india-middle-class-borrowing-debt-record-46-percent-gdp/output/hero.jpg",
+  "width": 1200,
+  "height": 800,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.92)",
+  "has_face": true,
+  "box_source": [
+   835,
+   421,
+   62,
+   82
+  ],
+  "box_bg": [
+   666,
+   449,
+   43,
+   57
+  ],
+  "chin_bg": 506,
+  "anchor": [
+   0.722,
+   0.579
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   556
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 348,
+   "block_top": 992,
+   "block_bottom": 1340,
+   "text_bbox": [
+    70,
+    992,
+    930,
+    1340
+   ],
+   "texts": [
+    "Markets Finance",
+    "INDIA'S MIDDLE CLASS BORROWS FASTER THAN INCOMES"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      800
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 1202,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1202,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Household borrowing in India surged 36% in the year through March, taking consumer debt to a record 46% of GDP, while borrowing rose roughly four times as fast as disposable income in 2025-26."
+   ],
+   "v7": {
+    "image_source": "extra:50-largest-u-s-counties-by-gdp-2024",
+    "track": "full-bleed",
+    "render_scale": 0.401,
+    "photo_px": [
+     6900,
+     4790
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.40083507306889354,
+     "window": [
+      2120,
+      0,
+      4814,
+      4790
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "50 largest U.S. counties by GDP, 2024",
+     "route": "identity \u2014 depicts (P180=Q12638)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:50_largest_U.S._counties_by_GDP,_2024.png",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/43/50_largest_U.S._counties_by_GDP%2C_2024.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 4.0",
+     "artist": "\u0412\u0430\u0441\u0438\u043b\u0435\u043d\u043a\u043e1990"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "46%",
+    "Consumer debt as a share of GDP \u2014 a record"
+   ],
+   "v7": {
+    "image_source": "extra:bulgarian-provinces-by-nominal-gdp-per-capit",
+    "track": "full-bleed",
+    "render_scale": 0.549,
+    "photo_px": [
+     6300,
+     3500
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5485714285714286,
+     "window": [
+      2468,
+      0,
+      4436,
+      3500
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Bulgarian provinces by nominal GDP per capita, 2021",
+     "route": "identity \u2014 depicts (P180=Q12638)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Bulgarian_provinces_by_nominal_GDP_per_capita,_2021.png",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/81/Bulgarian_provinces_by_nominal_GDP_per_capita%2C_2021.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "\u0412\u0430\u0441\u0438\u043b\u0435\u043d\u043a\u043e1990"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 764,
+   "block_top": 784,
+   "block_bottom": 1548,
+   "text_bbox": [
+    70,
+    784,
+    930,
+    1548
+   ],
+   "texts": [
+    "By The Numbers",
+    "36%",
+    "Surge in household borrowing in the year through March",
+    "13%",
+    "About \u2014 of household income went to servicing debt, up from 10-11% for much of the previous decade",
+    "75-100",
+    "Basis points of further RBI rate hikes economists expect in coming months"
+   ],
+   "v7": {
+    "image_source": "extra:2018-1-indian-1-rupee-note-jamshedpur-jharkh",
+    "track": "backdrop",
+    "render_scale": 0.306,
+    "photo_px": [
+     2756,
+     1815
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.30639235855988245,
+     "window": [
+      0,
+      0,
+      2722,
+      1814
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "2018 (\u20b91) Indian 1 Rupee Note in Jamshedpur, Jharkhand. The Indian 1-rupee note (\u20b91) (\u20b91 = 100 paise) is the smallest Indian banknote in circulation and the only one being issued by the Government of India, as all other banknotes in circula",
+     "route": "identity \u2014 depicts (P180=Q944085)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:2018_(%E2%82%B91)_Indian_1_Rupee_Note,_Jamshedpur,_Jharkhand_(_Ank_Kumar,_Infosys_Limited_)_02.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/89/2018_%28%E2%82%B91%29_Indian_1_Rupee_Note%2C_Jamshedpur%2C_Jharkhand_%28_Ank_Kumar%2C_Infosys_Limited_%29_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Ank Kumar"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 447,
+   "block_top": 942,
+   "block_bottom": 1389,
+   "text_bbox": [
+    70,
+    942,
+    930,
+    1389
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Excluding mortgage debt, CLSA estimates Indian consumers are among the most constrained in the world",
+    "Bad-loan ratios at banks are near multi-decade lows, with little evidence so far of widespread repayment stress"
+   ],
+   "v7": {
+    "image_source": "extra:rbi-bhubaneswar",
+    "track": "backdrop",
+    "render_scale": 0.32,
+    "photo_px": [
+     3235,
+     1740
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.3195402298850575,
+     "window": [
+      301,
+      0,
+      2911,
+      1740
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.10x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Reserve Bank of India Regional Office for Odisha State is located in Unit-3 of Bhubaneswar on Sachivalay Marg. Picture was taken by me on my smartphone.",
+     "route": "identity \u2014 depicts (P180=Q944085)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:RBI_Bhubaneswar.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/RBI_Bhubaneswar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Subhrasingh"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Economists expect another 75-100 basis points of RBI rate hikes in coming months.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 139.5,
+ "mp4_bytes": 15807356
+}

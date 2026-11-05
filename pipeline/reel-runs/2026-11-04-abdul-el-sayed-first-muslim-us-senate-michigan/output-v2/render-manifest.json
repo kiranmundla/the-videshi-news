@@ -1,0 +1,410 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "abdul-el-sayed-first-muslim-us-senate-michigan",
+ "article_slug": "abdul-el-sayed-first-muslim-us-senate-michigan",
+ "article_id": "61498640-9af6-49a5-aca7-ef7c594ffb82",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-04-abdul-el-sayed-first-muslim-us-senate-michigan/output-v2/abdul-el-sayed-first-muslim-us-senate-michigan.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://akm-img-a-in.tosshub.com/indiatoday/images/story/202611/abdul-al-sayed-michigan-first-us-muslim-senator-045043168-16x9_0.jpg?VersionId=rlpcVAAA1Bs.PNZssOIrCxK2bw8cBgOi",
+  "local_path": "reel-runs/2026-11-04-abdul-el-sayed-first-muslim-us-senate-michigan/output-v2/hero.jpg",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.91)",
+  "has_face": true,
+  "box_source": [
+   499,
+   120,
+   148,
+   205
+  ],
+  "box_bg": [
+   433,
+   239,
+   103,
+   142
+  ],
+  "chin_bg": 381,
+  "anchor": [
+   0.477,
+   0.327
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "Nri World",
+    "FIRST MUSLIM ELECTED TO US SENATE"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      673
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 771,
+   "zone_h": 809,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Democrat Abdul El-Sayed has won Michigan's open US Senate seat, defeating Republican Mike Rogers to become the first Muslim elected to the Senate."
+   ],
+   "v7": {
+    "image_source": "extra:abdul-el-sayed-meet-and-greet-by-conlan-hous",
+    "track": "full-bleed",
+    "render_scale": 0.583,
+    "photo_px": [
+     4951,
+     3294
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5828779599271403,
+     "window": [
+      1297,
+      0,
+      3149,
+      3294
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "US Senate candidate for michigan Abdul El-Sayed meets voters at Michigan Technological University. October 22, 2025",
+     "route": "identity \u2014 depicts (P180=Q25752879)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Abdul_El-Sayed_meet-and-greet_by_Conlan_Houston_1.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Abdul_El-Sayed_meet-and-greet_by_Conlan_Houston_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Conlan Houston"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "52%",
+    "El-Sayed's vote share against Mike Rogers in Michigan"
+   ],
+   "v7": {
+    "image_source": "extra:iss015-e-6196-view-of-michigan",
+    "track": "full-bleed",
+    "render_scale": 0.956,
+    "photo_px": [
+     3032,
+     2008
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.9561752988047809,
+     "window": [
+      1121,
+      0,
+      2250,
+      2008
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "View of Michigan taken during ISS Expedition 15.",
+     "route": "identity \u2014 Wikidata P18 (Q1166)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:ISS015-E-6196_-_View_of_Michigan.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/ISS015-E-6196_-_View_of_Michigan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Earth Science and Remote Sensing Unit , Lyndon B. Johnson Space Center"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 583,
+   "zone_h": 997,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 792,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    792,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "46%",
+    "Mike Rogers' share in Michigan's open Senate race",
+    "42",
+    "El-Sayed's age \u2014 physician and former Wayne County health director",
+    "2,355,790",
+    "Votes for El-Sayed with about 86% of precincts reporting"
+   ],
+   "v7": {
+    "image_source": "extra:chairman-of-the-joint-chiefs-of-staff-gen-pe",
+    "track": "full-bleed",
+    "render_scale": 0.703,
+    "photo_px": [
+     4100,
+     2733
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7025246981339188,
+     "window": [
+      1254,
+      0,
+      2791,
+      2733
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Chairman of the Joint Chiefs of Staff U.S. Marine Gen. Peter Pace shakes hands with members of the press prior to testifyng before the Senate Appropriations Committee on Capitol Hill, Sept. 26, 2007. Pace was joined by Defense Secretary Rob",
+     "route": "identity \u2014 depicts (P180=Q66096)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Chairman_of_the_Joint_Chiefs_of_Staff_Gen._Peter_Pace,_shakes_hands_with_members_of_the_press_prior_to_testifyng_before_the_Senate_Appropriations_Committee_on_Capitol_Hill.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Chairman_of_the_Joint_Chiefs_of_Staff_Gen._Peter_Pace%2C_shakes_hands_with_members_of_the_press_prior_to_testifyng_before_the_Senate_Appropriations_Committee_on_Capitol_Hill.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Cherie A. Thurlby"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 906,
+   "block_bottom": 1338,
+   "text_bbox": [
+    70,
+    906,
+    930,
+    1338
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "A representation milestone for Muslim Americans and the wider immigrant diaspora",
+    "Muslims have served in the House, but never before in the Senate"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7897727272727273,
+     "window": [
+      44,
+      0,
+      1100,
+      592
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "His win held a must-win seat as Democrats retook both chambers of Congress.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 138.4,
+ "mp4_bytes": 14773360
+}

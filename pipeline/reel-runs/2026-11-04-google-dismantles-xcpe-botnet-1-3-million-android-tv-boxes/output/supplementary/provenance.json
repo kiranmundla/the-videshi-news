@@ -1,0 +1,206 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "google-dismantles-xcpe-botnet-1-3-million-android-tv-boxes",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Google",
+    "Videostrong",
+    "XCPE botnet",
+    "Android TV",
+    "MECOOL",
+    "United States"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'XCPE botnet' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'MECOOL' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Googleplex HQ (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q95)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:BenjaDoo.png",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "rejected",
+      "reason": "resolution: 1068x364 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Boerenwagen, van achteren gezien, RP-T-1952-254.jpg",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "USED (news)",
+      "reason": "4576x4526, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Data-driven vs data-brokering.png",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Dublin pride 2016 parade - Dublin, Ireland - Documentary photography (27798001792).jpg",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Gcp-org-policy-skip-default-network-a5.jpg",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "rejected",
+      "reason": "resolution: 1366x589 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Google-Maps-Backpack-NYC.png",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:GoogleStreetViewCar Subaru Impreza at Google Campus.JPG",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "USED (grid)",
+      "reason": "1900x1231, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Beelink Company Logo.png",
+      "route": "identity \u2014 depicts (P180=Q17298682)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:HiMedia Logo.png",
+      "route": "identity \u2014 depicts (P180=Q17298682)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:United States - Location Map (2013) - USA - UNOCHA.svg",
+      "route": "identity \u2014 Wikidata P18 (Q30)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:American bison in Yellowstone National Park.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:BigRiver.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "rejected",
+      "reason": "blocklist: this file is on the entity's corpus blocklist \u2014 proven wrong for 'United States' in a prior run"
+    },
+    {
+      "candidate": "File:Bodie September 2016 019.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "USED (hero)",
+      "reason": "4280x2940, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Chrysler Building - 05.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "accepted",
+      "reason": "2250x3000, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "boerenwagen-van-achteren-gezien-rp-t-1952-25",
+      "path": "boerenwagen-van-achteren-gezien-rp-t-1952-25.jpg",
+      "size": [
+        4576,
+        4526
+      ],
+      "role": "establishing",
+      "subject": "Identificatie Titel(s): Boerenwagen, van achteren gezien Objecttype: tekening aquarel Objectnummer: RP-T-1952-254 Vervaardiging Vervaardiger: tekenaar: Simon Andreas Krausz Datering: 1770 - 1825 Fysieke kenmerken: penseel in aquarel Materia",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Boerenwagen,_van_achteren_gezien,_RP-T-1952-254.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Boerenwagen%2C_van_achteren_gezien%2C_RP-T-1952-254.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Rijksmuseum",
+      "entity": "Google",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Google"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "bodie-september-2016-019",
+      "path": "bodie-september-2016-019.jpg",
+      "size": [
+        4280,
+        2940
+      ],
+      "role": "establishing",
+      "subject": "County Barn, Bodie , California .",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Bodie_September_2016_019.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Bodie_September_2016_019.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "King of Hearts",
+      "entity": "United States",
+      "entity_type": "other",
+      "entity_aliases": [
+        "United States",
+        "the States",
+        "the United States of America",
+        "US of America",
+        "the US",
+        "the U.S.",
+        "the US of A",
+        "U.S. of America",
+        "the US of America",
+        "the USA",
+        "the U.S.A.",
+        "the U.S. of A",
+        "US of A",
+        "the U.S. of America",
+        "the United States",
+        "Merica",
+        "Murica",
+        "U. S.",
+        "U. S. A.",
+        "United States of America",
+        "'Murica"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "googlestreetviewcar-subaru-impreza-at-google",
+      "path": "googlestreetviewcar-subaru-impreza-at-google.jpg",
+      "size": [
+        1900,
+        1231
+      ],
+      "role": "detail",
+      "subject": "A Google Street View Camera Car (2008 Subaru Impreza Five Door) showcased on Google campus in Mountain View, CA, USA. taken by myself [User:Kowloonese] using a Canon digital camera. The picture was taken on Google Campus in Mountain View, C",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:GoogleStreetViewCar_Subaru_Impreza_at_Google_Campus.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/GoogleStreetViewCar_Subaru_Impreza_at_Google_Campus.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Kowloonese at English Wikipedia",
+      "entity": "Google",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Google"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-middle-class-borrowing-debt-record-46-percent-gdp",
+  "name": "india-middle-class-borrowing-debt-record-46-percent-gdp",
+  "script": "reel-runs/2026-11-04-india-middle-class-borrowing-debt-record-46-percent-gdp/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000702
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-04-india-middle-class-borrowing-debt-record-46-percent-gdp/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "50-largest-u-s-counties-by-gdp-2024",
+      "hero": "bulgarian-provinces-by-nominal-gdp-per-capit",
+      "grid": "2018-1-indian-1-rupee-note-jamshedpur-jharkh",
+      "diaspora": "rbi-bhubaneswar"
+    }
+  },
+  "manifest": "reel-runs/2026-11-04-india-middle-class-borrowing-debt-record-46-percent-gdp/output/render-manifest.json",
+  "video": "reel-runs/2026-11-04-india-middle-class-borrowing-debt-record-46-percent-gdp/output/india-middle-class-borrowing-debt-record-46-percent-gdp.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:hero"
+    ]
+  }
+}

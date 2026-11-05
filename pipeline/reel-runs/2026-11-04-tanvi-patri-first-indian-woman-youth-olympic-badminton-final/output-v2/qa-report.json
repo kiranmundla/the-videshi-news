@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-04-tanvi-patri-first-indian-woman-youth-olympic-badminton-final/output-v2/tanvi-patri-first-indian-woman-youth-olympic-badminton-final.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        2000,
+        1300
+      ],
+      "manifest_dims": [
+        2000,
+        1300
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 14.6,
+      "url": "https://assets.khelnow.com/news/uploads/2026/11/Tanvi-Patri.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-04-tanvi-patri-first-indian-woman-youth-olympic-badminton-final/output-v2/qa/frames/frame-hook.png",
+      "text_px_detected": 26751,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.91)",
+        "box": [
+          370,
+          195,
+          71,
+          96
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-04-tanvi-patri-first-indian-woman-youth-olympic-badminton-final/output-v2/qa/frames/frame-news.png",
+      "text_px_detected": 35382,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          357,
+          189,
+          79,
+          99
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 73.7,
+        "delta": 179.8
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-04-tanvi-patri-first-indian-woman-youth-olympic-badminton-final/output-v2/qa/frames/frame-hero.png",
+      "text_px_detected": 21619,
+      "edge": {
+        "pass": true,
+        "offending_px": 61,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          355,
+          184,
+          80,
+          101
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 102.6,
+        "delta": 151.2
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-04-tanvi-patri-first-indian-woman-youth-olympic-badminton-final/output-v2/qa/frames/frame-grid.png",
+      "text_px_detected": 49103,
+      "edge": {
+        "pass": true,
+        "offending_px": 9,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          353,
+          179,
+          81,
+          102
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 88.3,
+        "delta": 165.6
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-04-tanvi-patri-first-indian-woman-youth-olympic-badminton-final/output-v2/qa/frames/frame-diaspora.png",
+      "text_px_detected": 45443,
+      "edge": {
+        "pass": true,
+        "offending_px": 131,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          350,
+          174,
+          82,
+          103
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 104.2,
+        "delta": 149.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-04-tanvi-patri-first-indian-woman-youth-olympic-badminton-final/output-v2/qa/frames/frame-payoff.png",
+      "text_px_detected": 26224,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          348,
+          169,
+          83,
+          104
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    }
+  ]
+}

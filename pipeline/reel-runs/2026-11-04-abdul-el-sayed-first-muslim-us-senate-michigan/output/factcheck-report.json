@@ -1,0 +1,267 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "abdul-el-sayed-first-muslim-us-senate-michigan",
+  "verdict": "fail",
+  "held_claims": [
+    "stats[2].big",
+    "stats[2].label"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "FIRST MUSLIM ELECTED TO US SENATE",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "El-Sayed is the first Muslim elected to the Senate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Democrat Abdul El-Sayed has won Michigan's open US Senate seat, defeating Republican Mike Rogers to become the first Muslim elected to the Senate.",
+      "numbers": [],
+      "entities": [
+        "Democrat Abdul El-Sayed",
+        "US Senate",
+        "Republican Mike Rogers"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "El-Sayed won the seat and is the first Muslim elected to the Senate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "52%",
+      "numbers": [
+        52.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "El-Sayed led with 52% of the vote.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "El-Sayed's vote share against Mike Rogers in Michigan",
+      "numbers": [],
+      "entities": [
+        "Mike Rogers"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "El-Sayed's vote share was 52% against Rogers.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "46%",
+      "numbers": [
+        46.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Rogers received 46% of the vote.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Mike Rogers' share in Michigan's open Senate race",
+      "numbers": [],
+      "entities": [
+        "Mike Rogers'"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Rogers' share was 46% in the Senate race.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "42",
+      "numbers": [
+        42.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "El-Sayed is 42 years old.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "El-Sayed's age \u2014 physician and former Wayne County health director",
+      "numbers": [],
+      "entities": [
+        "Wayne County"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "El-Sayed is 42 and a former health director.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "1.4 POINTS",
+      "numbers": [
+        1.4
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Trump's margin was 1.4 points in 2020, not 2024.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Trump's 2024 winning margin in Michigan",
+      "numbers": [
+        2024.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2024
+        ]
+      },
+      "llm_reason": "The article states Trump's margin was in 2020, not 2024.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "A representation milestone for Muslim Americans and the wider immigrant diaspora",
+      "numbers": [],
+      "entities": [
+        "Muslim Americans"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "El-Sayed's win is a milestone for representation.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Muslims have served in the House, but never before in the Senate",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "No Muslims have been elected to the Senate before.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "His win held a must-win seat as Democrats retook both chambers of Congress.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "El-Sayed's win was crucial for Democrats' control.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Abdul El-Sayed",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Mike Rogers",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Michigan",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "US Senate",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00063,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

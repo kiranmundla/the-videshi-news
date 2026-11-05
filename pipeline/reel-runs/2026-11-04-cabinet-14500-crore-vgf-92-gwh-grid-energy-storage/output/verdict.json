@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "cabinet-14500-crore-vgf-92-gwh-grid-energy-storage",
+  "name": "cabinet-14500-crore-vgf-92-gwh-grid-energy-storage",
+  "script": "reel-runs/2026-11-04-cabinet-14500-crore-vgf-92-gwh-grid-energy-storage/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000676
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-04-cabinet-14500-crore-vgf-92-gwh-grid-energy-storage/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "close-wing-position-of-loxura-atymnus-stoll",
+      "hero": "close-wing-position-of-papilio-nephelus-bois"
+    }
+  },
+  "manifest": "reel-runs/2026-11-04-cabinet-14500-crore-vgf-92-gwh-grid-energy-storage/output/render-manifest.json",
+  "video": "reel-runs/2026-11-04-cabinet-14500-crore-vgf-92-gwh-grid-energy-storage/output/cabinet-14500-crore-vgf-92-gwh-grid-energy-storage.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:news"
+    ]
+  }
+}

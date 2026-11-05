@@ -641,5 +641,31 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "UERFV-ATZ7U",
+    "article_slug": "tanvi-patri-first-indian-woman-youth-olympic-badminton-final",
+    "article_id": "ec5e2754-0bd1-461f-9b28-e3828a21ea45",
+    "title": "Tanvi Patri, 15, First Indian Woman to Reach Youth Olympic Badminton Final #Shorts #Sports",
+    "privacy": "public",
+    "uploaded_at": "2026-11-05T05:17:31.897323+00:00",
+    "video_path": "reel-runs/2026-11-04-tanvi-patri-first-indian-woman-youth-olympic-badminton-final/output-v2/tanvi-patri-first-indian-woman-youth-olympic-badminton-final.mp4",
+    "video_sha256": "30f70444a90f5543429c1b8db2afdf833ac31cedf614c863d22108f01297bce4",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "WqTyfKkX7i8",
+    "article_slug": "ramayana-day-1-advance-booking-42-96-crore-record",
+    "article_id": "a3e7a2f1-08c9-40ca-935c-35484eb5ef19",
+    "title": "Opens With Rs 42.96 Crore in Day 1 Advance Sales, Bollywood's Second-Best Ever #Shorts #Bollywood",
+    "privacy": "public",
+    "uploaded_at": "2026-11-05T11:14:06.374829+00:00",
+    "video_path": "reel-runs/2026-11-05-ramayana-day-1-advance-booking-42-96-crore-record/output/ramayana-day-1-advance-booking-42-96-crore-record.mp4",
+    "video_sha256": "a15a9f381d470f1541f540b5e8b79152a29a47ab57a242ff23c045a9adfc5393",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

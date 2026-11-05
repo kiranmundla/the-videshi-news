@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-04-india-thrash-south-korea-8-1-asian-champions-trophy-final/output-v2/india-thrash-south-korea-8-1-asian-champions-trophy-final.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:news"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1460,
+        1100
+      ],
+      "manifest_dims": [
+        1460,
+        1100
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 266.0,
+      "url": "https://www.thenorthnews.in/wp-content/uploads/2026/11/India-Crush-South-Korea-8-0-to-Top-Asian-Champions-Trophy-Pool.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-04-india-thrash-south-korea-8-1-asian-champions-trophy-final/output-v2/qa/frames/frame-hook.png",
+      "text_px_detected": 27155,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.72)",
+        "box": [
+          316,
+          215,
+          62,
+          71
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-04-india-thrash-south-korea-8-1-asian-champions-trophy-final/output-v2/qa/frames/frame-news.png",
+      "text_px_detected": 48861,
+      "edge": {
+        "pass": false,
+        "offending_px": 1476,
+        "clusters": 2,
+        "largest_cluster": 770
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          327,
+          219,
+          45,
+          61
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 107.9,
+        "delta": 146.1
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-04-india-thrash-south-korea-8-1-asian-champions-trophy-final/output-v2/qa/frames/frame-hero.png",
+      "text_px_detected": 20296,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          325,
+          215,
+          45,
+          62
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.6,
+        "bg_luminance": 0.0,
+        "delta": 252.6
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-04-india-thrash-south-korea-8-1-asian-champions-trophy-final/output-v2/qa/frames/frame-grid.png",
+      "text_px_detected": 38047,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          322,
+          210,
+          46,
+          62
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-04-india-thrash-south-korea-8-1-asian-champions-trophy-final/output-v2/qa/frames/frame-diaspora.png",
+      "text_px_detected": 38455,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.89)",
+        "box": [
+          355,
+          214,
+          55,
+          74
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-04-india-thrash-south-korea-8-1-asian-champions-trophy-final/output-v2/qa/frames/frame-payoff.png",
+      "text_px_detected": 24038,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          316,
+          201,
+          47,
+          64
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    }
+  ]
+}

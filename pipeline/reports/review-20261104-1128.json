@@ -1,0 +1,44 @@
+[
+  {
+    "id": "a88750dc-2f28-49f1-ae0e-091d95e0ba12",
+    "headline": "Uber Technologies Set to Report Q3 Earnings Amid Market Anticipation",
+    "slug": "happening-2026-11-04-uber-technologies-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora/NRI angle by including insights on how Uber's performance and earnings report may impact Indian NRIs who invest in US tech stocks. For example, mention how fluctuations in Uber's stock price could affect their investment portfolios or retirement funds.",
+        "Provide specific financial implications for NRIs by including potential dollar/rupee exchange rates or investment thresholds that would be relevant for them. For instance, if Uber's stock is expected to fluctuate significantly, provide a range of potential prices and what that could mean for NRIs looking to buy or sell shares.",
+        "Add a section that outlines any upcoming deadlines or actions NRIs should consider in light of Uber's earnings report, such as tax implications for foreign investors or changes in investment strategies based on the report's outcomes.",
+        "Revise the headline to make it more compelling and specific to the NRI audience, such as 'What Uber's Q3 Earnings Report Means for NRI Investors: Key Insights and Financial Implications'."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Uber or a financial analyst discussing the earnings report to provide real-time insights and reactions from the market."
+      ]
+    }
+  },
+  {
+    "id": "e32efa2b-937e-4ac5-bb4f-59f8531b675e",
+    "headline": "QUALCOMM Set to Report Earnings Amidst Market Anticipation",
+    "slug": "happening-2026-11-04-qualcomm-incorporated-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how QUALCOMM's performance may impact NRI investors, particularly those with stakes in tech stocks or those considering investments in the semiconductor sector. Discuss potential implications for their portfolios and investment strategies.",
+        "Provide concrete specifics regarding the implications of QUALCOMM's earnings report for NRIs. For example, include potential changes in stock prices, expected dividends, or how fluctuations in the semiconductor market could affect tech investments in India and abroad. This could help NRIs understand 'what does this mean for ME?'",
+        "Add a section that outlines any upcoming deadlines or key dates related to QUALCOMM's financial announcements or investor events that NRIs should be aware of, such as earnings call dates or shareholder meeting dates.",
+        "Consider embedding a relevant tweet from QUALCOMM or a financial analyst discussing the earnings report to provide real-time insights and reactions from the market."
+      ],
+      "embed_opportunities": [
+        "Embed the official QUALCOMM earnings report tweet or a relevant financial analyst's commentary on the earnings expectations."
+      ]
+    }
+  }
+]

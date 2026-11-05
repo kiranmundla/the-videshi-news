@@ -1,0 +1,33 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ramayana-day-1-advance-booking-42-96-crore-record",
+  "name": "ramayana-day-1-advance-booking-42-96-crore-record",
+  "script": "reel-runs/2026-11-05-ramayana-day-1-advance-booking-42-96-crore-record/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000675
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-05-ramayana-day-1-advance-booking-42-96-crore-record/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "ranbir-kapoor-and-sai-pallavi-at-ramayana-sp"
+    }
+  },
+  "manifest": "reel-runs/2026-11-05-ramayana-day-1-advance-booking-42-96-crore-record/output/render-manifest.json",
+  "video": "reel-runs/2026-11-05-ramayana-day-1-advance-booking-42-96-crore-record/output/ramayana-day-1-advance-booking-42-96-crore-record.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-05-ramayana-day-1-advance-booking-42-96-crore-record/output/tiktok-caption.txt"
+}

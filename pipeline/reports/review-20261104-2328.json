@@ -1,0 +1,82 @@
+[
+  {
+    "id": "d3f35d02-773d-4cad-8124-240f6b62ab3a",
+    "headline": "Advanced Micro Devices Earnings Beat as Data Center Revenue Nearly Doubles",
+    "slug": "amd-q3-2026-earnings-data-center-revenue-nearly-doubles",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the projected revenue growth of more than 80% in 2027. Include specific milestones or factors that could contribute to this growth to provide readers with a clearer understanding of what to expect.",
+        "Provide more context on the significance of the $1.1 billion non-cash charge related to the revaluation of warrants. Explain how this affects the company's overall financial health and investor perception, as this is a critical aspect of the earnings report.",
+        "Include a brief comparison of AMD's performance with its main competitors in the data center market, such as Intel or NVIDIA, to give readers a better perspective on AMD's position in the industry."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from AMD's official account announcing the earnings report or highlighting key figures from the earnings call."
+      ]
+    }
+  },
+  {
+    "id": "6df97094-df69-442f-97cb-b99bef8b7e66",
+    "headline": "McDonald's Earnings Beat Estimates Despite Revenue Miss",
+    "slug": "mcdonalds-q3-2026-earnings-beat-revenue-miss",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the earnings report by specifying the exact date of the report release, as well as the quarter being referenced (Q3 2026) earlier in the article for better context.",
+        "Include a brief explanation of what the 'Accelerating the Organization program' entails, as it is mentioned in relation to the restructuring charges but not elaborated upon, which could leave readers unclear about its implications.",
+        "Add a direct quote from an industry analyst or expert commenting on the earnings results to provide additional context and perspective on the numbers reported."
+      ],
+      "embed_opportunities": [
+        "Embed the official McDonald's earnings report or a relevant tweet from McDonald's corporate account to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "a08a70ba-6367-47c7-8429-3cff19a8b328",
+    "headline": "Uber Technologies Q3 Earnings Miss on Investment Loss as Bookings Jump 20%",
+    "slug": "uber-q3-2026-earnings-bookings-investment-loss",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the impact of the investment loss on overall profitability by providing a more detailed breakdown of how it affects future earnings projections and operational strategies.",
+        "Include a specific quote from an analyst or financial expert to provide context on the implications of the earnings miss and investment losses for investors and the market.",
+        "Add a brief comparison to competitors' earnings reports for the same quarter to give readers a clearer picture of Uber's performance relative to the industry."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Uber's official account announcing the earnings results or a relevant statement from the CEO to enhance credibility and engagement."
+      ]
+    }
+  },
+  {
+    "id": "ca212a9b-ccb5-45d1-9b57-a670312892c9",
+    "headline": "Booking Holdings Earnings Beat Estimates as Revenue Misses on FTC Charge",
+    "slug": "booking-holdings-q3-2026-earnings-beat-revenue-miss-ftc",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the impact of the FTC charge on revenue by providing a brief explanation of what the charge entails and its implications for the company moving forward.",
+        "Include a direct quote from the CEO or another executive to provide insight into the company's outlook and strategy, enhancing the article's depth and credibility.",
+        "Add specific figures for the fourth-quarter guidance, such as projected revenue or earnings, to give readers a clearer understanding of what to expect in the upcoming quarter."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Booking Holdings or the FTC regarding the charge to provide official context and enhance the article's credibility."
+      ]
+    }
+  }
+]

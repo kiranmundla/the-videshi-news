@@ -1,0 +1,153 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "ramayana-day-1-advance-booking-42-96-crore-record",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Ramayana Opens With Rs 42.96 Crore in Day 1 Advance Sales, Bollywood's Second-Best Ever",
+        "numbers": [
+          1.0,
+          42.96,
+          429600000.0
+        ],
+        "entities": [
+          "Ramayana Opens With Rs",
+          "Advance Sales",
+          "Bollywood's Second-Best Ever"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Ramayana's advance sales and ranking.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The Ranbir Kapoor-Yash epic is the highest pre-sales ever for a non-sequel, with Koimoi projecting an opening day of Rs 91-101 crore net in India.",
+        "numbers": [
+          91.0,
+          101.0,
+          1010000000.0
+        ],
+        "entities": [
+          "Ranbir Kapoor-Yash"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the highest pre-sales for a non-sequel and Koimoi's projection.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Ramayana closed its day 1 advance booking at Rs 42.96 crore gross in India excluding blocked seats, from 12.14 lakh tickets",
+        "numbers": [
+          1.0,
+          12.14,
+          42.96,
+          1214000.0,
+          429600000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides exact figures for advance booking and ticket sales.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "That makes it Bollywood's second-best opening-day pre-sales ever, behind only Dhurandhar 2 (Rs 53 crore) and ahead of Jawan (Rs 40.75 crore)",
+        "numbers": [
+          2.0,
+          40.75,
+          53.0,
+          407500000.0,
+          530000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article lists the rankings of opening-day pre-sales accurately.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The film opened across 26,615 shows, the highest show count ever for a Bollywood film, in Hindi, Kannada, Telugu, Tamil and Malayalam versions",
+        "numbers": [
+          26615.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the show count and languages for the film.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Ramayana Opens With Rs 42.96 Crore in Day 1 Advance Sales, Bollywood's Second-Best Ever",
+        "numbers": [
+          1.0,
+          42.96,
+          429600000.0
+        ],
+        "entities": [
+          "Ramayana Opens With Rs",
+          "Advance Sales",
+          "Bollywood's Second-Best Ever"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000487,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

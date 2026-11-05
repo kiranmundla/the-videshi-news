@@ -1,0 +1,21 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "tanvi-patri-first-indian-woman-youth-olympic-badminton-final",
+  "name": "tanvi-patri-first-indian-woman-youth-olympic-badminton-final",
+  "script": "reel-runs/2026-11-04-tanvi-patri-first-indian-woman-youth-olympic-badminton-final/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_stat.sub",
+      "stats[2].big",
+      "stats[2].label"
+    ],
+    "llm_cost_usd": 0.000702
+  }
+}

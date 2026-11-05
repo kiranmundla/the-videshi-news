@@ -1,0 +1,43 @@
+[
+  {
+    "id": "71383fdb-4276-4375-87ef-d2a48da82563",
+    "headline": "Airbnb Set to Report Earnings Amidst Strong Market Expectations",
+    "slug": "happening-2026-11-05-airbnb-earnings",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Strengthen the diaspora angle by including insights on how Airbnb's performance may impact NRIs who invest in travel and hospitality sectors. For example, discuss potential investment opportunities or risks for NRIs based on the earnings report.",
+        "Include specific financial takeaways for NRIs, such as how changes in Airbnb's stock price could affect investment portfolios. Provide concrete numbers or projections, such as potential returns on investment based on current EPS forecasts and market trends.",
+        "Add a section that outlines any specific implications for NRIs planning to travel or invest in property through Airbnb. For instance, mention how the earnings report might influence rental prices or availability in popular NRI destinations like Goa or Kerala.",
+        "The headline could be more compelling by incorporating a direct reference to the implications for investors, such as 'Airbnb's Earnings Report: What It Means for NRI Investors Amidst Strong Market Expectations.'"
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Airbnb or a financial analyst discussing the earnings report to provide real-time insights and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "4a2f3bac-87a6-4b58-81cd-96d4950a5f34",
+    "headline": "Bangladesh Hosts West Indies in Crucial ODI Clash at Sylhet",
+    "slug": "happening-2026-11-05-bangladesh-cricket-vs-west-indies-cricket",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 3,
+      "suggestions": [
+        "1. Strengthen the diaspora angle by including insights on how this match might impact the NRI community's engagement with cricket, such as viewership statistics or events organized by Indian communities abroad to watch the game together.",
+        "2. Provide specific details on how the match outcome could affect the ICC rankings or future matches that might be relevant for NRIs, including dates for upcoming series or tournaments that they might want to follow.",
+        "3. Include a section that discusses how NRIs can support their teams from abroad, such as streaming options or local viewing parties, which would give them actionable steps to engage with the match."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Bangladesh Cricket Board or a relevant cricket analyst discussing the significance of the match for both teams."
+      ]
+    }
+  }
+]

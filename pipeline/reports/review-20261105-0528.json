@@ -1,0 +1,173 @@
+[
+  {
+    "id": "29273145-5eb8-45e5-9f9a-dc64ddcb134e",
+    "headline": "Old Delhi's Sugar Toys: The Diwali Treats That Refuse to Disappear",
+    "slug": "old-delhi-sugar-toys-diwali-batasha-kheel-tradition",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the significance of sugar toys and kheel-batashe in the Diwali celebration for readers unfamiliar with the traditions, potentially including a brief explanation of their symbolic meanings.",
+        "Include specific details about the artisans, such as their location, the history of their craft, and any challenges they face, to provide a more complete picture of the cultural context.",
+        "Add a quote from a local buyer or a cultural expert to provide a personal touch and enhance the article's depth and relatability."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post showcasing images of sugar toys or kheel-batashe from local artisans or markets to visually engage readers."
+      ]
+    }
+  },
+  {
+    "id": "046bcdbd-2245-4c38-ba1a-817ad842201d",
+    "headline": "Ambati Rayudu Says Hardik Pandya Felt Cornered as Mumbai Indians Captain",
+    "slug": "ambati-rayudu-hardik-pandya-cornered-mumbai-indians-captain",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding the potential trade of Hardik Pandya to Punjab Kings. Include specific dates or deadlines for when this trade might occur or when decisions need to be made.",
+        "Provide additional context on Hardik Pandya's performance as captain of the Mumbai Indians, including specific statistics or outcomes from his tenure that could illustrate Rayudu's claims about feeling 'cornered.'",
+        "Ensure that all quotes from Ambati Rayudu are accurately attributed with clear sourcing, particularly since they are drawn from a discussion on Cricbuzz and reported by multiple outlets. This will enhance the article's credibility.",
+        "Expand on the implications of Rayudu's comments for Hardik Pandya's career and the Mumbai Indians franchise, possibly including expert opinions or reactions from other players or analysts to provide a more comprehensive view."
+      ],
+      "embed_opportunities": [
+        "Embed the official Cricbuzz video of the discussion where Ambati Rayudu made these comments to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "2ef8b604-d6eb-4867-8d37-33b1c361fe4a",
+    "headline": "India's Buying Intent Falls to 19-Month Low Days Before Diwali",
+    "slug": "india-buying-intent-19-month-low-diwali-2026",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Buying Intent Index (BII) for readers unfamiliar with it. A brief explanation of what the index measures and its implications for consumer behavior would enhance understanding.",
+        "Include specific figures for the decline in buying intent compared to previous years or months to provide context. For example, stating the percentage change from October 2025 would help illustrate the trend more clearly.",
+        "Add a quote from a TRA representative or an expert in consumer behavior to provide authoritative insight into the implications of the index's decline, which would enhance the article's credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official TRA report or a relevant tweet from TRA regarding the Buying Intent Index for direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "97f031a0-50e3-4821-bcce-354ecb5bd010",
+    "headline": "He Backed His Wife's Biryani in 1957. Now It Is Worth Rs 1,000 Crore",
+    "slug": "dindigul-thalappakatti-wifes-biryani-1000-crore",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the valuation increase from Rs 860 crore to Rs 1,000 crore occurred, as well as the timeline for the revenue figures cited for FY25 and FY24 to provide context for the growth.",
+        "Include a direct quote from a company spokesperson or a financial analyst to enhance attribution and provide expert insight into the valuation and business growth.",
+        "Add a brief explanation of what the valuation means for the company and its stakeholders, such as potential investors or the impact on future expansions, to provide readers with a clearer understanding of the significance of the news."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Dindigul Thalappakatti's official account announcing the valuation news or a relevant press release for credibility and real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "ec5e2754-0bd1-461f-9b28-e3828a21ea45",
+    "headline": "Tanvi Patri, 15, First Indian Woman to Reach Youth Olympic Badminton Final",
+    "slug": "tanvi-patri-first-indian-woman-youth-olympic-badminton-final",
+    "category": "sports",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the match by providing context on Tanvi Patri's previous performances or rankings, which would help readers understand her achievement better.",
+        "Include a brief background on the Youth Olympic Games and its importance in the context of badminton, especially for Indian athletes, to provide readers with a fuller picture of the event's significance.",
+        "Correct the repetition of the sentence about Tanvi Patri's victory in the last paragraph, which disrupts the flow and clarity of the article."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight of Tanvi Patri's semifinal match to give readers a visual understanding of her performance."
+      ]
+    }
+  },
+  {
+    "id": "56bab764-b261-4774-8ec2-e3b376f33da3",
+    "headline": "Edmonton Warns Diwali Fireworks Without Permit Are Illegal, Fines Reach $10,000",
+    "slug": "edmonton-diwali-fireworks-permit-warning-fines",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for applying for permits by specifying the exact date by which residents must apply to legally use fireworks at home, considering the upcoming Diwali date.",
+        "Include a quote from a city official or a representative from Edmonton Fire Rescue Services to provide authoritative attribution and enhance credibility.",
+        "Add a brief explanation of the consequences of illegal fireworks usage, such as specific examples of past incidents or statistics on injuries or fires caused by unpermitted fireworks, to provide context and urgency to the warning."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the City of Edmonton or Edmonton Fire Rescue Services that reiterates the warning about illegal fireworks and promotes the permitted display."
+      ]
+    }
+  },
+  {
+    "id": "f6b25d74-3f56-4f2c-b4e9-7ef9d81180b2",
+    "headline": "Infosys Opens 1.1 Million Square Foot Block at Hyderabad Pocharam Campus",
+    "slug": "infosys-opens-hyderabad-pocharam-expansion-block",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the hiring aspect by explicitly stating that while the new block supports a workforce of over 13,000, there is no current hiring timetable provided, which could lead to confusion among jobseekers.",
+        "Include a specific date for when the new block will be fully operational or when the additional capacity will be utilized, as this information is crucial for understanding the timeline of the expansion.",
+        "Provide more context about the significance of this expansion for Infosys and the local economy, such as potential impacts on the job market or tech industry in Hyderabad."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Infosys or a relevant official source announcing the inauguration for direct attribution and additional context."
+      ]
+    }
+  },
+  {
+    "id": "5945e995-2fce-43e7-8cce-b2c327e7618d",
+    "headline": "SEBI Approves Mahanadi Coalfields IPO as Coal India Sells Ten Percent",
+    "slug": "sebi-approves-mahanadi-coalfields-ipo-coal-india",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the IPO launch by specifying the exact date or timeframe mentioned in the reports, as this is crucial for potential investors.",
+        "Include a brief explanation of the significance of the IPO for investors, such as potential returns or risks associated with investing in coal-related sectors, to provide context.",
+        "Ensure that the article maintains a consistent structure by clearly separating sections about the approval, the details of the offering, and the implications for investors to enhance readability.",
+        "Provide a direct quote from SEBI or a representative from Coal India regarding the IPO approval to enhance attribution and credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official SEBI announcement or a relevant tweet regarding the IPO approval to provide readers with direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "c169963c-2d94-4a53-a5a1-076f295657a6",
+    "headline": "Sensex Surges 1,419 Points as Crude Crashes After US Midterm Sweep",
+    "slug": "sensex-surges-1419-points-crude-crash-us-midterm-sweep",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by explicitly stating that the events described occurred on November 5, 2023, to avoid any confusion about the date of the report.",
+        "Provide a more detailed explanation of how the drop in crude oil prices specifically impacts the Indian economy, including potential effects on inflation rates and consumer prices, to enhance completeness.",
+        "Include direct quotes from analysts or financial experts regarding the implications of the US midterm elections on the Indian market to strengthen attribution and provide depth.",
+        "Ensure that the article consistently uses either 'Brent crude' or 'crude oil' throughout for clarity and to avoid any potential confusion."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a financial analyst or a reputable financial news source discussing the implications of the US midterm elections on global oil prices."
+      ]
+    }
+  }
+]

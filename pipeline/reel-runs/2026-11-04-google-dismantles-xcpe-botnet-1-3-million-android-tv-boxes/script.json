@@ -1,0 +1,33 @@
+{
+ "hook_line": "A BOTNET HID INSIDE TV BOXES",
+ "hook_stat": {
+  "big": "1.3 million",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Android set-top boxes enrolled in the XCPE botnet"
+ },
+ "stats": [
+  {
+   "big": "1,472,554",
+   "label": "Infected devices TrendAI counted across 206 models"
+  },
+  {
+   "big": "10 million",
+   "label": "At least \u2014 more compromised devices Google assesses its legal action will sever access to"
+  }
+ ],
+ "diaspora_bullets": [
+  "Low-cost boxes bought for international channels are exactly the class this botnet used",
+  "Disconnect a suspect box from the internet \u2014 the backdoor reinstalls on reboot"
+ ],
+ "key_entities": [
+  "Google",
+  "Videostrong",
+  "XCPE botnet",
+  "Android TV",
+  "MECOOL"
+ ],
+ "news_summary": "Google and partners dismantled the XCPE botnet, which had enrolled more than 1.3 million set-top boxes, and Google says device maker Videostrong intentionally built the backdoor for financial gain.",
+ "payoff": "Google has banned Videostrong from certified Android devices.",
+ "versus": "",
+ "story_mood": "tense"
+}

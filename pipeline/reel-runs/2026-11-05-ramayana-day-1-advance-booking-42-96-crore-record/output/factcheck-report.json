@@ -1,0 +1,271 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "ramayana-day-1-advance-booking-42-96-crore-record",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "RAMAYANA OPENS WITH BOLLYWOOD'S SECOND-BEST ADVANCE EVER",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states it's Bollywood's second-best opening-day pre-sales.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Nitesh Tiwari's Ramayana, starring Ranbir Kapoor, Yash and Sai Pallavi, closed its day 1 advance booking at Rs 42.96 crore gross in India excluding blocked seats, from 12.14 lakh tickets.",
+      "numbers": [
+        1.0,
+        12.14,
+        42.96,
+        1214000.0,
+        429600000.0
+      ],
+      "entities": [
+        "Nitesh Tiwari's Ramayana",
+        "Ranbir Kapoor",
+        "Sai Pallavi"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about the film and advance booking are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "Rs 42.96 CRORE",
+      "numbers": [
+        42.96,
+        429600000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This figure is explicitly mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Day 1 advance sales in India excluding blocked seats",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies advance sales excluding blocked seats.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "12.14 LAKH",
+      "numbers": [
+        12.14,
+        1214000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 12.14 lakh tickets sold before the first show.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Tickets sold before the first show",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is directly stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "26,615",
+      "numbers": [
+        26615.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions 26,615 shows for the film.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Shows across India \u2014 highest ever for a Bollywood film",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this is the highest show count for a Bollywood film.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "Rs 53 CRORE",
+      "numbers": [
+        53.0,
+        530000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This figure is mentioned as the only film ahead in pre-sales.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Dhurandhar 2 \u2014 the only film ahead in Day 1 pre-sales",
+      "numbers": [
+        1.0,
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Dhurandhar 2 is ahead in pre-sales.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "International pre-sales had crossed Rs 111 crore a day before release",
+      "numbers": [
+        111.0,
+        1110000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article reports this figure for international pre-sales.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Released in Hindi, Kannada, Telugu, Tamil and Malayalam versions",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the film's release in these languages.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "It is the highest pre-sales ever for a non-sequel.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this is the highest for a non-sequel.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Ramayana",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ranbir Kapoor",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Yash",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sai Pallavi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nitesh Tiwari",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000675,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

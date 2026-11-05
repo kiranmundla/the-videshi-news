@@ -1,0 +1,275 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "india-thrash-south-korea-8-1-asian-champions-trophy-final",
+  "verdict": "fail",
+  "held_claims": [
+    "stats[1].label"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA THRASH SOUTH KOREA 8-1 TO REACH SEVENTH ASIAN CHAMPIONS TROPHY FINAL",
+      "numbers": [
+        1.0,
+        8.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states India beat South Korea 8-1 to reach the final.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "India beat South Korea 8-1 in the Asian Champions Trophy semi-final in Mohali on Wednesday to reach a record-extending seventh final in the tournament.",
+      "numbers": [
+        1.0,
+        8.0
+      ],
+      "entities": [
+        "South Korea",
+        "Asian Champions Trophy"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "8-1",
+      "numbers": [
+        1.0,
+        8.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The score of the match is confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "India's semi-final rout of South Korea in Mohali",
+      "numbers": [],
+      "entities": [
+        "South Korea"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article describes the match as a rout in Mohali.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "8-0",
+      "numbers": [
+        0.0,
+        8.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions an 8-0 win over South Korea in the league stage.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "India's league-stage win over the same opponents",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the 8-0 win in the league stage.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "34",
+      "numbers": [
+        34.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states India scored 34 goals in the league matches.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Goals India scored in their five league matches",
+      "numbers": [],
+      "entities": [
+        "Goals India"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Goals India"
+        ]
+      },
+      "llm_reason": "The article confirms the total goals scored in league matches.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "15",
+      "numbers": [
+        15.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states India topped the league with 15 points.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Points from five wins \u2014 maximum, topping the six-team league",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms India had maximum points from five wins.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "India remain unbeaten in the tournament, having won all five league matches",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states India won all five league matches.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "India face Japan in the final on Thursday, November 5, in Mohali",
+      "numbers": [
+        5.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the final date and opponent.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "India will face Japan in the final on Thursday, November 5, in Mohali.",
+      "numbers": [
+        5.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the final match details.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "India",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "South Korea",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Asian Champions Trophy",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Shilanand Lakra",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Dilpreet Singh",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000642,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

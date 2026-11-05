@@ -1,0 +1,22 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-battery-cost-gap-china-epsilon-himadri",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "NETRA",
+    "Ministry of Heavy Industries"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'NETRA' named 'Netra railway station', which does not bear the queried name \u2014 not an identity; fail closed"
+    }
+  ],
+  "extras": []
+}
