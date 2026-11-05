@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-04",
+  "generated_at": "2026-11-05",
   "current_month": 11,
   "current_year": 2026,
   "destination_count": 50,
@@ -3263,33 +3263,33 @@
       "cheapest_month": {
         "month": 1,
         "year": 2027,
-        "price_min": 912,
+        "price_min": 939,
         "route": "SFO-BLR",
         "duration_days": 20,
         "weeks": null,
         "source": "fare data"
       },
       "fare_from": {
-        "price_min": 912,
+        "price_min": 939,
         "route": "SFO-BLR",
         "origin_metro": "Bay Area",
         "dest_metro": "Bengaluru",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
         "weeks": null,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-05",
         "cadence": "daily"
       },
       "fares_by_origin": {
         "SFO": {
-          "price_min": 912,
+          "price_min": 939,
           "route": "SFO-BLR",
           "origin_metro": "Bay Area",
           "dest_metro": "Bengaluru",
           "date_range": "Jan 26 \u2192 Feb 15",
           "duration_days": 20,
           "weeks": null,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-05",
           "cadence": "daily"
         }
       },
@@ -6077,6 +6077,17 @@
       "indicative": true
     },
     "fares_by_origin": {
+      "EWR": {
+        "price_min": 1117,
+        "route": "EWR-CCU",
+        "origin_metro": "New York",
+        "dest_metro": "Kolkata",
+        "date_range": "Jan 26 \u2192 Feb 15",
+        "duration_days": 20,
+        "as_of": "2026-11-04",
+        "cadence": "weekly",
+        "indicative": true
+      },
       "SFO": {
         "price_min": 882,
         "route": "SFO-HYD",
@@ -6089,13 +6100,13 @@
         "indicative": true
       },
       "JFK": {
-        "price_min": 799,
+        "price_min": 807,
         "route": "JFK-BOM",
         "origin_metro": "New York",
         "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-05",
         "cadence": "daily"
       },
       "ORD": {
@@ -6138,19 +6149,8 @@
         "dest_metro": "Delhi",
         "date_range": "Jan 26 \u2192 Feb 17",
         "duration_days": 22,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-05",
         "cadence": "daily"
-      },
-      "EWR": {
-        "price_min": 1117,
-        "route": "EWR-CCU",
-        "origin_metro": "New York",
-        "dest_metro": "Kolkata",
-        "date_range": "Jan 26 \u2192 Feb 15",
-        "duration_days": 20,
-        "as_of": "2026-11-04",
-        "cadence": "weekly",
-        "indicative": true
       },
       "IAD": {
         "price_min": 848,
@@ -6197,7 +6197,7 @@
     "trending": {
       "month": 11,
       "year": 2026,
-      "score": 87,
+      "score": 94,
       "max_score": 100,
       "components": [
         {
@@ -6214,9 +6214,9 @@
         },
         {
           "id": "fare_drop",
-          "points": 22,
+          "points": 29,
           "max": 30,
-          "reason": "Fares down 14.4% on JFK-DEL ($1334 \u2192 $1142) vs 2026-11-03"
+          "reason": "Fares down 19.3% on SEA-DEL ($1722 \u2192 $1389) vs 2026-11-04"
         }
       ]
     },
