@@ -1,0 +1,37 @@
+{
+  "hook_line": "INDIA COME FROM BEHIND TO BEAT JAPAN 4-1, WIN SIXTH ASIAN CHAMPIONS TROPHY",
+  "hook_stat": {
+    "big": "4-1",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "India's final win over Japan in Mohali"
+  },
+  "stats": [
+    {
+      "big": "3",
+      "label": "Goals in the final quarter as India pulled away to seal the win"
+    },
+    {
+      "big": "8-1",
+      "label": "India's semi-final thrashing of South Korea"
+    },
+    {
+      "big": "6",
+      "label": "Wins from six matches \u2014 India finished the tournament unbeaten"
+    }
+  ],
+  "diaspora_bullets": [
+    "A record sixth title, won from behind at home in Punjab",
+    "India are the first team to complete a hat-trick of Asian Champions Trophy titles"
+  ],
+  "key_entities": [
+    "India",
+    "Japan",
+    "Asian Champions Trophy",
+    "Shilanand Lakra",
+    "Mohali"
+  ],
+  "news_summary": "India came from a goal down to beat Japan 4-1 in the Men's Asian Champions Trophy final in Mohali on Thursday and lift the trophy for a record sixth time.",
+  "payoff": "A sixth crown extends India's record as the most successful team in the tournament's history.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

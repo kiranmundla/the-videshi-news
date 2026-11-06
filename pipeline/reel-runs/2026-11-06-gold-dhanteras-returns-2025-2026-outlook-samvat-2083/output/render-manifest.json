@@ -1,0 +1,403 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "gold-dhanteras-returns-2025-2026-outlook-samvat-2083",
+ "article_slug": "gold-dhanteras-returns-2025-2026-outlook-samvat-2083",
+ "article_id": "a1fdbb60-5135-4910-91cc-145f3a340e18",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-06-gold-dhanteras-returns-2025-2026-outlook-samvat-2083/output/gold-dhanteras-returns-2025-2026-outlook-samvat-2083.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-11-06-gold-dhanteras-returns-2025-2026-outlook-samvat-2083/output/hero.jpg",
+  "width": 4788,
+  "height": 3102,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.771,0.400) damped=(0.635,0.450)",
+  "has_face": false,
+  "box_source": [
+   1702,
+   713,
+   2681,
+   1240
+  ],
+  "box_bg": [
+   64,
+   441,
+   1659,
+   768
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.516,
+   0.504
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   539
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 279,
+   "block_top": 1301,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1301,
+    930,
+    1580
+   ],
+   "texts": [
+    "Markets Finance",
+    "GOLD RETURNED 60% LAST DIWALI AND 13% THIS ONE; ANALYSTS TARGET $5,000 NEXT"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.619,
+    "photo_px": [
+     4788,
+     3102
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6189555125725339,
+     "window": [
+      1598,
+      0,
+      3342,
+      3102
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Domestic gold returned 60.21% Diwali-to-Diwali in 2025 but 12.87% in 2026, reaching Rs 1,43,184 by November 5, according to Mirae Asset Sharekhan data."
+   ],
+   "v7": {
+    "image_source": "extra:2016-rangun-pagoda-sule-22",
+    "track": "full-bleed",
+    "render_scale": 0.397,
+    "photo_px": [
+     2871,
+     4836
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.3970223325062035,
+     "window": [
+      151,
+      0,
+      2871,
+      4836
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Sule Pagoda . Yangon , Myanmar.",
+     "route": "identity \u2014 depicts (P180=Q897)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:2016_Rangun,_Pagoda_Sule_(22).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/2016_Rangun%2C_Pagoda_Sule_%2822%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Marcin Konsek"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "THE PRICE TAG",
+    "$5,000",
+    "12-month target an ounce for Samvat 2083"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.552,
+    "photo_px": [
+     4640,
+     3480
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5517241379310345,
+     "window": [
+      1181,
+      0,
+      3138,
+      3480
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 759,
+   "zone_h": 797,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 763,
+   "block_bottom": 1551,
+   "text_bbox": [
+    70,
+    763,
+    930,
+    1551
+   ],
+   "texts": [
+    "By The Numbers",
+    "60.21%",
+    "Domestic gold's Diwali-to-Diwali return in 2025",
+    "12.87%",
+    "Domestic gold's return in 2026, to November 5",
+    "$5,595",
+    "Record spot gold an ounce on January 29"
+   ],
+   "v7": {
+    "image_source": "extra:as-riquezas-do-brasil-exploradas-para-enriqu",
+    "track": "backdrop",
+    "render_scale": 0.499,
+    "photo_px": [
+     1920,
+     1080
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 539,
+     "scale": 0.4991023339317774,
+     "window": [
+      3,
+      0,
+      1674,
+      1079
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.78x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Finaliza\u00e7\u00e3o: Laura Magnus Esbo\u00e7o: Laura Magnus Briefing/roteiro: Natalia Freitas Ramos",
+     "route": "identity \u2014 depicts (P180=Q897)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:As_riquezas_do_Brasil_exploradas_para_enriquecer_Portugal_durante_o_per%C3%ADodo_da_coloniza%C3%A7%C3%A3o.png",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/As_riquezas_do_Brasil_exploradas_para_enriquecer_Portugal_durante_o_per%C3%ADodo_da_coloniza%C3%A7%C3%A3o.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 4.0",
+     "artist": "EPTrilhas"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 1148,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1148,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Gold beat the Nifty in each of the last five Diwali-to-Diwali years",
+    "Experts advise staggered buying on dips, not one Dhanteras purchase"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "full-bleed",
+    "render_scale": 0.619,
+    "photo_px": [
+     4788,
+     3102
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6189555125725339,
+     "window": [
+      1598,
+      0,
+      3342,
+      3102
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 358,
+   "block_top": 681,
+   "block_bottom": 1039,
+   "text_bbox": [
+    70,
+    681,
+    930,
+    1039
+   ],
+   "texts": [
+    "The Takeaway",
+    "Analysts' shared advice for Samvat 2083 is staggered buying, treating gold as a diversifier rather than a trade.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 148.4,
+ "mp4_bytes": 21296541
+}

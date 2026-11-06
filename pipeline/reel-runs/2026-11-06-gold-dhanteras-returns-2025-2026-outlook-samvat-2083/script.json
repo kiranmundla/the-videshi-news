@@ -1,0 +1,35 @@
+{
+  "hook_line": "GOLD RETURNED 60% LAST DIWALI AND 13% THIS ONE; ANALYSTS TARGET $5,000 NEXT",
+  "hook_stat": {
+    "big": "$5,000",
+    "eyebrow": "THE PRICE TAG",
+    "sub": "12-month target an ounce for Samvat 2083"
+  },
+  "stats": [
+    {
+      "big": "60.21%",
+      "label": "Domestic gold's Diwali-to-Diwali return in 2025"
+    },
+    {
+      "big": "12.87%",
+      "label": "Domestic gold's return in 2026, to November 5"
+    },
+    {
+      "big": "$5,595",
+      "label": "Record spot gold an ounce on January 29"
+    }
+  ],
+  "diaspora_bullets": [
+    "Gold beat the Nifty in each of the last five Diwali-to-Diwali years",
+    "Experts advise staggered buying on dips, not one Dhanteras purchase"
+  ],
+  "key_entities": [
+    "Mirae Asset Sharekhan",
+    "Motilal Oswal",
+    "gold"
+  ],
+  "news_summary": "Domestic gold returned 60.21% Diwali-to-Diwali in 2025 but 12.87% in 2026, reaching Rs 1,43,184 by November 5, according to Mirae Asset Sharekhan data.",
+  "payoff": "Analysts' shared advice for Samvat 2083 is staggered buying, treating gold as a diversifier rather than a trade.",
+  "versus": "",
+  "story_mood": "tense"
+}

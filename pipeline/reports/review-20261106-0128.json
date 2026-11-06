@@ -1,0 +1,61 @@
+[
+  {
+    "id": "7ea42e78-cc87-44b8-be1a-4bf2ebaf06e3",
+    "headline": "Seaport Museum Hosts Free Diwali Celebration in New York on November 10",
+    "slug": "seaport-museum-diwali-celebration-new-york-november-10",
+    "category": "nri-world",
+    "structural_issues": [
+      "Inline caption names venue 'Battery Park' not supported by the image file name (NYC_Downtown_Manhattan_Skyline_seen_from_Paulus_Hook_2019-12\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the event, as it currently states 'Tuesday, November 10, 2026,' which is a future date and may confuse readers since the current year is 2023. Ensure the date is accurate and reflects the upcoming Diwali celebration.",
+        "Include specific details about the preregistration process, such as where to register and any deadlines for registration, to provide readers with actionable steps they can take to attend the event.",
+        "Add information about parking options or public transportation availability near the museum, as this is a common concern for attendees and would enhance the completeness of the article."
+      ],
+      "embed_opportunities": [
+        "Embed a link to the official event page for the Diwali celebration to provide readers with direct access to more detailed information."
+      ]
+    }
+  },
+  {
+    "id": "5a1606c9-9632-42f7-88cf-5095850b653c",
+    "headline": "Indian Americans Win 30 State Legislature Seats Across the United States",
+    "slug": "indian-americans-win-30-state-legislature-seats-midterms",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image",
+      "Inline caption names venue 'Battery Park' not supported by the image file name (NYC_Downtown_Manhattan_Skyline_seen_from_Paulus_Hook_2019-12\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the election results by specifying when the final tallies are expected to be completed, as the article mentions that results were still being compiled.",
+        "Provide a clearer breakdown of the total number of Indian-American candidates who ran in each state, as this would give readers a better understanding of the overall success rate and context for the wins.",
+        "Include more specific vote percentages or numbers for all winning candidates, not just the highlighted ones, to give a fuller picture of the election outcomes.",
+        "Add a brief context about the significance of these wins in relation to the overall political landscape in the U.S., such as how these results compare to previous elections or what this might mean for future elections."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent Indian-American politician or organization celebrating these election results to enhance engagement and provide a real-time reaction."
+      ]
+    }
+  },
+  {
+    "id": "e9817caf-b030-4096-9dff-220ab2751a30",
+    "headline": "Canada Holds PR Target at 380,000, Opens Path for 200,000 Already There",
+    "slug": "canada-pr-target-380000-pathway-200000-temporary-residents-2027",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the application process for the 200,000 temporary residents transitioning to permanent residence. Include any expected timelines or eligibility criteria if available, as this information is crucial for affected individuals.",
+        "Provide more context on how the flat immigration target may impact the overall immigration landscape in Canada, especially for those applying from abroad. This could help readers understand the implications better."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Canadian government or immigration department regarding the Immigration Levels Plan for direct access to primary information."
+      ]
+    }
+  }
+]

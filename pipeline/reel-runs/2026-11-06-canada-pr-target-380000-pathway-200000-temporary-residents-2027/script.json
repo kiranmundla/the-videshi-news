@@ -1,0 +1,36 @@
+{
+  "hook_line": "CANADA HOLDS PR TARGET AT 380,000, OPENS PATH FOR 200,000 ALREADY THERE",
+  "hook_stat": {
+    "big": "380,000",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Permanent residents Canada will admit a year in 2027, 2028 and 2029"
+  },
+  "stats": [
+    {
+      "big": "200,000",
+      "label": "Temporary residents already in Canada who can transition to permanent residence by the end of 2027"
+    },
+    {
+      "big": "370,000",
+      "label": "New temporary resident arrivals capped a year"
+    },
+    {
+      "big": "100,000",
+      "label": "Of the transition places are skilled workers through Express Entry and the Provincial Nominee Program"
+    }
+  ],
+  "diaspora_bullets": [
+    "The one-time transition is for temporary residents already in Canada",
+    "No application route for the 200,000-person transition has been published yet"
+  ],
+  "key_entities": [
+    "Canada",
+    "Express Entry",
+    "Provincial Nominee Program",
+    "Budget 2026"
+  ],
+  "news_summary": "Canada will admit 380,000 permanent residents a year in each of 2027, 2028 and 2029, holding the target flat in the 2027-2029 Immigration Levels Plan released with Budget 2026 on November 5.",
+  "payoff": "The annual target itself has not risen - the new opening is for people already in Canada.",
+  "versus": "",
+  "story_mood": "tense"
+}

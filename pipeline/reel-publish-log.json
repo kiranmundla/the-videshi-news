@@ -680,5 +680,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "9yhT6MuN_uI",
+    "article_slug": "cosmoserve-6-million-space-debris-hyderabad-base-1",
+    "article_id": "096ba57d-b77c-43ad-9d06-79a6f373edc4",
+    "title": "Cosmoserve Raises $6 Million to Remove Space Debris, Opens Hyderabad Facility #Shorts #TechNews",
+    "privacy": "public",
+    "uploaded_at": "2026-11-06T05:22:24.837557+00:00",
+    "video_path": "reel-runs/2026-11-05-cosmoserve-6-million-space-debris-hyderabad-base-1/output-v2/cosmoserve-6-million-space-debris-hyderabad-base-1.mp4",
+    "video_sha256": "af0493b3bd06628d29babee1854e5c0933aa3c8c0fdc6e1daddce69653b0e886",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

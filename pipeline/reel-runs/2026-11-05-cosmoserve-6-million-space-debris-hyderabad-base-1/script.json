@@ -1,0 +1,36 @@
+{
+  "hook_line": "COSMOSERVE RAISES $6 MILLION TO REMOVE SPACE DEBRIS, OPENS HYDERABAD FACILITY",
+  "hook_stat": {
+    "big": "$6 MILLION",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Seed round led by Japan's Rebright Partners"
+  },
+  "stats": [
+    {
+      "big": "2028",
+      "label": "Cosmoserve targets starting commercial operations by 2028"
+    },
+    {
+      "big": "2027",
+      "label": "Target for completing all technology demonstrations"
+    },
+    {
+      "big": "10 METRES",
+      "label": "How close a full-scale demonstration aims to approach a dead satellite"
+    }
+  ],
+  "diaspora_bullets": [
+    "Base 1 in Hyderabad is India's first private space debris removal facility",
+    "Its craft are designed to be refuelled in orbit so one mission can remove multiple pieces of debris"
+  ],
+  "key_entities": [
+    "Cosmoserve",
+    "Hyderabad",
+    "ISRO",
+    "Rebright Partners"
+  ],
+  "news_summary": "Hyderabad spacetech startup Cosmoserve Space has raised $6 million in a seed round led by Japan's Rebright Partners, taking its total funding past $9 million since it was founded last year.",
+  "payoff": "Cosmoserve targets completing all technology demonstrations by 2027 and starting commercial operations by 2028.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

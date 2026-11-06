@@ -1,0 +1,27 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "canada-pr-target-380000-pathway-200000-temporary-residents-2027",
+  "name": "canada-pr-target-380000-pathway-200000-temporary-residents-2027",
+  "script": "reel-runs/2026-11-06-canada-pr-target-380000-pathway-200000-temporary-residents-2027/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000782
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-06-canada-pr-target-380000-pathway-200000-temporary-residents-2027/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "nasa-astronaut-scott-kelly-took-this-aurora",
+      "hero": "2016-09-rue-price-chicoutimi-02"
+    }
+  },
+  "detail": "Inter cannot fit 'TEMPORARY RESIDENTS ALREADY IN CANADA WHO CAN TRANSITION TO PERMANENT RESIDENCE BY THE END OF 2027'"
+}

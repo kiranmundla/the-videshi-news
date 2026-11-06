@@ -1,0 +1,403 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-beat-japan-4-1-sixth-asian-champions-trophy-title",
+ "article_slug": "india-beat-japan-4-1-sixth-asian-champions-trophy-title",
+ "article_id": "46daae54-a334-473e-9744-5d90ec32359c",
+ "category": "Sports",
+ "video": "reel-runs/2026-11-05-india-beat-japan-4-1-sixth-asian-champions-trophy-title/output/india-beat-japan-4-1-sixth-asian-champions-trophy-title.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://assets.khelnow.com/news/uploads/2026/11/India-vs-Japan-Final-Live-Updates.jpg",
+  "local_path": "reel-runs/2026-11-05-india-beat-japan-4-1-sixth-asian-champions-trophy-title/output/hero.jpg",
+  "width": 1980,
+  "height": 1245,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.91)",
+  "has_face": true,
+  "box_source": [
+   1458,
+   115,
+   123,
+   164
+  ],
+  "box_bg": [
+   700,
+   204,
+   52,
+   69
+  ],
+  "chin_bg": 273,
+  "anchor": [
+   0.097,
+   0.188
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   524
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 744,
+   "zone_h": 812,
+   "scale": 1.0,
+   "content_h": 285,
+   "block_top": 1007,
+   "block_bottom": 1292,
+   "text_bbox": [
+    70,
+    1007,
+    930,
+    1292
+   ],
+   "texts": [
+    "Sports",
+    "INDIA COME FROM BEHIND TO BEAT JAPAN 4-1, WIN SIXTH ASIAN CHAMPIONS TROPHY"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.421,
+    "photo_px": [
+     1980,
+     1245
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 524,
+     "scale": 0.4212121212121212,
+     "window": [
+      0,
+      0,
+      1980,
+      1244
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.54x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "India came from a goal down to beat Japan 4-1 in the Men's Asian Champions Trophy final in Mohali on Thursday and lift the trophy for a record sixth time."
+   ],
+   "v7": {
+    "image_source": "extra:close-wing-position-of-loxura-atymnus-stoll",
+    "track": "full-bleed",
+    "render_scale": 0.8,
+    "photo_px": [
+     3600,
+     2400
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8,
+     "window": [
+      945,
+      0,
+      2295,
+      2400
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "This picture was taken during the project Wiki Loves Butterfly in Chintamoni Kar Bird Sanctuary,Kolkata,West Bengal,India.Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly. Subspecies: Loxura atymnus continentalis Fruhstorfer, 1912",
+     "route": "identity \u2014 depicts (P180=Q668)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Close_wing_position_of_Loxura_atymnus_Stoll,_1780_%E2%80%93_Yamfly.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Close_wing_position_of_Loxura_atymnus_Stoll%2C_1780_%E2%80%93_Yamfly.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 3.0",
+     "artist": "Atudu"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 744,
+   "zone_h": 812,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 931,
+   "block_bottom": 1369,
+   "text_bbox": [
+    70,
+    931,
+    930,
+    1369
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "4-1",
+    "India's final win over Japan in Mohali"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.479,
+    "photo_px": [
+     1980,
+     1245
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 524,
+     "scale": 0.47876004592422505,
+     "window": [
+      0,
+      0,
+      1742,
+      1094
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.54x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 744,
+   "zone_h": 812,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 756,
+   "block_bottom": 1544,
+   "text_bbox": [
+    70,
+    756,
+    930,
+    1544
+   ],
+   "texts": [
+    "By The Numbers",
+    "3",
+    "Goals in the final quarter as India pulled away to seal the win",
+    "8-1",
+    "India's semi-final thrashing of South Korea",
+    "6",
+    "Wins from six matches \u2014 India finished the tournament unbeaten"
+   ],
+   "v7": {
+    "image_source": "extra:close-wing-position-of-papilio-nephelus-bois",
+    "track": "backdrop",
+    "render_scale": 0.417,
+    "photo_px": [
+     2000,
+     1500
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 524,
+     "scale": 0.417,
+     "window": [
+      0,
+      244,
+      2000,
+      1500
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.28x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Close wing of Papilio nephelus Boisduval, 1836 \u2013 Yellow Helen",
+     "route": "identity \u2014 depicts (P180=Q668)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Close_wing_position_of_Papilio_nephelus_Boisduval,_1836_%E2%80%93_Yellow_Helen.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Close_wing_position_of_Papilio_nephelus_Boisduval%2C_1836_%E2%80%93_Yellow_Helen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Tamaghna Sengupta"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 744,
+   "zone_h": 812,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 934,
+   "block_bottom": 1366,
+   "text_bbox": [
+    70,
+    934,
+    930,
+    1366
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "A record sixth title, won from behind at home in Punjab",
+    "India are the first team to complete a hat-trick of Asian Champions Trophy titles"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.527,
+    "photo_px": [
+     1980,
+     1245
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 524,
+     "scale": 0.5265151515151515,
+     "window": [
+      0,
+      0,
+      1584,
+      995
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.54x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "A sixth crown extends India's record as the most successful team in the tournament's history.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-fun-upbeat-mfcc.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 115.1,
+ "mp4_bytes": 7781018
+}

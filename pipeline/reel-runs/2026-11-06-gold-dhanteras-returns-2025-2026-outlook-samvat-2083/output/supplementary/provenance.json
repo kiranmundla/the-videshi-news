@@ -1,0 +1,115 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "gold-dhanteras-returns-2025-2026-outlook-samvat-2083",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Mirae Asset Sharekhan",
+    "Motilal Oswal",
+    "gold",
+    "Gold Returned",
+    "Times of India",
+    "Mirae Asset Sharekhan's"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Mirae Asset Sharekhan' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Gold Returned' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "outlet: 'Times of India' is a news outlet \u2014 outlets are sources, never picture subjects; never queried"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: \"Mirae Asset Sharekhan's\" has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Gold-crystals.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q897)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:2016 Rangun, Pagoda Sule (22).jpg",
+      "route": "identity \u2014 depicts (P180=Q897)",
+      "verdict": "USED (news)",
+      "reason": "2871x4836, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Argentina 1828 8 Escudos.jpg",
+      "route": "identity \u2014 depicts (P180=Q897)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:As riquezas do Brasil exploradas para enriquecer Portugal durante o per\u00edodo da coloniza\u00e7\u00e3o.png",
+      "route": "identity \u2014 depicts (P180=Q897)",
+      "verdict": "USED (grid)",
+      "reason": "1920x1080, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "2016-rangun-pagoda-sule-22",
+      "path": "2016-rangun-pagoda-sule-22.jpg",
+      "size": [
+        2871,
+        4836
+      ],
+      "role": "establishing",
+      "subject": "Sule Pagoda . Yangon , Myanmar.",
+      "route": "identity \u2014 depicts (P180=Q897)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2016_Rangun,_Pagoda_Sule_(22).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/2016_Rangun%2C_Pagoda_Sule_%2822%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Marcin Konsek",
+      "entity": "gold",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Gold",
+        "gold",
+        "element 79"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "as-riquezas-do-brasil-exploradas-para-enriqu",
+      "path": "as-riquezas-do-brasil-exploradas-para-enriqu.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "role": "establishing",
+      "subject": "Finaliza\u00e7\u00e3o: Laura Magnus Esbo\u00e7o: Laura Magnus Briefing/roteiro: Natalia Freitas Ramos",
+      "route": "identity \u2014 depicts (P180=Q897)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:As_riquezas_do_Brasil_exploradas_para_enriquecer_Portugal_durante_o_per%C3%ADodo_da_coloniza%C3%A7%C3%A3o.png",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/As_riquezas_do_Brasil_exploradas_para_enriquecer_Portugal_durante_o_per%C3%ADodo_da_coloniza%C3%A7%C3%A3o.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "EPTrilhas",
+      "entity": "gold",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Gold",
+        "gold",
+        "element 79"
+      ]
+    }
+  ]
+}

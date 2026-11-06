@@ -1,0 +1,288 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "gold-dhanteras-returns-2025-2026-outlook-samvat-2083",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "GOLD RETURNED 60% LAST DIWALI AND 13% THIS ONE; ANALYSTS TARGET $5,000 NEXT",
+      "numbers": [
+        13.0,
+        60.0,
+        5000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Gold returned 60.21% in 2025 and 12.87% in 2026; target is $5,000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Domestic gold returned 60.21% Diwali-to-Diwali in 2025 but 12.87% in 2026, reaching Rs 1,43,184 by November 5, according to Mirae Asset Sharekhan data.",
+      "numbers": [
+        5.0,
+        12.87,
+        60.21,
+        2025.0,
+        2026.0,
+        143184.0
+      ],
+      "entities": [
+        "Mirae Asset Sharekhan"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025,
+          2026
+        ]
+      },
+      "llm_reason": "All figures and sources are accurately reflected in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$5,000",
+      "numbers": [
+        5000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$5,000 is mentioned as the target for Samvat 2083.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "12-month target an ounce for Samvat 2083",
+      "numbers": [
+        12.0,
+        2083.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2083
+        ]
+      },
+      "llm_reason": "The article states a 12-month target of $5,000 for Samvat 2083.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE PRICE TAG",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "60.21%",
+      "numbers": [
+        60.21
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This percentage is accurately reported for 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Domestic gold's Diwali-to-Diwali return in 2025",
+      "numbers": [
+        2025.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The claim accurately reflects the return for 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "12.87%",
+      "numbers": [
+        12.87
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This percentage is accurately reported for 2026.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Domestic gold's return in 2026, to November 5",
+      "numbers": [
+        5.0,
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The claim accurately reflects the return for 2026.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$5,595",
+      "numbers": [
+        5595.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This figure is mentioned as the record spot gold price.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Record spot gold an ounce on January 29",
+      "numbers": [
+        29.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The date and price are accurately reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Gold beat the Nifty in each of the last five Diwali-to-Diwali years",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states gold outperformed the Nifty for five years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Experts advise staggered buying on dips, not one Dhanteras purchase",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article advises staggered buying rather than a single purchase.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Analysts' shared advice for Samvat 2083 is staggered buying, treating gold as a diversifier rather than a trade.",
+      "numbers": [
+        2083.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2083
+        ]
+      },
+      "llm_reason": "The article mentions staggered buying as advised by analysts.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE PRICE TAG",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Mirae Asset Sharekhan",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Motilal Oswal",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "gold",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000802,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

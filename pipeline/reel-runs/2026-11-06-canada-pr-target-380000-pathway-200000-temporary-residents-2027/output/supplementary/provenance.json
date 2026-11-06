@@ -1,0 +1,103 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "canada-pr-target-380000-pathway-200000-temporary-residents-2027",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Canada",
+    "Express Entry",
+    "Provincial Nominee Program",
+    "Budget 2026",
+    "CIC News",
+    "Immigration Levels Plan"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Express Entry' named 'Express Entry Canada', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Budget 2026' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'CIC News' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Immigration Levels Plan' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:NASA astronaut Scott Kelly took this aurora image over Canada on Jan. 21, 2016 01.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q16)",
+      "verdict": "USED (news)",
+      "reason": "4928x3280, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2016-09 Rue Price Chicoutimi 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q16)",
+      "verdict": "USED (hero)",
+      "reason": "5836x3891, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "nasa-astronaut-scott-kelly-took-this-aurora",
+      "path": "nasa-astronaut-scott-kelly-took-this-aurora.jpg",
+      "size": [
+        4928,
+        3280
+      ],
+      "role": "establishing",
+      "subject": "NASA astronaut Scott Kelly took this aurora image over Canada on Jan. 21, 2016",
+      "route": "identity \u2014 Wikidata P18 (Q16)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:NASA_astronaut_Scott_Kelly_took_this_aurora_image_over_Canada_on_Jan._21,_2016_01.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/NASA_astronaut_Scott_Kelly_took_this_aurora_image_over_Canada_on_Jan._21%2C_2016_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "NASA",
+      "entity": "Canada",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Canada",
+        "CA",
+        "CAN"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "2016-09-rue-price-chicoutimi-02",
+      "path": "2016-09-rue-price-chicoutimi-02.jpg",
+      "size": [
+        5836,
+        3891
+      ],
+      "role": "establishing",
+      "subject": "Price road in Chicoutimi , Quebec, Canada.",
+      "route": "identity \u2014 depicts (P180=Q16)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2016-09_Rue_Price_Chicoutimi_02.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/2016-09_Rue_Price_Chicoutimi_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "0x010C",
+      "entity": "Canada",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Canada",
+        "CA",
+        "CAN"
+      ]
+    }
+  ]
+}

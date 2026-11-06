@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "cosmoserve-6-million-space-debris-hyderabad-base-1",
+ "article_slug": "cosmoserve-6-million-space-debris-hyderabad-base-1",
+ "article_id": "096ba57d-b77c-43ad-9d06-79a6f373edc4",
+ "category": "Technology",
+ "video": "reel-runs/2026-11-05-cosmoserve-6-million-space-debris-hyderabad-base-1/output-v2/cosmoserve-6-million-space-debris-hyderabad-base-1.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://inc42.com/cdn-cgi/image/quality=90/https://asset.inc42.com/2025/09/Cosmoserve-Founder-SM.png",
+  "local_path": "reel-runs/2026-11-05-cosmoserve-6-million-space-debris-hyderabad-base-1/output-v2/hero.png",
+  "width": 1200,
+  "height": 628,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.93)",
+  "has_face": true,
+  "box_source": [
+   372,
+   91,
+   420,
+   534
+  ],
+  "box_bg": [
+   345,
+   219,
+   292,
+   371
+  ],
+  "chin_bg": 590,
+  "anchor": [
+   0.487,
+   0.574
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   436
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 264,
+   "block_top": 974,
+   "block_bottom": 1238,
+   "text_bbox": [
+    70,
+    974,
+    930,
+    1238
+   ],
+   "texts": [
+    "Technology",
+    "COSMOSERVE RAISES $6 MILLION TO REMOVE SPACE DEBRIS, OPENS HYDERABAD FACILITY"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     628
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.695,
+     "window": [
+      0,
+      1,
+      1200,
+      628
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 917,
+   "block_bottom": 1295,
+   "text_bbox": [
+    70,
+    917,
+    930,
+    1295
+   ],
+   "texts": [
+    "What Happened",
+    "Hyderabad spacetech startup Cosmoserve Space has raised $6 million in a seed round led by Japan's Rebright Partners, taking its total funding past $9 million since it was founded last year."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     628
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.7897727272727273,
+     "window": [
+      57,
+      76,
+      1113,
+      628
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 386,
+   "block_top": 913,
+   "block_bottom": 1299,
+   "text_bbox": [
+    70,
+    913,
+    930,
+    1299
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$6 MILLION",
+    "Seed round led by Japan's Rebright Partners"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     628
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.86875,
+     "window": [
+      0,
+      110,
+      960,
+      611
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 712,
+   "block_bottom": 1500,
+   "text_bbox": [
+    70,
+    712,
+    930,
+    1500
+   ],
+   "texts": [
+    "By The Numbers",
+    "2028",
+    "Cosmoserve targets starting commercial operations by 2028",
+    "2027",
+    "Target for completing all technology demonstrations",
+    "10 METRES",
+    "How close a full-scale demonstration aims to approach a dead satellite"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     628
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.86875,
+     "window": [
+      240,
+      110,
+      1200,
+      611
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 486,
+   "block_top": 863,
+   "block_bottom": 1349,
+   "text_bbox": [
+    70,
+    863,
+    930,
+    1349
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Base 1 in Hyderabad is India's first private space debris removal facility",
+    "Its craft are designed to be refuelled in orbit so one mission can remove multiple pieces of debris"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.939,
+    "photo_px": [
+     1200,
+     628
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.9391891891891891,
+     "window": [
+      141,
+      164,
+      1029,
+      628
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 352,
+   "block_top": 684,
+   "block_bottom": 1036,
+   "text_bbox": [
+    70,
+    684,
+    930,
+    1036
+   ],
+   "texts": [
+    "The Takeaway",
+    "Cosmoserve targets completing all technology demonstrations by 2027 and starting commercial operations by 2028.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/tech-corporate-technology.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 91.1,
+ "mp4_bytes": 3899655
+}

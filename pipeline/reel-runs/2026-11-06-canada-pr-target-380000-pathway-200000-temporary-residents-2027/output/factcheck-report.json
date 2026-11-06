@@ -1,0 +1,286 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "canada-pr-target-380000-pathway-200000-temporary-residents-2027",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "CANADA HOLDS PR TARGET AT 380,000, OPENS PATH FOR 200,000 ALREADY THERE",
+      "numbers": [
+        200000.0,
+        380000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Canada holds PR target at 380,000 and opens path for 200,000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Canada will admit 380,000 permanent residents a year in each of 2027, 2028 and 2029, holding the target flat in the 2027-2029 Immigration Levels Plan released with Budget 2026 on November 5.",
+      "numbers": [
+        5.0,
+        2026.0,
+        2027.0,
+        2028.0,
+        2029.0,
+        380000.0
+      ],
+      "entities": [
+        "Immigration Levels Plan"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026,
+          2027,
+          2028,
+          2029
+        ]
+      },
+      "llm_reason": "The article confirms the 380,000 target for 2027-2029 and mentions the release date.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "380,000",
+      "numbers": [
+        380000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the target is 380,000 permanent residents.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Permanent residents Canada will admit a year in 2027, 2028 and 2029",
+      "numbers": [
+        2027.0,
+        2028.0,
+        2029.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027,
+          2028,
+          2029
+        ]
+      },
+      "llm_reason": "The article specifies 380,000 permanent residents for those years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "200,000",
+      "numbers": [
+        200000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions a transition for up to 200,000 temporary residents.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Temporary residents already in Canada who can transition to permanent residence by the end of 2027",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article states the transition is for temporary residents already in Canada.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "370,000",
+      "numbers": [
+        370000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states new temporary resident arrivals are capped at 370,000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "New temporary resident arrivals capped a year",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the cap of 370,000 for new temporary residents.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "100,000",
+      "numbers": [
+        100000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 100,000 places are for skilled workers in the transition.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Of the transition places are skilled workers through Express Entry and the Provincial Nominee Program",
+      "numbers": [],
+      "entities": [
+        "Express Entry",
+        "Provincial Nominee Program"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies 100,000 places for skilled workers in the transition.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "The one-time transition is for temporary residents already in Canada",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the transition is for temporary residents in Canada.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "No application route for the 200,000-person transition has been published yet",
+      "numbers": [
+        200000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states no application route has been published for the transition.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The annual target itself has not risen - the new opening is for people already in Canada.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the annual target remains unchanged and opens for those already here.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Canada",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Express Entry",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Provincial Nominee Program",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Budget 2026",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000782,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

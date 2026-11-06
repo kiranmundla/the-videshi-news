@@ -1,0 +1,143 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-beat-japan-4-1-sixth-asian-champions-trophy-title",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "India",
+    "Japan",
+    "Asian Champions Trophy",
+    "Shilanand Lakra",
+    "Mohali",
+    "Beat Japan"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Japan' named 'Japanese Wikipedia', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Asian Champions Trophy' named \"Men's Asian Champions Trophy\", which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Beat Japan' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:India-locator-map-blank.svg",
+      "route": "identity \u2014 Wikidata P18 (Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:A villain performing in Dashavatara folk theatre.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Aerial photograph of the Himalayas, Ladakh 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Ambigram India Nepal (gray and beige) - animated.gif",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "USED (news)",
+      "reason": "3600x2400, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Close wing position of Papilio nephelus Boisduval, 1836 \u2013 Yellow Helen.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "USED (grid)",
+      "reason": "2000x1500, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:The JLPL Industrial Area in Mohali.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1949069)",
+      "verdict": "rejected",
+      "reason": "resolution: 897x1103 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "close-wing-position-of-loxura-atymnus-stoll",
+      "path": "close-wing-position-of-loxura-atymnus-stoll.jpg",
+      "size": [
+        3600,
+        2400
+      ],
+      "role": "establishing",
+      "subject": "This picture was taken during the project Wiki Loves Butterfly in Chintamoni Kar Bird Sanctuary,Kolkata,West Bengal,India.Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly. Subspecies: Loxura atymnus continentalis Fruhstorfer, 1912",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Close_wing_position_of_Loxura_atymnus_Stoll,_1780_%E2%80%93_Yamfly.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Close_wing_position_of_Loxura_atymnus_Stoll%2C_1780_%E2%80%93_Yamfly.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 3.0",
+      "artist": "Atudu",
+      "entity": "India",
+      "entity_type": "other",
+      "entity_aliases": [
+        "India",
+        "Republic of India",
+        "Bharatvarsh",
+        "Hindustan",
+        "Bharata",
+        "Hindoostan",
+        "Indostan",
+        "Bharat Ganarajya",
+        "Al Hind",
+        "Tianzhu",
+        "Tenjiku"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "close-wing-position-of-papilio-nephelus-bois",
+      "path": "close-wing-position-of-papilio-nephelus-bois.jpg",
+      "size": [
+        2000,
+        1500
+      ],
+      "role": "establishing",
+      "subject": "Close wing of Papilio nephelus Boisduval, 1836 \u2013 Yellow Helen",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Close_wing_position_of_Papilio_nephelus_Boisduval,_1836_%E2%80%93_Yellow_Helen.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Close_wing_position_of_Papilio_nephelus_Boisduval%2C_1836_%E2%80%93_Yellow_Helen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Tamaghna Sengupta",
+      "entity": "India",
+      "entity_type": "other",
+      "entity_aliases": [
+        "India",
+        "Republic of India",
+        "Bharatvarsh",
+        "Hindustan",
+        "Bharata",
+        "Hindoostan",
+        "Indostan",
+        "Bharat Ganarajya",
+        "Al Hind",
+        "Tianzhu",
+        "Tenjiku"
+      ]
+    }
+  ]
+}

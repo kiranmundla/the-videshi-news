@@ -1,0 +1,16 @@
+{
+  "kind": "carousel",
+  "article_slug": "cosmoserve-6-million-space-debris-hyderabad-base-1",
+  "status": "held",
+  "stage": "render_fit",
+  "factcheck": {
+    "verdict": "pass",
+    "quote_present": false,
+    "verbatim_quote": null,
+    "speaker_grounded": null,
+    "role_grounded": null,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000471
+  },
+  "detail": "serif cannot fit 'Cosmoserve Raises $6 Million to Remove Space Debris, Opens Hyderabad Facility'"
+}
