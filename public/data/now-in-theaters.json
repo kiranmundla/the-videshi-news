@@ -861,6 +861,41 @@
       "poster_height": 183
     },
     {
+      "title": "Mookuthi Amman 2",
+      "slug": "mookuthi-amman-2-2026",
+      "release_date": "2026-11-06",
+      "status": "opening",
+      "language": "Tamil",
+      "director": "Sundar C",
+      "cast": [
+        "Nayanthara",
+        "Regena Cassandrra",
+        "Abhinaya"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=Mookuthi%20Amman%202%20showtimes%20near%20me",
+      "why_watch": "Mookuthi Amman 2 is a Tamil film directed by Sundar C, starring Nayanthara, Regena Cassandrra.",
+      "rating": "Opens Nov 6",
+      "rating_source": "Release date",
+      "trailer_url": "https://www.youtube.com/watch?v=tbnwnLatH1g",
+      "cast_details": [
+        {
+          "name": "Nayanthara",
+          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b7/Nayanthara_during_toxic_album_launch_event.jpg/300px-Nayanthara_during_toxic_album_launch_event.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "name": "Regena Cassandrra",
+          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Regina_Cassandra_at_the_teaser_launch_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+        },
+        {
+          "name": "Abhinaya",
+          "photo_url": ""
+        }
+      ]
+    },
+    {
       "title": "Aakasamlo Oka Tara",
       "slug": "aakasamlo-oka-tara-2026",
       "release_date": "2026-11-20",
