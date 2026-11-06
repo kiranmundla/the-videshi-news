@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-05",
+  "generated_at": "2026-11-06",
   "current_month": 11,
   "current_year": 2026,
   "destination_count": 50,
@@ -3277,7 +3277,7 @@
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
         "weeks": null,
-        "as_of": "2026-11-05",
+        "as_of": "2026-11-06",
         "cadence": "daily"
       },
       "fares_by_origin": {
@@ -3289,7 +3289,7 @@
           "date_range": "Jan 26 \u2192 Feb 15",
           "duration_days": 20,
           "weeks": null,
-          "as_of": "2026-11-05",
+          "as_of": "2026-11-06",
           "cadence": "daily"
         }
       },
@@ -6066,36 +6066,25 @@
     "season_note": "The winter core (Oct\u2013Mar) suits most of India; Kashmir and the Himalayas run spring to autumn.",
     "cheapest_month": null,
     "fare_from": {
-      "price_min": 882,
+      "price_min": 866,
       "route": "SFO-HYD",
       "origin_metro": "Bay Area",
       "dest_metro": "Hyderabad",
       "date_range": "Jan 26 \u2192 Feb 15",
       "duration_days": 20,
-      "as_of": "2026-11-04",
+      "as_of": "2026-11-05",
       "cadence": "weekly",
       "indicative": true
     },
     "fares_by_origin": {
-      "EWR": {
-        "price_min": 1117,
-        "route": "EWR-CCU",
-        "origin_metro": "New York",
-        "dest_metro": "Kolkata",
-        "date_range": "Jan 26 \u2192 Feb 15",
-        "duration_days": 20,
-        "as_of": "2026-11-04",
-        "cadence": "weekly",
-        "indicative": true
-      },
       "SFO": {
-        "price_min": 882,
+        "price_min": 866,
         "route": "SFO-HYD",
         "origin_metro": "Bay Area",
         "dest_metro": "Hyderabad",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-05",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6106,7 +6095,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-05",
+        "as_of": "2026-11-06",
         "cadence": "daily"
       },
       "ORD": {
@@ -6116,7 +6105,7 @@
         "dest_metro": "Hyderabad",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-05",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6127,7 +6116,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-05",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6138,7 +6127,7 @@
         "dest_metro": "Bengaluru",
         "date_range": "Jan 26 \u2192 Feb 17",
         "duration_days": 22,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-05",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6149,8 +6138,19 @@
         "dest_metro": "Delhi",
         "date_range": "Jan 26 \u2192 Feb 17",
         "duration_days": 22,
-        "as_of": "2026-11-05",
+        "as_of": "2026-11-06",
         "cadence": "daily"
+      },
+      "EWR": {
+        "price_min": 1117,
+        "route": "EWR-CCU",
+        "origin_metro": "New York",
+        "dest_metro": "Kolkata",
+        "date_range": "Jan 26 \u2192 Feb 15",
+        "duration_days": 20,
+        "as_of": "2026-11-05",
+        "cadence": "weekly",
+        "indicative": true
       },
       "IAD": {
         "price_min": 848,
@@ -6159,7 +6159,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 3",
         "duration_days": 22,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-05",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6170,7 +6170,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Nov 11 \u2192 Dec 3",
         "duration_days": 22,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-05",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6181,7 +6181,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-05",
         "cadence": "weekly",
         "indicative": true
       }
@@ -6197,7 +6197,7 @@
     "trending": {
       "month": 11,
       "year": 2026,
-      "score": 94,
+      "score": 78,
       "max_score": 100,
       "components": [
         {
@@ -6214,9 +6214,9 @@
         },
         {
           "id": "fare_drop",
-          "points": 29,
+          "points": 13,
           "max": 30,
-          "reason": "Fares down 19.3% on SEA-DEL ($1722 \u2192 $1389) vs 2026-11-04"
+          "reason": "Fares down 8.4% on SFO-BOM ($2218 \u2192 $2031) vs 2026-10-29"
         }
       ]
     },
