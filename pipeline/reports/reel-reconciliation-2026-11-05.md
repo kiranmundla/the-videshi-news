@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-05T11:15:20+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-05T23:17:48+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **230**
-- prebuilt_reels rows: 167 (137 with a yt_video_id)
+- Channel uploads (actual, via API): **231**
+- prebuilt_reels rows: 168 (138 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 50
-- **In sync** (channel video backed by a DB/publish-log record): **116**
+- Phase 2 publish-log entries: 51
+- **In sync** (channel video backed by a DB/publish-log record): **117**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 13
 - Ghost DB rows (yt_video_id not on channel): 16
@@ -284,7 +284,7 @@ _None._
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 - row `3c385175-84c2-48c0-afec-378bee1ba1d6` · slug ambani-adds-6-3-billion-reliance-shares-jump-record-profit · yt_video_id `B45MLVEFtk4` · on channel: no
 
-## (d) In sync (116)
+## (d) In sync (117)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -402,4 +402,5 @@ _None._
 - `Rm8q7E0G5r0` · public · 2026-11-04 · Indian Battery Makers Face Up to 61% Cost Gap With China, NETRA Study Finds #Shorts #Markets [prebuilt_reels:0bd9eea8-80c9-441f-9e85-104e429c2d9a]
 - `UERFV-ATZ7U` · public · 2026-11-05 · Tanvi Patri, 15, First Indian Woman to Reach Youth Olympic Badminton Final #Shorts #Sports [prebuilt_reels:79eeb7c7-22a3-4d43-8a11-a6b6e2d1ebc6]
 - `WqTyfKkX7i8` · public · 2026-11-05 · Opens With Rs 42.96 Crore in Day 1 Advance Sales, Bollywood's Second-Best Ever #Shorts #Bollywood [prebuilt_reels:547f609b-7a96-48dc-8c0d-cc34333ba428]
+- `NOVZR1Lp0PU` · public · 2026-11-05 · Kerala-Born Nithya Raman Unseats Karen Bass to Become Los Angeles Mayor #Shorts #NRI [prebuilt_reels:8c487c84-6f44-4a4c-b6ed-9520c7fb4211]
 

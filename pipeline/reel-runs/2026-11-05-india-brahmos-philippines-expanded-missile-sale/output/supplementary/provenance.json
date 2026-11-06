@@ -1,0 +1,200 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-brahmos-philippines-expanded-missile-sale-final-stage-talks",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "BrahMos",
+    "Philippines",
+    "Reuters",
+    "Gilberto Teodoro",
+    "South China Sea",
+    "Final-Stage Talks"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "outlet: 'Reuters' is a news outlet \u2014 outlets are sources, never picture subjects; never queried"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Gilberto Teodoro' named 'Gilbert Teodoro', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Final-Stage Talks' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Brahmos and Brahmos-M size comparison.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q856699)",
+      "verdict": "USED (hero)",
+      "reason": "4320x3240, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2021-12-31 BrahMos - NOA.pdf",
+      "route": "identity \u2014 depicts (P180=Q856699)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:2022-02-14 BrahMos - NTP.pdf",
+      "route": "identity \u2014 depicts (P180=Q856699)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:2022-04-03 PMC BrahMos 001.jpg",
+      "route": "identity \u2014 depicts (P180=Q856699)",
+      "verdict": "USED (news)",
+      "reason": "1600x1066, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Manila Bay, Roxas Boulevard buildings with navy fleet (Ermita and Malate, Manila)(2017-12-31).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q928)",
+      "verdict": "accepted",
+      "reason": "3648x2736, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:09730jfMatayumtayum Mayang Roads Children La Paz Tarlacfvf 06.JPG",
+      "route": "identity \u2014 depicts (P180=Q928)",
+      "verdict": "rejected",
+      "reason": "scenery: the file's own evidence marks it as a generic landscape (a natural feature \u2014 no structure, no site) that never names 'Philippines' \u2014 a landscape inside an entity's territory is not a picture OF the entity (the Big River estuary 'depicting' the United States, X 2026-11-01); fail closed"
+    },
+    {
+      "candidate": "File:1967 Philippine constituional plebiscite on the increasing of the number of congressional seats.jpg",
+      "route": "identity \u2014 depicts (P180=Q928)",
+      "verdict": "USED (grid)",
+      "reason": "3072x4438, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Mar de China Meridional - BM WMS 2004.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q37660)",
+      "verdict": "rejected",
+      "reason": "resolution: 1060x989 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:220714-N-NY362-1002 - USS Antietam (CG 54) Fueling-At-Sea.jpg",
+      "route": "identity \u2014 depicts (P180=Q37660)",
+      "verdict": "rejected",
+      "reason": "resolution: 1000x751 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:El Nido, Filipino twilight, Palawan, Philippines.jpg",
+      "route": "identity \u2014 depicts (P180=Q37660)",
+      "verdict": "accepted",
+      "reason": "4000x2667, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Fisherman, the coast of South China Sea at Lang Co, Vietnam.jpg",
+      "route": "identity \u2014 depicts (P180=Q37660)",
+      "verdict": "USED (diaspora)",
+      "reason": "3984x2656, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "2022-04-03-pmc-brahmos-001",
+      "path": "2022-04-03-pmc-brahmos-001.jpg",
+      "size": [
+        1600,
+        1066
+      ],
+      "role": "establishing",
+      "subject": "The Philippine Marine Corps (PMC) activated their Shore-Based Anti-Ship Missile (SBASM) Battalion that will operate the BrahMos Missile System in a Ceremony held at Fort Bonifacio in Taguig City on April 3, 2022",
+      "route": "identity \u2014 depicts (P180=Q856699)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2022-04-03_PMC_BrahMos_001.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/2022-04-03_PMC_BrahMos_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Philippine Marine Corps (PMC)",
+      "entity": "BrahMos",
+      "entity_type": "other",
+      "entity_aliases": [
+        "BrahMos"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "brahmos-and-brahmos-m-size-comparison",
+      "path": "brahmos-and-brahmos-m-size-comparison.jpg",
+      "size": [
+        4320,
+        3240
+      ],
+      "role": "establishing",
+      "subject": "Brahmos and Brahmos-M size comparison, at Def Expo 2014.",
+      "route": "identity \u2014 Wikidata P18 (Q856699)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Brahmos_and_Brahmos-M_size_comparison.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Brahmos_and_Brahmos-M_size_comparison.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Anirvan Shukla",
+      "entity": "BrahMos",
+      "entity_type": "other",
+      "entity_aliases": [
+        "BrahMos"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "1967-philippine-constituional-plebiscite-on",
+      "path": "1967-philippine-constituional-plebiscite-on.jpg",
+      "size": [
+        3072,
+        4438
+      ],
+      "role": "establishing",
+      "subject": "Voting strength by province/city of the 1967 Philippine constitutional plebiscite on the increasing of the number of congressional seats",
+      "route": "identity \u2014 depicts (P180=Q928)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:1967_Philippine_constituional_plebiscite_on_the_increasing_of_the_number_of_congressional_seats.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/1967_Philippine_constituional_plebiscite_on_the_increasing_of_the_number_of_congressional_seats.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Timh ph",
+      "entity": "Philippines",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Philippines",
+        "Republic of the Philippines",
+        "The Philippines",
+        "Philippine Islands",
+        "RP"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "fisherman-the-coast-of-south-china-sea-at-la",
+      "path": "fisherman-the-coast-of-south-china-sea-at-la.jpg",
+      "size": [
+        3984,
+        2656
+      ],
+      "role": "establishing",
+      "subject": "L\u0103ng C\u00f4, Ph\u00fa L\u1ed9c, Th\u1eeba Thi\u00ean\u2013Hu\u1ebf Province, Vi\u1ec7t Nam.",
+      "route": "identity \u2014 depicts (P180=Q37660)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Fisherman,_the_coast_of_South_China_Sea_at_Lang_Co,_Vietnam.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/43/Fisherman%2C_the_coast_of_South_China_Sea_at_Lang_Co%2C_Vietnam.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "Vyacheslav Argenberg",
+      "entity": "South China Sea",
+      "entity_type": "other",
+      "entity_aliases": [
+        "East Sea",
+        "West Philippine Sea",
+        "South Sea",
+        "South East Asia Sea",
+        "Nan Zhong Guo Hai",
+        "Nan Hai",
+        "East Vietnamese Sea",
+        "the South China Sea"
+      ]
+    }
+  ]
+}

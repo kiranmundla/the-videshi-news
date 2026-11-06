@@ -1,0 +1,102 @@
+[
+  {
+    "id": "c0a9abaf-594d-4c0a-b74a-884613a7ba04",
+    "headline": "A Diwali Ticket Home Now Costs Up to Rs 2.5 Lakh From London",
+    "slug": "diwali-flights-home-rs-2-5-lakh-gulf-europe-fares-surge",
+    "category": "travel",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the fare comparisons by explicitly stating that the usual prices are based on historical data or specific travel periods, as this context will help readers understand the magnitude of the price increase.",
+        "Include a brief explanation of the factors contributing to the price surge beyond festive demand, such as potential flight restrictions or increased operational costs, to provide a more complete picture.",
+        "Add a quote from a travel agent or airline representative to provide direct attribution and enhance credibility regarding the reasons for the fare increases.",
+        "Consider restructuring the article to present the most critical information first, such as the current prices and the percentage increases, followed by the reasons for the surge and any relevant quotes."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a relevant airline or travel agency discussing the fare increases or travel tips for Diwali to provide readers with real-time updates and additional context."
+      ]
+    }
+  },
+  {
+    "id": "9341e8d1-5f4d-459e-b489-465a8eff2b26",
+    "headline": "Air India Restores Nonstop Delhi and Mumbai to New York Flights as Iraq Airspace",
+    "slug": "air-india-restores-nonstop-delhi-mumbai-new-york-iraq-airspace",
+    "category": "travel",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the restoration of nonstop flights by specifying the exact date when the change took effect, rather than just stating 'since Wednesday.'",
+        "Include specific details about the expected duration of the nonstop flights, such as the exact dates in January when potential fuel stops might return, to give readers a clearer picture of future travel plans.",
+        "Add a quote from an Air India spokesperson or a relevant aviation expert to provide authoritative attribution and enhance credibility regarding the reasons for the route changes.",
+        "Mention any potential impacts on ticket prices or availability due to the restoration of nonstop flights, as this is a key concern for travelers."
+      ],
+      "embed_opportunities": [
+        "Embed the official Air India tweet announcing the restoration of nonstop flights for direct communication from the airline."
+      ]
+    }
+  },
+  {
+    "id": "dc673507-c3be-4b3b-bab7-0a19c8f2643e",
+    "headline": "Jangoo, Forde and Mangru Earn Maiden West Indies Central Contracts",
+    "slug": "jangoo-forde-mangru-maiden-west-indies-contracts-2026-27",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the ICC Cricket World Cup Qualifier in February and the women's series against Pakistan in December. Include details on what automatic World Cup qualification entails, such as specific criteria or implications for the teams involved.",
+        "Provide a brief context on the historical performance of the players mentioned, particularly Jangoo and Forde, to give readers a clearer understanding of their contributions and potential impact on the team moving forward.",
+        "Ensure consistency in the reporting of player statistics and achievements. For example, when mentioning Jangoo's performance, include the context of his overall contributions to the team in recent matches to enhance completeness.",
+        "Revise the headline to make it more compelling and specific, such as 'Jangoo, Forde, and Mangru Secure First Central Contracts as West Indies Prepare for Crucial ICC Qualifiers'."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Cricket West Indies announcing the contracts to provide official confirmation and context."
+      ]
+    }
+  },
+  {
+    "id": "034c3808-1438-4930-a32d-43e42b9ee244",
+    "headline": "Broadcom Sinks 9% as AI Regulation Fears Deepen Chip Rout",
+    "slug": "broadcom-sinks-9-percent-ai-regulation-fears-chip-rout",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the potential regulatory changes. Include specific dates or deadlines for when these regulations might be proposed or enacted, as this would provide readers with a clearer understanding of the urgency and implications of the situation.",
+        "Provide more context on how the election results specifically relate to AI regulation fears. A brief explanation of which candidates or policies are being referenced would enhance the completeness of the article.",
+        "Include a direct quote from a financial analyst or expert regarding the impact of these fears on the semiconductor market. This would improve attribution and provide readers with expert insight into the situation.",
+        "Add a brief summary of Broadcom's financial performance leading up to this drop, including any relevant metrics or comparisons to previous quarters, to give readers a clearer picture of the company's overall health."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or expert discussing the implications of the election results on AI regulations and the semiconductor market."
+      ]
+    }
+  },
+  {
+    "id": "8822b37f-3a0d-4b00-9e85-16a7d0260f01",
+    "headline": "Kerala-Born Nithya Raman Unseats Karen Bass to Become Los Angeles Mayor",
+    "slug": "nithya-raman-unseats-karen-bass-los-angeles-mayor",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the election took place and when the results are expected to be certified. This will provide readers with a clearer understanding of the current status of the election.",
+        "Include a quote from Nithya Raman or a statement from her campaign to provide a personal perspective on her victory, which would enhance the completeness of the article.",
+        "Add context about the significance of Raman's win in relation to the political landscape of Los Angeles and the Democratic Socialists of America, which would deepen the reader's understanding of the implications of this election."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Nithya Raman celebrating her victory or a statement from her campaign to provide a direct connection to her response."
+      ]
+    }
+  }
+]

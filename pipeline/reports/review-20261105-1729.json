@@ -1,0 +1,193 @@
+[
+  {
+    "id": "ae60098d-9760-4090-b84a-66576e7fe805",
+    "headline": "India in Final-Stage Talks on Expanded BrahMos Missile Sale to Philippines",
+    "slug": "india-brahmos-philippines-expanded-missile-sale-final-stage-talks",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the attribution of the figures regarding the deal's value. Instead of stating 'according to two of the Indian sources,' specify if these sources are government officials, industry experts, or other credible entities to enhance credibility.",
+        "Provide a brief context about the strategic implications of the BrahMos missile sale for both India and the Philippines, such as how it fits into regional security dynamics or military partnerships, to give readers a clearer understanding of the significance.",
+        "Include a direct quote from Philippine Defence Secretary Gilberto Teodoro regarding the ongoing talks or the importance of the deal, which would provide authoritative insight and enhance the article's depth.",
+        "Ensure that the article's structure flows logically by grouping related information together, such as combining details about the previous deal and the current negotiations in one cohesive section to improve readability."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Philippine Defence Secretary or the Indian Ministry of Defence regarding the talks or previous deals to provide direct access to official statements."
+      ]
+    }
+  },
+  {
+    "id": "eb4d6c57-c9e4-4da6-a0ff-e31353ed009f",
+    "headline": "Where Niagara Residents Can Set Off Fireworks for Diwali, City by City",
+    "slug": "niagara-diwali-fireworks-rules-city-by-city-2026",
+    "category": "travel",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the dates for Diwali in 2026 as it falls on November 12, not November 8. This is crucial for accuracy and could confuse readers.",
+        "Include specific penalties or fines for violating the fireworks regulations in each municipality to provide readers with a complete understanding of the consequences of non-compliance.",
+        "Add a brief summary table comparing the fireworks regulations for each city (Niagara Falls, St. Catharines, Welland, Thorold) to enhance clarity and allow for quick reference."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official statement from the City of Niagara Falls regarding their fireworks regulations for Diwali to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "74d7eff1-9009-41ee-849d-41a2e58d78fd",
+    "headline": "Ekta Nagar's Glow Garden and 1.5-Crore-Light Display Draw Diwali-Week Families",
+    "slug": "ekta-nagar-unity-glow-garden-ekta-prakash-parv-diwali",
+    "category": "travel",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the events mentioned, particularly the dates for the main event after dark and the closure of the viewing gallery on November 9, to avoid confusion for readers planning their visit.",
+        "Provide specific details about the costs associated with visiting the attractions, such as entry fees for the Statue of Unity and any additional charges for the Glow Garden, to give readers a clearer understanding of what to expect financially.",
+        "Include a brief explanation of the significance of the Ekta Prakash Parv and Bharat Parv festivals to provide context for readers unfamiliar with these events."
+      ],
+      "embed_opportunities": [
+        "Embed the official website or social media page for the Statue of Unity for real-time updates on timings and events."
+      ]
+    }
+  },
+  {
+    "id": "c6893df0-6227-42b7-aeea-3e061ef5f720",
+    "headline": "Queens Marked Diwali Early, With 2,000 at the Unisphere and a Wedding at Flushin",
+    "slug": "queens-diwali-unisphere-flushing-town-hall-city-council-2026",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "Caption names venue 'Flushing Meadows Corona Park' not supported by the image file name (Unisphere-2_%2827835155267%29.jpg\u2026) \u2014 verify the venue or reword",
+      "Inline caption names venue 'Flushing Town Hall' not supported by the image file name (Flushing_Queens_May_2025_176.jpg\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of Diwali in the headline to avoid confusion, as it currently states November 8, 2026, which is incorrect; Diwali in 2026 falls on November 14.",
+        "Include specific details about the RSVP process for the City Council's Diwali celebration, such as a link to the event page or any deadlines for RSVPs, to enhance the article's completeness.",
+        "Add a quote from a participant or organizer to provide a personal touch and enhance the article's clarity and engagement."
+      ],
+      "embed_opportunities": [
+        "Embed the official NYC Council tweet or event page link regarding the upcoming Diwali celebration for easy access to readers."
+      ]
+    }
+  },
+  {
+    "id": "8f84a53f-0cf3-42c4-8852-817f8cd7b4de",
+    "headline": "India Rebased Its GDP, but Rs 34.5 Lakh Crore of Women's Work Counts for Nothing",
+    "slug": "india-gdp-rebase-unpaid-care-work-women-34-5-lakh-crore",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the GDP rebasing process and its implications for the economy, including specific dates and potential impacts on economic policy or social programs.",
+        "Provide more context on why unpaid domestic and care work is excluded from GDP calculations, possibly including a brief explanation of GDP measurement principles to enhance reader understanding.",
+        "Include a quote or statement from a relevant official or expert on the implications of excluding women's unpaid work from GDP calculations to strengthen the article's authority and provide a human perspective."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Ministry of Women and Child Development or another authoritative source discussing the importance of recognizing unpaid care work in economic assessments."
+      ]
+    }
+  },
+  {
+    "id": "46daae54-a334-473e-9744-5d90ec32359c",
+    "headline": "India Come From Behind to Beat Japan 4-1, Win Sixth Asian Champions Trophy",
+    "slug": "india-beat-japan-4-1-sixth-asian-champions-trophy-title",
+    "category": "sports",
+    "structural_issues": [
+      "Two embeds clustered within 200 chars of each other"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events in the match by providing more specific details about when each goal was scored and any significant plays leading up to those goals. This will enhance the completeness and clarity of the article.",
+        "Include quotes from key players or the coach to provide attribution and a more personal perspective on the match, which can enhance the depth of the reporting.",
+        "Add context about the significance of this victory in terms of India's hockey history, such as previous titles or rivalries with Japan, to provide readers with a fuller understanding of the achievement."
+      ],
+      "embed_opportunities": [
+        "Embed a video highlight reel of the match to give readers a visual summary of the key moments and goals."
+      ]
+    }
+  },
+  {
+    "id": "9f48c369-b4bc-49c2-8d3a-f498832b84f0",
+    "headline": "Mookuthi Amman 2 Advance Sales Pass Nayanthara's Previous Opener",
+    "slug": "mookuthi-amman-2-advance-sales-nayanthara-previous-opener",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the advance sales figures by explicitly stating which source provided each figure to avoid confusion. For instance, specify that the Rs 1.26 crore figure is from Koimoi and the Rs 90 lakh figure is from Filmibeat, ensuring readers understand the distinction between the national and state-level data.",
+        "Provide a brief context on the significance of the Diwali release date for the film's box office performance, as this is a critical factor for readers to understand the competitive landscape and potential earnings.",
+        "Include a direct quote from one of the sources or a relevant industry expert to enhance the credibility of the advance sales figures and provide a more authoritative perspective on the film's expected performance."
+      ],
+      "embed_opportunities": [
+        "Embed the official trailer or promotional video for Mookuthi Amman 2 to give readers a visual preview of the film, enhancing engagement and context."
+      ]
+    }
+  },
+  {
+    "id": "91e8e32d-26ab-437e-9c2c-13e59b3db9b5",
+    "headline": "Bharti Airtel Profit Rises 31% but Misses Forecasts on Higher Costs",
+    "slug": "bharti-airtel-q2-profit-misses-forecasts-higher-costs",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the reporting on the profit miss by explicitly stating the difference between the reported profit and the expected profit in both rupees and percentage terms to highlight the significance of the miss.",
+        "Include a brief explanation of what 'premiumisation' means in this context for readers who may not be familiar with the term, as it is a key aspect of the company's growth strategy.",
+        "Provide more context on the implications of the rising network operating costs and license fees for Bharti Airtel's future profitability and pricing strategy, as this is crucial for understanding the company's financial health."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Bharti Airtel or a financial analyst providing insights on the earnings report to enhance credibility and provide real-time reactions."
+      ]
+    }
+  },
+  {
+    "id": "4d3812b6-d13e-4fe7-ad35-95cc48ef1b4d",
+    "headline": "India Passes US as ChatGPT's Largest Market as Users Double",
+    "slug": "india-passes-us-chatgpt-largest-market-users-double",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline by correcting the date mentioned for when India's user base doubled. The article states 'since January 2026,' which is in the future. It should likely refer to January 2023.",
+        "Provide specific numbers regarding the expected announcements on UPI and payments. For example, what features or changes are anticipated, and when can users expect these updates?",
+        "Improve the clarity of the statement regarding the measure of 'largest' by explicitly stating the number of weekly active users in India compared to the US, if available, to give readers a clearer context.",
+        "Reorganize the content to avoid redundancy. The sentence about India being ChatGPT's largest market is repeated, which disrupts the flow. Consolidate this information into one clear statement."
+      ],
+      "embed_opportunities": [
+        "Embed the official OpenAI announcement or tweet regarding India's user growth to provide direct access to the source of information."
+      ]
+    }
+  },
+  {
+    "id": "c1119d92-4cc9-481b-acc9-33e9e7e65e3b",
+    "headline": "High Turnout Unseats Incumbents in Serbia, Brazil and US Elections",
+    "slug": "high-turnout-serbia-brazil-us-elections-2026",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the dates of the elections in Serbia and Brazil more prominently, as well as the significance of the midterm elections in the US, to enhance completeness.",
+        "Provide additional context on the implications of the election results in each country, such as potential policy changes or shifts in governance, to give readers a clearer understanding of what these outcomes mean moving forward.",
+        "Correct the repetition of information regarding Serbia's election results in the article to improve clarity and avoid redundancy."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a credible news source or election commission that summarizes the election results for each country to provide real-time updates and enhance credibility."
+      ]
+    }
+  }
+]

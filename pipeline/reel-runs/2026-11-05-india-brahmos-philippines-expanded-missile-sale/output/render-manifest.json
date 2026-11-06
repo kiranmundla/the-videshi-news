@@ -1,0 +1,417 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-brahmos-philippines-expanded-missile-sale-final-stage-talks",
+ "article_slug": "india-brahmos-philippines-expanded-missile-sale-final-stage-talks",
+ "article_id": "ae60098d-9760-4090-b84a-66576e7fe805",
+ "category": "News",
+ "video": "reel-runs/2026-11-05-india-brahmos-philippines-expanded-missile-sale/output/india-brahmos-philippines-expanded-missile-sale-final-stage-talks.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/The_Brahmos_Missile_system_passes_through_the_Rajpath_during_the_full_dress_rehearsal_for_the_Republic_Day_Parade_in_New_Delhi_on_January_23%2C2006.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "local_path": "reel-runs/2026-11-05-india-brahmos-philippines-expanded-missile-sale/output/hero.jpg",
+  "width": 1900,
+  "height": 1302,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.756,0.891) damped=(0.628,0.696)",
+  "has_face": false,
+  "box_source": [
+   661,
+   619,
+   1064,
+   520
+  ],
+  "box_bg": [
+   376,
+   428,
+   467,
+   228
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.506,
+   0.451
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   571
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 791,
+   "zone_h": 765,
+   "scale": 1.0,
+   "content_h": 285,
+   "block_top": 1031,
+   "block_bottom": 1316,
+   "text_bbox": [
+    70,
+    1031,
+    930,
+    1316
+   ],
+   "texts": [
+    "News",
+    "INDIA IN FINAL-STAGE TALKS ON EXPANDED BRAHMOS MISSILE SALE TO PHILIPPINES"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.439,
+    "photo_px": [
+     1900,
+     1302
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 571,
+     "scale": 0.43894736842105264,
+     "window": [
+      0,
+      0,
+      1900,
+      1300
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.47x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 791,
+   "zone_h": 765,
+   "scale": 1.0,
+   "content_h": 338,
+   "block_top": 1004,
+   "block_bottom": 1342,
+   "text_bbox": [
+    70,
+    1004,
+    930,
+    1342
+   ],
+   "texts": [
+    "What Happened",
+    "India is in final-stage talks to expand its BrahMos missile sale to the Philippines, with Manila expected to buy about five systems \u2014 nearly 60 missiles worth $700 million to $800 million, three sources told Reuters."
+   ],
+   "v7": {
+    "image_source": "extra:2022-04-03-pmc-brahmos-001",
+    "track": "backdrop",
+    "render_scale": 0.536,
+    "photo_px": [
+     1600,
+     1066
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 571,
+     "scale": 0.5359897172236504,
+     "window": [
+      0,
+      0,
+      1556,
+      1065
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.80x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "The Philippine Marine Corps (PMC) activated their Shore-Based Anti-Ship Missile (SBASM) Battalion that will operate the BrahMos Missile System in a Ceremony held at Fort Bonifacio in Taguig City on April 3, 2022",
+     "route": "identity \u2014 depicts (P180=Q856699)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:2022-04-03_PMC_BrahMos_001.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/2022-04-03_PMC_BrahMos_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Philippine Marine Corps (PMC)"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 387,
+   "block_top": 1193,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1193,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "NEARLY 60",
+    "Missiles in about five BrahMos systems the Philippines is expected to buy"
+   ],
+   "v7": {
+    "image_source": "extra:brahmos-and-brahmos-m-size-comparison",
+    "track": "full-bleed",
+    "render_scale": 0.593,
+    "photo_px": [
+     4320,
+     3240
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5925925925925926,
+     "window": [
+      1151,
+      0,
+      2973,
+      3240
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Brahmos and Brahmos-M size comparison, at Def Expo 2014.",
+     "route": "identity \u2014 Wikidata P18 (Q856699)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Brahmos_and_Brahmos-M_size_comparison.JPG",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/42/Brahmos_and_Brahmos-M_size_comparison.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Anirvan Shukla"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 733,
+   "block_top": 847,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    847,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "$700 MILLION TO $800 MILLION",
+    "Potential value of the expected Philippine deal",
+    "$375 MILLION",
+    "Philippines' 2022 BrahMos order for naval use",
+    "62%",
+    "Jump in India's defence exports in the fiscal year to March"
+   ],
+   "v7": {
+    "image_source": "extra:1967-philippine-constituional-plebiscite-on",
+    "track": "full-bleed",
+    "render_scale": 0.433,
+    "photo_px": [
+     3072,
+     4438
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.43262730959891843,
+     "window": [
+      324,
+      0,
+      2820,
+      4438
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Voting strength by province/city of the 1967 Philippine constitutional plebiscite on the increasing of the number of congressional seats",
+     "route": "identity \u2014 depicts (P180=Q928)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:1967_Philippine_constituional_plebiscite_on_the_increasing_of_the_number_of_congressional_seats.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/1967_Philippine_constituional_plebiscite_on_the_increasing_of_the_number_of_congressional_seats.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Timh ph"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 486,
+   "block_top": 1094,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1094,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Manila is modernising its coastal defences as tensions rise in the South China Sea",
+    "Philippine Defence Secretary Gilberto Teodoro said Manila hopes to secure more BrahMos units"
+   ],
+   "v7": {
+    "image_source": "extra:fisherman-the-coast-of-south-china-sea-at-la",
+    "track": "full-bleed",
+    "render_scale": 0.723,
+    "photo_px": [
+     3984,
+     2656
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7228915662650602,
+     "window": [
+      892,
+      0,
+      2386,
+      2656
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "L\u0103ng C\u00f4, Ph\u00fa L\u1ed9c, Th\u1eeba Thi\u00ean\u2013Hu\u1ebf Province, Vi\u1ec7t Nam.",
+     "route": "identity \u2014 depicts (P180=Q37660)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Fisherman,_the_coast_of_South_China_Sea_at_Lang_Co,_Vietnam.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/43/Fisherman%2C_the_coast_of_South_China_Sea_at_Lang_Co%2C_Vietnam.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 4.0",
+     "artist": "Vyacheslav Argenberg"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "A signed deal would be one of the largest single orders behind India's defence export growth.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/sb-simulacra.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 138.9,
+ "mp4_bytes": 10978371
+}

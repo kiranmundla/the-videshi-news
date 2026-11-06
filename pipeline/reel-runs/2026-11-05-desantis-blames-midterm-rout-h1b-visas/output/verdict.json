@@ -1,0 +1,38 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "desantis-blames-midterm-rout-h1b-visas",
+  "name": "desantis-blames-midterm-rout-h1b-visas",
+  "script": "reel-runs/2026-11-05-desantis-blames-midterm-rout-h1b-visas/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000764
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-05-desantis-blames-midterm-rout-h1b-visas/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "h-1b-visa-updates",
+      "hero": "u-s-citizenship-and-immigration-service",
+      "grid": "bodie-september-2016-019",
+      "diaspora": "dhs-senior-official-kristie-canegallo-attend"
+    }
+  },
+  "manifest": "reel-runs/2026-11-05-desantis-blames-midterm-rout-h1b-visas/output/render-manifest.json",
+  "video": "reel-runs/2026-11-05-desantis-blames-midterm-rout-h1b-visas/output/desantis-blames-midterm-rout-h1b-visas.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:grid",
+      "edge_overflow:diaspora"
+    ]
+  }
+}

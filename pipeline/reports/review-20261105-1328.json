@@ -1,0 +1,119 @@
+[
+  {
+    "id": "438d1667-93aa-4d90-b6ee-09910a8d512c",
+    "headline": "USPS Issues Diwali Forever Stamp With Houston Artist's Rangoli",
+    "slug": "usps-diwali-forever-stamp-rangoli-sangita-bhutada",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying that the stamp was dedicated on October 21, 2026, and ensure that the article reflects that this is a future event, not a past one. This could prevent confusion for readers.",
+        "Include a brief explanation of the significance of Diwali and rangoli for readers who may not be familiar with these cultural elements. This context could enhance the article's completeness.",
+        "Add a quote from either the artist Sangita Bhutada or a USPS representative to provide a personal touch and enhance attribution.",
+        "Ensure that the article consistently uses the future tense when discussing the stamp's dedication and release date to maintain clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official USPS announcement or tweet regarding the stamp release to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "642ae2e9-c6c5-4071-95a1-142b8adf7429",
+    "headline": "CSK Land Livingstone in Four-Player Trade With Sunrisers Hyderabad",
+    "slug": "csk-srh-four-player-trade-livingstone-ipl-2027",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the context of the trade by including a brief analysis of how this trade impacts both teams' strategies for the upcoming IPL season, especially considering the retention deadline and mini-auction dates.",
+        "Provide a more detailed breakdown of the players' past performances and how their previous seasons may have influenced their trade values, which would give readers a clearer understanding of the trade's implications.",
+        "Ensure that the reporting includes quotes or statements from team representatives or analysts to enhance attribution and provide expert perspectives on the trade.",
+        "Add a concluding statement that summarizes the significance of this trade in the broader context of the IPL, such as how it might affect team dynamics or fan expectations."
+      ],
+      "embed_opportunities": [
+        "Embed the official IPL announcement tweet regarding the trade for immediate verification and context."
+      ]
+    }
+  },
+  {
+    "id": "096ba57d-b77c-43ad-9d06-79a6f373edc4",
+    "headline": "Cosmoserve Raises $6 Million to Remove Space Debris, Opens Hyderabad Facility",
+    "slug": "cosmoserve-6-million-space-debris-hyderabad-base-1",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the upcoming Embrace-2 mission; provide specific dates for when it is expected to take place.",
+        "Include a brief explanation of the significance of space debris removal and its impact on satellite operations, which would provide context for readers unfamiliar with the topic.",
+        "Add a quote from a relevant expert or stakeholder to enhance attribution and provide a broader perspective on the implications of this funding and facility opening."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Cosmoserve or a related space technology organization that highlights the importance of their mission or the funding announcement."
+      ]
+    }
+  },
+  {
+    "id": "b458e65c-6638-46e8-b0e8-44fccd04c59e",
+    "headline": "CERT-In Names 'Crafty Falcon' in AI Attacks on Indian Financial Firms",
+    "slug": "cert-in-crafty-falcon-ai-attacks-indian-banks",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the attacks by specifying the dates when the breaches occurred and the timing of the CERT-In advisory release. This will help readers understand the urgency and relevance of the information.",
+        "Provide more context on the potential financial impact of these attacks. For example, include estimates of how much money could be at risk or lost due to these breaches, as this would give readers a clearer understanding of the severity of the situation.",
+        "Include a brief explanation of the tools mentioned (ARTEX, PentAGI, Cairn, CyberStrikeAI) for readers who may not be familiar with them. This could enhance the article's completeness and clarity.",
+        "Add a quote or statement from CERT-In or cybersecurity experts to strengthen the attribution and provide authoritative insight into the implications of these attacks."
+      ],
+      "embed_opportunities": [
+        "Embed the official CERT-In advisory or a relevant tweet from CERT-In to provide direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "bdc1f0d0-dc98-4510-b3ce-1b13e3ae4801",
+    "headline": "Air India Courts UK Travel Trade in London During World Travel Market",
+    "slug": "air-india-uk-travel-trade-london-wtm",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the significance of the MoU between Air India and the Ministry of Tourism by providing specific details about its goals, timelines, and expected outcomes for tourism growth.",
+        "Include direct quotes from key attendees, such as Union Minister Gajendra Singh Shekhawat, to provide authoritative perspectives on the discussions and their implications for the travel trade.",
+        "Provide context on the World Travel Market event itself, including its importance in the travel industry and how Air India's participation fits into broader trends in tourism and travel.",
+        "Ensure that the article avoids redundancy by consolidating similar points, such as the mention of Air India hosting UK travel leaders, to improve clarity and flow."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Air India or the Ministry of Tourism highlighting key takeaways from the event or the MoU."
+      ]
+    }
+  },
+  {
+    "id": "1f4ff69f-c327-4874-a04d-1f4c219f677a",
+    "headline": "Adani Ports Buys Europe's Evos in \u20ac2.56 Billion Liquid Storage Deal",
+    "slug": "adani-ports-evos-europe-liquid-storage-deal",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for completion by specifying the expected date for regulatory approvals and works council consultation, as this is crucial for understanding when the acquisition will officially take place.",
+        "Include a brief explanation of the significance of this acquisition for Adani Ports, such as how it positions the company in the European market or its strategic importance, to provide context for readers.",
+        "Add a quote from a company spokesperson or an industry expert to provide attribution and enhance credibility, as well as to give insight into the implications of the deal.",
+        "Ensure the financial figures are clearly presented, perhaps in a bullet-point format, to enhance readability and allow readers to quickly grasp the key financial details of the deal."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Adani Ports or a financial news outlet that discusses the acquisition to provide real-time updates and additional context."
+      ]
+    }
+  }
+]

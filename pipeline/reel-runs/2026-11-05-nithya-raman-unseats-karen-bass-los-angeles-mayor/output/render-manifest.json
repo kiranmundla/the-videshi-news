@@ -1,0 +1,403 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "nithya-raman-unseats-karen-bass-los-angeles-mayor",
+ "article_slug": "nithya-raman-unseats-karen-bass-los-angeles-mayor",
+ "article_id": "8822b37f-3a0d-4b00-9e85-16a7d0260f01",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-05-nithya-raman-unseats-karen-bass-los-angeles-mayor/output/nithya-raman-unseats-karen-bass-los-angeles-mayor.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://media.telanganatoday.com/wp-content/uploads/2026/11/Indian-origin-Nithya-Raman-set-to-win-Los-Angeles-mayoral-race.jpg",
+  "local_path": "reel-runs/2026-11-05-nithya-raman-unseats-karen-bass-los-angeles-mayor/output/hero.jpg",
+  "width": 1280,
+  "height": 750,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.93)",
+  "has_face": true,
+  "box_source": [
+   599,
+   140,
+   124,
+   156
+  ],
+  "box_bg": [
+   476,
+   247,
+   81,
+   102
+  ],
+  "chin_bg": 349,
+  "anchor": [
+   0.516,
+   0.292
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   488
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 708,
+   "zone_h": 848,
+   "scale": 1.0,
+   "content_h": 285,
+   "block_top": 989,
+   "block_bottom": 1274,
+   "text_bbox": [
+    70,
+    989,
+    930,
+    1274
+   ],
+   "texts": [
+    "Nri World",
+    "KERALA-BORN NITHYA RAMAN UNSEATS KAREN BASS TO BECOME LOS ANGELES MAYOR"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1280,
+     750
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 488,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      0,
+      1280,
+      748
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.56x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 1202,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1202,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Kerala-born Los Angeles City Council member Nithya Raman, 45, has unseated incumbent Mayor Karen Bass, who conceded on Thursday after news organizations projected Raman's win."
+   ],
+   "v7": {
+    "image_source": "extra:los-angeles-with-mount-baldy",
+    "track": "full-bleed",
+    "render_scale": 0.496,
+    "photo_px": [
+     8267,
+     3873
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4957397366382649,
+     "window": [
+      3106,
+      0,
+      5284,
+      3873
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "February shot of downtown Los Angeles sunset with Mount Baldy in the background after a large snow storm.",
+     "route": "identity \u2014 Wikidata P18 (Q65)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Los_Angeles_with_Mount_Baldy.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Los_Angeles_with_Mount_Baldy.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Alek Leckszas"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "ELECTIONS 2026",
+    "51.67%",
+    "Raman's share in county returns Wednesday afternoon"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.496,
+    "photo_px": [
+     8267,
+     3873
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4957397366382649,
+     "window": [
+      3106,
+      0,
+      5284,
+      3873
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 766,
+   "zone_h": 814,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 792,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    792,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "48.33%",
+    "Karen Bass's share in the same county returns",
+    "405,193",
+    "Votes for Raman in those county returns",
+    "45",
+    "Raman's age \u2014 Los Angeles City Council member"
+   ],
+   "v7": {
+    "image_source": "extra:mayor-karen-bass-official-portrait",
+    "track": "full-bleed",
+    "render_scale": 0.496,
+    "photo_px": [
+     3870,
+     3870
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.49612403100775193,
+     "window": [
+      885,
+      0,
+      3061,
+      3870
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "43rd Mayor of Los Angeles, Karen Bass .",
+     "route": "identity \u2014 Wikidata P18 (Q461739)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Mayor_Karen_Bass_official_portrait.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Mayor_Karen_Bass_official_portrait.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "City of Los Angeles"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 708,
+   "zone_h": 848,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 947,
+   "block_bottom": 1316,
+   "text_bbox": [
+    70,
+    947,
+    930,
+    1316
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Los Angeles' first Asian American mayor",
+    "Born in Kerala, she came to the United States at age six"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.741,
+    "photo_px": [
+     1280,
+     750
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 488,
+     "scale": 0.7406749555950266,
+     "window": [
+      98,
+      0,
+      1224,
+      658
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.56x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Raman is the first Democratic Socialists of America member to lead Los Angeles.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 158.2,
+ "mp4_bytes": 14806084
+}

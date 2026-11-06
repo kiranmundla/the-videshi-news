@@ -278,5 +278,15 @@
     "quick_hit_count": 5,
     "deadline_count": 1,
     "chars": 2521
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-05T15:13:43.295301+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 05 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "ramayana-day-1-advance-booking-42-96-crore-record",
+    "quick_hit_count": 5,
+    "deadline_count": 1,
+    "chars": 2445
   }
 ]

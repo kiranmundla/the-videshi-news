@@ -1,0 +1,293 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "desantis-blames-midterm-rout-h1b-visas",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "DESANTIS BLAMES MIDTERM ROUT ON GOP FAILURE TO SHUT OFF H-1B VISAS",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "DeSantis blamed GOP for not shutting off H-1B visas.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Florida Governor Ron DeSantis blamed Senate Republicans for the party's midterm defeat, asking why they had not acted to shut off H-1B visas while Republicans held Congress.",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "Florida Governor Ron DeSantis",
+        "Senate Republicans"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states DeSantis blamed Senate Republicans for not acting on H-1B visas.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "70%",
+      "numbers": [
+        70.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "70% of H-1B petitions approved in fiscal 2025 were for India-born workers.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Of H-1B petitions approved in fiscal 2025 were for India-born workers",
+      "numbers": [
+        1.0,
+        2025.0
+      ],
+      "entities": [
+        "Of H-1B"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "70% of H-1B petitions approved in fiscal 2025 were for India-born workers.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "406,000",
+      "numbers": [
+        406000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "406,000 H-1B petitions were approved in fiscal 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "H-1B petitions approved in fiscal 2025",
+      "numbers": [
+        1.0,
+        2025.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "406,000 H-1B petitions were approved in fiscal 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$100,000",
+      "numbers": [
+        100000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Certain new petitions filed on or after September 21, 2025 require a $100,000 payment.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Payment on certain new petitions filed on or after September 21, 2025",
+      "numbers": [
+        21.0,
+        2025.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "$100,000 payment applies to certain new petitions filed after September 21, 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "65,000",
+      "numbers": [
+        65000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The annual H-1B cap is 65,000 new visas.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Annual H-1B cap, plus 20,000 for holders of US advanced degrees",
+      "numbers": [
+        1.0,
+        20000.0
+      ],
+      "entities": [
+        "Annual H-1B"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "H-1B cap is 65,000 plus 20,000 for US advanced degree holders.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "No immigration rule changed this week \u2014 H-1B petitions continue under the existing USCIS rules",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states no immigration rule changed this week.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "A Democratic Congress makes near-term legislation against H-1B highly unlikely",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "Democratic Congress"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states a Democratic Congress makes H-1B legislation unlikely.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The visa programme itself enters 2027 unchanged by this week's politics.",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article states the visa program remains unchanged entering 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Ron DeSantis",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "H-1B",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "USCIS",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Senate Republicans",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000764,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "nithya-raman-unseats-karen-bass-los-angeles-mayor",
+  "trigger": {
+    "own_images": 3,
+    "target_distinct": 5,
+    "extras_needed": 2
+  },
+  "entities": [
+    "Nithya Raman",
+    "Karen Bass",
+    "Los Angeles",
+    "Kerala",
+    "Kerala-born Los Angeles City Council",
+    "Mayor Karen Bass"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Kerala-born Los Angeles City Council' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Mayor Karen Bass' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Nithya Raman, 2022.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q100728314)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Los Angeles City Council float (52631846409).jpg",
+      "route": "identity \u2014 depicts (P180=Q100728314)",
+      "verdict": "accepted",
+      "reason": "3008x2000, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Nithya Raman on the Los Angeles City Council float 2023 (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q100728314)",
+      "verdict": "rejected",
+      "reason": "resolution: 314x399 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mayor Karen Bass official portrait.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q461739)",
+      "verdict": "USED (grid)",
+      "reason": "3870x3870, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2019 Managing Forced Displacement in Africa.jpg",
+      "route": "identity \u2014 depicts (P180=Q461739)",
+      "verdict": "accepted",
+      "reason": "5828x3890, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Los Angeles with Mount Baldy.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q65)",
+      "verdict": "USED (news)",
+      "reason": "8267x3873, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "los-angeles-with-mount-baldy",
+      "path": "los-angeles-with-mount-baldy.jpg",
+      "size": [
+        8267,
+        3873
+      ],
+      "role": "establishing",
+      "subject": "February shot of downtown Los Angeles sunset with Mount Baldy in the background after a large snow storm.",
+      "route": "identity \u2014 Wikidata P18 (Q65)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Los_Angeles_with_Mount_Baldy.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Los_Angeles_with_Mount_Baldy.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Alek Leckszas",
+      "entity": "Los Angeles",
+      "entity_type": "place",
+      "entity_aliases": [
+        "Los Angeles"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "mayor-karen-bass-official-portrait",
+      "path": "mayor-karen-bass-official-portrait.jpg",
+      "size": [
+        3870,
+        3870
+      ],
+      "role": "portrait",
+      "subject": "43rd Mayor of Los Angeles, Karen Bass .",
+      "route": "identity \u2014 Wikidata P18 (Q461739)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Mayor_Karen_Bass_official_portrait.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Mayor_Karen_Bass_official_portrait.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "City of Los Angeles",
+      "entity": "Karen Bass",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Karen Bass",
+        "Karen Ruth Bass"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-brahmos-philippines-expanded-missile-sale-final-stage-talks",
+  "name": "india-brahmos-philippines-expanded-missile-sale-final-stage-talks",
+  "script": "reel-runs/2026-11-05-india-brahmos-philippines-expanded-missile-sale/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000675
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-05-india-brahmos-philippines-expanded-missile-sale/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "2022-04-03-pmc-brahmos-001",
+      "hero": "brahmos-and-brahmos-m-size-comparison",
+      "grid": "1967-philippine-constituional-plebiscite-on",
+      "diaspora": "fisherman-the-coast-of-south-china-sea-at-la"
+    }
+  },
+  "manifest": "reel-runs/2026-11-05-india-brahmos-philippines-expanded-missile-sale/output/render-manifest.json",
+  "video": "reel-runs/2026-11-05-india-brahmos-philippines-expanded-missile-sale/output/india-brahmos-philippines-expanded-missile-sale-final-stage-talks.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:grid"
+    ]
+  }
+}

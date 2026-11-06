@@ -8509,6 +8509,685 @@
    "resolved_confidence": "medium",
    "resolved_context": "Canva Cuts 1,271 Jobs as AI Costs and Chatbots Squeeze a Decade of Growth   <div class=\"key-takeaways\"><ul>\n<li>Canva is cutting 22% of its staff — 1,271 people — in a restructuring that also merges its product, growth and platform teams; some affected staff will be reassigned or relocated rather than laid off.</li>\n<li>CEO Melanie Perkins told staff growth has slowed for the first time in a decad",
    "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Canva Cuts 1,271 Jobs as AI Costs and Chatbots Squeeze a Decade of Growth   <div class=\"key-takeaways\"><ul>\\n<li>Canva is cutting 22% of its staff — 1,271 people — in a restructuring that also merges i'; description: extremely heavy-duty plain-woven fabric"
+  },
+  {
+   "name": "Southall Travel",
+   "aliases": [
+    "Southall Travel"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q17151827",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Air India Courts UK Travel Trade in London During World Travel Market   <div class=\"key-takeaways\"><ul><li>Air India hosted senior UK travel trade leaders in London on the sidelines of World Travel Market (WTM) London, alongside Union Tourism and Culture Minister Gajendra Singh Shekhawat.</li><li>Attendees included Southall Travel, Brightsun Travel, TUI, Trailfinders, Kuoni, Expedia, Trip.com and ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Air India Courts UK Travel Trade in London During World Travel Market   <div class=\"key-takeaways\"><ul><li>Air India hosted senior UK travel trade leaders in London on the sidelines of World Travel Ma'; description: travel agency in the United Kingdom"
+  },
+  {
+   "name": "eternity",
+   "aliases": [
+    "Forever",
+    "eternity",
+    "sempiternity",
+    "everlasting",
+    "perpetuity",
+    "always",
+    "forever"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q138045",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "USPS Issues Diwali Forever Stamp With Houston Artist's Rangoli   <div class=\"key-takeaways\"><ul><li>The US Postal Service has issued its second-ever Diwali Forever stamp, dedicated on October 21, 2026 at the Embassy of India in Washington, DC, a decade after the first in 2016.</li><li>The stamp reproduces an eight-foot rangoli created by India-born, Houston-area artist Sangita Bhutada, who has pra",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'USPS Issues Diwali Forever Stamp With Houston Artist\\'s Rangoli   <div class=\"key-takeaways\"><ul><li>The US Postal Service has issued its second-ever Diwali Forever stamp, dedicated on October 21, 2026'; description: endless time, an infinite duration"
+  },
+  {
+   "name": "Livingstone",
+   "aliases": [
+    "Livingstone"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1866604",
+   "p18_file": "Livingstone downtown.jpg",
+   "p18_quality": 4896,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "CSK Land Livingstone in Four-Player Trade With Sunrisers Hyderabad   <div class=\"key-takeaways\"><ul><li>Chennai Super Kings have traded fast bowlers Khaleel Ahmed and Nathan Ellis to Sunrisers Hyderabad for all-rounders Liam Livingstone and Jack Edwards, the IPL confirmed on Thursday, November 5.</li><li>Livingstone joins CSK at ₹6 crore — less than half the ₹13 crore SRH paid for him — while Edwa",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'CSK Land Livingstone in Four-Player Trade With Sunrisers Hyderabad   <div class=\"key-takeaways\"><ul><li>Chennai Super Kings have traded fast bowlers Khaleel Ahmed and Nathan Ellis to Sunrisers Hyderab'; description: city in Zambia"
+  },
+  {
+   "name": "Hyderabad district",
+   "aliases": [
+    "Hyderabad",
+    "Hyderabad district",
+    "Hyderabad district, India"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q15340",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Cosmoserve Raises $6 Million to Remove Space Debris, Opens Hyderabad Facility   <div class=\"key-takeaways\"><ul><li>Hyderabad spacetech startup Cosmoserve Space has raised $6 million in a seed round led by Japan's Rebright Partners, taking its total funding past $9 million since it was founded last year.</li><li>The company inaugurated Base 1, which it calls India's first private space debris remov",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Cosmoserve Raises $6 Million to Remove Space Debris, Opens Hyderabad Facility   <div class=\"key-takeaways\"><ul><li>Hyderabad spacetech startup Cosmoserve Space has raised $6 million in a seed round le'; description: district of Telangana State, India"
+  },
+  {
+   "name": "Chennai Super Kings",
+   "aliases": [
+    "CSK",
+    "Chennai Super Kings",
+    "Super Kings",
+    "Yellow Army"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1292535",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "CSK Land Livingstone in Four-Player Trade With Sunrisers Hyderabad   CSK trades for Livingstone and Edwards from SRH.    Chennai Super Kings have traded fast bowlers Khaleel Ahmed and Nathan Ellis to Sunrisers Hyderabad for all-rounders Liam Livingstone and Jack Edwards, the IPL confirmed on Thursday, November 5.  Livingstone joins CSK at ₹6 crore — less than half the ₹13 crore SRH paid for him — ",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'CSK Land Livingstone in Four-Player Trade With Sunrisers Hyderabad   CSK trades for Livingstone and Edwards from SRH.    Chennai Super Kings have traded fast bowlers Khaleel Ahmed and Nathan Ellis to '; description: Chennai based franchise of the Indian Premier League"
+  },
+  {
+   "name": "Sunrisers Hyderabad",
+   "aliases": [
+    "SRH",
+    "Sunrisers Hyderabad",
+    "Orange Army"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1518836",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "CSK Land Livingstone in Four-Player Trade With Sunrisers Hyderabad   CSK trades for Livingstone and Edwards from SRH.    Chennai Super Kings have traded fast bowlers Khaleel Ahmed and Nathan Ellis to Sunrisers Hyderabad for all-rounders Liam Livingstone and Jack Edwards, the IPL confirmed on Thursday, November 5.  Livingstone joins CSK at ₹6 crore — less than half the ₹13 crore SRH paid for him — ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'CSK Land Livingstone in Four-Player Trade With Sunrisers Hyderabad   CSK trades for Livingstone and Edwards from SRH.    Chennai Super Kings have traded fast bowlers Khaleel Ahmed and Nathan Ellis to '; description: Hyderabad based franchisee of the Indian Premier League"
+  },
+  {
+   "name": "Niagara Falls",
+   "aliases": [
+    "Niagara Falls",
+    "Niagara Falls, Ontario",
+    "Niagara Falls, ON"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q274120",
+   "p18_file": "Niagara Falls Skyline.jpg",
+   "p18_quality": 3740,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Where Niagara Residents Can Set Off Fireworks for Diwali, City by City   <div class=\"key-takeaways\"><ul>\n<li>Niagara Falls permits consumer fireworks for Diwali: on the day, the day before and three days after — Sunday, November 8, plus November 7 and November 9-11, 2026 — between 6 p.m. and 11 p.m., on private property only.</li>\n<li>St. Catharines permits consumer fireworks on Diwali and the day",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Where Niagara Residents Can Set Off Fireworks for Diwali, City by City   <div class=\"key-takeaways\"><ul>\\n<li>Niagara Falls permits consumer fireworks for Diwali: on the day, the day before and three d'; description: city located in the province of Ontario, Canada"
+  },
+  {
+   "name": "St. Catharines",
+   "aliases": [
+    "St. Catharines",
+    "St Kitts",
+    "Saint Catharines",
+    "St Catharines",
+    "St. Kitts"
+   ],
+   "type": "place",
+   "wikidata_qid": "Q126805",
+   "p18_file": "St. Catharines, Ontario (montage).png",
+   "p18_quality": 535,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Where Niagara Residents Can Set Off Fireworks for Diwali, City by City   <div class=\"key-takeaways\"><ul>\n<li>Niagara Falls permits consumer fireworks for Diwali: on the day, the day before and three days after — Sunday, November 8, plus November 7 and November 9-11, 2026 — between 6 p.m. and 11 p.m., on private property only.</li>\n<li>St. Catharines permits consumer fireworks on Diwali and the day",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Where Niagara Residents Can Set Off Fireworks for Diwali, City by City   <div class=\"key-takeaways\"><ul>\\n<li>Niagara Falls permits consumer fireworks for Diwali: on the day, the day before and three d'; description: city in Ontario, Canada"
+  },
+  {
+   "name": "Statue of Unity",
+   "aliases": [
+    "Statue of Unity",
+    "Sardar Patel Statue"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q7604504",
+   "p18_file": "Statue of Unity.jpg",
+   "p18_quality": 3456,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Ekta Nagar's Glow Garden and 1.5-Crore-Light Display Draw Diwali-Week Families   <div class=\"key-takeaways\"><ul>\n<li>Ekta Nagar's Ekta Prakash Parv illumination includes a 530-metre lit stretch along Valley of Flowers Road and a 180-metre Glow Tunnel, using more than 1.5 crore LED lights, according to IANS.</li>\n<li>The Unity Glow Garden, a 3.61-acre night theme park of light installations and opt",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Ekta Nagar\\'s Glow Garden and 1.5-Crore-Light Display Draw Diwali-Week Families   <div class=\"key-takeaways\"><ul>\\n<li>Ekta Nagar\\'s Ekta Prakash Parv illumination includes a 530-metre lit stretch along '; description: statue of Vallabhbhai Patel at the bank of Narmada river, Gujarat, India"
+  },
+  {
+   "name": "Bharat Parv",
+   "aliases": [
+    "Bharat Parv"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q24910291",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Ekta Nagar's Glow Garden and 1.5-Crore-Light Display Draw Diwali-Week Families   <div class=\"key-takeaways\"><ul>\n<li>Ekta Nagar's Ekta Prakash Parv illumination includes a 530-metre lit stretch along Valley of Flowers Road and a 180-metre Glow Tunnel, using more than 1.5 crore LED lights, according to IANS.</li>\n<li>The Unity Glow Garden, a 3.61-acre night theme park of light installations and opt",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Ekta Nagar\\'s Glow Garden and 1.5-Crore-Light Display Draw Diwali-Week Families   <div class=\"key-takeaways\"><ul>\\n<li>Ekta Nagar\\'s Ekta Prakash Parv illumination includes a 530-metre lit stretch along '; description: A five-day festival in India."
+  },
+  {
+   "name": "Flushing Town Hall",
+   "aliases": [
+    "Flushing Town Hall"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q8564089",
+   "p18_file": "Flushing Town Hall jeh.JPG",
+   "p18_quality": 3636,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Queens Marked Diwali Early, With 2,000 at the Unisphere and a Wedding at Flushing   <div class=\"key-takeaways\"><ul>\n<li>Diwali falls on Sunday, November 8, 2026, and Diwali has been recognized as a New York City public school holiday since 2023.</li>\n<li>More than 2,000 people attended the Arts4All Foundation's free Diwali and Navaratri festival at the Unisphere in Queens on October 10, according ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Queens Marked Diwali Early, With 2,000 at the Unisphere and a Wedding at Flushing   <div class=\"key-takeaways\"><ul>\\n<li>Diwali falls on Sunday, November 8, 2026, and Diwali has been recognized as a Ne'; description: town hall in New York City"
+  },
+  {
+   "name": "Kazumasa Matsumoto",
+   "aliases": [
+    "Kazumasa Matsumoto"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q11530947",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "India Come From Behind to Beat Japan 4-1, Win Sixth Asian Champions Trophy   <div class=\"key-takeaways\"><ul><li>India beat Japan 4-1 in the Men's Asian Champions Trophy final in Mohali on Thursday, November 5, 2026, to win the title for a record sixth time.</li><li>Japan led from the third minute through Kazumasa Matsumoto; Shilanand Lakra equalised in the 42nd minute before India scored three tim",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'India Come From Behind to Beat Japan 4-1, Win Sixth Asian Champions Trophy   <div class=\"key-takeaways\"><ul><li>India beat Japan 4-1 in the Men\\'s Asian Champions Trophy final in Mohali on Thursday, No'; description: Japanese pianist"
+  },
+  {
+   "name": "Mookuthi Amman",
+   "aliases": [
+    "Mookuthi Amman"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q96393849",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Mookuthi Amman 2 Advance Sales Pass Nayanthara's Previous Opener   <div class=\"key-takeaways\"><ul><li>Mookuthi Amman 2, a Tamil-language fantasy comedy starring Nayanthara and directed by Sundar C, releases worldwide in theatres on November 6, 2026, for Diwali.</li><li>Koimoi reported advance sales of Rs 1.26 crore for opening day in India — 82,925 tickets across 1,869 shows in 664 theatres — alre",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Mookuthi Amman 2 Advance Sales Pass Nayanthara\\'s Previous Opener   <div class=\"key-takeaways\"><ul><li>Mookuthi Amman 2, a Tamil-language fantasy comedy starring Nayanthara and directed by Sundar C, re'; description: 2020 Indian Tamil language Hindhu devotional comedy flim"
+  },
+  {
+   "name": "Forbes India",
+   "aliases": [
+    "Forbes India"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q17053070",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Bharti Airtel Profit Rises 31% but Misses Forecasts on Higher Costs   <div class=\"key-takeaways\"><ul><li>Bharti Airtel reported consolidated net profit of Rs 8,888 crore for the quarter ended September 30, 2026 (Q2 FY27), up about 31% from Rs 6,792 crore a year earlier, according to Reuters and Forbes India.</li><li>The result missed expectations: analysts on average expected Rs 9,673 crore, accor",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Bharti Airtel Profit Rises 31% but Misses Forecasts on Higher Costs   <div class=\"key-takeaways\"><ul><li>Bharti Airtel reported consolidated net profit of Rs 8,888 crore for the quarter ended Septembe'; description: Indian edition of Forbes"
+  },
+  {
+   "name": "Bharti Airtel",
+   "aliases": [
+    "Bharti Airtel",
+    "Bharti Airtel...",
+    "Airtel"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q854867",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Bharti Airtel Profit Rises 31% but Misses Forecasts on Higher Costs   <div class=\"key-takeaways\"><ul><li>Bharti Airtel reported consolidated net profit of Rs 8,888 crore for the quarter ended September 30, 2026 (Q2 FY27), up about 31% from Rs 6,792 crore a year earlier, according to Reuters and Forbes India.</li><li>The result missed expectations: analysts on average expected Rs 9,673 crore, accor",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Bharti Airtel Profit Rises 31% but Misses Forecasts on Higher Costs   <div class=\"key-takeaways\"><ul><li>Bharti Airtel reported consolidated net profit of Rs 8,888 crore for the quarter ended Septembe'; description: Indian multinational telecommunications company"
+  },
+  {
+   "name": "Students' List",
+   "aliases": [
+    "Student List",
+    "Students' List",
+    "Studentska lista",
+    "Students Are Winning"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q140383774",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "High Turnout Unseats Incumbents in Serbia, Brazil and US Elections   <div class=\"key-takeaways\"><ul><li>Serbia's student-backed Student List won the October 25 snap election with about 53% of the vote, ending 14 years of Serbian Progressive Party rule, according to the Jamestown Foundation and Reuters reporting.</li><li>In Brazil, President Luiz Inacio Lula da Silva won a fourth term in the runoff",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'High Turnout Unseats Incumbents in Serbia, Brazil and US Elections   <div class=\"key-takeaways\"><ul><li>Serbia\\'s student-backed Student List won the October 25 snap election with about 53% of the vote'; description: political organization in Serbia"
+  },
+  {
+   "name": "Immigration and Foreigners Act, 2025",
+   "aliases": [
+    "Immigration and Foreigners Act",
+    "Immigration and Foreigners Act, 2025"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q140196770",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "India Tightens Nepal, Bhutan Border Rules: Passport Now Needed for Third-Country Travel   <div class=\"key-takeaways\"><ul><li>The Home Ministry has notified the Immigration and Foreigners (Exemption) (Amendment) Order, 2026, amending the 2025 exemption order under Section 33 of the Immigration and Foreigners Act, 2025.</li><li>Direct travel between India and Nepal or Bhutan stays passport-free, but",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'India Tightens Nepal, Bhutan Border Rules: Passport Now Needed for Third-Country Travel   <div class=\"key-takeaways\"><ul><li>The Home Ministry has notified the Immigration and Foreigners (Exemption) ('; description: act of Parliament of India"
+  },
+  {
+   "name": "Senate Republican Conference",
+   "aliases": [
+    "Senate Republicans",
+    "Senate Republican Conference",
+    "Republican Caucus of the United States Senate",
+    "Republican Senate Caucus",
+    "Republican Conference of the United States Senate"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q3117916",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "DeSantis Blames Midterm Rout on GOP Failure to 'Shut Off H-1B Visas'   <div class=\"key-takeaways\"><ul><li>Florida Governor Ron DeSantis blamed Senate Republicans for the party's midterm defeat, asking why they had not acted to \"shut off H-1B visas\" or codify President Trump's immigration executive orders while Republicans held Congress.</li><li>Republicans lost control of both the House and the Se",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'DeSantis Blames Midterm Rout on GOP Failure to \\'Shut Off H-1B Visas\\'   <div class=\"key-takeaways\"><ul><li>Florida Governor Ron DeSantis blamed Senate Republicans for the party\\'s midterm defeat, asking'; description: formal organization of Republican U.S. senators"
+  },
+  {
+   "name": "BrahMos",
+   "aliases": [
+    "BrahMos"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q856699",
+   "p18_file": "Brahmos and Brahmos-M size comparison.JPG",
+   "p18_quality": 4320,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "India in Final-Stage Talks on Expanded BrahMos Missile Sale to Philippines   <div class=\"key-takeaways\"><ul><li>India is in final-stage talks to expand its BrahMos missile sale to the Philippines, three sources with direct knowledge of the matter told Reuters; no contract has been announced.</li><li>The Philippines is expected to buy about five BrahMos systems — nearly 60 missiles — in a deal pote",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'India in Final-Stage Talks on Expanded BrahMos Missile Sale to Philippines   <div class=\"key-takeaways\"><ul><li>India is in final-stage talks to expand its BrahMos missile sale to the Philippines, thr'; description: supersonic cruise missile, jointly developed by India and Russia"
+  },
+  {
+   "name": "Philippines",
+   "aliases": [
+    "Philippines",
+    "Republic of the Philippines",
+    "The Philippines",
+    "Philippine Islands",
+    "RP"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q928",
+   "p18_file": "Manila Bay, Roxas Boulevard buildings with navy fleet (Ermita and Malate, Manila)(2017-12-31).jpg",
+   "p18_quality": 3648,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "India in Final-Stage Talks on Expanded BrahMos Missile Sale to Philippines   <div class=\"key-takeaways\"><ul><li>India is in final-stage talks to expand its BrahMos missile sale to the Philippines, three sources with direct knowledge of the matter told Reuters; no contract has been announced.</li><li>The Philippines is expected to buy about five BrahMos systems — nearly 60 missiles — in a deal pote",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'India in Final-Stage Talks on Expanded BrahMos Missile Sale to Philippines   <div class=\"key-takeaways\"><ul><li>India is in final-stage talks to expand its BrahMos missile sale to the Philippines, thr'; description: archipelagic country in Southeast Asia"
+  },
+  {
+   "name": "Queens",
+   "aliases": [
+    "Queens",
+    "Queens, New York City",
+    "Queens, New York",
+    "Queens, NY",
+    "Queens, New York City, New York"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q18424",
+   "p18_file": "Queens Montage 2012 1.png",
+   "p18_quality": 1188,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Queens Marked Diwali Early, With 2,000 at the Unisphere and a Wedding at Flushing   <div class=\"key-takeaways\"><ul>\n<li>Diwali falls on Sunday, November 8, 2026, and Diwali has been recognized as a New York City public school holiday since 2023.</li>\n<li>More than 2,000 people attended the Arts4All Foundation's free Diwali and Navaratri festival at the Unisphere in Queens on October 10, according ",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Queens Marked Diwali Early, With 2,000 at the Unisphere and a Wedding at Flushing   <div class=\"key-takeaways\"><ul>\\n<li>Diwali falls on Sunday, November 8, 2026, and Diwali has been recognized as a Ne'; description: borough in New York City, New York, United States"
+  },
+  {
+   "name": "Unisphere",
+   "aliases": [
+    "Unisphere"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q717956",
+   "p18_file": "Unisphere in summer.jpg",
+   "p18_quality": 1663,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Queens Marked Diwali Early, With 2,000 at the Unisphere and a Wedding at Flushing   <div class=\"key-takeaways\"><ul>\n<li>Diwali falls on Sunday, November 8, 2026, and Diwali has been recognized as a New York City public school holiday since 2023.</li>\n<li>More than 2,000 people attended the Arts4All Foundation's free Diwali and Navaratri festival at the Unisphere in Queens on October 10, according ",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Queens Marked Diwali Early, With 2,000 at the Unisphere and a Wedding at Flushing   <div class=\"key-takeaways\"><ul>\\n<li>Diwali falls on Sunday, November 8, 2026, and Diwali has been recognized as a Ne'; description: steel structure in Queens, New York"
+  },
+  {
+   "name": "wedding",
+   "aliases": [
+    "Wedding",
+    "wedding",
+    "wedding ceremony",
+    "marriage ceremony",
+    "wedding ceremonies",
+    "marriage ceremonies",
+    "marriage rite"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q49836",
+   "p18_file": "Edmund Blair Leighton - The Wedding Register.jpg",
+   "p18_quality": 1200,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Queens Marked Diwali Early, With 2,000 at the Unisphere and a Wedding at Flushing   <div class=\"key-takeaways\"><ul>\n<li>Diwali falls on Sunday, November 8, 2026, and Diwali has been recognized as a New York City public school holiday since 2023.</li>\n<li>More than 2,000 people attended the Arts4All Foundation's free Diwali and Navaratri festival at the Unisphere in Queens on October 10, according ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Queens Marked Diwali Early, With 2,000 at the Unisphere and a Wedding at Flushing   <div class=\"key-takeaways\"><ul>\\n<li>Diwali falls on Sunday, November 8, 2026, and Diwali has been recognized as a Ne'; description: ceremony where people are united in marriage"
+  },
+  {
+   "name": "railway junction",
+   "aliases": [
+    "Turnout",
+    "railway junction",
+    "Railroad junction",
+    "rail junction",
+    "turnout"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q336764",
+   "p18_file": "Stazione di Bornato Calino bivio paderno rovato 2008.jpg",
+   "p18_quality": 3072,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "High Turnout Unseats Incumbents in Serbia, Brazil and US Elections   <div class=\"key-takeaways\"><ul><li>Serbia's student-backed Student List won the October 25 snap election with about 53% of the vote, ending 14 years of Serbian Progressive Party rule, according to the Jamestown Foundation and Reuters reporting.</li><li>In Brazil, President Luiz Inacio Lula da Silva won a fourth term in the runoff",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'High Turnout Unseats Incumbents in Serbia, Brazil and US Elections   <div class=\"key-takeaways\"><ul><li>Serbia\\'s student-backed Student List won the October 25 snap election with about 53% of the vote'; description: place at which two or more rail routes converge or diverge"
+  },
+  {
+   "name": "Serbia",
+   "aliases": [
+    "Serbia",
+    "Republic of Serbia",
+    "RS"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q403",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "High Turnout Unseats Incumbents in Serbia, Brazil and US Elections   <div class=\"key-takeaways\"><ul><li>Serbia's student-backed Student List won the October 25 snap election with about 53% of the vote, ending 14 years of Serbian Progressive Party rule, according to the Jamestown Foundation and Reuters reporting.</li><li>In Brazil, President Luiz Inacio Lula da Silva won a fourth term in the runoff",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'High Turnout Unseats Incumbents in Serbia, Brazil and US Elections   <div class=\"key-takeaways\"><ul><li>Serbia\\'s student-backed Student List won the October 25 snap election with about 53% of the vote'; description: country in Southeast Europe"
+  },
+  {
+   "name": "Brazil",
+   "aliases": [
+    "Brazil",
+    "Federative Republic of Brazil"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q155",
+   "p18_file": "Brazil topo.jpg",
+   "p18_quality": 1400,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "High Turnout Unseats Incumbents in Serbia, Brazil and US Elections   <div class=\"key-takeaways\"><ul><li>Serbia's student-backed Student List won the October 25 snap election with about 53% of the vote, ending 14 years of Serbian Progressive Party rule, according to the Jamestown Foundation and Reuters reporting.</li><li>In Brazil, President Luiz Inacio Lula da Silva won a fourth term in the runoff",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'High Turnout Unseats Incumbents in Serbia, Brazil and US Elections   <div class=\"key-takeaways\"><ul><li>Serbia\\'s student-backed Student List won the October 25 snap election with about 53% of the vote'; description: country in South America"
+  },
+  {
+   "name": "Serbian Progressive Party",
+   "aliases": [
+    "Serbian Progressive Party",
+    "SNS"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q253586",
+   "p18_file": "Nikolić & Vučić 2008.jpg",
+   "p18_quality": 600,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "High Turnout Unseats Incumbents in Serbia, Brazil and US Elections   <div class=\"key-takeaways\"><ul><li>Serbia's student-backed Student List won the October 25 snap election with about 53% of the vote, ending 14 years of Serbian Progressive Party rule, according to the Jamestown Foundation and Reuters reporting.</li><li>In Brazil, President Luiz Inacio Lula da Silva won a fourth term in the runoff",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'High Turnout Unseats Incumbents in Serbia, Brazil and US Elections   <div class=\"key-takeaways\"><ul><li>Serbia\\'s student-backed Student List won the October 25 snap election with about 53% of the vote'; description: political party in Serbia"
+  },
+  {
+   "name": "United States Citizenship and Immigration Services",
+   "aliases": [
+    "USCIS",
+    "United States Citizenship and Immigration Services",
+    "U.S. Citizenship and Immigration Services",
+    "Bureau of Citizenship and Immigration Services",
+    "BCIS",
+    "Citizenship and Immigration Services",
+    "U.S. Citizenship & Immigration Services"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q2097315",
+   "p18_file": "U.S. Citizenship and Immigration Service.jpg",
+   "p18_quality": 4320,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "DeSantis Blames Midterm Rout on GOP Failure to 'Shut Off H-1B Visas' Florida's governor called the Republican defeat 'close to an extinction-level event' and faulted Senate Republicans for not ending the H-1B programme — the route used by most Indian tech professionals in the US — while they held Congress. Florida's governor called the Republican defeat 'close to an extinction-level event' and fau",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: \"DeSantis Blames Midterm Rout on GOP Failure to 'Shut Off H-1B Visas' Florida's governor called the Republican defeat 'close to an extinction-level event' and faulted Senate Republicans for not ending \"; description: immigration benefits agency of the United States government"
+  },
+  {
+   "name": "Matthew Forde",
+   "aliases": [
+    "Matthew Forde"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q115880445",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Jangoo, Forde and Mangru Earn Maiden West Indies Central Contracts   <div class=\"key-takeaways\"><ul>\n<li>Cricket West Indies announced 2026-27 retainer contracts on Thursday: 15 senior men, 15 senior women and three men's development deals, running October 1, 2026 to September 30, 2027.</li>\n<li>Matthew Forde, Amir Jangoo and Mandy Mangru earn their first international retainer contracts.</li>\n<li",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Jangoo, Forde and Mangru Earn Maiden West Indies Central Contracts   <div class=\"key-takeaways\"><ul>\\n<li>Cricket West Indies announced 2026-27 retainer contracts on Thursday: 15 senior men, 15 senior '; description: West Indian cricketer"
+  },
+  {
+   "name": "Broadcom",
+   "aliases": [
+    "Broadcom"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q790060",
+   "p18_file": "Broadcom Headquarters San Jose.jpg",
+   "p18_quality": 4824,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Broadcom Sinks 9% as AI Regulation Fears Deepen Chip Rout   <div class=\"key-takeaways\"><ul>\n<li>Broadcom shares fell about 9 percent on Thursday in a broad AI chip rout, with no company-specific news behind the drop.</li>\n<li>Traders blamed fears that Democratic midterm wins will bring tighter AI rules and slower data center construction; the Philadelphia semiconductor index fell more than 10 perc",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Broadcom Sinks 9% as AI Regulation Fears Deepen Chip Rout   <div class=\"key-takeaways\"><ul>\\n<li>Broadcom shares fell about 9 percent on Thursday in a broad AI chip rout, with no company-specific news '; description: American semiconductor company"
+  },
+  {
+   "name": "mayor",
+   "aliases": [
+    "Mayor",
+    "mayor"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q30185",
+   "p18_file": "Femme Maire 2.jpg",
+   "p18_quality": 3529,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Kerala-Born Nithya Raman Unseats Karen Bass to Become Los Angeles Mayor   <div class=\"key-takeaways\"><ul>\n<li>Kerala-born Los Angeles City Council member Nithya Raman, 45, has unseated incumbent Mayor Karen Bass, who conceded on Thursday after news organizations projected Raman's win.</li>\n<li>Raman will be Los Angeles' first Asian American mayor and the first Democratic Socialists of America memb",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Kerala-Born Nithya Raman Unseats Karen Bass to Become Los Angeles Mayor   <div class=\"key-takeaways\"><ul>\\n<li>Kerala-born Los Angeles City Council member Nithya Raman, 45, has unseated incumbent Mayor'; description: head of municipal government such as a town or city"
+  },
+  {
+   "name": "Nithya Raman",
+   "aliases": [
+    "Nithya Raman",
+    "Nithya V. Raman"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q100728314",
+   "p18_file": "Nithya Raman, 2022.jpg",
+   "p18_quality": 2093,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Kerala-Born Nithya Raman Unseats Karen Bass to Become Los Angeles Mayor   <div class=\"key-takeaways\"><ul>\n<li>Kerala-born Los Angeles City Council member Nithya Raman, 45, has unseated incumbent Mayor Karen Bass, who conceded on Thursday after news organizations projected Raman's win.</li>\n<li>Raman will be Los Angeles' first Asian American mayor and the first Democratic Socialists of America memb",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Kerala-Born Nithya Raman Unseats Karen Bass to Become Los Angeles Mayor   <div class=\"key-takeaways\"><ul>\\n<li>Kerala-born Los Angeles City Council member Nithya Raman, 45, has unseated incumbent Mayor'; description: American urban planner and activist (born 1981)"
+  },
+  {
+   "name": "Karen Bass",
+   "aliases": [
+    "Karen Bass",
+    "Karen Ruth Bass"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q461739",
+   "p18_file": "Mayor Karen Bass official portrait.jpg",
+   "p18_quality": 3870,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Kerala-Born Nithya Raman Unseats Karen Bass to Become Los Angeles Mayor The 45-year-old council member will be the city's first Asian American mayor after Bass conceded Thursday, capping a midterm that also sent Amish Shah and Pia Dandiya to Congress. The 45-year-old council member will be the city's first Asian American mayor after Bass conceded Thursday, capping a midterm that also sent Amish Sh",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: \"Kerala-Born Nithya Raman Unseats Karen Bass to Become Los Angeles Mayor The 45-year-old council member will be the city's first Asian American mayor after Bass conceded Thursday, capping a midterm tha\"; description: American politician and 43rd Mayor of Los Angeles"
+  },
+  {
+   "name": "Kerala",
+   "aliases": [
+    "Kerala",
+    "Keralam",
+    "IN-KL",
+    "God's Own Country",
+    "Land of coconuts",
+    "Keral",
+    "Kerla"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1186",
+   "p18_file": "Kerala oli 201837 lrg February 6 2018.jpg",
+   "p18_quality": 3700,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Kerala-Born Nithya Raman Unseats Karen Bass to Become Los Angeles Mayor The 45-year-old council member will be the city's first Asian American mayor after Bass conceded Thursday, capping a midterm that also sent Amish Shah and Pia Dandiya to Congress. The 45-year-old council member will be the city's first Asian American mayor after Bass conceded Thursday, capping a midterm that also sent Amish Sh",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: \"Kerala-Born Nithya Raman Unseats Karen Bass to Become Los Angeles Mayor The 45-year-old council member will be the city's first Asian American mayor after Bass conceded Thursday, capping a midterm tha\"; description: Indian state"
   }
  ]
 }

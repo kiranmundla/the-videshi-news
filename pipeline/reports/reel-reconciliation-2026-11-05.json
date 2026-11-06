@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 230,
-    "db_rows": 167,
-    "db_rows_with_yt_id": 137,
+    "channel_videos": 231,
+    "db_rows": 168,
+    "db_rows_with_yt_id": 138,
     "legacy_log_entries": 205,
-    "publish_log_entries": 50,
-    "in_sync": 116,
+    "publish_log_entries": 51,
+    "in_sync": 117,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 13,
     "ghost_db_rows": 16,
@@ -825,6 +825,13 @@
       "privacy": "public",
       "video_id": "WqTyfKkX7i8",
       "record": "prebuilt_reels:547f609b-7a96-48dc-8c0d-cc34333ba428"
+    },
+    {
+      "title": "Kerala-Born Nithya Raman Unseats Karen Bass to Become Los Angeles Mayor #Shorts #NRI",
+      "published_at": "2026-11-05T23:17:37Z",
+      "privacy": "public",
+      "video_id": "NOVZR1Lp0PU",
+      "record": "prebuilt_reels:8c487c84-6f44-4a4c-b6ed-9520c7fb4211"
     }
   ],
   "unknown_legacy_logged": [
@@ -3786,5 +3793,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-05T11:15:20+00:00"
+  "generated_at": "2026-11-05T23:17:48+00:00"
 }

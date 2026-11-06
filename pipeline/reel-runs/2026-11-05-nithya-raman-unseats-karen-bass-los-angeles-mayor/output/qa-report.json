@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-05-nithya-raman-unseats-karen-bass-los-angeles-mayor/output/nithya-raman-unseats-karen-bass-los-angeles-mayor.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1280,
+        750
+      ],
+      "manifest_dims": [
+        1280,
+        750
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 43.3,
+      "url": "https://media.telanganatoday.com/wp-content/uploads/2026/11/Indian-origin-Nithya-Raman-set-to-win-Los-Angeles-mayoral-race.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-05-nithya-raman-unseats-karen-bass-los-angeles-mayor/output/qa/frames/frame-hook.png",
+      "text_px_detected": 27422,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          477,
+          245,
+          78,
+          104
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-05-nithya-raman-unseats-karen-bass-los-angeles-mayor/output/qa/frames/frame-news.png",
+      "text_px_detected": 39308,
+      "edge": {
+        "pass": true,
+        "offending_px": 78,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          475,
+          242,
+          82,
+          103
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 31.5,
+        "delta": 222.2
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-05-nithya-raman-unseats-karen-bass-los-angeles-mayor/output/qa/frames/frame-hero.png",
+      "text_px_detected": 28614,
+      "edge": {
+        "pass": true,
+        "offending_px": 71,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          474,
+          238,
+          83,
+          105
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.4,
+        "bg_luminance": 34.8,
+        "delta": 217.6
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-05-nithya-raman-unseats-karen-bass-los-angeles-mayor/output/qa/frames/frame-grid.png",
+      "text_px_detected": 46075,
+      "edge": {
+        "pass": true,
+        "offending_px": 9,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.91)",
+        "box": [
+          348,
+          259,
+          373,
+          446
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 112.8,
+        "delta": 140.8
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-05-nithya-raman-unseats-karen-bass-los-angeles-mayor/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 25976,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          455,
+          240,
+          93,
+          125
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-05-nithya-raman-unseats-karen-bass-los-angeles-mayor/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 27621,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          472,
+          226,
+          86,
+          109
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    }
+  ]
+}

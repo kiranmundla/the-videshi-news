@@ -1,0 +1,211 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "desantis-blames-midterm-rout-h1b-visas",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Ron DeSantis",
+    "H-1B",
+    "USCIS",
+    "Senate Republicans",
+    "Shut Off H-",
+    "United States"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Ron DeSantis' named 'Ron DeSantis presidential campaign, 2024', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Shut Off H-' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:H-1B Visa Updates.jpg",
+      "route": "identity \u2014 depicts (P180=Q974595)",
+      "verdict": "USED (news)",
+      "reason": "3375x4219, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:H1-B visa applications.webp",
+      "route": "identity \u2014 depicts (P180=Q974595)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:U.S. Citizenship and Immigration Service.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q2097315)",
+      "verdict": "USED (hero)",
+      "reason": "4320x3240, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:DHS Senior Official Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, Maryland on June 20, 2024 - 1.jpg",
+      "route": "identity \u2014 depicts (P180=Q2097315)",
+      "verdict": "USED (diaspora)",
+      "reason": "3500x2333, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Senate Republicans logo.png",
+      "route": "identity \u2014 depicts (P180=Q3117916)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:United States - Location Map (2013) - USA - UNOCHA.svg",
+      "route": "identity \u2014 Wikidata P18 (Q30)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:American bison in Yellowstone National Park.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:BigRiver.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "rejected",
+      "reason": "blocklist: this file is on the entity's corpus blocklist \u2014 proven wrong for 'United States' in a prior run"
+    },
+    {
+      "candidate": "File:Bodie September 2016 019.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "USED (grid)",
+      "reason": "4280x2940, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Chrysler Building - 05.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "accepted",
+      "reason": "2250x3000, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "h-1b-visa-updates",
+      "path": "h-1b-visa-updates.jpg",
+      "size": [
+        3375,
+        4219
+      ],
+      "role": "establishing",
+      "subject": "From interview mandates to higher fees understand how the new H-1B rules affect your chances.",
+      "route": "identity \u2014 depicts (P180=Q974595)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:H-1B_Visa_Updates.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/H-1B_Visa_Updates.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Immigrationconsultantcalifornia",
+      "entity": "H-1B",
+      "entity_type": "other",
+      "entity_aliases": [
+        "H-1B",
+        "H-1B visa",
+        "H1-B",
+        "H1B",
+        "h1b"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "u-s-citizenship-and-immigration-service",
+      "path": "u-s-citizenship-and-immigration-service.jpg",
+      "size": [
+        4320,
+        3240
+      ],
+      "role": "establishing",
+      "subject": "Northlake area - DeKalb County, Georgia",
+      "route": "identity \u2014 Wikidata P18 (Q2097315)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:U.S._Citizenship_and_Immigration_Service.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/88/U.S._Citizenship_and_Immigration_Service.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Gulbenk",
+      "entity": "USCIS",
+      "entity_type": "other",
+      "entity_aliases": [
+        "USCIS",
+        "U.S. Citizenship and Immigration Services",
+        "Bureau of Citizenship and Immigration Services",
+        "BCIS",
+        "Citizenship and Immigration Services",
+        "U.S. Citizenship & Immigration Services"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "bodie-september-2016-019",
+      "path": "bodie-september-2016-019.jpg",
+      "size": [
+        4280,
+        2940
+      ],
+      "role": "establishing",
+      "subject": "County Barn, Bodie , California .",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Bodie_September_2016_019.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Bodie_September_2016_019.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "King of Hearts",
+      "entity": "United States",
+      "entity_type": "other",
+      "entity_aliases": [
+        "United States",
+        "the States",
+        "the United States of America",
+        "US of America",
+        "the US",
+        "the U.S.",
+        "the US of A",
+        "U.S. of America",
+        "the US of America",
+        "the USA",
+        "the U.S.A.",
+        "the U.S. of A",
+        "US of A",
+        "the U.S. of America",
+        "the United States",
+        "Merica",
+        "Murica",
+        "U. S.",
+        "U. S. A.",
+        "United States of America",
+        "'Murica"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "dhs-senior-official-kristie-canegallo-attend",
+      "path": "dhs-senior-official-kristie-canegallo-attend.jpg",
+      "size": [
+        3500,
+        2333
+      ],
+      "role": "interior",
+      "subject": "CAMP SPRINGS (June 20, 2024) Department of Homeland Security (DHS), Senior Official Performing the Duties of the Deputy Secretary, Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, M.D. (DHS ph",
+      "route": "identity \u2014 depicts (P180=Q2097315)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:DHS_Senior_Official_Kristie_Canegallo,_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs,_Maryland_on_June_20,_2024_-_1.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/DHS_Senior_Official_Kristie_Canegallo%2C_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs%2C_Maryland_on_June_20%2C_2024_-_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "DHSgov",
+      "entity": "USCIS",
+      "entity_type": "other",
+      "entity_aliases": [
+        "USCIS",
+        "U.S. Citizenship and Immigration Services",
+        "Bureau of Citizenship and Immigration Services",
+        "BCIS",
+        "Citizenship and Immigration Services",
+        "U.S. Citizenship & Immigration Services"
+      ]
+    }
+  ]
+}

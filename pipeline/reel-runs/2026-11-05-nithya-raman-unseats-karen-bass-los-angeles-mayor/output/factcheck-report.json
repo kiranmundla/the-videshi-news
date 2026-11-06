@@ -1,0 +1,270 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "nithya-raman-unseats-karen-bass-los-angeles-mayor",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "KERALA-BORN NITHYA RAMAN UNSEATS KAREN BASS TO BECOME LOS ANGELES MAYOR",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Raman unseated Bass to become Los Angeles mayor.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Kerala-born Los Angeles City Council member Nithya Raman, 45, has unseated incumbent Mayor Karen Bass, who conceded on Thursday after news organizations projected Raman's win.",
+      "numbers": [
+        45.0
+      ],
+      "entities": [
+        "Kerala-born Los Angeles City Council",
+        "Nithya Raman",
+        "Mayor Karen Bass"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about Raman, Bass, and the election are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "51.67%",
+      "numbers": [
+        51.67
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This percentage reflects Raman's lead in the county returns.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Raman's share in county returns Wednesday afternoon",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Raman's share was reported as 51.67% in county returns.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "ELECTIONS 2026",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "48.33%",
+      "numbers": [
+        48.33
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This percentage reflects Bass's share in the county returns.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Karen Bass's share in the same county returns",
+      "numbers": [],
+      "entities": [
+        "Karen Bass's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Bass's share was reported as 48.33% in county returns.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "405,193",
+      "numbers": [
+        405193.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the number of votes for Raman in the county returns.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Votes for Raman in those county returns",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "405,193 votes were reported for Raman.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "45",
+      "numbers": [
+        45.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Raman's age is stated as 45 in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Raman's age \u2014 Los Angeles City Council member",
+      "numbers": [],
+      "entities": [
+        "Los Angeles City Council"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Raman is identified as 45 years old.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Los Angeles' first Asian American mayor",
+      "numbers": [],
+      "entities": [
+        "Los Angeles'",
+        "Asian American"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Raman is confirmed as the first Asian American mayor of Los Angeles.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Born in Kerala, she came to the United States at age six",
+      "numbers": [],
+      "entities": [
+        "United States"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Raman's background includes being born in Kerala and moving at age six.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Raman is the first Democratic Socialists of America member to lead Los Angeles.",
+      "numbers": [],
+      "entities": [
+        "Democratic Socialists",
+        "Los Angeles"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Raman is noted as the first DSA member to lead Los Angeles.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "ELECTIONS 2026",
+    "ok": true,
+    "detail": "ELECTIONS <grounded year>"
+  },
+  "key_entities": [
+    {
+      "entity": "Nithya Raman",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Karen Bass",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Los Angeles",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Kerala",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000741,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

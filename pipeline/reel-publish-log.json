@@ -667,5 +667,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "NOVZR1Lp0PU",
+    "article_slug": "nithya-raman-unseats-karen-bass-los-angeles-mayor",
+    "article_id": "8822b37f-3a0d-4b00-9e85-16a7d0260f01",
+    "title": "Kerala-Born Nithya Raman Unseats Karen Bass to Become Los Angeles Mayor #Shorts #NRI",
+    "privacy": "public",
+    "uploaded_at": "2026-11-05T23:16:31.615532+00:00",
+    "video_path": "reel-runs/2026-11-05-nithya-raman-unseats-karen-bass-los-angeles-mayor/output/nithya-raman-unseats-karen-bass-los-angeles-mayor.mp4",
+    "video_sha256": "30aaa02cfbe8dd9063e55217d83a3018f330b63a983fd939a4ab7f4c2d25b157",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

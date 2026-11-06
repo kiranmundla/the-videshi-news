@@ -1,0 +1,219 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-05-desantis-blames-midterm-rout-h1b-visas/output/desantis-blames-midterm-rout-h1b-visas.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:grid",
+    "edge_overflow:diaspora"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1280,
+        720
+      ],
+      "manifest_dims": [
+        1280,
+        720
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 386.0,
+      "url": "https://static.foxnews.com/foxnews.com/content/uploads/2026/02/florida-governor-ron-desantis-gives-thumbs-up-april-2025.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-05-desantis-blames-midterm-rout-h1b-visas/output/qa/frames/frame-hook.png",
+      "text_px_detected": 25122,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          450,
+          222,
+          148,
+          189
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-05-desantis-blames-midterm-rout-h1b-visas/output/qa/frames/frame-news.png",
+      "text_px_detected": 36446,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          446,
+          224,
+          151,
+          192
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 165.6,
+        "delta": 88.3
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-05-desantis-blames-midterm-rout-h1b-visas/output/qa/frames/frame-hero.png",
+      "text_px_detected": 28318,
+      "edge": {
+        "pass": true,
+        "offending_px": 397,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          445,
+          220,
+          153,
+          194
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 48.1,
+        "delta": 205.4
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-05-desantis-blames-midterm-rout-h1b-visas/output/qa/frames/frame-grid.png",
+      "text_px_detected": 63788,
+      "edge": {
+        "pass": false,
+        "offending_px": 1014,
+        "clusters": 3,
+        "largest_cluster": 163
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          443,
+          215,
+          155,
+          196
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 10.2,
+        "delta": 243.4
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-05-desantis-blames-midterm-rout-h1b-visas/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 43554,
+      "edge": {
+        "pass": false,
+        "offending_px": 339,
+        "clusters": 1,
+        "largest_cluster": 143
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.73)",
+        "box": [
+          695,
+          701,
+          69,
+          111
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 46.8,
+        "delta": 207.3
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-05-desantis-blames-midterm-rout-h1b-visas/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 25087,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          441,
+          206,
+          159,
+          201
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    }
+  ]
+}

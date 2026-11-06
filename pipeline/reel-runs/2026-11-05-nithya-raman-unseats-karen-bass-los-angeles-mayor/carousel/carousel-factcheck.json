@@ -1,0 +1,155 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "nithya-raman-unseats-karen-bass-los-angeles-mayor",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Kerala-Born Nithya Raman Unseats Karen Bass to Become Los Angeles Mayor",
+        "numbers": [],
+        "entities": [
+          "Kerala-Born Nithya Raman Unseats Karen Bass",
+          "Become Los Angeles Mayor"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Raman unseated Bass to become Los Angeles mayor.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The 45-year-old council member will be the city's first Asian American mayor after Bass conceded Thursday, capping a midterm that also sent Amish Shah and Pia Dandiya to Congress.",
+        "numbers": [
+          45.0
+        ],
+        "entities": [
+          "Asian American",
+          "Amish Shah",
+          "Pia Dandiya"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Raman is the first Asian American mayor; Bass conceded on Thursday.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "County returns on Wednesday afternoon put Raman ahead 51.67 percent to 48.33 percent, with 405,193 votes against Bass's 379,069",
+        "numbers": [
+          48.33,
+          51.67,
+          379069.0,
+          405193.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "County returns showed Raman at 51.67% and Bass at 48.33%.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Born in Kerala in 1981, Raman came to the United States at age six and graduated from Harvard in 2003",
+        "numbers": [
+          1981.0,
+          2003.0
+        ],
+        "entities": [
+          "United States"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            1981,
+            2003
+          ]
+        },
+        "llm_reason": "Raman was born in 1981, came to the US at six, and graduated Harvard in 2003.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "In 2020 she unseated Councilmember David Ryu in the 4th District, becoming the first South Asian elected to the City Council",
+        "numbers": [
+          4.0,
+          2020.0
+        ],
+        "entities": [
+          "Councilmember David Ryu",
+          "South Asian",
+          "City Council"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2020
+          ]
+        },
+        "llm_reason": "Raman unseated Ryu in 2020, becoming the first South Asian on the council.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Kerala-Born Nithya Raman Unseats Karen Bass to Become Los Angeles Mayor",
+        "numbers": [],
+        "entities": [
+          "Kerala-Born Nithya Raman Unseats Karen Bass",
+          "Become Los Angeles Mayor"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Raman unseated Bass to become Los Angeles mayor.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000562,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

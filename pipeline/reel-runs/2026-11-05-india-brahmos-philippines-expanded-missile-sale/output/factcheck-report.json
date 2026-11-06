@@ -1,0 +1,270 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "india-brahmos-philippines-expanded-missile-sale-final-stage-talks",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA IN FINAL-STAGE TALKS ON EXPANDED BRAHMOS MISSILE SALE TO PHILIPPINES",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states India is in final-stage talks for expanded sale.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "India is in final-stage talks to expand its BrahMos missile sale to the Philippines, with Manila expected to buy about five systems \u2014 nearly 60 missiles worth $700 million to $800 million, three sources told Reuters.",
+      "numbers": [
+        60.0,
+        700.0,
+        800.0,
+        700000000.0,
+        800000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about talks, systems, missiles, and value are in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "NEARLY 60",
+      "numbers": [
+        60.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article mentions nearly 60 missiles expected in the deal.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Missiles in about five BrahMos systems the Philippines is expected to buy",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms five systems with nearly 60 missiles.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$700 MILLION TO $800 MILLION",
+      "numbers": [
+        700.0,
+        800.0,
+        700000000.0,
+        800000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states the deal is potentially worth $700 million to $800 million.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Potential value of the expected Philippine deal",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Value of the deal is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$375 MILLION",
+      "numbers": [
+        375.0,
+        375000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states the previous order was $375 million.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Philippines' 2022 BrahMos order for naval use",
+      "numbers": [
+        2022.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2022
+        ]
+      },
+      "llm_reason": "Previous order details are included in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "62%",
+      "numbers": [
+        62.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article mentions a 62% increase in India's defence exports.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Jump in India's defence exports in the fiscal year to March",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses the increase in defence exports.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Manila is modernising its coastal defences as tensions rise in the South China Sea",
+      "numbers": [],
+      "entities": [
+        "South China Sea"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states Manila is modernising due to tensions in the region.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Philippine Defence Secretary Gilberto Teodoro said Manila hopes to secure more BrahMos units",
+      "numbers": [],
+      "entities": [
+        "Philippine Defence Secretary Gilberto Teodoro"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Teodoro's statement about securing more units is in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "A signed deal would be one of the largest single orders behind India's defence export growth.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article indicates the deal's significance for India's defence exports.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "BrahMos",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Philippines",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Reuters",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Gilberto Teodoro",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "South China Sea",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000675,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}
