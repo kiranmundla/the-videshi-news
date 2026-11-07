@@ -288,5 +288,15 @@
     "quick_hit_count": 5,
     "deadline_count": 1,
     "chars": 2445
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-06T15:13:09.986452+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 06 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "seaport-museum-diwali-celebration-new-york-november-10",
+    "quick_hit_count": 5,
+    "deadline_count": 2,
+    "chars": 2490
   }
 ]

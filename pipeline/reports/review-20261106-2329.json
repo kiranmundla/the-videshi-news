@@ -1,0 +1,60 @@
+[
+  {
+    "id": "14202476-b9bf-431c-88ae-a28c70029a7f",
+    "headline": "Don't Trouble The Trouble \u2013 Fahadh Faasil Trailer Out",
+    "slug": "don-t-trouble-the-trouble-fahadh-faasil-trailer-out",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Ensure the headline follows the exact format 'Film Teaser/Trailer Out' for consistency.",
+        "Consider removing the repetitive mention of the trailer drop date in the body since it is already stated in the headline."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "b8f29c4c-24f9-4b43-8294-80da7c9392b5",
+    "headline": "Charter Communications Q3 Results: Revenue Rises to $14.92 Billion as Impairment",
+    "slug": "charter-communications-q3-results-revenue-impairment-loss",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the Cox Communications acquisition and its impact on revenue figures, as the current explanation may confuse readers unfamiliar with the details.",
+        "Include specific details about the new operating model targeting $2 billion in annualized expense savings, such as what areas will be targeted for these savings and any expected impacts on employees or services.",
+        "Provide context on how the $6.33 billion non-cash franchise impairment charge compares to industry standards or previous impairments, which would help readers understand the significance of this figure."
+      ],
+      "embed_opportunities": [
+        "Embed the official Charter Communications press release or a relevant financial report link for readers seeking more detailed information."
+      ]
+    }
+  },
+  {
+    "id": "a2596b2c-a254-497e-a11e-b055a1dbcdd2",
+    "headline": "Airbnb Earnings Beat Estimates as Revenue Rises 19% to $4.87 Billion in Q3 Resul",
+    "slug": "airbnb-q3-earnings-beat-revenue-4-87-billion-results",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the raised full-year 2026 outlook by specifying what 'high teens' revenue growth means in terms of percentage range.",
+        "Include more context about the significance of the earnings beat and raised guidance, such as how this compares to previous quarters or the overall market trend in the travel and hospitality sector.",
+        "Provide a clearer breakdown of the factors contributing to the growth in gross booking value and nights booked, such as specific regions or demographics that are driving this increase.",
+        "Ensure consistency in reporting dates; the article mentions the third quarter ended September 30, 2026, which is likely a typo, as it should refer to 2023."
+      ],
+      "embed_opportunities": [
+        "Embed the official Airbnb earnings call transcript or a relevant tweet from Airbnb's official account summarizing the key points from the earnings report."
+      ]
+    }
+  }
+]

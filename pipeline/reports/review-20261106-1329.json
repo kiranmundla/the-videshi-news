@@ -1,0 +1,168 @@
+[
+  {
+    "id": "710db8ea-0af0-41ea-9ca1-cc6267d7c096",
+    "headline": "Kaju Katli for Diwali: Cashew, Sugar and Ghee, Cut Into Diamonds",
+    "slug": "kaju-katli-recipe-cashews-ghee-diwali",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the cooking times and temperatures for the sugar syrup to ensure readers can achieve the correct consistency. For example, specify the heat level (medium, low) during syrup preparation.",
+        "Include a brief note on the cultural significance of Kaju Katli during Diwali to provide context for readers who may not be familiar with the tradition.",
+        "Add a section on common mistakes to avoid when making Kaju Katli, such as over-grinding cashews or not achieving the right syrup consistency, to enhance completeness.",
+        "Provide a clearer structure by breaking the recipe into distinct sections (Ingredients, Method, Tips) to improve readability and user-friendliness."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "2a4ed877-9217-4342-9d25-f1b3ee5d1257",
+    "headline": "Diljit Dosanjh to Perform at Latin Grammy Awards in Las Vegas on November 12",
+    "slug": "diljit-dosanjh-perform-latin-grammy-awards-2026-las-vegas",
+    "category": "entertainment",
+    "structural_issues": [
+      "Inline caption names venue 'Camar\u00f3n Legend Museum' not supported by the image file name (Latin_Grammy.jpg\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the event by correcting 'November 12, 2026' to 'November 12, 2026' to ensure accuracy, as the current date is likely incorrect based on the context of the announcement.",
+        "Provide more context about the significance of Diljit Dosanjh's performance at the Latin Grammy Awards, such as the impact on Punjabi music's visibility in the Latin music scene.",
+        "Include a quote from Diljit Dosanjh or a representative to add a personal touch and enhance the article's depth."
+      ],
+      "embed_opportunities": [
+        "Embed the official Latin Grammy Awards announcement tweet to provide readers with direct access to the source of the news."
+      ]
+    }
+  },
+  {
+    "id": "66a111b8-4107-48da-8977-b0787f6b214d",
+    "headline": "Maharashtra FDA Seizes Rs 44.37 Crore of Food Stock in Diwali Drive, Suspends 32",
+    "slug": "maharashtra-fda-diwali-drive-seizes-44-crore-suspends-326",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the inspections by specifying the exact dates for the wider operation mentioned (September 1 - November 3) and how they relate to the Diwali drive (October 15 - November 3). This will help readers understand the scope and duration of the enforcement actions better.",
+        "Include a statement from an FDA official or a relevant authority to provide attribution and enhance credibility. This could be a quote about the importance of food safety during the festival season.",
+        "Add specific details about the types of violations that led to the suspension of licenses. This would provide readers with a clearer understanding of what constitutes a violation in this context."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official statement from the Maharashtra FDA regarding the Diwali drive to provide direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "392f194d-06b2-45fc-b728-8469a1205309",
+    "headline": "Rupee Closes at Six-Month High as Foreign Investors Return to Indian Equities",
+    "slug": "rupee-six-month-high-93-90-foreign-investors-return",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the rupee's performance by specifying the exact dates for the record low of 96.96 and the closing value of 93.9050. This will provide readers with a clearer context of the rupee's fluctuations over time.",
+        "Include a direct quote from a financial analyst or economist regarding the implications of foreign investment returning to Indian equities. This would enhance the article's credibility and provide expert insight into the situation.",
+        "Add a brief explanation of how the changes in crude oil prices and the US dollar's performance specifically impact the Indian economy and the rupee's value. This would provide readers with a deeper understanding of the economic factors at play.",
+        "Ensure that the article maintains a consistent structure by clearly separating the sections discussing the rupee's performance, the factors driving its recovery, and the implications for investors. This will improve readability and comprehension."
+      ],
+      "embed_opportunities": [
+        "Embed the official Reuters tweet or report regarding the foreign investment figures to provide readers with a direct source of the information."
+      ]
+    }
+  },
+  {
+    "id": "5a71c672-5b8a-423b-8630-4489cf35e34e",
+    "headline": "India Waives $25 OCI Passport-Update Penalty Until December 31, 2026",
+    "slug": "oci-passport-update-25-dollar-late-fee-waived-december-31",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Clarify the timeline for the waiver by explicitly stating that updates must be submitted between November 1, 2026, and December 31, 2026, to avoid confusion with the current year.",
+        "Add a direct quote from a government official or a credible source to enhance attribution and provide authority to the information presented.",
+        "Include a brief explanation of the implications for OCI holders who fail to update their passport details within the specified timeframe, such as potential travel disruptions or additional fees after the waiver period ends."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from the Government of India regarding the waiver for more authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "23876e04-0066-4f00-bf2b-142af0fc383c",
+    "headline": "Tech Mahindra Moves to Lift Pininfarina Stake to 92.59% in \u20ac9.46 Million Tender",
+    "slug": "tech-mahindra-pininfarina-stake-92-59-tender-delisting",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the completion of the transaction. While the article mentions an indicative close on or before December 31, 2026, it would be helpful to specify what steps need to be taken before this date and any potential implications for shareholders during this period.",
+        "Provide more context on the significance of the 92.59% stake in Pininfarina. Explain why this percentage is strategically important for Tech Mahindra and what it means for their future operations or market position.",
+        "Include a quote from a company spokesperson or a financial analyst to provide expert insight into the implications of this acquisition for Tech Mahindra and Pininfarina."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or regulatory filing from Tech Mahindra regarding the tender offer to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "e46c721e-0dbd-4520-b49e-3de22782b719",
+    "headline": "Jaypal Malviya Wins World Silver, Secures India's First LA 2028 Quota",
+    "slug": "jaypal-malviya-issf-silver-india-first-la-2028-quota",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the quota place for readers unfamiliar with Olympic qualification processes. Explain how this impacts India's chances at the LA 2028 Olympics and what the selection trials entail.",
+        "Include a brief background on Jaypal Malviya for context, such as his previous achievements or how he rose to prominence in the sport, to enhance reader understanding.",
+        "Ensure the date of the event is accurate; the article states November 5, but it should be verified whether this aligns with the actual date of the championship.",
+        "Provide a more detailed breakdown of the scoring system used in the competition to help readers understand how Malviya achieved his score of 242.2."
+      ],
+      "embed_opportunities": [
+        "Embed the official ISSF tweet announcing the results of the men's 10m air pistol event to provide readers with immediate access to official updates."
+      ]
+    }
+  },
+  {
+    "id": "74c128e4-9270-4a8b-b08d-e38671c89610",
+    "headline": "Rajasthan Royals, Lucknow Super Giants in Talks Over Multi-Player Trade",
+    "slug": "rajasthan-royals-lucknow-super-giants-multi-player-trade-talks-ipl-2027",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific players involved in the trade discussions if possible, or at least provide context on the types of players being considered. This would enhance the completeness of the article.",
+        "Include a brief explanation of the implications of the trade for both teams, particularly how it might affect their performance in the upcoming IPL season. This would add depth to the article.",
+        "Ensure that the article maintains a consistent structure by avoiding repetition. The mention of the trade being 'agreed in principle' appears multiple times and could be streamlined for clarity.",
+        "Add a quote from a credible source or official statement from either franchise to enhance attribution and credibility."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Cricbuzz or an official IPL account that discusses the trade talks for real-time updates and verification."
+      ]
+    }
+  },
+  {
+    "id": "da2dd9d9-367e-41f0-9223-bf9276926d1e",
+    "headline": "GRAP-III Curbs Imposed in Delhi-NCR as Air Nears Severe Ahead of Diwali",
+    "slug": "grap-3-curbs-delhi-ncr-severe-air-diwali",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date mentioned in the article; November 6, 2026, appears to be incorrect as it is currently 2023. This could confuse readers about the timeliness of the report.",
+        "Include specific details about the penalties or consequences for non-compliance with the GRAP Stage III measures to provide readers with actionable information.",
+        "Provide a brief explanation of what GRAP Stage III entails for readers who may not be familiar with the term, enhancing the completeness of the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official CAQM announcement or relevant tweet about the invocation of GRAP Stage III for authenticity and direct access to official information."
+      ]
+    }
+  }
+]

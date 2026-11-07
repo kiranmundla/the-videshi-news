@@ -1,0 +1,193 @@
+[
+  {
+    "id": "1e9b6394-0f59-401e-a784-2d24abe2f5d3",
+    "headline": "Maharashtra FDA Suspends 105 Food Licences In Pre-Diwali Drive, Seizes Rs 1.35 C",
+    "slug": "maharashtra-fda-suspends-105-food-licences-diwali-seizes-1-35-crore",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the inspection drive by specifying the exact dates and duration of the inspections, as well as any future enforcement actions planned by the FDA.",
+        "Provide more context on the significance of the seized food items, such as potential health risks associated with the products or previous violations by the suspended establishments, to enhance reader understanding.",
+        "Include a direct quote from a representative of the Maharashtra FDA or a relevant expert to add authority and depth to the reporting.",
+        "Specify the consequences for the suspended establishments, such as the duration of the suspension or the process for reinstatement, to inform readers about the implications of the FDA's actions."
+      ],
+      "embed_opportunities": [
+        "Embed the official Maharashtra FDA statement or a relevant tweet from their official account regarding the inspection drive for authenticity and direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "cb197d8d-6977-46c7-a26a-c3e0ee7d514c",
+    "headline": "Ready-To-Drink Cocktails Move Into India's Deepavali Party Season",
+    "slug": "ready-to-drink-cocktails-india-deepavali-party-season",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline for the RTD market growth by correcting the year references; the article states the market crossed $200 million in value in 2025, but the current date appears to be in 2026. Ensure consistency in the timeline to avoid confusion.",
+        "Provide specific pricing information for the new products launched by Diageo India, such as the retail price of Smirnoff ICE and Smirnoff ICE MAX, to give readers a clearer understanding of the market.",
+        "Include a brief explanation of the implications of state-by-state alcohol regulations on the availability and pricing of RTD cocktails, as this is a significant factor influencing consumer access."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or announcement from Diageo India regarding the launch of Smirnoff ICE to provide official confirmation and additional context."
+      ]
+    }
+  },
+  {
+    "id": "be4f5755-94ab-44e5-b2cc-38e430985f5e",
+    "headline": "Deepavali 2026: Green Crackers Allowed In Delhi-NCR In Two Daily Slots",
+    "slug": "deepavali-2026-supreme-court-green-crackers-delhi-ncr-time-slots",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by explicitly stating that the complete ban on firecrackers resumes on November 9, 2026, to avoid confusion about the duration of the permitted use of green crackers.",
+        "Include specific details about the types of green crackers that are allowed, such as examples or links to the CSIR-NEERI website for readers to verify which products are certified.",
+        "Ensure that the article includes a brief explanation of the health and environmental implications of using green crackers versus traditional ones, as this context may be important for readers.",
+        "Reorganize the content to improve flow, starting with the Supreme Court's decision, followed by the specifics of the permitted use, and concluding with the restrictions and implications for residents. This will enhance clarity and comprehension."
+      ],
+      "embed_opportunities": [
+        "Embed the official Supreme Court ruling or a relevant government announcement regarding the decision on green crackers to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "ac4ab791-3ac7-4465-a673-02b065130886",
+    "headline": "Diwali Arrives With Worsening Air: How To Celebrate More Safely",
+    "slug": "diwali-worsening-air-how-to-stay-safer-aqi-masks",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by explicitly stating the date of Diwali in the introduction to help readers understand the urgency of the air quality issue as it relates to the festival.",
+        "Include specific AQI readings or examples of how they translate into health risks for different groups, such as providing a clear example of what an AQI of 300 means for outdoor activities.",
+        "Add a brief mention of local government or health authority recommendations or actions regarding firecracker use and air quality during Diwali to provide context on official responses to the issue.",
+        "Ensure that the article concludes with a clear summary of actionable steps readers can take to protect themselves during Diwali celebrations, such as specific times to avoid outdoor activities based on AQI forecasts."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a local health authority or environmental organization that provides real-time AQI updates or safety tips for Diwali celebrations."
+      ]
+    }
+  },
+  {
+    "id": "0ae606b1-20b8-4ac3-810a-be6faf14477e",
+    "headline": "Diwali Enters State Capitols And City Halls Across Pacific Northwest",
+    "slug": "diwali-state-capitols-city-halls-pacific-northwest-white-house",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by providing specific dates for the Diwali celebrations in Idaho, Nebraska, Montana, North Dakota, and Washington, as well as the upcoming event in Oregon. This will help readers understand the sequence of events and their significance.",
+        "Include direct quotes from the governors or community leaders involved in the celebrations to enhance attribution and provide a more personal touch to the reporting.",
+        "Add context about the significance of Diwali celebrations in state capitols, such as how this reflects changing attitudes towards cultural recognition in government, which may be of interest to readers.",
+        "Ensure that the article maintains a clear structure by organizing the information chronologically or thematically, which will improve readability and comprehension."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Consulate General of India in Seattle or a relevant government official highlighting the celebrations, which would provide official acknowledgment and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "9940302c-33de-4b2e-8ff2-390f9763ac79",
+    "headline": "Khalid Jamil Names 23-Man India Squad For New Zealand Friendlies",
+    "slug": "khalid-jamil-india-squad-new-zealand-friendlies-gurpreet-out",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the dates of the matches; the article mentions November 12 and November 15, but it should specify the year (2023) to avoid confusion, especially since the article is published in November.",
+        "Provide more context about the significance of the matches against New Zealand, such as the implications for India's ranking or preparation for upcoming tournaments, to enhance completeness.",
+        "Include a direct quote from Khalid Jamil regarding the squad selection or strategy for the matches to improve attribution and depth."
+      ],
+      "embed_opportunities": [
+        "Embed the official AIFF tweet announcing the squad to provide readers with a direct source of information."
+      ]
+    }
+  },
+  {
+    "id": "514ad3d8-dd57-419d-b10a-fd57392b4e99",
+    "headline": "Sehwag's 70 Not Out Powers India U-19 To 10-Wicket Win Over Nepal",
+    "slug": "aaryavir-sehwag-70-india-u19-beat-nepal-10-wickets-asia-cup",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the date of the match clearly at the beginning of the article. The current mention of 'Friday, November 6' could be confusing if the article is read after that date.",
+        "Include a brief summary of the implications of this win for India's standings in the tournament, such as how many matches they have left and what they need to do to secure a spot in the next round.",
+        "Provide context on the significance of the U-19 Asia Cup and its importance for the players' careers, which would enhance the completeness of the article.",
+        "Ensure consistent attribution for all statistics and quotes. For example, clarify which source provided the information about Sehwag's performance and the match details."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ACC Men's U-19 Asia Cup account or a relevant cricket news account that highlights the match result or key performances."
+      ]
+    }
+  },
+  {
+    "id": "9bbd3af5-4212-4535-b3c9-c5ca838dcc49",
+    "headline": "Australia Student Visa Changes Split Families and Force Offshore Applications",
+    "slug": "australia-student-visa-changes-families-offshore-2026",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the changes by specifying that the new rules took effect on 2 October 2026, which is a future date, and ensure that this is clearly stated to avoid confusion about when the changes are applicable.",
+        "Include specific examples of the exempt cases for including family members in the visa application to provide clarity on who qualifies and to help readers understand their options better.",
+        "Add a quote or statement from a relevant authority, such as a representative from the Department of Home Affairs or an immigration expert, to enhance the credibility of the information presented and provide authoritative context."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet or announcement from the Australian Department of Home Affairs regarding the visa changes to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "8e617d49-2f7c-47a0-b7c3-5041165d7d2e",
+    "headline": "UK Budget 2026: Lower Going Rates, Two-Year Graduate Visa for Some",
+    "slug": "uk-budget-2026-skilled-worker-graduate-hpi-visa-changes",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for when the new Skilled Worker occupation-specific going rates will take effect and how they will be calculated, including any specific dates for when the new \u00a341,700 figure will be announced.",
+        "Provide a clearer explanation of what 'high-compliance universities with strong labour market outcomes' means, possibly including examples or criteria for these universities to enhance reader understanding.",
+        "Include a brief summary of the implications of these changes for potential applicants, such as how they might affect visa applications or job prospects, to give readers a concrete takeaway."
+      ],
+      "embed_opportunities": [
+        "Embed the official UK government announcement or tweet regarding the Budget 2026 for authenticity and direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "ccfac388-f81c-4e07-8aa3-c4c447eedd83",
+    "headline": "US Visa Curbs Push Indian IT Firms Toward Offshore Hiring, Analysts Say",
+    "slug": "us-visa-curbs-indian-it-offshore-hiring-perm-h1b",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the $100,000 payment requirement for prospective H-1B hires, including details on how this payment is to be made and any deadlines for filing petitions.",
+        "Provide a clearer timeline or context regarding the PERM suspension, such as when it is expected to be lifted or if there are any ongoing discussions about it.",
+        "Include a brief quote or statement from a relevant authority or expert to enhance the article's credibility and provide additional context on the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS announcement regarding the new H-1B payment requirement for better transparency and direct access to primary sources."
+      ]
+    }
+  }
+]

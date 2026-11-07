@@ -1,0 +1,153 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Nvidia",
+    "AMD",
+    "Micron",
+    "Philadelphia Semiconductor Index",
+    "J. Gold Associates",
+    "Jack Gold"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Micron' named 'Micron Technology', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Philadelphia Semiconductor Index' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'J. Gold Associates' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:NVIDIA Headquarters.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q182477)",
+      "verdict": "USED (grid)",
+      "reason": "4662x2852, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:CeBIT 2005 Nvidia Stand.jpg",
+      "route": "identity \u2014 depicts (P180=Q182477)",
+      "verdict": "USED (news)",
+      "reason": "2560x1920, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2485 Augustine Drive headquarters in Santa Clara, California.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q128896)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:AMD@16nm@Jaguar Polaris APU@Scorpio@XBoxOneX@DG5700GDA87IE 1721SUT 9GW3448T70061 DSC00860-DSC00860 (51096228313).jpg",
+      "route": "identity \u2014 depicts (P180=Q128896)",
+      "verdict": "USED (hero)",
+      "reason": "5943x4000, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:AMD Athlon XP Palomino.Jpg",
+      "route": "identity \u2014 depicts (P180=Q128896)",
+      "verdict": "USED (diaspora)",
+      "reason": "4206x2804, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "cebit-2005-nvidia-stand",
+      "path": "cebit-2005-nvidia-stand.jpg",
+      "size": [
+        2560,
+        1920
+      ],
+      "role": "establishing",
+      "subject": "CeBIT 2005 Nvidia Stand",
+      "route": "identity \u2014 depicts (P180=Q182477)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:CeBIT_2005_Nvidia_Stand.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/CeBIT_2005_Nvidia_Stand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Strubbl",
+      "entity": "Nvidia",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Nvidia"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "amd-16nm-jaguar-polaris-apu-scorpio-xboxonex",
+      "path": "amd-16nm-jaguar-polaris-apu-scorpio-xboxonex.jpg",
+      "size": [
+        5943,
+        4000
+      ],
+      "role": "establishing",
+      "subject": "AMD 16nm Jaguar Polaris APU Scorpio XBox One X CPU.",
+      "route": "identity \u2014 depicts (P180=Q128896)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:AMD@16nm@Jaguar_Polaris_APU@Scorpio@XBoxOneX@DG5700GDA87IE_1721SUT_9GW3448T70061_DSC00860-DSC00860_(51096228313).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/AMD%4016nm%40Jaguar_Polaris_APU%40Scorpio%40XBoxOneX%40DG5700GDA87IE_1721SUT_9GW3448T70061_DSC00860-DSC00860_%2851096228313%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Fritzchens Fritz from Berlin",
+      "entity": "AMD",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Advanced Micro Devices"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "nvidia-headquarters",
+      "path": "nvidia-headquarters.jpg",
+      "size": [
+        4662,
+        2852
+      ],
+      "role": "establishing",
+      "subject": "Nvidia headquarters in Santa Clara, California. Photographed by user Coolcaesar on August 4, 2018.",
+      "route": "identity \u2014 Wikidata P18 (Q182477)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:NVIDIA_Headquarters.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/NVIDIA_Headquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Coolcaesar",
+      "entity": "Nvidia",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Nvidia"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "amd-athlon-xp-palomino",
+      "path": "amd-athlon-xp-palomino.jpg",
+      "size": [
+        4206,
+        2804
+      ],
+      "role": "establishing",
+      "subject": "AMD Athlon XP 1700+ processor",
+      "route": "identity \u2014 depicts (P180=Q128896)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:AMD_Athlon_XP_Palomino.Jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/AMD_Athlon_XP_Palomino.Jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 3.0",
+      "artist": "Matthieu Riegler English : This photo has been taken by Matthieu Riegler ( User:",
+      "entity": "AMD",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Advanced Micro Devices"
+      ]
+    }
+  ]
+}

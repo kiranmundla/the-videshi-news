@@ -1,0 +1,37 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "jaypal-malviya-issf-silver-india-first-la-2028-quota",
+  "name": "jaypal-malviya-issf-silver-india-first-la-2028-quota",
+  "script": "reel-runs/2026-11-06-jaypal-malviya-issf-silver-india-first-la-2028-quota/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000573
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-06-jaypal-malviya-issf-silver-india-first-la-2028-quota/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "los-angeles-memorial-coliseum",
+      "hero": "los-angeles-with-mount-baldy",
+      "grid": "2020-summer-fest-los-angeles"
+    }
+  },
+  "manifest": "reel-runs/2026-11-06-jaypal-malviya-issf-silver-india-first-la-2028-quota/output/render-manifest.json",
+  "video": "reel-runs/2026-11-06-jaypal-malviya-issf-silver-india-first-la-2028-quota/output/jaypal-malviya-issf-silver-india-first-la-2028-quota.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:news",
+      "edge_overflow:grid"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "democrats-win-congress-h1b-rules-agency-courts-2027",
+  "name": "democrats-win-congress-h1b-rules-agency-courts-2027",
+  "script": "reel-runs/2026-11-06-democrats-win-congress-h1b-rules-agency-courts-2027/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.00063
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-06-democrats-win-congress-h1b-rules-agency-courts-2027/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "22-09-22-campagna-elettorale-mercato-di-casc",
+      "hero": "h-1b-visa-updates",
+      "diaspora": "us-capitol-west-side"
+    }
+  },
+  "manifest": "reel-runs/2026-11-06-democrats-win-congress-h1b-rules-agency-courts-2027/output/render-manifest.json",
+  "video": "reel-runs/2026-11-06-democrats-win-congress-h1b-rules-agency-courts-2027/output/democrats-win-congress-h1b-rules-agency-courts-2027.mp4",
+  "qa": {
+    "score": 9.5,
+    "passed": false,
+    "failing_checks": [
+      "contrast:hero"
+    ]
+  }
+}

@@ -1,0 +1,408 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "jaypal-malviya-issf-silver-india-first-la-2028-quota",
+ "article_slug": "jaypal-malviya-issf-silver-india-first-la-2028-quota",
+ "article_id": "e46c721e-0dbd-4520-b49e-3de22782b719",
+ "category": "Sports",
+ "video": "reel-runs/2026-11-06-jaypal-malviya-issf-silver-india-first-la-2028-quota/output/jaypal-malviya-issf-silver-india-first-la-2028-quota.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://sportsbackstory.com/wp-content/uploads/2026/11/IMG-20261105-WA0079.jpg",
+  "local_path": "reel-runs/2026-11-06-jaypal-malviya-issf-silver-india-first-la-2028-quota/output/hero.jpg",
+  "width": 1600,
+  "height": 832,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.90)",
+  "has_face": true,
+  "box_source": [
+   820,
+   104,
+   65,
+   84
+  ],
+  "box_bg": [
+   513,
+   210,
+   34,
+   44
+  ],
+  "chin_bg": 254,
+  "anchor": [
+   0.533,
+   0.177
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   433
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 653,
+   "zone_h": 903,
+   "scale": 1.0,
+   "content_h": 294,
+   "block_top": 957,
+   "block_bottom": 1251,
+   "text_bbox": [
+    70,
+    957,
+    930,
+    1251
+   ],
+   "texts": [
+    "Sports",
+    "JAYPAL MALVIYA WINS WORLD SILVER, SECURES INDIA'S FIRST LA 2028 QUOTA"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.521,
+    "photo_px": [
+     1600,
+     832
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 433,
+     "scale": 0.52125,
+     "window": [
+      0,
+      0,
+      1600,
+      830
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.31x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 357,
+   "block_top": 1223,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1223,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Jaypal Malviya won silver in the men's 10m air pistol at the ISSF World Championships in Doha on November 5."
+   ],
+   "v7": {
+    "image_source": "extra:los-angeles-memorial-coliseum",
+    "track": "full-bleed",
+    "render_scale": 0.34,
+    "photo_px": [
+     8064,
+     5644
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.3401842664776754,
+     "window": [
+      2440,
+      0,
+      5614,
+      5644
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Aerial view of Los Angeles Memorial Coliseum",
+     "route": "identity \u2014 depicts (P180=Q1451505)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Los_Angeles_Memorial_Coliseum.png",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Los_Angeles_Memorial_Coliseum.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 4.0",
+     "artist": "Quintin Soloviev"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "242.2",
+    "Malviya's score in the 24-shot final in Doha"
+   ],
+   "v7": {
+    "image_source": "extra:los-angeles-with-mount-baldy",
+    "track": "full-bleed",
+    "render_scale": 0.496,
+    "photo_px": [
+     8267,
+     3873
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4957397366382649,
+     "window": [
+      3106,
+      0,
+      5284,
+      3873
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "February shot of downtown Los Angeles sunset with Mount Baldy in the background after a large snow storm.",
+     "route": "identity \u2014 Wikidata P18 (Q65)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Los_Angeles_with_Mount_Baldy.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Los_Angeles_with_Mount_Baldy.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Alek Leckszas"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 455,
+   "block_top": 1125,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1125,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "243.9",
+    "Gold score by China's Hu Kai",
+    "1738",
+    "India women's team silver aggregate"
+   ],
+   "v7": {
+    "image_source": "extra:2020-summer-fest-los-angeles",
+    "track": "full-bleed",
+    "render_scale": 0.911,
+    "photo_px": [
+     1689,
+     2107
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.9112482202183199,
+     "window": [
+      391,
+      0,
+      1576,
+      2107
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Christian Hip Hop, Latin Christian Hip Hop & Gospel Hip Hop music festival in Los Angeles.",
+     "route": "identity \u2014 depicts (P180=Q65)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:2020_Summer_Fest_Los_Angeles.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/2020_Summer_Fest_Los_Angeles.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "IMusicFacts"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1211,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1211,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "India's first quota place for LA 2028",
+    "Women's team won silver the same morning"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.496,
+    "photo_px": [
+     8267,
+     3873
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4957397366382649,
+     "window": [
+      3106,
+      0,
+      5284,
+      3873
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "The quota belongs to India, not the shooter.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-midnight-celebration.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 158.3,
+ "mp4_bytes": 21456436
+}

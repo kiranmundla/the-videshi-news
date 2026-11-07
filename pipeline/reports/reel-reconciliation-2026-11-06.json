@@ -1,16 +1,16 @@
 {
   "counts": {
-    "channel_videos": 233,
+    "channel_videos": 234,
     "db_rows": 169,
     "db_rows_with_yt_id": 139,
     "legacy_log_entries": 205,
     "publish_log_entries": 52,
     "in_sync": 118,
     "unknown_legacy_logged": 101,
-    "unknown_no_record": 14,
+    "unknown_no_record": 15,
     "ghost_db_rows": 16,
     "superseded_db_rows": 5,
-    "public_without_db_record": 115,
+    "public_without_db_record": 116,
     "phase2_uploads_now_public": 0
   },
   "in_sync": [
@@ -2239,6 +2239,12 @@
       "published_at": "2026-11-06T05:41:14Z",
       "privacy": "public",
       "video_id": "6ucJDSaDiIE"
+    },
+    {
+      "title": "250+ House Seats: Indian American Winners & Losers \ud83c\uddfa\ud83c\uddf8",
+      "published_at": "2026-11-06T15:03:33Z",
+      "privacy": "public",
+      "video_id": "j5LqJVk6utw"
     }
   ],
   "ghost_db_rows": [
@@ -3809,8 +3815,14 @@
       "published_at": "2026-11-06T05:41:14Z",
       "privacy": "public",
       "video_id": "6ucJDSaDiIE"
+    },
+    {
+      "title": "250+ House Seats: Indian American Winners & Losers \ud83c\uddfa\ud83c\uddf8",
+      "published_at": "2026-11-06T15:03:33Z",
+      "privacy": "public",
+      "video_id": "j5LqJVk6utw"
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-06T11:18:05+00:00"
+  "generated_at": "2026-11-06T23:23:28+00:00"
 }

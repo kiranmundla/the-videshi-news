@@ -1,0 +1,208 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "mohammed-shami-retires-test-cricket-229-wickets-64-tests",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Mohammed Shami",
+    "India",
+    "Test cricket",
+    "BCCI",
+    "ICC World Test Championship",
+    "Oval"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Mohammed Shami (Indian Cricket team training SCG 2015).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q7487531)",
+      "verdict": "accepted",
+      "reason": "4928x3264, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Mohammed Shami.jpg",
+      "route": "identity \u2014 depicts (P180=Q7487531)",
+      "verdict": "rejected",
+      "reason": "resolution: 596x410 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Narendra Modi, Mohammed Shami.jpg",
+      "route": "identity \u2014 depicts (P180=Q7487531)",
+      "verdict": "rejected",
+      "reason": "resolution: 900x665 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:India-locator-map-blank.svg",
+      "route": "identity \u2014 Wikidata P18 (Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:A villain performing in Dashavatara folk theatre.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Aerial photograph of the Himalayas, Ladakh 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Ambigram India Nepal (gray and beige) - animated.gif",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "USED (hero)",
+      "reason": "3600x2400, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Close wing position of Papilio nephelus Boisduval, 1836 \u2013 Yellow Helen.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "accepted",
+      "reason": "2000x1500, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Australian test cricket team in Brisbane, 1928 (6753271703).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1132113)",
+      "verdict": "rejected",
+      "reason": "resolution: 1000x623 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:1 03 Zak Crawley (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q1132113)",
+      "verdict": "rejected",
+      "reason": "resolution: 835x1129 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:2018.01.05.17.43.25-Usman Khawaja & Steve Smith (38876757994) (Khawaja cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q1132113)",
+      "verdict": "rejected",
+      "reason": "resolution: 319x375 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:2018.01.06.17.47.32-Moeen Ali (38876905344) (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q1132113)",
+      "verdict": "USED (grid)",
+      "reason": "1122x1159, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:3 31 Another four (Ben Duckett cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q1132113)",
+      "verdict": "rejected",
+      "reason": "resolution: 431x468 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Australian Cricketers, ca. 1884, Scott London Stereoscopic Company.jpg",
+      "route": "identity \u2014 depicts (P180=Q1132113)",
+      "verdict": "USED (payoff)",
+      "reason": "2776x2119, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:A Memorable BCCI Gathering with Cricket Legend Sunil Gavaskar.jpg",
+      "route": "identity \u2014 depicts (P180=Q2907539)",
+      "verdict": "USED (news)",
+      "reason": "1100x798, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "a-memorable-bcci-gathering-with-cricket-lege",
+      "path": "a-memorable-bcci-gathering-with-cricket-lege.jpg",
+      "size": [
+        1100,
+        798
+      ],
+      "role": "establishing",
+      "subject": "THEN HARYANA CRICKET ASSOCIATION PRESIDENT, VICE PRESIDENT & OTHER BCCI OFFICIALS",
+      "route": "identity \u2014 depicts (P180=Q2907539)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:A_Memorable_BCCI_Gathering_with_Cricket_Legend_Sunil_Gavaskar.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/A_Memorable_BCCI_Gathering_with_Cricket_Legend_Sunil_Gavaskar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Brinoob99",
+      "entity": "BCCI",
+      "entity_type": "org",
+      "entity_aliases": [
+        "BCCI",
+        "Board of Control for Cricket in India"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "close-wing-position-of-loxura-atymnus-stoll",
+      "path": "close-wing-position-of-loxura-atymnus-stoll.jpg",
+      "size": [
+        3600,
+        2400
+      ],
+      "role": "establishing",
+      "subject": "This picture was taken during the project Wiki Loves Butterfly in Chintamoni Kar Bird Sanctuary,Kolkata,West Bengal,India.Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly. Subspecies: Loxura atymnus continentalis Fruhstorfer, 1912",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Close_wing_position_of_Loxura_atymnus_Stoll,_1780_%E2%80%93_Yamfly.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Close_wing_position_of_Loxura_atymnus_Stoll%2C_1780_%E2%80%93_Yamfly.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 3.0",
+      "artist": "Atudu",
+      "entity": "India",
+      "entity_type": "other",
+      "entity_aliases": [
+        "India",
+        "Republic of India",
+        "Bharatvarsh",
+        "Hindustan",
+        "Bharata",
+        "Hindoostan",
+        "Indostan",
+        "Bharat Ganarajya",
+        "Al Hind",
+        "Tianzhu",
+        "Tenjiku"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "2018-01-06-17-47-32-moeen-ali-38876905344-cr",
+      "path": "2018-01-06-17-47-32-moeen-ali-38876905344-cr.jpg",
+      "size": [
+        1122,
+        1159
+      ],
+      "role": "establishing",
+      "subject": "Moeen Ali during the third day of the 5th test of the 2017/2016 Ashes",
+      "route": "identity \u2014 depicts (P180=Q1132113)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2018.01.06.17.47.32-Moeen_Ali_(38876905344)_(cropped).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/2018.01.06.17.47.32-Moeen_Ali_%2838876905344%29_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "www.davidmolloyphotography.com from Sydney, Australia",
+      "entity": "Test cricket",
+      "entity_type": "other",
+      "entity_aliases": []
+    },
+    {
+      "beat": "payoff",
+      "label": "australian-cricketers-ca-1884-scott-london-s",
+      "path": "australian-cricketers-ca-1884-scott-london-s.jpg",
+      "size": [
+        2776,
+        2119
+      ],
+      "role": "establishing",
+      "subject": "Australian cricket team in England, ca. 1884, Bonnor, Palmer, Blackham, Boyle, Spofforth, Murdoch, Bannerman, Cooper, McDonnell, Griffin, Scott by London Stereoscopic Company, State Library of New South Wales, PXA 1031",
+      "route": "identity \u2014 depicts (P180=Q1132113)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Australian_Cricketers,_ca._1884,_Scott_London_Stereoscopic_Company.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Australian_Cricketers%2C_ca._1884%2C_Scott_London_Stereoscopic_Company.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "London Stereoscopic Company",
+      "entity": "Test cricket",
+      "entity_type": "other",
+      "entity_aliases": []
+    }
+  ]
+}

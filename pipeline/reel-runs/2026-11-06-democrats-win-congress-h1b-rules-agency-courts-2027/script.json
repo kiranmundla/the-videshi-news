@@ -1,0 +1,21 @@
+{
+  "hook_line": "DEMOCRATS WON CONGRESS. FOR H-1B HOLDERS, THE RULES STILL RUN THROUGH AGENCIES AND COURTS",
+  "hook_stat": {
+    "big": "$100,000",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "H-1B fee extended to September 21, 2027"
+  },
+  "stats": [
+    {"big": "211,600", "label": "H-1B registrations for fiscal 2027"},
+    {"big": "$103,265", "label": "Proposed fee on cap-subject petitions"}
+  ],
+  "diaspora_bullets": [
+    "Nothing changes automatically for H-1B holders",
+    "New Congress sits January 3, 2027"
+  ],
+  "key_entities": ["H-1B", "Congress", "Democrats", "USCIS"],
+  "news_summary": "Democrats won control of both the House and the Senate in the November 3 midterms.",
+  "payoff": "Congress must pass a law to overturn a final agency rule.",
+  "versus": "",
+  "story_mood": "tense"
+}

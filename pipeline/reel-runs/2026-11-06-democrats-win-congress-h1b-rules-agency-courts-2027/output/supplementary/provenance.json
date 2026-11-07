@@ -1,0 +1,183 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "democrats-win-congress-h1b-rules-agency-courts-2027",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "H-1B",
+    "Congress",
+    "Democrats",
+    "USCIS",
+    "House and the Senate",
+    "USA Today and Associated Press"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'House and the Senate' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'USA Today and Associated Press' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:H-1B Visa Updates.jpg",
+      "route": "identity \u2014 depicts (P180=Q974595)",
+      "verdict": "USED (hero)",
+      "reason": "3375x4219, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:H1-B visa applications.webp",
+      "route": "identity \u2014 depicts (P180=Q974595)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:US Capitol west side.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q11268)",
+      "verdict": "USED (diaspora)",
+      "reason": "3865x2000, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Adam Kinzinger speech in House after Jan 6, 2021 intrusion.webm",
+      "route": "identity \u2014 depicts (P180=Q11268)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:Andy Biggs - 2.11.20 b.jpg",
+      "route": "identity \u2014 depicts (P180=Q11268)",
+      "verdict": "accepted",
+      "reason": "2048x1536, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:1854 United States House of Representatives elections.svg",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:1854\u201355 United States House of Representatives elections.svg",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:1865 United States Senate elections.svg",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:22-09-22 Campagna elettorale mercato di Cascina 20.jpg",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "verdict": "USED (news)",
+      "reason": "4608x3456, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:ACDC SEAL RGB.png",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:A Sane Fourth - DPLA - 5fadc52665fedb172dd7138b666dbad3.jpg",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "verdict": "accepted",
+      "reason": "5440x3680, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "22-09-22-campagna-elettorale-mercato-di-casc",
+      "path": "22-09-22-campagna-elettorale-mercato-di-casc.jpg",
+      "size": [
+        4608,
+        3456
+      ],
+      "role": "establishing",
+      "subject": "Campagna elettorale 2022 al mercato di Cascina",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:22-09-22_Campagna_elettorale_mercato_di_Cascina_20.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/22-09-22_Campagna_elettorale_mercato_di_Cascina_20.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Alexmar983",
+      "entity": "Democrats",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Democrats",
+        "Democrat",
+        "Democratic Party (United States)",
+        "Dems",
+        "American Democratic Party",
+        "Democratic Party of the United States",
+        "United States Democratic Party",
+        "US Democratic Party",
+        "U.S. Democratic Party",
+        "The Democrats"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "h-1b-visa-updates",
+      "path": "h-1b-visa-updates.jpg",
+      "size": [
+        3375,
+        4219
+      ],
+      "role": "establishing",
+      "subject": "From interview mandates to higher fees understand how the new H-1B rules affect your chances.",
+      "route": "identity \u2014 depicts (P180=Q974595)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:H-1B_Visa_Updates.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/H-1B_Visa_Updates.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Immigrationconsultantcalifornia",
+      "entity": "H-1B",
+      "entity_type": "other",
+      "entity_aliases": [
+        "H-1B",
+        "H-1B visa",
+        "H1-B",
+        "H1B",
+        "h1b"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "us-capitol-west-side",
+      "path": "us-capitol-west-side.jpg",
+      "size": [
+        3865,
+        2000
+      ],
+      "role": "establishing",
+      "subject": "US Capitol , west side",
+      "route": "identity \u2014 Wikidata P18 (Q11268)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:US_Capitol_west_side.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/US_Capitol_west_side.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Martin Falbisoner",
+      "entity": "Congress",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Congress",
+        "United States Congress",
+        "US Congress",
+        "U.S. Congress",
+        "American Congress",
+        "Congress of the United States",
+        "Legislature of the United States",
+        "American legislature",
+        "United states legislative branch"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+[
+  {
+    "id": "d88d3caf-c666-45e6-9ac7-308ef2040b0b",
+    "headline": "India's Only Floating Post Office on Dal Lake Extends Hours",
+    "slug": "india-floating-post-office-dal-lake-extended-hours-9-to-9",
+    "category": "news",
+    "structural_issues": [
+      "Caption names venue 'Nehru Park' not supported by the image file name (Dal_Lake_Hazratbal_Srinagar.jpg\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the information regarding the extended hours. While the article mentions Jammu News Portal, it would be stronger to directly quote or link to the official announcement from the Department of Posts.",
+        "Provide specific details about the expected impact of the extended hours, such as how many additional customers are anticipated or any statistics on foot traffic to give readers a clearer picture of the demand.",
+        "Include a brief background on the significance of the floating post office, such as its history or unique features, to provide context for readers who may not be familiar with it.",
+        "Mention any upcoming plans or timelines for extending hours at other post offices in the region, as hinted at in the article, to give readers insight into future developments."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official announcement from the Department of Posts regarding the extended hours to enhance credibility and provide direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "8c59fefa-98f8-452a-9aee-bb9becfe970d",
+    "headline": "Inside Brampton's Giant Diwali Mithai Mela Feeding GTA's Sweet Tooth",
+    "slug": "brampton-diwali-mithai-mela-gta-sweet-tooth-punjabi-by-nature",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Provide specific numbers regarding the expected sales or revenue generated from the mithai mela to give readers a clearer picture of its economic impact.",
+        "Include quotes or statements from attendees or vendors to add personal perspectives and enhance the article's depth.",
+        "Clarify the significance of the increase in the number of melas from eight to ten this year\u2014what does this indicate about the demand or growth of the event?",
+        "Mention any safety protocols or measures in place for the event, especially considering large crowds, to address potential reader concerns."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Punjabi by Nature or the organizers announcing the event or showcasing highlights from previous years."
+      ]
+    }
+  },
+  {
+    "id": "5f02c694-bdd5-487e-8c0e-0ae958d4c9c3",
+    "headline": "Pleasant Hill Lights Up Tonight With Diwali Night Market Celebration",
+    "slug": "pleasant-hill-diwali-night-market-tonight-november-6-2026",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the cost structure for food and vendor purchases by providing specific examples of prices or a range of costs, which would help readers understand what to expect financially.",
+        "Include a brief background on the significance of Diwali for those unfamiliar with the festival, enhancing completeness and context for a broader audience.",
+        "Ensure that the headline specifies the date of the event to make it more compelling and timely, e.g., 'Pleasant Hill Lights Up Tonight for Diwali Night Market Celebration on November 6, 2026.'"
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the City of Pleasant Hill or a local community organization promoting the event to provide official context and engagement."
+      ]
+    }
+  },
+  {
+    "id": "c4566468-7a88-464a-a441-8b49b369f928",
+    "headline": "Karan Johar Says He Is Dissuading Twins Yash And Roohi From Bollywood",
+    "slug": "karan-johar-dissuading-twins-yash-roohi-bollywood",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the context of Karan Johar's comments by including a brief background on the episode of Koffee With Karan where this discussion took place, including the date it aired for better timeliness and relevance.",
+        "Add a direct quote from Kareena Kapoor regarding her perspective on parenting and letting children enter the industry to provide balance and depth to the discussion.",
+        "Include a brief explanation of the challenges and pressures faced by children of celebrities in Bollywood to give readers a clearer understanding of why Johar feels the need to dissuade his children."
+      ],
+      "embed_opportunities": [
+        "Embed a clip or link to the specific episode of Koffee With Karan where this discussion occurred to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "68631f47-c840-4704-9ecd-04a803035273",
+    "headline": "Mohammed Shami Retires From Test Cricket, Ending 64-Match, 229-Wicket Career",
+    "slug": "mohammed-shami-retires-test-cricket-229-wickets-64-tests",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of Shami's retirement announcement, as the article states 'Friday, November 6' but does not specify the year, which could lead to confusion since the date is not in the current month.",
+        "Include a quote from Shami's social media post in full to provide readers with a complete understanding of his sentiments regarding his retirement, rather than paraphrasing it.",
+        "Add context about Shami's impact on Indian cricket, such as notable performances or records, to give readers a better understanding of his significance in the sport."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Mohammed Shami announcing his retirement to provide direct access to his statement."
+      ]
+    }
+  },
+  {
+    "id": "ef367e69-3c28-4ce7-83b6-5cd40cf43970",
+    "headline": "India Beat Pakistan 3-2 In SAFF Opener After Late Stoppage-Time Scare",
+    "slug": "india-beat-pakistan-3-2-saff-championship-opener-dhaka",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by restructuring the article to present the goals in chronological order, which would help readers follow the match progression more easily.",
+        "Include quotes from players or coaches to provide personal insights and enhance the narrative of the match, which would add depth and context to the reporting.",
+        "Add more context about the significance of this match in the SAFF Championship, such as historical rivalries or previous encounters between India and Pakistan, to give readers a better understanding of the stakes involved.",
+        "Correct the date mentioned in the body of the article; it states 'Thursday, November 5,' but November 5 is a Sunday in 2023."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official SAFF Championship account or a relevant sports news outlet that provides highlights or reactions to the match."
+      ]
+    }
+  },
+  {
+    "id": "31020e31-cc18-45f3-88eb-a6812d6bcdac",
+    "headline": "Drishyam 3 Ends BookMyShow Run As Bollywood's Tenth Highest Ticket-Seller Ever",
+    "slug": "drishyam-3-bookmyshow-tenth-highest-ticket-selling-bollywood-film",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the ticket sales figures by providing context about the overall performance of Bollywood films in the same period. This could help readers understand how Drishyam 3's performance compares to other films released around the same time.",
+        "Include a brief mention of the critical reception or audience reviews of Drishyam 3 to give readers a sense of why it might have performed well or poorly at the box office.",
+        "Add specific figures for the film's budget or production costs to provide a clearer picture of its financial success or challenges, especially in relation to its gross earnings.",
+        "Reorganize the content to enhance clarity by grouping related information together, such as ticket sales figures, comparisons with other films, and insights about the film's reception, rather than repeating similar points."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from BookMyShow or a relevant film critic discussing Drishyam 3's performance to provide real-time audience reactions or insights."
+      ]
+    }
+  },
+  {
+    "id": "41f70cde-f94b-4526-b140-e923c040770a",
+    "headline": "Schumer Vows Democrats Will Block Any Right-Winger Trump Supreme Court Nominee",
+    "slug": "schumer-vows-democrats-block-right-winger-trump-supreme-court-nominee",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline by specifying when Democrats expect to take power and how this relates to potential Supreme Court vacancies. This could help readers understand the urgency of Schumer's statements.",
+        "Provide more context on the implications of Schumer's comments, such as how a blocked nominee could affect the Supreme Court's balance or upcoming cases, which would enhance the completeness of the article.",
+        "Include a direct quote from Schumer regarding the potential consequences of blocking nominees, which would add clarity and depth to his position."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Chuck Schumer or a relevant news outlet summarizing his comments for real-time engagement and verification."
+      ]
+    }
+  },
+  {
+    "id": "1ea64f64-27ca-4b33-a089-7398491a5779",
+    "headline": "US Measles Cases Pass 5,182, Highest in Decades, as Deaths Rise Nationwide",
+    "slug": "us-measles-cases-pass-5182-highest-decades-deaths-rise",
+    "category": "news",
+    "structural_issues": [
+      "Inline caption names venue 'Emory University' not supported by the image file name (CDC_HDR_I.jpg\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the outbreak by specifying the dates of the reported deaths and the timeline of the surge in cases to provide readers with a clearer context of the situation.",
+        "Include specific numbers regarding the vaccination rates in the affected states to give readers a better understanding of the public health implications.",
+        "Add a direct quote from a health official or expert to enhance credibility and provide authoritative insight into the outbreak's significance and recommended actions."
+      ],
+      "embed_opportunities": [
+        "Embed the official CDC tweet or announcement regarding the measles outbreak for real-time updates and authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "de32dd73-23eb-4ab8-8600-bb6f10bff29e",
+    "headline": "AI-Assisted Hackers Target Indian Fintechs on Weekends, CERT-In Warns of Escalat",
+    "slug": "crafty-falcon-ai-hackers-target-indian-fintechs-weekends-cert-in",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific nature of the attacks by providing examples of the types of fintechs or platforms that have been targeted, as well as any known incidents of theft or breaches that have occurred.",
+        "Include specific recommendations for users of fintech services, such as exact steps to enable transaction alerts or how to review beneficiaries effectively, to enhance the actionable takeaway for readers.",
+        "Provide a clearer timeline regarding when CERT-In first detected these attacks and any relevant dates for the advisories issued, to give readers a better understanding of the urgency and context.",
+        "Ensure that all statements are attributed correctly and consistently, particularly when referencing reports from The Register and BeInCrypto, to maintain credibility and transparency."
+      ],
+      "embed_opportunities": [
+        "Embed the official CERT-In advisory or tweet regarding the CRAFTY FALCON attacks to provide readers with direct access to the source of the information."
+      ]
+    }
+  }
+]

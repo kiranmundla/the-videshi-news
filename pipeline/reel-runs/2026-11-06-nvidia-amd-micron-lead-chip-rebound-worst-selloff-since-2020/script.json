@@ -1,0 +1,36 @@
+{
+ "hook_line": "CHIPS BOUNCE AFTER WORST SELLOFF SINCE 2020",
+ "hook_stat": {
+  "big": "12.25%",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Chip index fall on November 5"
+ },
+ "stats": [
+  {
+   "big": "11%",
+   "label": "AMD gain on Friday"
+  },
+  {
+   "big": "17.46%",
+   "label": "Micron fall on November 5"
+  },
+  {
+   "big": "9.26%",
+   "label": "Nvidia fall on November 5"
+  }
+ ],
+ "diaspora_bullets": [
+  "Friday's gains recovered only part of Thursday's losses",
+  "Analysts called it a reflex bounce, not a resolution"
+ ],
+ "key_entities": [
+  "Nvidia",
+  "AMD",
+  "Micron",
+  "Philadelphia Semiconductor Index"
+ ],
+ "news_summary": "Chip stocks rebounded on Friday after the Philadelphia Semiconductor Index fell 12.25% on November 5, its biggest one-day drop since March 2020.",
+ "payoff": "Friday's rebound recovered only part of Thursday's losses.",
+ "versus": "",
+ "story_mood": "tense"
+}

@@ -1,0 +1,178 @@
+[
+  {
+    "id": "50651d3d-6ad2-432e-8ae6-601775ea1b84",
+    "headline": "Mike Hussey Joins Australia's Coaching Ranks for Ashes, World Cups and LA Olympi",
+    "slug": "mike-hussey-australia-coaching-consultant-ashes-world-cup-olympics",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of Hussey's commitments by specifying exact dates for the 2027 Ashes and ODI World Cup, as well as the 2028 T20 World Cup and Olympics, to provide readers with a clearer understanding of the schedule.",
+        "Include a quote from Michael Hussey or a Cricket Australia official to enhance attribution and provide a personal perspective on his new role.",
+        "Add context about Hussey's previous coaching experience and achievements to give readers a better understanding of his qualifications for this expanded role."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Cricket Australia announcing Hussey's appointment to provide official confirmation and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "aaca2325-af38-4e66-b4f9-7c1ae83a22d9",
+    "headline": "Devon Conway Ruled Out of India ODI Series With Concussion; Nick Kelly Called In",
+    "slug": "devon-conway-ruled-out-india-odis-concussion-nick-kelly",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the dates of the remaining ODIs in the series, as this would provide readers with context on how Conway's absence impacts the upcoming matches.",
+        "Include a direct quote from a coach or team official regarding Conway's injury and its implications for the team, which would enhance attribution and provide depth to the reporting.",
+        "Reorganize the content to avoid repetition, particularly the information about Conway's injury, to improve clarity and flow. For example, combine the details about the collision and its outcomes into a single, concise paragraph."
+      ],
+      "embed_opportunities": [
+        "Embed the official New Zealand Cricket tweet announcing Conway's injury and Kelly's inclusion in the squad for immediate verification and context."
+      ]
+    }
+  },
+  {
+    "id": "ee842858-7434-404e-b07a-fcd4b8ff120c",
+    "headline": "Salman Khan Calls Maatrubhumi Rewrite Claims 'Nonsense' at Trailer Launch",
+    "slug": "salman-khan-maatrubhumi-not-anti-china-government-pressure-denied",
+    "category": "entertainment",
+    "structural_issues": [
+      "All 1 embed(s) placed in the bottom 30% \u2014 move higher for engagement"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding the film's submission to the CBFC by providing specific dates or context about the certification process, as this is crucial information for readers interested in the film's release.",
+        "Include a direct quote from the film's director, Apoorva Lakhia, to provide additional perspective on the film's themes and the controversy surrounding it, enhancing the article's completeness.",
+        "Provide more context about the significance of the Galwan Valley clash and its impact on India-China relations, as this would help readers understand the backdrop of the film and the claims made by Salman Khan."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Salman Khan or the film's production company addressing the controversy for immediate access to the source of the statement."
+      ]
+    }
+  },
+  {
+    "id": "0127f57a-6bc5-4ae9-8f68-34920375775b",
+    "headline": "Juhi Chawla Closes Apple's Diwali Film 'Step Into the Light,' Shot on iPhone 18 ",
+    "slug": "juhi-chawla-apple-raw-mango-step-into-the-light-iphone-18-pro",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the collaboration with Raw Mango and how it enhances the film's cultural representation, as this context may be important for readers unfamiliar with the brand.",
+        "Provide more details about the release date and availability of the film on various platforms, as well as any specific call to action for viewers to engage with the content.",
+        "Include a brief background on the significance of Diwali and how this campaign aligns with Apple's marketing strategy in India, which would add depth and context for readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official Apple Instagram post or YouTube link to the film for direct access to the content being discussed."
+      ]
+    }
+  },
+  {
+    "id": "2aba6b42-9c9c-4a65-a880-d54fe5de829c",
+    "headline": "Democrats Won Congress. For H-1B Holders, the Rules Still Run Through Agencies a",
+    "slug": "democrats-win-congress-h1b-rules-agency-courts-2027",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding the new Congress and its implications for H-1B holders. The article states that Congress does not sit until January 3, 2027, which may confuse readers about the immediate effects of the election results on H-1B policies. A clearer explanation of what this means for H-1B holders in the interim would enhance understanding.",
+        "Provide more context on the specific implications of the proposed changes to the wage levels and fees. For example, include details on how the proposed fee of $103,265 compares to previous fees and what that means for employers and employees in practical terms.",
+        "Add a brief summary or bullet points at the end of the article that outlines the key takeaways for H-1B holders, including specific actions they may need to take or watch for in the coming months."
+      ],
+      "embed_opportunities": [
+        "Embed the official Department of Labor announcement regarding the proposed changes to the prevailing wage levels to provide readers with direct access to the source of this information."
+      ]
+    }
+  },
+  {
+    "id": "8b9e2797-29e2-4ad4-a539-ac8a4f30f7f5",
+    "headline": "ADNOC Signs 10-Year LNG Supply Deal With India's Gujarat Energy, From 2028",
+    "slug": "adnoc-gujarat-energy-10-year-lng-supply-deal-2028",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the financial implications of the deal by including specific figures or estimates regarding the expected value of the contract, even if the exact terms are undisclosed. This would provide readers with a clearer understanding of the deal's significance.",
+        "Include a brief context about the current LNG market dynamics in India and how this agreement positions ADNOC in comparison to its competitors. This would enhance the completeness of the article.",
+        "Ensure that the article clearly states the significance of the deal for both ADNOC and Gujarat Energy, possibly including quotes from company representatives or industry experts to provide depth and clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from ADNOC or Gujarat Energy announcing the deal to provide official context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "b940b9b6-f1c4-4fef-8315-c3b002be947b",
+    "headline": "Jyot Singh Becomes First Sikh and Indian American Elected to Georgia Legislature",
+    "slug": "jyot-singh-first-sikh-indian-american-georgia-legislature",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying when the state is expected to certify the election results, as this is crucial for understanding the official nature of the win.",
+        "Include a brief background on Jyot Singh's political platform or key issues he plans to address, which would provide readers with context on his significance beyond just being the first Sikh and Indian American elected.",
+        "Correct the redundancy in stating that Singh is the first Sikh American and Indian American elected to the Georgia General Assembly; this could be streamlined for clarity.",
+        "Provide more context about the demographics of District 97 and its significance in Georgia politics to enhance the reader's understanding of the election's impact."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Jyot Singh announcing his victory or a relevant statement from a political figure to provide direct engagement with the news."
+      ]
+    }
+  },
+  {
+    "id": "3f1a7926-f5e1-439c-8d69-34f0d9d96a86",
+    "headline": "Ontario Home Cooks Share Family Diwali Recipes in Free Community Cookbook",
+    "slug": "ontario-home-cooks-diwali-cookbook-food-basics-toronto",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the availability of the cookbook by specifying whether it is a digital download only or if physical copies will also be distributed at Food Basics locations.",
+        "Include a brief section on how readers can contribute their own recipes for future editions of the cookbook, if applicable, to engage the community further.",
+        "Add a quote from a representative of Food Basics to provide insight into the motivation behind the cookbook's creation and its significance for the community.",
+        "Provide more context about the significance of Diwali and how these recipes connect to the celebration, which could enhance the cultural relevance of the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Food Basics announcing the cookbook launch or showcasing one of the featured recipes."
+      ]
+    }
+  },
+  {
+    "id": "0f3df367-1213-4e71-82a9-b46a33ba5a1f",
+    "headline": "AI Use Is Rising but Spending Has Stalled, Ramp Data Shows, as Anthropic Nears I",
+    "slug": "ramp-ai-spending-stalls-anthropic-ipo-token-volumes-rise",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the data presented, specifically indicating the exact dates for the reported growth rates and spending figures to enhance clarity and context for readers.",
+        "Include a brief explanation of what the implications of Anthropic's IPO valuation drop might mean for the broader AI market and investors, providing context on why this is significant.",
+        "Add a quote or statement from a representative of Ramp or another expert to provide additional attribution and perspective on the data presented, enhancing credibility and depth."
+      ],
+      "embed_opportunities": [
+        "Embed the official Ramp report or a relevant tweet from TechCrunch discussing the findings to provide readers with direct access to the source material."
+      ]
+    }
+  }
+]

@@ -1,0 +1,219 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-06-jaypal-malviya-issf-silver-india-first-la-2028-quota/output/jaypal-malviya-issf-silver-india-first-la-2028-quota.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:news",
+    "edge_overflow:grid"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1600,
+        832
+      ],
+      "manifest_dims": [
+        1600,
+        832
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 1102.1,
+      "url": "https://sportsbackstory.com/wp-content/uploads/2026/11/IMG-20261105-WA0079.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-06-jaypal-malviya-issf-silver-india-first-la-2028-quota/output/qa/frames/frame-hook.png",
+      "text_px_detected": 24745,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.77)",
+        "box": [
+          549,
+          203,
+          42,
+          45
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-06-jaypal-malviya-issf-silver-india-first-la-2028-quota/output/qa/frames/frame-news.png",
+      "text_px_detected": 32350,
+      "edge": {
+        "pass": false,
+        "offending_px": 588,
+        "clusters": 1,
+        "largest_cluster": 302
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          513,
+          205,
+          34,
+          45
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.8,
+        "bg_luminance": 112.0,
+        "delta": 141.7
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-06-jaypal-malviya-issf-silver-india-first-la-2028-quota/output/qa/frames/frame-hero.png",
+      "text_px_detected": 23785,
+      "edge": {
+        "pass": true,
+        "offending_px": 78,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          512,
+          200,
+          35,
+          45
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.9,
+        "bg_luminance": 34.6,
+        "delta": 218.3
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-06-jaypal-malviya-issf-silver-india-first-la-2028-quota/output/qa/frames/frame-grid.png",
+      "text_px_detected": 33898,
+      "edge": {
+        "pass": false,
+        "offending_px": 2404,
+        "clusters": 4,
+        "largest_cluster": 1397
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          512,
+          196,
+          35,
+          46
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 143.4,
+        "delta": 110.0
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-06-jaypal-malviya-issf-silver-india-first-la-2028-quota/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 23515,
+      "edge": {
+        "pass": true,
+        "offending_px": 104,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          512,
+          191,
+          36,
+          46
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 35.4,
+        "delta": 218.5
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-06-jaypal-malviya-issf-silver-india-first-la-2028-quota/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 17091,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          511,
+          186,
+          36,
+          47
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    }
+  ]
+}

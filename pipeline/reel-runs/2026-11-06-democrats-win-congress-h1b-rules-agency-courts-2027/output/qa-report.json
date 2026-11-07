@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-06-democrats-win-congress-h1b-rules-agency-courts-2027/output/democrats-win-congress-h1b-rules-agency-courts-2027.mp4",
+  "qa_passed": false,
+  "qa_score": 9.5,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "contrast:hero"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1600,
+        900
+      ],
+      "manifest_dims": [
+        1600,
+        900
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 587.8,
+      "url": "https://www.m9.news/wp-content/uploads/2026/11/us-midterms-democrats-h1b-visa-slots-india.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-06-democrats-win-congress-h1b-rules-agency-courts-2027/output/qa/frames/frame-hook.png",
+      "text_px_detected": 22117,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-06-democrats-win-congress-h1b-rules-agency-courts-2027/output/qa/frames/frame-news.png",
+      "text_px_detected": 24252,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.73)",
+        "box": [
+          58,
+          1003,
+          58,
+          82
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 64.6,
+        "delta": 189.4
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-06-democrats-win-congress-h1b-rules-agency-courts-2027/output/qa/frames/frame-hero.png",
+      "text_px_detected": 26986,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": false,
+        "full_marks": false,
+        "text_luminance": 171.0,
+        "bg_luminance": 150.4,
+        "delta": 20.6
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-06-democrats-win-congress-h1b-rules-agency-courts-2027/output/qa/frames/frame-grid.png",
+      "text_px_detected": 30197,
+      "edge": {
+        "pass": true,
+        "offending_px": 9,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.9,
+        "bg_luminance": 106.3,
+        "delta": 146.6
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-06-democrats-win-congress-h1b-rules-agency-courts-2027/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 21450,
+      "edge": {
+        "pass": true,
+        "offending_px": 35,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 114.8,
+        "delta": 139.2
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-06-democrats-win-congress-h1b-rules-agency-courts-2027/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 20079,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    }
+  ]
+}

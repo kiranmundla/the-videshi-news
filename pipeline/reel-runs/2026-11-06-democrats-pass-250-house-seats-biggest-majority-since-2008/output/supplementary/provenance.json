@@ -1,0 +1,191 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "democrats-pass-250-house-seats-biggest-majority-since-2008",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Democrats",
+    "House of Representatives",
+    "Amish Shah",
+    "Associated Press",
+    "House Seats",
+    "Biggest Majority Since"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'House of Representatives' named 'United States House of Representatives', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "outlet: 'Associated Press' is a news outlet \u2014 outlets are sources, never picture subjects; never queried"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'House Seats' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Biggest Majority Since' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:1854 United States House of Representatives elections.svg",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:1854\u201355 United States House of Representatives elections.svg",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:1865 United States Senate elections.svg",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:22-09-22 Campagna elettorale mercato di Cascina 20.jpg",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "verdict": "USED (hero)",
+      "reason": "4608x3456, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:ACDC SEAL RGB.png",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:A Sane Fourth - DPLA - 5fadc52665fedb172dd7138b666dbad3.jpg",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "verdict": "USED (grid)",
+      "reason": "5440x3680, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Amish Shah by Gage Skidmore.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q60736979)",
+      "verdict": "USED (news)",
+      "reason": "1719x2342, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Amish Shah & David Marshall (52750179671).jpg",
+      "route": "identity \u2014 depicts (P180=Q60736979)",
+      "verdict": "USED (diaspora)",
+      "reason": "5916x3944, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "amish-shah-by-gage-skidmore",
+      "path": "amish-shah-by-gage-skidmore.jpg",
+      "size": [
+        1719,
+        2342
+      ],
+      "role": "establishing",
+      "subject": "Amish Shah speaking at an event in Phoenix, Arizona.",
+      "route": "identity \u2014 Wikidata P18 (Q60736979)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_by_Gage_Skidmore.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Amish_Shah_by_Gage_Skidmore.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Gage Skidmore",
+      "entity": "Amish Shah",
+      "entity_type": "person",
+      "entity_aliases": []
+    },
+    {
+      "beat": "hero",
+      "label": "22-09-22-campagna-elettorale-mercato-di-casc",
+      "path": "22-09-22-campagna-elettorale-mercato-di-casc.jpg",
+      "size": [
+        4608,
+        3456
+      ],
+      "role": "establishing",
+      "subject": "Campagna elettorale 2022 al mercato di Cascina",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:22-09-22_Campagna_elettorale_mercato_di_Cascina_20.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/22-09-22_Campagna_elettorale_mercato_di_Cascina_20.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Alexmar983",
+      "entity": "Democrats",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Democrats",
+        "Democrat",
+        "Democratic Party (United States)",
+        "Dems",
+        "American Democratic Party",
+        "Democratic Party of the United States",
+        "United States Democratic Party",
+        "US Democratic Party",
+        "U.S. Democratic Party",
+        "The Democrats"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "a-sane-fourth-dpla-5fadc52665fedb172dd7138b6",
+      "path": "a-sane-fourth-dpla-5fadc52665fedb172dd7138b6.jpg",
+      "size": [
+        5440,
+        3680
+      ],
+      "role": "establishing",
+      "subject": "William Jennings Bryan lights the massive firework of Chautauqua fireworks Bryan Lecture July 4th. Aunty Democracy says Do be careful William! as the Democratic Congress, Uncle Sam, and Voters cover their ears. According to the New York Tim",
+      "route": "identity \u2014 depicts (P180=Q29552)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:A_Sane_Fourth_-_DPLA_-_5fadc52665fedb172dd7138b666dbad3.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/A_Sane_Fourth_-_DPLA_-_5fadc52665fedb172dd7138b666dbad3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Bartholomew, Charles Lewis 'Bart', 1869-1949",
+      "entity": "Democrats",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Democrats",
+        "Democrat",
+        "Democratic Party (United States)",
+        "Dems",
+        "American Democratic Party",
+        "Democratic Party of the United States",
+        "United States Democratic Party",
+        "US Democratic Party",
+        "U.S. Democratic Party",
+        "The Democrats"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "amish-shah-david-marshall-52750179671",
+      "path": "amish-shah-david-marshall-52750179671.jpg",
+      "size": [
+        5916,
+        3944
+      ],
+      "role": "interior",
+      "subject": "State Representatives Amish Shah and David Marshall speaking on the floor of the Arizona House of Representatives at the Arizona State Capitol building in Phoenix, Arizona. Please attribute to Gage Skidmore if used elsewhere.",
+      "route": "identity \u2014 depicts (P180=Q60736979)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_%26_David_Marshall_(52750179671).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Amish_Shah_%26_David_Marshall_%2852750179671%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Gage Skidmore from Surprise, AZ, United States of America",
+      "entity": "Amish Shah",
+      "entity_type": "person",
+      "entity_aliases": []
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020",
+  "name": "nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020",
+  "script": "reel-runs/2026-11-06-nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000703
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-06-nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "cebit-2005-nvidia-stand",
+      "hero": "amd-16nm-jaguar-polaris-apu-scorpio-xboxonex",
+      "grid": "nvidia-headquarters",
+      "diaspora": "amd-athlon-xp-palomino"
+    }
+  },
+  "manifest": "reel-runs/2026-11-06-nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020/output/render-manifest.json",
+  "video": "reel-runs/2026-11-06-nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020/output/nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-06-nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020/output/tiktok-caption.txt"
+}

@@ -1,0 +1,417 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020",
+ "article_slug": "nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020",
+ "article_id": "7313df31-ce7d-4caf-88b5-9cdf1373790b",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-06-nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020/output/nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://www.nvidia.com/content/dam/en-zz/Solutions/homepage/v2/sfg/nvidia-corporate-og-image-1200x630.jpg",
+  "local_path": "reel-runs/2026-11-06-nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020/output/hero.jpg",
+  "width": 1200,
+  "height": 674,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.700,0.679) damped=(0.600,0.590)",
+  "has_face": false,
+  "box_source": [
+   384,
+   249,
+   672,
+   269
+  ],
+  "box_bg": [
+   353,
+   327,
+   467,
+   187
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.609,
+   0.586
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   467
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 687,
+   "zone_h": 869,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "Markets Finance",
+    "CHIPS BOUNCE AFTER WORST SELLOFF SINCE 2020"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     674
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 467,
+     "scale": 0.695,
+     "window": [
+      0,
+      3,
+      1200,
+      674
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.85x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Chip stocks rebounded on Friday after the Philadelphia Semiconductor Index fell 12.25% on November 5, its biggest one-day drop since March 2020."
+   ],
+   "v7": {
+    "image_source": "extra:cebit-2005-nvidia-stand",
+    "track": "full-bleed",
+    "render_scale": 1.0,
+    "photo_px": [
+     2560,
+     1920
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 1.0,
+     "window": [
+      361,
+      0,
+      1441,
+      1920
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "CeBIT 2005 Nvidia Stand",
+     "route": "identity \u2014 depicts (P180=Q182477)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:CeBIT_2005_Nvidia_Stand.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/CeBIT_2005_Nvidia_Stand.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Strubbl"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 376,
+   "block_top": 1204,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1204,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "12.25%",
+    "Chip index fall on November 5"
+   ],
+   "v7": {
+    "image_source": "extra:amd-16nm-jaguar-polaris-apu-scorpio-xboxonex",
+    "track": "full-bleed",
+    "render_scale": 0.48,
+    "photo_px": [
+     5943,
+     4000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.48,
+     "window": [
+      1798,
+      0,
+      4048,
+      4000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "AMD 16nm Jaguar Polaris APU Scorpio XBox One X CPU.",
+     "route": "identity \u2014 depicts (P180=Q128896)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:AMD@16nm@Jaguar_Polaris_APU@Scorpio@XBoxOneX@DG5700GDA87IE_1721SUT_9GW3448T70061_DSC00860-DSC00860_(51096228313).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/AMD%4016nm%40Jaguar_Polaris_APU%40Scorpio%40XBoxOneX%40DG5700GDA87IE_1721SUT_9GW3448T70061_DSC00860-DSC00860_%2851096228313%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "Fritzchens Fritz from Berlin"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 653,
+   "block_top": 927,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    927,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "11%",
+    "AMD gain on Friday",
+    "17.46%",
+    "Micron fall on November 5",
+    "9.26%",
+    "Nvidia fall on November 5"
+   ],
+   "v7": {
+    "image_source": "extra:nvidia-headquarters",
+    "track": "full-bleed",
+    "render_scale": 0.673,
+    "photo_px": [
+     4662,
+     2852
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6732117812061711,
+     "window": [
+      1680,
+      0,
+      3284,
+      2852
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Nvidia headquarters in Santa Clara, California. Photographed by user Coolcaesar on August 4, 2018.",
+     "route": "identity \u2014 Wikidata P18 (Q182477)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:NVIDIA_Headquarters.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/NVIDIA_Headquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Coolcaesar"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1211,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1211,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Friday's gains recovered only part of Thursday's losses",
+    "Analysts called it a reflex bounce, not a resolution"
+   ],
+   "v7": {
+    "image_source": "extra:amd-athlon-xp-palomino",
+    "track": "full-bleed",
+    "render_scale": 0.685,
+    "photo_px": [
+     4206,
+     2804
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6847360912981455,
+     "window": [
+      1398,
+      0,
+      2975,
+      2804
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "AMD Athlon XP 1700+ processor",
+     "route": "identity \u2014 depicts (P180=Q128896)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:AMD_Athlon_XP_Palomino.Jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/AMD_Athlon_XP_Palomino.Jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 3.0",
+     "artist": "Matthieu Riegler English : This photo has been taken by Matthieu Riegler ( User:"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "Friday's rebound recovered only part of Thursday's losses.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 178.8,
+ "mp4_bytes": 12646616
+}

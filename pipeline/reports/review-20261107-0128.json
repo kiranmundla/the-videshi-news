@@ -1,0 +1,119 @@
+[
+  {
+    "id": "080b9bf4-b637-497d-b3d9-87bc14e182da",
+    "headline": "A Hyderabad Student's Rs 68,000 Satellite Receiver Brings Weather Images to Hima",
+    "slug": "hyderabad-student-summitsathi-satellite-weather-receiver-himalayan-villages",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the potential impact of the technology by including specific examples of how the satellite receiver could improve safety or decision-making for the villagers during weather events. For instance, mention how timely weather information could help farmers plan their activities or prepare for severe weather.",
+        "Provide a brief background on the significance of the Seraj valley's geography and weather challenges to give readers context on why this technology is particularly important for the area.",
+        "Include a quote from Aagam Jain or a local operator to add a personal touch and provide insight into their motivations or experiences with the technology."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or statement from the India Meteorological Department regarding the importance of local weather information or the challenges faced in mountainous regions."
+      ]
+    }
+  },
+  {
+    "id": "97415258-a0bc-4146-815a-8f8ac60d32c9",
+    "headline": "'Pyre': An 18-Award Himalayan Love Story Arrives in Cinemas With First-Time Acto",
+    "slug": "pyre-vinod-kapri-18-awards-himalayan-film-cinemas",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the release date by explicitly stating that the film was released on October 30, 2023, to ensure readers understand the timeliness of the news.",
+        "Include a brief summary of the film's plot and themes earlier in the article to provide context for readers unfamiliar with the film, enhancing completeness.",
+        "Add quotes or reactions from film critics or audiences to provide a broader perspective on the film's reception, which would improve the article's depth and completeness.",
+        "Mention any notable film festivals where the film has been screened or awarded to give readers a sense of its international recognition."
+      ],
+      "embed_opportunities": [
+        "Embed a trailer or clip from the film to engage readers visually and provide a direct preview of the movie."
+      ]
+    }
+  },
+  {
+    "id": "0d3a453a-dc07-413d-8db3-edfea7972849",
+    "headline": "Indian Americans Keep Six House Seats as Ramaswamy Loses Ohio Governor Race",
+    "slug": "indian-americans-six-house-seats-midterms-ramaswamy-ohio",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the election results by providing specific numbers or percentages related to voter turnout or demographic shifts that may have influenced these outcomes.",
+        "Include a brief background on the candidates mentioned, particularly Pia Dandiya and Amish Shah, to give readers context about their campaigns and political significance.",
+        "Correct the repetition of the sentence about the two newcomers replacing Raja Krishnamoorthi and Shri Thanedar; this could be streamlined for clarity.",
+        "Add a quote from one of the elected officials or a political analyst to provide insight into what these results mean for the Indian-American community and the broader political landscape."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a relevant political figure or organization commenting on the election results to provide real-time reactions."
+      ]
+    }
+  },
+  {
+    "id": "8bd7f817-008c-401c-b2eb-6833544cf6b3",
+    "headline": "Manitoba Invites 526 Workers in Draw 283, Led by Manufacturing and Farm Jobs",
+    "slug": "manitoba-pnp-draw-283-526-letters-advice-apply",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the date of the draw as November 5, 2026, in the opening sentence to enhance clarity and timeliness.",
+        "Include specific numbers regarding the occupations and the distribution of letters in a clearer format, such as a bullet list, to improve readability and completeness.",
+        "Provide context on what the Letters of Advice to Apply mean for candidates, including the implications of having a valid Express Entry profile, to enhance the reader's understanding of the process."
+      ],
+      "embed_opportunities": [
+        "Embed the official Manitoba Provincial Nominee Program tweet or announcement regarding Draw #283 to provide direct access to the source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "37e91b94-4cdc-4383-b02d-1b3e76368301",
+    "headline": "Canada Names the Pathways Behind Its 200,000 Extra PR Spaces for 2027",
+    "slug": "canada-200000-pr-spaces-2027-pathways-workers-humanitarian",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the application process. Include specific dates for when applicants can expect to hear back on their applications or when the next steps will be communicated by IRCC.",
+        "Provide a brief explanation of the implications of this announcement for those currently in Canada on temporary work permits. What does this mean for their status and future applications?",
+        "Include a direct quote from an IRCC official or a relevant immigration expert to enhance credibility and provide additional context to the announcement.",
+        "Ensure that the article clearly states that the 200,000 spaces are part of a one-time measure and will not affect future immigration targets, as this is crucial for reader understanding."
+      ],
+      "embed_opportunities": [
+        "Embed the official IRCC announcement or tweet regarding the new pathways for permanent residence to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "30b08081-a407-4964-958b-8e824c9d8a67",
+    "headline": "Diwali 2026: Five Days From Dhanteras Today to Bhai Dooj on Tuesday",
+    "slug": "diwali-2026-five-days-dhanteras-lakshmi-puja-bhai-dooj",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Ensure all dates and observances are clearly attributed to credible sources, such as religious texts or cultural authorities, to enhance accuracy.",
+        "Include more context about the significance of each day's observance to provide completeness and clarity for readers unfamiliar with the festival.",
+        "Consider adding quotes from cultural experts or community leaders to provide depth and personal perspectives on the celebrations.",
+        "Clarify the connection between the festival's lunar calendar and its shifting Gregorian dates for better understanding.",
+        "Ensure that the article is timely by mentioning any upcoming events or preparations that readers might need to consider as Diwali approaches."
+      ],
+      "embed_opportunities": [
+        "Embed a video explaining the significance of Diwali and its traditions for visual engagement.",
+        "Include tweets or Instagram posts from cultural organizations or community groups celebrating Diwali to provide real-time perspectives.",
+        "Consider embedding a calendar or infographic that visually represents the five days of Diwali and their respective observances."
+      ]
+    }
+  }
+]

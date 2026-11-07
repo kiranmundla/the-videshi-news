@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-06-mohammed-shami-retires-test-cricket-229-wickets-64-tests/output/mohammed-shami-retires-test-cricket-229-wickets-64-tests.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:hero"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1080,
+        607
+      ],
+      "manifest_dims": [
+        1080,
+        607
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 6.4,
+      "url": "https://akm-img-a-in.tosshub.com/indiatoday/images/short_video/202611/retire-064624967-16x9_0.jpeg?VersionId=vj_DGGRFihPKk9b8kmVoei4QG2StAySM"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-06-mohammed-shami-retires-test-cricket-229-wickets-64-tests/output/qa/frames/frame-hook.png",
+      "text_px_detected": 23172,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.89)",
+        "box": [
+          359,
+          127,
+          312,
+          377
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-06-mohammed-shami-retires-test-cricket-229-wickets-64-tests/output/qa/frames/frame-news.png",
+      "text_px_detected": 32632,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          146,
+          253,
+          46,
+          57
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 0.0,
+        "delta": 253.7
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-06-mohammed-shami-retires-test-cricket-229-wickets-64-tests/output/qa/frames/frame-hero.png",
+      "text_px_detected": 22681,
+      "edge": {
+        "pass": false,
+        "offending_px": 1230,
+        "clusters": 3,
+        "largest_cluster": 431
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          342,
+          148,
+          328,
+          357
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.0,
+        "bg_luminance": 69.2,
+        "delta": 183.8
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-06-mohammed-shami-retires-test-cricket-229-wickets-64-tests/output/qa/frames/frame-grid.png",
+      "text_px_detected": 27764,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.78)",
+        "box": [
+          429,
+          278,
+          128,
+          151
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-06-mohammed-shami-retires-test-cricket-229-wickets-64-tests/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 30978,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.86)",
+        "box": [
+          356,
+          124,
+          342,
+          406
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-06-mohammed-shami-retires-test-cricket-229-wickets-64-tests/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 23374,
+      "edge": {
+        "pass": true,
+        "offending_px": 60,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.91)",
+        "box": [
+          414,
+          93,
+          227,
+          313
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 52.5,
+        "delta": 201.4
+      }
+    }
+  ]
+}

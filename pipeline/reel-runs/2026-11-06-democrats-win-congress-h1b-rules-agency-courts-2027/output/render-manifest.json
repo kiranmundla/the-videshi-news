@@ -1,0 +1,408 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "democrats-win-congress-h1b-rules-agency-courts-2027",
+ "article_slug": "democrats-win-congress-h1b-rules-agency-courts-2027",
+ "article_id": "2aba6b42-9c9c-4a65-a880-d54fe5de829c",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-06-democrats-win-congress-h1b-rules-agency-courts-2027/output/democrats-win-congress-h1b-rules-agency-courts-2027.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://www.m9.news/wp-content/uploads/2026/11/us-midterms-democrats-h1b-visa-slots-india.jpg",
+  "local_path": "reel-runs/2026-11-06-democrats-win-congress-h1b-rules-agency-courts-2027/output/hero.jpg",
+  "width": 1600,
+  "height": 900,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.490,0.526) damped=(0.495,0.513)",
+  "has_face": false,
+  "box_source": [
+   344,
+   263,
+   896,
+   360
+  ],
+  "box_bg": [
+   265,
+   292,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.467,
+   0.52
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 246,
+   "block_top": 999,
+   "block_bottom": 1245,
+   "text_bbox": [
+    70,
+    999,
+    930,
+    1245
+   ],
+   "texts": [
+    "Immigration",
+    "DEMOCRATS WON CONGRESS. FOR H-1B HOLDERS, THE RULES STILL RUN THROUGH AGENCIES AND COURTS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.521,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.52125,
+     "window": [
+      0,
+      3,
+      1600,
+      900
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 291,
+   "block_top": 1289,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1289,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Democrats won control of both the House and the Senate in the November 3 midterms."
+   ],
+   "v7": {
+    "image_source": "extra:22-09-22-campagna-elettorale-mercato-di-casc",
+    "track": "full-bleed",
+    "render_scale": 0.556,
+    "photo_px": [
+     4608,
+     3456
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5555555555555556,
+     "window": [
+      479,
+      0,
+      2423,
+      3456
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Campagna elettorale 2022 al mercato di Cascina",
+     "route": "identity \u2014 depicts (P180=Q29552)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:22-09-22_Campagna_elettorale_mercato_di_Cascina_20.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/22-09-22_Campagna_elettorale_mercato_di_Cascina_20.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Alexmar983"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 430,
+   "block_top": 1150,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1150,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$100,000",
+    "H-1B fee extended to September 21, 2027"
+   ],
+   "v7": {
+    "image_source": "extra:h-1b-visa-updates",
+    "track": "full-bleed",
+    "render_scale": 0.455,
+    "photo_px": [
+     3375,
+     4219
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4550841431618867,
+     "window": [
+      534,
+      0,
+      2907,
+      4219
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "From interview mandates to higher fees understand how the new H-1B rules affect your chances.",
+     "route": "identity \u2014 depicts (P180=Q974595)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:H-1B_Visa_Updates.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/H-1B_Visa_Updates.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "Immigrationconsultantcalifornia"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 455,
+   "block_top": 1125,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1125,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "211,600",
+    "H-1B registrations for fiscal 2027",
+    "$103,265",
+    "Proposed fee on cap-subject petitions"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.96,
+    "photo_px": [
+     3865,
+     2000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.96,
+     "window": [
+      1383,
+      0,
+      2508,
+      2000
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 306,
+   "block_top": 1274,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1274,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Nothing changes automatically for H-1B holders",
+    "New Congress sits January 3, 2027"
+   ],
+   "v7": {
+    "image_source": "extra:us-capitol-west-side",
+    "track": "full-bleed",
+    "render_scale": 0.96,
+    "photo_px": [
+     3865,
+     2000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.96,
+     "window": [
+      1383,
+      0,
+      2508,
+      2000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "US Capitol , west side",
+     "route": "identity \u2014 Wikidata P18 (Q11268)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:US_Capitol_west_side.JPG",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/US_Capitol_west_side.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Martin Falbisoner"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "Congress must pass a law to overturn a final agency rule.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 147.6,
+ "mp4_bytes": 11893024
+}

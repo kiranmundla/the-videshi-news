@@ -693,5 +693,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "PjJlgFUFr9E",
+    "article_slug": "nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020",
+    "article_id": "7313df31-ce7d-4caf-88b5-9cdf1373790b",
+    "title": "Nvidia, AMD and Micron Lead Chip Rebound After Worst Selloff Since 2020 #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-11-07T05:17:31.374980+00:00",
+    "video_path": "reel-runs/2026-11-06-nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020/output/nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020.mp4",
+    "video_sha256": "3a7d9bb7ae47caa29d9a83dab5564fa2a30a2fe7e513091642466dfabc87828a",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

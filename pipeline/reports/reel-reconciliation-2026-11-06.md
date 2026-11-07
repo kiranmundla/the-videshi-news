@@ -1,19 +1,19 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-06T11:18:05+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-06T23:23:28+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **233**
+- Channel uploads (actual, via API): **234**
 - prebuilt_reels rows: 169 (139 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
 - Phase 2 publish-log entries: 52
 - **In sync** (channel video backed by a DB/publish-log record): **118**
 - Unknown — legacy-logged only: 101
-- Unknown — no record anywhere: 14
+- Unknown — no record anywhere: 15
 - Ghost DB rows (yt_video_id not on channel): 16
 - Superseded DB rows (owner-deleted/replaced; not ghosts): 5
-- Public with no DB record: 115
+- Public with no DB record: 116
 - Phase 2 uploads now public (manual flip expected): 0
 
 ## (a1) Unknown channel videos — legacy-logged (old upload path) (101)
@@ -120,7 +120,7 @@ Generated: 2026-11-06T11:18:05+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - `dOdIzexK70M` · public · 2026-10-13 · GOP's H-1B Visa Shift: 9 Indian-American Republicans Run! (log slug: indian-american-republicans-h-1b-backlash-ballot-2026)
 - `d-Lek2J0Q-g` · public · 2026-10-13 · Hyderabad Man's Family Faces Tragedy in Riyadh Airport Attac (log slug: hyderabad-man-riyadh-airport-attack-funeral-saudi)
 
-## (a2) Unknown channel videos — no record anywhere (14)
+## (a2) Unknown channel videos — no record anywhere (15)
 
 - `2XdG6znjzGs` · public · 2026-05-26 · Mammootty Skipped the Padma Bhushan Ceremony for a Kerala Doctorate #Shorts
 - `2PoRwT_MWi0` · public · 2026-06-07 · Rodrigues Has Batted 3, 4, and 5 in Three Consecutive Series. She Says She'll Bat Anywhere … #Shorts
@@ -136,6 +136,7 @@ Generated: 2026-11-06T11:18:05+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - `YL5GuMqOGxE` · public · 2026-10-30 · JAILER 2 INDIA GROSS HITS RS 462.75 CRORE
 - `Bx2sYK1FOxk` · public · 2026-10-30 · October 30, 2026
 - `6ucJDSaDiIE` · public · 2026-11-06 · Aishwarya in Red, Kareena in Shimmer ✨ Who Stole the Diwali Spotlight?
+- `j5LqJVk6utw` · public · 2026-11-06 · 250+ House Seats: Indian American Winners & Losers 🇺🇸
 
 ## (b) Ghost DB rows — yt_video_id not on the channel (16)
 
@@ -156,7 +157,7 @@ Generated: 2026-11-06T11:18:05+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - row `c7713080-09d5-4d70-914a-5090686d7791` · slug nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks · yt_video_id `dB5AYzpRFC8` · status yt_posted
 - row `97cd9bb0-7820-4435-a26f-5e9b8454f259` · slug samvat-2082-largecaps-fall-smallcap-multibaggers-diwali · yt_video_id `guB2GssTJoo` · status yt_posted
 
-## (c1) Privacy flag — public channel videos with no DB record (115)
+## (c1) Privacy flag — public channel videos with no DB record (116)
 
 - `2XdG6znjzGs` · 2026-05-26 · Mammootty Skipped the Padma Bhushan Ceremony for a Kerala Doctorate #Shorts
 - `E0_-Wo2WOr4` · 2026-05-26 · Mammootty Was Supposed to Receive India's Third-Highest Civilian Honour Today. He Was in Kott #Sh...
@@ -273,6 +274,7 @@ Generated: 2026-11-06T11:18:05+00:00 · Tool: `pipeline/reel_reconcile.py` (read
 - `YL5GuMqOGxE` · 2026-10-30 · JAILER 2 INDIA GROSS HITS RS 462.75 CRORE
 - `Bx2sYK1FOxk` · 2026-10-30 · October 30, 2026
 - `6ucJDSaDiIE` · 2026-11-06 · Aishwarya in Red, Kareena in Shimmer ✨ Who Stole the Diwali Spotlight?
+- `j5LqJVk6utw` · 2026-11-06 · 250+ House Seats: Indian American Winners & Losers 🇺🇸
 
 ## (c2) Privacy flag — Phase 2 (unlisted) uploads now public (0)
 

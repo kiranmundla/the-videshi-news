@@ -1,0 +1,28 @@
+{
+  "kind": "carousel",
+  "article_slug": "nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020",
+  "status": "held",
+  "stage": "card_qa",
+  "factcheck": {
+    "verdict": "pass",
+    "quote_present": true,
+    "verbatim_quote": true,
+    "speaker_grounded": true,
+    "role_grounded": true,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000564
+  },
+  "qa": {
+    "score": 9.25,
+    "passed": false,
+    "failing_checks": [
+      "card1_contrast"
+    ]
+  },
+  "cards": [
+    "reel-runs/2026-11-06-nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020/carousel/carousel-1.png",
+    "reel-runs/2026-11-06-nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020/carousel/carousel-2.png",
+    "reel-runs/2026-11-06-nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020/carousel/carousel-3.png",
+    "reel-runs/2026-11-06-nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020/carousel/carousel-4.png"
+  ]
+}

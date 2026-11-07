@@ -1,0 +1,148 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "jaypal-malviya-issf-silver-india-first-la-2028-quota",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Jaypal Malviya",
+    "ISSF",
+    "Manu Bhaker",
+    "Los Angeles 2028",
+    "Los Angeles",
+    "China's Hu Kai"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Jaypal Malviya' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'ISSF' named 'ISSF World Shooting Championships', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: \"China's Hu Kai\" has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Paris Olympics double bronze medalist Manu Bhaker in August 2024.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q50351453)",
+      "verdict": "rejected",
+      "reason": "resolution: 681x908 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:2018-10-12 Shooting at the 2018 Summer Youth Olympics \u2013 Mixed 10m Air Pistol \u2013 Victory ceremony (Martin Rulsch) 11 (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q50351453)",
+      "verdict": "accepted",
+      "reason": "2001x3497, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:PM Modi congratulates Manu Bhaker for winning bronze medal in shooting at Paris Olympics 2024!.webm",
+      "route": "identity \u2014 depicts (P180=Q50351453)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:Los Angeles Memorial Coliseum.png",
+      "route": "identity \u2014 depicts (P180=Q1451505)",
+      "verdict": "USED (news)",
+      "reason": "8064x5644, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:ParaHandoverAWebsiteEmblem.png",
+      "route": "identity \u2014 depicts (P180=Q1451505)",
+      "verdict": "rejected",
+      "reason": "resolution: 521x352 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Los Angeles with Mount Baldy.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q65)",
+      "verdict": "USED (hero)",
+      "reason": "8267x3873, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2020 Summer Fest Los Angeles.jpg",
+      "route": "identity \u2014 depicts (P180=Q65)",
+      "verdict": "USED (grid)",
+      "reason": "1689x2107, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "los-angeles-memorial-coliseum",
+      "path": "los-angeles-memorial-coliseum.png",
+      "size": [
+        8064,
+        5644
+      ],
+      "role": "establishing",
+      "subject": "Aerial view of Los Angeles Memorial Coliseum",
+      "route": "identity \u2014 depicts (P180=Q1451505)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Los_Angeles_Memorial_Coliseum.png",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Los_Angeles_Memorial_Coliseum.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "artist": "Quintin Soloviev",
+      "entity": "Los Angeles 2028",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Los Angeles 2028",
+        "2028 Summer Olympics",
+        "The Games of the XXXIV Olympiad",
+        "LA 2028",
+        "Los Angeles 2028 ol\u00edmpicos juegos"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "los-angeles-with-mount-baldy",
+      "path": "los-angeles-with-mount-baldy.jpg",
+      "size": [
+        8267,
+        3873
+      ],
+      "role": "establishing",
+      "subject": "February shot of downtown Los Angeles sunset with Mount Baldy in the background after a large snow storm.",
+      "route": "identity \u2014 Wikidata P18 (Q65)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Los_Angeles_with_Mount_Baldy.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Los_Angeles_with_Mount_Baldy.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Alek Leckszas",
+      "entity": "Los Angeles",
+      "entity_type": "place",
+      "entity_aliases": [
+        "Los Angeles"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "2020-summer-fest-los-angeles",
+      "path": "2020-summer-fest-los-angeles.jpg",
+      "size": [
+        1689,
+        2107
+      ],
+      "role": "establishing",
+      "subject": "Christian Hip Hop, Latin Christian Hip Hop & Gospel Hip Hop music festival in Los Angeles.",
+      "route": "identity \u2014 depicts (P180=Q65)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2020_Summer_Fest_Los_Angeles.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/2020_Summer_Fest_Los_Angeles.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "IMusicFacts",
+      "entity": "Los Angeles",
+      "entity_type": "place",
+      "entity_aliases": [
+        "Los Angeles"
+      ]
+    }
+  ]
+}

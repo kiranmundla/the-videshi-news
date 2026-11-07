@@ -1,0 +1,22 @@
+{
+  "hook_line": "DEMOCRATS PASS 250 HOUSE SEATS, BIGGEST MAJORITY SINCE 2008",
+  "hook_stat": {
+    "big": "253",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "House races called for Democrats by the AP"
+  },
+  "stats": [
+    {"big": "155", "label": "Races called for Republicans"},
+    {"big": "30", "label": "Republican incumbents beaten"},
+    {"big": "257", "label": "Democrat seats in the 2008 majority"}
+  ],
+  "diaspora_bullets": [
+    "Amish Shah's Arizona flip delivered the 250th seat",
+    "Republicans flipped only one seat untouched by redistricting"
+  ],
+  "key_entities": ["Democrats", "House of Representatives", "Amish Shah", "Associated Press"],
+  "news_summary": "CNN projects Democrats past 250 House seats after Amish Shah flipped an Arizona seat.",
+  "payoff": "A majority this large lets Democratic leaders pass bills even with defections.",
+  "versus": "",
+  "story_mood": "tense"
+}

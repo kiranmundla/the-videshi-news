@@ -1,0 +1,426 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "mohammed-shami-retires-test-cricket-229-wickets-64-tests",
+ "article_slug": "mohammed-shami-retires-test-cricket-229-wickets-64-tests",
+ "article_id": "68631f47-c840-4704-9ecd-04a803035273",
+ "category": "Sports",
+ "video": "reel-runs/2026-11-06-mohammed-shami-retires-test-cricket-229-wickets-64-tests/output/mohammed-shami-retires-test-cricket-229-wickets-64-tests.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://akm-img-a-in.tosshub.com/indiatoday/images/short_video/202611/retire-064624967-16x9_0.jpeg?VersionId=vj_DGGRFihPKk9b8kmVoei4QG2StAySM",
+  "local_path": "reel-runs/2026-11-06-mohammed-shami-retires-test-cricket-229-wickets-64-tests/output/hero.jpeg",
+  "width": 1080,
+  "height": 607,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.91)",
+  "has_face": true,
+  "box_source": [
+   338,
+   4,
+   414,
+   451
+  ],
+  "box_bg": [
+   347,
+   159,
+   320,
+   348
+  ],
+  "chin_bg": 507,
+  "anchor": [
+   0.507,
+   0.374
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 294,
+   "block_top": 975,
+   "block_bottom": 1269,
+   "text_bbox": [
+    70,
+    975,
+    930,
+    1269
+   ],
+   "texts": [
+    "Sports",
+    "MOHAMMED SHAMI RETIRES FROM TEST CRICKET AFTER 229 WICKETS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.772,
+    "photo_px": [
+     1080,
+     607
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7722222222222223,
+     "window": [
+      0,
+      0,
+      1080,
+      606
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.16x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 291,
+   "block_top": 976,
+   "block_bottom": 1267,
+   "text_bbox": [
+    70,
+    976,
+    930,
+    1267
+   ],
+   "texts": [
+    "What Happened",
+    "Shami announced his Test retirement on November 6, 13 years after his debut."
+   ],
+   "v7": {
+    "image_source": "extra:a-memorable-bcci-gathering-with-cricket-lege",
+    "track": "backdrop",
+    "render_scale": 0.758,
+    "photo_px": [
+     1100,
+     798
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7581818181818182,
+     "window": [
+      0,
+      0,
+      1100,
+      617
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.41x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "THEN HARYANA CRICKET ASSOCIATION PRESIDENT, VICE PRESIDENT & OTHER BCCI OFFICIALS",
+     "route": "identity \u2014 depicts (P180=Q2907539)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:A_Memorable_BCCI_Gathering_with_Cricket_Legend_Sunil_Gavaskar.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/ae/A_Memorable_BCCI_Gathering_with_Cricket_Legend_Sunil_Gavaskar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Brinoob99"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 376,
+   "block_top": 1204,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1204,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "229",
+    "Test wickets in 64 matches for India"
+   ],
+   "v7": {
+    "image_source": "extra:close-wing-position-of-loxura-atymnus-stoll",
+    "track": "full-bleed",
+    "render_scale": 0.8,
+    "photo_px": [
+     3600,
+     2400
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8,
+     "window": [
+      945,
+      0,
+      2295,
+      2400
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "This picture was taken during the project Wiki Loves Butterfly in Chintamoni Kar Bird Sanctuary,Kolkata,West Bengal,India.Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly. Subspecies: Loxura atymnus continentalis Fruhstorfer, 1912",
+     "route": "identity \u2014 depicts (P180=Q668)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Close_wing_position_of_Loxura_atymnus_Stoll,_1780_%E2%80%93_Yamfly.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Close_wing_position_of_Loxura_atymnus_Stoll%2C_1780_%E2%80%93_Yamfly.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 3.0",
+     "artist": "Atudu"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 653,
+   "block_top": 795,
+   "block_bottom": 1448,
+   "text_bbox": [
+    70,
+    795,
+    930,
+    1448
+   ],
+   "texts": [
+    "By The Numbers",
+    "2013",
+    "Test debut at Eden Gardens",
+    "6",
+    "Five-wicket hauls in Tests",
+    "6/56",
+    "His best Test figures"
+   ],
+   "v7": {
+    "image_source": "extra:2018-01-06-17-47-32-moeen-ali-38876905344-cr",
+    "track": "backdrop",
+    "render_scale": 0.743,
+    "photo_px": [
+     1122,
+     1159
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7433155080213903,
+     "window": [
+      0,
+      0,
+      1122,
+      629
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.66x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Moeen Ali during the third day of the 5th test of the 2017/2016 Ashes",
+     "route": "identity \u2014 depicts (P180=Q1132113)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:2018.01.06.17.47.32-Moeen_Ali_(38876905344)_(cropped).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/2018.01.06.17.47.32-Moeen_Ali_%2838876905344%29_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "www.davidmolloyphotography.com from Sydney, Australia"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 937,
+   "block_bottom": 1306,
+   "text_bbox": [
+    70,
+    937,
+    930,
+    1306
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Fifth-highest wicket-taker among Indian fast bowlers in Tests",
+    "His last Test was the 2023 World Test Championship final"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.878,
+    "photo_px": [
+     1080,
+     607
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.8778947368421053,
+     "window": [
+      72,
+      0,
+      1022,
+      533
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.16x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 461,
+   "zone_h": 1119,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 1195,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1195,
+    930,
+    1580
+   ],
+   "texts": [
+    "The Takeaway",
+    "Shami will continue playing white-ball cricket, including the IPL.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "extra:australian-cricketers-ca-1884-scott-london-s",
+    "track": "full-bleed",
+    "render_scale": 0.906,
+    "photo_px": [
+     2776,
+     2119
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.9060877772534214,
+     "window": [
+      1206,
+      0,
+      2397,
+      2119
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Australian cricket team in England, ca. 1884, Bonnor, Palmer, Blackham, Boyle, Spofforth, Murdoch, Bannerman, Cooper, McDonnell, Griffin, Scott by London Stereoscopic Company, State Library of New South Wales, PXA 1031",
+     "route": "identity \u2014 depicts (P180=Q1132113)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Australian_Cricketers,_ca._1884,_Scott_London_Stereoscopic_Company.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Australian_Cricketers%2C_ca._1884%2C_Scott_London_Stereoscopic_Company.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "London Stereoscopic Company"
+    }
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 112.3,
+ "mp4_bytes": 8404032
+}

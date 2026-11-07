@@ -1,0 +1,183 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Nvidia, AMD and Micron Lead Chip Rebound After Worst Selloff Since 2020",
+        "numbers": [
+          2020.0
+        ],
+        "entities": [
+          "Micron Lead Chip Rebound After Worst Selloff Since"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2020
+          ]
+        },
+        "llm_reason": "The article states Nvidia, AMD, and Micron led the chip rebound.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Friday's rebound recovered only part of Thursday's losses, and analysts called it a reflex bounce rather than a resolution.",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions the rebound was partial and described as a reflex move.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The Philadelphia Semiconductor Index fell 12.25% on November 5, its biggest one-day drop since March 2020",
+        "numbers": [
+          5.0,
+          12.25,
+          2020.0
+        ],
+        "entities": [
+          "Philadelphia Semiconductor Index"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2020
+          ]
+        },
+        "llm_reason": "The article confirms the index fell 12.25% on November 5, marking a significant drop.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "AMD closed up 11% on Friday, Intel rose 8% and Micron gained 5%",
+        "numbers": [
+          5.0,
+          8.0,
+          11.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states AMD, Intel, and Micron's respective gains on Friday.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The index closed 38.4% below its June 22 record close of 14,634.72",
+        "numbers": [
+          22.0,
+          38.4,
+          14634.72
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides the index's closing percentage below the June 22 record.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Jack Gold",
+        "numbers": [],
+        "entities": [
+          "Jack Gold"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Jack Gold is mentioned in the article as an analyst.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Analyst, J. Gold Associates",
+        "numbers": [],
+        "entities": [
+          "J Gold Associates"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Jack Gold as an analyst from J. Gold Associates.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Nvidia, AMD and Micron Lead Chip Rebound After Worst Selloff Since 2020",
+        "numbers": [
+          2020.0
+        ],
+        "entities": [
+          "Micron Lead Chip Rebound After Worst Selloff Since"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2020
+          ]
+        },
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000564,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

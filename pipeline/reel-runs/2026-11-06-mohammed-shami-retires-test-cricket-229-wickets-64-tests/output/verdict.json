@@ -1,0 +1,37 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "mohammed-shami-retires-test-cricket-229-wickets-64-tests",
+  "name": "mohammed-shami-retires-test-cricket-229-wickets-64-tests",
+  "script": "reel-runs/2026-11-06-mohammed-shami-retires-test-cricket-229-wickets-64-tests/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000639
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-06-mohammed-shami-retires-test-cricket-229-wickets-64-tests/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "a-memorable-bcci-gathering-with-cricket-lege",
+      "hero": "close-wing-position-of-loxura-atymnus-stoll",
+      "grid": "2018-01-06-17-47-32-moeen-ali-38876905344-cr",
+      "payoff": "australian-cricketers-ca-1884-scott-london-s"
+    }
+  },
+  "manifest": "reel-runs/2026-11-06-mohammed-shami-retires-test-cricket-229-wickets-64-tests/output/render-manifest.json",
+  "video": "reel-runs/2026-11-06-mohammed-shami-retires-test-cricket-229-wickets-64-tests/output/mohammed-shami-retires-test-cricket-229-wickets-64-tests.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:hero"
+    ]
+  }
+}

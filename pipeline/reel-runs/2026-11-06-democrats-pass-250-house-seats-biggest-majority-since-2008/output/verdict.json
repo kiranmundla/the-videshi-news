@@ -1,0 +1,37 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "democrats-pass-250-house-seats-biggest-majority-since-2008",
+  "name": "democrats-pass-250-house-seats-biggest-majority-since-2008",
+  "script": "reel-runs/2026-11-06-democrats-pass-250-house-seats-biggest-majority-since-2008/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.00064
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-06-democrats-pass-250-house-seats-biggest-majority-since-2008/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "amish-shah-by-gage-skidmore",
+      "hero": "22-09-22-campagna-elettorale-mercato-di-casc",
+      "grid": "a-sane-fourth-dpla-5fadc52665fedb172dd7138b6",
+      "diaspora": "amish-shah-david-marshall-52750179671"
+    }
+  },
+  "manifest": "reel-runs/2026-11-06-democrats-pass-250-house-seats-biggest-majority-since-2008/output/render-manifest.json",
+  "video": "reel-runs/2026-11-06-democrats-pass-250-house-seats-biggest-majority-since-2008/output/democrats-pass-250-house-seats-biggest-majority-since-2008.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:grid"
+    ]
+  }
+}
