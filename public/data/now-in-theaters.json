@@ -4,59 +4,6 @@
   "movies": [
     {
       "cast": [
-        "Will Forte",
-        "John Cena",
-        "Lana Condor",
-        "Tone Bell",
-        "Luis Guzmán",
-        "Martha Kelly"
-      ],
-      "director": "Dave Green",
-      "genre": "Animation, Comedy, Family",
-      "is_indian": false,
-      "language": "English",
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/c/c0/Coyote_vs._Acme_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "96% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-08-28",
-      "slug": "coyote-vs-acme",
-      "status": "now_playing",
-      "ticket_url": "https://www.google.com/search?q=Coyote+vs+Acme+movie+showtimes+near+me",
-      "title": "Coyote vs. Acme",
-      "trailer_url": "https://www.youtube.com/watch?v=iu-4SgTw73M",
-      "why_watch": "The rescue story of the year keeps paying off: $4.5M this weekend puts the shelved-tax-writeoff turned theatrical darling past $52M domestic. 96% RT, an A CinemaScore, and the best Looney Tunes movie ever made. John Cena vs. Wile E. Coyote in court — still the feel-good family watch of the season.",
-      "year": 2026,
-      "cast_details": [
-        {
-          "name": "Will Forte",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Will_Forte_by_Gage_Skidmore_2.jpg/300px-Will_Forte_by_Gage_Skidmore_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "John Cena",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/John_Cena_by_Gage_Skidmore.jpg/300px-John_Cena_by_Gage_Skidmore.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Lana Condor",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Lana_Condor_at_2026_APEX_Gala_in_NYC_03_%28cropped%29.jpg/300px-Lana_Condor_at_2026_APEX_Gala_in_NYC_03_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Tone Bell",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4a/Tone_Bell.png/300px-Tone_Bell.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Luis Guzmán",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Wednesday_NYCC_2022_1_%28Guzm%C3%A1n_cropped%29.jpg/300px-Wednesday_NYCC_2022_1_%28Guzm%C3%A1n_cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Martha Kelly",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Martha_Kelly_by_Gage_Skidmore.jpg/300px-Martha_Kelly_by_Gage_Skidmore.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        }
-      ],
-      "poster_width": 260,
-      "poster_height": 385
-    },
-    {
-      "cast": [
         "Pankaj Tripathi",
         "Ali Fazal",
         "Divyenndu",
@@ -794,6 +741,32 @@
       "fandango_url": "https://www.fandango.com/cult-248221/movie-overview"
     },
     {
+      "title": "Pyre",
+      "slug": "pyre-2026",
+      "release_date": "2026-10-30",
+      "status": "now_playing",
+      "language": "Hindi",
+      "director": "Vinod Kapri",
+      "cast": [
+        "Padam Singh Kapri Heera Devi Subhash Chandra Shubham Chaudhary Sadab Khan Alok Verma Gopa Nayal Deewan Kanwal Jaya Shah Pushpa Pandey"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=Pyre%20showtimes%20near%20me",
+      "why_watch": "Pyre is a Hindi film directed by Vinod Kapri, starring Padam Singh Kapri Heera Devi Subhash Chandra Shubham Chaudhary Sadab Khan Alok Verma Gopa Nayal Deewan Kanwal Jaya Shah Pushpa Pandey.",
+      "poster_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Ubud_Cremation_1.jpg/500px-Ubud_Cremation_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "poster_width": 1024,
+      "poster_height": 1280,
+      "trailer_url": "https://www.youtube.com/watch?v=ETmBXE66Xv4",
+      "cast_details": [
+        {
+          "name": "Padam Singh Kapri Heera Devi Subhash Chandra Shubham Chaudhary Sadab Khan Alok Verma Gopa Nayal Deewan Kanwal Jaya Shah Pushpa Pandey",
+          "photo_url": ""
+        }
+      ]
+    },
+    {
       "title": "Ramayana: Part 1",
       "slug": "ramayana-part-1-2026",
       "release_date": "2026-11-05",
@@ -893,7 +866,10 @@
           "name": "Abhinaya",
           "photo_url": ""
         }
-      ]
+      ],
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/e/ef/Mookuthi_Amman_2_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "poster_width": 250,
+      "poster_height": 391
     },
     {
       "title": "Aakasamlo Oka Tara",
@@ -932,6 +908,34 @@
       ],
       "poster_width": 283,
       "poster_height": 353
+    },
+    {
+      "title": "Maatrubhumi: May War Rest in Peace",
+      "slug": "maatrubhumi-may-war-rest-in-peace-2026",
+      "release_date": "2026-12-04",
+      "status": "coming_soon",
+      "language": "Hindi",
+      "director": "Apoorva Lakhia",
+      "cast": [
+        "Salman Khan Chitrangada Singh"
+      ],
+      "genre": "",
+      "is_indian": true,
+      "year": 2026,
+      "ticket_url": "https://www.google.com/search?q=Maatrubhumi%3A%20May%20War%20Rest%20in%20Peace%20showtimes%20near%20me",
+      "why_watch": "Maatrubhumi: May War Rest in Peace is a Hindi film directed by Apoorva Lakhia, starring Salman Khan Chitrangada Singh.",
+      "rating": "Opens Dec 4",
+      "rating_source": "Release date",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/f/f0/Maatrubhumi_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "poster_width": 256,
+      "poster_height": 341,
+      "trailer_url": "https://www.youtube.com/watch?v=9B7LSpnUhHc",
+      "cast_details": [
+        {
+          "name": "Salman Khan Chitrangada Singh",
+          "photo_url": ""
+        }
+      ]
     },
     {
       "title": "King",
