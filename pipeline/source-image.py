@@ -224,10 +224,51 @@ def fetch_google_cse(query, cc_only=True):
     return None, None
 
 
-def _verify_trailer_candidate(vid):
+def _article_film_identity(article):
+    """(film_title, film_language) for the trailer gate, derived from
+    the article itself — never guessed (2026-11-06, the Drishyam 3
+    case: the Malayalam trailer passed every gate leg for the Hindi
+    article because verification was told nothing about the film).
+
+    Title + language come as one record when review_trailer's roster
+    match claims the article: now-in-theaters.json carries a curated
+    title and language per film. When no roster film matches, the
+    language falls back to trailer-watch's derive_drop_language chain
+    minus its channel legs (an article has no channel): (1) a language
+    tag in the headline, (2) an explicit language statement in the
+    body — via embed_placement's twins of trailer-watch's extractors.
+    The search query the agent supplied is NOT evidence and is never
+    consulted. Either value may be None; a None language simply
+    leaves the gate's version leg inert.
+    """
+    try:
+        from review_trailer import load_roster, match_roster_film
+        film = match_roster_film(article, load_roster())
+    except Exception:
+        film = None
+    if film:
+        return film.get("title") or None, film.get("language") or None
+    try:
+        from embed_placement import (detect_stated_language,
+                                     detect_title_language)
+        lang = detect_title_language(article.get("headline")) \
+            or detect_stated_language(article.get("body"))
+    except Exception:
+        lang = None
+    return None, lang
+
+
+def _verify_trailer_candidate(vid, film_title=None, film_language=None):
     """Verify a trailer candidate against the FULL standing trailer gate
     (embed_placement.trailer_embed_gate): oEmbed for the real title +
     channel, Data API metadata for channel identity + US region.
+
+    film_title / film_language are the article's own film identity
+    (_article_film_identity): when supplied, the gate also requires
+    the title to name the film and rejects a candidate that positively
+    is a different language VERSION of it (2026-11-06: the Malayalam
+    Drishyam 3 trailer is a legitimate official trailer that passed
+    every other leg for the Hindi article).
 
     Returns (title, author) if embeddable, else None. Fails CLOSED on
     every leg — including gate/metadata errors (the previous version
@@ -268,7 +309,10 @@ def _verify_trailer_candidate(vid):
             meta.get("channel_title") or author,
             channel_id=meta.get("channel_id"),
             region_restriction=meta.get("region_restriction"),
-            region_checked=True)
+            region_checked=True,
+            film_title=film_title,
+            film_language=film_language,
+            description=meta.get("description"))
     except Exception as e:
         print(f"  ✗ Trailer candidate rejected: {vid} — gate error: {e}")
         return None
@@ -278,8 +322,10 @@ def _verify_trailer_candidate(vid):
     return title, author
 
 
-def fetch_youtube_trailer(query):
-    """Search YouTube for a trailer via page scrape."""
+def fetch_youtube_trailer(query, film_title=None, film_language=None):
+    """Search YouTube for a trailer via page scrape. Every candidate is
+    verified against the shared gate with the article's film identity
+    (film_title / film_language) when the caller knows it."""
     try:
         url = f"https://www.youtube.com/results?search_query={quote_plus(query)}"
         headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"}
@@ -307,7 +353,9 @@ def fetch_youtube_trailer(query):
         )
         for i in ordered:
             item = results[i]
-            verified = _verify_trailer_candidate(item["id"])
+            verified = _verify_trailer_candidate(
+                item["id"], film_title=film_title,
+                film_language=film_language)
             if verified:
                 title, author = verified
                 yt = f"https://youtube.com/watch?v={item['id']}"
@@ -423,7 +471,7 @@ def validate_image_url(url):
 def get_article(article_id):
     """Fetch article from Supabase (curl subprocess — Python requests fails through the proxy)."""
     url = (f"{SUPABASE_URL}/rest/v1/p2_articles?id=eq.{article_id}"
-           "&select=id,headline,image_url,image_caption,image_attribution,body,image_backfill_blocked")
+           "&select=id,headline,slug,image_url,image_caption,image_attribution,body,image_backfill_blocked")
     r = subprocess.run(
         ["curl", "-sS", url,
          "-H", f"apikey: {SUPABASE_KEY}",
@@ -486,6 +534,19 @@ def embed_trailer(article_id, trailer_url, dry_run=True):
         new_body = paras[0] + tag + "\n" + paras[1]
     else:
         new_body = body + tag
+
+    # Placement normalization (2026-11-06, the Pyre case): the split
+    # above puts the tag after the first \n\n block — on mega-block
+    # articles (key-takeaways + body in one block) that is ~99% through
+    # the article, effectively invisible. The enrich paths have guarded
+    # against this since 2026-10-12 by running reposition_bottom_trailer
+    # on every body they touch (enrich-on-publish.py, enrich-articles.py);
+    # do the same here so any trailer this script places ends up
+    # mid-article (after the 2nd paragraph).
+    from embed_placement import reposition_bottom_trailer
+    new_body, _trailer_moved = reposition_bottom_trailer(new_body)
+    if _trailer_moved:
+        print("  🎬 Moved bottom-placed trailer to mid-article")
 
     if dry_run:
         print(f"  [DRY RUN] Would embed trailer: {trailer_url}")
@@ -605,9 +666,14 @@ def process_instruction(instr, apply=False):
     elif sources:
         print(f"  ✗ No suitable image found from any source")
 
-    # Trailer embedding
+    # Trailer embedding — verification is told the article's own film
+    # identity (title + language) so a same-title trailer in another
+    # language cannot pass as this article's trailer.
     if instr.get("trailer"):
-        trailer_url = fetch_youtube_trailer(instr["trailer"])
+        film_title, film_language = _article_film_identity(article)
+        trailer_url = fetch_youtube_trailer(
+            instr["trailer"], film_title=film_title,
+            film_language=film_language)
         if trailer_url:
             embed_trailer(aid, trailer_url, dry_run=not apply)
 

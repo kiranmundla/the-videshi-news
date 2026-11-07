@@ -294,9 +294,108 @@ def title_names_film(video_title, film_title):
     return all(t in vtoks for t in significant)
 
 
+# ── Language-version evidence (2026-11-06) ──────────────────────────
+# Twins of trailer-watch.py's extract_language /
+# extract_description_language — kept here for the same reason
+# region_allows_us is twinned below: embed_placement is imported BY
+# the modules that would otherwise have to load a 1,600-line hyphenated
+# script (trailer-watch.py reads sys.argv at module level), and the
+# rules are small and must agree. If trailer-watch's patterns change,
+# mirror them here (test_trailer_language_version.py pins the shared
+# behaviors on the incident fixtures).
+#
+# A language is only ever DETECTED from an explicit statement — a word
+# in the title, a hashtag / "language:" line / adjective phrase in the
+# description. Absence of evidence returns None; nothing is inferred
+# from a channel's industry: trailer-channels.json's industry is a
+# channel-level primary label, and multi-language distributors make it
+# affirmatively misleading per-video (Panorama Studios is rostered as
+# industry "marathi" yet produced the Hindi Drishyam: The Conclusion
+# AND distributed its Malayalam namesake). Channel industry is
+# therefore deliberately NOT a language signal for a candidate video.
+
+_TITLE_LANG_RE = (r"hindi|tamil|telugu|kannada|malayalam|bengali|"
+                  r"marathi|punjabi|gujarati|english")
+
+# Languages a description may state outright — a superset of the title
+# list (adds Assamese, Odia, Urdu, which title tags don't use but
+# description prose does). Mirrors trailer-watch._DESC_LANGS.
+_STATED_LANGS = ["Hindi", "Bengali", "Telugu", "Tamil", "Malayalam",
+                 "Kannada", "Marathi", "Punjabi", "Assamese", "Odia",
+                 "Gujarati", "Urdu", "English"]
+_STATED_LANG_RE = "|".join(_STATED_LANGS)
+_STATED_LANG_LOWER_RE = "|".join(l.lower() for l in _STATED_LANGS)
+
+
+def detect_title_language(title):
+    """Language word stated in a title ('... (Kannada) | Official
+    Trailer' -> 'Kannada'), else None. Twin of trailer-watch's
+    extract_language."""
+    m = re.search(r"\b(" + _TITLE_LANG_RE + r")\b", title or "", re.I)
+    return m.group(1).capitalize() if m else None
+
+
+def detect_stated_language(text):
+    """Language a text states outright, or None.
+
+    Only explicit statements count, strongest first: a language hashtag
+    (#BengaliWebSeries, #bengali), a 'language: Bengali' credit line, an
+    adjective phrase ('Bengali series', 'Malayalam cinema'), or 'in
+    Bengali' (subtitle mentions excluded — 'subtitles in English'
+    describes the subtitles, not the work). If a pattern names several
+    languages the work is not single-language: return None rather than
+    guess (a wrong label is worse than none). Twin of trailer-watch's
+    extract_description_language."""
+    text = unicodedata.normalize("NFKD", text or "")
+    patterns = (
+        r"#(" + _STATED_LANG_RE + r")(?=[A-Z]|[^A-Za-z]|$)",
+        r"#(" + _STATED_LANG_LOWER_RE + r")(?=[^a-z]|$)",
+        r"(?i)\blanguage\s*[:\-]\s*(" + _STATED_LANG_RE + r")\b",
+        r"(?i)\b(" + _STATED_LANG_RE + r")\s+"
+        r"(?:web\s+series|series|films?|movies?|shows?|cinema)\b",
+    )
+    for pat in patterns:
+        found = {m.group(1).capitalize() for m in re.finditer(pat, text)}
+        if len(found) == 1:
+            return found.pop()
+        if len(found) > 1:
+            return None
+    # 'in X' last: a list continuation ('in Hindi, Tamil and Telugu')
+    # names every language in the list, not just the first.
+    found = set()
+    for m in re.finditer(
+            r"(?i)(?<!subtitle )(?<!subtitles )\bin\s+(" + _STATED_LANG_RE
+            + r")\b", text):
+        found.add(m.group(1).capitalize())
+        tail = text[m.end():m.end() + 60]
+        while True:
+            lm = re.match(r"\s*(?:,|and|&)\s*(" + _STATED_LANG_RE + r")\b",
+                          tail, re.I)
+            if not lm:
+                break
+            found.add(lm.group(1).capitalize())
+            tail = tail[lm.end():]
+    if len(found) == 1:
+        return found.pop()
+    return None
+
+
+def candidate_language(title, description=None):
+    """The language version a trailer candidate positively IS, from
+    per-video evidence only: (1) a language word in the video title,
+    (2) an explicit language statement in its description. None when
+    neither states one — an undetected language is NOT a mismatch and
+    must never reject a candidate (the Hindi Drishyam trailer states
+    no language anywhere; its Malayalam namesake's description says
+    'Malayalam cinema' outright)."""
+    return detect_title_language(title) \
+        or detect_stated_language(description)
+
+
 def trailer_embed_gate(title, channel_title, channel_id=None,
                        region_restriction=None, region_checked=False,
-                       film_title=None):
+                       film_title=None, film_language=None,
+                       description=None):
     """THE gate for any embed PRESENTED AS A TRAILER (the trailer pass
     in enrich-articles, source-image --trailer, media-sources). Returns
     a reject reason, or None when the video may be embedded as a
@@ -314,12 +413,22 @@ def trailer_embed_gate(title, channel_title, channel_id=None,
          official allowlists ONLY (news-org status does not make a
          trailer official);
       4. when the film is known, the title must name it;
-      5. US region: the caller must have LOOKED (region_checked) and
+      5. when the film's language is known, the candidate must not
+         positively be a DIFFERENT language version of the film
+         (candidate_language: an explicit language word in its title
+         or statement in its description). An undetected candidate
+         language is not a mismatch — only a positive conflict
+         rejects, so an unlabeled right-version trailer still passes;
+      6. US region: the caller must have LOOKED (region_checked) and
          the restriction must allow US — an embed that renders is not
          an embed that plays.
 
     The 2026-10-31 Narayanatv case failed legs 2+3 simultaneously and
-    the old _verify_official_trailer checked neither.
+    the old _verify_official_trailer checked neither. Leg 5 is the
+    2026-11-06 Drishyam 3 case: the Malayalam trailer (Mohanlal) is a
+    legitimate official trailer that passed legs 1–4 for the HINDI
+    article — same title, official channel, US-playable — and only
+    its description ('Malayalam cinema') betrays the version.
     """
     reason = youtube_embed_reject_reason(title, channel_title)
     if reason:
@@ -334,6 +443,13 @@ def trailer_embed_gate(title, channel_title, channel_id=None,
                 f"official-channel allowlist")
     if film_title and not title_names_film(title, film_title):
         return f"video title does not name the film '{film_title}'"
+    if film_language:
+        cand_lang = candidate_language(title, description)
+        if cand_lang and cand_lang.lower() \
+                != film_language.strip().lower():
+            return (f"trailer is the {cand_lang} version of the film "
+                    f"— the article's film is {film_language} "
+                    f"(wrong language version)")
     if not region_checked:
         return "region restriction unverified — rejected (fail-closed)"
     if not region_allows_us(region_restriction):

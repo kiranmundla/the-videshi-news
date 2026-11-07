@@ -149,7 +149,11 @@ def _allowlist_channel_ids(path=None):
 def fetch_video_meta(video_id, token=None):
     """Live metadata for one video via the Data API (snippet +
     contentDetails in a single call): {title, channel_id,
-    channel_title, region_restriction}. Returns None when the lookup
+    channel_title, region_restriction, description}. (Description
+    added 2026-11-06: the trailer gate's language-version leg reads
+    the language a description states outright — the Malayalam
+    Drishyam 3 trailer's title and channel betray nothing, its
+    description says 'Malayalam cinema'.) Returns None when the lookup
     itself fails or the video does not exist — callers fail closed.
     region_restriction is None when the video carries no restriction
     field at all (plays worldwide), which is NOT a lookup failure.
@@ -181,6 +185,7 @@ def fetch_video_meta(video_id, token=None):
         "channel_id": snippet.get("channelId") or "",
         "channel_title": snippet.get("channelTitle") or "",
         "region_restriction": details.get("regionRestriction"),
+        "description": snippet.get("description") or "",
     }
 
 

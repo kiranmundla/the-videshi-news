@@ -239,8 +239,8 @@ def _oembed_lookup(vid_id):
         return None
 
 
-def _verify_official_trailer(vid_id, film_title=None, meta_fetcher=None,
-                              oembed_fetcher=None):
+def _verify_official_trailer(vid_id, film_title=None, film_language=None,
+                              meta_fetcher=None, oembed_fetcher=None):
     """Verify a trailer candidate against the FULL standing trailer gate
     (embed_placement.trailer_embed_gate) and return its watch URL, or
     None. Fails CLOSED on every leg: oEmbed lookup, Data API metadata
@@ -280,7 +280,9 @@ def _verify_official_trailer(vid_id, film_title=None, meta_fetcher=None,
             channel_id=meta.get("channel_id"),
             region_restriction=meta.get("region_restriction"),
             region_checked=True,
-            film_title=film_title)
+            film_title=film_title,
+            film_language=film_language,
+            description=meta.get("description"))
     except Exception as e:
         print(f"  ✗ Trailer candidate rejected: {vid_id} — gate error: {e}")
         return None
