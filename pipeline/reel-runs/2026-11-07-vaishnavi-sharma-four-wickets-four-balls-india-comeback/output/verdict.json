@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "vaishnavi-sharma-four-wickets-four-balls-india-comeback",
+  "name": "vaishnavi-sharma-four-wickets-four-balls-india-comeback",
+  "script": "reel-runs/2026-11-07-vaishnavi-sharma-four-wickets-four-balls-india-comeback/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "diaspora_bullets[0]"
+    ],
+    "llm_cost_usd": 0.000628
+  }
+}

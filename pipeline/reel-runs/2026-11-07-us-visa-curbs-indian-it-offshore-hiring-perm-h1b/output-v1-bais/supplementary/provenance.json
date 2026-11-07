@@ -1,0 +1,168 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "us-visa-curbs-indian-it-offshore-hiring-perm-h1b",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "H-1B",
+    "PERM",
+    "Infosys",
+    "TCS",
+    "USCIS",
+    "Analysts Say"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'PERM' named 'link rot', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Analysts Say' named 'Analysts say equity market needs reviving', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:H-1B Visa Updates.jpg",
+      "route": "identity \u2014 depicts (P180=Q974595)",
+      "verdict": "USED (news)",
+      "reason": "3375x4219, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:H1-B visa applications.webp",
+      "route": "identity \u2014 depicts (P180=Q974595)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:Infosys (4911287704).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q26989)",
+      "verdict": "USED (hero)",
+      "reason": "3264x1840, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Equatex, Vulkanstrasse 106 Zurich (Ank Kumar).jpg",
+      "route": "identity \u2014 depicts (P180=Q26989)",
+      "verdict": "USED (grid)",
+      "reason": "4032x3024, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:TCS SIPCOT Building.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q13227919)",
+      "verdict": "USED (diaspora)",
+      "reason": "4032x2399, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Candor Tech Space, Kolkata.jpg",
+      "route": "identity \u2014 depicts (P180=Q13227919)",
+      "verdict": "accepted",
+      "reason": "4000x2250, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:U.S. Citizenship and Immigration Service.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q2097315)",
+      "verdict": "accepted",
+      "reason": "4320x3240, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "h-1b-visa-updates",
+      "path": "h-1b-visa-updates.jpg",
+      "size": [
+        3375,
+        4219
+      ],
+      "role": "establishing",
+      "subject": "From interview mandates to higher fees understand how the new H-1B rules affect your chances.",
+      "route": "identity \u2014 depicts (P180=Q974595)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:H-1B_Visa_Updates.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/H-1B_Visa_Updates.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Immigrationconsultantcalifornia",
+      "entity": "H-1B",
+      "entity_type": "other",
+      "entity_aliases": [
+        "H-1B",
+        "H-1B visa",
+        "H1-B",
+        "H1B",
+        "h1b"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "infosys-4911287704",
+      "path": "infosys-4911287704.jpg",
+      "size": [
+        3264,
+        1840
+      ],
+      "role": "establishing",
+      "subject": "Infosys",
+      "route": "identity \u2014 Wikidata P18 (Q26989)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Infosys_(4911287704).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Infosys_%284911287704%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Ashwin Kumar from Bangalore, India",
+      "entity": "Infosys",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Infosys",
+        "Infosys Limited",
+        "Infosys Ltd"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "equatex-vulkanstrasse-106-zurich-ank-kumar",
+      "path": "equatex-vulkanstrasse-106-zurich-ank-kumar.jpg",
+      "size": [
+        4032,
+        3024
+      ],
+      "role": "establishing",
+      "subject": "Equatex Vulkanstrasse 106 Zurich (Ank Kumar)",
+      "route": "identity \u2014 depicts (P180=Q26989)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Equatex,_Vulkanstrasse_106_Zurich_(Ank_Kumar).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Equatex%2C_Vulkanstrasse_106_Zurich_%28Ank_Kumar%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Ank Kumar",
+      "entity": "Infosys",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Infosys",
+        "Infosys Limited",
+        "Infosys Ltd"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "tcs-sipcot-building",
+      "path": "tcs-sipcot-building.jpg",
+      "size": [
+        4032,
+        2399
+      ],
+      "role": "interior",
+      "subject": "SIPCOT TCS OFFICE",
+      "route": "identity \u2014 Wikidata P18 (Q13227919)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:TCS_SIPCOT_Building.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/TCS_SIPCOT_Building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Naveen.kumar.kotta",
+      "entity": "TCS",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Tata Consultancy Services",
+        "TCS"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,417 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "us-visa-curbs-indian-it-offshore-hiring-perm-h1b",
+ "article_slug": "us-visa-curbs-indian-it-offshore-hiring-perm-h1b",
+ "article_id": "ccfac388-f81c-4e07-8aa3-c4c447eedd83",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-07-us-visa-curbs-indian-it-offshore-hiring-perm-h1b/output/us-visa-curbs-indian-it-offshore-hiring-perm-h1b.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://www.livemint.com/lm-img/img/2026/08/26/1600x900/logo/USA-TRUMP-VISA-INDIA-GCC-3_1760670557426_1760670568326_1787732209097_8031f16c-bbf6-484c-b213-aa41fe2add91.JPG",
+  "local_path": "reel-runs/2026-11-07-us-visa-curbs-indian-it-offshore-hiring-perm-h1b/output/hero.JPG",
+  "width": 1600,
+  "height": 900,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.476,0.584) damped=(0.488,0.542)",
+  "has_face": false,
+  "box_source": [
+   332,
+   289,
+   896,
+   360
+  ],
+  "box_bg": [
+   259,
+   305,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.497,
+   0.548
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 985,
+   "block_bottom": 1258,
+   "text_bbox": [
+    70,
+    985,
+    930,
+    1258
+   ],
+   "texts": [
+    "Immigration",
+    "US VISA CURBS PUSH IT JOBS TO INDIA"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.521,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.52125,
+     "window": [
+      0,
+      3,
+      1600,
+      900
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 388,
+   "block_top": 1192,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1192,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "The US Labor Department suspended eight employers from PERM green card sponsorship on October 8, and H-1B petitions for workers outside the US carry a $100,000 payment."
+   ],
+   "v7": {
+    "image_source": "extra:aerial-microsoft-west-campus-august-2009",
+    "track": "full-bleed",
+    "render_scale": 0.606,
+    "photo_px": [
+     4752,
+     3168
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6060606060606061,
+     "window": [
+      1458,
+      0,
+      3240,
+      3168
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "The west campus of Microsoft, Redmond, Washington, taken from about 1,500'. The photo is looking south-east. The west campus is bounded on the west by 148th Ave, on the east by SR 520, and on the north (foreground) by 40th St.",
+     "route": "identity \u2014 Wikidata P18 (Q2283)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Aerial_Microsoft_West_Campus_August_2009.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Aerial_Microsoft_West_Campus_August_2009.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Jelson25"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 430,
+   "block_top": 907,
+   "block_bottom": 1337,
+   "text_bbox": [
+    70,
+    907,
+    930,
+    1337
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$100,000",
+    "Payment on H-1B petitions for workers outside the US"
+   ],
+   "v7": {
+    "image_source": "extra:infosys-4911287704",
+    "track": "backdrop",
+    "render_scale": 0.256,
+    "photo_px": [
+     3264,
+     1840
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.2555147058823529,
+     "window": [
+      0,
+      9,
+      3264,
+      1840
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.04x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Infosys",
+     "route": "identity \u2014 Wikidata P18 (Q26989)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Infosys_(4911287704).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Infosys_%284911287704%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.0",
+     "artist": "Ashwin Kumar from Bangalore, India"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 792,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    792,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "8",
+    "Employers suspended from PERM green card sponsorship",
+    "37%",
+    "Fall in new H-1B approvals for top seven Indian IT firms in fiscal 2025",
+    "54.1%",
+    "US share of India's software and IT-enabled services exports"
+   ],
+   "v7": {
+    "image_source": "extra:equatex-vulkanstrasse-106-zurich-ank-kumar",
+    "track": "full-bleed",
+    "render_scale": 0.635,
+    "photo_px": [
+     4032,
+     3024
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6349206349206349,
+     "window": [
+      1082,
+      0,
+      2783,
+      3024
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Equatex Vulkanstrasse 106 Zurich (Ank Kumar)",
+     "route": "identity \u2014 depicts (P180=Q26989)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Equatex,_Vulkanstrasse_106_Zurich_(Ank_Kumar).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Equatex%2C_Vulkanstrasse_106_Zurich_%28Ank_Kumar%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Ank Kumar"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 1148,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1148,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Existing H-1B visas are not cancelled by either measure",
+    "PERM cases at the eight firms are frozen with no end date announced"
+   ],
+   "v7": {
+    "image_source": "extra:tcs-sipcot-building",
+    "track": "full-bleed",
+    "render_scale": 0.8,
+    "photo_px": [
+     4032,
+     2399
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8003334722801168,
+     "window": [
+      1379,
+      0,
+      2728,
+      2399
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "SIPCOT TCS OFFICE",
+     "route": "identity \u2014 Wikidata P18 (Q13227919)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:TCS_SIPCOT_Building.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/TCS_SIPCOT_Building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Naveen.kumar.kotta"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Analysts say more of the work will be done from India instead of on site in the US.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 136.3,
+ "mp4_bytes": 16416562
+}

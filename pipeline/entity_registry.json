@@ -11361,6 +11361,698 @@
    "resolved_confidence": "high",
    "resolved_context": "OpenAI Reportedly Raises $11 Billion at $1.25 Trillion Valuation, Short of Its Target   <div class=\"key-takeaways\"><ul><li>OpenAI has reportedly raised $11 billion so far in a new funding round that values the company at $1.25 trillion, Bloomberg reported on Friday, citing sources familiar with the matter.</li><li>The $11 billion is only part of a larger round that has not closed yet; the round is",
    "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'OpenAI Reportedly Raises $11 Billion at $1.25 Trillion Valuation, Short of Its Target   <div class=\"key-takeaways\"><ul><li>OpenAI has reportedly raised $11 billion so far in a new funding round that v'; description: American artificial intelligence research organization"
+  },
+  {
+   "name": "AMD",
+   "aliases": [
+    "AMD",
+    "Advanced Micro Devices"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q128896",
+   "p18_file": "2485 Augustine Drive headquarters in Santa Clara, California.jpg",
+   "p18_quality": 4312,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Nvidia, AMD and Micron Lead Chip Rebound After Worst Selloff Since 2020   AMD and Intel saw gains of 11% and 8%, respectively.    Chip stocks rebounded on Friday from the sector's worst selloff in six years: AMD closed up 11% and Intel up 8%, Micron rose 5%, Nvidia gained 3% and SanDisk 4%, while Broadcom added less than 1%, MarketWatch reported.  The selloff being reversed was severe: the Philade",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: \"Nvidia, AMD and Micron Lead Chip Rebound After Worst Selloff Since 2020   AMD and Intel saw gains of 11% and 8%, respectively.    Chip stocks rebounded on Friday from the sector's worst selloff in six\"; description: American multinational semiconductor company"
+  },
+  {
+   "name": "Santa Clara",
+   "aliases": [
+    "Santa Clara",
+    "Santa Clara, California",
+    "Santa Clara, CA"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q159260",
+   "p18_file": "Santaclaraconventioncenter.jpg",
+   "p18_quality": 2807,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Nvidia, AMD and Micron Lead Chip Rebound After Worst Selloff Since 2020   AMD and Intel saw gains of 11% and 8%, respectively.    Chip stocks rebounded on Friday from the sector's worst selloff in six years: AMD closed up 11% and Intel up 8%, Micron rose 5%, Nvidia gained 3% and SanDisk 4%, while Broadcom added less than 1%, MarketWatch reported.  The selloff being reversed was severe: the Philade",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: \"Nvidia, AMD and Micron Lead Chip Rebound After Worst Selloff Since 2020   AMD and Intel saw gains of 11% and 8%, respectively.    Chip stocks rebounded on Friday from the sector's worst selloff in six\"; description: city in Santa Clara County, California, United States"
+  },
+  {
+   "name": "Restaurant of the Year",
+   "aliases": [
+    "Restaurant of the Year"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q11901948",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Tipton's Major Curry Affair Named Restaurant of the Year at BCA Awards   <div class=\"key-takeaways\"><ul><li>Major Curry Affair, in Dudley Port, Tipton, has been named Restaurant of the Year for the West Midlands at the 19th Bangladesh Caterers Association (BCA) Awards 2026.</li><li>The ceremony was held on Sunday, November 1 at the Park Plaza Westminster Bridge Hotel in London; the restaurant won ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Tipton\\'s Major Curry Affair Named Restaurant of the Year at BCA Awards   <div class=\"key-takeaways\"><ul><li>Major Curry Affair, in Dudley Port, Tipton, has been named Restaurant of the Year for the We'; description: annual award conferred by the Finnish Gastronomic Society"
+  },
+  {
+   "name": "West Midlands",
+   "aliases": [
+    "West Midlands",
+    "West Midlands county"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q23124",
+   "p18_file": "Helicopter - Night Time Photos (8739865875).jpg",
+   "p18_quality": 2573,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Tipton's Major Curry Affair Named Restaurant of the Year at BCA Awards   <div class=\"key-takeaways\"><ul><li>Major Curry Affair, in Dudley Port, Tipton, has been named Restaurant of the Year for the West Midlands at the 19th Bangladesh Caterers Association (BCA) Awards 2026.</li><li>The ceremony was held on Sunday, November 1 at the Park Plaza Westminster Bridge Hotel in London; the restaurant won ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Tipton\\'s Major Curry Affair Named Restaurant of the Year at BCA Awards   <div class=\"key-takeaways\"><ul><li>Major Curry Affair, in Dudley Port, Tipton, has been named Restaurant of the Year for the We'; description: metropolitan county in England"
+  },
+  {
+   "name": "Vada Chennai",
+   "aliases": [
+    "Vada Chennai"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q24904692",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Simbu's 'Arasan' Promo Slips From Diwali to a Reported December 4 Theatre Release   <div class=\"key-takeaways\"><ul><li>The eight-minute promo for 'Arasan', Silambarasan TR's Tamil gangster film with director Vetrimaaran, has missed its planned Diwali release and may now reach theatres on December 4, reports say.</li><li>Editing and dubbing on 'The World of Arasan' promo are complete, according to ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Simbu\\'s \\'Arasan\\' Promo Slips From Diwali to a Reported December 4 Theatre Release   <div class=\"key-takeaways\"><ul><li>The eight-minute promo for \\'Arasan\\', Silambarasan TR\\'s Tamil gangster film with d'; description: 2018 Tamil film directed by Vetrimaaran"
+  },
+  {
+   "name": "India Today",
+   "aliases": [
+    "India Today",
+    "Headlines Today",
+    "India Today Television"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q5689808",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Simbu's 'Arasan' Promo Slips From Diwali to a Reported December 4 Theatre Release   <div class=\"key-takeaways\"><ul><li>The eight-minute promo for 'Arasan', Silambarasan TR's Tamil gangster film with director Vetrimaaran, has missed its planned Diwali release and may now reach theatres on December 4, reports say.</li><li>Editing and dubbing on 'The World of Arasan' promo are complete, according to ",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Simbu\\'s \\'Arasan\\' Promo Slips From Diwali to a Reported December 4 Theatre Release   <div class=\"key-takeaways\"><ul><li>The eight-minute promo for \\'Arasan\\', Silambarasan TR\\'s Tamil gangster film with d'; description: 24-hour English language television network based in India"
+  },
+  {
+   "name": "Bib Gourmand",
+   "aliases": [
+    "Bib Gourmand"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q104135230",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Bengaluru's MTR Keeps Its MICHELIN Bib Gourmand in Kuala Lumpur for 2027   <div class=\"key-takeaways\"><ul><li>MTR 1924 Malaysia in Brickfields, Kuala Lumpur, is listed as a Bib Gourmand — MICHELIN's distinction for good-quality cooking at great value — in the MICHELIN Guide Kuala Lumpur &amp; Penang 2027.</li><li>It is a retention, not a first award: the outlet has held the Bib Gourmand in the 202",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Bengaluru\\'s MTR Keeps Its MICHELIN Bib Gourmand in Kuala Lumpur for 2027   <div class=\"key-takeaways\"><ul><li>MTR 1924 Malaysia in Brickfields, Kuala Lumpur, is listed as a Bib Gourmand — MICHELIN\\'s d'; description: Michelin Guide award"
+  },
+  {
+   "name": "Kuala Lumpur",
+   "aliases": [
+    "Kuala Lumpur",
+    "KL",
+    "Federal Territory of Kuala Lumpur",
+    "K.L."
+   ],
+   "type": "place",
+   "wikidata_qid": "Q1865",
+   "p18_file": "Kuala Lumpur with Petronas Towers.jpg",
+   "p18_quality": 564,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Bengaluru's MTR Keeps Its MICHELIN Bib Gourmand in Kuala Lumpur for 2027   <div class=\"key-takeaways\"><ul><li>MTR 1924 Malaysia in Brickfields, Kuala Lumpur, is listed as a Bib Gourmand — MICHELIN's distinction for good-quality cooking at great value — in the MICHELIN Guide Kuala Lumpur &amp; Penang 2027.</li><li>It is a retention, not a first award: the outlet has held the Bib Gourmand in the 202",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Bengaluru\\'s MTR Keeps Its MICHELIN Bib Gourmand in Kuala Lumpur for 2027   <div class=\"key-takeaways\"><ul><li>MTR 1924 Malaysia in Brickfields, Kuala Lumpur, is listed as a Bib Gourmand — MICHELIN\\'s d'; description: federal territory and capital city of Malaysia"
+  },
+  {
+   "name": "Ram ki Paidi",
+   "aliases": [
+    "Ram Ki Paidi",
+    "Ram ki Paidi"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q97704153",
+   "p18_file": "Sarayu River night view, Ayodhya 001.jpg",
+   "p18_quality": 4128,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Ayodhya's 10th Deepotsav Is Tonight: 30 Lakh Diyas Planned Across 56 Ghats   <div class=\"key-takeaways\"><ul><li>Deepotsav 2026, the 10th edition of Ayodhya's festival of lights, is held today, Saturday, November 7, 2026, on the eve of Diwali, which falls on Sunday, November 8.</li><li>Organisers aim to light more than 30 lakh earthen diyas across 56 ghats along the Saryu river, centred on Ram Ki P",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Ayodhya\\'s 10th Deepotsav Is Tonight: 30 Lakh Diyas Planned Across 56 Ghats   <div class=\"key-takeaways\"><ul><li>Deepotsav 2026, the 10th edition of Ayodhya\\'s festival of lights, is held today, Saturda'; description: Pilgrim spot in Ayodhya"
+  },
+  {
+   "name": "Oval Office",
+   "aliases": [
+    "Oval Office"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q338067",
+   "p18_file": "View of Oval Office in 2017.jpg",
+   "p18_quality": 3000,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Trump Lights a Diya in the Oval Office as Governors Mark Diwali Across the US   <div class=\"key-takeaways\"><ul><li>President Donald Trump hosted a Diwali celebration in the Oval Office on Friday, lighting a diya and receiving a copy of the Hanuman Chalisa from entrepreneur Vishal Gondal, ANI reported.</li><li>Governors in Washington, Nebraska, North Dakota, Idaho and Montana marked Diwali with pro",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Trump Lights a Diya in the Oval Office as Governors Mark Diwali Across the US   <div class=\"key-takeaways\"><ul><li>President Donald Trump hosted a Diwali celebration in the Oval Office on Friday, ligh'; description: office of the President of the United States in the White House"
+  },
+  {
+   "name": "award",
+   "aliases": [
+    "Awards",
+    "award",
+    "medal",
+    "honour",
+    "honor",
+    "prize",
+    "Awards and Prizes"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q618779",
+   "p18_file": "Medal Nobel Peace Prize.jpg",
+   "p18_quality": 3872,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Tipton's Major Curry Affair Named Restaurant of the Year at BCA Awards   <div class=\"key-takeaways\"><ul><li>Major Curry Affair, in Dudley Port, Tipton, has been named Restaurant of the Year for the West Midlands at the 19th Bangladesh Caterers Association (BCA) Awards 2026.</li><li>The ceremony was held on Sunday, November 1 at the Park Plaza Westminster Bridge Hotel in London; the restaurant won ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Tipton\\'s Major Curry Affair Named Restaurant of the Year at BCA Awards   <div class=\"key-takeaways\"><ul><li>Major Curry Affair, in Dudley Port, Tipton, has been named Restaurant of the Year for the We'; description: something given to a person or a group of people to recognize their merit or excellence"
+  },
+  {
+   "name": "cancer",
+   "aliases": [
+    "Cancer",
+    "cancer",
+    "malignant neoplasm",
+    "malignant tumor",
+    "primary cancer"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q12078",
+   "p18_file": "Breast cancer cell (2).jpg",
+   "p18_quality": 1800,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "India Has Cancer Screening. Fewer Than 2 in 100 Women Have Ever Used It   <div class=\"key-takeaways\"><ul><li>India's public programme has offered population-based screening for oral, breast and cervical cancer to everyone aged 30 and above since 2016 — but NFHS-5 (2019-21) found just 1.9% of women aged 30-49 had ever had a cervical screening test, 0.9% a breast examination and 0.9% an oral examina",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'India Has Cancer Screening. Fewer Than 2 in 100 Women Have Ever Used It   <div class=\"key-takeaways\"><ul><li>India\\'s public programme has offered population-based screening for oral, breast and cervic'; description: group of diseases involving abnormal cell growth and spread"
+  },
+  {
+   "name": "Telangana",
+   "aliases": [
+    "Telangana"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q677037",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "How Telangana Got Back 550 Acres in Miyapur Worth About Rs 50,000 Crore   <div class=\"key-takeaways\"><ul><li>The Supreme Court ruled that all rights over 550 acres of government poramboke land in Miyapur, Rangareddy district — survey numbers 100 and 101 — vest entirely with the Telangana government, ending a dispute the state says ran for more than two decades.</li><li>Chief Minister A. Revanth Re",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'How Telangana Got Back 550 Acres in Miyapur Worth About Rs 50,000 Crore   <div class=\"key-takeaways\"><ul><li>The Supreme Court ruled that all rights over 550 acres of government poramboke land in Miya'; description: state in southern India"
+  },
+  {
+   "name": "Miyapur",
+   "aliases": [
+    "Miyapur"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q6884398",
+   "p18_file": "Miyapur Photo.jpg",
+   "p18_quality": 3694,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "How Telangana Got Back 550 Acres in Miyapur Worth About Rs 50,000 Crore   <div class=\"key-takeaways\"><ul><li>The Supreme Court ruled that all rights over 550 acres of government poramboke land in Miyapur, Rangareddy district — survey numbers 100 and 101 — vest entirely with the Telangana government, ending a dispute the state says ran for more than two decades.</li><li>Chief Minister A. Revanth Re",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'How Telangana Got Back 550 Acres in Miyapur Worth About Rs 50,000 Crore   <div class=\"key-takeaways\"><ul><li>The Supreme Court ruled that all rights over 550 acres of government poramboke land in Miya'; description: neighborhood in Telangana, India"
+  },
+  {
+   "name": "light",
+   "aliases": [
+    "Lights",
+    "light",
+    "lights",
+    "near-visible light",
+    "near-visible spectrum",
+    "near-visible electromagnetic radiation",
+    "light wave"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q9128",
+   "p18_file": "Emanation.png",
+   "p18_quality": 972,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Trump Lights a Diya in the Oval Office as Governors Mark Diwali Across the US   <div class=\"key-takeaways\"><ul><li>President Donald Trump hosted a Diwali celebration in the Oval Office on Friday, lighting a diya and receiving a copy of the Hanuman Chalisa from entrepreneur Vishal Gondal, ANI reported.</li><li>Governors in Washington, Nebraska, North Dakota, Idaho and Montana marked Diwali with pro",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Trump Lights a Diya in the Oval Office as Governors Mark Diwali Across the US   <div class=\"key-takeaways\"><ul><li>President Donald Trump hosted a Diwali celebration in the Oval Office on Friday, ligh'; description: electromagnetic radiation at or near visible wavelengths"
+  },
+  {
+   "name": "Capgemini",
+   "aliases": [
+    "Capgemini",
+    "Capgemini SE"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q1034621",
+   "p18_file": "11 rue de Tilsitt.jpg",
+   "p18_quality": 5152,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "US Visa Curbs Push Indian IT Firms Toward Offshore Hiring, Analysts Say Washington has frozen green card sponsorship at eight major employers and attached a $100,000 payment to many new H-1B hires from abroad, and analysts say the industry's response is to move the job to India rather than the worker to America. Washington has frozen green card sponsorship at eight major employers and attached a $",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'US Visa Curbs Push Indian IT Firms Toward Offshore Hiring, Analysts Say Washington has frozen green card sponsorship at eight major employers and attached a $100,000 payment to many new H-1B hires fro'; description: French multinational corporation headquartered in Paris, France"
+  },
+  {
+   "name": "United States Department of Labor",
+   "aliases": [
+    "US Labor Department",
+    "United States Department of Labor",
+    "US Department of Labor",
+    "U.S. Department of Labor",
+    "Department of Labor",
+    "DOL"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q628807",
+   "p18_file": "Frances Perkins Building.JPG",
+   "p18_quality": 3548,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "US Visa Curbs Push Indian IT Firms Toward Offshore Hiring, Analysts Say   US Labor Department suspended eight firms from PERM applications on October 8.    On October 8, the US Labor Department suspended eight employers — Microsoft, Adobe, TCS, Infosys, Wipro, HCLTech, Cognizant and Capgemini — from PERM, the first step in employer-sponsored green cards, accepting no new applications and processin",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'US Visa Curbs Push Indian IT Firms Toward Offshore Hiring, Analysts Say   US Labor Department suspended eight firms from PERM applications on October 8.    On October 8, the US Labor Department suspen'; description: U.S. federal department that regulates workers' rights and labor markets"
+  },
+  {
+   "name": "University of Illinois Chicago",
+   "aliases": [
+    "University of Illinois Chicago",
+    "UIC",
+    "U of I-Chicago",
+    "Illinois-Chicago",
+    "University of Illinois at Chicago Circle",
+    "University of Illinois at Congress Circle",
+    "UICC",
+    "Chicago campus of the University of Illinois",
+    "University of Illinois at Chicago"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q955764",
+   "p18_file": "University of Illinois at Chicago -1.jpg",
+   "p18_quality": 2560,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "UIC Junior From India Tops Inaugural International Computer Science Competition   \n<div class=\"key-takeaways\"><ul>\n<li>Soham Basanwar, a junior computer science major at the University of Illinois Chicago (UIC), won three honours at the inaugural International Computer Science Competition.</li>\n<li>He placed first in the senior (college/university) category and first in the US national category, a",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'UIC Junior From India Tops Inaugural International Computer Science Competition   \\n<div class=\"key-takeaways\"><ul>\\n<li>Soham Basanwar, a junior computer science major at the University of Illinois Chi'; description: public university (1983-)"
+  },
+  {
+   "name": "Manicka Tagore",
+   "aliases": [
+    "Manickam Tagore",
+    "Manicka Tagore",
+    "Manickam Tagore B"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q6749490",
+   "p18_file": "Manickam Tagore.jpeg",
+   "p18_quality": 481,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "'No One But God and My Fans': Dhanush Sidesteps BJP-Backing Talk Amid Political Debut Buzz   \n<div class=\"key-takeaways\"><ul>\n<li>Actor Dhanush has pushed back on speculation about a BJP-backed political debut, saying he answers to \"no one but God and my fans,\" News18 reported.</li>\n<li>The buzz grew after a lotus motif was spotted on silver lamps gifted at his fan association's Diwali gathering; ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: '\\'No One But God and My Fans\\': Dhanush Sidesteps BJP-Backing Talk Amid Political Debut Buzz   \\n<div class=\"key-takeaways\"><ul>\\n<li>Actor Dhanush has pushed back on speculation about a BJP-backed politi'; description: Member of the Parliament of India"
+  },
+  {
+   "name": "Sarita Joshi",
+   "aliases": [
+    "Sarita Joshi"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q7424124",
+   "p18_file": "Photo Of Sarita Joshi From The Celebs grace the Kashish Film Festival press meet.jpg",
+   "p18_quality": 585,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Does Health Insurance Cover Pollution-Related Illness? What Policyholders Should Know   \n<div class=\"key-takeaways\"><ul>\n<li>Standard health policies in India generally cover pollution-aggravated illness when it requires hospitalisation — severe asthma attacks, bronchitis and pollution-triggered cardiac events are treated like other illnesses, insurance experts say.</li>\n<li>The everyday costs of ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Does Health Insurance Cover Pollution-Related Illness? What Policyholders Should Know   \\n<div class=\"key-takeaways\"><ul>\\n<li>Standard health policies in India generally cover pollution-aggravated illn'; description: Indian actress"
+  },
+  {
+   "name": "Gurnoor Brar",
+   "aliases": [
+    "Gurnoor Brar"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q118125232",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Gurnoor Brar's 4 for 30 Bowls India to Four-Run DLS Win and 2-0 Series Lead   \n<div class=\"key-takeaways\"><ul>\n<li>India beat New Zealand by four runs under the DLS method in Wellington to take a 2-0 lead in the five-match ODI series.</li>\n<li>Gurnoor Brar took a career-best 4 for 30 and was player of the match as New Zealand were bowled out for 134 — their lowest home ODI total against India.</li",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Gurnoor Brar\\'s 4 for 30 Bowls India to Four-Run DLS Win and 2-0 Series Lead   \\n<div class=\"key-takeaways\"><ul>\\n<li>India beat New Zealand by four runs under the DLS method in Wellington to take a 2-0 '; description: Indian cricketer"
+  },
+  {
+   "name": "glass",
+   "aliases": [
+    "Glass",
+    "glass"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q11469",
+   "p18_file": "Drinkware.jpg",
+   "p18_quality": 2745,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Ninja Crispi Review Roundup: India's Viral Glass Air Fryer Cooks in the Open, at a Premium   \n<div class=\"key-takeaways\"><ul>\n<li>The Ninja Crispi FN101IN (Rs 19,990 list; seen at Rs 14,999 in festive sales) replaces the pull-out basket with two glass containers — 1.4-litre and 3.8-litre — under a detachable 1700W PowerPod heater.</li>\n<li>Reviewers in India praise exactly what the glass promises:",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Ninja Crispi Review Roundup: India\\'s Viral Glass Air Fryer Cooks in the Open, at a Premium   \\n<div class=\"key-takeaways\"><ul>\\n<li>The Ninja Crispi FN101IN (Rs 19,990 list; seen at Rs 14,999 in festive'; description: amorphous solid that exhibits a glass transition when heated towards the liquid state"
+  },
+  {
+   "name": "insurance",
+   "aliases": [
+    "Insurance",
+    "insurance"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q43183",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Does Health Insurance Cover Pollution-Related Illness? What Policyholders Should Know   \n<div class=\"key-takeaways\"><ul>\n<li>Standard health policies in India generally cover pollution-aggravated illness when it requires hospitalisation — severe asthma attacks, bronchitis and pollution-triggered cardiac events are treated like other illnesses, insurance experts say.</li>\n<li>The everyday costs of ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Does Health Insurance Cover Pollution-Related Illness? What Policyholders Should Know   \\n<div class=\"key-takeaways\"><ul>\\n<li>Standard health policies in India generally cover pollution-aggravated illn'; description: equitable transfer of the risk of a loss, from one entity to another in exchange for payment"
+  },
+  {
+   "name": "cover version",
+   "aliases": [
+    "Cover",
+    "cover version",
+    "cover song",
+    "cover",
+    "song version",
+    "song cover",
+    "reinterpretation"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q155171",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Does Health Insurance Cover Pollution-Related Illness? What Policyholders Should Know   \n<div class=\"key-takeaways\"><ul>\n<li>Standard health policies in India generally cover pollution-aggravated illness when it requires hospitalisation — severe asthma attacks, bronchitis and pollution-triggered cardiac events are treated like other illnesses, insurance experts say.</li>\n<li>The everyday costs of ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Does Health Insurance Cover Pollution-Related Illness? What Policyholders Should Know   \\n<div class=\"key-takeaways\"><ul>\\n<li>Standard health policies in India generally cover pollution-aggravated illn'; description: later version of a song recorded by an earlier performer"
+  },
+  {
+   "name": "San Francisco City Hall",
+   "aliases": [
+    "San Francisco City Hall"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1093944",
+   "p18_file": "San Francisco City Hall 2.JPG",
+   "p18_quality": 1524,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "San Francisco City Hall Hosts Its First Diwali Celebration With Mayor Lurie   <div class=\"key-takeaways\"><ul><li>San Francisco City Hall hosted a Diwali celebration on Wednesday, November 4, 2026, described by the consulate as the hall's first, organised by Indiaspora.</li><li>India's Consul General in San Francisco, Satish Sivan, Mayor Daniel Lurie and Indiaspora founder MR Rangaswami attended, a",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'San Francisco City Hall Hosts Its First Diwali Celebration With Mayor Lurie   <div class=\"key-takeaways\"><ul><li>San Francisco City Hall hosted a Diwali celebration on Wednesday, November 4, 2026, des'; description: city hall for the City and County of San Francisco, California, USA"
+  },
+  {
+   "name": "M. R. Rangaswami",
+   "aliases": [
+    "MR Rangaswami",
+    "M. R. Rangaswami",
+    "M.R. Rangaswami"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q6713036",
+   "p18_file": "M. R. Rangaswami.jpg",
+   "p18_quality": 1536,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "San Francisco City Hall Hosts Its First Diwali Celebration With Mayor Lurie   <div class=\"key-takeaways\"><ul><li>San Francisco City Hall hosted a Diwali celebration on Wednesday, November 4, 2026, described by the consulate as the hall's first, organised by Indiaspora.</li><li>India's Consul General in San Francisco, Satish Sivan, Mayor Daniel Lurie and Indiaspora founder MR Rangaswami attended, a",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'San Francisco City Hall Hosts Its First Diwali Celebration With Mayor Lurie   <div class=\"key-takeaways\"><ul><li>San Francisco City Hall hosted a Diwali celebration on Wednesday, November 4, 2026, des'; description: Indian businessman"
+  },
+  {
+   "name": "Project Suncatcher",
+   "aliases": [
+    "Project Suncatcher"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q141625161",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Google's TPU in Orbit Answers Its First Prompt With a Haiku   <div class=\"key-takeaways\"><ul><li>According to Google, its Project Suncatcher prototype satellite has produced the first-ever AI response from a data center class TPU in orbit.</li><li>Engineers uplinked a prompt during a ground-station pass; the onboard Gemma 4 open model generated a haiku about being in space, downlinked as the satel",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Google\\'s TPU in Orbit Answers Its First Prompt With a Haiku   <div class=\"key-takeaways\"><ul><li>According to Google, its Project Suncatcher prototype satellite has produced the first-ever AI response'; description: space AI datacenter project"
+  },
+  {
+   "name": "Vaishnavi Sharma",
+   "aliases": [
+    "Vaishnavi Sharma",
+    "Vaishnavi Narendra Sharma"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q137380610",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Vaishnavi Sharma Follows India Comeback With Four Wickets in Four Balls   <div class=\"key-takeaways\"><ul><li>Left-arm spinner Vaishnavi Sharma took four wickets in four consecutive balls and finished with 6 for 22 for Madhya Pradesh against Andhra Pradesh in the Senior Women's T20 Trophy on Friday, November 6.</li><li>She became only the second Indian woman to take four wickets in four balls in a ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Vaishnavi Sharma Follows India Comeback With Four Wickets in Four Balls   <div class=\"key-takeaways\"><ul><li>Left-arm spinner Vaishnavi Sharma took four wickets in four consecutive balls and finished '; description: Indian cricketer (born 2005)"
+  },
+  {
+   "name": "Uttarakhand Police",
+   "aliases": [
+    "Uttarakhand Police"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q7903389",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Uttarakhand Minister Rekha Arya's Husband Arrested in Jhansi After October FIR   <div class=\"key-takeaways\"><ul><li>Uttarakhand Police arrested Girdhari Lal Sahu, husband of Cabinet Minister Rekha Arya, in Uttar Pradesh's Jhansi district, Dehradun SSP Pramendra Dobhal told ANI on Saturday.</li><li>A case was registered on October 15 following Arya's complaint, with charges including forgery and se",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Uttarakhand Minister Rekha Arya\\'s Husband Arrested in Jhansi After October FIR   <div class=\"key-takeaways\"><ul><li>Uttarakhand Police arrested Girdhari Lal Sahu, husband of Cabinet Minister Rekha Ary'; description: State Police Of Uttarakhand, India"
+  },
+  {
+   "name": "Quinque viae",
+   "aliases": [
+    "Five Ways",
+    "Quinque viae",
+    "Five Proofs"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1192931",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Got a Diwali Bonus? Five Ways to Strengthen Your Finances   <div class=\"key-takeaways\"><ul><li>Before festive spending, give the bonus a job: Outlook Money's five-way split is emergency savings, clearing pending dues, investing for future goals, planned home repairs, and a capped celebration budget.</li><li>Keep part of the bonus in an emergency fund covering at least three months of essential exp",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Got a Diwali Bonus? Five Ways to Strengthen Your Finances   <div class=\"key-takeaways\"><ul><li>Before festive spending, give the bonus a job: Outlook Money\\'s five-way split is emergency savings, clear'; description: 5 logical arguments for the existence of God made by Thomas Aquinas in his book Summa Theologica: the argument from motion; the argument from causation; the argument from contingency; the argument from degree; the argument from final cause"
+  },
+  {
+   "name": "Bajaj Finserv",
+   "aliases": [
+    "Bajaj Finserv"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q18636352",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Got a Diwali Bonus? Five Ways to Strengthen Your Finances   <div class=\"key-takeaways\"><ul><li>Before festive spending, give the bonus a job: Outlook Money's five-way split is emergency savings, clearing pending dues, investing for future goals, planned home repairs, and a capped celebration budget.</li><li>Keep part of the bonus in an emergency fund covering at least three months of essential exp",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Got a Diwali Bonus? Five Ways to Strengthen Your Finances   <div class=\"key-takeaways\"><ul><li>Before festive spending, give the bonus a job: Outlook Money\\'s five-way split is emergency savings, clear'; description: Indian financial services company"
+  },
+  {
+   "name": "Tata Steel",
+   "aliases": [
+    "Tata Steel",
+    "Tata Steel Limited",
+    "Tata Iron and Steel Company Limited",
+    "The Tata Iron and Steel Company, Limited."
+   ],
+   "type": "company",
+   "wikidata_qid": "Q963101",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Tata Steel Q2 Profit Rises 16% to Rs 3,700 Crore on India Strength   <div class=\"key-takeaways\"><ul><li>Tata Steel's consolidated reported profit after tax for the quarter ended September 30, 2026 rose 16.2% year on year to Rs 3,699.59 crore, on revenue from operations up 11.5% to Rs 65,436.24 crore.</li><li>Consolidated EBITDA rose 17% year on year to Rs 10,665 crore, with India revenue of Rs 42,",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Tata Steel Q2 Profit Rises 16% to Rs 3,700 Crore on India Strength   <div class=\"key-takeaways\"><ul><li>Tata Steel\\'s consolidated reported profit after tax for the quarter ended September 30, 2026 ros'; description: Indian multinational steel-making company"
+  },
+  {
+   "name": "Noel Tata",
+   "aliases": [
+    "Noel Naval Tata",
+    "Noel Tata"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q12779926",
+   "p18_file": "Noel Tata.png",
+   "p18_quality": 254,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Tata Steel Q2 Profit Rises 16% to Rs 3,700 Crore on India Strength   <div class=\"key-takeaways\"><ul><li>Tata Steel's consolidated reported profit after tax for the quarter ended September 30, 2026 rose 16.2% year on year to Rs 3,699.59 crore, on revenue from operations up 11.5% to Rs 65,436.24 crore.</li><li>Consolidated EBITDA rose 17% year on year to Rs 10,665 crore, with India revenue of Rs 42,",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Tata Steel Q2 Profit Rises 16% to Rs 3,700 Crore on India Strength   <div class=\"key-takeaways\"><ul><li>Tata Steel\\'s consolidated reported profit after tax for the quarter ended September 30, 2026 ros'; description: Indian–born Irish businessman (born 1957)"
+  },
+  {
+   "name": "Warren Buffett",
+   "aliases": [
+    "Warren Buffett",
+    "Warren Edward Buffett"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q47213",
+   "p18_file": "Warren Buffett KU Visit.jpg",
+   "p18_quality": 1395,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Berkshire Operating Earnings Fall 5.8% as Buybacks Hit $9.6 Billion   <div class=\"key-takeaways\"><ul><li>Berkshire Hathaway's third-quarter operating earnings fell 5.8% to $12.705 billion from $13.485 billion a year earlier, weighed down by a 43% drop in insurance underwriting profit.</li><li>The company bought back about $9.6 billion of its own stock in the quarter, more than double the $4.5 bill",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Berkshire Operating Earnings Fall 5.8% as Buybacks Hit $9.6 Billion   <div class=\"key-takeaways\"><ul><li>Berkshire Hathaway\\'s third-quarter operating earnings fell 5.8% to $12.705 billion from $13.485'; description: American investor, entrepreneur and businessman"
+  },
+  {
+   "name": "hacker",
+   "aliases": [
+    "Hackers",
+    "hacker",
+    "hackers"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1487",
+   "p18_file": "31337 h4x0r.jpg",
+   "p18_quality": 250,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Hackers Probed Europe's Fridge Systems for 10 Days Before Attacks   <div class=\"key-takeaways\"><ul><li>Refrigeration systems in supermarkets across nine European countries, and several blood banks in France, were attacked on November 2 and 3, according to Euronews.</li><li>Cybersecurity firm Lupovis says it recorded more than 276 probing attempts from 91 threat actors between October 20 and 30, pe",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Hackers Probed Europe\\'s Fridge Systems for 10 Days Before Attacks   <div class=\"key-takeaways\"><ul><li>Refrigeration systems in supermarkets across nine European countries, and several blood banks in '; description: person who uses technical knowledge to achieve a goal within a computerized system by non-standard means"
   }
  ]
 }

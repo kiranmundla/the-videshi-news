@@ -1,0 +1,255 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "vaishnavi-sharma-four-wickets-four-balls-india-comeback",
+  "verdict": "fail",
+  "held_claims": [
+    "diaspora_bullets[0]"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "FOUR WICKETS IN FOUR BALLS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Claim is directly stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Left-arm spinner Vaishnavi Sharma took four wickets in four consecutive balls and finished with 6 for 22 for Madhya Pradesh against Andhra Pradesh in the Senior Women's T20 Trophy, days after taking nine wickets in two ODIs against Zimbabwe on her India comeback.",
+      "numbers": [
+        6.0,
+        20.0,
+        22.0
+      ],
+      "entities": [
+        "Vaishnavi Sharma",
+        "Madhya Pradesh",
+        "Andhra Pradesh",
+        "Senior Women's T20 Trophy"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All facts are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "6 FOR 22",
+      "numbers": [
+        6.0,
+        22.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This statistic is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Vaishnavi Sharma's figures for Madhya Pradesh against Andhra Pradesh in the Senior Women's T20 Trophy",
+      "numbers": [
+        20.0
+      ],
+      "entities": [
+        "Vaishnavi Sharma's",
+        "Madhya Pradesh",
+        "Andhra Pradesh",
+        "Senior Women's T20 Trophy"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article provides her figures.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "4 IN 4",
+      "numbers": [
+        4.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This achievement is detailed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Wickets in four consecutive balls \u2014 only the second Indian woman to do it in a T20",
+      "numbers": [
+        20.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this fact.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "9",
+      "numbers": [
+        9.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states she took nine wickets.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Wickets in two ODIs against Zimbabwe on her India comeback",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Leading wicket-taker at the 2025 Under-19 T20 World Cup",
+      "numbers": [
+        19.0,
+        20.0,
+        2025.0
+      ],
+      "entities": [
+        "Under-19 T20 World Cup"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article mentions the 2025 World Cup but not her being the leading wicket-taker.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Left out of the World Cup squad, she rebuilt away from the team",
+      "numbers": [],
+      "entities": [
+        "World Cup"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is discussed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "A bowler left out of the World Cup squad has returned with wickets in both international and domestic cricket.",
+      "numbers": [],
+      "entities": [
+        "World Cup"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This summary reflects the article's content.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Vaishnavi Sharma",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Madhya Pradesh",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Andhra Pradesh",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Senior Women's T20 Trophy",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Zimbabwe",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000628,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

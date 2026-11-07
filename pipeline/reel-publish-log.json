@@ -706,5 +706,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "sAAjMEqIfgM",
+    "article_slug": "us-visa-curbs-indian-it-offshore-hiring-perm-h1b",
+    "article_id": "ccfac388-f81c-4e07-8aa3-c4c447eedd83",
+    "title": "US Visa Curbs Push Indian IT Firms Toward Offshore Hiring, Analysts Say #Shorts #H1B",
+    "privacy": "public",
+    "uploaded_at": "2026-11-07T11:19:27.787068+00:00",
+    "video_path": "reel-runs/2026-11-07-us-visa-curbs-indian-it-offshore-hiring-perm-h1b/output/us-visa-curbs-indian-it-offshore-hiring-perm-h1b.mp4",
+    "video_sha256": "caa9e45e52d9099694d3093de24c76d2d6043471fe1f0a7653b2fd1c040bc402",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

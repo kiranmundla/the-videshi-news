@@ -1723,5 +1723,16 @@
     "top_story_slug": "pl-capital-diwali-stock-picks-samvat-2083",
     "quick_hit_count": 5,
     "deadline_count": 2
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-11-07T14:58:09.337663+00:00Z",
+    "subject": "The Videshi Daily \u2014 November 07, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "cancer-india-screening-exists-patients-diagnosed-late",
+    "quick_hit_count": 5,
+    "deadline_count": 2
   }
 ]

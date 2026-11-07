@@ -1,0 +1,197 @@
+[
+  {
+    "id": "02adf3d1-3eef-4aeb-9765-bcbda1242591",
+    "headline": "Parliamentary Panel Presses IndiGo and Air India as Airlines Blame Fuel and Clos",
+    "slug": "indigo-air-india-parliamentary-panel-airfares-fuel-pakistan-airspace",
+    "category": "travel",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact date of the parliamentary panel meeting instead of just stating 'Monday, November 2'. This will help readers understand the timeliness of the information.",
+        "Provide a clearer breakdown of the financial impacts mentioned, such as the specific percentage increase in airfares due to the fuel charge increase and how it compares to previous rates. This would give readers a concrete understanding of the fare situation.",
+        "Include a direct quote from the parliamentary panel or airline officials to enhance attribution and provide a more authoritative voice to the article.",
+        "Add context about the implications of the ongoing closure of Pakistan's airspace beyond just the financial impact on Air India, such as potential effects on international travel routes for Indian carriers. This would provide a more comprehensive view of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet or statement from the Parliamentary Standing Committee on Public Undertakings regarding the meeting or the issues discussed, which would lend credibility and provide readers with direct access to official communications."
+      ]
+    }
+  },
+  {
+    "id": "0ebe38fd-7798-4f9f-ace6-e5ad5ea7889c",
+    "headline": "Tipton's Major Curry Affair Named Restaurant of the Year at BCA Awards",
+    "slug": "major-curry-affair-tipton-restaurant-of-the-year-bca-2026",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the award ceremony as it currently states 'Sunday, November 1,' which could lead to confusion about the year since the article mentions '2026' in the headline. Ensure the date is accurate and clearly presented.",
+        "Add a quote from the restaurant's management or a representative to provide a personal touch and further context about their win, enhancing the article's completeness and engagement.",
+        "Include a brief background on the Bangladesh Caterers Association (BCA) and its significance in the British Bangladeshi hospitality industry to give readers a better understanding of the award's prestige."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Bangladesh Caterers Association announcing the winners or sharing highlights from the event to provide official context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "82823b58-96bd-43dc-8704-6dd0f024b00c",
+    "headline": "'I'll Come Home Next Diwali': The Kargil Officer's Promise That Stayed Unkept",
+    "slug": "captain-amit-bhardwaj-kargil-promise-next-diwali",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the date when Captain Amit Bhardwaj made the promise to his mother, as well as the date of his death and the recovery of his body, to enhance the chronological context for readers.",
+        "Include a quote from a family member or a military official to provide a personal touch and enhance the emotional impact of the story, as well as to add credibility through direct attribution.",
+        "Add a brief explanation of the significance of the Kargil War in Indian history for readers who may not be familiar with it, to provide context and depth to the narrative."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or post from the Indian Army or a military organization commemorating Captain Amit Bhardwaj, which would enhance the article's connection to current discussions around military valor."
+      ]
+    }
+  },
+  {
+    "id": "1c5153b8-6dfc-4ee6-a668-86c200ffc7d6",
+    "headline": "Gold Has Risen Fivefold in a Decade; Motilal Oswal Sees Rs 1.68 Lakh Ahead",
+    "slug": "gold-price-motilal-oswal-forecast-168-lakh-decade",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the forecast by explicitly stating the current price of gold in the headline to provide immediate context for readers. For example, 'Gold Prices Expected to Reach Rs 1.68 Lakh per 10 Grams from Current Rs 1.5 Lakh'.",
+        "Include a brief explanation of the factors influencing the projected increase in gold prices, such as market trends, inflation, or geopolitical events, to provide readers with a more comprehensive understanding.",
+        "Ensure that the article consistently attributes data and forecasts to the original source, Motilal Oswal Financial Services, rather than repeating information from secondary sources like Aaj Tak and Tezzbuzz without clear context.",
+        "Reorganize the content to present the most critical information first, such as the current price of gold and the forecast, followed by historical context and investment advice, to enhance clarity and flow."
+      ],
+      "embed_opportunities": [
+        "Embed the official Motilal Oswal Financial Services report or a relevant tweet summarizing their findings to provide direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "4a10f151-a7f1-4729-95bf-7e285979678b",
+    "headline": "Simbu's 'Arasan' Promo Slips From Diwali to a Reported December 4 Theatre Releas",
+    "slug": "arasan-promo-postponed-december-4-simbu-vetrimaaran",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying when the official announcement regarding the new promo date is expected. This would help readers understand the urgency and next steps.",
+        "Provide more context about why the promo's release was delayed from Diwali. This could include insights into the production challenges or any other relevant factors that contributed to the postponement.",
+        "Ensure that the article clearly distinguishes between the promo release date and the film's theatrical release date in 2027. This will help avoid confusion for readers regarding the timeline of both events.",
+        "Include a quote or statement from the film's production team or a relevant industry figure to enhance attribution and provide authoritative context to the reported information."
+      ],
+      "embed_opportunities": [
+        "Embed the official social media announcement or teaser from the film's production team, if available, to provide readers with direct access to the promotional content."
+      ]
+    }
+  },
+  {
+    "id": "d5b9886f-9673-46c7-b801-94aaa84e15d0",
+    "headline": "India Has Cancer Screening. Fewer Than 2 in 100 Women Have Ever Used It",
+    "slug": "cancer-india-screening-exists-patients-diagnosed-late",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline for the HPV vaccination campaign mentioned in the article. The text states it launched in February 2026, which appears to be a typographical error since that date is in the future. Confirm the correct launch date and update it accordingly.",
+        "Provide specific statistics or context regarding the barriers to accessing cancer screenings. For example, mention common reasons why women may not be utilizing the screening services, such as lack of awareness, cultural stigma, or accessibility issues.",
+        "Include a direct quote from a health official or expert to enhance the credibility of the information presented and provide a human element to the statistics.",
+        "Reorganize the content to lead with the most impactful statistics about cancer survival rates and the importance of early detection before discussing the screening program details. This will help emphasize the urgency of the issue."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Ministry of Health and Family Welfare or a reputable health organization that highlights the importance of cancer screening and the available programs."
+      ]
+    }
+  },
+  {
+    "id": "9ab9d5c6-2b73-4926-8c80-8f1fea03bfd0",
+    "headline": "How Telangana Got Back 550 Acres in Miyapur Worth About Rs 50,000 Crore",
+    "slug": "telangana-miyapur-550-acres-supreme-court-verdict-explained",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the discrepancy in land value estimates by providing a direct quote or source for both the Chief Minister's figure of Rs 50,000 crore and The Hindu's figure of over Rs 55,000 crore. This will enhance accuracy and completeness.",
+        "Include a brief background on the significance of poramboke land in India and its implications for public ownership, which would provide important context for readers unfamiliar with the term.",
+        "Add a timeline of the dispute over the land to give readers a clearer understanding of the history and context surrounding the Supreme Court's ruling."
+      ],
+      "embed_opportunities": [
+        "Embed the official Supreme Court ruling or a relevant tweet from the Supreme Court or Telangana government announcing the decision to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "9dad37cb-b694-468a-bf95-704017aecf12",
+    "headline": "Bengaluru's MTR Keeps Its MICHELIN Bib Gourmand in Kuala Lumpur for 2027",
+    "slug": "mtr-1924-malaysia-michelin-bib-gourmand-2027",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Bib Gourmand distinction by including specific details about what criteria MTR 1924 met to retain this award, as well as how it compares to other establishments in the guide.",
+        "Provide a brief overview of the MICHELIN Guide's history or its impact on restaurants to give readers context about why this recognition is important.",
+        "Include a quote from a representative of MTR 1924 or the MICHELIN Guide to add a personal touch and authority to the article.",
+        "Add a section on what diners can expect in terms of menu highlights or popular dishes at MTR 1924, enhancing the completeness of the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official MICHELIN Guide announcement or tweet regarding the 2027 selections to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "09456a8b-62b3-421e-8577-e22f9fa115b5",
+    "headline": "Ayodhya's 10th Deepotsav Is Tonight: 30 Lakh Diyas Planned Across 56 Ghats",
+    "slug": "ayodhya-deepotsav-2026-30-lakh-diyas-56-ghats",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the admission details for the event, as it currently states 'Not stated in the announcements' without providing guidance on how to find this information. This could be improved by including a direct link to the Uttar Pradesh Tourism Department's Deepotsav release for readers to easily access relevant information.",
+        "Provide more context about the significance of the Deepotsav festival and its historical or cultural importance to enhance reader understanding. This could include a brief background on how the festival has evolved over the years or its relevance to the local community.",
+        "Ensure that the headline reflects the date of the event more clearly. For example, 'Ayodhya's 10th Deepotsav Tonight: 30 Lakh Diyas Planned Across 56 Ghats on November 7, 2026' would provide immediate clarity on the timing of the event."
+      ],
+      "embed_opportunities": [
+        "Embed the official Uttar Pradesh Tourism Department's announcement or social media post regarding the event to provide readers with direct access to official information and updates."
+      ]
+    }
+  },
+  {
+    "id": "60fbbde5-92f0-4509-808a-ea6466277755",
+    "headline": "Trump Lights a Diya in the Oval Office as Governors Mark Diwali Across the US",
+    "slug": "trump-lights-diya-oval-office-diwali-governors-2026",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Diwali celebration in the Oval Office by providing more context about its historical importance and the role of Indian Americans in the U.S. This could include a brief mention of how previous presidents have celebrated Diwali and its impact on U.S.-India relations.",
+        "Include a direct quote from President Trump or another key attendee regarding the celebration to enhance attribution and provide a personal perspective on the event.",
+        "Add specific details about the proclamations made by the governors, such as the dates of the proclamations and any planned events associated with them, to give readers a clearer understanding of how Diwali is being recognized at the state level."
+      ],
+      "embed_opportunities": [
+        "Embed the official White House statement or tweet regarding the Diwali celebration to provide readers with an authoritative source and additional context."
+      ]
+    }
+  }
+]

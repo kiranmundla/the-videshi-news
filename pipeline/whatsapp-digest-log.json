@@ -298,5 +298,15 @@
     "quick_hit_count": 5,
     "deadline_count": 2,
     "chars": 2490
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-07T15:13:07.269053+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 07 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "nvidia-amd-micron-lead-chip-rebound-worst-selloff-since-2020",
+    "quick_hit_count": 5,
+    "deadline_count": 2,
+    "chars": 2539
   }
 ]

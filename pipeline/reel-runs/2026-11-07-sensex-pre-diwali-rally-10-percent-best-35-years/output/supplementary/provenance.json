@@ -1,0 +1,121 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "sensex-pre-diwali-rally-10-percent-best-35-years",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Sensex",
+    "Nifty",
+    "BSE",
+    "foreign portfolio investors",
+    "Markets Finance",
+    "NSDL and BSE"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'foreign portfolio investors' named 'Foreign Portfolio Investors Before and During a Crisis', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "category label: 'Markets Finance' is this article's category name, not a picture subject"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'NSDL and BSE' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Bombay Stock Exchange 3.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q796994)",
+      "verdict": "rejected",
+      "reason": "resolution: 428x572 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:NIFTY 50 Returns Graph.png",
+      "route": "identity \u2014 depicts (P180=Q1853402)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:LoksumstraatParochiaanstraat.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1146518)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Bourse 1.jpg",
+      "route": "identity \u2014 depicts (P180=Q1146518)",
+      "verdict": "USED (news)",
+      "reason": "6000x4000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Briefkaart Beurs Brussel.jpg",
+      "route": "identity \u2014 depicts (P180=Q1146518)",
+      "verdict": "USED (hero)",
+      "reason": "3222x2033, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "bourse-1",
+      "path": "bourse-1.jpg",
+      "size": [
+        6000,
+        4000
+      ],
+      "role": "establishing",
+      "subject": "Bourse de Bruxelles d\u00e9cor\u00e9e de lumi\u00e8res de No\u00ebl durant l'hiver 2015-2016.",
+      "route": "identity \u2014 depicts (P180=Q1146518)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Bourse_1.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Bourse_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Edison McCullen",
+      "entity": "BSE",
+      "entity_type": "other",
+      "entity_aliases": [
+        "BSE",
+        "Euronext Brussels",
+        "Bourse de Bruxelles",
+        "Brussels Stock Exchange",
+        "Beurs van Brussel",
+        "XBRU"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "briefkaart-beurs-brussel",
+      "path": "briefkaart-beurs-brussel.jpg",
+      "size": [
+        3222,
+        2033
+      ],
+      "role": "establishing",
+      "subject": "Brussels stockexchange in the 1920s. This place was the centre of the urban tramnetwork.",
+      "route": "identity \u2014 depicts (P180=Q1146518)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Briefkaart_Beurs_Brussel.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Briefkaart_Beurs_Brussel.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Unknown author Unknown author",
+      "entity": "BSE",
+      "entity_type": "other",
+      "entity_aliases": [
+        "BSE",
+        "Euronext Brussels",
+        "Bourse de Bruxelles",
+        "Brussels Stock Exchange",
+        "Beurs van Brussel",
+        "XBRU"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "us-visa-curbs-indian-it-offshore-hiring-perm-h1b",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Infosys",
+    "TCS",
+    "Microsoft",
+    "Capgemini",
+    "USCIS",
+    "Analysts Say"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Analysts Say' named 'Analysts say equity market needs reviving', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Infosys (4911287704).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q26989)",
+      "verdict": "USED (hero)",
+      "reason": "3264x1840, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Equatex, Vulkanstrasse 106 Zurich (Ank Kumar).jpg",
+      "route": "identity \u2014 depicts (P180=Q26989)",
+      "verdict": "USED (grid)",
+      "reason": "4032x3024, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:TCS SIPCOT Building.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q13227919)",
+      "verdict": "USED (diaspora)",
+      "reason": "4032x2399, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Candor Tech Space, Kolkata.jpg",
+      "route": "identity \u2014 depicts (P180=Q13227919)",
+      "verdict": "accepted",
+      "reason": "4000x2250, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Aerial Microsoft West Campus August 2009.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q2283)",
+      "verdict": "USED (news)",
+      "reason": "4752x3168, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:10 Largest Corporations by Market Capitalization.png",
+      "route": "identity \u2014 depicts (P180=Q2283)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:A platinum Microsoft Surface Laptop Go.jpg",
+      "route": "identity \u2014 depicts (P180=Q2283)",
+      "verdict": "rejected",
+      "reason": "blocklist: this file is on the entity's corpus blocklist \u2014 proven wrong for 'Microsoft' in a prior run"
+    },
+    {
+      "candidate": "File:Capitalist swine infect your country.jpg",
+      "route": "identity \u2014 depicts (P180=Q2283)",
+      "verdict": "rejected",
+      "reason": "resolution: 720x498 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:E3 XBox Press Briefing Peter Moore 05 MS 05 2004.jpg",
+      "route": "identity \u2014 depicts (P180=Q2283)",
+      "verdict": "accepted",
+      "reason": "1648x2464, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "aerial-microsoft-west-campus-august-2009",
+      "path": "aerial-microsoft-west-campus-august-2009.jpg",
+      "size": [
+        4752,
+        3168
+      ],
+      "role": "establishing",
+      "subject": "The west campus of Microsoft, Redmond, Washington, taken from about 1,500'. The photo is looking south-east. The west campus is bounded on the west by 148th Ave, on the east by SR 520, and on the north (foreground) by 40th St.",
+      "route": "identity \u2014 Wikidata P18 (Q2283)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Aerial_Microsoft_West_Campus_August_2009.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Aerial_Microsoft_West_Campus_August_2009.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Jelson25",
+      "entity": "Microsoft",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Microsoft"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "infosys-4911287704",
+      "path": "infosys-4911287704.jpg",
+      "size": [
+        3264,
+        1840
+      ],
+      "role": "establishing",
+      "subject": "Infosys",
+      "route": "identity \u2014 Wikidata P18 (Q26989)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Infosys_(4911287704).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Infosys_%284911287704%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Ashwin Kumar from Bangalore, India",
+      "entity": "Infosys",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Infosys",
+        "Infosys Limited",
+        "Infosys Ltd"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "equatex-vulkanstrasse-106-zurich-ank-kumar",
+      "path": "equatex-vulkanstrasse-106-zurich-ank-kumar.jpg",
+      "size": [
+        4032,
+        3024
+      ],
+      "role": "establishing",
+      "subject": "Equatex Vulkanstrasse 106 Zurich (Ank Kumar)",
+      "route": "identity \u2014 depicts (P180=Q26989)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Equatex,_Vulkanstrasse_106_Zurich_(Ank_Kumar).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Equatex%2C_Vulkanstrasse_106_Zurich_%28Ank_Kumar%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Ank Kumar",
+      "entity": "Infosys",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Infosys",
+        "Infosys Limited",
+        "Infosys Ltd"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "tcs-sipcot-building",
+      "path": "tcs-sipcot-building.jpg",
+      "size": [
+        4032,
+        2399
+      ],
+      "role": "interior",
+      "subject": "SIPCOT TCS OFFICE",
+      "route": "identity \u2014 Wikidata P18 (Q13227919)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:TCS_SIPCOT_Building.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/TCS_SIPCOT_Building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Naveen.kumar.kotta",
+      "entity": "TCS",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Tata Consultancy Services",
+        "TCS"
+      ]
+    }
+  ]
+}

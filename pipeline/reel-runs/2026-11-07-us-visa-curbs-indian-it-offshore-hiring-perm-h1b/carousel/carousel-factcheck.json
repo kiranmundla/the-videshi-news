@@ -1,0 +1,141 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "us-visa-curbs-indian-it-offshore-hiring-perm-h1b",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "US Visa Curbs Push Indian IT Firms Toward Offshore Hiring, Analysts Say",
+        "numbers": [],
+        "entities": [
+          "US Visa Curbs Push Indian IT Firms Toward Offshore Hiring",
+          "Analysts Say"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article discusses visa curbs pushing firms toward offshore hiring.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Analysts say the industry's response is to move the job to India rather than the worker to America.",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states analysts expect firms to move jobs to India.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The US Labor Department suspended eight employers from PERM, the first step in employer-sponsored green cards, on October 8",
+        "numbers": [
+          8.0
+        ],
+        "entities": [
+          "US Labor Department"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the suspension of eight employers on October 8.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "H-1B petitions for workers outside the US without a valid H-1B visa must be accompanied by a $100,000 payment",
+        "numbers": [
+          1.0,
+          100000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the $100,000 payment requirement for certain H-1B petitions.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The top seven Indian IT firms won just 4,573 new H-1B approvals in fiscal 2025, 37 percent fewer than the year before",
+        "numbers": [
+          1.0,
+          37.0,
+          2025.0,
+          4573.0
+        ],
+        "entities": [
+          "Indian IT"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2025
+          ]
+        },
+        "llm_reason": "The article provides this statistic about H-1B approvals.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "US Visa Curbs Push Indian IT Firms Toward Offshore Hiring, Analysts Say",
+        "numbers": [],
+        "entities": [
+          "US Visa Curbs Push Indian IT Firms Toward Offshore Hiring",
+          "Analysts Say"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000502,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

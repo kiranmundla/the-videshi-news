@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "us-visa-curbs-indian-it-offshore-hiring-perm-h1b",
+  "name": "us-visa-curbs-indian-it-offshore-hiring-perm-h1b",
+  "script": "reel-runs/2026-11-07-us-visa-curbs-indian-it-offshore-hiring-perm-h1b/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000721
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-07-us-visa-curbs-indian-it-offshore-hiring-perm-h1b/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "h-1b-visa-updates",
+      "hero": "infosys-4911287704",
+      "grid": "equatex-vulkanstrasse-106-zurich-ank-kumar",
+      "diaspora": "tcs-sipcot-building"
+    }
+  },
+  "manifest": "reel-runs/2026-11-07-us-visa-curbs-indian-it-offshore-hiring-perm-h1b/output/render-manifest.json",
+  "video": "reel-runs/2026-11-07-us-visa-curbs-indian-it-offshore-hiring-perm-h1b/output/us-visa-curbs-indian-it-offshore-hiring-perm-h1b.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-07-us-visa-curbs-indian-it-offshore-hiring-perm-h1b/output/tiktok-caption.txt"
+}
