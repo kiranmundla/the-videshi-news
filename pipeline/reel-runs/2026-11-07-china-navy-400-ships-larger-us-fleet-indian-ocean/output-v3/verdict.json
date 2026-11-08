@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "china-navy-400-ships-larger-us-fleet-indian-ocean",
+  "name": "china-navy-400-ships-larger-us-fleet-indian-ocean",
+  "script": "reel-runs/2026-11-07-china-navy-400-ships-larger-us-fleet-indian-ocean/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000684
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-07-china-navy-400-ships-larger-us-fleet-indian-ocean/output-v3/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "uss-constitution-1997",
+      "hero": "200916-n-gn815-2013-super-hornet",
+      "grid": "081102-n-0000c-002"
+    }
+  },
+  "manifest": "reel-runs/2026-11-07-china-navy-400-ships-larger-us-fleet-indian-ocean/output-v3/render-manifest.json",
+  "video": "reel-runs/2026-11-07-china-navy-400-ships-larger-us-fleet-indian-ocean/output-v3/china-navy-400-ships-larger-us-fleet-indian-ocean.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-07-china-navy-400-ships-larger-us-fleet-indian-ocean/output-v3/tiktok-caption.txt"
+}

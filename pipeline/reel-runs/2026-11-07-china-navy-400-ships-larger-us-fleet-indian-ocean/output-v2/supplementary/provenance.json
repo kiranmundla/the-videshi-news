@@ -1,0 +1,161 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "china-navy-400-ships-larger-us-fleet-indian-ocean",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "China",
+    "US Navy",
+    "Indian Ocean",
+    "Wall Street Journal",
+    "Xi Jinping",
+    "Hull Count"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'China' named 'Taiwan', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "outlet: 'Wall Street Journal' is a news outlet \u2014 outlets are sources, never picture subjects; never queried"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Hull Count' named 'Hull County', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:USS Constitution 1997.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q11220)",
+      "verdict": "USED (news)",
+      "reason": "2075x1596, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:200916-N-GN815-2013 - Super Hornet.jpg",
+      "route": "identity \u2014 depicts (P180=Q11220)",
+      "verdict": "USED (hero)",
+      "reason": "3088x2059, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Indian Ocean-CIA WFB Map.png",
+      "route": "identity \u2014 Wikidata P18 (Q1239)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:009 Pod of Spinner dolphins swimming in the Indian ocean Photo by Giles Laurent.jpg",
+      "route": "identity \u2014 depicts (P180=Q1239)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Anse Royale Beach - Mahe - Seychelles.jpg",
+      "route": "identity \u2014 depicts (P180=Q1239)",
+      "verdict": "rejected",
+      "reason": "scenery: the file's own evidence marks it as a generic landscape (a natural feature \u2014 no structure, no site) that never names 'Indian Ocean' \u2014 a landscape inside an entity's territory is not a picture OF the entity (the Big River estuary 'depicting' the United States, X 2026-11-01); fail closed"
+    },
+    {
+      "candidate": "File:Anse Severe - La Digue - Seychelles - 03.jpg",
+      "route": "identity \u2014 depicts (P180=Q1239)",
+      "verdict": "USED (diaspora)",
+      "reason": "6144x4064, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Anse Severe - La Digue - Seychelles - 04.jpg",
+      "route": "identity \u2014 depicts (P180=Q1239)",
+      "verdict": "accepted",
+      "reason": "6091x4061, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Xi Jinping on August 18, 2026 (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q15031)",
+      "verdict": "accepted",
+      "reason": "1365x1764, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "uss-constitution-1997",
+      "path": "uss-constitution-1997.jpg",
+      "size": [
+        2075,
+        1596
+      ],
+      "role": "establishing",
+      "subject": "Navy photo of USS Constitution under sail for the first time in over a century",
+      "route": "identity \u2014 Wikidata P18 (Q11220)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:USS_Constitution_1997.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/USS_Constitution_1997.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Journalist 2nd Class Todd Stevens",
+      "entity": "US Navy",
+      "entity_type": "other",
+      "entity_aliases": [
+        "US Navy",
+        "United States Navy",
+        "USN",
+        "U.S. Navy"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "200916-n-gn815-2013-super-hornet",
+      "path": "200916-n-gn815-2013-super-hornet.jpg",
+      "size": [
+        3088,
+        2059
+      ],
+      "role": "establishing",
+      "subject": "An F/A-18 Super Hornet performs a fly-by of USS Gerald R. Ford (CVN 78) Sept. 16, 2020. Ford is underway in the Atlantic Ocean conducting an independent steaming event. (U.S. Navy photo by Mass Communication Specialist Seaman Apprentice Tre",
+      "route": "identity \u2014 depicts (P180=Q11220)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:200916-N-GN815-2013_-_Super_Hornet.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/200916-N-GN815-2013_-_Super_Hornet.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Mass Communication Specialist Seaman Apprentice Trenton Edly",
+      "entity": "US Navy",
+      "entity_type": "other",
+      "entity_aliases": [
+        "US Navy",
+        "United States Navy",
+        "USN",
+        "U.S. Navy"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "anse-severe-la-digue-seychelles-03",
+      "path": "anse-severe-la-digue-seychelles-03.jpg",
+      "size": [
+        6144,
+        4064
+      ],
+      "role": "establishing",
+      "subject": "Tables and sunhades, Anse Severe, La Digue, Seychelles.",
+      "route": "identity \u2014 depicts (P180=Q1239)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Anse_Severe_-_La_Digue_-_Seychelles_-_03.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Anse_Severe_-_La_Digue_-_Seychelles_-_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "NorbertNagel",
+      "entity": "Indian Ocean",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Indian Ocean",
+        "Eastern Ocean",
+        "Eastern Sea",
+        "Indian Sea",
+        "Oriental Sea",
+        "Oriental Ocean"
+      ]
+    }
+  ]
+}

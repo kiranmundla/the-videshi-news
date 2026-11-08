@@ -1,0 +1,290 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "china-navy-400-ships-larger-us-fleet-indian-ocean",
+  "verdict": "fail",
+  "held_claims": [
+    "key_entities:United States Navy"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "CHINA'S NAVY PASSES 400 SHIPS",
+      "numbers": [
+        400.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states China's navy has more than 400 ships.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "China's navy now has a battle force of more than 400 ships and submarines, around 35% larger than the US Navy by hull count, according to official US numbers seen by the Wall Street Journal.",
+      "numbers": [
+        35.0,
+        400.0
+      ],
+      "entities": [
+        "US Navy",
+        "Wall Street Journal"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All facts in the claim are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "400+",
+      "numbers": [
+        400.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms China's navy exceeds 400 ships.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Ships and submarines in China's battle force, about 35% larger than the US Navy by hull count",
+      "numbers": [
+        35.0
+      ],
+      "entities": [
+        "US Navy"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states China's fleet is 35% larger than the US Navy.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "71",
+      "numbers": [
+        71.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions China added 71 major warships since 2020.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Major warships and submarines added since 2020, 19 of them in the last year",
+      "numbers": [
+        19.0,
+        2020.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2020
+        ]
+      },
+      "llm_reason": "The article specifies 71 added since 2020, with 19 last year.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "290",
+      "numbers": [
+        290.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the US fleet has roughly 290 ships.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Ships in the US fleet, which remains larger by tonnage",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the US fleet is larger by tonnage.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "9",
+      "numbers": [
+        9.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article estimates China will have 9 carriers by 2035.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Aircraft carriers China is estimated to have by 2035, close to the US fleet of 11",
+      "numbers": [
+        11.0,
+        2035.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2035
+        ]
+      },
+      "llm_reason": "The article mentions an estimate of 9 carriers by 2035.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "US officials expect Chinese submarines to operate routinely in the Indian Ocean by 2040",
+      "numbers": [
+        2040.0
+      ],
+      "entities": [
+        "Indian Ocean"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2040
+        ]
+      },
+      "llm_reason": "The article states US officials expect this by 2040.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "On any given day, as many as 100 Chinese navy ships are out on Asia's busiest trade routes",
+      "numbers": [
+        100.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms up to 100 ships are active daily.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The US fleet remains larger by tonnage, at roughly 290 ships.",
+      "numbers": [
+        290.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the US fleet is larger by tonnage.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "China",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "United States Navy",
+      "deterministic": "fail"
+    },
+    {
+      "entity": "Indian Ocean",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Wall Street Journal",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Xi Jinping",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000684,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

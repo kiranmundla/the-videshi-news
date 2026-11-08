@@ -1,0 +1,101 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "indian-americans-six-house-seats-midterms-ramaswamy-ohio",
+  "trigger": {
+    "own_images": 3,
+    "target_distinct": 5,
+    "extras_needed": 2
+  },
+  "entities": [
+    "Vivek Ramaswamy",
+    "Pia Dandiya",
+    "Amish Shah",
+    "Nithya Raman",
+    "Ami Bera",
+    "President Trump"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'President Trump' named 'Donald Trump', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Vivek Ramaswamy (55241367373) (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q27881473)",
+      "verdict": "USED (news)",
+      "reason": "2348x3128, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:AmericaFest 2025 - Vivek Ramaswamy 01.jpg",
+      "route": "identity \u2014 depicts (P180=Q27881473)",
+      "verdict": "accepted",
+      "reason": "6000x3376, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Pia Dandiya WHF (cropped).png",
+      "route": "identity \u2014 Wikidata P18 (Q136163054)",
+      "verdict": "rejected",
+      "reason": "resolution: 125x156 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Amish Shah by Gage Skidmore.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q60736979)",
+      "verdict": "accepted",
+      "reason": "1719x2342, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Amish Shah & David Marshall (52750179671).jpg",
+      "route": "identity \u2014 depicts (P180=Q60736979)",
+      "verdict": "USED (grid)",
+      "reason": "5916x3944, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "vivek-ramaswamy-55241367373-cropped",
+      "path": "vivek-ramaswamy-55241367373-cropped.jpg",
+      "size": [
+        2348,
+        3128
+      ],
+      "role": "establishing",
+      "subject": "Vivek Ramaswamy speaking with attendees at the Ohio State University tour stop of the \"This Is The Turning Point\" tour at Mershon Auditorium in Columbus, Ohio.",
+      "route": "identity \u2014 Wikidata P18 (Q27881473)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Vivek_Ramaswamy_(55241367373)_(cropped).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Vivek_Ramaswamy_%2855241367373%29_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Gage Skidmore",
+      "entity": "Vivek Ramaswamy",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Vivek Ramaswamy",
+        "Vivek G. Ramaswamy",
+        "Vivek Ganapathy Ramaswamy"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "amish-shah-david-marshall-52750179671",
+      "path": "amish-shah-david-marshall-52750179671.jpg",
+      "size": [
+        5916,
+        3944
+      ],
+      "role": "interior",
+      "subject": "State Representatives Amish Shah and David Marshall speaking on the floor of the Arizona House of Representatives at the Arizona State Capitol building in Phoenix, Arizona. Please attribute to Gage Skidmore if used elsewhere.",
+      "route": "identity \u2014 depicts (P180=Q60736979)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_%26_David_Marshall_(52750179671).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Amish_Shah_%26_David_Marshall_%2852750179671%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Gage Skidmore from Surprise, AZ, United States of America",
+      "entity": "Amish Shah",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Amish Shah"
+      ]
+    }
+  ]
+}

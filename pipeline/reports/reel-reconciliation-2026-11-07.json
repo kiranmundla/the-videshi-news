@@ -1,14 +1,14 @@
 {
   "counts": {
-    "channel_videos": 236,
-    "db_rows": 171,
-    "db_rows_with_yt_id": 141,
+    "channel_videos": 238,
+    "db_rows": 172,
+    "db_rows_with_yt_id": 142,
     "legacy_log_entries": 205,
-    "publish_log_entries": 54,
-    "in_sync": 119,
+    "publish_log_entries": 55,
+    "in_sync": 121,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 16,
-    "ghost_db_rows": 17,
+    "ghost_db_rows": 16,
     "superseded_db_rows": 5,
     "public_without_db_record": 117,
     "phase2_uploads_now_public": 0
@@ -540,6 +540,13 @@
       "record": "prebuilt_reels:9ff85f0e-fd3c-47f7-be42-31b186520a19"
     },
     {
+      "title": "Microsoft's Brad Smith Hits Back at Vance as Nadella Medal Exposes H-1B Split #Shorts #H1B",
+      "published_at": "2026-10-16T22:08:45Z",
+      "privacy": "public",
+      "video_id": "ch5JcYGZZxE",
+      "record": "prebuilt_reels:4a5e7c4b-e3dc-4946-b4a5-a5d5b5692505"
+    },
+    {
       "title": "Court Orders State Department to Reopen 55,000-Visa Green Card Lottery #Shorts #GreenCard",
       "published_at": "2026-10-16T22:09:16Z",
       "privacy": "public",
@@ -846,6 +853,13 @@
       "privacy": "public",
       "video_id": "sAAjMEqIfgM",
       "record": "prebuilt_reels:4c78bcd0-21b9-4e3d-90ac-8ab82bdf7800"
+    },
+    {
+      "title": "Tata Steel Q2 Profit Rises 16% to Rs 3,700 Crore on India Strength #Shorts #Markets",
+      "published_at": "2026-11-07T23:22:40Z",
+      "privacy": "public",
+      "video_id": "zVMdWZzHbqs",
+      "record": "prebuilt_reels:9575f4c3-8921-4968-b875-b19f2d97b4f4"
     }
   ],
   "unknown_legacy_logged": [
@@ -2374,14 +2388,6 @@
       "malformed_id": false
     },
     {
-      "row_id": "4a5e7c4b-e3dc-4946-b4a5-a5d5b5692505",
-      "article_slug": "brad-smith-vance-h1b-microsoft-nadella-medal",
-      "yt_video_id": "ch5JcYGZZxE",
-      "status": "yt_posted",
-      "yt_posted_at": "2026-10-16T19:41:01.897644+00:00",
-      "malformed_id": false
-    },
-    {
       "row_id": "c7713080-09d5-4d70-914a-5090686d7791",
       "article_slug": "nasdaq-tumbles-2-6-as-oil-surge-and-ai-spending-fears-hit-stocks",
       "yt_video_id": "dB5AYzpRFC8",
@@ -3851,5 +3857,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-07T17:18:51+00:00"
+  "generated_at": "2026-11-07T23:24:37+00:00"
 }

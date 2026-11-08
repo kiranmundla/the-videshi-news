@@ -1,0 +1,34 @@
+{
+ "hook_line": "CHINA'S NAVY PASSES 400 SHIPS",
+ "hook_stat": {
+  "big": "400+",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Ships and submarines in China's battle force, about 35% larger than the US Navy by hull count"
+ },
+ "stats": [
+  {
+   "big": "71",
+   "label": "Major warships and submarines added since 2020, 19 of them in the last year"
+  },
+  {
+   "big": "290",
+   "label": "Ships in the US fleet, which remains larger by tonnage"
+  },
+  {
+   "big": "9",
+   "label": "Aircraft carriers China is estimated to have by 2035, close to the US fleet of 11"
+  }
+ ],
+ "diaspora_bullets": [
+  "US officials expect Chinese submarines to operate routinely in the Indian Ocean by 2040",
+  "On any given day, as many as 100 Chinese navy ships are out on Asia's busiest trade routes"
+ ],
+ "key_entities": [
+  "China",
+  "Xi Jinping"
+ ],
+ "news_summary": "China's navy now has a battle force of more than 400 ships and submarines, around 35% larger than the US Navy by hull count, according to official US numbers seen by the Wall Street Journal.",
+ "payoff": "The US fleet remains larger by tonnage, at roughly 290 ships.",
+ "versus": "",
+ "story_mood": "tense"
+}

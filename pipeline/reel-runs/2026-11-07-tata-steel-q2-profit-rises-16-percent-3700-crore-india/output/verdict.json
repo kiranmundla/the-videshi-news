@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "tata-steel-q2-profit-rises-16-percent-3700-crore-india",
+  "name": "tata-steel-q2-profit-rises-16-percent-3700-crore-india",
+  "script": "reel-runs/2026-11-07-tata-steel-q2-profit-rises-16-percent-3700-crore-india/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_line",
+      "hook_stat.sub"
+    ],
+    "llm_cost_usd": 0.000749
+  }
+}

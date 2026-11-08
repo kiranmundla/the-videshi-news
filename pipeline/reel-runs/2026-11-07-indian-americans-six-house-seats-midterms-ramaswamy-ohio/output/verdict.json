@@ -1,0 +1,20 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "indian-americans-six-house-seats-midterms-ramaswamy-ohio",
+  "name": "indian-americans-six-house-seats-midterms-ramaswamy-ohio",
+  "script": "reel-runs/2026-11-07-indian-americans-six-house-seats-midterms-ramaswamy-ohio/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "diaspora_bullets[0]",
+      "payoff"
+    ],
+    "llm_cost_usd": 0.000679
+  }
+}

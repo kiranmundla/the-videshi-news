@@ -1,0 +1,25 @@
+{
+  "kind": "carousel",
+  "article_slug": "tata-steel-q2-profit-rises-16-percent-3700-crore-india",
+  "status": "ready",
+  "stage": "complete",
+  "factcheck": {
+    "verdict": "pass",
+    "quote_present": false,
+    "verbatim_quote": null,
+    "speaker_grounded": null,
+    "role_grounded": null,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000549
+  },
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "cards": [
+    "reel-runs/2026-11-07-tata-steel-q2-profit-rises-16-percent-3700-crore-india/carousel-v3/carousel-1.png",
+    "reel-runs/2026-11-07-tata-steel-q2-profit-rises-16-percent-3700-crore-india/carousel-v3/carousel-2.png",
+    "reel-runs/2026-11-07-tata-steel-q2-profit-rises-16-percent-3700-crore-india/carousel-v3/carousel-3.png"
+  ]
+}

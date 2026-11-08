@@ -1,0 +1,118 @@
+[
+  {
+    "id": "09404c6b-d2bd-46f4-8b19-598d686fe012",
+    "headline": "Four Triangle Restaurants Make Yelp's First Top 100 Indian List in the US",
+    "slug": "triangle-restaurants-yelp-top-100-indian-list",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the ranking methodology by providing more details on how Yelp determined the rankings, such as the specific criteria used for review ratings and volume.",
+        "Add a brief background on Yelp's significance in the restaurant industry and why this ranking matters, which would provide context for readers unfamiliar with Yelp's impact.",
+        "Include the health scores of the listed restaurants, as this is a relevant detail that may influence readers' decisions to visit these establishments."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Yelp announcing the Top 100 Indian Restaurants list to provide official context and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "05f4ff67-b930-4843-874f-35241e5e7e92",
+    "headline": "Hyderabad Marks Diwali in Many Ways, From Bommala Koluvu to Kali Puja",
+    "slug": "hyderabad-diwali-celebrations-communities-charminar",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of Diwali in the headline to avoid confusion, as it currently states November 8, 2026, which is a future date and may mislead readers into thinking it's this year's celebration.",
+        "Provide more specific details about the timings and significance of the various rituals mentioned, such as the exact timing for the Naraka Chaturdashi oil bath and the significance of Vasu Baras for readers unfamiliar with these traditions.",
+        "Include a brief note on how the COVID-19 pandemic may still affect celebrations, if relevant, to give context to readers planning to visit or participate in the festivities."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Hyderabad tourism board or local government about Diwali celebrations to provide official information and updates."
+      ]
+    }
+  },
+  {
+    "id": "330a7594-4f8e-4c5e-8997-76dbe6c2d728",
+    "headline": "Coca-Cola's India Bottler Files IPO in Pure Shareholder Sell-Down",
+    "slug": "hindustan-coca-cola-ipo-filing-offer-for-sale",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the IPO process. Include specific dates for when the IPO is expected to launch and any key deadlines for investors or stakeholders.",
+        "Provide more context on the implications of the revenue decline. Explain how this might affect investor sentiment or the company's future performance, especially in relation to Coca-Cola's refranchising strategy.",
+        "Add a brief explanation of what a 'pure shareholder sell-down' means for potential investors. This could help readers understand the significance of the IPO structure.",
+        "Include a comparison of this IPO with recent similar IPOs in the Indian market to give readers a sense of the current market environment and investor appetite."
+      ],
+      "embed_opportunities": [
+        "Embed the official SEBI announcement regarding the IPO filing to provide readers with direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "ef1ee21e-4327-4e93-b2f1-05c6e3a90a89",
+    "headline": "Hijack Threat Note Forces IndiGo Bengaluru-Lucknow Flight to Turn Back",
+    "slug": "indigo-bengaluru-lucknow-hijack-threat-note-flight-returns",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by providing specific timestamps for when the note was found, when the emergency was declared, and when the flight eventually departed for Lucknow again. This will enhance the completeness and clarity of the report.",
+        "Include a quote from a relevant authority, such as an airport official or a representative from IndiGo, to provide additional attribution and context regarding the incident and the response measures taken.",
+        "Add details about the potential legal consequences for the individual who wrote the hijack threat note, as this information would be relevant and informative for readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement from IndiGo regarding the incident, if available, to provide readers with direct information from the airline."
+      ]
+    }
+  },
+  {
+    "id": "3e2bdbc9-3f66-48c9-87ba-aad180def68c",
+    "headline": "Jaiswal Smashes Second Straight Century for India A in New Zealand",
+    "slug": "jaiswal-second-century-india-a-new-zealand",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Jaiswal's performance in the context of the upcoming senior Test series against New Zealand. For example, explain how his form could impact team selection or strategy.",
+        "Include the date of the next match in the series to provide readers with a clear timeline of upcoming events.",
+        "Add a quote from Jaiswal or the coach regarding his performance or the team's preparation for the senior series to provide personal insight and context.",
+        "Correct the repetition of the opening sentence about Jaiswal's score; it appears twice in the article, which disrupts the flow."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official BCCI or a cricket news outlet highlighting Jaiswal's performance or the upcoming Test series to provide real-time updates and engagement."
+      ]
+    }
+  },
+  {
+    "id": "8a6aa310-6aca-4595-95f8-56e74ff2d0b6",
+    "headline": "Taniya Wins Silver in Beach Wrestling's Youth Olympic Debut at Dakar",
+    "slug": "taniya-silver-beach-wrestling-youth-olympics-dakar",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the date of the final match by explicitly stating that it took place on Saturday, November 7, 2026, to avoid confusion with the current year.",
+        "Provide more context about the significance of Taniya's achievement, such as how many countries participated in beach wrestling at the Youth Olympics or the historical context of India's performance in wrestling at the Youth Olympics.",
+        "Include a direct quote from Taniya or her coach about the match or her feelings on winning the silver medal to add a personal touch and depth to the story."
+      ],
+      "embed_opportunities": [
+        "Embed the official Youth Olympic Games Twitter account's announcement or a relevant tweet about Taniya's performance for real-time updates and engagement."
+      ]
+    }
+  }
+]

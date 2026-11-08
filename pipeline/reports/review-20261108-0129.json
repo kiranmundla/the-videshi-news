@@ -1,0 +1,179 @@
+[
+  {
+    "id": "de3c698f-b0ff-4498-8e4a-f9699b13c003",
+    "headline": "China's Navy Passes 400 Ships, About 35% Larger Than the US Fleet by Hull Count",
+    "slug": "china-navy-400-ships-larger-us-fleet-indian-ocean",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for US officials' expectations regarding Chinese submarines operating in the Indian Ocean and Arctic approaches by specifying the implications for regional security or military strategy for India.",
+        "Include specific figures or data points regarding the operational capabilities of the Chinese navy, such as the types of ships or submarines added, to provide a clearer picture of the scale and implications of this naval expansion.",
+        "Provide context on how this naval expansion might affect global trade routes or military alliances, particularly in relation to the US and its allies, to enhance the completeness of the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official US Navy statement or report regarding the size and capabilities of the Chinese navy for authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "b75d34ea-4934-49da-9624-c804d5f157f6",
+    "headline": "Indian Truck Simulator Rebuilds Delhi's Real Road Network for a 2027 PC Release",
+    "slug": "indian-truck-simulator-delhi-real-roads-2027-steam",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the exact release date in 2027, as well as any specific features or updates expected before the release to provide readers with a clearer timeline.",
+        "Include a quote or statement from the developer, IronFort Studios, to enhance attribution and provide insight into their vision for the game.",
+        "Add more context about the significance of using real map data for gameplay, such as how it enhances the gaming experience compared to other simulators.",
+        "Mention any potential system requirements or pricing details if available, as this information is crucial for readers considering wishlist or purchase."
+      ],
+      "embed_opportunities": [
+        "Embed the official Steam page for Indian Truck Simulator to allow readers easy access to wishlist the game."
+      ]
+    }
+  },
+  {
+    "id": "c562c14d-eeb2-4a8e-9377-3af46751c80a",
+    "headline": "RJD MP Sanjay Yadav Asks President to Act Against DU Professor Sangeet Ragi",
+    "slug": "rjd-mp-sanjay-yadav-president-action-du-professor-ragi",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the televised debate in which Professor Ragi allegedly made the remarks. This will help readers understand the context and urgency of the situation better.",
+        "Provide more details about the content of the derogatory remarks made by Professor Ragi, including any direct quotes if available. This will enhance the completeness and clarity of the article.",
+        "Include a brief background on the significance of the Yadav community in India and any historical context related to caste-based remarks. This will help readers understand the gravity of the situation and its implications."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Sanjay Yadav or a relevant news outlet that covers the incident or the letter to the President for real-time updates and verification."
+      ]
+    }
+  },
+  {
+    "id": "2254b5ca-d870-4173-903f-81274d1d8378",
+    "headline": "Farmer Collecting Cattle Fodder Mauled to Death by Tiger in Beed, Maharashtra",
+    "slug": "farmer-mauled-death-tiger-beed-maharashtra-fodder",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the safety advisories issued by the forest department in relation to the tiger sighting on November 2. This will help readers understand the urgency and context of the warnings.",
+        "Provide more details about the local government's response to the incident, including any specific measures they plan to implement to protect farmers and address community concerns about tiger attacks.",
+        "Include direct quotes from local officials or villagers to enhance the article's depth and provide a more personal perspective on the community's reaction to the tragedy.",
+        "Correct the date mentioned in the article; November 7, 2026, is likely a typographical error since the current date is October 2023. Ensure the date reflects the accurate timeline of the event."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Maharashtra forest department regarding safety measures or a statement about the incident to provide official context."
+      ]
+    }
+  },
+  {
+    "id": "34bfec1b-2997-445b-a798-0a9a6579f8a6",
+    "headline": "VIX Jumped 11.57 Points in a Day; History Says Six Months Later Stocks Were Usua",
+    "slug": "vix-fear-gauge-jumps-11-points-bespoke-history-six-months",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the VIX surge in the opening sentence; it currently states November 5, 2026, but should be November 5, 2023, to avoid confusion and ensure accuracy.",
+        "Provide specific dollar amounts or percentages regarding the impact of the AI regulation fears on the market; for instance, how much the semiconductor stocks lost in dollar terms or the overall market capitalization affected.",
+        "Include a brief explanation of what the VIX is and why it matters for readers who may not be familiar with market terminology; this would enhance clarity and completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a financial analyst or a relevant financial news outlet discussing the implications of the VIX spike for broader market trends."
+      ]
+    }
+  },
+  {
+    "id": "adc94b79-7ac6-442e-b1d5-d9f3a47359cf",
+    "headline": "House Democrats to Open Majority With Healthcare, Iran War and Tariff Votes",
+    "slug": "house-democrats-majority-healthcare-iran-war-tariff-votes",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding the proposed votes on Medicaid and ACA subsidies. While the article mentions that these votes are planned for January 3, 2027, it should specify that no immediate changes will take effect on that date due to the need for Senate approval and potential presidential veto.",
+        "Provide more specific details on the proposed changes to Medicaid and the ACA subsidies, such as the exact dollar amounts of the enhanced subsidies and the specific eligibility criteria for beneficiaries. This would help readers understand the direct impact on their healthcare costs.",
+        "Include a quote or statement from a Republican leader or opposing viewpoint regarding the proposed changes to provide a more balanced perspective on the healthcare and tariff issues being addressed.",
+        "Add context about the current political landscape, such as the implications of the Democrats holding a majority in the House and how that might affect future legislation, especially in light of potential opposition from the Senate or the presidency."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Hakeem Jeffries or the official House Democrats account announcing their priorities for the new Congress, which would provide direct insight into their agenda."
+      ]
+    }
+  },
+  {
+    "id": "d25c8929-31f8-4618-b7f0-13f16bfb235a",
+    "headline": "Rachel Apa's Family Obituary: 'She Always Found Her Way to the Finish Line'",
+    "slug": "rachel-apa-obituary-family-finish-line-marathon",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events surrounding Rachel Apa's collapse and death. Include specific times if available, such as when she collapsed during the marathon and when she was pronounced dead.",
+        "Provide more context about rhabdomyolysis, including its symptoms, causes, and prevalence, to help readers understand the seriousness of the condition.",
+        "Include a statement from a medical expert or a representative from a relevant health organization regarding rhabdomyolysis and its implications for athletes, which would enhance the article's credibility.",
+        "Ensure that the GoFundMe details are up-to-date and include a direct link to the campaign for readers who may wish to contribute."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the New York City Marathon or a relevant health organization discussing rhabdomyolysis or athlete health to provide additional context."
+      ]
+    }
+  },
+  {
+    "id": "56284ff8-ffb9-4b2e-8239-ee4f44c40409",
+    "headline": "Army Says Claim of 50-km Chinese Advance in Arunachal Is False",
+    "slug": "army-debunks-fake-50km-chinese-incursion-arunachal-claim",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the Army's statement and the date of the social media posts to enhance clarity and context for readers.",
+        "Include a brief explanation of the significance of Arunachal Pradesh in the context of India-China relations to provide readers with a better understanding of the implications of the claims being debunked.",
+        "Add a direct quote from the Indian Army's official statement to strengthen attribution and provide authoritative context to the article."
+      ],
+      "embed_opportunities": [
+        "Embed the Indian Army's official post on X (formerly Twitter) that addresses the claims for readers to verify the information directly."
+      ]
+    }
+  },
+  {
+    "id": "e3e48c9b-dc5e-404b-9b79-b6faba0cbf24",
+    "headline": "BJP Attacks Sonia Gandhi Over Babri Remark in Memoir Interviews",
+    "slug": "bjp-attacks-sonia-gandhi-babri-remark-memoir",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Provide specific details about the context of Sonia Gandhi's remarks, including the exact quotes from her interviews to clarify her position and the significance of her statement regarding the Babri Masjid demolition.",
+        "Include a timeline of key events related to the Babri Masjid demolition and its aftermath to give readers a clearer understanding of the historical context and why this remark is significant now.",
+        "Clarify the implications of the BJP's attack on Gandhi by explaining how this might affect current political dynamics or upcoming elections, providing readers with a sense of urgency or relevance.",
+        "Ensure that all quotes from BJP leaders are attributed correctly and provide the source of the IANS reporting to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed a clip or link to the interview with Sonia Gandhi in The Hindu for readers to access her comments directly."
+      ]
+    }
+  }
+]

@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-07-gukesh-tirumala-visit-world-chess-championship-defence/output/gukesh-tirumala-visit-world-chess-championship-defence.mp4",
+  "qa_passed": false,
+  "qa_score": 8.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "face_overlap:payoff"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        2264,
+        2998
+      ],
+      "manifest_dims": [
+        2264,
+        2998
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 386.3,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/72/Gukesh_at_the_46th_FIDE_Chess_Olympiad_%282%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-07-gukesh-tirumala-visit-world-chess-championship-defence/output/qa/frames/frame-hook.png",
+      "text_px_detected": 22958,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.80)",
+        "box": [
+          333,
+          402,
+          479,
+          556
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 43.4,
+        "delta": 210.5
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-07-gukesh-tirumala-visit-world-chess-championship-defence/output/qa/frames/frame-news.png",
+      "text_px_detected": 36631,
+      "edge": {
+        "pass": true,
+        "offending_px": 1,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.91)",
+        "box": [
+          366,
+          272,
+          359,
+          455
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 61.7,
+        "delta": 192.1
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-07-gukesh-tirumala-visit-world-chess-championship-defence/output/qa/frames/frame-hero.png",
+      "text_px_detected": 32559,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          289,
+          358,
+          497,
+          621
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 247.4,
+        "bg_luminance": 0.0,
+        "delta": 247.4
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-07-gukesh-tirumala-visit-world-chess-championship-defence/output/qa/frames/frame-grid.png",
+      "text_px_detected": 55225,
+      "edge": {
+        "pass": true,
+        "offending_px": 187,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.85)",
+        "box": [
+          514,
+          910,
+          28,
+          36
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 102.3,
+        "delta": 151.2
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-07-gukesh-tirumala-visit-world-chess-championship-defence/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 39631,
+      "edge": {
+        "pass": true,
+        "offending_px": 216,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          464,
+          151,
+          149,
+          200
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 23.7,
+        "delta": 230.4
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-07-gukesh-tirumala-visit-world-chess-championship-defence/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 28867,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": false,
+        "method": "manifest-mapped",
+        "box": [
+          279,
+          350,
+          515,
+          644
+        ],
+        "overlap_px": 8209
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.8,
+        "bg_luminance": 0.0,
+        "delta": 253.8
+      }
+    }
+  ]
+}

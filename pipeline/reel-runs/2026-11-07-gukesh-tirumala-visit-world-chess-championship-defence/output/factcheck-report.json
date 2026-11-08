@@ -1,0 +1,277 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "gukesh-tirumala-visit-world-chess-championship-defence",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "GUKESH DEFENDS HIS WORLD CROWN AT 20",
+      "numbers": [
+        20.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Gukesh is 20 and defending his title.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "World champion D Gukesh, 20, offered prayers at the Tirumala Sri Venkateswara Swamy Temple in Andhra Pradesh on November 6 ahead of defending his title against Javokhir Sindarov in Geneva.",
+      "numbers": [
+        6.0,
+        20.0
+      ],
+      "entities": [
+        "D Gukesh",
+        "Tirumala Sri Venkateswara Swamy Temple",
+        "Andhra Pradesh",
+        "Javokhir Sindarov"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about Gukesh's visit and title defense are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "14 GAMES",
+      "numbers": [
+        14.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The match consists of 14 games.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Classical title match in Geneva from November 24 to December 12",
+      "numbers": [
+        12.0,
+        24.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The match is confirmed to be in Geneva during those dates.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$2.5 MILLION",
+      "numbers": [
+        2.5,
+        2500000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The total prize fund is stated as $2.5 million.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Total prize fund for the World Chess Championship match",
+      "numbers": [],
+      "entities": [
+        "World Chess Championship"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately describes the prize fund.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "7.5 POINTS",
+      "numbers": [
+        7.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The first player to reach 7.5 points wins.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "First player to 7.5 points is champion",
+      "numbers": [
+        7.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is explicitly stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "20",
+      "numbers": [
+        20.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Both players will be 20 when the match begins.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Age of both Gukesh and Sindarov when the match begins",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The ages of both players are confirmed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Youngest World Championship battle in chess history, with both players aged 20",
+      "numbers": [
+        20.0
+      ],
+      "entities": [
+        "Youngest World Championship"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This match is noted as the youngest championship battle.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Gukesh is only the second Indian to win the title after Viswanathan Anand",
+      "numbers": [],
+      "entities": [
+        "Viswanathan Anand"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Gukesh's position as the second Indian champion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Gukesh defends his crown against Sindarov in Geneva from November 24 to December 12.",
+      "numbers": [
+        12.0,
+        24.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is a direct summary of the match details.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "D Gukesh",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Javokhir Sindarov",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Tirumala",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Geneva",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "FIDE World Chess Championship",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000686,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

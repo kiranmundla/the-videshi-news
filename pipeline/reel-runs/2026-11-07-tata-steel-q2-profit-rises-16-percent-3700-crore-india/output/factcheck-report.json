@@ -1,0 +1,298 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "tata-steel-q2-profit-rises-16-percent-3700-crore-india",
+  "verdict": "fail",
+  "held_claims": [
+    "hook_line",
+    "hook_stat.sub"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "TATA STEEL Q2 PROFIT RISES 16%",
+      "numbers": [
+        2.0,
+        16.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The profit rise is 16.2%, not 16%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "news_summary",
+      "text": "Tata Steel's consolidated profit after tax for the quarter ended September 30, 2026 rose 16.2% year on year to Rs 3,699.59 crore, on revenue up 11.5%.",
+      "numbers": [
+        11.5,
+        16.2,
+        30.0,
+        2026.0,
+        3699.59,
+        36995900000.0
+      ],
+      "entities": [
+        "Tata Steel's"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "All facts are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "16.2%",
+      "numbers": [
+        16.2
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This percentage is accurately stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Rise in Tata Steel's Q2 profit after tax, to Rs 3,699.59 crore",
+      "numbers": [
+        2.0,
+        3699.59,
+        36995900000.0
+      ],
+      "entities": [
+        "Tata Steel's Q2"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Tata Steel's Q2"
+        ]
+      },
+      "llm_reason": "The profit figure is correctly reported.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "17%",
+      "numbers": [
+        17.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This percentage for EBITDA rise is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Rise in consolidated EBITDA, to Rs 10,665 crore",
+      "numbers": [
+        10665.0,
+        106650000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The EBITDA figure is accurately reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "25%",
+      "numbers": [
+        25.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This margin percentage is stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "India EBITDA margin in the quarter",
+      "numbers": [],
+      "entities": [
+        "India EBITDA"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The margin is correctly attributed to India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "Rs 91,423 crore",
+      "numbers": [
+        91423.0,
+        914230000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This net debt figure is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Net debt at September 30, 2026",
+      "numbers": [
+        30.0,
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The date and figure are accurately reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "India was the strongest market \u2014 Rs 42,653 crore of revenue in the quarter",
+      "numbers": [
+        42653.0,
+        426530000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This revenue figure for India is stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "In the UK, Tata Steel reported an EBITDA loss of 56 million pounds",
+      "numbers": [
+        56.0,
+        56000000.0
+      ],
+      "entities": [
+        "Tata Steel"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The EBITDA loss figure for the UK is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "India carried the quarter, with India EBITDA of Rs 10,634 crore at a margin of 25%.",
+      "numbers": [
+        25.0,
+        10634.0,
+        106340000000.0
+      ],
+      "entities": [
+        "India EBITDA"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Both figures and margin are accurately reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Tata Steel",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "T V Narendran",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Noel Naval Tata",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000749,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,405 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "gukesh-tirumala-visit-world-chess-championship-defence",
+ "article_slug": "gukesh-tirumala-visit-world-chess-championship-defence",
+ "article_id": "9244d8ca-69ab-44ca-bc02-ad675030d7c8",
+ "category": "Sports",
+ "video": "reel-runs/2026-11-07-gukesh-tirumala-visit-world-chess-championship-defence/output/gukesh-tirumala-visit-world-chess-championship-defence.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/7/72/Gukesh_at_the_46th_FIDE_Chess_Olympiad_%282%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "local_path": "reel-runs/2026-11-07-gukesh-tirumala-visit-world-chess-championship-defence/output/hero.jpg",
+  "width": 2264,
+  "height": 2998,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.92)",
+  "has_face": true,
+  "box_source": [
+   797,
+   569,
+   755,
+   945
+  ],
+  "box_bg": [
+   295,
+   364,
+   484,
+   605
+  ],
+  "chin_bg": 969,
+  "anchor": [
+   0.521,
+   0.349
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   770,
+   1020
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 1021,
+   "zone_h": 559,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1217,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1217,
+    930,
+    1580
+   ],
+   "texts": [
+    "Sports",
+    "GUKESH DEFENDS HIS WORLD CROWN AT 20"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.64,
+    "photo_px": [
+     2264,
+     2998
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6404269513008672,
+     "window": [
+      337,
+      0,
+      2023,
+      2998
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 782,
+   "zone_h": 798,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1217,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1217,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "World champion D Gukesh, 20, offered prayers at the Tirumala Sri Venkateswara Swamy Temple in Andhra Pradesh on November 6 ahead of defending his title against Javokhir Sindarov in Geneva."
+   ],
+   "v7": {
+    "image_source": "extra:javokhir-sindarov-cropped",
+    "track": "full-bleed",
+    "render_scale": 0.705,
+    "photo_px": [
+     1973,
+     2724
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7048458149779736,
+     "window": [
+      214,
+      0,
+      1746,
+      2724
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Javokhir Sindarov, Uzbek Chess player, during the 45th Chess Olympiad in Budapest, Hungary",
+     "route": "identity \u2014 Wikidata P18 (Q27532037)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Javokhir_Sindarov_(cropped).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Javokhir_Sindarov_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "MiroJP"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 877,
+   "zone_h": 679,
+   "scale": 1.0,
+   "content_h": 424,
+   "block_top": 1004,
+   "block_bottom": 1428,
+   "text_bbox": [
+    70,
+    1004,
+    930,
+    1428
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "14 GAMES",
+    "Classical title match in Geneva from November 24 to December 12"
+   ],
+   "v7": {
+    "image_source": "extra:geneva-from-mount-sal-ve",
+    "track": "backdrop",
+    "render_scale": 0.492,
+    "photo_px": [
+     2194,
+     600
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop-contain",
+     "x": 118,
+     "y": 518,
+     "w": 770,
+     "h": 295,
+     "scale": 0.49225159525979945,
+     "window": null
+    },
+    "track_note": "9:16 cover-crop would upscale 3.20x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Geneva from Mount Sal\u00e8ve.",
+     "route": "identity \u2014 Wikidata P18 (Q71)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Geneva_from_Mount_Sal%C3%A8ve.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Geneva_from_Mount_Sal%C3%A8ve.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Yann ( talk )"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 837,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    837,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "$2.5 MILLION",
+    "Total prize fund for the World Chess Championship match",
+    "7.5 POINTS",
+    "First player to 7.5 points is champion",
+    "20",
+    "Age of both Gukesh and Sindarov when the match begins"
+   ],
+   "v7": {
+    "image_source": "extra:arjuna-s-chariot-in-geethopadesam-park-tirum",
+    "track": "full-bleed",
+    "render_scale": 0.48,
+    "photo_px": [
+     6000,
+     4000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.48,
+     "window": [
+      1800,
+      0,
+      4050,
+      4000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Arjuna's chariot in Geethopadesam park, Tirumala (May 2019)",
+     "route": "identity \u2014 depicts (P180=Q3424247)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Arjuna%27s_chariot_in_Geethopadesam_park,_Tirumala_(May_2019)_1.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Arjuna%27s_chariot_in_Geethopadesam_park%2C_Tirumala_%28May_2019%29_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "IM3847"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 398,
+   "zone_h": 1182,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 1085,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1085,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Youngest World Championship battle in chess history, with both players aged 20",
+    "Gukesh is only the second Indian to win the title after Viswanathan Anand"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.434,
+    "photo_px": [
+     3248,
+     4428
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.43360433604336046,
+     "window": [
+      261,
+      0,
+      2751,
+      4428
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Gukesh defends his crown against Sindarov in Geneva from November 24 to December 12.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 151.6,
+ "mp4_bytes": 21699304
+}

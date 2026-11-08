@@ -12053,6 +12053,709 @@
    "resolved_confidence": "medium",
    "resolved_context": "Hackers Probed Europe's Fridge Systems for 10 Days Before Attacks   <div class=\"key-takeaways\"><ul><li>Refrigeration systems in supermarkets across nine European countries, and several blood banks in France, were attacked on November 2 and 3, according to Euronews.</li><li>Cybersecurity firm Lupovis says it recorded more than 276 probing attempts from 91 threat actors between October 20 and 30, pe",
    "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Hackers Probed Europe\\'s Fridge Systems for 10 Days Before Attacks   <div class=\"key-takeaways\"><ul><li>Refrigeration systems in supermarkets across nine European countries, and several blood banks in '; description: person who uses technical knowledge to achieve a goal within a computerized system by non-standard means"
+  },
+  {
+   "name": "Chapel Hill",
+   "aliases": [
+    "Chapel Hill",
+    "Chapel Hill, North Carolina",
+    "Chapel Hill, NC"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q671812",
+   "p18_file": "Franklin Street Chapel Hill NC.jpg",
+   "p18_quality": 1620,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Four Triangle Restaurants Make Yelp's First Top 100 Indian List in the US   <div class=\"key-takeaways\"><ul>\n<li>Four Triangle restaurants appear on the Top 100 Indian Restaurants list for the United States that Yelp describes as its first-ever such ranking: Lime &amp; Lemon in Chapel Hill (No. 18), Bombay Curry in Raleigh (No. 41), Masala House in Raleigh (No. 65) and Mustang House in Raleigh (No.",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Four Triangle Restaurants Make Yelp\\'s First Top 100 Indian List in the US   <div class=\"key-takeaways\"><ul>\\n<li>Four Triangle restaurants appear on the Top 100 Indian Restaurants list for the United S'; description: town in Orange County, North Carolina, United States"
+  },
+  {
+   "name": "Kali Puja",
+   "aliases": [
+    "Kali Puja",
+    "Shyama Puja",
+    "Mahanisha Puja"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q3349216",
+   "p18_file": "Kali Fatakeshto Arnab Dutta 2010.JPG",
+   "p18_quality": 1797,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Hyderabad Marks Diwali in Many Ways, From Bommala Koluvu to Kali Puja   <div class=\"key-takeaways\"><ul>\n<li>Diwali in Hyderabad falls on Sunday, November 8, 2026, combining the Naraka Chaturdashi morning observance with the evening Lakshmi Puja — published Hyderabad guidance puts the puja window at about 6:07 p.m. to 8:08 p.m.</li>\n<li>The city's celebration is many celebrations at once: Telugu fa",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Hyderabad Marks Diwali in Many Ways, From Bommala Koluvu to Kali Puja   <div class=\"key-takeaways\"><ul>\\n<li>Diwali in Hyderabad falls on Sunday, November 8, 2026, combining the Naraka Chaturdashi morn'; description: Hindu festival dedicated to the goddess Kali"
+  },
+  {
+   "name": "Golu",
+   "aliases": [
+    "Bommala Koluvu",
+    "Golu",
+    "Kolu",
+    "Bombe Habba",
+    "Bommai Kolu",
+    "Dolls golu",
+    "Golu dolls",
+    "Kolu dolls"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q4167950",
+   "p18_file": "5 steps golu.jpg",
+   "p18_quality": 1200,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Hyderabad Marks Diwali in Many Ways, From Bommala Koluvu to Kali Puja   <div class=\"key-takeaways\"><ul>\n<li>Diwali in Hyderabad falls on Sunday, November 8, 2026, combining the Naraka Chaturdashi morning observance with the evening Lakshmi Puja — published Hyderabad guidance puts the puja window at about 6:07 p.m. to 8:08 p.m.</li>\n<li>The city's celebration is many celebrations at once: Telugu fa",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Hyderabad Marks Diwali in Many Ways, From Bommala Koluvu to Kali Puja   <div class=\"key-takeaways\"><ul>\\n<li>Diwali in Hyderabad falls on Sunday, November 8, 2026, combining the Naraka Chaturdashi morn'; description: thematic display of dolls and festive figurines by South Indian Hindus over Navaratri"
+  },
+  {
+   "name": "IndiGo",
+   "aliases": [
+    "IndiGo"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1057110",
+   "p18_file": "IndiGo Airbus A320-200 Spijkers-2.jpg",
+   "p18_quality": 1200,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Hijack Threat Note Forces IndiGo Bengaluru-Lucknow Flight to Turn Back   <div class=\"key-takeaways\"><ul>\n<li>IndiGo flight 6E 451 from Bengaluru to Lucknow, carrying 178 passengers, returned to Kempegowda International Airport on Saturday after a hijack threat note was found in the aircraft's lavatory.</li>\n<li>A full emergency was declared at the airport; security agencies searched the aircraft f",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Hijack Threat Note Forces IndiGo Bengaluru-Lucknow Flight to Turn Back   <div class=\"key-takeaways\"><ul>\\n<li>IndiGo flight 6E 451 from Bengaluru to Lucknow, carrying 178 passengers, returned to Kempeg'; description: Indian airline company"
+  },
+  {
+   "name": "Pia Dandiya",
+   "aliases": [
+    "Pia Dandiya"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q136163054",
+   "p18_file": "Pia Dandiya WHF (cropped).png",
+   "p18_quality": 125,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Indian Americans Keep Six House Seats as Ramaswamy Loses Ohio Governor Race Four returning Democrats — Bera, Khanna, Jayapal and Subramanyam — will be joined by newcomers Pia Dandiya of Florida and Amish Shah of Arizona, while Vivek Ramaswamy's Trump-backed bid for Ohio governor fell short. Four returning Democrats — Bera, Khanna, Jayapal and Subramanyam — will be joined by newcomers Pia Dandiya o",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Indian Americans Keep Six House Seats as Ramaswamy Loses Ohio Governor Race Four returning Democrats — Bera, Khanna, Jayapal and Subramanyam — will be joined by newcomers Pia Dandiya of Florida and Am'; description: American political candidate"
+  },
+  {
+   "name": "T. V. Narendran",
+   "aliases": [
+    "T V Narendran",
+    "T. V. Narendran"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q16733176",
+   "p18_file": "T V Narendran.jpg",
+   "p18_quality": 853,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Tata Steel Q2 Profit Rises 16% to Rs 3,700 Crore on India Strength Consolidated reported profit after tax rose 16.2% to Rs 3,699.59 crore in the September quarter as revenue from operations climbed 11.5% to Rs 65,436.24 crore and EBITDA reached Rs 10,665 crore. Consolidated reported profit after tax rose 16.2% to Rs 3,699.59 crore in the September quarter as revenue from operations climbed 11.5% t",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Tata Steel Q2 Profit Rises 16% to Rs 3,700 Crore on India Strength Consolidated reported profit after tax rose 16.2% to Rs 3,699.59 crore in the September quarter as revenue from operations climbed 11'; description: businessperson"
+  },
+  {
+   "name": "United States Navy",
+   "aliases": [
+    "US Navy",
+    "United States Navy",
+    "USN",
+    "U.S. Navy"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q11220",
+   "p18_file": "USS Constitution 1997.jpg",
+   "p18_quality": 2075,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "China's Navy Passes 400 Ships, About 35% Larger Than the US Fleet by Hull Count   <div class=\"key-takeaways\"><ul>\n<li>China's navy now has a battle force of more than 400 ships and submarines, around 35% larger than the US Navy by hull count, according to official US numbers seen by the Wall Street Journal.</li>\n<li>Beijing has added 71 major warships and submarines since 2020, 19 of them in the l",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'China\\'s Navy Passes 400 Ships, About 35% Larger Than the US Fleet by Hull Count   <div class=\"key-takeaways\"><ul>\\n<li>China\\'s navy now has a battle force of more than 400 ships and submarines, around '; description: maritime branch of the United States military"
+  },
+  {
+   "name": "Sanjay Yadav",
+   "aliases": [
+    "Sanjay Yadav"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q130289189",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "RJD MP Sanjay Yadav Asks President to Act Against DU Professor Sangeet Ragi   <div class=\"key-takeaways\"><ul>\n<li>RJD leader and Rajya Sabha member Sanjay Yadav wrote to President Droupadi Murmu on November 6, 2026, seeking strict action against Delhi University Professor Sangeet Ragi for allegedly insulting the Yadav community during a televised debate.</li>\n<li>The three-page letter, shared with",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'RJD MP Sanjay Yadav Asks President to Act Against DU Professor Sangeet Ragi   <div class=\"key-takeaways\"><ul>\\n<li>RJD leader and Rajya Sabha member Sanjay Yadav wrote to President Droupadi Murmu on No'; description: member of Rajya Sabha from Bihar (born 1984)"
+  },
+  {
+   "name": "Rajya Sabha",
+   "aliases": [
+    "Rajya Sabha",
+    "Indian Senate",
+    "Senate of India",
+    "Indian Upper House",
+    "Council of State (India)"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q244730",
+   "p18_file": "New Rajya Sabha chamber in the New Parliament building.jpg",
+   "p18_quality": 1200,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "RJD MP Sanjay Yadav Asks President to Act Against DU Professor Sangeet Ragi   <div class=\"key-takeaways\"><ul>\n<li>RJD leader and Rajya Sabha member Sanjay Yadav wrote to President Droupadi Murmu on November 6, 2026, seeking strict action against Delhi University Professor Sangeet Ragi for allegedly insulting the Yadav community during a televised debate.</li>\n<li>The three-page letter, shared with",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'RJD MP Sanjay Yadav Asks President to Act Against DU Professor Sangeet Ragi   <div class=\"key-takeaways\"><ul>\\n<li>RJD leader and Rajya Sabha member Sanjay Yadav wrote to President Droupadi Murmu on No'; description: Upper house of Indian Legislature"
+  },
+  {
+   "name": "Patient Protection and Affordable Care Act",
+   "aliases": [
+    "Affordable Care Act",
+    "Patient Protection and Affordable Care Act",
+    "Obamacare",
+    "PPACA",
+    "ACA",
+    "Romneycare",
+    "Health Insurance Marketplace®",
+    "O-Care"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1414593",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "House Democrats to Open Majority With Healthcare, Iran War and Tariff Votes   <div class=\"key-takeaways\"><ul>\n<li>House Democrats intend to open their new majority, when Congress convenes January 3, 2027, with votes to strengthen Medicaid and restore the enhanced Affordable Care Act tax subsidies that lower premiums for millions.</li>\n<li>They also promise swift action on legislation to stop the w",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'House Democrats to Open Majority With Healthcare, Iran War and Tariff Votes   <div class=\"key-takeaways\"><ul>\\n<li>House Democrats intend to open their new majority, when Congress convenes January 3, 2'; description: U.S. federal statute known as Obamacare"
+  },
+  {
+   "name": "New York City Marathon",
+   "aliases": [
+    "New York City Marathon"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q752138",
+   "p18_file": "2014 New York City Marathon (15699854511).jpg",
+   "p18_quality": 3600,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Rachel Apa's Family Obituary: 'She Always Found Her Way to the Finish Line'   <div class=\"key-takeaways\"><ul>\n<li>Rachel Apa, 24, collapsed at Mile 24 of the New York City Marathon in Central Park on November 1, 2026 and died hours later; her family says doctors attributed her death to rhabdomyolysis, a breakdown of muscle tissue.</li>\n<li>Her family's obituary describes her as \"strong-willed and ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Rachel Apa\\'s Family Obituary: \\'She Always Found Her Way to the Finish Line\\'   <div class=\"key-takeaways\"><ul>\\n<li>Rachel Apa, 24, collapsed at Mile 24 of the New York City Marathon in Central Park on '; description: marathon running race held in New York, United States"
+  },
+  {
+   "name": "Indian Army",
+   "aliases": [
+    "Indian Army",
+    "IA",
+    "Army of India",
+    "Bhāratīya Thalsēnā"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q355771",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Army Says Claim of 50-km Chinese Advance in Arunachal Is False   <div class=\"key-takeaways\"><ul>\n<li>The Indian Army has debunked social media claims that Chinese forces defeated Indian troops, advanced nearly 50 km into Arunachal Pradesh and established PLA control over Indian territory.</li>\n<li>Under the heading \"Coordinated Inauthentic Behaviour Exposed\", the Army identified six X accounts tha",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Army Says Claim of 50-km Chinese Advance in Arunachal Is False   <div class=\"key-takeaways\"><ul>\\n<li>The Indian Army has debunked social media claims that Chinese forces defeated Indian troops, advanc'; description: Land service branch of Indian Military"
+  },
+  {
+   "name": "Sonia Gandhi",
+   "aliases": [
+    "Sonia Gandhi",
+    "Antonia Edvige Albina Maino",
+    "Antonio Maino",
+    "Soniya Gandhi",
+    "Sonia Maino Gandhi"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q163225",
+   "p18_file": "Sonia Gandhi (cropped).jpg",
+   "p18_quality": 509,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "BJP Attacks Sonia Gandhi Over Babri Remark in Memoir Interviews   <div class=\"key-takeaways\"><ul>\n<li>BJP spokesperson Sudhanshu Trivedi said on Saturday, November 7, that Sonia Gandhi's remark that she cried watching the Babri Masjid demolition had again exposed what he called Congress's \"anti-Ram\" face.</li>\n<li>The remarks came in interviews ahead of Gandhi's memoir <em>Belonging: A Journey of ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'BJP Attacks Sonia Gandhi Over Babri Remark in Memoir Interviews   <div class=\"key-takeaways\"><ul>\\n<li>BJP spokesperson Sudhanshu Trivedi said on Saturday, November 7, that Sonia Gandhi\\'s remark that s'; description: Indian politician"
+  },
+  {
+   "name": "Babri Masjid",
+   "aliases": [
+    "Babri Masjid",
+    "Masjid-i Janmasthan",
+    "Babri mosque"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q656765",
+   "p18_file": "Babri Masjid.jpg",
+   "p18_quality": 3132,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "BJP Attacks Sonia Gandhi Over Babri Remark in Memoir Interviews   <div class=\"key-takeaways\"><ul>\n<li>BJP spokesperson Sudhanshu Trivedi said on Saturday, November 7, that Sonia Gandhi's remark that she cried watching the Babri Masjid demolition had again exposed what he called Congress's \"anti-Ram\" face.</li>\n<li>The remarks came in interviews ahead of Gandhi's memoir <em>Belonging: A Journey of ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'BJP Attacks Sonia Gandhi Over Babri Remark in Memoir Interviews   <div class=\"key-takeaways\"><ul>\\n<li>BJP spokesperson Sudhanshu Trivedi said on Saturday, November 7, that Sonia Gandhi\\'s remark that s'; description: Mosque in Ayodhya, Uttar Pradesh, India (1527-1992)"
+  },
+  {
+   "name": "Sudhanshu Trivedi",
+   "aliases": [
+    "Sudhanshu Trivedi",
+    "Dr. Sudhanshu Trivedi"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q19898502",
+   "p18_file": "Sudhanshu Trivedi.jpg",
+   "p18_quality": 979,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "BJP Attacks Sonia Gandhi Over Babri Remark in Memoir Interviews   <div class=\"key-takeaways\"><ul>\n<li>BJP spokesperson Sudhanshu Trivedi said on Saturday, November 7, that Sonia Gandhi's remark that she cried watching the Babri Masjid demolition had again exposed what he called Congress's \"anti-Ram\" face.</li>\n<li>The remarks came in interviews ahead of Gandhi's memoir <em>Belonging: A Journey of ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'BJP Attacks Sonia Gandhi Over Babri Remark in Memoir Interviews   <div class=\"key-takeaways\"><ul>\\n<li>BJP spokesperson Sudhanshu Trivedi said on Saturday, November 7, that Sonia Gandhi\\'s remark that s'; description: Indian politician"
+  },
+  {
+   "name": "Bharatiya Janata Party",
+   "aliases": [
+    "BJP",
+    "Bharatiya Janata Party",
+    "Indian People's Party"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q10230",
+   "p18_file": "Supporter of Bharatiya Janata Party at an election rally in Amethi.jpg",
+   "p18_quality": 630,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "BJP Attacks Sonia Gandhi Over Babri Remark in Memoir Interviews   Gandhi's memoir release prompts renewed political attacks from BJP.   \n BJP spokesperson Sudhanshu Trivedi said on Saturday, November 7, that Sonia Gandhi's remark that she cried watching the Babri Masjid demolition had again exposed what he called Congress's \"anti-Ram\" face. \n The remarks came in interviews ahead of Gandhi's memoir",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: \"BJP Attacks Sonia Gandhi Over Babri Remark in Memoir Interviews   Gandhi's memoir release prompts renewed political attacks from BJP.   \\n BJP spokesperson Sudhanshu Trivedi said on Saturday, November \"; description: right-wing political party in India"
+  },
+  {
+   "name": "Coca-Cola",
+   "aliases": [
+    "Coca-Cola"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q2813",
+   "p18_file": "15-09-26-RalfR-WLC-0098 - Coca-Cola glass bottle (Germany).jpg",
+   "p18_quality": 2354,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Coca-Cola's India Bottler Files IPO in Pure Shareholder Sell-Down   Hindustan Coca-Cola Holdings files IPO papers for a shareholder sell-down.   \n Hindustan Coca-Cola Holdings, parent of Coca-Cola's largest bottler in India, has filed draft IPO papers with SEBI, according to the draft prospectus reported by Reuters. \n The offer is entirely a sale of existing shares: majority owner Hindustan Coca-C",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: \"Coca-Cola's India Bottler Files IPO in Pure Shareholder Sell-Down   Hindustan Coca-Cola Holdings files IPO papers for a shareholder sell-down.   \\n Hindustan Coca-Cola Holdings, parent of Coca-Cola's l\"; description: carbonated brown-colored soft drink"
+  },
+  {
+   "name": "Jim Cramer",
+   "aliases": [
+    "Jim Cramer",
+    "James Joseph Cramer"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q6446228",
+   "p18_file": "Jimcramerphoto.jpg",
+   "p18_quality": 4288,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Jim Cramer Wants SpaceX Stock but Refuses to Buy Before Share Unlocks   <div class=\"key-takeaways\"><ul><li>CNBC's Jim Cramer says he wants SpaceX shares for his charitable trust but will not buy yet, despite third-quarter sales of $14.6 billion, up 161% year on year.</li><li>His biggest concern is supply: only about a third of SpaceX shares are freely tradable, and staggered lockup expirations run",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Jim Cramer Wants SpaceX Stock but Refuses to Buy Before Share Unlocks   <div class=\"key-takeaways\"><ul><li>CNBC\\'s Jim Cramer says he wants SpaceX shares for his charitable trust but will not buy yet, '; description: American stockbroker, television personality, author"
+  },
+  {
+   "name": "Insider Inc.",
+   "aliases": [
+    "Business Insider",
+    "Insider Inc.",
+    "Business Insider Inc.",
+    "Business Insider, Inc.",
+    "Insider, Inc."
+   ],
+   "type": "company",
+   "wikidata_qid": "Q55669360",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Instagram Offers Creators Up to $500,000 for Videos Without YouTube-Style Revenue Share   <div class=\"key-takeaways\"><ul><li>Instagram is testing Features, a format for horizontal videos up to 90 minutes long, aimed at podcasts, interviews and comedy specials.</li><li>Selected creators have reportedly been offered between $50,000 and $500,000 in private, non-exclusive deals to post long-form video",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Instagram Offers Creators Up to $500,000 for Videos Without YouTube-Style Revenue Share   <div class=\"key-takeaways\"><ul><li>Instagram is testing Features, a format for horizontal videos up to 90 minu'; description: American online media company"
+  },
+  {
+   "name": "Adam Mosseri",
+   "aliases": [
+    "Adam Mosseri"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q56877012",
+   "p18_file": "Head of Instagram Adam Mosseri META (52321290009) (cropped).jpg",
+   "p18_quality": 3114,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Instagram Offers Creators Up to $500,000 for Videos Without YouTube-Style Revenue Share   <div class=\"key-takeaways\"><ul><li>Instagram is testing Features, a format for horizontal videos up to 90 minutes long, aimed at podcasts, interviews and comedy specials.</li><li>Selected creators have reportedly been offered between $50,000 and $500,000 in private, non-exclusive deals to post long-form video",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Instagram Offers Creators Up to $500,000 for Videos Without YouTube-Style Revenue Share   <div class=\"key-takeaways\"><ul><li>Instagram is testing Features, a format for horizontal videos up to 90 minu'; description: American businessman"
+  },
+  {
+   "name": "Anaswara Rajan",
+   "aliases": [
+    "Anaswara Rajan"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q65585274",
+   "p18_file": "Anaswara Rajan.png",
+   "p18_quality": 427,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Debutant Aniesh Performed Every Action Scene Without a Dupe, Venky Kudumula Says   <div class=\"key-takeaways\"><ul><li>Producer Venky Kudumula says debutant Aniesh performed every action sequence in Itlu Arjuna himself, with no dupe used anywhere in the film.</li><li>The Telugu film, directed by debutant Mahesh Uppala, stars Aniesh as a mute protagonist opposite Anaswara Rajan and is presented by N",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Debutant Aniesh Performed Every Action Scene Without a Dupe, Venky Kudumula Says   <div class=\"key-takeaways\"><ul><li>Producer Venky Kudumula says debutant Aniesh performed every action sequence in It'; description: actress"
+  },
+  {
+   "name": "Venky Kudumula",
+   "aliases": [
+    "Venky Kudumula"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q93626517",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Debutant Aniesh Performed Every Action Scene Without a Dupe, Venky Kudumula Says   <div class=\"key-takeaways\"><ul><li>Producer Venky Kudumula says debutant Aniesh performed every action sequence in Itlu Arjuna himself, with no dupe used anywhere in the film.</li><li>The Telugu film, directed by debutant Mahesh Uppala, stars Aniesh as a mute protagonist opposite Anaswara Rajan and is presented by N",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Debutant Aniesh Performed Every Action Scene Without a Dupe, Venky Kudumula Says   <div class=\"key-takeaways\"><ul><li>Producer Venky Kudumula says debutant Aniesh performed every action sequence in It'; description: Indian film director"
+  },
+  {
+   "name": "Indians",
+   "aliases": [
+    "Asian Indian",
+    "Indians",
+    "Indian citizens",
+    "Indian people",
+    "Asian Indians",
+    "East Indians",
+    "Indian person",
+    "Indian"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q862086",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Drone Show and Fireworks Cap Edison's Fifth Annual Diwali Festival of Lights   <div class=\"key-takeaways\"><ul><li>Edison's fifth annual Diwali Festival of Lights was scheduled for Saturday, November 7, from 2 to 9 p.m. at Papaianni Park, 100 Municipal Blvd, closing with a drone and fireworks show sponsored by Patel Brothers.</li><li>The programme, themed \"Celebrating Diwali in America 250,\" includ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Drone Show and Fireworks Cap Edison\\'s Fifth Annual Diwali Festival of Lights   <div class=\"key-takeaways\"><ul><li>Edison\\'s fifth annual Diwali Festival of Lights was scheduled for Saturday, November 7'; description: citizens or residents of India"
+  },
+  {
+   "name": "National Transportation Safety Board",
+   "aliases": [
+    "National Transportation Safety Board",
+    "NTSB",
+    "United States National Transportation Safety Board"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1053145",
+   "p18_file": "NTSB Headquarters.jpg",
+   "p18_quality": 4032,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Father Calls Co-Pilot Daughter Killed in Florida Learjet Crash 'a Hero'   <div class=\"key-takeaways\"><ul><li>Allan Filgueiras, himself a pilot, spoke publicly on Friday for the first time since his 20-year-old daughter Nathalia, the co-pilot of a Learjet 60, died with eight others in the November 1 crash near Greenacres, Florida.</li><li>He said he has replayed her final air traffic control calls ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Father Calls Co-Pilot Daughter Killed in Florida Learjet Crash \\'a Hero\\'   <div class=\"key-takeaways\"><ul><li>Allan Filgueiras, himself a pilot, spoke publicly on Friday for the first time since his 20'; description: United States government investigative agency for civil transportation accidents"
+  },
+  {
+   "name": "Palm Beach County",
+   "aliases": [
+    "Palm Beach County",
+    "Palm Beach County, Florida",
+    "Palm Beach County, FL"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q484294",
+   "p18_file": "Port of Palm Beach Slip 2.jpg",
+   "p18_quality": 600,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Father Calls Co-Pilot Daughter Killed in Florida Learjet Crash 'a Hero'   <div class=\"key-takeaways\"><ul><li>Allan Filgueiras, himself a pilot, spoke publicly on Friday for the first time since his 20-year-old daughter Nathalia, the co-pilot of a Learjet 60, died with eight others in the November 1 crash near Greenacres, Florida.</li><li>He said he has replayed her final air traffic control calls ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Father Calls Co-Pilot Daughter Killed in Florida Learjet Crash \\'a Hero\\'   <div class=\"key-takeaways\"><ul><li>Allan Filgueiras, himself a pilot, spoke publicly on Friday for the first time since his 20'; description: county in Florida, United States of America"
+  },
+  {
+   "name": "Expressions of Interest",
+   "aliases": [
+    "Expressions of Interest"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q69022177",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Hardik-Arshdeep Swap Nears Completion as Mumbai, Punjab Exchange Formal Interest   <div class=\"key-takeaways\"><ul>\n<li>The proposed Hardik Pandya–Arshdeep Singh trade between Mumbai Indians and Punjab Kings is nearing completion: the franchises have exchanged Expressions of Interest under the BCCI process, Cricbuzz reports.</li>\n<li>Both players are understood to have consented, leaving only the e",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Hardik-Arshdeep Swap Nears Completion as Mumbai, Punjab Exchange Formal Interest   <div class=\"key-takeaways\"><ul>\\n<li>The proposed Hardik Pandya–Arshdeep Singh trade between Mumbai Indians and Punjab'; description: heritage place located at 3 Patrick St, Bothwell, Central Highlands Council, Tasmania"
+  },
+  {
+   "name": "Vishnu Vinod",
+   "aliases": [
+    "Vishnu Vinod"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q27744660",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Hardik-Arshdeep Swap Nears Completion as Mumbai, Punjab Exchange Formal Interest   <div class=\"key-takeaways\"><ul>\n<li>The proposed Hardik Pandya–Arshdeep Singh trade between Mumbai Indians and Punjab Kings is nearing completion: the franchises have exchanged Expressions of Interest under the BCCI process, Cricbuzz reports.</li>\n<li>Both players are understood to have consented, leaving only the e",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Hardik-Arshdeep Swap Nears Completion as Mumbai, Punjab Exchange Formal Interest   <div class=\"key-takeaways\"><ul>\\n<li>The proposed Hardik Pandya–Arshdeep Singh trade between Mumbai Indians and Punjab'; description: Indian cricketer"
+  },
+  {
+   "name": "Nilesh Shah",
+   "aliases": [
+    "Nilesh Shah"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q110941717",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Nilesh Shah Bets on Earnings Recovery in Samvat 2083, Picks Three Sectors   <div class=\"key-takeaways\"><ul>\n<li>Kotak Mahindra AMC managing director Nilesh Shah expects an earnings-led recovery in Samvat 2083, forecasting FY27 earnings growth of 12-15% for large-caps, 20-25% for mid-caps and 15-20% for small-caps.</li>\n<li>His three sectors to watch are banking and financial services, premium cons",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Nilesh Shah Bets on Earnings Recovery in Samvat 2083, Picks Three Sectors   <div class=\"key-takeaways\"><ul>\\n<li>Kotak Mahindra AMC managing director Nilesh Shah expects an earnings-led recovery in Sam'; description: Australian Businessman"
+  },
+  {
+   "name": "Pay Commission",
+   "aliases": [
+    "Pay Commission"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q7156575",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Nilesh Shah Bets on Earnings Recovery in Samvat 2083, Picks Three Sectors   <div class=\"key-takeaways\"><ul>\n<li>Kotak Mahindra AMC managing director Nilesh Shah expects an earnings-led recovery in Samvat 2083, forecasting FY27 earnings growth of 12-15% for large-caps, 20-25% for mid-caps and 15-20% for small-caps.</li>\n<li>His three sectors to watch are banking and financial services, premium cons",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Nilesh Shah Bets on Earnings Recovery in Samvat 2083, Picks Three Sectors   <div class=\"key-takeaways\"><ul>\\n<li>Kotak Mahindra AMC managing director Nilesh Shah expects an earnings-led recovery in Sam'; description: Indian government commission"
+  },
+  {
+   "name": "Tirumala",
+   "aliases": [
+    "Tirumala"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q3424247",
+   "p18_file": "Tirumala gopurams.JPG",
+   "p18_quality": 704,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Gukesh Visits Tirumala Temple Ahead of World Chess Championship Title Defence   <div class=\"key-takeaways\"><ul>\n<li>World champion D Gukesh, 20, offered prayers at the Tirumala Sri Venkateswara Swamy Temple in Andhra Pradesh on Friday, November 6, ahead of his title defence.</li>\n<li>He defends his crown against Uzbekistan's Javokhir Sindarov in a 14-game classical match in Geneva from November 24",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Gukesh Visits Tirumala Temple Ahead of World Chess Championship Title Defence   <div class=\"key-takeaways\"><ul>\\n<li>World champion D Gukesh, 20, offered prayers at the Tirumala Sri Venkateswara Swamy '; description: census town in Tirupati (urban) mandal of Chitturu district, Andhra Pradesh, India"
+  },
+  {
+   "name": "chess",
+   "aliases": [
+    "Chess",
+    "chess",
+    "chess game",
+    "international chess",
+    "modern European chess",
+    "Western chess"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q718",
+   "p18_file": "Opening chess position from black side.jpg",
+   "p18_quality": 3190,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Gukesh Visits Tirumala Temple Ahead of World Chess Championship Title Defence   <div class=\"key-takeaways\"><ul>\n<li>World champion D Gukesh, 20, offered prayers at the Tirumala Sri Venkateswara Swamy Temple in Andhra Pradesh on Friday, November 6, ahead of his title defence.</li>\n<li>He defends his crown against Uzbekistan's Javokhir Sindarov in a 14-game classical match in Geneva from November 24",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Gukesh Visits Tirumala Temple Ahead of World Chess Championship Title Defence   <div class=\"key-takeaways\"><ul>\\n<li>World champion D Gukesh, 20, offered prayers at the Tirumala Sri Venkateswara Swamy '; description: strategy board game"
+  },
+  {
+   "name": "Indian Ocean",
+   "aliases": [
+    "Indian Ocean",
+    "Eastern Ocean",
+    "Eastern Sea",
+    "Indian Sea",
+    "Oriental Sea",
+    "Oriental Ocean"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1239",
+   "p18_file": "Indian Ocean-CIA WFB Map.png",
+   "p18_quality": 330,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "China's Navy Passes 400 Ships, About 35% Larger Than the US Fleet by Hull Count Official US figures seen by the Wall Street Journal put China's battle force at more than 400 ships and submarines, with 71 major vessels added since 2020 — and US officials expecting Chinese submarines to operate routinely in the Indian Ocean by 2040. Official US figures seen by the Wall Street Journal put China's bat",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: \"China's Navy Passes 400 Ships, About 35% Larger Than the US Fleet by Hull Count Official US figures seen by the Wall Street Journal put China's battle force at more than 400 ships and submarines, with\"; description: ocean bounded by Africa, Asia, Australia, and Antarctica"
+  },
+  {
+   "name": "The Wall Street Journal",
+   "aliases": [
+    "Wall Street Journal",
+    "The Wall Street Journal"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q164746",
+   "p18_file": "The Wall Street Journal first issue.jpg",
+   "p18_quality": 571,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "China's Navy Passes 400 Ships, About 35% Larger Than the US Fleet by Hull Count Official US figures seen by the Wall Street Journal put China's battle force at more than 400 ships and submarines, with 71 major vessels added since 2020 — and US officials expecting Chinese submarines to operate routinely in the Indian Ocean by 2040. Official US figures seen by the Wall Street Journal put China's bat",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: \"China's Navy Passes 400 Ships, About 35% Larger Than the US Fleet by Hull Count Official US figures seen by the Wall Street Journal put China's battle force at more than 400 ships and submarines, with\"; description: American business-focused daily newspaper"
+  },
+  {
+   "name": "Xi Jinping",
+   "aliases": [
+    "Xi Jinping",
+    "General Secretary Xi Jinping",
+    "Xi-Jinping"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q15031",
+   "p18_file": "Xi Jinping on August 18, 2026 (cropped).jpg",
+   "p18_quality": 1365,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "China's Navy Passes 400 Ships, About 35% Larger Than the US Fleet by Hull Count Official US figures seen by the Wall Street Journal put China's battle force at more than 400 ships and submarines, with 71 major vessels added since 2020 — and US officials expecting Chinese submarines to operate routinely in the Indian Ocean by 2040. Official US figures seen by the Wall Street Journal put China's bat",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: \"China's Navy Passes 400 Ships, About 35% Larger Than the US Fleet by Hull Count Official US figures seen by the Wall Street Journal put China's battle force at more than 400 ships and submarines, with\"; description: General Secretary of the Chinese Communist Party since 2012 (born 1953)"
+  },
+  {
+   "name": "Boeing F/A-18 Super Hornet",
+   "aliases": [
+    "Super Hornet",
+    "Boeing F/A-18 Super Hornet",
+    "Boeing F/A-18E/F",
+    "F/A-18E/F",
+    "F/A-18E/F Super Hornet",
+    "F/A-18 Super Hornet",
+    "Rhino"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q223318",
+   "p18_file": "081102-N-0000C-002.jpg",
+   "p18_quality": 2100,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "China's Navy Passes 400 Ships, About 35% Larger Than the US Fleet by Hull Count Official US figures seen by the Wall Street Journal put China's battle force at more than 400 ships and submarines, with 71 major vessels added since 2020 — and US officials expecting Chinese submarines to operate routinely in the Indian Ocean by 2040. Official US figures seen by the Wall Street Journal put China's bat",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: \"China's Navy Passes 400 Ships, About 35% Larger Than the US Fleet by Hull Count Official US figures seen by the Wall Street Journal put China's battle force at more than 400 ships and submarines, with\"; description: multi-role combat aircraft series by Boeing"
   }
  ]
 }

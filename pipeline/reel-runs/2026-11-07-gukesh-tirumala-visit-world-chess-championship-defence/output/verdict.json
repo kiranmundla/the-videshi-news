@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "gukesh-tirumala-visit-world-chess-championship-defence",
+  "name": "gukesh-tirumala-visit-world-chess-championship-defence",
+  "script": "reel-runs/2026-11-07-gukesh-tirumala-visit-world-chess-championship-defence/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000686
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-07-gukesh-tirumala-visit-world-chess-championship-defence/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "javokhir-sindarov-cropped",
+      "hero": "geneva-from-mount-sal-ve",
+      "grid": "arjuna-s-chariot-in-geethopadesam-park-tirum"
+    }
+  },
+  "manifest": "reel-runs/2026-11-07-gukesh-tirumala-visit-world-chess-championship-defence/output/render-manifest.json",
+  "video": "reel-runs/2026-11-07-gukesh-tirumala-visit-world-chess-championship-defence/output/gukesh-tirumala-visit-world-chess-championship-defence.mp4",
+  "qa": {
+    "score": 8.0,
+    "passed": false,
+    "failing_checks": [
+      "face_overlap:payoff"
+    ]
+  }
+}

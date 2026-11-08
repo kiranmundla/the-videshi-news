@@ -1,0 +1,135 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "gukesh-tirumala-visit-world-chess-championship-defence",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "D Gukesh",
+    "Javokhir Sindarov",
+    "Tirumala",
+    "Geneva",
+    "FIDE World Chess Championship",
+    "World Chess Championship Title Defence"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'D Gukesh' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'World Chess Championship Title Defence' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Javokhir Sindarov (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q27532037)",
+      "verdict": "USED (news)",
+      "reason": "1973x2724, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Daniel Naroditsky's Mother and Javokhir Sindarov - Naroditsky Memorial Rapid and Blitz 2026.jpg",
+      "route": "identity \u2014 depicts (P180=Q27532037)",
+      "verdict": "accepted",
+      "reason": "5204x3469, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Tirumala gopurams.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q3424247)",
+      "verdict": "rejected",
+      "reason": "resolution: 704x530 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Arjuna's chariot in Geethopadesam park, Tirumala (May 2019) 1.jpg",
+      "route": "identity \u2014 depicts (P180=Q3424247)",
+      "verdict": "USED (grid)",
+      "reason": "6000x4000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Arjuna's chariot in Geethopadesam park, Tirumala (May 2019) 2.jpg",
+      "route": "identity \u2014 depicts (P180=Q3424247)",
+      "verdict": "accepted",
+      "reason": "6000x4000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Geneva from Mount Sal\u00e8ve.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q71)",
+      "verdict": "USED (hero)",
+      "reason": "2194x600, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "javokhir-sindarov-cropped",
+      "path": "javokhir-sindarov-cropped.jpg",
+      "size": [
+        1973,
+        2724
+      ],
+      "role": "establishing",
+      "subject": "Javokhir Sindarov, Uzbek Chess player, during the 45th Chess Olympiad in Budapest, Hungary",
+      "route": "identity \u2014 Wikidata P18 (Q27532037)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Javokhir_Sindarov_(cropped).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Javokhir_Sindarov_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "MiroJP",
+      "entity": "Javokhir Sindarov",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Javokhir Sindarov",
+        "Javohir Sindarov"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "geneva-from-mount-sal-ve",
+      "path": "geneva-from-mount-sal-ve.jpg",
+      "size": [
+        2194,
+        600
+      ],
+      "role": "establishing",
+      "subject": "Geneva from Mount Sal\u00e8ve.",
+      "route": "identity \u2014 Wikidata P18 (Q71)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Geneva_from_Mount_Sal%C3%A8ve.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Geneva_from_Mount_Sal%C3%A8ve.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Yann ( talk )",
+      "entity": "Geneva",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Geneva",
+        "Geneva GE",
+        "Genf"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "arjuna-s-chariot-in-geethopadesam-park-tirum",
+      "path": "arjuna-s-chariot-in-geethopadesam-park-tirum.jpg",
+      "size": [
+        6000,
+        4000
+      ],
+      "role": "establishing",
+      "subject": "Arjuna's chariot in Geethopadesam park, Tirumala (May 2019)",
+      "route": "identity \u2014 depicts (P180=Q3424247)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Arjuna%27s_chariot_in_Geethopadesam_park,_Tirumala_(May_2019)_1.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Arjuna%27s_chariot_in_Geethopadesam_park%2C_Tirumala_%28May_2019%29_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "IM3847",
+      "entity": "Tirumala",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Tirumala"
+      ]
+    }
+  ]
+}

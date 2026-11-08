@@ -1,0 +1,193 @@
+[
+  {
+    "id": "4fcbc8ab-fe26-4909-b9a6-cf4b0e672393",
+    "headline": "Jim Cramer Wants SpaceX Stock but Refuses to Buy Before Share Unlocks",
+    "slug": "jim-cramer-spacex-stock-lockup-capex-wont-buy",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the staggered lockup expirations by providing specific dates for each phase, as this is crucial for understanding when shares will become tradable.",
+        "Include a brief explanation of what a lockup period is and how it affects stock trading, as this context will help readers unfamiliar with the term.",
+        "Add a quote or statement from SpaceX or a financial analyst to provide additional perspectives on the implications of Cramer's comments and the company's performance, enhancing attribution and completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Jim Cramer or CNBC regarding his comments on SpaceX to provide direct attribution and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "521d402c-02dd-479a-807b-f83b2ea4c76a",
+    "headline": "Instagram Offers Creators Up to $500,000 for Videos Without YouTube-Style Revenu",
+    "slug": "instagram-features-long-videos-500000-creator-deals-no-revenue-share",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the range of payment offers by specifying the criteria for selection\u2014what makes a creator eligible for the $50,000 to $500,000 offers?",
+        "Include a direct quote from Instagram or a specific creator to enhance attribution and provide a personal perspective on the new Features format.",
+        "Provide a timeline for when Instagram plans to expand access to tens of thousands of US creators, as this would give readers a clearer understanding of the rollout process."
+      ],
+      "embed_opportunities": [
+        "Embed the official Instagram announcement or a relevant tweet from Adam Mosseri regarding the Features program."
+      ]
+    }
+  },
+  {
+    "id": "f510ff12-70ed-4c83-bae0-7f1fab79bc72",
+    "headline": "Debutant Aniesh Performed Every Action Scene Without a Dupe, Venky Kudumula Says",
+    "slug": "aniesh-action-without-dupe-itlu-arjuna-venky-kudumula",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline by specifying the release date of the film in relation to the trailer unveiling. For example, mention that the trailer was released on November 6 and the film will be in theaters one week later on November 13.",
+        "Include direct quotes from Venky Kudumula that provide more context about Aniesh's performance and the significance of performing his own stunts, which could enhance the article's depth.",
+        "Provide more context about the film's plot and its themes, especially regarding the 'mysterious pen drive and a Rs 1,000-crore deal,' to give readers a better understanding of what to expect from the film.",
+        "Ensure that the article maintains a consistent structure by avoiding repetitive statements about Aniesh performing his own stunts. This will improve clarity and flow."
+      ],
+      "embed_opportunities": [
+        "Embed the official trailer of 'Itlu Arjuna' to provide readers with immediate access to visual content related to the film."
+      ]
+    }
+  },
+  {
+    "id": "d0748fc6-c3cb-4123-9c7f-e885cee5bb7d",
+    "headline": "Drone Show and Fireworks Cap Edison's Fifth Annual Diwali Festival of Lights",
+    "slug": "edison-diwali-festival-drone-fireworks-papaianni-park-2026",
+    "category": "travel",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the festival in the first sentence to avoid confusion; it mentions November 7 but should specify that it is Saturday, November 4, 2023, to align with the actual date.",
+        "Include specific details about the shuttle service, such as pickup locations and frequency, to provide readers with actionable information on how to attend the festival.",
+        "Add a brief explanation of the significance of Diwali and its connection to the theme 'Celebrating Diwali in America 250' to provide context for readers who may not be familiar with the festival.",
+        "Correct the date mentioned for Diwali in the article; it states that Diwali falls on Sunday, November 8, which is incorrect as it should be November 12 in 2023."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Edison township account announcing the festival details or a promotional video showcasing past events."
+      ]
+    }
+  },
+  {
+    "id": "b4ee156d-6f19-40dc-a5a1-e73a656b275c",
+    "headline": "Iran Signals Wider Targets and New Tactics if War With US and Israel Resumes",
+    "slug": "iran-wider-targets-new-tactics-war-us-israel-resumes-hormuz",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the current war began and any relevant dates for the potential resumption of fighting. This will help readers understand the context better.",
+        "Provide more context on the implications of Iran's threats to close the Strait of Hormuz, particularly regarding global oil supply and specific impacts on oil prices. This could include recent price trends or estimates of how much oil passes through the strait.",
+        "Include direct quotes or statements from US or Israeli officials in response to Iran's threats to enhance attribution and provide a more balanced perspective on the situation."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the US State Department or a credible news source summarizing the current situation or US response to Iran's statements."
+      ]
+    }
+  },
+  {
+    "id": "9ff429b1-d882-47c6-b652-100088d9c285",
+    "headline": "Father Calls Co-Pilot Daughter Killed in Florida Learjet Crash 'a Hero'",
+    "slug": "father-calls-copilot-daughter-nathalia-filgueiras-florida-learjet-crash-hero",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by including the exact date and time of the crash and when the father spoke publicly, as this will help readers understand the context better.",
+        "Provide more details about the investigation, such as what specific evidence has been recovered and what the next steps in the investigation are, to give readers a clearer picture of the situation.",
+        "Include a quote or statement from the National Transportation Safety Board (NTSB) regarding the investigation to enhance attribution and credibility of the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official NTSB statement or tweet regarding the investigation into the crash for authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "906b56f7-51d5-42c6-b443-19cfb84f71e1",
+    "headline": "Hardik-Arshdeep Swap Nears Completion as Mumbai, Punjab Exchange Formal Interest",
+    "slug": "hardik-arshdeep-trade-nears-completion-mi-pbks",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the completion of the trade; include specific dates for when the contracts are expected to be exchanged and when BCCI confirmation might occur.",
+        "Provide more context on the implications of the trade for both teams, such as how Hardik's leadership at Punjab and Arshdeep's role in Mumbai's bowling attack could impact their performance in the upcoming season.",
+        "Include quotes or statements from relevant stakeholders, such as team officials or the players themselves, to enhance attribution and provide a more comprehensive view of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Cricbuzz or the official IPL account confirming the trade details for real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "9244d8ca-69ab-44ca-bc02-ad675030d7c8",
+    "headline": "Gukesh Visits Tirumala Temple Ahead of World Chess Championship Title Defence",
+    "slug": "gukesh-tirumala-visit-world-chess-championship-defence",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the dates of Gukesh's temple visit and the upcoming matches in a more structured format, such as a bullet point list or timeline, to enhance clarity for readers.",
+        "Include a brief background on the significance of the Tirumala Temple and its relevance to Gukesh's visit, which would provide context for readers unfamiliar with the cultural aspect of the story.",
+        "Ensure that the reporting on Gukesh's current ranking and form is accurate and clearly attributed to a credible source, such as FIDE or a recognized chess news outlet, to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from FIDE or a chess news outlet that covers Gukesh's recent performances or the upcoming championship details to provide readers with real-time updates and context."
+      ]
+    }
+  },
+  {
+    "id": "e6cacb0c-5750-4884-8c74-9ff1c6942aa3",
+    "headline": "Dhanush Says No One but Sai Pallavi Could Have Played Sita in Ramayana",
+    "slug": "dhanush-sai-pallavi-sita-ramayana-no-one-else",
+    "category": "entertainment",
+    "structural_issues": [
+      "Inline caption names venue 'St.Xaviers College' not supported by the image file name (Barfi2.jpg\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the pre-release event mentioned in the article. The date is currently stated as Saturday, November 7, which does not align with the calendar for 2023. Ensuring accurate dates is crucial for clarity.",
+        "Provide more context about the criticism Sai Pallavi has faced regarding her portrayal of Sita. Including specific examples of the criticism or public reactions would enhance completeness and give readers a better understanding of the controversy.",
+        "Consider including a quote from Sai Pallavi or Nitesh Tiwari to provide a more rounded perspective on the casting decision and the surrounding discourse. This would improve attribution and depth.",
+        "Ensure that the article mentions the release date of 'Ramayana: Part 1' clearly and prominently, as it is a key detail for readers interested in the film."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post from Dhanush or Sai Pallavi discussing the casting or the film to provide direct engagement with their statements."
+      ]
+    }
+  },
+  {
+    "id": "b3b813e4-60dc-4d69-9df3-3e4f548ee5a1",
+    "headline": "Nilesh Shah Bets on Earnings Recovery in Samvat 2083, Picks Three Sectors",
+    "slug": "nilesh-shah-earnings-recovery-samvat-2083-three-sectors",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific time frame for the earnings growth forecast by including the fiscal year dates (e.g., FY27 refers to the financial year ending March 2027). This will help readers understand the timeline better.",
+        "Include specific examples or data points to illustrate the sectors Shah is optimistic about, such as recent performance metrics or key companies within those sectors that are expected to drive growth. This would enhance the completeness of the analysis.",
+        "Add a quote or data from Shah's North America roadshow to provide context on global investor sentiment and specific commitments made, which would enrich the article's depth."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or statement from Nilesh Shah or Kotak Mahindra AMC regarding their outlook for Samvat 2083 to provide direct attribution and enhance credibility."
+      ]
+    }
+  }
+]

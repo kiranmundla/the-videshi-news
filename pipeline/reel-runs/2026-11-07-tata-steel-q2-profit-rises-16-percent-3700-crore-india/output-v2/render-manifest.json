@@ -1,0 +1,403 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "tata-steel-q2-profit-rises-16-percent-3700-crore-india",
+ "article_slug": "tata-steel-q2-profit-rises-16-percent-3700-crore-india",
+ "article_id": "a4197b07-8e37-42ab-bbfc-a0e7d3f3b899",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-07-tata-steel-q2-profit-rises-16-percent-3700-crore-india/output-v2/tata-steel-q2-profit-rises-16-percent-3700-crore-india.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://bl-i.thgim.com/public/incoming/fz5bt6/article71678251.ece/alternates/LANDSCAPE_1200/Tata-Steel-net-GV4GAV1A0.4.jpg.jpg",
+  "local_path": "reel-runs/2026-11-07-tata-steel-q2-profit-rises-16-percent-3700-crore-india/output-v2/hero.jpg",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.620,0.527) damped=(0.560,0.514)",
+  "has_face": false,
+  "box_source": [
+   336,
+   198,
+   672,
+   270
+  ],
+  "box_bg": [
+   320,
+   292,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.555,
+   0.506
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 985,
+   "block_bottom": 1258,
+   "text_bbox": [
+    70,
+    985,
+    930,
+    1258
+   ],
+   "texts": [
+    "Markets Finance",
+    "TATA STEEL Q2 PROFIT RISES 16.2%"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      2,
+      1200,
+      675
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Tata Steel's consolidated profit after tax for the quarter ended September 30, 2026 rose 16.2% year on year to Rs 3,699.59 crore, on revenue up 11.5%."
+   ],
+   "v7": {
+    "image_source": "extra:2013-fnv-flyeractie-poorten-tata-steel-in-ve",
+    "track": "full-bleed",
+    "render_scale": 0.991,
+    "photo_px": [
+     2723,
+     1937
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.9912235415591121,
+     "window": [
+      198,
+      0,
+      1287,
+      1937
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "2013 FNV flyeractie poorten Tata Steel Velsen-Noord. Noord-Hollands Archief / Collectie van foto's en negatieven van fotojournalist Kees Blokker",
+     "route": "identity \u2014 depicts (P180=Q963101)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:2013_FNV_flyeractie_poorten_Tata_Steel_in_Velsen-Noord.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/28/2013_FNV_flyeractie_poorten_Tata_Steel_in_Velsen-Noord.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "KennemerlandIJmond"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 903,
+   "block_bottom": 1341,
+   "text_bbox": [
+    70,
+    903,
+    930,
+    1341
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "16.2%",
+    "Profit after tax rose to Rs 3,699.59 crore in the quarter"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "backdrop",
+    "render_scale": 0.304,
+    "photo_px": [
+     2744,
+     1848
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.303935860058309,
+     "window": [
+      0,
+      0,
+      2744,
+      1539
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.04x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 698,
+   "block_top": 882,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    882,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "17%",
+    "Rise in consolidated EBITDA, to Rs 10,665 crore",
+    "25%",
+    "India EBITDA margin in the quarter",
+    "Rs 91,423 crore",
+    "Net debt at September 30, 2026"
+   ],
+   "v7": {
+    "image_source": "inline:2",
+    "track": "full-bleed",
+    "render_scale": 0.991,
+    "photo_px": [
+     2723,
+     1937
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.9912235415591121,
+     "window": [
+      198,
+      0,
+      1287,
+      1937
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 906,
+   "block_bottom": 1338,
+   "text_bbox": [
+    70,
+    906,
+    930,
+    1338
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "India was the strongest market \u2014 Rs 42,653 crore of revenue in the quarter",
+    "In the UK, Tata Steel reported an EBITDA loss of 56 million pounds"
+   ],
+   "v7": {
+    "image_source": "extra:2006-schoorstenen-corus-tata-steel-verdwijne",
+    "track": "backdrop",
+    "render_scale": 0.304,
+    "photo_px": [
+     2744,
+     1848
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.303935860058309,
+     "window": [
+      0,
+      0,
+      2744,
+      1539
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.04x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "2006 Schoorstenen Corus (Tata Steel) verdwijnen collectie fotojournalist Kees Blokker NH Archief",
+     "route": "identity \u2014 depicts (P180=Q963101)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:2006_Schoorstenen_Corus_(Tata_Steel)_verdwijnen.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/27/2006_Schoorstenen_Corus_%28Tata_Steel%29_verdwijnen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "KennemerlandIJmond"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "India carried the quarter, with India EBITDA of Rs 10,634 crore at a margin of 25%.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/tech-corporate-technology.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 119.9,
+ "mp4_bytes": 17636110
+}

@@ -1,0 +1,403 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "indian-americans-six-house-seats-midterms-ramaswamy-ohio",
+ "article_slug": "indian-americans-six-house-seats-midterms-ramaswamy-ohio",
+ "article_id": "0d3a453a-dc07-413d-8db3-edfea7972849",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-07-indian-americans-six-house-seats-midterms-ramaswamy-ohio/output-v2/indian-americans-six-house-seats-midterms-ramaswamy-ohio.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://data.btin.co.in/data/images/full/11098/indian-americans-set-to-retain-six-house-seats-in-us-midterms.jpg",
+  "local_path": "reel-runs/2026-11-07-indian-americans-six-house-seats-midterms-ramaswamy-ohio/output-v2/hero.jpg",
+  "width": 1200,
+  "height": 900,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.91)",
+  "has_face": true,
+  "box_source": [
+   548,
+   353,
+   81,
+   111
+  ],
+  "box_bg": [
+   467,
+   401,
+   56,
+   77
+  ],
+  "chin_bg": 478,
+  "anchor": [
+   0.49,
+   0.453
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   625
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 1064,
+   "block_bottom": 1337,
+   "text_bbox": [
+    70,
+    1064,
+    930,
+    1337
+   ],
+   "texts": [
+    "Nri World",
+    "SIX HOUSE SEATS KEPT, OHIO LOST"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     900
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      899
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 1249,
+   "zone_h": 331,
+   "scale": 0.75,
+   "content_h": 289,
+   "block_top": 1291,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1291,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Six Indian Americans were elected to the US House in the November 3 midterms, matching the community's record, while Vivek Ramaswamy lost his bid for Ohio governor."
+   ],
+   "v7": {
+    "image_source": "extra:vivek-ramaswamy-55241367373-cropped",
+    "track": "full-bleed",
+    "render_scale": 0.614,
+    "photo_px": [
+     2348,
+     3128
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6138107416879796,
+     "window": [
+      324,
+      0,
+      2083,
+      3128
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Vivek Ramaswamy speaking with attendees at the Ohio State University tour stop of the \"This Is The Turning Point\" tour at Mershon Auditorium in Columbus, Ohio.",
+     "route": "identity \u2014 Wikidata P18 (Q27881473)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Vivek_Ramaswamy_(55241367373)_(cropped).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Vivek_Ramaswamy_%2855241367373%29_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Gage Skidmore"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "ELECTIONS 2026",
+    "6",
+    "Indian-American seats in the US House in the new Congress"
+   ],
+   "v7": {
+    "image_source": "inline:2",
+    "track": "full-bleed",
+    "render_scale": 0.93,
+    "photo_px": [
+     3032,
+     2064
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.9302325581395349,
+     "window": [
+      1035,
+      0,
+      2196,
+      2064
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 551,
+   "zone_h": 1029,
+   "scale": 1.0,
+   "content_h": 784,
+   "block_top": 796,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    796,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "30",
+    "Indian-American wins in state legislative races",
+    "2",
+    "Newcomers in the House \u2014 Pia Dandiya and Amish Shah",
+    "2012",
+    "Ami Bera first elected, longest-serving Indian American in Congress"
+   ],
+   "v7": {
+    "image_source": "extra:amish-shah-david-marshall-52750179671",
+    "track": "full-bleed",
+    "render_scale": 0.487,
+    "photo_px": [
+     5916,
+     3944
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.486815415821501,
+     "window": [
+      1787,
+      0,
+      4005,
+      3944
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "State Representatives Amish Shah and David Marshall speaking on the floor of the Arizona House of Representatives at the Arizona State Capitol building in Phoenix, Arizona. Please attribute to Gage Skidmore if used elsewhere.",
+     "route": "identity \u2014 depicts (P180=Q60736979)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_%26_David_Marshall_(52750179671).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Amish_Shah_%26_David_Marshall_%2852750179671%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.0",
+     "artist": "Gage Skidmore from Surprise, AZ, United States of America"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1016,
+   "block_bottom": 1385,
+   "text_bbox": [
+    70,
+    1016,
+    930,
+    1385
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Every Indian American who won a House race is a Democrat",
+    "Nithya Raman won the Los Angeles mayor's race, defeating Karen Bass"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     900
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.7897727272727273,
+     "window": [
+      60,
+      12,
+      1116,
+      803
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "The entire group will be part of the majority starting in January.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-future-bass-sigma.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 132.7,
+ "mp4_bytes": 10262778
+}

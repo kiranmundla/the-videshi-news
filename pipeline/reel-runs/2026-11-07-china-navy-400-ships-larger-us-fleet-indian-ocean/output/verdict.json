@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "china-navy-400-ships-larger-us-fleet-indian-ocean",
+  "name": "china-navy-400-ships-larger-us-fleet-indian-ocean",
+  "script": "reel-runs/2026-11-07-china-navy-400-ships-larger-us-fleet-indian-ocean/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "key_entities:United States Navy"
+    ],
+    "llm_cost_usd": 0.000684
+  }
+}

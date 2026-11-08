@@ -1,0 +1,410 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "china-navy-400-ships-larger-us-fleet-indian-ocean",
+ "article_slug": "china-navy-400-ships-larger-us-fleet-indian-ocean",
+ "article_id": "de3c698f-b0ff-4498-8e4a-f9699b13c003",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-07-china-navy-400-ships-larger-us-fleet-indian-ocean/output-v2/china-navy-400-ships-larger-us-fleet-indian-ocean.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://images.timesnowworld.com/thumb/msid-156480054,width-1280,height-720,resizemode-75/156480054.jpg",
+  "local_path": "reel-runs/2026-11-07-china-navy-400-ships-larger-us-fleet-indian-ocean/output-v2/hero.jpg",
+  "width": 1280,
+  "height": 718,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.506,0.537) damped=(0.503,0.518)",
+  "has_face": false,
+  "box_source": [
+   285,
+   214,
+   716,
+   287
+  ],
+  "box_bg": [
+   272,
+   294,
+   467,
+   187
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.504,
+   0.516
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   467
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 687,
+   "zone_h": 869,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 985,
+   "block_bottom": 1258,
+   "text_bbox": [
+    70,
+    985,
+    930,
+    1258
+   ],
+   "texts": [
+    "Nri World",
+    "CHINA'S NAVY PASSES 400 SHIPS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1280,
+     718
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 467,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      2,
+      1280,
+      718
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.67x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 687,
+   "zone_h": 869,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 932,
+   "block_bottom": 1310,
+   "text_bbox": [
+    70,
+    932,
+    930,
+    1310
+   ],
+   "texts": [
+    "What Happened",
+    "China's navy now has a battle force of more than 400 ships and submarines, around 35% larger than the US Navy by hull count, according to official US numbers seen by the Wall Street Journal."
+   ],
+   "v7": {
+    "image_source": "extra:uss-constitution-1997",
+    "track": "backdrop",
+    "render_scale": 0.402,
+    "photo_px": [
+     2075,
+     1596
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 467,
+     "scale": 0.4019277108433735,
+     "window": [
+      0,
+      291,
+      2075,
+      1452
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.20x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Navy photo of USS Constitution under sail for the first time in over a century",
+     "route": "identity \u2014 Wikidata P18 (Q11220)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:USS_Constitution_1997.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/USS_Constitution_1997.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Journalist 2nd Class Todd Stevens"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 404,
+   "block_top": 1176,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1176,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "400+",
+    "Ships and submarines in China's battle force, about 35% larger than the US Navy by hull count"
+   ],
+   "v7": {
+    "image_source": "extra:200916-n-gn815-2013-super-hornet",
+    "track": "full-bleed",
+    "render_scale": 0.932,
+    "photo_px": [
+     3088,
+     2059
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.932491500728509,
+     "window": [
+      509,
+      0,
+      1667,
+      2059
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "An F/A-18 Super Hornet performs a fly-by of USS Gerald R. Ford (CVN 78) Sept. 16, 2020. Ford is underway in the Atlantic Ocean conducting an independent steaming event. (U.S. Navy photo by Mass Communication Specialist Seaman Apprentice Tre",
+     "route": "identity \u2014 depicts (P180=Q11220)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:200916-N-GN815-2013_-_Super_Hornet.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/200916-N-GN815-2013_-_Super_Hornet.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Mass Communication Specialist Seaman Apprentice Trenton Edly"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 784,
+   "block_top": 796,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    796,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "71",
+    "Major warships and submarines added since 2020, 19 of them in the last year",
+    "290",
+    "Ships in the US fleet, which remains larger by tonnage",
+    "9",
+    "Aircraft carriers China is estimated to have by 2035, close to the US fleet of 11"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.932,
+    "photo_px": [
+     3088,
+     2059
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.932491500728509,
+     "window": [
+      509,
+      0,
+      1667,
+      2059
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 1085,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1085,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "US officials expect Chinese submarines to operate routinely in the Indian Ocean by 2040",
+    "On any given day, as many as 100 Chinese navy ships are out on Asia's busiest trade routes"
+   ],
+   "v7": {
+    "image_source": "extra:anse-severe-la-digue-seychelles-03",
+    "track": "full-bleed",
+    "render_scale": 0.472,
+    "photo_px": [
+     6144,
+     4064
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.47244094488188976,
+     "window": [
+      2128,
+      0,
+      4414,
+      4064
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Tables and sunhades, Anse Severe, La Digue, Seychelles.",
+     "route": "identity \u2014 depicts (P180=Q1239)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Anse_Severe_-_La_Digue_-_Seychelles_-_03.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Anse_Severe_-_La_Digue_-_Seychelles_-_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "NorbertNagel"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "The US fleet remains larger by tonnage, at roughly 290 ships.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/sb-simulacra.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 148.1,
+ "mp4_bytes": 21129511
+}

@@ -1,0 +1,34 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "tata-steel-q2-profit-rises-16-percent-3700-crore-india",
+  "name": "tata-steel-q2-profit-rises-16-percent-3700-crore-india",
+  "script": "reel-runs/2026-11-07-tata-steel-q2-profit-rises-16-percent-3700-crore-india/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000756
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-07-tata-steel-q2-profit-rises-16-percent-3700-crore-india/output-v2/supplementary/provenance.json",
+    "own_images": 3,
+    "extras": {
+      "news": "2013-fnv-flyeractie-poorten-tata-steel-in-ve",
+      "diaspora": "2006-schoorstenen-corus-tata-steel-verdwijne"
+    }
+  },
+  "manifest": "reel-runs/2026-11-07-tata-steel-q2-profit-rises-16-percent-3700-crore-india/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-11-07-tata-steel-q2-profit-rises-16-percent-3700-crore-india/output-v2/tata-steel-q2-profit-rises-16-percent-3700-crore-india.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-07-tata-steel-q2-profit-rises-16-percent-3700-crore-india/output-v2/tiktok-caption.txt"
+}

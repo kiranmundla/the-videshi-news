@@ -719,5 +719,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "zVMdWZzHbqs",
+    "article_slug": "tata-steel-q2-profit-rises-16-percent-3700-crore-india",
+    "article_id": "a4197b07-8e37-42ab-bbfc-a0e7d3f3b899",
+    "title": "Tata Steel Q2 Profit Rises 16% to Rs 3,700 Crore on India Strength #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-11-07T23:22:17.086553+00:00",
+    "video_path": "reel-runs/2026-11-07-tata-steel-q2-profit-rises-16-percent-3700-crore-india/output-v2/tata-steel-q2-profit-rises-16-percent-3700-crore-india.mp4",
+    "video_sha256": "3279d6a0c8b4b90aae5886d6b16bcb0c61c70eb79881d2624b2e6d7867d684db",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

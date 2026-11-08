@@ -1,0 +1,162 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "tata-steel-q2-profit-rises-16-percent-3700-crore-india",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Tata Steel Q2 Profit Rises 16.2% to Rs 3,699.59 Crore on India Strength",
+        "numbers": [
+          2.0,
+          16.2,
+          3699.59,
+          36995900000.0
+        ],
+        "entities": [
+          "Tata Steel Q2 Profit Rises",
+          "India Strength"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Profit increase and amount are directly stated in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "India remained the strongest operating market, with India EBITDA of Rs 10,634 crore at a margin of 25%.",
+        "numbers": [
+          25.0,
+          10634.0,
+          106340000000.0
+        ],
+        "entities": [
+          "India EBITDA"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "India's EBITDA and margin are explicitly mentioned in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Tata Steel's consolidated reported profit after tax for the quarter ended September 30, 2026 rose 16.2% year on year to Rs 3,699.59 crore",
+        "numbers": [
+          16.2,
+          30.0,
+          2026.0,
+          3699.59,
+          36995900000.0
+        ],
+        "entities": [
+          "Tata Steel's"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "The profit figure and date are clearly stated in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Consolidated EBITDA rose 17% year on year to Rs 10,665 crore, with India revenue of Rs 42,653 crore",
+        "numbers": [
+          17.0,
+          10665.0,
+          42653.0,
+          106650000000.0,
+          426530000000.0
+        ],
+        "entities": [
+          "Consolidated EBITDA"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "EBITDA and India revenue figures are provided in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Net debt stood at Rs 91,423 crore",
+        "numbers": [
+          91423.0,
+          914230000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Net debt figure is explicitly mentioned in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Tata Steel Q2 Profit Rises 16.2% to Rs 3,699.59 Crore on India Strength",
+        "numbers": [
+          2.0,
+          16.2,
+          3699.59,
+          36995900000.0
+        ],
+        "entities": [
+          "Tata Steel Q2 Profit Rises",
+          "India Strength"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Profit increase and amount are directly stated in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000549,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

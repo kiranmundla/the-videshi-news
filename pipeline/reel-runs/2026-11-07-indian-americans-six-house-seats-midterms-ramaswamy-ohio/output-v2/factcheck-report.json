@@ -1,0 +1,280 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "indian-americans-six-house-seats-midterms-ramaswamy-ohio",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "SIX HOUSE SEATS KEPT, OHIO LOST",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states six seats held and Ramaswamy lost Ohio governor race.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Six Indian Americans were elected to the US House in the November 3 midterms, matching the community's record, while Vivek Ramaswamy lost his bid for Ohio governor.",
+      "numbers": [
+        3.0
+      ],
+      "entities": [
+        "Six Indian Americans",
+        "US House",
+        "Vivek Ramaswamy"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms six elected and Ramaswamy's loss in Ohio.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "6",
+      "numbers": [
+        6.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states six Indian Americans elected to the House.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Indian-American seats in the US House in the new Congress",
+      "numbers": [],
+      "entities": [
+        "US House"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms Indian Americans will hold six seats in the new Congress.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "ELECTIONS 2026",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "30",
+      "numbers": [
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article mentions 30 Indian-American wins in state legislative races.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Indian-American wins in state legislative races",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article discusses Indian-American wins in state races.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "2",
+      "numbers": [
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states there are two newcomers in the House.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Newcomers in the House \u2014 Pia Dandiya and Amish Shah",
+      "numbers": [],
+      "entities": [
+        "Pia Dandiya",
+        "Amish Shah"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article names Pia Dandiya and Amish Shah as newcomers.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2012",
+      "numbers": [
+        2012.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2012
+        ]
+      },
+      "llm_reason": "Article states Ami Bera was first elected in 2012.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Ami Bera first elected, longest-serving Indian American in Congress",
+      "numbers": [],
+      "entities": [
+        "Ami Bera",
+        "Indian American"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms Bera's status as longest-serving and first elected in 2012.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Every Indian American who won a House race is a Democrat",
+      "numbers": [],
+      "entities": [
+        "Every Indian American"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states all Indian American House winners are Democrats.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Nithya Raman won the Los Angeles mayor's race, defeating Karen Bass",
+      "numbers": [],
+      "entities": [
+        "Nithya Raman",
+        "Los Angeles",
+        "Karen Bass"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms Raman's victory over Bass in the mayor's race.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The entire group will be part of the majority starting in January.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states the group will be part of the majority in January.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "ELECTIONS 2026",
+    "ok": true,
+    "detail": "ELECTIONS <grounded year>"
+  },
+  "key_entities": [
+    {
+      "entity": "Vivek Ramaswamy",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Pia Dandiya",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Amish Shah",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nithya Raman",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ami Bera",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00067,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}
