@@ -42,6 +42,16 @@ Usage:
   python3 -u celeb_social_watch.py --dry-run    detect + report only
   python3 -u celeb_social_watch.py --stage-post <post_id>
       stage one specific post even if already seen (sample/testing)
+  python3 -u celeb_social_watch.py --make-reel <post_id>
+      build a YouTube Short for one celeb post through the
+      production reel chain (fact-check gate -> Reels v7 render ->
+      frame QA, exactly as reel_produce.py drives them) and, only
+      if every gate passes, upload it UNLISTED via
+      reel_publish.py (sample protocol: Kiran reviews and flips
+      it public himself). The reel's ground truth is the post's
+      own caption; its photos are the post's own frames; the
+      closing scene is the navy credit card. A gate hold stops
+      the chain — nothing uploads.
 """
 import argparse
 import hashlib
@@ -584,6 +594,475 @@ def stage_post(celeb, post, dry_run, report):
     return "staged"
 
 
+# ── YouTube Short (production reel chain, caption as ground truth) ──
+# The celeb reel is NOT a fork: the spec is built in the exact
+# reel_produce.py shape, the gates are reel_factcheck.run_gate and
+# reel_frame_qa.run_qa called the way reel_produce.main calls them,
+# the render goes through reel_produce.render (Reels v7), and the
+# upload goes through reel_publish.publish(..., unlisted=True).
+# Differences from an article reel, all forced by the source:
+#   * ground truth = the post's own caption (+ a source line
+#     naming the author/handle/URL — the post's own metadata);
+#   * images = the post's own downloaded frames only (no
+#     supplementary sourcing ladder — outside pictures have no
+#     place in a celeb-update reel);
+#   * the article "category" carries the celeb's name, because in
+#     the v7 hook scene the category slot IS the kicker pill —
+#     the carousel puts the celeb's name in that slot too;
+#   * the payoff (the v7 navy closer) carries the photo credit +
+#     the original post URL, mirroring the deck's closer card.
+REEL_RUNS_DIR = HERE / "reel-runs"
+MUSIC_DIR = HERE / "music"
+REEL_STAGE = "navy"            # celeb reels use the navy stage
+BANNED_MUSIC = {"anthemic-triumph-eternal-hope.mp3"}
+# Full-length beds only (the -15s/-30s/-20s cuts are for other
+# formats); news beds are wrong for a celeb update by genre.
+_MUSIC_VARIANT_RE = re.compile(r"-(15|20|30)s\.mp3$")
+_MUSIC_EXCLUDE_PREFIXES = ("breaking-", "pixabay-breaking",
+                           "tech-corporate", "dramatic-")
+# Festive/topic anchors for the stat grid: keyword -> on-screen
+# big text. Only anchors literally present in the caption are
+# used; labels are the caption's own sentences.
+REEL_ANCHORS = [("homam", "HOMAM"), ("diwali", "DIWALI"),
+                ("japan", "JAPAN"), ("birthday", "BIRTHDAY"),
+                ("wedding", "WEDDING"), ("holi", "HOLI"),
+                ("christmas", "CHRISTMAS"), ("new year", "NEW YEAR"),
+                ("pongal", "PONGAL"), ("onam", "ONAM"),
+                ("eid", "EID"), ("anniversary", "ANNIVERSARY")]
+
+
+def caption_sentences(caption):
+    """The caption as a list of cleaned sentences (emoji and
+    hashtags stripped, the celeb's own words otherwise intact).
+    Lines are split FIRST: Instagram captions carry no sentence
+    punctuation between their lines, and collapsing the whole
+    caption to one blob sentence starves every downstream
+    derivation (sub, bullets, labels) into invented fallbacks —
+    the first sample's fact-check hold was exactly that."""
+    out = []
+    for line in (caption or "").splitlines():
+        text = clean_text(_HASHTAG_RE.sub("", line))
+        for part in re.split(r"(?<=[.!?])\s+", text):
+            part = part.strip()
+            if len(part) >= 8:
+                out.append(part)
+    return out
+
+
+def _anchor_label(sentences, key):
+    """A short label for one stat-grid anchor: the word window
+    around the anchor's first occurrence in the caption (the
+    celeb's own words, never a paraphrase)."""
+    for s in sentences:
+        words = s.split()
+        for i, w in enumerate(words):
+            if key in w.lower().strip("(),.!?"):
+                lo = max(0, i - 4)
+                window = " ".join(words[lo:i + 5])
+                window = window.strip(" ,;()")
+                return _trim(window, 90)
+    return ""
+
+
+def _trim(text, limit):
+    if len(text) <= limit:
+        return text
+    return text[:limit].rsplit(" ", 1)[0].rstrip(",;:—-") + "…"
+
+
+def reel_slug(celeb, post):
+    return f"celeb-{celeb['handle']}-{post.get('post_id')}"
+
+
+def build_reel_article(celeb, post):
+    """The reel_factcheck 'article' for a celeb post: headline +
+    subheadline derived from the caption, body = the caption
+    verbatim plus the source line (the post's own metadata:
+    author name, handle, URL). Nothing else is asserted."""
+    name, handle = celeb["name"], celeb["handle"]
+    caption = post.get("post_caption")
+    body = (caption or "").strip()
+    source_line = (f"Source: {name} (@{handle}) on Instagram — "
+                   f"{post.get('url')}")
+    if body:
+        body = body + "\n\n" + source_line
+    else:
+        body = source_line
+    return {
+        "id": None,
+        "slug": reel_slug(celeb, post),
+        "headline": derive_headline(name, caption),
+        "subheadline": caption_excerpt(caption, limit=160),
+        # v7 renders the category as the hook scene's kicker pill;
+        # for a celeb reel the kicker is the celeb's name (the
+        # same choice the carousel deck makes).
+        "category": name.lower().replace(" ", "-"),
+        "body": body,
+        "image_url": post.get("url"),
+        "tags": [],
+        "sources": [{"name": f"@{handle} on Instagram",
+                     "url": post.get("url")}],
+    }
+
+
+def _reel_anchors(caption):
+    low = (caption or "").lower()
+    found = []
+    for key, big in REEL_ANCHORS:
+        if key in low and big not in [b for _k, b in found]:
+            found.append((key, big))
+    return found
+
+
+def build_reel_script(celeb, post):
+    """The reel_produce-shaped script for a celeb post. Every
+    on-screen string is built ONLY from the post's caption (plus
+    the fixed credit template on the closer)."""
+    name, handle = celeb["name"], celeb["handle"]
+    caption = post.get("post_caption")
+    sentences = caption_sentences(caption)
+    first = caption_first_line(caption) \
+        or f"{name} shares a new post"
+    summary = _trim(" ".join(sentences), 260) if sentences else first
+    anchors = _reel_anchors(caption)
+
+    # Hero stat scene: the caption's signature term if it has one
+    # (a parenthesised ritual/festival term), else its first
+    # anchor, else the update itself.
+    paren = re.search(r"([A-Za-z]+)\s*\(([^)]+)\)", caption or "")
+    if paren:
+        big = f"{paren.group(1).upper()} ({paren.group(2).upper()})"
+    elif anchors:
+        big = anchors[0][1]
+    else:
+        big = "NEW POST"
+    # Sub: the caption's second sentence. NEVER an invented
+    # fallback — a builder-written sentence ("X's latest update
+    # on Instagram") is precisely what the fact-check gate held
+    # on the first sample (ungrounded possessive entity). When
+    # the caption is a single sentence, reuse its own words.
+    sub = sentences[1] if len(sentences) > 1 else first
+    hook_stat = {"eyebrow": "THE BIG PICTURE", "big": big,
+                 "sub": _trim(sub, 130)}
+
+    # Stat grid: up to two caption anchors (skipping any whose
+    # key already rides in the hero stat's big text), labelled
+    # with the caption's own word window around the anchor. At
+    # least one entry is required by the grid measurer; the
+    # fallback big is a template label, its text the caption's
+    # own first line.
+    stats = []
+    for _key, abig in anchors:
+        if abig == big or _key in big.lower():
+            continue
+        label = _anchor_label(sentences, _key)
+        if not label:
+            continue
+        stats.append({"big": abig, "label": label})
+        if len(stats) >= 2:
+            break
+    if not stats:
+        stats = [{"big": "THE UPDATE",
+                  "label": _trim(first, 90)}]
+
+    bullets = [_trim(s, 140) for s in sentences[1:3]]
+    if not bullets:
+        bullets = [_trim(first, 140)]
+
+    shortcode = shortcode_from_url(post.get("url")) or ""
+    payoff = (f"Photos from @{handle}'s Instagram post: "
+              f"https://www.instagram.com/p/{shortcode}/")
+    entities = [name] + [abig.title() if abig.isupper() else abig
+                         for _k, abig in anchors[:2]]
+    return {
+        "hook_line": _trim(first, 90),
+        "hook_stat": hook_stat,
+        "stats": stats,
+        "diaspora_bullets": bullets,
+        "key_entities": entities,
+        "news_summary": summary,
+        "payoff": payoff,
+        "versus": "",
+        "story_mood": "celebratory",
+    }
+
+
+def build_scene_plan(celeb, post, n_frames):
+    """The intended scene composition (mirrors the v7 planner's
+    assignment order): hook takes photo 0; the middle beats
+    consume any further floor-passing photos in order, then fall
+    back to text-on-stage; the payoff is always the navy credit
+    closer. Photo indices in the plan are unique by construction.
+    Returns [{beat, source, texts}] with source 'photo:<i>',
+    'stage', or 'credit'."""
+    script = build_reel_script(celeb, post)
+    plan = [{"beat": "hook", "source": "photo:0",
+             "texts": [celeb["name"], script["hook_line"]]}]
+    photo_i = 1
+    middle = [
+        ("news", [script["news_summary"]]),
+        ("hero", [script["hook_stat"]["big"],
+                  script["hook_stat"]["sub"]]),
+        ("grid", [f"{s['big']} — {s['label']}"
+                  for s in script["stats"]]),
+        ("diaspora", list(script["diaspora_bullets"])),
+    ]
+    for beat, texts in middle:
+        if photo_i < n_frames:
+            plan.append({"beat": beat, "source": f"photo:{photo_i}",
+                         "texts": texts})
+            photo_i += 1
+        else:
+            plan.append({"beat": beat, "source": "stage",
+                         "texts": texts})
+    plan.append({"beat": "payoff", "source": "credit",
+                 "texts": [script["payoff"]]})
+    return plan
+
+
+def pick_music(caption, music_dir=MUSIC_DIR):
+    """Pick a festive/entertainment bed from the production music
+    pool. Topical first (a Diwali caption gets the Diwali bed),
+    then celebration/inspiring beds. Never the banned track,
+    never a news/tech bed. Returns a Path or None."""
+    if not music_dir.exists():
+        return None
+    pool = []
+    for p in sorted(music_dir.glob("*.mp3")):
+        n = p.name.lower()
+        if n in BANNED_MUSIC or _MUSIC_VARIANT_RE.search(n):
+            continue
+        if n.startswith(_MUSIC_EXCLUDE_PREFIXES):
+            continue
+        pool.append(p)
+    low = (caption or "").lower()
+
+    def first_with(*words):
+        for p in pool:
+            if all(w in p.name.lower() for w in words):
+                return p
+        return None
+
+    if "diwali" in low:
+        pick = first_with("diwali")
+        if pick:
+            return pick
+    for words in [("indian-classical",), ("celebration",),
+                  ("inspiring-uplifting",), ("indian",),
+                  ("upbeat",)]:
+        pick = first_with(*words)
+        if pick:
+            return pick
+    return pool[0] if pool else None
+
+
+def build_celeb_tiktok_caption(celeb, post):
+    """TikTok caption in Kiran's copyable-text format: the update
+    line, the 📸 credit with the post URL as plain text, then
+    hashtags (max 4, the watcher's own hashtag set)."""
+    name, handle = celeb["name"], celeb["handle"]
+    headline = derive_headline(name, post.get("post_caption"))
+    return "\n\n".join([
+        headline,
+        f"📸 @{handle} on Instagram — full post: {post.get('url')}",
+        " ".join(hashtags_for(name, post.get("post_caption"))),
+    ])
+
+
+def _find_post(post_id):
+    """Locate one post across the enabled handles (same verified
+    detection path as run()). Returns (celeb, post) or
+    (None, reason)."""
+    for celeb in enabled_entries(load_whitelist()):
+        handle = celeb["handle"]
+        try:
+            data = fetch_posts(handle, limit=5)
+        except Exception:
+            continue
+        rows = own_posts(data, handle)
+        ok, _info = author_verified(rows)
+        if not rows or not ok:
+            continue
+        for post in rows:
+            if is_feed_post(post) \
+                    and str(post.get("post_id")) == str(post_id):
+                return celeb, post
+    return None, (f"post {post_id} not found in the latest 5 "
+                  f"posts of any enabled handle")
+
+
+def make_reel(post_id, log=print):
+    """Build + gate + (on a full pass) upload UNLISTED a YouTube
+    Short for one celeb post. Mirrors reel_produce.main's chain
+    and verdict shape. Returns a result dict; a gate hold is a
+    result, not an exception."""
+    import reel_factcheck          # lazy: production import graph
+    import reel_frame_qa
+    import reel_produce
+    import reel_publish
+    reel_publish.load_env()
+    reel_publish.load_env_file(
+        Path.home() / "workspace" / ".env.openai")
+
+    celeb, post = _find_post(post_id)
+    if celeb is None:
+        return {"status": "error", "detail": post}
+    handle, name = celeb["handle"], celeb["name"]
+    marker = ad_marker_in(post.get("post_caption"))
+    if marker:
+        return {"status": "ad-skip",
+                "detail": f"ad marker {marker!r} — celeb reels "
+                          f"follow the same genre rule as decks"}
+    if (post.get("media_type") or "").lower() in VIDEO_MEDIA_TYPES:
+        return {"status": "error",
+                "detail": "post is a video/reel — the celeb Short "
+                          "path is for photo updates"}
+
+    frames, note = download_frames(post)
+    if not frames:
+        return {"status": "no-frames", "detail": note}
+    slug = reel_slug(celeb, post)
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    run_dir = REEL_RUNS_DIR / f"{today}-{slug}"
+    outdir = run_dir / "output"
+    outdir.mkdir(parents=True, exist_ok=True)
+
+    frame_paths = []
+    for i, img in enumerate(frames):
+        p = outdir / f"frame-{i}.jpg"
+        img.save(p, quality=95)
+        frame_paths.append((p, img.size))
+    hero_path, inline_paths = frame_paths[0][0], frame_paths[1:]
+
+    article = build_reel_article(celeb, post)
+    script = build_reel_script(celeb, post)
+    (run_dir / "article.json").write_text(
+        json.dumps(article, indent=2, ensure_ascii=False))
+    script_path = run_dir / "script.json"
+    script_path.write_text(
+        json.dumps(script, indent=2, ensure_ascii=False))
+    music = pick_music(post.get("post_caption"))
+    if music is None:
+        return {"status": "error",
+                "detail": "no eligible music bed in the pool"}
+
+    verdict = {"driver": "celeb_social_watch.py --make-reel",
+               "status": "held", "stage": None,
+               "render": {"renderer": "reel_renderer_v7.py",
+                          "stage_color": REEL_STAGE},
+               "article_slug": slug, "name": slug,
+               "script": str(script_path),
+               "celeb": {"name": name, "handle": handle,
+                         "post_id": str(post_id),
+                         "post_url": post.get("url")},
+               "scene_plan": build_scene_plan(celeb, post,
+                                              len(frames)),
+               "music": str(music)}
+
+    def finish():
+        (outdir / "verdict.json").write_text(
+            json.dumps(verdict, indent=2, ensure_ascii=False))
+        return verdict
+
+    # ── Gate 1: fact-check (ground truth = the caption) ──
+    log("── gate 1/3: fact-check")
+    fc = reel_factcheck.run_gate(script, article, use_llm=True)
+    (outdir / "factcheck-report.json").write_text(
+        json.dumps(fc, indent=2, ensure_ascii=False))
+    verdict["factcheck"] = {
+        "verdict": fc["verdict"], "held_claims": fc["held_claims"],
+        "llm_cost_usd": fc["llm"]["cost_usd"]}
+    if fc["verdict"] != "pass":
+        verdict["stage"] = "factcheck"
+        log(f"HELD at fact-check: {fc['held_claims']}")
+        return finish()
+    log("   all claims grounded in the caption")
+
+    # ── Gate 2: render (Reels v7 via reel_produce.render) ──
+    log("── gate 2/3: render (reel_renderer_v7, stage=navy)")
+    import reel_renderer
+    try:
+        manifest = reel_produce.render(
+            script, article, hero_path, inline_paths, {}, music,
+            outdir, slug, REEL_STAGE, log=log)
+    except reel_renderer.PhotoTooSmallError as e:
+        verdict["stage"] = "render_photo_floor"
+        verdict["detail"] = str(e)
+        return finish()
+    except (reel_renderer.TextFitError, RuntimeError,
+            FileNotFoundError) as e:
+        verdict["stage"] = "render"
+        verdict["detail"] = str(e)[:500]
+        return finish()
+    verdict["manifest"] = str(outdir / "render-manifest.json")
+    verdict["video"] = manifest["video"]
+    verdict["scene_sources"] = {
+        k: s["v7"]["image_source"]
+        for k, s in manifest["scenes"].items()}
+
+    # ── Gate 3: frame QA ──
+    log("── gate 3/3: frame QA")
+    try:
+        qa = reel_frame_qa.run_qa(manifest["video"],
+                                  outdir / "render-manifest.json",
+                                  outdir / "qa")
+    except Exception as e:
+        verdict["stage"] = "frame_qa_error"
+        verdict["detail"] = str(e)[:500]
+        return finish()
+    (outdir / "qa-report.json").write_text(
+        json.dumps(qa, indent=2, ensure_ascii=False))
+    verdict["qa"] = {"score": qa["qa_score"],
+                     "passed": qa["qa_passed"],
+                     "failing_checks": qa["failing_checks"]}
+    if not qa["qa_passed"]:
+        verdict["stage"] = "frame_qa"
+        log(f"HELD at frame QA (score {qa['qa_score']}): "
+            f"{qa['failing_checks']}")
+        return finish()
+
+    verdict["status"] = "ready"
+    verdict["stage"] = "complete"
+    finish()
+
+    # TikTok pack beside the verdict (file artifact only).
+    pack = outdir / "tiktok-caption.txt"
+    pack.write_text(build_celeb_tiktok_caption(celeb, post) + "\n",
+                    encoding="utf-8")
+    verdict["tiktok_pack"] = str(pack)
+
+    # ── Upload: UNLISTED only (sample protocol) ──
+    log("── upload (UNLISTED via reel_publish.py)")
+    try:
+        result = reel_publish.publish(str(outdir / "verdict.json"),
+                                      unlisted=True)
+        verdict["publish"] = {"video_id": result["video_id"],
+                              "url": result["shorts_url"],
+                              "privacy": result["privacy"],
+                              "live_title": result["live_title"]}
+    except reel_publish.PublishRefused as e:
+        verdict["publish"] = {"error": f"REFUSED: {e}"}
+    except reel_publish.PublishFailed as e:
+        verdict["publish"] = {"error": f"FAILED: {e}"}
+        # reel_publish appends the publish log BEFORE the DB
+        # write-back, so an upload that succeeded but failed
+        # write-back is still recoverable from the log.
+        try:
+            for entry in reversed(reel_publish.load_publish_log()):
+                if entry.get("article_slug") == slug:
+                    verdict["publish"]["video_id"] = \
+                        entry.get("video_id")
+                    verdict["publish"]["url"] = (
+                        "https://youtube.com/shorts/"
+                        f"{entry.get('video_id')}")
+                    break
+        except Exception:
+            pass
+    (outdir / "verdict.json").write_text(
+        json.dumps(verdict, indent=2, ensure_ascii=False))
+    return verdict
+
+
 # ── state ─────────────────────────────────────────────────────────
 def load_state():
     try:
@@ -714,7 +1193,15 @@ def main(argv=None):
                     help="detect + report, stage nothing")
     ap.add_argument("--stage-post", metavar="POST_ID",
                     help="stage one specific post even if seen")
+    ap.add_argument("--make-reel", metavar="POST_ID",
+                    help="build a YouTube Short for one celeb post "
+                         "through the production reel gates and, on "
+                         "a full pass, upload it UNLISTED")
     args = ap.parse_args(argv)
+    if args.make_reel:
+        result = make_reel(args.make_reel)
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+        return 0 if result.get("status") in ("ready",) else 1
     report = run(dry_run=args.dry_run, stage_post_id=args.stage_post)
     print_report(report)
     return 0

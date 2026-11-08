@@ -157,6 +157,115 @@ def test_excerpt_strips_hashtags_and_emoji():
     assert "Happy DIWALI" in ex
 
 
+# ── reel spec / scene plan (network-free) ─────────────────────────
+VIJAY_CELEB = {"name": "Vijay Deverakonda",
+               "handle": "thedeverakonda", "enabled": True,
+               "note": ""}
+VIJAY_POST = {"post_id": "17997368079023648", "url": VIJAY_URL,
+              "post_caption": VIJAY_CAPTION, "media_type": "carousel"}
+
+
+def test_reel_article_body_is_caption_plus_source_line():
+    art = cw.build_reel_article(VIJAY_CELEB, VIJAY_POST)
+    assert art["slug"] == "celeb-thedeverakonda-17997368079023648"
+    assert art["body"].startswith("When you find a way to do GOMA")
+    assert "Source: Vijay Deverakonda (@thedeverakonda)" \
+        in art["body"]
+    assert VIJAY_URL in art["body"]
+    # the v7 hook kicker slot (category) carries the celeb's name
+    assert art["category"] == "vijay-deverakonda"
+
+
+def test_scene_plan_never_repeats_a_photo():
+    for n in (1, 2, 3, 4, 6):
+        plan = cw.build_scene_plan(VIJAY_CELEB, VIJAY_POST, n)
+        photos = [s["source"] for s in plan
+                  if s["source"].startswith("photo:")]
+        assert len(photos) == len(set(photos)), (n, photos)
+        assert len(photos) == min(n, 5)
+        assert plan[0]["source"] == "photo:0"
+        assert len(plan) == 6      # the locked 6-beat v7 arc
+
+
+def test_scene_plan_ends_with_credit_closer():
+    plan = cw.build_scene_plan(VIJAY_CELEB, VIJAY_POST, 1)
+    last = plan[-1]
+    assert last["beat"] == "payoff" and last["source"] == "credit"
+    text = " ".join(last["texts"])
+    assert "@thedeverakonda" in text
+    assert "Dfe2WJqn9ak" in text       # the original post URL
+
+
+def test_reel_texts_come_only_from_the_caption():
+    caption = ("Celebrating Diwali with a small Homam in Japan "
+               "this year.\n\nSending love to everyone back home "
+               "and wishing you all light and happiness.")
+    post = {"post_id": "42", "url": VIJAY_URL,
+            "post_caption": caption, "media_type": "photo"}
+    script = cw.build_reel_script(VIJAY_CELEB, post)
+    import re as _re2
+    allowed = set(_re2.findall(r"[a-z][a-z']+",
+                               cw.clean_text(caption).lower()))
+    allowed |= {"photos", "from", "instagram", "post", "https",
+                "www", "com", "p", "dfe2wjqn9ak", "thedeverakonda's",
+                "thedeverakonda"}
+    allowed |= {w.lower() for w in VIJAY_CELEB["name"].split()}
+    on_screen = [script["hook_line"], script["news_summary"],
+                 script["hook_stat"]["big"],
+                 script["hook_stat"]["sub"], script["payoff"]]
+    for s in script["stats"]:
+        on_screen += [s["big"], s["label"]]
+    on_screen += script["diaspora_bullets"]
+    import re as _re
+    for text in on_screen:
+        # URLs are verified separately (credit-closer test); strip
+        # them before the word-level caption-provenance check.
+        text = _re.sub(r"https?://\S+", "", text)
+        for word in _re.findall(r"[A-Za-z][A-Za-z']+", text):
+            assert word.lower() in allowed, (word, text)
+
+
+def test_caption_sentences_split_on_lines():
+    # Instagram captions separate their lines without sentence
+    # punctuation; the splitter must still see two sentences.
+    sents = cw.caption_sentences(VIJAY_CAPTION)
+    assert len(sents) == 2
+    assert sents[1].startswith("Sending you all lots of love")
+
+
+def test_reel_script_has_no_invented_fallback_text():
+    # Regression (first sample, held at fact-check): the builder
+    # must never fall back to prose it wrote itself — every
+    # string is the caption's own words or the credit template.
+    script = cw.build_reel_script(VIJAY_CELEB, VIJAY_POST)
+    blob = json.dumps(script)
+    assert "latest update" not in blob
+    assert script["hook_stat"]["sub"].startswith(
+        "Sending you all lots of love")
+    labels = [s["label"] for s in script["stats"]]
+    assert len(labels) == len(set(labels))     # no duplicate labels
+    assert {s["big"] for s in script["stats"]} == {"JAPAN", "DIWALI"}
+
+
+def test_pick_music_is_festive_and_never_banned():
+    pick = cw.pick_music(VIJAY_CAPTION)
+    assert pick is not None and "diwali" in pick.name.lower()
+    for caption in ("A quiet evening at home with family",
+                    "Breaking story about markets", ""):
+        pick = cw.pick_music(caption)
+        assert pick is not None
+        assert pick.name not in cw.BANNED_MUSIC
+        assert not pick.name.lower().startswith("breaking-")
+
+
+def test_celeb_tiktok_caption_shape():
+    text = cw.build_celeb_tiktok_caption(VIJAY_CELEB, VIJAY_POST)
+    assert "📸 @thedeverakonda" in text
+    assert VIJAY_URL in text
+    tags = [t for t in text.split() if t.startswith("#")]
+    assert 0 < len(tags) <= 4
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]
