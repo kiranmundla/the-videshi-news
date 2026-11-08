@@ -69,9 +69,14 @@ OUT_ROOT = HERE / ".state" / "celeb-cards"
 LEDGER_PATH = HERE / ".state" / "image-provenance.jsonl"
 SOURCE_TAG = "celeb-social-watch"
 
-BROWSER_UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-              "AppleWebKit/537.36 (KHTML, like Gecko) "
-              "Chrome/120.0 Safari/537.36")
+# Mobile UA is load-bearing: Instagram serves a logged-out checkpoint
+# shell (no media) to desktop UAs from this box, but the real embed —
+# caption + scontent media URLs — to an iPhone UA (verified 2026-11-08:
+# desktop UA -> 512 KB shell with zero media; iPhone UA -> 291 KB with
+# the carousel's media URLs).
+BROWSER_UA = ("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) "
+              "AppleWebKit/605.1.15 (KHTML, like Gecko) "
+              "Version/17.0 Mobile/15E148 Safari/604.1")
 
 MIN_LONG_SIDE = 800        # hard floor: frames below this are dropped
 TARGET_LONG_SIDE = 1080    # preferred minimum where the post offers it
@@ -179,7 +184,18 @@ _STEM_RE = re.compile(r"/([A-Za-z0-9._-]+?)_n\.jpg")
 
 
 def _url_size(url):
-    m = _SIZE_RE.search(url) or _SIZE_PATH_RE.search(url)
+    # Rendition sizes live in the stp parameter in several shapes:
+    # dst-jpg_e35_s640x640, dst-jpg_e35_p1080x1080 (portrait box),
+    # and crop-prefixed c0.512.3072.3072a_dst-jpg_e35_s1080x1080.
+    # Scan the whole stp value for [sp]<w>x<h> tokens and take the
+    # largest; fall back to a /s<w>x<h>/ path segment.
+    m = re.search(r"[?&]stp=([^&]+)", url)
+    if m:
+        sizes = re.findall(r"[sp](\d{3,4})x(\d{3,4})", m.group(1))
+        if sizes:
+            return max(((int(w), int(h)) for w, h in sizes),
+                       key=lambda s: s[0] * s[1])
+    m = _SIZE_PATH_RE.search(url)
     if m:
         return int(m.group(1)), int(m.group(2))
     return (0, 0)
@@ -192,11 +208,23 @@ def extract_scontent_photos(page_html):
     {"stem", "url", "width", "height"} — order = first appearance
     of the stem in the page (the carousel order)."""
     text = html_mod.unescape(page_html or "")
+    # The embed page embeds its media JSON with JSON escapes — the
+    # full-size variants only become matchable URLs after unescaping
+    # them too (verified 2026-11-08: without this, the picker saw
+    # only the small srcset renditions and every frame failed the
+    # resolution floor).
+    text = (text.replace("\\u0026", "&").replace("\\u002F", "/")
+            .replace("\\/", "/"))
     best = {}
     order = []
     for m in _SCONTENT_RE.finditer(text):
         url = m.group(0)
         if "scontent" not in url:
+            continue
+        # Post media lives under t51.82787-15; the author's profile
+        # picture (t51.82787-19) is also an scontent .jpg in the page
+        # and must never become a "frame".
+        if "t51.82787-15" not in url:
             continue
         sm = _STEM_RE.search(url)
         if not sm:
