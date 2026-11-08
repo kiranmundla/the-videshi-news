@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-07",
+  "generated_at": "2026-11-08",
   "current_month": 11,
   "current_year": 2026,
   "destination_count": 50,
@@ -15,6 +15,7 @@
     "vietnam",
     "thailand",
     "australia",
+    "karnataka",
     "kerala",
     "goa",
     "japan",
@@ -26,7 +27,6 @@
     "dubai",
     "jamaica",
     "puerto-vallarta",
-    "karnataka",
     "tamil-nadu",
     "morocco",
     "rajasthan",
@@ -65,6 +65,7 @@
       "egypt",
       "thailand",
       "goa",
+      "karnataka",
       "kerala",
       "abu-dhabi",
       "maldives",
@@ -73,7 +74,6 @@
       "mexico",
       "oman",
       "puerto-vallarta",
-      "karnataka",
       "tamil-nadu",
       "rajasthan",
       "cabo",
@@ -98,6 +98,7 @@
       "vietnam",
       "thailand",
       "goa",
+      "karnataka",
       "kerala",
       "abu-dhabi",
       "maldives",
@@ -106,7 +107,6 @@
       "mexico",
       "oman",
       "puerto-vallarta",
-      "karnataka",
       "tamil-nadu",
       "rajasthan",
       "cabo",
@@ -159,8 +159,8 @@
       "cancun",
       "singapore",
       "goa",
-      "hawaii",
       "karnataka",
+      "hawaii",
       "tamil-nadu",
       "france",
       "italy",
@@ -350,10 +350,10 @@
       "london",
       "south-africa",
       "egypt",
+      "karnataka",
       "kerala",
       "japan",
       "oman",
-      "karnataka",
       "morocco",
       "rajasthan",
       "cabo",
@@ -364,11 +364,11 @@
     "10": [
       "egypt",
       "australia",
+      "karnataka",
       "kerala",
       "japan",
       "hawaii",
       "oman",
-      "karnataka",
       "morocco",
       "himachal-pradesh",
       "rajasthan",
@@ -409,6 +409,7 @@
       "thailand",
       "australia",
       "goa",
+      "karnataka",
       "kerala",
       "abu-dhabi",
       "japan",
@@ -419,7 +420,6 @@
       "mexico",
       "oman",
       "puerto-vallarta",
-      "karnataka",
       "tamil-nadu",
       "morocco",
       "himachal-pradesh",
@@ -453,6 +453,7 @@
       "vietnam",
       "thailand",
       "goa",
+      "karnataka",
       "kerala",
       "abu-dhabi",
       "maldives",
@@ -462,7 +463,6 @@
       "mexico",
       "oman",
       "puerto-vallarta",
-      "karnataka",
       "tamil-nadu",
       "rajasthan",
       "cabo",
@@ -3277,7 +3277,7 @@
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
         "weeks": null,
-        "as_of": "2026-11-07",
+        "as_of": "2026-11-08",
         "cadence": "daily"
       },
       "fares_by_origin": {
@@ -3289,7 +3289,7 @@
           "date_range": "Jan 26 \u2192 Feb 15",
           "duration_days": 20,
           "weeks": null,
-          "as_of": "2026-11-07",
+          "as_of": "2026-11-08",
           "cadence": "daily"
         }
       },
@@ -3339,7 +3339,7 @@
       "trending": {
         "month": 11,
         "year": 2026,
-        "score": 63,
+        "score": 66,
         "max_score": 100,
         "components": [
           {
@@ -3356,9 +3356,9 @@
           },
           {
             "id": "fare_drop",
-            "points": 0,
+            "points": 3,
             "max": 20,
-            "reason": "Fare route tracked, no notable drop right now"
+            "reason": "Fares down 3.0% on SFO-BLR ($2433 \u2192 $2361) vs 2026-11-07"
           },
           {
             "id": "offpeak_value",
@@ -6072,7 +6072,7 @@
       "dest_metro": "Hyderabad",
       "date_range": "Jan 26 \u2192 Feb 15",
       "duration_days": 20,
-      "as_of": "2026-11-06",
+      "as_of": "2026-11-07",
       "cadence": "weekly",
       "indicative": true
     },
@@ -6084,20 +6084,19 @@
         "dest_metro": "Hyderabad",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-06",
+        "as_of": "2026-11-07",
         "cadence": "weekly",
         "indicative": true
       },
       "JFK": {
-        "price_min": 849,
-        "route": "JFK-HYD",
+        "price_min": 807,
+        "route": "JFK-BOM",
         "origin_metro": "New York",
-        "dest_metro": "Hyderabad",
-        "date_range": "Jan 26 \u2192 Feb 17",
-        "duration_days": 22,
-        "as_of": "2026-11-06",
-        "cadence": "weekly",
-        "indicative": true
+        "dest_metro": "Mumbai",
+        "date_range": "Jan 26 \u2192 Feb 15",
+        "duration_days": 20,
+        "as_of": "2026-11-08",
+        "cadence": "daily"
       },
       "ORD": {
         "price_min": 927,
@@ -6106,7 +6105,7 @@
         "dest_metro": "Hyderabad",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-06",
+        "as_of": "2026-11-07",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6117,7 +6116,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-06",
+        "as_of": "2026-11-07",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6128,7 +6127,7 @@
         "dest_metro": "Bengaluru",
         "date_range": "Jan 26 \u2192 Feb 17",
         "duration_days": 22,
-        "as_of": "2026-11-06",
+        "as_of": "2026-11-07",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6139,7 +6138,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-06",
+        "as_of": "2026-11-07",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6148,9 +6147,9 @@
         "route": "EWR-CCU",
         "origin_metro": "New York",
         "dest_metro": "Kolkata",
-        "date_range": "Jan 26 \u2192 Feb 15",
-        "duration_days": 20,
-        "as_of": "2026-11-06",
+        "date_range": "Jan 26 \u2192 Feb 17",
+        "duration_days": 22,
+        "as_of": "2026-11-07",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6161,7 +6160,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 3",
         "duration_days": 22,
-        "as_of": "2026-11-06",
+        "as_of": "2026-11-07",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6172,7 +6171,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Nov 11 \u2192 Dec 3",
         "duration_days": 22,
-        "as_of": "2026-11-06",
+        "as_of": "2026-11-07",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6183,7 +6182,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-06",
+        "as_of": "2026-11-07",
         "cadence": "weekly",
         "indicative": true
       }
@@ -6218,7 +6217,7 @@
           "id": "fare_drop",
           "points": 30,
           "max": 30,
-          "reason": "Fares down 35.5% on LAX-CCU ($1540 \u2192 $993) vs 2026-10-30"
+          "reason": "Fares down 20.3% on EWR-BLR ($1912 \u2192 $1524) vs 2026-10-31"
         }
       ]
     },
