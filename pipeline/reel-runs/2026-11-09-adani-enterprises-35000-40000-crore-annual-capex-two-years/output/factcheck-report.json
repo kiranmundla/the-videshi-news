@@ -1,0 +1,284 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "adani-enterprises-35000-40000-crore-annual-capex-two-years",
+  "verdict": "fail",
+  "held_claims": [
+    "payoff"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ADANI ENTERPRISES PLANS RS 35,000-40,000 CRORE CAPEX A YEAR",
+      "numbers": [
+        35000.0,
+        40000.0,
+        400000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Adani Enterprises plans Rs 35,000-40,000 crore capex annually.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Adani Enterprises plans capital expenditure of Rs 35,000 crore to Rs 40,000 crore a year over the next couple of years, after record first-half EBITDA of Rs 11,958 crore.",
+      "numbers": [
+        11958.0,
+        35000.0,
+        40000.0,
+        119580000000.0,
+        350000000000.0,
+        400000000000.0
+      ],
+      "entities": [
+        "Adani Enterprises"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the article's information on capex and EBITDA.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "Rs 11,958 crore",
+      "numbers": [
+        11958.0,
+        119580000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Rs 11,958 crore as the record first-half EBITDA.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Record first-half EBITDA, up 56% year on year",
+      "numbers": [
+        56.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states EBITDA increased by 56% year on year.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "62%",
+      "numbers": [
+        62.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article reports a 62% rise in consolidated income.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Rise in consolidated income, to Rs 71,569 crore",
+      "numbers": [
+        71569.0,
+        715690000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states consolidated income rose to Rs 71,569 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "1.2 GW",
+      "numbers": [
+        1.2
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions data-centre capacity contracted by AdaniConneX is 1.2 GW.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Data-centre capacity contracted by AdaniConneX",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms AdaniConneX's contracted data-centre capacity.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "20 MILLION",
+      "numbers": [
+        20.0,
+        20000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Navi Mumbai airport targets 20 million passengers by FY28.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Passengers a year targeted at Navi Mumbai airport by end of FY28",
+      "numbers": [
+        28.0
+      ],
+      "entities": [
+        "Navi Mumbai"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the target of 20 million passengers for Navi Mumbai airport.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Airports, data centres and the Mundra PVC complex do the heavy lifting",
+      "numbers": [],
+      "entities": [
+        "Mundra PVC"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states these sectors will drive the company's investments.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Its eight airports handle about 23% of India's passenger traffic",
+      "numbers": [
+        23.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the airports account for 23% of India's passenger traffic.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Next signals: PVC commissioning, data centres toward 500 MW, Navi Mumbai's ramp.",
+      "numbers": [
+        500.0
+      ],
+      "entities": [
+        "Navi Mumbai's"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Navi Mumbai's"
+        ]
+      },
+      "llm_reason": "The article lists these as upcoming signals for the company.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Adani Enterprises",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Manan Vakharia",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "AdaniConneX",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Navi Mumbai International Airport",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.00074,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

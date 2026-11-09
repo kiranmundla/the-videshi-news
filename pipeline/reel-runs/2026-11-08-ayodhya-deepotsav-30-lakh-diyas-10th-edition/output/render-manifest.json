@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "ayodhya-deepotsav-30-lakh-diyas-10th-edition",
+ "article_slug": "ayodhya-deepotsav-30-lakh-diyas-10th-edition",
+ "article_id": "84b682d7-ef5e-4c57-8256-163884ac1079",
+ "category": "News",
+ "video": "reel-runs/2026-11-08-ayodhya-deepotsav-30-lakh-diyas-10th-edition/output/ayodhya-deepotsav-30-lakh-diyas-10th-edition.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://newsplainly.com/wp-content/uploads/2026/11/ayodhya-deepotsav-diyas-lit-cover.webp",
+  "local_path": "reel-runs/2026-11-08-ayodhya-deepotsav-30-lakh-diyas-10th-edition/output/hero.webp",
+  "width": 1672,
+  "height": 941,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.164,0.571) damped=(0.332,0.535)",
+  "has_face": false,
+  "box_source": [
+   87,
+   297,
+   936,
+   376
+  ],
+  "box_bg": [
+   129,
+   303,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.333,
+   0.535
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 985,
+   "block_bottom": 1258,
+   "text_bbox": [
+    70,
+    985,
+    930,
+    1258
+   ],
+   "texts": [
+    "News",
+    "AYODHYA LIGHTS OVER 30 LAKH DIYAS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.499,
+    "photo_px": [
+     1672,
+     941
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.4988038277511962,
+     "window": [
+      0,
+      3,
+      1672,
+      941
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.04x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 910,
+   "block_bottom": 1333,
+   "text_bbox": [
+    70,
+    910,
+    930,
+    1333
+   ],
+   "texts": [
+    "What Happened",
+    "More than 30 lakh earthen lamps were lit across 56 ghats along the Saryu in Ayodhya on Saturday, November 7, for the 10th Deepotsav."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.567,
+    "photo_px": [
+     1672,
+     941
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.5669612508497621,
+     "window": [
+      0,
+      90,
+      1471,
+      915
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.04x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 418,
+   "block_top": 913,
+   "block_bottom": 1331,
+   "text_bbox": [
+    70,
+    913,
+    930,
+    1331
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "30 LAKH",
+    "Earthen lamps lit across 56 ghats along the Saryu in Ayodhya for the 10th Deepotsav"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.624,
+    "photo_px": [
+     1672,
+     941
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6237845923709798,
+     "window": [
+      0,
+      128,
+      1337,
+      878
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.04x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 728,
+   "block_bottom": 1516,
+   "text_bbox": [
+    70,
+    728,
+    930,
+    1516
+   ],
+   "texts": [
+    "By The Numbers",
+    "56",
+    "Ghats along the Saryu where lamps were lit",
+    "35,000",
+    "Volunteers who laid out and lit the lamps",
+    "2,100",
+    "Drones that recreated scenes from the Ramayana over the riverfront"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.624,
+    "photo_px": [
+     1672,
+     941
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6237845923709798,
+     "window": [
+      87,
+      128,
+      1424,
+      878
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.04x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 456,
+   "block_top": 894,
+   "block_bottom": 1350,
+   "text_bbox": [
+    70,
+    894,
+    930,
+    1350
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "The 10th Deepotsav was held on Saturday, November 7, on the eve of Diwali",
+    "Vice President C. P. Radhakrishnan was chief guest, alongside Governor Anandiben Patel and Chief Minister Yogi Adityanath"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.674,
+    "photo_px": [
+     1672,
+     941
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6742118027485853,
+     "window": [
+      0,
+      247,
+      1237,
+      941
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.04x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "The official Guinness tally is still awaited against the 2025 record of 26.17 lakh lamps.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/indian-classical-diwali-festival.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 102.7,
+ "mp4_bytes": 14526398
+}

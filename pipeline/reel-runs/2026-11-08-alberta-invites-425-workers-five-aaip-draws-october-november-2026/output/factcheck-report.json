@@ -1,0 +1,287 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "alberta-invites-425-workers-five-aaip-draws-october-november-2026",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ALBERTA INVITES 425 WORKERS IN FIVE DRAWS",
+      "numbers": [
+        425.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Alberta invited 425 workers in five draws.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Alberta issued 425 invitations to apply for provincial nomination across five Alberta Advantage Immigration Program draws between October 23 and November 2, led by the Rural Renewal Stream with 210 invitations.",
+      "numbers": [
+        2.0,
+        23.0,
+        210.0,
+        425.0
+      ],
+      "entities": [
+        "Alberta Advantage Immigration Program",
+        "Rural Renewal Stream"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about invitations and draws are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "425",
+      "numbers": [
+        425.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms 425 invitations were issued.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Invitations across five Alberta Advantage Immigration Program draws between October 23 and November 2",
+      "numbers": [
+        2.0,
+        23.0
+      ],
+      "entities": [
+        "Alberta Advantage Immigration Program"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the dates and number of draws.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "210",
+      "numbers": [
+        210.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 210 invitations were issued via the Rural Renewal Stream.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Invitations via the Rural Renewal Stream",
+      "numbers": [],
+      "entities": [
+        "Rural Renewal Stream"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the number of invitations from this stream.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "132",
+      "numbers": [
+        132.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 132 invitations were issued via the Alberta Opportunity Stream.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Invitations via the Alberta Opportunity Stream",
+      "numbers": [],
+      "entities": [
+        "Alberta Opportunity Stream"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the number of invitations from this stream.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "495",
+      "numbers": [
+        495.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states there are 495 nomination spaces remaining.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Of 6,603 nomination spaces left for 2026",
+      "numbers": [
+        2026.0,
+        6603.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article confirms the total number of nomination spaces.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Express Entry nominees receive 600 additional CRS points",
+      "numbers": [
+        600.0
+      ],
+      "entities": [
+        "Express Entry"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Express Entry nominees get 600 extra CRS points.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Indian professionals already working in Alberta are a large share of the Opportunity Stream pool",
+      "numbers": [],
+      "entities": [
+        "Opportunity Stream"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Indian professionals in the Opportunity Stream.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Only 495 of Alberta's 6,603 nomination spaces for 2026 remain, with 32,211 candidates still active in the pool.",
+      "numbers": [
+        495.0,
+        2026.0,
+        6603.0,
+        32211.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article confirms both the remaining spaces and active candidates.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Alberta Advantage Immigration Program",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Alberta",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Rural Renewal Stream",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Express Entry",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000663,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

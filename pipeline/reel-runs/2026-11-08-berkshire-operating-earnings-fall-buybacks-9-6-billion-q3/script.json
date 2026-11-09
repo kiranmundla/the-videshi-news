@@ -1,0 +1,36 @@
+{
+ "hook_line": "EARNINGS FALL, BUYBACKS HIT $9.6 BILLION",
+ "hook_stat": {
+  "big": "$9.6 BILLION",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Berkshire Hathaway stock buybacks in the third quarter — more than double the $4.5 billion in the second quarter"
+ },
+ "stats": [
+  {
+   "big": "5.8%",
+   "label": "Fall in third-quarter operating earnings, to $12.705 billion"
+  },
+  {
+   "big": "43%",
+   "label": "Drop in insurance underwriting profit, to $1.352 billion"
+  },
+  {
+   "big": "$352 BILLION",
+   "label": "Cash and equivalents including Treasury bills at the end of September"
+  }
+ ],
+ "diaspora_bullets": [
+  "Berkshire shares rose more than 5% this week while the S&P 500 fell almost 2.7%",
+  "It was Greg Abel's third quarter as chief executive after taking over from Warren Buffett in January"
+ ],
+ "key_entities": [
+  "Berkshire Hathaway",
+  "Greg Abel",
+  "Warren Buffett",
+  "Geico"
+ ],
+ "news_summary": "Berkshire Hathaway's third-quarter operating earnings fell 5.8% to $12.705 billion as insurance underwriting profit fell 43%, while the company bought back about $9.6 billion of its own stock.",
+ "payoff": "Buybacks may not keep this pace — Berkshire is price-sensitive, and October buying already slowed as the share price rose.",
+ "versus": "",
+ "story_mood": "practical"
+}

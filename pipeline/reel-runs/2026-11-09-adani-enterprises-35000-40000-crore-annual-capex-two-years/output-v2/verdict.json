@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "adani-enterprises-35000-40000-crore-annual-capex-two-years",
+  "name": "adani-enterprises-35000-40000-crore-annual-capex-two-years",
+  "script": "reel-runs/2026-11-09-adani-enterprises-35000-40000-crore-annual-capex-two-years/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000743
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-09-adani-enterprises-35000-40000-crore-annual-capex-two-years/output-v2/supplementary/provenance.json",
+    "own_images": 3,
+    "extras": {
+      "grid": "navi-mumbai-airport",
+      "payoff": "navi-mumbai-airport-96252"
+    }
+  },
+  "manifest": "reel-runs/2026-11-09-adani-enterprises-35000-40000-crore-annual-capex-two-years/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-11-09-adani-enterprises-35000-40000-crore-annual-capex-two-years/output-v2/adani-enterprises-35000-40000-crore-annual-capex-two-years.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:payoff"
+    ]
+  }
+}

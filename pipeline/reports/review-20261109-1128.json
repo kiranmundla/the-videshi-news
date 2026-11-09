@@ -1,0 +1,23 @@
+[
+  {
+    "id": "6d3bd7c8-66f3-4be5-b086-07a857619706",
+    "headline": "Pakistan Faces Sri Lanka in Crucial ODI at Rawalpindi",
+    "slug": "happening-2026-11-09-pakistan-cricket-vs-sri-lanka-cricket",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 3,
+      "suggestions": [
+        "The article lacks a strong diaspora/NRI angle. To improve this, include insights on how the match might impact the Pakistani and Sri Lankan communities abroad, such as viewing parties, local events, or how fans can engage with their teams from overseas.",
+        "There is no key takeaway that answers 'what does this mean for ME?' For NRIs, include information on how to watch the match live, including specific streaming services available in different countries, any associated costs, and time zone conversions.",
+        "The headline could be more compelling and specific. Consider revising it to something like 'Pakistan vs. Sri Lanka: Key ODI Match for NRI Fans to Watch Live from Abroad'. This directly addresses the diaspora audience.",
+        "The article could benefit from additional context about the significance of this match in the broader ODI series and its implications for the ICC rankings, which would be of interest to cricket fans in the diaspora."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ICC or a cricket news outlet that highlights the significance of this match or provides live updates, which would engage readers and provide real-time information."
+      ]
+    }
+  }
+]

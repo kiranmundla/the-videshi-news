@@ -1,0 +1,16 @@
+{
+  "kind": "carousel",
+  "article_slug": "alberta-invites-425-workers-five-aaip-draws-october-november-2026",
+  "status": "held",
+  "stage": "render_fit",
+  "factcheck": {
+    "verdict": "pass",
+    "quote_present": false,
+    "verbatim_quote": null,
+    "speaker_grounded": null,
+    "role_grounded": null,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000489
+  },
+  "detail": "inter cannot fit \"The Alberta Advantage Immigration Program issued 425 invitations across five draws between October 23 and November 2, led by the Rural Renewal Stream \u2014 but only 495 of the province's 6,603 nomination spaces for 2026 remain.\""
+}

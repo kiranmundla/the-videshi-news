@@ -1,0 +1,99 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "shourya-ambure-bronze-dakar-youth-olympics-first-track-medal",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Shourya Ambure",
+    "Dakar 2026 Youth Olympic Games",
+    "Anna Peeters",
+    "Zhang Keyi",
+    "Dakar Youth Olympics",
+    "Youth Olympic Games"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Dakar 2026 Youth Olympic Games' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Dakar Youth Olympics' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Izamiento bandera olimpica Pza. Republica.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q186196)",
+      "verdict": "rejected",
+      "reason": "resolution: 700x467 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:2018-10-08 Gymnastics at 2018 Summer Youth Olympics \u2013 Boys' Artistic Gymnastics \u2013 Rings qualification (Martin Rulsch) 0224.jpg",
+      "route": "identity \u2014 depicts (P180=Q186196)",
+      "verdict": "USED (news)",
+      "reason": "3415x3195, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2018-10-08 Gymnastics at 2018 Summer Youth Olympics \u2013 Boys' Artistic Gymnastics \u2013 Rings qualification (Martin Rulsch) 1141.jpg",
+      "route": "identity \u2014 depicts (P180=Q186196)",
+      "verdict": "USED (payoff)",
+      "reason": "3069x3330, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "2018-10-08-gymnastics-at-2018-summer-youth-o",
+      "path": "2018-10-08-gymnastics-at-2018-summer-youth-o.jpg",
+      "size": [
+        3415,
+        3195
+      ],
+      "role": "establishing",
+      "subject": "Rings qualification of the boys' artistic gymnastics at the 2018 Summer Youth Olympics in Buenos Aires on 8 October 2018. Depicted: Byun Seong-won.",
+      "route": "identity \u2014 depicts (P180=Q186196)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2018-10-08_Gymnastics_at_2018_Summer_Youth_Olympics_%E2%80%93_Boys%27_Artistic_Gymnastics_%E2%80%93_Rings_qualification_(Martin_Rulsch)_0224.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/2018-10-08_Gymnastics_at_2018_Summer_Youth_Olympics_%E2%80%93_Boys%27_Artistic_Gymnastics_%E2%80%93_Rings_qualification_%28Martin_Rulsch%29_0224.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Martin Rulsch , Wikimedia Commons",
+      "entity": "Youth Olympic Games",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Youth Olympic",
+        "Youth Olympic Games",
+        "YOG",
+        "Youth Olympics"
+      ]
+    },
+    {
+      "beat": "payoff",
+      "label": "2018-10-08-gymnastics-at-2018-summer-youth-o-2",
+      "path": "2018-10-08-gymnastics-at-2018-summer-youth-o-2.jpg",
+      "size": [
+        3069,
+        3330
+      ],
+      "role": "establishing",
+      "subject": "Rings qualification of the boys' artistic gymnastics at the 2018 Summer Youth Olympics in Buenos Aires on 8 October 2018. Depicted: Nguy\u1ec5n V\u0103n Kh\u00e1nh Phong.",
+      "route": "identity \u2014 depicts (P180=Q186196)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2018-10-08_Gymnastics_at_2018_Summer_Youth_Olympics_%E2%80%93_Boys%27_Artistic_Gymnastics_%E2%80%93_Rings_qualification_(Martin_Rulsch)_1141.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/03/2018-10-08_Gymnastics_at_2018_Summer_Youth_Olympics_%E2%80%93_Boys%27_Artistic_Gymnastics_%E2%80%93_Rings_qualification_%28Martin_Rulsch%29_1141.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Martin Rulsch , Wikimedia Commons",
+      "entity": "Youth Olympic Games",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Youth Olympic",
+        "Youth Olympic Games",
+        "YOG",
+        "Youth Olympics"
+      ]
+    }
+  ]
+}

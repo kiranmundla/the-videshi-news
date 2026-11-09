@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "/home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-08-celeb-thedeverakonda-17997368079023648/output/celeb-thedeverakonda-17997368079023648.mp4",
+  "qa_passed": false,
+  "qa_score": 8.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "face_overlap:payoff"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1080,
+        1440
+      ],
+      "manifest_dims": [
+        1080,
+        1440
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 1342.8,
+      "url": "https://www.instagram.com/p/Dfe2WJqn9ak/"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "/home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-08-celeb-thedeverakonda-17997368079023648/output/qa/frames/frame-hook.png",
+      "text_px_detected": 27226,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.87)",
+        "box": [
+          427,
+          670,
+          117,
+          145
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 25.8,
+        "delta": 228.1
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "/home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-08-celeb-thedeverakonda-17997368079023648/output/qa/frames/frame-news.png",
+      "text_px_detected": 35426,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.88)",
+        "box": [
+          295,
+          577,
+          123,
+          177
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 25.8,
+        "delta": 227.7
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "/home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-08-celeb-thedeverakonda-17997368079023648/output/qa/frames/frame-hero.png",
+      "text_px_detected": 30736,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.88)",
+        "box": [
+          311,
+          566,
+          142,
+          198
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 170.6,
+        "bg_luminance": 25.8,
+        "delta": 144.7
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "/home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-08-celeb-thedeverakonda-17997368079023648/output/qa/frames/frame-grid.png",
+      "text_px_detected": 23050,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.89)",
+        "box": [
+          116,
+          559,
+          143,
+          205
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 171.0,
+        "bg_luminance": 25.8,
+        "delta": 145.2
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "/home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-08-celeb-thedeverakonda-17997368079023648/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 26660,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          317,
+          406,
+          159,
+          230
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 25.8,
+        "delta": 228.1
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "/home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-08-celeb-thedeverakonda-17997368079023648/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 15217,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": false,
+        "method": "manifest-mapped",
+        "box": [
+          257,
+          629,
+          114,
+          151
+        ],
+        "overlap_px": 158
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.1,
+        "bg_luminance": 25.8,
+        "delta": 227.2
+      }
+    }
+  ]
+}

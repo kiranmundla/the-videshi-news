@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "adani-enterprises-35000-40000-crore-annual-capex-two-years",
+  "name": "adani-enterprises-35000-40000-crore-annual-capex-two-years",
+  "script": "reel-runs/2026-11-09-adani-enterprises-35000-40000-crore-annual-capex-two-years/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "payoff"
+    ],
+    "llm_cost_usd": 0.00074
+  }
+}

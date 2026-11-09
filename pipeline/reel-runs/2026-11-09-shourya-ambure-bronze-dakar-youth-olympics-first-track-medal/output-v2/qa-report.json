@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-09-shourya-ambure-bronze-dakar-youth-olympics-first-track-medal/output-v2/shourya-ambure-bronze-dakar-youth-olympics-first-track-medal.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:payoff"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1280,
+        720
+      ],
+      "manifest_dims": [
+        1280,
+        720
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 1458.8,
+      "url": "https://img.youtube.com/vi/5iAk8lPFkaI/maxresdefault.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-09-shourya-ambure-bronze-dakar-youth-olympics-first-track-medal/output-v2/qa/frames/frame-hook.png",
+      "text_px_detected": 27685,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.89)",
+        "box": [
+          469,
+          339,
+          34,
+          44
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-09-shourya-ambure-bronze-dakar-youth-olympics-first-track-medal/output-v2/qa/frames/frame-news.png",
+      "text_px_detected": 33694,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          468,
+          337,
+          35,
+          45
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 72.6,
+        "delta": 181.0
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-09-shourya-ambure-bronze-dakar-youth-olympics-first-track-medal/output-v2/qa/frames/frame-hero.png",
+      "text_px_detected": 25316,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          479,
+          359,
+          41,
+          53
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 251.9,
+        "bg_luminance": 0.0,
+        "delta": 251.9
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-09-shourya-ambure-bronze-dakar-youth-olympics-first-track-medal/output-v2/qa/frames/frame-grid.png",
+      "text_px_detected": 60164,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.89)",
+        "box": [
+          568,
+          356,
+          42,
+          55
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-09-shourya-ambure-bronze-dakar-youth-olympics-first-track-medal/output-v2/qa/frames/frame-diaspora.png",
+      "text_px_detected": 34299,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.91)",
+        "box": [
+          345,
+          351,
+          45,
+          59
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-09-shourya-ambure-bronze-dakar-youth-olympics-first-track-medal/output-v2/qa/frames/frame-payoff.png",
+      "text_px_detected": 20534,
+      "edge": {
+        "pass": false,
+        "offending_px": 176,
+        "clusters": 1,
+        "largest_cluster": 112
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          464,
+          325,
+          37,
+          47
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.5,
+        "bg_luminance": 89.8,
+        "delta": 163.7
+      }
+    }
+  ]
+}

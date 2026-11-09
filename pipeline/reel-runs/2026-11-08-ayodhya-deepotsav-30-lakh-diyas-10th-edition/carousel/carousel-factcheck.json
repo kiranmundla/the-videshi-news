@@ -1,0 +1,164 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "ayodhya-deepotsav-30-lakh-diyas-10th-edition",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Ayodhya's 10th Deepotsav Lights Over 30 Lakh Diyas Across 56 Saryu Ghats",
+        "numbers": [
+          10.0,
+          30.0,
+          56.0,
+          3000000.0
+        ],
+        "entities": [
+          "Deepotsav Lights Over",
+          "Lakh Diyas Across",
+          "Saryu Ghats"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states over 30 lakh lamps were lit across 56 ghats.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Reports from the night put the count above 30 lakh lamps \u2014 with the official Guinness tally still awaited against 2025's 26.17 lakh record.",
+        "numbers": [
+          26.17,
+          30.0,
+          2025.0,
+          2617000.0,
+          3000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2025
+          ]
+        },
+        "llm_reason": "The article mentions reports of over 30 lakh lamps and the 2025 record.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "More than 30 lakh earthen lamps were lit across 56 ghats along the Saryu in Ayodhya on Saturday, November 7, for the 10th Deepotsav",
+        "numbers": [
+          7.0,
+          10.0,
+          30.0,
+          56.0,
+          3000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms more than 30 lakh lamps were lit on November 7.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "More than 35,000 volunteers lit the lamps, and a 2,100-drone show recreated scenes from the Ramayana over the riverfront",
+        "numbers": [
+          2100.0,
+          35000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states over 35,000 volunteers participated and mentions the drone show.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "No Guinness World Records adjudicator's count appeared in the reports read on the night, so the official total is not yet certified; the 2025 record stood at 26.17 lakh lamps",
+        "numbers": [
+          26.17,
+          2025.0,
+          2617000.0
+        ],
+        "entities": [
+          "No Guinness World Records"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2025
+          ]
+        },
+        "llm_reason": "The article confirms no official count was reported and states the 2025 record.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Ayodhya's 10th Deepotsav Lights Over 30 Lakh Diyas Across 56 Saryu Ghats",
+        "numbers": [
+          10.0,
+          30.0,
+          56.0,
+          3000000.0
+        ],
+        "entities": [
+          "Deepotsav Lights Over",
+          "Lakh Diyas Across",
+          "Saryu Ghats"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states over 30 lakh lamps were lit across 56 ghats.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000493,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

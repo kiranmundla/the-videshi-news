@@ -1,0 +1,158 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "delhi-post-diwali-smog-aqi-368-severe-15-areas",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Delhi",
+    "Diwali",
+    "Central Pollution Control Board",
+    "Akshardham",
+    "AQI Hits",
+    "Burari Crossing and Sonia Vihar"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Akshardham' named 'Akshardham metro station', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'AQI Hits' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Burari Crossing and Sonia Vihar' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Red Fort in Delhi 03-2016 img3.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1353)",
+      "verdict": "rejected",
+      "reason": "license: FAL \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:1989delhi.png",
+      "route": "identity \u2014 depicts (P180=Q1353)",
+      "verdict": "rejected",
+      "reason": "resolution: 945x1300 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:20191203 Muhammad Wali Masjid, Delhi 0915 6500 DxO.jpg",
+      "route": "identity \u2014 depicts (P180=Q1353)",
+      "verdict": "USED (grid)",
+      "reason": "3597x4235, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:A pillared Mandapa in Red Fort.jpg",
+      "route": "identity \u2014 depicts (P180=Q1353)",
+      "verdict": "accepted",
+      "reason": "3264x2448, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Crackers at Diwali in Guntur.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q10244)",
+      "verdict": "USED (news)",
+      "reason": "4640x3480, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:DIWALI INDIA 2019 01.jpg",
+      "route": "identity \u2014 depicts (P180=Q10244)",
+      "verdict": "USED (hero)",
+      "reason": "1440x1800, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "crackers-at-diwali-in-guntur",
+      "path": "crackers-at-diwali-in-guntur.jpg",
+      "size": [
+        4640,
+        3480
+      ],
+      "role": "establishing",
+      "subject": "The image shows crackers at Diwali times.",
+      "route": "identity \u2014 Wikidata P18 (Q10244)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Crackers_at_Diwali_in_Guntur.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Crackers_at_Diwali_in_Guntur.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Kalli navya",
+      "entity": "Diwali",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Dipawali",
+        "Dipavali",
+        "Festival of lights",
+        "Deepawali",
+        "Hindu Festival of Lights",
+        "Gadarafubhi",
+        "Deepavali",
+        "Dehardi",
+        "Divali",
+        "Tudar Parbo",
+        "Dewali"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "diwali-india-2019-01",
+      "path": "diwali-india-2019-01.jpg",
+      "size": [
+        1440,
+        1800
+      ],
+      "role": "establishing",
+      "subject": "This photo has been taken in the country: India",
+      "route": "identity \u2014 depicts (P180=Q10244)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:DIWALI_INDIA_2019_01.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/DIWALI_INDIA_2019_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "SACHI AGRAWAL",
+      "entity": "Diwali",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Dipawali",
+        "Dipavali",
+        "Festival of lights",
+        "Deepawali",
+        "Hindu Festival of Lights",
+        "Gadarafubhi",
+        "Deepavali",
+        "Dehardi",
+        "Divali",
+        "Tudar Parbo",
+        "Dewali"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "20191203-muhammad-wali-masjid-delhi-0915-650",
+      "path": "20191203-muhammad-wali-masjid-delhi-0915-650.jpg",
+      "size": [
+        3597,
+        4235
+      ],
+      "role": "establishing",
+      "subject": "Muhammad Wali Masjid in Delhi",
+      "route": "identity \u2014 depicts (P180=Q1353)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:20191203_Muhammad_Wali_Masjid,_Delhi_0915_6500_DxO.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/86/20191203_Muhammad_Wali_Masjid%2C_Delhi_0915_6500_DxO.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Jakub Ha\u0142un",
+      "entity": "Delhi",
+      "entity_type": "place",
+      "entity_aliases": [
+        "Delhi"
+      ]
+    }
+  ]
+}

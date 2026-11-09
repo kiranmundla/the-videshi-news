@@ -1,0 +1,56 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ayodhya-deepotsav-30-lakh-diyas-10th-edition",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Ayodhya",
+    "Deepotsav",
+    "Saryu",
+    "Yogi Adityanath",
+    "PTI and the New Indian",
+    "Hindu's"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Ayodhya' named 'Krishna', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Deepotsav' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Saryu' named 'Saryu-class patrol vessel', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'PTI and the New Indian' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of \"Hindu's\" named 'sutra', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Yogi Adithyanath in Uttar Pradesh 2023.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q4683097)",
+      "verdict": "rejected",
+      "reason": "resolution: 450x688 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": []
+}

@@ -1,0 +1,270 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "delhi-post-diwali-smog-aqi-368-severe-15-areas",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "DELHI WAKES TO POST-DIWALI SMOG",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states Delhi woke to smog after Diwali.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Delhi's overall AQI was 368 at 7 a.m. on Monday, a day after Diwali, with all 54 monitoring stations above 200 and 15 areas in the severe band above 400.",
+      "numbers": [
+        7.0,
+        15.0,
+        54.0,
+        200.0,
+        368.0,
+        400.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All facts about AQI and monitoring stations are in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "368",
+      "numbers": [
+        368.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "AQI of 368 is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Delhi's overall AQI at 7 a.m. on Monday, a day after Diwali, in the 'very poor' category",
+      "numbers": [
+        7.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "AQI and category are confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "15",
+      "numbers": [
+        15.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "15 areas in the severe band is stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Areas in the severe band above 400, out of 54 monitoring stations",
+      "numbers": [
+        54.0,
+        400.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms 15 areas above 400 out of 54 stations.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "441",
+      "numbers": [
+        441.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "441 is the recorded AQI at Burari Crossing and Sonia Vihar.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Highest readings at 7 a.m., at Burari Crossing and Sonia Vihar",
+      "numbers": [
+        7.0
+      ],
+      "entities": [
+        "Burari Crossing",
+        "Sonia Vihar"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states these locations had the highest readings.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "760.99",
+      "numbers": [
+        760.99
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "760.99 is the PM2.5 peak mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "PM2.5 peak near Akshardham late on Sunday, over 50 times the WHO daily limit",
+      "numbers": [
+        2.5,
+        50.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms PM2.5 peak and WHO limit comparison.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Stage III GRAP curbs remain in force across Delhi-NCR",
+      "numbers": [],
+      "entities": [
+        "Stage III GRAP"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Stage III GRAP curbs are mentioned as in force.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Severe air is forecast for the next few days \u2014 limit outdoor exertion",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Forecast for severe air and advice to limit exertion is in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Severe air is forecast for the next few days, with Stage III GRAP curbs in force.",
+      "numbers": [],
+      "entities": [
+        "Stage III GRAP"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Both severe air forecast and GRAP curbs are confirmed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Delhi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Diwali",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Central Pollution Control Board",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Akshardham",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000707,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

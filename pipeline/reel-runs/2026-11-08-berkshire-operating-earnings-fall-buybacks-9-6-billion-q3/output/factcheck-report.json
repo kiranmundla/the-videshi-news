@@ -1,0 +1,278 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "berkshire-operating-earnings-fall-buybacks-9-6-billion-q3",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "EARNINGS FALL, BUYBACKS HIT $9.6 BILLION",
+      "numbers": [
+        9.6,
+        9600000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Earnings fell and buybacks were reported at $9.6 billion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Berkshire Hathaway's third-quarter operating earnings fell 5.8% to $12.705 billion as insurance underwriting profit fell 43%, while the company bought back about $9.6 billion of its own stock.",
+      "numbers": [
+        5.8,
+        9.6,
+        12.705,
+        43.0,
+        9600000000.0,
+        12705000000.0
+      ],
+      "entities": [
+        "Berkshire Hathaway's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All facts about earnings, buybacks, and underwriting profit are present.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$9.6 BILLION",
+      "numbers": [
+        9.6,
+        9600000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$9.6 billion is the reported buyback amount.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Berkshire Hathaway stock buybacks in the third quarter \u2014 more than double the $4.5 billion in the second quarter",
+      "numbers": [
+        4.5,
+        4500000000.0
+      ],
+      "entities": [
+        "Berkshire Hathaway"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Buybacks were reported as more than double the previous quarter.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "5.8%",
+      "numbers": [
+        5.8
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "5.8% is the reported fall in operating earnings.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Fall in third-quarter operating earnings, to $12.705 billion",
+      "numbers": [
+        12.705,
+        12705000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The fall in operating earnings to $12.705 billion is stated.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "43%",
+      "numbers": [
+        43.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "43% is the reported drop in insurance underwriting profit.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Drop in insurance underwriting profit, to $1.352 billion",
+      "numbers": [
+        1.352,
+        1352000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The drop in underwriting profit to $1.352 billion is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$352 BILLION",
+      "numbers": [
+        352.0,
+        352000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$352 billion is the reported cash and equivalents amount.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Cash and equivalents including Treasury bills at the end of September",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The cash and equivalents amount is reported for September.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Berkshire shares rose more than 5% this week while the S&P 500 fell almost 2.7%",
+      "numbers": [
+        2.7,
+        5.0,
+        500.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The share rise and S&P 500 fall are both reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "It was Greg Abel's third quarter as chief executive after taking over from Warren Buffett in January",
+      "numbers": [],
+      "entities": [
+        "Greg Abel's",
+        "Warren Buffett"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Greg Abel's tenure and succession from Buffett are confirmed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Buybacks may not keep this pace \u2014 Berkshire is price-sensitive, and October buying already slowed as the share price rose.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim about buyback pace and price sensitivity is supported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Berkshire Hathaway",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Greg Abel",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Warren Buffett",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Geico",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000784,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

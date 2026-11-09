@@ -1,0 +1,203 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "celeb-thedeverakonda-17997368079023648",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "When you find a way to do GOMA (Homam) in Japan on Happy DIWALI",
+      "numbers": [],
+      "entities": [
+        "Happy DIWALI"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions doing GOMA Homam in Japan on Diwali.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "When you find a way to do GOMA (Homam) in Japan on Happy DIWALI Sending you all lots of love, biggest hugs and Diwali wishes to you and all your family from the Deverakonda family",
+      "numbers": [],
+      "entities": [
+        "Happy DIWALI Sending"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article includes this exact sentiment from the Deverakonda family.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "GOMA (HOMAM)",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions GOMA Homam.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Sending you all lots of love, biggest hugs and Diwali wishes to you and all your family from the Deverakonda family",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is directly quoted from the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE BIG PICTURE",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "DIWALI",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Diwali is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "in Japan on Happy DIWALI",
+      "numbers": [],
+      "entities": [
+        "Happy DIWALI"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this location and occasion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "JAPAN",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Japan is mentioned in the context of GOMA Homam.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "do GOMA (Homam) in Japan on Happy DIWALI",
+      "numbers": [],
+      "entities": [
+        "Happy DIWALI"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is directly supported by the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Sending you all lots of love, biggest hugs and Diwali wishes to you and all your family from the Deverakonda family",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is a direct quote from the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Photos from @thedeverakonda's Instagram post: https://www.instagram.com/p/Dfe2WJqn9ak/",
+      "numbers": [
+        2.0,
+        9.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article cites this Instagram post as the source.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE BIG PICTURE",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Vijay Deverakonda",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Homam",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Diwali",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000462,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

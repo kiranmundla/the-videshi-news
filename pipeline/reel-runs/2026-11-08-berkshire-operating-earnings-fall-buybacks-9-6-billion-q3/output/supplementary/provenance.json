@@ -1,0 +1,133 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "berkshire-operating-earnings-fall-buybacks-9-6-billion-q3",
+  "trigger": {
+    "own_images": 3,
+    "target_distinct": 5,
+    "extras_needed": 2
+  },
+  "entities": [
+    "Berkshire Hathaway",
+    "Greg Abel",
+    "Warren Buffett",
+    "Geico",
+    "University of Kansas School",
+    "Associated Press"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'University of Kansas School' named 'University of Kansas School of Medicine', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "outlet: 'Associated Press' is a news outlet \u2014 outlets are sources, never picture subjects; never queried"
+    },
+    {
+      "candidate": "File:OmahaKiewitPlaza.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q217583)",
+      "verdict": "accepted",
+      "reason": "1817x2627, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:10 Largest Corporations by Market Capitalization.png",
+      "route": "identity \u2014 depicts (P180=Q217583)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Berkshire Hathaway's Dual Class Structure as of 2022.png",
+      "route": "identity \u2014 depicts (P180=Q217583)",
+      "verdict": "rejected",
+      "reason": "resolution: 966x464 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Berkshire Hathaway Annual Meeting 2025.jpg",
+      "route": "identity \u2014 depicts (P180=Q217583)",
+      "verdict": "USED (hero)",
+      "reason": "4000x2252, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Greg Abel.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q47168572)",
+      "verdict": "rejected",
+      "reason": "resolution: 558x658 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Allstar (38712752750).jpg",
+      "route": "identity \u2014 depicts (P180=Q47168572)",
+      "verdict": "rejected",
+      "reason": "identity: depicts (P180) file for a person whose own title/description/categories never name 'Greg Abel' (or a known alias) \u2014 a depicts statement alone is not identity (polluted Commons structured data: the Mount Charleston trail file 'depicts' Mukesh Ambani); fail closed"
+    },
+    {
+      "candidate": "File:Warren Buffett KU Visit.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q47213)",
+      "verdict": "USED (diaspora)",
+      "reason": "1395x1700, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:180830124413-02-warren-buffett.jpg",
+      "route": "identity \u2014 depicts (P180=Q47213)",
+      "verdict": "rejected",
+      "reason": "resolution: 888x1114 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:AugustWarren.png",
+      "route": "identity \u2014 depicts (P180=Q47213)",
+      "verdict": "accepted",
+      "reason": "1305x912, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "hero",
+      "label": "berkshire-hathaway-annual-meeting-2025",
+      "path": "berkshire-hathaway-annual-meeting-2025.jpg",
+      "size": [
+        4000,
+        2252
+      ],
+      "role": "establishing",
+      "subject": "Berkshire Hathaway Annual Meeting 2025",
+      "route": "identity \u2014 depicts (P180=Q217583)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Berkshire_Hathaway_Annual_Meeting_2025.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Berkshire_Hathaway_Annual_Meeting_2025.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Good-investing",
+      "entity": "Berkshire Hathaway",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Berkshire Hathaway",
+        "Berkshire Hathaway Inc.",
+        "Valley Falls Company",
+        "Berkshire Hathaway Incorperation"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "warren-buffett-ku-visit",
+      "path": "warren-buffett-ku-visit.jpg",
+      "size": [
+        1395,
+        1700
+      ],
+      "role": "people",
+      "subject": "Warren Buffett speaking to a group of students from the University of Kansas School of Business",
+      "route": "identity \u2014 Wikidata P18 (Q47213)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Warren_Buffett_KU_Visit.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Warren_Buffett_KU_Visit.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Mark Hirschey",
+      "entity": "Warren Buffett",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Warren Buffett",
+        "Warren Edward Buffett"
+      ]
+    }
+  ]
+}

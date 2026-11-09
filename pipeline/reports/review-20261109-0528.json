@@ -1,0 +1,137 @@
+[
+  {
+    "id": "7ed10963-9968-4215-ab10-87c1fd876b4d",
+    "headline": "Gold Rebounds Above $4,100 Despite Strong US Payrolls, Ahead of Inflation Test",
+    "slug": "gold-rebounds-above-4100-strong-us-payrolls-cpi-test",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the upcoming US CPI report by providing specific expectations for the inflation rate and how it directly impacts gold prices and Federal Reserve decisions. For example, include what a 'hot print' means in terms of percentage increase or decrease.",
+        "Ensure that all statistics and figures are attributed correctly to their sources, particularly the Bureau of Labor Statistics, to enhance credibility. For instance, explicitly state 'according to the Bureau of Labor Statistics' when mentioning the jobs report numbers.",
+        "Add a brief explanation of how gold prices typically react to changes in employment data and Federal Reserve rate hikes, providing context for readers unfamiliar with market dynamics."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Bureau of Labor Statistics announcing the Nonfarm Payrolls data for direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "705841e8-3f88-46e6-8308-5436b3c7653f",
+    "headline": "Tickner and Ferguson Ruled Out as New Zealand Reshuffle Again for India ODIs",
+    "slug": "new-zealand-tickner-ferguson-out-india-odis-clarke-cover",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for Matt Henry's return by specifying the date of the fourth ODI, which is crucial for understanding the team's strategy moving forward.",
+        "Include a direct quote from New Zealand Cricket or a team official regarding the injuries to provide authoritative attribution and enhance credibility.",
+        "Provide context on how these injuries may affect New Zealand's chances in the series, including statistics or historical performance against India in similar situations."
+      ],
+      "embed_opportunities": [
+        "Embed the official New Zealand Cricket tweet announcing the squad changes for real-time updates and credibility."
+      ]
+    }
+  },
+  {
+    "id": "13859c8f-0ea1-4bac-8e2b-8993707dec1b",
+    "headline": "Air India to Shift More Europe, US Flights to Mumbai, Eyes Bengaluru as Third Hu",
+    "slug": "air-india-shift-europe-us-flights-mumbai-bengaluru-third-hub",
+    "category": "travel",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the shift in operations; provide specific dates or a timeframe for when travelers can expect changes to routes or schedules, if any.",
+        "Include a brief explanation of how the closure of Pakistan's airspace specifically impacts flight operations from Delhi compared to Mumbai, as this context may help readers understand the operational decisions better.",
+        "Add a direct quote from a relevant source or expert on the implications of this shift for travelers, which could enhance the article's authority and provide additional insights."
+      ],
+      "embed_opportunities": [
+        "Embed the official Air India announcement or a tweet from the airline regarding this operational change to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "c1ed8c97-e0ce-4ce0-b6cd-15d7f0a2a6a4",
+    "headline": "50 Rescued From Thane High-Rise Fire as Mumbai Records 89 Diwali Fire Calls",
+    "slug": "thane-raheja-garden-fire-50-rescued-mumbai-diwali-fires",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact date and time of the fire incident in the headline for immediate context, such as 'Thane High-Rise Fire on November 8, 2023, Rescues 50' to enhance clarity and timeliness.",
+        "Include a brief statement regarding the ongoing investigation into the cause of the fire, as this is a critical piece of information that readers may want to know.",
+        "Add a quote from a fire department official or eyewitness to provide a more personal perspective on the incident and enhance the completeness of the report."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Thane Municipal Corporation or Maharashtra Fire Services with updates on the fire response or safety tips related to Diwali celebrations."
+      ]
+    }
+  },
+  {
+    "id": "3a9b6cae-0b8e-4775-8585-6c292e73b1c8",
+    "headline": "Shourya Ambure Wins Bronze, India's First Track Medal at Dakar Youth Olympics",
+    "slug": "shourya-ambure-bronze-dakar-youth-olympics-first-track-medal",
+    "category": "sports",
+    "structural_issues": [
+      "Two embeds clustered within 200 chars of each other"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Ambure's achievement by including context about India's historical performance in track and field at the Youth Olympics, such as previous medals or lack thereof.",
+        "Provide more detailed statistics about the overall medal tally for India at the Dakar Youth Olympics, including the total number of events participated in and the breakdown of medals by sport.",
+        "Add a quote from Ambure or her coach to provide a personal touch and insight into her feelings about the win, which would enhance the emotional impact of the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official Youth Olympic Games Twitter account post announcing the medal results for added credibility and real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "3014725a-353f-4c85-b895-c1780c219022",
+    "headline": "Delhi Wakes to Post-Diwali Smog as AQI Hits 368, 15 Areas Turn Severe",
+    "slug": "delhi-post-diwali-smog-aqi-368-severe-15-areas",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the impact of the AQI levels by providing specific health recommendations based on the current readings, such as the recommended actions for different AQI ranges (e.g., what to do at 368 vs. 441).",
+        "Include a brief explanation of the GRAP (Graded Response Action Plan) Stage III measures in place, detailing what restrictions or actions are mandated under this stage to inform readers of the immediate implications.",
+        "Add a direct quote from a relevant authority or expert on air quality to enhance the article's credibility and provide context on the severity of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official CPCB tweet or statement regarding the AQI levels and health advisories to provide readers with direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "78585a27-aeb1-4d9e-9a64-850c463b1c5d",
+    "headline": "Wisconsin Infant Dies of Measles, State's First Such Death Since 1990",
+    "slug": "wisconsin-infant-measles-death-first-since-1990",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date when the infant contracted measles, as this information is crucial for understanding the outbreak's progression.",
+        "Include specific statistics about the vaccination rates in Wisconsin, particularly for the MMR vaccine, to provide context on the outbreak and the implications for public health.",
+        "Add a quote from a public health expert or an official statement from the Wisconsin Department of Health Services regarding the importance of vaccination and the current outbreak to enhance authority and depth.",
+        "Ensure consistency in the reporting of dates; the article mentions November 5 and November 3\u2014clarify which date corresponds to which event to avoid confusion."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Wisconsin Department of Health Services regarding the outbreak or vaccination recommendations to provide real-time updates and official guidance."
+      ]
+    }
+  }
+]

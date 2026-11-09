@@ -1,0 +1,115 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "alberta-invites-425-workers-five-aaip-draws-october-november-2026",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Alberta Advantage Immigration Program",
+    "Alberta",
+    "Rural Renewal Stream",
+    "Express Entry",
+    "Rural Renewal",
+    "Alberta Opportunity Stream"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Alberta Advantage Immigration Program' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Rural Renewal Stream' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Express Entry' named 'Express Entry Canada', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Rural Renewal' named 'Rural renewal. As momentum builds, critical access hospsital program shows signs of success', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Alberta Opportunity Stream' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Moraine Lake 17092005.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1951)",
+      "verdict": "USED (hero)",
+      "reason": "2048x1536, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:'Mount Edith Cavell Summit 03.jpg",
+      "route": "identity \u2014 depicts (P180=Q1951)",
+      "verdict": "USED (news)",
+      "reason": "5472x3648, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "mount-edith-cavell-summit-03",
+      "path": "mount-edith-cavell-summit-03.jpg",
+      "size": [
+        5472,
+        3648
+      ],
+      "role": "establishing",
+      "subject": "Mount Edith Cavell is a mountain in the Athabasca River and Astoria River valleys of Jasper National Park, and the most prominent peak entirely within Alberta.",
+      "route": "identity \u2014 depicts (P180=Q1951)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:%27Mount_Edith_Cavell_Summit_03.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/%27Mount_Edith_Cavell_Summit_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Khoshhat",
+      "entity": "Alberta",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Alberta",
+        "AB",
+        "Province of Alberta",
+        "Alta.",
+        "CA-AB",
+        "Wild Rose Country"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "moraine-lake-17092005",
+      "path": "moraine-lake-17092005.jpg",
+      "size": [
+        2048,
+        1536
+      ],
+      "role": "establishing",
+      "subject": "Valley of the Ten Peaks and Moraine Lake, Banff National Park, Canada. Mountains from left to right: Tonsa (3057 m), Mount Perren (3051 m), Mount Allen (3310 m), Mount Tuzo (3246 m), Deltaform Mountain (3424 m), Neptuak Mountain (3233 m)",
+      "route": "identity \u2014 Wikidata P18 (Q1951)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Moraine_Lake_17092005.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Moraine_Lake_17092005.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Gorgo",
+      "entity": "Alberta",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Alberta",
+        "AB",
+        "Province of Alberta",
+        "Alta.",
+        "CA-AB",
+        "Wild Rose Country"
+      ]
+    }
+  ]
+}

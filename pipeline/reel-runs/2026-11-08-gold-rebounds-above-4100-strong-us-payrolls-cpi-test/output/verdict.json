@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "gold-rebounds-above-4100-strong-us-payrolls-cpi-test",
+  "name": "gold-rebounds-above-4100-strong-us-payrolls-cpi-test",
+  "script": "reel-runs/2026-11-08-gold-rebounds-above-4100-strong-us-payrolls-cpi-test/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000677
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-08-gold-rebounds-above-4100-strong-us-payrolls-cpi-test/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "2016-rangun-pagoda-sule-22",
+      "hero": "as-riquezas-do-brasil-exploradas-para-enriqu",
+      "grid": "assa-2026-janet-yellen-22"
+    }
+  },
+  "manifest": "reel-runs/2026-11-08-gold-rebounds-above-4100-strong-us-payrolls-cpi-test/output/render-manifest.json",
+  "video": "reel-runs/2026-11-08-gold-rebounds-above-4100-strong-us-payrolls-cpi-test/output/gold-rebounds-above-4100-strong-us-payrolls-cpi-test.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:news"
+    ]
+  }
+}

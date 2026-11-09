@@ -1,0 +1,159 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "delhi-post-diwali-smog-aqi-368-severe-15-areas",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Delhi Wakes to Post-Diwali Smog as AQI Hits 368, 15 Areas Turn Severe",
+        "numbers": [
+          15.0,
+          368.0
+        ],
+        "entities": [
+          "Delhi Wakes",
+          "Post-Diwali Smog",
+          "AQI Hits",
+          "Areas Turn Severe"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states AQI was 368 and 15 areas were severe.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "A day after Diwali, every one of Delhi's 54 monitoring stations read above 200 and 15 crossed into the severe band.",
+        "numbers": [
+          15.0,
+          54.0,
+          200.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms all stations above 200 and 15 in severe band.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Delhi's overall AQI was 368 at 7 a.m. on Monday, in the 'very poor' category, with PM2.5 as the major pollutant",
+        "numbers": [
+          2.5,
+          7.0,
+          368.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states AQI was 368 at 7 a.m. and PM2.5 was the major pollutant.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "All 54 monitoring stations read above 200, 50 read above 300, and 15 areas were 'severe' above 400; Burari Crossing and Sonia Vihar topped the list at 441 each",
+        "numbers": [
+          15.0,
+          50.0,
+          54.0,
+          200.0,
+          300.0,
+          400.0,
+          441.0
+        ],
+        "entities": [
+          "Burari Crossing",
+          "Sonia Vihar"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides these exact statistics for monitoring stations.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "PM2.5 near Akshardham reached 760.99 micrograms per cubic metre at 11 p.m. on Sunday \u2014 more than 50 times the WHO's recommended 24-hour limit of 15",
+        "numbers": [
+          2.5,
+          11.0,
+          15.0,
+          24.0,
+          50.0,
+          760.99
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms PM2.5 levels and WHO limit comparison.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Delhi Wakes to Post-Diwali Smog as AQI Hits 368, 15 Areas Turn Severe",
+        "numbers": [
+          15.0,
+          368.0
+        ],
+        "entities": [
+          "Delhi Wakes",
+          "Post-Diwali Smog",
+          "AQI Hits",
+          "Areas Turn Severe"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000513,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

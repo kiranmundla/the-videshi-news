@@ -1,0 +1,36 @@
+{
+ "hook_line": "GOLD BACK ABOVE $4,100 BEFORE CPI TEST",
+ "hook_stat": {
+  "big": "$4,121.77",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Spot gold price on Monday, after Friday's payrolls surprise knocked it toward $4,033"
+ },
+ "stats": [
+  {
+   "big": "165,000",
+   "label": "US jobs added in October, well above the 65,000 expected"
+  },
+  {
+   "big": "4.1%",
+   "label": "US unemployment rate in October, down from 4.2% in September"
+  },
+  {
+   "big": "$4,191-$4,201",
+   "label": "Resistance range ahead of Tuesday's US CPI release"
+  }
+ ],
+ "diaspora_bullets": [
+  "Gold demand in India picked up as prices slid to a seven-month low",
+  "A hot CPI print could seal a December hike and revive gold selling"
+ ],
+ "key_entities": [
+  "Gold",
+  "Federal Reserve",
+  "US Nonfarm Payrolls",
+  "US CPI"
+ ],
+ "news_summary": "Spot gold traded at $4,121.77 on Monday, rebounding above $4,100 after Friday's stronger-than-expected US payrolls report knocked it toward $4,033, with Tuesday's US CPI release now set to decide whether the rebound holds.",
+ "payoff": "Gold absorbed a payrolls print nearly three times forecast and still closed the week about 5% higher, its largest weekly advance since late August.",
+ "versus": "",
+ "story_mood": "practical"
+}

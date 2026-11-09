@@ -1,0 +1,373 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "navy",
+  "rgb": [
+   11,
+   29,
+   58
+  ]
+ },
+ "name": "celeb-thedeverakonda-17997368079023648",
+ "article_slug": "celeb-thedeverakonda-17997368079023648",
+ "article_id": null,
+ "category": "Vijay Deverakonda",
+ "video": "/home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-08-celeb-thedeverakonda-17997368079023648/output/celeb-thedeverakonda-17997368079023648.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://www.instagram.com/p/Dfe2WJqn9ak/",
+  "local_path": "/home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-08-celeb-thedeverakonda-17997368079023648/output/frame-0.jpg",
+  "width": 1080,
+  "height": 1440,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.89)",
+  "has_face": true,
+  "box_source": [
+   217,
+   664,
+   151,
+   200
+  ],
+  "box_bg": [
+   274,
+   626,
+   107,
+   142
+  ],
+  "chin_bg": 768,
+  "anchor": [
+   0.278,
+   0.534
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   765,
+   1020
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 1240,
+   "zone_h": 316,
+   "scale": 0.825,
+   "content_h": 315,
+   "block_top": 1240,
+   "block_bottom": 1555,
+   "text_bbox": [
+    70,
+    1240,
+    930,
+    1555
+   ],
+   "texts": [
+    "Vijay Deverakonda",
+    "When you find a way to do GOMA (Homam) in Japan on Happy DIWALI"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.708,
+    "photo_px": [
+     1080,
+     1440
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 120,
+     "y": 156,
+     "w": 765,
+     "h": 1020,
+     "scale": 0.7083333333333334,
+     "window": [
+      0,
+      0,
+      1080,
+      1440
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.33x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 1240,
+   "zone_h": 316,
+   "scale": 0.725,
+   "content_h": 285,
+   "block_top": 1255,
+   "block_bottom": 1540,
+   "text_bbox": [
+    70,
+    1255,
+    930,
+    1540
+   ],
+   "texts": [
+    "What Happened",
+    "When you find a way to do GOMA (Homam) in Japan on Happy DIWALI Sending you all lots of love, biggest hugs and Diwali wishes to you and all your family from the Deverakonda family"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.805,
+    "photo_px": [
+     1080,
+     1440
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 120,
+     "y": 156,
+     "w": 765,
+     "h": 1020,
+     "scale": 0.8052631578947368,
+     "window": [
+      0,
+      136,
+      950,
+      1402
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.33x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 1240,
+   "zone_h": 316,
+   "scale": 1.0,
+   "content_h": 291,
+   "block_top": 1252,
+   "block_bottom": 1543,
+   "text_bbox": [
+    70,
+    1252,
+    930,
+    1543
+   ],
+   "texts": [
+    "THE BIG PICTURE",
+    "GOMA (HOMAM)",
+    "Sending you all lots of love, biggest hugs and Diwali wishes to you and all your family from the Deverakonda family"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.885,
+    "photo_px": [
+     1080,
+     1440
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 120,
+     "y": 156,
+     "w": 765,
+     "h": 1020,
+     "scale": 0.8854166666666666,
+     "window": [
+      0,
+      193,
+      864,
+      1345
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.33x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 1240,
+   "zone_h": 316,
+   "scale": 0.55,
+   "content_h": 308,
+   "block_top": 1244,
+   "block_bottom": 1552,
+   "text_bbox": [
+    70,
+    1244,
+    930,
+    1552
+   ],
+   "texts": [
+    "By The Numbers",
+    "DIWALI",
+    "in Japan on Happy DIWALI",
+    "JAPAN",
+    "do GOMA (Homam) in Japan on Happy DIWALI"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.885,
+    "photo_px": [
+     1080,
+     1440
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 120,
+     "y": 156,
+     "w": 765,
+     "h": 1020,
+     "scale": 0.8854166666666666,
+     "window": [
+      216,
+      193,
+      1080,
+      1345
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.33x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 1240,
+   "zone_h": 316,
+   "scale": 1.0,
+   "content_h": 249,
+   "block_top": 1273,
+   "block_bottom": 1522,
+   "text_bbox": [
+    70,
+    1273,
+    930,
+    1522
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Sending you all lots of love, biggest hugs and Diwali wishes to you and all your family from the Deverakonda family"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.957,
+    "photo_px": [
+     1080,
+     1440
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 120,
+     "y": 156,
+     "w": 765,
+     "h": 1020,
+     "scale": 0.9574468085106383,
+     "window": [
+      0,
+      375,
+      799,
+      1440
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.33x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 331,
+   "block_top": 694,
+   "block_bottom": 1025,
+   "text_bbox": [
+    70,
+    694,
+    930,
+    1025
+   ],
+   "texts": [
+    "The Takeaway",
+    "Photos from @thedeverakonda's Instagram post: https://www.instagram.com/p/Dfe2WJqn9ak/",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "/home/hatch/workspace/the-videshi-news/pipeline/music/indian-classical-diwali-festival.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 110.7,
+ "mp4_bytes": 16753848
+}

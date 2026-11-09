@@ -771,5 +771,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "ZOs-gYpCORM",
+    "article_slug": "delhi-post-diwali-smog-aqi-368-severe-15-areas",
+    "article_id": "3014725a-353f-4c85-b895-c1780c219022",
+    "title": "Delhi Wakes to Post-Diwali Smog as AQI Hits 368, 15 Areas Turn Severe #Shorts #News",
+    "privacy": "public",
+    "uploaded_at": "2026-11-09T05:20:08.930333+00:00",
+    "video_path": "reel-runs/2026-11-08-delhi-post-diwali-smog-aqi-368-severe-15-areas/output/delhi-post-diwali-smog-aqi-368-severe-15-areas.mp4",
+    "video_sha256": "5c786bbd03eccf7d05748afc78b162ded69c82625973628d4a6877da0bab0709",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

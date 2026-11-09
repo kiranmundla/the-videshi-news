@@ -1,0 +1,166 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "alberta-invites-425-workers-five-aaip-draws-october-november-2026",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Alberta Invites 425 Workers in Five Provincial Immigration Draws",
+        "numbers": [
+          425.0
+        ],
+        "entities": [
+          "Alberta Invites",
+          "Five Provincial Immigration Draws"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Alberta invited 425 workers in five draws.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The Alberta Advantage Immigration Program issued 425 invitations across five draws between October 23 and November 2, led by the Rural Renewal Stream \u2014 but only 495 of the province's 6,603 nomination spaces for 2026 remain.",
+        "numbers": [
+          2.0,
+          23.0,
+          425.0,
+          495.0,
+          2026.0,
+          6603.0
+        ],
+        "entities": [
+          "Alberta Advantage Immigration Program",
+          "Rural Renewal Stream"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "All facts about invitations, dates, and nomination spaces are present in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Alberta issued 425 invitations to apply for provincial nomination across five AAIP draws held between October 23 and November 2, with minimum scores between 50 and 60",
+        "numbers": [
+          2.0,
+          23.0,
+          50.0,
+          60.0,
+          425.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the number of invitations and the date range with score details.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The Rural Renewal Stream accounted for 210 of the invitations; the Alberta Opportunity Stream issued 132 and the two Dedicated Health Care Pathway draws issued 83 combined",
+        "numbers": [
+          83.0,
+          132.0,
+          210.0
+        ],
+        "entities": [
+          "Rural Renewal Stream",
+          "Alberta Opportunity Stream",
+          "Dedicated Health Care Pathway"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides exact numbers for each stream's invitations.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Alberta had issued 6,108 of its 6,603 nominations for 2026 as of November 4, leaving 495 spaces, with 32,211 candidates still active in the expression-of-interest pool",
+        "numbers": [
+          4.0,
+          495.0,
+          2026.0,
+          6108.0,
+          6603.0,
+          32211.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "All statistics regarding nominations and candidates are accurately reported in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Alberta Invites 425 Workers in Five Provincial Immigration Draws",
+        "numbers": [
+          425.0
+        ],
+        "entities": [
+          "Alberta Invites",
+          "Five Provincial Immigration Draws"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim repeats the confirmed information from the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000489,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

@@ -1,0 +1,196 @@
+[
+  {
+    "id": "0f47530c-e606-4ba2-b52e-b76d2fd39064",
+    "headline": "Creators Wait 40 Minutes for Rs 709 Himachali Feast in Delhi",
+    "slug": "himachali-feast-himachal-bhawan-delhi-rs-709",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include a brief background on the significance of Himachali cuisine and its traditional dishes to provide context for readers unfamiliar with the food.",
+        "Add a quote from the creators Bhawna and Nitin about their overall experience at the canteen, which would enhance the personal touch and engagement of the article.",
+        "Clarify the location details of the canteen by providing a nearby landmark or public transport options, making it easier for readers to find it.",
+        "Mention any specific opening hours or days of operation for the Himachal Pradesh State Bhawan Canteen to inform potential visitors."
+      ],
+      "embed_opportunities": [
+        "Embed a video clip from the creators' food video to visually engage readers and provide a firsthand look at the dishes."
+      ]
+    }
+  },
+  {
+    "id": "ef2e2a9a-72f3-4e27-83b2-824fd915b13f",
+    "headline": "Delhi Fire Calls Dip on Diwali With 214 Fire Incidents Reported Citywide",
+    "slug": "delhi-fire-calls-dip-diwali-214-incidents",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the reported incidents by specifying the exact time frame for the data presented, such as whether the calls were only for Diwali day or included the night before.",
+        "Include a direct quote from DFS Chief A. K. Malik or another official to enhance attribution and provide a personal perspective on the data reported.",
+        "Provide context on the significance of the decrease in fire calls compared to previous years, such as potential reasons for the decline or comparisons to past Diwali celebrations.",
+        "Mention any specific measures taken by the Delhi Fire Service to prepare for Diwali, which could help readers understand the context of the reported incidents."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Delhi Fire Service summarizing the key statistics or safety tips for Diwali to provide official context and enhance reader engagement."
+      ]
+    }
+  },
+  {
+    "id": "2ebdb05f-4ad4-4212-8b8a-c5e247f96f19",
+    "headline": "NIT Trichy Launches Tata AI Centre With Rs 10 Crore TCS Backing",
+    "slug": "nit-trichy-tata-ai-centre-tcs-foundation",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the inauguration; the article states November 6, 2026, which appears to be a future date. If this is a typographical error, it should be corrected to reflect the actual date of the event.",
+        "Provide more context on the significance of the Rs 10 crore funding. For example, how does this amount compare to previous funding for similar initiatives at NIT Trichy or other institutions? This would help readers understand the scale of the investment.",
+        "Include a brief explanation of the potential impact of the Tata Centre on the local and national economy, particularly in the fields of AI and machine learning, to give readers a clearer understanding of its importance.",
+        "Ensure that the article maintains a consistent structure by avoiding repetitive phrases. For instance, the phrase 'NIT Trichy has opened the Tata Centre for Artificial Intelligence and Machine Learning' is mentioned multiple times and can be streamlined."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from TCS or NIT Trichy announcing the launch of the Tata Centre for Artificial Intelligence and Machine Learning to provide readers with direct access to primary sources."
+      ]
+    }
+  },
+  {
+    "id": "15480927-2ee6-4bce-93bb-9d8e1cb42dbb",
+    "headline": "Delhi Teen Aadvik Jain Wins Diana Award for Menstrual Health Work",
+    "slug": "delhi-teen-aadvik-jain-wins-diana-award-menstrual-health",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying that Aadvik Jain's initiative, Team Period, was founded in 2023, not 2024, to avoid confusion about the dates mentioned.",
+        "Add a direct quote from Aadvik Jain or a representative from the Diana Award to enhance attribution and provide a personal touch to the story.",
+        "Include specific details about the Diana Award, such as the criteria for selection or the significance of the award, to provide context for readers unfamiliar with it."
+      ],
+      "embed_opportunities": [
+        "Embed the official Diana Award announcement or tweet to provide readers with direct access to the source of the news."
+      ]
+    }
+  },
+  {
+    "id": "3f8999a1-25ce-4100-bb01-09b3e464b387",
+    "headline": "Texas Voters Hand Attorney General Office to Democrat After H-1B Probes",
+    "slug": "texas-voters-hand-attorney-general-office-to-democrat-after-h-1b-probes",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the election results on H-1B investigations by including a direct quote or statement from Nathan Johnson regarding his stance on continuing or altering the H-1B scrutiny initiatives. This would provide readers with a clearer understanding of what to expect moving forward.",
+        "Provide specific details about the timeline for Johnson's transition into office and any immediate changes that might affect H-1B employers and workers. This could include potential deadlines for ongoing investigations or changes in policy that could be anticipated after he takes office."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Nathan Johnson or a relevant Texas political figure commenting on the election results or future plans regarding H-1B investigations to enhance credibility and provide direct insights."
+      ]
+    }
+  },
+  {
+    "id": "ec05480f-84ea-4b94-9715-6e51e0a88e63",
+    "headline": "Celina Jaitly Marks Second Diwali Away From Sons With Emotional Message",
+    "slug": "celina-jaitly-second-diwali-away-from-sons-emotional-message",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline by correcting the date mentioned in the article; Diwali in 2026 has not yet occurred, and this could confuse readers about the timing of the events being discussed.",
+        "Provide more context about the divorce and legal battle, such as when it began or any significant developments that might impact the situation, to give readers a clearer understanding of the background.",
+        "Include direct quotes from Celina Jaitly's Instagram post to enhance authenticity and provide readers with a more personal connection to her message."
+      ],
+      "embed_opportunities": [
+        "Embed the Instagram post from Celina Jaitly to allow readers to view her message directly and engage with the content visually."
+      ]
+    }
+  },
+  {
+    "id": "953678ff-1513-4c5d-8406-8041af5df1ed",
+    "headline": "India Coaching Staff to Split After Third ODI as Gambhir Weighs Final Call",
+    "slug": "india-coaching-staff-split-new-zealand-odi-gambhir-decision",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the dates for the third ODI and the subsequent Test camp to enhance completeness and clarity. For example, specify that the third ODI is on November 15 and the Test camp starts on November 11.",
+        "Include a quote from head coach Gautam Gambhir or a statement from the BCCI to provide additional attribution and authority to the information presented, enhancing the article's credibility.",
+        "Add context about the significance of the coaching staff split in relation to India's performance in the ODI series and upcoming Test matches, which would provide readers with a better understanding of the implications of this decision."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the BCCI or a sports news outlet confirming the coaching staff split or providing additional context about the upcoming series."
+      ]
+    }
+  },
+  {
+    "id": "29bef125-3a23-405a-a059-5a74c57030f8",
+    "headline": "Arshdeep, Gurnoor and Nabi to Stay Back for India's New Zealand Test Preparation",
+    "slug": "india-pacers-arshdeep-gurnoor-nabi-stay-back-new-zealand-tests",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the roles of Arshdeep Singh, Gurnoor Brar, and Auqib Nabi in the Test preparations. While it's mentioned they will be net bowlers, elaborating on how their specific skills will benefit the Test squad would enhance completeness.",
+        "Include a direct quote from Sitanshu Kotak regarding the decision to keep these players back, as this would improve attribution and provide clearer insights into the team's strategy.",
+        "Add a brief context about the significance of the World Test Championship series for India, which would help readers understand the stakes involved in this preparation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official statement from the BCCI or the Indian cricket team regarding the Test preparations or the ODI series outcome."
+      ]
+    }
+  },
+  {
+    "id": "1f36b6a5-e7a2-4ed0-92ca-f2d8ad78ea89",
+    "headline": "Samay Raina Shares Diwali Photo With Medha Shankr, Rumours Return",
+    "slug": "samay-raina-medha-shankr-diwali-photo",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the Diwali party took place and when the Instagram stories were shared to provide context for the dating rumors.",
+        "Include direct quotes from Samay Raina or Medha Shankr regarding the dating rumors, if available, to enhance attribution and provide a clearer picture of their stance.",
+        "Add more context about the significance of the Diwali celebration in Indian culture, which could help readers understand the importance of the event and the rumors surrounding it.",
+        "Ensure that the article clearly states the source of the rumors and speculation, distinguishing between confirmed facts and unverified claims."
+      ],
+      "embed_opportunities": [
+        "Embed Samay Raina's Instagram story or a relevant post to provide visual context for the article."
+      ]
+    }
+  },
+  {
+    "id": "8b95c089-0001-4f5b-bd41-6502f27d0d98",
+    "headline": "Farah Khan Says Superstar Era Is Over, Calls New Actors Insecure",
+    "slug": "farah-khan-era-of-superstars-over-double-date",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the context of Farah Khan's comments by providing a brief background on the show 'Double Date' and its significance in the entertainment industry. This will help readers understand the platform on which these remarks were made.",
+        "Include specific examples or quotes from Farah Khan's comments to enhance clarity and provide depth. For instance, directly quoting her statements about the lack of confidence in today's actors would strengthen the reporting.",
+        "Add attribution to the original sources of the quotes, ensuring that readers know where the information is coming from. For example, clarify if the quotes are from a live broadcast or a recorded segment of the show.",
+        "Consider summarizing the implications of Farah Khan's statements for the film industry, such as potential changes in actor-director dynamics or audience perceptions, to provide readers with a clearer understanding of the significance of her remarks."
+      ],
+      "embed_opportunities": [
+        "Embed a clip from the episode of 'Double Date' where Farah Khan makes these comments, allowing readers to engage directly with the source material."
+      ]
+    }
+  }
+]

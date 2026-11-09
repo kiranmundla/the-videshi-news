@@ -1,0 +1,103 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "adani-enterprises-35000-40000-crore-annual-capex-two-years",
+  "trigger": {
+    "own_images": 3,
+    "target_distinct": 5,
+    "extras_needed": 2
+  },
+  "entities": [
+    "Adani Enterprises",
+    "Manan Vakharia",
+    "AdaniConneX",
+    "Navi Mumbai International Airport",
+    "Navi Mumbai",
+    "Navi Mumbai Airport. For"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Manan Vakharia' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'AdaniConneX' named 'AdaniConneX Chennai 1', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Navi Mumbai Airport. For' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Navi Mumbai Airport.jpg",
+      "route": "identity \u2014 depicts (P180=Q3015728)",
+      "verdict": "USED (grid)",
+      "reason": "3000x4000, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Navi Mumbai Airport (96252).jpg",
+      "route": "identity \u2014 depicts (P180=Q3015728)",
+      "verdict": "USED (payoff)",
+      "reason": "4000x3000, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Navi Mumbai International Airport NMIA film 2017 - Navi Mumbai.webm",
+      "route": "identity \u2014 depicts (P180=Q3015728)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "grid",
+      "label": "navi-mumbai-airport",
+      "path": "navi-mumbai-airport.jpg",
+      "size": [
+        4000,
+        3000
+      ],
+      "role": "establishing",
+      "subject": "Navi Mumbai Airport",
+      "route": "identity \u2014 depicts (P180=Q3015728)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Navi_Mumbai_Airport.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Navi_Mumbai_Airport.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Suraj Digrase",
+      "entity": "Navi Mumbai International Airport",
+      "entity_type": "other",
+      "entity_aliases": [
+        "NMIA",
+        "Navi Mumbai Airport",
+        "NMI"
+      ]
+    },
+    {
+      "beat": "payoff",
+      "label": "navi-mumbai-airport-96252",
+      "path": "navi-mumbai-airport-96252.jpg",
+      "size": [
+        4000,
+        3000
+      ],
+      "role": "establishing",
+      "subject": "Navi Mumbai Airport",
+      "route": "identity \u2014 depicts (P180=Q3015728)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Navi_Mumbai_Airport_(96252).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Navi_Mumbai_Airport_%2896252%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Suraj Digrase",
+      "entity": "Navi Mumbai International Airport",
+      "entity_type": "other",
+      "entity_aliases": [
+        "NMIA",
+        "Navi Mumbai Airport",
+        "NMI"
+      ]
+    }
+  ]
+}

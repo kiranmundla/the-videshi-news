@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "shourya-ambure-bronze-dakar-youth-olympics-first-track-medal",
+  "name": "shourya-ambure-bronze-dakar-youth-olympics-first-track-medal",
+  "script": "reel-runs/2026-11-09-shourya-ambure-bronze-dakar-youth-olympics-first-track-medal/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "diaspora_bullets[0]"
+    ],
+    "llm_cost_usd": 0.000695
+  }
+}

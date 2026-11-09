@@ -1,0 +1,88 @@
+{
+  "driver": "celeb_social_watch.py --make-reel",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "navy"
+  },
+  "article_slug": "celeb-thedeverakonda-17997368079023648",
+  "name": "celeb-thedeverakonda-17997368079023648",
+  "script": "/home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-08-celeb-thedeverakonda-17997368079023648/script.json",
+  "celeb": {
+    "name": "Vijay Deverakonda",
+    "handle": "thedeverakonda",
+    "post_id": "17997368079023648",
+    "post_url": "https://www.instagram.com/p/Dfe2WJqn9ak/"
+  },
+  "scene_plan": [
+    {
+      "beat": "hook",
+      "source": "photo:0",
+      "texts": [
+        "Vijay Deverakonda",
+        "When you find a way to do GOMA (Homam) in Japan on Happy DIWALI"
+      ]
+    },
+    {
+      "beat": "news",
+      "source": "stage",
+      "texts": [
+        "When you find a way to do GOMA (Homam) in Japan on Happy DIWALI Sending you all lots of love, biggest hugs and Diwali wishes to you and all your family from the Deverakonda family"
+      ]
+    },
+    {
+      "beat": "hero",
+      "source": "stage",
+      "texts": [
+        "GOMA (HOMAM)",
+        "Sending you all lots of love, biggest hugs and Diwali wishes to you and all your family from the Deverakonda family"
+      ]
+    },
+    {
+      "beat": "grid",
+      "source": "stage",
+      "texts": [
+        "DIWALI — in Japan on Happy DIWALI",
+        "JAPAN — do GOMA (Homam) in Japan on Happy DIWALI"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "source": "stage",
+      "texts": [
+        "Sending you all lots of love, biggest hugs and Diwali wishes to you and all your family from the Deverakonda family"
+      ]
+    },
+    {
+      "beat": "payoff",
+      "source": "credit",
+      "texts": [
+        "Photos from @thedeverakonda's Instagram post: https://www.instagram.com/p/Dfe2WJqn9ak/"
+      ]
+    }
+  ],
+  "music": "/home/hatch/workspace/the-videshi-news/pipeline/music/indian-classical-diwali-festival.mp3",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000462
+  },
+  "manifest": "/home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-08-celeb-thedeverakonda-17997368079023648/output/render-manifest.json",
+  "video": "/home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-08-celeb-thedeverakonda-17997368079023648/output/celeb-thedeverakonda-17997368079023648.mp4",
+  "scene_sources": {
+    "hook": "hero",
+    "news": "hero-win:subject",
+    "hero": "hero-win:left",
+    "grid": "hero-win:right",
+    "diaspora": "hero-win:bottom",
+    "payoff": "stage"
+  },
+  "qa": {
+    "score": 8.0,
+    "passed": false,
+    "failing_checks": [
+      "face_overlap:payoff"
+    ]
+  }
+}

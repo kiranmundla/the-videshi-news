@@ -1,0 +1,155 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "berkshire-operating-earnings-fall-buybacks-9-6-billion-q3",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Berkshire Operating Earnings Fall 5.8% as Buybacks Hit $9.6 Billion",
+        "numbers": [
+          5.8,
+          9.6,
+          9600000000.0
+        ],
+        "entities": [
+          "Berkshire Operating Earnings Fall",
+          "Buybacks Hit"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Both earnings drop and buyback amount are stated in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Operating earnings slipped to $12.705 billion on weaker insurance results, while buybacks more than doubled to $9.6 billion.",
+        "numbers": [
+          9.6,
+          12.705,
+          9600000000.0,
+          12705000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms both earnings and buyback figures.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Berkshire Hathaway's third-quarter operating earnings fell 5.8% to $12.705 billion from $13.485 billion a year earlier",
+        "numbers": [
+          5.8,
+          12.705,
+          13.485,
+          12705000000.0,
+          13485000000.0
+        ],
+        "entities": [
+          "Berkshire Hathaway's"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides exact figures for earnings and percentage drop.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The company bought back about $9.6 billion of its own stock in the third quarter, more than double the $4.5 billion in the second quarter",
+        "numbers": [
+          4.5,
+          9.6,
+          4500000000.0,
+          9600000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the buyback amounts accurately.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "After-tax insurance underwriting profit fell about 43% to $1.352 billion, and cash and equivalents including Treasury bills totalled $352 billion at the end of September",
+        "numbers": [
+          1.352,
+          43.0,
+          352.0,
+          1352000000.0,
+          352000000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Both profit drop and cash total are confirmed in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Berkshire Operating Earnings Fall 5.8% as Buybacks Hit $9.6 Billion",
+        "numbers": [
+          5.8,
+          9.6,
+          9600000000.0
+        ],
+        "entities": [
+          "Berkshire Operating Earnings Fall",
+          "Buybacks Hit"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim repeats the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000546,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

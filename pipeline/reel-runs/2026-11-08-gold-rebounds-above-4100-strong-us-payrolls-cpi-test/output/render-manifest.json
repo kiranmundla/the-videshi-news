@@ -1,0 +1,410 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "gold-rebounds-above-4100-strong-us-payrolls-cpi-test",
+ "article_slug": "gold-rebounds-above-4100-strong-us-payrolls-cpi-test",
+ "article_id": "7ed10963-9968-4215-ab10-87c1fd876b4d",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-08-gold-rebounds-above-4100-strong-us-payrolls-cpi-test/output/gold-rebounds-above-4100-strong-us-payrolls-cpi-test.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Gold-crystals.jpg/3840px-Gold-crystals.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-11-08-gold-rebounds-above-4100-strong-us-payrolls-cpi-test/output/hero.jpg",
+  "width": 4788,
+  "height": 3102,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.771,0.400) damped=(0.635,0.450)",
+  "has_face": false,
+  "box_source": [
+   1702,
+   713,
+   2681,
+   1240
+  ],
+  "box_bg": [
+   64,
+   441,
+   1659,
+   768
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.516,
+   0.504
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   539
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1217,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1217,
+    930,
+    1580
+   ],
+   "texts": [
+    "Markets Finance",
+    "GOLD BACK ABOVE $4,100 BEFORE CPI TEST"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.619,
+    "photo_px": [
+     4788,
+     3102
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6189555125725339,
+     "window": [
+      1598,
+      0,
+      3342,
+      3102
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 313,
+   "block_top": 1267,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1267,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Spot gold traded at $4,121.77 on Monday, rebounding above $4,100 after Friday's stronger-than-expected US payrolls report knocked it toward $4,033, with Tuesday's US CPI release now set to decide whether the rebound holds."
+   ],
+   "v7": {
+    "image_source": "extra:2016-rangun-pagoda-sule-22",
+    "track": "full-bleed",
+    "render_scale": 0.397,
+    "photo_px": [
+     2871,
+     4836
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.3970223325062035,
+     "window": [
+      151,
+      0,
+      2871,
+      4836
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Sule Pagoda . Yangon , Myanmar.",
+     "route": "identity \u2014 depicts (P180=Q897)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:2016_Rangun,_Pagoda_Sule_(22).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/2016_Rangun%2C_Pagoda_Sule_%2822%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Marcin Konsek"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 759,
+   "zone_h": 797,
+   "scale": 1.0,
+   "content_h": 414,
+   "block_top": 950,
+   "block_bottom": 1364,
+   "text_bbox": [
+    70,
+    950,
+    930,
+    1364
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$4,121.77",
+    "Spot gold price on Monday, after Friday's payrolls surprise knocked it toward $4,033"
+   ],
+   "v7": {
+    "image_source": "extra:as-riquezas-do-brasil-exploradas-para-enriqu",
+    "track": "backdrop",
+    "render_scale": 0.499,
+    "photo_px": [
+     1920,
+     1080
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 539,
+     "scale": 0.4991023339317774,
+     "window": [
+      3,
+      0,
+      1674,
+      1079
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.78x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Finaliza\u00e7\u00e3o: Laura Magnus Esbo\u00e7o: Laura Magnus Briefing/roteiro: Natalia Freitas Ramos",
+     "route": "identity \u2014 depicts (P180=Q897)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:As_riquezas_do_Brasil_exploradas_para_enriquecer_Portugal_durante_o_per%C3%ADodo_da_coloniza%C3%A7%C3%A3o.png",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/As_riquezas_do_Brasil_exploradas_para_enriquecer_Portugal_durante_o_per%C3%ADodo_da_coloniza%C3%A7%C3%A3o.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 4.0",
+     "artist": "EPTrilhas"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 792,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    792,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "165,000",
+    "US jobs added in October, well above the 65,000 expected",
+    "4.1%",
+    "US unemployment rate in October, down from 4.2% in September",
+    "$4,191-$4,201",
+    "Resistance range ahead of Tuesday's US CPI release"
+   ],
+   "v7": {
+    "image_source": "extra:assa-2026-janet-yellen-22",
+    "track": "full-bleed",
+    "render_scale": 0.569,
+    "photo_px": [
+     6000,
+     3376
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5687203791469194,
+     "window": [
+      1783,
+      0,
+      3682,
+      3376
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Janet Yellen at ASSA (AEA) 2026 in Philadelphia for \"Future of the Fed\"",
+     "route": "identity \u2014 depicts (P180=Q53536)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:ASSA_2026_-_Janet_Yellen_22.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/ASSA_2026_-_Janet_Yellen_22.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Xuthoria"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 1148,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1148,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Gold demand in India picked up as prices slid to a seven-month low",
+    "A hot CPI print could seal a December hike and revive gold selling"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "full-bleed",
+    "render_scale": 0.619,
+    "photo_px": [
+     4788,
+     3102
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6189555125725339,
+     "window": [
+      1598,
+      0,
+      3342,
+      3102
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 316,
+   "block_top": 702,
+   "block_bottom": 1018,
+   "text_bbox": [
+    70,
+    702,
+    930,
+    1018
+   ],
+   "texts": [
+    "The Takeaway",
+    "Gold absorbed a payrolls print nearly three times forecast and still closed the week about 5% higher, its largest weekly advance since late August.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 151.9,
+ "mp4_bytes": 19963142
+}

@@ -1,0 +1,390 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "berkshire-operating-earnings-fall-buybacks-9-6-billion-q3",
+ "article_slug": "berkshire-operating-earnings-fall-buybacks-9-6-billion-q3",
+ "article_id": "a045f43d-3086-4e7b-b9e9-3970b47595aa",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-08-berkshire-operating-earnings-fall-buybacks-9-6-billion-q3/output/berkshire-operating-earnings-fall-buybacks-9-6-billion-q3.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ir_hRUrS7UwE/v0/1200x800.jpg",
+  "local_path": "reel-runs/2026-11-08-berkshire-operating-earnings-fall-buybacks-9-6-billion-q3/output/hero.jpg",
+  "width": 1200,
+  "height": 800,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.794,0.218) damped=(0.647,0.359)",
+  "has_face": false,
+  "box_source": [
+   440,
+   111,
+   672,
+   320
+  ],
+  "box_bg": [
+   392,
+   233,
+   467,
+   222
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.715,
+   0.5
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   556
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 984,
+   "block_bottom": 1347,
+   "text_bbox": [
+    70,
+    984,
+    930,
+    1347
+   ],
+   "texts": [
+    "Markets Finance",
+    "EARNINGS FALL, BUYBACKS HIT $9.6 BILLION"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      800
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 977,
+   "block_bottom": 1355,
+   "text_bbox": [
+    70,
+    977,
+    930,
+    1355
+   ],
+   "texts": [
+    "What Happened",
+    "Berkshire Hathaway's third-quarter operating earnings fell 5.8% to $12.705 billion as insurance underwriting profit fell 43%, while the company bought back about $9.6 billion of its own stock."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.7897727272727273,
+     "window": [
+      144,
+      48,
+      1200,
+      752
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 324,
+   "block_top": 1004,
+   "block_bottom": 1328,
+   "text_bbox": [
+    70,
+    1004,
+    930,
+    1328
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$9.6 BILLION",
+    "Berkshire Hathaway stock buybacks in the third quarter \u2014 more than double the $4.5 billion in the second quarter"
+   ],
+   "v7": {
+    "image_source": "extra:berkshire-hathaway-annual-meeting-2025",
+    "track": "backdrop",
+    "render_scale": 0.247,
+    "photo_px": [
+     4000,
+     2252
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.2468916518650089,
+     "window": [
+      622,
+      0,
+      4000,
+      2252
+     ]
+    },
+    "track_note": "layout demotion: no full-bleed fit in the -330px zone below the dominant chin \u2014 backdrop composition instead",
+    "provenance": {
+     "subject": "Berkshire Hathaway Annual Meeting 2025",
+     "route": "identity \u2014 depicts (P180=Q217583)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Berkshire_Hathaway_Annual_Meeting_2025.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Berkshire_Hathaway_Annual_Meeting_2025.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "Good-investing"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 0.975,
+   "content_h": 771,
+   "block_top": 780,
+   "block_bottom": 1551,
+   "text_bbox": [
+    70,
+    780,
+    930,
+    1551
+   ],
+   "texts": [
+    "By The Numbers",
+    "5.8%",
+    "Fall in third-quarter operating earnings, to $12.705 billion",
+    "43%",
+    "Drop in insurance underwriting profit, to $1.352 billion",
+    "$352 BILLION",
+    "Cash and equivalents including Treasury bills at the end of September"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.86875,
+     "window": [
+      152,
+      80,
+      1112,
+      720
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 918,
+   "block_bottom": 1413,
+   "text_bbox": [
+    70,
+    918,
+    930,
+    1413
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Berkshire shares rose more than 5% this week while the S&P 500 fell almost 2.7%",
+    "It was Greg Abel's third quarter as chief executive after taking over from Warren Buffett in January"
+   ],
+   "v7": {
+    "image_source": "extra:warren-buffett-ku-visit",
+    "track": "backdrop",
+    "render_scale": 0.598,
+    "photo_px": [
+     1395,
+     1700
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.5978494623655914,
+     "window": [
+      0,
+      166,
+      1395,
+      1096
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Warren Buffett speaking to a group of students from the University of Kansas School of Business",
+     "route": "identity \u2014 Wikidata P18 (Q47213)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Warren_Buffett_KU_Visit.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Warren_Buffett_KU_Visit.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.0",
+     "artist": "Mark Hirschey"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 331,
+   "block_top": 694,
+   "block_bottom": 1025,
+   "text_bbox": [
+    70,
+    694,
+    930,
+    1025
+   ],
+   "texts": [
+    "The Takeaway",
+    "Buybacks may not keep this pace \u2014 Berkshire is price-sensitive, and October buying already slowed as the share price rose.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 103.2,
+ "mp4_bytes": 8434886
+}

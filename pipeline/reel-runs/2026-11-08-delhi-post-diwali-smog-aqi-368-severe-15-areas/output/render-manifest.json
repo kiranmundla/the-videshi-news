@@ -1,0 +1,410 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "delhi-post-diwali-smog-aqi-368-severe-15-areas",
+ "article_slug": "delhi-post-diwali-smog-aqi-368-severe-15-areas",
+ "article_id": "3014725a-353f-4c85-b895-c1780c219022",
+ "category": "News",
+ "video": "reel-runs/2026-11-08-delhi-post-diwali-smog-aqi-368-severe-15-areas/output/delhi-post-diwali-smog-aqi-368-severe-15-areas.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://bsmedia.business-standard.com/_media/bs/img/article/2026-11/07/full/1794058875-6678.jpg",
+  "local_path": "reel-runs/2026-11-08-delhi-post-diwali-smog-aqi-368-severe-15-areas/output/hero.jpg",
+  "width": 3840,
+  "height": 2466,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.465,0.756) damped=(0.483,0.628)",
+  "has_face": false,
+  "box_source": [
+   777,
+   1006,
+   2150,
+   986
+  ],
+  "box_bg": [
+   -309,
+   783,
+   1674,
+   768
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.486,
+   0.623
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   535
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 1307,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1307,
+    930,
+    1580
+   ],
+   "texts": [
+    "News",
+    "DELHI WAKES TO POST-DIWALI SMOG"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.779,
+    "photo_px": [
+     3840,
+     2466
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7785888077858881,
+     "window": [
+      1174,
+      0,
+      2561,
+      2466
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Delhi's overall AQI was 368 at 7 a.m. on Monday, a day after Diwali, with all 54 monitoring stations above 200 and 15 areas in the severe band above 400."
+   ],
+   "v7": {
+    "image_source": "extra:crackers-at-diwali-in-guntur",
+    "track": "full-bleed",
+    "render_scale": 0.552,
+    "photo_px": [
+     4640,
+     3480
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5517241379310345,
+     "window": [
+      1181,
+      0,
+      3138,
+      3480
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "The image shows crackers at Diwali times.",
+     "route": "identity \u2014 Wikidata P18 (Q10244)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Crackers_at_Diwali_in_Guntur.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Crackers_at_Diwali_in_Guntur.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Kalli navya"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 755,
+   "zone_h": 801,
+   "scale": 1.0,
+   "content_h": 418,
+   "block_top": 946,
+   "block_bottom": 1364,
+   "text_bbox": [
+    70,
+    946,
+    930,
+    1364
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "368",
+    "Delhi's overall AQI at 7 a.m. on Monday, a day after Diwali, in the 'very poor' category"
+   ],
+   "v7": {
+    "image_source": "extra:diwali-india-2019-01",
+    "track": "backdrop",
+    "render_scale": 0.579,
+    "photo_px": [
+     1440,
+     1800
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 535,
+     "scale": 0.5791666666666667,
+     "window": [
+      0,
+      342,
+      1440,
+      1265
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.07x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "This photo has been taken in the country: India",
+     "route": "identity \u2014 depicts (P180=Q10244)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:DIWALI_INDIA_2019_01.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/DIWALI_INDIA_2019_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "SACHI AGRAWAL"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 784,
+   "block_top": 796,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    796,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "15",
+    "Areas in the severe band above 400, out of 54 monitoring stations",
+    "441",
+    "Highest readings at 7 a.m., at Burari Crossing and Sonia Vihar",
+    "760.99",
+    "PM2.5 peak near Akshardham late on Sunday, over 50 times the WHO daily limit"
+   ],
+   "v7": {
+    "image_source": "extra:20191203-muhammad-wali-masjid-delhi-0915-650",
+    "track": "full-bleed",
+    "render_scale": 0.453,
+    "photo_px": [
+     3597,
+     4235
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.45336481700118064,
+     "window": [
+      591,
+      0,
+      2973,
+      4235
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Muhammad Wali Masjid in Delhi",
+     "route": "identity \u2014 depicts (P180=Q1353)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:20191203_Muhammad_Wali_Masjid,_Delhi_0915_6500_DxO.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/86/20191203_Muhammad_Wali_Masjid%2C_Delhi_0915_6500_DxO.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Jakub Ha\u0142un"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1211,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1211,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Stage III GRAP curbs remain in force across Delhi-NCR",
+    "Severe air is forecast for the next few days \u2014 limit outdoor exertion"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "full-bleed",
+    "render_scale": 0.779,
+    "photo_px": [
+     3840,
+     2466
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7785888077858881,
+     "window": [
+      1174,
+      0,
+      2561,
+      2466
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Severe air is forecast for the next few days, with Stage III GRAP curbs in force.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 143.7,
+ "mp4_bytes": 14931562
+}

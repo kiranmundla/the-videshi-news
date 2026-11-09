@@ -1,0 +1,31 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ayodhya-deepotsav-30-lakh-diyas-10th-edition",
+  "name": "ayodhya-deepotsav-30-lakh-diyas-10th-edition",
+  "script": "reel-runs/2026-11-08-ayodhya-deepotsav-30-lakh-diyas-10th-edition/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000666
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-08-ayodhya-deepotsav-30-lakh-diyas-10th-edition/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "manifest": "reel-runs/2026-11-08-ayodhya-deepotsav-30-lakh-diyas-10th-edition/output/render-manifest.json",
+  "video": "reel-runs/2026-11-08-ayodhya-deepotsav-30-lakh-diyas-10th-edition/output/ayodhya-deepotsav-30-lakh-diyas-10th-edition.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-08-ayodhya-deepotsav-30-lakh-diyas-10th-edition/output/tiktok-caption.txt"
+}

@@ -1,0 +1,36 @@
+{
+ "hook_line": "DELHI WAKES TO POST-DIWALI SMOG",
+ "hook_stat": {
+  "big": "368",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Delhi's overall AQI at 7 a.m. on Monday, a day after Diwali, in the 'very poor' category"
+ },
+ "stats": [
+  {
+   "big": "15",
+   "label": "Areas in the severe band above 400, out of 54 monitoring stations"
+  },
+  {
+   "big": "441",
+   "label": "Highest readings at 7 a.m., at Burari Crossing and Sonia Vihar"
+  },
+  {
+   "big": "760.99",
+   "label": "PM2.5 peak near Akshardham late on Sunday, over 50 times the WHO daily limit"
+  }
+ ],
+ "diaspora_bullets": [
+  "Stage III GRAP curbs remain in force across Delhi-NCR",
+  "Severe air is forecast for the next few days — limit outdoor exertion"
+ ],
+ "key_entities": [
+  "Delhi",
+  "Diwali",
+  "Central Pollution Control Board",
+  "Akshardham"
+ ],
+ "news_summary": "Delhi's overall AQI was 368 at 7 a.m. on Monday, a day after Diwali, with all 54 monitoring stations above 200 and 15 areas in the severe band above 400.",
+ "payoff": "Severe air is forecast for the next few days, with Stage III GRAP curbs in force.",
+ "versus": "",
+ "story_mood": "tense"
+}

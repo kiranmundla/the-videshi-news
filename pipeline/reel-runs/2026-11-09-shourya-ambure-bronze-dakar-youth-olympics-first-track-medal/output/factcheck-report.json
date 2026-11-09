@@ -1,0 +1,286 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "shourya-ambure-bronze-dakar-youth-olympics-first-track-medal",
+  "verdict": "fail",
+  "held_claims": [
+    "diaspora_bullets[0]"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "SHOURYA AMBURE, 17, WINS BRONZE \u2014 INDIA'S FIRST TRACK MEDAL AT DAKAR",
+      "numbers": [
+        17.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ambure won bronze, marking India's first track medal at Dakar.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Shourya Ambure, 17, from Maharashtra, won bronze in the women's 100m hurdles at the Dakar 2026 Youth Olympic Games, clocking a personal best 13.59 seconds \u2014 India's first track and field medal of the Games.",
+      "numbers": [
+        13.59,
+        17.0,
+        100.0,
+        2026.0
+      ],
+      "entities": [
+        "Shourya Ambure",
+        "Youth Olympic Games"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "All details about Ambure's win and times are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "13.59",
+      "numbers": [
+        13.59
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is Ambure's personal best time in the final.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Personal best in the women's 100m hurdles final at the Dakar Youth Olympics",
+      "numbers": [
+        100.0
+      ],
+      "entities": [
+        "Dakar Youth Olympics"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ambure's time of 13.59 seconds is her personal best in the final.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "0.02",
+      "numbers": [
+        0.02
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ambure finished 0.02 seconds behind the silver medalist.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Seconds behind silver medallist Anna Peeters of France, who ran 13.57",
+      "numbers": [
+        13.57
+      ],
+      "entities": [
+        "Anna Peeters"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ambure was 0.02 seconds behind Peeters' time of 13.57.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "13.77",
+      "numbers": [
+        13.77
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This was Ambure's semi-final time earlier on the same day.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Her semi-final time earlier on Sunday \u2014 the first of two personal bests in one day",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ambure set two personal bests on the same day.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "8",
+      "numbers": [
+        8.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ambure's bronze was India's eighth medal at Dakar.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "India's medal tally at Dakar after her bronze \u2014 three silver and five bronze",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The medal tally is accurately reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "India's only track and field athlete at the Dakar Games",
+      "numbers": [],
+      "entities": [
+        "Dakar Games"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Dakar Games"
+        ]
+      },
+      "llm_reason": "Ambure was the only track and field athlete from India.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Coached by Ajit Kulkarni, she has raced hurdles since the Under-14 category",
+      "numbers": [
+        14.0
+      ],
+      "entities": [
+        "Ajit Kulkarni"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ambure trains under coach Ajit Kulkarni and has a history in hurdles.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "In the space of 18 months she has now won medals at the Asian U18 Championships, the Asian Youth Games and the Youth Olympic Games.",
+      "numbers": [
+        18.0
+      ],
+      "entities": [
+        "Asian U18 Championships",
+        "Asian Youth Games",
+        "Youth Olympic Games"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Ambure's recent achievements are accurately summarized.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Shourya Ambure",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Dakar 2026 Youth Olympic Games",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Anna Peeters",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Zhang Keyi",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000695,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}
