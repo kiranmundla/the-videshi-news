@@ -765,7 +765,8 @@
           "name": "Padam Singh Kapri Heera Devi Subhash Chandra Shubham Chaudhary Sadab Khan Alok Verma Gopa Nayal Deewan Kanwal Jaya Shah Pushpa Pandey",
           "photo_url": ""
         }
-      ]
+      ],
+      "fandango_url": null
     },
     {
       "title": "Ramayana: Part 1",
@@ -832,7 +833,8 @@
         }
       ],
       "poster_width": 330,
-      "poster_height": 183
+      "poster_height": 183,
+      "fandango_url": "https://www.fandango.com/scene-2026-248114/movie-overview"
     },
     {
       "title": "Mookuthi Amman 2",
@@ -870,7 +872,8 @@
       ],
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/e/ef/Mookuthi_Amman_2_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "poster_width": 250,
-      "poster_height": 391
+      "poster_height": 391,
+      "fandango_url": "https://www.fandango.com/mookuthi-amman-2-248355/movie-overview"
     },
     {
       "title": "Aakasamlo Oka Tara",
