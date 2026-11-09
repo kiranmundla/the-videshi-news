@@ -1,8 +1,56 @@
 {
-  "generated_at": "2026-11-02T17:00:52Z",
-  "week_of": "Nov 02 – Nov 08, 2026",
-  "editorial_intro": "This week, streaming platforms are buzzing with exciting new releases, particularly in Indian cinema. From the action-packed 'Haiwaan' to the heartwarming comedy 'Dilwali Diwali', there's something for everyone. Don't miss the musical journey in 'Meesaya Murukku 2' and the gripping courtroom drama 'The Third Murder'.",
+  "generated_at": "2026-11-09T17:09:46Z",
+  "week_of": "Nov 09 – Nov 15, 2026",
+  "editorial_intro": "This week brings a fresh lineup of Indian content to streaming platforms, including the highly anticipated crime drama 'Daayra' on Netflix and the thrilling series 'Haiwaan' on JioHotstar. Don't miss out on these exciting new releases!",
   "picks": [
+    {
+      "title": "Daayra",
+      "slug": "daayra",
+      "platform": "Netflix",
+      "platform_icon": "netflix",
+      "genre": "Crime Drama",
+      "year": 2026,
+      "synopsis": "In 'Daayra', a gripping crime drama directed by Meghna Gulzar, a determined police officer, played by Kareena Kapoor Khan, investigates a series of brutal murders that lead her into the dark underbelly of society. As she delves deeper, she uncovers a web of corruption and betrayal that challenges her moral compass and personal relationships.",
+      "cast": [
+        "Kareena Kapoor Khan",
+        "Prithviraj Sukumaran"
+      ],
+      "director": "Meghna Gulzar",
+      "why_watch": "This film promises a powerful performance from Kareena Kapoor Khan and a compelling narrative that keeps you on the edge of your seat. It's a must-watch for fans of intense crime dramas.",
+      "is_indian": true,
+      "watch_url": "https://www.netflix.com/search?q=daayra",
+      "language": "Hindi",
+      "trending": true,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/7/7c/Daayra_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/7/7c/Daayra_film_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+      "trailer_url": "https://www.youtube.com/watch?v=khru4exyahg",
+      "rank": 1
+    },
+    {
+      "title": "Adhey Neevu Adhey Nenu",
+      "slug": "adhey-neevu-adhey-nenu",
+      "platform": "Prime Video",
+      "platform_icon": "prime",
+      "genre": "Romantic Drama",
+      "year": 2026,
+      "synopsis": "Adhey Neevu Adhey Nenu is an Indian Telugu-language romantic crime thriller film directed by Kondal, and produced by Kandregula Govindu under Sri Lakshmi Veerabhadra Creations banner. The film stars Trinadh Varma, Yashwanth Pendyala, Tanvi Negi, and Sahar Krishnan.",
+      "cast": [
+        "Trinadh Varma",
+        "Thanvi Negi",
+        "Yashwanth Pendyala",
+        "Sahar Krishnan"
+      ],
+      "director": "Kondal",
+      "why_watch": "With a heartfelt storyline and strong performances, this film is sure to resonate with anyone who believes in the power of love and second chances.",
+      "is_indian": true,
+      "watch_url": "https://www.primevideo.com/search/ref=atv_nb_sr?phrase=adhey%20neevu%20adhey%20nenu",
+      "language": "Telugu",
+      "trending": false,
+      "poster_url": "",
+      "backdrop_url": "",
+      "trailer_url": "https://www.youtube.com/watch?v=RWIXaGlNQ5s",
+      "rank": 2
+    },
     {
       "title": "Meesaya Murukku 2",
       "slug": "meesaya-murukku-2",
@@ -10,7 +58,7 @@
       "platform_icon": "sonyliv",
       "genre": "Musical Drama",
       "year": 2026,
-      "synopsis": "The sequel to the popular musical series, 'Meesaya Murukku 2' continues the journey of a young aspiring musician navigating the challenges of love and ambition in the Tamil music industry. With new characters and fresh conflicts, it explores the evolving landscape of contemporary music.",
+      "synopsis": "In this sequel, the protagonist returns to his roots and faces new challenges in the music industry while trying to balance his personal life. The film showcases the struggles of aspiring musicians and the importance of family support.",
       "cast": [
         "Hiphop Tamizha Adhi",
         "Hiphop Tamizha",
@@ -19,38 +67,15 @@
         "Ramya Ranganathan"
       ],
       "director": "Hiphop Tamizha",
-      "why_watch": "Fans of the original series will appreciate the continuation of this heartfelt story, filled with catchy music and relatable struggles. It's a vibrant portrayal of the Tamil music scene that resonates with young audiences.",
+      "why_watch": "This film combines music and drama beautifully, making it a delightful watch for fans of Tamil cinema and music lovers alike.",
       "is_indian": true,
       "watch_url": "https://www.sonyliv.com/search?q=meesaya+murukku+2",
       "language": "Tamil",
-      "trending": true,
+      "trending": false,
       "poster_url": "https://upload.wikimedia.org/wikipedia/en/0/06/Meesaya_Murukku_2_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/0/06/Meesaya_Murukku_2_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "trailer_url": "https://www.youtube.com/watch?v=lU40CPN7Ww0",
-      "rank": 1
-    },
-    {
-      "title": "The Third Murder",
-      "slug": "the-third-murder",
-      "platform": "Netflix",
-      "platform_icon": "netflix",
-      "genre": "Crime Drama",
-      "year": 2026,
-      "synopsis": "In this gripping courtroom drama, a defense attorney takes on a complex murder case that challenges his beliefs about justice and morality. As he delves deeper into the case, he uncovers shocking truths that blur the lines between right and wrong.",
-      "cast": [
-        "Koji Yakusho",
-        "Shinnosuke Mitsushima"
-      ],
-      "director": "",
-      "why_watch": "This film offers a thought-provoking exploration of the justice system and the human psyche. Its intricate plot and strong performances make it a compelling watch for fans of crime dramas.",
-      "is_indian": false,
-      "watch_url": "https://www.netflix.com/search?q=the+third+murder",
-      "language": "Japanese",
-      "trending": false,
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/45/Sandome_no_Satsujin_poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "backdrop_url": "https://upload.wikimedia.org/wikipedia/en/4/45/Sandome_no_Satsujin_poster.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "trailer_url": "https://www.youtube.com/watch?v=OPBSJ1LWsEg",
-      "rank": 2
+      "rank": 3
     }
   ]
 }
