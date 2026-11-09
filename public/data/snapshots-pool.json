@@ -120,13 +120,6 @@
     "added_date": "2026-05-01"
   },
   {
-    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/onam-kerala-celebration-12517577.jpg",
-    "label": "Captivating scene of a traditional dance festival in Bengaluru, showcasing cultural vibrancy and community spirit. · 📷 Ravi Mittal",
-    "source": "pexels",
-    "added_date": "2026-05-27",
-    "pexels_id": 12517577
-  },
-  {
     "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/mumbai-gateway-of-india-36874536.jpg",
     "label": "Stunning view of the iconic Gateway of India with boats and visitors at sunset in Mumbai. · 📷 Frank van Dijk",
     "source": "pexels",
@@ -258,5 +251,12 @@
     "source": "pexels",
     "added_date": "2026-11-02",
     "pexels_id": 39025942
+  },
+  {
+    "src": "https://lboecaekpynbpyijrbfz.supabase.co/storage/v1/object/public/article-images/diaspora/snapshots/holi-celebration-colors-india-57724.jpg",
+    "label": "A vibrant display of colorful Holi powders, symbolizing celebration and joy. · 📷 Pixabay",
+    "source": "pexels",
+    "added_date": "2026-11-09",
+    "pexels_id": 57724
   }
 ]
