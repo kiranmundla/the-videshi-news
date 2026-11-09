@@ -1,0 +1,142 @@
+[
+  {
+    "id": "e6fea0bd-1d6e-44c2-b9c6-20d63b40902f",
+    "headline": "IPL Trades: Gujarat, Delhi Discuss Ashutosh Sharma Swap Ahead of Retention Deadl",
+    "slug": "ipl-trade-ashutosh-sharma-gt-dc-talks",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the conflicting reports regarding Ashutosh Sharma's trade status. Provide a direct quote or attribution from a credible source to enhance accuracy and transparency.",
+        "Include specific details about the trade implications, such as potential player names involved in the swap or estimated performance metrics that could influence the trade decision.",
+        "Add context about the significance of the November 17 retention deadline, such as how it impacts team strategies and player valuations in the IPL."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Cricbuzz or another reputable sports news source confirming the trade discussions for real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "03ca8c31-1944-4ee7-a48d-03fe1e5356da",
+    "headline": "CN Traveller Names 27 Best Indian Restaurants in London as Spice Route Heats Up",
+    "slug": "best-indian-restaurants-london-cn-traveller-27",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of Michelin star achievements for Gymkhana, as the current phrasing is slightly confusing. Specify that it won its first star in 2014 and its second in 2024 to enhance accuracy.",
+        "Provide a brief context about the significance of the Michelin star in the culinary world, which would help readers understand the prestige of the restaurants mentioned.",
+        "Include a quote or statement from a restaurant owner or chef to add a personal touch and credibility to the article, enhancing attribution and depth."
+      ],
+      "embed_opportunities": [
+        "Embed the official Cond\u00e9 Nast Traveller tweet announcing the list of the 27 best Indian restaurants to provide direct access to the source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "1b62b576-709b-49bd-b2d4-91a368d31e85",
+    "headline": "AI Slump Revives Asia's Forgotten Trades as Investors Turn to China and India",
+    "slug": "ai-slump-asia-rotation-china-india-stocks",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding the AI trade unwinding and its impact on Asian markets. Specify the dates of the US midterms and how they directly correlate with the recent market movements in China and India.",
+        "Include specific figures or percentages regarding the expected returns or growth projections for the Chinese and Indian stocks mentioned. This would provide readers with a clearer understanding of potential investment outcomes.",
+        "Provide context on what the 'out-of-favour' stocks are specifically, perhaps by naming a few key companies or sectors that are seeing renewed interest. This will help readers grasp the scope of the market shift.",
+        "Add a brief explanation of the implications of the Democrats' sweep of Congress on Asian markets. This would help readers understand the political context behind the market movements."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant Bloomberg tweet or article link that discusses the AI trade and its impact on Asian markets for additional context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "84b682d7-ef5e-4c57-8256-163884ac1079",
+    "headline": "Ayodhya's 10th Deepotsav Lights Over 30 Lakh Diyas Across 56 Saryu Ghats",
+    "slug": "ayodhya-deepotsav-30-lakh-diyas-10th-edition",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the discrepancy in diya counts reported by different sources. Provide a clear statement on which figure is currently being considered official and what the process is for verification by Guinness World Records.",
+        "Include a brief background on the significance of Deepotsav and its connection to Diwali for readers who may not be familiar with the festival, enhancing context and completeness.",
+        "Ensure that the date mentioned for the event is consistent throughout the article. The date should be clearly stated as November 7, 2023, to avoid confusion.",
+        "Add a concluding statement summarizing the event's impact or significance, such as how this year's Deepotsav compares to previous years in terms of participation or community involvement."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Ayodhya tourism account or a relevant government account that provides updates or highlights from the event."
+      ]
+    }
+  },
+  {
+    "id": "3d2f91ad-a769-45e7-9095-165c39ec6604",
+    "headline": "Filmmakers Hail 'Ramayana' as India's 'Lord of the Rings' as Epic Opens Worldwid",
+    "slug": "ramayana-lord-of-the-rings-filmmakers-praise",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the opening day box office figures by specifying whether the Rs 64.85 crore is a gross or net figure and provide context on how this compares to other recent Indian film openings for better completeness.",
+        "Include direct quotes from the filmmakers or industry experts to enhance attribution and provide a more personal touch to the filmmakers' praise.",
+        "Add a brief summary of the film's plot and its significance in Indian culture to provide readers with context about why this film is being compared to 'The Lord of the Rings.'",
+        "Mention the release dates for the second part of the film if available, as this would provide readers with a timeline for future content."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the film's official account or a prominent film critic praising the film to enhance engagement and provide real-time reactions."
+      ]
+    }
+  },
+  {
+    "id": "93baef99-b141-4f3b-b640-e6f383d4c398",
+    "headline": "Firecracker Smoke Is Making Eyes Burn After Diwali: What Eye Doctors Advise",
+    "slug": "diwali-firecracker-smoke-eyes-protection-guide",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include specific statistics or studies that quantify the health effects of firecracker smoke on eye health to provide readers with a clearer understanding of the risks involved.",
+        "Clarify the timeline for when symptoms typically appear after exposure to firecracker smoke and how long they may last, helping readers understand what to expect.",
+        "Add a section that outlines when to seek medical attention, including specific symptoms that warrant immediate care, to ensure readers know the urgency of their situation.",
+        "Provide a brief overview of the potential long-term effects of repeated exposure to firecracker smoke on eye health, which could inform readers about the importance of preventive measures."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a reputable health organization or eye care professional that reinforces the advice given in the article, adding credibility and a social media dimension."
+      ]
+    }
+  },
+  {
+    "id": "09b45c48-c67c-4f38-b848-1ea67650fa08",
+    "headline": "After the Midterms, Republicans Weigh a Loss Their Own Side Calls Not Historic",
+    "slug": "republican-party-after-midterms-loss-not-historic",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the midterm elections and the implications of the January 3, 2027, convening date for the new Congress. This will help readers understand the immediate political landscape and upcoming deadlines.",
+        "Provide more context on the significance of the House and Senate seat flips, particularly in states like Texas and Kansas. Explain why these changes are notable beyond just the numbers, as this will enhance the completeness of the article.",
+        "Include a direct quote from Tim Constantine or another political analyst to strengthen the attribution and provide a clearer perspective on the implications of the election results."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a reputable political analyst or news outlet summarizing the election results or reactions from key political figures to enhance credibility and provide real-time updates."
+      ]
+    }
+  }
+]

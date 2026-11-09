@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-08T05:29:10+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-08T23:15:56+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **239**
-- prebuilt_reels rows: 172 (142 with a yt_video_id)
+- Channel uploads (actual, via API): **242**
+- prebuilt_reels rows: 175 (145 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 55
-- **In sync** (channel video backed by a DB/publish-log record): **121**
+- Phase 2 publish-log entries: 58
+- **In sync** (channel video backed by a DB/publish-log record): **124**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 17
 - Ghost DB rows (yt_video_id not on channel): 16
@@ -292,7 +292,7 @@ _None._
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 - row `3c385175-84c2-48c0-afec-378bee1ba1d6` · slug ambani-adds-6-3-billion-reliance-shares-jump-record-profit · yt_video_id `B45MLVEFtk4` · on channel: no
 
-## (d) In sync (121)
+## (d) In sync (124)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -415,4 +415,7 @@ _None._
 - `PjJlgFUFr9E` · public · 2026-11-07 · Nvidia, AMD and Micron Lead Chip Rebound After Worst Selloff Since 2020 #Shorts #Markets [prebuilt_reels:0df78f28-8b3d-4c2a-b306-24b942cb0991]
 - `sAAjMEqIfgM` · public · 2026-11-07 · US Visa Curbs Push Indian IT Firms Toward Offshore Hiring, Analysts Say #Shorts #H1B [prebuilt_reels:4c78bcd0-21b9-4e3d-90ac-8ab82bdf7800]
 - `zVMdWZzHbqs` · public · 2026-11-07 · Tata Steel Q2 Profit Rises 16% to Rs 3,700 Crore on India Strength #Shorts #Markets [prebuilt_reels:9575f4c3-8921-4968-b875-b19f2d97b4f4]
+- `1VXvWL5ZR9Y` · public · 2026-11-08 · Berkshire Operating Earnings Fall 5.8% as Buybacks Hit $9.6 Billion #Shorts #Markets [prebuilt_reels:51a8ea98-4d3b-439a-b737-5529c502a700]
+- `IQ3tv74I0AU` · public · 2026-11-08 · Alberta Invites 425 Workers in Five Provincial Immigration Draws #Shorts #Immigration [prebuilt_reels:59b33281-302b-4aa9-a308-173ddb362cb8]
+- `QcTi-8pVQj8` · public · 2026-11-08 · Ayodhya's 10th Deepotsav Lights Over 30 Lakh Diyas Across 56 Saryu Ghats #Shorts #News [prebuilt_reels:c9b5c8cd-1d70-4694-8c33-62825b67d9aa]
 

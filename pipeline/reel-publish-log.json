@@ -732,5 +732,44 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "1VXvWL5ZR9Y",
+    "article_slug": "berkshire-operating-earnings-fall-buybacks-9-6-billion-q3",
+    "article_id": "a045f43d-3086-4e7b-b9e9-3970b47595aa",
+    "title": "Berkshire Operating Earnings Fall 5.8% as Buybacks Hit $9.6 Billion #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-11-08T11:14:54.602639+00:00",
+    "video_path": "reel-runs/2026-11-08-berkshire-operating-earnings-fall-buybacks-9-6-billion-q3/output/berkshire-operating-earnings-fall-buybacks-9-6-billion-q3.mp4",
+    "video_sha256": "1defe241f0cbeaed63407c62a31e397baa8c0daef1350b55373d9936ad3d6534",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "IQ3tv74I0AU",
+    "article_slug": "alberta-invites-425-workers-five-aaip-draws-october-november-2026",
+    "article_id": "b4b349af-e7c4-4961-b4b6-2f993a4f51f3",
+    "title": "Alberta Invites 425 Workers in Five Provincial Immigration Draws #Shorts #Immigration",
+    "privacy": "public",
+    "uploaded_at": "2026-11-08T17:16:07.189025+00:00",
+    "video_path": "reel-runs/2026-11-08-alberta-invites-425-workers-five-aaip-draws-october-november-2026/output/alberta-invites-425-workers-five-aaip-draws-october-november-2026.mp4",
+    "video_sha256": "d2fb19d089cce6201c7f3fec54bddb0bc79fe63c1b96c5537e5da1bf7c93f59c",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "QcTi-8pVQj8",
+    "article_slug": "ayodhya-deepotsav-30-lakh-diyas-10th-edition",
+    "article_id": "84b682d7-ef5e-4c57-8256-163884ac1079",
+    "title": "Ayodhya's 10th Deepotsav Lights Over 30 Lakh Diyas Across 56 Saryu Ghats #Shorts #News",
+    "privacy": "public",
+    "uploaded_at": "2026-11-08T23:14:40.277822+00:00",
+    "video_path": "reel-runs/2026-11-08-ayodhya-deepotsav-30-lakh-diyas-10th-edition/output/ayodhya-deepotsav-30-lakh-diyas-10th-edition.mp4",
+    "video_sha256": "cf517ed413d32b14efcec122da16a07c5f17e4d84cc281e9dffc97e27c224699",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

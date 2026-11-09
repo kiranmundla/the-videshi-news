@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 239,
-    "db_rows": 172,
-    "db_rows_with_yt_id": 142,
+    "channel_videos": 242,
+    "db_rows": 175,
+    "db_rows_with_yt_id": 145,
     "legacy_log_entries": 205,
-    "publish_log_entries": 55,
-    "in_sync": 121,
+    "publish_log_entries": 58,
+    "in_sync": 124,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 17,
     "ghost_db_rows": 16,
@@ -860,6 +860,27 @@
       "privacy": "public",
       "video_id": "zVMdWZzHbqs",
       "record": "prebuilt_reels:9575f4c3-8921-4968-b875-b19f2d97b4f4"
+    },
+    {
+      "title": "Berkshire Operating Earnings Fall 5.8% as Buybacks Hit $9.6 Billion #Shorts #Markets",
+      "published_at": "2026-11-08T11:15:14Z",
+      "privacy": "public",
+      "video_id": "1VXvWL5ZR9Y",
+      "record": "prebuilt_reels:51a8ea98-4d3b-439a-b737-5529c502a700"
+    },
+    {
+      "title": "Alberta Invites 425 Workers in Five Provincial Immigration Draws #Shorts #Immigration",
+      "published_at": "2026-11-08T17:16:29Z",
+      "privacy": "public",
+      "video_id": "IQ3tv74I0AU",
+      "record": "prebuilt_reels:59b33281-302b-4aa9-a308-173ddb362cb8"
+    },
+    {
+      "title": "Ayodhya's 10th Deepotsav Lights Over 30 Lakh Diyas Across 56 Saryu Ghats #Shorts #News",
+      "published_at": "2026-11-08T23:15:05Z",
+      "privacy": "public",
+      "video_id": "QcTi-8pVQj8",
+      "record": "prebuilt_reels:c9b5c8cd-1d70-4694-8c33-62825b67d9aa"
     }
   ],
   "unknown_legacy_logged": [
@@ -3869,5 +3890,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-08T05:29:10+00:00"
+  "generated_at": "2026-11-08T23:15:56+00:00"
 }
