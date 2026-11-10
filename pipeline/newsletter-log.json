@@ -1734,5 +1734,16 @@
     "top_story_slug": "cancer-india-screening-exists-patients-diagnosed-late",
     "quick_hit_count": 5,
     "deadline_count": 2
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-11-09T14:58:17.705068+00:00Z",
+    "subject": "The Videshi Daily \u2014 November 09, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "delhi-fire-calls-dip-diwali-214-incidents",
+    "quick_hit_count": 5,
+    "deadline_count": 1
   }
 ]

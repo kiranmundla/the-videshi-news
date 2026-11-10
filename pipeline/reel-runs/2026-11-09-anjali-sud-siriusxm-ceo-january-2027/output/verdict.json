@@ -1,0 +1,39 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "anjali-sud-siriusxm-ceo-january-2027",
+  "name": "anjali-sud-siriusxm-ceo-january-2027",
+  "script": "reel-runs/2026-11-09-anjali-sud-siriusxm-ceo-january-2027/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000635
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-09-anjali-sud-siriusxm-ceo-january-2027/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "anjali-sud-41139141434",
+      "hero": "msr-gtp-wgi23-01",
+      "grid": "bmw-idrive8-ix"
+    }
+  },
+  "manifest": "reel-runs/2026-11-09-anjali-sud-siriusxm-ceo-january-2027/output/render-manifest.json",
+  "video": "reel-runs/2026-11-09-anjali-sud-siriusxm-ceo-january-2027/output/anjali-sud-siriusxm-ceo-january-2027.mp4",
+  "qa": {
+    "score": 5.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:hero",
+      "face_overlap:hero",
+      "edge_overflow:grid",
+      "face_overlap:payoff"
+    ]
+  }
+}

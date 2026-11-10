@@ -1,0 +1,280 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "anjali-sud-siriusxm-ceo-january-2027",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ANJALI SUD TO LEAD SIRIUSXM AS CEO",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Anjali Sud is appointed CEO of SiriusXM.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "SiriusXM has appointed Anjali Sud, the Indian-origin executive who leads Fox's streaming service Tubi, as its next chief executive, effective January 1, 2027, succeeding Jennifer Witz.",
+      "numbers": [
+        1.0,
+        2027.0
+      ],
+      "entities": [
+        "Anjali Sud",
+        "Jennifer Witz"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "All details about Sud's appointment and background are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "110 MILLION",
+      "numbers": [
+        110.0,
+        110000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Tubi grew to more than 110 million monthly active users.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Monthly active users at Tubi, which Sud grew to more than 110 million",
+      "numbers": [
+        110.0,
+        110000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Sud grew Tubi to over 110 million monthly active users.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "300 MILLION",
+      "numbers": [
+        300.0,
+        300000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Vimeo had 300 million users under Sud's leadership.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Users at Vimeo, where Sud was CEO",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Sud was CEO of Vimeo with 300 million users.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "255 MILLION",
+      "numbers": [
+        255.0,
+        255000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "SiriusXM reaches approximately 255 million monthly listeners.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Monthly listeners SiriusXM reaches",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "SiriusXM has about 255 million monthly listeners.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2027",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "Sud takes over as CEO on January 1, 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Sud takes over as CEO on January 1",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Sud's CEO start date is January 1, 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Indian-origin executive named to lead the largest US satellite radio company",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Sud is Indian-origin and leads SiriusXM, the largest US satellite radio company.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "On SiriusXM's board since March 2025",
+      "numbers": [
+        2025.0
+      ],
+      "entities": [
+        "On SiriusXM's"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "Sud has been on SiriusXM's board since March 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Her task: convert streaming and podcast assets into growth.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Sud's task is to convert streaming and podcast assets into growth.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Anjali Sud",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "SiriusXM",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Tubi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Vimeo",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Jennifer Witz",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000635,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

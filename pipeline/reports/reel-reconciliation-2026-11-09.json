@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 243,
-    "db_rows": 176,
-    "db_rows_with_yt_id": 146,
+    "channel_videos": 244,
+    "db_rows": 177,
+    "db_rows_with_yt_id": 147,
     "legacy_log_entries": 205,
-    "publish_log_entries": 59,
-    "in_sync": 125,
+    "publish_log_entries": 60,
+    "in_sync": 126,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 17,
     "ghost_db_rows": 16,
@@ -888,6 +888,13 @@
       "privacy": "public",
       "video_id": "ZOs-gYpCORM",
       "record": "prebuilt_reels:0232ea24-80a1-405b-9360-a879a9a1e882"
+    },
+    {
+      "title": "Trump Says Deportation Policy Was 'Too Tough' in Post-Midterm Interview #Shorts #USElections2026",
+      "published_at": "2026-11-09T23:16:55Z",
+      "privacy": "public",
+      "video_id": "Ng6jNOTGVbM",
+      "record": "prebuilt_reels:509324de-d430-4c5d-b358-e8b79b248935"
     }
   ],
   "unknown_legacy_logged": [
@@ -3897,5 +3904,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-09T11:20:47+00:00"
+  "generated_at": "2026-11-09T23:18:49+00:00"
 }

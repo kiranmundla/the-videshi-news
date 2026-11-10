@@ -1,0 +1,186 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "anjali-sud-siriusxm-ceo-january-2027",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Anjali Sud",
+    "SiriusXM",
+    "Tubi",
+    "Vimeo",
+    "Jennifer Witz",
+    "Lead SiriusXM"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Jennifer Witz' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Lead SiriusXM' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Anjali Sud 41139141434.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q55686689)",
+      "verdict": "USED (news)",
+      "reason": "1692x1965, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Anjali Sud 41139139344.jpg",
+      "route": "identity \u2014 depicts (P180=Q55686689)",
+      "verdict": "accepted",
+      "reason": "1487x1493, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:BMW iDrive8 iX.jpg",
+      "route": "identity \u2014 depicts (P180=Q3277465)",
+      "verdict": "USED (grid)",
+      "reason": "5013x3342, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Errol Spence Jr. with Mista Bless and Akin Reyes.jpg",
+      "route": "identity \u2014 depicts (P180=Q3277465)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:MSR GTP WGI23 01.jpg",
+      "route": "identity \u2014 depicts (P180=Q3277465)",
+      "verdict": "USED (hero)",
+      "reason": "4000x3000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Tubi 2024 logo.png",
+      "route": "identity \u2014 depicts (P180=Q21189826)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Tubi logo 2024.svg",
+      "route": "identity \u2014 depicts (P180=Q21189826)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Tubi logo 2024 Purple.png",
+      "route": "identity \u2014 depicts (P180=Q21189826)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Tubi logo 2024 purple.svg",
+      "route": "identity \u2014 depicts (P180=Q21189826)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Eaddy - English(...) - NARA - 108642302 (page 713).jpg",
+      "route": "identity \u2014 depicts (P180=Q156376)",
+      "verdict": "accepted",
+      "reason": "3488x5614, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "anjali-sud-41139141434",
+      "path": "anjali-sud-41139141434.jpg",
+      "size": [
+        1692,
+        1965
+      ],
+      "role": "establishing",
+      "subject": "2 May 2018; Anjali Sud, CEO, Vimeo on centre stage during day two of Collision 2018 at Ernest N. Morial Convention Center in New Orleans. Photo by Stephen McCarthy/Collision via Sportsfile",
+      "route": "identity \u2014 Wikidata P18 (Q55686689)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Anjali_Sud_41139141434.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Anjali_Sud_41139141434.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "Collision Conf",
+      "entity": "Anjali Sud",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Anjali Sud"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "msr-gtp-wgi23-01",
+      "path": "msr-gtp-wgi23-01.jpg",
+      "size": [
+        4000,
+        3000
+      ],
+      "role": "establishing",
+      "subject": "Acura ARX-06 of Meyer Shank Racing, driven by Tom Blomqvist and Colin Braun, during practice for the 2023 Sahlen's Six Hours of the Glen weekend at Watkins Glen International.",
+      "route": "identity \u2014 depicts (P180=Q3277465)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:MSR_GTP_WGI23_01.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/MSR_GTP_WGI23_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "SmackJam",
+      "entity": "SiriusXM",
+      "entity_type": "company",
+      "entity_aliases": [
+        "SiriusXM",
+        "Sirius XM Rad",
+        "Sirius XM Radio Inc.",
+        "Sirius",
+        "Sirius XM Satellite Radio",
+        "Sirius XM Holdings Inc.",
+        "Sirius XM radio",
+        "SIRIUS XM Radio",
+        "Sirius-XM",
+        "Sirius-XM Radio",
+        "SIRIUS XM",
+        "Sirius/XM Satellite Radio",
+        "SiriusXM satellite radio",
+        "SiriusXM Satellite Radio",
+        "Siriusxm",
+        "Sirius XM Radio"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "bmw-idrive8-ix",
+      "path": "bmw-idrive8-ix.jpg",
+      "size": [
+        5013,
+        3342
+      ],
+      "role": "establishing",
+      "subject": "BMW iDrive 8 system in BMW iX M60",
+      "route": "identity \u2014 depicts (P180=Q3277465)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:BMW_iDrive8_iX.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/BMW_iDrive8_iX.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Pixelatedfacealex",
+      "entity": "SiriusXM",
+      "entity_type": "company",
+      "entity_aliases": [
+        "SiriusXM",
+        "Sirius XM Rad",
+        "Sirius XM Radio Inc.",
+        "Sirius",
+        "Sirius XM Satellite Radio",
+        "Sirius XM Holdings Inc.",
+        "Sirius XM radio",
+        "SIRIUS XM Radio",
+        "Sirius-XM",
+        "Sirius-XM Radio",
+        "SIRIUS XM",
+        "Sirius/XM Satellite Radio",
+        "SiriusXM satellite radio",
+        "SiriusXM Satellite Radio",
+        "Siriusxm",
+        "Sirius XM Radio"
+      ]
+    }
+  ]
+}

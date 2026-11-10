@@ -1,0 +1,403 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "splashbi-hyderabad-gcc-100-million-investment",
+ "article_slug": "splashbi-hyderabad-gcc-100-million-investment",
+ "article_id": "99f1584d-a4ca-496f-b46e-a5703db4655c",
+ "category": "Technology",
+ "video": "reel-runs/2026-11-09-splashbi-hyderabad-gcc-100-million-investment/output/splashbi-hyderabad-gcc-100-million-investment.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-450411,resizemode-75,msid-135680936/tech/technology/enterprise-data-intelligence-platform-splashbi-opens-gcc-in-hyderabad-to-invest-over-100-million.jpg",
+  "local_path": "reel-runs/2026-11-09-splashbi-hyderabad-gcc-100-million-investment/output/hero.jpg",
+  "width": 1200,
+  "height": 899,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.590,0.309) damped=(0.545,0.404)",
+  "has_face": false,
+  "box_source": [
+   317,
+   166,
+   672,
+   359
+  ],
+  "box_bg": [
+   306,
+   271,
+   467,
+   250
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.546,
+   0.401
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   624
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 844,
+   "zone_h": 712,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 1063,
+   "block_bottom": 1336,
+   "text_bbox": [
+    70,
+    1063,
+    930,
+    1336
+   ],
+   "texts": [
+    "Technology",
+    "SPLASHBI OPENS HYDERABAD GCC"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     899
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 624,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      897
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.14x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 338,
+   "block_top": 1242,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1242,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "SplashBI, a Georgia, US-headquartered enterprise data intelligence company, has opened a Global Capability Centre in Hyderabad and plans to invest more than $100 million over the next five to seven years."
+   ],
+   "v7": {
+    "image_source": "extra:cafe-niloufer-hitech-city-hyderabad-telangan",
+    "track": "full-bleed",
+    "render_scale": 0.899,
+    "photo_px": [
+     4624,
+     2136
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.898876404494382,
+     "window": [
+      1644,
+      0,
+      2845,
+      2136
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Cafe Niloufer Hitech City Hyderabad Telangana",
+     "route": "identity \u2014 depicts (P180=Q15340)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Cafe_Niloufer_Hitech_City_Hyderabad_Telangana_2.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Cafe_Niloufer_Hitech_City_Hyderabad_Telangana_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Kavali Chandrakanth KCK"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 844,
+   "zone_h": 712,
+   "scale": 1.0,
+   "content_h": 361,
+   "block_top": 1019,
+   "block_bottom": 1380,
+   "text_bbox": [
+    70,
+    1019,
+    930,
+    1380
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$100 MILLION",
+    "Investment planned over the next five to seven years"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     899
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 624,
+     "scale": 0.7897727272727273,
+     "window": [
+      127,
+      0,
+      1183,
+      790
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.14x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 844,
+   "zone_h": 712,
+   "scale": 0.95,
+   "content_h": 668,
+   "block_top": 866,
+   "block_bottom": 1534,
+   "text_bbox": [
+    70,
+    866,
+    930,
+    1534
+   ],
+   "texts": [
+    "By The Numbers",
+    "275",
+    "Professionals the new centre can house",
+    "$4 MILLION",
+    "Earmarked for an AI data centre",
+    "500+",
+    "Enterprise customers across 39 countries"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     899
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 624,
+     "scale": 0.86875,
+     "window": [
+      29,
+      1,
+      989,
+      719
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.14x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1211,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1211,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "US-headquartered firm has operated in Hyderabad since 2014",
+    "Centre inaugurated by Telangana IT Minister D. Sridhar Babu"
+   ],
+   "v7": {
+    "image_source": "extra:cafe-niloufer-hitech-city-hyderabad-telangan-2",
+    "track": "full-bleed",
+    "render_scale": 0.392,
+    "photo_px": [
+     6289,
+     4898
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.39199673336055535,
+     "window": [
+      1899,
+      0,
+      4654,
+      4898
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Cafe Niloufer Hitech City Hyderabad Telangana",
+     "route": "identity \u2014 depicts (P180=Q15340)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Cafe_Niloufer_Hitech_City_Hyderabad_Telangana_4.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Cafe_Niloufer_Hitech_City_Hyderabad_Telangana_4.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Kavali Chandrakanth KCK"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "Its teams will work on platform engineering, AI and data science.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 129.4,
+ "mp4_bytes": 12602590
+}

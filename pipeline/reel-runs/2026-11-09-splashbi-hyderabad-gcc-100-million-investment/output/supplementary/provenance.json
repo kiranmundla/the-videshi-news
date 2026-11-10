@@ -1,0 +1,121 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "splashbi-hyderabad-gcc-100-million-investment",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "SplashBI",
+    "Hyderabad",
+    "D. Sridhar Babu",
+    "VSD Tech Park",
+    "Seven Years",
+    "Global Capability Centre"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'SplashBI' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'VSD Tech Park' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Seven Years' named \"Seven Years' War\", which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Global Capability Centre' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Bachupally Flyover Hyderabad Telangana India (13660).jpg",
+      "route": "identity \u2014 depicts (P180=Q15340)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Bachupally Flyover Hyderabad Telangana India (28694).jpg",
+      "route": "identity \u2014 depicts (P180=Q15340)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Cafe Niloufer Hitech City Hyderabad Telangana 2.jpg",
+      "route": "identity \u2014 depicts (P180=Q15340)",
+      "verdict": "USED (news)",
+      "reason": "4624x2136, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Cafe Niloufer Hitech City Hyderabad Telangana 4.jpg",
+      "route": "identity \u2014 depicts (P180=Q15340)",
+      "verdict": "USED (diaspora)",
+      "reason": "6289x4898, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:The Minister for Civil Supplies, Andhra Pradesh, Shri Sridhar Babu addressing at the inauguration of the Bharat Nirman Public Information Campaign, at Manthani, Karimnagar Dist., Andhra Pradesh on September 26, 2012 (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q7586360)",
+      "verdict": "rejected",
+      "reason": "resolution: 423x484 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "cafe-niloufer-hitech-city-hyderabad-telangan",
+      "path": "cafe-niloufer-hitech-city-hyderabad-telangan.jpg",
+      "size": [
+        4624,
+        2136
+      ],
+      "role": "establishing",
+      "subject": "Cafe Niloufer Hitech City Hyderabad Telangana",
+      "route": "identity \u2014 depicts (P180=Q15340)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Cafe_Niloufer_Hitech_City_Hyderabad_Telangana_2.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Cafe_Niloufer_Hitech_City_Hyderabad_Telangana_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Kavali Chandrakanth KCK",
+      "entity": "Hyderabad",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Hyderabad",
+        "Hyderabad district",
+        "Hyderabad district, India"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "cafe-niloufer-hitech-city-hyderabad-telangan-2",
+      "path": "cafe-niloufer-hitech-city-hyderabad-telangan-2.jpg",
+      "size": [
+        6289,
+        4898
+      ],
+      "role": "establishing",
+      "subject": "Cafe Niloufer Hitech City Hyderabad Telangana",
+      "route": "identity \u2014 depicts (P180=Q15340)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Cafe_Niloufer_Hitech_City_Hyderabad_Telangana_4.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Cafe_Niloufer_Hitech_City_Hyderabad_Telangana_4.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Kavali Chandrakanth KCK",
+      "entity": "Hyderabad",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Hyderabad",
+        "Hyderabad district",
+        "Hyderabad district, India"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-09-trump-cbs-60-minutes-deportation-policy-too-tough/output/trump-cbs-60-minutes-deportation-policy-too-tough.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1200,
+        675
+      ],
+      "manifest_dims": [
+        1200,
+        675
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 85.1,
+      "url": "https://media.swedenherald.com/media/2026/11/8623cbb9edfdabb1/c16x9/w1200.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-09-trump-cbs-60-minutes-deportation-policy-too-tough/output/qa/frames/frame-hook.png",
+      "text_px_detected": 20224,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          366,
+          162,
+          236,
+          302
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-09-trump-cbs-60-minutes-deportation-policy-too-tough/output/qa/frames/frame-news.png",
+      "text_px_detected": 46780,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.85)",
+        "box": [
+          455,
+          335,
+          32,
+          38
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-09-trump-cbs-60-minutes-deportation-policy-too-tough/output/qa/frames/frame-hero.png",
+      "text_px_detected": 27666,
+      "edge": {
+        "pass": true,
+        "offending_px": 56,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          145,
+          423,
+          84,
+          111
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 245.4,
+        "bg_luminance": 14.6,
+        "delta": 230.9
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-09-trump-cbs-60-minutes-deportation-policy-too-tough/output/qa/frames/frame-grid.png",
+      "text_px_detected": 29842,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          363,
+          145,
+          267,
+          346
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-09-trump-cbs-60-minutes-deportation-policy-too-tough/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 28693,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          432,
+          146,
+          293,
+          377
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-09-trump-cbs-60-minutes-deportation-policy-too-tough/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 25776,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          344,
+          145,
+          259,
+          316
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    }
+  ]
+}

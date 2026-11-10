@@ -1,0 +1,61 @@
+[
+  {
+    "id": "db273046-aa1d-4c54-a1c6-5dc33c8de9a6",
+    "headline": "Motherhood After Breast Cancer: What the Evidence Says About Fertility",
+    "slug": "breast-cancer-fertility-motherhood-after-treatment",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include specific statistics or data on fertility preservation success rates, such as the percentage of women who successfully conceive after egg or embryo freezing, to provide concrete takeaways for readers considering their options.",
+        "Clarify the recommended timeline for fertility discussions with oncologists, specifying any critical deadlines or timeframes that women should be aware of before starting treatment.",
+        "Add a brief summary or bullet points at the end of the article that outline key steps women should take if they are diagnosed with breast cancer and wish to preserve their fertility."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Breast Cancer Research Foundation that highlights their guide to fertility after breast cancer."
+      ]
+    }
+  },
+  {
+    "id": "f70003d2-37a1-449e-a4ce-461f1095ff59",
+    "headline": "Go Pal Blends American and Indian Aisles in 50,000-Square-Foot Edison Store",
+    "slug": "go-pal-hybrid-indian-american-supermarket-edison-opens",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include specific details about the types of Indian products available and any unique offerings that set Go Pal apart from other supermarkets, which would enhance completeness.",
+        "Provide quotes or reactions from customers who attended the grand opening to add depth and personal perspective to the article.",
+        "Clarify the timeline for the potential opening of the two additional stores by including a statement from Nick Patel or a representative about when they expect to announce locations or timelines.",
+        "Mention any promotional offers or discounts available at the grand opening to give readers concrete action steps they can take."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the store's official account or a local news outlet covering the grand opening to provide real-time updates and community reactions."
+      ]
+    }
+  },
+  {
+    "id": "cc9543ef-dca6-4891-af04-c3c157254674",
+    "headline": "Texas Lawmaker Revives Mexico Guest-Worker Plan as H-1B Scrutiny Grows",
+    "slug": "texas-garcia-revives-mexico-guest-worker-bill-hb294",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the bill's progress and any upcoming deadlines for legislative action, as this would provide readers with a clearer understanding of when they might expect developments.",
+        "Include a quote from State Rep. Josey Garcia or another relevant official to provide direct attribution and enhance the credibility of the information presented.",
+        "Add context regarding the implications of the bill's failure in 2025, such as reasons it did not pass or changes in the political landscape that might affect its chances this time around."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from State Rep. Josey Garcia announcing the filing of House Bill 294 to provide direct insight from the lawmaker and enhance engagement."
+      ]
+    }
+  }
+]

@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-09T11:20:47+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-09T23:18:49+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **243**
-- prebuilt_reels rows: 176 (146 with a yt_video_id)
+- Channel uploads (actual, via API): **244**
+- prebuilt_reels rows: 177 (147 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 59
-- **In sync** (channel video backed by a DB/publish-log record): **125**
+- Phase 2 publish-log entries: 60
+- **In sync** (channel video backed by a DB/publish-log record): **126**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 17
 - Ghost DB rows (yt_video_id not on channel): 16
@@ -292,7 +292,7 @@ _None._
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 - row `3c385175-84c2-48c0-afec-378bee1ba1d6` · slug ambani-adds-6-3-billion-reliance-shares-jump-record-profit · yt_video_id `B45MLVEFtk4` · on channel: no
 
-## (d) In sync (125)
+## (d) In sync (126)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -419,4 +419,5 @@ _None._
 - `IQ3tv74I0AU` · public · 2026-11-08 · Alberta Invites 425 Workers in Five Provincial Immigration Draws #Shorts #Immigration [prebuilt_reels:59b33281-302b-4aa9-a308-173ddb362cb8]
 - `QcTi-8pVQj8` · public · 2026-11-08 · Ayodhya's 10th Deepotsav Lights Over 30 Lakh Diyas Across 56 Saryu Ghats #Shorts #News [prebuilt_reels:c9b5c8cd-1d70-4694-8c33-62825b67d9aa]
 - `ZOs-gYpCORM` · public · 2026-11-09 · Delhi Wakes to Post-Diwali Smog as AQI Hits 368, 15 Areas Turn Severe #Shorts #News [prebuilt_reels:0232ea24-80a1-405b-9360-a879a9a1e882]
+- `Ng6jNOTGVbM` · public · 2026-11-09 · Trump Says Deportation Policy Was 'Too Tough' in Post-Midterm Interview #Shorts #USElections2026 [prebuilt_reels:509324de-d430-4c5d-b358-e8b79b248935]
 

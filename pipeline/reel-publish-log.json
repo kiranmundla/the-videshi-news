@@ -784,5 +784,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "Ng6jNOTGVbM",
+    "article_slug": "trump-cbs-60-minutes-deportation-policy-too-tough",
+    "article_id": "b3967aad-ae23-44c5-9236-4d2c4a4ffaac",
+    "title": "Trump Says Deportation Policy Was 'Too Tough' in Post-Midterm Interview #Shorts #USElections2026",
+    "privacy": "public",
+    "uploaded_at": "2026-11-09T23:16:28.873436+00:00",
+    "video_path": "reel-runs/2026-11-09-trump-cbs-60-minutes-deportation-policy-too-tough/output/trump-cbs-60-minutes-deportation-policy-too-tough.mp4",
+    "video_sha256": "21b77cc80ce01f514b46c309373de66ab4df37cbcf0926bbfb3d822654440234",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

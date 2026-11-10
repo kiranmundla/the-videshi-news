@@ -1,0 +1,401 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "trump-cbs-60-minutes-deportation-policy-too-tough",
+ "article_slug": "trump-cbs-60-minutes-deportation-policy-too-tough",
+ "article_id": "b3967aad-ae23-44c5-9236-4d2c4a4ffaac",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-09-trump-cbs-60-minutes-deportation-policy-too-tough/output/trump-cbs-60-minutes-deportation-policy-too-tough.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://media.swedenherald.com/media/2026/11/8623cbb9edfdabb1/c16x9/w1200.jpg",
+  "local_path": "reel-runs/2026-11-09-trump-cbs-60-minutes-deportation-policy-too-tough/output/hero.jpg",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.92)",
+  "has_face": true,
+  "box_source": [
+   389,
+   22,
+   349,
+   428
+  ],
+  "box_bg": [
+   356,
+   171,
+   243,
+   297
+  ],
+  "chin_bg": 468,
+  "anchor": [
+   0.473,
+   0.343
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "Immigration",
+    "TRUMP: DEPORTATION 'TOO TOUGH'"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      673
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 910,
+   "block_bottom": 1333,
+   "text_bbox": [
+    70,
+    910,
+    930,
+    1333
+   ],
+   "texts": [
+    "What Happened",
+    "Trump told CBS's 60 Minutes his deportation policy was 'too tough' \u2014 his first major interview since the Republican Party's heavy defeat in the midterm elections."
+   ],
+   "v7": {
+    "image_source": "extra:g7biarritz-48616805327",
+    "track": "backdrop",
+    "render_scale": 0.298,
+    "photo_px": [
+     2800,
+     1867
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.2978571428571429,
+     "window": [
+      0,
+      0,
+      2800,
+      1571
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.03x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "President Donald J. Trump and British Prime Minister Boris Johnson continue to talk at the conclusion of their working breakfast meeting Sunday, Aug. 25, 2019, at Hotel du Palais Biarritz in Biarritz, France, site of the G7 Summit. (Officia",
+     "route": "identity \u2014 depicts (P180=Q22686)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:-G7Biarritz_(48616805327).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/-G7Biarritz_%2848616805327%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "The White House from Washington, DC"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 617,
+   "zone_h": 963,
+   "scale": 1.0,
+   "content_h": 368,
+   "block_top": 1212,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1212,
+    930,
+    1580
+   ],
+   "texts": [
+    "THE FALLOUT",
+    "'TOO TOUGH'",
+    "Trump on his deportation policy, to 60 Minutes"
+   ],
+   "v7": {
+    "image_source": "extra:coronavirus-task-force-press-briefing-496096",
+    "track": "full-bleed",
+    "render_scale": 0.488,
+    "photo_px": [
+     5903,
+     3935
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.48792884371029227,
+     "window": [
+      2012,
+      0,
+      4225,
+      3935
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "President Donald J. Trump, joined by Vice President Mike Pence, takes questions from reporters during a Coronavirus Task Force update Saturday, Feb. 29, 2020, in the James S. Brady Press Briefing Room of the White House. (Official White Hou",
+     "route": "identity \u2014 depicts (P180=Q22686)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Coronavirus_Task_Force_Press_Briefing_(49609601337).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Coronavirus_Task_Force_Press_Briefing_%2849609601337%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "The White House from Washington, DC"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 849,
+   "block_bottom": 1394,
+   "text_bbox": [
+    70,
+    849,
+    930,
+    1394
+   ],
+   "texts": [
+    "By The Numbers",
+    "A+",
+    "Trump's grade for closing up the border",
+    "1 HOUR",
+    "After recording, Miller became chief of staff"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7897727272727273,
+     "window": [
+      39,
+      0,
+      1095,
+      592
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 937,
+   "block_bottom": 1306,
+   "text_bbox": [
+    70,
+    937,
+    930,
+    1306
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Removals of workers with good jobs hurt his party, Trump said",
+    "Pending immigration cases are unchanged"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.86875,
+     "window": [
+      0,
+      0,
+      960,
+      538
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "No order or guidance accompanied the interview \u2014 the rules have not moved.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 104.1,
+ "mp4_bytes": 6936741
+}

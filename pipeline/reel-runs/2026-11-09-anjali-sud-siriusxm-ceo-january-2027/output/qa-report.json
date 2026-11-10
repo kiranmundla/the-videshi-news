@@ -1,0 +1,221 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-09-anjali-sud-siriusxm-ceo-january-2027/output/anjali-sud-siriusxm-ceo-january-2027.mp4",
+  "qa_passed": false,
+  "qa_score": 5.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:hero",
+    "face_overlap:hero",
+    "edge_overflow:grid",
+    "face_overlap:payoff"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        3417,
+        3416
+      ],
+      "manifest_dims": [
+        3417,
+        3416
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 67.4,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/67/2024_Anjali_Sud_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-09-anjali-sud-siriusxm-ceo-january-2027/output/qa/frames/frame-hook.png",
+      "text_px_detected": 20316,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.91)",
+        "box": [
+          317,
+          313,
+          404,
+          502
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-09-anjali-sud-siriusxm-ceo-january-2027/output/qa/frames/frame-news.png",
+      "text_px_detected": 39007,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.90)",
+        "box": [
+          409,
+          442,
+          278,
+          377
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 11.0,
+        "delta": 242.9
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-09-anjali-sud-siriusxm-ceo-january-2027/output/qa/frames/frame-hero.png",
+      "text_px_detected": 35700,
+      "edge": {
+        "pass": false,
+        "offending_px": 905,
+        "clusters": 2,
+        "largest_cluster": 424
+      },
+      "face": {
+        "pass": false,
+        "method": "frame-yunet (score 0.62)",
+        "box": [
+          242,
+          1491,
+          495,
+          482
+        ],
+        "overlap_px": 4385
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.7,
+        "bg_luminance": 49.7,
+        "delta": 203.0
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-09-anjali-sud-siriusxm-ceo-january-2027/output/qa/frames/frame-grid.png",
+      "text_px_detected": 50045,
+      "edge": {
+        "pass": false,
+        "offending_px": 390,
+        "clusters": 1,
+        "largest_cluster": 196
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          300,
+          308,
+          436,
+          531
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 251.3,
+        "bg_luminance": 22.4,
+        "delta": 228.9
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-09-anjali-sud-siriusxm-ceo-january-2027/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 29960,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.87)",
+        "box": [
+          296,
+          300,
+          448,
+          531
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-09-anjali-sud-siriusxm-ceo-january-2027/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 21275,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": false,
+        "method": "manifest-mapped",
+        "box": [
+          294,
+          301,
+          447,
+          544
+        ],
+        "overlap_px": 1925
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    }
+  ]
+}

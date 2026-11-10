@@ -1,0 +1,263 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "splashbi-hyderabad-gcc-100-million-investment",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "SPLASHBI OPENS HYDERABAD GCC",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states SplashBI opened a Global Capability Centre in Hyderabad.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "SplashBI, a Georgia, US-headquartered enterprise data intelligence company, has opened a Global Capability Centre in Hyderabad and plans to invest more than $100 million over the next five to seven years.",
+      "numbers": [
+        100.0,
+        100000000.0
+      ],
+      "entities": [
+        "Global Capability Centre"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about SplashBI's opening and investment plans are in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$100 MILLION",
+      "numbers": [
+        100.0,
+        100000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$100 million investment is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Investment planned over the next five to seven years",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the investment timeline as five to seven years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "275",
+      "numbers": [
+        275.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the centre can house 275 professionals.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Professionals the new centre can house",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the centre's capacity for 275 professionals.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$4 MILLION",
+      "numbers": [
+        4.0,
+        4000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions $4 million earmarked for an AI data centre.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Earmarked for an AI data centre",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the $4 million is for an AI data centre.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "500+",
+      "numbers": [
+        500.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states SplashBI serves more than 500 enterprise customers.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Enterprise customers across 39 countries",
+      "numbers": [
+        39.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms 500+ customers across 39 countries.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "US-headquartered firm has operated in Hyderabad since 2014",
+      "numbers": [
+        2014.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2014
+        ]
+      },
+      "llm_reason": "The article states SplashBI has been in Hyderabad since 2014.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Centre inaugurated by Telangana IT Minister D. Sridhar Babu",
+      "numbers": [],
+      "entities": [
+        "Telangana IT Minister D Sridhar Babu"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions D. Sridhar Babu inaugurated the centre.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Its teams will work on platform engineering, AI and data science.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article details the centre's focus on platform engineering and AI.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "SplashBI",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Hyderabad",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "D. Sridhar Babu",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "VSD Tech Park",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000624,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

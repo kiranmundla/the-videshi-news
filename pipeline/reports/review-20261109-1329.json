@@ -1,0 +1,192 @@
+[
+  {
+    "id": "f19d976c-e83c-4cb1-9490-4468811aa4af",
+    "headline": "Tyra Banks Wears Emerald Lehenga for Maneesh Goyal's New York Diwali Party",
+    "slug": "tyra-banks-lehenga-maneesh-goyal-new-york-diwali",
+    "category": "entertainment",
+    "structural_issues": [
+      "Inline caption names venue 'Battery Park' not supported by the image file name (NYC_Downtown_Manhattan_Skyline_seen_from_Paulus_Hook_2019-12\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the significance of the Diwali celebration in the context of the event, as it would provide readers with a deeper understanding of the cultural importance of the occasion.",
+        "Include direct quotes from Tyra Banks or Maneesh Goyal regarding their thoughts on the celebration to enhance the article's attribution and provide a personal touch.",
+        "Provide more context about the fashion house Maison Tai and Kalyan Jewellers, such as their reputation or previous works, to give readers a better understanding of the brands involved."
+      ],
+      "embed_opportunities": [
+        "Embed Tyra Banks' Instagram post documenting the event to provide visual context and authenticity to the article."
+      ]
+    }
+  },
+  {
+    "id": "35b1235a-b255-40c7-b200-f626d40a845f",
+    "headline": "'He Can Bat Anywhere': Kotak Explains Why KL Rahul Is Invaluable to India",
+    "slug": "sitanshu-kotak-kl-rahul-versatility-third-odi-new-zealand",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the date of the third ODI against New Zealand, as the current phrasing may lead to confusion about whether it is in the past or future. It should explicitly state the date as 'Tuesday, November 10, 2023.'",
+        "Include a specific quote from Sitanshu Kotak that highlights KL Rahul's performance metrics, such as his batting average or strike rate in different formats, to provide more context on why he is considered invaluable.",
+        "Add a brief summary of the current series situation, including the series score and the significance of the upcoming match, to give readers context about the importance of KL Rahul's role in the team."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the BCCI or an official cricket account that discusses KL Rahul's performance or the upcoming ODI match to provide real-time updates and engagement."
+      ]
+    }
+  },
+  {
+    "id": "f1b342d3-dc8b-4d16-a096-1290bea2662c",
+    "headline": "Game Swingers Baramulla Win Arni Maal as Kashmir Girls Take the Cricket Field",
+    "slug": "kashmir-girls-cricket-arni-maal-pattan-game-swingers",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the tournament's name 'Arni Maal' for readers who may not be familiar with it. This could provide cultural context and enhance understanding.",
+        "Include specific statistics about the tournament, such as the number of matches played, total runs scored, or notable performances by individual players to give readers a clearer picture of the event's impact.",
+        "Add a quote from a player or coach to provide a personal perspective on the tournament's importance and the experience of participating in it."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Koshur Foundation or a relevant cricket authority to highlight the tournament's significance and reach a broader audience."
+      ]
+    }
+  },
+  {
+    "id": "9f32b087-e6cc-4a0d-bd81-4686adef2983",
+    "headline": "India's Rally Defies Global Rout, but Analysts Warn the Rotation Can Reverse",
+    "slug": "india-markets-decoupled-global-rout-analysts-rotation",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the market movements by specifying the dates for the 'seven consecutive sessions' mentioned, as well as the 'worst week since the April 2025 tariff crash' for better context.",
+        "Include specific figures or percentages regarding the performance of Indian equities compared to global indices to provide a clearer picture of the divergence.",
+        "Add a quote or data point from a credible source regarding the potential implications of the current market situation for investors, which would enhance the completeness of the analysis."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or institution discussing the current market situation or the concept of market rotation for added context."
+      ]
+    }
+  },
+  {
+    "id": "55f77826-6f3a-49b2-b094-2186c62d2095",
+    "headline": "MakeMyTrip's India Arm Wins Sebi Nod for IPO Built as Share Sale by Parent",
+    "slug": "makemytrip-india-arm-sebi-nod-ipo",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the financial implications of the IPO for potential investors by including specific details about the expected share price range or total number of shares being offered, if available.",
+        "Include a brief explanation of what the approval from Sebi means for the company and its investors, as well as any next steps in the IPO process, to provide context for readers unfamiliar with IPO procedures.",
+        "Add a quote from a company representative or an analyst to provide expert insight on the significance of this IPO for MakeMyTrip and the travel industry as a whole."
+      ],
+      "embed_opportunities": [
+        "Embed the official Sebi announcement or relevant regulatory tweet regarding the IPO approval for credibility and direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "dc287840-2c6a-41e2-91e7-cb1c50ceb648",
+    "headline": "Sarvam Names Ex-Google Cloud India Chief Sreedharan President and Chief Business",
+    "slug": "sarvam-sashikumar-sreedharan-president-chief-business-officer",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of Sreedharan's transition from Google Cloud to Sarvam, including the exact date he left Google Cloud and when he officially starts at Sarvam.",
+        "Provide more context on Sarvam's current market position and its AI offerings to help readers understand the significance of Sreedharan's appointment.",
+        "Include a quote from Sarvam's leadership about Sreedharan's appointment to add depth and perspective to the announcement.",
+        "Ensure that the article does not repeat information unnecessarily; the second paragraph largely duplicates the first, which could be streamlined for clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement from Sarvam or a relevant tweet from their social media channels to enhance credibility and provide direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "5a15aaba-c49f-4965-8116-aedd15c2878f",
+    "headline": "Delhi Hospitals Treat 177 Diwali Burn Cases; Boy, 10, Dies in Narela Blast",
+    "slug": "delhi-diwali-burn-injuries-safdarjung-aiims-narela-death",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact dates of the Diwali festival this year to provide context for the reported cases.",
+        "Include specific statistics on the severity of injuries, such as the percentage of patients admitted versus treated as outpatients, to give readers a clearer understanding of the situation.",
+        "Provide additional context about the historical trends of burn cases during Diwali in previous years to highlight whether this year's numbers are increasing or decreasing.",
+        "Mention any official statements or responses from health authorities or government officials regarding the rise in burn cases to enhance attribution and completeness."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet or statement from the Delhi health department regarding the burn cases and safety measures during Diwali."
+      ]
+    }
+  },
+  {
+    "id": "99f1584d-a4ca-496f-b46e-a5703db4655c",
+    "headline": "SplashBI Opens Hyderabad GCC, Plans $100 Million Investment Over Five to Seven Y",
+    "slug": "splashbi-hyderabad-gcc-100-million-investment",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the investment by specifying the expected milestones or phases of the $100 million investment over the next five to seven years. This could include when the AI data center will be operational or when hiring is expected to ramp up.",
+        "Provide more context on the significance of the investment for the local economy or job market in Hyderabad. This could include potential job creation numbers or the impact on the tech industry in the region.",
+        "Include a quote from a company representative or the Telangana IT Minister to provide a human element and authoritative perspective on the announcement."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from SplashBI regarding the opening of the Global Capability Centre and the investment plans."
+      ]
+    }
+  },
+  {
+    "id": "df0fd1f9-3016-4b3d-bd54-46ddb71cb647",
+    "headline": "Delhi Pollution Data Went Missing at Several Stations as Diwali Peak Hit",
+    "slug": "delhi-pollution-data-missing-diwali-night-monitoring-stations",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact hours when the data went missing and when the pollution levels peaked. This will help readers understand the sequence of events more clearly.",
+        "Include a direct quote from a relevant authority or expert regarding the implications of the missing data on public health or policy. This would enhance the article's credibility and provide additional context.",
+        "Add a brief explanation of the significance of PM2.5 levels and the WHO guidelines for air quality, as this will help readers understand the seriousness of the reported figures."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Delhi Pollution Control Committee or the Central Pollution Control Board addressing the missing data issue or providing updates on air quality."
+      ]
+    }
+  },
+  {
+    "id": "a5ac2199-f4e4-4205-95cd-bf9f50cef948",
+    "headline": "Mumbai Bans Rockets and Aerial Firecrackers Until November 25 After Diwali Fires",
+    "slug": "mumbai-bans-rockets-aerial-firecrackers-november-25-diwali-fires",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the ban by explicitly stating the start date as November 9 and the end date as November 25, 2026, to avoid confusion with the current year.",
+        "Provide more context on the nature of the fires, such as the estimated damage costs or the number of properties affected, to give readers a clearer picture of the situation's severity.",
+        "Include quotes from officials or eyewitnesses to enhance the article's credibility and provide a human element to the story."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Mumbai Disaster Management Authority announcing the ban for real-time updates and official communication."
+      ]
+    }
+  }
+]

@@ -1,0 +1,162 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "trump-cbs-60-minutes-deportation-policy-too-tough",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Trump Says Deportation Policy Was 'Too Tough' in Post-Midterm Interview",
+        "numbers": [],
+        "entities": [
+          "Trump Says Deportation Policy Was Too Tough'",
+          "Post-Midterm Interview"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Trump said the policy was too tough.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Trump's first sit-down since the midterm defeat \u2014 an hour after recording, he made Stephen Miller chief of staff.",
+        "numbers": [],
+        "entities": [
+          "Stephen Miller"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms this was Trump's first interview post-midterms and mentions the timing of the staff change.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Trump said he would love to do something on immigration with the incoming Democratic Congress",
+        "numbers": [],
+        "entities": [
+          "Democratic Congress"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article quotes Trump expressing a desire to work on immigration with Congress.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "About an hour after the interview, Trump replaced chief of staff Susie Wiles with Stephen Miller, the architect of the deportation policy",
+        "numbers": [],
+        "entities": [
+          "Susie Wiles",
+          "Stephen Miller"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states this personnel change occurred shortly after the interview.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "No executive order, regulation or enforcement guidance accompanied the interview",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article explicitly states no new rules or guidance were introduced.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "President Donald Trump",
+        "numbers": [],
+        "entities": [
+          "President Donald Trump"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article refers to him as President Donald Trump.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "US President",
+        "numbers": [],
+        "entities": [
+          "US President"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article refers to him as the US President.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Trump Says Deportation Policy Was 'Too Tough' in Post-Midterm Interview",
+        "numbers": [],
+        "entities": [
+          "Trump Says Deportation Policy Was Too Tough'",
+          "Post-Midterm Interview"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000483,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

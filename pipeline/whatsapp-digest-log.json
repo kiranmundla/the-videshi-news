@@ -318,5 +318,15 @@
     "quick_hit_count": 5,
     "deadline_count": 2,
     "chars": 2456
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-09T15:13:08.947700+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 09 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "farah-khan-era-of-superstars-over-double-date",
+    "quick_hit_count": 5,
+    "deadline_count": 1,
+    "chars": 2379
   }
 ]

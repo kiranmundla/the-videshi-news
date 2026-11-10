@@ -1,0 +1,32 @@
+{
+ "hook_line": "TRUMP: DEPORTATION 'TOO TOUGH'",
+ "hook_stat": {
+  "big": "'TOO TOUGH'",
+  "eyebrow": "THE FALLOUT",
+  "sub": "Trump on his deportation policy, to 60 Minutes"
+ },
+ "stats": [
+  {
+   "big": "A+",
+   "label": "Trump's grade for closing up the border"
+  },
+  {
+   "big": "1 HOUR",
+   "label": "After recording, Miller became chief of staff"
+  }
+ ],
+ "diaspora_bullets": [
+  "Removals of workers with good jobs hurt his party, Trump said",
+  "Pending immigration cases are unchanged"
+ ],
+ "key_entities": [
+  "Donald Trump",
+  "Stephen Miller",
+  "Susie Wiles",
+  "60 Minutes"
+ ],
+ "news_summary": "Trump told CBS's 60 Minutes his deportation policy was 'too tough' \u2014 his first major interview since the Republican Party's heavy defeat in the midterm elections.",
+ "payoff": "No order or guidance accompanied the interview \u2014 the rules have not moved.",
+ "versus": "",
+ "story_mood": "tense"
+}

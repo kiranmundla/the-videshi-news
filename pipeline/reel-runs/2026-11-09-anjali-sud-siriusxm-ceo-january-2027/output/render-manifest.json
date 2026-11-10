@@ -1,0 +1,410 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "anjali-sud-siriusxm-ceo-january-2027",
+ "article_slug": "anjali-sud-siriusxm-ceo-january-2027",
+ "article_id": "1bd2ce57-17b2-4025-9ae8-87d4c1fd8fda",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-09-anjali-sud-siriusxm-ceo-january-2027/output/anjali-sud-siriusxm-ceo-january-2027.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/6/67/2024_Anjali_Sud_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "local_path": "reel-runs/2026-11-09-anjali-sud-siriusxm-ceo-january-2027/output/hero.jpg",
+  "width": 3417,
+  "height": 3416,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.91)",
+  "has_face": true,
+  "box_source": [
+   914,
+   664,
+   1720,
+   2094
+  ],
+  "box_bg": [
+   309,
+   318,
+   420,
+   511
+  ],
+  "chin_bg": 829,
+  "anchor": [
+   0.52,
+   0.496
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   834
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 1054,
+   "zone_h": 502,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 1168,
+   "block_bottom": 1441,
+   "text_bbox": [
+    70,
+    1168,
+    930,
+    1441
+   ],
+   "texts": [
+    "Nri World",
+    "ANJALI SUD TO LEAD SIRIUSXM AS CEO"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.244,
+    "photo_px": [
+     3417,
+     3416
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 834,
+     "scale": 0.24414519906323184,
+     "window": [
+      1,
+      0,
+      3417,
+      3416
+     ]
+    },
+    "track_note": "layout demotion: no full-bleed fit in the -26px zone below the dominant chin \u2014 backdrop composition instead",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 948,
+   "zone_h": 632,
+   "scale": 1.0,
+   "content_h": 388,
+   "block_top": 1192,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1192,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "SiriusXM has appointed Anjali Sud, the Indian-origin executive who leads Fox's streaming service Tubi, as its next chief executive, effective January 1, 2027, succeeding Jennifer Witz."
+   ],
+   "v7": {
+    "image_source": "extra:anjali-sud-41139141434",
+    "track": "full-bleed",
+    "render_scale": 0.977,
+    "photo_px": [
+     1692,
+     1965
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.9770992366412213,
+     "window": [
+      336,
+      0,
+      1441,
+      1965
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "2 May 2018; Anjali Sud, CEO, Vimeo on centre stage during day two of Collision 2018 at Ernest N. Morial Convention Center in New Orleans. Photo by Stephen McCarthy/Collision via Sportsfile",
+     "route": "identity \u2014 Wikidata P18 (Q55686689)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Anjali_Sud_41139141434.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Anjali_Sud_41139141434.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "Collision Conf"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 1202,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1202,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "110 MILLION",
+    "Monthly active users at Tubi, which Sud grew to more than 110 million"
+   ],
+   "v7": {
+    "image_source": "extra:msr-gtp-wgi23-01",
+    "track": "full-bleed",
+    "render_scale": 0.64,
+    "photo_px": [
+     4000,
+     3000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.64,
+     "window": [
+      1176,
+      0,
+      2863,
+      3000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Acura ARX-06 of Meyer Shank Racing, driven by Tom Blomqvist and Colin Braun, during practice for the 2023 Sahlen's Six Hours of the Glen weekend at Watkins Glen International.",
+     "route": "identity \u2014 depicts (P180=Q3277465)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:MSR_GTP_WGI23_01.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/35/MSR_GTP_WGI23_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "SmackJam"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 653,
+   "block_top": 927,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    927,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "300 MILLION",
+    "Users at Vimeo, where Sud was CEO",
+    "255 MILLION",
+    "Monthly listeners SiriusXM reaches",
+    "2027",
+    "Sud takes over as CEO on January 1"
+   ],
+   "v7": {
+    "image_source": "extra:bmw-idrive8-ix",
+    "track": "full-bleed",
+    "render_scale": 0.575,
+    "photo_px": [
+     5013,
+     3342
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5745062836624776,
+     "window": [
+      1782,
+      0,
+      3661,
+      3342
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "BMW iDrive 8 system in BMW iX M60",
+     "route": "identity \u2014 depicts (P180=Q3277465)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:BMW_iDrive8_iX.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/BMW_iDrive8_iX.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Pixelatedfacealex"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 1054,
+   "zone_h": 502,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 1089,
+   "block_bottom": 1521,
+   "text_bbox": [
+    70,
+    1089,
+    930,
+    1521
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Indian-origin executive named to lead the largest US satellite radio company",
+    "On SiriusXM's board since March 2025"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.277,
+    "photo_px": [
+     3417,
+     3416
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 834,
+     "scale": 0.2774451097804391,
+     "window": [
+      275,
+      191,
+      3281,
+      3197
+     ]
+    },
+    "track_note": "layout demotion: no full-bleed fit in the -77px zone below the dominant chin \u2014 backdrop composition instead",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "Her task: convert streaming and podcast assets into growth.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 140.5,
+ "mp4_bytes": 9083522
+}

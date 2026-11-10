@@ -1,0 +1,137 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "trump-cbs-60-minutes-deportation-policy-too-tough",
+  "trigger": {
+    "own_images": 3,
+    "target_distinct": 5,
+    "extras_needed": 2
+  },
+  "entities": [
+    "Donald Trump",
+    "Stephen Miller",
+    "Susie Wiles",
+    "60 Minutes",
+    "Too Tough",
+    "President Donald Trump"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Too Tough' named 'Too Tough to Die', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'President Donald Trump' named 'Donald Trump', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Official Presidential Portrait of President Donald J. Trump (2025) (3x4).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q22686)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:-G7Biarritz (48616805327).jpg",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "USED (news)",
+      "reason": "2800x1867, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Coronavirus Task Force Press Briefing (49609601337).jpg",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "USED (hero)",
+      "reason": "5903x3935, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Stephen Miller July 2025.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q27996060)",
+      "verdict": "rejected",
+      "reason": "resolution: 840x1037 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:2025 visit to National Guard soldiers by White House Deputy Chief of Staff Stephen Miller at Union Station in Washington,D.C.(cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q27996060)",
+      "verdict": "rejected",
+      "reason": "resolution: 800x1071 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Donald Trump signs orders to green-light the Keystone XL and Dakota Access pipelines.jpg",
+      "route": "identity \u2014 depicts (P180=Q27996060)",
+      "verdict": "accepted",
+      "reason": "2048x1178, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:January 6 Committee Final Report - photograph - page 582.jpg",
+      "route": "identity \u2014 depicts (P180=Q27996060)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Josh Gruenbaum and Stephen Miller.jpg",
+      "route": "identity \u2014 depicts (P180=Q27996060)",
+      "verdict": "rejected",
+      "reason": "resolution: 1077x767 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Josh Gruenbaum \u2014 Commissioner of the General Services Administration\u2019s Federal Acquisition Service.jpg",
+      "route": "identity \u2014 depicts (P180=Q27996060)",
+      "verdict": "rejected",
+      "reason": "resolution: 412x576 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:President Donald Trump holds a cabinet meeting (54352151297).jpg",
+      "route": "identity \u2014 depicts (P180=Q27996060)",
+      "verdict": "accepted",
+      "reason": "3000x2000, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "g7biarritz-48616805327",
+      "path": "g7biarritz-48616805327.jpg",
+      "size": [
+        2800,
+        1867
+      ],
+      "role": "establishing",
+      "subject": "President Donald J. Trump and British Prime Minister Boris Johnson continue to talk at the conclusion of their working breakfast meeting Sunday, Aug. 25, 2019, at Hotel du Palais Biarritz in Biarritz, France, site of the G7 Summit. (Officia",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:-G7Biarritz_(48616805327).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/-G7Biarritz_%2848616805327%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "The White House from Washington, DC",
+      "entity": "Donald Trump",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Donald Trump",
+        "Trump"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "coronavirus-task-force-press-briefing-496096",
+      "path": "coronavirus-task-force-press-briefing-496096.jpg",
+      "size": [
+        5903,
+        3935
+      ],
+      "role": "establishing",
+      "subject": "President Donald J. Trump, joined by Vice President Mike Pence, takes questions from reporters during a Coronavirus Task Force update Saturday, Feb. 29, 2020, in the James S. Brady Press Briefing Room of the White House. (Official White Hou",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Coronavirus_Task_Force_Press_Briefing_(49609601337).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Coronavirus_Task_Force_Press_Briefing_%2849609601337%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "The White House from Washington, DC",
+      "entity": "Donald Trump",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Donald Trump",
+        "Trump"
+      ]
+    }
+  ]
+}
