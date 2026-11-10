@@ -523,6 +523,146 @@ def append_provenance(celeb, post, card_files):
     return record
 
 
+# ── hook face-completeness check ──────────────────────────────────
+# Kiran's order (2026-11-09) after the Anil Kapoor birthday deck
+# published with Harsh's face sliced at the photo's bottom edge:
+# a celeb hook card may stage only when a detected face survives
+# the hook render COMPLETE. The watcher's frame 1 of that post
+# (992x992) shows only a forehead — YuNet finds no face in it at
+# all — and the renderer's own focal fallback quietly centred a
+# saliency guess instead. The check below runs BEFORE any entry
+# is staged (deck + IG single card both derive from this hook
+# render) and fails closed: a cut face, no detectable face, or a
+# detector problem all skip the post, marked seen with the reason
+# in the run report — the same recording pattern as ad skips.
+
+def detect_hook_faces(img):
+    """All faces in a PIL image via the pipeline's shared detector
+    (reel_renderer.yunet_faces — YuNet at the pipeline's standard
+    0.6 threshold, the detector the card/reel renderers use; Haar
+    all-faces only when YuNet itself is unavailable, mirroring
+    reel_renderer's wholesale-fallback rule — Haar is never
+    consulted on a YuNet 'no face' answer).
+    Returns (faces, method): faces is a list of (x, y, w, h) in
+    SOURCE pixels (possibly empty — a real 'no face' answer), or
+    None when detection is unavailable/errored."""
+    try:
+        import numpy as np
+        import reel_renderer as rr
+    except Exception:
+        return None, "detector import failed"
+    if img.mode != "RGB":
+        img = img.convert("RGB")
+    arr = np.array(img)
+    h, w = arr.shape[:2]
+    scale = 1.0
+    if max(h, w) > 800:
+        # Same <=800px detection resize detect_face_box uses.
+        scale = 800 / max(h, w)
+        try:
+            import cv2
+            arr = cv2.resize(arr, (int(w * scale), int(h * scale)))
+        except Exception:
+            return None, "detection resize failed"
+    try:
+        faces = rr.yunet_faces(arr)
+    except Exception:
+        faces = None
+    if faces is not None:
+        return [tuple(float(v) / scale for v in f[:4])
+                for f in faces], "yunet"
+    # YuNet unavailable -> Haar all-faces fallback (frontal, then
+    # profile), exactly reel_renderer's fallback circumstances.
+    try:
+        import cv2
+        gray = cv2.cvtColor(arr, cv2.COLOR_RGB2GRAY)
+        sh, sw = gray.shape[:2]
+        min_size = (int(sw * 0.04), int(sh * 0.04))
+        for name in ("haarcascade_frontalface_default.xml",
+                     "haarcascade_profileface.xml"):
+            cascade = cv2.CascadeClassifier(
+                cv2.data.haarcascades + name)
+            found = cascade.detectMultiScale(
+                gray, scaleFactor=1.1, minNeighbors=5,
+                minSize=min_size)
+            if len(found) > 0:
+                return [tuple(float(v) / scale for v in f)
+                        for f in found], f"haar:{name}"
+        return [], "haar (yunet unavailable)"
+    except Exception:
+        return None, "no detector available (yunet + haar failed)"
+
+
+def hook_crop_window(w, h, fx=0.5, fy=0.5):
+    """(window, track): the source-pixel window (x0, y0, x1, y1)
+    of the hook photo that survives render_hook. For the
+    full-bleed track this is social_card.cover_crop's window for
+    anchor (fx, fy) — the math mirrors cover_crop exactly. For
+    the backdrop track the whole photo is placed (scaled, never
+    cropped), so the window is the full frame."""
+    track, _scale, _note = sc.choose_track(w, h)
+    if track != "full-bleed":
+        return (0.0, 0.0, float(w), float(h)), track
+    if w >= h * 0.8:
+        win_w, win_h = int(h * 0.8), h
+        x0 = min(max(int(fx * w - win_w / 2), 0), w - win_w)
+        y0 = 0
+    else:
+        win_w, win_h = w, int(w / 0.8)
+        x0 = 0
+        y0 = min(max(int(fy * h - win_h / 2), 0), h - win_h)
+    return (float(x0), float(y0), float(x0 + win_w),
+            float(y0 + win_h)), track
+
+
+def evaluate_face_completeness(faces, window):
+    """Pure completeness test: (ok, reason). Staging requires the
+    largest detected face FULLY inside the hook crop window (which
+    also satisfies 'at least one face fully inside'); a face the
+    crop slices, or no detectable face at all, refuses."""
+    x0, y0, x1, y1 = window
+    eps = 1.0
+
+    def inside(b):
+        bx, by, bw, bh = b
+        return (bx >= x0 - eps and by >= y0 - eps
+                and bx + bw <= x1 + eps and by + bh <= y1 + eps)
+
+    if not faces:
+        return False, "no face detected in the hook photo"
+    largest = max(faces, key=lambda b: b[2] * b[3])
+    if not inside(largest):
+        return False, (
+            f"largest face {tuple(round(v) for v in largest)} is "
+            f"cut by the hook crop window "
+            f"{tuple(round(v) for v in window)}")
+    if not any(inside(b) for b in faces):
+        return False, ("no detected face is fully inside the "
+                       "hook crop window")
+    return True, (f"{len(faces)} face(s) detected, largest fully "
+                  f"inside the hook crop window")
+
+
+def hook_face_check(img, detector=None):
+    """(ok, reason) for the hook photo's render treatment: detect
+    faces, apply the renderer's crop transform (the same focal
+    anchor render_full_bleed will use), and test completeness.
+    Fail-closed: a detector problem is a skip whose reason names
+    it — never a silent pass."""
+    detector = detector or detect_hook_faces
+    faces, method = detector(img)
+    if faces is None:
+        return False, f"face check unavailable: {method}"
+    w, h = img.size
+    track, _s, _n = sc.choose_track(w, h)
+    fx = fy = 0.5
+    if track == "full-bleed":
+        fx, fy, _m = sc.focal_anchor(img)
+    window, _t = hook_crop_window(w, h, fx, fy)
+    ok, reason = evaluate_face_completeness(faces, window)
+    return ok, f"{reason} [detector: {method}, track: {track}]"
+
+
 # ── staging ───────────────────────────────────────────────────────
 def queue_entries(celeb, post, card_files, card_texts, card_track):
     handle, name = celeb["handle"], celeb["name"]
@@ -562,8 +702,9 @@ def queue_entries(celeb, post, card_files, card_texts, card_track):
 
 def stage_post(celeb, post, dry_run, report):
     """Full path for one photo post: ad filter -> download ->
-    render -> stage FB+Threads+IG -> provenance. Returns one of
-    'staged' / 'ad-skip' / 'no-frames' / 'dry-run'."""
+    hook face-completeness check -> render -> stage
+    FB+Threads+IG -> provenance. Returns one of
+    'staged' / 'ad-skip' / 'no-frames' / 'face-skip' / 'dry-run'."""
     handle = celeb["handle"]
     post_id = str(post.get("post_id"))
     marker = ad_marker_in(post.get("post_caption"))
@@ -577,6 +718,11 @@ def stage_post(celeb, post, dry_run, report):
     if not frames:
         report["no_frames"].append(f"{handle}/{post_id}")
         return "no-frames"
+    face_ok, face_reason = hook_face_check(frames[0])
+    if not face_ok:
+        report.setdefault("skipped_face", []).append(
+            f"{handle}/{post_id}: {face_reason}")
+        return "face-skip"
     if dry_run:
         report["would_stage"].append(f"{handle}/{post_id} "
                                      f"({len(frames)} photos)")
@@ -1086,7 +1232,8 @@ def run(dry_run=False, stage_post_id=None):
     celebs = enabled_entries(whitelist)
     state = load_state()
     report = {"handles": {}, "staged": [], "would_stage": [],
-              "skipped_ads": [], "no_frames": [], "reel_candidates": [],
+              "skipped_ads": [], "skipped_face": [], "no_frames": [],
+              "reel_candidates": [],
               "errors": [], "notes": []}
     target_found = False
 
@@ -1176,6 +1323,7 @@ def print_report(report):
     for label, key in [("STAGED", "staged"),
                        ("WOULD STAGE (dry-run)", "would_stage"),
                        ("SKIPPED (ad/collab)", "skipped_ads"),
+                       ("SKIPPED (face check)", "skipped_face"),
                        ("SKIPPED (no usable frames)", "no_frames"),
                        ("REEL CANDIDATES (not downloaded)",
                         "reel_candidates"),

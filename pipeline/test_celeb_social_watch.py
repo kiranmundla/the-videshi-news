@@ -266,6 +266,138 @@ def test_celeb_tiktok_caption_shape():
     assert 0 < len(tags) <= 4
 
 
+# ── hook face-completeness check (2026-11-09) ─────────────────────
+# Regression for the Anil Kapoor birthday deck: frame 1 showed
+# only a forehead (YuNet detects no face in it) and staged anyway.
+# The geometry/completeness logic is pure; the detector sits
+# behind an injectable wrapper so these tests are network-free
+# and never depend on YuNet firing on synthetic images.
+def _solid_img(w, h):
+    from PIL import Image
+    return Image.new("RGB", (w, h), (120, 120, 120))
+
+
+def test_crop_window_backdrop_is_full_frame():
+    win, track = cw.hook_crop_window(992, 992)
+    assert track == "backdrop"
+    assert win == (0.0, 0.0, 992.0, 992.0)
+
+
+def test_crop_window_full_bleed_wide_source():
+    # 2000x1600: cover window is (h*0.8, h) anchored on fx.
+    win, track = cw.hook_crop_window(2000, 1600, fx=0.5, fy=0.5)
+    assert track == "full-bleed"
+    assert win == (360.0, 0.0, 1640.0, 1600.0)
+
+
+def test_crop_window_full_bleed_tall_source():
+    # 1920x2600: cover window is (w, w/0.8) anchored on fy.
+    win, track = cw.hook_crop_window(1920, 2600, fx=0.5, fy=0.5)
+    assert track == "full-bleed"
+    assert win == (0.0, 100.0, 1920.0, 2500.0)
+
+
+def test_completeness_accepts_face_fully_inside():
+    ok, _reason = cw.evaluate_face_completeness(
+        [(100.0, 100.0, 200.0, 200.0)], (0.0, 0.0, 992.0, 992.0))
+    assert ok
+
+
+def test_completeness_rejects_face_cut_by_crop_edge():
+    ok, reason = cw.evaluate_face_completeness(
+        [(1500.0, 100.0, 300.0, 300.0)], (360.0, 0.0, 1640.0, 1600.0))
+    assert not ok and "cut" in reason
+
+
+def test_completeness_rejects_when_largest_face_is_cut():
+    # A small face fully inside does not rescue a cut largest face.
+    ok, _reason = cw.evaluate_face_completeness(
+        [(400.0, 100.0, 50.0, 50.0), (1500.0, 100.0, 300.0, 300.0)],
+        (360.0, 0.0, 1640.0, 1600.0))
+    assert not ok
+
+
+def test_completeness_rejects_no_face_detected():
+    ok, reason = cw.evaluate_face_completeness(
+        [], (0.0, 0.0, 992.0, 992.0))
+    assert not ok and "no face" in reason
+
+
+def test_hook_face_check_stages_face_fully_inside_crop():
+    ok, _reason = cw.hook_face_check(
+        _solid_img(992, 992),
+        detector=lambda im: ([(300.0, 200.0, 200.0, 200.0)], "fake"))
+    assert ok
+
+
+def test_hook_face_check_skips_face_cut_by_crop():
+    # Face runs past the frame's right edge (backdrop window =
+    # full frame): the rendered card would show it sliced.
+    ok, reason = cw.hook_face_check(
+        _solid_img(992, 992),
+        detector=lambda im: ([(900.0, 200.0, 200.0, 200.0)], "fake"))
+    assert not ok and "cut" in reason
+
+
+def test_hook_face_check_skips_no_face():
+    ok, reason = cw.hook_face_check(
+        _solid_img(992, 992), detector=lambda im: ([], "fake"))
+    assert not ok and "no face" in reason
+
+
+def test_hook_face_check_skips_when_detector_unavailable():
+    ok, reason = cw.hook_face_check(
+        _solid_img(992, 992),
+        detector=lambda im: (None, "boom"))
+    assert not ok and "unavailable" in reason
+
+
+def _stage_report():
+    return {"skipped_ads": [], "skipped_face": [], "no_frames": [],
+            "staged": [], "would_stage": [], "notes": []}
+
+
+_STAGE_POST = {"post_id": "777",
+               "url": "https://www.instagram.com/p/AbC777/",
+               "post_caption": "A lovely evening with family",
+               "media_type": "photo"}
+_STAGE_CELEB = {"name": "Test Celeb", "handle": "testceleb",
+                "enabled": True, "note": ""}
+
+
+def test_stage_post_face_skip_records_reason_and_stages_nothing():
+    report = _stage_report()
+    orig_dl, orig_check = cw.download_frames, cw.hook_face_check
+    try:
+        cw.download_frames = lambda p: ([_solid_img(992, 992)], "")
+        cw.hook_face_check = lambda img: (
+            False, "no face detected in the hook photo [test]")
+        outcome = cw.stage_post(_STAGE_CELEB, _STAGE_POST,
+                                dry_run=False, report=report)
+    finally:
+        cw.download_frames, cw.hook_face_check = orig_dl, orig_check
+    assert outcome == "face-skip"
+    assert len(report["skipped_face"]) == 1
+    assert "testceleb/777" in report["skipped_face"][0]
+    assert report["staged"] == []
+
+
+def test_stage_post_face_pass_reaches_dry_run():
+    report = _stage_report()
+    orig_dl, orig_check = cw.download_frames, cw.hook_face_check
+    try:
+        cw.download_frames = lambda p: ([_solid_img(992, 992)], "")
+        cw.hook_face_check = lambda img: (True, "ok [test]")
+        outcome = cw.stage_post(_STAGE_CELEB, _STAGE_POST,
+                                dry_run=True, report=report)
+    finally:
+        cw.download_frames, cw.hook_face_check = orig_dl, orig_check
+    assert outcome == "dry-run"
+    assert report["would_stage"] and "testceleb/777" \
+        in report["would_stage"][0]
+    assert report["skipped_face"] == []
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]
