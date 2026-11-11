@@ -804,69 +804,69 @@
       "season_note": "Southern-hemisphere spring/autumn are the sweet spots for Sydney & Melbourne.",
       "cheapest_month": null,
       "fare_from": {
-        "price_min": 1071,
+        "price_min": 1052,
         "route": "LAX-SYD",
         "origin_metro": "Los Angeles",
         "dest_metro": "Sydney",
-        "date_range": "Nov 12 \u2192 Nov 20",
-        "duration_days": 8,
-        "as_of": "2026-11-04",
+        "date_range": "Nov 25 \u2192 Dec 1",
+        "duration_days": 6,
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
       "fares_by_origin": {
         "SFO": {
-          "price_min": 1307,
+          "price_min": 1941,
           "route": "SFO-SYD",
           "origin_metro": "Bay Area",
           "dest_metro": "Sydney",
-          "date_range": "Nov 12 \u2192 Nov 20",
-          "duration_days": 8,
-          "as_of": "2026-11-04",
+          "date_range": "Nov 25 \u2192 Dec 1",
+          "duration_days": 6,
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "LAX": {
-          "price_min": 1071,
+          "price_min": 1052,
           "route": "LAX-SYD",
           "origin_metro": "Los Angeles",
           "dest_metro": "Sydney",
-          "date_range": "Nov 12 \u2192 Nov 20",
-          "duration_days": 8,
-          "as_of": "2026-11-04",
+          "date_range": "Nov 25 \u2192 Dec 1",
+          "duration_days": 6,
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "JFK": {
-          "price_min": 1368,
+          "price_min": 1355,
           "route": "JFK-SYD",
           "origin_metro": "New York",
           "dest_metro": "Sydney",
-          "date_range": "Nov 12 \u2192 Nov 20",
+          "date_range": "Jan 26 \u2192 Feb 3",
           "duration_days": 8,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "ORD": {
-          "price_min": 1984,
+          "price_min": 2189,
           "route": "ORD-SYD",
           "origin_metro": "Chicago",
           "dest_metro": "Sydney",
-          "date_range": "Nov 24 \u2192 Nov 30",
+          "date_range": "Jan 26 \u2192 Feb 1",
           "duration_days": 6,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "DFW": {
-          "price_min": 1901,
+          "price_min": 2021,
           "route": "DFW-SYD",
           "origin_metro": "Dallas",
           "dest_metro": "Sydney",
-          "date_range": "Nov 12 \u2192 Nov 18",
-          "duration_days": 6,
-          "as_of": "2026-11-04",
+          "date_range": "Nov 25 \u2192 Dec 3",
+          "duration_days": 8,
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         }
@@ -1077,21 +1077,21 @@
         "route": "LAX-DPS",
         "origin_metro": "Los Angeles",
         "dest_metro": "Bali",
-        "date_range": "Nov 12 \u2192 Nov 20",
+        "date_range": "Jan 12 \u2192 Jan 20",
         "duration_days": 8,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
       "fares_by_origin": {
         "SFO": {
-          "price_min": 801,
+          "price_min": 858,
           "route": "SFO-DPS",
           "origin_metro": "Bay Area",
           "dest_metro": "Bali",
           "date_range": "Jan 26 \u2192 Feb 3",
           "duration_days": 8,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
@@ -1100,20 +1100,20 @@
           "route": "LAX-DPS",
           "origin_metro": "Los Angeles",
           "dest_metro": "Bali",
-          "date_range": "Nov 12 \u2192 Nov 20",
+          "date_range": "Jan 12 \u2192 Jan 20",
           "duration_days": 8,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "JFK": {
-          "price_min": 888,
+          "price_min": 828,
           "route": "JFK-DPS",
           "origin_metro": "New York",
           "dest_metro": "Bali",
           "date_range": "Jan 26 \u2192 Feb 1",
           "duration_days": 6,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
@@ -1124,18 +1124,18 @@
           "dest_metro": "Bali",
           "date_range": "Jan 26 \u2192 Feb 1",
           "duration_days": 6,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "DFW": {
-          "price_min": 1193,
+          "price_min": 1256,
           "route": "DFW-DPS",
           "origin_metro": "Dallas",
           "dest_metro": "Bali",
-          "date_range": "Nov 24 \u2192 Dec 2",
-          "duration_days": 8,
-          "as_of": "2026-11-04",
+          "date_range": "Jan 12 \u2192 Jan 18",
+          "duration_days": 6,
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         }
@@ -1350,7 +1350,7 @@
         "dest_metro": "Cabo",
         "date_range": "Nov 10 \u2192 Nov 16",
         "duration_days": 6,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
@@ -1362,7 +1362,7 @@
           "dest_metro": "Cabo",
           "date_range": "Nov 10 \u2192 Nov 16",
           "duration_days": 6,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         }
@@ -1769,13 +1769,13 @@
       "season_note": "Cool season for the Nile valley; summers are fiercely hot.",
       "cheapest_month": null,
       "fare_from": {
-        "price_min": 643,
+        "price_min": 642,
         "route": "LAX-CAI",
         "origin_metro": "Los Angeles",
         "dest_metro": "Cairo",
         "date_range": "Dec 8 \u2192 Dec 14",
         "duration_days": 6,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
@@ -1785,53 +1785,53 @@
           "route": "SFO-CAI",
           "origin_metro": "Bay Area",
           "dest_metro": "Cairo",
-          "date_range": "Nov 12 \u2192 Nov 18",
-          "duration_days": 6,
-          "as_of": "2026-11-04",
+          "date_range": "Nov 25 \u2192 Dec 3",
+          "duration_days": 8,
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "LAX": {
-          "price_min": 643,
+          "price_min": 642,
           "route": "LAX-CAI",
           "origin_metro": "Los Angeles",
           "dest_metro": "Cairo",
           "date_range": "Dec 8 \u2192 Dec 14",
           "duration_days": 6,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "JFK": {
-          "price_min": 717,
+          "price_min": 719,
           "route": "JFK-CAI",
           "origin_metro": "New York",
           "dest_metro": "Cairo",
-          "date_range": "Nov 12 \u2192 Nov 18",
-          "duration_days": 6,
-          "as_of": "2026-11-04",
+          "date_range": "Nov 18 \u2192 Nov 26",
+          "duration_days": 8,
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "ORD": {
-          "price_min": 701,
+          "price_min": 703,
           "route": "ORD-CAI",
           "origin_metro": "Chicago",
           "dest_metro": "Cairo",
-          "date_range": "Nov 24 \u2192 Dec 2",
-          "duration_days": 8,
-          "as_of": "2026-11-04",
+          "date_range": "Dec 8 \u2192 Dec 14",
+          "duration_days": 6,
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "DFW": {
-          "price_min": 828,
+          "price_min": 814,
           "route": "DFW-CAI",
           "origin_metro": "Dallas",
           "dest_metro": "Cairo",
-          "date_range": "Nov 12 \u2192 Nov 18",
+          "date_range": "Dec 8 \u2192 Dec 14",
           "duration_days": 6,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         }
@@ -1935,13 +1935,13 @@
       "season_note": "Dry season May\u2013Oct; cyclone season is Nov\u2013Apr.",
       "cheapest_month": null,
       "fare_from": {
-        "price_min": 1145,
+        "price_min": 1134,
         "route": "LAX-NAN",
         "origin_metro": "Los Angeles",
         "dest_metro": "Nadi",
-        "date_range": "Nov 24 \u2192 Dec 2",
+        "date_range": "Nov 25 \u2192 Dec 3",
         "duration_days": 8,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
@@ -1951,20 +1951,20 @@
           "route": "SFO-NAN",
           "origin_metro": "Bay Area",
           "dest_metro": "Nadi",
-          "date_range": "Nov 24 \u2192 Nov 30",
-          "duration_days": 6,
-          "as_of": "2026-11-04",
+          "date_range": "Nov 25 \u2192 Dec 3",
+          "duration_days": 8,
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "LAX": {
-          "price_min": 1145,
+          "price_min": 1134,
           "route": "LAX-NAN",
           "origin_metro": "Los Angeles",
           "dest_metro": "Nadi",
-          "date_range": "Nov 24 \u2192 Dec 2",
+          "date_range": "Nov 25 \u2192 Dec 3",
           "duration_days": 8,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
@@ -1973,9 +1973,9 @@
           "route": "JFK-NAN",
           "origin_metro": "New York",
           "dest_metro": "Nadi",
-          "date_range": "Nov 12 \u2192 Nov 18",
-          "duration_days": 6,
-          "as_of": "2026-11-04",
+          "date_range": "Nov 18 \u2192 Nov 26",
+          "duration_days": 8,
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
@@ -1984,9 +1984,9 @@
           "route": "ORD-NAN",
           "origin_metro": "Chicago",
           "dest_metro": "Nadi",
-          "date_range": "Nov 24 \u2192 Nov 30",
+          "date_range": "Dec 8 \u2192 Dec 14",
           "duration_days": 6,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
@@ -1995,9 +1995,9 @@
           "route": "DFW-NAN",
           "origin_metro": "Dallas",
           "dest_metro": "Nadi",
-          "date_range": "Nov 24 \u2192 Nov 30",
-          "duration_days": 6,
-          "as_of": "2026-11-04",
+          "date_range": "Nov 18 \u2192 Nov 26",
+          "duration_days": 8,
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         }
@@ -2203,25 +2203,25 @@
       "season_note": "Late spring and early autumn beat the August crowds and closures.",
       "cheapest_month": null,
       "fare_from": {
-        "price_min": 788,
+        "price_min": 786,
         "route": "LAX-CDG",
         "origin_metro": "Los Angeles",
         "dest_metro": "Paris",
-        "date_range": "Jan 26 \u2192 Feb 1",
+        "date_range": "Dec 8 \u2192 Dec 14",
         "duration_days": 6,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
       "fares_by_origin": {
         "LAX": {
-          "price_min": 788,
+          "price_min": 786,
           "route": "LAX-CDG",
           "origin_metro": "Los Angeles",
           "dest_metro": "Paris",
-          "date_range": "Jan 26 \u2192 Feb 1",
+          "date_range": "Dec 8 \u2192 Dec 14",
           "duration_days": 6,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         }
@@ -2424,47 +2424,47 @@
       "season_note": "Islands are best late May\u2013early Oct; July\u2013August is peak-price.",
       "cheapest_month": null,
       "fare_from": {
-        "price_min": 1105,
+        "price_min": 1028,
         "route": "ORD-ATH",
         "origin_metro": "Chicago",
         "dest_metro": "Athens",
-        "date_range": "Oct 21 \u2192 Oct 27",
+        "date_range": "Nov 18 \u2192 Nov 24",
         "duration_days": 6,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
       "fares_by_origin": {
         "ORD": {
-          "price_min": 1105,
+          "price_min": 1028,
           "route": "ORD-ATH",
           "origin_metro": "Chicago",
           "dest_metro": "Athens",
-          "date_range": "Oct 21 \u2192 Oct 27",
+          "date_range": "Nov 18 \u2192 Nov 24",
           "duration_days": 6,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "DFW": {
-          "price_min": 2281,
+          "price_min": 3124,
           "route": "DFW-ATH",
           "origin_metro": "Dallas",
           "dest_metro": "Athens",
-          "date_range": "Jan 26 \u2192 Feb 1",
-          "duration_days": 6,
-          "as_of": "2026-11-04",
+          "date_range": "Dec 24 \u2192 Jan 1",
+          "duration_days": 8,
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "SFO": {
-          "price_min": 2332,
+          "price_min": 2650,
           "route": "SFO-ATH",
           "origin_metro": "Bay Area",
           "dest_metro": "Athens",
           "date_range": "Dec 24 \u2192 Jan 1",
           "duration_days": 8,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         }
@@ -2874,25 +2874,25 @@
       "season_note": "Shoulder months have the weather without the peak crowds.",
       "cheapest_month": null,
       "fare_from": {
-        "price_min": 773,
+        "price_min": 770,
         "route": "LAX-FCO",
         "origin_metro": "Los Angeles",
         "dest_metro": "Rome",
-        "date_range": "Jan 12 \u2192 Jan 18",
+        "date_range": "Dec 8 \u2192 Dec 14",
         "duration_days": 6,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
       "fares_by_origin": {
         "LAX": {
-          "price_min": 773,
+          "price_min": 770,
           "route": "LAX-FCO",
           "origin_metro": "Los Angeles",
           "dest_metro": "Rome",
-          "date_range": "Jan 12 \u2192 Jan 18",
+          "date_range": "Dec 8 \u2192 Dec 14",
           "duration_days": 6,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         }
@@ -3097,13 +3097,13 @@
       "season_note": "Cherry blossom (late Mar\u2013Apr) and autumn colours (Nov) are the peaks.",
       "cheapest_month": null,
       "fare_from": {
-        "price_min": 969,
-        "route": "LAX-NRT",
+        "price_min": 957,
+        "route": "LAX-HND",
         "origin_metro": "Los Angeles",
         "dest_metro": "Tokyo",
         "date_range": "Jan 12 \u2192 Jan 20",
         "duration_days": 8,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
@@ -3115,18 +3115,18 @@
           "dest_metro": "Tokyo",
           "date_range": "Jan 26 \u2192 Feb 1",
           "duration_days": 6,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "LAX": {
-          "price_min": 969,
-          "route": "LAX-NRT",
+          "price_min": 957,
+          "route": "LAX-HND",
           "origin_metro": "Los Angeles",
           "dest_metro": "Tokyo",
           "date_range": "Jan 12 \u2192 Jan 20",
           "duration_days": 8,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
@@ -3137,29 +3137,29 @@
           "dest_metro": "Tokyo",
           "date_range": "Jan 12 \u2192 Jan 20",
           "duration_days": 8,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "ORD": {
-          "price_min": 1110,
+          "price_min": 1188,
           "route": "ORD-NRT",
           "origin_metro": "Chicago",
           "dest_metro": "Tokyo",
           "date_range": "Jan 12 \u2192 Jan 20",
           "duration_days": 8,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "DFW": {
-          "price_min": 1213,
-          "route": "DFW-NRT",
+          "price_min": 1314,
+          "route": "DFW-HND",
           "origin_metro": "Dallas",
           "dest_metro": "Tokyo",
-          "date_range": "Jan 26 \u2192 Feb 3",
+          "date_range": "Dec 8 \u2192 Dec 16",
           "duration_days": 8,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         }
@@ -4503,19 +4503,19 @@
         "dest_metro": "Muscat",
         "date_range": "Jan 26 \u2192 Feb 3",
         "duration_days": 8,
-        "as_of": "2026-11-04",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
       "fares_by_origin": {
         "SFO": {
-          "price_min": 1299,
+          "price_min": 1340,
           "route": "SFO-MCT",
           "origin_metro": "Bay Area",
           "dest_metro": "Muscat",
-          "date_range": "Jan 26 \u2192 Feb 3",
-          "duration_days": 8,
-          "as_of": "2026-11-04",
+          "date_range": "Jan 26 \u2192 Feb 1",
+          "duration_days": 6,
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
@@ -4524,9 +4524,9 @@
           "route": "LAX-MCT",
           "origin_metro": "Los Angeles",
           "dest_metro": "Muscat",
-          "date_range": "Nov 12 \u2192 Nov 18",
+          "date_range": "Jan 26 \u2192 Feb 1",
           "duration_days": 6,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
@@ -4537,18 +4537,18 @@
           "dest_metro": "Muscat",
           "date_range": "Jan 26 \u2192 Feb 3",
           "duration_days": 8,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
         "ORD": {
-          "price_min": 1325,
+          "price_min": 1269,
           "route": "ORD-MCT",
           "origin_metro": "Chicago",
           "dest_metro": "Muscat",
-          "date_range": "Nov 24 \u2192 Dec 2",
+          "date_range": "Nov 25 \u2192 Dec 3",
           "duration_days": 8,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         },
@@ -4559,7 +4559,7 @@
           "dest_metro": "Muscat",
           "date_range": "Jan 26 \u2192 Feb 3",
           "duration_days": 8,
-          "as_of": "2026-11-04",
+          "as_of": "2026-11-11",
           "cadence": "weekly",
           "indicative": true
         }
@@ -6072,7 +6072,7 @@
       "dest_metro": "Hyderabad",
       "date_range": "Jan 26 \u2192 Feb 15",
       "duration_days": 20,
-      "as_of": "2026-11-10",
+      "as_of": "2026-11-11",
       "cadence": "weekly",
       "indicative": true
     },
@@ -6084,7 +6084,7 @@
         "dest_metro": "Hyderabad",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-10",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6095,7 +6095,7 @@
         "dest_metro": "Hyderabad",
         "date_range": "Jan 26 \u2192 Feb 17",
         "duration_days": 22,
-        "as_of": "2026-11-10",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6106,7 +6106,7 @@
         "dest_metro": "Hyderabad",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-10",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6117,7 +6117,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-10",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6128,7 +6128,7 @@
         "dest_metro": "Bengaluru",
         "date_range": "Jan 26 \u2192 Feb 17",
         "duration_days": 22,
-        "as_of": "2026-11-10",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6139,7 +6139,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-10",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6150,7 +6150,7 @@
         "dest_metro": "Kolkata",
         "date_range": "Jan 26 \u2192 Feb 17",
         "duration_days": 22,
-        "as_of": "2026-11-10",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6161,7 +6161,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-10",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6172,7 +6172,7 @@
         "dest_metro": "Bengaluru",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-10",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6183,7 +6183,7 @@
         "dest_metro": "Bengaluru",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-10",
+        "as_of": "2026-11-11",
         "cadence": "weekly",
         "indicative": true
       }
@@ -6199,7 +6199,7 @@
     "trending": {
       "month": 11,
       "year": 2026,
-      "score": 95,
+      "score": 89,
       "max_score": 100,
       "components": [
         {
@@ -6216,9 +6216,9 @@
         },
         {
           "id": "fare_drop",
-          "points": 30,
+          "points": 24,
           "max": 30,
-          "reason": "Fares down 20.3% on ATL-BLR ($1811 \u2192 $1444) vs 2026-11-03"
+          "reason": "Fares down 15.9% on DFW-HYD ($1717 \u2192 $1444) vs 2026-11-10"
         }
       ]
     },
