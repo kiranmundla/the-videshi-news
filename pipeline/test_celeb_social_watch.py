@@ -398,6 +398,272 @@ def test_stage_post_face_pass_reaches_dry_run():
     assert report["skipped_face"] == []
 
 
+# ── proof-route detection (connector posts regression) ────────────
+# Since 2026-11-11 the posts rows may carry ONLY
+# platform/rank/source_app/url. Detection must run on URLs +
+# user-profile verification + embed-page proof. These tests drive
+# run() fully offline at the fetch seams.
+import tempfile  # noqa: E402
+from pathlib import Path  # noqa: E402
+
+
+def _embed_html(owner, caption):
+    cap = caption.replace("\n", "<br/>")
+    return ('<html><body>'
+            f'<a class="Username" href="https://www.instagram.com/'
+            f'{owner}/">{owner}</a>'
+            f'<div class="Caption">'
+            f'<a class="CaptionUsername" href="https://www.'
+            f'instagram.com/{owner}/">{owner}</a>'
+            f'{cap}</div><div class="Footer">x</div>'
+            '</body></html>')
+
+
+_FAKE_CELEB = {"name": "Fake Celeb", "handle": "fakeceleb",
+               "enabled": True, "note": ""}
+
+
+def _seeded_state(handle="fakeceleb", **kw):
+    hs = {"seen_post_ids": [], "reel_candidates": [],
+          "seeded_once": True}
+    hs.update(kw)
+    return {handle: hs}
+
+
+def _stripped_row(url, rank=1):
+    return {"platform": "instagram", "rank": rank,
+            "source_app": "INSTAGRAM", "url": url}
+
+
+def _run_rig(whitelist, posts_map, page_map, state=None,
+             profiles=None, dry_run=True, stage_post_id=None):
+    """Drive cw.run() offline. posts_map: handle -> posts
+    response dict (or an Exception instance to raise).
+    page_map: shortcode -> embed HTML (missing = fetch failure).
+    Returns (report, saved_state_or_None)."""
+    keys = ("load_whitelist", "fetch_posts", "fetch_profile",
+            "fetch_embed_page", "STATE_FILE", "LEDGER_PATH")
+    orig = {k: getattr(cw, k) for k in keys}
+    tmp = Path(tempfile.mkdtemp())
+    state_file = tmp / "state.json"
+    if state is not None:
+        state_file.write_text(json.dumps(state), encoding="utf-8")
+    try:
+        cw.load_whitelist = lambda: whitelist
+        cw.STATE_FILE = state_file
+        cw.LEDGER_PATH = tmp / "no-ledger.jsonl"
+
+        def fake_fetch_posts(handle, limit=5):
+            r = posts_map[handle]
+            if isinstance(r, Exception):
+                raise r
+            return r
+        cw.fetch_posts = fake_fetch_posts
+
+        def fake_fetch_profile(handle):
+            if profiles is not None:
+                return profiles.get(handle)
+            return {"username": handle, "is_verified": True,
+                    "name": "Fake Name", "follower_count": 123}
+        cw.fetch_profile = fake_fetch_profile
+        cw.fetch_embed_page = lambda sc: page_map.get(sc, "")
+        report = cw.run(dry_run=dry_run,
+                        stage_post_id=stage_post_id)
+        saved = None
+        if not dry_run and state_file.exists():
+            saved = json.loads(
+                state_file.read_text(encoding="utf-8"))
+        return report, saved
+    finally:
+        for k, v in orig.items():
+            setattr(cw, k, v)
+
+
+def test_candidate_posts_stripped_rows_rank_order():
+    data = {"posts": [
+        _stripped_row("https://www.instagram.com/p/CCC/", rank=3),
+        _stripped_row("https://www.instagram.com/p/AAA/", rank=1),
+        _stripped_row("https://www.instagram.com/stories/fake/1",
+                      rank=2),
+        _stripped_row("https://www.instagram.com/reel/DDD/",
+                      rank=4),
+        _stripped_row("https://www.instagram.com/p/AAA/", rank=5),
+    ]}
+    cands = cw.candidate_posts(data, "fakeceleb")
+    assert [c["shortcode"] for c in cands] == ["AAA", "CCC", "DDD"]
+    assert all(c["row_post_id"] is None for c in cands)
+    assert cw.canonical_post_id(cands[0]) == "AAA"
+
+
+def test_candidate_posts_full_rows_lend_id_and_drop_others():
+    data = {"posts": [
+        {"username": "otheracct", "post_id": "999", "rank": 1,
+         "url": "https://www.instagram.com/p/OTH/"},
+        {"username": "fakeceleb", "post_id": "555", "rank": 2,
+         "url": "https://www.instagram.com/p/OWN/"},
+    ]}
+    cands = cw.candidate_posts(data, "fakeceleb")
+    assert len(cands) == 1
+    assert cands[0]["row_post_id"] == "555"
+    assert cw.canonical_post_id(cands[0]) == "555"
+
+
+def test_parse_embed_page_owner_and_caption_lines():
+    owner, caption = cw.parse_ig_embed_page(
+        _embed_html("fakeceleb", "Line one here\n\nSecond line"))
+    assert owner == "fakeceleb"
+    assert caption == "Line one here\nSecond line"
+    assert cw.parse_ig_embed_page("<html>login</html>") \
+        == (None, "")
+    assert cw.parse_ig_embed_page("") == (None, "")
+
+
+def test_prove_candidate_retry_and_mismatch():
+    orig = cw.fetch_embed_page
+    cand = {"url": "https://www.instagram.com/p/X1/",
+            "shortcode": "X1", "row_post_id": None}
+    try:
+        cw.fetch_embed_page = lambda sc: ""
+        status, _ = cw.prove_candidate("fakeceleb", cand)
+        assert status == "retry"
+        cw.fetch_embed_page = lambda sc: _embed_html("other",
+                                                     "cap")
+        status, owner = cw.prove_candidate("fakeceleb", cand)
+        assert status == "mismatch" and owner == "other"
+        cw.fetch_embed_page = lambda sc: _embed_html(
+            "fakeceleb", "Her own words")
+        status, post = cw.prove_candidate("fakeceleb", cand)
+        assert status == "ok"
+        assert post["post_caption"] == "Her own words"
+        assert post["post_id"] == "X1"
+        assert post["media_type"] == "photo"
+    finally:
+        cw.fetch_embed_page = orig
+
+
+def test_run_owner_mismatch_rejected_and_marked_seen():
+    posts = {"fakeceleb": {"posts": [
+        _stripped_row("https://www.instagram.com/p/AbC123/")]}}
+    pages = {"AbC123": _embed_html("someoneelse", "Not hers")}
+    report, saved = _run_rig([_FAKE_CELEB], posts, pages,
+                             state=_seeded_state(), dry_run=False)
+    assert report["staged"] == [] and report["would_stage"] == []
+    assert any("REJECTED" in e for e in report["errors"])
+    assert "AbC123" in saved["fakeceleb"]["seen_post_ids"]
+
+
+def test_run_unverified_profile_skips_handle():
+    posts = {"fakeceleb": {"posts": [
+        _stripped_row("https://www.instagram.com/p/AbC123/")]}}
+    profiles = {"fakeceleb": {"username": "fakeceleb",
+                               "is_verified": False}}
+    report, _ = _run_rig([_FAKE_CELEB], posts, {},
+                         profiles=profiles,
+                         state=_seeded_state(), dry_run=True)
+    assert any("NOT verified" in e for e in report["errors"])
+    assert not any("embed proof" in e for e in report["errors"])
+    assert report["would_stage"] == []
+
+
+def test_run_ad_caption_from_embed_page_is_skipped():
+    posts = {"fakeceleb": {"posts": [
+        _stripped_row("https://www.instagram.com/p/AdP0st/")]}}
+    pages = {"AdP0st": _embed_html(
+        "fakeceleb", "New drop! Use code FAKE20 today #ad")}
+    report, _ = _run_rig([_FAKE_CELEB], posts, pages,
+                         state=_seeded_state(), dry_run=True)
+    assert len(report["skipped_ads"]) == 1
+    assert "fakeceleb/AdP0st" in report["skipped_ads"][0]
+    assert report["would_stage"] == []
+
+
+def test_run_reel_candidate_recorded_without_download():
+    posts = {"fakeceleb": {"posts": [
+        _stripped_row("https://www.instagram.com/reel/ReE1x/")]}}
+    pages = {"ReE1x": _embed_html("fakeceleb",
+                                  "Trailer day is here")}
+    orig_dl = cw.download_frames
+
+    def _boom(post):
+        raise AssertionError("video must never be downloaded")
+    cw.download_frames = _boom
+    try:
+        report, saved = _run_rig([_FAKE_CELEB], posts, pages,
+                                 state=_seeded_state(),
+                                 dry_run=False)
+    finally:
+        cw.download_frames = orig_dl
+    assert len(report["reel_candidates"]) == 1
+    cands = saved["fakeceleb"]["reel_candidates"]
+    assert len(cands) == 1
+    assert cands[0]["date"] == ""
+    assert "Trailer day" in cands[0]["caption"]
+    assert "ReE1x" in saved["fakeceleb"]["seen_post_ids"]
+
+
+def test_run_embed_failure_leaves_post_unseen():
+    posts = {"fakeceleb": {"posts": [
+        _stripped_row("https://www.instagram.com/p/NoPage/")]}}
+    report, saved = _run_rig([_FAKE_CELEB], posts, {},
+                             state=_seeded_state(), dry_run=False)
+    assert "NoPage" not in saved["fakeceleb"]["seen_post_ids"]
+    assert any("left unseen" in e for e in report["errors"])
+    assert report["staged"] == []
+
+
+def test_run_photo_post_would_stage_in_dry_run():
+    posts = {"fakeceleb": {"posts": [
+        _stripped_row("https://www.instagram.com/p/Good1/")]}}
+    pages = {"Good1": _embed_html("fakeceleb",
+                                  "A lovely evening with family")}
+    orig_dl, orig_check = cw.download_frames, cw.hook_face_check
+    try:
+        cw.download_frames = lambda p: ([_solid_img(992, 992)],
+                                        "")
+        cw.hook_face_check = lambda img: (True, "ok [test]")
+        report, _ = _run_rig([_FAKE_CELEB], posts, pages,
+                             state=_seeded_state(), dry_run=True)
+    finally:
+        cw.download_frames, cw.hook_face_check = orig_dl, orig_check
+    assert len(report["would_stage"]) == 1
+    assert "fakeceleb/Good1" in report["would_stage"][0]
+    assert report["handles"]["fakeceleb"]["new"] == 1
+
+
+def test_run_legacy_bridge_recognizes_seen_reel():
+    state = _seeded_state(
+        seen_post_ids=["424242"],
+        reel_candidates=[{
+            "handle": "fakeceleb", "post_id": "424242",
+            "url": "https://www.instagram.com/reel/OldReel/",
+            "caption": "old trailer", "date": "2026-11-01"}])
+    posts = {"fakeceleb": {"posts": [
+        _stripped_row("https://www.instagram.com/reel/OldReel/")]}}
+    report, saved = _run_rig([_FAKE_CELEB], posts, {},
+                             state=state, dry_run=False)
+    assert report["reel_candidates"] == []
+    assert report["errors"] == []
+    assert len(saved["fakeceleb"]["reel_candidates"]) == 1
+
+
+def test_run_rate_limit_breaks_the_run():
+    wl = [_FAKE_CELEB,
+          {"name": "Second Celeb", "handle": "secondceleb",
+           "enabled": True, "note": ""}]
+    posts = {"fakeceleb": cw.IGRateLimitedError("429"),
+             "secondceleb": {"posts": [
+                 _stripped_row(
+                     "https://www.instagram.com/p/Never1/")]}}
+    state = _seeded_state()
+    state["secondceleb"] = {"seen_post_ids": [],
+                            "reel_candidates": [],
+                            "seeded_once": True}
+    report, _ = _run_rig(wl, posts, {}, state=state, dry_run=True)
+    assert any("rate limit" in e for e in report["errors"])
+    # The run hard-stopped: the second handle was never reached.
+    assert "secondceleb" not in report["handles"]
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items())
            if k.startswith("test_") and callable(v)]

@@ -24,12 +24,23 @@ Articles on the site are untouched by this — they keep using
 official embeds. Videos/reels are never downloaded; they are
 recorded as reel candidates in the state file for Kiran to see.
 
-Detection: instagram-cli posts per enabled handle (read-only).
-Media: the post's public embed page
-(https://www.instagram.com/p/<shortcode>/embed/captioned/) fetched
-with curl — urllib/requests fail through this box's proxy. If the
-embed page yields no scontent photo URLs the post is skipped and
-the run report says so; there is no fallback source.
+Detection (rebuilt 2026-11-11 for the connector posts
+regression): instagram-cli `posts` rows can no longer be trusted
+beyond their URLs — a row may carry only platform/rank/source_app/
+url, with username, verified, post_id, caption, created_at and
+media_type stripped, and the shape flaps between backends. So:
+the account is verified once per run via instagram-cli
+`user-profile` (full data); candidate post URLs are taken in rank
+order; and every new candidate is PROVEN through its public embed
+page — the page's Username anchor must name the handle exactly,
+and the caption is recovered from that page. Media: the same
+embed page (https://www.instagram.com/p/<shortcode>/embed/
+captioned/) fetched with curl — urllib/requests fail through this
+box's proxy. If the embed page yields no scontent photo URLs the
+post is skipped and the run report says so; there is no fallback
+source. A post whose embed proof fails is left UNSEEN so the next
+run retries it; a post the page proves belongs to a different
+owner is rejected definitively (marked seen, loudly logged).
 
 State: pipeline/.state/celeb-watch-state.json
   {handle: {"seen_post_ids": [...], "reel_candidates": [...],
@@ -141,30 +152,116 @@ def ad_marker_in(caption):
 
 
 # ── instagram-cli detection ───────────────────────────────────────
-def fetch_posts(handle, limit=5):
-    """instagram-cli posts for one handle -> parsed JSON dict.
-    Read-only; raises RuntimeError on CLI/parse failure."""
-    cmd = [IG_CLI, "posts", "--account-id", IG_ACCOUNT_ID,
-           "--username", handle, "--limit", str(limit)]
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=180)
+# CONNECTOR REGRESSION (2026-11-11): posts rows lost their
+# authorship fields — see the module docstring. Nothing in a row
+# is trusted beyond its URL (and its post_id when the row's own
+# username attests it). Verification moved to user-profile;
+# ownership + caption moved to the embed-page proof below.
+IG_RATE_LIMITED = False
+
+
+class IGRateLimitedError(RuntimeError):
+    """instagram-cli reported a 429 — hard stop for the run."""
+
+
+def _is_ig_rate_limit_text(text):
+    low = (text or "").lower()
+    return "429" in low or "too many requests" in low \
+        or "rate limit" in low
+
+
+def ig_cli_json(subcommand, extra_args, timeout=180):
+    """Run one instagram-cli command -> parsed JSON dict.
+    Raises RuntimeError on CLI/parse/provider failure and
+    IGRateLimitedError on a 429 (which also sets IG_RATE_LIMITED,
+    stopping every further IG call this run). Rate-limit detection
+    is STRUCTURAL — the parsed provider_error object; raw output
+    is scanned only when it is not JSON at all — the same
+    discipline as enrich-on-publish.py's _ig_cli_json (payload
+    substrings false-positive: post ids are long digit strings
+    that can legitimately contain '429')."""
+    global IG_RATE_LIMITED
+    if IG_RATE_LIMITED:
+        raise IGRateLimitedError("instagram-cli rate limited "
+                                 "earlier this run")
+    cmd = [IG_CLI, subcommand, "--account-id", IG_ACCOUNT_ID] \
+        + list(extra_args)
+    r = subprocess.run(cmd, capture_output=True, text=True,
+                       timeout=timeout)
+    try:
+        start = r.stdout.find("{")
+        data = json.loads(r.stdout[start:]) if start >= 0 else {}
+        if not isinstance(data, dict):
+            data = {}
+    except (json.JSONDecodeError, TypeError):
+        data = {}
+    if not data:
+        if _is_ig_rate_limit_text(f"{r.stdout}\n{r.stderr}"):
+            IG_RATE_LIMITED = True
+            raise IGRateLimitedError(
+                "instagram-cli rate limit (429) — non-JSON output")
+        raise RuntimeError(
+            f"instagram-cli exit {r.returncode}, non-JSON output: "
+            f"{(r.stderr or r.stdout)[:200]}")
+    provider_error = data.get("provider_error") or data.get("error")
+    if provider_error:
+        err_text = json.dumps(provider_error)
+        if _is_ig_rate_limit_text(err_text):
+            IG_RATE_LIMITED = True
+            raise IGRateLimitedError(
+                f"instagram-cli rate limit (429): {err_text[:160]}")
+        raise RuntimeError(f"instagram-cli error: {err_text[:200]}")
     if r.returncode != 0:
         raise RuntimeError(f"instagram-cli exit {r.returncode}: "
                            f"{(r.stderr or r.stdout)[:200]}")
+    return data
+
+
+def fetch_posts(handle, limit=5):
+    """instagram-cli posts for one handle -> parsed JSON dict.
+    Read-only; raises RuntimeError on failure, IGRateLimitedError
+    on a 429. Callers must use the rows for their URLs only."""
+    return ig_cli_json("posts", ["--username", handle,
+                                 "--limit", str(limit)])
+
+
+def fetch_profile(handle):
+    """instagram-cli user-profile for one handle -> the profile
+    dict, or None when the response carries no usable profile.
+    user-profile still returns FULL data (verified included)."""
+    data = ig_cli_json("user-profile", ["--username", handle])
+    profiles = data.get("profiles") or []
+    if profiles and isinstance(profiles[0], dict):
+        return profiles[0]
+    return None
+
+
+def verify_profile(handle):
+    """(ok, info) — the guardrail that replaces per-row author
+    checks: ok only when user-profile returns this exact handle
+    with a verified flag. info carries author_name/followers for
+    the state file (the keys the posts rows used to provide).
+    Fail-closed on any mismatch or fetch failure."""
     try:
-        return json.loads(r.stdout)
-    except json.JSONDecodeError:
-        raise RuntimeError(f"instagram-cli non-JSON output: "
-                           f"{r.stdout[:200]}")
-
-
-def own_posts(data, handle):
-    """Rows in a posts response that belong to `handle` itself.
-    The CLI response can include other accounts' rows; only rows
-    whose username matches the whitelist handle count, and only
-    when the author rows carry verified=True."""
-    rows = [p for p in (data.get("posts") or [])
-            if (p.get("username") or "").lower() == handle.lower()]
-    return rows
+        prof = fetch_profile(handle)
+    except IGRateLimitedError:
+        raise
+    except Exception:
+        return False, {}
+    if not prof:
+        return False, {}
+    if (prof.get("username") or "").lower().lstrip("@") \
+            != handle.lower():
+        return False, {}
+    if prof.get("is_verified") is not True \
+            and prof.get("verified") is not True:
+        return False, {}
+    info = {"author_name": prof.get("name")
+            or prof.get("full_name"),
+            "followers": prof.get("follower_count")
+            or prof.get("followers_count")
+            or prof.get("followers")}
+    return True, info
 
 
 def is_feed_post(post):
@@ -174,16 +271,113 @@ def is_feed_post(post):
     return shortcode_from_url(post.get("url")) is not None
 
 
-def author_verified(rows):
-    """(ok, info) — ok only when we have own rows and every own
-    row's author is verified. info carries name/followers."""
-    if not rows:
-        return False, {}
-    first = rows[0]
-    info = {"author_name": first.get("author_name"),
-            "followers": first.get("follower_count")}
-    ok = all(p.get("verified") is True for p in rows)
-    return ok, info
+def _rank_key(row):
+    try:
+        return (0, int(row.get("rank")))
+    except (TypeError, ValueError):
+        return (1, 0)
+
+
+def candidate_posts(data, handle):
+    """Ordered post candidates from a posts response: feed-post
+    rows sorted by rank (the connector's recency order — the
+    embed page carries no timestamp, so rank is the only order),
+    deduplicated by shortcode. A row whose username is present
+    and names a DIFFERENT account is dropped outright (provably
+    not this handle's); a row whose username matches lends its
+    post_id. Stripped rows contribute only their URL."""
+    rows = [p for p in (data.get("posts") or [])
+            if isinstance(p, dict)]
+    rows.sort(key=_rank_key)
+    out, seen_sc = [], set()
+    for row in rows:
+        if not is_feed_post(row):
+            continue
+        url = row.get("url")
+        sc = shortcode_from_url(url)
+        if not sc or sc in seen_sc:
+            continue
+        username = (row.get("username") or "").lower()
+        row_post_id = None
+        if username:
+            if username != handle.lower():
+                continue
+            if row.get("post_id"):
+                row_post_id = str(row["post_id"])
+        seen_sc.add(sc)
+        out.append({"url": url, "shortcode": sc,
+                    "row_post_id": row_post_id})
+    return out
+
+
+def canonical_post_id(cand):
+    """The post's identity: the connector's numeric post_id when
+    an attested row carried it (continuity with pre-regression
+    state, slugs and queue entries), else the shortcode."""
+    return cand.get("row_post_id") or cand["shortcode"]
+
+
+def url_is_reel(url):
+    return re.search(r"instagram\.com/reels?/", url or "") \
+        is not None
+
+
+# ── legacy identity bridge ────────────────────────────────────────
+def legacy_shortcode_map(state):
+    """{handle: {legacy numeric post_id: shortcode}} — built from
+    the mappings that survive the regression: the state file's
+    reel candidates (post_id + url pairs) and the provenance
+    ledger's staged records (post_id + post_url). Used ONLY to
+    recognize an already-processed post under its other identity
+    — never as a source of posts to stage."""
+    out = {}
+    for handle, hs in (state or {}).items():
+        if not isinstance(hs, dict):
+            continue
+        m = {}
+        for cand in hs.get("reel_candidates") or []:
+            sc = shortcode_from_url(cand.get("url"))
+            if cand.get("post_id") and sc:
+                m[str(cand["post_id"])] = sc
+        if m:
+            out[handle] = m
+    try:
+        with open(LEDGER_PATH, encoding="utf-8") as f:
+            for line in f:
+                try:
+                    rec = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                handle = rec.get("handle")
+                sc = shortcode_from_url(rec.get("post_url"))
+                if handle and rec.get("post_id") and sc:
+                    out.setdefault(handle, {})[
+                        str(rec["post_id"])] = sc
+    except FileNotFoundError:
+        pass
+    return out
+
+
+def candidate_seen(seen, bridge_for_handle, cand):
+    """True when this candidate was already processed under
+    EITHER identity — its own canonical id, its shortcode, or a
+    legacy numeric id the bridge maps to its shortcode."""
+    if canonical_post_id(cand) in seen or cand["shortcode"] in seen:
+        return True
+    pid = cand.get("row_post_id")
+    if pid and bridge_for_handle.get(pid) == cand["shortcode"]:
+        return True
+    mapped = {bridge_for_handle[x] for x in seen
+              if x in bridge_for_handle}
+    return cand["shortcode"] in mapped
+
+
+def mark_candidate_seen(seen, cand):
+    """Record a processed candidate under every identity known
+    for it, so later runs recognize it in either row shape."""
+    seen.add(cand["shortcode"])
+    if cand.get("row_post_id"):
+        seen.add(str(cand["row_post_id"]))
 
 
 # ── embed-page media extraction ───────────────────────────────────
@@ -279,16 +473,110 @@ def shortcode_from_url(url):
     return m.group(1) if m else None
 
 
+# ── embed-page proof (owner + caption) ────────────────────────────
+def parse_ig_embed_page(page_html):
+    """(owner_handle, caption) from an embed/captioned page.
+    Owner comes from the Username anchor (the CaptionUsername
+    anchor as fallback); the caption is the Caption block's text
+    with tags stripped and entities unescaped. Returns
+    (None, "") when the page carries no provable owner.
+
+    Mirrored from enrich-on-publish.py's parse_ig_embed_page
+    (the parser its handle derivation proved in production,
+    commit e6790bfa6) rather than imported: this watcher is a
+    standalone cron script and its network-free tests must not
+    pull in the enricher's import graph (social_registry, env
+    loading, the YouTube/X machinery). The one deliberate
+    deviation is whitespace — line breaks are preserved (the
+    enricher collapses them) because the watcher's headline,
+    excerpt and reel-script composition is line-based; the
+    proof-relevant extraction (owner anchors, Caption block) is
+    byte-identical."""
+    if not page_html:
+        return None, ""
+    owner = None
+    m = re.search(r'class="Username"\s+href="https://www\.instagram'
+                  r'\.com/([^/"?]+)/', page_html)
+    if not m:
+        m = re.search(r'class="CaptionUsername"\s+href="https://www'
+                      r'\.instagram\.com/([^/"?]+)/', page_html)
+    if m:
+        owner = m.group(1).lower()
+    caption = ""
+    cm = re.search(r'<div class="Caption">(.*?)(?:<div class='
+                   r'"CaptionComments"|<div class="Footer"|</div>'
+                   r'\s*</div>)', page_html, re.S)
+    if cm:
+        frag = cm.group(1)
+        frag = re.sub(r'<a class="CaptionUsername".*?</a>', " ",
+                      frag, flags=re.S)
+        frag = re.sub(r"<br\s*/?>", "\n", frag)
+        frag = re.sub(r"<[^>]+>", " ", frag)
+        lines = [re.sub(r"\s+", " ", ln).strip()
+                 for ln in html_mod.unescape(frag).splitlines()]
+        caption = "\n".join(ln for ln in lines if ln)
+    return owner, caption
+
+
+def fetch_embed_page(shortcode):
+    """The post's public embed page (curl, iPhone UA), or "" on
+    any failure — a failed proof fetch is a retry-next-run
+    outcome, never a pass."""
+    try:
+        return curl_text(
+            f"https://www.instagram.com/p/{shortcode}"
+            f"/embed/captioned/")
+    except Exception:
+        return ""
+
+
+def prove_candidate(handle, cand):
+    """Prove one candidate post through its embed page.
+    Returns (status, payload):
+      ("ok", post)        the page's owner IS `handle`; post is
+                          the full post dict (canonical post_id,
+                          url, caption recovered from the page,
+                          media kind derived from the URL, and the
+                          fetched page riding as _embed_html so
+                          download_frames reuses it — one fetch
+                          per post).
+      ("retry", reason)   the fetch failed or the page carried
+                          no provable owner — NOT a verdict; the
+                          caller must leave the post unseen.
+      ("mismatch", owner) the page proves a DIFFERENT owner —
+                          definitively not this handle's post."""
+    page = fetch_embed_page(cand["shortcode"])
+    if not page:
+        return "retry", "embed page fetch failed"
+    owner, caption = parse_ig_embed_page(page)
+    if owner is None:
+        return "retry", "embed page carried no provable owner"
+    if owner != handle.lower():
+        return "mismatch", owner
+    post = {"post_id": canonical_post_id(cand),
+            "url": cand["url"],
+            "post_caption": caption,
+            "media_type": "reel" if url_is_reel(cand["url"])
+            else "photo",
+            "_embed_html": page}
+    return "ok", post
+
+
 def download_frames(post):
     """Fetch the post's embed page and download its photos.
     Returns (frames, note): frames is a list of PIL Images (RGB)
     that clear the size floor; note explains an empty result.
-    There is deliberately NO fallback source."""
+    There is deliberately NO fallback source. A page already
+    fetched by prove_candidate rides on post['_embed_html'] and
+    is consumed here instead of being refetched."""
     shortcode = shortcode_from_url(post.get("url"))
     if not shortcode:
         return [], f"no shortcode in post url {post.get('url')!r}"
-    page = curl_text(
-        f"https://www.instagram.com/p/{shortcode}/embed/captioned/")
+    page = post.pop("_embed_html", None)
+    if page is None:
+        page = curl_text(
+            f"https://www.instagram.com/p/{shortcode}"
+            f"/embed/captioned/")
     photos = extract_scontent_photos(page)
     if not photos:
         return [], (f"embed page for {shortcode} returned "
@@ -1016,25 +1304,69 @@ def build_celeb_tiktok_caption(celeb, post):
 
 
 def _find_post(post_id):
-    """Locate one post across the enabled handles (same verified
-    detection path as run()). Returns (celeb, post) or
-    (None, reason)."""
-    for celeb in enabled_entries(load_whitelist()):
+    """Locate one post across the enabled handles (same proof
+    route as run()). The target may be a legacy numeric post_id
+    or a shortcode. Posts already recorded in state (reel
+    candidates carry their URLs) and staged posts in the
+    provenance ledger resolve without a live scan; anything else
+    is found by scanning the handles' latest candidates and
+    proving the match through its embed page. Returns
+    (celeb, post) or (None, reason)."""
+    target = str(post_id)
+    celebs = enabled_entries(load_whitelist())
+    by_handle = {c["handle"]: c for c in celebs}
+    state = load_state()
+    bridge = legacy_shortcode_map(state)
+
+    # 1) State reel candidates carry their URLs — resolve directly.
+    for handle, hs in state.items():
+        celeb = by_handle.get(handle)
+        if celeb is None or not isinstance(hs, dict):
+            continue
+        for cand in hs.get("reel_candidates") or []:
+            sc = shortcode_from_url(cand.get("url"))
+            if target in (str(cand.get("post_id")), sc):
+                return celeb, {
+                    "post_id": str(cand.get("post_id")),
+                    "url": cand.get("url"),
+                    "post_caption": cand.get("caption") or "",
+                    "media_type": "reel"}
+
+    # 2) The bridge knows staged posts' URLs (ledger): prove the
+    #    target live to recover its full caption.
+    for handle, m in bridge.items():
+        celeb = by_handle.get(handle)
+        if celeb is None:
+            continue
+        sc = m.get(target)
+        if sc:
+            status, proven = prove_candidate(handle, {
+                "url": f"https://www.instagram.com/p/{sc}/",
+                "shortcode": sc, "row_post_id": target})
+            if status == "ok":
+                return celeb, proven
+
+    # 3) Live scan: latest candidates per handle, embed-proved.
+    for celeb in celebs:
         handle = celeb["handle"]
         try:
+            ok, _info = verify_profile(handle)
+            if not ok:
+                continue
             data = fetch_posts(handle, limit=5)
         except Exception:
             continue
-        rows = own_posts(data, handle)
-        ok, _info = author_verified(rows)
-        if not rows or not ok:
-            continue
-        for post in rows:
-            if is_feed_post(post) \
-                    and str(post.get("post_id")) == str(post_id):
-                return celeb, post
-    return None, (f"post {post_id} not found in the latest 5 "
-                  f"posts of any enabled handle")
+        hb = bridge.get(handle, {})
+        for cand in candidate_posts(data, handle):
+            if target not in (canonical_post_id(cand),
+                              cand["shortcode"]) \
+                    and hb.get(target) != cand["shortcode"]:
+                continue
+            status, proven = prove_candidate(handle, cand)
+            if status == "ok":
+                return celeb, proven
+    return None, (f"post {post_id} not found in state or in the "
+                  f"latest posts of any enabled handle")
 
 
 def make_reel(post_id, log=print):
@@ -1237,70 +1569,122 @@ def run(dry_run=False, stage_post_id=None):
               "errors": [], "notes": []}
     target_found = False
 
+    bridge = legacy_shortcode_map(state)
+
     for celeb in celebs:
         handle = celeb["handle"]
         hrep = {"new": 0, "seeded": False}
         report["handles"][handle] = hrep
+        if IG_RATE_LIMITED:
+            report["errors"].append(
+                f"{handle}: skipped — instagram rate limit (429) "
+                f"stopped this run")
+            continue
+        try:
+            ok, info = verify_profile(handle)
+        except IGRateLimitedError as e:
+            report["errors"].append(
+                f"{handle}: instagram rate limit (429) — "
+                f"stopping this run: {e}")
+            break
+        if not ok:
+            report["errors"].append(
+                f"{handle}: user-profile NOT verified or "
+                f"unreachable — skipped (guardrail: unverified "
+                f"handle)")
+            continue
+        hrep.update(info)
         try:
             data = fetch_posts(handle, limit=5)
+        except IGRateLimitedError as e:
+            report["errors"].append(
+                f"{handle}: instagram rate limit (429) — "
+                f"stopping this run: {e}")
+            break
         except Exception as e:
             report["errors"].append(f"{handle}: fetch failed: {e}")
             continue
-        rows = own_posts(data, handle)
-        ok, info = author_verified(rows)
-        if not rows:
+        cands = candidate_posts(data, handle)
+        if not cands:
             report["errors"].append(
-                f"{handle}: no own posts in response — skipped")
+                f"{handle}: no candidate posts in response — "
+                f"skipped")
             continue
-        if not ok:
-            report["errors"].append(
-                f"{handle}: author rows NOT verified — skipped "
-                f"(guardrail: unverified handle)")
-            continue
-        hrep.update(info)
         hstate = state.setdefault(
             handle, {"seen_post_ids": [], "reel_candidates": []})
         hstate["author_name"] = info.get("author_name")
         hstate["followers"] = info.get("followers")
-        seen = set(hstate.get("seen_post_ids") or [])
+        seen = {str(x) for x in (hstate.get("seen_post_ids") or [])}
+        hbridge = bridge.get(handle, {})
         first_run = not hstate.get("seeded_once")
 
-        for post in rows:
-            if not is_feed_post(post):
-                continue
-            post_id = str(post.get("post_id"))
-            is_target = stage_post_id and post_id == str(stage_post_id)
+        for cand in cands:
+            post_id = canonical_post_id(cand)
+            is_target = bool(stage_post_id) and (
+                str(stage_post_id) in (post_id, cand["shortcode"])
+                or hbridge.get(str(stage_post_id))
+                == cand["shortcode"])
             if is_target:
                 target_found = True
-            if post_id in seen and not is_target:
+            was_seen = candidate_seen(seen, hbridge, cand)
+            if was_seen and not is_target:
                 continue
-            if (post.get("media_type") or "").lower() \
-                    in VIDEO_MEDIA_TYPES:
-                cand = {"handle": handle, "post_id": post_id,
-                        "url": post.get("url"),
-                        "caption": caption_excerpt(
-                            post.get("post_caption"), 160),
-                        "date": (post.get("post_created_at") or {})
-                        .get("user_local")}
-                if post_id not in {c.get("post_id") for c in
-                                   hstate["reel_candidates"]}:
-                    hstate["reel_candidates"].append(cand)
-                report["reel_candidates"].append(
-                    f"{handle}/{post_id}: {post.get('url')}")
-                seen.add(post_id)
-                continue
-            if first_run and not is_target:
-                # Seed silently — never dump a backlog into the queue.
-                seen.add(post_id)
+            if not url_is_reel(cand["url"]) and first_run \
+                    and not is_target:
+                # Seed silently — never dump a backlog into the
+                # queue. (Reels are exempt, as before: they are
+                # only ever recorded as candidates, never staged.)
+                mark_candidate_seen(seen, cand)
                 hrep["seeded"] = True
                 continue
-            if post_id not in seen:
+            status, proven = prove_candidate(handle, cand)
+            if status == "retry":
+                # No verdict — leave the post unseen so the next
+                # run retries it; never stage on an unproven post.
+                report["errors"].append(
+                    f"{handle}/{cand['shortcode']}: embed proof "
+                    f"failed ({proven}) — left unseen, will "
+                    f"retry next run")
+                continue
+            if status == "mismatch":
+                # The page proves a different owner: this URL is
+                # definitively not this handle's post. Mark it
+                # seen so it is not re-fetched every run, and log
+                # it loudly — it can never become valid.
+                report["errors"].append(
+                    f"{handle}/{cand['shortcode']}: embed page "
+                    f"owner @{proven} != @{handle} — REJECTED "
+                    f"(not this handle's post); marked seen")
+                mark_candidate_seen(seen, cand)
+                continue
+            post = proven
+            if post["media_type"] in VIDEO_MEDIA_TYPES:
+                cand_rec = {"handle": handle, "post_id": post_id,
+                            "url": post.get("url"),
+                            "caption": caption_excerpt(
+                                post.get("post_caption"), 160),
+                            # The embed page carries no timestamp;
+                            # never invent one.
+                            "date": ""}
+                known_ids = {str(c.get("post_id")) for c in
+                             hstate["reel_candidates"]}
+                known_sc = {shortcode_from_url(c.get("url"))
+                            for c in hstate["reel_candidates"]}
+                if post_id not in known_ids \
+                        and cand["shortcode"] not in known_sc:
+                    hstate["reel_candidates"].append(cand_rec)
+                report["reel_candidates"].append(
+                    f"{handle}/{post_id}: {post.get('url')}")
+                mark_candidate_seen(seen, cand)
+                continue
+            if not was_seen:
                 hrep["new"] += 1
             outcome = stage_post(celeb, post, dry_run, report)
             if outcome != "no-frames":
                 # A no-frames skip (e.g. the embed page served no
-                # media) stays unseen so a later run can retry it.
-                seen.add(post_id)
+                # usable media) stays unseen so a later run can
+                # retry it.
+                mark_candidate_seen(seen, cand)
         hstate["seen_post_ids"] = sorted(seen)
         hstate["seeded_once"] = True
 
