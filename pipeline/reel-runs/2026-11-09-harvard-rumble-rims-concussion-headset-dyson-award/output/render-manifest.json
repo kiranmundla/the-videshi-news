@@ -1,0 +1,401 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "harvard-rumble-rims-concussion-headset-dyson-award",
+ "article_slug": "harvard-rumble-rims-concussion-headset-dyson-award",
+ "article_id": "387c2e54-f886-4ebc-a4eb-b4f3f0d42a4d",
+ "category": "Technology",
+ "video": "reel-runs/2026-11-09-harvard-rumble-rims-concussion-headset-dyson-award/output/harvard-rumble-rims-concussion-headset-dyson-award.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://mmx.prnewswire.com/media/MS2025769/Dyson-Image.jpg?id=OA3053483&p=facebook",
+  "local_path": "reel-runs/2026-11-09-harvard-rumble-rims-concussion-headset-dyson-award/output/hero.jpg",
+  "width": 2700,
+  "height": 1414,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.93)",
+  "has_face": true,
+  "box_source": [
+   1686,
+   292,
+   186,
+   240
+  ],
+  "box_bg": [
+   607,
+   246,
+   57,
+   74
+  ],
+  "chin_bg": 320,
+  "anchor": [
+   0.66,
+   0.291
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   436
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 924,
+   "block_bottom": 1287,
+   "text_bbox": [
+    70,
+    924,
+    930,
+    1287
+   ],
+   "texts": [
+    "Technology",
+    "A $300 HEADSET THAT SCREENS FOR CONCUSSION"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.309,
+    "photo_px": [
+     2700,
+     1414
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.3088888888888889,
+     "window": [
+      0,
+      0,
+      2700,
+      1411
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.36x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 639,
+   "zone_h": 941,
+   "scale": 1.0,
+   "content_h": 338,
+   "block_top": 1242,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1242,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Rumble Rims, a sideline concussion-screening headset built by Harvard students Cleo Pontone, Radhika Saran and Sophia DeVito, has won the Global Medical category of the 2026 James Dyson Award."
+   ],
+   "v7": {
+    "image_source": "extra:a-knight-of-the-order-of-the-holy-spirit-by",
+    "track": "full-bleed",
+    "render_scale": 0.359,
+    "photo_px": [
+     3574,
+     5352
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.35874439461883406,
+     "window": [
+      110,
+      0,
+      3120,
+      5352
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Sculpture in the Fogg Art Museum, Harvard University , Cambridge, Massachusetts , USA . This artwork is in the public domain because the artist died more than 70 years ago.The Fogg Museum, opened to the public in 1896, is the oldest and lar",
+     "route": "identity \u2014 depicts (P180=Q13371)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:A_Knight_of_the_Order_of_the_Holy_Spirit,_by_Rene-Michel_Slodtz,_c._1750,_marble_-_Fogg_Art_Museum,_Harvard_University_-_DSC01291.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/A_Knight_of_the_Order_of_the_Holy_Spirit%2C_by_Rene-Michel_Slodtz%2C_c._1750%2C_marble_-_Fogg_Art_Museum%2C_Harvard_University_-_DSC01291.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Daderot"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "2,294",
+    "Entries beaten to the 2026 James Dyson Award \u2014 a record field"
+   ],
+   "v7": {
+    "image_source": "extra:sanders-theater-2009y",
+    "track": "full-bleed",
+    "render_scale": 0.921,
+    "photo_px": [
+     3209,
+     2084
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.9213051823416507,
+     "window": [
+      426,
+      0,
+      1598,
+      2084
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Sanders Theatre Harvard University",
+     "route": "identity \u2014 Wikidata P18 (Q13371)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Sanders_theater_2009y.JPG",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Sanders_theater_2009y.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "chensiyuan"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 833,
+   "block_bottom": 1378,
+   "text_bbox": [
+    70,
+    833,
+    930,
+    1378
+   ],
+   "texts": [
+    "By The Numbers",
+    "$40,000",
+    "Prize money to fund the next Rumble Rims prototype",
+    "2-3 MINUTES",
+    "Length of the infrared eye-tracking sideline test"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.351,
+    "photo_px": [
+     2700,
+     1414
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.351010101010101,
+     "window": [
+      324,
+      0,
+      2700,
+      1242
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.36x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 890,
+   "block_bottom": 1322,
+   "text_bbox": [
+    70,
+    890,
+    930,
+    1322
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Co-inventor Radhika Saran grew up in Bengaluru and Mumbai",
+    "A screening tool, not a diagnosis \u2014 return-to-play calls stay with a healthcare professional"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.386,
+    "photo_px": [
+     2700,
+     1414
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.3861111111111111,
+     "window": [
+      0,
+      0,
+      2160,
+      1129
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.36x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 337,
+   "block_top": 691,
+   "block_bottom": 1028,
+   "text_bbox": [
+    70,
+    691,
+    930,
+    1028
+   ],
+   "texts": [
+    "The Takeaway",
+    "If validation holds up, an objective sideline check that today needs a clinic could become a $300 piece of kit in a coach's bag.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 124.2,
+ "mp4_bytes": 9503418
+}

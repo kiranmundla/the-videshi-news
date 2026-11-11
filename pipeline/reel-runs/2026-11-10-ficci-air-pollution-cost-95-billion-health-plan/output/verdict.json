@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ficci-air-pollution-cost-95-billion-health-plan",
+  "name": "ficci-air-pollution-cost-95-billion-health-plan",
+  "script": "reel-runs/2026-11-10-ficci-air-pollution-cost-95-billion-health-plan/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "stats[0].big"
+    ],
+    "llm_cost_usd": 0.000716
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "id": "55c17ee9-b097-4a69-a353-f9a746cba1cf",
+    "headline": "Ranveer Singh's Grandfather Ram Hingorani, His 'Rockstar Nana,' Dies at 96",
+    "slug": "ranveer-singh-grandfather-ram-hingorani-dies-96",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image",
+      "Inline caption names venue 'Barabati Stadium' not supported by the image file name (Naveen_Patnaik_with_Ranveer_Singh.jpg\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the family announced the news of Dr. Hingorani's passing, as the article mentions it was shared on Instagram on Tuesday but does not clarify the date of this announcement in relation to his death on November 8.",
+        "Provide more context about Dr. Hingorani's life and contributions, as this would enhance the completeness of the article. For example, mentioning his profession or notable achievements could give readers a better understanding of his legacy.",
+        "Include a direct quote from Saumya or another family member about Dr. Hingorani to add emotional depth and personal insight into his character, which would enhance the clarity and richness of the tribute.",
+        "Ensure that the article maintains a consistent narrative flow by avoiding repetitive phrases, such as the repeated mention of his age and the date of death, which could be streamlined for better readability."
+      ],
+      "embed_opportunities": [
+        "Embed Saumya's Instagram post announcing the news, as it would provide a direct source and visual context for readers."
+      ]
+    }
+  },
+  {
+    "id": "6bc65a76-b319-4fc1-9121-2d01dc02443c",
+    "headline": "Fed's Waller Backs December Rate Hike and Opens Door to Half-Point Move",
+    "slug": "fed-waller-december-rate-hike-half-point",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the December 8-9 FOMC meeting by explicitly stating the date and what actions readers should be aware of leading up to that meeting.",
+        "Include specific figures regarding the potential impact of a rate hike on mortgage rates, car loans, and credit-card APRs, such as estimated percentage increases or examples of how these changes could affect monthly payments.",
+        "Add a quote or statement from a financial expert or economist to provide additional context and analysis on the implications of Waller's comments and the inflation data.",
+        "Ensure that the attribution to Reuters is clear and consistent throughout the article, especially when quoting Waller's remarks."
+      ],
+      "embed_opportunities": [
+        "Embed the official Federal Reserve's statement or a relevant tweet from their account regarding the upcoming FOMC meeting and rate hike considerations."
+      ]
+    }
+  },
+  {
+    "id": "2c9c6e38-283a-435e-8a9b-e0ab146b3bce",
+    "headline": "FICCI Puts Air Pollution's Annual Cost at $95 Billion, Urges Health-Led Plan",
+    "slug": "ficci-air-pollution-cost-95-billion-health-plan",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the statistic regarding the two million deaths attributable to air pollution in 2023. Ensure that it is explicitly linked to the FICCI-EY paper to enhance accuracy and attribution.",
+        "Include specific details about the economic implications of the $95 billion loss. For example, break down how this figure translates into potential impacts on public health spending or economic policies, which would provide more context for readers.",
+        "Add a direct quote from a FICCI representative or an expert in the field to provide authoritative insight and enhance the credibility of the report.",
+        "Provide a brief explanation of what PM2.5 is and why it is significant for readers who may not be familiar with air quality terminology, improving clarity and completeness."
+      ],
+      "embed_opportunities": [
+        "Embed the official FICCI tweet announcing the release of the report to provide readers with direct access to the source material."
+      ]
+    }
+  }
+]

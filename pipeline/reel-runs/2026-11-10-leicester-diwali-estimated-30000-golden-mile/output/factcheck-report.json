@@ -1,0 +1,254 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "leicester-diwali-estimated-30000-golden-mile",
+  "verdict": "fail",
+  "held_claims": [
+    "diaspora_bullets[1]"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "LEICESTER DIWALI DRAWS AN ESTIMATED 30,000",
+      "numbers": [
+        30000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Attendance estimate of 30,000 is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Leicester's Diwali Day celebrations on Sunday, November 8, 2026 drew about 30,000 people, Leicester City Council said, as the Golden Mile along Belgrave Road was illuminated and the Wheel of Light returned.",
+      "numbers": [
+        8.0,
+        2026.0,
+        30000.0
+      ],
+      "entities": [
+        "Leicester's Diwali Day",
+        "Leicester City Council",
+        "Golden Mile",
+        "Belgrave Road"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "All details about date, attendance, and events are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "30,000",
+      "numbers": [
+        30000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states an estimated attendance of 30,000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "People Leicester City Council estimated attended Diwali Day on Sunday, November 8",
+      "numbers": [
+        8.0
+      ],
+      "entities": [
+        "People Leicester City Council",
+        "Diwali Day"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article attributes the 30,000 estimate to Leicester City Council.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "1983",
+      "numbers": [
+        1983.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          1983
+        ]
+      },
+      "llm_reason": "The article states the first public Diwali lights were in 1983.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Year Leicester's first public Diwali lights went up along Belgrave Road",
+      "numbers": [],
+      "entities": [
+        "Year Leicester's",
+        "Belgrave Road"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms 1983 as the year for the first lights.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "CANADA",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions revellers travelled from Canada.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Revellers travelled from as far as Canada for the celebrations",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states that revellers came from Canada.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Among the largest Diwali celebrations outside India, the BBC reported",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article cites the BBC describing the event as large.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Built by the city's Indian and East African Asian communities since 1983",
+      "numbers": [
+        1983.0
+      ],
+      "entities": [
+        "East African Asian"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "years_checked": [
+          1983
+        ],
+        "ungrounded_entities": [
+          "East African Asian"
+        ]
+      },
+      "llm_reason": "The article discusses the development of the celebration since 1983.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "payoff",
+      "text": "Described by the BBC as among the largest Diwali celebrations outside India.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the BBC's description of the event.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Leicester",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Golden Mile",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Philharmonia Orchestra",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Aakash Odedra Company",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000627,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "leicester-diwali-estimated-30000-golden-mile",
+  "name": "leicester-diwali-estimated-30000-golden-mile",
+  "script": "reel-runs/2026-11-10-leicester-diwali-estimated-30000-golden-mile/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "diaspora_bullets[1]"
+    ],
+    "llm_cost_usd": 0.000627
+  }
+}

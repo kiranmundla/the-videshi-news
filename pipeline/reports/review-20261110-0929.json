@@ -1,0 +1,191 @@
+[
+  {
+    "id": "ffb5888d-2a73-4295-8cc1-f17b2980f8bf",
+    "headline": "Indian Couple in Canada Earns Over Rs 1 Lakh Delivering Food for Seven Days",
+    "slug": "indian-couple-canada-food-delivery-seven-days-rs-1-lakh",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the net earnings by explicitly stating the total expenses incurred, including fuel, vehicle wear, insurance, and taxes, to give readers a clearer picture of actual profit.",
+        "Include a brief summary of the couple's video experiment, such as its title or a link to it, to provide context and allow readers to explore their findings further.",
+        "Add a quote from Ruman or Tarun about their experience or insights gained from the experiment to enhance the article's depth and personal touch."
+      ],
+      "embed_opportunities": [
+        "Embed the couple's video documenting their experiment to provide visual context and engage readers more effectively."
+      ]
+    }
+  },
+  {
+    "id": "eaf59956-90e9-4ce8-ab54-11b7e4795eb7",
+    "headline": "Microsoft Is Rewriting Windows 11's Oldest Dialogs in WinUI 3, Slowly",
+    "slug": "microsoft-is-rewriting-windows-11s-oldest-dialogs-in-winui-3-slowly",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Add a specific timeline or estimated release date for the updated dialogs, as this is crucial information for readers anticipating changes.",
+        "Include a brief explanation of what WinUI 3 is and why it matters to users, to provide context for readers who may not be familiar with the technology.",
+        "Clarify the implications of this update for users, such as whether they will need to take any action or if it will automatically update in the background."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Marcus Ash or a relevant Microsoft account confirming the updates to provide direct attribution and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "3094604b-3bbf-47af-8cc7-97eb85352894",
+    "headline": "KOSPI Closes 4.39 Percent Higher as Samsung, SK Hynix Lead Chip Rebound",
+    "slug": "kospi-closes-4-39-percent-higher-as-samsung-sk-hynix-lead-chip-rebound",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the previous losses and the context around the selloff, as this will help readers understand the significance of the rebound more clearly.",
+        "Provide more detailed context on the implications of the U.S. October CPI report mentioned, including what specific figures investors are looking for and how they might impact the KOSPI and chipmakers.",
+        "Ensure consistent attribution for all data points and quotes; for instance, clarify which specific reports or analysts provided the information about the KOSPI's performance and the activation of buy-side sidecars."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a financial analyst or a relevant financial news outlet discussing the KOSPI's performance or the implications of the U.S. CPI report for added credibility and real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "eee9582f-1de6-403c-8934-88f8d53f8bb8",
+    "headline": "Wiz Flew Staff to Thailand for Five-Day Retreat With Katy Perry Concert",
+    "slug": "wiz-flew-staff-to-thailand-for-five-day-retreat-with-katy-perry-concert",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact dates of the trip and the concert, as well as the date of the acquisition by Google to enhance the article's completeness.",
+        "Provide a clearer attribution for the financial estimates mentioned in the article, ensuring that readers understand where the figures for the concert and trip costs are sourced from.",
+        "Include a brief context about Wiz's operations within Google Cloud and its significance in the cybersecurity landscape, which would help readers understand the relevance of the event beyond just a company retreat."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official statement from Wiz or Google regarding the event or the acquisition to provide a direct source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "fccd916b-4ceb-4a48-bc59-6c91333d9043",
+    "headline": "Babul Supriyo Calls Kolkata Diwali Double as Kali Puja Coincides",
+    "slug": "babul-supriyo-calls-kolkata-diwali-double-as-kali-puja-coincides",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image",
+      "Inline caption names venue 'Mahakal Temple' not supported by the image file name (Darjeeling_008-06490.jpg\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "Clarify the date mentioned in the article, as it states November 8, 2026, which is in the future and may confuse readers. Ensure the date reflects the current year's celebration, which is likely November 12, 2023, for the festivals this year.",
+        "Provide more context about the significance of Kali Puja in relation to Diwali for readers who may not be familiar with these festivals. This could include a brief explanation of the rituals or traditions associated with each festival.",
+        "Improve the structure by removing repetitive phrases and ensuring a smoother flow of information. For example, the sentence 'The two festivals are Diwali and Kali Puja, also called Shyama Puja...' is repeated multiple times and could be consolidated for clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from Babul Supriyo or a relevant cultural organization that highlights the significance of celebrating both festivals together."
+      ]
+    }
+  },
+  {
+    "id": "8561785a-afb1-4593-b2cf-ff1e126a2dfe",
+    "headline": "Mukund Urges Mumbai Indians to Sign Indian Wicketkeeper, Release De Kock",
+    "slug": "mukund-urges-mumbai-indians-to-sign-indian-wicketkeeper-release-de-kock",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the retention deadline and auction dates by including the year for better context (e.g., 'November 17, 2026' instead of just 'November 17').",
+        "Provide a more detailed explanation of why an Indian wicketkeeper is crucial for the team's strategy, potentially including statistics or historical context to support Mukund's argument.",
+        "Include a quote or statement from Mumbai Indians management or a relevant source to provide balance and attribution to the claims made by Mukund.",
+        "Ensure that the article maintains a clear structure by separating Mukund's analysis from the statistics and background information, possibly using subheadings for clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from JioStar or Mumbai Indians that highlights Mukund's comments or the team's current roster situation."
+      ]
+    }
+  },
+  {
+    "id": "2ae2d2de-682f-4e49-bd76-72c7da1b33e9",
+    "headline": "Mezcalita Brings Loud, Agave-Led Mexican Fiesta Dining to Indiranagar, Bengaluru",
+    "slug": "mezcalita-brings-loud-agave-led-mexican-fiesta-dining-to-indiranagar-bengaluru",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the average meal costs by specifying if the prices include taxes or service charges, as this can affect the total bill.",
+        "Provide a brief overview of the restaurant's concept or theme to give readers context about what makes Mezcalita unique compared to other dining options in Bengaluru.",
+        "Include a quote or specific feedback from a reviewer to enhance credibility and provide a personal touch to the description of the dining experience."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Mezcalita's official account announcing the opening or showcasing their signature dishes."
+      ]
+    }
+  },
+  {
+    "id": "a37cc83b-0cdb-4116-8274-05e67bb7bc5a",
+    "headline": "Swara Bhasker Hosts Qawwali Baithak at Home to Celebrate Diwali After Rise and F",
+    "slug": "swara-bhasker-qawwali-baithak-diwali-rise-and-fall",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the Qawwali baithak and the significance of Diwali 2026 in relation to the reality show's finale on November 6.",
+        "Provide more context about the guests and their relevance to the event, such as their relationship to Swara Bhasker or their significance in the entertainment industry, to enhance reader understanding.",
+        "Include a quote or statement from Swara Bhasker or another guest that reflects the atmosphere of the event or the significance of the celebration to add depth to the narrative."
+      ],
+      "embed_opportunities": [
+        "Embed a clip of the Qawwali performance or a related Instagram post from Swara Bhasker to visually enhance the article and provide readers with a richer experience."
+      ]
+    }
+  },
+  {
+    "id": "c862d7cb-2b34-4681-9d16-f6b19c173b7a",
+    "headline": "Leicester Diwali Draws an Estimated 30,000 as Golden Mile Lights Up",
+    "slug": "leicester-diwali-estimated-30000-golden-mile",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the event in the opening sentence to avoid confusion, as the current date is November 8, 2026, which may mislead readers into thinking the article is published in the future.",
+        "Provide specific details about the performances and activities, such as the names of specific acts or artists involved in the Aakash Odedra Company's production, to enhance completeness and context.",
+        "Include quotes from attendees or participants to add depth and personal perspectives to the coverage, enhancing clarity and engagement."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Leicester City Council or a local news outlet sharing highlights or images from the event to provide visual context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "6d9b5ad4-e0c5-455c-8458-fba3a5db4bf2",
+    "headline": "Gurfateh Pirzada Says Diwali Crackers Burnt His Mumbai Balcony and Room",
+    "slug": "gurfateh-pirzada-diwali-crackers-burnt-mumbai-balcony-room",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events. The article mentions Diwali eve and a subsequent air quality index reading but does not specify when the fire occurred relative to these events. Providing a clear timeline would enhance clarity.",
+        "Include specific details about the damage caused. While the article mentions that the fire affected the balcony and room, it lacks information on the extent of the damage (e.g., estimated cost of repairs or specific items destroyed) which would provide readers with a better understanding of the incident's severity.",
+        "Ensure accurate attribution of quotes. The article includes a quote from Pirzada but does not specify whether it is a direct quote or a paraphrase. Clarifying this would improve accuracy and transparency.",
+        "Add context about the legal implications of firecracker use in Mumbai. While the article mentions the Bombay High Court's ban, it would be beneficial to include any penalties or enforcement measures related to this ban to inform readers about the legal landscape surrounding firecracker use."
+      ],
+      "embed_opportunities": [
+        "Embed Gurfateh Pirzada's Instagram post to provide visual context to the damage and enhance reader engagement."
+      ]
+    }
+  }
+]

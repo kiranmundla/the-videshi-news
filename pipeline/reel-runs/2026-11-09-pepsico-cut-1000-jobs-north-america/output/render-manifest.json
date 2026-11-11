@@ -1,0 +1,401 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "pepsico-cut-1000-jobs-north-america",
+ "article_slug": "pepsico-cut-1000-jobs-north-america",
+ "article_id": "57526082-de3a-4190-a29d-96672fbad040",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-09-pepsico-cut-1000-jobs-north-america/output/pepsico-cut-1000-jobs-north-america.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://image.cnbcfm.com/api/v1/image/108117104-1742236544453-gettyimages-2205568557-pepsi602175_ueyezeys.jpeg?v=1747947064&w=1920&h=1080",
+  "local_path": "reel-runs/2026-11-09-pepsico-cut-1000-jobs-north-america/output/hero.jpeg",
+  "width": 1920,
+  "height": 1080,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.546,0.437) damped=(0.523,0.469)",
+  "has_face": false,
+  "box_source": [
+   466,
+   268,
+   1075,
+   432
+  ],
+  "box_bg": [
+   288,
+   272,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.516,
+   0.472
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "Markets Finance",
+    "PEPSICO TO CUT ABOUT 1,000 NORTH AMERICA JOBS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.434,
+    "photo_px": [
+     1920,
+     1080
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.434375,
+     "window": [
+      0,
+      0,
+      1920,
+      1077
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.78x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 353,
+   "block_top": 1227,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1227,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "PepsiCo is eliminating about 1,000 jobs across its North American food and beverage operations over the coming week, in a restructuring North America CEO Ram Krishnan announced to staff on November 9."
+   ],
+   "v7": {
+    "image_source": "extra:20260291036-goes19-abi-conus-13-5000x3000",
+    "track": "full-bleed",
+    "render_scale": 0.64,
+    "photo_px": [
+     5000,
+     3000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.64,
+     "window": [
+      1658,
+      0,
+      3345,
+      3000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Recording of CONUS in January 2026 during the North American winter storm by the GOES-19 satellite.",
+     "route": "identity \u2014 depicts (P180=Q49)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:20260291036_GOES19-ABI-CONUS-13-5000x3000.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/20260291036_GOES19-ABI-CONUS-13-5000x3000.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "CIRA / NOAA / NESDIS Center for Satellite Applications and Research"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 424,
+   "block_top": 1156,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1156,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "1,000",
+    "Jobs to be eliminated across North American food and beverage operations"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.64,
+    "photo_px": [
+     5000,
+     3000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.64,
+     "window": [
+      1658,
+      0,
+      3345,
+      3000
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 849,
+   "block_bottom": 1394,
+   "text_bbox": [
+    70,
+    849,
+    930,
+    1394
+   ],
+   "texts": [
+    "By The Numbers",
+    "2%",
+    "Fall in North American beverage volumes last quarter",
+    "1% TO 2%",
+    "Full-year core EPS growth outlook, cut by management"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.494,
+    "photo_px": [
+     1920,
+     1080
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.4937833037300178,
+     "window": [
+      145,
+      36,
+      1834,
+      983
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.78x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 874,
+   "block_bottom": 1369,
+   "text_bbox": [
+    70,
+    874,
+    930,
+    1369
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "North America CEO Ram Krishnan told staff the structure was complex and fragmented",
+    "The cuts are due over the coming week across the food and drinks businesses"
+   ],
+   "v7": {
+    "image_source": "extra:earth-dscovr-20150706-ifv",
+    "track": "backdrop",
+    "render_scale": 0.466,
+    "photo_px": [
+     1788,
+     1756
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.4664429530201342,
+     "window": [
+      0,
+      386,
+      1788,
+      1389
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.09x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "NASA Captures \"EPIC\" Earth Image A NASA camera on the Deep Space Climate Observatory satellite has returned its first view of the entire sunlit side of Earth from nearly one million miles away. This color image of Earth was taken by NASA\u2019s ",
+     "route": "identity \u2014 depicts (P180=Q49)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Earth-DSCOVR-20150706-IFV.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Earth-DSCOVR-20150706-IFV.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "NASA"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "No specific savings target for the 1,000 positions has been disclosed.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/tech-corporate-technology.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 130.9,
+ "mp4_bytes": 10887804
+}

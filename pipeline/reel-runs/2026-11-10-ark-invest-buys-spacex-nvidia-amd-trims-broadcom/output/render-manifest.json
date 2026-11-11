@@ -1,0 +1,401 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "ark-invest-buys-spacex-nvidia-amd-trims-broadcom",
+ "article_slug": "ark-invest-buys-spacex-nvidia-amd-trims-broadcom",
+ "article_id": "92cb4179-4332-46b6-8b14-9f8bded6065d",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-10-ark-invest-buys-spacex-nvidia-amd-trims-broadcom/output/ark-invest-buys-spacex-nvidia-amd-trims-broadcom.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F893901%2Fcathie-wood_ark-investment-management_ceo_imagesource_getty-images.jpeg&w=1200&op=resize",
+  "local_path": "reel-runs/2026-11-10-ark-invest-buys-spacex-nvidia-amd-trims-broadcom/output/hero.jpg",
+  "width": 1200,
+  "height": 800,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.92)",
+  "has_face": true,
+  "box_source": [
+   459,
+   132,
+   277,
+   369
+  ],
+  "box_bg": [
+   405,
+   248,
+   193,
+   256
+  ],
+  "chin_bg": 504,
+  "anchor": [
+   0.497,
+   0.395
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   556
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 315,
+   "block_top": 1008,
+   "block_bottom": 1323,
+   "text_bbox": [
+    70,
+    1008,
+    930,
+    1323
+   ],
+   "texts": [
+    "Markets Finance",
+    "ARK BUYS $96 MILLION OF SPACEX, ADDS NVIDIA AND AMD, TRIMS BROADCOM"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      800
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 313,
+   "block_top": 1267,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1267,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Cathie Wood's Ark Invest bought $96.0 million of SpaceX stock across ARKK, ARKQ and ARKW last week, its largest purchase, while selling $122.2 million of Broadcom, its largest sale, and adding $45.9 million of Nvidia and $20.0 million of AMD."
+   ],
+   "v7": {
+    "image_source": "extra:falcon-9-b1046-and-two-unidentified-boosters",
+    "track": "full-bleed",
+    "render_scale": 0.75,
+    "photo_px": [
+     3840,
+     2560
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.75,
+     "window": [
+      727,
+      0,
+      2167,
+      2560
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "The SpaceX Falcon 9 rocket that will be used for the company\u2019s In-Flight Abort Test arrives at SpaceX\u2019s hangar at Launch Complex 39 at NASA\u2019s Kennedy Space Center in Florida. The test will demonstrate the spacecraft and launch system\u2019s abil",
+     "route": "identity \u2014 depicts (P180=Q193701)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Falcon_9_B1046_and_two_unidentified_boosters_in_the_SpaceX_Rocket_Assembly_Building_at_Kennedy_Space_Center_LC-39A,_October_2019.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Falcon_9_B1046_and_two_unidentified_boosters_in_the_SpaceX_Rocket_Assembly_Building_at_Kennedy_Space_Center_LC-39A%2C_October_2019.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC0",
+     "artist": "Austin Lowery NASA/SpaceX"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 344,
+   "block_top": 1236,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1236,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$96 MILLION",
+    "SpaceX stock Ark bought across ARKK, ARKQ and ARKW last week, its largest purchase"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.673,
+    "photo_px": [
+     4662,
+     2852
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6732117812061711,
+     "window": [
+      1680,
+      0,
+      3284,
+      2852
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 1035,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1035,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "$122.2 MILLION",
+    "Broadcom sold by Ark, its largest sale last week",
+    "$45.9 MILLION",
+    "Nvidia added by Ark as it bought the chip sell-off"
+   ],
+   "v7": {
+    "image_source": "extra:nvidia-headquarters",
+    "track": "full-bleed",
+    "render_scale": 0.673,
+    "photo_px": [
+     4662,
+     2852
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6732117812061711,
+     "window": [
+      1680,
+      0,
+      3284,
+      2852
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Nvidia headquarters in Santa Clara, California. Photographed by user Coolcaesar on August 4, 2018.",
+     "route": "identity \u2014 Wikidata P18 (Q182477)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:NVIDIA_Headquarters.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/NVIDIA_Headquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Coolcaesar"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 1085,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1085,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Ark recorded $346.2 million in gross purchases and $305.8 million in gross sales last week",
+    "SpaceX was already ARKK's largest holding at $410.80 million, or 7.28% of the fund, as of November 5"
+   ],
+   "v7": {
+    "image_source": "inline:2",
+    "track": "full-bleed",
+    "render_scale": 0.649,
+    "photo_px": [
+     4824,
+     2960
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6486486486486487,
+     "window": [
+      1654,
+      0,
+      3319,
+      2960
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 352,
+   "block_top": 684,
+   "block_bottom": 1036,
+   "text_bbox": [
+    70,
+    684,
+    930,
+    1036
+   ],
+   "texts": [
+    "The Takeaway",
+    "Ark bought into a sharp semiconductor sell-off in which Nvidia fell about 9% and AMD about 17% on November 5.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 160.3,
+ "mp4_bytes": 24962744
+}

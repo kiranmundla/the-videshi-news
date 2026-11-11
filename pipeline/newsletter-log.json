@@ -1745,5 +1745,16 @@
     "top_story_slug": "delhi-fire-calls-dip-diwali-214-incidents",
     "quick_hit_count": 5,
     "deadline_count": 1
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-11-10T14:58:12.616526+00:00Z",
+    "subject": "The Videshi Daily \u2014 November 10, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "indian-couple-canada-food-delivery-seven-days-rs-1-lakh",
+    "quick_hit_count": 5,
+    "deadline_count": 1
   }
 ]

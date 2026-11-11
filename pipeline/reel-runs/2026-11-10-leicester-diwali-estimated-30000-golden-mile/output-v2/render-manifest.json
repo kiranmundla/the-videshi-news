@@ -1,0 +1,394 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "leicester-diwali-estimated-30000-golden-mile",
+ "article_slug": "leicester-diwali-estimated-30000-golden-mile",
+ "article_id": "c862d7cb-2b34-4681-9d16-f6b19c173b7a",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-10-leicester-diwali-estimated-30000-golden-mile/output-v2/leicester-diwali-estimated-30000-golden-mile.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://mediaindia.eu/wp-content/uploads/2026/11/Diwali.jpg",
+  "local_path": "reel-runs/2026-11-10-leicester-diwali-estimated-30000-golden-mile/output-v2/hero.jpg",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.959,0.941) damped=(0.730,0.720)",
+  "has_face": false,
+  "box_source": [
+   528,
+   337,
+   672,
+   270
+  ],
+  "box_bg": [
+   453,
+   389,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.617,
+   0.556
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "Nri World",
+    "LEICESTER DIWALI DRAWS AN ESTIMATED 30,000"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      2,
+      1200,
+      675
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 338,
+   "block_top": 1242,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1242,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Leicester's Diwali Day celebrations on Sunday, November 8, 2026 drew about 30,000 people, Leicester City Council said, as the Golden Mile along Belgrave Road was illuminated and the Wheel of Light returned."
+   ],
+   "v7": {
+    "image_source": "extra:leicester-landmarks-montage",
+    "track": "full-bleed",
+    "render_scale": 0.476,
+    "photo_px": [
+     5472,
+     4032
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.47619047619047616,
+     "window": [
+      2633,
+      0,
+      4901,
+      4032
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Montage of places in Leicester : (clockwise from top-left) Jewry Wall , National Space Centre , Leicester War Memorial, Central Leicester, Curve theatre , Leicester Cathedral and Leicester Guildhall , Welford Road Stadium , Leicester Market",
+     "route": "identity \u2014 Wikidata P18 (Q83065)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Leicester_landmarks_montage.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Leicester_landmarks_montage.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Own work"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 414,
+   "block_top": 915,
+   "block_bottom": 1329,
+   "text_bbox": [
+    70,
+    915,
+    930,
+    1329
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "30,000",
+    "People Leicester City Council estimated attended Diwali Day on Sunday, November 8"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7897727272727273,
+     "window": [
+      144,
+      79,
+      1200,
+      671
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 849,
+   "block_bottom": 1394,
+   "text_bbox": [
+    70,
+    849,
+    930,
+    1394
+   ],
+   "texts": [
+    "By The Numbers",
+    "1983",
+    "Year Leicester's first public Diwali lights went up along Belgrave Road",
+    "CANADA",
+    "Revellers travelled from as far as Canada for the celebrations"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.86875,
+     "window": [
+      240,
+      106,
+      1200,
+      644
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 906,
+   "block_bottom": 1338,
+   "text_bbox": [
+    70,
+    906,
+    930,
+    1338
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Among the largest Diwali celebrations outside India, the BBC reported",
+    "A major celebration of the city's South Asian heritage"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.86875,
+     "window": [
+      240,
+      106,
+      1200,
+      644
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Described by the BBC as among the largest Diwali celebrations outside India.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/indian-beat.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 113.4,
+ "mp4_bytes": 11341686
+}

@@ -1,0 +1,219 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-10-ark-invest-buys-spacex-nvidia-amd-trims-broadcom/output/ark-invest-buys-spacex-nvidia-amd-trims-broadcom.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:news",
+    "edge_overflow:diaspora"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1200,
+        800
+      ],
+      "manifest_dims": [
+        1200,
+        800
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 199.6,
+      "url": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fg.foolcdn.com%2Feditorial%2Fimages%2F893901%2Fcathie-wood_ark-investment-management_ceo_imagesource_getty-images.jpeg&w=1200&op=resize"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-10-ark-invest-buys-spacex-nvidia-amd-trims-broadcom/output/qa/frames/frame-hook.png",
+      "text_px_detected": 32405,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          395,
+          241,
+          200,
+          264
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-10-ark-invest-buys-spacex-nvidia-amd-trims-broadcom/output/qa/frames/frame-news.png",
+      "text_px_detected": 32896,
+      "edge": {
+        "pass": false,
+        "offending_px": 814,
+        "clusters": 1,
+        "largest_cluster": 108
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          403,
+          243,
+          196,
+          260
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 116.4,
+        "delta": 137.4
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-10-ark-invest-buys-spacex-nvidia-amd-trims-broadcom/output/qa/frames/frame-hero.png",
+      "text_px_detected": 28804,
+      "edge": {
+        "pass": true,
+        "offending_px": 153,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          401,
+          239,
+          198,
+          263
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 244.9,
+        "bg_luminance": 95.2,
+        "delta": 149.7
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-10-ark-invest-buys-spacex-nvidia-amd-trims-broadcom/output/qa/frames/frame-grid.png",
+      "text_px_detected": 46363,
+      "edge": {
+        "pass": true,
+        "offending_px": 162,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          400,
+          235,
+          201,
+          266
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.1,
+        "bg_luminance": 85.8,
+        "delta": 166.3
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-10-ark-invest-buys-spacex-nvidia-amd-trims-broadcom/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 55365,
+      "edge": {
+        "pass": false,
+        "offending_px": 2340,
+        "clusters": 1,
+        "largest_cluster": 90
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          398,
+          231,
+          203,
+          270
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 104.8,
+        "delta": 149.3
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-10-ark-invest-buys-spacex-nvidia-amd-trims-broadcom/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 25886,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          396,
+          227,
+          206,
+          273
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    }
+  ]
+}

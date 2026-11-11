@@ -1,0 +1,180 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "leicester-diwali-estimated-30000-golden-mile",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Leicester",
+    "Golden Mile",
+    "Philharmonia Orchestra",
+    "Aakash Odedra Company",
+    "Belgrave Road",
+    "Leicester City Council"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Leicester landmarks montage.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q83065)",
+      "verdict": "USED (news)",
+      "reason": "5472x4032, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:44 Humberstone Gate, Leicester - geograph.org.uk - 3106303.jpg",
+      "route": "identity \u2014 depicts (P180=Q83065)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:78 ^ 80 Rutland Street \u2013 doorway - geograph.org.uk - 8128995.jpg",
+      "route": "identity \u2014 depicts (P180=Q83065)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Abbey Park, Leicester, LE4 - geograph.org.uk - 3445938.jpg",
+      "route": "identity \u2014 depicts (P180=Q83065)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Abbey Park Road, Leicester - geograph.org.uk - 473564.jpg",
+      "route": "identity \u2014 depicts (P180=Q83065)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Aylestone Recreation Ground (North) - geograph.org.uk - 3567700.jpg",
+      "route": "identity \u2014 depicts (P180=Q83065)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Benchmark on ^2 Crafton Street - geograph.org.uk - 5186701.jpg",
+      "route": "identity \u2014 depicts (P180=Q83065)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Former Co-op Bank, Hotel Street, Leicester - geograph.org.uk - 3058120.jpg",
+      "route": "identity \u2014 depicts (P180=Q83065)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Huge pile of rubble at Welford Place - geograph.org.uk - 4391171.jpg",
+      "route": "identity \u2014 depicts (P180=Q83065)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Leicester-Grand Hotel - geograph.org.uk - 3046490.jpg",
+      "route": "identity \u2014 depicts (P180=Q83065)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Leicester - north side of Bishop Street - geograph.org.uk - 3044802.jpg",
+      "route": "identity \u2014 depicts (P180=Q83065)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Belgrave Leicester 069790 cb866afa.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q5579662)",
+      "verdict": "rejected",
+      "reason": "resolution: 640x480 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Philharmonia logo.gif",
+      "route": "identity \u2014 Wikidata P18 (Q1046309)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:11-13 Wellington Street, Leicester \u2013 courtyard gate - geograph.org.uk - 6051749.jpg",
+      "route": "identity \u2014 depicts (P180=Q6519163)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Autumn at Castle Gardens, Leicester - geograph.org.uk - 7006579.jpg",
+      "route": "identity \u2014 depicts (P180=Q6519163)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Belvoir Street - geograph.org.uk - 663919.jpg",
+      "route": "identity \u2014 depicts (P180=Q6519163)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Ben Russell Court - geograph.org.uk - 6585982.jpg",
+      "route": "identity \u2014 depicts (P180=Q6519163)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Construction at the Welford Road Stadium - geograph.org.uk - 6454844.jpg",
+      "route": "identity \u2014 depicts (P180=Q6519163)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:De Montford University's Queens Building - geograph.org.uk - 6166981.jpg",
+      "route": "identity \u2014 depicts (P180=Q6519163)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:De Montfort University, Leciester - geograph.org.uk - 6272270.jpg",
+      "route": "identity \u2014 depicts (P180=Q6519163)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Grand Union Canal in Leicester - geograph.org.uk - 6150782.jpg",
+      "route": "identity \u2014 depicts (P180=Q6519163)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:HM Prison Leicester - geograph.org.uk - 6634787.jpg",
+      "route": "identity \u2014 depicts (P180=Q6519163)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Hugh Aston Building, De Montfort Uni, Leicester.jpg",
+      "route": "identity \u2014 depicts (P180=Q6519163)",
+      "verdict": "rejected",
+      "reason": "resolution: 640x480 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "leicester-landmarks-montage",
+      "path": "leicester-landmarks-montage.jpg",
+      "size": [
+        5472,
+        4032
+      ],
+      "role": "interior",
+      "subject": "Montage of places in Leicester : (clockwise from top-left) Jewry Wall , National Space Centre , Leicester War Memorial, Central Leicester, Curve theatre , Leicester Cathedral and Leicester Guildhall , Welford Road Stadium , Leicester Market",
+      "route": "identity \u2014 Wikidata P18 (Q83065)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Leicester_landmarks_montage.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Leicester_landmarks_montage.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Own work",
+      "entity": "Leicester",
+      "entity_type": "place",
+      "entity_aliases": [
+        "Leicester, England"
+      ]
+    }
+  ]
+}

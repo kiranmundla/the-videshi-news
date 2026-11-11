@@ -797,5 +797,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "visZF1ElJMU",
+    "article_slug": "pepsico-cut-1000-jobs-north-america",
+    "article_id": "57526082-de3a-4190-a29d-96672fbad040",
+    "title": "PepsiCo to Cut About 1,000 North America Jobs in Restructuring #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-11-10T05:20:11.060235+00:00",
+    "video_path": "reel-runs/2026-11-09-pepsico-cut-1000-jobs-north-america/output/pepsico-cut-1000-jobs-north-america.mp4",
+    "video_sha256": "7d957c8c09ff602ad73dcbb19b465db95c68dec8fec3dd72b91ce81bc7a37ed1",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

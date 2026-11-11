@@ -1,0 +1,34 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "leicester-diwali-estimated-30000-golden-mile",
+  "name": "leicester-diwali-estimated-30000-golden-mile",
+  "script": "reel-runs/2026-11-10-leicester-diwali-estimated-30000-golden-mile/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000625
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-10-leicester-diwali-estimated-30000-golden-mile/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "leicester-landmarks-montage"
+    }
+  },
+  "manifest": "reel-runs/2026-11-10-leicester-diwali-estimated-30000-golden-mile/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-11-10-leicester-diwali-estimated-30000-golden-mile/output-v2/leicester-diwali-estimated-30000-golden-mile.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:news"
+    ]
+  }
+}

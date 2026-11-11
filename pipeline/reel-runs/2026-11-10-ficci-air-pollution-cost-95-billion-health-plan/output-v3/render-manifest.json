@@ -1,0 +1,405 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "ficci-air-pollution-cost-95-billion-health-plan",
+ "article_slug": "ficci-air-pollution-cost-95-billion-health-plan",
+ "article_id": "2c9c6e38-283a-435e-8a9b-e0ab146b3bce",
+ "category": "News",
+ "video": "reel-runs/2026-11-10-ficci-air-pollution-cost-95-billion-health-plan/output-v3/ficci-air-pollution-cost-95-billion-health-plan.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Air_Pollution_Chokes_Northern_India_%28NESDIS_2018-12-14%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "local_path": "reel-runs/2026-11-10-ficci-air-pollution-cost-95-billion-health-plan/output-v3/hero.jpg",
+  "width": 1920,
+  "height": 1080,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.520,0.420) damped=(0.510,0.460)",
+  "has_face": false,
+  "box_source": [
+   441,
+   259,
+   1075,
+   432
+  ],
+  "box_bg": [
+   278,
+   269,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.506,
+   0.479
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "News",
+    "AIR POLLUTION COSTS INDIA $95 BILLION A YEAR"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.434,
+    "photo_px": [
+     1920,
+     1080
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.434375,
+     "window": [
+      0,
+      0,
+      1920,
+      1077
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.78x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 933,
+   "block_bottom": 1311,
+   "text_bbox": [
+    70,
+    933,
+    930,
+    1311
+   ],
+   "texts": [
+    "What Happened",
+    "A FICCI-EY knowledge paper, 'Clean Air, Healthy India', estimates air pollution losses in India could run as high as $95 billion a year and links polluted air to more than two million deaths in 2023."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.494,
+    "photo_px": [
+     1920,
+     1080
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.4937833037300178,
+     "window": [
+      127,
+      43,
+      1816,
+      990
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.78x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 380,
+   "block_top": 932,
+   "block_bottom": 1312,
+   "text_bbox": [
+    70,
+    932,
+    930,
+    1312
+   ],
+   "texts": [
+    "THE PRICE TAG",
+    "$95 BILLION",
+    "Estimated annual cost of air pollution in India, about 3% of GDP"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.543,
+    "photo_px": [
+     1920,
+     1080
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.54296875,
+     "window": [
+      0,
+      86,
+      1536,
+      947
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.78x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 778,
+   "block_top": 733,
+   "block_bottom": 1511,
+   "text_bbox": [
+    70,
+    733,
+    930,
+    1511
+   ],
+   "texts": [
+    "By The Numbers",
+    "660 MILLION",
+    "Indians live in areas where PM2.5 pollution exceeds national safety standards",
+    "3.5 YEARS",
+    "Cut in average life expectancy from long-term pollution exposure",
+    "1.3 BILLION",
+    "Working days lost each year to air pollution"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.543,
+    "photo_px": [
+     1920,
+     1080
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.54296875,
+     "window": [
+      384,
+      86,
+      1920,
+      947
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.78x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 874,
+   "block_bottom": 1369,
+   "text_bbox": [
+    70,
+    874,
+    930,
+    1369
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Local sources account for only about 36% of Delhi's PM2.5 pollution in winter",
+    "The paper warns polluted air is a year-round health risk, not a seasonal one"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.587,
+    "photo_px": [
+     1920,
+     1080
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.5873239436619718,
+     "window": [
+      261,
+      259,
+      1681,
+      1055
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.78x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 352,
+   "block_top": 1228,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1228,
+    930,
+    1580
+   ],
+   "texts": [
+    "The Takeaway",
+    "FICCI calls for explicit PM2.5 targets and year-round health planning instead of seasonal emergency responses.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "extra:building-of-ficci-in-new-delhi-04",
+    "track": "full-bleed",
+    "render_scale": 0.827,
+    "photo_px": [
+     4128,
+     2322
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8268733850129198,
+     "window": [
+      1423,
+      0,
+      2729,
+      2322
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Building of Federation of Indian Chambers of Commerce & Industry (FICCI) in New Delhi",
+     "route": "identity \u2014 Wikidata P18 (Q842441)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Building_of_FICCI_in_New_Delhi_04.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Building_of_FICCI_in_New_Delhi_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Pinakpani"
+    }
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 112.2,
+ "mp4_bytes": 11776924
+}

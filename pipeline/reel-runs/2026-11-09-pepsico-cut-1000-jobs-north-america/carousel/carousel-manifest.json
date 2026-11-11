@@ -1,0 +1,38 @@
+{
+  "photo": {
+    "url": null,
+    "width": 1920,
+    "height": 1080
+  },
+  "face": {
+    "method": "focal-heuristic (no face detected); anchor raw=(0.546,0.437) damped=(0.523,0.469)",
+    "has_face": false,
+    "box_source": [
+      466,
+      268,
+      1075,
+      432
+    ]
+  },
+  "cover": {
+    "face_box_card": [
+      -131.5,
+      335.0,
+      1343.8,
+      540.0
+    ],
+    "headline_size": 86,
+    "headline_lines": 3
+  },
+  "quote": {
+    "quote_size": 64,
+    "quote_lines": 3,
+    "text_bottom": 585
+  },
+  "facts": {
+    "facts_bottom": 1093
+  },
+  "end": {
+    "headline_size": 60
+  }
+}

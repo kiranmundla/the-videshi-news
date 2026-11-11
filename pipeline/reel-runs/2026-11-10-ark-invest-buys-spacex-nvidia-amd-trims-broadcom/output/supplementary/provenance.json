@@ -1,0 +1,105 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ark-invest-buys-spacex-nvidia-amd-trims-broadcom",
+  "trigger": {
+    "own_images": 3,
+    "target_distinct": 5,
+    "extras_needed": 2
+  },
+  "entities": [
+    "SpaceX",
+    "Nvidia",
+    "AMD",
+    "Broadcom",
+    "Million of SpaceX",
+    "Seeking Alpha"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Million of SpaceX' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Entrance to SpaceX headquarters.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q193701)",
+      "verdict": "accepted",
+      "reason": "2848x4272, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2018 12 03 spacex-launch 024 (45254556395).jpg",
+      "route": "identity \u2014 depicts (P180=Q193701)",
+      "verdict": "rejected",
+      "reason": "resolution: 501x756 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:CRS-20 Dragon\u2013Enhanced.jpg",
+      "route": "identity \u2014 depicts (P180=Q193701)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Falcon 9 B1046 and two unidentified boosters in the SpaceX Rocket Assembly Building at Kennedy Space Center LC-39A, October 2019.jpg",
+      "route": "identity \u2014 depicts (P180=Q193701)",
+      "verdict": "USED (news)",
+      "reason": "3840x2560, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:NVIDIA Headquarters.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q182477)",
+      "verdict": "USED (grid)",
+      "reason": "4662x2852, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:CeBIT 2005 Nvidia Stand.jpg",
+      "route": "identity \u2014 depicts (P180=Q182477)",
+      "verdict": "accepted",
+      "reason": "2560x1920, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "falcon-9-b1046-and-two-unidentified-boosters",
+      "path": "falcon-9-b1046-and-two-unidentified-boosters.jpg",
+      "size": [
+        3840,
+        2560
+      ],
+      "role": "establishing",
+      "subject": "The SpaceX Falcon 9 rocket that will be used for the company\u2019s In-Flight Abort Test arrives at SpaceX\u2019s hangar at Launch Complex 39 at NASA\u2019s Kennedy Space Center in Florida. The test will demonstrate the spacecraft and launch system\u2019s abil",
+      "route": "identity \u2014 depicts (P180=Q193701)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Falcon_9_B1046_and_two_unidentified_boosters_in_the_SpaceX_Rocket_Assembly_Building_at_Kennedy_Space_Center_LC-39A,_October_2019.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Falcon_9_B1046_and_two_unidentified_boosters_in_the_SpaceX_Rocket_Assembly_Building_at_Kennedy_Space_Center_LC-39A%2C_October_2019.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Austin Lowery NASA/SpaceX",
+      "entity": "SpaceX",
+      "entity_type": "company",
+      "entity_aliases": [
+        "SpaceX"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "nvidia-headquarters",
+      "path": "nvidia-headquarters.jpg",
+      "size": [
+        4662,
+        2852
+      ],
+      "role": "establishing",
+      "subject": "Nvidia headquarters in Santa Clara, California. Photographed by user Coolcaesar on August 4, 2018.",
+      "route": "identity \u2014 Wikidata P18 (Q182477)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:NVIDIA_Headquarters.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/NVIDIA_Headquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Coolcaesar",
+      "entity": "Nvidia",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Nvidia"
+      ]
+    }
+  ]
+}

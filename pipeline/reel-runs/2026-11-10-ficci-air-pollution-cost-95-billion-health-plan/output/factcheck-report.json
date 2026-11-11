@@ -1,0 +1,279 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "ficci-air-pollution-cost-95-billion-health-plan",
+  "verdict": "fail",
+  "held_claims": [
+    "stats[0].big"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "AIR POLLUTION COSTS INDIA $95 BILLION A YEAR",
+      "numbers": [
+        95.0,
+        95000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states air pollution costs up to $95 billion annually.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "A FICCI-EY knowledge paper, 'Clean Air, Healthy India', estimates air pollution losses in India could run as high as $95 billion a year and links polluted air to more than two million deaths in 2023.",
+      "numbers": [
+        95.0,
+        2023.0,
+        95000000000.0
+      ],
+      "entities": [
+        "Clean Air",
+        "Healthy India'"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2023
+        ]
+      },
+      "llm_reason": "The article confirms both the economic loss and death toll linked to air pollution.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$95 BILLION",
+      "numbers": [
+        95.0,
+        95000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$95 billion is mentioned as the annual cost of air pollution.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Estimated annual cost of air pollution in India, about 3% of GDP",
+      "numbers": [
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this cost is about 3% of GDP.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE PRICE TAG",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "2 MILLION+",
+      "numbers": [
+        2.0,
+        2000000.0
+      ],
+      "entities": [],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_numbers": [
+          2000000.0
+        ]
+      },
+      "llm_reason": "The article states over two million deaths in India in 2023 are due to air pollution.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Deaths in India in 2023 attributable to air pollution",
+      "numbers": [
+        2023.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2023
+        ]
+      },
+      "llm_reason": "The article confirms this statistic regarding deaths.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "3.5 YEARS",
+      "numbers": [
+        3.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states average life expectancy is cut by about 3.5 years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Cut in average life expectancy from long-term pollution exposure",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this reduction in life expectancy.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "1.3 BILLION",
+      "numbers": [
+        1.3,
+        1300000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 1.3 billion working days are lost annually.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Working days lost each year to air pollution",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this statistic about working days lost.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "More than 660 million Indians live where PM2.5 pollution exceeds national safety standards",
+      "numbers": [
+        2.5,
+        660.0,
+        660000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this number of people live in polluted areas.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The paper warns polluted air is a year-round health risk, not a seasonal one",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article emphasizes that polluted air is a year-round risk.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "FICCI calls for explicit PM2.5 targets and year-round health planning instead of seasonal emergency responses.",
+      "numbers": [
+        2.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions FICCI's call for explicit PM2.5 targets.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE PRICE TAG",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "FICCI",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "EY",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "PM2.5",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000716,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

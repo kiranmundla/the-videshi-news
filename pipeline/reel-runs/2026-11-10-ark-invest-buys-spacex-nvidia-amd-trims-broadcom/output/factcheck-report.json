@@ -1,0 +1,247 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "ark-invest-buys-spacex-nvidia-amd-trims-broadcom",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ARK BUYS $96 MILLION OF SPACEX, ADDS NVIDIA AND AMD, TRIMS BROADCOM",
+      "numbers": [
+        96.0,
+        96000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All key figures and actions are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Cathie Wood's Ark Invest bought $96.0 million of SpaceX stock across ARKK, ARKQ and ARKW last week, its largest purchase, while selling $122.2 million of Broadcom, its largest sale, and adding $45.9 million of Nvidia and $20.0 million of AMD.",
+      "numbers": [
+        20.0,
+        45.9,
+        96.0,
+        122.2,
+        20000000.0,
+        45900000.0,
+        96000000.0,
+        122200000.0
+      ],
+      "entities": [
+        "Cathie Wood's Ark Invest"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about purchases and sales are accurately reflected in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$96 MILLION",
+      "numbers": [
+        96.0,
+        96000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$96 million is the amount Ark invested in SpaceX.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "SpaceX stock Ark bought across ARKK, ARKQ and ARKW last week, its largest purchase",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects Ark's largest purchase.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$122.2 MILLION",
+      "numbers": [
+        122.2,
+        122200000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$122.2 million is the amount Ark sold in Broadcom.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Broadcom sold by Ark, its largest sale last week",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this was Ark's largest sale.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$45.9 MILLION",
+      "numbers": [
+        45.9,
+        45900000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$45.9 million is the amount Ark invested in Nvidia.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Nvidia added by Ark as it bought the chip sell-off",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Ark's investment in Nvidia during the sell-off.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Ark recorded $346.2 million in gross purchases and $305.8 million in gross sales last week",
+      "numbers": [
+        305.8,
+        346.2,
+        305800000.0,
+        346200000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "These figures are directly stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "SpaceX was already ARKK's largest holding at $410.80 million, or 7.28% of the fund, as of November 5",
+      "numbers": [
+        5.0,
+        7.28,
+        410.8,
+        410800000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article provides this information about SpaceX's holding.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Ark bought into a sharp semiconductor sell-off in which Nvidia fell about 9% and AMD about 17% on November 5.",
+      "numbers": [
+        5.0,
+        9.0,
+        17.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article details the semiconductor sell-off and stock performance.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "SpaceX",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nvidia",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "AMD",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Broadcom",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000652,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

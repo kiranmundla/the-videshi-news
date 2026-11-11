@@ -1,0 +1,246 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "harvard-rumble-rims-concussion-headset-dyson-award",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "A $300 HEADSET THAT SCREENS FOR CONCUSSION",
+      "numbers": [
+        300.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The headset costs about $300 and screens for concussion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Rumble Rims, a sideline concussion-screening headset built by Harvard students Cleo Pontone, Radhika Saran and Sophia DeVito, has won the Global Medical category of the 2026 James Dyson Award.",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [
+        "Rumble Rims",
+        "Cleo Pontone",
+        "Radhika Saran",
+        "Sophia DeVito",
+        "Global Medical",
+        "James Dyson Award"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article states Rumble Rims won the 2026 James Dyson Award.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "2,294",
+      "numbers": [
+        2294.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions a record 2,294 entries in the competition.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Entries beaten to the 2026 James Dyson Award \u2014 a record field",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [
+        "James Dyson Award"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article confirms 2,294 entries as a record for the award.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$40,000",
+      "numbers": [
+        40000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the prize money is $40,000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Prize money to fund the next Rumble Rims prototype",
+      "numbers": [],
+      "entities": [
+        "Rumble Rims"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the prize money is for funding the next prototype.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "2-3 MINUTES",
+      "numbers": [
+        2.0,
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the test takes two to three minutes.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Length of the infrared eye-tracking sideline test",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the length of the test as 2-3 minutes.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Co-inventor Radhika Saran grew up in Bengaluru and Mumbai",
+      "numbers": [],
+      "entities": [
+        "Co-inventor Radhika Saran"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Radhika Saran grew up in Bengaluru and Mumbai.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "A screening tool, not a diagnosis \u2014 return-to-play calls stay with a healthcare professional",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states it is a screening tool, not a diagnosis.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "If validation holds up, an objective sideline check that today needs a clinic could become a $300 piece of kit in a coach's bag.",
+      "numbers": [
+        300.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses potential future use of the headset.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Radhika Saran",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Rumble Rims",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Harvard University",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "James Dyson Award",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000615,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

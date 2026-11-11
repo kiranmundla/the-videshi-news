@@ -1,0 +1,182 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "fed-waller-december-rate-hike-half-point",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Christopher Waller",
+    "Federal Reserve",
+    "Half-Point Move",
+    "Markets Finance",
+    "Federal Reserve Governor Christopher Waller"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Half-Point Move' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Markets Finance' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Federal Reserve Governor Christopher Waller' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Christopher J. Waller, Federal Reserve Governor 2.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q30071463)",
+      "verdict": "USED (news)",
+      "reason": "2400x3000, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Christopher J. Waller, Federal Reserve Governor.jpg",
+      "route": "identity \u2014 depicts (P180=Q30071463)",
+      "verdict": "accepted",
+      "reason": "2400x3000, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester, Janet Yellen, David Romer 04.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester, Janet Yellen, David Romer 05.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester, Janet Yellen, David Romer 06.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester, Janet Yellen, David Romer 07.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester, Janet Yellen 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester, Janet Yellen 03.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester 01.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Anil Kashyap, Athanasios Orphanides, Loretta Mester 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Janet Yellen 22.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "USED (hero)",
+      "reason": "3376x6000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:ASSA 2026 - Janet Yellen 23.jpg",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "verdict": "USED (grid)",
+      "reason": "3376x6000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "christopher-j-waller-federal-reserve-governo",
+      "path": "christopher-j-waller-federal-reserve-governo.jpg",
+      "size": [
+        2400,
+        3000
+      ],
+      "role": "interior",
+      "subject": "Christopher J. Waller Christopher J. Waller took office as a member of the Board of Governors of the Federal Reserve System on December 18, 2020, to fill an unexpired term ending January 31, 2030. Read more: www.federalreserve.gov/aboutthef",
+      "route": "identity \u2014 Wikidata P18 (Q30071463)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Christopher_J._Waller,_Federal_Reserve_Governor_2.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Christopher_J._Waller%2C_Federal_Reserve_Governor_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Federalreserve",
+      "entity": "Christopher Waller",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Christopher J. Waller",
+        "Chris Waller"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "assa-2026-janet-yellen-22",
+      "path": "assa-2026-janet-yellen-22.jpg",
+      "size": [
+        6000,
+        3376
+      ],
+      "role": "establishing",
+      "subject": "Janet Yellen at ASSA (AEA) 2026 in Philadelphia for \"Future of the Fed\"",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:ASSA_2026_-_Janet_Yellen_22.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/ASSA_2026_-_Janet_Yellen_22.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Xuthoria",
+      "entity": "Federal Reserve",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Federal Reserve",
+        "Federal Reserve System",
+        "Fed",
+        "The Fed",
+        "FRS"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "assa-2026-janet-yellen-23",
+      "path": "assa-2026-janet-yellen-23.jpg",
+      "size": [
+        6000,
+        3376
+      ],
+      "role": "establishing",
+      "subject": "Janet Yellen at ASSA (AEA) 2026 in Philadelphia for \"Future of the Fed\"",
+      "route": "identity \u2014 depicts (P180=Q53536)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:ASSA_2026_-_Janet_Yellen_23.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/96/ASSA_2026_-_Janet_Yellen_23.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Xuthoria",
+      "entity": "Federal Reserve",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Federal Reserve",
+        "Federal Reserve System",
+        "Fed",
+        "The Fed",
+        "FRS"
+      ]
+    }
+  ]
+}

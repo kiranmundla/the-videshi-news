@@ -1,0 +1,28 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "meng-reintroduces-diwali-day-act-federal-holiday",
+  "name": "meng-reintroduces-diwali-day-act-federal-holiday",
+  "script": "reel-runs/2026-11-10-meng-reintroduces-diwali-day-act-federal-holiday/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000601
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-10-meng-reintroduces-diwali-day-act-federal-holiday/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "grace-meng-official-congressional-photo",
+      "hero": "crackers-at-diwali-in-guntur",
+      "grid": "diwali-india-2019-01"
+    }
+  },
+  "detail": "beat 'grid': content needs 327px > zone 316px (track backdrop) even at scale 0.5"
+}

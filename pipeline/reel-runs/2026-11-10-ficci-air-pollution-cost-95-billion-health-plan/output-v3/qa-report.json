@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-10-ficci-air-pollution-cost-95-billion-health-plan/output-v3/ficci-air-pollution-cost-95-billion-health-plan.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:payoff"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1920,
+        1080
+      ],
+      "manifest_dims": [
+        1920,
+        1080
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 85.5,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Air_Pollution_Chokes_Northern_India_%28NESDIS_2018-12-14%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-10-ficci-air-pollution-cost-95-billion-health-plan/output-v3/qa/frames/frame-hook.png",
+      "text_px_detected": 24934,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-10-ficci-air-pollution-cost-95-billion-health-plan/output-v3/qa/frames/frame-news.png",
+      "text_px_detected": 40222,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 0.0,
+        "delta": 253.7
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-10-ficci-air-pollution-cost-95-billion-health-plan/output-v3/qa/frames/frame-hero.png",
+      "text_px_detected": 33323,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 172.6,
+        "bg_luminance": 0.0,
+        "delta": 172.6
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-10-ficci-air-pollution-cost-95-billion-health-plan/output-v3/qa/frames/frame-grid.png",
+      "text_px_detected": 68146,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 252.9,
+        "bg_luminance": 0.0,
+        "delta": 252.9
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-10-ficci-air-pollution-cost-95-billion-health-plan/output-v3/qa/frames/frame-diaspora.png",
+      "text_px_detected": 38526,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-10-ficci-air-pollution-cost-95-billion-health-plan/output-v3/qa/frames/frame-payoff.png",
+      "text_px_detected": 32820,
+      "edge": {
+        "pass": false,
+        "offending_px": 1166,
+        "clusters": 5,
+        "largest_cluster": 162
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 47.6,
+        "delta": 205.8
+      }
+    }
+  ]
+}

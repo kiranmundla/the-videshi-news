@@ -1,0 +1,65 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ficci-air-pollution-cost-95-billion-health-plan",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "FICCI",
+    "PM2.5",
+    "Clean Air",
+    "Healthy India"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'PM2.5' named 'particulates', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Clean Air' named 'Clean Air Act', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Healthy India' named 'Healthy Indiana', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Building of FICCI in New Delhi 04.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q842441)",
+      "verdict": "USED (payoff)",
+      "reason": "4128x2322, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "payoff",
+      "label": "building-of-ficci-in-new-delhi-04",
+      "path": "building-of-ficci-in-new-delhi-04.jpg",
+      "size": [
+        4128,
+        2322
+      ],
+      "role": "establishing",
+      "subject": "Building of Federation of Indian Chambers of Commerce & Industry (FICCI) in New Delhi",
+      "route": "identity \u2014 Wikidata P18 (Q842441)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Building_of_FICCI_in_New_Delhi_04.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Building_of_FICCI_in_New_Delhi_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Pinakpani",
+      "entity": "FICCI",
+      "entity_type": "org",
+      "entity_aliases": [
+        "FICCI",
+        "Federation of Indian Chambers of Commerce & Industry"
+      ]
+    }
+  ]
+}

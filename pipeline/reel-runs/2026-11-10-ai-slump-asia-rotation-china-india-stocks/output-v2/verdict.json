@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ai-slump-asia-rotation-china-india-stocks",
+  "name": "ai-slump-asia-rotation-china-india-stocks",
+  "script": "reel-runs/2026-11-10-ai-slump-asia-rotation-china-india-stocks/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000631
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-10-ai-slump-asia-rotation-china-india-stocks/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "sk-hynix-hmt451s6afr8a-pb-4gb-pc3-12800-ddr3",
+      "hero": "sk-hynix-hmt451s6afr8a-pb-4gb-pc3-12800-ddr3-2",
+      "grid": "samsung-headquarters"
+    }
+  },
+  "manifest": "reel-runs/2026-11-10-ai-slump-asia-rotation-china-india-stocks/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-11-10-ai-slump-asia-rotation-china-india-stocks/output-v2/ai-slump-asia-rotation-china-india-stocks.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-10-ai-slump-asia-rotation-china-india-stocks/output-v2/tiktok-caption.txt"
+}

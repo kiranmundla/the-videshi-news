@@ -1,0 +1,225 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "pepsico-cut-1000-jobs-north-america",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "PEPSICO TO CUT ABOUT 1,000 NORTH AMERICA JOBS",
+      "numbers": [
+        1000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states PepsiCo is cutting about 1,000 jobs.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "PepsiCo is eliminating about 1,000 jobs across its North American food and beverage operations over the coming week, in a restructuring North America CEO Ram Krishnan announced to staff on November 9.",
+      "numbers": [
+        9.0,
+        1000.0
+      ],
+      "entities": [
+        "North American",
+        "North America CEO Ram Krishnan"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Details about job cuts and Ram Krishnan's announcement are in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "1,000",
+      "numbers": [
+        1000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms 1,000 jobs are being cut.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Jobs to be eliminated across North American food and beverage operations",
+      "numbers": [],
+      "entities": [
+        "North American"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies job cuts in North American food and beverage operations.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "2%",
+      "numbers": [
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states North American beverage volumes fell by 2%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Fall in North American beverage volumes last quarter",
+      "numbers": [],
+      "entities": [
+        "North American"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the 2% fall in beverage volumes last quarter.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "1% TO 2%",
+      "numbers": [
+        1.0,
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article reports management cut the EPS growth outlook to 1% to 2%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Full-year core EPS growth outlook, cut by management",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the cut in EPS growth outlook by management.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "North America CEO Ram Krishnan told staff the structure was complex and fragmented",
+      "numbers": [],
+      "entities": [
+        "North America CEO Ram Krishnan"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article quotes Ram Krishnan on the complexity of the structure.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The cuts are due over the coming week across the food and drinks businesses",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states cuts will occur over the coming week in these sectors.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "No specific savings target for the 1,000 positions has been disclosed.",
+      "numbers": [
+        1000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions no savings target has been disclosed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "PepsiCo",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ram Krishnan",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000588,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

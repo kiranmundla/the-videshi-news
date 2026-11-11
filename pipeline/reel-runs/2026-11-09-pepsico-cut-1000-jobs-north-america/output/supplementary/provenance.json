@@ -1,0 +1,147 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "pepsico-cut-1000-jobs-north-america",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "PepsiCo",
+    "Ram Krishnan",
+    "North American",
+    "Wall Street Journal",
+    "North America",
+    "Recording of CONUS"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'PepsiCo' named 'Pepsi', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'North American' named 'North America', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "outlet: 'Wall Street Journal' is a news outlet \u2014 outlets are sources, never picture subjects; never queried"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Recording of CONUS' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:North America satellite orthographic.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q49)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:2006Sudanese exports.PNG",
+      "route": "identity \u2014 depicts (P180=Q49)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:2017 Eclipse over North America 4k.webm",
+      "route": "identity \u2014 depicts (P180=Q49)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:2020-03-14 Surface Weather Map NOAA.png",
+      "route": "identity \u2014 depicts (P180=Q49)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:20260291036 GOES19-ABI-CONUS-13-5000x3000.jpg",
+      "route": "identity \u2014 depicts (P180=Q49)",
+      "verdict": "USED (news)",
+      "reason": "5000x3000, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Blank orthographic world map with US state borders, centered on the geographic center of North America (48\u00b010' N, 100\u00b010' W).svg",
+      "route": "identity \u2014 depicts (P180=Q49)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Canada-Kulhulmcilh (orthographic projection).svg",
+      "route": "identity \u2014 depicts (P180=Q49)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Dobzhansky no Brasil em 1943.jpg",
+      "route": "identity \u2014 depicts (P180=Q49)",
+      "verdict": "rejected",
+      "reason": "resolution: 1029x1365 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:E megalocyathus range.jpg",
+      "route": "identity \u2014 depicts (P180=Q49)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Earth-DSCOVR-20150706-IFV.jpg",
+      "route": "identity \u2014 depicts (P180=Q49)",
+      "verdict": "USED (diaspora)",
+      "reason": "1788x1756, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "20260291036-goes19-abi-conus-13-5000x3000",
+      "path": "20260291036-goes19-abi-conus-13-5000x3000.jpg",
+      "size": [
+        5000,
+        3000
+      ],
+      "role": "establishing",
+      "subject": "Recording of CONUS in January 2026 during the North American winter storm by the GOES-19 satellite.",
+      "route": "identity \u2014 depicts (P180=Q49)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:20260291036_GOES19-ABI-CONUS-13-5000x3000.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/20260291036_GOES19-ABI-CONUS-13-5000x3000.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "CIRA / NOAA / NESDIS Center for Satellite Applications and Research",
+      "entity": "North America",
+      "entity_type": "place",
+      "entity_aliases": [
+        "North America"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "earth-dscovr-20150706-ifv",
+      "path": "earth-dscovr-20150706-ifv.jpg",
+      "size": [
+        1788,
+        1756
+      ],
+      "role": "interior",
+      "subject": "NASA Captures \"EPIC\" Earth Image A NASA camera on the Deep Space Climate Observatory satellite has returned its first view of the entire sunlit side of Earth from nearly one million miles away. This color image of Earth was taken by NASA\u2019s ",
+      "route": "identity \u2014 depicts (P180=Q49)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Earth-DSCOVR-20150706-IFV.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Earth-DSCOVR-20150706-IFV.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "NASA",
+      "entity": "North America",
+      "entity_type": "place",
+      "entity_aliases": [
+        "North America"
+      ]
+    }
+  ]
+}

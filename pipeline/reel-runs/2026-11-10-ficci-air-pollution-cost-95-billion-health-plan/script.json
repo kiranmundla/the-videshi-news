@@ -1,0 +1,35 @@
+{
+  "hook_line": "AIR POLLUTION COSTS INDIA $95 BILLION A YEAR",
+  "hook_stat": {
+    "big": "$95 BILLION",
+    "eyebrow": "THE PRICE TAG",
+    "sub": "Estimated annual cost of air pollution in India, about 3% of GDP"
+  },
+  "stats": [
+    {
+      "big": "660 MILLION",
+      "label": "Indians live in areas where PM2.5 pollution exceeds national safety standards"
+    },
+    {
+      "big": "3.5 YEARS",
+      "label": "Cut in average life expectancy from long-term pollution exposure"
+    },
+    {
+      "big": "1.3 BILLION",
+      "label": "Working days lost each year to air pollution"
+    }
+  ],
+  "diaspora_bullets": [
+    "Local sources account for only about 36% of Delhi's PM2.5 pollution in winter",
+    "The paper warns polluted air is a year-round health risk, not a seasonal one"
+  ],
+  "key_entities": [
+    "FICCI",
+    "EY",
+    "PM2.5"
+  ],
+  "news_summary": "A FICCI-EY knowledge paper, 'Clean Air, Healthy India', estimates air pollution losses in India could run as high as $95 billion a year and links polluted air to more than two million deaths in 2023.",
+  "payoff": "FICCI calls for explicit PM2.5 targets and year-round health planning instead of seasonal emergency responses.",
+  "versus": "",
+  "story_mood": "tense"
+}

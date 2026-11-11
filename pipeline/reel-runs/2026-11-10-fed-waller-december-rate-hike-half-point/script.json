@@ -1,0 +1,30 @@
+{
+  "hook_line": "WALLER BACKS DECEMBER HIKE, OPENS DOOR TO HALF-POINT MOVE",
+  "hook_stat": {
+    "big": "0.3%",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "October core CPI rise, exactly the bar Waller set for considering a 50-basis-point hike"
+  },
+  "stats": [
+    {
+      "big": "25",
+      "label": "Basis points: the minimum December hike Waller said he would support"
+    },
+    {
+      "big": "85%",
+      "label": "Chance futures priced for a December hike before the inflation data"
+    }
+  ],
+  "diaspora_bullets": [
+    "A December hike would keep upward pressure on mortgage rates, car loans and credit-card APRs",
+    "After the data, market odds of a half-point move rose to about 15%"
+  ],
+  "key_entities": [
+    "Christopher Waller",
+    "Federal Reserve"
+  ],
+  "news_summary": "Federal Reserve Governor Christopher Waller said he would support at least a 25-basis-point rate hike at the December 8-9 FOMC meeting, and that a core CPI rise of 0.3% or more should prompt consideration of a 50-basis-point hike.",
+  "payoff": "October core CPI then rose exactly 0.3%, meeting Waller's bar for a bigger move.",
+  "versus": "",
+  "story_mood": "tense"
+}

@@ -1,0 +1,34 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "harvard-rumble-rims-concussion-headset-dyson-award",
+  "name": "harvard-rumble-rims-concussion-headset-dyson-award",
+  "script": "reel-runs/2026-11-09-harvard-rumble-rims-concussion-headset-dyson-award/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000615
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-09-harvard-rumble-rims-concussion-headset-dyson-award/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "a-knight-of-the-order-of-the-holy-spirit-by",
+      "hero": "sanders-theater-2009y"
+    }
+  },
+  "manifest": "reel-runs/2026-11-09-harvard-rumble-rims-concussion-headset-dyson-award/output/render-manifest.json",
+  "video": "reel-runs/2026-11-09-harvard-rumble-rims-concussion-headset-dyson-award/output/harvard-rumble-rims-concussion-headset-dyson-award.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-09-harvard-rumble-rims-concussion-headset-dyson-award/output/tiktok-caption.txt"
+}

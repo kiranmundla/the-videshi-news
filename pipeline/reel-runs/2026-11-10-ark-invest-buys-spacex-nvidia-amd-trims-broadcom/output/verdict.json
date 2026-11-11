@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ark-invest-buys-spacex-nvidia-amd-trims-broadcom",
+  "name": "ark-invest-buys-spacex-nvidia-amd-trims-broadcom",
+  "script": "reel-runs/2026-11-10-ark-invest-buys-spacex-nvidia-amd-trims-broadcom/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000652
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-10-ark-invest-buys-spacex-nvidia-amd-trims-broadcom/output/supplementary/provenance.json",
+    "own_images": 3,
+    "extras": {
+      "news": "falcon-9-b1046-and-two-unidentified-boosters",
+      "grid": "nvidia-headquarters"
+    }
+  },
+  "manifest": "reel-runs/2026-11-10-ark-invest-buys-spacex-nvidia-amd-trims-broadcom/output/render-manifest.json",
+  "video": "reel-runs/2026-11-10-ark-invest-buys-spacex-nvidia-amd-trims-broadcom/output/ark-invest-buys-spacex-nvidia-amd-trims-broadcom.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:news",
+      "edge_overflow:diaspora"
+    ]
+  }
+}

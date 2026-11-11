@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-10-fed-waller-december-rate-hike-half-point/output/fed-waller-december-rate-hike-half-point.mp4",
+  "qa_passed": false,
+  "qa_score": 8.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "face_overlap:payoff"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        2400,
+        3000
+      ],
+      "manifest_dims": [
+        2400,
+        3000
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 206.8,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Christopher_J._Waller%2C_Federal_Reserve_Governor_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-10-fed-waller-december-rate-hike-half-point/output/qa/frames/frame-hook.png",
+      "text_px_detected": 25295,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.83)",
+        "box": [
+          268,
+          331,
+          526,
+          576
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 32.2,
+        "delta": 221.7
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-10-fed-waller-december-rate-hike-half-point/output/qa/frames/frame-news.png",
+      "text_px_detected": 29214,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.74)",
+        "box": [
+          268,
+          330,
+          531,
+          577
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 33.7,
+        "delta": 219.9
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-10-fed-waller-december-rate-hike-half-point/output/qa/frames/frame-hero.png",
+      "text_px_detected": 22014,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          259,
+          257,
+          564,
+          755
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.1,
+        "bg_luminance": 19.5,
+        "delta": 233.6
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-10-fed-waller-december-rate-hike-half-point/output/qa/frames/frame-grid.png",
+      "text_px_detected": 45967,
+      "edge": {
+        "pass": true,
+        "offending_px": 1915,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.68)",
+        "box": [
+          986,
+          1079,
+          15,
+          20
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 18.2,
+        "delta": 235.8
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-10-fed-waller-december-rate-hike-half-point/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 37681,
+      "edge": {
+        "pass": true,
+        "offending_px": 6,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.77)",
+        "box": [
+          247,
+          324,
+          566,
+          585
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 36.5,
+        "delta": 217.4
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-10-fed-waller-december-rate-hike-half-point/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 25496,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": false,
+        "method": "manifest-mapped",
+        "box": [
+          248,
+          245,
+          586,
+          784
+        ],
+        "overlap_px": 7495
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 0.0,
+        "delta": 253.6
+      }
+    }
+  ]
+}

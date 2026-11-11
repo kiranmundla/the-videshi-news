@@ -328,5 +328,15 @@
     "quick_hit_count": 5,
     "deadline_count": 1,
     "chars": 2379
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-10T15:13:08.325075+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 10 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "google-tpu-8tx-8i-max-amd-nvidia",
+    "quick_hit_count": 5,
+    "deadline_count": 1,
+    "chars": 2410
   }
 ]

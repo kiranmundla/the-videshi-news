@@ -1,0 +1,242 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "ai-slump-asia-rotation-china-india-stocks",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "AI SLUMP SENDS INVESTORS TO CHINA AND INDIA",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states investors are turning to Chinese and Indian stocks.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The unwinding AI trade after the US midterms is pushing global investors toward out-of-favour Chinese and Indian stocks, Bloomberg reports, as India's Nifty 50 gained 8.6 percent last week, its best week since 2021.",
+      "numbers": [
+        8.6,
+        50.0,
+        2021.0
+      ],
+      "entities": [
+        "India's Nifty"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2021
+        ]
+      },
+      "llm_reason": "The article confirms the AI trade unwinding and Nifty 50's gain.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "8.6%",
+      "numbers": [
+        8.6
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Nifty 50 gained 8.6 percent last week.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Nifty 50 gain last week \u2014 its best week since 2021",
+      "numbers": [
+        50.0,
+        2021.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2021
+        ]
+      },
+      "llm_reason": "The article confirms Nifty 50's best week since 2021.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$1.9 BILLION",
+      "numbers": [
+        1.9,
+        1900000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states $1.9 billion was net foreign buying.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Net foreign buying of Indian shares through Wednesday",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions net foreign buying through Wednesday.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "5.2%",
+      "numbers": [
+        5.2
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states a Hong Kong gauge gained 5.2 percent.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Gain in a Hong Kong gauge of mainland Chinese companies, its best week since March 2025",
+      "numbers": [
+        2025.0
+      ],
+      "entities": [
+        "Hong Kong"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article confirms the gain and best week since March 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Some investors see the AI selloff as a buying opportunity",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions some investors view the selloff as a buying opportunity.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Benchmarks in India and China had ranked among the world's worst-performing indexes this year through October",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states benchmarks ranked among the worst through October.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The rotation is also reaching healthcare, consumer and domestically driven Asian companies.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions rotation to healthcare and consumer companies.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Nifty 50",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Samsung Electronics",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "SK Hynix",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Taiwan Semiconductor Manufacturing",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000631,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

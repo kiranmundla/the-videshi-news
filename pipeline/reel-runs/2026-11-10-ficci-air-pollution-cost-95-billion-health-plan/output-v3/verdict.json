@@ -1,0 +1,34 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ficci-air-pollution-cost-95-billion-health-plan",
+  "name": "ficci-air-pollution-cost-95-billion-health-plan",
+  "script": "reel-runs/2026-11-10-ficci-air-pollution-cost-95-billion-health-plan/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000698
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-10-ficci-air-pollution-cost-95-billion-health-plan/output-v3/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "payoff": "building-of-ficci-in-new-delhi-04"
+    }
+  },
+  "manifest": "reel-runs/2026-11-10-ficci-air-pollution-cost-95-billion-health-plan/output-v3/render-manifest.json",
+  "video": "reel-runs/2026-11-10-ficci-air-pollution-cost-95-billion-health-plan/output-v3/ficci-air-pollution-cost-95-billion-health-plan.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:payoff"
+    ]
+  }
+}

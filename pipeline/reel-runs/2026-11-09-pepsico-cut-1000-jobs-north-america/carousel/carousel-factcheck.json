@@ -1,0 +1,174 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "pepsico-cut-1000-jobs-north-america",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "PepsiCo to Cut About 1,000 North America Jobs in Restructuring",
+        "numbers": [
+          1000.0
+        ],
+        "entities": [
+          "Cut About",
+          "North America Jobs"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states PepsiCo is cutting about 1,000 jobs in North America.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "North America CEO Ram Krishnan told staff the changes, due within a week, will simplify a structure he called complex and fragmented, after beverage volumes fell 2% last quarter.",
+        "numbers": [
+          2.0
+        ],
+        "entities": [
+          "North America CEO Ram Krishnan"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Ram Krishnan's memo details the changes and reasons for restructuring.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "PepsiCo is eliminating about 1,000 jobs across its North American food and beverage operations over the coming week",
+        "numbers": [
+          1000.0
+        ],
+        "entities": [
+          "North American"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the elimination of about 1,000 jobs in North America.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "North American beverage volumes fell 2% last quarter, and food volumes were flat",
+        "numbers": [
+          2.0
+        ],
+        "entities": [
+          "North American"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states beverage volumes fell 2% and food volumes were flat.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Management cut its full-year core EPS growth outlook to 1% to 2%",
+        "numbers": [
+          1.0,
+          2.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions the cut in EPS growth outlook to 1% to 2%.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Ram Krishnan",
+        "numbers": [],
+        "entities": [
+          "Ram Krishnan"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Ram Krishnan is mentioned as the North America CEO in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "CEO, PepsiCo North America",
+        "numbers": [],
+        "entities": [
+          "PepsiCo North America"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Ram Krishnan as CEO of PepsiCo North America.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "PepsiCo to Cut About 1,000 North America Jobs in Restructuring",
+        "numbers": [
+          1000.0
+        ],
+        "entities": [
+          "Cut About",
+          "North America Jobs"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim repeats the initial claim about job cuts.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000504,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

@@ -1,0 +1,34 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "pepsico-cut-1000-jobs-north-america",
+  "name": "pepsico-cut-1000-jobs-north-america",
+  "script": "reel-runs/2026-11-09-pepsico-cut-1000-jobs-north-america/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000588
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-09-pepsico-cut-1000-jobs-north-america/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "20260291036-goes19-abi-conus-13-5000x3000",
+      "diaspora": "earth-dscovr-20150706-ifv"
+    }
+  },
+  "manifest": "reel-runs/2026-11-09-pepsico-cut-1000-jobs-north-america/output/render-manifest.json",
+  "video": "reel-runs/2026-11-09-pepsico-cut-1000-jobs-north-america/output/pepsico-cut-1000-jobs-north-america.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-09-pepsico-cut-1000-jobs-north-america/output/tiktok-caption.txt"
+}

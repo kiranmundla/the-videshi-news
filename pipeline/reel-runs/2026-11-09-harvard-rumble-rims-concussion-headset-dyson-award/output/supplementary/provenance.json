@@ -1,0 +1,119 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "harvard-rumble-rims-concussion-headset-dyson-award",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Radhika Saran",
+    "Rumble Rims",
+    "Harvard University",
+    "James Dyson Award",
+    "Cleo Pontone",
+    "Radhika Saran and Sophia DeVito"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Radhika Saran' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Rumble Rims' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Cleo Pontone' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Radhika Saran and Sophia DeVito' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Sanders theater 2009y.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q13371)",
+      "verdict": "USED (hero)",
+      "reason": "3209x2084, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:A Knight of the Order of the Holy Spirit, by Rene-Michel Slodtz, c. 1750, marble - Fogg Art Museum, Harvard University - DSC01291.jpg",
+      "route": "identity \u2014 depicts (P180=Q13371)",
+      "verdict": "USED (news)",
+      "reason": "3574x5352, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "a-knight-of-the-order-of-the-holy-spirit-by",
+      "path": "a-knight-of-the-order-of-the-holy-spirit-by.jpg",
+      "size": [
+        3574,
+        5352
+      ],
+      "role": "establishing",
+      "subject": "Sculpture in the Fogg Art Museum, Harvard University , Cambridge, Massachusetts , USA . This artwork is in the public domain because the artist died more than 70 years ago.The Fogg Museum, opened to the public in 1896, is the oldest and lar",
+      "route": "identity \u2014 depicts (P180=Q13371)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:A_Knight_of_the_Order_of_the_Holy_Spirit,_by_Rene-Michel_Slodtz,_c._1750,_marble_-_Fogg_Art_Museum,_Harvard_University_-_DSC01291.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/A_Knight_of_the_Order_of_the_Holy_Spirit%2C_by_Rene-Michel_Slodtz%2C_c._1750%2C_marble_-_Fogg_Art_Museum%2C_Harvard_University_-_DSC01291.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Daderot",
+      "entity": "Harvard University",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Harvard",
+        "Harvard University",
+        "University of Harvard",
+        "Harvard Graduate School",
+        "harvard.edu",
+        "Harvard university",
+        "Kremlin on the Charles",
+        "New College, Cambridge, Massachusetts",
+        "Harvard U.",
+        "Harvard Univ.",
+        "Harvard.edu"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "sanders-theater-2009y",
+      "path": "sanders-theater-2009y.jpg",
+      "size": [
+        3209,
+        2084
+      ],
+      "role": "establishing",
+      "subject": "Sanders Theatre Harvard University",
+      "route": "identity \u2014 Wikidata P18 (Q13371)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Sanders_theater_2009y.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Sanders_theater_2009y.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "chensiyuan",
+      "entity": "Harvard University",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Harvard",
+        "Harvard University",
+        "University of Harvard",
+        "Harvard Graduate School",
+        "harvard.edu",
+        "Harvard university",
+        "Kremlin on the Charles",
+        "New College, Cambridge, Massachusetts",
+        "Harvard U.",
+        "Harvard Univ.",
+        "Harvard.edu"
+      ]
+    }
+  ]
+}

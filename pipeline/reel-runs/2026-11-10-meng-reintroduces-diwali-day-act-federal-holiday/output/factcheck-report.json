@@ -1,0 +1,221 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "meng-reintroduces-diwali-day-act-federal-holiday",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "MENG REINTRODUCES DIWALI DAY ACT WITH 19 CO-SPONSORS",
+      "numbers": [
+        19.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Meng reintroduced the act with 19 co-sponsors.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Rep. Grace Meng reintroduced the Diwali Day Act in the House on November 9, proposing to make Diwali a federal holiday.",
+      "numbers": [
+        9.0
+      ],
+      "entities": [
+        "Rep Grace Meng",
+        "Diwali Day Act"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Meng reintroduced the act on November 9 to make Diwali a federal holiday.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "19",
+      "numbers": [
+        19.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states there are 19 co-sponsors.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Co-sponsors for the Diwali Day Act in the House",
+      "numbers": [],
+      "entities": [
+        "Diwali Day Act"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately describes the co-sponsors of the act.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "12TH",
+      "numbers": [
+        12.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Diwali would become the 12th federal holiday if enacted.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "US federal holiday Diwali would become if enacted",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Diwali would be the 12th federal holiday.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "5",
+      "numbers": [
+        5.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "There are 5 Indian-American House members among the co-sponsors.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Indian-American House members among the co-sponsors",
+      "numbers": [],
+      "entities": [
+        "Indian-American House"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article lists the 5 Indian-American co-sponsors.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "17 community organisations have endorsed the bill",
+      "numbers": [
+        17.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 17 organizations endorsed the bill.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "California observed Diwali with a day off for the first time this year",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "California observed Diwali with a day off for the first time.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The bill must still pass the House and Senate and be signed by the president.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the bill must pass both chambers and be signed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Grace Meng",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Diwali",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000601,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "meng-reintroduces-diwali-day-act-federal-holiday",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Grace Meng",
+    "Diwali",
+    "Diwali Day Act",
+    "Nri World",
+    "Rep. Grace Meng"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Diwali Day Act' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "category label: 'Nri World' is this article's category name, not a picture subject"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Rep. Grace Meng' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Grace Meng Official Congressional Photo.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q5591303)",
+      "verdict": "USED (news)",
+      "reason": "2832x4256, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:APAICS 2025 Ceremonial Swearing-In.jpg",
+      "route": "identity \u2014 depicts (P180=Q5591303)",
+      "verdict": "rejected",
+      "reason": "identity: depicts (P180) file for a person whose own title/description/categories never name 'Grace Meng' (or a known alias) \u2014 a depicts statement alone is not identity (polluted Commons structured data: the Mount Charleston trail file 'depicts' Mukesh Ambani); fail closed"
+    },
+    {
+      "candidate": "File:Congressional Delegation visit (9668492245).jpg",
+      "route": "identity \u2014 depicts (P180=Q5591303)",
+      "verdict": "accepted",
+      "reason": "1840x1224, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Crackers at Diwali in Guntur.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q10244)",
+      "verdict": "USED (hero)",
+      "reason": "4640x3480, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:DIWALI INDIA 2019 01.jpg",
+      "route": "identity \u2014 depicts (P180=Q10244)",
+      "verdict": "USED (grid)",
+      "reason": "1440x1800, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "grace-meng-official-congressional-photo",
+      "path": "grace-meng-official-congressional-photo.jpg",
+      "size": [
+        2832,
+        4256
+      ],
+      "role": "establishing",
+      "subject": "Official Congressional Photo",
+      "route": "identity \u2014 Wikidata P18 (Q5591303)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Grace_Meng_Official_Congressional_Photo.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Grace_Meng_Official_Congressional_Photo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "U.S. House of Representatives",
+      "entity": "Grace Meng",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Meng Zhaowen"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "crackers-at-diwali-in-guntur",
+      "path": "crackers-at-diwali-in-guntur.jpg",
+      "size": [
+        4640,
+        3480
+      ],
+      "role": "establishing",
+      "subject": "The image shows crackers at Diwali times.",
+      "route": "identity \u2014 Wikidata P18 (Q10244)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Crackers_at_Diwali_in_Guntur.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Crackers_at_Diwali_in_Guntur.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Kalli navya",
+      "entity": "Diwali",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Dipawali",
+        "Dipavali",
+        "Deepawali",
+        "Hindu Festival of Lights",
+        "Gadarafubhi",
+        "Deepavali",
+        "Dehardi",
+        "Divali",
+        "Tudar Parbo",
+        "Dewali",
+        "Festival of Lights"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "diwali-india-2019-01",
+      "path": "diwali-india-2019-01.jpg",
+      "size": [
+        1440,
+        1800
+      ],
+      "role": "establishing",
+      "subject": "This photo has been taken in the country: India",
+      "route": "identity \u2014 depicts (P180=Q10244)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:DIWALI_INDIA_2019_01.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/DIWALI_INDIA_2019_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "SACHI AGRAWAL",
+      "entity": "Diwali",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Dipawali",
+        "Dipavali",
+        "Deepawali",
+        "Hindu Festival of Lights",
+        "Gadarafubhi",
+        "Deepavali",
+        "Dehardi",
+        "Divali",
+        "Tudar Parbo",
+        "Dewali",
+        "Festival of Lights"
+      ]
+    }
+  ]
+}

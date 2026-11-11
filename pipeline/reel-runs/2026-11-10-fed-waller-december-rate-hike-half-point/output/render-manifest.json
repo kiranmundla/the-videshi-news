@@ -1,0 +1,408 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "fed-waller-december-rate-hike-half-point",
+ "article_slug": "fed-waller-december-rate-hike-half-point",
+ "article_id": "6bc65a76-b319-4fc1-9121-2d01dc02443c",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-10-fed-waller-december-rate-hike-half-point/output/fed-waller-december-rate-hike-half-point.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Christopher_J._Waller%2C_Federal_Reserve_Governor_2.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "local_path": "reel-runs/2026-11-10-fed-waller-december-rate-hike-half-point/output/hero.jpg",
+  "width": 2400,
+  "height": 3000,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.94)",
+  "has_face": true,
+  "box_source": [
+   854,
+   414,
+   860,
+   1150
+  ],
+  "box_bg": [
+   266,
+   265,
+   550,
+   736
+  ],
+  "chin_bg": 1001,
+  "anchor": [
+   0.534,
+   0.326
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   816,
+   1020
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 1053,
+   "zone_h": 527,
+   "scale": 1.0,
+   "content_h": 306,
+   "block_top": 1274,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1274,
+    930,
+    1580
+   ],
+   "texts": [
+    "Nri World",
+    "WALLER BACKS DECEMBER HIKE, OPENS DOOR TO HALF-POINT MOVE"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.64,
+    "photo_px": [
+     2400,
+     3000
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.64,
+     "window": [
+      438,
+      0,
+      2125,
+      3000
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 1054,
+   "zone_h": 526,
+   "scale": 1.0,
+   "content_h": 328,
+   "block_top": 1252,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1252,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Federal Reserve Governor Christopher Waller said he would support at least a 25-basis-point rate hike at the December 8-9 FOMC meeting, and that a core CPI rise of 0.3% or more should prompt consideration of a 50-basis-point hike."
+   ],
+   "v7": {
+    "image_source": "extra:christopher-j-waller-federal-reserve-governo",
+    "track": "full-bleed",
+    "render_scale": 0.64,
+    "photo_px": [
+     2400,
+     3000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.64,
+     "window": [
+      438,
+      0,
+      2125,
+      3000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Christopher J. Waller Christopher J. Waller took office as a member of the Board of Governors of the Federal Reserve System on December 18, 2020, to fill an unexpired term ending January 31, 2030. Read more: www.federalreserve.gov/aboutthef",
+     "route": "identity \u2014 Wikidata P18 (Q30071463)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Christopher_J._Waller,_Federal_Reserve_Governor_2.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Christopher_J._Waller%2C_Federal_Reserve_Governor_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Federalreserve"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 414,
+   "block_top": 1166,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1166,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "0.3%",
+    "October core CPI rise, exactly the bar Waller set for considering a 50-basis-point hike"
+   ],
+   "v7": {
+    "image_source": "extra:assa-2026-janet-yellen-22",
+    "track": "full-bleed",
+    "render_scale": 0.569,
+    "photo_px": [
+     6000,
+     3376
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5687203791469194,
+     "window": [
+      1783,
+      0,
+      3682,
+      3376
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Janet Yellen at ASSA (AEA) 2026 in Philadelphia for \"Future of the Fed\"",
+     "route": "identity \u2014 depicts (P180=Q53536)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:ASSA_2026_-_Janet_Yellen_22.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/ASSA_2026_-_Janet_Yellen_22.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Xuthoria"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 1035,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1035,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "25",
+    "Basis points: the minimum December hike Waller said he would support",
+    "85%",
+    "Chance futures priced for a December hike before the inflation data"
+   ],
+   "v7": {
+    "image_source": "extra:assa-2026-janet-yellen-23",
+    "track": "full-bleed",
+    "render_scale": 0.569,
+    "photo_px": [
+     6000,
+     3376
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5687203791469194,
+     "window": [
+      1696,
+      0,
+      3595,
+      3376
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Janet Yellen at ASSA (AEA) 2026 in Philadelphia for \"Future of the Fed\"",
+     "route": "identity \u2014 depicts (P180=Q53536)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:ASSA_2026_-_Janet_Yellen_23.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/9/96/ASSA_2026_-_Janet_Yellen_23.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Xuthoria"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 1075,
+   "zone_h": 505,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "A December hike would keep upward pressure on mortgage rates, car loans and credit-card APRs",
+    "After the data, market odds of a half-point move rose to about 15%"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "full-bleed",
+    "render_scale": 0.64,
+    "photo_px": [
+     2400,
+     3000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.64,
+     "window": [
+      438,
+      0,
+      2125,
+      3000
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "October core CPI then rose exactly 0.3%, meeting Waller's bar for a bigger move.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 143.0,
+ "mp4_bytes": 18495233
+}

@@ -1,0 +1,163 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ai-slump-asia-rotation-china-india-stocks",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Nifty 50",
+    "Samsung Electronics",
+    "SK Hynix",
+    "Taiwan Semiconductor Manufacturing",
+    "China and India",
+    "Hong Kong"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Taiwan Semiconductor Manufacturing' named 'TSMC', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'China and India' named 'China and India, 2025 : A Comparative Assessment', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Hong Kong' named 'Hong Kong Stock Exchange', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:NIFTY 50 Returns Graph.png",
+      "route": "identity \u2014 depicts (P180=Q1853402)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Samsung headquarters.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q20718)",
+      "verdict": "USED (grid)",
+      "reason": "3594x2848, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:20260227 \uc0bc\uc131 \uac24\ub7ed\uc2dc S26 \uc2dc\ub9ac\uc988.jpg",
+      "route": "identity \u2014 depicts (P180=Q20718)",
+      "verdict": "accepted",
+      "reason": "4000x3000, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Antistatische Transportverpackung IMGP1448 smial wp.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q370719)",
+      "verdict": "rejected",
+      "reason": "license: FAL \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:SK HYNIX HMT451S6AFR8A-PB 4GB PC3-12800 DDR3-1600MHz SINGLE RANK MEMORY MODULE FRONT.jpg",
+      "route": "identity \u2014 depicts (P180=Q370719)",
+      "verdict": "USED (news)",
+      "reason": "4533x2490, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:SK HYNIX HMT451S6AFR8A-PB 4GB PC3-12800 DDR3-1600MHz SINGLE RANK MEMORY MODULE REAR.jpg",
+      "route": "identity \u2014 depicts (P180=Q370719)",
+      "verdict": "USED (hero)",
+      "reason": "5431x3056, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "sk-hynix-hmt451s6afr8a-pb-4gb-pc3-12800-ddr3",
+      "path": "sk-hynix-hmt451s6afr8a-pb-4gb-pc3-12800-ddr3.jpg",
+      "size": [
+        4533,
+        2490
+      ],
+      "role": "establishing",
+      "subject": "SK HYNIX HMT451S6AFR8A-PB 4GB PC3-12800 DDR3-1600MHz SINGLE RANK MEMORY MODULE FRONT",
+      "route": "identity \u2014 depicts (P180=Q370719)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:SK_HYNIX_HMT451S6AFR8A-PB_4GB_PC3-12800_DDR3-1600MHz_SINGLE_RANK_MEMORY_MODULE_FRONT.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/SK_HYNIX_HMT451S6AFR8A-PB_4GB_PC3-12800_DDR3-1600MHz_SINGLE_RANK_MEMORY_MODULE_FRONT.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Dinkun Chen",
+      "entity": "SK Hynix",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Hyundai Electronic Industrial Co., Ltd.",
+        "Hyundai Electronics",
+        "SK Hynix Semiconductor Inc.",
+        "SK hynix Inc.",
+        "Hyundai Electronics Industries Co. Ltd.",
+        "Hyundai Electronic Industrial Co., Ltd",
+        "Hynix",
+        "SK hynix Inc. (Gyeonggi-do)",
+        "SK hynix Inc. (Icheon)"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "sk-hynix-hmt451s6afr8a-pb-4gb-pc3-12800-ddr3-2",
+      "path": "sk-hynix-hmt451s6afr8a-pb-4gb-pc3-12800-ddr3-2.jpg",
+      "size": [
+        5431,
+        3056
+      ],
+      "role": "establishing",
+      "subject": "SK HYNIX HMT451S6AFR8A-PB 4GB PC3-12800 DDR3-1600MHz SINGLE RANK MEMORY MODULE REAR",
+      "route": "identity \u2014 depicts (P180=Q370719)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:SK_HYNIX_HMT451S6AFR8A-PB_4GB_PC3-12800_DDR3-1600MHz_SINGLE_RANK_MEMORY_MODULE_REAR.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e7/SK_HYNIX_HMT451S6AFR8A-PB_4GB_PC3-12800_DDR3-1600MHz_SINGLE_RANK_MEMORY_MODULE_REAR.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Dinkun Chen",
+      "entity": "SK Hynix",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Hyundai Electronic Industrial Co., Ltd.",
+        "Hyundai Electronics",
+        "SK Hynix Semiconductor Inc.",
+        "SK hynix Inc.",
+        "Hyundai Electronics Industries Co. Ltd.",
+        "Hyundai Electronic Industrial Co., Ltd",
+        "Hynix",
+        "SK hynix Inc. (Gyeonggi-do)",
+        "SK hynix Inc. (Icheon)"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "samsung-headquarters",
+      "path": "samsung-headquarters.jpg",
+      "size": [
+        3594,
+        2848
+      ],
+      "role": "establishing",
+      "subject": "The Samsung headquarters",
+      "route": "identity \u2014 Wikidata P18 (Q20718)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Samsung_headquarters.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Samsung_headquarters.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Oskar Alexanderson",
+      "entity": "Samsung Electronics",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Samsung",
+        "Samsung Electronics",
+        "Samsung Electronics Co., Ltd",
+        "Samsung Electric Industries",
+        "Samsung Electronics Co.",
+        "Samsung Electronics Ltd",
+        "S\u039bMSUNG",
+        "Samsung Electronics Co., Ltd.",
+        "Samsung Electronics Co., Ltd. (Suwon-si)",
+        "Samsung Semiconductor"
+      ]
+    }
+  ]
+}
