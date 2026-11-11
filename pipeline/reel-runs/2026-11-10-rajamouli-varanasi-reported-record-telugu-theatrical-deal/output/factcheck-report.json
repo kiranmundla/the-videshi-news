@@ -1,0 +1,249 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "rajamouli-varanasi-reported-record-telugu-theatrical-deal",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "RAJAMOULI'S VARANASI REPORTEDLY SETS RECORD TELUGU THEATRICAL DEAL",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Varanasi sets a new benchmark for theatrical deals.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "SS Rajamouli's Telugu film Varanasi, starring Mahesh Babu, has reportedly closed its Telugu-states theatrical deal at Rs. 300 crore according to 123Telugu, with other trade outlets reporting Rs. 290 crore and official confirmation still awaited.",
+      "numbers": [
+        123.0,
+        290.0,
+        300.0,
+        2900000000.0,
+        3000000000.0
+      ],
+      "entities": [
+        "SS Rajamouli's Telugu",
+        "Mahesh Babu"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about the deal and sources are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "Rs. 300 Crore",
+      "numbers": [
+        300.0,
+        3000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Rs. 300 crore as reported by 123Telugu.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Telugu-states theatrical deal reported by 123Telugu; other trade outlets report Rs. 290 crore",
+      "numbers": [
+        123.0,
+        290.0,
+        2900000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Both figures are reported in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE PRICE TAG",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "Rs. 225 Crore",
+      "numbers": [
+        225.0,
+        2250000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states RRR's deal was valued at around Rs. 225 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Reported Telugu-states deal for Rajamouli's RRR, the previous benchmark",
+      "numbers": [],
+      "entities": [
+        "Reported Telugu-states",
+        "Rajamouli's RRR"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms RRR's deal as the previous benchmark.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "Rs. 500 Crore",
+      "numbers": [
+        500.0,
+        5000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Rs. 500 crore as the break-even target.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Break-even target for distributors in Andhra Pradesh and Telangana, per Sacnilk",
+      "numbers": [],
+      "entities": [
+        "Andhra Pradesh"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article attributes the break-even target to Sacnilk.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Worldwide theatrical release on April 7, 2027, in multiple languages",
+      "numbers": [
+        7.0,
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The release date and format are confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Music by Oscar-winning composer MM Keeravaani",
+      "numbers": [],
+      "entities": [
+        "MM Keeravaani"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states MM Keeravaani is composing the music.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "On either reported figure, the deal would exceed the roughly Rs. 225 crore reported for RRR.",
+      "numbers": [
+        225.0,
+        2250000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the deal exceeds RRR's reported figure.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE PRICE TAG",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "SS Rajamouli",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Mahesh Babu",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Varanasi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Priyanka Chopra Jonas",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000636,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

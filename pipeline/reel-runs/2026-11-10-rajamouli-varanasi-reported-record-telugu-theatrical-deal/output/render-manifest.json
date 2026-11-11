@@ -1,0 +1,395 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "rajamouli-varanasi-reported-record-telugu-theatrical-deal",
+ "article_slug": "rajamouli-varanasi-reported-record-telugu-theatrical-deal",
+ "article_id": "f0d73962-54ab-4a0f-b6cf-b9577c61dd1a",
+ "category": "Entertainment",
+ "video": "reel-runs/2026-11-10-rajamouli-varanasi-reported-record-telugu-theatrical-deal/output/rajamouli-varanasi-reported-record-telugu-theatrical-deal.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://cdn.sacnilk.com/image/news300/1000028465.jpg",
+  "local_path": "reel-runs/2026-11-10-rajamouli-varanasi-reported-record-telugu-theatrical-deal/output/hero.jpg",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.451,0.511) damped=(0.476,0.506)",
+  "has_face": false,
+  "box_source": [
+   234,
+   192,
+   672,
+   270
+  ],
+  "box_bg": [
+   249,
+   288,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.476,
+   0.502
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 300,
+   "block_top": 972,
+   "block_bottom": 1272,
+   "text_bbox": [
+    70,
+    972,
+    930,
+    1272
+   ],
+   "texts": [
+    "Entertainment",
+    "RAJAMOULI'S VARANASI REPORTEDLY SETS RECORD TELUGU THEATRICAL DEAL"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      2,
+      1200,
+      675
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 303,
+   "block_top": 970,
+   "block_bottom": 1273,
+   "text_bbox": [
+    70,
+    970,
+    930,
+    1273
+   ],
+   "texts": [
+    "What Happened",
+    "SS Rajamouli's Telugu film Varanasi, starring Mahesh Babu, has reportedly closed its Telugu-states theatrical deal at Rs. 300 crore according to 123Telugu, with other trade outlets reporting Rs. 290 crore and official confirmation still awaited."
+   ],
+   "v7": {
+    "image_source": "extra:mahesh-babu-at-selvandhan-audio-launch",
+    "track": "backdrop",
+    "render_scale": 0.729,
+    "photo_px": [
+     1144,
+     1525
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7290209790209791,
+     "window": [
+      0,
+      349,
+      1144,
+      990
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.26x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Mahesh Babu at Selvandhan Audio Launch",
+     "route": "identity \u2014 depicts (P180=Q2087610)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Mahesh_Babu_at_Selvandhan_Audio_Launch.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Mahesh_Babu_at_Selvandhan_Audio_Launch.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "https://silverscreen.in"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 334,
+   "block_top": 955,
+   "block_bottom": 1289,
+   "text_bbox": [
+    70,
+    955,
+    930,
+    1289
+   ],
+   "texts": [
+    "THE PRICE TAG",
+    "Rs. 300 Crore",
+    "Telugu-states theatrical deal reported by 123Telugu; other trade outlets report Rs. 290 crore"
+   ],
+   "v7": {
+    "image_source": "extra:varanasi-munshi-ghat3",
+    "track": "backdrop",
+    "render_scale": 0.317,
+    "photo_px": [
+     2629,
+     1833
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.3172308862685432,
+     "window": [
+      0,
+      303,
+      2629,
+      1778
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.05x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Varanasi , India as seen from Ganga river .",
+     "route": "identity \u2014 Wikidata P18 (Q79980)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Varanasi_Munshi_Ghat3.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Varanasi_Munshi_Ghat3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Marcin Bia\u0142ek"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 521,
+   "block_top": 861,
+   "block_bottom": 1382,
+   "text_bbox": [
+    70,
+    861,
+    930,
+    1382
+   ],
+   "texts": [
+    "By The Numbers",
+    "Rs. 225 Crore",
+    "Reported Telugu-states deal for Rajamouli's RRR, the previous benchmark",
+    "Rs. 500 Crore",
+    "Break-even target for distributors in Andhra Pradesh and Telangana, per Sacnilk"
+   ],
+   "v7": {
+    "image_source": "extra:carvings-on-the-dhamek-stupa-south-western-s",
+    "track": "backdrop",
+    "render_scale": 0.696,
+    "photo_px": [
+     1199,
+     1106
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.69557964970809,
+     "window": [
+      0,
+      243,
+      1199,
+      915
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.74x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Carvings on the Dhamek Stupa, South Western side.",
+     "route": "identity \u2014 depicts (P180=Q79980)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Carvings_on_the_Dhamek_Stupa,_South_Western_side.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Carvings_on_the_Dhamek_Stupa%2C_South_Western_side.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "SpeakingArch"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 937,
+   "block_bottom": 1306,
+   "text_bbox": [
+    70,
+    937,
+    930,
+    1306
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Worldwide theatrical release on April 7, 2027, in multiple languages",
+    "Music by Oscar-winning composer MM Keeravaani"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7897727272727273,
+     "window": [
+      43,
+      42,
+      1099,
+      634
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "On either reported figure, the deal would exceed the roughly Rs. 225 crore reported for RRR.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-fun-viacheslav.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 113.2,
+ "mp4_bytes": 9575438
+}

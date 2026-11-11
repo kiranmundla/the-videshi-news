@@ -810,5 +810,31 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "8pENEsGFC3o",
+    "article_slug": "rajamouli-varanasi-reported-record-telugu-theatrical-deal",
+    "article_id": "f0d73962-54ab-4a0f-b6cf-b9577c61dd1a",
+    "title": "Rajamouli's Varanasi Reportedly Sets Record Telugu Theatrical Deal #Shorts #Entertainment",
+    "privacy": "public",
+    "uploaded_at": "2026-11-11T05:17:39.123622+00:00",
+    "video_path": "reel-runs/2026-11-10-rajamouli-varanasi-reported-record-telugu-theatrical-deal/output/rajamouli-varanasi-reported-record-telugu-theatrical-deal.mp4",
+    "video_sha256": "16ae18352f906017e5fb8a830ed4b4234925fc9fffcc5d914e9acc6b9b229038",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "QGvsDxawyeE",
+    "article_slug": "adani-group-120-billion-capex-plan-five-years",
+    "article_id": "beb2e28c-f73d-401c-9e21-321d3fbeaece",
+    "title": "Adani Group Unveils $120 Billion Capex Plan Over Five Years #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-11-11T11:15:04.492698+00:00",
+    "video_path": "reel-runs/2026-11-11-adani-group-120-billion-capex-plan-five-years/output-v2/adani-group-120-billion-capex-plan-five-years.mp4",
+    "video_sha256": "def5c053a00ee6d40cac23cee0852e04b990ebdcdc41e9e42a8ef6ec860c5003",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

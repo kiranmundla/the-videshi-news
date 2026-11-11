@@ -1,0 +1,226 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "rajamouli-varanasi-reported-record-telugu-theatrical-deal",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "SS Rajamouli",
+    "Mahesh Babu",
+    "Varanasi",
+    "Priyanka Chopra Jonas",
+    "MM Keeravaani",
+    "Andhra Pradesh and Telangana"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'SS Rajamouli' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'MM Keeravaani' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Andhra Pradesh and Telangana' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Mahesh Babu in Spyder (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q2087610)",
+      "verdict": "rejected",
+      "reason": "resolution: 675x901 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mahesh Babu at 61st Filmfare awards south.jpg",
+      "route": "identity \u2014 depicts (P180=Q2087610)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x404 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mahesh Babu at 61st Filmfare awards south (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q2087610)",
+      "verdict": "rejected",
+      "reason": "resolution: 175x404 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mahesh Babu at 61st Filmfare awards south (cropped) 2.jpg",
+      "route": "identity \u2014 depicts (P180=Q2087610)",
+      "verdict": "rejected",
+      "reason": "resolution: 216x256 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Mahesh Babu at Selvandhan Audio Launch.jpg",
+      "route": "identity \u2014 depicts (P180=Q2087610)",
+      "verdict": "USED (news)",
+      "reason": "1144x1525, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Mahesh Babu in Spyder.jpg",
+      "route": "identity \u2014 depicts (P180=Q2087610)",
+      "verdict": "accepted",
+      "reason": "1283x1926, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Varanasi Munshi Ghat3.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q79980)",
+      "verdict": "USED (hero)",
+      "reason": "2629x1833, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Carvings on the Dhamek Stupa, South Western side.jpg",
+      "route": "identity \u2014 depicts (P180=Q79980)",
+      "verdict": "USED (grid)",
+      "reason": "1199x1106, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Priyanka Chopra at Bulgary launch, 2024 (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q158957)",
+      "verdict": "rejected",
+      "reason": "resolution: 296x398 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Photo Of Priyanka Chopra From The Blenders Pride Fashion Tour 2011 finale 3.jpg",
+      "route": "identity \u2014 depicts (P180=Q158957)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x439 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Priyanka Chopra's press conference after being conferred with the Padma Shri (03).jpg",
+      "route": "identity \u2014 depicts (P180=Q158957)",
+      "verdict": "rejected",
+      "reason": "resolution: 531x813 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Priyanka Chopra's press conference after being conferred with the Padma Shri (05).jpg",
+      "route": "identity \u2014 depicts (P180=Q158957)",
+      "verdict": "rejected",
+      "reason": "resolution: 480x600 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Priyanka Chopra, Shahid Kapoor Launch of OPIUM Eyewear's 'Teri Meri Kahaani' collection.jpg",
+      "route": "identity \u2014 depicts (P180=Q158957)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x884 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Priyanka Chopra Lions Gold Awards 2015.jpg",
+      "route": "identity \u2014 depicts (P180=Q158957)",
+      "verdict": "rejected",
+      "reason": "resolution: 395x597 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Priyanka Chopra Meets Spice Mobile Contest Winners (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q158957)",
+      "verdict": "rejected",
+      "reason": "resolution: 335x439 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Priyanka Chopra at BIG Star Entertainment Awards 2014 4.jpg",
+      "route": "identity \u2014 depicts (P180=Q158957)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x883 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Priyanka Chopra at Bulgary launch, 2024.jpg",
+      "route": "identity \u2014 depicts (P180=Q158957)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x687 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Priyanka Chopra at Filmfare Awards 2013.jpg",
+      "route": "identity \u2014 depicts (P180=Q158957)",
+      "verdict": "rejected",
+      "reason": "resolution: 508x568 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Priyanka Chopra at IIFA 2012 - Day 2 (20).jpg",
+      "route": "identity \u2014 depicts (P180=Q158957)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x388 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "mahesh-babu-at-selvandhan-audio-launch",
+      "path": "mahesh-babu-at-selvandhan-audio-launch.jpg",
+      "size": [
+        1144,
+        1525
+      ],
+      "role": "establishing",
+      "subject": "Mahesh Babu at Selvandhan Audio Launch",
+      "route": "identity \u2014 depicts (P180=Q2087610)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Mahesh_Babu_at_Selvandhan_Audio_Launch.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Mahesh_Babu_at_Selvandhan_Audio_Launch.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "https://silverscreen.in",
+      "entity": "Mahesh Babu",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Mahesh Babu",
+        "Prince of Tollywood",
+        "Ghattamaneni Mahesh Babu",
+        "Superstar Mahesh babu",
+        "SSMB"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "varanasi-munshi-ghat3",
+      "path": "varanasi-munshi-ghat3.jpg",
+      "size": [
+        2629,
+        1833
+      ],
+      "role": "establishing",
+      "subject": "Varanasi , India as seen from Ganga river .",
+      "route": "identity \u2014 Wikidata P18 (Q79980)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Varanasi_Munshi_Ghat3.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Varanasi_Munshi_Ghat3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Marcin Bia\u0142ek",
+      "entity": "Varanasi",
+      "entity_type": "place",
+      "entity_aliases": [
+        "Varanasi",
+        "Banaras",
+        "Kashi",
+        "Benaras"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "carvings-on-the-dhamek-stupa-south-western-s",
+      "path": "carvings-on-the-dhamek-stupa-south-western-s.jpg",
+      "size": [
+        1199,
+        1106
+      ],
+      "role": "establishing",
+      "subject": "Carvings on the Dhamek Stupa, South Western side.",
+      "route": "identity \u2014 depicts (P180=Q79980)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Carvings_on_the_Dhamek_Stupa,_South_Western_side.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Carvings_on_the_Dhamek_Stupa%2C_South_Western_side.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "SpeakingArch",
+      "entity": "Varanasi",
+      "entity_type": "place",
+      "entity_aliases": [
+        "Varanasi",
+        "Banaras",
+        "Kashi",
+        "Benaras"
+      ]
+    }
+  ]
+}

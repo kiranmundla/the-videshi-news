@@ -1,0 +1,37 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "h1b-grace-period-plan-draws-31383-public-comments",
+  "name": "h1b-grace-period-plan-draws-31383-public-comments",
+  "script": "reel-runs/2026-11-11-h1b-grace-period-plan-draws-31383-public-comments/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000621
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-11-h1b-grace-period-plan-draws-31383-public-comments/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "dhs-secretary-alejandro-mayorkas-flag-raisin",
+      "hero": "alejandro-mayorkas-usdhs-secretary-presents",
+      "grid": "u-s-citizenship-and-immigration-service",
+      "diaspora": "dhs-senior-official-kristie-canegallo-attend"
+    }
+  },
+  "manifest": "reel-runs/2026-11-11-h1b-grace-period-plan-draws-31383-public-comments/output/render-manifest.json",
+  "video": "reel-runs/2026-11-11-h1b-grace-period-plan-draws-31383-public-comments/output/h1b-grace-period-plan-draws-31383-public-comments.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:diaspora"
+    ]
+  }
+}

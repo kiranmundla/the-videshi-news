@@ -1,0 +1,401 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04",
+ "article_slug": "isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04",
+ "article_id": "37a40e9a-c5c9-45a2-8c6d-8f5ba618a2b8",
+ "category": "Technology",
+ "video": "reel-runs/2026-11-11-isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04/output/isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Indigenous_Cryogenic_Upper_Stage_of_GSLV-F09_at_Stage_Preparation_Facility.jpg/1280px-Indigenous_Cryogenic_Upper_Stage_of_GSLV-F09_at_Stage_Preparation_Facility.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-11-11-isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04/output/hero.jpg",
+  "width": 2453,
+  "height": 1637,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.491,0.582) damped=(0.495,0.541)",
+  "has_face": false,
+  "box_source": [
+   528,
+   525,
+   1373,
+   654
+  ],
+  "box_bg": [
+   266,
+   334,
+   467,
+   222
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.496,
+   0.542
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   556
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 258,
+   "block_top": 1037,
+   "block_bottom": 1295,
+   "text_bbox": [
+    70,
+    1037,
+    930,
+    1295
+   ],
+   "texts": [
+    "Technology",
+    "ISRO TEST-FIRES GSLV CRYOGENIC ENGINE FOR 200 SECONDS AHEAD OF NVS-04 LAUNCH"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.34,
+    "photo_px": [
+     2453,
+     1637
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.3399918467183041,
+     "window": [
+      0,
+      2,
+      2453,
+      1637
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.17x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 313,
+   "block_top": 1267,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1267,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "ISRO completed a 200-second flight acceptance hot test of the CE-7.5 cryogenic engine on November 5 at Mahendragiri, and the engine will now be fitted into the cryogenic stage of GSLV-F19 to launch the NVS-04 navigation satellite."
+   ],
+   "v7": {
+    "image_source": "extra:a-man-dyeing-silk-red-in-boiling-water-in-ku",
+    "track": "full-bleed",
+    "render_scale": 0.64,
+    "photo_px": [
+     2000,
+     3000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.64,
+     "window": [
+      164,
+      0,
+      1851,
+      3000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "A man dyeing silk red in boiling water in Kumbakonam, Tamil Nadu",
+     "route": "identity \u2014 depicts (P180=Q1445)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:A_man_dyeing_silk_red_in_boiling_water_in_Kumbakonam,_Tamil_Nadu.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/A_man_dyeing_silk_red_in_boiling_water_in_Kumbakonam%2C_Tamil_Nadu.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Matthew T Rader"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 351,
+   "block_top": 1229,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1229,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "200 SECONDS",
+    "Flight acceptance hot test of the CE-7.5 cryogenic engine on November 5"
+   ],
+   "v7": {
+    "image_source": "extra:tea-fields-nilgiris-ranges-mynala-dec25-a7cr",
+    "track": "full-bleed",
+    "render_scale": 0.345,
+    "photo_px": [
+     8904,
+     5565
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.3450134770889488,
+     "window": [
+      2940,
+      0,
+      6070,
+      5565
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Tea plantations against serried ranges of the Nilgiris. View south southeast from Mynala junction on SH-15 (Ooty-Kotagiri). Ketti valley centre right, Wellington/Coonoor centre left. The Nilgiris, Tamil Nadu, India",
+     "route": "identity \u2014 Wikidata P18 (Q1445)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Tea_Fields_Nilgiris_Ranges_Mynala_Dec25_A7CR_09866.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Tea_Fields_Nilgiris_Ranges_Mynala_Dec25_A7CR_09866.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "This Photo was taken by Timothy A. Gonsalves . Feel free to use my photos, but p"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 531,
+   "block_top": 1049,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1049,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "73.5",
+    "Kilonewtons of thrust the CE-7.5 produces in vacuum",
+    "NVS-04",
+    "Fourth satellite in India's second-generation NavIC series, to fly on GSLV-F19"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.345,
+    "photo_px": [
+     8904,
+     5565
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.3450134770889488,
+     "window": [
+      2940,
+      0,
+      6070,
+      5565
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "NavIC provides positioning services over India and a region extending about 1,500 km beyond its borders",
+    "NVS-04 follows the October 30 launch of NVS-03"
+   ],
+   "v7": {
+    "image_source": "inline:2",
+    "track": "full-bleed",
+    "render_scale": 0.64,
+    "photo_px": [
+     2000,
+     3000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.64,
+     "window": [
+      164,
+      0,
+      1851,
+      3000
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 358,
+   "block_top": 681,
+   "block_bottom": 1039,
+   "text_bbox": [
+    70,
+    681,
+    930,
+    1039
+   ],
+   "texts": [
+    "The Takeaway",
+    "With the test complete, the engine will now be inducted into the cryogenic stage of the GSLV-F19 launch vehicle.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 162.6,
+ "mp4_bytes": 15797535
+}

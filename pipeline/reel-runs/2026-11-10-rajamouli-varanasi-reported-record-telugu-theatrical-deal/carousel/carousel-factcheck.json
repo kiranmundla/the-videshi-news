@@ -1,0 +1,149 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "rajamouli-varanasi-reported-record-telugu-theatrical-deal",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Rajamouli's Varanasi Reportedly Sets Record Telugu Theatrical Deal",
+        "numbers": [],
+        "entities": [
+          "Rajamouli's Varanasi Reportedly Sets Record Telugu Theatrical Deal"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Varanasi sets a new benchmark for theatrical business.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The Mahesh Babu film's Telugu-states deal is reported at Rs. 290-300 crore, above RRR's reported Rs. 225 crore.",
+        "numbers": [
+          225.0,
+          290.0,
+          300.0,
+          2250000000.0,
+          3000000000.0
+        ],
+        "entities": [
+          "Mahesh Babu"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the reported figures for both films' deals.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Varanasi's Telugu-states theatrical deal is reported at Rs. 300 crore by 123Telugu and Rs. 290 crore by other trade outlets, with official confirmation still awaited",
+        "numbers": [
+          123.0,
+          290.0,
+          300.0,
+          2900000000.0,
+          3000000000.0
+        ],
+        "entities": [
+          "Varanasi's Telugu-states"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides these specific figures and mentions pending confirmation.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "RRR's Telugu-states theatrical rights were valued at around Rs. 225 crore",
+        "numbers": [
+          225.0,
+          2250000000.0
+        ],
+        "entities": [
+          "RRR's Telugu-states"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states RRR's deal was valued at approximately Rs. 225 crore.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Varanasi is scheduled for a worldwide theatrical release on April 7, 2027, in multiple languages",
+        "numbers": [
+          7.0,
+          2027.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027
+          ]
+        },
+        "llm_reason": "The article confirms the release date and that it will be in multiple languages.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Rajamouli's Varanasi Reportedly Sets Record Telugu Theatrical Deal",
+        "numbers": [],
+        "entities": [
+          "Rajamouli's Varanasi Reportedly Sets Record Telugu Theatrical Deal"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Varanasi sets a new benchmark for theatrical business.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000451,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

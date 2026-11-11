@@ -1,0 +1,187 @@
+[
+  {
+    "id": "da639f3d-08a6-4209-916a-0315f8e75ba1",
+    "headline": "Airlines Cut Diwali Flights For First Time Since Covid As Fares Surge",
+    "slug": "airlines-cut-diwali-flights-first-time-since-covid",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact dates for the Diwali travel season and the impact of the flight cuts on travelers during this period.",
+        "Include specific fare examples to illustrate the surge in ticket prices, such as average fare increases in rupees or percentage increases compared to last year.",
+        "Provide a brief explanation of the reasons behind the capacity cuts and fare increases to give readers context on the operational disruptions mentioned."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a relevant airline or aviation authority regarding the flight cuts or fare increases for real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "7afaed9b-23b7-4469-90c8-586d88acff3e",
+    "headline": "Truly Indian Launches Costco-Exclusive Dual Naan Pack For Midwest Diwali Shopper",
+    "slug": "truly-indian-costco-dual-naan-pack-midwest-diwali",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the limited availability by specifying the duration of the promotion or the end date if known, as this would help readers understand how long they have to purchase the product.",
+        "Include a direct quote from a Truly Indian representative or a Costco spokesperson to enhance attribution and provide a more personal touch to the announcement.",
+        "Add context about the significance of Diwali for the product launch, as this could help readers understand why the timing is relevant and important for shoppers."
+      ],
+      "embed_opportunities": [
+        "Embed the official Truly Indian announcement or a relevant Costco tweet about the product launch for additional credibility and direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "51ede358-65e6-4a77-8858-83986eb6bad2",
+    "headline": "Sensex Surges Over 1,200 Points Intraday As Crude Falls, FIIs Buy",
+    "slug": "sensex-surges-1200-points-intraday-crude-fii-kalyan-rvnl",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the market movements by providing a clearer structure that separates the different time snapshots (e.g., 9:53 a.m., 12 noon, 1:11 p.m.) into distinct sections or bullet points for better readability.",
+        "Include specific figures for the crude oil price drop to provide context on how it impacts market sentiment and investor behavior. This would enhance completeness and clarity.",
+        "Add a brief explanation of what the terms 'FIIs' and 'Nifty 50' mean for readers who may not be familiar with market terminology, improving accessibility."
+      ],
+      "embed_opportunities": [
+        "Embed a live feed or tweet from a reputable financial news source that tracks the Sensex and Nifty for real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "beb2e28c-f73d-401c-9e21-321d3fbeaece",
+    "headline": "Adani Group Unveils $120 Billion Capex Plan Over Five Years",
+    "slug": "adani-group-120-billion-capex-plan-five-years",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the context of the $120 billion investment by providing more details on how this compares to previous investment plans or the current state of the Adani Group's financial health. This would help readers understand the significance of the new capex plan.",
+        "Include specific timelines for when the investments are expected to start and any milestones that may be relevant within the five-year period. This would give readers a clearer picture of the plan's implementation.",
+        "Ensure that all figures mentioned are consistently presented in the same currency to avoid confusion. For example, clarify the conversion between dollars and rupees where applicable, particularly in the context of the asset base and earnings projections."
+      ],
+      "embed_opportunities": [
+        "Embed the official Adani Group announcement or a relevant tweet from their official account to provide direct access to the source of the news."
+      ]
+    }
+  },
+  {
+    "id": "7da7b486-7ae3-4e9a-9074-40c348ec444d",
+    "headline": "Sonu Nigam Buys Rs 44.30 Crore Apartment in Mumbai's Andheri West",
+    "slug": "sonu-nigam-buys-rs-443-crore-mumbai-apartment-andheri",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the transaction date: The article states the transaction was registered on October 30, 2026, which appears to be a typographical error since that date is in the future. It should be corrected to reflect the actual date of registration.",
+        "Improve completeness by adding context about the property market in Mumbai: A brief mention of how this purchase fits into the current real estate trends in Mumbai, such as average prices per square foot in the area or notable recent transactions, would provide valuable context for readers.",
+        "Enhance clarity by removing repetitive phrases: The article redundantly states that Sonu Nigam bought a 3,055 sq ft apartment for Rs 44.30 crore multiple times. This could be streamlined to improve readability.",
+        "Include a quote or statement from a real estate expert or a relevant authority: This would add depth to the article and provide readers with expert insight into the significance of this purchase."
+      ],
+      "embed_opportunities": [
+        "Embed the official property registration document or a relevant tweet from a credible real estate source to provide readers with direct access to the information."
+      ]
+    }
+  },
+  {
+    "id": "0d942c64-9453-4a9c-9408-88e681946e7b",
+    "headline": "Indian Seafarer Injured as Projectile Hits Tanker in Persian Gulf",
+    "slug": "indian-seafarer-injured-projectile-tanker-persian-gulf-fujairah-energy",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the time of the incident on November 10, as well as when the Indian national was taken ashore for medical examination.",
+        "Provide more context regarding the nature of the projectile and any potential implications for maritime safety in the region, as readers may want to understand the broader security situation.",
+        "Include a direct quote from the Indian government or a relevant agency regarding the ongoing monitoring efforts and any potential actions being taken to ensure the safety of Indian seafarers in the region.",
+        "Ensure that the article maintains a consistent structure by avoiding repetitive phrases and consolidating information about the number of injured crew members and their nationalities."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement from Sarbananda Sonowal on X (formerly Twitter) to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "814341ab-39f9-4a7e-bca9-f348ee0e416e",
+    "headline": "Covid Variant PJ.2.1 Is Spreading Abroad: What Indians Need to Know",
+    "slug": "covid-variant-pj21-what-indians-need-to-know",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by correcting the dates mentioned. The article states that PJ.2.1 was first sampled on May 2, 2026, which is in the future. This should be corrected to a past date to maintain accuracy.",
+        "Provide a clearer explanation of what the rise in PJ.2.1 cases in Ontario means for the general public, including any specific recommendations or actions they should take if they are traveling or living abroad.",
+        "Include the latest statistics or data on COVID-19 cases in India to provide context on how the emergence of PJ.2.1 might impact the current situation there.",
+        "Add a brief summary of the WHO's current stance on COVID-19 variants to give readers a better understanding of how PJ.2.1 fits into the larger picture of ongoing pandemic management."
+      ],
+      "embed_opportunities": [
+        "Embed the latest WHO statement or tweet regarding COVID-19 variants to provide authoritative context and updates."
+      ]
+    }
+  },
+  {
+    "id": "10edf669-a8d4-49b3-8d34-1fc07f54b224",
+    "headline": "How Two Bengaluru Founders Turned Surplus Milk Into a 50-Store Mithai Chain",
+    "slug": "india-sweet-house-bengaluru-founders-mithai-chain-karma-farms",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the financial data by providing a clear distinction between reported claims and audited results, ensuring readers understand the context of the Rs 100 crore figure versus the Rs 83.10 crore revenue.",
+        "Include a brief timeline of key milestones for India Sweet House, such as the establishment date, first store opening, and any significant growth phases, to provide readers with a clearer picture of the company's development.",
+        "Add a quote or statement from the founders about their future plans or vision for the brand, which would provide insight into their strategic direction and engage readers more effectively."
+      ],
+      "embed_opportunities": [
+        "Embed the official Moneycontrol article or a relevant tweet that discusses the financial performance of India Sweet House to provide readers with direct access to the source of the financial data."
+      ]
+    }
+  },
+  {
+    "id": "6769a020-566d-4785-ab3e-406d3fd98693",
+    "headline": "CPCB Says Diwali Data Gaps Came From Older Monitors' 1,000-Microgram Ceiling",
+    "slug": "cpcb-diwali-data-gap-older-monitors-1000-microgram-ceiling",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the date of the CPCB's statement and the exact date of the Diwali firecracker burst to provide context for the data gaps discussed.",
+        "Include specific figures regarding the number of hours that were excluded from the data due to the 1,000-microgram ceiling, as this would help readers understand the extent of the issue.",
+        "Provide more context about the implications of the AQI ceiling of 500 and how it affects public health, especially during high pollution events like Diwali.",
+        "Mention any immediate actions or changes the CPCB plans to implement regarding the monitoring systems and methodology to enhance transparency and accuracy."
+      ],
+      "embed_opportunities": [
+        "Embed the official CPCB statement or a relevant tweet that outlines their response to the allegations of under-reporting."
+      ]
+    }
+  },
+  {
+    "id": "b487a20c-f558-48c2-a3fe-8328f79895ec",
+    "headline": "BJP Wins 77 Tripura Civic Seats Unopposed as Opposition Alleges Intimidation",
+    "slug": "bjp-wins-77-tripura-civic-seats-unopposed-november-27",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date when the withdrawal of nominations occurred, as well as the implications of the unopposed seats for the upcoming elections on November 27.",
+        "Provide more context on the allegations of intimidation by including specific examples or incidents reported by the opposition, which would enhance the completeness of the coverage.",
+        "Include a direct quote from a representative of the BJP to balance the allegations from the opposition and provide a fuller picture of the situation.",
+        "Add a brief explanation of the significance of the urban local body elections in Tripura, including their impact on local governance and political dynamics in the state."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Tripura State Election Commission announcing the results or details of the elections to provide official confirmation and context."
+      ]
+    }
+  }
+]

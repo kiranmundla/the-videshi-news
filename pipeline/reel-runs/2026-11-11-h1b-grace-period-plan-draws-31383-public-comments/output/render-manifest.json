@@ -1,0 +1,415 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "h1b-grace-period-plan-draws-31383-public-comments",
+ "article_slug": "h1b-grace-period-plan-draws-31383-public-comments",
+ "article_id": "7343c93c-b560-4fe7-aecf-fa90b4cfef95",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-11-h1b-grace-period-plan-draws-31383-public-comments/output/h1b-grace-period-plan-draws-31383-public-comments.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://immigration-analytics.com/wp-content/uploads/2026/11/Federal-Register-Proposed-Rules-With-Comment-Form.png",
+  "local_path": "reel-runs/2026-11-11-h1b-grace-period-plan-draws-31383-public-comments/output/hero.png",
+  "width": 1184,
+  "height": 864,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.579,0.566) damped=(0.539,0.533)",
+  "has_face": false,
+  "box_source": [
+   307,
+   270,
+   663,
+   345
+  ],
+  "box_bg": [
+   302,
+   345,
+   467,
+   243
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.538,
+   0.545
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   608
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 828,
+   "zone_h": 728,
+   "scale": 1.0,
+   "content_h": 279,
+   "block_top": 1052,
+   "block_bottom": 1331,
+   "text_bbox": [
+    70,
+    1052,
+    930,
+    1331
+   ],
+   "texts": [
+    "Immigration",
+    "PLAN TO END H-1B GRACE PERIOD DRAWS 31,383 PUBLIC COMMENTS BEFORE DEADLINE"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.704,
+    "photo_px": [
+     1184,
+     864
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 608,
+     "scale": 0.7043918918918919,
+     "window": [
+      0,
+      1,
+      1184,
+      864
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.22x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 828,
+   "zone_h": 728,
+   "scale": 1.0,
+   "content_h": 338,
+   "block_top": 1023,
+   "block_bottom": 1361,
+   "text_bbox": [
+    70,
+    1023,
+    930,
+    1361
+   ],
+   "texts": [
+    "What Happened",
+    "A Department of Homeland Security proposal to eliminate the 60-day grace period after a job loss drew 31,383 posted public comments before the November 10 deadline, while the grace period remains in effect."
+   ],
+   "v7": {
+    "image_source": "extra:dhs-secretary-alejandro-mayorkas-flag-raisin",
+    "track": "backdrop",
+    "render_scale": 0.374,
+    "photo_px": [
+     2328,
+     1624
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 608,
+     "scale": 0.3744948361023799,
+     "window": [
+      42,
+      1,
+      2269,
+      1624
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.18x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Washington, D.C. (February 2, 2021) Homeland Security Secretary Alejandro Mayorkas participates in a flag raising ceremony after being sworn in as the department's seventh secretary.",
+     "route": "identity \u2014 Wikidata P18 (Q11231)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:DHS_Secretary_Alejandro_Mayorkas_Flag_Raising_Ceremony_(50914852532).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/DHS_Secretary_Alejandro_Mayorkas_Flag_Raising_Ceremony_%2850914852532%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "U.S. Department of Homeland Security (DHS)"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 682,
+   "zone_h": 898,
+   "scale": 1.0,
+   "content_h": 410,
+   "block_top": 1170,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1170,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "31,383",
+    "Public comments posted on the DHS proposal to eliminate the 60-day grace period"
+   ],
+   "v7": {
+    "image_source": "extra:alejandro-mayorkas-usdhs-secretary-presents",
+    "track": "full-bleed",
+    "render_scale": 0.823,
+    "photo_px": [
+     3500,
+     2333
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8229747106729532,
+     "window": [
+      1659,
+      0,
+      2971,
+      2333
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Thermal, California (December 8, 2023) Homeland Security Secretary, Alejandro Mayorkas, presents the Outstanding Americans by Choice Award to Congressman Raul Ruiz at Coachella Valley High School in Thermal, California. (DHS photo by Tia Du",
+     "route": "identity \u2014 depicts (P180=Q11231)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Alejandro_Mayorkas,_USDHS_Secretary_Presents_the_Outstanding_Americans_by_Choice_Award_to_Congressman_Raul_Ruiz_at_Coachella_Valley_High_School_in_Thermal,_California_on_December_8,_2023_-_18.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Alejandro_Mayorkas%2C_USDHS_Secretary_Presents_the_Outstanding_Americans_by_Choice_Award_to_Congressman_Raul_Ruiz_at_Coachella_Valley_High_School_in_Thermal%2C_California_on_December_8%2C_2023_-_18.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "DHSgov"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 1035,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1035,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "70%",
+    "Of H-1B petitions approved in fiscal 2025 were for workers born in India",
+    "60 DAYS",
+    "Current grace period after a job loss, still in effect today"
+   ],
+   "v7": {
+    "image_source": "extra:u-s-citizenship-and-immigration-service",
+    "track": "full-bleed",
+    "render_scale": 0.593,
+    "photo_px": [
+     4320,
+     3240
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5925925925925926,
+     "window": [
+      1195,
+      0,
+      3017,
+      3240
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Northlake area - DeKalb County, Georgia",
+     "route": "identity \u2014 Wikidata P18 (Q2097315)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:U.S._Citizenship_and_Immigration_Service.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/88/U.S._Citizenship_and_Immigration_Service.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Gulbenk"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 1148,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1148,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Indian professionals would carry most of the impact if the rule is finalised",
+    "The grace period remains in effect until DHS publishes a final rule"
+   ],
+   "v7": {
+    "image_source": "extra:dhs-senior-official-kristie-canegallo-attend",
+    "track": "full-bleed",
+    "render_scale": 0.823,
+    "photo_px": [
+     3500,
+     2333
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8229747106729532,
+     "window": [
+      1333,
+      0,
+      2645,
+      2333
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "CAMP SPRINGS (June 20, 2024) Department of Homeland Security (DHS), Senior Official Performing the Duties of the Deputy Secretary, Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, M.D. (DHS ph",
+     "route": "identity \u2014 depicts (P180=Q2097315)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:DHS_Senior_Official_Kristie_Canegallo,_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs,_Maryland_on_June_20,_2024_-_1.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/DHS_Senior_Official_Kristie_Canegallo%2C_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs%2C_Maryland_on_June_20%2C_2024_-_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "DHSgov"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 316,
+   "block_top": 702,
+   "block_bottom": 1018,
+   "text_bbox": [
+    70,
+    702,
+    930,
+    1018
+   ],
+   "texts": [
+    "The Takeaway",
+    "Nothing changes today: a worker laid off this week still has the grace period, because the proposal has no legal effect until DHS publishes a final rule.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 150.5,
+ "mp4_bytes": 18496124
+}

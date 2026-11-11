@@ -1,0 +1,33 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "adani-group-120-billion-capex-plan-five-years",
+  "name": "adani-group-120-billion-capex-plan-five-years",
+  "script": "reel-runs/2026-11-11-adani-group-120-billion-capex-plan-five-years/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000612
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-11-adani-group-120-billion-capex-plan-five-years/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "bronte-45332993701"
+    }
+  },
+  "manifest": "reel-runs/2026-11-11-adani-group-120-billion-capex-plan-five-years/output/render-manifest.json",
+  "video": "reel-runs/2026-11-11-adani-group-120-billion-capex-plan-five-years/output/adani-group-120-billion-capex-plan-five-years.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-11-adani-group-120-billion-capex-plan-five-years/output/tiktok-caption.txt"
+}

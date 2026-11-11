@@ -1,0 +1,188 @@
+[
+  {
+    "id": "5fdf8baa-667a-4f7e-89af-5523589a689c",
+    "headline": "Virginia Jury Finds Naresh Bhatt Guilty of Murdering Wife Mamta Kafle Bhatt",
+    "slug": "naresh-bhatt-guilty-murder-wife-mamta-kafle-virginia",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events leading up to the murder verdict, including specific dates for when Mamta Kafle Bhatt was last seen and when the trial began, to provide readers with a clearer context of the case's progression.",
+        "Include a direct quote from Naresh Bhatt's defense attorney to provide balance and a fuller perspective on the defense's argument and strategy during the trial.",
+        "Add more details about the evidence presented during the trial that led to the jury's decision, which would enhance the completeness of the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Prince William County court or a local news outlet summarizing the verdict for real-time updates and context."
+      ]
+    }
+  },
+  {
+    "id": "f0d73962-54ab-4a0f-b6cf-b9577c61dd1a",
+    "headline": "Rajamouli's Varanasi Reportedly Sets Record Telugu Theatrical Deal",
+    "slug": "rajamouli-varanasi-reported-record-telugu-theatrical-deal",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the reported figures by explicitly stating that they are from trade outlets and not confirmed by the film's production team or distributors. This will enhance accuracy and attribution.",
+        "Include a brief explanation of why the reported figures are significant in the context of the film industry, such as how they reflect market trends or the anticipated success of the film.",
+        "Add a direct quote from a credible source or industry expert regarding the significance of the deal or the film's expectations to enhance completeness and authority."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from 123Telugu or another credible trade outlet that reported the figures for visual context and to enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "9bb1e7bd-397c-4460-bf7b-4d0e876d99a3",
+    "headline": "Padma Lakshmi Marks Diwali With Mother Home From Hospital and New CBS Show",
+    "slug": "padma-lakshmi-mother-home-hospital-diwali-new-cbs-show",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 5,
+      "suggestions": [
+        "The article lacks a compelling headline. Consider revising it to something more specific and engaging, such as 'Padma Lakshmi Celebrates Diwali with Family as Mother Returns Home from Hospital.'",
+        "The article repeats information unnecessarily, particularly regarding Lakshmi's mother's health. Streamline the content to avoid redundancy and improve clarity.",
+        "Provide more context about the significance of Diwali celebrations for Lakshmi and her family, which could enhance the reader's understanding of the occasion.",
+        "Include a direct quote from Lakshmi's Instagram post to add authenticity and a personal touch to the article."
+      ],
+      "embed_opportunities": [
+        "Embed Padma Lakshmi's Instagram post to allow readers to view the images and the original context of her message."
+      ]
+    }
+  },
+  {
+    "id": "c1e504db-7b46-4f4a-bc83-6829a0171c0c",
+    "headline": "Akshata Murty on Keeping Bengaluru Diwali Traditions Alive in Britain",
+    "slug": "akshata-murty-bengaluru-diwali-traditions-britain-bhavan",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the Diwali fundraiser and the significance of the upcoming gala on November 22, 2025, to provide context for readers.",
+        "Include direct quotes from Akshata Murty's speech to enhance the article's authenticity and provide readers with a clearer understanding of her sentiments about cultural preservation.",
+        "Provide more context about the Bharatiya Vidya Bhavan and its role in the Indian community in the UK, as this would help readers understand its significance in relation to Murty's remarks."
+      ],
+      "embed_opportunities": [
+        "Embed a video of Akshata Murty's speech or a relevant social media post from the Bharatiya Vidya Bhavan to give readers direct access to her message."
+      ]
+    }
+  },
+  {
+    "id": "1c49e9d8-3db0-4bec-916a-e9f51cfda26f",
+    "headline": "India Hits 98.4% Immunisation Coverage, Yet Gaps Leave Millions Missing Shots",
+    "slug": "india-immunisation-98-percent-coverage-gaps-missing-shots",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of immunization coverage statistics by specifying the months or quarters for the fiscal year data mentioned (e.g., '94.7% in Q1 2022-23') to enhance clarity and completeness.",
+        "Provide specific numbers or percentages regarding the populations affected by caregiver hesitation and migration to give readers a clearer understanding of the scale of the issue.",
+        "Include a direct quote from a health official or expert to strengthen the attribution and provide authoritative context to the data presented."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet or announcement from the Ministry of Health and Family Welfare regarding the immunization coverage statistics to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "bcbc9d68-5e3a-441a-884a-8c5a4bb3d15c",
+    "headline": "Diwali on a Plate: Mithai, Namkeen and the Thali at the Centre",
+    "slug": "diwali-festive-foods-mithai-namkeen-thali-guide",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the sources of information by providing direct quotes or citations from Food Network UK and Rohan's Indian Bistro to enhance attribution and credibility.",
+        "Include specific details about the significance of Diwali and its food traditions, such as how different regions in India might have unique dishes or customs, to provide a more complete picture.",
+        "Ensure that the information about the dates of Diwali in 2026 is presented clearly and concisely, perhaps in a dedicated section or bullet points for better readability.",
+        "Add a brief explanation of the cultural significance of the sweets and snacks mentioned, which would provide context for readers unfamiliar with Diwali traditions."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from a reputable Indian food blogger or chef discussing Diwali food traditions to enhance engagement and provide a visual element."
+      ]
+    }
+  },
+  {
+    "id": "ac42b360-6d1d-4b99-ab6f-1b1562c16194",
+    "headline": "IMD Forecasts Heavy Rain, Snow Till Nov 16 as Delhi AQI Eases to Poor",
+    "slug": "imd-heavy-rain-snowfall-till-nov-16-delhi-aqi-poor",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of the weather events by providing specific dates for each region mentioned, such as when the heavy rainfall is expected to start and end in Tamil Nadu and Kerala.",
+        "Include a brief explanation of what a 'Western Disturbance' is and how it affects weather patterns in the region, as this would provide valuable context for readers unfamiliar with meteorological terms.",
+        "Ensure that all data points, such as the AQI readings and weather forecasts, are attributed to their original sources clearly and consistently to enhance credibility.",
+        "Correct the incomplete sentence at the end of the article regarding the Western Disturbance and ensure that all information is fully presented to avoid confusion."
+      ],
+      "embed_opportunities": [
+        "Embed the official IMD tweet or advisory regarding the weather forecast to provide readers with direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "29b583a9-9ebc-449b-8364-c37600070193",
+    "headline": "150 Dishes for Four Lakh Guests at Anant Singh Daughter's Ladma Wedding",
+    "slug": "anant-singh-daughter-wedding-150-dishes-ladma-feast",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the source of the guest count of four lakh; provide attribution to the specific report or individual making this claim to enhance credibility.",
+        "Include more specific details about the wedding ceremony, such as the significance of the sacred-thread initiation for readers unfamiliar with the cultural context.",
+        "Provide a clearer breakdown of the menu items if available, or mention the types of Bihari dishes that are typically served at such large weddings to give readers a better sense of the culinary offerings.",
+        "Ensure that the mention of the gifts and prizes (Land Rover Defender, Mahindra Thar, motorcycle) includes clear attribution to the sources reporting these details to avoid ambiguity."
+      ],
+      "embed_opportunities": []
+    }
+  },
+  {
+    "id": "a43f229d-77e1-4ba3-877a-1ffcb37e794f",
+    "headline": "Gold Falls Sharply in Dollars, but Indian Gold ETFs Still Hold Gains Since Last ",
+    "slug": "gold-falls-dollars-indian-gold-etfs-hold-gains-since-last-diwali",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact date for the reported returns of gold ETFs since Diwali 2025, as this date seems to be a typographical error and should likely be 2022 or 2023.",
+        "Provide a more detailed breakdown of the factors influencing the Indian gold prices, such as specific import duty percentages or recent changes in the rupee-dollar exchange rate, to give readers a clearer understanding of the market dynamics.",
+        "Ensure consistency in the presentation of data by clearly distinguishing between the different sources of information, such as IBJA, AMFI, and Livemint, and how they relate to each other in the context of the article."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or market expert discussing the implications of the gold price drop for Indian investors."
+      ]
+    }
+  },
+  {
+    "id": "99497bce-305b-40c0-82b4-f5ef0fb631ea",
+    "headline": "New Zealand Name Conway and Ravindra for India Tests, Subject to Fitness",
+    "slug": "new-zealand-name-conway-ravindra-india-tests-fitness",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the status of the injured players by providing a timeline for their fitness updates, such as when a final decision on their availability will be made.",
+        "Include quotes from the team captain or coach regarding the squad selection and the importance of the upcoming series against India, which would add depth and context to the article.",
+        "Add a brief explanation of the significance of the World Test Championship points for the series, as this context is important for understanding the stakes involved."
+      ],
+      "embed_opportunities": [
+        "Embed the official New Zealand Cricket tweet announcing the squad to provide readers with direct access to the source of the information."
+      ]
+    }
+  }
+]

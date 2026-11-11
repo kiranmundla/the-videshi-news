@@ -1,0 +1,118 @@
+[
+  {
+    "id": "20f02dac-47ab-43f1-9be3-ccf7816203b4",
+    "headline": "'It Has Been Very Difficult': Suryakumar Yadav Opens Up After India Snub",
+    "slug": "suryakumar-yadav-opens-up-india-snub-mumbai-smat",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the dates of the T20 World Cup and the IPL season mentioned, as well as the date he was dropped from the team. This will help readers understand the context better.",
+        "Include a direct quote from Suryakumar Yadav about his feelings regarding being dropped from the team, rather than just summarizing his sentiments. This would enhance the emotional connection and provide clarity.",
+        "Provide more context about the Syed Mushtaq Ali Trophy, such as its significance in Indian cricket and what it means for Suryakumar's career moving forward. This will help readers understand why his return to competitive cricket is important.",
+        "Correct the mention of the T20 World Cup title defense; it should specify the year (2022) instead of 2026, which appears to be a typographical error."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Suryakumar Yadav or the Mumbai Cricket Association regarding his return to competitive cricket or his thoughts on being dropped from the team."
+      ]
+    }
+  },
+  {
+    "id": "a2f8facd-85d4-4e8e-8aea-4f0c920e09be",
+    "headline": "Drishyam 3 Jumps 150% on Sixth Monday, Nears Profitability Milestone",
+    "slug": "drishyam-3-box-office-sixth-monday-150-percent-jump",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the profitability milestone by explicitly stating what it means for the film's future in terms of potential re-releases or streaming deals if it reaches the \u20b9381.59 crore mark.",
+        "Include a brief comparison of Drishyam 3's performance to other recent films in the same genre or box office context to provide readers with a clearer understanding of its success.",
+        "Add a quote or statement from a film industry expert or analyst regarding the significance of the film's performance and its potential impact on future projects."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Koimoi or another reputable box office tracking account that highlights the film's performance for real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "df856264-9ebc-405a-8007-c095ba6def30",
+    "headline": "Aaryavir Sehwag's 160 Powers India U19 Past UAE Into Asia Cup Semis",
+    "slug": "aaryavir-sehwag-160-india-u19-uae-asia-cup-semis",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the semi-final match against Afghanistan, as the current mention of 'Thursday, November 12' is incorrect; November 12, 2023, is a Sunday. Ensure the date is accurate and reflects the correct day of the week.",
+        "Include a brief mention of the significance of the U19 Asia Cup and its impact on the players' careers to provide context for readers unfamiliar with the tournament.",
+        "Provide more details on the performance of the UAE team, particularly highlighting key players and their contributions to give a fuller picture of the match."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ACC (Asian Cricket Council) account announcing the semi-final matchups or celebrating India U19's victory."
+      ]
+    }
+  },
+  {
+    "id": "59d40253-4608-465d-8bad-fa532e560355",
+    "headline": "California Capitol Hosts First Diwali Celebration on Its West Steps",
+    "slug": "california-capitol-first-diwali-west-steps",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the event in the introduction to avoid confusion, as the article mentions both November 5 and November 8. It should clearly state that the celebration took place on November 5, 2026, and that it was held in anticipation of the official Diwali holiday on November 8.",
+        "Provide a brief background on the significance of Diwali and the importance of the event being hosted at the California State Capitol. This would help readers understand the cultural relevance of the celebration.",
+        "Include quotes from attendees or organizers to add a personal touch and provide insight into the atmosphere and significance of the event. This could enhance the completeness of the reporting.",
+        "Ensure that the article maintains a clear structure by separating sections with headings or bullet points for the event details, hosts, performances, and significance. This would improve readability."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the California State Capitol or Assemblymembers Ash Kalra and Dr. Darshana Patel announcing the event or sharing highlights, which would provide official validation and real-time engagement."
+      ]
+    }
+  },
+  {
+    "id": "a10a5901-2f3f-480d-b543-a04a2681df6c",
+    "headline": "German AI Chip Startup Sparxity Closes Series A, Total Funding Reaches $90 Milli",
+    "slug": "sparxity-series-a-90-million-sparse-ai-chips",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the amount raised in the Series A round, as this is a key detail that is currently missing. Providing this figure would enhance the completeness of the report.",
+        "Include a brief explanation of what 'sparse computing' means for readers who may not be familiar with the term. This will improve clarity and ensure that the article is accessible to a broader audience.",
+        "Add a timeline for when the company expects to release its next-generation chip, as this would provide readers with a concrete takeaway regarding future developments."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement from Sparxity or a relevant tweet from ICM HPQC Fund to provide direct attribution and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "67a19c6e-0013-4008-906a-a974899142c1",
+    "headline": "Telangana Orders Statewide IVF Probe After 43 Women Rescued From Egg Racket",
+    "slug": "telangana-ivf-probe-43-women-egg-racket",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the inspections began and when the arrests were made to provide a clearer context for the investigation's progression.",
+        "Include specific details about the regulatory violations found at the hospitals to enhance completeness and provide readers with a better understanding of the severity of the situation.",
+        "Mention any potential penalties or consequences for the hospitals and individuals involved in the violations to give readers a clearer picture of the implications of the investigation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Telangana Health Minister or the Telangana State Commission for Women regarding the investigation to provide official context and updates."
+      ]
+    }
+  }
+]

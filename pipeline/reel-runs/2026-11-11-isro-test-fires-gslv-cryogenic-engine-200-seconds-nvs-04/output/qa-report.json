@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-11-isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04/output/isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:diaspora"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        2453,
+        1637
+      ],
+      "manifest_dims": [
+        2453,
+        1637
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 976.6,
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Indigenous_Cryogenic_Upper_Stage_of_GSLV-F09_at_Stage_Preparation_Facility.jpg/1280px-Indigenous_Cryogenic_Upper_Stage_of_GSLV-F09_at_Stage_Preparation_Facility.jpg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-11-isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04/output/qa/frames/frame-hook.png",
+      "text_px_detected": 20301,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 0.0,
+        "delta": 253.7
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-11-isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04/output/qa/frames/frame-news.png",
+      "text_px_detected": 27276,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 39.9,
+        "delta": 213.9
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-11-isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04/output/qa/frames/frame-hero.png",
+      "text_px_detected": 30131,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 250.9,
+        "bg_luminance": 37.5,
+        "delta": 213.4
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-11-isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04/output/qa/frames/frame-grid.png",
+      "text_px_detected": 33184,
+      "edge": {
+        "pass": true,
+        "offending_px": 9,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 77.4,
+        "delta": 176.2
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-11-isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 35551,
+      "edge": {
+        "pass": false,
+        "offending_px": 225,
+        "clusters": 1,
+        "largest_cluster": 225
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.67)",
+        "box": [
+          622,
+          712,
+          123,
+          148
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 254.1,
+        "bg_luminance": 43.4,
+        "delta": 210.7
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-11-isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 27922,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    }
+  ]
+}

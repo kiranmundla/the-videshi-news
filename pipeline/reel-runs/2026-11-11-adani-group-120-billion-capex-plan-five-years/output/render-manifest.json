@@ -1,0 +1,394 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "adani-group-120-billion-capex-plan-five-years",
+ "article_slug": "adani-group-120-billion-capex-plan-five-years",
+ "article_id": "beb2e28c-f73d-401c-9e21-321d3fbeaece",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-11-adani-group-120-billion-capex-plan-five-years/output/adani-group-120-billion-capex-plan-five-years.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://bl-i.thgim.com/public/incoming/ezp06l/article71685929.ece/alternates/FREE_1200/20260903160L.jpg",
+  "local_path": "reel-runs/2026-11-11-adani-group-120-billion-capex-plan-five-years/output/hero.jpg",
+  "width": 1200,
+  "height": 872,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.94)",
+  "has_face": true,
+  "box_source": [
+   294,
+   144,
+   319,
+   416
+  ],
+  "box_bg": [
+   290,
+   256,
+   222,
+   289
+  ],
+  "chin_bg": 545,
+  "anchor": [
+   0.38,
+   0.408
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   605
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 825,
+   "zone_h": 731,
+   "scale": 1.0,
+   "content_h": 348,
+   "block_top": 1016,
+   "block_bottom": 1364,
+   "text_bbox": [
+    70,
+    1016,
+    930,
+    1364
+   ],
+   "texts": [
+    "Markets Finance",
+    "ADANI GROUP UNVEILS $120 BILLION CAPEX PLAN OVER FIVE YEARS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     872
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 605,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      870
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.20x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 909,
+   "zone_h": 671,
+   "scale": 1.0,
+   "content_h": 388,
+   "block_top": 1192,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1192,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Adani Group executives told Fortune India they plan to invest about $120 billion in capital expenditure over the next five years, more than $20 billion a year, across all group businesses."
+   ],
+   "v7": {
+    "image_source": "extra:bronte-45332993701",
+    "track": "full-bleed",
+    "render_scale": 0.784,
+    "photo_px": [
+     3264,
+     2448
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7843137254901961,
+     "window": [
+      1809,
+      0,
+      3186,
+      2448
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Bronte",
+     "route": "identity \u2014 depicts (P180=Q4680631)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Bronte_(45332993701).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Bronte_%2845332993701%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "Stop Adani"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 825,
+   "zone_h": 731,
+   "scale": 1.0,
+   "content_h": 368,
+   "block_top": 1006,
+   "block_bottom": 1374,
+   "text_bbox": [
+    70,
+    1006,
+    930,
+    1374
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$120 BILLION",
+    "Capex planned over the next five years across all group businesses"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     872
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 605,
+     "scale": 0.7897727272727273,
+     "window": [
+      0,
+      0,
+      1056,
+      766
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.20x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 825,
+   "zone_h": 731,
+   "scale": 1.0,
+   "content_h": 455,
+   "block_top": 963,
+   "block_bottom": 1418,
+   "text_bbox": [
+    70,
+    963,
+    930,
+    1418
+   ],
+   "texts": [
+    "By The Numbers",
+    "70%",
+    "Share earmarked for energy",
+    "20%",
+    "Share for transport and logistics"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     872
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 605,
+     "scale": 0.86875,
+     "window": [
+      0,
+      7,
+      960,
+      703
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.20x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 825,
+   "zone_h": 731,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 974,
+   "block_bottom": 1406,
+   "text_bbox": [
+    70,
+    974,
+    930,
+    1406
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "The plan covers all group businesses, not only Adani Enterprises",
+    "The group estimates core earnings of Rs 2.6-3 lakh crore in five years"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     872
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 605,
+     "scale": 0.86875,
+     "window": [
+      240,
+      7,
+      1200,
+      703
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.20x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 352,
+   "block_top": 684,
+   "block_bottom": 1036,
+   "text_bbox": [
+    70,
+    684,
+    930,
+    1036
+   ],
+   "texts": [
+    "The Takeaway",
+    "The figures are a plan, not a result: the group estimates the spending would double its asset base to Rs 18 lakh crore.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/tech-corporate-technology.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 103.4,
+ "mp4_bytes": 7784338
+}

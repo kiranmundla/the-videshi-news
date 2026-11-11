@@ -1,0 +1,240 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ISRO TEST-FIRES GSLV CRYOGENIC ENGINE FOR 200 SECONDS AHEAD OF NVS-04 LAUNCH",
+      "numbers": [
+        4.0,
+        200.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states ISRO test-fired the engine for 200 seconds ahead of NVS-04 launch.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "ISRO completed a 200-second flight acceptance hot test of the CE-7.5 cryogenic engine on November 5 at Mahendragiri, and the engine will now be fitted into the cryogenic stage of GSLV-F19 to launch the NVS-04 navigation satellite.",
+      "numbers": [
+        4.0,
+        5.0,
+        7.5,
+        19.0,
+        200.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about the test, date, location, and future use are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "200 SECONDS",
+      "numbers": [
+        200.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the engine was test-fired for 200 seconds.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Flight acceptance hot test of the CE-7.5 cryogenic engine on November 5",
+      "numbers": [
+        5.0,
+        7.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the test occurred on November 5.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "73.5",
+      "numbers": [
+        73.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the CE-7.5 produces 73.5 kilonewtons of thrust.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Kilonewtons of thrust the CE-7.5 produces in vacuum",
+      "numbers": [
+        7.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The thrust value and context are provided in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "NVS-04",
+      "numbers": [
+        4.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "NVS-04 is mentioned as the satellite to be launched.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Fourth satellite in India's second-generation NavIC series, to fly on GSLV-F19",
+      "numbers": [
+        19.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms NVS-04 is the fourth satellite in the series.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "NavIC provides positioning services over India and a region extending about 1,500 km beyond its borders",
+      "numbers": [
+        1500.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states NavIC services extend about 1,500 km beyond India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "NVS-04 follows the October 30 launch of NVS-03",
+      "numbers": [
+        3.0,
+        4.0,
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions NVS-04 follows the launch of NVS-03 on October 30.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "With the test complete, the engine will now be inducted into the cryogenic stage of the GSLV-F19 launch vehicle.",
+      "numbers": [
+        19.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the engine will be inducted into GSLV-F19.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "ISRO",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "GSLV-F19",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "NVS-04",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "CE-7.5",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000691,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

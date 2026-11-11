@@ -1,0 +1,32 @@
+{
+ "hook_line": "ISRO TEST-FIRES GSLV CRYOGENIC ENGINE FOR 200 SECONDS AHEAD OF NVS-04 LAUNCH",
+ "hook_stat": {
+  "big": "200 SECONDS",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Flight acceptance hot test of the CE-7.5 cryogenic engine on November 5"
+ },
+ "stats": [
+  {
+   "big": "73.5",
+   "label": "Kilonewtons of thrust the CE-7.5 produces in vacuum"
+  },
+  {
+   "big": "NVS-04",
+   "label": "Fourth satellite in India's second-generation NavIC series, to fly on GSLV-F19"
+  }
+ ],
+ "diaspora_bullets": [
+  "NavIC provides positioning services over India and a region extending about 1,500 km beyond its borders",
+  "NVS-04 follows the October 30 launch of NVS-03"
+ ],
+ "key_entities": [
+  "ISRO",
+  "GSLV-F19",
+  "NVS-04",
+  "CE-7.5"
+ ],
+ "news_summary": "ISRO completed a 200-second flight acceptance hot test of the CE-7.5 cryogenic engine on November 5 at Mahendragiri, and the engine will now be fitted into the cryogenic stage of GSLV-F19 to launch the NVS-04 navigation satellite.",
+ "payoff": "With the test complete, the engine will now be inducted into the cryogenic stage of the GSLV-F19 launch vehicle.",
+ "versus": "",
+ "story_mood": "celebratory"
+}

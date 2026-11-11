@@ -1,0 +1,64 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "adani-group-120-billion-capex-plan-five-years",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Adani Group",
+    "Pranav Adani",
+    "Adani Enterprises",
+    "Fortune India",
+    "Adani Enterprises Plans Rs",
+    "Crore Annual Capex Over Next"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Adani Enterprises Plans Rs' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Crore Annual Capex Over Next' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Bengal Global Business Summit - 2022.jpg",
+      "route": "identity \u2014 depicts (P180=Q4680631)",
+      "verdict": "rejected",
+      "reason": "resolution: 600x450 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Bronte (45332993701).jpg",
+      "route": "identity \u2014 depicts (P180=Q4680631)",
+      "verdict": "USED (news)",
+      "reason": "3264x2448, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "bronte-45332993701",
+      "path": "bronte-45332993701.jpg",
+      "size": [
+        3264,
+        2448
+      ],
+      "role": "establishing",
+      "subject": "Bronte",
+      "route": "identity \u2014 depicts (P180=Q4680631)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Bronte_(45332993701).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Bronte_%2845332993701%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "Stop Adani",
+      "entity": "Adani Group",
+      "entity_type": "company",
+      "entity_aliases": []
+    }
+  ]
+}

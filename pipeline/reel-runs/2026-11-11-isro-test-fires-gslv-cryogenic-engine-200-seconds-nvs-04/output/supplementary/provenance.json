@@ -1,0 +1,111 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04",
+  "trigger": {
+    "own_images": 3,
+    "target_distinct": 5,
+    "extras_needed": 2
+  },
+  "entities": [
+    "ISRO",
+    "GSLV-F19",
+    "NVS-04",
+    "CE-7.5",
+    "Tamil Nadu",
+    "Nilgiris. ISRO"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'ISRO' named 'U. R. Rao Satellite Centre', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'GSLV-F19' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'NVS-04' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Nilgiris. ISRO' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Indigenous Cryogenic Upper Stage of GSLV-F09 at Stage Preparation Facility.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q5010171)",
+      "verdict": "rejected",
+      "reason": "license: GODL-India \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Tea Fields Nilgiris Ranges Mynala Dec25 A7CR 09866.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1445)",
+      "verdict": "USED (hero)",
+      "reason": "8904x5565, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2019 Lok Sabha in Tamil Nadu.svg",
+      "route": "identity \u2014 depicts (P180=Q1445)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:A man dyeing silk red in boiling water in Kumbakonam, Tamil Nadu.jpg",
+      "route": "identity \u2014 depicts (P180=Q1445)",
+      "verdict": "USED (news)",
+      "reason": "2000x3000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "a-man-dyeing-silk-red-in-boiling-water-in-ku",
+      "path": "a-man-dyeing-silk-red-in-boiling-water-in-ku.jpg",
+      "size": [
+        2000,
+        3000
+      ],
+      "role": "establishing",
+      "subject": "A man dyeing silk red in boiling water in Kumbakonam, Tamil Nadu",
+      "route": "identity \u2014 depicts (P180=Q1445)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:A_man_dyeing_silk_red_in_boiling_water_in_Kumbakonam,_Tamil_Nadu.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/A_man_dyeing_silk_red_in_boiling_water_in_Kumbakonam%2C_Tamil_Nadu.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Matthew T Rader",
+      "entity": "Tamil Nadu",
+      "entity_type": "place",
+      "entity_aliases": [
+        "Tamil Nadu"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "tea-fields-nilgiris-ranges-mynala-dec25-a7cr",
+      "path": "tea-fields-nilgiris-ranges-mynala-dec25-a7cr.jpg",
+      "size": [
+        8904,
+        5565
+      ],
+      "role": "establishing",
+      "subject": "Tea plantations against serried ranges of the Nilgiris. View south southeast from Mynala junction on SH-15 (Ooty-Kotagiri). Ketti valley centre right, Wellington/Coonoor centre left. The Nilgiris, Tamil Nadu, India",
+      "route": "identity \u2014 Wikidata P18 (Q1445)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Tea_Fields_Nilgiris_Ranges_Mynala_Dec25_A7CR_09866.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Tea_Fields_Nilgiris_Ranges_Mynala_Dec25_A7CR_09866.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "This Photo was taken by Timothy A. Gonsalves . Feel free to use my photos, but p",
+      "entity": "Tamil Nadu",
+      "entity_type": "place",
+      "entity_aliases": [
+        "Tamil Nadu"
+      ]
+    }
+  ]
+}

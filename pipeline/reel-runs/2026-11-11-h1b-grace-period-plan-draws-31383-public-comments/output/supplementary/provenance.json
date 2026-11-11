@@ -1,0 +1,146 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "h1b-grace-period-plan-draws-31383-public-comments",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "H-1B",
+    "Department of Homeland Security",
+    "USCIS"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'H-1B' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "File:DHS Secretary Alejandro Mayorkas Flag Raising Ceremony (50914852532).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q11231)",
+      "verdict": "USED (news)",
+      "reason": "2328x1624, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Alejandro Mayorkas, USDHS Secretary Presents the Outstanding Americans by Choice Award to Congressman Raul Ruiz at Coachella Valley High School in Thermal, California on December 8, 2023 - 18.jpg",
+      "route": "identity \u2014 depicts (P180=Q11231)",
+      "verdict": "USED (hero)",
+      "reason": "3500x2333, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:U.S. Citizenship and Immigration Service.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q2097315)",
+      "verdict": "USED (grid)",
+      "reason": "4320x3240, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:DHS Senior Official Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, Maryland on June 20, 2024 - 1.jpg",
+      "route": "identity \u2014 depicts (P180=Q2097315)",
+      "verdict": "USED (diaspora)",
+      "reason": "3500x2333, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "dhs-secretary-alejandro-mayorkas-flag-raisin",
+      "path": "dhs-secretary-alejandro-mayorkas-flag-raisin.jpg",
+      "size": [
+        2328,
+        1624
+      ],
+      "role": "establishing",
+      "subject": "Washington, D.C. (February 2, 2021) Homeland Security Secretary Alejandro Mayorkas participates in a flag raising ceremony after being sworn in as the department's seventh secretary.",
+      "route": "identity \u2014 Wikidata P18 (Q11231)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:DHS_Secretary_Alejandro_Mayorkas_Flag_Raising_Ceremony_(50914852532).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/DHS_Secretary_Alejandro_Mayorkas_Flag_Raising_Ceremony_%2850914852532%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "U.S. Department of Homeland Security (DHS)",
+      "entity": "Department of Homeland Security",
+      "entity_type": "place",
+      "entity_aliases": [
+        "United States Department of Homeland Security",
+        "Department of Homeland Security"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "alejandro-mayorkas-usdhs-secretary-presents",
+      "path": "alejandro-mayorkas-usdhs-secretary-presents.jpg",
+      "size": [
+        3500,
+        2333
+      ],
+      "role": "establishing",
+      "subject": "Thermal, California (December 8, 2023) Homeland Security Secretary, Alejandro Mayorkas, presents the Outstanding Americans by Choice Award to Congressman Raul Ruiz at Coachella Valley High School in Thermal, California. (DHS photo by Tia Du",
+      "route": "identity \u2014 depicts (P180=Q11231)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Alejandro_Mayorkas,_USDHS_Secretary_Presents_the_Outstanding_Americans_by_Choice_Award_to_Congressman_Raul_Ruiz_at_Coachella_Valley_High_School_in_Thermal,_California_on_December_8,_2023_-_18.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Alejandro_Mayorkas%2C_USDHS_Secretary_Presents_the_Outstanding_Americans_by_Choice_Award_to_Congressman_Raul_Ruiz_at_Coachella_Valley_High_School_in_Thermal%2C_California_on_December_8%2C_2023_-_18.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "DHSgov",
+      "entity": "Department of Homeland Security",
+      "entity_type": "place",
+      "entity_aliases": [
+        "United States Department of Homeland Security",
+        "Department of Homeland Security"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "u-s-citizenship-and-immigration-service",
+      "path": "u-s-citizenship-and-immigration-service.jpg",
+      "size": [
+        4320,
+        3240
+      ],
+      "role": "establishing",
+      "subject": "Northlake area - DeKalb County, Georgia",
+      "route": "identity \u2014 Wikidata P18 (Q2097315)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:U.S._Citizenship_and_Immigration_Service.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/88/U.S._Citizenship_and_Immigration_Service.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Gulbenk",
+      "entity": "USCIS",
+      "entity_type": "other",
+      "entity_aliases": [
+        "USCIS",
+        "United States Citizenship and Immigration Services",
+        "U.S. Citizenship and Immigration Services",
+        "Bureau of Citizenship and Immigration Services",
+        "BCIS",
+        "Citizenship and Immigration Services",
+        "U.S. Citizenship & Immigration Services"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "dhs-senior-official-kristie-canegallo-attend",
+      "path": "dhs-senior-official-kristie-canegallo-attend.jpg",
+      "size": [
+        3500,
+        2333
+      ],
+      "role": "interior",
+      "subject": "CAMP SPRINGS (June 20, 2024) Department of Homeland Security (DHS), Senior Official Performing the Duties of the Deputy Secretary, Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, M.D. (DHS ph",
+      "route": "identity \u2014 depicts (P180=Q2097315)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:DHS_Senior_Official_Kristie_Canegallo,_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs,_Maryland_on_June_20,_2024_-_1.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/DHS_Senior_Official_Kristie_Canegallo%2C_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs%2C_Maryland_on_June_20%2C_2024_-_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "DHSgov",
+      "entity": "USCIS",
+      "entity_type": "other",
+      "entity_aliases": [
+        "USCIS",
+        "United States Citizenship and Immigration Services",
+        "U.S. Citizenship and Immigration Services",
+        "Bureau of Citizenship and Immigration Services",
+        "BCIS",
+        "Citizenship and Immigration Services",
+        "U.S. Citizenship & Immigration Services"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+ "hook_line": "PLAN TO END H-1B GRACE PERIOD DRAWS 31,383 PUBLIC COMMENTS BEFORE DEADLINE",
+ "hook_stat": {
+  "big": "31,383",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Public comments posted on the DHS proposal to eliminate the 60-day grace period"
+ },
+ "stats": [
+  {
+   "big": "70%",
+   "label": "Of H-1B petitions approved in fiscal 2025 were for workers born in India"
+  },
+  {
+   "big": "60 DAYS",
+   "label": "Current grace period after a job loss, still in effect today"
+  }
+ ],
+ "diaspora_bullets": [
+  "Indian professionals would carry most of the impact if the rule is finalised",
+  "The grace period remains in effect until DHS publishes a final rule"
+ ],
+ "key_entities": [
+  "H-1B",
+  "Department of Homeland Security",
+  "USCIS"
+ ],
+ "news_summary": "A Department of Homeland Security proposal to eliminate the 60-day grace period after a job loss drew 31,383 posted public comments before the November 10 deadline, while the grace period remains in effect.",
+ "payoff": "Nothing changes today: a worker laid off this week still has the grace period, because the proposal has no legal effect until DHS publishes a final rule.",
+ "versus": "",
+ "story_mood": "tense"
+}

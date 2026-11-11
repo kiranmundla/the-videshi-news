@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "rajamouli-varanasi-reported-record-telugu-theatrical-deal",
+  "name": "rajamouli-varanasi-reported-record-telugu-theatrical-deal",
+  "script": "reel-runs/2026-11-10-rajamouli-varanasi-reported-record-telugu-theatrical-deal/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000636
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-10-rajamouli-varanasi-reported-record-telugu-theatrical-deal/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "mahesh-babu-at-selvandhan-audio-launch",
+      "hero": "varanasi-munshi-ghat3",
+      "grid": "carvings-on-the-dhamek-stupa-south-western-s"
+    }
+  },
+  "manifest": "reel-runs/2026-11-10-rajamouli-varanasi-reported-record-telugu-theatrical-deal/output/render-manifest.json",
+  "video": "reel-runs/2026-11-10-rajamouli-varanasi-reported-record-telugu-theatrical-deal/output/rajamouli-varanasi-reported-record-telugu-theatrical-deal.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-10-rajamouli-varanasi-reported-record-telugu-theatrical-deal/output/tiktok-caption.txt"
+}

@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04",
+  "name": "isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04",
+  "script": "reel-runs/2026-11-11-isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000691
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-11-isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04/output/supplementary/provenance.json",
+    "own_images": 3,
+    "extras": {
+      "news": "a-man-dyeing-silk-red-in-boiling-water-in-ku",
+      "hero": "tea-fields-nilgiris-ranges-mynala-dec25-a7cr"
+    }
+  },
+  "manifest": "reel-runs/2026-11-11-isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04/output/render-manifest.json",
+  "video": "reel-runs/2026-11-11-isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04/output/isro-test-fires-gslv-cryogenic-engine-200-seconds-nvs-04.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:diaspora"
+    ]
+  }
+}

@@ -1,0 +1,195 @@
+[
+  {
+    "id": "ab00076a-72c3-4e0b-8035-bbb31d66c860",
+    "headline": "India Bans Export of Lithium-Ion Battery Black Mass With Immediate Effect",
+    "slug": "india-bans-export-lithium-ion-battery-black-mass-dgft",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the ban by including specific details on how this will impact domestic battery manufacturers and recyclers, such as potential cost increases or changes in supply chain dynamics.",
+        "Provide a timeline or indication of how long the ban is expected to remain in effect or any conditions under which it might be lifted, as this is crucial for stakeholders in the industry.",
+        "Include a quote from a government official or industry expert to provide authoritative attribution and enhance the credibility of the information presented.",
+        "Ensure that the article maintains a clear structure by separating the explanation of 'what black mass is' and its significance into distinct sections or bullet points for better readability."
+      ],
+      "embed_opportunities": [
+        "Embed the official DGFT notification or a relevant government tweet regarding the ban to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "46c3ed60-dd09-4d3b-9ac0-9a832cb34af5",
+    "headline": "Air India Losses More Than Double to Rs 22,238 Crore as Expansion Plan Meets Its",
+    "slug": "air-india-losses-22238-crore-expansion-pressure-gebremariam",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the financial year mentioned. The article states 'the financial year ended March 2026,' which is confusing as it is currently 2023. Ensure the correct financial year is referenced, likely intended to be March 2023.",
+        "Provide more specific figures regarding the capital infusion from Tata Sons. Mention how this capital will be allocated or what specific actions it will support in the airline's transformation plan.",
+        "Include a quote or statement from Tata Sons or Singapore Airlines regarding their commitment to Air India\u2019s turnaround strategy to enhance attribution and provide more context on their support.",
+        "Explain the implications of the reported losses on Air India's future operations or strategic plans. For example, how might this affect ticket prices, service quality, or route expansions?"
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official statement from Air India or Tata Sons regarding the financial results or future plans to provide immediate context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "4cbabf61-02b8-4ef9-96b8-ef44511df1de",
+    "headline": "Cabinet Approves Rs 62,370 Crore Fertiliser Subsidy for Rabi Season, DAP Price H",
+    "slug": "cabinet-62370-crore-fertiliser-subsidy-rabi-dap-price-held",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the subsidy approval process and when farmers can expect to see the impact on prices, as this is crucial for planning their planting and budgeting.",
+        "Include a brief explanation of how the subsidy impacts farmers directly, beyond just stating the retail price of DAP, to provide context on its significance for agricultural planning.",
+        "Add a quote from a government official or an agricultural expert to provide authoritative attribution and enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official government announcement or tweet regarding the subsidy approval for direct reference."
+      ]
+    }
+  },
+  {
+    "id": "71cd17f5-97df-483a-ba90-a0bad095e09a",
+    "headline": "Hardik Pandya Traded to Punjab Kings as Arshdeep Singh Joins Mumbai Indians",
+    "slug": "hardik-pandya-traded-punjab-kings-arshdeep-singh-mumbai-indians",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the trade by specifying when the trade will officially take effect and any relevant deadlines for the teams or players involved.",
+        "Provide more context about the significance of this trade in relation to the upcoming IPL season, such as how it might impact team dynamics or strategies.",
+        "Include a quote from Hardik Pandya or Arshdeep Singh regarding their feelings about the trade to add a personal touch and depth to the narrative.",
+        "Correct the repetition in the article where the same information about Pandya's trade and fees is stated multiple times; streamline this for clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official IPL announcement tweet regarding the trade for authenticity and to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "1a94a5f4-1f1b-4830-8b18-b73689705cc3",
+    "headline": "After South Africa Tour Snub, Shreyanka Patil Earns India A Call for England Ser",
+    "slug": "shreyanka-patil-india-a-england-series-south-africa-snub",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Shreyanka Patil's selection by including specific details about her performance in the Asian Games and how it influenced her selection for India A. This would provide context on her capabilities and potential impact in the upcoming series.",
+        "Provide a brief overview of the England A team and their recent performance to give readers context on the competition that India A will face. This would enhance the completeness of the article.",
+        "Include quotes from selectors or coaches regarding Shreyanka Patil's selection or the expectations for the series. This would add depth and attribution to the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the BCCI or a relevant cricket authority announcing the squad selections or the upcoming series details."
+      ]
+    }
+  },
+  {
+    "id": "48a53c3e-6a60-4854-91ec-148d1b1cce65",
+    "headline": "Second US Deportation Flight Carrying Iranians Turns Back in Three Days",
+    "slug": "us-deportation-flight-iranians-turns-back-pakistan-arizona",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the dates of the flights and cancellations to enhance completeness and clarity.",
+        "Include a direct quote from the federal judge regarding the notice requirements for deportations to provide authoritative attribution and context.",
+        "Provide more details about the implications of the federal judge's order for the deportation process, such as how it affects future flights or the legal rights of the detainees involved."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the U.S. Immigration and Customs Enforcement (ICE) regarding the deportation flights or the federal judge's order for added authority and context."
+      ]
+    }
+  },
+  {
+    "id": "cfceeb69-9dc4-42ca-84e2-aea5f4d4d010",
+    "headline": "India and Canada Push Trade Pact Talks Toward a December Conclusion Target",
+    "slug": "india-canada-cepa-trade-pact-talks-december-target",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact dates for the sixth round of negotiations and any potential subsequent rounds, as well as the significance of the December 11-12 visit by PM Modi in relation to the trade pact.",
+        "Include specific figures regarding the current trade volume and the expected increase to C$70 billion by 2030, as well as the current figures for Indian workers and students in Canada to provide context.",
+        "Provide more detail on the implications of the proposed trade pact for specific sectors or industries, such as agriculture or technology, to enhance completeness."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet or statement from the Canadian government regarding the trade negotiations or PM Modi's upcoming visit to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "03407fd0-b396-4c5c-8791-ec27feccbfd4",
+    "headline": "Goldman Sachs Adds a March Rate Hike to Its Federal Reserve Forecast",
+    "slug": "goldman-sachs-adds-march-fed-rate-hike-forecast",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact dates for the expected rate hikes in March and December, as well as the implications for borrowers in terms of potential interest costs.",
+        "Include a direct quote from a Goldman Sachs spokesperson or analyst to enhance attribution and provide a clearer perspective on the reasoning behind the revised forecast.",
+        "Add context regarding how these rate changes might impact different sectors of the economy, such as housing or consumer spending, to provide a more comprehensive view for readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official CME FedWatch tweet that shows market expectations for the December rate hike to provide readers with a visual representation of the data."
+      ]
+    }
+  },
+  {
+    "id": "277366fb-3486-4bcb-a2eb-a2bd485aa808",
+    "headline": "Anthropic CFO Krishna Rao Holds Stake Calculated at About $703 Million Ahead of ",
+    "slug": "anthropic-cfo-krishna-rao-703-million-stake-ipo",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the IPO by specifying the exact date it is expected to launch, as well as any relevant deadlines for investors or stakeholders.",
+        "Provide more context on the significance of Rao's stake in relation to the overall IPO, such as how it compares to other executives or the implications for investor confidence.",
+        "Include a brief explanation of what the IPO means for Anthropic's future, particularly in terms of funding and growth opportunities, to give readers a clearer understanding of the stakes involved."
+      ],
+      "embed_opportunities": [
+        "Embed the official SEC filing or a link to the S-1 registration statement for readers to access the primary source directly."
+      ]
+    }
+  },
+  {
+    "id": "6c58f74c-4d6a-4154-818c-d37e43cbeabb",
+    "headline": "Jay Puri Among Names Reported in Nvidia Succession Talk as Board Backs Huang",
+    "slug": "jay-puri-nvidia-succession-frontrunners-huang-investigation",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding Jay Puri's retirement status; the article mentions he retired in July 2026, which appears to be a typographical error since that date is in the future. This needs correction to ensure accuracy.",
+        "Provide more context on the independent investigation into Jensen Huang and what it entails; this would help readers understand the significance of the board's confidence in him and the potential implications for Nvidia's leadership.",
+        "Include a direct quote from Nvidia's board or a relevant executive regarding their support for Huang or the investigation; this would enhance attribution and provide readers with authoritative insights."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Nvidia or a relevant news source about the board's statement on Huang's leadership to provide real-time updates and official context."
+      ]
+    }
+  }
+]
