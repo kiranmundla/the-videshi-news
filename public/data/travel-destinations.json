@@ -3157,7 +3157,7 @@
           "route": "DFW-HND",
           "origin_metro": "Dallas",
           "dest_metro": "Tokyo",
-          "date_range": "Dec 8 \u2192 Dec 16",
+          "date_range": "Jan 12 \u2192 Jan 20",
           "duration_days": 8,
           "as_of": "2026-11-11",
           "cadence": "weekly",
