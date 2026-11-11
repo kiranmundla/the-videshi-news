@@ -29,6 +29,7 @@ import re
 import time
 import subprocess
 import argparse
+import html as html_mod
 from datetime import datetime, timezone, timedelta
 
 _dir = os.path.dirname(os.path.abspath(__file__))
@@ -743,11 +744,21 @@ def fetch_ig_posts_live(handles, results_limit=12):
             print(f"     ⚠ Instagram connector exited {result.returncode} for @{handle}")
             continue
 
+        raw_posts = data.get("posts", [])
         posts = []
-        for item in data.get("posts", []):
+        for item in raw_posts:
             normalized = _normalize_ig_post(item, handle)
             if normalized:
                 posts.append(normalized)
+        if raw_posts and not posts:
+            # Shape-regression guard (2026-11-11): the connector began
+            # returning bare-URL rows (no username/caption/post_id), so
+            # every row fails normalization. That is a FAILED fetch, not
+            # an empty account — leave the handle out of the results so
+            # callers never overwrite its cache entry with an empty list.
+            print(f"     ⚠ IG shape guard: @{handle} returned {len(raw_posts)} rows, "
+                  f"0 normalized — keeping existing cache entry")
+            continue
         by_handle[handle] = posts
     return by_handle
 
@@ -815,6 +826,14 @@ def prefetch_ig_for_articles(articles, registry, cache=None, persist=False):
     ig_live = {}
     total = 0
     for h, posts in results.items():
+        if not posts and isinstance(cache, dict):
+            # Empty-overwrite guard: never replace a cache entry that
+            # still holds posts with a new empty entry.
+            existing_entry = (cache.get("ig", {}) or {}).get(h)
+            if isinstance(existing_entry, dict) and existing_entry.get("posts"):
+                print(f"     ⚠ IG shape guard: @{h} live fetch returned 0 posts — "
+                      f"keeping existing cache entry")
+                continue
         entry = {"posts": posts, "fetched_at": now_iso}
         ig_live[h] = entry
         total += len(posts)
@@ -914,6 +933,442 @@ def enrich_ig_from_cache(article, cache, registry, live_ig=None):
                 "timestamp": post.get("timestamp", ""),
                 "post_id": post.get("post_id", ""),
             }
+
+    return None, None
+
+
+# ─── IG handle derivation (2026-11-11) ─────────────────────────────────────
+# When registry-based IG enrichment finds nothing — the Tyra Banks case:
+# the article's subject is not in the social registry, so match_handles
+# never fires even when the subject's own Instagram post IS the story —
+# derive the subject's handle from the article itself, verify it via the
+# connector, and look for their own topical post.
+#
+# Authorship route: the connector's posts response currently returns
+# bare URLs only (no username/caption — see the shape guard above), so
+# a post's author and caption are proven from its public embed page
+# (instagram.com/p/<shortcode>/embed/captioned/ via curl with an iPhone
+# UA — the same route celeb_social_watch.py uses). The embed page has
+# no timestamp; recency is bounded by only checking the top-ranked
+# URLs from the posts call.
+
+IG_EMBED_UA = ("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) "
+               "AppleWebKit/605.1.15 (KHTML, like Gecko) "
+               "Version/17.0 Mobile/15E148 Safari/604.1")
+try:
+    IG_MAX_DERIVED_PER_RUN = max(
+        0, int(os.environ.get("VIDESHI_IG_MAX_DERIVED_PER_RUN", "5")))
+except ValueError:
+    IG_MAX_DERIVED_PER_RUN = 5
+_IG_DERIVED_ATTEMPTS = 0
+
+# Same stopword set enrich_ig_from_cache uses for headline keywords.
+_IG_TOPIC_STOPWORDS = {
+    "the", "a", "an", "in", "on", "at", "to", "for", "of", "and", "or",
+    "is", "are", "was", "were", "has", "had", "have", "been", "be",
+    "will", "can", "may", "with", "by", "from", "as", "its", "it",
+    "his", "her", "their", "new", "says", "said", "after", "over",
+    "how", "why", "what", "who", "than", "amid", "that", "this",
+}
+
+# instagram.com/<segment> values that are site paths, not handles.
+_IG_NON_HANDLE_SEGMENTS = {
+    "p", "reel", "reels", "tv", "stories", "explore", "accounts",
+    "direct", "about", "developer", "legal", "privacy", "terms",
+}
+
+_HEADLINE_LEAD_FILLERS = {
+    "The", "A", "An", "In", "On", "At", "For", "To", "As", "By",
+    "With", "From", "After", "Before", "Over", "Under", "Amid",
+}
+
+
+def _normalize_name_key(text):
+    """Case/punct/space-insensitive name key: 'T Y R A • B A N K S' and
+    'Tyra Banks' both reduce to 'tyrabanks'."""
+    return re.sub(r"[^a-z0-9]", "", (text or "").lower())
+
+
+def _ig_cli_json(subcommand, extra_args, timeout=90):
+    """Run one instagram-cli command and return its parsed JSON dict,
+    or None on any failure. 429 handling is structural and identical
+    to fetch_ig_posts_live: a rate limit sets IG_RATE_LIMITED and
+    stops every further IG call in the run."""
+    global IG_RATE_LIMITED
+    if IG_RATE_LIMITED:
+        return None
+    cmd = [INSTAGRAM_CLI, subcommand,
+           "--account-id", INSTAGRAM_ACCOUNT_ID] + list(extra_args)
+    try:
+        result = subprocess.run(cmd, capture_output=True, text=True,
+                                timeout=timeout)
+    except Exception as e:
+        print(f"     ⚠ Instagram connector call failed ({subcommand}): {e}")
+        return None
+
+    # Rate-limit detection is STRUCTURAL, never a substring scan of
+    # the payload (see fetch_ig_posts_live for why).
+    try:
+        start = result.stdout.find("{")
+        data = json.loads(result.stdout[start:]) if start >= 0 else {}
+        if not isinstance(data, dict):
+            data = {}
+    except (json.JSONDecodeError, TypeError):
+        data = {}
+    if not data:
+        combined = f"{result.stdout}\n{result.stderr}"
+        if _is_ig_rate_limit_text(combined):
+            IG_RATE_LIMITED = True
+            print("     ⚠ Instagram rate limit (429) — stopping all IG lookups this run")
+        else:
+            print(f"     ⚠ Instagram connector returned non-JSON ({subcommand})")
+        return None
+
+    provider_error = data.get("provider_error") or data.get("error")
+    if provider_error:
+        err_text = json.dumps(provider_error)
+        if _is_ig_rate_limit_text(err_text):
+            IG_RATE_LIMITED = True
+            print(f"     ⚠ Instagram rate limit (429) — stopping all IG lookups this run: {err_text[:160]}")
+        else:
+            print(f"     ⚠ Instagram connector error ({subcommand}): {err_text[:160]}")
+        return None
+    if result.returncode != 0:
+        print(f"     ⚠ Instagram connector exited {result.returncode} ({subcommand})")
+        return None
+    return data
+
+
+def _article_sources_text(article):
+    """Flatten an article's sources (list of dicts/strings, when the
+    caller supplied them) into searchable text."""
+    parts = []
+    sources = article.get("sources") or []
+    if isinstance(sources, str):
+        parts.append(sources)
+    elif isinstance(sources, list):
+        for s in sources:
+            if isinstance(s, str):
+                parts.append(s)
+            elif isinstance(s, dict):
+                parts.append(" ".join(str(s.get(k) or "")
+                                      for k in ("url", "name", "title")))
+    return "\n".join(parts)
+
+
+def extract_ig_handle_hints(article):
+    """Handles literally present in the article body or its sources:
+    instagram.com/<handle> profile URLs and @handles appearing in
+    Instagram-mentioning sentences. Returns lowercase handles in
+    first-seen order."""
+    text = "\n".join([article.get("body") or "",
+                      _article_sources_text(article)])
+    found = []
+    seen = set()
+
+    def _add(raw):
+        h = (raw or "").lower().lstrip("@")
+        if (h and h not in _IG_NON_HANDLE_SEGMENTS and h not in seen
+                and re.fullmatch(r"[a-z0-9._]+", h)):
+            seen.add(h)
+            found.append(h)
+
+    for m in re.finditer(r"instagram\.com/([A-Za-z0-9._]+)", text):
+        _add(m.group(1))
+    plain = re.sub(r"<[^>]+>", " ", text)
+    for sentence in re.split(r"(?<=[.!?])\s+", plain):
+        if "instagram" in sentence.lower():
+            for m in re.finditer(r"@([A-Za-z0-9._]{2,30})\b", sentence):
+                _add(m.group(1))
+    return found
+
+
+def extract_headline_names(headline):
+    """Capitalized multi-word phrases (2+ consecutive capitalized
+    words) from the headline, e.g. 'Tyra Banks', 'Maneesh Goyal'.
+    Runs longer than two words also contribute their first-two and
+    last-two word pairs, so a title-case verb stuck to a name does
+    not sink the whole phrase."""
+    names = []
+
+    def _add(name):
+        if name and name not in names:
+            names.append(name)
+
+    run = []
+
+    def _flush():
+        if len(run) >= 2:
+            _add(" ".join(run))
+            if len(run) > 2:
+                _add(" ".join(run[:2]))
+                _add(" ".join(run[-2:]))
+        run.clear()
+
+    for tok in (headline or "").split():
+        word = tok.strip("“”\"'‘’.,!?:;()[]")
+        word = re.sub(r"['’]s$", "", word)
+        if word and word[0].isupper() and re.search(r"[A-Za-z]", word):
+            if not run and word in _HEADLINE_LEAD_FILLERS:
+                continue
+            run.append(word)
+        else:
+            _flush()
+    _flush()
+    return names
+
+
+def pick_account_search_candidates(users, name):
+    """Order account-search results that plausibly ARE `name`: exact
+    full_name matches first (normalized case/punct/space-insensitive),
+    then username == name with spaces removed. Connector rank order
+    is preserved within each tier. Returns [username, ...]."""
+    target_key = _normalize_name_key(name)
+    target_user = re.sub(r"\s+", "", (name or "").lower())
+    exact, concat = [], []
+    for u in users or []:
+        if not isinstance(u, dict):
+            continue
+        uname = (u.get("username") or "").lower().lstrip("@")
+        if not uname:
+            continue
+        full = u.get("full_name") or u.get("name") or ""
+        if target_key and _normalize_name_key(full) == target_key:
+            exact.append(uname)
+        elif uname == target_user:
+            concat.append(uname)
+    out = []
+    for uname in exact + concat:
+        if uname not in out:
+            out.append(uname)
+    return out
+
+
+def _verify_ig_profile(handle, candidate_name=None):
+    """Return the profile dict when the handle exists, its profile
+    username matches, it is verified, and — when the candidate came
+    from a name — the profile name agrees with that name. Fail closed
+    on any mismatch or error."""
+    data = _ig_cli_json("user-profile", ["--username", handle])
+    if not data:
+        return None
+    profiles = data.get("profiles") or []
+    if not profiles or not isinstance(profiles[0], dict):
+        print(f"     ⚠ IG derived: no profile returned for @{handle}")
+        return None
+    prof = profiles[0]
+    uname = (prof.get("username") or "").lower().lstrip("@")
+    if uname != handle:
+        print(f"     ⚠ IG derived: profile username @{uname} != @{handle} — rejected")
+        return None
+    if prof.get("is_verified") is not True and prof.get("verified") is not True:
+        print(f"     ⚠ IG derived: @{handle} is not verified — rejected")
+        return None
+    if candidate_name:
+        pname = prof.get("name") or prof.get("full_name") or ""
+        if _normalize_name_key(pname) != _normalize_name_key(candidate_name):
+            print(f"     ⚠ IG derived: profile name {pname!r} != candidate "
+                  f"{candidate_name!r} — rejected")
+            return None
+    return prof
+
+
+def fetch_ig_embed_page(shortcode):
+    """Fetch a post's public embed page via curl (iPhone UA — the
+    route celeb_social_watch.py uses). Returns HTML or ''."""
+    url = f"https://www.instagram.com/p/{shortcode}/embed/captioned/"
+    try:
+        r = subprocess.run(
+            ["curl", "-sSL", "-A", IG_EMBED_UA, "--max-time", "30", url],
+            capture_output=True, text=True, timeout=45)
+    except Exception as e:
+        print(f"     ⚠ IG derived: embed page fetch failed for {shortcode}: {e}")
+        return ""
+    if r.returncode != 0:
+        print(f"     ⚠ IG derived: curl exit {r.returncode} for embed {shortcode}")
+        return ""
+    return r.stdout or ""
+
+
+def parse_ig_embed_page(page_html):
+    """Extract (owner_handle, caption) from an embed/captioned page.
+    Owner comes from the Username anchor (caption header as fallback);
+    caption is the Caption block's text with tags stripped, entities
+    unescaped and whitespace collapsed. Returns (None, '') when the
+    page carries no provable owner."""
+    if not page_html:
+        return None, ""
+    owner = None
+    m = re.search(r'class="Username"\s+href="https://www\.instagram\.com/([^/"?]+)/',
+                  page_html)
+    if not m:
+        m = re.search(r'class="CaptionUsername"\s+href="https://www\.instagram\.com/([^/"?]+)/',
+                      page_html)
+    if m:
+        owner = m.group(1).lower()
+    caption = ""
+    cm = re.search(r'<div class="Caption">(.*?)(?:<div class="CaptionComments"'
+                   r'|<div class="Footer"|</div>\s*</div>)',
+                   page_html, re.S)
+    if cm:
+        frag = cm.group(1)
+        frag = re.sub(r'<a class="CaptionUsername".*?</a>', " ", frag, flags=re.S)
+        frag = re.sub(r"<br\s*/?>", "\n", frag)
+        frag = re.sub(r"<[^>]+>", " ", frag)
+        caption = re.sub(r"\s+", " ", html_mod.unescape(frag)).strip()
+    return owner, caption
+
+
+def _ig_headline_keywords(headline, name):
+    """Headline topic keywords for the caption gate — identical rule
+    to enrich_ig_from_cache: headline words minus stopwords minus the
+    person's own name words, deduped, length > 2."""
+    name_words = {w.lower().strip(".,!?:;-'\"") for w in (name or "").split()}
+    exclude = _IG_TOPIC_STOPWORDS | name_words
+    keywords = []
+    seen_kw = set()
+    for w in (headline or "").split():
+        kw = w.lower().strip(".,!?:;-\"'“”‘’")
+        if len(kw) > 2 and kw not in exclude and kw not in seen_kw:
+            seen_kw.add(kw)
+            keywords.append(kw)
+    return keywords
+
+
+def _ig_caption_hits(caption, keywords):
+    """Whole-word keyword matches of a caption, as in
+    enrich_ig_from_cache."""
+    low = (caption or "").lower()
+    return [kw for kw in keywords
+            if re.search(r"\b" + re.escape(kw) + r"\b", low)]
+
+
+def enrich_ig_from_derived_handles(article, cache=None):
+    """Try IG enrichment by deriving the subject's handle from the
+    article (see the section header). Returns the same (url, info)
+    shape as enrich_ig_from_cache, with info['source'] == 'derived',
+    or (None, None)."""
+    global _IG_DERIVED_ATTEMPTS
+    if IG_RATE_LIMITED:
+        return None, None
+    if _IG_DERIVED_ATTEMPTS >= IG_MAX_DERIVED_PER_RUN:
+        print(f"     IG derived: per-run cap ({IG_MAX_DERIVED_PER_RUN}) reached — skipping")
+        return None, None
+    _IG_DERIVED_ATTEMPTS += 1
+
+    headline = article.get("headline", "")
+
+    # Candidate (name, handle_hint) pairs in priority order:
+    # literal handles from the text first, then headline names.
+    candidates = []
+    for h in extract_ig_handle_hints(article):
+        candidates.append((None, h))
+    for name in extract_headline_names(headline):
+        candidates.append((name, None))
+    candidates = candidates[:3]
+    if not candidates:
+        return None, None
+
+    for cand_name, cand_hint in candidates:
+        if IG_RATE_LIMITED:
+            break
+        handles_to_try = []
+        if cand_hint:
+            handles_to_try = [cand_hint]
+        else:
+            data = _ig_cli_json("account-search",
+                                ["--query", cand_name, "--count", "10"])
+            if not data:
+                continue
+            handles_to_try = pick_account_search_candidates(
+                data.get("users") or [], cand_name)
+            if not handles_to_try:
+                print(f"     IG derived: account-search found no plausible "
+                      f"handle for {cand_name!r}")
+                continue
+
+        for handle in handles_to_try:
+            if IG_RATE_LIMITED:
+                break
+            prof = _verify_ig_profile(handle, cand_name)
+            if not prof:
+                continue
+            display_name = cand_name or prof.get("name") or handle
+
+            data = _ig_cli_json("posts",
+                                ["--username", handle, "--limit", "8"])
+            if not data:
+                continue
+            urls = []
+            for item in data.get("posts", []):
+                u = item.get("url") if isinstance(item, dict) else None
+                if u and _ig_shortcode_from_url(u) and u not in urls:
+                    urls.append(u)
+            if not urls:
+                print(f"     IG derived: @{handle} verified but posts "
+                      f"returned no usable URLs")
+                continue
+
+            keywords = _ig_headline_keywords(headline, display_name)
+            verified_posts = []
+            scored = []
+            for rank, url in enumerate(urls[:5]):
+                if rank:
+                    time.sleep(0.5)
+                shortcode = _ig_shortcode_from_url(url)
+                page = fetch_ig_embed_page(shortcode)
+                owner, caption = parse_ig_embed_page(page)
+                if owner != handle:
+                    print(f"     IG derived: embed owner @{owner} != "
+                          f"@{handle} for {shortcode} — rejected")
+                    continue
+                if not caption:
+                    continue
+                verified_posts.append({
+                    "shortCode": shortcode,
+                    "caption": caption,
+                    "timestamp": "",
+                    "likesCount": 0,
+                    "commentsCount": 0,
+                    "type": "",
+                    "url": url,
+                    "displayUrl": "",
+                    "ownerUsername": handle,
+                    "post_id": "",
+                })
+                matched = _ig_caption_hits(caption, keywords)
+                hits = len(matched)
+                if hits >= 2 or (hits >= 1 and len(keywords) <= 2):
+                    scored.append((hits, -rank, url, caption, matched))
+
+            if verified_posts and isinstance(cache, dict):
+                # Reuse the shared cache shape so later articles (and
+                # later runs) can hit these posts via the cache path.
+                # enrich_ig_from_cache re-checks owner + caption
+                # relevance per article, so caching all verified-own
+                # posts is safe.
+                cache.setdefault("ig", {})[handle] = {
+                    "posts": verified_posts,
+                    "fetched_at": datetime.now(timezone.utc).strftime(
+                        "%Y-%m-%dT%H:%M:%SZ"),
+                }
+
+            if scored:
+                scored.sort(key=lambda x: (x[0], x[1]), reverse=True)
+                hits, _neg_rank, url, caption, matched = scored[0]
+                return url, {
+                    "handle": handle,
+                    "name": display_name,
+                    "score": min(10, 5 + hits),
+                    "matched_keywords": matched,
+                    "caption": caption,
+                    "timestamp": "",
+                    "post_id": "",
+                    "source": "derived",
+                }
+            print(f"     IG derived: @{handle} verified, but no topical "
+                  f"post in its top {min(5, len(urls))} (keywords: "
+                  f"{', '.join(keywords[:6])})")
 
     return None, None
 
@@ -1780,8 +2235,17 @@ def main():
         if not has_embed(body, "instagram"):
             ig_url, info = enrich_ig_from_cache(
                 article, cache, registry, live_ig=live_ig)
+            if not ig_url:
+                # Registry miss: derive + verify the subject's own
+                # handle from the article (2026-11-11, Tyra Banks gap).
+                ig_url, info = enrich_ig_from_derived_handles(
+                    article, cache=cache)
+                if ig_url and args.apply:
+                    save_cache(cache)
             if ig_url:
-                source = "live" if info["handle"] in live_ig else "cache"
+                source = ("derived" if info.get("source") == "derived"
+                          else "live" if info["handle"] in live_ig
+                          else "cache")
                 ig_score = info.get("score", 5)
                 matched = ",".join(info.get("matched_keywords", []))
                 print(f"     IG ({source}): @{info['handle']} → {ig_url} "

@@ -290,11 +290,21 @@ def fetch_ig_posts_batch(handles, results_limit=12):
             print(f"  ⚠ Instagram connector exited {result.returncode} for @{handle}")
             continue
 
+        raw_posts = data.get("posts", [])
         posts = []
-        for item in data.get("posts", []):
+        for item in raw_posts:
             normalized = _normalize_ig_post(item, handle)
             if normalized:
                 posts.append(normalized)
+        if raw_posts and not posts:
+            # Shape-regression guard (2026-11-11): the connector began
+            # returning bare-URL rows (no username/caption/post_id), so
+            # every row fails normalization. That is a FAILED fetch, not
+            # an empty account — leave the handle out of the results so
+            # no cache write happens for it.
+            print(f"  ⚠ IG shape guard: @{handle} returned {len(raw_posts)} rows, "
+                  f"0 normalized — keeping existing cache entry")
+            continue
         by_handle[handle] = posts
     return by_handle
 
@@ -327,6 +337,13 @@ def refresh_ig_cache(handles, existing_cache, max_handles=IG_MAX_HANDLES_PER_REF
     results = fetch_ig_posts_batch(selected, results_limit=12)
     total_posts = 0
     for h, posts in results.items():
+        existing_entry = ig_cache.get(h)
+        if not posts and isinstance(existing_entry, dict) and existing_entry.get("posts"):
+            # Empty-overwrite guard: a successful-but-empty fetch must
+            # never erase a cache entry that still holds posts.
+            print(f"  IG shape guard: @{h} fetch returned 0 posts — "
+                  f"keeping existing cache entry ({len(existing_entry['posts'])} posts)")
+            continue
         ig_cache[h] = {"posts": posts, "fetched_at": now_iso}
         total_posts += len(posts)
 

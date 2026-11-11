@@ -233,5 +233,89 @@ check("refresh preserves unreached cache entries",
       and updated["aaa"]["posts"][0]["shortCode"] == "N1"
       and updated["bbb"]["posts"][0]["shortCode"] == "N1")
 
+# ── Shape guard (2026-11-11 connector regression) ─────────────────────────
+# The connector began returning bare-URL rows (platform/rank/url only):
+# raw > 0 but normalization drops EVERY row. That fetch must be treated
+# as FAILED — the handle stays out of the results — in BOTH writers of
+# the IG cache, and a refresh must never overwrite a non-empty cache
+# entry with an empty one.
+def fake_run_shape_regressed(cmd, **_kwargs):
+    handle = cmd[cmd.index("--username") + 1]
+    payload = {"posts": [
+        {"platform": "instagram", "rank": 1, "source_app": "INSTAGRAM",
+         "url": "https://www.instagram.com/p/STRIPPED1/"},
+        {"platform": "instagram", "rank": 2, "source_app": "INSTAGRAM",
+         "url": "https://www.instagram.com/reel/STRIPPED2/"},
+    ]}
+    return FakeResult(json.dumps(payload))
+
+
+enr.subprocess = SimpleNamespace(run=fake_run_shape_regressed)
+enr.IG_RATE_LIMITED = False
+got = enr.fetch_ig_posts_live(["icc"], results_limit=5)
+enr.subprocess = orig_enr_subprocess
+check("enrich: shape-regressed fetch leaves the handle out of results",
+      got == {} and enr.IG_RATE_LIMITED is False)
+
+ref_orig_subprocess = ref.subprocess
+ref.subprocess = SimpleNamespace(run=fake_run_shape_regressed)
+ref.IG_RATE_LIMITED = False
+got_ref = ref.fetch_ig_posts_batch(["icc"], results_limit=5)
+ref.subprocess = ref_orig_subprocess
+check("refresh: shape-regressed fetch leaves the handle out of results",
+      got_ref == {} and ref.IG_RATE_LIMITED is False)
+
+# A genuinely empty result (raw == 0) is still a successful fetch.
+def fake_run_genuinely_empty(cmd, **_kwargs):
+    return FakeResult(json.dumps({"posts": []}))
+
+
+enr.subprocess = SimpleNamespace(run=fake_run_genuinely_empty)
+enr.IG_RATE_LIMITED = False
+got = enr.fetch_ig_posts_live(["quietacct"], results_limit=5)
+enr.subprocess = orig_enr_subprocess
+check("enrich: genuinely empty fetch still returns the handle",
+      got == {"quietacct": []})
+
+# refresh_ig_cache: an empty/failed fetch must not erase stored posts.
+def fake_refresh_empty(handles, results_limit=12):
+    return {h: [] for h in handles}
+
+
+ref.fetch_ig_posts_batch = fake_refresh_empty
+existing = {"ig": {
+    "busy": {"posts": [{"shortCode": "KEEP1"}], "fetched_at": "2020-01-01T00:00:00Z"},
+}}
+updated = ref.refresh_ig_cache(["busy"], existing, max_handles=1)
+check("refresh keeps a non-empty entry when the new fetch is empty",
+      updated["busy"]["posts"][0]["shortCode"] == "KEEP1")
+
+def fake_refresh_failed(handles, results_limit=12):
+    return {}  # shape guard upstream: handle absent entirely
+
+
+ref.fetch_ig_posts_batch = fake_refresh_failed
+updated = ref.refresh_ig_cache(["busy"], existing, max_handles=1)
+ref.fetch_ig_posts_batch = orig_ref_fetch
+check("refresh keeps a non-empty entry when the fetch fails outright",
+      updated["busy"]["posts"][0]["shortCode"] == "KEEP1")
+
+# prefetch_ig_for_articles: same empty-overwrite guard on the shared cache.
+orig_enr_fetch2 = enr.fetch_ig_posts_live
+enr.fetch_ig_posts_live = lambda handles, results_limit=12: {handles[0]: []}
+enr.IG_MAX_LIVE_HANDLES_PER_RUN = 10
+orig_match2 = enr.match_handles
+enr.match_handles = lambda headline, registry, platform: [
+    {"name": "Busy Person", "handle": "busy", "group": "persons"}]
+pf_cache = {"ig": {"busy": {"posts": [{"shortCode": "KEEP2"}],
+                            "fetched_at": "2020-01-01T00:00:00Z"}}}
+enr.prefetch_ig_for_articles([{"headline": "Busy Person news", "body": ""}],
+                             {}, cache=pf_cache, persist=False)
+enr.match_handles = orig_match2
+enr.fetch_ig_posts_live = orig_enr_fetch2
+enr.IG_MAX_LIVE_HANDLES_PER_RUN = orig_cap
+check("prefetch keeps a non-empty entry when the live fetch is empty",
+      pf_cache["ig"]["busy"]["posts"][0]["shortCode"] == "KEEP2")
+
 print(f"\n{total - fails}/{total} passed")
 sys.exit(1 if fails else 0)
