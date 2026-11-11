@@ -1,5 +1,5 @@
 {
- "_note": "Official YouTube channels polled by trailer-watch.py for trailer/teaser drops. tier 1 = major: drops also get a brief 'teaser out' article. tier 2 = trailers rail only. All IDs verified 2026-10-04 via feeds/videos.xml returning valid Atom with matching channel title. 2026-10-31 curation (embed-channel audit): 12 channels added — IDs resolved via YouTube Data API channels.list and identity verified from channel description/ownership: JioStudios, Salman Khan Films, Sun Neo TV, Amazon MGM Studios India, World Of Ramayana, V2S Production And Entertainment LLP, Demon Hunters Taiwan (Lighthouse), Sony Music South, RS Infotainment, Bhavana Studios, Still Watching Netflix, Paramount Pictures UK.",
+ "_note": "Official YouTube channels polled by trailer-watch.py for trailer/teaser drops. tier 1 = major: drops also get a brief 'teaser out' article. tier 2 = trailers rail only. All IDs verified 2026-10-04 via feeds/videos.xml returning valid Atom with matching channel title. 2026-10-31 curation (embed-channel audit): 12 channels added — IDs resolved via YouTube Data API channels.list and identity verified from channel description/ownership: JioStudios, Salman Khan Films, Sun Neo TV, Amazon MGM Studios India, World Of Ramayana, V2S Production And Entertainment LLP, Demon Hunters Taiwan (Lighthouse), Sony Music South, RS Infotainment, Bhavana Studios, Still Watching Netflix, Paramount Pictures UK. 2026-11-11: IMAX added — ID resolved from its own Ramayana 'Filmed For IMAX' official-trailer upload (pmWF2QtyvCI) and verified via channels.list (@imaxmovies) + feed title. The Sony Pictures entry (UCz97F7dMxBNOfGYu3rx8aCw) gained alias 'Sony Pictures Entertainment': the channel ID was already rostered under the short label, but its live display name failed the gate's name leg on name-only paths; identity verified from its own Ramayana trailer uploads (1zip1rNaNYs, AYkPRN874m8) via channels.list (@sonypictures) + feed title.",
  "channels": [
   {
    "channel_id": "UCq-Fj5jknLsUf-MWSy4_brA",
@@ -311,6 +311,9 @@
    "tier": 1
   },
   {
+   "aliases": [
+    "Sony Pictures Entertainment"
+   ],
    "channel_id": "UCz97F7dMxBNOfGYu3rx8aCw",
    "industry": "hollywood",
    "name": "Sony Pictures",
@@ -332,6 +335,12 @@
    "channel_id": "UCi_iW2lqB3ADsJOobe_8yeg",
    "industry": "hollywood",
    "name": "Paramount Pictures UK",
+   "tier": 2
+  },
+  {
+   "channel_id": "UCLOi9fGe5EdPfquSe1RS5aA",
+   "industry": "hollywood",
+   "name": "IMAX",
    "tier": 2
   },
   {
