@@ -78,6 +78,15 @@ HEADERS = {
     "Content-Type": "application/json",
 }
 UA = {"User-Agent": "TheVideshi/1.0 (thevideshi.com)"}
+# Manual-route resolution floor (2026-11-11): this script set
+# heroes with NO size floor on the Wikipedia path (it tried
+# 335×410 and 308×402 portraits) and NO relevance guard on the
+# Commons path (it placed a 1904 Harper's magazine scan). Both
+# routes now fail closed: a hero must clear the same ≥800px
+# long-side floor the automated pipeline enforces, and Commons
+# hits must pass image_sourcer.commons_relevance_ok — the
+# guard image_sourcer itself applies to Commons results.
+MIN_IMAGE_LONG_SIDE = 800
 
 
 # ═══════════════════════════════════════════
@@ -118,8 +127,43 @@ def fetch_official(query, headline=""):
     return None, None
 
 
+def _commons_size_for_url(url):
+    """(width, height) of a Commons-hosted file, via the
+    Commons API imageinfo keyed by the file title in the URL
+    path (a leading '<n>px-' thumbnail prefix is stripped).
+    (None, None) when the size cannot be determined."""
+    from urllib.parse import unquote
+    base = unquote(url.rstrip("/").rsplit("/", 1)[-1])
+    base = re.sub(r"^\d+px-", "", base)
+    try:
+        r = requests.get(
+            "https://commons.wikimedia.org/w/api.php",
+            params={"action": "query", "titles": f"File:{base}",
+                    "prop": "imageinfo", "iiprop": "size",
+                    "format": "json"},
+            headers=UA, timeout=15)
+        if r.status_code != 200:
+            return None, None
+        for pg in r.json().get("query", {}).get("pages",
+                                                {}).values():
+            ii = (pg.get("imageinfo") or [{}])[0]
+            if ii.get("width"):
+                return ii["width"], ii.get("height")
+    except Exception:
+        pass
+    return None, None
+
+
 def fetch_wikipedia(page_name):
-    """Fetch main image from a Wikipedia page by exact page name."""
+    """Fetch main image from a Wikipedia page by exact page name.
+
+    Resolution floor (2026-11-11): the main image must clear
+    ≥800px on its long side — the summary's originalimage
+    dimensions are authoritative; when they are absent the
+    size is verified through Commons imageinfo; when the size
+    cannot be verified the route fails closed (this path
+    previously tried 335×410 and 308×402 portraits as heroes).
+    """
     encoded = quote(page_name.replace(" ", "_"))
     try:
         r = requests.get(
@@ -130,9 +174,21 @@ def fetch_wikipedia(page_name):
             data = r.json()
             img = (data.get("originalimage", {}).get("source")
                    or data.get("thumbnail", {}).get("source"))
+            w = (data.get("originalimage", {}).get("width")
+                 or data.get("thumbnail", {}).get("width"))
+            h = (data.get("originalimage", {}).get("height")
+                 or data.get("thumbnail", {}).get("height"))
             if img:
                 if _is_logo_like(img):
                     print(f"  ✗ Wikipedia [{page_name}]: main image is a logo/seal/SVG — skipping")
+                    return None, None
+                if not w or not h:
+                    w, h = _commons_size_for_url(img)
+                if not w or not h or max(w, h) < MIN_IMAGE_LONG_SIDE:
+                    print(f"  ✗ Wikipedia [{page_name}]: main image "
+                          f"{w}×{h} is below the "
+                          f"{MIN_IMAGE_LONG_SIDE}px long-side floor "
+                          f"(or size unverifiable) — skipping")
                     return None, None
                 print(f"  ✓ Wikipedia [{page_name}]: {img[:100]}")
                 return img, "Wikimedia Commons"
@@ -142,14 +198,29 @@ def fetch_wikipedia(page_name):
     return None, None
 
 
-def fetch_commons(query):
-    """Search Wikimedia Commons for CC images."""
+def fetch_commons(query, headline=""):
+    """Search Wikimedia Commons for CC images.
+
+    Guards (2026-11-11): candidates are walked in search-rank
+    order and each must clear BOTH the ≥800px long-side floor
+    and image_sourcer.commons_relevance_ok — the same
+    relevance guard the automated sourcer applies to Commons
+    results (this route previously applied neither and placed
+    a 1904 Harper's magazine scan on an article). Fails closed
+    when no candidate clears both.
+    """
+    try:
+        from image_sourcer import commons_relevance_ok
+    except Exception as e:
+        print(f"  ⚠ Commons [{query}]: relevance guard "
+              f"unavailable ({e}) — fail closed")
+        return None, None
     try:
         r = requests.get(
             "https://commons.wikimedia.org/w/api.php",
             params={
                 "action": "query", "generator": "search",
-                "gsrsearch": query, "gsrnamespace": "6", "gsrlimit": "5",
+                "gsrsearch": query, "gsrnamespace": "6", "gsrlimit": "8",
                 "prop": "imageinfo", "iiprop": "url|size|mime",
                 "iiurlwidth": "1920", "format": "json",
             },
@@ -158,13 +229,25 @@ def fetch_commons(query):
         if r.status_code != 200:
             return None, None
         pages = r.json().get("query", {}).get("pages", {})
-        for pid, page in pages.items():
+        ranked = sorted(pages.values(),
+                        key=lambda p: p.get("index", 1 << 30))
+        for page in ranked:
             ii = page.get("imageinfo", [{}])[0]
             mime = ii.get("mime", "")
             if not mime.startswith("image/") or mime == "image/svg+xml":
                 continue
-            w = ii.get("width", 0)
-            if w < 400:
+            w, h = ii.get("width", 0), ii.get("height", 0)
+            if max(w, h) < MIN_IMAGE_LONG_SIDE:
+                print(f"  ✗ Commons [{query}]: "
+                      f"{page.get('title')} is {w}×{h}, below "
+                      f"the {MIN_IMAGE_LONG_SIDE}px floor — "
+                      f"skipping")
+                continue
+            if not commons_relevance_ok(page.get("title", ""),
+                                        headline, query):
+                print(f"  ✗ Commons [{query}]: "
+                      f"{page.get('title')} fails the relevance "
+                      f"guard — skipping")
                 continue
             url = ii.get("thumburl") or ii.get("url", "")
             if url:
@@ -633,7 +716,8 @@ def process_instruction(instr, apply=False):
         elif source_type == "wikipedia":
             image_url, attr = fetch_wikipedia(query)
         elif source_type == "commons":
-            image_url, attr = fetch_commons(query)
+            image_url, attr = fetch_commons(
+                query, article.get("headline", ""))
         elif source_type == "openverse":
             image_url, attr = fetch_openverse(query)
         elif source_type == "google":

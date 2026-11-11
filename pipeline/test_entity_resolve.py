@@ -388,6 +388,46 @@ finally:
     er.REGISTRY_PATH = _orig_reg_path
     er._registry_cache = None
 
+# ── generic-concept classification (2026-11-11) ────────────
+# Concepts never source through the identity path: 'Data
+# Center' resolved to a portrait of Assane SYLLA, 'Gold' to
+# the Sule Pagoda, 'House' to a Salinas ranch house.
+# Classification runs on the CANONICAL registry name (the
+# extracted string is headline-capitalized), with instance
+# types exempt by taxonomy and proper-noun 'other' entries
+# (Eden Gardens, Jailer (film)) still sourceable.
+print("generic-concept classification")
+check("'gold' (type other) is a generic concept",
+      er.is_generic_concept("gold", "other") is True)
+check("extracted 'Gold' still classifies as the concept "
+      "(canonical-name lookup)",
+      er.is_generic_concept("Gold", "other") is True)
+check("'data center' (type other) is a generic concept",
+      er.is_generic_concept("data center", "other") is True)
+check("extracted 'Data Center' is a generic concept",
+      er.is_generic_concept("Data Center", "other") is True)
+check("'house' (type other) is a generic concept",
+      er.is_generic_concept("house", "other") is True)
+check("a language type is a concept (non-visual)",
+      er.is_generic_concept("Telugu", "language") is True)
+check("proper-noun 'other' stays sourceable: Eden Gardens",
+      er.is_generic_concept("Eden Gardens", "other") is False)
+check("proper-noun 'other' stays sourceable: Jailer (film)",
+      er.is_generic_concept("Jailer (film)", "other") is False)
+check("a building is never a concept: Golden Gate Bridge",
+      er.is_generic_concept("Golden Gate Bridge",
+                            "building") is False)
+check("a person is never a concept",
+      er.is_generic_concept("Narendra Modi", "person") is False)
+check("a place keeps its locality-gated behaviour: "
+      "North America",
+      er.is_generic_concept("North America", "place") is False)
+check("resolve() flags the gold resolution as a concept",
+      (er.resolve("gold") or {}).get("generic_concept") is True)
+check("resolve() does not flag a person resolution",
+      (er.resolve("Narendra Modi") or {}).get(
+          "generic_concept") is False)
+
 print()
 if FAILURES:
     print(f"{len(FAILURES)} FAILURE(S): {FAILURES}")

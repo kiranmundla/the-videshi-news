@@ -127,6 +127,8 @@ def _from_entry(entry, method, confidence):
         "p18_file": entry.get("p18_file"),
         "p18_quality": entry.get("p18_quality"),
         "type": entry.get("type"),
+        "generic_concept": _concept_for(entry.get("name"),
+                                        entry.get("type")),
         "has_local_instances": bool(entry.get("has_local_instances")),
         "method": method,
         "confidence": confidence,
@@ -407,6 +409,9 @@ def _resolve_live(name, context_text=""):
         "p18_file": winner.get("p18_file"),
         "p18_quality": p18_width,
         "type": _infer_type(winner.get("p31")),
+        "generic_concept": _concept_for(
+            winner.get("label") or name,
+            _infer_type(winner.get("p31"))),
         "has_local_instances": False,
         "method": method,
         "confidence": confidence,
@@ -494,6 +499,88 @@ def _cache_back(query_name, result, context_text=""):
         return True
     except Exception:
         return False
+
+
+# ── generic-concept classification ─────────────────────────────
+# A generic CONCEPT (gold, a data center, a house, cloud
+# computing) is not an instance: it has no identity to
+# photograph. Identity sourcing for concepts only ever CLIMBS —
+# the concept's depicts/P18 neighbourhood is full of unrelated
+# files that happen to sit one Wikidata hop away ('Data Center'
+# → a portrait of Assane SYLLA, live in the AMD X deck
+# 2026-11-04; 'Gold' → the Sule Pagoda and a colonial gold
+# illustration; 'House' → a Salinas ranch house as the hero of
+# the Grace Meng Diwali Day Act article, where the extracted
+# entity was the legislature). Approved 2026-11-11: concepts
+# never source through the identity path, on any surface.
+#
+# Classification is code-side and conservative:
+#   * instance types (person / company / org / building /
+#     place / team / event) are never concepts — they are
+#     policed by their own gates (name agreement, locality);
+#   * inherently non-instance types (language) are concepts;
+#   * everything else (the 'other' grab-bag and untyped live
+#     resolutions) is judged by the proper-noun test on the
+#     CANONICAL name: a name whose significant tokens are not
+#     all capitalized is a common-noun phrase ('gold', 'data
+#     center', 'economy of the United States'), while a
+#     proper-noun 'other' (Eden Gardens, Jailer (film),
+#     Red Sea) remains sourceable through the normal gates.
+_INSTANCE_TYPES = {"person", "company", "org", "building",
+                   "place", "team", "event"}
+_CONCEPT_TYPES = {"language"}
+_NAME_PARTICLES = {"of", "the", "and", "de", "du", "la", "le",
+                   "for", "&"}
+
+
+def _proper_noun_phrase(name):
+    """True when a name reads as a proper-noun phrase: with
+    parenthetical qualifiers and lowercase particles dropped,
+    every remaining token is capitalized."""
+    core = re.sub(r"\([^)]*\)", " ", str(name or "")).strip()
+    toks = [t.strip(",;:") for t in core.split()
+            if t.strip(",;:")]
+    sig = [t for t in toks if t.lower() not in _NAME_PARTICLES]
+    if not sig:
+        return False
+    return all(t[:1].isupper() for t in sig)
+
+
+def _concept_for(name, entity_type):
+    """The classification for an already-canonical name/type
+    pair (no registry lookup — the caller holds the record)."""
+    if entity_type in _CONCEPT_TYPES:
+        return True
+    if entity_type in _INSTANCE_TYPES:
+        return False
+    return not _proper_noun_phrase(name)
+
+
+def is_generic_concept(name, entity_type=None):
+    """True when the named entity is a generic concept that
+    must never source images through the identity path.
+
+    The registry record (when a unique one exists, or one
+    whose type matches the caller's) supplies the CANONICAL
+    name — casing is the signal, and Wikidata/registry casing
+    is deliberate ('gold' the element vs 'Goldman Sachs' the
+    company): an extracted 'Gold' or 'Data Center' string is
+    capitalized by the headline it came from, so the test
+    must run on the canonical record, not the query string.
+    """
+    canon, etype = name, entity_type
+    cands = _candidates(name)
+    pick = None
+    if cands:
+        if etype:
+            pick = next((e for e in cands
+                         if e.get("type") == etype), None)
+        if pick is None and len(cands) == 1:
+            pick = cands[0]
+    if pick is not None:
+        canon = pick.get("name") or name
+        etype = etype or pick.get("type")
+    return _concept_for(canon, etype)
 
 
 # ── public resolution ────────────────────────────────────────────

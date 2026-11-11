@@ -902,6 +902,110 @@ DEFAULT_NET = {"commons_search": commons_search,
                "item_info": ER.item_label_and_type}
 
 
+# ── given-name agreement (2026-11-11) ───────────────────────────
+# When a file's evidence names MULTIPLE distinct people, a
+# surname-only resemblance is not identity: a NASA photo whose
+# caption names Sen. Kevin Cramer (among others) was placed as
+# the hero of a Jim Cramer / SpaceX article because 'Cramer'
+# matched. The rule, applied on the identity routes (P18 /
+# depicts) where no token-identity check otherwise runs: if
+# the evidence names 2+ distinct full names, one of them
+# carries the target person's SURNAME, and the target's full
+# name (given + surname) is NOT among them — reject. Evidence
+# naming a single person keeps the standing behaviour (the
+# resolution itself is the identity on those routes), and a
+# file that names the target in full alongside others passes.
+_NAME_LEADERS = {"sen", "senator", "rep", "representative",
+                 "dr", "mr", "mrs", "ms", "president",
+                 "governor", "justice", "judge", "prof",
+                 "professor", "administrator", "secretary",
+                 "ambassador", "chancellor", "minister",
+                 "prime", "former"}
+_NAME_SEQ_RE = re.compile(
+    r"[A-Z][A-Za-z.'’\-]+"
+    r"(?:\s+(?:[A-Z]\.|[A-Z][A-Za-z.'’\-]+)){1,2}")
+
+
+def _seq_tokens(seq):
+    """A capitalized sequence -> cleaned lowercase tokens,
+    with honorific leaders and filename-extension artifacts
+    ('... Center.jpg') dropped."""
+    toks = [t.strip(".,;:()") for t in str(seq).split()]
+    toks = [t for t in toks if t and not t.lower().endswith(
+        (".jpg", ".jpeg", ".png", ".svg", ".webp"))]
+    while toks and toks[0].lower().rstrip(".") in _NAME_LEADERS:
+        toks = toks[1:]
+    return [t.lower().rstrip(".") for t in toks]
+
+
+def _pair_ok(given, surname):
+    if len(given) < 2 or len(surname) < 2:
+        return False
+    if given in _MONTHS:
+        return False
+    bad = _ORG_TOKENS | _PLACE_TOKENS | _STOP_TOKENS
+    return given not in bad and surname not in bad
+
+
+def _name_pairs(seq):
+    """(given, surname) pairs a name-shaped sequence supports.
+    A 3-token sequence yields its sub-pairs too: captions run
+    names together ('Jim Cramer John Hoeven' across a category
+    boundary) and middle names exist ('James Earl Jones') —
+    recovering the true (given, surname) pair matters more
+    than the junk pairs this adds, because the collision rule
+    only fires on a surname the junk would also have to hit.
+    """
+    low = _seq_tokens(seq)
+    if len(low) == 2:
+        pairs = [(low[0], low[1])]
+    elif len(low) >= 3:
+        pairs = [(low[0], low[1]), (low[0], low[2]),
+                 (low[1], low[2])]
+    else:
+        return set()
+    return {p for p in pairs if _pair_ok(*p)}
+
+
+def person_names_in_evidence(title, description, categories_text):
+    """The distinct full person names (given, surname) a
+    file's own evidence names, from its title, description
+    and categories."""
+    text = f"{title} {_strip_html(description)} " \
+           f"{(categories_text or '').replace('|', ' ')}"
+    names = set()
+    for m in _NAME_SEQ_RE.finditer(text):
+        names |= _name_pairs(m.group(0))
+    return names
+
+
+def _person_surname_collision(entity, entity_aliases, title,
+                              description, categories_text):
+    """Reject reason when the evidence names multiple people,
+    a DIFFERENT one of them shares the target's surname, and
+    the target is never named in full — else None."""
+    names = person_names_in_evidence(title, description,
+                                     categories_text)
+    if len(names) < 2:
+        return None
+    targets = set()
+    for nm in [entity] + [a for a in entity_aliases or [] if a]:
+        targets |= _name_pairs(str(nm))
+    if not targets or targets & names:
+        return None
+    surnames = {s for _g, s in names}
+    hit = sorted(t for t in targets if t[1] in surnames)
+    if not hit:
+        return None
+    named = ", ".join(f"{g} {s}" for g, s in sorted(names)[:4])
+    return (f"given-name: the file's evidence names multiple "
+            f"people ({named} …) including a different person "
+            f"sharing the surname {hit[0][1]!r}, and never names "
+            f"{entity!r} in full — surname-only agreement is "
+            "not identity (the Kevin Cramer NASA photo placed "
+            "for Jim Cramer); fail closed")
+
+
 # ── candidate evaluation ────────────────────────────────────────────
 def _meta(info, key):
     return _strip_html(((info.get("extmetadata") or {}).get(key)
@@ -998,7 +1102,22 @@ def evaluate_commons_page(page, entity, route, context=None,
     Indiaspora H-1B card. Buildings / campuses / own sites
     are structure subjects, exempt from the scenery class by
     construction (TCS SIPCOT, NSE plaza, BSE building,
-    Microsoft campus, Apple Park all still source)."""
+    Microsoft campus, Apple Park all still source).
+
+    CONCEPT BLOCK (2026-11-11): a generic concept entity
+    (entity_resolve.is_generic_concept — 'gold', 'data
+    center', 'house', …) rejects before every other gate, on
+    every route: a concept has no identity to photograph, so
+    its P18/depicts neighbourhood only ever climbs. Surfaces
+    simply get no identity-sourced image for a concept.
+
+    GIVEN-NAME RULE (2026-11-11): on the identity routes, a
+    PERSON candidate whose evidence names multiple distinct
+    people, a different one of whom shares the target's
+    surname, while the target is never named in full, rejects
+    — surname-only agreement in multi-person evidence is not
+    identity (the Kevin Cramer NASA photo placed for Jim
+    Cramer). See _person_surname_collision."""
     title = page.get("title") or ""
     info = (page.get("imageinfo") or [{}])[0]
     row = {"candidate": title, "route": route}
@@ -1015,6 +1134,15 @@ def evaluate_commons_page(page, entity, route, context=None,
         return reject(f"non-visual: {entity!r} is a language "
                       "name — languages are never picture "
                       "subjects")
+    if ER.is_generic_concept(entity, entity_type):
+        return reject(f"concept: {entity!r} is a generic "
+                      "concept — concepts have no identity "
+                      "to photograph, and identity sourcing "
+                      "for them only climbs to unrelated "
+                      "depictions ('Data Center' → a man's "
+                      "portrait; 'Gold' → the Sule Pagoda; "
+                      "'House' → a Salinas ranch house); "
+                      "fail closed (2026-11-11)")
     if blocked_keys and ER.file_key(title) in blocked_keys:
         return reject("blocklist: this file is on the entity's "
                       "corpus blocklist — proven wrong for "
@@ -1046,6 +1174,12 @@ def evaluate_commons_page(page, entity, route, context=None,
                       "Windows Update screenshot as the "
                       "Windows Update P18 — X 2026-11-01); "
                       "fail closed")
+    if identity_verified \
+            and _entity_is_person(entity, entity_type):
+        collision = _person_surname_collision(
+            entity, entity_aliases, title, desc, cats)
+        if collision:
+            return reject(collision)
     if identity_verified and _is_depicts_route(route) \
             and _entity_is_person(entity, entity_type):
         names = [entity] + [a for a in entity_aliases or []
@@ -1460,6 +1594,14 @@ def source_extras(article, script, dest_dir, own_count, log=print,
             triage_reject(
                 f"non-visual: {e!r} resolves to a language — "
                 "languages are never picture subjects")
+            continue
+        if ER.is_generic_concept(e, res.get("type")):
+            triage_reject(
+                f"concept: {e!r} is a generic concept — "
+                "concepts have no identity to photograph; "
+                "identity sourcing for them only climbs to "
+                "unrelated depictions; fail closed "
+                "(2026-11-11)")
             continue
         if not res.get("qid"):
             triage_reject(

@@ -2363,6 +2363,13 @@ def _source_entity_images_identity(entity_rec, article, net,
         ledger("rejected",
                "resolved type is a language — not a visual subject")
         return cands, rows
+    if ER.is_generic_concept(name, res.get("type")):
+        ledger("rejected",
+               "resolved entity is a generic concept — concepts "
+               "have no identity to photograph; identity "
+               "sourcing for them only climbs to unrelated "
+               "depictions; fail closed (2026-11-11)")
+        return cands, rows
     qid = res.get("qid")
     if not qid:
         ledger("rejected",

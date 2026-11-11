@@ -702,6 +702,86 @@ check("'Jailer 2' still agrees with 'Jailer' (number dropped "
 check("'Skyrizi' agrees with its generic name via alias",
       ER.names_agree("Skyrizi", "risankizumab", ["Skyrizi"]))
 
+# ── 2026-11-11: concept block + given-name rule ────────────
+print("concept block / given-name rule")
+SYLLA_PAGE = commons_page(
+    "File:Assane SYLLA.jpg", 1600, 2000,
+    desc="Assane Sylla, a systems engineer, photographed at a "
+         "conference in Dakar.",
+    cats="Men of Senegal|Data centers")
+SULE_PAGE = commons_page(
+    "File:Sule Pagoda 2018.jpg", 2400, 1600,
+    desc="The Sule Pagoda in Yangon, Myanmar.",
+    cats="Sule Pagoda|Yangon")
+RANCH_PAGE = commons_page(
+    "File:Ranch style home in Salinas, California.JPG",
+    2400, 1600, desc="A ranch style home in Salinas, "
+    "California.", cats="Houses in Salinas, California")
+GGB_PAGE = commons_page(
+    "File:Golden Gate Bridge as seen from Battery East.jpg",
+    2400, 1600,
+    desc="The Golden Gate Bridge in San Francisco.",
+    cats="Golden Gate Bridge")
+KEVIN_NASA_PAGE = commons_page(
+    "File:NASA officials tour Kennedy Space Center.jpg",
+    2400, 1600, license_short="Public domain",
+    desc="Sen. Kevin Cramer and Sen. John Hoeven tour the "
+         "Kennedy Space Center with NASA Administrator Jim "
+         "Bridenstine ahead of the launch.",
+    cats="Kevin Cramer|John Hoeven|Kennedy Space Center")
+JIM_PAGE = commons_page(
+    "File:Jim Cramer at NYSE 2024.jpg", 2400, 1600,
+    desc="Jim Cramer, host of Mad Money, on the floor of the "
+         "New York Stock Exchange.",
+    cats="Jim Cramer")
+JIM_WITH_KEVIN_PAGE = commons_page(
+    "File:Cramer brothers at charity gala.jpg", 2400, 1600,
+    desc="Jim Cramer and his brother Kevin Cramer at a "
+         "charity gala in New York.",
+    cats="Jim Cramer")
+
+cand, row = S.evaluate_commons_page(
+    SYLLA_PAGE, "Data Center", route="depicts",
+    identity_verified=True, entity_type="other")
+check("'Data Center' can never source the SYLLA portrait "
+      "(depicts route)", cand is None
+      and "concept" in (row.get("reason") or ""),
+      str(row))
+cand, row = S.evaluate_commons_page(
+    SULE_PAGE, "Gold", route="p18",
+    identity_verified=True, entity_type="other")
+check("'Gold' can never source the Sule Pagoda (P18 route)",
+      cand is None and "concept" in (row.get("reason") or ""),
+      str(row))
+cand, row = S.evaluate_commons_page(
+    RANCH_PAGE, "House", route="p18",
+    identity_verified=True, entity_type="other")
+check("'House' can never source the Salinas ranch house",
+      cand is None and "concept" in (row.get("reason") or ""),
+      str(row))
+cand, row = S.evaluate_commons_page(
+    GGB_PAGE, "Golden Gate Bridge", route="p18",
+    identity_verified=True, entity_type="building")
+check("keeper: Golden Gate Bridge (building) still sources "
+      "its P18", cand is not None, str(row))
+cand, row = S.evaluate_commons_page(
+    KEVIN_NASA_PAGE, "Jim Cramer", route="p18",
+    identity_verified=True, entity_type="person")
+check("multi-person evidence naming Kevin Cramer can never "
+      "stand in for Jim Cramer (surname-only match)",
+      cand is None
+      and "given-name" in (row.get("reason") or ""), str(row))
+cand, row = S.evaluate_commons_page(
+    JIM_PAGE, "Jim Cramer", route="depicts",
+    identity_verified=True, entity_type="person")
+check("keeper: a single-person Jim Cramer file still "
+      "sources", cand is not None, str(row))
+cand, row = S.evaluate_commons_page(
+    JIM_WITH_KEVIN_PAGE, "Jim Cramer", route="depicts",
+    identity_verified=True, entity_type="person")
+check("keeper: a multi-person file that names Jim Cramer "
+      "in full still sources", cand is not None, str(row))
+
 print()
 if FAILS:
     print(f"❌ {len(FAILS)} FAILURES: {FAILS}")

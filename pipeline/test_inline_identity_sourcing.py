@@ -682,6 +682,60 @@ check("oversized identity original is served via its 1920px "
       and picks[0].get("serve_variant") is True,
       str([p.get("file_url") for p in picks]))
 
+# ── 2026-11-11: generic concepts never source inlines ──────
+print("2026-11-11 corpus — concept block")
+AMD_ART = {
+    "headline": "AMD Data Center Revenue Beats Estimates as "
+                "AI Demand Surges",
+    "body": "<p>Advanced Micro Devices said data center "
+            "revenue rose sharply in the quarter.</p>",
+    "category": "markets-finance", "slug": "amd-data-center",
+}
+SYLLA_PAGE_I = commons_page(
+    "File:Assane SYLLA.jpg", 1600, 2000,
+    desc="Assane Sylla, a systems engineer, photographed at "
+         "a conference in Dakar.",
+    cats="Men of Senegal|Data centers")
+CERN_PAGE_I = commons_page(
+    "File:CERN Server 03.jpg", 2400, 1600,
+    desc="Servers in the CERN data centre.",
+    cats="CERN data centre")
+DC_RES = resolution("Data Center", "Q671224", type_="other",
+                    p18="CERN Server 03.jpg")
+net, calls = identity_net(
+    resolutions={"Data Center": DC_RES},
+    depicts_by_qid={"Q671224": [{"title": SYLLA_PAGE_I["title"]}]},
+    pages_by_title={SYLLA_PAGE_I["title"]: SYLLA_PAGE_I,
+                    CERN_PAGE_I["title"]: CERN_PAGE_I})
+picks, rec = run_inlines(AMD_ART, [ent("Data Center")], net)
+check("concept: 'Data Center' produces NO inline (neither "
+      "the SYLLA depicts portrait nor its own P18)",
+      picks == [], str([p["title"] for p in picks]))
+check("concept: the rejection is ledgered as a concept block",
+      any("concept" in (r.get("reason") or "")
+          for r in rec["ledger"]), str(rec["ledger"]))
+
+GOLD_ART = {
+    "headline": "Gold Prices Hit a Record as Investors Seek "
+                "Safety",
+    "body": "<p>Gold extended its rally on Monday.</p>",
+    "category": "markets-finance", "slug": "gold-prices-record",
+}
+SULE_PAGE_I = commons_page(
+    "File:Sule Pagoda 2018.jpg", 2400, 1600,
+    desc="The Sule Pagoda in Yangon, Myanmar.",
+    cats="Sule Pagoda|Yangon")
+GOLD_RES = resolution("Gold", "Q897", type_="other",
+                      p18="Gold-crystals.jpg")
+net, calls = identity_net(
+    resolutions={"Gold": GOLD_RES},
+    depicts_by_qid={"Q897": [{"title": SULE_PAGE_I["title"]}]},
+    pages_by_title={SULE_PAGE_I["title"]: SULE_PAGE_I})
+picks, rec = run_inlines(GOLD_ART, [ent("Gold")], net)
+check("concept: 'Gold' produces NO inline (Sule Pagoda "
+      "depicts climb blocked)", picks == [],
+      str([p["title"] for p in picks]))
+
 print()
 if FAILS:
     print(f"FAILED: {len(FAILS)} check(s): {FAILS}")

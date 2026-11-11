@@ -706,6 +706,68 @@ for ent_name, fname in [
 check("blocklist: Hicks's own portrait is NOT blocked",
       not ER.blocked_file("Kathleen Hicks", HICKS_P18))
 
+# ── 2026-11-11: generic concepts never source card art ─────
+print("2026-11-11 — concept block")
+SYLLA_PAGE_C = commons_page(
+    "File:Assane SYLLA.jpg", 1600, 2000,
+    desc="Assane Sylla, a systems engineer, photographed at "
+         "a conference in Dakar.",
+    cats="Men of Senegal|Data centers")
+CERN_PAGE_C = commons_page(
+    "File:CERN Server 03.jpg", 2400, 1600,
+    desc="Servers in the CERN data centre.",
+    cats="CERN data centre")
+SULE_PAGE_C = commons_page(
+    "File:Sule Pagoda 2018.jpg", 2400, 1600,
+    desc="The Sule Pagoda in Yangon, Myanmar.",
+    cats="Sule Pagoda|Yangon")
+GGB_PAGE_C = commons_page(
+    "File:GoldenGateBridge-001.jpg",
+    2400, 1600,
+    desc="The Golden Gate Bridge in San Francisco.",
+    cats="Golden Gate Bridge")
+AMD_CTX = {
+    "headline": "AMD Data Center Revenue Beats Estimates as "
+                "AI Demand Surges",
+    "body": "Advanced Micro Devices said data center "
+            "revenue rose sharply in the quarter.",
+    "slug": "amd-data-center-revenue", "category": "markets-finance"}
+GOLD_CTX = {
+    "headline": "Gold Prices Hit a Record as Investors Seek "
+                "Safety",
+    "body": "Gold extended its rally on Monday.",
+    "slug": "gold-prices-record", "category": "markets-finance"}
+GGB_CTX = {
+    "headline": "Golden Gate Bridge Suicide Deterrent Net "
+                "Proves Its Worth",
+    "body": "The Golden Gate Bridge net has prevented "
+            "deaths since its completion.",
+    "slug": "golden-gate-bridge-net", "category": "news"}
+
+reset(pages={SYLLA_PAGE_C["title"]: SYLLA_PAGE_C,
+             CERN_PAGE_C["title"]: CERN_PAGE_C},
+      depicts={"Q671224": [SYLLA_PAGE_C["title"]]})
+got = source("Data center revenue surged.", AMD_CTX,
+             entities=["Data Center"])
+check("concept: 'Data Center' yields NO card image (the "
+      "SYLLA portrait went live in the AMD X deck, "
+      "2026-11-04)", got is None, str(got))
+
+reset(pages={SULE_PAGE_C["title"]: SULE_PAGE_C},
+      depicts={"Q897": [SULE_PAGE_C["title"]]})
+got = source("Gold hit a record.", GOLD_CTX, entities=["Gold"])
+check("concept: 'Gold' yields NO card image (Sule Pagoda "
+      "depicts climb blocked)", got is None, str(got))
+
+reset(pages={GGB_PAGE_C["title"]: GGB_PAGE_C})
+got = source("The bridge net saves lives.", GGB_CTX,
+             entities=["Golden Gate Bridge"])
+check("keeper: Golden Gate Bridge (building) still sources "
+      "its P18 card image",
+      produced_file(got) is not None
+      and "GoldenGateBridge-001" in produced_file(got),
+      str(got))
+
 sc._download_entity_image = _orig_download
 res.commons_search = _orig_search
 res.brave_links = _orig_links

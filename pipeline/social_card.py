@@ -1071,6 +1071,11 @@ def _entity_image_for_card(text, article_ctx, used, log=None,
             log(f"entity sourcing: {entity!r} resolved to a "
                 f"language — non-visual, fail closed to navy")
             continue
+        if ER.is_generic_concept(entity, r.get("type")):
+            log(f"entity sourcing: {entity!r} is a generic "
+                f"concept — concepts have no identity to "
+                f"photograph; fail closed to navy (2026-11-11)")
+            continue
         qid = r.get("qid")
         if not qid:
             log(f"entity sourcing: {entity!r} identity "
