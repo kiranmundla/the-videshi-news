@@ -4934,7 +4934,6 @@
    ],
    "aliases": [
     "Charlotte",
-    "Concord",
     "Huntersville",
     "Harrisburg",
     "Fort Mill",
@@ -5057,9 +5056,10 @@
     }
    ],
    "block": [
-    "charlotte county"
+    "charlotte county",
+    "contra costa"
    ],
-   "context_guard": null,
+   "context_guard": "charlotte_nc",
    "source_ranks": [
     23
    ]
