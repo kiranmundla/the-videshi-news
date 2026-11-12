@@ -712,6 +712,20 @@ def main():
             # Enrich events with full descriptions + addresses from detail pages
             if events:
                 events = enrich_events(events)
+            # Re-host images into our storage at insert (2026-11-11 weekly
+            # audit: the Nov 9 Eventbrite batch landed 60+ hotlinked
+            # img.evbuc.com URLs because this scraper never called the
+            # rehost helper and rehost-event-images.py has no scheduled
+            # caller). rehost_image returns the original URL on ANY
+            # failure, so this can never blank or break an image.
+            if events and not args.dry_run:
+                try:
+                    from event_image_rehost import rehost_image
+                    for ev in events:
+                        if ev.get("image_url"):
+                            ev["image_url"] = rehost_image(ev["image_url"])
+                except Exception as e:
+                    print(f"  ⚠ image rehost skipped ({e})", flush=True)
             total_found_state = len(events)
             total_found += total_found_state
 

@@ -89,6 +89,15 @@ CASES = [
     ("detroit-mi", "Warren, Michigan Approves Diwali Proclamation", True),
     ("detroit-mi", "Macomb County Temple Expands in Warren", True),
     ("detroit-mi", "Detroit Diwali Gala Draws Thousands Downtown", True),
+    # ── 2026-11-11 audit: Charlotte, NC vs Concord the company / Concord, CA ──
+    ("charlotte-nc", "Concord Enviro Systems plans Rs 30-35 crore FY27 capex outlay", False),
+    ("charlotte-nc", "Concord H1 revenue rises 95% as order book hits Rs 846 crore", False),
+    ("charlotte-nc", "Concord reports Rs 846 crore order book, 4x FY26 revenue", False),
+    ("charlotte-nc", "Concord Night Market – Festival of Lights, Diwali", False),
+    ("charlotte-nc", "New Indian Grocery Opens in Concord, NC", True),
+    ("charlotte-nc", "Concord, North Carolina Temple Celebrates Diwali", True),
+    ("charlotte-nc", "Cabarrus County Fair in Concord Draws Families", True),
+    ("charlotte-nc", "Charlotte Diwali Celebration Draws Thousands", True),
     # ── Phase 2: Yonkers / Bergen split out of New York ────────────────
     ("yonkers-bergen-ny-nj", "Yonkers Diwali Celebration Lights Up City Hall", True),
     ("new-york-ny", "Yonkers Diwali Celebration Lights Up City Hall", False),

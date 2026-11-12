@@ -31,6 +31,7 @@ import time
 from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 from urllib.parse import urlparse
 
 sys.stdout.reconfigure(line_buffering=True)
@@ -45,7 +46,11 @@ HEADERS = [
 ]
 MAP_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                         "reports", "event-image-rehost-map.jsonl")
-TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+# "Today" in Pacific time, not UTC (2026-11-11 weekly audit: with a UTC
+# today, --upcoming-only skipped all of that evening's PT events from
+# 16:00 PT onward — the same bug class fixed in prebuild-feeds.py on
+# 2026-11-04).
+TODAY = datetime.now(ZoneInfo("America/Los_Angeles")).strftime("%Y-%m-%d")
 MAX_CONSEC_UPLOAD_FAILURES = 8  # quota guard
 
 

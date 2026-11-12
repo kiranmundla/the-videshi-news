@@ -142,6 +142,22 @@ _DETROIT_MI_RX = (
     r"|\b" + _MI_CONTEXT + r"\b.{0,60}\bWarren\b"
 )
 
+# Concord, NC (Charlotte cluster member) vs Concord the Indian listed
+# company and Concord, CA: the 2026-11-11 audit found Charlotte's bucket
+# filled 5/6 with "Concord … Rs crore" company results (multibagg.ai)
+# and a Contra Costa County night market. Like Warren for Detroit,
+# "Concord" leaves the plain aliases in clusters.json and matches only
+# with North Carolina context nearby; the cluster block list also names
+# "contra costa" (Concord, CA's county) outright.
+_CHARLOTTE_CONTEXT = (
+    r"(?:North Carolina|Charlotte|Cabarrus|Huntersville|Kannapolis|\bNC\b)"
+)
+_CHARLOTTE_NC_RX = (
+    r"\bConcord,?\s+(?:NC|N\.C\.)\b"
+    r"|\bConcord\b(?=.{0,60}\b" + _CHARLOTTE_CONTEXT + r"\b)"
+    r"|\b" + _CHARLOTTE_CONTEXT + r"\b.{0,60}\bConcord\b"
+)
+
 _PROFILE_RX = {
     "washington_dc": _WASHINGTON_RX,
     "portland_or": _PORTLAND_RX,
@@ -149,6 +165,7 @@ _PROFILE_RX = {
     "dublin_oh": _DUBLIN_OH_RX,
     "raleigh_nc": _RALEIGH_NC_RX,
     "detroit_mi": _DETROIT_MI_RX,
+    "charlotte_nc": _CHARLOTTE_NC_RX,
     "fishers_in": _FISHERS_RX,
     # orange_county: the profile pattern adds guarded "Corona" (above);
     # the cluster's other names match plainly, and cluster_blocked()
