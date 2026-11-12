@@ -1,0 +1,418 @@
+{
+ "renderer": "reel_renderer_v8.py (Reels v8 \u2014 GPT-benchmark chrome, distinct photo per scene, PRODUCTION 2026-11-11)",
+ "design_system": "GPT-benchmark professional style (masthead + footer chrome, big-stat scenes, credited topical stock for concept/policy stories)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-visa-categories-cut-13-to-9-visitor-visa",
+ "article_slug": "india-visa-categories-cut-13-to-9-visitor-visa",
+ "article_id": "5f1559fe-cc58-4e58-9eaf-f4e677a2d338",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa-v8/india-visa-categories-cut-13-to-9-visitor-visa.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/India_e-Tourist_Visa_Entry_Stamp.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "local_path": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa-v8/hero.jpg",
+  "width": 2009,
+  "height": 1361,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.523,0.500) damped=(0.512,0.500)",
+  "has_face": false,
+  "box_source": [
+   465,
+   381,
+   1125,
+   544
+  ],
+  "box_bg": [
+   465,
+   381,
+   1125,
+   544
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.5,
+   0.5
+  ]
+ },
+ "composition": {
+  "model": "per-scene distinct photo (never re-cropped), full-bleed cover or face-demoted backdrop, benchmark chrome baked into every background, xfade joins over the global Ken Burns phase",
+  "distinct_images": 6,
+  "footer_source": "Source: The Hindu \u2022 11 NOV 2026",
+  "footer_credit": "Stock imagery: Pexels"
+ },
+ "grade": {
+  "mode": "native-resolution (v7 grade)"
+ },
+ "safe_zone": {
+  "x": [
+   80,
+   940
+  ],
+  "y": [
+   126,
+   1420
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 1001,
+   "zone_h": 419,
+   "scale": 1.0,
+   "content_h": 419,
+   "block_top": 1001,
+   "block_bottom": 1420,
+   "text_bbox": [
+    80,
+    1001,
+    940,
+    1420
+   ],
+   "texts": [
+    "Immigration",
+    "INDIA CUTS VISA CATEGORIES FROM 13 TO NINE, RENAMES TOURIST VISA AS VISITOR VISA"
+   ],
+   "v8": {
+    "image_source": "hero",
+    "image_kind": "hero",
+    "track": "backdrop-demoted",
+    "photo_px": [
+     2009,
+     1361
+    ],
+    "placement": {
+     "mode": "backdrop-demoted",
+     "x": 160,
+     "y": 340,
+     "w": 760,
+     "h": 600,
+     "scale": 0.4410911201392919,
+     "window": [
+      176,
+      0,
+      1899,
+      1360
+     ]
+    },
+    "provenance": {
+     "route": "article hero"
+    },
+    "kicker": "TOP STORY"
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 1119,
+   "zone_h": 301,
+   "scale": 1.0,
+   "content_h": 301,
+   "block_top": 1119,
+   "block_bottom": 1420,
+   "text_bbox": [
+    80,
+    1119,
+    940,
+    1420
+   ],
+   "texts": [
+    "What Happened",
+    "India will consolidate its 13 main visa categories into nine and cut sub-categories from 49 to 23 under a Union Home Ministry review of the Visa Manual, 2019, renaming the Tourist Visa as the Visitor Visa."
+   ],
+   "v8": {
+    "image_source": "stock:8372622",
+    "image_kind": "stock",
+    "track": "cover",
+    "photo_px": [
+     6016,
+     4016
+    ],
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.47808764940239046,
+     "window": [
+      1812,
+      0,
+      4071,
+      4016
+     ]
+    },
+    "provenance": {
+     "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+     "pexels_id": 8372622,
+     "size": [
+      6016,
+      4016
+     ],
+     "query": "passport travel documents flat lay",
+     "beat": "news",
+     "page": "https://www.pexels.com/photo/white-and-green-box-on-white-textile-8372622/",
+     "photographer": "Leeloo The First",
+     "license": "Pexels License (free use); credited in the reel footer"
+    },
+    "kicker": "WHAT'S NEW"
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 900,
+   "zone_h": 520,
+   "scale": 1.0,
+   "content_h": 520,
+   "block_top": 900,
+   "block_bottom": 1420,
+   "text_bbox": [
+    80,
+    900,
+    940,
+    1420
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "13 TO 9",
+    "Main visa categories India will consolidate into nine"
+   ],
+   "v8": {
+    "image_source": "stock:6354991",
+    "image_kind": "stock",
+    "track": "cover",
+    "photo_px": [
+     5184,
+     3456
+    ],
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5555555555555556,
+     "window": [
+      1645,
+      0,
+      3589,
+      3456
+     ]
+    },
+    "provenance": {
+     "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+     "pexels_id": 6354991,
+     "size": [
+      5184,
+      3456
+     ],
+     "query": "airport departure terminal travelers",
+     "beat": "hero",
+     "page": "https://www.pexels.com/photo/black-and-white-photo-of-people-on-airport-6354991/",
+     "photographer": "Philippe Bonnaire",
+     "license": "Pexels License (free use); credited in the reel footer"
+    },
+    "kicker": "BY THE NUMBERS"
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 844,
+   "zone_h": 576,
+   "scale": 1.0,
+   "content_h": 576,
+   "block_top": 844,
+   "block_bottom": 1420,
+   "text_bbox": [
+    80,
+    844,
+    940,
+    1420
+   ],
+   "texts": [
+    "By The Numbers",
+    "49 TO 23",
+    "Sub-categories, cut under the Home Ministry's Visa Manual review",
+    "70%",
+    "Of visa application form fields to be cut as overlapping and repetitive"
+   ],
+   "v8": {
+    "image_source": "stock:7821699",
+    "image_kind": "stock",
+    "track": "cover",
+    "photo_px": [
+     6720,
+     4480
+    ],
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.42857142857142855,
+     "window": [
+      1229,
+      0,
+      3749,
+      4480
+     ]
+    },
+    "provenance": {
+     "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+     "pexels_id": 7821699,
+     "size": [
+      6720,
+      4480
+     ],
+     "query": "hand writing on a paper form",
+     "beat": "grid",
+     "page": "https://www.pexels.com/photo/close-up-shot-of-a-person-filling-out-a-form-7821699/",
+     "photographer": "RDNE Stock project",
+     "license": "Pexels License (free use); credited in the reel footer"
+    },
+    "kicker": "BY THE NUMBERS"
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 1132,
+   "zone_h": 288,
+   "scale": 1.0,
+   "content_h": 288,
+   "block_top": 1132,
+   "block_bottom": 1420,
+   "text_bbox": [
+    80,
+    1132,
+    940,
+    1420
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "V-1 is for short visits, V-2 for longer stays",
+    "Visitor Visa covers visiting friends or relatives"
+   ],
+   "v8": {
+    "image_source": "stock:346798",
+    "image_kind": "stock",
+    "track": "backdrop-demoted",
+    "photo_px": [
+     4896,
+     3264
+    ],
+    "placement": {
+     "mode": "backdrop-demoted",
+     "x": 160,
+     "y": 340,
+     "w": 760,
+     "h": 600,
+     "scale": 0.18384131591678762,
+     "window": [
+      0,
+      0,
+      4134,
+      3263
+     ]
+    },
+    "provenance": {
+     "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+     "pexels_id": 346798,
+     "size": [
+      4896,
+      3264
+     ],
+     "query": "passport travel documents flat lay",
+     "beat": "diaspora",
+     "page": "https://www.pexels.com/photo/brown-passport-346798/",
+     "photographer": "Porapak Apichodilok",
+     "license": "Pexels License (free use); credited in the reel footer"
+    },
+    "kicker": "WHAT IT MEANS FOR YOU"
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 1006,
+   "zone_h": 414,
+   "scale": 1.0,
+   "content_h": 414,
+   "block_top": 1006,
+   "block_bottom": 1420,
+   "text_bbox": [
+    80,
+    1006,
+    940,
+    1420
+   ],
+   "texts": [
+    "The Takeaway",
+    "Applicants should keep using the current categories until the new structure is notified.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v8": {
+    "image_source": "stock:54380",
+    "image_kind": "stock",
+    "track": "cover",
+    "photo_px": [
+     4608,
+     3072
+    ],
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.625,
+     "window": [
+      1601,
+      0,
+      3329,
+      3072
+     ]
+    },
+    "provenance": {
+     "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+     "pexels_id": 54380,
+     "size": [
+      4608,
+      3072
+     ],
+     "query": "family arriving at airport travel",
+     "beat": "payoff",
+     "page": "https://www.pexels.com/photo/people-walking-in-the-hallway-inside-the-building-54380/",
+     "photographer": "Download a pic Donate a buck! ^",
+     "license": "Pexels License (free use); credited in the reel footer"
+    },
+    "kicker": "THE TAKEAWAY"
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades (v6/v7 produce recipe)"
+ },
+ "render_seconds": 281.7,
+ "mp4_bytes": 13303835
+}

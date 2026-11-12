@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa-v8/india-visa-categories-cut-13-to-9-visitor-visa.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        2009,
+        1361
+      ],
+      "manifest_dims": [
+        2009,
+        1361
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 37.1,
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/India_e-Tourist_Visa_Entry_Stamp.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa-v8/qa/frames/frame-hook.png",
+      "text_px_detected": 33146,
+      "edge": {
+        "pass": true,
+        "offending_px": 111,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 8.7,
+        "delta": 245.2
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa-v8/qa/frames/frame-news.png",
+      "text_px_detected": 31571,
+      "edge": {
+        "pass": true,
+        "offending_px": 90,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 68.6,
+        "delta": 184.8
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa-v8/qa/frames/frame-hero.png",
+      "text_px_detected": 27731,
+      "edge": {
+        "pass": true,
+        "offending_px": 109,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.79)",
+        "box": [
+          515,
+          996,
+          15,
+          19
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.0,
+        "bg_luminance": 32.5,
+        "delta": 220.5
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa-v8/qa/frames/frame-grid.png",
+      "text_px_detected": 13054,
+      "edge": {
+        "pass": true,
+        "offending_px": 66,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 169.5,
+        "bg_luminance": 93.0,
+        "delta": 76.5
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa-v8/qa/frames/frame-diaspora.png",
+      "text_px_detected": 16883,
+      "edge": {
+        "pass": true,
+        "offending_px": 109,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.0,
+        "bg_luminance": 15.2,
+        "delta": 237.8
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa-v8/qa/frames/frame-payoff.png",
+      "text_px_detected": 38316,
+      "edge": {
+        "pass": true,
+        "offending_px": 158,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 47.7,
+        "delta": 206.2
+      }
+    }
+  ]
+}

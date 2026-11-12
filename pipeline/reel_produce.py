@@ -67,11 +67,29 @@ import reel_renderer
 # either here would be circular and would silently leave
 # social_card with its no-upgrade fallback binding.
 
-# ── ROLLBACK SWITCH ─────────────────────────────────────────────
+# ── ROLLBACK SWITCHES ───────────────────────────────────────────
 # True  = Reels v7 renderer (production, adopted 2026-10-24).
 # False = the locked v6 renderer (reel_renderer.py) — one-line
 # rollback; nothing else in this file changes.
 USE_V7_RENDERER = True
+
+# Reels v8 (adopted 2026-11-11, Kiran's approval of the
+# GPT-benchmark sample): the benchmark chrome + a DISTINCT photo
+# on every scene + the topical-stock route for concept/policy
+# stories. USE_V8_RENDERER = False restores the v7 path above
+# exactly as it was; the env var VIDESHI_REEL_RENDERER
+# (v8|v7|v6) overrides both switches without a code edit.
+USE_V8_RENDERER = True
+
+
+def _use_v8():
+    import os
+    env = (os.environ.get("VIDESHI_REEL_RENDERER") or "").lower()
+    if env in ("v7", "v6"):
+        return False
+    if env == "v8":
+        return True
+    return USE_V8_RENDERER and USE_V7_RENDERER
 
 # Fallback bed only — callers (the videshi-pulse-reels job) always
 # pass --music with a rotated upbeat collection track. The previous
@@ -225,13 +243,78 @@ def load_extras(extras_path):
     return out
 
 
+def footer_source_for(article):
+    """The v8 footer source line: first named article source +
+    publication date ('Source: The Hindu / MHA review • 11 NOV
+    2026' in the approved sample — the source name comes from
+    the article's own sources, never invented)."""
+    import datetime
+    name = None
+    for s in article.get("sources") or []:
+        if isinstance(s, dict) and s.get("name"):
+            name = s["name"]
+            break
+    date = ""
+    pub = article.get("published_at") or ""
+    try:
+        dt = datetime.datetime.fromisoformat(
+            str(pub).replace("Z", "+00:00"))
+        date = dt.strftime("%d %b %Y").upper()
+    except Exception:
+        date = ""
+    parts = [p for p in (name, date) if p]
+    return ("Source: " + " • ".join(parts)) if parts else ""
+
+
+def build_v8_candidates(hero, hero_size, inline_paths, extras,
+                        inline_persons=None):
+    """The v8 renderer's candidate list, in priority order:
+    the hero, the article's inline images, then verified
+    supplementary extras. Stock scenes are appended by the
+    caller when the distinct-image count requires them. Each
+    candidate carries its provenance for the manifest."""
+    cands = [{"label": "hero", "kind": "hero", "path": str(hero),
+              "size": list(hero_size), "person": None,
+              "provenance": {"route": "article hero"}}]
+    for i, (path, size) in enumerate(inline_paths):
+        person = None
+        if inline_persons and i < len(inline_persons):
+            person = inline_persons[i]
+        cands.append({"label": f"inline:{i + 1}", "kind": "inline",
+                      "path": str(path), "size": list(size),
+                      "person": person,
+                      "provenance": {"route": "article inline"}})
+    for beat, e in (extras or {}).items():
+        person = None
+        if e.get("entity_type") == "person":
+            person = e.get("entity")
+        cands.append({"label": f"extra:{e['label']}",
+                      "kind": "extra", "path": str(e["path"]),
+                      "size": list(e["size"]), "person": person,
+                      "provenance": e.get("provenance")})
+    return cands
+
+
 def render(script, article, hero, inline_paths, extras, music,
-           outdir, name, stage, log=print, inline_persons=None):
+           outdir, name, stage, log=print, inline_persons=None,
+           v8_candidates=None, footer_credit=""):
     """The render dispatch — the ONLY place production chooses a
-    renderer (see USE_V7_RENDERER). Returns the manifest dict
-    (with a 'video' path) in both branches."""
+    renderer (see USE_V8_RENDERER / USE_V7_RENDERER). Returns
+    the manifest dict (with a 'video' path) in every branch."""
     category = (article.get("category") or "News") \
         .replace("-", " ").title()
+    if _use_v8():
+        import reel_renderer_v8     # lazy: see the import note
+        video, manifest = reel_renderer_v8.render_reel_v8(
+            script, v8_candidates, music, outdir, name=name,
+            category=category, photo_url=article.get("image_url"),
+            article_slug=article.get("slug"),
+            article_id=article.get("id"), stage=stage, log=log,
+            footer_source=footer_source_for(article),
+            footer_credit=footer_credit)
+        manifest = dict(manifest)
+        manifest["video"] = str(video)
+        return manifest
     if USE_V7_RENDERER:
         import reel_renderer_v7     # lazy: see the import note
         video, manifest = reel_renderer_v7.render_reel_v7(
@@ -277,7 +360,11 @@ def main():
 
     outdir = Path(args.outdir)
     outdir.mkdir(parents=True, exist_ok=True)
-    renderer_name = ("reel_renderer_v7.py" if USE_V7_RENDERER
+    V8 = None
+    if _use_v8():
+        import reel_renderer_v8 as V8
+    renderer_name = ("reel_renderer_v8.py" if V8 is not None
+                     else "reel_renderer_v7.py" if USE_V7_RENDERER
                      else "reel_renderer.py")
     verdict = {"driver": "reel_produce.py", "status": "held",
                "stage": None,
@@ -413,6 +500,81 @@ def main():
             "mode": "not-needed", "own_images": own_count,
             "extras": {}}
 
+    # ── v8: distinct-image assembly + HOLD + stock route ───────
+    # A v8 reel needs one DISTINCT usable photo per scene (all
+    # six beats are photo scenes). Candidates: the article's own
+    # imagery + verified extras; when they fall short AND the
+    # story is a concept/policy story, topical Pexels stock
+    # fills the gap (reels only, credited in the footer). Still
+    # short -> HOLD here, before any render: never re-crop one
+    # image across beats (the rejected visa Short, 2026-11-11).
+    v8_candidates, footer_credit = None, ""
+    if V8 is not None:
+        from PIL import Image as _Im
+        with _Im.open(hero) as _him:
+            hero_size = _him.size
+        v8_candidates = V8.usable_distinct(build_v8_candidates(
+            hero, hero_size, inline_paths, extras,
+            inline_persons=inline_persons))
+        n_scenes = len(reel_renderer.BEATS)
+        if len(v8_candidates) < n_scenes:
+            import reel_stock_sourcing
+            eligible, why = reel_stock_sourcing \
+                .is_concept_policy_story(article, script)
+            verdict["stock"] = {"eligible": eligible,
+                                "reason": why}
+            if eligible:
+                print("── topical stock sourcing (reels only)")
+                stock_dir = outdir / "stock"
+                # Per-scene sourcing: the planner fills beats
+                # in order, so stock covers the beats beyond
+                # the article/extras candidates — source each
+                # from that beat's OWN text.
+                beat_keys = [k for k, _s, _d
+                             in reel_renderer.BEATS]
+                prov = reel_stock_sourcing.source_stock_scenes(
+                    article, script, stock_dir,
+                    n_scenes - len(v8_candidates),
+                    beats=beat_keys[len(v8_candidates):])
+                (stock_dir / "provenance.json").write_text(
+                    json.dumps(prov, indent=2))
+                for sc in prov["scenes"]:
+                    v8_candidates.append({
+                        "label": f"stock:{sc['pexels_id']}",
+                        "kind": "stock",
+                        "path": str(stock_dir / sc["path"]),
+                        "size": sc["size"], "person": None,
+                        "beat": sc.get("beat"),
+                        "provenance": {
+                            "route": prov["route"],
+                            "pexels_id": sc["pexels_id"],
+                            "size": sc["size"],
+                            "query": sc.get("query"),
+                            "beat": sc.get("beat"),
+                            "page": sc["page"],
+                            "photographer": sc["photographer"],
+                            "license": sc["license"]}})
+                v8_candidates = V8.usable_distinct(v8_candidates)
+                verdict["stock"]["scenes"] = len(prov["scenes"])
+                verdict["stock"]["provenance"] = str(
+                    stock_dir / "provenance.json")
+            else:
+                print(f"   stock route ineligible: {why}")
+        if any(c["kind"] == "stock" for c in v8_candidates):
+            footer_credit = "Stock imagery: Pexels"
+        verdict["distinct_images"] = {
+            "usable": len(v8_candidates), "scenes": n_scenes,
+            "labels": [c["label"] for c in v8_candidates]}
+        if len(v8_candidates) < n_scenes:
+            verdict["stage"] = "distinct_images"
+            verdict["detail"] = (
+                f"only {len(v8_candidates)} distinct usable "
+                f"images for {n_scenes} photo scenes — holding "
+                "rather than re-cropping one image across beats "
+                "(2026-11-11 visa Short failure)")
+            print(f"🚫 HELD: {verdict['detail']}", file=sys.stderr)
+            return finish(1)
+
     # ── Gate 2: render ──────────────────────────────────────────
     print(f"── gate 2/3: render ({renderer_name}"
           + (f", stage={args.stage}" if USE_V7_RENDERER else "")
@@ -421,7 +583,15 @@ def main():
         manifest = render(script, article, hero, inline_paths,
                           extras, args.music, outdir, name,
                           args.stage,
-                          inline_persons=inline_persons)
+                          inline_persons=inline_persons,
+                          v8_candidates=v8_candidates,
+                          footer_credit=footer_credit)
+    except (V8.DistinctImagesError if V8 is not None
+            else reel_renderer.PhotoTooSmallError) as e:
+        verdict["stage"] = "distinct_images"
+        verdict["detail"] = str(e)
+        print(f"🚫 HELD: {e}", file=sys.stderr)
+        return finish(1)
     except reel_renderer.PhotoTooSmallError as e:
         verdict["stage"] = "render_photo_floor"
         verdict["detail"] = str(e)

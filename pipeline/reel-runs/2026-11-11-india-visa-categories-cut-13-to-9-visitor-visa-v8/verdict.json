@@ -1,0 +1,49 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-visa-categories-cut-13-to-9-visitor-visa",
+  "name": "india-visa-categories-cut-13-to-9-visitor-visa",
+  "script": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000591
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa-v8/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "stock": {
+    "eligible": true,
+    "reason": "policy keyword in headline/script",
+    "scenes": 5,
+    "provenance": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa-v8/stock/provenance.json"
+  },
+  "distinct_images": {
+    "usable": 6,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "stock:8372622",
+      "stock:6354991",
+      "stock:7821699",
+      "stock:346798",
+      "stock:54380"
+    ]
+  },
+  "manifest": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa-v8/render-manifest.json",
+  "video": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa-v8/india-visa-categories-cut-13-to-9-visitor-visa.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa-v8/tiktok-caption.txt"
+}

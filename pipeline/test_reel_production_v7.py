@@ -120,7 +120,12 @@ _orig = {
     "render_v6": reel_produce.reel_renderer.render_reel,
     "run_qa": reel_produce.reel_frame_qa.run_qa,
     "flag": reel_produce.USE_V7_RENDERER,
+    "flag8": reel_produce.USE_V8_RENDERER,
 }
+# This suite pins the V7 production path; the v8 path has its
+# own suite (test_reel_v8.py). Pin the switch the same way the
+# v6 rollback section below flips USE_V7_RENDERER.
+reel_produce.USE_V8_RENDERER = False
 reel_produce.reel_factcheck.run_gate = lambda s, a, use_llm=True: {
     "verdict": "pass", "held_claims": [], "llm": {"cost_usd": 0.0}}
 
@@ -193,6 +198,7 @@ with tempfile.TemporaryDirectory() as tmp:
     check_eq("sourcing skipped under v6 (v6 has no extras path)",
              verdict["sourcing"]["mode"], "skipped")
 reel_produce.USE_V7_RENDERER = _orig["flag"]
+reel_produce.USE_V8_RENDERER = _orig["flag8"]
 reel_produce.reel_factcheck.run_gate = _orig["run_gate"]
 reel_produce.download_hero = _orig["download_hero"]
 reel_produce.fetch_inline_images = _orig["fetch_inlines"]

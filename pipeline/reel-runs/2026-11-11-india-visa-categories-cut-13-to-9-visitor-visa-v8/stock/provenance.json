@@ -1,0 +1,123 @@
+{
+  "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+  "story": "india-visa-categories-cut-13-to-9-visitor-visa",
+  "scenes": [
+    {
+      "path": "stock-8372622.jpg",
+      "size": [
+        6016,
+        4016
+      ],
+      "pexels_id": 8372622,
+      "page": "https://www.pexels.com/photo/white-and-green-box-on-white-textile-8372622/",
+      "photographer": "Leeloo The First",
+      "query": "passport travel documents flat lay",
+      "beat": "news",
+      "alt": "Flat lay of travel essentials including a passport, map, smartphone, and pop camera.",
+      "sha256": "563c4c70db2bf8bb7010a1984e63b08bee5b3a1c92e03f12de312df48cf8b6bf",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-6354991.jpg",
+      "size": [
+        5184,
+        3456
+      ],
+      "pexels_id": 6354991,
+      "page": "https://www.pexels.com/photo/black-and-white-photo-of-people-on-airport-6354991/",
+      "photographer": "Philippe Bonnaire",
+      "query": "airport departure terminal travelers",
+      "beat": "hero",
+      "alt": "Black and white photo of travelers walking with luggage in a bustling airport terminal.",
+      "sha256": "d2480e587c65b21b4b829a628bbd0524da313aac09ffe6e37ed63687e2f65dc4",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-7821699.jpg",
+      "size": [
+        6720,
+        4480
+      ],
+      "pexels_id": 7821699,
+      "page": "https://www.pexels.com/photo/close-up-shot-of-a-person-filling-out-a-form-7821699/",
+      "photographer": "RDNE Stock project",
+      "query": "hand writing on a paper form",
+      "beat": "grid",
+      "alt": "Hand writing on a W-9 tax form using a ballpoint pen on wooden desk.",
+      "sha256": "9653f86ab0d6d44aa38ef1be73fa15f6330de83c0633ce5139744d7a10ae5b7f",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-346798.jpg",
+      "size": [
+        4896,
+        3264
+      ],
+      "pexels_id": 346798,
+      "page": "https://www.pexels.com/photo/brown-passport-346798/",
+      "photographer": "Porapak Apichodilok",
+      "query": "passport travel documents flat lay",
+      "beat": "diaspora",
+      "alt": "Flat lay of a passport, straw hat, and toy airplane on a wooden surface.",
+      "sha256": "efb50178ada1705e3aeec5da73d469495fc2e0939a1d27b8d9cebb3937ba39d8",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-54380.jpg",
+      "size": [
+        4608,
+        3072
+      ],
+      "pexels_id": 54380,
+      "page": "https://www.pexels.com/photo/people-walking-in-the-hallway-inside-the-building-54380/",
+      "photographer": "Download a pic Donate a buck! ^",
+      "query": "family arriving at airport travel",
+      "beat": "payoff",
+      "alt": "Travelers with luggage walking through a modern airport hallway with a vintage tone.",
+      "sha256": "907e12c8136e270dcaa29ec92de67952036f91e9f85e11fb481562f509e38d4b",
+      "license": "Pexels License (free use); credited in the reel footer"
+    }
+  ],
+  "rejected": [
+    {
+      "candidate": "pexels 8372664",
+      "reason": "signage screen: alt text carries off-topic content (covid) the story is not about"
+    },
+    {
+      "candidate": "pexels 37772239",
+      "reason": "signage screen: alt text names unrelated locale(s): amsterdam, schiphol"
+    },
+    {
+      "candidate": "pexels 8372664",
+      "reason": "signage screen: alt text carries off-topic content (covid) the story is not about"
+    },
+    {
+      "candidate": "pexels 37772239",
+      "reason": "signage screen: alt text names unrelated locale(s): amsterdam, schiphol"
+    },
+    {
+      "candidate": "pexels 8061942",
+      "reason": "signage screen: alt text names unrelated locale(s): ukrainian"
+    },
+    {
+      "candidate": "pexels 31519545",
+      "reason": "signage screen: alt text names unrelated locale(s): china, shanghai"
+    },
+    {
+      "candidate": "pexels 8372664",
+      "reason": "signage screen: alt text carries off-topic content (covid) the story is not about"
+    },
+    {
+      "candidate": "pexels 37772239",
+      "reason": "signage screen: alt text names unrelated locale(s): amsterdam, schiphol"
+    },
+    {
+      "candidate": "pexels 8061942",
+      "reason": "signage screen: alt text names unrelated locale(s): ukrainian"
+    },
+    {
+      "candidate": "pexels 31519545",
+      "reason": "signage screen: alt text names unrelated locale(s): china, shanghai"
+    }
+  ]
+}
