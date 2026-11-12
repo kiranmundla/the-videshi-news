@@ -1,0 +1,32 @@
+{
+ "hook_line": "INDIA CUTS VISA CATEGORIES FROM 13 TO NINE, RENAMES TOURIST VISA AS VISITOR VISA",
+ "hook_stat": {
+  "big": "13 TO 9",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Main visa categories India will consolidate into nine"
+ },
+ "stats": [
+  {
+   "big": "49 TO 23",
+   "label": "Sub-categories, cut under the Home Ministry's Visa Manual review"
+  },
+  {
+   "big": "70%",
+   "label": "Of visa application form fields to be cut as overlapping and repetitive"
+  }
+ ],
+ "diaspora_bullets": [
+  "V-1 is for short visits, V-2 for longer stays",
+  "Visitor Visa covers visiting friends or relatives"
+ ],
+ "key_entities": [
+  "Visitor Visa",
+  "Tourist Visa",
+  "Union Home Ministry",
+  "Visa Manual"
+ ],
+ "news_summary": "India will consolidate its 13 main visa categories into nine and cut sub-categories from 49 to 23 under a Union Home Ministry review of the Visa Manual, 2019, renaming the Tourist Visa as the Visitor Visa.",
+ "payoff": "Applicants should keep using the current categories until the new structure is notified.",
+ "versus": "",
+ "story_mood": "practical"
+}

@@ -1,0 +1,401 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "chess-im-md-imran-us-visa-scholarship-deadline-january",
+ "article_slug": "chess-im-md-imran-us-visa-scholarship-deadline-january",
+ "article_id": "e6bfb8b1-787e-41f1-a783-016a0d95d544",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-12-chess-im-md-imran-us-visa-scholarship-deadline-january/output-v2/chess-im-md-imran-us-visa-scholarship-deadline-january.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-94235,resizemode-75,msid-135759874/nri/latest-updates/17-year-old-indian-chess-player-faces-us-visa-delays-rs-50-lakh-debt-and-scholarship-uncertainty-despite-two-gm-norms.jpg",
+  "local_path": "reel-runs/2026-11-12-chess-im-md-imran-us-visa-scholarship-deadline-january/output-v2/hero.jpg",
+  "width": 1200,
+  "height": 899,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.93)",
+  "has_face": true,
+  "box_source": [
+   827,
+   232,
+   200,
+   244
+  ],
+  "box_bg": [
+   661,
+   317,
+   139,
+   170
+  ],
+  "chin_bg": 487,
+  "anchor": [
+   0.772,
+   0.394
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   624
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 844,
+   "zone_h": 712,
+   "scale": 1.0,
+   "content_h": 342,
+   "block_top": 1029,
+   "block_bottom": 1371,
+   "text_bbox": [
+    70,
+    1029,
+    930,
+    1371
+   ],
+   "texts": [
+    "Immigration",
+    "TEEN CHESS MASTER RISKS US SCHOLARSHIP OVER VISA"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     899
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 624,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      897
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.14x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 278,
+   "block_top": 1302,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1302,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Md Imran, a 17-year-old International Master from Andhra Pradesh, holds a full scholarship to the University of Texas at Rio Grande Valley, but his approved F-1 visa was in the passport he lost in Bratislava in June 2026 and he has spent four months unable to secure a US visa appointment."
+   ],
+   "v7": {
+    "image_source": "extra:chess-pieces",
+    "track": "full-bleed",
+    "render_scale": 0.434,
+    "photo_px": [
+     5895,
+     4421
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4342908844152907,
+     "window": [
+      596,
+      0,
+      3082,
+      4421
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Chess pieces in a lens ball \u2014 no people, the story's sport",
+     "route": "manual \u2014 Wikimedia Commons file, visually verified by the producer",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Schachfiguren_--_2022_--_0032.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Schachfiguren_--_2022_--_0032.jpg",
+     "license": "CC BY-SA 4.0",
+     "artist": "Dietmar Rabich"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 367,
+   "block_top": 1213,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1213,
+    930,
+    1580
+   ],
+   "texts": [
+    "THE STAKES",
+    "4 MONTHS",
+    "Trying every day for a US visa appointment since losing his passport in Bratislava in June 2026"
+   ],
+   "v7": {
+    "image_source": "extra:utrgv-library",
+    "track": "full-bleed",
+    "render_scale": 0.64,
+    "photo_px": [
+     4000,
+     3000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.64,
+     "window": [
+      1238,
+      0,
+      2925,
+      3000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "UTRGV Library, Edinburg Campus \u2014 the University of Texas at Rio Grande Valley, the scholarship university in the article",
+     "route": "manual \u2014 Wikimedia Commons file, visually verified by the producer",
+     "source_page": "https://commons.wikimedia.org/wiki/File:UTRGV_Library,_Edinburg_Campus.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/UTRGV_Library%2C_Edinburg_Campus.jpg",
+     "license": "CC BY-SA 4.0",
+     "artist": "MrAlexGarrido"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 844,
+   "zone_h": 712,
+   "scale": 1.0,
+   "content_h": 535,
+   "block_top": 932,
+   "block_bottom": 1467,
+   "text_bbox": [
+    70,
+    932,
+    930,
+    1467
+   ],
+   "texts": [
+    "By The Numbers",
+    "2",
+    "Grandmaster norms banked, with one final norm needed for the Grandmaster title",
+    "Rs 40-50 lakh",
+    "In family loans over two years to fund his European playing circuit"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     899
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 624,
+     "scale": 0.7897727272727273,
+     "window": [
+      144,
+      0,
+      1200,
+      790
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.14x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 844,
+   "zone_h": 712,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 984,
+   "block_bottom": 1416,
+   "text_bbox": [
+    70,
+    984,
+    930,
+    1416
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "His full scholarship is to the University of Texas at Rio Grande Valley in Brownsville, Texas",
+    "He has already deferred admission from Fall 2026 to Spring 2027"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     899
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 624,
+     "scale": 0.86875,
+     "window": [
+      67,
+      0,
+      1027,
+      718
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.14x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 346,
+   "block_top": 687,
+   "block_bottom": 1033,
+   "text_bbox": [
+    70,
+    687,
+    930,
+    1033
+   ],
+   "texts": [
+    "The Takeaway",
+    "If he cannot secure the visa before UTRGV's January 19, 2027 orientation, he risks losing the scholarship altogether.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 115.7,
+ "mp4_bytes": 8055994
+}

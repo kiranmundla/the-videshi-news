@@ -836,5 +836,31 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "9X70oEiE-sE",
+    "article_slug": "india-visa-categories-cut-13-to-9-visitor-visa",
+    "article_id": "5f1559fe-cc58-4e58-9eaf-f4e677a2d338",
+    "title": "India Cuts Visa Categories From 13 to Nine, Renames Tourist Visa as Visitor Visa #Shorts #VisaNews",
+    "privacy": "public",
+    "uploaded_at": "2026-11-11T23:42:24.046486+00:00",
+    "video_path": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa/output-v2/india-visa-categories-cut-13-to-9-visitor-visa.mp4",
+    "video_sha256": "576861d9f3d8537df8b925809842a14da09f1f25cf3e03b64d0e2000c62bd033",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "mdAqsYGKPg4",
+    "article_slug": "chess-im-md-imran-us-visa-scholarship-deadline-january",
+    "article_id": "e6bfb8b1-787e-41f1-a783-016a0d95d544",
+    "title": "Teen Chess Master Md Imran Risks US Scholarship as Visa Deadline Closes In #Shorts #VisaNews",
+    "privacy": "public",
+    "uploaded_at": "2026-11-12T11:18:42.171166+00:00",
+    "video_path": "reel-runs/2026-11-12-chess-im-md-imran-us-visa-scholarship-deadline-january/output-v2/chess-im-md-imran-us-visa-scholarship-deadline-january.mp4",
+    "video_sha256": "74a664a284fdd5d6acbd1771d61a3f7a23fad1f58e6991189a2cfa5a259b8814",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

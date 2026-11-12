@@ -1,0 +1,155 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "india-visa-categories-cut-13-to-9-visitor-visa",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "India Cuts Visa Categories From 13 to Nine, Renames Tourist Visa as Visitor Visa",
+        "numbers": [
+          13.0
+        ],
+        "entities": [
+          "India Cuts Visa Categories From",
+          "Renames Tourist Visa",
+          "Visitor Visa"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article states India is consolidating visa categories and renaming the tourist visa.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Sub-categories fall from 49 to 23 and application forms are to lose about 70% of their fields under the Home Ministry's Visa Manual review.",
+        "numbers": [
+          23.0,
+          49.0,
+          70.0
+        ],
+        "entities": [
+          "Home Ministry's Visa Manual"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article confirms reduction of sub-categories and application form fields.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "India will consolidate its 13 main visa categories into nine and cut sub-categories from 49 to 23, under a Union Home Ministry review of the Visa Manual, 2019",
+        "numbers": [
+          13.0,
+          23.0,
+          49.0,
+          2019.0
+        ],
+        "entities": [
+          "Union Home Ministry",
+          "Visa Manual"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2019
+          ]
+        },
+        "llm_reason": "Article details the consolidation of visa categories and sub-categories.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The Tourist Visa has been renamed the Visitor Visa, split into V-1 for short visits and V-2 for longer stays",
+        "numbers": [
+          1.0,
+          2.0
+        ],
+        "entities": [
+          "Tourist Visa",
+          "Visitor Visa"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article states the tourist visa is renamed and describes its sub-categories.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Application form fields are to be cut by about 70% by removing overlapping and repetitive questions",
+        "numbers": [
+          70.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article mentions a 70% reduction in application form fields.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "India Cuts Visa Categories From 13 to Nine, Renames Tourist Visa as Visitor Visa",
+        "numbers": [
+          13.0
+        ],
+        "entities": [
+          "India Cuts Visa Categories From",
+          "Renames Tourist Visa",
+          "Visitor Visa"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Same as the hook line, supported by the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000437,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

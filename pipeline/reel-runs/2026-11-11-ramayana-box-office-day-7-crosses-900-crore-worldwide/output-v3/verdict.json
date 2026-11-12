@@ -1,0 +1,37 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ramayana-box-office-day-7-crosses-900-crore-worldwide",
+  "name": "ramayana-box-office-day-7-crosses-900-crore-worldwide",
+  "script": "reel-runs/2026-11-11-ramayana-box-office-day-7-crosses-900-crore-worldwide/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000632
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-11-ramayana-box-office-day-7-crosses-900-crore-worldwide/output-v3/supplementary/provenance.json",
+    "own_images": 3,
+    "extras": {}
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Ranbir Kapoor, Sai Pallavi, Nitesh Tiwari, Crore Worldwide) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 3,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "inline:1",
+      "inline:2"
+    ]
+  },
+  "detail": "only 3 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}

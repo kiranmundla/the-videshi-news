@@ -1,0 +1,256 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "chess-im-md-imran-us-visa-scholarship-deadline-january",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "TEEN CHESS MASTER RISKS US SCHOLARSHIP OVER VISA",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states he risks losing his scholarship due to visa issues.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Md Imran, a 17-year-old International Master from Andhra Pradesh, holds a full scholarship to the University of Texas at Rio Grande Valley, but his approved F-1 visa was in the passport he lost in Bratislava in June 2026 and he has spent four months unable to secure a US visa appointment.",
+      "numbers": [
+        1.0,
+        17.0,
+        2026.0
+      ],
+      "entities": [
+        "Md Imran",
+        "International Master",
+        "Andhra Pradesh",
+        "Rio Grande Valley"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "All details about Imran's scholarship, visa loss, and appointment attempts are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "4 MONTHS",
+      "numbers": [
+        4.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "He has been trying for four months since losing his passport.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Trying every day for a US visa appointment since losing his passport in Bratislava in June 2026",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article confirms he has tried daily for a US visa appointment.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE STAKES",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "2",
+      "numbers": [
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "He has two grandmaster norms according to the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Grandmaster norms banked, with one final norm needed for the Grandmaster title",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states he has two norms and needs one more for the title.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "Rs 40-50 lakh",
+      "numbers": [
+        40.0,
+        50.0,
+        5000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions his family has taken loans of Rs 40-50 lakh.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "In family loans over two years to fund his European playing circuit",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The loans were taken to fund his chess activities over two years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "His full scholarship is to the University of Texas at Rio Grande Valley in Brownsville, Texas",
+      "numbers": [],
+      "entities": [
+        "Rio Grande Valley"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms his scholarship is to UTRGV in Brownsville.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "He has already deferred admission from Fall 2026 to Spring 2027",
+      "numbers": [
+        2026.0,
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026,
+          2027
+        ]
+      },
+      "llm_reason": "The article states he deferred his admission to Spring 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "If he cannot secure the visa before UTRGV's January 19, 2027 orientation, he risks losing the scholarship altogether.",
+      "numbers": [
+        19.0,
+        2027.0
+      ],
+      "entities": [
+        "UTRGV's January"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article clearly states the January 19 deadline and scholarship risk.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE STAKES",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Md Imran",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "University of Texas at Rio Grande Valley",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "F-1 visa",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "chess",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000672,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

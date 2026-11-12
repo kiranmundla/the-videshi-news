@@ -1,0 +1,32 @@
+{
+  "hook_line": "AIRLINES CUT DIWALI FLIGHTS FOR FIRST TIME SINCE COVID AS FARES SURGE",
+  "hook_stat": {
+    "big": "6%",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Fewer flights scheduled across October and November than a year earlier, by Cirium data"
+  },
+  "stats": [
+    {
+      "big": "22,306",
+      "label": "Weekly domestic flights scheduled for November, down 606 or 2.6%"
+    },
+    {
+      "big": "6.5%",
+      "label": "Decline in domestic passenger traffic in September"
+    }
+  ],
+  "diaspora_bullets": [
+    "Recheck flight times before travelling, as schedules can still change",
+    "Expect fewer choices and higher fares on thinner routes"
+  ],
+  "key_entities": [
+    "Air India",
+    "IndiGo",
+    "Cirium",
+    "Diwali"
+  ],
+  "news_summary": "Airlines scheduled about 6% fewer flights across October and November than a year earlier, according to Cirium data reported by Bloomberg, the first capacity decline since 2020, while festive fares on some routes surged.",
+  "payoff": "On thinner routes, travellers may find fewer options and less fare competition.",
+  "versus": "",
+  "story_mood": "practical"
+}

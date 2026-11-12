@@ -1,0 +1,241 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "india-visa-categories-cut-13-to-9-visitor-visa",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA CUTS VISA CATEGORIES FROM 13 TO NINE, RENAMES TOURIST VISA AS VISITOR VISA",
+      "numbers": [
+        13.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states India cuts categories from 13 to 9 and renames tourist visa.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "India will consolidate its 13 main visa categories into nine and cut sub-categories from 49 to 23 under a Union Home Ministry review of the Visa Manual, 2019, renaming the Tourist Visa as the Visitor Visa.",
+      "numbers": [
+        13.0,
+        23.0,
+        49.0,
+        2019.0
+      ],
+      "entities": [
+        "Union Home Ministry",
+        "Visa Manual",
+        "Tourist Visa",
+        "Visitor Visa"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2019
+        ]
+      },
+      "llm_reason": "All details about consolidation and renaming are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "13 TO 9",
+      "numbers": [
+        9.0,
+        13.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the reduction from 13 to 9 visa categories.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Main visa categories India will consolidate into nine",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states India will consolidate main visa categories into nine.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "49 TO 23",
+      "numbers": [
+        23.0,
+        49.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions cutting sub-categories from 49 to 23.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Sub-categories, cut under the Home Ministry's Visa Manual review",
+      "numbers": [],
+      "entities": [
+        "Home Ministry's Visa Manual"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states sub-categories are cut under the Home Ministry's review.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "70%",
+      "numbers": [
+        70.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states application form fields will be cut by about 70%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Of visa application form fields to be cut as overlapping and repetitive",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms that 70% of form fields will be cut due to redundancy.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "V-1 is for short visits, V-2 for longer stays",
+      "numbers": [
+        1.0,
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies V-1 for short visits and V-2 for longer stays.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Visitor Visa covers visiting friends or relatives",
+      "numbers": [],
+      "entities": [
+        "Visitor Visa"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the Visitor Visa includes visiting friends or relatives.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Applicants should keep using the current categories until the new structure is notified.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article advises applicants to continue using current categories.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Visitor Visa",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Tourist Visa",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Union Home Ministry",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Visa Manual",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000596,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

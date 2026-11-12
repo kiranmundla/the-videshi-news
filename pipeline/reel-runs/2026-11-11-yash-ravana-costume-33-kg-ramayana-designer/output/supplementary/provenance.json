@@ -1,0 +1,125 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "yash-ravana-costume-33-kg-ramayana-designer",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Yash",
+    "Ravana",
+    "Ramayana",
+    "Saniya Sardhariya",
+    "Nitesh Tiwari",
+    "Ramayana Part"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Yash' named 'Krishna', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Ravana' named 'R\u0101va\u1e47a', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Saniya Sardhariya' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Ramayana Part' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "File:Battle at Lanka, Ramayana, Udaipur, 1649-53.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q37293)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:ADI09487.jpg",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "verdict": "USED (hero)",
+      "reason": "3751x4689, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Aragonda Hanuman Sanjeevani.JPG",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Balinese dance Legong in Ubud, Ramayana performance, 20220823 1900 0454.jpg",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "verdict": "USED (news)",
+      "reason": "4703x2881, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Nitesh Tiwari at the \u2018Khidkiyaan\u2019 movie festival launch.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q16908467)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x881 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Nitesh Tiwari at the \u2018Khidkiyaan\u2019 movie festival launch (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q16908467)",
+      "verdict": "rejected",
+      "reason": "resolution: 240x320 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "balinese-dance-legong-in-ubud-ramayana-perfo",
+      "path": "balinese-dance-legong-in-ubud-ramayana-perfo.jpg",
+      "size": [
+        4703,
+        2881
+      ],
+      "role": "establishing",
+      "subject": "Performance of a fragment of the Ramayana, with the accompanying Legong dance, by Bina Remaja Troupe group, Ubud",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Balinese_dance_Legong_in_Ubud,_Ramayana_performance,_20220823_1900_0454.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Balinese_dance_Legong_in_Ubud%2C_Ramayana_performance%2C_20220823_1900_0454.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Jakub Ha\u0142un",
+      "entity": "Ramayana",
+      "entity_type": "other",
+      "entity_aliases": [
+        "R\u00e2m\u00e2yana",
+        "Valmiki Ramayana"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "adi09487",
+      "path": "adi09487.jpg",
+      "size": [
+        3751,
+        4689
+      ],
+      "role": "establishing",
+      "subject": "Moments from the Nishagandhi Kathakali Mela 2026 , Kathakali performances at Nishagandhi Auditorium, Kanakakunnu Palace, Thiruvananthapuram, featuring timeless attakathas like Thoranayudham and Ravanolbhavam Organised by kerala tourism",
+      "route": "identity \u2014 depicts (P180=Q37293)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:ADI09487.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/ADI09487.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Adii.raw",
+      "entity": "Ramayana",
+      "entity_type": "other",
+      "entity_aliases": [
+        "R\u00e2m\u00e2yana",
+        "Valmiki Ramayana"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-visa-categories-cut-13-to-9-visitor-visa",
+  "name": "india-visa-categories-cut-13-to-9-visitor-visa",
+  "script": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "diaspora_bullets[0]"
+    ],
+    "llm_cost_usd": 0.000587
+  }
+}

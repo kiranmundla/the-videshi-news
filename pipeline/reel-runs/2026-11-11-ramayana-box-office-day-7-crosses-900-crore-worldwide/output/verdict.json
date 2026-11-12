@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ramayana-box-office-day-7-crosses-900-crore-worldwide",
+  "name": "ramayana-box-office-day-7-crosses-900-crore-worldwide",
+  "script": "reel-runs/2026-11-11-ramayana-box-office-day-7-crosses-900-crore-worldwide/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "news_summary"
+    ],
+    "llm_cost_usd": 0.000625
+  }
+}

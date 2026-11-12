@@ -1,0 +1,38 @@
+{
+  "built": "manual verified extras (visual-inspection fix: ladder extras were an Andhra Pradesh train and a statue, unrelated to the scenes' text)",
+  "story": "chess-im-md-imran-us-visa-scholarship-deadline-january",
+  "extras": [
+    {
+      "beat": "news",
+      "label": "chess-pieces",
+      "path": "chess-pieces.jpg",
+      "size": [5895, 4421],
+      "role": "establishing",
+      "subject": "Chess pieces in a lens ball — no people, the story's sport",
+      "route": "manual — Wikimedia Commons file, visually verified by the producer",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Schachfiguren_--_2022_--_0032.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Schachfiguren_--_2022_--_0032.jpg",
+      "license": "CC BY-SA 4.0",
+      "artist": "Dietmar Rabich",
+      "entity": "chess",
+      "entity_type": "concept",
+      "entity_aliases": ["chess"]
+    },
+    {
+      "beat": "hero",
+      "label": "utrgv-library",
+      "path": "utrgv-library.jpg",
+      "size": [4000, 3000],
+      "role": "establishing",
+      "subject": "UTRGV Library, Edinburg Campus — the University of Texas at Rio Grande Valley, the scholarship university in the article",
+      "route": "manual — Wikimedia Commons file, visually verified by the producer",
+      "source_page": "https://commons.wikimedia.org/wiki/File:UTRGV_Library,_Edinburg_Campus.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/UTRGV_Library%2C_Edinburg_Campus.jpg",
+      "license": "CC BY-SA 4.0",
+      "artist": "MrAlexGarrido",
+      "entity": "University of Texas at Rio Grande Valley",
+      "entity_type": "organization",
+      "entity_aliases": ["UTRGV", "University of Texas at Rio Grande Valley"]
+    }
+  ]
+}

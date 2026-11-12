@@ -1,0 +1,129 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "chess-im-md-imran-us-visa-scholarship-deadline-january",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Md Imran",
+    "University of Texas at Rio Grande Valley",
+    "F-1 visa",
+    "chess",
+    "International Master",
+    "Andhra Pradesh"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'University of Texas at Rio Grande Valley' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'F-1 visa' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'chess' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'International Master' named 'International Master for chess compositions', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Kambalakonda.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1159)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Artist MS Murthy statue.jpg",
+      "route": "identity \u2014 depicts (P180=Q1159)",
+      "verdict": "USED (hero)",
+      "reason": "3248x4428, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Arunatara magazine title.jpg",
+      "route": "identity \u2014 depicts (P180=Q1159)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Black swans (64137).jpg",
+      "route": "identity \u2014 depicts (P180=Q1159)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Bridge on gowtami river, between pasuvulanka and Lanka.jpg",
+      "route": "identity \u2014 depicts (P180=Q1159)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Brownea grandiceps.jpg",
+      "route": "identity \u2014 depicts (P180=Q1159)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Circar express train.jpg",
+      "route": "identity \u2014 depicts (P180=Q1159)",
+      "verdict": "USED (news)",
+      "reason": "4364x3176, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "circar-express-train",
+      "path": "circar-express-train.jpg",
+      "size": [
+        4364,
+        3176
+      ],
+      "role": "establishing",
+      "subject": "Attili railway station (railway station in Andhra Pradesh)",
+      "route": "identity \u2014 depicts (P180=Q1159)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Circar_express_train.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Circar_express_train.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Kalasagary",
+      "entity": "Andhra Pradesh",
+      "entity_type": "place",
+      "entity_aliases": [
+        "Andhra Pradesh"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "artist-ms-murthy-statue",
+      "path": "artist-ms-murthy-statue.jpg",
+      "size": [
+        3248,
+        4428
+      ],
+      "role": "establishing",
+      "subject": "at MS Murthy art gallery, Vijayawada",
+      "route": "identity \u2014 depicts (P180=Q1159)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Artist_MS_Murthy_statue.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Artist_MS_Murthy_statue.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Kalasagary",
+      "entity": "Andhra Pradesh",
+      "entity_type": "place",
+      "entity_aliases": [
+        "Andhra Pradesh"
+      ]
+    }
+  ]
+}

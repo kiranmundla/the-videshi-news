@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-11T17:21:39+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-11T23:44:12+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **247**
-- prebuilt_reels rows: 180 (150 with a yt_video_id)
+- Channel uploads (actual, via API): **248**
+- prebuilt_reels rows: 181 (151 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 63
-- **In sync** (channel video backed by a DB/publish-log record): **129**
+- Phase 2 publish-log entries: 64
+- **In sync** (channel video backed by a DB/publish-log record): **130**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 17
 - Ghost DB rows (yt_video_id not on channel): 16
@@ -292,7 +292,7 @@ _None._
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 - row `3c385175-84c2-48c0-afec-378bee1ba1d6` · slug ambani-adds-6-3-billion-reliance-shares-jump-record-profit · yt_video_id `B45MLVEFtk4` · on channel: no
 
-## (d) In sync (129)
+## (d) In sync (130)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -423,4 +423,5 @@ _None._
 - `visZF1ElJMU` · public · 2026-11-10 · PepsiCo to Cut About 1,000 North America Jobs in Restructuring #Shorts #Markets [prebuilt_reels:8c7101fc-e2de-4b10-aac9-4eb6d3599100]
 - `8pENEsGFC3o` · public · 2026-11-11 · Rajamouli's Varanasi Reportedly Sets Record Telugu Theatrical Deal #Shorts #Entertainment [prebuilt_reels:e14a9b21-b563-4947-ac36-e873cc276296]
 - `QGvsDxawyeE` · public · 2026-11-11 · Adani Group Unveils $120 Billion Capex Plan Over Five Years #Shorts #Markets [prebuilt_reels:d54da05d-5816-4aeb-a3f7-201d0db6c18e]
+- `9X70oEiE-sE` · public · 2026-11-11 · India Cuts Visa Categories From 13 to Nine, Renames Tourist Visa as Visitor Visa #Shorts #VisaNews [prebuilt_reels:8838e720-d8e1-4437-88b5-9c237fb21cf5]
 

@@ -1,0 +1,137 @@
+[
+  {
+    "id": "1f1d6e3c-1b96-4371-a6b1-3989e777a2f9",
+    "headline": "Yash Wore Ravana Costumes Weighing Up to 33 kg in Ramayana, Designer Says",
+    "slug": "yash-ravana-costume-33-kg-ramayana-designer",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the release date of Ramayana Part 1 by stating that it was released on November 5, 2023, to provide a clear timeline for readers.",
+        "Include a direct quote from Yash about his experience wearing the heavy costumes to provide a personal perspective and enhance the article's depth.",
+        "Add more context about the significance of the Ramayana in Indian culture and its impact on contemporary cinema, which would enrich the article's completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Ramayana movie account or the designer Saniya Sardhariya discussing the costumes for visual context."
+      ]
+    }
+  },
+  {
+    "id": "6c64eac8-6423-40ae-955b-4e67338ec9e4",
+    "headline": "Unbeaten 249-Run Stand Puts Sri Lanka Within 30 Runs of Pakistan in Rawalpindi",
+    "slug": "de-silva-kusal-mendis-249-stand-rawalpindi-test",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the match and the significance of the Test series, as this context can help readers understand the stakes involved.",
+        "Provide more detailed statistics on the match, such as the number of overs bowled, the run rate, and any notable bowling performances from Pakistan, to give a fuller picture of the day's play.",
+        "Include quotes from players or coaches to add depth and personal insight into the match's events, which can enhance the narrative and engage readers more effectively."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ICC or a sports news outlet summarizing the day's play or highlighting the performances of de Silva and Mendis."
+      ]
+    }
+  },
+  {
+    "id": "e71d6b17-607a-4f34-bf78-d97b27704a76",
+    "headline": "Rohit Sharma Thanks Bharat Army for 'Rock Solid' Support Ahead of Fourth ODI",
+    "slug": "rohit-sharma-thanks-bharat-army-fourth-odi",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image",
+      "Inline caption names venue 'WACA Ground' not supported by the image file name (2015_CWC_I_v_UAE_02-28_Sharma_%2801%29_%28cropped%29.JPG\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the context of the video message by including a brief explanation of the significance of the Bharat Army and their role in supporting the Indian cricket team, which would help readers understand why Rohit Sharma's message is important.",
+        "Provide more details about the upcoming fourth ODI, such as the time of the match and any relevant statistics or player performances that could enhance the reader's understanding of the stakes involved.",
+        "Correct the repetition of information regarding India's lead in the series and the abandonment of the third ODI. Streamlining this information would improve clarity and reduce redundancy.",
+        "Include a quote from a Bharat Army representative or fan reaction to Rohit Sharma's message to add depth and perspective to the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official Bharat Army Instagram post or video of Rohit Sharma's message to provide readers with direct access to the content and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "524dde9b-4db8-4b50-a7f0-c677ed3afd2c",
+    "headline": "Suriya's Scene Passes Jana Nayagan in North America in Under Five Days",
+    "slug": "scene-north-america-box-office-passes-jana-nayagan",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by explicitly stating the release date of 'Scene' to enhance the context for readers regarding its performance in North America.",
+        "Provide a brief comparison of the film's performance to other recent Tamil releases, including their opening weekend grosses, to give readers a clearer perspective on how 'Scene' is performing relative to its peers.",
+        "Include a statement about the significance of crossing the $1.655 million mark for Suriya's career or for Tamil cinema in North America, which would add depth to the reporting.",
+        "Ensure consistency in the figures reported; for instance, clarify whether the $1.655 million figure includes or excludes the latest Tuesday's earnings to avoid confusion."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a reputable film trade analyst or box office tracker commenting on the film's performance to provide additional credibility and real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "e7983fdb-2d84-4dfa-aa4f-dc1a0e77af96",
+    "headline": "Canada Confident of Final Trade Pact Text Before Modi's December Visit, Envoy Sa",
+    "slug": "canada-confident-cepa-final-text-modi-visit-cooter",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the ratification process after the final text is ready, including any expected dates or steps involved, to provide readers with a clearer understanding of what to expect next.",
+        "Include a quote or specific data point from Christopher Cooter regarding the expected economic impact of the CEPA, such as projected job creation or specific sectors that will benefit, to enhance the article's completeness and relevance.",
+        "Provide context on the significance of the trade pact for both India and Canada, such as how it compares to previous agreements or its potential impact on trade relations, to give readers a better understanding of its importance."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Canadian High Commission regarding the CEPA negotiations or Prime Minister Modi's upcoming visit to add credibility and provide real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "0070cd3b-ce47-4c26-826d-717b0eb3e55a",
+    "headline": "Crown Estate Admits Veeraswamy Eviction Plan Is Purely Financial as Trial Ends",
+    "slug": "veeraswamy-crown-estate-trial-ends-judgment",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the court's judgment by specifying the expected date for the decision, as this is crucial for readers to understand the urgency of the situation.",
+        "Include a direct quote from the owner of Veeraswamy or a representative from MW Eat to provide a personal perspective on the impact of the eviction, which would enhance the emotional weight of the story.",
+        "Add context about the significance of Veeraswamy in the culinary landscape of London, such as its historical importance or awards, to give readers a better understanding of what is at stake."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Crown Estate or a news outlet covering the trial to provide real-time updates and official statements."
+      ]
+    }
+  },
+  {
+    "id": "84e01fcb-0db3-418b-a3b4-48d49cce99f3",
+    "headline": "Universities Urge DHS to Withdraw $70,000 OPT Fee as Comment Period Closes",
+    "slug": "universities-urge-dhs-withdraw-70000-opt-fee",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding the proposed rule and its potential implementation. Specify when the final decision is expected from DHS and how long the public comment period typically takes before a rule is finalized.",
+        "Include a brief explanation of what the OPT program is and its significance for F-1 students, as not all readers may be familiar with it. This could enhance completeness and clarity.",
+        "Ensure that the article explicitly states that the proposed fees are not yet in effect and outline the implications for students and universities if the proposal is enacted, including potential financial burdens."
+      ],
+      "embed_opportunities": [
+        "Embed the official DHS announcement or a relevant tweet from the American Council on Education regarding their comments on the proposal."
+      ]
+    }
+  }
+]

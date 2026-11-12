@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 247,
-    "db_rows": 180,
-    "db_rows_with_yt_id": 150,
+    "channel_videos": 248,
+    "db_rows": 181,
+    "db_rows_with_yt_id": 151,
     "legacy_log_entries": 205,
-    "publish_log_entries": 63,
-    "in_sync": 129,
+    "publish_log_entries": 64,
+    "in_sync": 130,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 17,
     "ghost_db_rows": 16,
@@ -916,6 +916,13 @@
       "privacy": "public",
       "video_id": "QGvsDxawyeE",
       "record": "prebuilt_reels:d54da05d-5816-4aeb-a3f7-201d0db6c18e"
+    },
+    {
+      "title": "India Cuts Visa Categories From 13 to Nine, Renames Tourist Visa as Visitor Visa #Shorts #VisaNews",
+      "published_at": "2026-11-11T23:42:55Z",
+      "privacy": "public",
+      "video_id": "9X70oEiE-sE",
+      "record": "prebuilt_reels:8838e720-d8e1-4437-88b5-9c237fb21cf5"
     }
   ],
   "unknown_legacy_logged": [
@@ -3925,5 +3932,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-11T17:21:39+00:00"
+  "generated_at": "2026-11-11T23:44:12+00:00"
 }

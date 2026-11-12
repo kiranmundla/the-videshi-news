@@ -1,0 +1,31 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ramayana-box-office-day-7-crosses-900-crore-worldwide",
+  "name": "ramayana-box-office-day-7-crosses-900-crore-worldwide",
+  "script": "reel-runs/2026-11-11-ramayana-box-office-day-7-crosses-900-crore-worldwide/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000631
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-11-ramayana-box-office-day-7-crosses-900-crore-worldwide/output-v2/supplementary/provenance.json",
+    "own_images": 3,
+    "extras": {}
+  },
+  "manifest": "reel-runs/2026-11-11-ramayana-box-office-day-7-crosses-900-crore-worldwide/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-11-11-ramayana-box-office-day-7-crosses-900-crore-worldwide/output-v2/ramayana-box-office-day-7-crosses-900-crore-worldwide.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-11-ramayana-box-office-day-7-crosses-900-crore-worldwide/output-v2/tiktok-caption.txt"
+}

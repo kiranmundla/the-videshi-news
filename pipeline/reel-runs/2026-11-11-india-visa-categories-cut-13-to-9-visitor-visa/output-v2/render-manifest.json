@@ -1,0 +1,374 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-visa-categories-cut-13-to-9-visitor-visa",
+ "article_slug": "india-visa-categories-cut-13-to-9-visitor-visa",
+ "article_id": "5f1559fe-cc58-4e58-9eaf-f4e677a2d338",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa/output-v2/india-visa-categories-cut-13-to-9-visitor-visa.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/6/60/India_e-Tourist_Visa_Entry_Stamp.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "local_path": "reel-runs/2026-11-11-india-visa-categories-cut-13-to-9-visitor-visa/output-v2/hero.jpg",
+  "width": 2009,
+  "height": 1361,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.523,0.500) damped=(0.512,0.500)",
+  "has_face": false,
+  "box_source": [
+   465,
+   381,
+   1125,
+   544
+  ],
+  "box_bg": [
+   279,
+   314,
+   467,
+   226
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.516,
+   0.497
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   564
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 784,
+   "zone_h": 772,
+   "scale": 1.0,
+   "content_h": 285,
+   "block_top": 1027,
+   "block_bottom": 1312,
+   "text_bbox": [
+    70,
+    1027,
+    930,
+    1312
+   ],
+   "texts": [
+    "Immigration",
+    "INDIA CUTS VISA CATEGORIES FROM 13 TO NINE, RENAMES TOURIST VISA AS VISITOR VISA"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.415,
+    "photo_px": [
+     2009,
+     1361
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 564,
+     "scale": 0.41513190642110503,
+     "window": [
+      0,
+      0,
+      2009,
+      1358
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.41x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 784,
+   "zone_h": 772,
+   "scale": 1.0,
+   "content_h": 353,
+   "block_top": 993,
+   "block_bottom": 1346,
+   "text_bbox": [
+    70,
+    993,
+    930,
+    1346
+   ],
+   "texts": [
+    "What Happened",
+    "India will consolidate its 13 main visa categories into nine and cut sub-categories from 49 to 23 under a Union Home Ministry review of the Visa Manual, 2019, renaming the Tourist Visa as the Visitor Visa."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.472,
+    "photo_px": [
+     2009,
+     1361
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 564,
+     "scale": 0.47198641765704585,
+     "window": [
+      154,
+      79,
+      1921,
+      1273
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.41x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 784,
+   "zone_h": 772,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 951,
+   "block_bottom": 1389,
+   "text_bbox": [
+    70,
+    951,
+    930,
+    1389
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "13 TO 9",
+    "Main visa categories India will consolidate into nine"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.519,
+    "photo_px": [
+     2009,
+     1361
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 564,
+     "scale": 0.5189794648413192,
+     "window": [
+      0,
+      133,
+      1607,
+      1219
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.41x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 784,
+   "zone_h": 772,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 897,
+   "block_bottom": 1442,
+   "text_bbox": [
+    70,
+    897,
+    930,
+    1442
+   ],
+   "texts": [
+    "By The Numbers",
+    "49 TO 23",
+    "Sub-categories, cut under the Home Ministry's Visa Manual review",
+    "70%",
+    "Of visa application form fields to be cut as overlapping and repetitive"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.519,
+    "photo_px": [
+     2009,
+     1361
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 564,
+     "scale": 0.5189794648413192,
+     "window": [
+      402,
+      133,
+      2009,
+      1219
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.41x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 784,
+   "zone_h": 772,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 985,
+   "block_bottom": 1354,
+   "text_bbox": [
+    70,
+    985,
+    930,
+    1354
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "V-1 is for short visits, V-2 for longer stays",
+    "Visitor Visa covers visiting friends or relatives"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.561,
+    "photo_px": [
+     2009,
+     1361
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 564,
+     "scale": 0.5612382234185733,
+     "window": [
+      294,
+      357,
+      1780,
+      1361
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.41x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Applicants should keep using the current categories until the new structure is notified.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 98.9,
+ "mp4_bytes": 6392328
+}

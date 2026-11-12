@@ -1,0 +1,177 @@
+[
+  {
+    "id": "a2fb4cb7-e8d8-4a02-a232-37b49e3d63d4",
+    "headline": "Desi Twist Brings Upscale Mughlai Cooking to Hoover, Alabama",
+    "slug": "desi-twist-hoover-alabama-mughlai-restaurant-opens",
+    "category": "food",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include a quote from a local food critic or a customer to provide additional perspective on the restaurant's offerings and reception.",
+        "Add specific pricing information for the menu items or a range of prices to give readers a better understanding of the cost of dining at Desi Twist.",
+        "Provide context on the significance of Mughlai cuisine and its popularity in the area to enhance the reader's understanding of the restaurant's concept.",
+        "Clarify the restaurant's opening date if available, as this would help establish the timeliness of the news."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or Instagram post from the restaurant or a local food influencer to visually showcase the dishes or the restaurant ambiance."
+      ]
+    }
+  },
+  {
+    "id": "846cd249-65e2-46aa-8578-90b868ca89a2",
+    "headline": "Arshdeep Singh and Actor Samreen Kaur Announce Engagement in New Zealand",
+    "slug": "arshdeep-singh-samreen-kaur-engagement-new-zealand",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the date of the engagement announcement, as the article mentions both November 11 and 11.11.2026, which could confuse readers about whether the engagement is in the past or future.",
+        "Verify and clarify the details regarding the engagement ring. If reports about the brand and price cannot be confirmed, it would be better to omit them entirely or clearly state that they are unverified rumors.",
+        "Provide more context about Arshdeep Singh's recent move to Mumbai Indians and how it relates to his engagement. This could help readers understand the significance of the timing of both events."
+      ],
+      "embed_opportunities": [
+        "Embed Samreen Kaur's Instagram post announcing the engagement to provide readers with direct access to the original source and visuals."
+      ]
+    }
+  },
+  {
+    "id": "d829d4b1-f398-4b9f-b873-72e930920aa7",
+    "headline": "Post-Diwali Reset Without Crash Diets: Experts Advise Habits Over Detox",
+    "slug": "post-diwali-reset-no-crash-diets-experts",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Provide specific measurements or quantities for the recommended probiotic and prebiotic foods to help readers understand portion sizes. For example, specify how much dahi or buttermilk to consume daily.",
+        "Include a clear timeline for when readers can expect to see results from the suggested habits, such as improvements in energy levels or skin condition, to give readers a concrete expectation.",
+        "Clarify the potential risks of not following the advice, especially for those with chronic conditions, by providing more detailed information on what symptoms to monitor and when to seek medical help.",
+        "Consider adding a brief summary or bullet points at the end of the article that encapsulates the key takeaways for readers, making it easier for them to digest the information quickly."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a health expert or organization that reinforces the message against crash diets and detoxes to provide authoritative support for the article's claims."
+      ]
+    }
+  },
+  {
+    "id": "2311fc44-c776-4551-b286-6f6da27cb445",
+    "headline": "Overspent This Diwali? A Sober Plan to Clear Festive Card Debt",
+    "slug": "overspent-diwali-how-to-clear-festive-debt",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline for repayment: Include specific deadlines for when consumers should aim to pay off their credit card debt to avoid high interest charges, such as suggesting a target date for full payment after Diwali.",
+        "Provide concrete examples of potential savings: Include a hypothetical example showing how much a consumer could save by transferring a balance from a high-interest credit card to a personal loan, with specific numbers to illustrate the difference in interest paid over time.",
+        "Ensure consistent data presentation: The article mentions credit card spending figures for September and October 2026; ensure that these figures are accurate and presented clearly to avoid confusion about the timeline and context."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or post from a financial expert or organization discussing tips for managing post-Diwali debt or the importance of financial literacy."
+      ]
+    }
+  },
+  {
+    "id": "0593f337-22ec-41a7-a71e-92cc168f0d32",
+    "headline": "Tequila in India Moves From Shots to Slow, Premium Sipping",
+    "slug": "tequila-india-premium-sipping-trend-agave",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the IWSR figures by providing a direct citation or link to the original report to enhance credibility.",
+        "Include specific details about the projected growth of the tequila market, such as the expected revenue of $120 million by 2030, to give readers a clearer understanding of the market's potential.",
+        "Add a brief explanation of what 'bottled-in-origin' means in the context of tequila, as this term may not be familiar to all readers.",
+        "Consider restructuring the article to group related information together, such as separating the statistics on growth from the quotes and insights from industry experts for better flow."
+      ],
+      "embed_opportunities": [
+        "Embed the official IWSR report or a relevant tweet from Storyboard18 that discusses the tequila market growth in India."
+      ]
+    }
+  },
+  {
+    "id": "e6bfb8b1-787e-41f1-a783-016a0d95d544",
+    "headline": "Teen Chess Master Md Imran Risks US Scholarship as Visa Deadline Closes In",
+    "slug": "chess-im-md-imran-us-visa-scholarship-deadline-january",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact date of the original visa approval and the date when the passport was lost. This will help readers understand the urgency of the situation more clearly.",
+        "Include a quote or statement from the US consulate or an immigration expert regarding the challenges of securing a visa appointment, which would provide additional context and authority to the article.",
+        "Add specific details about the process for obtaining a replacement F-1 visa, including any potential fees or required documentation, to give readers a clearer understanding of what Md Imran needs to do next."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or statement from the US consulate regarding visa appointment delays or processes, which would provide official context to the challenges faced by Md Imran."
+      ]
+    }
+  },
+  {
+    "id": "be7e7def-9a6a-4975-9ce2-7b43714fb943",
+    "headline": "Kejriwal, Daughter Threatened in Call Demanding Rs 7 Crore in Bishnoi Gang's Nam",
+    "slug": "kejriwal-death-threat-bishnoi-gang-name-mohali-police",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the calls were received relative to the filing of the complaint on November 6. This will help readers understand the urgency of the situation.",
+        "Include a direct quote from the police or an official statement regarding the investigation status to enhance attribution and credibility.",
+        "Provide more context about the Lawrence Bishnoi gang, such as previous incidents or their criminal background, to help readers understand the significance of the threat.",
+        "Ensure that the article maintains a clear structure by separating the background information on the gang from the details of the threat and the police response."
+      ],
+      "embed_opportunities": [
+        "Embed the official police statement or tweet regarding the investigation to provide readers with direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "38c9cc78-931c-435d-a5a4-02b0f91649d0",
+    "headline": "Adobe and Google Deepen Pact: Gemini Reaches Photoshop, Acrobat Comes to Gmail",
+    "slug": "adobe-google-gemini-photoshop-acrobat-gmail-workspace",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the integration of Acrobat into Google Drive and Gmail by specifying that the companies mentioned 'soon' without providing a concrete date. This could help readers understand when they might expect these features to be available.",
+        "Include specific details about how the AI models will enhance Acrobat, such as examples of what 'conversational PDF editing' entails or how it will improve user experience. This would provide more context and clarity on the benefits of the integration.",
+        "Add a brief explanation of what Adobe's Gemini Omni, Veo, and Nano Banana models are and how they relate to the partnership. This would help readers who may not be familiar with these terms understand their significance in the context of the announcement.",
+        "Rephrase the headline to make it more compelling and specific, such as 'Adobe and Google Announce Major Integration: Acrobat to Streamline PDF Editing in Gmail and Drive'. This would better capture the essence of the partnership and its implications."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement tweets from Adobe and Google to provide readers with direct access to the source of the information and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "8aa9a6d6-efec-4cd9-8848-abdec30960c1",
+    "headline": "Sunita Williams Leads New York Veterans Day Parade as Grand Marshal",
+    "slug": "sunita-williams-grand-marshal-new-york-veterans-day-parade",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of Sunita Williams' career by correcting the retirement date from NASA, which is stated as December 27, 2025, to the actual date of her retirement, which should be updated to reflect accurate information.",
+        "Provide more context about the significance of the Veterans Day Parade, including its historical background and the importance of the featured service (US Navy) this year, to enhance completeness.",
+        "Include a quote from Sunita Williams regarding her experience as Grand Marshal or her thoughts on the event to add depth and personal perspective to the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official New York City Veterans Day Parade account to provide real-time updates or reactions from attendees."
+      ]
+    }
+  }
+]

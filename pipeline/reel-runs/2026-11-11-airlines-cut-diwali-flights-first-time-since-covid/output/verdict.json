@@ -1,0 +1,40 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "airlines-cut-diwali-flights-first-time-since-covid",
+  "name": "airlines-cut-diwali-flights-first-time-since-covid",
+  "script": "reel-runs/2026-11-11-airlines-cut-diwali-flights-first-time-since-covid/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000635
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-11-airlines-cut-diwali-flights-first-time-since-covid/output/supplementary/provenance.json",
+    "own_images": 3,
+    "extras": {
+      "news": "boeing-777-337er-air-india-vt-alk",
+      "hero": "213ai-air-india-boeing-747-437-vt-esn-lhr-13"
+    }
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Cirium October) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 3,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "inline:1",
+      "inline:2"
+    ]
+  },
+  "detail": "only 3 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}

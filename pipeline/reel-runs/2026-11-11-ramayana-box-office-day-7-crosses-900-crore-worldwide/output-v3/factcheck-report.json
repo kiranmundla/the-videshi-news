@@ -1,0 +1,247 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "ramayana-box-office-day-7-crosses-900-crore-worldwide",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "RAMAYANA CROSSES RS 900 CRORE WORLDWIDE IN FIRST WEEK",
+      "numbers": [
+        900.0,
+        9000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Ramayana crossed Rs 900 crore in its first week.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Ramayana: Part 1, a Hindi-language mythological epic directed by Nitesh Tiwari, crossed Rs 900 crore in worldwide gross in its first week, with Day 7 India net of Rs 70.65 crore above its opening day.",
+      "numbers": [
+        1.0,
+        7.0,
+        70.65,
+        900.0,
+        706500000.0,
+        9000000000.0
+      ],
+      "entities": [
+        "Nitesh Tiwari"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about the film and its earnings are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "Rs 900 crore",
+      "numbers": [
+        900.0,
+        9000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the film crossed Rs 900 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Worldwide gross in the first week, crossed on Day 7",
+      "numbers": [
+        7.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states it crossed Rs 900 crore on Day 7.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "Rs 70.65 crore",
+      "numbers": [
+        70.65,
+        706500000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article reports Day 7 India net as Rs 70.65 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Day 7 India net by Sacnilk's estimates, above the opening day",
+      "numbers": [
+        7.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Day 7 net and compares it to the opening day.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "Rs 511.10 crore",
+      "numbers": [
+        511.1,
+        5111000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the India net total is Rs 511.10 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "India net total in seven days, past the Rs 500 crore mark",
+      "numbers": [
+        500.0,
+        5000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the total is past Rs 500 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Overseas markets added about Rs 323.50 crore gross in the first week",
+      "numbers": [
+        323.5,
+        3235000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states overseas gross was about Rs 323.50 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Diaspora audiences in North America, the UK, the Gulf and Australia carried much of the run",
+      "numbers": [],
+      "entities": [
+        "North America"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions diaspora audiences significantly contributed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "As a theatrical event for Indian audiences worldwide, the first week has no recent precedent.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the first week has no recent precedent.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Ramayana: Part 1",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ranbir Kapoor",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sai Pallavi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Yash",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nitesh Tiwari",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000632,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,202 @@
+[
+  {
+    "id": "bcf52ada-6a45-4236-85e9-244a87f99333",
+    "headline": "Hina Khan and Rajan Shahi Pose Together at Diwali Party After Years Apart",
+    "slug": "hina-khan-rajan-shahi-reunite-diwali-party",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the dates of the 2024 interviews mentioned, as this will provide readers with a clearer context regarding the falling-out and the significance of the recent photograph.",
+        "Include a direct quote from either Hina Khan or Rajan Shahi regarding the photograph or their current relationship status to enhance attribution and provide a more personal touch to the story.",
+        "Provide more context about the impact of Khan's departure from 'Yeh Rishta Kya Kehlata Hai' on the show's viewership or storyline, as this could help readers understand the significance of the reunion.",
+        "Rephrase the headline to make it more compelling and specific, such as 'Hina Khan and Rajan Shahi Reunite at Diwali Party After Years of Tension,' which emphasizes the emotional aspect of their reunion."
+      ],
+      "embed_opportunities": [
+        "Embed the social media post from Ishika Shahi that features the photograph of Hina Khan and Rajan Shahi, as this would provide visual context and enhance reader engagement."
+      ]
+    }
+  },
+  {
+    "id": "f960787e-005a-4416-b30b-3fe066099785",
+    "headline": "Gemini 4 Carbon Tops AI Benchmark by One Point, but Opus Keeps Coding Lead",
+    "slug": "gemini-4-carbon-tops-ai-benchmark-opus-coding",
+    "category": "technology",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/40193375/pexels-photo-40193375.jpeg?auto=compre"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the hallucination rates by providing context on how they impact user experience and application in real-world scenarios. For example, explain what a 50% hallucination rate means for developers using Opus 5.5.",
+        "Include a brief comparison of the pricing structure for both Gemini 4 Carbon and Anthropic's Opus 5.5 to give readers a clearer understanding of the cost implications for developers and businesses considering these options.",
+        "Add a direct quote from a Google representative or an AI expert to provide authoritative attribution and enhance the credibility of the claims made about Gemini 4 Carbon's performance."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Google's official account announcing the launch of Gemini 4 Carbon or the AI benchmark results to provide real-time context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "5562e068-464a-46d0-a193-a0f3c59be23f",
+    "headline": "Kota Students Form 'Laddu Janta Party' After Promised Diwali Sweets Go Missing",
+    "slug": "kota-students-laddu-janta-party-diwali-sweets-protest",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date when the laddus were promised and the date of the protests, as well as the date when distribution began. This will provide readers with a clearer understanding of the sequence of events.",
+        "Include direct quotes from students or faculty to enhance attribution and provide a more personal perspective on the protests. This could add depth and clarity to the narrative.",
+        "Provide more context about the significance of the laddus in the cultural context of Diwali and how this relates to student life in Kota, which could help readers understand why this issue sparked such a reaction."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from the official Allen Career Institute account addressing the situation or any related updates."
+      ]
+    }
+  },
+  {
+    "id": "078fb9ca-3b81-4959-a858-9be7dcccd671",
+    "headline": "Anthropic IPO Said to Draw Orders Several Times the Shares on Offer",
+    "slug": "anthropic-ipo-oversubscribed-roadshow-valuation",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the order figures and demand details. While the article cites Bloomberg, it would strengthen the report to specify whether these figures are preliminary estimates or confirmed numbers from Anthropic or its banks.",
+        "Include a specific date for when the trading is expected to begin on the Nasdaq. While November 19 is mentioned, reiterating this in a clearer context would enhance clarity for readers.",
+        "Add context regarding the significance of the IPO size and valuation compared to recent IPOs in the tech sector. This would help readers understand the scale and potential impact of Anthropic's IPO."
+      ],
+      "embed_opportunities": [
+        "Embed the official Bloomberg report or tweet regarding the IPO for direct sourcing and additional context."
+      ]
+    }
+  },
+  {
+    "id": "ec58ef83-a970-411a-8c20-2fb9e2866532",
+    "headline": "Green Crackers Split Opinion as Delhi Wakes to Severe Post-Diwali Smog",
+    "slug": "diwali-green-crackers-divide-delhi-pollution",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the Supreme Court's ruling regarding the use of green crackers, including the specific dates when the restrictions were implemented and when they will take effect, to provide readers with a complete understanding of the legal context.",
+        "Include specific air quality index (AQI) figures for different areas of Delhi to give readers a clearer picture of the severity of the smog across the city, enhancing the completeness of the reporting.",
+        "Provide a brief explanation of the health implications of the AQI levels reported, such as potential health risks associated with prolonged exposure to severe pollution, to improve the article's clarity and relevance for readers.",
+        "Add a quote from a local government official or environmental expert regarding the effectiveness of the green cracker initiative and future steps being considered to address pollution, which would enhance the depth of the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Delhi government or an environmental agency regarding the air quality situation or the use of green crackers to provide official context and updates."
+      ]
+    }
+  },
+  {
+    "id": "95b734e6-56c2-4826-92ca-5f4c3b356bca",
+    "headline": "Atlanta Concert With 29 Academies Raises Over $2 Million for Eye Care in India",
+    "slug": "sankara-nethralaya-atlanta-concert-raises-2-million-eye-care",
+    "category": "nri-world",
+    "structural_issues": [
+      "Generic stock hero image: https://images.pexels.com/photos/33133738/pexels-photo-33133738.jpeg?auto=compre"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the event by ensuring it is presented consistently throughout the article; the date is mentioned as November 4, 2026, but should be verified for accuracy as it may be a typo since it is currently 2023.",
+        "Include a brief explanation of how the raised funds will specifically impact eye care in India, such as the number of surgeries expected to be funded or the areas that will benefit, to provide readers with a clearer understanding of the significance of the donations.",
+        "Consider adding a quote from a key organizer or a participant to provide a personal touch and enhance the article's depth and engagement."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from Sankara Nethralaya USA or a participant highlighting the event's success and thanking attendees for their contributions."
+      ]
+    }
+  },
+  {
+    "id": "e3a66a84-9936-4f93-a145-5cd0cef942ac",
+    "headline": "Three Sussex Restaurants Named Among Britain's Best for Indian Food",
+    "slug": "sussex-restaurants-britains-best-indian-food-guide",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the awards by providing more context about the British Indian Good Food Guide and its impact on restaurant visibility and patronage.",
+        "Include specific quotes or reactions from the restaurant owners or patrons about the recognition to add depth and personal connection to the story.",
+        "Ensure consistency in the timeline by clarifying that the awards are for 2026, as the article mentions BAUJI opened in March 2026 but does not clarify if this is the same year as the awards or if it is a future date."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from the British Indian Good Food Guide announcing the winners to provide official context and credibility."
+      ]
+    }
+  },
+  {
+    "id": "07ea3839-bd5e-41d7-ab08-9a0bd3729a90",
+    "headline": "CoreWeave Revenue Jumps 168% as Results Revive AI Trade and Lift Nasdaq",
+    "slug": "coreweave-revenue-surge-revives-ai-trade-nasdaq",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the revenue backlog of $132.5 billion\u2014what does this mean for future growth or stability?",
+        "Provide more context on the implications of Nvidia's upcoming earnings report on November 17\u2014how might it affect CoreWeave and the broader AI market?",
+        "Include a brief comparison of CoreWeave's performance with its competitors in the AI cloud space to give readers a clearer picture of its market position."
+      ],
+      "embed_opportunities": [
+        "Embed the official CoreWeave earnings release or a relevant tweet from the company's account to provide direct access to their statements."
+      ]
+    }
+  },
+  {
+    "id": "de57909f-f59e-4ab4-94d2-1b8e7dd8c49e",
+    "headline": "Chicago Engineer Niranjan Shah Named Distinguished Alumnus on Patel Anniversary",
+    "slug": "niranjan-shah-distinguished-alumnus-sardar-patel-anniversary",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the announcement and the event. The article states the announcement was made on November 2, 2026, but does not specify if the honor was awarded on the same day or if it coincides with the birth anniversary celebration.",
+        "Include specific quotes from the letter by President Biden and the proclamations from state and city officials to provide context and enhance the credibility of the recognition.",
+        "Add more details about the significance of the Distinguished Alumnus award and what it entails for Shah and the alumni community, which would provide readers with a clearer understanding of the honor's importance.",
+        "Improve the structure by consolidating repetitive information about Shah's background and achievements to enhance clarity and flow."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official statement from Sardar Patel University or the alumni community announcing the honor, which would provide direct attribution and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "ac4d6ff3-2e63-4398-8c63-d93c05d20dbf",
+    "headline": "India U19 Face Unbeaten Afghanistan in Asia Cup Semi-Final on Thursday",
+    "slug": "india-u19-afghanistan-asia-cup-semi-final-watch-guide",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the time zone differences more explicitly, as the article mentions both IST and PT without clearly stating the conversion for all audiences. A simple note like '10:30 a.m. IST is 9:00 p.m. PT on Wednesday, November 11, 2026' would help.",
+        "Include a brief summary of the teams' performance in the tournament leading up to the semi-final, such as their win-loss records and key players, to give readers context on why this match is significant.",
+        "Correct the date mentioned for the final; it states November 14, but the semi-final is on November 12. Ensure that the timeline is accurate and clear.",
+        "Remove the repetitive sentence about India playing Afghanistan in the semi-final to improve clarity and conciseness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the ACC or a relevant cricket authority announcing the match details or a promotional video for the semi-final."
+      ]
+    }
+  }
+]

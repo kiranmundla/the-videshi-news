@@ -1,0 +1,401 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "yash-ravana-costume-33-kg-ramayana-designer",
+ "article_slug": "yash-ravana-costume-33-kg-ramayana-designer",
+ "article_id": "1f1d6e3c-1b96-4371-a6b1-3989e777a2f9",
+ "category": "Entertainment",
+ "video": "reel-runs/2026-11-11-yash-ravana-costume-33-kg-ramayana-designer/output/yash-ravana-costume-33-kg-ramayana-designer.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://images.indianexpress.com/2026/11/Yash-stole-the-show-as-Ravana-in-Ramayana-wearing-33-kg-costumes-and-a-1.8-kg-crown.jpg",
+  "local_path": "reel-runs/2026-11-11-yash-ravana-costume-33-kg-ramayana-designer/output/hero.jpg",
+  "width": 1600,
+  "height": 900,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.89)",
+  "has_face": true,
+  "box_source": [
+   717,
+   256,
+   132,
+   153
+  ],
+  "box_bg": [
+   460,
+   289,
+   69,
+   80
+  ],
+  "chin_bg": 369,
+  "anchor": [
+   0.489,
+   0.367
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 961,
+   "block_bottom": 1282,
+   "text_bbox": [
+    70,
+    961,
+    930,
+    1282
+   ],
+   "texts": [
+    "Entertainment",
+    "YASH WORE RAVANA COSTUMES WEIGHING UP TO 33 KG IN RAMAYANA"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.521,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.52125,
+     "window": [
+      0,
+      0,
+      1600,
+      897
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 353,
+   "block_top": 1227,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1227,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Costume designer Saniya Sardhariya told India Today that Yash's costumes as Ravana in Nitesh Tiwari's Ramayana typically weighed 16 to 20 kg including jewellery, with the heaviest outfits close to 30 to 33 kg."
+   ],
+   "v7": {
+    "image_source": "extra:balinese-dance-legong-in-ubud-ramayana-perfo",
+    "track": "full-bleed",
+    "render_scale": 0.666,
+    "photo_px": [
+     4703,
+     2881
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6664352655328011,
+     "window": [
+      2444,
+      0,
+      4064,
+      2881
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Performance of a fragment of the Ramayana, with the accompanying Legong dance, by Bina Remaja Troupe group, Ubud",
+     "route": "identity \u2014 depicts (P180=Q37293)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Balinese_dance_Legong_in_Ubud,_Ramayana_performance,_20220823_1900_0454.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Balinese_dance_Legong_in_Ubud%2C_Ramayana_performance%2C_20220823_1900_0454.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Jakub Ha\u0142un"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 903,
+   "block_bottom": 1341,
+   "text_bbox": [
+    70,
+    903,
+    930,
+    1341
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "33 KG",
+    "Weight of Yash's heaviest Ravana outfits in Ramayana"
+   ],
+   "v7": {
+    "image_source": "extra:adi09487",
+    "track": "backdrop",
+    "render_scale": 0.222,
+    "photo_px": [
+     3751,
+     4689
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.2223407091442282,
+     "window": [
+      0,
+      1849,
+      3751,
+      3953
+     ]
+    },
+    "track_note": "layout demotion: no full-bleed fit in the 223px zone below the dominant chin \u2014 backdrop composition instead",
+    "provenance": {
+     "subject": "Moments from the Nishagandhi Kathakali Mela 2026 , Kathakali performances at Nishagandhi Auditorium, Kanakakunnu Palace, Thiruvananthapuram, featuring timeless attakathas like Thoranayudham and Ravanolbhavam Organised by kerala tourism",
+     "route": "identity \u2014 depicts (P180=Q37293)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:ADI09487.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/ADI09487.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Adii.raw"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 849,
+   "block_bottom": 1394,
+   "text_bbox": [
+    70,
+    849,
+    930,
+    1394
+   ],
+   "texts": [
+    "By The Numbers",
+    "16-20 KG",
+    "Typical weight of Yash's Ravana costumes, including jewellery",
+    "1.8 KG",
+    "Weight of Ravana's crown, even after repeated attempts to lighten it"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.592,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.5923295454545454,
+     "window": [
+      78,
+      0,
+      1486,
+      790
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 306,
+   "block_top": 969,
+   "block_bottom": 1275,
+   "text_bbox": [
+    70,
+    969,
+    930,
+    1275
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Ramayana Part 1 is now playing in the US and UK",
+    "Part 2 is scheduled for Diwali 2028"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      0,
+      1280,
+      718
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Sardhariya said Yash kept a cheerful atmosphere on set despite the weight.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-future-bass-sigma.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 117.0,
+ "mp4_bytes": 10430987
+}

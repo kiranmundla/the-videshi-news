@@ -1,0 +1,129 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "airlines-cut-diwali-flights-first-time-since-covid",
+  "trigger": {
+    "own_images": 3,
+    "target_distinct": 5,
+    "extras_needed": 2
+  },
+  "entities": [
+    "Air India",
+    "IndiGo",
+    "Cirium",
+    "Diwali",
+    "Business Standard",
+    "Cirium October"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Cirium' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Cirium October' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Boeing 777-337ER - Air India (VT-ALK).JPG",
+      "route": "identity \u2014 Wikidata P18 (Q69906)",
+      "verdict": "USED (news)",
+      "reason": "3596x2400, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:1985-06-10 VT-EFO Air India EGLL.jpg",
+      "route": "identity \u2014 depicts (P180=Q69906)",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x683 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:213ai - Air India Boeing 747-437, VT-ESN@LHR,13.03.2003 - Flickr - Aero Icarus.jpg",
+      "route": "identity \u2014 depicts (P180=Q69906)",
+      "verdict": "USED (hero)",
+      "reason": "4643x3146, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:IndiGo Airbus A320-200 Spijkers-2.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1057110)",
+      "verdict": "rejected",
+      "reason": "license: GFDL \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Flight 2.jpg",
+      "route": "identity \u2014 depicts (P180=Q1057110)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Gate2CIALDomesticIndigo.jpg",
+      "route": "identity \u2014 depicts (P180=Q1057110)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Gate2domesticterminal.jpg",
+      "route": "identity \u2014 depicts (P180=Q1057110)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Hamburg-Finkenwerder Airport IndiGo Airbus A321-251NX VT-IBQ (DSC03746).jpg",
+      "route": "identity \u2014 depicts (P180=Q1057110)",
+      "verdict": "accepted",
+      "reason": "6443x3626, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:INDIGO BOARDING PASS.jpg",
+      "route": "identity \u2014 depicts (P180=Q1057110)",
+      "verdict": "accepted",
+      "reason": "3224x1832, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "boeing-777-337er-air-india-vt-alk",
+      "path": "boeing-777-337er-air-india-vt-alk.jpg",
+      "size": [
+        3596,
+        2400
+      ],
+      "role": "establishing",
+      "subject": "Boeing 777-337ER - Air India (VT-ALK)",
+      "route": "identity \u2014 Wikidata P18 (Q69906)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Boeing_777-337ER_-_Air_India_(VT-ALK).JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Boeing_777-337ER_-_Air_India_%28VT-ALK%29.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Eluveitie",
+      "entity": "Air India",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Air India"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "213ai-air-india-boeing-747-437-vt-esn-lhr-13",
+      "path": "213ai-air-india-boeing-747-437-vt-esn-lhr-13.jpg",
+      "size": [
+        4643,
+        3146
+      ],
+      "role": "establishing",
+      "subject": "213ai - Air India Boeing 747-437; VT-ESN@LHR;13.03.2003",
+      "route": "identity \u2014 depicts (P180=Q69906)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:213ai_-_Air_India_Boeing_747-437,_VT-ESN@LHR,13.03.2003_-_Flickr_-_Aero_Icarus.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/213ai_-_Air_India_Boeing_747-437%2C_VT-ESN%40LHR%2C13.03.2003_-_Flickr_-_Aero_Icarus.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Aero Icarus from Z\u00fcrich, Switzerland",
+      "entity": "Air India",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Air India"
+      ]
+    }
+  ]
+}

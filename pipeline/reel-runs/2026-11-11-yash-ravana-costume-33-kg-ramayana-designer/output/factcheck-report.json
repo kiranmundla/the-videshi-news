@@ -1,0 +1,245 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "yash-ravana-costume-33-kg-ramayana-designer",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "YASH WORE RAVANA COSTUMES WEIGHING UP TO 33 KG IN RAMAYANA",
+      "numbers": [
+        33.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Yash's heaviest outfits weighed close to 33 kg.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Costume designer Saniya Sardhariya told India Today that Yash's costumes as Ravana in Nitesh Tiwari's Ramayana typically weighed 16 to 20 kg including jewellery, with the heaviest outfits close to 30 to 33 kg.",
+      "numbers": [
+        16.0,
+        20.0,
+        30.0,
+        33.0
+      ],
+      "entities": [
+        "Saniya Sardhariya",
+        "India Today",
+        "Nitesh Tiwari's Ramayana"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article includes this information from Saniya Sardhariya.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "33 KG",
+      "numbers": [
+        33.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the heaviest outfits weighed close to 33 kg.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Weight of Yash's heaviest Ravana outfits in Ramayana",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the weight of the heaviest outfits.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "16-20 KG",
+      "numbers": [
+        16.0,
+        20.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states typical weights were 16 to 20 kg.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Typical weight of Yash's Ravana costumes, including jewellery",
+      "numbers": [],
+      "entities": [
+        "Yash's Ravana"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this typical weight.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "1.8 KG",
+      "numbers": [
+        1.8
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the crown weighed 1.8 kg.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Weight of Ravana's crown, even after repeated attempts to lighten it",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the crown's weight and attempts to reduce it.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Ramayana Part 1 is now playing in the US and UK",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "Ramayana Part"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the film is playing in North America and the UK.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Part 2 is scheduled for Diwali 2028",
+      "numbers": [
+        2.0,
+        2028.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2028
+        ]
+      },
+      "llm_reason": "The article states Part 2 is scheduled for Diwali 2028.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Sardhariya said Yash kept a cheerful atmosphere on set despite the weight.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article includes this statement from Saniya Sardhariya.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Yash",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ravana",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ramayana",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Saniya Sardhariya",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nitesh Tiwari",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000582,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

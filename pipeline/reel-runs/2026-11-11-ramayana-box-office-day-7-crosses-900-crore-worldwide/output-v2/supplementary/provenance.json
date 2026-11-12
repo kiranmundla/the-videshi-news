@@ -1,0 +1,158 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ramayana-box-office-day-7-crosses-900-crore-worldwide",
+  "trigger": {
+    "own_images": 3,
+    "target_distinct": 5,
+    "extras_needed": 2
+  },
+  "entities": [
+    "Ramayana: Part 1",
+    "Ranbir Kapoor",
+    "Sai Pallavi",
+    "Yash",
+    "Nitesh Tiwari",
+    "Crore Worldwide"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Ramayana: Part 1' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Yash' named 'Krishna', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Crore Worldwide' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Ranbir Kapoor snapped at Kalina airport.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 245x343 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Anurag Basu, Ranbir Kapoor at the launch of 'Barfi!' promo 13.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x388 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Barfi2.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "accepted",
+      "reason": "2216x1804, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Filming of Tamasha in Corsica.JPG",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 502x440 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Photos-Ranbir-Kapoor-snapped-at-the-airport-1.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x878 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Photos-Ranbir-Kapoor-snapped-at-the-airport-4.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x775 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Priyanka Chopra, Ranbir Kapoor at the launch of 'Barfi!' promo 05.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 475x288 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ramayana \u2013 Rise of a Legend Ranbir Kapoor Sai Pallavi and Yash.png",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "accepted",
+      "reason": "1381x831, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Sai Pallavi at Ramayana launch event.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q20081051)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x945 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Aamir Khan-Sai Pallavi-Junaid Khan attend the Ek-Din musical-event.jpg",
+      "route": "identity \u2014 depicts (P180=Q20081051)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x770 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ranbir Kapoor and Sai Pallavi at Ramayana special event in Sept2026.jpg",
+      "route": "identity \u2014 depicts (P180=Q20081051)",
+      "verdict": "accepted",
+      "reason": "1136x1385, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Ranbir Kapoor at Ramayana special event in Sep 26 (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q20081051)",
+      "verdict": "rejected",
+      "reason": "resolution: 435x650 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Sai Pallavi.png",
+      "route": "identity \u2014 depicts (P180=Q20081051)",
+      "verdict": "rejected",
+      "reason": "resolution: 799x854 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Sai Pallavi (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q20081051)",
+      "verdict": "rejected",
+      "reason": "resolution: 335x359 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Sai Pallavi - Junaid Khan.jpg",
+      "route": "identity \u2014 depicts (P180=Q20081051)",
+      "verdict": "rejected",
+      "reason": "resolution: 676x1384 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Sai Pallavi at Fida suceess meet.png",
+      "route": "identity \u2014 depicts (P180=Q20081051)",
+      "verdict": "rejected",
+      "reason": "resolution: 687x864 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Sai Pallavi at London, UK.webp",
+      "route": "identity \u2014 depicts (P180=Q20081051)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:Sai Pallavi at Maari2 Press meet.png",
+      "route": "identity \u2014 depicts (P180=Q20081051)",
+      "verdict": "rejected",
+      "reason": "resolution: 884x851 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Nitesh Tiwari at the \u2018Khidkiyaan\u2019 movie festival launch.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q16908467)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x881 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Nitesh Tiwari at the \u2018Khidkiyaan\u2019 movie festival launch (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q16908467)",
+      "verdict": "rejected",
+      "reason": "resolution: 240x320 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": []
+}

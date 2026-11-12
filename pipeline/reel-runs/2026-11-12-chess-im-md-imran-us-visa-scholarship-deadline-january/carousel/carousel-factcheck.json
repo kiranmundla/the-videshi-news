@@ -1,0 +1,145 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "chess-im-md-imran-us-visa-scholarship-deadline-january",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Teen Chess Master Md Imran Risks US Scholarship as Visa Deadline Closes In",
+        "numbers": [],
+        "entities": [
+          "Teen Chess Master Md Imran Risks US Scholarship",
+          "Visa Deadline Closes In"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article discusses Md Imran's scholarship risk due to visa issues.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The 17-year-old International Master must secure his visa before UTRGV's January 19, 2027 orientation or lose his full scholarship.",
+        "numbers": [
+          17.0,
+          19.0,
+          2027.0
+        ],
+        "entities": [
+          "International Master",
+          "UTRGV's January"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027
+          ]
+        },
+        "llm_reason": "The article states he risks losing his scholarship if he doesn't secure the visa by that date.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "His approved F-1 visa was in the passport he lost in Bratislava in June 2026",
+        "numbers": [
+          1.0,
+          2026.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "The article confirms his F-1 visa was lost with his passport in June 2026.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "He has tried every day for four months without securing a US visa appointment",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions he has tried daily for four months without success.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "His family has taken on Rs 40-50 lakh in loans over two years to fund his European playing circuit",
+        "numbers": [
+          40.0,
+          50.0,
+          5000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states his family has accumulated loans of Rs 40-50 lakh for chess expenses.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Teen Chess Master Md Imran Risks US Scholarship as Visa Deadline Closes In",
+        "numbers": [],
+        "entities": [
+          "Teen Chess Master Md Imran Risks US Scholarship",
+          "Visa Deadline Closes In"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This is a repetition of the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.00047,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

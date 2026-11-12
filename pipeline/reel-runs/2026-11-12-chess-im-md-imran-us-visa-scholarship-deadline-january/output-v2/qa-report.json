@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-12-chess-im-md-imran-us-visa-scholarship-deadline-january/output-v2/chess-im-md-imran-us-visa-scholarship-deadline-january.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1200,
+        899
+      ],
+      "manifest_dims": [
+        1200,
+        899
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 174.7,
+      "url": "https://img.etimg.com/thumb/width-1200,height-900,imgsize-94235,resizemode-75,msid-135759874/nri/latest-updates/17-year-old-indian-chess-player-faces-us-visa-delays-rs-50-lakh-debt-and-scholarship-uncertainty-despite-two-gm-norms.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-12-chess-im-md-imran-us-visa-scholarship-deadline-january/output-v2/qa/frames/frame-hook.png",
+      "text_px_detected": 26532,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          660,
+          312,
+          139,
+          175
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-12-chess-im-md-imran-us-visa-scholarship-deadline-january/output-v2/qa/frames/frame-news.png",
+      "text_px_detected": 22308,
+      "edge": {
+        "pass": true,
+        "offending_px": 10,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          663,
+          313,
+          141,
+          172
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.6,
+        "bg_luminance": 85.6,
+        "delta": 168.0
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-12-chess-im-md-imran-us-visa-scholarship-deadline-january/output-v2/qa/frames/frame-hero.png",
+      "text_px_detected": 26581,
+      "edge": {
+        "pass": true,
+        "offending_px": 13,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          664,
+          310,
+          143,
+          174
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 172.0,
+        "bg_luminance": 49.7,
+        "delta": 122.3
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-12-chess-im-md-imran-us-visa-scholarship-deadline-january/output-v2/qa/frames/frame-grid.png",
+      "text_px_detected": 45947,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          630,
+          318,
+          166,
+          215
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-12-chess-im-md-imran-us-visa-scholarship-deadline-january/output-v2/qa/frames/frame-diaspora.png",
+      "text_px_detected": 40522,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          757,
+          334,
+          178,
+          239
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.1,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-12-chess-im-md-imran-us-visa-scholarship-deadline-january/output-v2/qa/frames/frame-payoff.png",
+      "text_px_detected": 24472,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          669,
+          300,
+          148,
+          181
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    }
+  ]
+}
