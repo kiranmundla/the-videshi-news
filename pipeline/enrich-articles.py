@@ -720,8 +720,16 @@ def _fetch_ig_posts_apify(handles, results_limit=12):
         print(f"     ⚠ Apify call failed: {e}")
         return {}
 
+    if not isinstance(data, list):
+        print(f"     ⚠ Apify returned non-list payload ({type(data).__name__}) — skipping IG prefetch")
+        return {}
+
     by_handle = {}
     for item in data:
+        if not isinstance(item, dict):
+            # Apify occasionally returns string rows (error/placeholder
+            # entries); skip them instead of crashing the whole run.
+            continue
         owner = (item.get('ownerUsername') or '').lower()
         if not owner:
             # Try to infer from inputUrl
