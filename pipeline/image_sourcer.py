@@ -126,6 +126,58 @@ def _acquire_image_lock(timeout_secs=30):
 
 # ── HTTP Helpers ─────────────────────────────────────────────────────────────
 
+# Hosts whose CDNs serve images to any referer (verified repeatedly in
+# production) — exempt from the reader-access probe below.
+_READER_CHECK_EXEMPT_HOSTS = (
+    "upload.wikimedia.org", "thumb.wikimedia.org",
+    "lboecaekpynbpyijrbfz.supabase.co",
+    "images.pexels.com", "img.youtube.com", "i.ytimg.com",
+    "live.staticflickr.com",
+)
+
+_BROWSER_UA = ("Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) "
+               "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 "
+               "Mobile/15E148 Safari/604.1")
+_SITE_REFERER = "https://www.thevideshi.com/"
+
+
+def _reader_access_blocked(url):
+    """True only when the host explicitly refuses (401/403) a fetch made
+    the way a reader's browser makes it: a browser UA plus our own
+    Referer.
+
+    Hotlink-protected CDNs (img.indiaforums.com, 2026-11-11) serve
+    images to direct fetches — which is all verify_image_url ever did,
+    so every pipeline check passed — but 403 every reader whose browser
+    sends thevideshi.com as Referer, leaving the article with the navy
+    placeholder and a caption describing a photo nobody can see.
+
+    Fails OPEN on every other outcome (200/206, redirects, 404s,
+    timeouts, range quirks): only a proven 401/403 under reader
+    conditions rejects, so this can never kill an image the main
+    verification already proved good on a transient error.
+    """
+    try:
+        host = urllib.parse.urlparse(url).netloc.lower()
+    except Exception:
+        return False
+    if not host:
+        return False
+    if any(host == h or host.endswith("." + h)
+           for h in _READER_CHECK_EXEMPT_HOSTS):
+        return False
+    try:
+        result = subprocess.run(
+            ["curl", "-sS", "-o", "/dev/null", "-w", "%{http_code}",
+             "-L", "--max-time", "10", "--range", "0-1023",
+             "-A", _BROWSER_UA, "-e", _SITE_REFERER, url],
+            capture_output=True, text=True, timeout=15)
+        code = (result.stdout or "").strip()
+    except Exception:
+        return False
+    return code in ("401", "403")
+
+
 def verify_image_url(url, min_width=800):
     """Verify an image URL is reachable and returns actual image data.
     Downloads the full image and validates bytes with PIL — a range-request
@@ -177,6 +229,15 @@ def verify_image_url(url, min_width=800):
 
         # Minimum width check
         if width < min_width:
+            return False, None, 0
+
+        # Reader-access check (2026-11-11): reject heroes a reader's
+        # browser cannot load even though this direct fetch succeeded
+        # (hotlink protection keyed on Referer — see
+        # _reader_access_blocked). Every hero route funnels through
+        # this function, so the guard applies pipeline-wide.
+        if _reader_access_blocked(url):
+            print(f"    ✗ reader-access blocked (hotlink protection): {url[:100]}")
             return False, None, 0
 
         # Guess content type from magic bytes
