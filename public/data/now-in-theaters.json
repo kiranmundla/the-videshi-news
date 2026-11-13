@@ -636,7 +636,7 @@
       "why_watch": "418 is a Kannada film directed by Kirtan Nadagouda, starring Charan Lakkaraju Chaithra J. Achar Surya Raj Preethi Pagadala Ramesh Indira.",
       "rating": "Opens Oct 23",
       "rating_source": "Release date",
-      "poster_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Visigoth_migrations.jpg/500px-Visigoth_migrations.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/9/9b/418_%28film%29_poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "trailer_url": "https://www.youtube.com/watch?v=IFgK5ynoe6s",
       "cast_details": [
         {
@@ -645,7 +645,9 @@
         }
       ],
       "review_slug": "418-review-roundup-critics",
-      "fandango_url": "https://www.fandango.com/418-2026-246528/movie-overview"
+      "fandango_url": "https://www.fandango.com/418-2026-246528/movie-overview",
+      "poster_width": 273,
+      "poster_height": 365
     },
     {
       "title": "Udta Teer",
@@ -756,9 +758,7 @@
       "year": 2026,
       "ticket_url": "https://www.google.com/search?q=Pyre%20showtimes%20near%20me",
       "why_watch": "Pyre is a Hindi film directed by Vinod Kapri, starring Padam Singh Kapri Heera Devi Subhash Chandra Shubham Chaudhary Sadab Khan Alok Verma Gopa Nayal Deewan Kanwal Jaya Shah Pushpa Pandey.",
-      "poster_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Ubud_Cremation_1.jpg/500px-Ubud_Cremation_1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "poster_width": 1024,
-      "poster_height": 1280,
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/2/28/Pyre_Film_Poster.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "trailer_url": "https://www.youtube.com/watch?v=ETmBXE66Xv4",
       "cast_details": [
         {
@@ -766,7 +766,9 @@
           "photo_url": ""
         }
       ],
-      "fandango_url": null
+      "fandango_url": null,
+      "poster_width": 263,
+      "poster_height": 379
     },
     {
       "title": "Ramayana: Part 1",
@@ -958,14 +960,16 @@
       "why_watch": "King is a Hindi film directed by Siddharth Anand, starring Shah Rukh Khan Suhana Khan Deepika Padukone Abhishek Bachchan Anil Kapoor Jackie Shroff Arshad Warsi Rani Mukerji Raghav Juyal Abhay Verma Saurabh Shukla Jaideep Ahlawat Akshay Oberoi Karanvir Malhotra.",
       "rating": "Opens Dec 24",
       "rating_source": "Release date",
-      "poster_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b5/Aachen_Domschatz_Bueste1.jpg/500px-Aachen_Domschatz_Bueste1.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "poster_url": "https://upload.wikimedia.org/wikipedia/en/f/fd/King_%28Hindi_film%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
       "trailer_url": "https://www.youtube.com/watch?v=Uu2QK9Z9X5E",
       "cast_details": [
         {
           "name": "Shah Rukh Khan Suhana Khan Deepika Padukone Abhishek Bachchan Anil Kapoor Jackie Shroff Arshad Warsi Rani Mukerji Raghav Juyal Abhay Verma Saurabh Shukla Jaideep Ahlawat Akshay Oberoi Karanvir Malhotra",
           "photo_url": ""
         }
-      ]
+      ],
+      "poster_width": 283,
+      "poster_height": 354
     }
   ],
   "week_of": "Nov 09 – Nov 15, 2026"
