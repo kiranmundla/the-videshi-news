@@ -61,6 +61,18 @@ check("single capitalized words are not names",
       enr.extract_headline_names("Markets rally after the Fed decision") == [])
 check("possessive surname still yields the name",
       "Tyra Banks" in enr.extract_headline_names("Tyra Banks' Diwali Look Stuns"))
+# 2026-11-13: junk candidates observed burning derivation searches in
+# a live dry run — verb phrases from title-case headline runs.
+_sw = enr.extract_headline_names("Sonam Wangchuk Claims House Arrest in Ladakh")
+check("real name survives, verb-phrase pair dropped",
+      "Sonam Wangchuk" in _sw and "House Arrest" not in _sw, f"got {_sw}")
+check("long title-case runs yield only <=3-word candidates",
+      all(len(n.split()) <= 3 for n in _sw), f"got {_sw}")
+_si = enr.extract_headline_names("Shreyas Iyer Makes ODI Captaincy Debut")
+check("sports name survives, 'Captaincy Debut' dropped",
+      "Shreyas Iyer" in _si and "Captaincy Debut" not in _si, f"got {_si}")
+check("org-fragment candidates are dropped",
+      enr.extract_headline_names("Indian Nationals Among Victims") == [])
 
 # ── Literal handle extraction from body / sources ─────────────────────────
 article = {

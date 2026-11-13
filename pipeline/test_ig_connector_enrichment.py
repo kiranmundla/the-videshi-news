@@ -195,6 +195,47 @@ substring_only = [{"shortCode": "S1", "caption": "Looking forward to the weekend
 king_article = {"headline": "Virat Kohli king returns", "body": ""}
 url, info = enr.enrich_ig_from_cache(king_article, ig_cache_with(substring_only), {})
 check("substring-only caption match is rejected", url is None and info is None)
+
+# ── Generic-keyword coincidence gate (2026-11-13, real live posts) ──
+# A fresh-cache audit caught the old gate passing on generic word
+# pairs from real captions. These are those captions, verbatim-ish.
+enr.match_handles = lambda headline, registry, platform: [
+    {"name": "Air India", "handle": "airindia", "group": "organizations"}]
+ai_article = {"headline": "Air India Losses More Than Double to Rs 22,238 Crore as Expansion Plan Advances", "body": ""}
+ai_cache = {"ig": {"airindia": {"posts": [{
+    "shortCode": "AI1",
+    "caption": "Introducing our second gateway to Japan, Osaka! Starting 2 February 2027, we will connect Delhi and Osaka with non-stop flights. More updates on our expansion soon.",
+    "url": "https://www.instagram.com/p/AI1/", "ownerUsername": "airindia"}],
+    "fetched_at": NOW}}}
+url, info = enr.enrich_ig_from_cache(ai_article, ai_cache, {})
+check("route-launch post does not embed in a losses story",
+      url is None and info is None)
+
+enr.match_handles = lambda headline, registry, platform: [
+    {"name": "UK Home Office", "handle": "ukhomeoffice", "group": "organizations"}]
+dal_article = {"headline": "India's Only Floating Post Office on Dal Lake Extends Hours", "body": ""}
+dal_cache = {"ig": {"ukhomeoffice": {"posts": [{
+    "shortCode": "HO1",
+    "caption": "A man who spent the early hours targeting homes and cars across Stevenage has been jailed for four years. Read the full post on our website.",
+    "url": "https://www.instagram.com/reel/HO1/", "ownerUsername": "ukhomeoffice"}],
+    "fetched_at": NOW}}}
+url, info = enr.enrich_ig_from_cache(dal_article, dal_cache, {})
+check("crime post does not embed in a post-office story",
+      url is None and info is None)
+
+enr.match_handles = lambda headline, registry, platform: [
+    {"name": "Karan Johar", "handle": "karanjohar", "group": "persons"}]
+kj_article = {"headline": "Karan Johar Says He Is Dissuading Twins Yash And Roohi From Bollywood", "body": ""}
+kj_cache = {"ig": {"karanjohar": {"posts": [{
+    "shortCode": "KJ1",
+    "caption": "My heart, my world… completing me with Roohi and Yash… we are blessed to have our mothers blessing us",
+    "url": "https://www.instagram.com/p/KJ1/", "ownerUsername": "karanjohar"}],
+    "fetched_at": NOW}}}
+url, info = enr.enrich_ig_from_cache(kj_article, kj_cache, {})
+check("subject's own post on the exact topic still embeds",
+      url == "https://www.instagram.com/p/KJ1/"
+      and "yash" in info["matched_keywords"]
+      and "roohi" in info["matched_keywords"])
 enr.match_handles = orig_match
 
 # ── Targeted fetch by article IDs (was a silent None) ────────────────────

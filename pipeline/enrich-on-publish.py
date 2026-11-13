@@ -866,13 +866,11 @@ def enrich_ig_from_cache(article, cache, registry, live_ig=None):
     else:
         merged = ig_cache
 
-    # Build topic keywords from headline
-    stopwords = {
-        "the","a","an","in","on","at","to","for","of","and","or","is","are",
-        "was","were","has","had","have","been","be","will","can","may","with",
-        "by","from","as","its","it","his","her","their","new","says","said",
-        "after","over","how","why","what","who","than","amid","that","this",
-    }
+    # Build topic keywords from headline — the shared set the
+    # derivation path uses (see _IG_TOPIC_STOPWORDS below; it is
+    # resolved at call time). One set, both paths, so a generic-word
+    # fix lands everywhere at once.
+    stopwords = _IG_TOPIC_STOPWORDS
 
     for m in ig_matches[:3]:
         handle = m["handle"].lower().lstrip("@")
@@ -896,7 +894,8 @@ def enrich_ig_from_cache(article, cache, registry, live_ig=None):
         seen_kw = set()
         for w in topic_kw:
             kw = w.lower().strip(".,!?:;-\"'“”‘’")
-            if len(kw) > 2 and kw not in seen_kw:
+            if (len(kw) > 2 and kw not in seen_kw
+                    and any(c.isalpha() for c in kw)):
                 seen_kw.add(kw)
                 keywords.append(kw)
 
@@ -962,13 +961,29 @@ except ValueError:
     IG_MAX_DERIVED_PER_RUN = 5
 _IG_DERIVED_ATTEMPTS = 0
 
-# Same stopword set enrich_ig_from_cache uses for headline keywords.
+# The stopword set for IG headline keywords, shared by
+# enrich_ig_from_cache and the derivation path (_ig_headline_keywords).
+# Beyond function words it carries GENERIC headline words that carry
+# no topical specificity — "more", "first", "they", "hours", "time"…
+# (2026-11-13: a fresh-cache audit caught the gate passing on pairs
+# of these alone — an Air India Osaka-route post matched the Air
+# India LOSSES story on "more"+"plan", a UK Home Office crime post
+# matched the Dal Lake post-office story on "post"+"hours", a
+# Diwali-party reel matched a gold-savings explainer on
+# "they"+"diwali". Two generic coincidences are not evidence.)
 _IG_TOPIC_STOPWORDS = {
     "the", "a", "an", "in", "on", "at", "to", "for", "of", "and", "or",
     "is", "are", "was", "were", "has", "had", "have", "been", "be",
     "will", "can", "may", "with", "by", "from", "as", "its", "it",
     "his", "her", "their", "new", "says", "said", "after", "over",
     "how", "why", "what", "who", "than", "amid", "that", "this",
+    "they", "them", "then", "more", "most", "first", "one", "two",
+    "three", "get", "gets", "got", "make", "makes", "made", "take",
+    "takes", "took", "back", "now", "just", "also", "still", "even",
+    "every", "many", "much", "hours", "hour", "years", "year",
+    "days", "day", "week", "weeks", "time", "times", "per", "via",
+    "out", "off", "into", "about", "against", "between", "during",
+    "before", "when", "while", "being", "other",
 }
 
 # instagram.com/<segment> values that are site paths, not handles.
@@ -1083,23 +1098,54 @@ def extract_ig_handle_hints(article):
     return found
 
 
+# Words that appear inside capitalized headline runs but are never
+# part of a person's name — headline verbs and junk nouns observed
+# burning derivation account-searches (2026-11-13 dry run: "House
+# Arrest", "Captaincy Debut", "Picks Dharmapuri", "Indian
+# Nationals Among…" each spawned searches and verified-profile
+# checks for nonsense candidates before failing closed).
+_HEADLINE_NON_NAME_WORDS = {
+    "claims", "claim", "makes", "make", "says", "said", "wins",
+    "win", "holds", "hold", "picks", "pick", "among", "arrest",
+    "arrested", "arrests", "debut", "captaincy", "nationals",
+    "announces", "announced", "unveils", "unveiled", "launches",
+    "launched", "joins", "joined", "leaves", "left", "dies",
+    "died", "dead", "grows", "grew", "wears", "wore", "stuns",
+    "stunned", "takes", "take", "gets", "get", "goes", "went",
+    "comes", "came", "beats", "beat", "faces", "faced", "signs",
+    "signed", "opens", "opened", "extends", "extended", "cuts",
+    "cut", "surges", "surged", "rallies", "rally", "seeks",
+    "sought", "lands", "landed", "hits", "hit",
+}
+
+
 def extract_headline_names(headline):
     """Capitalized multi-word phrases (2+ consecutive capitalized
     words) from the headline, e.g. 'Tyra Banks', 'Maneesh Goyal'.
     Runs longer than two words also contribute their first-two and
     last-two word pairs, so a title-case verb stuck to a name does
-    not sink the whole phrase."""
+    not sink the whole phrase.
+
+    Two plausibility filters (2026-11-13): a run longer than three
+    words is a sentence fragment, not a name, so only its pairs are
+    offered; and any candidate containing a headline verb / junk
+    noun (_HEADLINE_NON_NAME_WORDS) is dropped — the derivation
+    downstream fails closed on junk anyway, but each junk candidate
+    costs an account-search plus verified-profile checks."""
     names = []
 
     def _add(name):
-        if name and name not in names:
+        if name and name not in names and not any(
+                w.lower() in _HEADLINE_NON_NAME_WORDS
+                for w in name.split()):
             names.append(name)
 
     run = []
 
     def _flush():
         if len(run) >= 2:
-            _add(" ".join(run))
+            if len(run) <= 3:
+                _add(" ".join(run))
             if len(run) > 2:
                 _add(" ".join(run[:2]))
                 _add(" ".join(run[-2:]))
@@ -1229,7 +1275,8 @@ def _ig_headline_keywords(headline, name):
     seen_kw = set()
     for w in (headline or "").split():
         kw = w.lower().strip(".,!?:;-\"'“”‘’")
-        if len(kw) > 2 and kw not in exclude and kw not in seen_kw:
+        if (len(kw) > 2 and kw not in exclude and kw not in seen_kw
+                and any(c.isalpha() for c in kw)):
             seen_kw.add(kw)
             keywords.append(kw)
     return keywords
