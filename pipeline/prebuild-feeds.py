@@ -98,6 +98,49 @@ CATEGORY_DIR = DATA_DIR / "category"
 PAGE_SIZE_CAT = 18  # fallback to wider window if fewer than this in 72h
 HOMEPAGE_FEED = DATA_DIR / "homepage-feed.json"
 
+# ── IG embed captions ──────────────────────────────────────────────
+# Articles carry IG embeds as bare URLs; the post's caption lives
+# only in the pipeline-local embed cache. Bake {shortcode: {handle,
+# caption}} into each article JSON so the frontend can caption the
+# embed with the author's own words (SocialEmbed already renders a
+# caption when given one). The cache file is not committed; when it
+# is absent the index is empty and articles ship without captions.
+_IG_CAPTION_INDEX = None
+_IG_URL_RE = re.compile(r"instagram\.com/(?:p|reel|tv)/([A-Za-z0-9_-]+)")
+
+
+def _ig_caption_index():
+    global _IG_CAPTION_INDEX
+    if _IG_CAPTION_INDEX is not None:
+        return _IG_CAPTION_INDEX
+    _IG_CAPTION_INDEX = {}
+    try:
+        cache_path = Path(__file__).parent / "cache" / "embed_cache.json"
+        cache = json.loads(cache_path.read_text())
+        for handle, entry in (cache.get("ig") or {}).items():
+            for post in (entry or {}).get("posts") or []:
+                sc = post.get("shortCode")
+                cap = " ".join((post.get("caption") or "").split())
+                if sc and cap:
+                    _IG_CAPTION_INDEX[sc] = {
+                        "handle": handle,
+                        "caption": cap[:177] + "…" if len(cap) > 180 else cap,
+                    }
+    except Exception:
+        pass
+    return _IG_CAPTION_INDEX
+
+
+def embed_captions_for(row):
+    idx = _ig_caption_index()
+    if not idx:
+        return None
+    out = {}
+    for sc in set(_IG_URL_RE.findall(row.get("body") or "")):
+        if sc in idx:
+            out[sc] = idx[sc]
+    return out or None
+
 # Supabase columns to fetch (mirrors P2_COLS in articles.ts)
 P2_COLS = (
     "id,slug,headline,subheadline,body,vertical,category,status,"
@@ -415,6 +458,7 @@ def map_row(row: dict) -> dict:
         "focal_x": row.get("focal_x", 0.5),
         "focal_y": row.get("focal_y", 0.5),
         "social_embeds": row.get("social_embeds") or [],
+        "embed_captions": embed_captions_for(row),
         "data_cards": row.get("data_cards"),
     }
 
@@ -427,6 +471,7 @@ def article_without_body(a: dict) -> dict:
     words = len([w for w in text.split() if w])
     reading_time = max(1, round(words / 225))
     out = {k: v for k, v in a.items() if k != "body"}
+    out.pop("embed_captions", None)  # only the article page renders embeds
     out["reading_time"] = reading_time
     return out
 

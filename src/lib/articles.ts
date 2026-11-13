@@ -36,6 +36,7 @@ export type Article = {
   img_w?: number | null;
   img_h?: number | null;
   social_embeds?: { platform: string; url: string }[] | null;
+  embed_captions?: Record<string, { handle: string; caption: string }> | null;
   reactions?: Record<string, number> | null;
   data_cards?: any[] | null;
   article_type?: string | null;
@@ -68,6 +69,7 @@ type P2Row = {
   img_w?: number | null;
   img_h?: number | null;
   social_embeds?: { platform: string; url: string }[] | null;
+  embed_captions?: Record<string, { handle: string; caption: string }> | null;
   reactions?: Record<string, number> | null;
   data_cards?: any[] | null;
 };
@@ -228,6 +230,7 @@ function mapRow(row: P2Row): Article {
     img_w: row.img_w ?? null,
     img_h: row.img_h ?? null,
     social_embeds: Array.isArray(row.social_embeds) ? row.social_embeds : [],
+    embed_captions: (row as any).embed_captions ?? null,
     reactions: (row as any).reactions ?? {},
     // expose raw attribution for callers that want it separately
     // (kept on image_credit too for backwards compat)

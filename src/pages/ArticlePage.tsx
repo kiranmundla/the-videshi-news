@@ -187,14 +187,27 @@ function SourcesPill({
 const CHAMPIONS_HEADING_RE = /^##\s+Every Indian American Champion.*$/m;
 const YOUTUBE_TAG_RE = /<youtube>(.*?)<\/youtube>/;
 
+/* IG embed caption from the baked-in embed_captions map (shortcode →
+   {handle, caption}, built by prebuild-feeds.py from the embed
+   cache). Renders as the figure line under the embed. */
+type EmbedCaptions = Record<string, { handle: string; caption: string }> | null | undefined;
+function igEmbedCaption(embedCaptions: EmbedCaptions, url: string): string | undefined {
+  if (!embedCaptions) return undefined;
+  const m = url.match(/instagram\.com\/(?:p|reel|tv)\/([A-Za-z0-9_-]+)/);
+  const e = m ? embedCaptions[m[1]] : undefined;
+  return e ? `@${e.handle} on Instagram — ${e.caption}` : undefined;
+}
+
 function MarkdownWithEmbeds({
   body,
   heroImageUrl,
   title,
+  embedCaptions,
 }: {
   body: string;
   heroImageUrl?: string;
   title: string;
+  embedCaptions?: EmbedCaptions;
 }) {
   // Pre-process: strip the champions table section (component renders it)
   let processedBody = body;
@@ -352,7 +365,7 @@ function MarkdownWithEmbeds({
         chunk.kind === "social-photos" ? (
           <SocialPhotoStrip key={i} images={chunk.images} via={chunk.via} platform={chunk.platform} postUrl={chunk.postUrl} />
         ) : chunk.kind === "embed" ? (
-          <SocialEmbed key={i} platform={chunk.platform} url={chunk.url} />
+          <SocialEmbed key={i} platform={chunk.platform} url={chunk.url} caption={chunk.platform === "instagram" ? igEmbedCaption(embedCaptions, chunk.url) : undefined} />
         ) : chunk.kind === "x-official" ? (
           <XOfficialEmbed key={i} url={chunk.url} video={chunk.video} />
         ) : chunk.kind === "youtube" ? (
@@ -887,7 +900,7 @@ export default function ArticlePage() {
                     chunk.kind === "embed" && chunk.platform === "twitter" ? (
                       <MinimalTweetEmbed key={i} url={chunk.url} />
                     ) : chunk.kind === "embed" ? (
-                      <SocialEmbed key={i} platform={chunk.platform} url={chunk.url} />
+                      <SocialEmbed key={i} platform={chunk.platform} url={chunk.url} caption={chunk.platform === "instagram" ? igEmbedCaption(article.embed_captions, chunk.url) : undefined} />
                     ) : (
                       <div key={i} className="article-html" dangerouslySetInnerHTML={{ __html: chunk.html }} />
                     )
@@ -903,6 +916,7 @@ export default function ArticlePage() {
                   body={article.body}
                   heroImageUrl={article.hero_image_url}
                   title={article.title}
+                  embedCaptions={article.embed_captions}
                 />
                 {(article.social_embeds ?? []).length > 0 && (
                   <SocialEmbeds embeds={article.social_embeds!} />
