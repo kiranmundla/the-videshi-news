@@ -29,6 +29,26 @@ YT_HEADERS = {
 }
 
 
+def _is_film_page(data: dict) -> bool:
+    """True only when a Wikipedia REST summary describes a FILM.
+
+    The bare-title candidate in fetch_wikipedia_image resolves to
+    whatever Wikipedia's top article for that word is — for "King"
+    that is the medieval-monarch article, whose lead image (the
+    Aachen Charlemagne bust) was served as the Shah Rukh Khan
+    film's poster (Kiran's catch, 2026-11-13). A film's own article
+    always self-describes as one ("… film" in the Wikidata short
+    description, or "film" in the lead extract); a monarch, a
+    place, a map or a cremation photo's article never does. Fail
+    closed: no positive film evidence, no poster.
+    """
+    desc = (data.get("description") or "").lower()
+    if "film" in desc:
+        return True
+    extract = (data.get("extract") or "").lower()
+    return " film" in extract[:300]
+
+
 def fetch_wikipedia_image(title: str, year: int = 0):
     """Get poster/thumbnail from Wikipedia.
 
@@ -42,16 +62,25 @@ def fetch_wikipedia_image(title: str, year: int = 0):
     fact that the poster can never fill a hero slot. film_hero.py
     reads poster_width at publish time to apply the >=800px rule
     without a live lookup. Returns ("", 0, 0) when no poster.
-    """
-    candidates = [title]
-    base = title.split(":")[0].strip() if ":" in title else title
-    if base != title:
-        candidates.append(base)
 
-    for b in [title, base]:
-        candidates.append(f"{b} (film)")
+    Candidate order is FILM pages first ("Title (YYYY film)",
+    "Title (film)"), then the bare title — and EVERY candidate,
+    bare title included, must pass _is_film_page: a poster comes
+    only from the film's own Wikipedia article, never from the
+    top article for the title word (2026-11-13: "King", "418" and
+    "Pyre" all carried commons concept photos — a Charlemagne
+    bust, a Visigoth-migration map, a Bali cremation — sourced
+    from non-film articles).
+    """
+    candidates = []
+    base = title.split(":")[0].strip() if ":" in title else title
+    for b in dict.fromkeys([title, base]):
         if year:
             candidates.append(f"{b} ({year} film)")
+        candidates.append(f"{b} (film)")
+    candidates.append(title)
+    if base != title:
+        candidates.append(base)
 
     seen = set()
     unique = []
@@ -67,6 +96,10 @@ def fetch_wikipedia_image(title: str, year: int = 0):
             resp = requests.get(url, headers=HEADERS, timeout=8)
             if resp.status_code == 200:
                 data = resp.json()
+                if not _is_film_page(data):
+                    print(f"  ⛔ Not a film page, skipping: {candidate}")
+                    time.sleep(0.3)
+                    continue
                 thumb = data.get("thumbnail", {}).get("source", "")
                 if thumb:
                     # Get higher resolution version
@@ -196,6 +229,19 @@ def main():
         print(f"{'='*50}")
 
         # 1. Poster (+ its true dimensions — see fetch_wikipedia_image)
+        # Self-heal (2026-11-13): a thumb.wikimedia.org/commons poster
+        # can only have come from a NON-film Wikipedia article via the
+        # old bare-title path (film posters live as non-free files on
+        # upload.wikimedia.org under /wikipedia/en/). Drop it and
+        # re-source through the guarded lookup.
+        if movie.get("poster_url") and \
+                "thumb.wikimedia.org/wikipedia/commons" in movie["poster_url"]:
+            print(f"  🧹 Dropping non-film commons poster: "
+                  f"{movie['poster_url'][:90]}")
+            movie["poster_url"] = ""
+            movie.pop("poster_width", None)
+            movie.pop("poster_height", None)
+            updated += 1
         if movie.get("poster_url") and movie.get("poster_width"):
             print(f"  ⏭️ Already has poster ({movie['poster_width']}px)")
         elif movie.get("poster_url"):
