@@ -1,0 +1,171 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Congressman-Elect Amish Shah Puts Tariffs and Anti-Indian Hate at Top of His Agenda",
+        "numbers": [],
+        "entities": [
+          "Congressman-Elect Amish Shah Puts Tariffs",
+          "Anti-Indian Hate",
+          "His Agenda"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Shah prioritizes tariffs and anti-Indian hate in his agenda.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Shah, the first South Asian American elected to Congress from Arizona, takes office on January 3.",
+        "numbers": [
+          3.0
+        ],
+        "entities": [
+          "South Asian American"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Shah is the first South Asian American from Arizona and takes office January 3.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Shah won Arizona's 1st Congressional District with 52.4% of the vote to Republican Jay Feely's 45.4%",
+        "numbers": [
+          1.0,
+          45.4,
+          52.4
+        ],
+        "entities": [
+          "Congressional District",
+          "Republican Jay Feely's"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Shah received 52.4% of the vote, Feely 45.4%.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "He is the first South Asian American to represent Arizona in the US Congress",
+        "numbers": [],
+        "entities": [
+          "South Asian American",
+          "US Congress"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Shah is noted as the first South Asian American from Arizona in Congress.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "He plans to join the India Caucus, which will have six members when the new Congress sits",
+        "numbers": [],
+        "entities": [
+          "India Caucus"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Shah plans to join the India Caucus with six members.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Amish Shah",
+        "numbers": [],
+        "entities": [
+          "Amish Shah"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions Amish Shah.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Congressman-elect",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Shah is referred to as congressman-elect.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Congressman-Elect Amish Shah Puts Tariffs and Anti-Indian Hate at Top of His Agenda",
+        "numbers": [],
+        "entities": [
+          "Congressman-Elect Amish Shah Puts Tariffs",
+          "Anti-Indian Hate",
+          "His Agenda"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Shah prioritizes tariffs and anti-Indian hate in his agenda.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000526,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

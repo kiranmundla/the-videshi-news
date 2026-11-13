@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/output-v3/amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1600,
+        1200
+      ],
+      "manifest_dims": [
+        1600,
+        1200
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 11.8,
+      "url": "https://aniportalimages.s3.amazonaws.com/media/details/ANI-20261111211302.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/output-v3/qa/frames/frame-hook.png",
+      "text_px_detected": 28537,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          408,
+          237,
+          190,
+          296
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/output-v3/qa/frames/frame-news.png",
+      "text_px_detected": 37075,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.79)",
+        "box": [
+          284,
+          351,
+          444,
+          580
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.7,
+        "bg_luminance": 52.7,
+        "delta": 201.0
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/output-v3/qa/frames/frame-hero.png",
+      "text_px_detected": 17992,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.93)",
+        "box": [
+          396,
+          165,
+          271,
+          321
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 243.6,
+        "bg_luminance": 36.4,
+        "delta": 207.1
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/output-v3/qa/frames/frame-grid.png",
+      "text_px_detected": 39404,
+      "edge": {
+        "pass": true,
+        "offending_px": 7,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.92)",
+        "box": [
+          385,
+          361,
+          319,
+          415
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 47.9,
+        "delta": 206.1
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/output-v3/qa/frames/frame-diaspora.png",
+      "text_px_detected": 40948,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          408,
+          232,
+          192,
+          298
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/output-v3/qa/frames/frame-payoff.png",
+      "text_px_detected": 23821,
+      "edge": {
+        "pass": true,
+        "offending_px": 59,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          407,
+          228,
+          194,
+          301
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 118.1,
+        "delta": 135.7
+      }
+    }
+  ]
+}

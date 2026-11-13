@@ -1,0 +1,158 @@
+[
+  {
+    "id": "47e090af-80f0-4ba0-a07a-9a46927e8aab",
+    "headline": "New Zealand Thrash India 5-0 in Auckland in First Friendly",
+    "slug": "new-zealand-beat-india-5-0-auckland-friendly",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the match result by including context about India's recent performance in international friendlies or tournaments, which would help readers understand the implications of this loss.",
+        "Include quotes from the head coach or players to provide insight into their reactions to the defeat and their plans for the upcoming match, enhancing the article's depth and perspective.",
+        "Correct the repetition of information regarding the match result; streamline the content to avoid redundancy and improve clarity, particularly in the sections describing the goals and match events."
+      ],
+      "embed_opportunities": [
+        "Embed the official FIFA tweet or match report that highlights the outcome and key moments of the game for additional context and verification."
+      ]
+    }
+  },
+  {
+    "id": "76260305-4f97-4469-9af2-98761482bf0f",
+    "headline": "ISRO Test-Fires Revised PSLV Third Stage After Two Flight Anomalies",
+    "slug": "isro-pslv-third-stage-static-test-sriharikota",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying when ISRO plans to conduct further tests and when the revised stage might be ready for its first flight, as this information is crucial for understanding the implications of the test.",
+        "Include a direct quote from an ISRO official or expert to enhance attribution and credibility, particularly regarding the significance of the test and the next steps.",
+        "Provide more context on the implications of the anomalies experienced in previous missions, such as how they affected the overall PSLV program or future launches, to give readers a clearer understanding of the stakes involved.",
+        "Ensure consistent use of terminology when referring to the PSLV missions and stages to avoid confusion, particularly when discussing the anomalies and the revised PS3 stage."
+      ],
+      "embed_opportunities": [
+        "Embed the official ISRO tweet announcing the successful test to provide readers with direct access to the source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "ba0bc67e-a0b3-43ee-acb7-dc946ed36d32",
+    "headline": "Inside the Delhi Home Holding Indoor AQI at 10-15 With 15,000 Plants",
+    "slug": "delhi-couple-home-indoor-aqi-10-15-15000-plants",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the source of the AQI data by explicitly stating that it comes from the Central Pollution Control Board, rather than just citing ANI. This will enhance the article's credibility and accuracy.",
+        "Provide specific details on how the couple's system works, such as the types of plants used or the specific benefits of aquaponics, to give readers a clearer understanding of the technology behind their indoor air quality.",
+        "Include a brief explanation of the GRAP Stage III restrictions and their implications for residents in Delhi, as this context is crucial for understanding the significance of the couple's achievement in maintaining low AQI levels."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from the Central Pollution Control Board regarding the current AQI levels in Delhi to provide real-time context for readers."
+      ]
+    }
+  },
+  {
+    "id": "27e9e879-2a6c-49a8-a8c7-fad7284a4f73",
+    "headline": "Farm Growth Topped 4% for a Decade, Modi Tells Kisan Tak Conference",
+    "slug": "modi-kisan-tak-farm-growth-4-percent-50-crore-poverty",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the World Bank study mentioned by Modi to enhance credibility. Include a direct citation or link to the study if available.",
+        "Provide specific figures or percentages regarding the reduction in rural poverty to give readers a clearer understanding of the impact of agricultural growth.",
+        "Include a brief explanation of what 'natural farming' entails, as this term may not be familiar to all readers and could provide valuable context to Modi's forward ask to farmers."
+      ],
+      "embed_opportunities": [
+        "Embed the official Twitter account of the Prime Minister's Office to provide readers with direct access to updates or statements regarding the conference."
+      ]
+    }
+  },
+  {
+    "id": "9836af7a-1e03-469c-86a4-2454edb10ab2",
+    "headline": "Mercor's Indian-Origin Founders Double Wealth to $4.2 Billion Each at 23",
+    "slug": "mercor-founders-hiremath-midha-wealth-doubles-4-2-billion",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the funding rounds by correcting the date mentioned for the previous valuation from October 2025 to October 2022, as it appears to be a typographical error.",
+        "Provide more context on the significance of the $750 million funding round and what it means for the future of Mercor, such as potential plans for expansion or product development.",
+        "Include a brief explanation of what Mercor does as an AI hiring startup, as this would help readers understand the company's relevance and the impact of its valuation.",
+        "Ensure consistent use of terminology when referring to the founders' wealth; for example, clarify that the $4.2 billion figure is based on paper wealth and not liquid assets."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Forbes or a relevant financial news outlet that confirms the funding round and valuation to enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "c455fba9-8770-4a7e-85c9-b4a25e510505",
+    "headline": "NPPA Orders Strict Checks So Cancer Drug Price Cuts Reach Patients",
+    "slug": "nppa-strict-checks-cancer-drug-price-cuts-enforcement",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific drugs affected by the price cuts by providing a brief list or examples of the 137 anti-cancer drugs mentioned, as this would enhance completeness and give readers more context on the impact of the changes.",
+        "Include a direct quote from a relevant official or expert to enhance attribution and provide authoritative context about the implications of the price cuts for patients and healthcare providers.",
+        "Improve clarity by restructuring the section discussing the estimated savings to consumers. Clearly state how this figure was calculated and what it means for individual patients, potentially including an example of how much a specific drug's price might change."
+      ],
+      "embed_opportunities": [
+        "Embed the official NPPA announcement or a relevant tweet from the Ministry of Health to provide readers with direct access to primary sources and official statements."
+      ]
+    }
+  },
+  {
+    "id": "5430d4c3-f6f7-42d5-ace0-f9805dde5d72",
+    "headline": "Visa Uncertainty Is Making US Tech Workers Put Life Plans on Hold",
+    "slug": "visa-uncertainty-us-tech-workers-delay-life-plans",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the suspended PERM program for affected workers. Provide specific details on how this affects their current status and future employment options.",
+        "Include direct quotes or data from the companies mentioned (IBM, Microsoft, Adobe) to substantiate the claims about their visa sponsorship policies and the reasons behind them.",
+        "Add a timeline or context regarding the proposed $100,000 fee on new H-1B visas, including its status in the courts and potential future implications for visa applicants.",
+        "Enhance the section on what affected workers should do by providing actionable steps, such as specific questions to ask their employers regarding sponsorship policies."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official USCIS account regarding recent changes in immigration policy or visa processing that could affect tech workers."
+      ]
+    }
+  },
+  {
+    "id": "f180ac2b-b743-4be8-8009-23e41c272f21",
+    "headline": "19 Indian Seafarers Safe After Tanker Struck Off UAE Coast",
+    "slug": "tanker-dominica-prosperity-19-indian-seafarers-safe-uae",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date and time of the MT Fujairah Energy incident to provide context for the second attack.",
+        "Include a brief statement on the potential implications of these attacks for maritime safety and security in the region, which would help readers understand the broader context.",
+        "Ensure that the quote from Sarbananda Sonowal is attributed clearly to his social media post, specifying the platform (e.g., X/Twitter) for transparency.",
+        "Provide information on the next steps for the crew members and their families, such as any support or resources available from the Indian government or shipping companies."
+      ],
+      "embed_opportunities": [
+        "Embed the official UKMTO advisory or tweet regarding the incident to provide readers with direct access to the source of the information."
+      ]
+    }
+  }
+]

@@ -862,5 +862,31 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "qQ40j7FYnCk",
+    "article_slug": "amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda",
+    "article_id": "a58e031b-9120-4fa1-831b-f6cdf6464ad7",
+    "title": "Congressman-Elect Amish Shah Puts Tariffs and Anti-Indian Hate at Top of His Agenda #Shorts #NRI",
+    "privacy": "public",
+    "uploaded_at": "2026-11-12T17:26:10.158317+00:00",
+    "video_path": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/output-v3/amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda.mp4",
+    "video_sha256": "589949c705ef6fbf9fdb7fc237435b33623d1806a90c63607b467ff026985049",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "Mr0ij9sGpfk",
+    "article_slug": "infosys-prize-2026-six-winners-gautam-bhatia",
+    "article_id": "10b62cc4-a85b-4f20-8663-57275a52b76c",
+    "title": "Six Researchers Win Infosys Prize 2026, Including Legal Scholar Gautam Bhatia #Shorts #NRI",
+    "privacy": "public",
+    "uploaded_at": "2026-11-12T23:21:28.469505+00:00",
+    "video_path": "reel-runs/2026-11-12-infosys-prize-2026-six-winners-gautam-bhatia/output/infosys-prize-2026-six-winners-gautam-bhatia.mp4",
+    "video_sha256": "46ce58127972efae0349b7226cb8b12f37688ab797036422d49539a0fb086514",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

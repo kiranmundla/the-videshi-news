@@ -1,0 +1,31 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "infosys-prize-2026-six-winners-gautam-bhatia",
+  "name": "infosys-prize-2026-six-winners-gautam-bhatia",
+  "script": "reel-runs/2026-11-12-infosys-prize-2026-six-winners-gautam-bhatia/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000652
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-12-infosys-prize-2026-six-winners-gautam-bhatia/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "manifest": "reel-runs/2026-11-12-infosys-prize-2026-six-winners-gautam-bhatia/output/render-manifest.json",
+  "video": "reel-runs/2026-11-12-infosys-prize-2026-six-winners-gautam-bhatia/output/infosys-prize-2026-six-winners-gautam-bhatia.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-12-infosys-prize-2026-six-winners-gautam-bhatia/output/tiktok-caption.txt"
+}

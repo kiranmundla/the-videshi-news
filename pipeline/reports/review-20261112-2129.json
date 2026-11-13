@@ -1,0 +1,190 @@
+[
+  {
+    "id": "378c085c-5c9e-4472-8ad5-4be4fa879553",
+    "headline": "Special Electoral Roll Camps Set for November 21, 22 and 29 in Tamil Nadu",
+    "slug": "special-camps-electoral-roll-revision-november-21-22-29-tamil-nadu",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the dates mentioned in the article to ensure they are accurate and consistent. For example, the article states that November 22 and 29 are Sundays, which is incorrect as November 29, 2026, is a Sunday, but November 22 is a Monday. This could confuse readers.",
+        "Include specific details about the locations of the special camps to enhance completeness. Readers would benefit from knowing where these camps will be held, as 'designated locations' is vague.",
+        "Add a brief explanation of the significance of the electoral roll revision process and why it is important for voters to participate. This would provide context and depth to the article."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official announcement from the Election Commission of India regarding the special electoral roll camps to provide authoritative information and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "1cf56e65-9970-480a-908b-693e0144da3f",
+    "headline": "Azam Khan Gets Four Days in ED Custody, Faces Lucknow Questioning Friday",
+    "slug": "azam-khan-ed-custody-four-days-lucknow-jauhar-university",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of Khan's arrest and the context surrounding it, as this is crucial for understanding the current situation.",
+        "Ensure that all quotes attributed to Khan are clearly marked with quotation marks and provide context for their relevance to the investigation, enhancing clarity and completeness.",
+        "Include a brief background on the allegations against Khan and the significance of the Rs 426 crore money-laundering case to provide readers with necessary context.",
+        "Verify and correct the date mentioned for the ED custody; it states 'November 12 to November 16, 2026,' which appears to be a typographical error and should likely be for 2023."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Enforcement Directorate or a relevant news outlet that provides real-time updates on the investigation or custody details."
+      ]
+    }
+  },
+  {
+    "id": "ce4ddd23-6c6b-433f-bcda-de4e9087769e",
+    "headline": "Kunal Kemmu's Hindi Comedy Vibe Arrives on Prime Video November 13",
+    "slug": "vibe-kunal-kemmu-prime-video-november-13",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the release date by correcting the year from 2026 to 2023, as it appears to be a typographical error based on the current date.",
+        "Provide a more specific description of the film's plot to enhance completeness, such as mentioning the nature of the threat the characters face, which would give readers a better understanding of the film's premise.",
+        "Include direct quotes from Kunal Kemmu or other cast members about the film to add depth and attribution to the article.",
+        "Ensure that the article consistently attributes information to sources, particularly when mentioning details about the film's release and production, to enhance accuracy and credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official trailer for 'Vibe' to provide readers with a visual preview of the film."
+      ]
+    }
+  },
+  {
+    "id": "042f1c32-7931-45b3-8709-b8a7e35a0026",
+    "headline": "Draft Electoral Rolls Released in Cuddalore, Villupuram and Kallakurichi for Che",
+    "slug": "draft-electoral-rolls-cuddalore-villupuram-kallakurichi",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the deadline for submitting claims and objections by specifying the exact date (December 11, 2026) in a more prominent manner, such as bolding it or placing it in a bullet point for better visibility.",
+        "Provide more context on the implications of the electoral roll updates. For example, explain how these changes might affect voter eligibility or participation in upcoming elections, particularly for new voters.",
+        "Include a quote from Chief Electoral Officer Archana Patnaik or another relevant official to enhance attribution and provide authority to the information presented."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official statement from the Chief Electoral Officer regarding the release of the draft electoral rolls to provide direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "6ec8ea2c-9345-4126-a1be-f34b07ce9b47",
+    "headline": "Kareena Kapoor Khan Gets Legal Notice Over Quranic Verse Pendant Worn for Diwali",
+    "slug": "kareena-kapoor-khan-gets-legal-notice-over-quranic-verse-pendant-worn-for-diwali",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the legal implications of the notice. Include specific details about what a legal notice entails in this context and any potential consequences for Kapoor Khan and Rhea Kapoor if they do not comply.",
+        "Ensure the provenance of the pendant is accurately represented. If Rhea Kapoor's claim about the pendant being a Bhopal royal family heirloom is not independently verified, explicitly state that it is based on her assertion to avoid misleading readers.",
+        "Provide a timeline for the events mentioned. Include when the legal notice was sent and any deadlines for responses, if applicable, to give readers a clearer understanding of the urgency of the situation.",
+        "Reorganize the content to improve clarity. Start with the most critical details about the legal notice and its implications, followed by background information on the pendant and the outfit, to enhance the article's flow."
+      ],
+      "embed_opportunities": [
+        "Embed Rhea Kapoor's Instagram post showcasing the pendant and outfit to provide visual context for the story."
+      ]
+    }
+  },
+  {
+    "id": "ee18b14c-ef72-4c32-9bf8-549494b987b2",
+    "headline": "Chinese AI Firms Rush to Reserve Overseas Nvidia Capacity Amid Curbs Fear",
+    "slug": "chinese-ai-firms-rush-to-reserve-overseas-nvidia-capacity-amid-curbs-fear",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline regarding the Remote Access Security Act, including when the Senate is expected to vote on it, to provide readers with a clearer understanding of the urgency of the situation.",
+        "Include specific details on the potential impact of the proposed regulations on Chinese AI firms, such as estimated costs or operational changes they might face if the bill passes, to enhance the article's completeness.",
+        "Provide more context on the significance of Nvidia's technology in the global AI landscape and why access to it is critical for Chinese firms, which would help readers understand the stakes involved."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Nvidia or a news source discussing the implications of the Remote Access Security Act for a more dynamic presentation of the issue."
+      ]
+    }
+  },
+  {
+    "id": "442416e1-522f-4c91-b073-25011b2bba64",
+    "headline": "Vodafone Idea Q2 Loss Widens After One-Off Charge, ARPU Rises",
+    "slug": "vodafone-idea-q2-loss-widens-after-one-off-charge-arpu-rises",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the exceptional charge of Rs 462 crore. Explain what this charge entails and its impact on the overall financial health of Vodafone Idea, as readers may not understand its implications.",
+        "Provide a clearer breakdown of the revenue figures, especially how the growth in 4G and 5G users contributed to the rise in average revenue per user (ARPU). This will help readers understand the underlying factors driving the financial results.",
+        "Include a comparison of Vodafone Idea's performance with its competitors in the telecom sector to give readers context on how this loss fits into the broader market landscape."
+      ],
+      "embed_opportunities": [
+        "Embed the official Vodafone Idea announcement or earnings report for direct reference to their financial results."
+      ]
+    }
+  },
+  {
+    "id": "5bfe558c-532f-4f69-b019-2d29d1e373a2",
+    "headline": "Ro Khanna Holds More Campaign Cash Than Seven Lawmakers Combined",
+    "slug": "ro-khanna-campaign-cash-indian-american-lawmakers",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the reporting dates for all lawmakers mentioned to ensure readers understand the context of the comparisons. For example, explicitly state that Khanna's figures are as of October 14, while others are as of September 30, to avoid confusion about the timing of the data.",
+        "Provide a brief explanation of the significance of campaign cash balances and debt in the context of election campaigns. This would help readers understand why these figures matter and what implications they might have for the candidates' electoral prospects.",
+        "Include a direct quote from Ro Khanna or a relevant political analyst to enhance attribution and provide insight into the implications of his campaign cash position."
+      ],
+      "embed_opportunities": [
+        "Embed the official FEC report or a relevant tweet from Ro Khanna's campaign regarding his fundraising efforts to provide direct access to primary sources."
+      ]
+    }
+  },
+  {
+    "id": "c64024cf-faf0-41a4-a249-f492f4dbe0a3",
+    "headline": "India TB Mortality Falls 38 Percent Since 2015, WHO Report Finds",
+    "slug": "india-tb-mortality-down-38-percent-who-report",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the report by specifying that the data reflects estimates for 2025, not 2026, to avoid confusion about the reporting year.",
+        "Provide a clearer breakdown of the statistics by including the total number of TB cases identified and treated in India, as well as the global figures for comparison, to enhance completeness.",
+        "Rephrase the section discussing the percentage decline to emphasize the absolute numbers alongside the percentages to avoid potential misinterpretation by readers unfamiliar with statistical nuances.",
+        "Include a direct quote from the WHO report or a relevant health official to strengthen attribution and provide authoritative context."
+      ],
+      "embed_opportunities": [
+        "Embed the official WHO tweet or link to the full WHO Global Tuberculosis Report 2026 for readers seeking more detailed information."
+      ]
+    }
+  },
+  {
+    "id": "5d64b899-a3e2-4854-a8c2-c2a67b777789",
+    "headline": "Gauhati High Court Says PAN, Voter ID Alone Cannot Prove Citizenship",
+    "slug": "gauhati-high-court-pan-voter-id-cannot-prove-citizenship",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the ruling for individuals in Assam facing citizenship issues, including specific steps they need to take to prove their citizenship and any deadlines they may face.",
+        "Include a brief summary of the legal context surrounding the Foreigners Act, 1946, and Section 6A(2) to provide readers with a clearer understanding of the legal framework involved in citizenship cases.",
+        "Add quotes or statements from legal experts or representatives from relevant organizations to provide additional perspectives on the ruling and its potential impact on affected individuals."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Gauhati High Court or a relevant government body regarding this ruling for authenticity and direct access to official information."
+      ]
+    }
+  }
+]

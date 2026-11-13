@@ -1,0 +1,98 @@
+[
+  {
+    "id": "2f9ca364-64fc-4343-b0b3-72c832ab85b4",
+    "headline": "Jaipur Monuments Draw Bigger Crowds as Post-Diwali Tourist Surge Builds",
+    "slug": "jaipur-post-diwali-tourist-surge-amer-fort-hawa-mahal",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the tourism department figures by specifying the date of the report or the official's name to enhance attribution and credibility.",
+        "Provide a brief context about the significance of the post-Diwali tourist surge. For example, explain how this trend compares to previous years or the expected economic impact on local businesses.",
+        "Include specific details about the Pushkar Fair, such as its historical significance or activities planned, to give readers a better understanding of why they should book early.",
+        "Ensure that the article maintains a clear structure by avoiding repetitive statistics. For instance, consolidate the visitor numbers into a single paragraph to improve readability."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Rajasthan Tourism Department announcing the increase in tourist numbers or promoting the upcoming Pushkar Fair."
+      ]
+    }
+  },
+  {
+    "id": "e9772e22-0d2a-4653-aa2e-46d5086f70ea",
+    "headline": "Bollywood Bolsters Security as Shootings Revive Underworld Fears",
+    "slug": "bollywood-security-underworld-fears-bishnoi-threats",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the dates of the shootings and the police advisories in a more structured manner, as this will help readers understand the urgency and sequence of the incidents.",
+        "Include direct quotes from police officials or law enforcement to enhance attribution and credibility regarding the threats and actions taken, which would provide a clearer picture of the situation.",
+        "Provide more context on the Lawrence Bishnoi gang and its history, as well as the implications of their activities on the Bollywood industry, to give readers a deeper understanding of the current climate.",
+        "Specify the number of bodyguards being hired or the increase in demand for security services in quantifiable terms, which would give readers a concrete sense of the scale of the issue."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Mumbai Police regarding the advisories issued to Bollywood stars for added credibility and real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "c60dad66-47b4-46e6-916a-56c78310968b",
+    "headline": "Amul Raises Milk Prices by Up to Rs 4 a Litre, Second Hike in Six Months",
+    "slug": "amul-milk-price-hike-rs-4-litre-second-in-six-months",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Provide specific current prices for Amul Taaza and Amul Gold milk after the increase to enhance clarity for readers. For example, state the new prices explicitly, such as 'Amul Taaza now costs \u20b9X per litre' and 'Amul Gold now costs \u20b9Y per litre.'",
+        "Include a direct quote from a GCMMF spokesperson or an industry expert to strengthen attribution and provide a personal perspective on the price hike.",
+        "Add context regarding how this price increase compares to historical trends in milk prices in India, which would help readers understand the significance of this hike."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from GCMMF or Amul announcing the price hike to provide official confirmation and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "053d3a5f-2f96-481b-b869-0e7b8c8e9af9",
+    "headline": "Google Launches Gemini 4 Hydrogen, Its Fast Model for Agentic Work",
+    "slug": "google-gemini-4-hydrogen-agentic-workflows-launch",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Artificial Analysis Intelligence Index score by providing context on how it compares to industry standards or competitor models beyond just the Gemini family. This would help readers understand the relevance of the scores.",
+        "Include a brief explanation of what 'agentic workflows' means, as this term may not be familiar to all readers. A clear definition would enhance comprehension.",
+        "Add a timeline for when users can expect to see the rollout of Gemini 4 Hydrogen in various applications, as this would provide readers with actionable information regarding availability."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Google's official account announcing the launch of Gemini 4 Hydrogen for immediate context and verification."
+      ]
+    }
+  },
+  {
+    "id": "3e1a7e5f-2464-4b0c-8814-2cf949b90862",
+    "headline": "USCIS May Stop Deferring to Prior Approvals Under Visa Extension Proposal",
+    "slug": "uscis-deference-proposal-visa-extensions-comment-deadline",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding public comments: The article states that public comments close today, November 13, 2026, which seems to be a typographical error. It should likely be November 13, 2023, as this is a breaking news article. Correcting this will enhance accuracy and clarity.",
+        "Provide a clearer explanation of what 'deference to prior approvals' means for readers who may not be familiar with immigration terminology. A brief definition or context could improve completeness and clarity.",
+        "Include a specific example or case scenario illustrating how the proposed change might impact a typical employer and employee situation, which would enhance reader understanding of the implications."
+      ],
+      "embed_opportunities": [
+        "Embed the official DHS announcement or a relevant tweet from USCIS regarding this proposed rule change to provide readers with direct access to authoritative information."
+      ]
+    }
+  }
+]

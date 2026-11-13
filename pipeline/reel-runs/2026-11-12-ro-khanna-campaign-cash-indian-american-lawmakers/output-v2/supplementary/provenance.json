@@ -1,0 +1,169 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ro-khanna-campaign-cash-indian-american-lawmakers",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Ro Khanna",
+    "Federal Election Commission",
+    "Shri Thanedar",
+    "Indian-American lawmakers",
+    "Khanna",
+    "Cash"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Indian-American lawmakers' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Cash' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "File:Ro Khanna, official portrait, 115th Congress.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q7339221)",
+      "verdict": "USED (hero)",
+      "reason": "3054x4588, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2019 - Centre Stage - Day 2 CG1 9865 (49022960063).jpg",
+      "route": "identity \u2014 depicts (P180=Q7339221)",
+      "verdict": "USED (news)",
+      "reason": "4885x3245, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:FEC Thomas Crooks Donation 202102049425215728 189746.pdf",
+      "route": "identity \u2014 depicts (P180=Q2705072)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Shri Thanedar, official portrait (119th Congress).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q7503912)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Executive Connect (53188162627).jpg",
+      "route": "identity \u2014 depicts (P180=Q7503912)",
+      "verdict": "USED (grid)",
+      "reason": "6016x4016, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Executive Connect (53188173897).jpg",
+      "route": "identity \u2014 depicts (P180=Q7503912)",
+      "verdict": "accepted",
+      "reason": "6016x4016, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Old building in khanna city.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1101873)",
+      "verdict": "USED (diaspora)",
+      "reason": "1836x3264, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Best Book about Khatri Caste.jpg",
+      "route": "identity \u2014 depicts (P180=Q1101873)",
+      "verdict": "accepted",
+      "reason": "3024x4032, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "2019-centre-stage-day-2-cg1-9865-49022960063",
+      "path": "2019-centre-stage-day-2-cg1-9865-49022960063.jpg",
+      "size": [
+        4885,
+        3245
+      ],
+      "role": "establishing",
+      "subject": "6 November 2019; Tony Blair, Executive Chairman of the Institute for Global Change, Former Prime Minister of Great Britain and Northern Ireland, Tony Blair Global Institute, and Ro Khanna, Representative, House of Representatives, on Centre",
+      "route": "identity \u2014 depicts (P180=Q7339221)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2019_-_Centre_Stage_-_Day_2_CG1_9865_(49022960063).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/2019_-_Centre_Stage_-_Day_2_CG1_9865_%2849022960063%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "Web Summit",
+      "entity": "Ro Khanna",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Ro Khanna",
+        "Rohit Khanna"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "ro-khanna-official-portrait-115th-congress",
+      "path": "ro-khanna-official-portrait-115th-congress.jpg",
+      "size": [
+        3054,
+        4588
+      ],
+      "role": "portrait",
+      "subject": "Official portrait of U.S. Congressman Ro Khanna",
+      "route": "identity \u2014 Wikidata P18 (Q7339221)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Ro_Khanna,_official_portrait,_115th_Congress.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Ro_Khanna%2C_official_portrait%2C_115th_Congress.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "U.S. Congress/Eric Connolly",
+      "entity": "Ro Khanna",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Ro Khanna",
+        "Rohit Khanna"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "executive-connect-53188162627",
+      "path": "executive-connect-53188162627.jpg",
+      "size": [
+        6016,
+        4016
+      ],
+      "role": "establishing",
+      "subject": "Lt. Governor Miller Speaks at Executive Connect by Patrick Siebert at 1401 Pennsylvania Avenue NW, Washington, DC 20004",
+      "route": "identity \u2014 depicts (P180=Q7503912)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Executive_Connect_(53188162627).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Executive_Connect_%2853188162627%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "Maryland GovPics",
+      "entity": "Shri Thanedar",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Shrinivas Prasad Thanedar"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "old-building-in-khanna-city",
+      "path": "old-building-in-khanna-city.jpg",
+      "size": [
+        1836,
+        3264
+      ],
+      "role": "establishing",
+      "subject": "new abadi khana",
+      "route": "identity \u2014 Wikidata P18 (Q1101873)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Old_building_in_khanna_city.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Old_building_in_khanna_city.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Raghbirkhanna",
+      "entity": "Khanna",
+      "entity_type": "place",
+      "entity_aliases": [
+        "Khanna",
+        "Khanna, Ludhiana",
+        "Khanna, Punjab"
+      ]
+    }
+  ]
+}

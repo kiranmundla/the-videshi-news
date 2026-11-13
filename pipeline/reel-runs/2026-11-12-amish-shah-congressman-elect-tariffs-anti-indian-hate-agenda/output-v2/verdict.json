@@ -1,0 +1,40 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda",
+  "name": "amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda",
+  "script": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000643
+  },
+  "sourcing": {
+    "mode": "provided",
+    "provenance": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/extras/provenance.json",
+    "extras": {
+      "news": "amish-shah-by-gage-skidmore",
+      "hero": "amish-shah-david-marshall-52750179671",
+      "payoff": "us-capitol-west-side",
+      "grid": "amish-shah-arizona-house-floor"
+    }
+  },
+  "distinct_images": {
+    "usable": 6,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "inline:1",
+      "extra:amish-shah-by-gage-skidmore",
+      "extra:amish-shah-david-marshall-52750179671",
+      "extra:us-capitol-west-side",
+      "extra:amish-shah-arizona-house-floor"
+    ]
+  },
+  "detail": "beat 'diaspora': no unused distinct image left (4 placed, 2 unplaced of 6 distinct candidates) \u2014 holding rather than re-cropping an image across beats"
+}

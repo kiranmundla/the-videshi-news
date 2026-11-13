@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-12T11:19:38+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-12T23:23:27+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **249**
-- prebuilt_reels rows: 182 (152 with a yt_video_id)
+- Channel uploads (actual, via API): **251**
+- prebuilt_reels rows: 184 (154 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 65
-- **In sync** (channel video backed by a DB/publish-log record): **131**
+- Phase 2 publish-log entries: 67
+- **In sync** (channel video backed by a DB/publish-log record): **133**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 17
 - Ghost DB rows (yt_video_id not on channel): 16
@@ -292,7 +292,7 @@ _None._
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 - row `3c385175-84c2-48c0-afec-378bee1ba1d6` · slug ambani-adds-6-3-billion-reliance-shares-jump-record-profit · yt_video_id `B45MLVEFtk4` · on channel: no
 
-## (d) In sync (131)
+## (d) In sync (133)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -425,4 +425,6 @@ _None._
 - `QGvsDxawyeE` · public · 2026-11-11 · Adani Group Unveils $120 Billion Capex Plan Over Five Years #Shorts #Markets [prebuilt_reels:d54da05d-5816-4aeb-a3f7-201d0db6c18e]
 - `9X70oEiE-sE` · public · 2026-11-11 · India Cuts Visa Categories From 13 to Nine, Renames Tourist Visa as Visitor Visa #Shorts #VisaNews [prebuilt_reels:8838e720-d8e1-4437-88b5-9c237fb21cf5]
 - `mdAqsYGKPg4` · public · 2026-11-12 · Teen Chess Master Md Imran Risks US Scholarship as Visa Deadline Closes In #Shorts #VisaNews [prebuilt_reels:04db4476-227f-4858-ae7f-e2dbc409c14a]
+- `qQ40j7FYnCk` · public · 2026-11-12 · Congressman-Elect Amish Shah Puts Tariffs and Anti-Indian Hate at Top of His Agenda #Shorts #NRI [prebuilt_reels:64328198-a4a0-48f7-8924-069b1ea5ddf4]
+- `Mr0ij9sGpfk` · public · 2026-11-12 · Six Researchers Win Infosys Prize 2026, Including Legal Scholar Gautam Bhatia #Shorts #NRI [prebuilt_reels:48263349-dbf1-4f1b-868b-bb7d1d6dfc3a]
 

@@ -1,0 +1,98 @@
+{
+  "built": "manual verified extras (distinct-image fix: ladder gave 5 distinct usable for 6 scenes; this adds a 4th verified extra so hero + inline + 4 extras = 6 distinct)",
+  "story": "amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda",
+  "extras": [
+    {
+      "beat": "news",
+      "label": "amish-shah-by-gage-skidmore",
+      "path": "amish-shah-by-gage-skidmore.jpg",
+      "size": [
+        1719,
+        2342
+      ],
+      "role": "establishing",
+      "subject": "Amish Shah speaking at an event in Phoenix, Arizona.",
+      "route": "identity \u2014 Wikidata P18 (Q60736979)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_by_Gage_Skidmore.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Amish_Shah_by_Gage_Skidmore.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Gage Skidmore",
+      "entity": "Amish Shah",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Amish Shah"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "amish-shah-david-marshall-52750179671",
+      "path": "amish-shah-david-marshall-52750179671.jpg",
+      "size": [
+        5916,
+        3944
+      ],
+      "role": "interior",
+      "subject": "State Representatives Amish Shah and David Marshall speaking on the floor of the Arizona House of Representatives at the Arizona State Capitol building in Phoenix, Arizona. Please attribute to Gage Skidmore if used elsewhere.",
+      "route": "identity \u2014 depicts (P180=Q60736979)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_%26_David_Marshall_(52750179671).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Amish_Shah_%26_David_Marshall_%2852750179671%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Gage Skidmore from Surprise, AZ, United States of America",
+      "entity": "Amish Shah",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Amish Shah"
+      ]
+    },
+    {
+      "beat": "payoff",
+      "label": "us-capitol-west-side",
+      "path": "us-capitol-west-side.jpg",
+      "size": [
+        3865,
+        2000
+      ],
+      "role": "establishing",
+      "subject": "US Capitol , west side",
+      "route": "identity \u2014 Wikidata P18 (Q11268)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:US_Capitol_west_side.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/US_Capitol_west_side.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Martin Falbisoner",
+      "entity": "US Congress",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Congress",
+        "United States Congress",
+        "US Congress",
+        "U.S. Congress",
+        "American Congress",
+        "Congress of the United States",
+        "Legislature of the United States",
+        "American legislature",
+        "United states legislative branch"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "amish-shah-arizona-house-floor",
+      "path": "amish-shah-arizona-house-floor.jpg",
+      "size": [
+        6720,
+        4480
+      ],
+      "role": "establishing",
+      "subject": "Amish Shah on the floor of the Arizona House of Representatives at the Arizona State Capitol in Phoenix \u2014 no other named person in focus",
+      "route": "manual \u2014 Wikimedia Commons file, visually verified by the producer (file page names Amish Shah; same Gage Skidmore Arizona House set as the ladder-verified 52750179671; face matched against the article hero)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_(52750422529).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Amish_Shah_%2852750422529%29.jpg",
+      "license": "CC BY-SA 2.0",
+      "artist": "Gage Skidmore",
+      "entity": "Amish Shah",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Amish Shah"
+      ]
+    }
+  ]
+}

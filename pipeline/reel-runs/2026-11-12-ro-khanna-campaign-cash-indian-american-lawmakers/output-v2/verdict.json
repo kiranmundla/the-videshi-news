@@ -1,0 +1,38 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ro-khanna-campaign-cash-indian-american-lawmakers",
+  "name": "ro-khanna-campaign-cash-indian-american-lawmakers",
+  "script": "reel-runs/2026-11-12-ro-khanna-campaign-cash-indian-american-lawmakers/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000706
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-12-ro-khanna-campaign-cash-indian-american-lawmakers/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "2019-centre-stage-day-2-cg1-9865-49022960063",
+      "hero": "ro-khanna-official-portrait-115th-congress",
+      "grid": "executive-connect-53188162627",
+      "diaspora": "old-building-in-khanna-city"
+    }
+  },
+  "manifest": "reel-runs/2026-11-12-ro-khanna-campaign-cash-indian-american-lawmakers/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-11-12-ro-khanna-campaign-cash-indian-american-lawmakers/output-v2/ro-khanna-campaign-cash-indian-american-lawmakers.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:grid",
+      "edge_overflow:diaspora"
+    ]
+  }
+}

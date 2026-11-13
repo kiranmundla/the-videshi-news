@@ -1,0 +1,424 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda",
+ "article_slug": "amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda",
+ "article_id": "a58e031b-9120-4fa1-831b-f6cdf6464ad7",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/output-v3/amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://aniportalimages.s3.amazonaws.com/media/details/ANI-20261111211302.jpg",
+  "local_path": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/output-v3/hero.jpg",
+  "width": 1600,
+  "height": 1200,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.92)",
+  "has_face": true,
+  "box_source": [
+   631,
+   178,
+   349,
+   542
+  ],
+  "box_bg": [
+   415,
+   249,
+   182,
+   283
+  ],
+  "chin_bg": 532,
+  "anchor": [
+   0.498,
+   0.373
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   625
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 315,
+   "block_top": 1043,
+   "block_bottom": 1358,
+   "text_bbox": [
+    70,
+    1043,
+    930,
+    1358
+   ],
+   "texts": [
+    "Nri World",
+    "FIRST SOUTH ASIAN AMERICAN ELECTED TO CONGRESS FROM ARIZONA"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.521,
+    "photo_px": [
+     1600,
+     1200
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.52125,
+     "window": [
+      0,
+      0,
+      1600,
+      1199
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.60x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 1070,
+   "zone_h": 510,
+   "scale": 1.0,
+   "content_h": 388,
+   "block_top": 1192,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1192,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Dr Amish Shah, a Democrat, won Arizona's 1st Congressional District with 52.4% of the vote, becoming the first South Asian American to represent Arizona in the US Congress."
+   ],
+   "v7": {
+    "image_source": "extra:amish-shah-by-gage-skidmore",
+    "track": "full-bleed",
+    "render_scale": 0.82,
+    "photo_px": [
+     1719,
+     2342
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8198121263877028,
+     "window": [
+      120,
+      0,
+      1437,
+      2342
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Amish Shah speaking at an event in Phoenix, Arizona.",
+     "route": "identity \u2014 Wikidata P18 (Q60736979)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_by_Gage_Skidmore.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Amish_Shah_by_Gage_Skidmore.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Gage Skidmore"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 552,
+   "zone_h": 1028,
+   "scale": 1.0,
+   "content_h": 386,
+   "block_top": 1194,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1194,
+    930,
+    1580
+   ],
+   "texts": [
+    "ON THE BALLOT",
+    "52.4%",
+    "Amish Shah's share of the vote in Arizona's 1st Congressional District, with an estimated 99% of votes counted"
+   ],
+   "v7": {
+    "image_source": "extra:amish-shah-david-marshall-52750179671",
+    "track": "full-bleed",
+    "render_scale": 0.487,
+    "photo_px": [
+     5916,
+     3944
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.486815415821501,
+     "window": [
+      1787,
+      0,
+      4005,
+      3944
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "State Representatives Amish Shah and David Marshall speaking on the floor of the Arizona House of Representatives at the Arizona State Capitol building in Phoenix, Arizona. Please attribute to Gage Skidmore if used elsewhere.",
+     "route": "identity \u2014 depicts (P180=Q60736979)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_%26_David_Marshall_(52750179671).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Amish_Shah_%26_David_Marshall_%2852750179671%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.0",
+     "artist": "Gage Skidmore from Surprise, AZ, United States of America"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 839,
+   "zone_h": 741,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 1035,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1035,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "45.4%",
+    "Vote share for Republican Jay Feely, the opponent Amish Shah defeated",
+    "6",
+    "Indian-American members who will sit in the House from January 3"
+   ],
+   "v7": {
+    "image_source": "extra:amish-shah-arizona-house-floor",
+    "track": "full-bleed",
+    "render_scale": 0.429,
+    "photo_px": [
+     6720,
+     4480
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.42857142857142855,
+     "window": [
+      2194,
+      0,
+      4714,
+      4480
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Amish Shah on the floor of the Arizona House of Representatives at the Arizona State Capitol in Phoenix \u2014 no other named person in focus",
+     "route": "manual \u2014 Wikimedia Commons file, visually verified by the producer (file page names Amish Shah; same Gage Skidmore Arizona House set as the ladder-verified 52750179671; face matched against the article hero)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_(52750422529).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Amish_Shah_%2852750422529%29.jpg",
+     "license": "CC BY-SA 2.0",
+     "artist": "Gage Skidmore"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 845,
+   "zone_h": 711,
+   "scale": 1.0,
+   "content_h": 456,
+   "block_top": 972,
+   "block_bottom": 1428,
+   "text_bbox": [
+    70,
+    972,
+    930,
+    1428
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Amish Shah says rolling back tariffs and reclaiming Congress's tariff authority from the White House will be a top priority",
+    "He pledged to confront rising anti-Indian hate and to join the India Caucus"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "backdrop",
+    "render_scale": 0.523,
+    "photo_px": [
+     1614,
+     1196
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 625,
+     "scale": 0.5228840125391849,
+     "window": [
+      0,
+      1,
+      1595,
+      1196
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.61x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 1195,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1195,
+    930,
+    1580
+   ],
+   "texts": [
+    "The Takeaway",
+    "Amish Shah takes office on January 3, when the new Congress convenes.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "extra:us-capitol-west-side",
+    "track": "full-bleed",
+    "render_scale": 0.96,
+    "photo_px": [
+     3865,
+     2000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.96,
+     "window": [
+      1383,
+      0,
+      2508,
+      2000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "US Capitol , west side",
+     "route": "identity \u2014 Wikidata P18 (Q11268)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:US_Capitol_west_side.JPG",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/US_Capitol_west_side.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Martin Falbisoner"
+    }
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 151.2,
+ "mp4_bytes": 13265504
+}

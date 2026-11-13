@@ -1,0 +1,152 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Amish Shah",
+    "US Congress",
+    "India Caucus",
+    "Arizona",
+    "Amish",
+    "Shah"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'India Caucus' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Shah' named 'Mohammad Reza I of Iran', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Amish Shah by Gage Skidmore.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q60736979)",
+      "verdict": "USED (news)",
+      "reason": "1719x2342, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Amish Shah & David Marshall (52750179671).jpg",
+      "route": "identity \u2014 depicts (P180=Q60736979)",
+      "verdict": "USED (hero)",
+      "reason": "5916x3944, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:US Capitol west side.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q11268)",
+      "verdict": "USED (payoff)",
+      "reason": "3865x2000, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Adam Kinzinger speech in House after Jan 6, 2021 intrusion.webm",
+      "route": "identity \u2014 depicts (P180=Q11268)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:Andy Biggs - 2.11.20 b.jpg",
+      "route": "identity \u2014 depicts (P180=Q11268)",
+      "verdict": "accepted",
+      "reason": "2048x1536, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Colorado River from Desert View-1000px.jpeg",
+      "route": "identity \u2014 Wikidata P18 (Q816)",
+      "verdict": "rejected",
+      "reason": "resolution: 1000x649 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:1902 Map of Bisbee Cochise County Arizona.jpg",
+      "route": "identity \u2014 depicts (P180=Q816)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:AZ USA, Petrified Forest National Park Sign, 2011 - panoramio.jpg",
+      "route": "identity \u2014 depicts (P180=Q816)",
+      "verdict": "accepted",
+      "reason": "4000x3000, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "amish-shah-by-gage-skidmore",
+      "path": "amish-shah-by-gage-skidmore.jpg",
+      "size": [
+        1719,
+        2342
+      ],
+      "role": "establishing",
+      "subject": "Amish Shah speaking at an event in Phoenix, Arizona.",
+      "route": "identity \u2014 Wikidata P18 (Q60736979)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_by_Gage_Skidmore.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Amish_Shah_by_Gage_Skidmore.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Gage Skidmore",
+      "entity": "Amish Shah",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Amish Shah"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "amish-shah-david-marshall-52750179671",
+      "path": "amish-shah-david-marshall-52750179671.jpg",
+      "size": [
+        5916,
+        3944
+      ],
+      "role": "interior",
+      "subject": "State Representatives Amish Shah and David Marshall speaking on the floor of the Arizona House of Representatives at the Arizona State Capitol building in Phoenix, Arizona. Please attribute to Gage Skidmore if used elsewhere.",
+      "route": "identity \u2014 depicts (P180=Q60736979)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Amish_Shah_%26_David_Marshall_(52750179671).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Amish_Shah_%26_David_Marshall_%2852750179671%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Gage Skidmore from Surprise, AZ, United States of America",
+      "entity": "Amish Shah",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Amish Shah"
+      ]
+    },
+    {
+      "beat": "payoff",
+      "label": "us-capitol-west-side",
+      "path": "us-capitol-west-side.jpg",
+      "size": [
+        3865,
+        2000
+      ],
+      "role": "establishing",
+      "subject": "US Capitol , west side",
+      "route": "identity \u2014 Wikidata P18 (Q11268)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:US_Capitol_west_side.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/4f/US_Capitol_west_side.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Martin Falbisoner",
+      "entity": "US Congress",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Congress",
+        "United States Congress",
+        "US Congress",
+        "U.S. Congress",
+        "American Congress",
+        "Congress of the United States",
+        "Legislature of the United States",
+        "American legislature",
+        "United states legislative branch"
+      ]
+    }
+  ]
+}

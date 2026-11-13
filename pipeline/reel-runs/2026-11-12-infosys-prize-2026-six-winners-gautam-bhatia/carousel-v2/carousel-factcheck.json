@@ -1,0 +1,156 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "infosys-prize-2026-six-winners-gautam-bhatia",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Six Researchers Win Infosys Prize 2026, Including Legal Scholar Gautam Bhatia",
+        "numbers": [
+          2026.0
+        ],
+        "entities": [
+          "Six Researchers Win Infosys Prize",
+          "Including Legal Scholar Gautam Bhatia"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "The article states six researchers won the Infosys Prize 2026, including Gautam Bhatia.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Karthik Sastry, Swarun Kumar, Gautam Bhatia, Isha Jain, Riddhipratim Basu and Manoj Kumar Joshi each receive a gold medal, citation and $100,000.",
+        "numbers": [
+          100000.0
+        ],
+        "entities": [
+          "Karthik Sastry",
+          "Swarun Kumar",
+          "Gautam Bhatia",
+          "Isha Jain",
+          "Riddhipratim Basu",
+          "Manoj Kumar Joshi"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All mentioned laureates receive a gold medal, citation, and $100,000.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Each laureate receives a gold medal, a citation and a prize purse of $100,000",
+        "numbers": [
+          100000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms each laureate receives these awards.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Since 2024 the prize has focused on researchers under 40; this year the foundation received 222 applications",
+        "numbers": [
+          40.0,
+          222.0,
+          2024.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2024
+          ]
+        },
+        "llm_reason": "The article states the prize focuses on researchers under 40 and received 222 applications.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Three of this year's six laureates are based outside India, at institutions in the United States, Australia and Singapore",
+        "numbers": [],
+        "entities": [
+          "United States"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions three laureates are based outside India.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Six Researchers Win Infosys Prize 2026, Including Legal Scholar Gautam Bhatia",
+        "numbers": [
+          2026.0
+        ],
+        "entities": [
+          "Six Researchers Win Infosys Prize",
+          "Including Legal Scholar Gautam Bhatia"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "This claim is identical to the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000459,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

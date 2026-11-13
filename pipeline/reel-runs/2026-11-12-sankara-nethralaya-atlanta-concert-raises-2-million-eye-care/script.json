@@ -1,0 +1,36 @@
+{
+ "diaspora_bullets": [
+  "Atlanta's Indian community turned a school auditorium into a fundraiser of unusual scale",
+  "The money supports Mobile Eye Surgical Units in rural India"
+ ],
+ "hook_line": "ATLANTA CONCERT RAISES OVER $2 MILLION FOR EYE CARE IN INDIA",
+ "hook_stat": {
+  "big": "$2 MILLION",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Commitments surpassing $2 million at the year-end finale in Cumming, Georgia"
+ },
+ "key_entities": [
+  "Sankara Nethralaya USA",
+  "Sankara Nethralaya",
+  "South Forsyth High School",
+  "Atlanta"
+ ],
+ "news_summary": "Sankara Nethralaya USA's year-end Music & Dance for Vision finale in Cumming, Georgia, drew more than 1,000 attendees on November 4, 2026, and brought in commitments surpassing $2 million.",
+ "payoff": "The $2 million in commitments will fund Sankara Nethralaya's mobile surgical work in rural India.",
+ "stats": [
+  {
+   "big": "29",
+   "label": "Dance and music academies from across metro Atlanta performed at the finale"
+  },
+  {
+   "big": "$500,000",
+   "label": "Largest single commitment, from Mrs Shanta Lall in memory of her husband, Dr Shanker Lal"
+  },
+  {
+   "big": "38",
+   "label": "Years in Sankara Nethralaya USA's history \u2014 its largest academy turnout in that time"
+  }
+ ],
+ "story_mood": "celebratory",
+ "versus": ""
+}

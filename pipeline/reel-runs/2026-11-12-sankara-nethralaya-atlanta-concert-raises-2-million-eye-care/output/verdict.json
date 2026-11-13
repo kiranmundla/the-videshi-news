@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "sankara-nethralaya-atlanta-concert-raises-2-million-eye-care",
+  "name": "sankara-nethralaya-atlanta-concert-raises-2-million-eye-care",
+  "script": "reel-runs/2026-11-12-sankara-nethralaya-atlanta-concert-raises-2-million-eye-care/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_stat.sub"
+    ],
+    "llm_cost_usd": 0.000664
+  }
+}

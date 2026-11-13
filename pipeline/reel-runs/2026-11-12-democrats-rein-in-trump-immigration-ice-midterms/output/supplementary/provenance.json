@@ -1,0 +1,143 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "democrats-rein-in-trump-immigration-ice-midterms",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Donald Trump",
+    "Immigration and Customs Enforcement",
+    "Department of Homeland Security",
+    "Congress",
+    "Democrats",
+    "White House"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Official Presidential Portrait of President Donald J. Trump (2025) (3x4).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q22686)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:-G7Biarritz (48632796802).jpg",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "accepted",
+      "reason": "1200x800, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:150th National Memorial Day Observance hosted by SECDEF 180528-D-SW162-1159.jpg",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:2025 Trump\u2013Zelenskyy Oval Office Meeting (Alternate Camera Angle).webm",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:Adm. John M. Richardson, Donald J. Trump, and Mike Pence, Jan. 20, 2017.jpg",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "USED (hero)",
+      "reason": "3523x2349, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:ICE Headquarters in Washington DC 2009.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q943091)",
+      "verdict": "USED (news)",
+      "reason": "2036x1246, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:-Protest against ICE in Minneapolis 9 January 2026.jpg",
+      "route": "identity \u2014 depicts (P180=Q943091)",
+      "verdict": "accepted",
+      "reason": "7264x4848, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:DHS Secretary Alejandro Mayorkas Flag Raising Ceremony (50914852532).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q11231)",
+      "verdict": "USED (grid)",
+      "reason": "2328x1624, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "ice-headquarters-in-washington-dc-2009",
+      "path": "ice-headquarters-in-washington-dc-2009.jpg",
+      "size": [
+        2036,
+        1246
+      ],
+      "role": "establishing",
+      "subject": "The headquarters of the U.S. Immigration and Customs Enforcement",
+      "route": "identity \u2014 Wikidata P18 (Q943091)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:ICE_Headquarters_in_Washington_DC_2009.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/ICE_Headquarters_in_Washington_DC_2009.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 3.0",
+      "artist": "Ser Amantio di Nicolao",
+      "entity": "Immigration and Customs Enforcement",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Immigration and Customs Enforcement",
+        "United States Immigration and Customs Enforcement",
+        "US Immigration and Customs Enforcement",
+        "United States Immigration & Customs Enforcement",
+        "US Immigration & Customs Enforcement",
+        "Bureau of Immigration and Customs Enforcement",
+        "USICE",
+        "BICE",
+        "ICE",
+        "U.S. Immigration and Customs Enforcement"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "adm-john-m-richardson-donald-j-trump-and-mik",
+      "path": "adm-john-m-richardson-donald-j-trump-and-mik.jpg",
+      "size": [
+        3523,
+        2349
+      ],
+      "role": "establishing",
+      "subject": "Adm. John M. Richardson, U.S. Navy chief naval operations, and President Donald J. Trump discuss U.S. Navy units marching in the 58th Presidential Inauguration Parade at the White House reviewing stand in Washington D.C., Jan. 20, 2017. Mor",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Adm._John_M._Richardson,_Donald_J._Trump,_and_Mike_Pence,_Jan._20,_2017.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Adm._John_M._Richardson%2C_Donald_J._Trump%2C_and_Mike_Pence%2C_Jan._20%2C_2017.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "DoD Photo by Navy Petty Officer 2nd Class Dominique A. Pineiro/Released",
+      "entity": "Donald Trump",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Donald Trump",
+        "Trump"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "dhs-secretary-alejandro-mayorkas-flag-raisin",
+      "path": "dhs-secretary-alejandro-mayorkas-flag-raisin.jpg",
+      "size": [
+        2328,
+        1624
+      ],
+      "role": "establishing",
+      "subject": "Washington, D.C. (February 2, 2021) Homeland Security Secretary Alejandro Mayorkas participates in a flag raising ceremony after being sworn in as the department's seventh secretary.",
+      "route": "identity \u2014 Wikidata P18 (Q11231)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:DHS_Secretary_Alejandro_Mayorkas_Flag_Raising_Ceremony_(50914852532).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/DHS_Secretary_Alejandro_Mayorkas_Flag_Raising_Ceremony_%2850914852532%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "U.S. Department of Homeland Security (DHS)",
+      "entity": "Department of Homeland Security",
+      "entity_type": "place",
+      "entity_aliases": [
+        "United States Department of Homeland Security",
+        "Department of Homeland Security"
+      ]
+    }
+  ]
+}

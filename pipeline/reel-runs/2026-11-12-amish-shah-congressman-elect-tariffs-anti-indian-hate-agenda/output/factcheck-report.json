@@ -1,0 +1,240 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "FIRST SOUTH ASIAN AMERICAN ELECTED TO CONGRESS FROM ARIZONA",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Shah is the first South Asian American elected from Arizona.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Dr Amish Shah, a Democrat, won Arizona's 1st Congressional District with 52.4% of the vote, becoming the first South Asian American to represent Arizona in the US Congress.",
+      "numbers": [
+        1.0,
+        52.4
+      ],
+      "entities": [
+        "Dr Amish Shah",
+        "Congressional District",
+        "South Asian American",
+        "US Congress"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about Shah's election and significance are present.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "52.4%",
+      "numbers": [
+        52.4
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Shah received 52.4% of the vote according to the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Amish Shah's share of the vote in Arizona's 1st Congressional District, with an estimated 99% of votes counted",
+      "numbers": [
+        1.0,
+        99.0
+      ],
+      "entities": [
+        "Amish Shah's",
+        "Congressional District"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 99% of votes were counted when Shah's share was reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "ON THE BALLOT",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "45.4%",
+      "numbers": [
+        45.4
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Shah's opponent Feely received 45.4% of the vote.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Vote share for Republican Jay Feely, the opponent Shah defeated",
+      "numbers": [],
+      "entities": [
+        "Republican Jay Feely"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Feely's vote share is accurately reported in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "6",
+      "numbers": [
+        6.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "There will be six Indian-American members in the House from January 3.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Indian-American members who will sit in the House from January 3",
+      "numbers": [
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms six Indian-American members will be present.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Shah says rolling back tariffs and reclaiming Congress's tariff authority from the White House will be a top priority",
+      "numbers": [],
+      "entities": [
+        "White House"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Shah stated these priorities in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "He pledged to confront rising anti-Indian hate and to join the India Caucus",
+      "numbers": [],
+      "entities": [
+        "India Caucus"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Shah's pledges are detailed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Shah takes office on January 3, when the new Congress convenes.",
+      "numbers": [
+        3.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Shah assumes office on January 3.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "ON THE BALLOT",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Amish Shah",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "US Congress",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "India Caucus",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Arizona",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000637,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

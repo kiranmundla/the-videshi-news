@@ -1,0 +1,288 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "sankara-nethralaya-atlanta-concert-raises-2-million-eye-care",
+  "verdict": "fail",
+  "held_claims": [
+    "hook_stat.sub"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ATLANTA CONCERT RAISES OVER $2 MILLION FOR EYE CARE IN INDIA",
+      "numbers": [
+        2.0,
+        2000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states over $2 million was raised for eye care in India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Sankara Nethralaya USA's year-end Music & Dance for Vision finale in Cumming, Georgia, drew more than 1,000 attendees on November 4, 2026, and brought in commitments surpassing $2 million.",
+      "numbers": [
+        2.0,
+        4.0,
+        1000.0,
+        2026.0,
+        2000000.0
+      ],
+      "entities": [
+        "Sankara Nethralaya USA's",
+        "Music Dance"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "All details about the event, attendees, and commitments are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$2 MILLION",
+      "numbers": [
+        2.0,
+        2000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$2 million in commitments is explicitly mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Commitments surpassing $2 million at Sankara Nethralaya USA's Music & Dance for Vision finale in Cumming",
+      "numbers": [
+        2.0,
+        2000000.0
+      ],
+      "entities": [
+        "Sankara Nethralaya USA's Music Dance"
+      ],
+      "deterministic": "fail",
+      "detail": {
+        "ungrounded_entities": [
+          "Sankara Nethralaya USA's Music Dance"
+        ]
+      },
+      "llm_reason": "The article confirms commitments surpassed $2 million at the event.",
+      "verdicts": {
+        "deterministic": "fail",
+        "llm": "supported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "29",
+      "numbers": [
+        29.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 29 academies performed at the event.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Dance and music academies from across metro Atlanta performed at the finale",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms academies from metro Atlanta performed at the finale.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$500,000",
+      "numbers": [
+        500000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the largest single commitment was $500,000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Largest single commitment, from Mrs Shanta Lall in memory of her husband, Dr Shanker Lal",
+      "numbers": [],
+      "entities": [
+        "Mrs Shanta Lall",
+        "Dr Shanker Lal"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the largest commitment and its donor.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "38",
+      "numbers": [
+        38.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this was the largest turnout in 38 years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Years in Sankara Nethralaya USA's history \u2014 its largest academy turnout in that time",
+      "numbers": [],
+      "entities": [
+        "Sankara Nethralaya USA's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this was the largest turnout in the organization's history.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Atlanta's Indian community turned a school auditorium into a fundraiser of unusual scale",
+      "numbers": [],
+      "entities": [
+        "Atlanta's Indian"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article describes the event as a fundraiser of unusual scale.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The money supports Mobile Eye Surgical Units in rural India",
+      "numbers": [],
+      "entities": [
+        "Mobile Eye Surgical Units"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the funds support mobile eye surgical units in India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The $2 million in commitments will fund Sankara Nethralaya's mobile surgical work in rural India.",
+      "numbers": [
+        2.0,
+        2000000.0
+      ],
+      "entities": [
+        "Sankara Nethralaya's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the funds will support mobile surgical work in India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Sankara Nethralaya USA",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sankara Nethralaya",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "South Forsyth High School",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Atlanta",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000664,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

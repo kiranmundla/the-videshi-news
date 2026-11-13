@@ -1,0 +1,136 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "sankara-nethralaya-atlanta-concert-raises-2-million-eye-care",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Sankara Nethralaya USA",
+    "Sankara Nethralaya",
+    "South Forsyth High School",
+    "Atlanta",
+    "Dance for Vision",
+    "Sankara Nethralaya USA's"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Sankara Nethralaya USA' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Dance for Vision' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: \"Sankara Nethralaya USA's\" has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:South Forsyth High School Main Entrance.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q7567302)",
+      "verdict": "USED (news)",
+      "reason": "1600x1200, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:A2ATL20250614-0721 (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q23556)",
+      "verdict": "USED (hero)",
+      "reason": "2280x1260, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2016-03-23 13 19 15 View north along The Downtown Connector (Interstate 75 and Interstate 85) between Exit 250 and Exit 251 in Atlanta, Georgia.jpg",
+      "route": "identity \u2014 depicts (P180=Q23556)",
+      "verdict": "USED (grid)",
+      "reason": "3116x2242, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "south-forsyth-high-school-main-entrance",
+      "path": "south-forsyth-high-school-main-entrance.jpg",
+      "size": [
+        1600,
+        1200
+      ],
+      "role": "detail",
+      "subject": "This is a picture of the front entrance of South Forsyth High School in Cumming, Forsyth County, Georgia.",
+      "route": "identity \u2014 Wikidata P18 (Q7567302)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:South_Forsyth_High_School_Main_Entrance.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/South_Forsyth_High_School_Main_Entrance.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "McBrayn",
+      "entity": "South Forsyth High School",
+      "entity_type": "other",
+      "entity_aliases": [
+        "South Forsyth High School"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "a2atl20250614-0721-cropped",
+      "path": "a2atl20250614-0721-cropped.jpg",
+      "size": [
+        2280,
+        1260
+      ],
+      "role": "establishing",
+      "subject": "Midtown and Downtown Atlanta",
+      "route": "identity \u2014 Wikidata P18 (Q23556)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:A2ATL20250614-0721_(cropped).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/A2ATL20250614-0721_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "AtlChampion",
+      "entity": "Atlanta",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Atlanta",
+        "Terminus",
+        "The Big Peach",
+        "Hotlanta",
+        "The ATL",
+        "The A",
+        "Atlanta, GA",
+        "Marthasville, Georgia",
+        "Marthasville"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "2016-03-23-13-19-15-view-north-along-the-dow",
+      "path": "2016-03-23-13-19-15-view-north-along-the-dow.jpg",
+      "size": [
+        3116,
+        2242
+      ],
+      "role": "establishing",
+      "subject": "View north along The Downtown Connector (Interstate 75 and Interstate 85) between Exit 250 and Exit 251 in Atlanta, Georgia. Bridges = 10st NW",
+      "route": "identity \u2014 depicts (P180=Q23556)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2016-03-23_13_19_15_View_north_along_The_Downtown_Connector_(Interstate_75_and_Interstate_85)_between_Exit_250_and_Exit_251_in_Atlanta,_Georgia.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/2016-03-23_13_19_15_View_north_along_The_Downtown_Connector_%28Interstate_75_and_Interstate_85%29_between_Exit_250_and_Exit_251_in_Atlanta%2C_Georgia.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Famartin",
+      "entity": "Atlanta",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Atlanta",
+        "Terminus",
+        "The Big Peach",
+        "Hotlanta",
+        "The ATL",
+        "The A",
+        "Atlanta, GA",
+        "Marthasville, Georgia",
+        "Marthasville"
+      ]
+    }
+  ]
+}

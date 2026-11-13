@@ -1,0 +1,43 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "democrats-rein-in-trump-immigration-ice-midterms",
+  "name": "democrats-rein-in-trump-immigration-ice-midterms",
+  "script": "reel-runs/2026-11-12-democrats-rein-in-trump-immigration-ice-midterms/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000677
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-12-democrats-rein-in-trump-immigration-ice-midterms/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "ice-headquarters-in-washington-dc-2009",
+      "hero": "adm-john-m-richardson-donald-j-trump-and-mik",
+      "grid": "dhs-secretary-alejandro-mayorkas-flag-raisin"
+    }
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Donald Trump) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 5,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "inline:1",
+      "extra:ice-headquarters-in-washington-dc-2009",
+      "extra:adm-john-m-richardson-donald-j-trump-and-mik",
+      "extra:dhs-secretary-alejandro-mayorkas-flag-raisin"
+    ]
+  },
+  "detail": "only 5 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}

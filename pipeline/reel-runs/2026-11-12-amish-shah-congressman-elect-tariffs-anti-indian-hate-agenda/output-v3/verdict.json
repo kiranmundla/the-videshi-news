@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda",
+  "name": "amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda",
+  "script": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000646
+  },
+  "sourcing": {
+    "mode": "provided",
+    "provenance": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/extras/provenance.json",
+    "extras": {
+      "news": "amish-shah-by-gage-skidmore",
+      "hero": "amish-shah-david-marshall-52750179671",
+      "payoff": "us-capitol-west-side",
+      "grid": "amish-shah-arizona-house-floor"
+    }
+  },
+  "manifest": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/output-v3/render-manifest.json",
+  "video": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/output-v3/amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/output-v3/tiktok-caption.txt"
+}

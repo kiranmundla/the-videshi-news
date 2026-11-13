@@ -1,0 +1,43 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda",
+  "name": "amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda",
+  "script": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000637
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-12-amish-shah-congressman-elect-tariffs-anti-indian-hate-agenda/output/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "amish-shah-by-gage-skidmore",
+      "hero": "amish-shah-david-marshall-52750179671",
+      "payoff": "us-capitol-west-side"
+    }
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Amish Shah, India Caucus, Shah) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 5,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "inline:1",
+      "extra:amish-shah-by-gage-skidmore",
+      "extra:amish-shah-david-marshall-52750179671",
+      "extra:us-capitol-west-side"
+    ]
+  },
+  "detail": "only 5 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}

@@ -1,0 +1,41 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "sankara-nethralaya-atlanta-concert-raises-2-million-eye-care",
+  "name": "sankara-nethralaya-atlanta-concert-raises-2-million-eye-care",
+  "script": "reel-runs/2026-11-12-sankara-nethralaya-atlanta-concert-raises-2-million-eye-care/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.00066
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-12-sankara-nethralaya-atlanta-concert-raises-2-million-eye-care/output-v2/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "south-forsyth-high-school-main-entrance",
+      "hero": "a2atl20250614-0721-cropped",
+      "grid": "2016-03-23-13-19-15-view-north-along-the-dow"
+    }
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Sankara Nethralaya USA, Sankara Nethralaya USA's) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 3,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "inline:1",
+      "extra:2016-03-23-13-19-15-view-north-along-the-dow"
+    ]
+  },
+  "detail": "only 3 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}

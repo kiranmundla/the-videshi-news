@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 249,
-    "db_rows": 182,
-    "db_rows_with_yt_id": 152,
+    "channel_videos": 251,
+    "db_rows": 184,
+    "db_rows_with_yt_id": 154,
     "legacy_log_entries": 205,
-    "publish_log_entries": 65,
-    "in_sync": 131,
+    "publish_log_entries": 67,
+    "in_sync": 133,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 17,
     "ghost_db_rows": 16,
@@ -930,6 +930,20 @@
       "privacy": "public",
       "video_id": "mdAqsYGKPg4",
       "record": "prebuilt_reels:04db4476-227f-4858-ae7f-e2dbc409c14a"
+    },
+    {
+      "title": "Congressman-Elect Amish Shah Puts Tariffs and Anti-Indian Hate at Top of His Agenda #Shorts #NRI",
+      "published_at": "2026-11-12T17:26:27Z",
+      "privacy": "public",
+      "video_id": "qQ40j7FYnCk",
+      "record": "prebuilt_reels:64328198-a4a0-48f7-8924-069b1ea5ddf4"
+    },
+    {
+      "title": "Six Researchers Win Infosys Prize 2026, Including Legal Scholar Gautam Bhatia #Shorts #NRI",
+      "published_at": "2026-11-12T23:21:50Z",
+      "privacy": "public",
+      "video_id": "Mr0ij9sGpfk",
+      "record": "prebuilt_reels:48263349-dbf1-4f1b-868b-bb7d1d6dfc3a"
     }
   ],
   "unknown_legacy_logged": [
@@ -3939,5 +3953,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-12T11:19:38+00:00"
+  "generated_at": "2026-11-12T23:23:27+00:00"
 }

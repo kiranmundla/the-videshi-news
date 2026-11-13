@@ -1,0 +1,287 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "ro-khanna-campaign-cash-indian-american-lawmakers",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "RO KHANNA HOLDS MORE CASH THAN SEVEN LAWMAKERS COMBINED",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Khanna has more cash than the other seven combined.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Representative Ro Khanna reported about $16.6 million in campaign cash with no outstanding debt, more than the roughly $11.1 million held by the other seven Indian-American House members and members-elect combined, according to a review of Federal Election Commission records.",
+      "numbers": [
+        11.1,
+        16.6,
+        11100000.0,
+        16600000.0
+      ],
+      "entities": [
+        "Representative Ro Khanna",
+        "Indian-American House",
+        "Federal Election Commission"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All figures and claims are directly supported by the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$16.6 MILLION",
+      "numbers": [
+        16.6,
+        16600000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$16.6 million is the reported cash balance for Khanna.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Ro Khanna's campaign cash \u2014 the largest balance among eight Indian-American House members and members-elect",
+      "numbers": [],
+      "entities": [
+        "Ro Khanna's",
+        "Indian-American House"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Khanna has the largest balance among the eight members.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$11.1 MILLION",
+      "numbers": [
+        11.1,
+        11100000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the combined cash of the other seven lawmakers.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Campaign cash held by the other seven Indian-American lawmakers combined",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This accurately describes the cash held by the other seven.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$5.9 MILLION",
+      "numbers": [
+        5.9,
+        5900000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the reported cash balance for Shri Thanedar.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Second-largest balance, for Shri Thanedar \u2014 who reported $14.44 million in campaign debt",
+      "numbers": [
+        14.44,
+        14440000.0
+      ],
+      "entities": [
+        "Shri Thanedar"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Thanedar's balance and debt are accurately reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$15.3 MILLION",
+      "numbers": [
+        15.3,
+        15300000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the amount received by Khanna's campaign.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Received by Khanna's campaign during the 2026 cycle, against $9.5 million spent",
+      "numbers": [
+        9.5,
+        2026.0,
+        9500000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "Both amounts are confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Khanna's $16.6 million balance carries no outstanding debt",
+      "numbers": [
+        16.6,
+        16600000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Khanna has no outstanding debt.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Figures come from FEC filings as reported for the 2026 cycle",
+      "numbers": [
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article cites FEC records for these figures.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Khanna's balance exceeds the other seven combined by about $5.5 million.",
+      "numbers": [
+        5.5,
+        5500000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The gap of $5.5 million is explicitly mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Ro Khanna",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Federal Election Commission",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Shri Thanedar",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Indian-American lawmakers",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000706,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,417 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "ro-khanna-campaign-cash-indian-american-lawmakers",
+ "article_slug": "ro-khanna-campaign-cash-indian-american-lawmakers",
+ "article_id": "5bfe558c-532f-4f69-b019-2d29d1e373a2",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-12-ro-khanna-campaign-cash-indian-american-lawmakers/output-v2/ro-khanna-campaign-cash-indian-american-lawmakers.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://assets.bizzbuzz.news/h-upload/2026/11/12/2018114-ro-khanna-tops-indian-american-campaign-cash-list.jpg",
+  "local_path": "reel-runs/2026-11-12-ro-khanna-campaign-cash-indian-american-lawmakers/output-v2/hero.jpg",
+  "width": 1500,
+  "height": 900,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.92)",
+  "has_face": true,
+  "box_source": [
+   738,
+   155,
+   146,
+   193
+  ],
+  "box_bg": [
+   496,
+   242,
+   81,
+   107
+  ],
+  "chin_bg": 349,
+  "anchor": [
+   0.54,
+   0.278
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   500
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 720,
+   "zone_h": 836,
+   "scale": 1.0,
+   "content_h": 327,
+   "block_top": 974,
+   "block_bottom": 1301,
+   "text_bbox": [
+    70,
+    974,
+    930,
+    1301
+   ],
+   "texts": [
+    "Nri World",
+    "RO KHANNA HOLDS MORE CASH THAN SEVEN LAWMAKERS COMBINED"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.556,
+    "photo_px": [
+     1500,
+     900
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 500,
+     "scale": 0.556,
+     "window": [
+      0,
+      0,
+      1500,
+      899
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 720,
+   "zone_h": 836,
+   "scale": 1.0,
+   "content_h": 278,
+   "block_top": 999,
+   "block_bottom": 1277,
+   "text_bbox": [
+    70,
+    999,
+    930,
+    1277
+   ],
+   "texts": [
+    "What Happened",
+    "Representative Ro Khanna reported about $16.6 million in campaign cash with no outstanding debt, more than the roughly $11.1 million held by the other seven Indian-American House members and members-elect combined, according to a review of Federal Election Commission records."
+   ],
+   "v7": {
+    "image_source": "extra:2019-centre-stage-day-2-cg1-9865-49022960063",
+    "track": "backdrop",
+    "render_scale": 0.171,
+    "photo_px": [
+     4885,
+     3245
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 500,
+     "scale": 0.1707267144319345,
+     "window": [
+      0,
+      317,
+      4885,
+      3245
+     ]
+    },
+    "track_note": "layout demotion: no full-bleed fit in the -77px zone below the dominant chin \u2014 backdrop composition instead",
+    "provenance": {
+     "subject": "6 November 2019; Tony Blair, Executive Chairman of the Institute for Global Change, Former Prime Minister of Great Britain and Northern Ireland, Tony Blair Global Institute, and Ro Khanna, Representative, House of Representatives, on Centre",
+     "route": "identity \u2014 depicts (P180=Q7339221)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:2019_-_Centre_Stage_-_Day_2_CG1_9865_(49022960063).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/2019_-_Centre_Stage_-_Day_2_CG1_9865_%2849022960063%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "Web Summit"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 918,
+   "zone_h": 662,
+   "scale": 1.0,
+   "content_h": 307,
+   "block_top": 1273,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1273,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$16.6 MILLION",
+    "Ro Khanna's campaign cash \u2014 the largest balance among eight Indian-American House members and members-elect"
+   ],
+   "v7": {
+    "image_source": "extra:ro-khanna-official-portrait-115th-congress",
+    "track": "full-bleed",
+    "render_scale": 0.418,
+    "photo_px": [
+     3054,
+     4588
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.4184829991281604,
+     "window": [
+      244,
+      0,
+      2824,
+      4588
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Official portrait of U.S. Congressman Ro Khanna",
+     "route": "identity \u2014 Wikidata P18 (Q7339221)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Ro_Khanna,_official_portrait,_115th_Congress.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Ro_Khanna%2C_official_portrait%2C_115th_Congress.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "U.S. Congress/Eric Connolly"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 756,
+   "zone_h": 824,
+   "scale": 1.0,
+   "content_h": 764,
+   "block_top": 816,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    816,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "$11.1 MILLION",
+    "Campaign cash held by the other seven Indian-American lawmakers combined",
+    "$5.9 MILLION",
+    "Second-largest balance, for Shri Thanedar \u2014 who reported $14.44 million in campaign debt",
+    "$15.3 MILLION",
+    "Received by Khanna's campaign during the 2026 cycle, against $9.5 million spent"
+   ],
+   "v7": {
+    "image_source": "extra:executive-connect-53188162627",
+    "track": "full-bleed",
+    "render_scale": 0.478,
+    "photo_px": [
+     6016,
+     4016
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.47808764940239046,
+     "window": [
+      3,
+      0,
+      2262,
+      4016
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Lt. Governor Miller Speaks at Executive Connect by Patrick Siebert at 1401 Pennsylvania Avenue NW, Washington, DC 20004",
+     "route": "identity \u2014 depicts (P180=Q7503912)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Executive_Connect_(53188162627).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Executive_Connect_%2853188162627%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "Maryland GovPics"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1211,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1211,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Khanna's $16.6 million balance carries no outstanding debt",
+    "Figures come from FEC filings as reported for the 2026 cycle"
+   ],
+   "v7": {
+    "image_source": "extra:old-building-in-khanna-city",
+    "track": "full-bleed",
+    "render_scale": 0.588,
+    "photo_px": [
+     1836,
+     3264
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5882352941176471,
+     "window": [
+      0,
+      0,
+      1836,
+      3264
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "new abadi khana",
+     "route": "identity \u2014 Wikidata P18 (Q1101873)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Old_building_in_khanna_city.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Old_building_in_khanna_city.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Raghbirkhanna"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Khanna's balance exceeds the other seven combined by about $5.5 million.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 138.6,
+ "mp4_bytes": 15888767
+}
