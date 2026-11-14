@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-13T13:27:56Z",
-  "as_of": "2026-11-13",
+  "generated_at": "2026-11-14T13:27:23Z",
+  "as_of": "2026-11-14",
   "market": "india-metros",
   "band": {
     "id": "in-3wk",
@@ -1171,16 +1171,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-14",
-          "dep_date": "2026-11-24",
-          "ret_date": "2026-12-14",
+          "date_range": "2026-11-18 \u2192 2026-12-08",
+          "dep_date": "2026-11-18",
+          "ret_date": "2026-12-08",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1019,
-          "price_max": 1202,
-          "cheapest_airline": "Emirates",
+          "price_min": 1100,
+          "price_max": 1316,
+          "cheapest_airline": "Air India",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1189,12 +1189,12 @@
           "dest_metro": "Hyderabad",
           "change_vs_prev": {
             "prev_price_min": 1019,
-            "prev_as_of": "2026-10-31",
-            "delta": 0,
-            "delta_pct": 0.0,
-            "trailing_avg_price_min": 943,
-            "delta_vs_trailing_avg": -76,
-            "delta_vs_trailing_avg_pct": -8.1
+            "prev_as_of": "2026-11-07",
+            "delta": -81,
+            "delta_pct": -7.9,
+            "trailing_avg_price_min": 962,
+            "delta_vs_trailing_avg": -138,
+            "delta_vs_trailing_avg_pct": -14.3
           }
         },
         {
@@ -1203,11 +1203,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1529,
-          "price_max": 2226,
-          "cheapest_airline": "Etihad Airways",
+          "price_min": 1316,
+          "price_max": 2006,
+          "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1215,13 +1215,13 @@
           "origin_metro": "New York",
           "dest_metro": "Hyderabad",
           "change_vs_prev": {
-            "prev_price_min": 1493,
-            "prev_as_of": "2026-10-31",
-            "delta": -36,
-            "delta_pct": -2.4,
-            "trailing_avg_price_min": 1475,
-            "delta_vs_trailing_avg": -54,
-            "delta_vs_trailing_avg_pct": -3.6
+            "prev_price_min": 1529,
+            "prev_as_of": "2026-11-07",
+            "delta": 213,
+            "delta_pct": 13.9,
+            "trailing_avg_price_min": 1489,
+            "delta_vs_trailing_avg": 173,
+            "delta_vs_trailing_avg_pct": 11.6
           }
         },
         {
@@ -1234,7 +1234,7 @@
           "price_max": 1019,
           "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1244,7 +1244,7 @@
           "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 849,
-            "prev_as_of": "2026-10-31",
+            "prev_as_of": "2026-11-07",
             "delta": 0,
             "delta_pct": 0.0
           }
@@ -1267,16 +1267,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-12 \u2192 2026-12-02",
-          "dep_date": "2026-11-12",
-          "ret_date": "2026-12-02",
+          "date_range": "2026-11-25 \u2192 2026-12-15",
+          "dep_date": "2026-11-25",
+          "ret_date": "2026-12-15",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1235,
-          "price_max": 1528,
-          "cheapest_airline": "Etihad Airways",
+          "price_min": 1319,
+          "price_max": 1592,
+          "cheapest_airline": "JetBlue Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1284,13 +1284,13 @@
           "origin_metro": "New York",
           "dest_metro": "Kolkata",
           "change_vs_prev": {
-            "prev_price_min": 1181,
-            "prev_as_of": "2026-10-31",
-            "delta": -54,
-            "delta_pct": -4.6,
-            "trailing_avg_price_min": 1084,
-            "delta_vs_trailing_avg": -151,
-            "delta_vs_trailing_avg_pct": -13.9
+            "prev_price_min": 1235,
+            "prev_as_of": "2026-11-07",
+            "delta": -84,
+            "delta_pct": -6.8,
+            "trailing_avg_price_min": 1122,
+            "delta_vs_trailing_avg": -197,
+            "delta_vs_trailing_avg_pct": -17.6
           }
         },
         {
@@ -1299,11 +1299,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1531,
-          "price_max": 2700,
-          "cheapest_airline": "Etihad Airways",
+          "price_min": 1554,
+          "price_max": 2585,
+          "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1311,13 +1311,13 @@
           "origin_metro": "New York",
           "dest_metro": "Kolkata",
           "change_vs_prev": {
-            "prev_price_min": 1814,
-            "prev_as_of": "2026-10-31",
-            "delta": 283,
-            "delta_pct": 15.6,
-            "trailing_avg_price_min": 1681,
-            "delta_vs_trailing_avg": 150,
-            "delta_vs_trailing_avg_pct": 8.9
+            "prev_price_min": 1531,
+            "prev_as_of": "2026-11-07",
+            "delta": -23,
+            "delta_pct": -1.5,
+            "trailing_avg_price_min": 1644,
+            "delta_vs_trailing_avg": 90,
+            "delta_vs_trailing_avg_pct": 5.5
           }
         },
         {
@@ -1326,11 +1326,11 @@
           "ret_date": "2027-02-01",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1035,
-          "price_max": 1070,
-          "cheapest_airline": "Qatar Airways",
+          "price_min": 1070,
+          "price_max": 1107,
+          "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1339,10 +1339,10 @@
           "dest_metro": "Kolkata",
           "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 1006,
-            "prev_as_of": "2026-10-31",
-            "delta": -29,
-            "delta_pct": -2.9
+            "prev_price_min": 1035,
+            "prev_as_of": "2026-11-07",
+            "delta": -35,
+            "delta_pct": -3.4
           }
         }
       ],
@@ -1351,7 +1351,7 @@
         "month": 1,
         "band": "in-3wk",
         "duration_days": 20,
-        "price_min": 1035,
+        "price_min": 1070,
         "date_range": "2027-01-12 \u2192 2027-02-01"
       }
     },
@@ -1363,16 +1363,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-16",
-          "dep_date": "2026-11-24",
-          "ret_date": "2026-12-16",
-          "duration_days": 22,
+          "date_range": "2026-11-25 \u2192 2026-12-15",
+          "dep_date": "2026-11-25",
+          "ret_date": "2026-12-15",
+          "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1731,
-          "price_max": 2148,
+          "price_min": 1478,
+          "price_max": 1969,
           "cheapest_airline": "KLM",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1380,13 +1380,13 @@
           "origin_metro": "New York",
           "dest_metro": "Delhi",
           "change_vs_prev": {
-            "prev_price_min": 1479,
-            "prev_as_of": "2026-10-31",
-            "delta": -252,
-            "delta_pct": -17.0,
-            "trailing_avg_price_min": 1584,
-            "delta_vs_trailing_avg": -147,
-            "delta_vs_trailing_avg_pct": -9.3
+            "prev_price_min": 1731,
+            "prev_as_of": "2026-11-07",
+            "delta": 253,
+            "delta_pct": 14.6,
+            "trailing_avg_price_min": 1621,
+            "delta_vs_trailing_avg": 143,
+            "delta_vs_trailing_avg_pct": 8.8
           }
         },
         {
@@ -1395,11 +1395,11 @@
           "ret_date": "2027-01-13",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 2019,
-          "price_max": 2306,
+          "price_min": 1983,
+          "price_max": 2359,
           "cheapest_airline": "LOT Polish Airlines",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1407,13 +1407,13 @@
           "origin_metro": "New York",
           "dest_metro": "Delhi",
           "change_vs_prev": {
-            "prev_price_min": 1689,
-            "prev_as_of": "2026-10-31",
-            "delta": -330,
-            "delta_pct": -19.5,
-            "trailing_avg_price_min": 1882,
-            "delta_vs_trailing_avg": -137,
-            "delta_vs_trailing_avg_pct": -7.3
+            "prev_price_min": 2019,
+            "prev_as_of": "2026-11-07",
+            "delta": 36,
+            "delta_pct": 1.8,
+            "trailing_avg_price_min": 1916,
+            "delta_vs_trailing_avg": -66,
+            "delta_vs_trailing_avg_pct": -3.5
           }
         },
         {
@@ -1422,11 +1422,11 @@
           "ret_date": "2027-02-03",
           "duration_days": 22,
           "band": "in-3wk",
-          "price_min": 1384,
-          "price_max": 1779,
+          "price_min": 1183,
+          "price_max": 1593,
           "cheapest_airline": "LOT Polish Airlines",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1435,10 +1435,10 @@
           "dest_metro": "Delhi",
           "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 1358,
-            "prev_as_of": "2026-10-31",
-            "delta": -26,
-            "delta_pct": -1.9
+            "prev_price_min": 1384,
+            "prev_as_of": "2026-11-07",
+            "delta": 201,
+            "delta_pct": 14.5
           }
         }
       ],
@@ -1447,7 +1447,7 @@
         "month": 1,
         "band": "in-3wk",
         "duration_days": 22,
-        "price_min": 1384,
+        "price_min": 1183,
         "date_range": "2027-01-12 \u2192 2027-02-03"
       }
     },
@@ -1459,22 +1459,28 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-24 \u2192 2026-12-14",
-          "dep_date": "2026-11-24",
-          "ret_date": "2026-12-14",
+          "date_range": "2026-11-18 \u2192 2026-12-08",
+          "dep_date": "2026-11-18",
+          "ret_date": "2026-12-08",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1480,
-          "price_max": 2044,
+          "price_min": 1442,
+          "price_max": 1567,
           "cheapest_airline": "Air India",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "EWR-BLR",
           "origin_metro": "New York",
-          "dest_metro": "Bengaluru"
+          "dest_metro": "Bengaluru",
+          "change_vs_prev": {
+            "prev_price_min": 1480,
+            "prev_as_of": "2026-11-07",
+            "delta": 38,
+            "delta_pct": 2.6
+          }
         },
         {
           "date_range": "2026-12-08 \u2192 2026-12-28",
@@ -1482,11 +1488,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1524,
-          "price_max": 3439,
+          "price_min": 1941,
+          "price_max": 3411,
           "cheapest_airline": "Air India",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1494,42 +1500,48 @@
           "origin_metro": "New York",
           "dest_metro": "Bengaluru",
           "change_vs_prev": {
-            "prev_price_min": 1912,
-            "prev_as_of": "2026-10-31",
-            "delta": 388,
-            "delta_pct": 20.3,
-            "trailing_avg_price_min": 2234,
-            "delta_vs_trailing_avg": 710,
-            "delta_vs_trailing_avg_pct": 31.8
+            "prev_price_min": 1524,
+            "prev_as_of": "2026-11-07",
+            "delta": -417,
+            "delta_pct": -27.4,
+            "trailing_avg_price_min": 2057,
+            "delta_vs_trailing_avg": 116,
+            "delta_vs_trailing_avg_pct": 5.6
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-17",
+          "date_range": "2027-01-26 \u2192 2027-02-15",
           "dep_date": "2027-01-26",
-          "ret_date": "2027-02-17",
-          "duration_days": 22,
+          "ret_date": "2027-02-15",
+          "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1284,
-          "price_max": 1396,
+          "price_min": 1205,
+          "price_max": 1312,
           "cheapest_airline": "Air India",
-          "num_samples": 2,
-          "fetched_as_of": "2026-11-07",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
           "route": "EWR-BLR",
           "origin_metro": "New York",
           "dest_metro": "Bengaluru",
-          "cheapest_month": true
+          "cheapest_month": true,
+          "change_vs_prev": {
+            "prev_price_min": 1284,
+            "prev_as_of": "2026-11-07",
+            "delta": 79,
+            "delta_pct": 6.2
+          }
         }
       ],
       "cheapest_overall": {
         "year": 2027,
         "month": 1,
         "band": "in-3wk",
-        "duration_days": 22,
-        "price_min": 1284,
-        "date_range": "2027-01-26 \u2192 2027-02-17"
+        "duration_days": 20,
+        "price_min": 1205,
+        "date_range": "2027-01-26 \u2192 2027-02-15"
       }
     },
     "EWR-HYD": {
@@ -1540,16 +1552,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-12 \u2192 2026-12-02",
-          "dep_date": "2026-11-12",
-          "ret_date": "2026-12-02",
+          "date_range": "2026-11-18 \u2192 2026-12-08",
+          "dep_date": "2026-11-18",
+          "ret_date": "2026-12-08",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1740,
-          "price_max": 2042,
+          "price_min": 1407,
+          "price_max": 1731,
           "cheapest_airline": "Air India",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1557,10 +1569,13 @@
           "origin_metro": "New York",
           "dest_metro": "Hyderabad",
           "change_vs_prev": {
-            "prev_price_min": 1458,
-            "prev_as_of": "2026-10-31",
-            "delta": -282,
-            "delta_pct": -19.3
+            "prev_price_min": 1740,
+            "prev_as_of": "2026-11-07",
+            "delta": 333,
+            "delta_pct": 19.1,
+            "trailing_avg_price_min": 1805,
+            "delta_vs_trailing_avg": 398,
+            "delta_vs_trailing_avg_pct": 22.1
           }
         },
         {
@@ -1569,11 +1584,11 @@
           "ret_date": "2026-12-28",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1617,
-          "price_max": 3585,
+          "price_min": 1863,
+          "price_max": 3460,
           "cheapest_airline": "Air India",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1581,26 +1596,26 @@
           "origin_metro": "New York",
           "dest_metro": "Hyderabad",
           "change_vs_prev": {
-            "prev_price_min": 1740,
-            "prev_as_of": "2026-10-31",
-            "delta": 123,
-            "delta_pct": 7.1,
-            "trailing_avg_price_min": 2410,
-            "delta_vs_trailing_avg": 793,
-            "delta_vs_trailing_avg_pct": 32.9
+            "prev_price_min": 1617,
+            "prev_as_of": "2026-11-07",
+            "delta": -246,
+            "delta_pct": -15.2,
+            "trailing_avg_price_min": 2212,
+            "delta_vs_trailing_avg": 349,
+            "delta_vs_trailing_avg_pct": 15.8
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-17",
+          "date_range": "2027-01-26 \u2192 2027-02-15",
           "dep_date": "2027-01-26",
-          "ret_date": "2027-02-17",
-          "duration_days": 22,
+          "ret_date": "2027-02-15",
+          "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1260,
-          "price_max": 1384,
+          "price_min": 1164,
+          "price_max": 1376,
           "cheapest_airline": "Air India",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1610,9 +1625,9 @@
           "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 1260,
-            "prev_as_of": "2026-10-31",
-            "delta": 0,
-            "delta_pct": 0.0
+            "prev_as_of": "2026-11-07",
+            "delta": 96,
+            "delta_pct": 7.6
           }
         }
       ],
@@ -1620,9 +1635,9 @@
         "year": 2027,
         "month": 1,
         "band": "in-3wk",
-        "duration_days": 22,
-        "price_min": 1260,
-        "date_range": "2027-01-26 \u2192 2027-02-17"
+        "duration_days": 20,
+        "price_min": 1164,
+        "date_range": "2027-01-26 \u2192 2027-02-15"
       }
     },
     "EWR-CCU": {
@@ -1633,16 +1648,16 @@
       "band": "in-3wk",
       "calendar": [
         {
-          "date_range": "2026-11-12 \u2192 2026-12-02",
-          "dep_date": "2026-11-12",
-          "ret_date": "2026-12-02",
+          "date_range": "2026-11-25 \u2192 2026-12-15",
+          "dep_date": "2026-11-25",
+          "ret_date": "2026-12-15",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1436,
-          "price_max": 2136,
+          "price_min": 1325,
+          "price_max": 1676,
           "cheapest_airline": "Air India",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1650,23 +1665,26 @@
           "origin_metro": "New York",
           "dest_metro": "Kolkata",
           "change_vs_prev": {
-            "prev_price_min": 1432,
-            "prev_as_of": "2026-10-31",
-            "delta": -4,
-            "delta_pct": -0.3
+            "prev_price_min": 1436,
+            "prev_as_of": "2026-11-07",
+            "delta": 111,
+            "delta_pct": 7.7,
+            "trailing_avg_price_min": 1891,
+            "delta_vs_trailing_avg": 566,
+            "delta_vs_trailing_avg_pct": 29.9
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-28",
-          "dep_date": "2026-12-08",
-          "ret_date": "2026-12-28",
+          "date_range": "2026-12-24 \u2192 2027-01-13",
+          "dep_date": "2026-12-24",
+          "ret_date": "2027-01-13",
           "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1556,
-          "price_max": 3198,
+          "price_min": 2022,
+          "price_max": 3123,
           "cheapest_airline": "Air India",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1675,25 +1693,25 @@
           "dest_metro": "Kolkata",
           "change_vs_prev": {
             "prev_price_min": 1556,
-            "prev_as_of": "2026-10-31",
-            "delta": 0,
-            "delta_pct": 0.0,
-            "trailing_avg_price_min": 2342,
-            "delta_vs_trailing_avg": 786,
-            "delta_vs_trailing_avg_pct": 33.6
+            "prev_as_of": "2026-11-07",
+            "delta": -466,
+            "delta_pct": -29.9,
+            "trailing_avg_price_min": 2145,
+            "delta_vs_trailing_avg": 123,
+            "delta_vs_trailing_avg_pct": 5.7
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-17",
+          "date_range": "2027-01-26 \u2192 2027-02-15",
           "dep_date": "2027-01-26",
-          "ret_date": "2027-02-17",
-          "duration_days": 22,
+          "ret_date": "2027-02-15",
+          "duration_days": 20,
           "band": "in-3wk",
-          "price_min": 1117,
-          "price_max": 1344,
+          "price_min": 1087,
+          "price_max": 1321,
           "cheapest_airline": "Air India",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-07",
+          "fetched_as_of": "2026-11-14",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1703,9 +1721,9 @@
           "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 1117,
-            "prev_as_of": "2026-10-31",
-            "delta": 0,
-            "delta_pct": 0.0
+            "prev_as_of": "2026-11-07",
+            "delta": 30,
+            "delta_pct": 2.7
           }
         }
       ],
@@ -1713,9 +1731,9 @@
         "year": 2027,
         "month": 1,
         "band": "in-3wk",
-        "duration_days": 22,
-        "price_min": 1117,
-        "date_range": "2027-01-26 \u2192 2027-02-17"
+        "duration_days": 20,
+        "price_min": 1087,
+        "date_range": "2027-01-26 \u2192 2027-02-15"
       }
     },
     "ORD-BOM": {
@@ -3566,68 +3584,116 @@
   },
   "biggest_drops": [
     {
-      "route": "SEA-CCU",
-      "origin_metro": "Seattle",
+      "route": "EWR-HYD",
+      "origin_metro": "New York",
+      "dest_metro": "Hyderabad",
+      "year": 2026,
+      "month": 11,
+      "band": "in-3wk",
+      "duration_days": 20,
+      "date_range": "2026-11-18 \u2192 2026-12-08",
+      "was": 1740,
+      "now": 1407,
+      "drop_abs": 333,
+      "drop_pct": 19.1,
+      "baseline_as_of": "2026-11-07",
+      "cheapest_airline": "Air India"
+    },
+    {
+      "route": "EWR-DEL",
+      "origin_metro": "New York",
+      "dest_metro": "Delhi",
+      "year": 2026,
+      "month": 11,
+      "band": "in-3wk",
+      "duration_days": 20,
+      "date_range": "2026-11-25 \u2192 2026-12-15",
+      "was": 1731,
+      "now": 1478,
+      "drop_abs": 253,
+      "drop_pct": 14.6,
+      "baseline_as_of": "2026-11-07",
+      "cheapest_airline": "KLM"
+    },
+    {
+      "route": "EWR-DEL",
+      "origin_metro": "New York",
+      "dest_metro": "Delhi",
+      "year": 2027,
+      "month": 1,
+      "band": "in-3wk",
+      "duration_days": 22,
+      "date_range": "2027-01-12 \u2192 2027-02-03",
+      "was": 1384,
+      "now": 1183,
+      "drop_abs": 201,
+      "drop_pct": 14.5,
+      "baseline_as_of": "2026-11-07",
+      "cheapest_airline": "LOT Polish Airlines"
+    },
+    {
+      "route": "JFK-HYD",
+      "origin_metro": "New York",
+      "dest_metro": "Hyderabad",
+      "year": 2026,
+      "month": 12,
+      "band": "in-3wk",
+      "duration_days": 20,
+      "date_range": "2026-12-08 \u2192 2026-12-28",
+      "was": 1529,
+      "now": 1316,
+      "drop_abs": 213,
+      "drop_pct": 13.9,
+      "baseline_as_of": "2026-11-07",
+      "cheapest_airline": "Emirates"
+    },
+    {
+      "route": "EWR-CCU",
+      "origin_metro": "New York",
       "dest_metro": "Kolkata",
       "year": 2026,
       "month": 11,
       "band": "in-3wk",
       "duration_days": 20,
       "date_range": "2026-11-25 \u2192 2026-12-15",
-      "was": 2218,
-      "now": 1664,
-      "drop_abs": 554,
-      "drop_pct": 25.0,
-      "baseline_as_of": "2026-11-06",
-      "cheapest_airline": "Emirates"
+      "was": 1436,
+      "now": 1325,
+      "drop_abs": 111,
+      "drop_pct": 7.7,
+      "baseline_as_of": "2026-11-07",
+      "cheapest_airline": "Air India"
     },
     {
-      "route": "SEA-CCU",
-      "origin_metro": "Seattle",
-      "dest_metro": "Kolkata",
-      "year": 2026,
-      "month": 12,
+      "route": "EWR-HYD",
+      "origin_metro": "New York",
+      "dest_metro": "Hyderabad",
+      "year": 2027,
+      "month": 1,
       "band": "in-3wk",
       "duration_days": 20,
-      "date_range": "2026-12-08 \u2192 2026-12-28",
-      "was": 3470,
-      "now": 3083,
-      "drop_abs": 387,
-      "drop_pct": 11.2,
-      "baseline_as_of": "2026-11-06",
-      "cheapest_airline": "Emirates"
+      "date_range": "2027-01-26 \u2192 2027-02-15",
+      "was": 1260,
+      "now": 1164,
+      "drop_abs": 96,
+      "drop_pct": 7.6,
+      "baseline_as_of": "2026-11-07",
+      "cheapest_airline": "Air India"
     },
     {
-      "route": "LAX-CCU",
-      "origin_metro": "Los Angeles",
-      "dest_metro": "Kolkata",
-      "year": 2026,
-      "month": 11,
-      "band": "in-3wk",
-      "duration_days": 22,
-      "date_range": "2026-11-25 \u2192 2026-12-17",
-      "was": 2034,
-      "now": 1856,
-      "drop_abs": 178,
-      "drop_pct": 8.8,
-      "baseline_as_of": "2026-11-06",
-      "cheapest_airline": "Emirates"
-    },
-    {
-      "route": "LAX-CCU",
-      "origin_metro": "Los Angeles",
-      "dest_metro": "Kolkata",
-      "year": 2026,
-      "month": 12,
+      "route": "EWR-BLR",
+      "origin_metro": "New York",
+      "dest_metro": "Bengaluru",
+      "year": 2027,
+      "month": 1,
       "band": "in-3wk",
       "duration_days": 20,
-      "date_range": "2026-12-08 \u2192 2026-12-28",
-      "was": 2637,
-      "now": 2532,
-      "drop_abs": 105,
-      "drop_pct": 4.0,
-      "baseline_as_of": "2026-11-06",
-      "cheapest_airline": "Emirates"
+      "date_range": "2027-01-26 \u2192 2027-02-15",
+      "was": 1284,
+      "now": 1205,
+      "drop_abs": 79,
+      "drop_pct": 6.2,
+      "baseline_as_of": "2026-11-07",
+      "cheapest_airline": "Air India"
     }
   ],
   "festival_seasons": [
@@ -3727,6 +3793,6 @@
   },
   "cadence": "weekly",
   "indicative": true,
-  "fetched_as_of_oldest": "2026-11-07",
-  "fetched_as_of_newest": "2026-11-13"
+  "fetched_as_of_oldest": "2026-11-08",
+  "fetched_as_of_newest": "2026-11-14"
 }
