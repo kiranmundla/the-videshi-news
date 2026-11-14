@@ -426,6 +426,33 @@ def title_exception_channels():
     return _TITLE_EXCEPTION_CACHE
 
 
+# Song/music markers that DENY the title exception (2026-11-13
+# tightening, Kiran-approved). The exception exists for a producer
+# channel's FEATURED film video; on first live use it also passed a
+# Vels song video ("Mahasakthi Trance Video | Mookuthi Amman 2…",
+# 7H4SOzsX8m4) — right channel, title names the film, but a song, not
+# the film's featured video. On the exception path ONLY, a title
+# carrying any of these markers rejects. The normal trailer/teaser
+# path never sees this screen: a properly-titled "Official Trailer"
+# is unaffected even if its title also mentions a song. Multi-word
+# markers are listed first so the reported marker is the specific one.
+_TITLE_EXCEPTION_MARKERS = (
+    "behind the scenes", "music video", "video song", "promo song",
+    "song promo", "cover song", "dance video", "full video",
+    "song", "songs", "lyrical", "lyric", "jukebox", "audio", "bgm",
+    "theme", "trance", "mashup", "remix", "making", "bts",
+)
+_TITLE_EXCEPTION_MARKER_RE = re.compile(
+    r"\b(?:" + "|".join(re.escape(m) for m in _TITLE_EXCEPTION_MARKERS)
+    + r")\b", re.IGNORECASE)
+
+
+def _title_exception_marker(title):
+    """First song/music marker in a title, or None (exception screen)."""
+    m = _TITLE_EXCEPTION_MARKER_RE.search(title or "")
+    return m.group(0).lower() if m else None
+
+
 def trailer_embed_gate(title, channel_title, channel_id=None,
                        region_restriction=None, region_checked=False,
                        film_title=None, film_language=None,
@@ -457,7 +484,16 @@ def trailer_embed_gate(title, channel_title, channel_id=None,
          producer/studio channels only — music labels, distributors
          and streaming channels are NOT flagged — and every other leg
          (channel authority, language version, US region) applies
-         unchanged;
+         unchanged. TIGHTENING (2026-11-13, Kiran-approved): on the
+         exception path only, a title carrying a song/music marker
+         (song, lyrical, jukebox, audio, bgm, theme, trance, music
+         video, making, behind the scenes, … — see
+         _TITLE_EXCEPTION_MARKERS) is denied the waiver: the
+         exception's first live use passed a Vels SONG video
+         ("Mahasakthi Trance Video"), which the channel + film-name
+         checks alone cannot distinguish from the featured film
+         video. The screen never applies to the normal
+         trailer/teaser path;
       3. channel authority: channelId or channel name on the merged
          official allowlists ONLY (news-org status does not make a
          trailer official);
@@ -499,8 +535,16 @@ def trailer_embed_gate(title, channel_title, channel_id=None,
         exc_ids, exc_names = title_exception_channels()
         exc_ok = (bool(channel_id)
                   and channel_id.strip() in exc_ids) or ch in exc_names
-        if not (exc_ok and film_title
-                and title_names_film(title, film_title)):
+        if exc_ok and film_title \
+                and title_names_film(title, film_title):
+            # Waiver would apply — but a song/music title is not the
+            # film's featured video (2026-11-13 tightening).
+            marker = _title_exception_marker(title)
+            if marker:
+                return ("title-exception denied: title carries a "
+                        f"song/music marker '{marker}' — not the "
+                        "film's featured video")
+        else:
             return ("video title does not say trailer/teaser "
                     "— not a trailer")
     if not id_ok and not name_ok:

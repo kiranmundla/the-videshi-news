@@ -210,6 +210,51 @@ check("exception: US-region block still rejects under the exception",
       reason is not None and "region-blocked" in reason,
       f"(got {reason!r})")
 
+# ─── Title-exception tightening: song/music screen (2026-11-13) ─────
+# Kiran-approved after the exception's first live use passed a Vels
+# SONG video (7H4SOzsX8m4, "Mahasakthi Trance Video") — right channel,
+# title names the film, but not the featured film video. On the
+# exception path only, song/music markers now deny the waiver. The
+# normal trailer/teaser path is NOT screened.
+reason = trailer_embed_gate(
+    "Mahasakthi Trance Video | Mookuthi Amman 2 | Nayanthara | "
+    "Sundar C | Hiphop Tamizha", "Vels Music International",
+    channel_id=VELS_ID, region_restriction=None, region_checked=True,
+    film_title="Mookuthi Amman 2", film_language="Tamil")
+check("tightening: Vels trance song video denied the waiver",
+      reason is not None and "title-exception denied" in reason
+      and "trance" in reason,
+      f"(got {reason!r})")
+
+reason = trailer_embed_gate(
+    "Mookuthi Amman 2 - Lyrical Video Song | Nayanthara",
+    "Vels Music International", channel_id=VELS_ID,
+    region_restriction=None, region_checked=True,
+    film_title="Mookuthi Amman 2", film_language="Tamil")
+check("tightening: lyrical video song denied the waiver",
+      reason is not None and "title-exception denied" in reason,
+      f"(got {reason!r})")
+
+reason = trailer_embed_gate(
+    "Mookuthi Amman 2 - Behind The Scenes | Nayanthara",
+    "Vels Music International", channel_id=VELS_ID,
+    region_restriction=None, region_checked=True,
+    film_title="Mookuthi Amman 2", film_language="Tamil")
+check("tightening: behind-the-scenes video denied the waiver",
+      reason is not None and "title-exception denied" in reason,
+      f"(got {reason!r})")
+
+# A properly trailer-titled video on the same flagged channel whose
+# title ALSO mentions a song still passes via the normal path — the
+# marker screen is exception-path only.
+reason = trailer_embed_gate(
+    "Mookuthi Amman 2 Official Trailer | Song Promo",
+    "Vels Music International", channel_id=VELS_ID,
+    region_restriction=None, region_checked=True,
+    film_title="Mookuthi Amman 2", film_language="Tamil")
+check("tightening: trailer title mentioning a song passes normally",
+      reason is None, f"(got {reason!r})")
+
 # ─── media-sources._verify_official_trailer (injected fetchers) ──────
 def oe(meta):
     return lambda vid: {"title": meta["title"],
