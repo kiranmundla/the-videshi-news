@@ -139,6 +139,7 @@ _TRAILERISH_RE = re.compile(r"\b(?:trailer|teaser)\b", re.IGNORECASE)
 _OFFICIAL_CHANNELS_CACHE = None
 _OFFICIAL_IDS_CACHE = None
 _OFFICIAL_NAMES_CACHE = None
+_TITLE_EXCEPTION_CACHE = None
 
 
 def _load_channel_configs():
@@ -392,6 +393,39 @@ def candidate_language(title, description=None):
         or detect_stated_language(description)
 
 
+def title_exception_channels():
+    """(ids, names) of trailer-roster channels flagged title_exception.
+
+    Loads ONLY trailer-channels.json (never the merged official-video
+    allowlist): the entries flagged `"title_exception": true` are the
+    producer/studio-owned channels whose featured film videos may pass
+    trailer_embed_gate's title leg without trailer/teaser wording
+    (2026-11-13, Kiran-approved — see the gate's docstring). Names are
+    normalized like the gate compares them and include aliases.
+    """
+    global _TITLE_EXCEPTION_CACHE
+    if _TITLE_EXCEPTION_CACHE is None:
+        ids, names = set(), set()
+        try:
+            path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "trailer-channels.json")
+            with open(path) as f:
+                cfg = json.load(f)
+            for c in cfg.get("channels", []):
+                if not c.get("title_exception"):
+                    continue
+                cid = (c.get("channel_id") or "").strip()
+                if cid:
+                    ids.add(cid)
+                for nm in [c.get("name")] + list(c.get("aliases") or []):
+                    if nm and nm.strip():
+                        names.add(_norm_channel(nm))
+        except Exception:
+            ids, names = set(), set()
+        _TITLE_EXCEPTION_CACHE = (ids, names)
+    return _TITLE_EXCEPTION_CACHE
+
+
 def trailer_embed_gate(title, channel_title, channel_id=None,
                        region_restriction=None, region_checked=False,
                        film_title=None, film_language=None,
@@ -408,7 +442,22 @@ def trailer_embed_gate(title, channel_title, channel_id=None,
          with its trailer's title;
       2. the VERIFIED title must actually say trailer/teaser — the
          search snippet that surfaced the candidate is not evidence
-         (the scrape's title array misaligns with its video IDs);
+         (the scrape's title array misaligns with its video IDs).
+         NARROW EXCEPTION (2026-11-13, Kiran-approved): on a
+         producer/studio-owned channel flagged `"title_exception":
+         true` in trailer-channels.json (see
+         title_exception_channels()), a featured film video whose
+         title does NOT say trailer/teaser may still pass this leg —
+         but ONLY when the film is known (film_title given) and the
+         title names it (leg 4's check, applied here). Rationale:
+         Vels Music International, the producer channel for Mookuthi
+         Amman 2, titled the film's official video "World Of
+         Mahasakthi" with no trailer/teaser wording, and no
+         trailer-titled official upload exists. The exception covers
+         producer/studio channels only — music labels, distributors
+         and streaming channels are NOT flagged — and every other leg
+         (channel authority, language version, US region) applies
+         unchanged;
       3. channel authority: channelId or channel name on the merged
          official allowlists ONLY (news-org status does not make a
          trailer official);
@@ -433,12 +482,28 @@ def trailer_embed_gate(title, channel_title, channel_id=None,
     reason = youtube_embed_reject_reason(title, channel_title)
     if reason:
         return reason
-    if not _TRAILERISH_RE.search((title or "").lower()):
-        return "video title does not say trailer/teaser — not a trailer"
+    # Channel authority is determined first: the title leg's exception
+    # needs it, and a non-allowlisted channel rejects with the exact
+    # existing message below regardless of the title.
     ch = _norm_channel(channel_title)
     id_ok = bool(channel_id) and channel_id.strip() \
         in official_channel_ids()
-    if not id_ok and ch not in official_channel_names():
+    name_ok = ch in official_channel_names()
+    if not _TRAILERISH_RE.search((title or "").lower()):
+        # Title exception (2026-11-13, Kiran-approved): a featured
+        # film video on a producer/studio channel flagged
+        # title_exception may pass without trailer/teaser wording —
+        # only when the film is known AND the title names it. The
+        # channel must ALSO be allowlisted (checked next); exception
+        # membership never substitutes for channel authority.
+        exc_ids, exc_names = title_exception_channels()
+        exc_ok = (bool(channel_id)
+                  and channel_id.strip() in exc_ids) or ch in exc_names
+        if not (exc_ok and film_title
+                and title_names_film(title, film_title)):
+            return ("video title does not say trailer/teaser "
+                    "— not a trailer")
+    if not id_ok and not name_ok:
         return (f"trailer channel '{channel_title}' is not on the "
                 f"official-channel allowlist")
     if film_title and not title_names_film(title, film_title):

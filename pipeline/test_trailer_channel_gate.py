@@ -135,6 +135,81 @@ reason = trailer_embed_gate(
 check("gate: Rahil Store fan video rejected",
       reason is not None, f"(got {reason!r})")
 
+# ─── Title exception: producer/studio channels (2026-11-13) ─────────
+# Kiran-approved: Vels Music International (UCMsAo0XUISOL6O1ek_3QWfg),
+# the producer channel for Mookuthi Amman 2, titled the film's official
+# video "World Of Mahasakthi" with no trailer/teaser wording, and no
+# trailer-titled official upload exists. trailer-channels.json flags
+# producer/studio-owned channels with title_exception=true; for those
+# channels ONLY, the title leg is waived when the title still names
+# the film. Every other leg (authority, language, region) is unchanged.
+VELS_TITLE = ("Mookuthi Amman 2 - World Of Mahasakthi | Nayanthara | "
+              "Sundar C | Hiphop Tamizha | VELS FILM")
+VELS_ID = "UCMsAo0XUISOL6O1ek_3QWfg"
+AYNGARAN_ID = "UCGjn3ZbkkNcQaj00qwJ0DYQ"
+
+reason = trailer_embed_gate(
+    VELS_TITLE, "Vels Music International", channel_id=VELS_ID,
+    region_restriction=None, region_checked=True,
+    film_title="Mookuthi Amman 2", film_language="Tamil")
+check("exception: Vels featured film video accepted", reason is None,
+      f"(got {reason!r})")
+
+reason = trailer_embed_gate(
+    VELS_TITLE, "Vels Music International", channel_id=None,
+    region_restriction=None, region_checked=True,
+    film_title="Mookuthi Amman 2", film_language="Tamil")
+check("exception: Vels accepted by channel name alone",
+      reason is None, f"(got {reason!r})")
+
+reason = trailer_embed_gate(
+    VELS_TITLE, "Vels Music International", channel_id=VELS_ID,
+    region_restriction=None, region_checked=True,
+    film_title="Some Other Film", film_language="Tamil")
+check("exception: film mismatch still rejected on the title leg",
+      reason is not None and "does not say trailer/teaser" in reason,
+      f"(got {reason!r})")
+
+reason = trailer_embed_gate(
+    VELS_TITLE, "Vels Music International", channel_id=VELS_ID,
+    region_restriction=None, region_checked=True)
+check("exception: no film_title still rejected on the title leg",
+      reason is not None and "does not say trailer/teaser" in reason,
+      f"(got {reason!r})")
+
+reason = trailer_embed_gate(
+    "Mookuthi Amman 2 - World Of Mahasakthi", "Ayngaran",
+    channel_id=AYNGARAN_ID, region_restriction=None, region_checked=True,
+    film_title="Mookuthi Amman 2", film_language="Tamil")
+check("exception: non-rostered channel gets no exception",
+      reason is not None, f"(got {reason!r})")
+
+# Think Music India is rostered but is a music label — NOT flagged
+# title_exception — so its non-trailer-titled video still fails leg 2.
+reason = trailer_embed_gate(
+    "Mookuthi Amman 2 - Official First Look", "Think Music India",
+    channel_id=None, region_restriction=None, region_checked=True,
+    film_title="Mookuthi Amman 2", film_language="Tamil")
+check("exception: rostered label without flag still title-rejected",
+      reason is not None and "does not say trailer/teaser" in reason,
+      f"(got {reason!r})")
+
+reason = trailer_embed_gate(
+    "Mookuthi Amman 2 Trailer ( Tamil ) | Nayanthara | Sundar C | "
+    "Hiphop Tamizha", "Ayngaran", channel_id=AYNGARAN_ID,
+    region_restriction={"blocked": ["IN"]}, region_checked=True,
+    film_title="Mookuthi Amman 2", film_language="Tamil")
+check("exception: trailer-titled fan/aggregator upload still rejected",
+      reason is not None, f"(got {reason!r})")
+
+reason = trailer_embed_gate(
+    VELS_TITLE, "Vels Music International", channel_id=VELS_ID,
+    region_restriction={"blocked": ["US"]}, region_checked=True,
+    film_title="Mookuthi Amman 2", film_language="Tamil")
+check("exception: US-region block still rejects under the exception",
+      reason is not None and "region-blocked" in reason,
+      f"(got {reason!r})")
+
 # ─── media-sources._verify_official_trailer (injected fetchers) ──────
 def oe(meta):
     return lambda vid: {"title": meta["title"],

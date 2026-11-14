@@ -1,53 +1,61 @@
 {
- "_note": "Official YouTube channels polled by trailer-watch.py for trailer/teaser drops. tier 1 = major: drops also get a brief 'teaser out' article. tier 2 = trailers rail only. All IDs verified 2026-10-04 via feeds/videos.xml returning valid Atom with matching channel title. 2026-10-31 curation (embed-channel audit): 12 channels added — IDs resolved via YouTube Data API channels.list and identity verified from channel description/ownership: JioStudios, Salman Khan Films, Sun Neo TV, Amazon MGM Studios India, World Of Ramayana, V2S Production And Entertainment LLP, Demon Hunters Taiwan (Lighthouse), Sony Music South, RS Infotainment, Bhavana Studios, Still Watching Netflix, Paramount Pictures UK. 2026-11-11: IMAX added — ID resolved from its own Ramayana 'Filmed For IMAX' official-trailer upload (pmWF2QtyvCI) and verified via channels.list (@imaxmovies) + feed title. The Sony Pictures entry (UCz97F7dMxBNOfGYu3rx8aCw) gained alias 'Sony Pictures Entertainment': the channel ID was already rostered under the short label, but its live display name failed the gate's name leg on name-only paths; identity verified from its own Ramayana trailer uploads (1zip1rNaNYs, AYkPRN874m8) via channels.list (@sonypictures) + feed title.",
+ "_note": "Official YouTube channels polled by trailer-watch.py for trailer/teaser drops. tier 1 = major: drops also get a brief 'teaser out' article. tier 2 = trailers rail only. All IDs verified 2026-10-04 via feeds/videos.xml returning valid Atom with matching channel title. 2026-10-31 curation (embed-channel audit): 12 channels added — IDs resolved via YouTube Data API channels.list and identity verified from channel description/ownership: JioStudios, Salman Khan Films, Sun Neo TV, Amazon MGM Studios India, World Of Ramayana, V2S Production And Entertainment LLP, Demon Hunters Taiwan (Lighthouse), Sony Music South, RS Infotainment, Bhavana Studios, Still Watching Netflix, Paramount Pictures UK. 2026-11-11: IMAX added — ID resolved from its own Ramayana 'Filmed For IMAX' official-trailer upload (pmWF2QtyvCI) and verified via channels.list (@imaxmovies) + feed title. The Sony Pictures entry (UCz97F7dMxBNOfGYu3rx8aCw) gained alias 'Sony Pictures Entertainment': the channel ID was already rostered under the short label, but its live display name failed the gate's name leg on name-only paths; identity verified from its own Ramayana trailer uploads (1zip1rNaNYs, AYkPRN874m8) via channels.list (@sonypictures) + feed title. 2026-11-13: Vels Music International added (UCMsAo0XUISOL6O1ek_3QWfg, ID verified via YouTube Data API 2026-11-13) — producer channel for Mookuthi Amman 2 (Vels Film International). Kiran approved 2026-11-13: Vels carries a title exception for its featured film videos, and title_exception=true was set on the roster's producer/studio-owned channels (the trailer gate's title leg may be waived for those channels when the video title still names the film; all other gate legs unchanged). Music-label/distributor/streaming channels are NOT flagged.",
  "channels": [
   {
    "channel_id": "UCq-Fj5jknLsUf-MWSy4_brA",
    "industry": "hindi",
    "name": "T-Series",
-   "tier": 1
+   "tier": 1,
+   "title_exception": true
   },
   {
    "channel_id": "UCbTLwN10NoCU4WDzLf1JMOA",
    "industry": "hindi",
    "name": "Yash Raj Films",
-   "tier": 1
+   "tier": 1,
+   "title_exception": true
   },
   {
    "channel_id": "UCGdHCtXEzkCB7-g_NXYZPcw",
    "industry": "hindi",
    "name": "Dharma Productions",
-   "tier": 1
+   "tier": 1,
+   "title_exception": true
   },
   {
    "channel_id": "UC-LOdiPoxninevJ0DkleCLg",
    "industry": "hindi",
    "name": "Maddock Films",
-   "tier": 1
+   "tier": 1,
+   "title_exception": true
   },
   {
    "channel_id": "UCcXQd6kHKm0b41x8zMVMmMg",
    "industry": "hindi",
    "name": "JioStudios",
-   "tier": 1
+   "tier": 1,
+   "title_exception": true
   },
   {
    "channel_id": "UCz3Mq_cS7AVRatrpGQi7QUQ",
    "industry": "hindi",
    "name": "Salman Khan Films",
-   "tier": 1
+   "tier": 1,
+   "title_exception": true
   },
   {
    "channel_id": "UCSHLoG-bXj1aVA2T5y8t84A",
    "industry": "hindi",
    "name": "Balaji Motion Pictures",
-   "tier": 2
+   "tier": 2,
+   "title_exception": true
   },
   {
    "channel_id": "UCqZR7KVVsZRSfezZKJllxVQ",
    "industry": "hindi",
    "name": "Reliance Entertainment",
-   "tier": 2
+   "tier": 2,
+   "title_exception": true
   },
   {
    "channel_id": "UCJ7JOrPmWCg6Le6MG9Cf1Gw",
@@ -59,7 +67,8 @@
    "channel_id": "UC3ar28GS6o1p0m_wabfk2zw",
    "industry": "hindi",
    "name": "Pen Movies",
-   "tier": 2
+   "tier": 2,
+   "title_exception": true
   },
   {
    "channel_id": "UCFFbwnve3yF62-tVXkTyHqg",
@@ -116,13 +125,15 @@
    "channel_id": "UCo2r1S9iXJshkeV9v_ZDicw",
    "industry": "tamil",
    "name": "Sun Pictures",
-   "tier": 1
+   "tier": 1,
+   "title_exception": true
   },
   {
    "channel_id": "UCA7gwgLgmCZ8DSmdf2bhb8g",
    "industry": "tamil",
    "name": "Lyca Productions",
-   "tier": 1
+   "tier": 1,
+   "title_exception": true
   },
   {
    "channel_id": "UCLbdVvreihwZRL6kwuEUYsA",
@@ -140,25 +151,29 @@
    "channel_id": "UCUjM7AzodC55Dq6BncrsBjA",
    "industry": "tamil",
    "name": "RS Infotainment",
-   "tier": 2
+   "tier": 2,
+   "title_exception": true
   },
   {
    "channel_id": "UCKZSn5C-RzrLjuWJF8wWiDw",
    "industry": "telugu",
    "name": "Mythri Movie Makers",
-   "tier": 1
+   "tier": 1,
+   "title_exception": true
   },
   {
    "channel_id": "UCiJfiEg1FImWsVuEu0L8X6Q",
    "industry": "telugu",
    "name": "Geetha Arts",
-   "tier": 1
+   "tier": 1,
+   "title_exception": true
   },
   {
    "channel_id": "UCPuJ4OTdu0fJcNSY1hE0iag",
    "industry": "telugu",
    "name": "Sri Venkateswara Creations",
-   "tier": 2
+   "tier": 2,
+   "title_exception": true
   },
   {
    "channel_id": "UCNApqoVYJbYSrni4YsbXzyQ",
@@ -176,19 +191,22 @@
    "channel_id": "UCarJoVXH0T2pdtcHBu9J8Bw",
    "industry": "kannada",
    "name": "Hombale Films",
-   "tier": 1
+   "tier": 1,
+   "title_exception": true
   },
   {
    "channel_id": "UCPvtzpmgq3fraUXl6lLoK3w",
    "industry": "malayalam",
    "name": "Bhavana Studios",
-   "tier": 2
+   "tier": 2,
+   "title_exception": true
   },
   {
    "channel_id": "UC2GXNqco-k7fwg2SMM6SAzQ",
    "industry": "bengali",
    "name": "SVF",
-   "tier": 1
+   "tier": 1,
+   "title_exception": true
   },
   {
    "channel_id": "UCr0_xzS43ijsp0ab4XUGjkQ",
@@ -200,19 +218,22 @@
    "channel_id": "UC_IXqII-SVm7QNRwreq32dg",
    "industry": "bengali",
    "name": "Surinder Films",
-   "tier": 2
+   "tier": 2,
+   "title_exception": true
   },
   {
    "channel_id": "UCTaAKFLoJwjdiPgbOqnMB4Q",
    "industry": "bengali",
    "name": "Eskay Movies",
-   "tier": 2
+   "tier": 2,
+   "title_exception": true
   },
   {
    "channel_id": "UCaeqTprSFKoly_JryZ73Y0w",
    "industry": "bengali",
    "name": "Windows Production House",
-   "tier": 2
+   "tier": 2,
+   "title_exception": true
   },
   {
    "channel_id": "UCWpuUYOAmHPYDrmcQLJsmwQ",
@@ -224,19 +245,22 @@
    "channel_id": "UCP3O9A8Cy9eyyRJf6pZSsWQ",
    "industry": "marathi",
    "name": "Zee Studios",
-   "tier": 1
+   "tier": 1,
+   "title_exception": true
   },
   {
    "channel_id": "UC7NszqtDGyVuQuxUEAN_n2Q",
    "industry": "marathi",
    "name": "Rajshri Marathi",
-   "tier": 2
+   "tier": 2,
+   "title_exception": true
   },
   {
    "channel_id": "UCs0pQObG0EmfUi0DvlFSlwQ",
    "industry": "marathi",
    "name": "Everest Entertainment",
-   "tier": 2
+   "tier": 2,
+   "title_exception": true
   },
   {
    "channel_id": "UCf40kH47yvowumzzK9LVKKg",
@@ -248,7 +272,8 @@
    "channel_id": "UC47fJuLOxYsOOq5R3adUXQA",
    "industry": "marathi",
    "name": "Panorama Studios",
-   "tier": 2
+   "tier": 2,
+   "title_exception": true
   },
   {
    "channel_id": "UCZSNzBgFub_WWil6TOTYwAg",
@@ -317,7 +342,8 @@
    "channel_id": "UCz97F7dMxBNOfGYu3rx8aCw",
    "industry": "hollywood",
    "name": "Sony Pictures",
-   "tier": 1
+   "tier": 1,
+   "title_exception": true
   },
   {
    "channel_id": "UCF9imwPMSGz4Vq1NiTWCC7g",
@@ -348,6 +374,13 @@
    "industry": "hindi",
    "name": "Mashakbeen",
    "tier": 2
+  },
+  {
+   "name": "Vels Music International",
+   "channel_id": "UCMsAo0XUISOL6O1ek_3QWfg",
+   "industry": "tamil",
+   "tier": 2,
+   "title_exception": true
   }
  ]
 }
