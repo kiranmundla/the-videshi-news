@@ -4,60 +4,6 @@
   "movies": [
     {
       "cast": [
-        "Pankaj Tripathi",
-        "Ali Fazal",
-        "Divyenndu",
-        "Jitendra Kumar",
-        "Ravi Kishan",
-        "Rasika Duggal"
-      ],
-      "director": "Gurmmeet Singh",
-      "genre": "Action, Crime, Thriller",
-      "is_indian": true,
-      "language": "Hindi",
-      "poster_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Mirzapur_from_the_Ganges.JPG/500px-Mirzapur_from_the_Ganges.JPG?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
-      "rating": "₹216 Cr India (Day 17)",
-      "rating_source": "India box office",
-      "release_date": "2026-09-04",
-      "slug": "mirzapur-the-movie",
-      "status": "now_playing",
-      "ticket_url": "https://www.google.com/search?q=Mirzapur+The+Movie+showtimes+near+me",
-      "title": "Mirzapur: The Movie",
-      "trailer_url": "https://www.youtube.com/watch?v=5vMWZhHPlaw",
-      "why_watch": "The OTT-to-theater leap that actually worked: ₹216 Cr India in 17 days, a steady ₹12.25 Cr third weekend, and now officially Pankaj Tripathi's most profitable film ever — bigger than OMG 2. Kaleen Bhaiya on the big screen turned out to be an event, not a cash-grab. Week three, still running strong.",
-      "year": 2026,
-      "cast_details": [
-        {
-          "name": "Pankaj Tripathi",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Pankaj_Tripathi_World_Premiere_Newton_Zoopalast_Berlinale_2017_06.jpg/300px-Pankaj_Tripathi_World_Premiere_Newton_Zoopalast_Berlinale_2017_06.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Ali Fazal",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/Ali_Fazal_graces_the_World_Premiere_of_%E2%80%98Victoria_and_Abdul%E2%80%99.jpg/300px-Ali_Fazal_graces_the_World_Premiere_of_%E2%80%98Victoria_and_Abdul%E2%80%99.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Divyenndu",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Divyenndu_snapped_promoting_Agni_%28cropped%29.jpg/300px-Divyenndu_snapped_promoting_Agni_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Jitendra Kumar",
-          "photo_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Jitendra_Kumar_snapped_at_the_green_carpet_of_IIFA_Awards_2025_%28cropped%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled"
-        },
-        {
-          "name": "Ravi Kishan",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Ravi_Kissen_at_the_launch_of_T_P_Aggarwal%27s_trade_magazine_%27Blockbuster%27_20.jpg/300px-Ravi_Kissen_at_the_launch_of_T_P_Aggarwal%27s_trade_magazine_%27Blockbuster%27_20.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Rasika Duggal",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Rasika_Dugal_at_Grazia_Young_Fashion_Awards_2024.jpg/300px-Rasika_Dugal_at_Grazia_Young_Fashion_Awards_2024.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        }
-      ],
-      "fandango_url": "https://www.fandango.com/mirzapur-the-movie-2026-246627/movie-overview",
-      "poster_width": 2100,
-      "poster_height": 1596
-    },
-    {
-      "cast": [
         "Soori",
         "Suhas",
         "Mahima Nambiar",
