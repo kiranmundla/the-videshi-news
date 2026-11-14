@@ -1567,14 +1567,17 @@ def _ledger_hero(article, cand, replaced_url):
         pass
 
 
-def _ledger_inlines(article, proposed):
-    """Record each inline placement this pass just applied."""
+def _ledger_inlines(article, proposed, producer="article_picture_pass"):
+    """Record each inline placement this pass just applied.
+    Other producers that source through this module's identity
+    path (enrich-articles Step 0) pass their own producer name so
+    every placement in the provenance ledger is attributable."""
     try:
         import image_ledger
         for p in proposed:
             image_ledger.record_provenance(
                 article_id=article.get("id"), slug=article.get("slug"),
-                surface="inline", producer="article_picture_pass",
+                surface="inline", producer=producer,
                 source_route=image_ledger.route_from_picture_pass(
                     p.get("route")),
                 image_url=p.get("file_url"),

@@ -1092,7 +1092,7 @@ def _picture_pass_module():
 
 
 def find_inline_images(headline, body, hero_url="", category=None,
-                       net=None):
+                       net=None, article_id=None, slug=None):
     """Find inline images for an article — IDENTITY-ONLY sourcing.
 
     Returns list of (entity, image_url, caption) tuples, the
@@ -1117,7 +1117,9 @@ def find_inline_images(headline, body, hero_url="", category=None,
         "body": body,
         "category": category or "",
         "image_url": hero_url or "",
-        "slug": app.RES.slugify(headline)[:60] or "enrich-step0",
+        "slug": slug or app.RES.slugify(headline)[:60]
+        or "enrich-step0",
+        "id": article_id,
     }
     entities = app.extract_article_entities(article)
     if not entities:
@@ -1139,6 +1141,14 @@ def find_inline_images(headline, body, hero_url="", category=None,
             print(f"    ⊘ [identity] {row.get('entity', '?')}: "
                   f"{(row.get('candidate') or '')[:60]} — "
                   f"{(row.get('reason') or '')[:110]}")
+    # Provenance: placements made through this Step 0 path must
+    # reach the shared ledger like picture-pass placements do —
+    # until 2026-11-14 they were invisible to it (the Berwyn
+    # placement on the Bengaluru Pink Line article left no trace,
+    # which hid which route had placed it).
+    if picks:
+        app._ledger_inlines(article, picks,
+                            producer="enrich-articles")
     results = []
     for cand in picks:
         caption = app.build_caption(cand["entity"], cand, article)
@@ -2169,7 +2179,10 @@ def main():
             # Add inline images if needed
             if not has_images:
                 cat = article.get("category", "")
-                images = find_inline_images(headline, body, hero_url, category=cat)
+                images = find_inline_images(
+                    headline, body, hero_url, category=cat,
+                    article_id=article.get("id"),
+                    slug=article.get("slug"))
                 if images:
                     max_cap = 3 if cat in _VISUAL_CATEGORIES else 2
                     new_body = insert_inline_images(new_body, images, max_cap=max_cap)
