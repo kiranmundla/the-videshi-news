@@ -813,6 +813,7 @@ _CARD_OUTLET_DOMAINS = {
     "theguardian.com", "nytimes.com", "washingtonpost.com",
     "aljazeera.com", "apnews.com", "bloomberg.com",
     "cnbc.com", "espncricinfo.com", "cricbuzz.com",
+    "inshorts.com",
 }
 
 

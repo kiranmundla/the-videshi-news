@@ -164,6 +164,15 @@ The reader is asking: *what happened, how, and what does it change?*
 4. **What's next** — the next fixture, with date and (for the diaspora reader) how to watch where known.
 - Completed-match reports carry the `match_scorecard` data card (§3e2). Previews answer the same questions minus the result: who, when, where, team news from sources, how to watch. Quotes only from sources you read. Body 450-700 words. **Done bar:** a fan who missed the match knows the story of the match, not just the score.
 
+**Finals and close finishes** (title matches; results decided in the last over, the last ball, or by one wicket/one run) are a bigger form — body 900–1,200 words — and add all of the following:
+- **(a) The deciding phase, ball by ball.** The final over (or equivalent last phase) gets its own section or box, reconstructed ONLY from sourced commentary (the official scorecard's ball-by-ball, Cricbuzz/ESPNcricinfo commentary, or a named report that describes the beats). Print only the beats a source actually gives you; if a source confirms the over's shape but not every delivery, narrate the confirmed beats — never invent the missing balls.
+- **(b) A turning-points timeline** — checkpoints (score at a stated over, a fall of wicket, a partnership) taken ONLY from the official scorecard or a named report. A checkpoint is never derived by arithmetic (e.g. adding a partnership to an earlier score): if the scorecard doesn't state it, it doesn't appear.
+- **(c) Player boxes for the decisive players** — each with role, team/context (state or domestic side where a profile establishes it), their figures in this match, and one factual line. Decisive players only; both teams represented when the losers shaped the match.
+- **(d) Verified voices** — post-match quotes only from reports/commentary you actually read, attributed to the outlet that carried them. A quote that circulates only in aggregators or social screenshots does not run.
+- **(e) The ending is what's next + where to watch** — the next fixture or the next marker for the team, and where readers in India / the US / the UK / the Gulf can watch the highlights or replay (the rights holder per region, as reported). NEVER end a sports report with a generic "for the diaspora reader…" paragraph.
+- **Scorecard and stat-card discipline:** the `match_scorecard` is the article's only numbers card. Performers are always split by team (in the card's `team` field, and in any body table — never one mixed, unsorted cross-team list), and **bowlers are always represented**: when a bowling performance shaped the match, the card's three performer slots include bowling figures, not only batters. Do NOT add generic stat cards that restate the scorecard — totals, the target, wickets lost, "overs played" and other filler stats are banned.
+- **Hero rule for sports:** an aggregator graphic or a screenshot/composite of someone's social post is NEVER the hero, even when it is the only image a source offers. A final with no verified, rights-safe photograph runs imageless (or with a verified venue/file photo captioned honestly as what it is) — wrong or borrowed art is worse than none.
+
 #### PLAYBOOK — Entertainment / Trailer (films, series, trailers, celebrity news)
 The reader is asking: *what is this, who's in it, and how do I watch it?*
 1. **What it is** — the film/series/work, its **language** (state it, always), genre, and where it sits in a franchise (franchise primer, Enrichment Bar §9).
@@ -334,7 +343,8 @@ Add to `data_cards`:
 Rules:
 - **Only for completed matches.** Previews, squad announcements, and tournament news do NOT get a scorecard.
 - **Scores from source material only** — never invent or estimate. If the exact score isn't in your sources, omit the scorecard.
-- **Top performers: max 3**, the genuine standouts (centuries, 5-wicket hauls, match-winning knocks). Include team short code.
+- **Top performers: max 3**, the genuine standouts (centuries, 5-wicket hauls, match-winning knocks). Include team short code. **Bowlers count:** when a bowling performance shaped the result (3+ wickets, a decisive spell), at least one of the three slots is a bowling figure — a card of three batters for a match a bowler decided is a failed card. Fuller performer lists belong in the body as tables split by team, never as one mixed cross-team card.
+- **No companion filler cards.** The scorecard is the only stat card on a match report: do not add generic stat-grid or comparison cards that restate its numbers (total runs, target, wickets lost, "overs played").
 - **`scorecard_url`**: link to the ESPNcricinfo full scorecard when you can find it; omit if you can't verify the URL.
 - **Team order**: winning team first, then the loser (or batting order for draws).
 - For non-cricket sports, adapt: football uses `score: "2-1"` without `overs`; `format` becomes the competition (e.g. "Premier League").

@@ -308,6 +308,16 @@ _ROOT_SOCIAL_FILENAMES = {
     "social.jpg", "social.jpeg", "social.png",
     "preview.jpg", "thumbnail.jpg",
 }
+# Aggregator / social-graphic hosts whose images are never article heroes.
+# Their "images" are screenshots or composites of other people's social
+# posts (a news graphic ABOUT a post, not a photograph of the story) —
+# rights-unsafe, hotlink-prone, and visually wrong. (2026-11-14: the U19
+# Asia Cup final article shipped with a media.inshorts.com graphic of the
+# PM's X post as its hero — no cricket in it at all.) Matched on the host
+# and any subdomain of the listed domains.
+_AGGREGATOR_GRAPHIC_HOSTS = {
+    "inshorts.com",
+}
 _OG_IMAGE_BLOCKLIST_PATTERNS = [
     "logo", "default", "placeholder", "social-card", "meta-image",
     "site-icon", "favicon", "brand-image", "og-default", "share-image",
@@ -364,6 +374,15 @@ def _is_generic_og_image(img_url):
     if not img_url:
         return True
     lower = img_url.lower()
+    # Aggregator/social-graphic hosts are never hero sources, whatever the
+    # filename looks like (see _AGGREGATOR_GRAPHIC_HOSTS).
+    try:
+        _host = urllib.parse.urlparse(lower).netloc.split("@")[-1].split(":")[0]
+    except Exception:
+        _host = ""
+    for _dom in _AGGREGATOR_GRAPHIC_HOSTS:
+        if _host == _dom or _host.endswith("." + _dom):
+            return True
     try:
         path = urllib.parse.urlparse(lower).path
     except Exception:
