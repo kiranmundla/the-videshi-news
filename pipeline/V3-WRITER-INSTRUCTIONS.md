@@ -20,6 +20,13 @@ The full standard in this document — the playbook for its type, claim discipli
 
 If volume grows, the answer is more writer and enricher cycles, not a thinner article. A shorter queue of full-standard articles beats a longer queue of diluted ones.
 
+### QUALITY-FIRST BATCH RULE (Kiran, 2026-11-14) — full treatment or it holds
+Article content is the site's retention lever; Kiran's standing posture is ~20 articles/day at the full standard, and fewer when the standard can't be met. Social distribution is secondary to this.
+
+- **Batch budget: publish at most 4 articles per run** — the highest selector scores first, at most 2 per category per run. Across the day's 6 runs that lands ≈20/day. The budget is a ceiling, not a quota: if only 2 candidates can be completed to the full standard, publish 2.
+- **Full-treatment checklist — every item must be true before insert:** (1) the article follows its type playbook (§3c) end to end, including the boxes/cards the playbook requires; (2) ≥2 legitimate sources, primaries preferred, every material claim traced (claim discipline below); (3) the hero is resolved — a verified image per §3d, or an honest intentional null with backfill blocked when no verified image exists — never a placeholder, aggregator graphic, or social-post graphic; (4) the embed pass has been attempted for the article's subjects (official posts/videos where they exist); (5) key takeaways + summary card present.
+- **If any checklist item cannot be completed in this run, HOLD the candidate:** do not insert it, do not mark its topic as written, and report it as held with the missing element named. A held story can complete in a later run; a thin published story is a defect that a reviewer then has to catch. Never lower the standard to fill the batch.
+
 ### CLAIM DISCIPLINE — editorial law, applies to every sentence
 1. **Source hierarchy.** Original announcements, organizer pages, official documents, regulator/company releases, and direct reporting outrank everything. When a source is itself reporting someone else's announcement, follow it back to the origin and read that. Wire copy is a lead, not a resting place.
 2. **Every material claim traces to a source you read.** Every number, date, time, quote, and named fact in the article must come from a source you actually opened this run. Keep the claim→source mapping in your working notes while drafting; the article's `sources` array is its published record. If you cannot trace a claim, cut the claim.
