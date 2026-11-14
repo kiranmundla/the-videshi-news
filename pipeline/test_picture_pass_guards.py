@@ -752,6 +752,120 @@ picks_iob = P._source_inlines(
 check_eq("the same candidate IS picked when the article "
          "does not already carry it", len(picks_iob), 1)
 
+
+# ── F. Janakpur guards (2026-11-14): stork test + caption discipline ──
+# Live failure (article janakpur-dham-ayodhya-weekly-train-service):
+# the picture pass placed THREE inlines — Janak Chowk (fine),
+# Rail Bhavan captioned with a trial run the photo does not show,
+# and a Black-necked Stork that is a depicts (P180) file of
+# 'Uttar Pradesh' (Q1498): the state's depicts set is its fauna.
+# Captions glued the announcement lede / an unrelated body
+# sentence onto photos via the entity-token context rule.
+print("Janakpur: stork test + caption discipline")
+JANAK_ART = {
+    "headline": "Weekly Train to Link Nepal's Janakpur Dham "
+                "With Ayodhya Over 604 Kilometres",
+    "body": "<p>A weekly train will connect Janakpur Dham in "
+            "Nepal with Ayodhya in Uttar Pradesh, the government "
+            "announced on Saturday.</p>"
+            "<p>Janakpur Dham is revered as the birthplace of "
+            "Mata Sita and Ayodhya as the birthplace of Prabhu "
+            "Shri Ram.</p>"
+            "<p>Besides its terminal stations, the train will "
+            "have commercial stoppages at Jaynagar, Madhubani, "
+            "Shisho, Sitamarhi, Raxaul, Narkatiaganj, Gorakhpur, "
+            "Basti, Mankapur and Ayodhya Dham. A 17-coach Indian "
+            "train made a trial run from Jaynagar to Kurtha "
+            "earlier this month as part of those preparations.</p>",
+    "category": "travel",
+}
+JANAK_ENTS = [
+    {"name": "Janakpur Dham", "kind": "org/place",
+     "source": "headline", "sourceable": True},
+    {"name": "Uttar Pradesh", "kind": "org/place",
+     "source": "body", "sourceable": True},
+]
+_JANAK_RES = {
+    "Janakpur Dham": {
+        "name": "Janakpur Dham", "aliases": [], "qid": "Q378649",
+        "p18_file": "File:Janak Chowk,Janakpur-September 22, "
+                    "2016-7602.jpg",
+        "type": "place", "method": "registry",
+        "confidence": "high", "blocked_files": [], "notes": ""},
+    "Uttar Pradesh": {
+        "name": "Uttar Pradesh", "aliases": [], "qid": "Q1498",
+        "p18_file": None,
+        "type": "place", "method": "registry",
+        "confidence": "high", "blocked_files": [], "notes": ""},
+}
+_JANAK_PAGES = {
+    "File:Janak Chowk,Janakpur-September 22, 2016-7602.jpg":
+        commons_page(
+            "File:Janak Chowk,Janakpur-September 22, "
+            "2016-7602.jpg", 5184, 2916,
+            desc="Janak Chowk in Janakpur, Nepal.",
+            cats="Janakpur"),
+    "File:Black-necked Stork juvenile eating snail.jpg":
+        commons_page(
+            "File:Black-necked Stork juvenile eating snail.jpg",
+            3000, 2000, license_short="CC BY 4.0",
+            desc="A black-necked stork juvenile eating a "
+                 "mollusc in an irrigation canal in Uttar "
+                 "Pradesh, India.",
+            cats="Black-necked Stork"),
+}
+_JANAK_ITEMS = {
+    "Q378649": {"description": "city in Nepal",
+                "located_in": ["Nepal"], "country": "Nepal"},
+    "Q1498": {"description": "state in northern India",
+              "located_in": ["India"], "country": "India"},
+}
+net_janak, _jc = stub_net(
+    resolutions=_JANAK_RES,
+    depicts_by_qid={"Q1498": [
+        {"title": "File:Black-necked Stork juvenile eating "
+                  "snail.jpg"}]},
+    pages_by_title=_JANAK_PAGES,
+    items_by_qid=_JANAK_ITEMS)
+rec_janak = {"ledger": [], "notes": []}
+picks_janak = P._source_inlines(
+    JANAK_ART, JANAK_ENTS, "", net_janak, 3, set(), rec_janak,
+    lambda *a: None)
+check("the subject place's own P18 inline still lands",
+      any("Janak Chowk" in p["title"] for p in picks_janak))
+check("the stork depicts file is never picked",
+      not any("Stork" in p["title"] for p in picks_janak))
+check("the stork rejection is ledgered as a stork test",
+      any("stork test" in r.get("reason", "")
+          for r in rec_janak["ledger"]))
+
+_cap_chowk = P.build_caption(
+    "Janakpur Dham",
+    {"subject": "Janak Chowk, Janakpur, Nepal",
+     "title": "File:Janak Chowk,Janakpur-September 22, "
+              "2016-7602.jpg"},
+    JANAK_ART)
+check("Janak Chowk caption carries no announcement lede",
+      "announced" not in _cap_chowk
+      and "government" not in _cap_chowk, _cap_chowk)
+_cap_bhavan = P.build_caption(
+    "Indian Railways",
+    {"subject": "Rail Bhavan in New Delhi, headquarters of "
+                "the Railway Board",
+     "title": "File:Rail Bhavan 1.jpg"},
+    JANAK_ART)
+check("Rail Bhavan caption carries no trial-run sentence",
+      "trial run" not in _cap_bhavan, _cap_bhavan)
+_cap_mandir = P.build_caption(
+    "Janakpur Dham",
+    {"subject": "Janaki Mandir in Janakpur, Nepal",
+     "title": "File:Janaki temple Janakpur.jpg"},
+    JANAK_ART)
+check("a context sentence naming the depicted subject is kept",
+      "birthplace of Mata Sita" in _cap_mandir, _cap_mandir)
+check("...and it is not the lede",
+      "announced on Saturday" not in _cap_mandir, _cap_mandir)
+
 print()
 if FAILS:
     print(f"FAILED: {len(FAILS)} check(s): {FAILS}")

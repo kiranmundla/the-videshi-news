@@ -1249,11 +1249,61 @@ def insert_inline_images(body, images, max_cap=2):
 # PULL QUOTE ENRICHMENT
 # ═══════════════════════════════════════════
 
+# Fragment openers: a sentence starting with one of these is a
+# continuation of a previous thought, never a standalone quote.
+_PULL_QUOTE_FRAGMENT_OPENERS = {
+    "besides", "including", "among", "per", "via", "featuring",
+    "comprising", "alongside",
+}
+
+
+def valid_pull_quote(sent, headings=()):
+    """A pull quote must be a complete, standalone statement —
+    not a heading glued to a paragraph, not an enumeration, not
+    a sentence fragment. (2026-11-14: the Janakpur train article
+    shipped the pull quote 'Route and schedule Besides its
+    terminal stations, the train will have commercial stoppages
+    at Jaynagar, Madhubani, …' — an <h2> merged into the stops
+    list by tag-stripping, scored on its position bonus alone.)"""
+    s = (sent or "").strip()
+    if len(s) < 40 or len(s) > 200:
+        return False
+    low = s.lower()
+    for h in headings:
+        h = re.sub(r"\s+", " ", (h or "").strip().lower())
+        if h and low.startswith(h):
+            return False
+    # Enumerations (stop lists, ingredient lists, name rolls)
+    # are information, not quotable statements.
+    if s.count(",") >= 4:
+        return False
+    first = re.split(r"[\s'\u201c\"]+", low.strip(" \u201c\""))[0]
+    if first in _PULL_QUOTE_FRAGMENT_OPENERS:
+        return False
+    return True
+
+
 def extract_pull_quote(body):
     """Find the most impactful sentence for a pull quote.
     Prefers sentences with quotes, strong language, or statistics."""
-    # Strip HTML tags for sentence analysis
-    text = re.sub(r'<[^>]+>', ' ', body)
+    # Collect heading texts first, then remove non-prose blocks
+    # WITH their content — stripping tags alone merges an <h2>
+    # into the following paragraph's first sentence.
+    headings = re.findall(r'<h[1-6][^>]*>(.*?)</h[1-6]>', body or "",
+                          re.DOTALL | re.IGNORECASE)
+    headings = [re.sub(r'<[^>]+>', ' ', h) for h in headings]
+    text = body or ""
+    for pat in (r'<h[1-6][^>]*>.*?</h[1-6]>',
+                r'<figure[^>]*>.*?</figure>',
+                r'<blockquote[^>]*>.*?</blockquote>',
+                r'<div class="key-takeaways">.*?</div>',
+                r'<div class="related-coverage">.*?</div>',
+                r'<div class="service-status">.*?</div>',
+                r'<div class="before-you-plan">.*?</div>',
+                r'<div class="plan-your-visit">.*?</div>'):
+        text = re.sub(pat, ' \n ', text, flags=re.DOTALL | re.IGNORECASE)
+    # Strip remaining HTML tags for sentence analysis
+    text = re.sub(r'<[^>]+>', ' ', text)
     text = re.sub(r'\s+', ' ', text).strip()
     # Split into sentences (simple approach)
     sentences = re.split(r'(?<=[.!?])\s+', text)
@@ -1272,6 +1322,9 @@ def extract_pull_quote(body):
             continue
         # Skip sentence fragments — must end with proper punctuation
         if not re.search(r'[.!?"\u201d]$', sent.strip()):
+            continue
+        # Skip heading-glued, enumerative or fragment candidates
+        if not valid_pull_quote(sent, headings):
             continue
         # Skip sentences that look truncated (end mid-word or with abbreviation)
         if re.search(r'\b[A-Z][a-z]?\."?$', sent.strip()):

@@ -138,6 +138,15 @@ The reader is asking: *does this touch me, and what must I do?* Answer **in this
 5. **What happens if they do nothing** — only where a source supports the consequence.
 - Body 600-900 words. **Done bar:** an affected reader knows their status under the change, their deadline, and their next step. An unaffected reader knows in the first two paragraphs that they can stop reading.
 
+#### PLAYBOOK — Service announcement (new trains, flights, routes, visa/permit services, scheme and service launches)
+The reader is asking: *can I use this yet, and what do I still need to know?* An approval or announcement is NOT an operating service — never write it as one. Structure:
+1. **Status box immediately after the key takeaways** — body HTML: `<div class="service-status"><strong>Approved, not yet operating:</strong> …</div>` (use the matching verb: Announced / Approved / Launched — whichever the source supports). State what is confirmed (route, stops, operating days, eligibility) and name what has NOT been announced yet (launch date, timetable, fares, booking channel) with an as-of date.
+2. **The announced facts** — route/stops/days or eligibility/mechanics, attributed to the announcing body. When a stop or station list exists, list it completely and distinguish intermediate stops from termini (e.g. Ayodhya Dham vs Ayodhya Cantt).
+3. **Background and preparation** — prior steps, trial runs, negotiations: sourced facts that show how close the service is. Never drop these to make room for colour.
+4. **Close with a "Before planning your trip" box** (travel) or "Before you apply" box (services) — body HTML: `<div class="before-you-plan"><p>Before planning your trip</p><ul>…</ul></div>` — each item a genuine unknown or required check (wait for the launch date; check the full timetable; confirm fares/booking; verify document requirements per traveller). No invented guidance.
+5. **Destination video (optional, travel only):** an official tourism-board destination film may be embedded as BACKGROUND, introduced by a sentence that says it is background on the place, not footage of the service ("The Nepal Tourism Board's destination film below offers background on the city; it is not footage of the new service."). Never present stock or destination footage as the announced service itself.
+- **Done bar:** no reader can mistake an approved service for a bookable one, every announced fact traces to the announcement or a named report of it, and the pending items are named as pending — never silently omitted and never filled in by inference. (Pattern set 2026-11-14 on the Janakpur–Ayodhya train article.)
+
 #### PLAYBOOK — Earnings / Business (results, guidance, deals, company news)
 The reader is asking: *what actually happened, and does it change anything?*
 1. **What was reported** — the figures, with their period, stated plainly in the lead: revenue, profit/EPS, the numbers the story turns on.
@@ -256,6 +265,8 @@ This check is non-negotiable. Wrong-person photos that go live erode reader trus
 **If you need caption text for a specific article**, the sourcer uses the first entity name as a basic caption. For better captions, you can PATCH the `image_caption` field after the sourcer runs.
 
 **Image Caption Rules (when writing/updating captions):**
+- **The caption must name the depicted subject** — the person, place or thing actually in the frame — plus the credit and license where the hero fields carry them. A one-word or generic caption ("Ayodhya", "File photo") is a fail (2026-11-14: the Janakpur train article's hero carried the one-word caption "Ayodhya" under a temple photo).
+- **Archival label:** when the photograph predates the story (an inauguration still on a later announcement story, a file photo from an earlier year), the caption says so — "Archival photograph" / "Archival still: …, 22 January 2024" — so no reader mistakes it for coverage of the current event.
 - Two sentences. First: what the image shows. Second: the news context.
 - Factual, plain style. Describe what is literally in the image.
 - NO flowery bridging: "symbolizing," "reflects," "illustrating," "representing"

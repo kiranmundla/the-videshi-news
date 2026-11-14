@@ -1428,10 +1428,43 @@ def word_count(body):
     return len(RES._strip_html(body or "").split())
 
 
+_CAPTION_SUBJECT_STOPWORDS = {
+    "file", "image", "photo", "photograph", "view", "commons",
+    "wikimedia", "jpg", "jpeg", "png", "the", "and", "with",
+    "from", "this", "that",
+}
+
+
+def _caption_subject_tokens(cand):
+    """Whole-word tokens naming the DEPICTED subject, from the
+    candidate's own subject line + file title (never the sourcing
+    entity alone — the entity is how the file was found, not
+    necessarily what it shows)."""
+    raw = " ".join([cand.get("subject") or "",
+                    (cand.get("title") or "").replace("File:", " ")
+                    .rsplit(".", 1)[0].replace("_", " ")])
+    toks = set()
+    for t in re.findall(r"[a-z0-9]+", raw.lower()):
+        if len(t) >= 4 and t not in _CAPTION_SUBJECT_STOPWORDS:
+            toks.add(t)
+    return toks
+
+
 def build_caption(entity, cand, article):
-    """Factual two-sentence caption in the enricher's convention:
-    what the image shows, then one context sentence drawn from
-    the article body itself. No invented facts."""
+    """Factual caption in the enricher's convention: what the
+    image shows, then — only when one qualifies — one context
+    sentence drawn from the article body itself. No invented
+    facts.
+
+    Caption discipline (2026-11-14, the Janakpur train article):
+    the old rule appended the first body sentence containing any
+    entity token, which glued the announcement lede onto the
+    Janak Chowk photo and captioned a Rail Bhavan photo with a
+    trial run the photo does not show. A context sentence now
+    qualifies only when it (a) is not the article's lede and
+    (b) names the DEPICTED subject itself (whole-word match on
+    the file's own subject/title tokens). Otherwise the caption
+    is the subject sentence alone."""
     subject = RES._strip_html(cand.get("subject") or "")
     subject = re.split(r"(?<=[.!?])\s+", subject)[0].strip()
     if not subject or len(subject) < 12 or len(subject) > 180 \
@@ -1441,12 +1474,15 @@ def build_caption(entity, cand, article):
         subject = f"{entity}: {subject}" \
             if entity.lower() not in subject.lower() else subject
     body_text = RES._strip_html(article.get("body") or "")
-    toks = [t for t in RES.entity_tokens(entity) if len(t) >= 4]
+    toks = _caption_subject_tokens(cand) or \
+        {t for t in RES.entity_tokens(entity) if len(t) >= 4}
     context = ""
-    for s in re.split(r"(?<=[.!?])\s+", body_text):
-        s = s.strip()
-        if 20 < len(s) < 250 and toks and \
-                any(t in s.lower() for t in toks):
+    sentences = [s.strip() for s in
+                 re.split(r"(?<=[.!?])\s+", body_text) if s.strip()]
+    for s in sentences[1:]:  # never the lede / announcement
+        if 20 < len(s) < 250 and toks and any(
+                re.search(r"\b" + re.escape(t) + r"\b", s.lower())
+                for t in toks):
             context = s
             break
     caption = subject if subject.endswith((".", "!", "?")) \
@@ -2302,6 +2338,7 @@ def _source_entity_images_identity(entity_rec, article, net,
                     "artist": "",
                     "subject": f"Portrait of {name}",
                     "role": "portrait",
+                    "entity_type": "person",
                     "route": "person_images cache",
                     "attribution": "Portrait via the subject's "
                                    "verified profile "
@@ -2449,6 +2486,58 @@ def _source_entity_images_identity(entity_rec, article, net,
         rows.append(row)
         if cand is None:
             continue
+        if is_place and "depicts (P180)" in route:
+            # Stork test, place arm (2026-11-14): a place's
+            # depicts set is its fauna, scenery and contents —
+            # association is not depiction. A depicts file may
+            # illustrate the place only when the file presents
+            # the place as its SUBJECT: the title names it
+            # (a photo OF it — 'Janak Chowk, Janakpur'), or the
+            # description names it outside a location adjunct
+            # (a constituent site: 'Kedarnath Temple, one of
+            # the Char Dham sites'). A phrase governed by 'in'
+            # is where the photo was taken, not what it shows
+            # ('…eating a mollusc in an irrigation canal in
+            # Uttar Pradesh'). The place's own P18 is exempt
+            # by construction.
+            _name_toks = {t for t in re.findall(
+                r"[a-z]+", (name + " " + (rname or "")).lower())
+                if len(t) >= 4}
+            _subject_hit = any(t in title.lower()
+                               for t in _name_toks)
+            if not _subject_hit:
+                _desc = ""
+                try:
+                    _desc = RES._strip_html(
+                        (page.get("imageinfo") or [{}])[0]
+                        .get("extmetadata", {})
+                        .get("ImageDescription", {})
+                        .get("value", "")) or ""
+                except Exception:
+                    _desc = ""
+                _stream = re.findall(r"[a-z0-9]+", _desc.lower())
+                for _phrase in {tuple(RES.entity_tokens(name)),
+                                tuple(RES.entity_tokens(
+                                    rname or ""))}:
+                    if not _phrase:
+                        continue
+                    _span = _phrase_span(list(_phrase), _stream)
+                    if _span is not None and (
+                            _span == 0
+                            or _stream[_span - 1] != "in"):
+                        _subject_hit = True
+                        break
+            if _name_toks and not _subject_hit:
+                ledger("rejected",
+                       "stork test: depicts file of a place "
+                       "entity does not present the place as "
+                       "its subject — the title does not name "
+                       "it and the description names it only "
+                       "as a location; a place's depicts set "
+                       "is its fauna, scenery and contents, "
+                       "not the place itself",
+                       candidate=title, route=route)
+                continue
         if is_place:
             reason = _locality_reject_reason(res, item_info, page,
                                              name)
@@ -2469,6 +2558,7 @@ def _source_entity_images_identity(entity_rec, article, net,
             f"(resolution: {method}); license and dimensions "
             "read from the file page's extmetadata")
         _apply_serve_variant(cand, page)
+        cand["entity_type"] = res.get("type")
         cands.append(cand)
         identity_cands += 1
     return cands, rows
@@ -2500,6 +2590,19 @@ def _source_inlines(article, entities, hint, net, want, seen_titles,
     picks = []
     used_entities = {}
     used_urls = set(exclude_urls)
+    # Stork test (2026-11-14): inline sourcing draws from the
+    # article's subjects + co-subjects ONLY (design.md Rung 4 —
+    # subject_and_cosubject_names was written for exactly this
+    # but never wired in). A passing mention sources nothing:
+    # the Janakpur train article carried a Black-necked Stork
+    # photo because 'Uttar Pradesh' — a place named only inside
+    # the route list — resolved to its Wikidata item and the
+    # item's depicts (P180) files include the state's fauna.
+    # Identity-by-construction proves association, not editorial
+    # relevance; a mention is not a subject.
+    _subjects, _co_subjects = subject_and_cosubject_names(
+        article, entities)
+    _inline_allowed = _subjects | _co_subjects
     hero_exact = set()
     if hero_url:
         hero_exact.add(hero_url)
@@ -2543,6 +2646,42 @@ def _source_inlines(article, entities, hint, net, want, seen_titles,
         cands, rows = _source_entity_images_identity(
             rec_e, article, net, seen_titles, want=2)
         rec["ledger"].extend(rows)
+        if rec_e["name"].lower() not in _inline_allowed:
+            # Stork test, mention arm (2026-11-14): an entity
+            # that is neither a subject (headline / declared)
+            # nor a co-subject (lede-named, not merely quoted)
+            # may contribute ONLY a picture of itself, and only
+            # when it is a place: its own P18, or a depicts file
+            # whose title names the place (the 2026-10-26
+            # Toronto Pearson precedent — the airport the story
+            # flies from, photographed on its own ramp; the
+            # extractor mis-kinds that entity as a person and
+            # tags it quoted, so the test judges the RESOLVED
+            # type stamped on each candidate, not the extracted
+            # kind). A cited company's HQ or a quoted person's
+            # portrait illustrates the entity, not this story.
+            _toks = {t for t in re.findall(
+                r"[a-z]+", rec_e["name"].lower()) if len(t) >= 4}
+            _kept = []
+            for c in cands:
+                if c.get("entity_type") == "place" and (
+                        "P18 of" in (c.get("route") or "")
+                        or any(t in (c.get("title") or "").lower()
+                               for t in _toks)):
+                    _kept.append(c)
+                else:
+                    rec["ledger"].append(
+                        {"candidate": c["title"],
+                         "route": c["route"],
+                         "entity": rec_e["name"],
+                         "verdict": "rejected",
+                         "reason": "stork test: entity is "
+                                   "neither a subject nor a "
+                                   "co-subject, and this file is "
+                                   "not a picture of the place "
+                                   "itself — a passing mention "
+                                   "does not source inlines"})
+            cands = _kept
         for c in cands:
             if c["file_url"] in hero_exact or \
                     c["title"] in hero_exact:
