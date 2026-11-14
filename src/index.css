@@ -274,6 +274,53 @@ html, body { overflow-x: hidden; }
     letter-spacing: 0.02em;
   }
 
+/* ── Service status + before-you-plan boxes (announced-vs-pending pattern, 2026-11-14) ── */
+  .article-html .service-status,
+  .article-prose .service-status {
+    background: #FBF3E4;
+    border-left: 3px solid #D4A843;
+    border-radius: 0 8px 8px 0;
+    padding: 14px 20px;
+    margin: 0 0 28px;
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: hsl(var(--foreground) / 0.85);
+  }
+  .article-html .before-you-plan,
+  .article-prose .before-you-plan {
+    background: hsl(var(--muted) / 0.35);
+    border-left: 3px solid #0B1D3A;
+    border-radius: 0 8px 8px 0;
+    padding: 18px 24px;
+    margin: 32px 0;
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  }
+  .article-html .before-you-plan p:first-child,
+  .article-prose .before-you-plan p:first-child {
+    font-weight: 700;
+    color: #0B1D3A;
+    margin: 0 0 10px;
+    font-size: 1rem;
+  }
+  .article-html .before-you-plan ul,
+  .article-prose .before-you-plan ul {
+    margin: 0;
+    padding: 0 0 0 18px;
+    list-style: disc;
+  }
+  .article-html .before-you-plan li,
+  .article-prose .before-you-plan li {
+    font-size: 0.93rem;
+    line-height: 1.55;
+    color: hsl(var(--foreground) / 0.85);
+    margin-bottom: 7px;
+  }
+  .article-html .before-you-plan li:last-child,
+  .article-prose .before-you-plan li:last-child {
+    margin-bottom: 0;
+  }
+
 /* ── Custom tweet card — all styling is inline, this is just for the old class cleanup ── */
 
 /* ── Instagram embed — crop engagement UI (likes, comments, save) ── */
