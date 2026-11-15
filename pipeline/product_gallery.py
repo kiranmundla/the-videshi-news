@@ -304,6 +304,19 @@ def apply_product_gallery(article, patch_fn, log=print,
     uploaded = {}
     for i, v in enumerate(verified):
         name = f"{slug}/{i}-{_stem(v['url'])[:40]}.jpg"
+        if v is not hero and v["w"] > 1200:
+            # The strip displays at <=500 CSS px; shipping the
+            # full 1600px+ file for every frame made swipes jank
+            # (Kiran, 2026-11-15). 1200w covers 2x retina. The
+            # hero keeps full resolution.
+            try:
+                from PIL import Image
+                im = Image.open(v["path"])
+                im.resize((1200, round(im.height * 1200
+                                       / im.width)),
+                          Image.LANCZOS).save(v["path"], quality=86)
+            except Exception:
+                pass
         url = _upload(v["path"], name, supabase_url, service_key)
         if url:
             uploaded[id(v)] = url

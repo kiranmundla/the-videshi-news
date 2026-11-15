@@ -22,16 +22,25 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
   const [canScrollRight, setCanScrollRight] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const rafRef = useRef(0);
   const updateScrollState = useCallback(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 10);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
-    const first = el.children[0] as HTMLElement | undefined;
-    const step = first ? first.offsetWidth + GAP : el.clientWidth * 0.75;
-    if (step > 0) {
-      setCurrentIndex(Math.min(photos.length - 1, Math.max(0, Math.round(el.scrollLeft / step))));
-    }
+    // rAF-throttled (2026-11-15): setState on every raw scroll
+    // event re-rendered the strip mid-swipe and made it feel
+    // sticky on mobile. One state update per frame is plenty
+    // for the counter pill and arrows.
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = 0;
+      const el = scrollRef.current;
+      if (!el) return;
+      setCanScrollLeft(el.scrollLeft > 10);
+      setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+      const first = el.children[0] as HTMLElement | undefined;
+      const step = first ? first.offsetWidth + GAP : el.clientWidth * 0.75;
+      if (step > 0) {
+        setCurrentIndex(Math.min(photos.length - 1, Math.max(0, Math.round(el.scrollLeft / step))));
+      }
+    });
   }, [photos.length]);
 
   const scrollStrip = useCallback((direction: "left" | "right") => {
@@ -189,7 +198,8 @@ export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight =
               <img
                 src={photo.src}
                 alt={photo.caption}
-                loading="lazy"
+                loading={i < 3 ? "eager" : "lazy"}
+                decoding="async"
                 style={{ width: "100%", height: "100%", objectFit: objectFit, display: "block", background: objectFit === "contain" ? "#111" : undefined }}
               />
             </div>
