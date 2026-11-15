@@ -1,0 +1,408 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "supreme-court-trump-asylum-ban-border-review",
+ "article_slug": "supreme-court-trump-asylum-ban-border-review",
+ "article_id": "8d460426-da13-4c24-8685-39ab0c81f48c",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-13-supreme-court-trump-asylum-ban-border-review/output-v3/supreme-court-trump-asylum-ban-border-review.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Panorama_of_United_States_Supreme_Court_Building_at_Dusk.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "local_path": "reel-runs/2026-11-13-supreme-court-trump-asylum-ban-border-review/output-v3/hero.jpg",
+  "width": 3788,
+  "height": 1952,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.502,0.659) damped=(0.501,0.580)",
+  "has_face": false,
+  "box_source": [
+   837,
+   702,
+   2121,
+   780
+  ],
+  "box_bg": [
+   -496,
+   690,
+   2086,
+   767
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.499,
+   0.581
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   429
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1217,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1217,
+    930,
+    1580
+   ],
+   "texts": [
+    "Immigration",
+    "SUPREME COURT TO DECIDE TRUMP ASYLUM BAN"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.984,
+    "photo_px": [
+     3788,
+     1952
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.9836065573770492,
+     "window": [
+      1341,
+      0,
+      2439,
+      1952
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 649,
+   "zone_h": 907,
+   "scale": 1.0,
+   "content_h": 413,
+   "block_top": 896,
+   "block_bottom": 1309,
+   "text_bbox": [
+    70,
+    896,
+    930,
+    1309
+   ],
+   "texts": [
+    "What Happened",
+    "The US Supreme Court agreed on Friday to decide whether President Donald Trump's proclamation barring asylum claims at the southern border is legal."
+   ],
+   "v7": {
+    "image_source": "extra:1-supreme-court",
+    "track": "backdrop",
+    "render_scale": 0.328,
+    "photo_px": [
+     2539,
+     1451
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 429,
+     "scale": 0.3284757778653013,
+     "window": [
+      0,
+      66,
+      2539,
+      1372
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.32x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "United States Supreme Court photo taken from top of the Capitol dome.",
+     "route": "identity \u2014 depicts (P180=Q11201)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:1_Supreme_Court.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/1_Supreme_Court.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "PLBechly"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 649,
+   "zone_h": 907,
+   "scale": 1.0,
+   "content_h": 310,
+   "block_top": 947,
+   "block_bottom": 1257,
+   "text_bbox": [
+    70,
+    947,
+    930,
+    1257
+   ],
+   "texts": [
+    "THE STAKES",
+    "END OF JUNE",
+    "Ruling due by the end of June"
+   ],
+   "v7": {
+    "image_source": "extra:ussupremecourtwestfacade",
+    "track": "backdrop",
+    "render_scale": 0.446,
+    "photo_px": [
+     1871,
+     1331
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 429,
+     "scale": 0.44575093532870125,
+     "window": [
+      0,
+      224,
+      1871,
+      1186
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.44x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "West face of the United States Supreme Court building in Washington, D.C.",
+     "route": "identity \u2014 Wikidata P18 (Q11201)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:USSupremeCourtWestFacade.JPG",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/USSupremeCourtWestFacade.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "UpstateNYer"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 649,
+   "zone_h": 907,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 830,
+   "block_bottom": 1375,
+   "text_bbox": [
+    70,
+    830,
+    930,
+    1375
+   ],
+   "texts": [
+    "By The Numbers",
+    "2",
+    "Lower courts held the categorical ban unlawful",
+    "6-3",
+    "Conservative majority on the Supreme Court"
+   ],
+   "v7": {
+    "image_source": "extra:associate-justice-ruth-bader-ginsburg-s-chai",
+    "track": "backdrop",
+    "render_scale": 0.434,
+    "photo_px": [
+     1920,
+     1383
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 429,
+     "scale": 0.434375,
+     "window": [
+      0,
+      289,
+      1920,
+      1276
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.39x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "The Courtroom of the Supreme Court showing Associate Justice Ruth Bader Ginsburg\u2019s Bench Chair and the Bench in front of her seat draped in black following her death on September 18, 2020.",
+     "route": "identity \u2014 depicts (P180=Q11201)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Associate_Justice_Ruth_Bader_Ginsburg%E2%80%99s_chair_and_the_bench_in_front_of_her_seat_at_the_Supreme_Court_draped_in_black.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Associate_Justice_Ruth_Bader_Ginsburg%E2%80%99s_chair_and_the_bench_in_front_of_her_seat_at_the_Supreme_Court_draped_in_black.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "Fred Schilling, Collection of the Supreme Court of the United States"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1211,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1211,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "H-1B, F-1 and green cards not in this case",
+    "Asylum bar stays in effect during appeal"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "full-bleed",
+    "render_scale": 0.984,
+    "photo_px": [
+     3788,
+     1952
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.9836065573770492,
+     "window": [
+      1341,
+      0,
+      2439,
+      1952
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "The asylum bar continues until the court rules.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 130.4,
+ "mp4_bytes": 8727293
+}

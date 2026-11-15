@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-14-ireland-extends-short-stay-visa-waiver-indians-december-2026/output/ireland-extends-short-stay-visa-waiver-indians-december-2026.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:grid"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        4032,
+        2268
+      ],
+      "manifest_dims": [
+        4032,
+        2268
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 1820.8,
+      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Dublin_-_aerial_-_2025-07-07_01.jpg/3840px-Dublin_-_aerial_-_2025-07-07_01.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-14-ireland-extends-short-stay-visa-waiver-indians-december-2026/output/qa/frames/frame-hook.png",
+      "text_px_detected": 27814,
+      "edge": {
+        "pass": true,
+        "offending_px": 112,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 58.4,
+        "delta": 195.4
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-14-ireland-extends-short-stay-visa-waiver-indians-december-2026/output/qa/frames/frame-news.png",
+      "text_px_detected": 33726,
+      "edge": {
+        "pass": true,
+        "offending_px": 85,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 51.2,
+        "delta": 202.7
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-14-ireland-extends-short-stay-visa-waiver-indians-december-2026/output/qa/frames/frame-hero.png",
+      "text_px_detected": 25028,
+      "edge": {
+        "pass": true,
+        "offending_px": 113,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 66.5,
+        "delta": 187.3
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-14-ireland-extends-short-stay-visa-waiver-indians-december-2026/output/qa/frames/frame-grid.png",
+      "text_px_detected": 15599,
+      "edge": {
+        "pass": false,
+        "offending_px": 189,
+        "clusters": 1,
+        "largest_cluster": 118
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 169.4,
+        "bg_luminance": 67.8,
+        "delta": 101.7
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-14-ireland-extends-short-stay-visa-waiver-indians-december-2026/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 2974,
+      "edge": {
+        "pass": true,
+        "offending_px": 119,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 169.5,
+        "bg_luminance": 51.7,
+        "delta": 117.8
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-14-ireland-extends-short-stay-visa-waiver-indians-december-2026/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 24069,
+      "edge": {
+        "pass": true,
+        "offending_px": 162,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 28.6,
+        "delta": 225.2
+      }
+    }
+  ]
+}

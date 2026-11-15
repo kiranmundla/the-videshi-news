@@ -1,0 +1,141 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "ramayana-record-second-friday-box-office-hindi-second-biggest",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Ramayana Posts Record Second Friday, Second-Biggest Ever for a Hindi Film",
+        "numbers": [],
+        "entities": [
+          "Ramayana Posts Record Second Friday",
+          "Second-Biggest Ever",
+          "Hindi Film"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Ramayana had the second-biggest second Friday for a Hindi film.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Nitesh Tiwari's epic took the all-India second-Friday record, with its Hindi version second only to Dhurandhar: The Revenge.",
+        "numbers": [],
+        "entities": [
+          "Nitesh Tiwari's"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Ramayana's all-India second-Friday record and its Hindi version's ranking.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Ramayana: Part One collected approximately Rs 47 crore nett across India on its second Friday \u2014 the highest second-Friday figure recorded at the Indian box office",
+        "numbers": [
+          47.0,
+          470000000.0
+        ],
+        "entities": [
+          "Part One"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Ramayana collected Rs 47 crore, the highest second-Friday figure.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The Hindi version netted Rs 36 crore on the day, the second-biggest second Friday for a Hindi film, behind Dhurandhar: The Revenge at Rs 36.50 crore",
+        "numbers": [
+          36.0,
+          36.5,
+          360000000.0,
+          365000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the Hindi version's Rs 36 crore and its ranking behind Dhurandhar.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The Hindi total reached about Rs 465 crore nett after nine days, after a drop of just 12% from the previous day",
+        "numbers": [
+          12.0,
+          465.0,
+          4650000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the Hindi total reached Rs 465 crore after a 12% drop.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Ramayana Posts Record Second Friday, Second-Biggest Ever for a Hindi Film",
+        "numbers": [],
+        "entities": [
+          "Ramayana Posts Record Second Friday",
+          "Second-Biggest Ever",
+          "Hindi Film"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000462,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

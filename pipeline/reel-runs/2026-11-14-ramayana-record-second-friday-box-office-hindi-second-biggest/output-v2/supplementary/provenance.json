@@ -1,0 +1,126 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ramayana-record-second-friday-box-office-hindi-second-biggest",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Ramayana: Part One",
+    "Nitesh Tiwari",
+    "Ranbir Kapoor",
+    "Pinkvilla",
+    "Second-Biggest Ever",
+    "Hindi Film"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Ramayana: Part One' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Second-Biggest Ever' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Hindi Film' named 'Bollywood', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Nitesh Tiwari at the \u2018Khidkiyaan\u2019 movie festival launch.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q16908467)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x881 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Nitesh Tiwari at the \u2018Khidkiyaan\u2019 movie festival launch (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q16908467)",
+      "verdict": "rejected",
+      "reason": "resolution: 240x320 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ranbir Kapoor snapped at Kalina airport.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 245x343 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Anurag Basu, Ranbir Kapoor at the launch of 'Barfi!' promo 13.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x388 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Barfi2.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "accepted",
+      "reason": "2216x1804, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Filming of Tamasha in Corsica.JPG",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 502x440 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Photos-Ranbir-Kapoor-snapped-at-the-airport-1.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x878 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Photos-Ranbir-Kapoor-snapped-at-the-airport-4.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x775 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Priyanka Chopra, Ranbir Kapoor at the launch of 'Barfi!' promo 05.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 475x288 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:RK at Besharam launch.jpg",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "rejected",
+      "reason": "resolution: 255x345 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ramayana \u2013 Rise of a Legend Ranbir Kapoor Sai Pallavi and Yash.png",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "verdict": "USED (diaspora)",
+      "reason": "1381x831, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "diaspora",
+      "label": "ramayana-rise-of-a-legend-ranbir-kapoor-sai",
+      "path": "ramayana-rise-of-a-legend-ranbir-kapoor-sai.png",
+      "size": [
+        1381,
+        831
+      ],
+      "role": "establishing",
+      "subject": "Ramayana",
+      "route": "identity \u2014 depicts (P180=Q1063412)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Ramayana_%E2%80%93_Rise_of_a_Legend_Ranbir_Kapoor_Sai_Pallavi_and_Yash.png",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Ramayana_%E2%80%93_Rise_of_a_Legend_Ranbir_Kapoor_Sai_Pallavi_and_Yash.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC0",
+      "artist": "Selvam1898",
+      "entity": "Ranbir Kapoor",
+      "entity_type": "person",
+      "entity_aliases": [
+        "Ranbir Kapoor"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,229 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "indian-diet-walking-early-diabetes-remission-study",
+  "verdict": "fail",
+  "held_claims": [
+    "hook_line"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIAN DIET PUTS 61% IN REMISSION",
+      "numbers": [
+        61.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Claim states 61%, article states 60.9%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "news_summary",
+      "text": "A six-month programme of a traditional Indian diet and daily walking put an estimated 60.9% of adults with early Type 2 diabetes into remission.",
+      "numbers": [
+        2.0,
+        60.9
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Accurately reflects the study's findings.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "60.9%",
+      "numbers": [
+        60.9
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Directly stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Estimated remission rate at six months",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Accurately describes the remission rate context.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "6.27%",
+      "numbers": [
+        6.27
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Average HbA1c after is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Average HbA1c after, down from 7.32%",
+      "numbers": [
+        1.0,
+        7.32
+      ],
+      "entities": [
+        "Average HbA1c"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Both HbA1c values are provided in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "4.67 KG",
+      "numbers": [
+        4.67
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Average weight loss is stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Average weight lost in six months",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Accurately reflects the weight loss mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Diabetes strikes South Asians earlier, at lower weights",
+      "numbers": [],
+      "entities": [
+        "South Asians"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article mentions this context for South Asians.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Walking 80% of days: 8.24 times the odds",
+      "numbers": [
+        8.24,
+        80.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The odds related to walking adherence are detailed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Single-arm study: do not change medication without a doctor.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Cautions against changing medication are included.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Vedavati Purandare",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "A G Unnikrishnan",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Chellaram Hospital",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000561,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "36b077d7-fb86-4d57-9df2-29ee0fc6be91",
+    "headline": "Delhi AQI Hits 511 as November Becomes Most Polluted Month on Record",
+    "slug": "delhi-aqi-511-november-most-polluted-month-record",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date mentioned in the article; it states 'November 15' but refers to 'November 2026' as the most polluted month, which seems to be a typographical error. Ensure all dates are accurate and consistent.",
+        "Provide more context on the health implications of the AQI levels reported. For example, specify what health effects the general population might experience at these levels and any recommended actions to mitigate risks.",
+        "Include a comparison of the current AQI levels with historical data for November in previous years to give readers a clearer understanding of the severity of the pollution this year.",
+        "Ensure that the article maintains a clear structure by separating the sections on current AQI levels, health recommendations, and comparisons with other cities into distinct paragraphs for better readability."
+      ],
+      "embed_opportunities": [
+        "Embed the official CPCB tweet or report regarding the air quality levels in Delhi to provide authoritative context and updates."
+      ]
+    }
+  },
+  {
+    "id": "8bb9b734-1930-4fca-9adc-b50f2fa6f8f8",
+    "headline": "Imtiaz Ali Says 'Dhurandhar' Was Called Impractical \u2014 Now Everyone Wants to Make",
+    "slug": "imtiaz-ali-dhurandhar-impractical-htls-franchise",
+    "category": "entertainment",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"Dhurandhar Official Trailer | Ranveer Singh | Aditya Dhar | \" vs headline"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the release dates of both films more clearly, as the current mention of 'December 2025' and 'March 2026' may confuse readers about the actual timeline of the franchise's success.",
+        "Provide more context on the financial success of the films by including specific figures for their box office performance in India and worldwide, as well as comparisons to other successful films to give readers a clearer picture of their impact.",
+        "Include quotes or reactions from other industry figures or critics to enhance the attribution and provide a broader perspective on the significance of Ali's comments."
+      ],
+      "embed_opportunities": [
+        "Embed the official Hindustan Times tweet or video clip from the Leadership Summit featuring Imtiaz Ali's comments for direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "704908be-ae0e-4a08-b1b9-c921f61a3b49",
+    "headline": "US Flight Chaos Rolls Into Sunday: 6,400 Saturday Cancellations, Normal Only Lat",
+    "slug": "us-flight-disruption-sunday-6400-cancellations-faa-recovery",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include specific numbers regarding the expected timeline for normal operations and any potential costs associated with rebooking, such as fare differences or fees that may apply after the travel waivers expire.",
+        "Clarify the role of L3Harris in the router installation and provide more context on how this disruption compares to previous incidents in terms of impact on air travel.",
+        "Add a quote from a passenger or an airline representative to provide a human perspective on the chaos and its effects on travelers."
+      ],
+      "embed_opportunities": [
+        "Embed the official FAA tweet regarding the ground stop and updates on the situation for real-time information."
+      ]
+    }
+  }
+]

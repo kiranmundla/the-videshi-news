@@ -22203,6 +22203,278 @@
    "resolved_confidence": "medium",
    "resolved_context": "After Jensen Huang: What Founder Exits Did to Apple, Alphabet and Uber   <div class=\"key-takeaways\"><ul><li>Nvidia co-founder Jensen Huang resigned as president, CEO and board member effective immediately, the company announced on November 12, 2026; CFO Colette Kress is interim CEO and Harvey C. Jones is the board's first-ever chair.</li><li>History cuts both ways: Apple and Alphabet grew far larg",
    "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'After Jensen Huang: What Founder Exits Did to Apple, Alphabet and Uber   <div class=\"key-takeaways\"><ul><li>Nvidia co-founder Jensen Huang resigned as president, CEO and board member effective immedia'; description: peer-to-peer ridesharing, food delivery, and transportation network company headquartered in San Francisco, California"
+  },
+  {
+   "name": "Giri Babu",
+   "aliases": [
+    "Giri Babu",
+    "Yerra Seshagiri Rao",
+    "Giribabu"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q5564237",
+   "p18_file": "Giribabu (Cropped).jpg",
+   "p18_quality": 336,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Giri Babu, Telugu Cinema's Versatile Face of Five Decades, Dies at 80   <div class=\"key-takeaways\"><ul><li>Veteran Telugu actor Giri Babu, born Yerra Seshagiri Rao, died on Saturday, November 14, at a private hospital in Hyderabad. He was 80.</li><li>Across nearly five decades he acted in more than 600 Telugu films, moving from hero to villain and comedy roles before becoming a familiar character ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Giri Babu, Telugu Cinema\\'s Versatile Face of Five Decades, Dies at 80   <div class=\"key-takeaways\"><ul><li>Veteran Telugu actor Giri Babu, born Yerra Seshagiri Rao, died on Saturday, November 14, at a'; description: Indian actor"
+  },
+  {
+   "name": "Mohan Babu University",
+   "aliases": [
+    "Mohan Babu",
+    "Mohan Babu University"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q118104566",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Giri Babu, Telugu Cinema's Versatile Face of Five Decades, Dies at 80   <div class=\"key-takeaways\"><ul><li>Veteran Telugu actor Giri Babu, born Yerra Seshagiri Rao, died on Saturday, November 14, at a private hospital in Hyderabad. He was 80.</li><li>Across nearly five decades he acted in more than 600 Telugu films, moving from hero to villain and comedy roles before becoming a familiar character ",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Giri Babu, Telugu Cinema\\'s Versatile Face of Five Decades, Dies at 80   <div class=\"key-takeaways\"><ul><li>Veteran Telugu actor Giri Babu, born Yerra Seshagiri Rao, died on Saturday, November 14, at a'; description: state private university in Tirupati, Andhra Pradesh, India"
+  },
+  {
+   "name": "Nandamuri Balakrishna",
+   "aliases": [
+    "Nandamuri Balakrishna",
+    "NBK",
+    "Balakrishna",
+    "Nandamoori Balakrishna",
+    "Balaiah babu",
+    "Balayya babu"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q6963169",
+   "p18_file": "The Chief Guest, Actor Shri Nandamuri Balkrishna addressing at the closing ceremony of the 43rd International Film Festival of India (IFFI-2012), in Panaji, Goa on November 30, 2012 (cropped).jpg",
+   "p18_quality": 504,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Giri Babu, Telugu Cinema's Versatile Face of Five Decades, Dies at 80   <div class=\"key-takeaways\"><ul><li>Veteran Telugu actor Giri Babu, born Yerra Seshagiri Rao, died on Saturday, November 14, at a private hospital in Hyderabad. He was 80.</li><li>Across nearly five decades he acted in more than 600 Telugu films, moving from hero to villain and comedy roles before becoming a familiar character ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Giri Babu, Telugu Cinema\\'s Versatile Face of Five Decades, Dies at 80   <div class=\"key-takeaways\"><ul><li>Veteran Telugu actor Giri Babu, born Yerra Seshagiri Rao, died on Saturday, November 14, at a'; description: Indian film actor and politician"
+  },
+  {
+   "name": "Deepak Singh",
+   "aliases": [
+    "Deepak Singh"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q24851585",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Delhi Police Arrest Two Shooters, Foil Planned Attack on Bollywood Actor   <div class=\"key-takeaways\"><ul><li>Delhi Police's Special Cell arrested two alleged shooters — Vikas Thakur, 25, of Jalandhar and Deepak Singh of Tarn Taran — in separate operations in Delhi and Mumbai, police said.</li><li>Police say the men were tasked by a foreign-based gangster with shooting a prominent Bollywood actor ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Delhi Police Arrest Two Shooters, Foil Planned Attack on Bollywood Actor   <div class=\"key-takeaways\"><ul><li>Delhi Police\\'s Special Cell arrested two alleged shooters — Vikas Thakur, 25, of Jalandhar'; description: Indian politician"
+  },
+  {
+   "name": "Vikas Thakur",
+   "aliases": [
+    "Vikas Thakur"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q17465902",
+   "p18_file": "Vikas Thakur.jpg",
+   "p18_quality": 153,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Delhi Police Arrest Two Shooters, Foil Planned Attack on Bollywood Actor   <div class=\"key-takeaways\"><ul><li>Delhi Police's Special Cell arrested two alleged shooters — Vikas Thakur, 25, of Jalandhar and Deepak Singh of Tarn Taran — in separate operations in Delhi and Mumbai, police said.</li><li>Police say the men were tasked by a foreign-based gangster with shooting a prominent Bollywood actor ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Delhi Police Arrest Two Shooters, Foil Planned Attack on Bollywood Actor   <div class=\"key-takeaways\"><ul><li>Delhi Police\\'s Special Cell arrested two alleged shooters — Vikas Thakur, 25, of Jalandhar'; description: Indian weightlifter"
+  },
+  {
+   "name": "police",
+   "aliases": [
+    "Police",
+    "police",
+    "police service",
+    "police force"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q35535",
+   "p18_file": "Aeroport de Girona 07.jpg",
+   "p18_quality": 4032,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Delhi Police Arrest Two Shooters, Foil Planned Attack on Bollywood Actor   <div class=\"key-takeaways\"><ul><li>Delhi Police's Special Cell arrested two alleged shooters — Vikas Thakur, 25, of Jalandhar and Deepak Singh of Tarn Taran — in separate operations in Delhi and Mumbai, police said.</li><li>Police say the men were tasked by a foreign-based gangster with shooting a prominent Bollywood actor ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Delhi Police Arrest Two Shooters, Foil Planned Attack on Bollywood Actor   <div class=\"key-takeaways\"><ul><li>Delhi Police\\'s Special Cell arrested two alleged shooters — Vikas Thakur, 25, of Jalandhar'; description: law enforcement body"
+  },
+  {
+   "name": "Finishing Line",
+   "aliases": [
+    "Finishing Line"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q5450358",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Jaishankar Says India-US Trade Deal Is Near the 'Finishing Line'   India-US trade negotiations nearing completion, says External Affairs Minister S. Jaishankar.   \n External Affairs Minister S. Jaishankar said on Saturday that India-US trade negotiations are approaching the \"finishing line,\" with the bulk of issues — including tariff lines — sorted out. \n The remaining concerns are \"not so much at",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: \"Jaishankar Says India-US Trade Deal Is Near the 'Finishing Line'   India-US trade negotiations nearing completion, says External Affairs Minister S. Jaishankar.   \\n External Affairs Minister S. Jaisha\"; description: Singaporean TV series or program"
+  },
+  {
+   "name": "First Meetings",
+   "aliases": [
+    "First Meeting",
+    "First Meetings"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q5453262",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Tamil Nadu Investment Panel Sets $72 Billion Export Target at First Meeting   112 investment MoUs worth ₹1.14 lakh crore signed since May 2026.    Tamil Nadu's new Investment Promotion Commission held its first meeting on Friday, chaired by Chief Secretary Sai Kumar, and set a target of raising the state's exports from $59 billion to $72 billion.  The panel reviewed 112 investment MoUs worth ₹1.14",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: \"Tamil Nadu Investment Panel Sets $72 Billion Export Target at First Meeting   112 investment MoUs worth ₹1.14 lakh crore signed since May 2026.    Tamil Nadu's new Investment Promotion Commission held\"; description: 2002 short story collection by Orson Scott Card"
+  },
+  {
+   "name": "Pinkvilla",
+   "aliases": [
+    "Pinkvilla"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q85846935",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Ramayana Posts Record Second Friday, Second-Biggest Ever for a Hindi Film Nitesh Tiwari's epic collected about Rs 47 crore nett across India on its second Friday — a record for the day — while its Hindi version's Rs 36 crore ranked second only to Dhurandhar: The Revenge. Nitesh Tiwari's epic collected about Rs 47 crore nett across India on its second Friday — a record for the day — while its Hindi",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: \"Ramayana Posts Record Second Friday, Second-Biggest Ever for a Hindi Film Nitesh Tiwari's epic collected about Rs 47 crore nett across India on its second Friday — a record for the day — while its Hin\"; description: bollywood website"
+  },
+  {
+   "name": "Sharad Kelkar",
+   "aliases": [
+    "Sharad Kelkar"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q7489359",
+   "p18_file": "Sharad Kelkar at Zee Rishtey Awards 2012.jpg",
+   "p18_quality": 447,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Why Yash's Own Kannada Voice Makes His Ravana Land Harder Than the Hindi Dub   <div class=\"key-takeaways\"><ul>\n<li>In Nitesh Tiwari's Ramayana: Part 1 (in cinemas since November 5, in Hindi, Tamil, Telugu, Kannada and Malayalam), Yash plays Ravana — but Hindi audiences hear Sharad Kelkar's voice, while Yash dubbed his own lines for the Kannada version.</li>\n<li>Kelkar told Variety India the team c",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Why Yash\\'s Own Kannada Voice Makes His Ravana Land Harder Than the Hindi Dub   <div class=\"key-takeaways\"><ul>\\n<li>In Nitesh Tiwari\\'s Ramayana: Part 1 (in cinemas since November 5, in Hindi, Tamil, Te'; description: Indian actor & model"
+  },
+  {
+   "name": "Indian Accent",
+   "aliases": [
+    "Indian Accent"
+   ],
+   "type": "building",
+   "wikidata_qid": "Q28178852",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Indian Accent Named India's Top Standalone Restaurant for Fourth Straight Year   <div class=\"key-takeaways\"><ul>\n<li>Indian Accent, New Delhi has been named India's No. 1 standalone restaurant for the fourth consecutive year at the Hospitality Horizon Top 50 Restaurant Awards 2026, PTI reported.</li>\n<li>Its parent, EHV International, took seven of the top 20 places: Indian Accent Mumbai at No. 5,",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Indian Accent Named India\\'s Top Standalone Restaurant for Fourth Straight Year   <div class=\"key-takeaways\"><ul>\\n<li>Indian Accent, New Delhi has been named India\\'s No. 1 standalone restaurant for the'; description: restaurant in New Delhi, India"
+  },
+  {
+   "name": "Four Seasons Hotels and Resorts",
+   "aliases": [
+    "Four Seasons Hotel",
+    "Four Seasons Hotels and Resorts",
+    "Four Seasons Hotels Limited",
+    "Four Seasons Hotels",
+    "Four Seasons"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q1424786",
+   "p18_file": "Ferrari, Hôtel George V, Paris August 2014.jpg",
+   "p18_quality": 4747,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Indian Accent Named India's Top Standalone Restaurant for Fourth Straight Year   <div class=\"key-takeaways\"><ul>\n<li>Indian Accent, New Delhi has been named India's No. 1 standalone restaurant for the fourth consecutive year at the Hospitality Horizon Top 50 Restaurant Awards 2026, PTI reported.</li>\n<li>Its parent, EHV International, took seven of the top 20 places: Indian Accent Mumbai at No. 5,",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Indian Accent Named India\\'s Top Standalone Restaurant for Fourth Straight Year   <div class=\"key-takeaways\"><ul>\\n<li>Indian Accent, New Delhi has been named India\\'s No. 1 standalone restaurant for the'; description: Canadian luxury hotel and resort company"
+  },
+  {
+   "name": "Cairo",
+   "aliases": [
+    "Cairo",
+    "Qahira",
+    "Cairo, Egypt",
+    "ghahere"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q85",
+   "p18_file": "Cairo Skyline (2020).jpg",
+   "p18_quality": 1150,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "India-Egypt Trade at $6.5 Billion Is 'Just a Beginning,' Goyal Says in Cairo   <div class=\"key-takeaways\"><ul>\n<li>Commerce Minister Piyush Goyal told an Indian community event in Cairo that India-Egypt bilateral trade of about $6.5 billion in 2025-26 is \"just a beginning,\" urging a much bigger two-way partnership in goods, services and investment.</li>\n<li>India exported $3.87 billion of goods to",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'India-Egypt Trade at $6.5 Billion Is \\'Just a Beginning,\\' Goyal Says in Cairo   <div class=\"key-takeaways\"><ul>\\n<li>Commerce Minister Piyush Goyal told an Indian community event in Cairo that India-Egy'; description: capital city of Egypt"
+  },
+  {
+   "name": "Brent Crude",
+   "aliases": [
+    "Brent crude",
+    "Brent Crude"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1270246",
+   "p18_file": "North Sea Oil IMG 0569 Ekofisk.JPG",
+   "p18_quality": 1260,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Foreign Investors Pump ₹84,290 Crore Into Indian Stocks in November's First Fortnight FOREIGN INVESTORS PUMP ₹84,290 CRORE INTO INDIAN STOCKS Foreign portfolio investors put a net ₹84,290 crore into Indian equities between November 2 and 13, reversing two straight months of outflows, depository data reported by PTI shows. FPIs remain net sellers for 2026 overall, despite the inflow. Financials, te",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: \"Foreign Investors Pump ₹84,290 Crore Into Indian Stocks in November's First Fortnight FOREIGN INVESTORS PUMP ₹84,290 CRORE INTO INDIAN STOCKS Foreign portfolio investors put a net ₹84,290 crore into I\"; description: classification of sweet light crude oil that serves as a major benchmark price for purchases of oil worldwide"
   }
  ]
 }

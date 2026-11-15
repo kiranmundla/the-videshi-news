@@ -1,0 +1,410 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "anita-somani-third-term-ohio-house-7079-percent",
+ "article_slug": "anita-somani-third-term-ohio-house-7079-percent",
+ "article_id": "db90f4fb-e5b7-4bdc-aa62-04f4061ca248",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-13-anita-somani-third-term-ohio-house-7079-percent/output-v2/anita-somani-third-term-ohio-house-7079-percent.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://americanbazaaronline.com/wp-content/uploads/2026/11/anita-somani.jpg",
+  "local_path": "reel-runs/2026-11-13-anita-somani-third-term-ohio-house-7079-percent/output-v2/hero.jpg",
+  "width": 2048,
+  "height": 1366,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.93)",
+  "has_face": true,
+  "box_source": [
+   902,
+   434,
+   180,
+   227
+  ],
+  "box_bg": [
+   453,
+   333,
+   73,
+   92
+  ],
+  "chin_bg": 425,
+  "anchor": [
+   0.485,
+   0.401
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   556
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 984,
+   "block_bottom": 1347,
+   "text_bbox": [
+    70,
+    984,
+    930,
+    1347
+   ],
+   "texts": [
+    "Nri World",
+    "ANITA SOMANI WINS THIRD OHIO HOUSE TERM"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.407,
+    "photo_px": [
+     2048,
+     1366
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.4072265625,
+     "window": [
+      0,
+      0,
+      2048,
+      1365
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.41x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 338,
+   "block_top": 1242,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1242,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Dr Anita Somani, an Indian American obstetrician-gynecologist, won re-election to the Ohio House of Representatives with 70.79% of the vote, defeating Republican Kelly Hunter-Kalagidis by 20,738 votes in District 8."
+   ],
+   "v7": {
+    "image_source": "extra:ohio-house-of-representatives-2018b",
+    "track": "full-bleed",
+    "render_scale": 0.556,
+    "photo_px": [
+     4608,
+     3456
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5555555555555556,
+     "window": [
+      804,
+      0,
+      2748,
+      3456
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Ohio House of Representatives Chamber in the Ohio Statehouse in 2018",
+     "route": "identity \u2014 Wikidata P18 (Q277228)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Ohio_House_of_Representatives_2018b.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Ohio_House_of_Representatives_2018b.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Antony-22"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "ON THE BALLOT",
+    "70.79%",
+    "Vote share for Anita Somani in District 8"
+   ],
+   "v7": {
+    "image_source": "extra:franklin-county-govt-center-04",
+    "track": "full-bleed",
+    "render_scale": 0.487,
+    "photo_px": [
+     4949,
+     3946
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.486568677141409,
+     "window": [
+      1382,
+      0,
+      3601,
+      3946
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Franklin County Government Center, Columbus, Ohio.",
+     "route": "identity \u2014 Wikidata P18 (Q113237)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Franklin_County_Govt_Center_04.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Franklin_County_Govt_Center_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "\u2c6e"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 698,
+   "block_top": 882,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    882,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "20,738",
+    "Vote margin over Kelly Hunter-Kalagidis in District 8",
+    "81",
+    "Precincts reported in District 8",
+    "64.5%",
+    "Vote share in 2024, up from 56% in 2022"
+   ],
+   "v7": {
+    "image_source": "extra:animal-tracks-cross-the-frozen-olentangy-riv",
+    "track": "full-bleed",
+    "render_scale": 0.48,
+    "photo_px": [
+     6000,
+     4000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.48,
+     "window": [
+      1917,
+      0,
+      4167,
+      4000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Animal tracks cross the frozen Olentangy river north of the North Broadway Ave bridge on January 26th, 2022",
+     "route": "identity \u2014 depicts (P180=Q113237)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Animal_tracks_cross_the_frozen_Olentangy_river_north_of_the_North_Broadway_Ave_bridge_on_January_26th,_2022.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Animal_tracks_cross_the_frozen_Olentangy_river_north_of_the_North_Broadway_Ave_bridge_on_January_26th%2C_2022.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Matthew.kowal"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 1148,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1148,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "A first-generation immigrant from India representing the Columbus area",
+    "An Indian American physician in the Ohio House since 2023"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.556,
+    "photo_px": [
+     4608,
+     3456
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5555555555555556,
+     "window": [
+      804,
+      0,
+      2748,
+      3456
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "Her new two-year term begins in January 2027.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 150.8,
+ "mp4_bytes": 20182415
+}

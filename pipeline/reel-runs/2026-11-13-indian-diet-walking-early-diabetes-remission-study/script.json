@@ -1,0 +1,31 @@
+{
+  "hook_line": "DIET AND WALKS PUT 60.9% IN REMISSION",
+  "hook_stat": {
+    "big": "60.9%",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Estimated remission rate at six months"
+  },
+  "stats": [
+    {
+      "big": "6.27%",
+      "label": "Average HbA1c after, down from 7.32%"
+    },
+    {
+      "big": "4.67 KG",
+      "label": "Average weight lost in six months"
+    }
+  ],
+  "diaspora_bullets": [
+    "Diabetes strikes South Asians earlier, at lower weights",
+    "Walking 80% of days: 8.24 times the odds"
+  ],
+  "key_entities": [
+    "Vedavati Purandare",
+    "A G Unnikrishnan",
+    "Chellaram Hospital"
+  ],
+  "news_summary": "A six-month programme of a traditional Indian diet and daily walking put an estimated 60.9% of adults with early Type 2 diabetes into remission.",
+  "payoff": "Single-arm study: do not change medication without a doctor.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

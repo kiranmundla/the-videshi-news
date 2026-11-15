@@ -1,0 +1,161 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "adyar-ananda-bhavan-a2b-bodhi-tree-180-million-majority-stake",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "A2B Sells Majority Stake to James Murdoch-Backed Bodhi Tree in $180 Million Deal",
+        "numbers": [
+          2.0,
+          180.0,
+          180000000.0
+        ],
+        "entities": [
+          "A2B Sells Majority Stake",
+          "James Murdoch-Backed Bodhi Tree",
+          "Million Deal"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the sale and mentions James Murdoch and the deal amount.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The Chennai vegetarian chain, valued at about $350 million, will use the investment to expand in western India and Europe and modernise its kitchens.",
+        "numbers": [
+          350.0,
+          350000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the valuation and intended use of the investment.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "A2B has sold a majority stake to Bodhi Tree Systems for $180 million, in a transaction valuing the company at approximately $350 million",
+        "numbers": [
+          2.0,
+          180.0,
+          350.0,
+          180000000.0,
+          350000000.0
+        ],
+        "entities": [
+          "Bodhi Tree Systems"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides the sale amount and company valuation.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Uday Shankar, co-founder of Bodhi Tree with James Murdoch, will serve as chairperson of A2B's new board",
+        "numbers": [
+          2.0
+        ],
+        "entities": [
+          "Uday Shankar",
+          "Bodhi Tree",
+          "James Murdoch"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Uday Shankar's role and his association with James Murdoch.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "A2B runs about 160 outlets in India and more than 30 overseas, and reported revenue of about Rs 1,487 crore for the year ended March 2025",
+        "numbers": [
+          2.0,
+          30.0,
+          160.0,
+          1487.0,
+          2025.0,
+          14870000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2025
+          ]
+        },
+        "llm_reason": "The article provides exact numbers for outlets and revenue.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "A2B Sells Majority Stake to James Murdoch-Backed Bodhi Tree in $180 Million Deal",
+        "numbers": [
+          2.0,
+          180.0,
+          180000000.0
+        ],
+        "entities": [
+          "A2B Sells Majority Stake",
+          "James Murdoch-Backed Bodhi Tree",
+          "Million Deal"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000444,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

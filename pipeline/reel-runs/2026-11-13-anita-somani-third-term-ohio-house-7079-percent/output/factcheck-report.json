@@ -1,0 +1,289 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "anita-somani-third-term-ohio-house-7079-percent",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "ANITA SOMANI WINS THIRD OHIO HOUSE TERM",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Somani won her third consecutive term in the Ohio House.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Dr Anita Somani, an Indian American obstetrician-gynecologist, won re-election to the Ohio House of Representatives with 70.79% of the vote, defeating Republican Kelly Hunter-Kalagidis by 20,738 votes in District 8.",
+      "numbers": [
+        8.0,
+        70.79,
+        20738.0
+      ],
+      "entities": [
+        "Dr Anita Somani",
+        "Indian American",
+        "Ohio House",
+        "Republican Kelly Hunter-Kalagidis"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about Somani's win and vote margin are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "70.79%",
+      "numbers": [
+        70.79
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the percentage of votes Somani received.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Vote share for Anita Somani in District 8",
+      "numbers": [
+        8.0
+      ],
+      "entities": [
+        "Anita Somani"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "70.79% is indeed her vote share in District 8.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "ON THE BALLOT",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "20,738",
+      "numbers": [
+        20738.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is the margin by which Somani defeated Hunter-Kalagidis.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Vote margin over Kelly Hunter-Kalagidis in District 8",
+      "numbers": [
+        8.0
+      ],
+      "entities": [
+        "Kelly Hunter-Kalagidis"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the vote margin.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "81",
+      "numbers": [
+        81.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All 81 precincts reported in District 8.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Precincts reported in District 8",
+      "numbers": [
+        8.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states all 81 precincts were reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "64.5%",
+      "numbers": [
+        64.5
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This was Somani's vote share in 2024.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Vote share in 2024, up from 56% in 2022",
+      "numbers": [
+        56.0,
+        2022.0,
+        2024.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2022,
+          2024
+        ]
+      },
+      "llm_reason": "The article confirms these vote shares for 2024 and 2022.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "A first-generation immigrant from India representing the Columbus area",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Somani is described as a first-generation immigrant from India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "An Indian American physician in the Ohio House since 2023",
+      "numbers": [
+        2023.0
+      ],
+      "entities": [
+        "Indian American",
+        "Ohio House"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2023
+        ]
+      },
+      "llm_reason": "Somani has represented parts of Columbus since 2023.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Her new two-year term begins in January 2027.",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article states her new term starts in January 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "ON THE BALLOT",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Anita Somani",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Ohio House of Representatives",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Kelly Hunter-Kalagidis",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Franklin County",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000662,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

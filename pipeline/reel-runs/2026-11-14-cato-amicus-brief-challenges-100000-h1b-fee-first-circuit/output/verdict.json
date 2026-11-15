@@ -1,0 +1,42 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "cato-amicus-brief-challenges-100000-h1b-fee-first-circuit",
+  "name": "cato-amicus-brief-challenges-100000-h1b-fee-first-circuit",
+  "script": "reel-runs/2026-11-14-cato-amicus-brief-challenges-100000-h1b-fee-first-circuit/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000626
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-14-cato-amicus-brief-challenges-100000-h1b-fee-first-circuit/output/supplementary/provenance.json",
+    "own_images": 3,
+    "extras": {
+      "news": "the-troublemaker-panel-at-cato-institute",
+      "hero": "cato-institute-building-march-2013-2"
+    }
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Ilya Somin, First Circuit Appeal) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 5,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "inline:1",
+      "inline:2",
+      "extra:the-troublemaker-panel-at-cato-institute",
+      "extra:cato-institute-building-march-2013-2"
+    ]
+  },
+  "detail": "only 5 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "53b7d091-64f2-42a0-94a2-39863a21891d",
+    "headline": "Gambhir 'Concerned' by India's Batting Collapses After 244-Run Rout in New Zeala",
+    "slug": "gambhir-concerned-india-batting-collapses-new-zealand-odi",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the 244-run defeat by providing context on how it compares to previous losses in ODI history, including the specific matches and their outcomes.",
+        "Include a direct quote from Gautam Gambhir regarding the implications of the batting collapses for the upcoming World Cup, which would provide more depth to his concerns.",
+        "Provide statistics or historical data on India's performance in similar conditions or against New Zealand to enhance the completeness of the analysis."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Gautam Gambhir or the official Indian cricket team account discussing the match or the team's performance for real-time engagement."
+      ]
+    }
+  },
+  {
+    "id": "fcf3ab1e-aa83-43c2-8b18-178b7f411160",
+    "headline": "Traditional Indian Diet and Daily Walks Put 61% of Early Diabetes Patients in Re",
+    "slug": "indian-diet-walking-early-diabetes-remission-study",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the findings by including specific recommendations for individuals with early Type 2 diabetes, such as the exact dietary changes and walking regimen they should consider adopting.",
+        "Provide more context about the study's limitations, particularly the lack of a control group, to help readers understand the reliability of the findings.",
+        "Include a brief explanation of HbA1c levels and their significance in diabetes management for readers who may not be familiar with the terminology.",
+        "Mention the potential broader impact of these findings on public health or diabetes management strategies in India."
+      ],
+      "embed_opportunities": [
+        "Embed a link to the published study in Diabetes and Metabolic Syndrome: Clinical Research and Reviews for readers who want to explore the research further."
+      ]
+    }
+  },
+  {
+    "id": "a8848a69-9e49-46b2-840a-adeb4380b155",
+    "headline": "Harmanpreet Kaur Unveils Wax Statue in Jaipur, Says 171 Knock Changed Women's Cr",
+    "slug": "harmanpreet-kaur-wax-statue-jaipur-171-knock",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the 171-run knock by providing specific details about the match, including the date and opponent, to give readers context about its impact on women's cricket.",
+        "Include direct quotes from Harmanpreet Kaur about her feelings regarding the statue and its significance to enhance emotional engagement and provide a personal touch.",
+        "Add a brief background on the Historica Museum and its mission to highlight why this unveiling is a notable event in the sports community.",
+        "Ensure the article mentions any notable attendees or figures present at the unveiling ceremony to provide a fuller picture of the event."
+      ],
+      "embed_opportunities": [
+        "Embed a video of the unveiling ceremony or Harmanpreet's speech to enhance the reader's experience and provide visual context."
+      ]
+    }
+  },
+  {
+    "id": "98bd50c4-ed6f-4e4a-b2e0-83eaa2be2112",
+    "headline": "Microsoft 365 Outage Rolls Into Second Day, Knocking Out Indian Airlines' Email ",
+    "slug": "microsoft-365-outage-indian-airlines-email-support",
+    "category": "technology",
+    "structural_issues": [
+      "Inline caption names venue 'Mopa Airport' not supported by the image file name (AkasaAir_Mopa.jpg\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the outage by specifying the exact start time on Thursday and the current status as of Friday afternoon, including any updates from Microsoft regarding restoration efforts.",
+        "Include a direct quote from Microsoft regarding the cause of the outage or their response efforts to enhance attribution and provide readers with a clearer understanding of the situation.",
+        "Add specific details about how long customers can expect delays in email responses from the airlines, as well as any alternative contact methods or resources they can use in the meantime.",
+        "Provide context on the potential impact of the outage on airline operations beyond email support, such as any effects on flight bookings or customer service, to give readers a fuller picture of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official Microsoft Twitter account's update regarding the outage to provide readers with real-time information and official communication."
+      ]
+    }
+  },
+  {
+    "id": "0640ac52-fdc1-4e80-9d2b-ce805fda51a7",
+    "headline": "Bihar Teen Who Could Not Afford IIT Coaching Wins Diana Award for Mentoring 25,0",
+    "slug": "bihar-teen-adarsh-kumar-diana-award-skillzo",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events: Include specific dates regarding when Kumar founded Skillzo, when he received The Diana Award, and any relevant milestones in between to provide a clearer context of his journey.",
+        "Provide more details about the Diana Award: Include information about the criteria for receiving the award and its significance to enhance the reader's understanding of its importance.",
+        "Add a quote from Kumar or a mentor: Including a direct quote from Kumar about his experience or the impact of Skillzo would add a personal touch and depth to the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official Diana Award announcement or tweet about Kumar's recognition to provide readers with a verified source and additional context."
+      ]
+    }
+  },
+  {
+    "id": "9af4ebbe-b5ee-451a-b0c2-3d6fd2c95f7f",
+    "headline": "Kerala Seafarer Stranded in Iran Gets Emergency Certificate, Set to Return Home",
+    "slug": "kerala-seafarer-akshay-harish-emergency-certificate-iran-return",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date when Akshay Harish was disembarked from the vessel, as well as the date he applied for the emergency certificate. This will provide readers with a clearer understanding of the urgency and efficiency of the response.",
+        "Include specific details about the emergency certificate, such as its validity period or any conditions attached to it, to give readers a better understanding of what it entails for Harish's return.",
+        "Provide additional context about the role of the Indian consulate in such cases, including any typical processes or timelines for issuing emergency certificates, which could help readers understand the broader implications for stranded seafarers."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the Ministry of External Affairs regarding this case to enhance credibility and provide direct access to official information."
+      ]
+    }
+  }
+]

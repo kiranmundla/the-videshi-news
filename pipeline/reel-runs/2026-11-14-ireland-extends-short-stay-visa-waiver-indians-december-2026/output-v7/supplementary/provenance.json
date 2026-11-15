@@ -1,0 +1,178 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ireland-extends-short-stay-visa-waiver-indians-december-2026",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Ireland",
+    "India",
+    "United Kingdom",
+    "Short-Stay",
+    "Visa",
+    "Waiver"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Short-Stay' named 'outpatient surgery', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Visa' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Waiver' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "File:000 Irlanda harta.PNG",
+      "route": "identity \u2014 Wikidata P18 (Q27)",
+      "verdict": "rejected",
+      "reason": "resolution: 330x355 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:17. Ballyloughan Castle, Co. Carlow.jpg",
+      "route": "identity \u2014 depicts (P180=Q27)",
+      "verdict": "USED (hero)",
+      "reason": "2448x3264, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2018-06-13 North Bull Lighthouse in Dublin Bay, Ireland.jpg",
+      "route": "identity \u2014 depicts (P180=Q27)",
+      "verdict": "USED (news)",
+      "reason": "5748x3837, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:India-locator-map-blank.svg",
+      "route": "identity \u2014 Wikidata P18 (Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:A villain performing in Dashavatara folk theatre.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Aerial photograph of the Himalayas, Ladakh 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Ambigram India Nepal (gray and beige) - animated.gif",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "USED (grid)",
+      "reason": "3600x2400, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Close wing position of Papilio nephelus Boisduval, 1836 \u2013 Yellow Helen.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "accepted",
+      "reason": "2000x1500, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Palace of Westminster from the dome on Methodist Central Hall.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q145)",
+      "verdict": "accepted",
+      "reason": "7888x5259, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "2018-06-13-north-bull-lighthouse-in-dublin-b",
+      "path": "2018-06-13-north-bull-lighthouse-in-dublin-b.jpg",
+      "size": [
+        5748,
+        3837
+      ],
+      "role": "establishing",
+      "subject": "North Bull Lighthouse in Dublin Bay on the approach to Dublin Harbor, Ireland on May 11, 2018.",
+      "route": "identity \u2014 depicts (P180=Q27)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:2018-06-13_North_Bull_Lighthouse_in_Dublin_Bay,_Ireland.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/2018-06-13_North_Bull_Lighthouse_in_Dublin_Bay%2C_Ireland.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Gordon Leggett",
+      "entity": "Ireland",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Ireland",
+        "Republic of Ireland",
+        "Southern Ireland",
+        "Irish Republic"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "17-ballyloughan-castle-co-carlow",
+      "path": "17-ballyloughan-castle-co-carlow.jpg",
+      "size": [
+        2448,
+        3264
+      ],
+      "role": "establishing",
+      "subject": "Ballyloughan Castle",
+      "route": "identity \u2014 depicts (P180=Q27)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:17._Ballyloughan_Castle,_Co._Carlow.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/17._Ballyloughan_Castle%2C_Co._Carlow.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "VisionsofthePast",
+      "entity": "Ireland",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Ireland",
+        "Republic of Ireland",
+        "Southern Ireland",
+        "Irish Republic"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "close-wing-position-of-loxura-atymnus-stoll",
+      "path": "close-wing-position-of-loxura-atymnus-stoll.jpg",
+      "size": [
+        3600,
+        2400
+      ],
+      "role": "establishing",
+      "subject": "This picture was taken during the project Wiki Loves Butterfly in Chintamoni Kar Bird Sanctuary,Kolkata,West Bengal,India.Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly. Subspecies: Loxura atymnus continentalis Fruhstorfer, 1912",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Close_wing_position_of_Loxura_atymnus_Stoll,_1780_%E2%80%93_Yamfly.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Close_wing_position_of_Loxura_atymnus_Stoll%2C_1780_%E2%80%93_Yamfly.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 3.0",
+      "artist": "Atudu",
+      "entity": "India",
+      "entity_type": "other",
+      "entity_aliases": [
+        "India",
+        "Republic of India",
+        "Bharatvarsh",
+        "Hindustan",
+        "Bharata",
+        "Hindoostan",
+        "Indostan",
+        "Bharat Ganarajya",
+        "Al Hind",
+        "Tianzhu",
+        "Tenjiku"
+      ]
+    }
+  ]
+}

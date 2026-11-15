@@ -1,0 +1,177 @@
+[
+  {
+    "id": "83afcdaf-d191-4612-afa3-33da4bf9d9e7",
+    "headline": "Mookuthi Amman 2: Critics Say Nayanthara's Star Power Can't Save This Overstuffe",
+    "slug": "mookuthi-amman-2-review-roundup-critics",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Include specific quotes from critics to enhance attribution and provide direct insights into their reviews.",
+        "Add a brief summary of the original Mookuthi Amman to provide context for readers unfamiliar with the first film.",
+        "Clarify the film's release date and any box office performance metrics to give readers a sense of its commercial impact.",
+        "Consider restructuring the article to separate the praise for Nayanthara's performance from the criticisms of the screenplay for clearer readability."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a prominent film critic or a review aggregator to provide real-time reactions and ratings."
+      ]
+    }
+  },
+  {
+    "id": "205be941-e28e-45f8-96d4-270f085be2af",
+    "headline": "Claude Login Outage Locked Users Out for Two Hours Friday",
+    "slug": "anthropic-claude-login-outage-november-13",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by providing specific timestamps for when the issues began and when the fix was deployed, ensuring readers can easily follow the sequence of events.",
+        "Include a brief explanation of the potential impact of the outage on users, such as how it may have affected their access to services or any specific user complaints that were reported during the outage.",
+        "Add a quote or statement from Anthropic regarding the incident, if available, to provide attribution and context around the company's response to the outage."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Anthropic's official account regarding the outage or their status updates to provide real-time information and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "a040974d-2f7c-40c8-9c5f-3d54cdc7310f",
+    "headline": "WHO Classifies El Ni\u00f1o Health Impacts Emergency, Flags India High Risk",
+    "slug": "who-el-nino-health-emergency-india-high-risk",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the El Ni\u00f1o phenomenon and its expected impacts on India, including specific dates for when these health risks are anticipated to peak.",
+        "Provide more detailed statistics or data regarding the projected increase in diseases like dengue and malaria, such as expected case numbers or historical comparisons to give readers a clearer understanding of the potential impact.",
+        "Include a direct quote or statement from the WHO or WMO to enhance attribution and provide authoritative context to the claims made in the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official WHO statement or report regarding the classification of El Ni\u00f1o as a health emergency to provide readers with direct access to the source of information."
+      ]
+    }
+  },
+  {
+    "id": "2179f50e-3a9a-4faa-8da6-52de82e4127d",
+    "headline": "US Immigration Curbs Could Cost Economy $668 Billion, Study Estimates",
+    "slug": "us-immigration-curbs-cost-668-billion-nfap-study",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the distinction between the estimated economic impact of a decrease versus an increase in international STEM graduate students. The article should explicitly state that the $668 billion figure represents potential losses or gains based on hypothetical scenarios, not actual current losses.",
+        "Include a brief summary of the key findings of the study, such as the specific implications for U.S. companies and the job market, to provide readers with a clearer understanding of the stakes involved.",
+        "Provide a clearer explanation of the current immigration landscape, including any existing restrictions or policies that could lead to the projected decrease in international students, to give context to the study's findings.",
+        "Revise the headline to be more specific and compelling, such as 'Study Predicts $668 Billion Economic Impact from Potential Drop in International STEM Students Due to U.S. Immigration Curbs.' This would better capture the essence of the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official NFAP report or a relevant tweet from NFAP summarizing the study's findings to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "164a9dc6-cfb2-4294-a77d-1ac59a77e864",
+    "headline": "Air India Extends Saudi Suspensions: Riyadh, Dammam to November 30",
+    "slug": "air-india-saudi-suspensions-riyadh-dammam-november-30-jeddah-november-21",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the reason for the extended suspensions beyond the vague 'prevailing situation in the region' to provide readers with a better understanding of the context and implications.",
+        "Ensure that the dates mentioned for rescheduling and refunds are consistent throughout the article, as there seems to be confusion with the year (2026 instead of 2023).",
+        "Include a direct quote from the airline's official announcement to enhance attribution and credibility of the information provided."
+      ],
+      "embed_opportunities": [
+        "Embed the official Air India announcement from their Newsroom for readers to access the primary source directly."
+      ]
+    }
+  },
+  {
+    "id": "66816769-48e8-4a7b-b87d-c4431e2a0d59",
+    "headline": "Sensex Diwali Rally Faces Test Beyond Festive Sentiment, Analysts Say",
+    "slug": "sensex-diwali-rally-hold-history-flows-earnings-test",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the 8.78% rise by providing specific dollar or rupee amounts to illustrate what this means for average investors or the market overall.",
+        "Include a brief summary of the key factors that analysts believe will influence the Sensex in the coming weeks, such as foreign buying trends and crude oil prices, to give readers a clearer understanding of what to watch for.",
+        "Add a comparison of the current market situation to previous years' performance during Diwali to provide context for the current rally and potential future movements."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or a market expert discussing the implications of the Sensex performance post-Diwali."
+      ]
+    }
+  },
+  {
+    "id": "db3a7cc8-5ded-4de3-baeb-65447091b5b9",
+    "headline": "Man Dies After Biting Explosive Handed to Him as Rasgulla Sweet",
+    "slug": "man-dies-explosive-handed-as-rasgulla-dindori-madhya-pradesh",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date of the incident, as the article mentions 'Tuesday, November 10' but does not provide the year, which could lead to confusion.",
+        "Include direct quotes from police or eyewitnesses to enhance attribution and provide a more vivid account of the incident. This would add depth and credibility to the reporting.",
+        "Provide additional context about the use of such explosives in rural communities, including any relevant statistics or previous incidents, to help readers understand the seriousness and implications of the event.",
+        "Ensure that the article clearly states the current legal status of the two men who have been held, including any charges they face and the next steps in the investigation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a local news outlet or police department regarding the incident to provide real-time updates and official statements."
+      ]
+    }
+  },
+  {
+    "id": "0468bf08-4770-494e-b392-9af3ab879cc7",
+    "headline": "Delhi Air Turns Severe as Outdoor Workers Bear Brunt of Smog",
+    "slug": "delhi-air-severe-outdoor-workers-smog-aqi-403",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date mentioned in the article. The headline states November 13, but the body mentions it as a Friday without a year. Ensure the date is consistent and clear to avoid confusion.",
+        "Include specific health statistics or recommendations from health authorities regarding the impact of severe air quality on outdoor workers. For example, mention any guidelines on how long outdoor exposure should be limited or specific symptoms to watch for.",
+        "Provide a brief context on the historical trends of air quality in Delhi during this time of year. This could help readers understand the severity of the situation and its implications.",
+        "Consider adding a quote from a health expert or a government official regarding the current air quality situation and its impact on public health to enhance credibility and provide authoritative insight."
+      ],
+      "embed_opportunities": [
+        "Embed the official CPCB tweet or bulletin regarding the AQI levels for November 13 to provide readers with direct access to the source of the data."
+      ]
+    }
+  },
+  {
+    "id": "ee26485a-5034-43fc-b12f-0e845ec053c3",
+    "headline": "Dhurandhar Opens Indian Panorama as IFFI Goa Unveils 2026 Programme",
+    "slug": "dhurandhar-opens-indian-panorama-iffi-goa-2026-programme",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the year of the festival in the headline and throughout the article to avoid confusion, as the current headline suggests it is happening in the past.",
+        "Include a direct quote from a key figure at the press conference, such as the festival director or the Goa Chief Minister, to enhance attribution and provide a personal touch to the announcement.",
+        "Add specific details about ticket purchasing, such as when tickets will go on sale and how attendees can secure them, to provide actionable information for readers planning to attend.",
+        "Provide context about the significance of the films being screened, particularly the opening and closing films, to enhance completeness and give readers a better understanding of the festival's cultural impact."
+      ],
+      "embed_opportunities": [
+        "Embed the official IFFI social media announcement or a relevant tweet to provide readers with direct access to the source of the information."
+      ]
+    }
+  }
+]

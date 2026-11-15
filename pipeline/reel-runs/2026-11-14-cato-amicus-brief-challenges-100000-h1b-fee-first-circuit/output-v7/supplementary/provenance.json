@@ -1,0 +1,109 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "cato-amicus-brief-challenges-100000-h1b-fee-first-circuit",
+  "trigger": {
+    "own_images": 3,
+    "target_distinct": 5,
+    "extras_needed": 2
+  },
+  "entities": [
+    "Cato Institute",
+    "Ilya Somin",
+    "H-1B",
+    "First Circuit",
+    "Cato",
+    "First Circuit Appeal"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'H-1B' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'First Circuit Appeal' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Cato Institute building March 2013 2.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1051256)",
+      "verdict": "USED (hero)",
+      "reason": "3000x4000, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:\"The Troublemaker\" panel at Cato Institute.jpg",
+      "route": "identity \u2014 depicts (P180=Q1051256)",
+      "verdict": "USED (news)",
+      "reason": "4080x3072, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Ilya Somin Exploring Liberty lecture.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q15429966)",
+      "verdict": "rejected",
+      "reason": "resolution: 907x1070 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ilya Somin Speaking at GULC (2026) (1).jpg",
+      "route": "identity \u2014 depicts (P180=Q15429966)",
+      "verdict": "accepted",
+      "reason": "8256x5504, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Ilya Somin Speaking at GULC (2026) (2).jpg",
+      "route": "identity \u2014 depicts (P180=Q15429966)",
+      "verdict": "accepted",
+      "reason": "5504x5504, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "the-troublemaker-panel-at-cato-institute",
+      "path": "the-troublemaker-panel-at-cato-institute.jpg",
+      "size": [
+        4080,
+        3072
+      ],
+      "role": "establishing",
+      "subject": "\"The Troublemaker: How Jimmy Lai Became a Billionaire, Hong Kong\u2019s Greatest Dissident, and China\u2019s Most Feared Critic\" panel at the Cato Institute in Washington, D.C., featuring (from left) Ian V\u00e1squez, Vice President for International Stud",
+      "route": "identity \u2014 depicts (P180=Q1051256)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:%22The_Troublemaker%22_panel_at_Cato_Institute.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/%22The_Troublemaker%22_panel_at_Cato_Institute.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Sdkb",
+      "entity": "Cato Institute",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Cato Institute",
+        "Cato Foundation",
+        "The Cato Institute"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "cato-institute-building-march-2013-2",
+      "path": "cato-institute-building-march-2013-2.jpg",
+      "size": [
+        3000,
+        4000
+      ],
+      "role": "establishing",
+      "subject": "Taken during the March 2013 Wikimedia Cato Meetup/Legislative Data Workshop.",
+      "route": "identity \u2014 Wikidata P18 (Q1051256)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Cato_Institute_building_March_2013_2.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Cato_Institute_building_March_2013_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 3.0",
+      "artist": "Tedder",
+      "entity": "Cato Institute",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Cato Institute",
+        "Cato Foundation",
+        "The Cato Institute"
+      ]
+    }
+  ]
+}

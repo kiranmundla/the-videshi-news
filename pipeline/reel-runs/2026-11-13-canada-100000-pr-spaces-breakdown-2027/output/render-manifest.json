@@ -1,0 +1,401 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "canada-100000-pr-spaces-breakdown-2027",
+ "article_slug": "canada-100000-pr-spaces-breakdown-2027",
+ "article_id": "fe08bfd6-3f70-476d-837f-37736b6daa75",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-13-canada-100000-pr-spaces-breakdown-2027/output/canada-100000-pr-spaces-breakdown-2027.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/1280px-Flag_of_Canada_%28Pantone%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-11-13-canada-100000-pr-spaces-breakdown-2027/output/hero.png",
+  "width": 1280,
+  "height": 640,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.500,0.484) damped=(0.500,0.492)",
+  "has_face": false,
+  "box_source": [
+   282,
+   174,
+   716,
+   256
+  ],
+  "box_bg": [
+   270,
+   269,
+   467,
+   167
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.499,
+   0.312
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   417
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 637,
+   "zone_h": 919,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 915,
+   "block_bottom": 1278,
+   "text_bbox": [
+    70,
+    915,
+    930,
+    1278
+   ],
+   "texts": [
+    "Immigration",
+    "CANADA ADDS 100,000 PR SPACES FOR 2027"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1280,
+     640
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 417,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      0,
+      1280,
+      640
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.00x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 1157,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1157,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Canada has detailed up to 100,000 additional permanent residence spaces for 2027, for people already in Canada who have already applied."
+   ],
+   "v7": {
+    "image_source": "extra:nasa-astronaut-scott-kelly-took-this-aurora",
+    "track": "full-bleed",
+    "render_scale": 0.585,
+    "photo_px": [
+     4928,
+     3280
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5853658536585366,
+     "window": [
+      1462,
+      0,
+      3307,
+      3280
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "NASA astronaut Scott Kelly took this aurora image over Canada on Jan. 21, 2016",
+     "route": "identity \u2014 Wikidata P18 (Q16)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:NASA_astronaut_Scott_Kelly_took_this_aurora_image_over_Canada_on_Jan._21,_2016_01.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/NASA_astronaut_Scott_Kelly_took_this_aurora_image_over_Canada_on_Jan._21%2C_2016_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "NASA"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "100,000",
+    "Extra permanent residence spaces detailed for 2027"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.585,
+    "photo_px": [
+     4928,
+     3280
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5853658536585366,
+     "window": [
+      1462,
+      0,
+      3307,
+      3280
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 637,
+   "zone_h": 919,
+   "scale": 1.0,
+   "content_h": 500,
+   "block_top": 846,
+   "block_bottom": 1346,
+   "text_bbox": [
+    70,
+    846,
+    930,
+    1346
+   ],
+   "texts": [
+    "By The Numbers",
+    "45,000",
+    "Spouses and children of Canadians",
+    "32,000",
+    "Hongkonger pathway admissions expected"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.741,
+    "photo_px": [
+     1280,
+     640
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 417,
+     "scale": 0.7406749555950266,
+     "window": [
+      75,
+      0,
+      1201,
+      563
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.00x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1211,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1211,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "All spaces are for people already in Canada",
+    "No new application needed to be considered"
+   ],
+   "v7": {
+    "image_source": "extra:2016-09-rue-price-chicoutimi-02",
+    "track": "full-bleed",
+    "render_scale": 0.493,
+    "photo_px": [
+     5836,
+     3891
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.49344641480339246,
+     "window": [
+      1791,
+      0,
+      3979,
+      3891
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Price road in Chicoutimi , Quebec, Canada.",
+     "route": "identity \u2014 depicts (P180=Q16)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:2016-09_Rue_Price_Chicoutimi_02.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/2016-09_Rue_Price_Chicoutimi_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "0x010C"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "IRCC says applicants do not need to take any action to be considered for faster processing.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 138.0,
+ "mp4_bytes": 13558611
+}

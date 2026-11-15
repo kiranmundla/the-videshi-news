@@ -1,0 +1,239 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "adyar-ananda-bhavan-a2b-bodhi-tree-180-million-majority-stake",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "A2B SELLS MAJORITY STAKE TO BODHI TREE",
+      "numbers": [
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states A2B sold a majority stake to Bodhi Tree.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Adyar Ananda Bhavan, known as A2B, has sold a majority stake to Bodhi Tree Systems for $180 million, in a transaction valuing the Chennai-based chain at approximately $350 million.",
+      "numbers": [
+        2.0,
+        180.0,
+        350.0,
+        180000000.0,
+        350000000.0
+      ],
+      "entities": [
+        "Adyar Ananda Bhavan",
+        "Bodhi Tree Systems"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about the sale and valuation are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$180 MILLION",
+      "numbers": [
+        180.0,
+        180000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$180 million is the amount stated for the majority stake sale.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Majority stake sale to Bodhi Tree Systems",
+      "numbers": [],
+      "entities": [
+        "Bodhi Tree Systems"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the majority stake sale to Bodhi Tree Systems.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$350 MILLION",
+      "numbers": [
+        350.0,
+        350000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the valuation of A2B is approximately $350 million.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Approximate valuation of A2B in the deal",
+      "numbers": [
+        2.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The valuation of A2B at $350 million is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "160",
+      "numbers": [
+        160.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states A2B operates about 160 outlets in India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Outlets in India, with more than 30 overseas",
+      "numbers": [
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms A2B has 160 outlets in India and over 30 overseas.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Investment funds expansion in western India and Europe",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the investment will fund expansion into these regions.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Uday Shankar will chair A2B's new board",
+      "numbers": [
+        2.0
+      ],
+      "entities": [
+        "Uday Shankar"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Uday Shankar will chair the new board.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The money will fund expansion into western India and Europe.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article explicitly states this use of the investment.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Adyar Ananda Bhavan",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Bodhi Tree Systems",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "James Murdoch",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Uday Shankar",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000568,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

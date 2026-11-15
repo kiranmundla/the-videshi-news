@@ -1,0 +1,174 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "india-tb-mortality-down-38-percent-who-report",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "India TB Mortality Falls 38 Percent Since 2015, WHO Report Finds",
+        "numbers": [
+          38.0,
+          2015.0
+        ],
+        "entities": [
+          "India TB Mortality Falls",
+          "Percent Since",
+          "WHO Report Finds"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2015
+          ]
+        },
+        "llm_reason": "The article states India's TB mortality fell 38% since 2015 according to WHO.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "India's TB death rate fell to 18 per lakh in 2025, down from 28 per lakh in 2015, with a 94% treatment success rate.",
+        "numbers": [
+          18.0,
+          28.0,
+          94.0,
+          2015.0,
+          2025.0
+        ],
+        "entities": [
+          "India's TB"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2015,
+            2025
+          ]
+        },
+        "llm_reason": "The article provides these exact figures for TB death rates and treatment success.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "India recorded a 38% decline in tuberculosis mortality since 2015, compared with a global decline of 35%",
+        "numbers": [
+          35.0,
+          38.0,
+          2015.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2015
+          ]
+        },
+        "llm_reason": "The article confirms India's 38% decline and global 35% decline in TB mortality.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "India's TB mortality rate fell from 28 per lakh in 2015 to 18 per lakh in 2025",
+        "numbers": [
+          18.0,
+          28.0,
+          2015.0,
+          2025.0
+        ],
+        "entities": [
+          "India's TB"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2015,
+            2025
+          ]
+        },
+        "llm_reason": "The article states these exact mortality rates for India.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Treatment success among patients with drug-susceptible TB was 94%",
+        "numbers": [
+          94.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions a 94% treatment success rate for drug-susceptible TB.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "India TB Mortality Falls 38 Percent Since 2015, WHO Report Finds",
+        "numbers": [
+          38.0,
+          2015.0
+        ],
+        "entities": [
+          "India TB Mortality Falls",
+          "Percent Since",
+          "WHO Report Finds"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2015
+          ]
+        },
+        "llm_reason": "This claim is identical to the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.00047,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

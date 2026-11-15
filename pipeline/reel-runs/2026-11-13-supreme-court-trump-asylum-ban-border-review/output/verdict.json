@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "supreme-court-trump-asylum-ban-border-review",
+  "name": "supreme-court-trump-asylum-ban-border-review",
+  "script": "reel-runs/2026-11-13-supreme-court-trump-asylum-ban-border-review/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "news_summary"
+    ],
+    "llm_cost_usd": 0.00057
+  }
+}

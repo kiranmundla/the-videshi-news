@@ -1,0 +1,50 @@
+{
+  "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+  "story": "ireland-extends-short-stay-visa-waiver-indians-december-2026",
+  "scenes": [
+    {
+      "path": "stock-8372622.jpg",
+      "size": [
+        6016,
+        4016
+      ],
+      "pexels_id": 8372622,
+      "page": "https://www.pexels.com/photo/white-and-green-box-on-white-textile-8372622/",
+      "photographer": "Leeloo The First",
+      "query": "passport travel documents flat lay",
+      "beat": "diaspora",
+      "alt": "Flat lay of travel essentials including a passport, map, smartphone, and pop camera.",
+      "sha256": "563c4c70db2bf8bb7010a1984e63b08bee5b3a1c92e03f12de312df48cf8b6bf",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-20083843.jpg",
+      "size": [
+        6000,
+        4000
+      ],
+      "pexels_id": 20083843,
+      "page": "https://www.pexels.com/photo/jama-masjid-in-delhi-india-20083843/",
+      "photographer": "Ranjeet  Chauhan",
+      "query": "India landmark",
+      "beat": "payoff",
+      "alt": "A stunning view of Jama Masjid in Delhi at dusk, showcasing Mughal architecture and vibrant evening sky.",
+      "sha256": "1bd53a14876615f0ca10be4494bd7fd20b3d8c727be35e19e570333fe56d84c1",
+      "license": "Pexels License (free use); credited in the reel footer"
+    }
+  ],
+  "rejected": [
+    {
+      "candidate": "pexels 8830672",
+      "reason": "signage screen: alt text carries off-topic content (vaccination) the story is not about"
+    },
+    {
+      "candidate": "pexels 8830672",
+      "reason": "signage screen: alt text carries off-topic content (vaccination) the story is not about"
+    },
+    {
+      "candidate": "pexels 8372664",
+      "reason": "signage screen: alt text carries off-topic content (covid) the story is not about"
+    }
+  ]
+}

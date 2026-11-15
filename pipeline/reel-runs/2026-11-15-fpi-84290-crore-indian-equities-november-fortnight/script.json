@@ -1,0 +1,36 @@
+{
+  "hook_line": "FOREIGN INVESTORS PUMP ₹84,290 CRORE INTO INDIAN STOCKS",
+  "hook_stat": {
+    "big": "₹84,290 CRORE",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Net FPI buying in Indian equities, November 2-13"
+  },
+  "stats": [
+    {
+      "big": "₹70,704 CRORE",
+      "label": "Withdrawn in September and October before the reversal"
+    },
+    {
+      "big": "13%",
+      "label": "First-week drop in Brent crude to about $97 a barrel"
+    },
+    {
+      "big": "₹2.1 LAKH CRORE",
+      "label": "Cumulative 2026 FPI outflow, down from nearly ₹3 lakh crore"
+    }
+  ],
+  "diaspora_bullets": [
+    "Financials, telecom and pharmaceuticals led the buying",
+    "Strategists call the turn tactical, not yet structural"
+  ],
+  "key_entities": [
+    "Foreign portfolio investors",
+    "Vedant Gupte",
+    "Trackk",
+    "Brent crude"
+  ],
+  "news_summary": "Foreign portfolio investors put a net ₹84,290 crore into Indian equities between November 2 and 13, reversing two straight months of outflows, depository data reported by PTI shows.",
+  "payoff": "FPIs remain net sellers for 2026 overall, despite the inflow.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

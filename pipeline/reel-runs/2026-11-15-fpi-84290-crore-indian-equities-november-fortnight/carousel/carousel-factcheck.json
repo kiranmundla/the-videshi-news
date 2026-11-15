@@ -1,0 +1,184 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "fpi-84290-crore-indian-equities-november-fortnight",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Foreign Investors Pump \u20b984,290 Crore Into Indian Stocks in November's First Fortnight",
+        "numbers": [
+          84290.0,
+          842900000000.0
+        ],
+        "entities": [
+          "Foreign Investors Pump",
+          "Crore Into Indian Stocks",
+          "November's First Fortnight"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states FPIs invested \u20b984,290 crore in November's first fortnight.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "After pulling \u20b970,704 crore out in September and October, FPIs returned in nine straight sessions \u2014 but strategists call the turn tactical, not structural.",
+        "numbers": [
+          70704.0,
+          707040000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions withdrawals and describes the return as tactical.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Foreign portfolio investors put a net \u20b984,290 crore into Indian equities between November 2 and 13, reversing two straight months of outflows",
+        "numbers": [
+          2.0,
+          13.0,
+          84290.0,
+          842900000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the net investment and the reversal of outflows.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "FPIs had withdrawn \u20b934,843 crore in October and \u20b935,861 crore in September, and cumulative outflows for 2026 narrowed to about \u20b92.1 lakh crore",
+        "numbers": [
+          2.1,
+          2026.0,
+          34843.0,
+          35861.0,
+          210000.0,
+          348430000000.0,
+          358610000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "The article provides exact withdrawal amounts and cumulative outflow figures.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Brent crude fell about 13% in the first week of November to nearly $97 a barrel, and financials, telecom and pharmaceuticals led the buying",
+        "numbers": [
+          13.0,
+          97.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the crude price drop and sectors leading the buying.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Vedant Gupte",
+        "numbers": [],
+        "entities": [
+          "Vedant Gupte"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Vedant Gupte is mentioned in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Co-Founder and CEO, Trackk",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Vedant Gupte as Co-Founder and CEO of Trackk.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Foreign Investors Pump \u20b984,290 Crore Into Indian Stocks in November's First Fortnight",
+        "numbers": [
+          84290.0,
+          842900000000.0
+        ],
+        "entities": [
+          "Foreign Investors Pump",
+          "Crore Into Indian Stocks",
+          "November's First Fortnight"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000548,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

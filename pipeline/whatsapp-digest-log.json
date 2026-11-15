@@ -358,5 +358,25 @@
     "quick_hit_count": 5,
     "deadline_count": 2,
     "chars": 2604
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-13T15:13:05.202613+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 13 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "suriya-three-200-crore-grossers-single-year-record",
+    "quick_hit_count": 5,
+    "deadline_count": 2,
+    "chars": 2419
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-14T15:13:12.759028+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 14 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "janakpur-dham-ayodhya-weekly-train-service-604-km",
+    "quick_hit_count": 5,
+    "deadline_count": 2,
+    "chars": 2544
   }
 ]

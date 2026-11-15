@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ramayana-record-second-friday-box-office-hindi-second-biggest",
+  "name": "ramayana-record-second-friday-box-office-hindi-second-biggest",
+  "script": "reel-runs/2026-11-14-ramayana-record-second-friday-box-office-hindi-second-biggest/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "payoff"
+    ],
+    "llm_cost_usd": 0.000639
+  }
+}

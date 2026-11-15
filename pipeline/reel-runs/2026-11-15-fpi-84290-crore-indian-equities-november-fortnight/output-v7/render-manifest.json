@@ -1,0 +1,396 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "fpi-84290-crore-indian-equities-november-fortnight",
+ "article_slug": "fpi-84290-crore-indian-equities-november-fortnight",
+ "article_id": "a112aca8-b245-4e3a-af14-826ebadaeec3",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-15-fpi-84290-crore-indian-equities-november-fortnight/output-v7/fpi-84290-crore-indian-equities-november-fortnight.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://bl-i.thgim.com/public/incoming/rtvbm7/article71704308.ece/alternates/LANDSCAPE_1200/PTI06_05_2026_000104B.jpg",
+  "local_path": "reel-runs/2026-11-15-fpi-84290-crore-indian-equities-november-fortnight/output-v7/hero.jpg",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.64)",
+  "has_face": true,
+  "box_source": [
+   320,
+   64,
+   86,
+   129
+  ],
+  "box_bg": [
+   308,
+   199,
+   60,
+   90
+  ],
+  "chin_bg": 289,
+  "anchor": [
+   0.522,
+   0.502
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "Markets Finance",
+    "FOREIGN INVESTORS PUMP \u20b984,290 CRORE INTO INDIAN STOCKS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      2,
+      1200,
+      675
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 933,
+   "block_bottom": 1311,
+   "text_bbox": [
+    70,
+    933,
+    930,
+    1311
+   ],
+   "texts": [
+    "What Happened",
+    "Foreign portfolio investors put a net \u20b984,290 crore into Indian equities between November 2 and 13, reversing two straight months of outflows, depository data reported by PTI shows."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7897727272727273,
+     "window": [
+      99,
+      42,
+      1155,
+      634
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 353,
+   "block_top": 945,
+   "block_bottom": 1298,
+   "text_bbox": [
+    70,
+    945,
+    930,
+    1298
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "\u20b984,290 CRORE",
+    "Net FPI buying in Indian equities, November 2-13"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.86875,
+     "window": [
+      0,
+      64,
+      960,
+      602
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 784,
+   "block_top": 796,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    796,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "\u20b970,704 CRORE",
+    "Withdrawn in September and October before the reversal",
+    "13%",
+    "First-week drop in Brent crude to about $97 a barrel",
+    "\u20b92.1 LAKH CRORE",
+    "Cumulative 2026 FPI outflow, down from nearly \u20b93 lakh crore"
+   ],
+   "v7": {
+    "image_source": "extra:north-sea-oil-img-0569-ekofisk",
+    "track": "full-bleed",
+    "render_scale": 0.857,
+    "photo_px": [
+     1260,
+     3693
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8571428571428571,
+     "window": [
+      0,
+      770,
+      1260,
+      3010
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "North Sea Oil from the Norwegian continental shelf. This oil is from the Ekofisk field. API value = 36.0. Viscosity at 50 degrees Celsius = 25.0 c/p.",
+     "route": "identity \u2014 Wikidata P18 (Q1270246)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:North_Sea_Oil_IMG_0569_Ekofisk.JPG",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/North_Sea_Oil_IMG_0569_Ekofisk.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Bjoertvedt"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 937,
+   "block_bottom": 1306,
+   "text_bbox": [
+    70,
+    937,
+    930,
+    1306
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Financials, telecom and pharmaceuticals led the buying",
+    "Strategists call the turn tactical, not yet structural"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.86875,
+     "window": [
+      240,
+      64,
+      1200,
+      602
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "FPIs remain net sellers for 2026 overall, despite the inflow.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/tech-corporate-technology.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 109.9,
+ "mp4_bytes": 12241428
+}

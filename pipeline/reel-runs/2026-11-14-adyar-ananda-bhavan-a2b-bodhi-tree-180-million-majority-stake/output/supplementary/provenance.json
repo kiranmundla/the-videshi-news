@@ -1,0 +1,50 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "adyar-ananda-bhavan-a2b-bodhi-tree-180-million-majority-stake",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Adyar Ananda Bhavan",
+    "Bodhi Tree Systems",
+    "James Murdoch",
+    "Uday Shankar",
+    "Bodhi Tree",
+    "Star India"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Bodhi Tree Systems' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Bodhi Tree' named 'Ficus religiosa', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Star India' named 'JioStar', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:James Murdoch 2008- NRKbeta (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q471851)",
+      "verdict": "rejected",
+      "reason": "resolution: 878x1100 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Uday Shankar, 1930s.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q3351708)",
+      "verdict": "rejected",
+      "reason": "resolution: 205x245 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": []
+}

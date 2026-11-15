@@ -1,0 +1,11 @@
+{
+  "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+  "story": "us-immigration-curbs-cost-668-billion-nfap-study",
+  "scenes": [],
+  "rejected": [
+    {
+      "candidate": "(pexels)",
+      "reason": "PEXELS_API_KEY not in env \u2014 stock route unavailable"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-tb-mortality-down-38-percent-who-report",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "World Health Organization",
+    "National TB Elimination Programme",
+    "Report",
+    "India's TB"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'National TB Elimination Programme' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Report' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: \"India's TB\" has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:World Health Organisation headquarters, Geneva, north and west sides 2007.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q7817)",
+      "verdict": "USED (news)",
+      "reason": "2583x1772, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:\"How to handwash?\" by WHO (2015), written in Sutton SignWriting.png",
+      "route": "identity \u2014 depicts (P180=Q7817)",
+      "verdict": "USED (grid)",
+      "reason": "2459x1739, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "world-health-organisation-headquarters-genev",
+      "path": "world-health-organisation-headquarters-genev.jpg",
+      "size": [
+        2583,
+        1772
+      ],
+      "role": "establishing",
+      "subject": "World Health Organisation headquarters, Geneva, north and west sides.",
+      "route": "identity \u2014 Wikidata P18 (Q7817)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:World_Health_Organisation_headquarters,_Geneva,_north_and_west_sides_2007.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/60/World_Health_Organisation_headquarters%2C_Geneva%2C_north_and_west_sides_2007.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Yann Forget",
+      "entity": "World Health Organization",
+      "entity_type": "other",
+      "entity_aliases": [
+        "World Health Organization (WHO)",
+        "World Health Organisation"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "how-to-handwash-by-who-2015-written-in-sutto",
+      "path": "how-to-handwash-by-who-2015-written-in-sutto.png",
+      "size": [
+        2459,
+        1739
+      ],
+      "role": "detail",
+      "subject": "The World Health Organization recommends this procedure of hand washing to avoid becoming infected and spreading germs to others. The procedure is illustrated using Sutton SignWriting symbols and signed with International Sign Language.",
+      "route": "identity \u2014 depicts (P180=Q7817)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:%22How_to_handwash%3F%22_by_WHO_(2015),_written_in_Sutton_SignWriting.png",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/%22How_to_handwash%3F%22_by_WHO_%282015%29%2C_written_in_Sutton_SignWriting.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Sutthikhun Phaengphongsai",
+      "entity": "World Health Organization",
+      "entity_type": "other",
+      "entity_aliases": [
+        "World Health Organization (WHO)",
+        "World Health Organisation"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "sachin-tendulkar-invests-recykal-waste-management-bridge-round",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Sachin Tendulkar Invests in Recykal, Extending $23 Million Bridge Round",
+        "numbers": [
+          23.0,
+          23000000.0
+        ],
+        "entities": [
+          "Sachin Tendulkar Invests",
+          "Million Bridge Round"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Tendulkar's investment in Recykal's bridge round is confirmed.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Tendulkar joins the Hyderabad waste-management platform as a strategic investor for an undisclosed amount; Recykal has raised over $60 million and reported \u20b91,498 crore FY26 gross revenue.",
+        "numbers": [
+          26.0,
+          60.0,
+          1498.0,
+          60000000.0,
+          14980000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All facts about Tendulkar's role and Recykal's revenue are present.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Recykal's $23 million bridge round closed in June 2026",
+        "numbers": [
+          23.0,
+          2026.0,
+          23000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "The article states the bridge round closed in June 2026.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Recykal reported FY26 gross revenue of \u20b91,498 crore, up 53.2%",
+        "numbers": [
+          26.0,
+          53.2,
+          1498.0,
+          14980000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The revenue figure and growth percentage are confirmed in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Recykal has raised more than $60 million to date",
+        "numbers": [
+          60.0,
+          60000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms Recykal has raised over $60 million.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Sachin Tendulkar",
+        "numbers": [],
+        "entities": [
+          "Sachin Tendulkar"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Tendulkar is mentioned in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "strategic investor, Recykal",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Tendulkar's role as a strategic investor in Recykal is confirmed.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Sachin Tendulkar Invests in Recykal, Extending $23 Million Bridge Round",
+        "numbers": [
+          23.0,
+          23000000.0
+        ],
+        "entities": [
+          "Sachin Tendulkar Invests",
+          "Million Bridge Round"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000512,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

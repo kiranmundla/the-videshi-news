@@ -1,0 +1,219 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "supreme-court-trump-asylum-ban-border-review",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "US Supreme Court",
+    "Donald Trump",
+    "D.C. Circuit",
+    "US-Mexico border",
+    "Supreme Court",
+    "Trump"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'US-Mexico border' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "File:USSupremeCourtWestFacade.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q11201)",
+      "verdict": "USED (hero)",
+      "reason": "1871x1331, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:1 Supreme Court.jpg",
+      "route": "identity \u2014 depicts (P180=Q11201)",
+      "verdict": "USED (news)",
+      "reason": "2539x1451, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Official Presidential Portrait of President Donald J. Trump (2025) (3x4).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q22686)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:-G7Biarritz (48632796802).jpg",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "accepted",
+      "reason": "1200x800, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:150th National Memorial Day Observance hosted by SECDEF 180528-D-SW162-1159.jpg",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:2025 Trump\u2013Zelenskyy Oval Office Meeting (Alternate Camera Angle).webm",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:Adm. John M. Richardson, Donald J. Trump, and Mike Pence, Jan. 20, 2017.jpg",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "accepted",
+      "reason": "3523x2349, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Antonin Scalia delivers the opinion of the Court in United States v. Gonzalez-Lopez.ogg",
+      "route": "identity \u2014 depicts (P180=Q11201)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Associate Justice Ruth Bader Ginsburg\u2019s chair and the bench in front of her seat at the Supreme Court draped in black.jpg",
+      "route": "identity \u2014 depicts (P180=Q11201)",
+      "verdict": "USED (grid)",
+      "reason": "1920x1383, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Candlelit makeshift memorial on the steps of the US Supreme Court following the death of Ruth Bader Ginsburg (2020-09-18).jpg",
+      "route": "identity \u2014 depicts (P180=Q11201)",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x768 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Courtroom doors of Supreme Court draped in black for the death of Associate Justice Ruth Bader Ginsburg, September 2020.jpg",
+      "route": "identity \u2014 depicts (P180=Q11201)",
+      "verdict": "rejected",
+      "reason": "resolution: 793x1080 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:David Souter delivers the opinion of the Court in Clark v. Arizona.ogg",
+      "route": "identity \u2014 depicts (P180=Q11201)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Department of Commerce v. New York.pdf",
+      "route": "identity \u2014 depicts (P180=Q11201)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/pdf)"
+    },
+    {
+      "candidate": "File:Elena Kagan delivers the opinion of the Court in Iancu v. Brunetti.ogg",
+      "route": "identity \u2014 depicts (P180=Q11201)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Elizabeth Prelogar's opening statements to the Supreme Court in Biden v. Texas.ogg",
+      "route": "identity \u2014 depicts (P180=Q11201)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Flag of the Supreme Court of the United States.svg",
+      "route": "identity \u2014 depicts (P180=Q11201)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Donald Trump (16512743558).jpg",
+      "route": "identity \u2014 depicts (P180=Q22686)",
+      "verdict": "accepted",
+      "reason": "5760x3840, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "1-supreme-court",
+      "path": "1-supreme-court.jpg",
+      "size": [
+        2539,
+        1451
+      ],
+      "role": "establishing",
+      "subject": "United States Supreme Court photo taken from top of the Capitol dome.",
+      "route": "identity \u2014 depicts (P180=Q11201)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:1_Supreme_Court.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/1_Supreme_Court.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "PLBechly",
+      "entity": "US Supreme Court",
+      "entity_type": "other",
+      "entity_aliases": [
+        "SCOTUS",
+        "Supreme Court",
+        "United States Supreme Court",
+        "US Supreme Court",
+        "U.S. Supreme Court",
+        "Supreme Court of the U.S.",
+        "Article 3 Court",
+        "Article III Court",
+        "Article Three Court",
+        "Supreme Court of the United States of America"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "ussupremecourtwestfacade",
+      "path": "ussupremecourtwestfacade.jpg",
+      "size": [
+        1871,
+        1331
+      ],
+      "role": "establishing",
+      "subject": "West face of the United States Supreme Court building in Washington, D.C.",
+      "route": "identity \u2014 Wikidata P18 (Q11201)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:USSupremeCourtWestFacade.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/USSupremeCourtWestFacade.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "UpstateNYer",
+      "entity": "US Supreme Court",
+      "entity_type": "other",
+      "entity_aliases": [
+        "SCOTUS",
+        "Supreme Court",
+        "United States Supreme Court",
+        "US Supreme Court",
+        "U.S. Supreme Court",
+        "Supreme Court of the U.S.",
+        "Article 3 Court",
+        "Article III Court",
+        "Article Three Court",
+        "Supreme Court of the United States of America"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "associate-justice-ruth-bader-ginsburg-s-chai",
+      "path": "associate-justice-ruth-bader-ginsburg-s-chai.jpg",
+      "size": [
+        1920,
+        1383
+      ],
+      "role": "establishing",
+      "subject": "The Courtroom of the Supreme Court showing Associate Justice Ruth Bader Ginsburg\u2019s Bench Chair and the Bench in front of her seat draped in black following her death on September 18, 2020.",
+      "route": "identity \u2014 depicts (P180=Q11201)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Associate_Justice_Ruth_Bader_Ginsburg%E2%80%99s_chair_and_the_bench_in_front_of_her_seat_at_the_Supreme_Court_draped_in_black.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Associate_Justice_Ruth_Bader_Ginsburg%E2%80%99s_chair_and_the_bench_in_front_of_her_seat_at_the_Supreme_Court_draped_in_black.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Fred Schilling, Collection of the Supreme Court of the United States",
+      "entity": "Supreme Court",
+      "entity_type": "other",
+      "entity_aliases": [
+        "SCOTUS",
+        "Supreme Court",
+        "United States Supreme Court",
+        "US Supreme Court",
+        "U.S. Supreme Court",
+        "Supreme Court of the U.S.",
+        "Article 3 Court",
+        "Article III Court",
+        "Article Three Court",
+        "Supreme Court of the United States of America"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "fpi-84290-crore-indian-equities-november-fortnight",
+  "name": "fpi-84290-crore-indian-equities-november-fortnight",
+  "script": "reel-runs/2026-11-15-fpi-84290-crore-indian-equities-november-fortnight/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000664
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-15-fpi-84290-crore-indian-equities-november-fortnight/output-v7/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "grid": "north-sea-oil-img-0569-ekofisk"
+    }
+  },
+  "manifest": "reel-runs/2026-11-15-fpi-84290-crore-indian-equities-november-fortnight/output-v7/render-manifest.json",
+  "video": "reel-runs/2026-11-15-fpi-84290-crore-indian-equities-november-fortnight/output-v7/fpi-84290-crore-indian-equities-november-fortnight.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-15-fpi-84290-crore-indian-equities-november-fortnight/output-v7/tiktok-caption.txt"
+}

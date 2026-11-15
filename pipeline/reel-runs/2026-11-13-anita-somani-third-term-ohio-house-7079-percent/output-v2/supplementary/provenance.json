@@ -1,0 +1,137 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "anita-somani-third-term-ohio-house-7079-percent",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "Anita Somani",
+    "Ohio House of Representatives",
+    "Kelly Hunter-Kalagidis",
+    "Franklin County",
+    "Anita",
+    "Ohio House"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Kelly Hunter-Kalagidis' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Anita' named 'Anita Ekberg', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Ohio House' named 'Ohio House of Representatives', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Anita Somani.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q115665539)",
+      "verdict": "rejected",
+      "reason": "resolution: 450x540 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Ohio House of Representatives 2018b.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q277228)",
+      "verdict": "USED (news)",
+      "reason": "4608x3456, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2024 Presidential Election in OH by SHD.svg",
+      "route": "identity \u2014 depicts (P180=Q277228)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Franklin County Govt Center 04.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q113237)",
+      "verdict": "USED (hero)",
+      "reason": "4949x3946, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Animal tracks cross the frozen Olentangy river north of the North Broadway Ave bridge on January 26th, 2022.jpg",
+      "route": "identity \u2014 depicts (P180=Q113237)",
+      "verdict": "USED (grid)",
+      "reason": "6000x4000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "ohio-house-of-representatives-2018b",
+      "path": "ohio-house-of-representatives-2018b.jpg",
+      "size": [
+        4608,
+        3456
+      ],
+      "role": "establishing",
+      "subject": "Ohio House of Representatives Chamber in the Ohio Statehouse in 2018",
+      "route": "identity \u2014 Wikidata P18 (Q277228)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Ohio_House_of_Representatives_2018b.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Ohio_House_of_Representatives_2018b.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Antony-22",
+      "entity": "Ohio House of Representatives",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Ohio House of Representatives",
+        "Minority"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "franklin-county-govt-center-04",
+      "path": "franklin-county-govt-center-04.jpg",
+      "size": [
+        4949,
+        3946
+      ],
+      "role": "establishing",
+      "subject": "Franklin County Government Center, Columbus, Ohio.",
+      "route": "identity \u2014 Wikidata P18 (Q113237)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Franklin_County_Govt_Center_04.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Franklin_County_Govt_Center_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "\u2c6e",
+      "entity": "Franklin County",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Franklin County",
+        "Franklin County, Ohio",
+        "Franklin County, OH"
+      ]
+    },
+    {
+      "beat": "grid",
+      "label": "animal-tracks-cross-the-frozen-olentangy-riv",
+      "path": "animal-tracks-cross-the-frozen-olentangy-riv.jpg",
+      "size": [
+        6000,
+        4000
+      ],
+      "role": "establishing",
+      "subject": "Animal tracks cross the frozen Olentangy river north of the North Broadway Ave bridge on January 26th, 2022",
+      "route": "identity \u2014 depicts (P180=Q113237)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Animal_tracks_cross_the_frozen_Olentangy_river_north_of_the_North_Broadway_Ave_bridge_on_January_26th,_2022.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Animal_tracks_cross_the_frozen_Olentangy_river_north_of_the_North_Broadway_Ave_bridge_on_January_26th%2C_2022.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Matthew.kowal",
+      "entity": "Franklin County",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Franklin County",
+        "Franklin County, Ohio",
+        "Franklin County, OH"
+      ]
+    }
+  ]
+}

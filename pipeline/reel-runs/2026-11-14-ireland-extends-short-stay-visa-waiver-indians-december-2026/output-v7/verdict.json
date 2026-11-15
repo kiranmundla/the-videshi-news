@@ -1,0 +1,36 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ireland-extends-short-stay-visa-waiver-indians-december-2026",
+  "name": "ireland-extends-short-stay-visa-waiver-indians-december-2026",
+  "script": "reel-runs/2026-11-14-ireland-extends-short-stay-visa-waiver-indians-december-2026/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000567
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-14-ireland-extends-short-stay-visa-waiver-indians-december-2026/output-v7/supplementary/provenance.json",
+    "own_images": 2,
+    "extras": {
+      "news": "2018-06-13-north-bull-lighthouse-in-dublin-b",
+      "hero": "17-ballyloughan-castle-co-carlow",
+      "grid": "close-wing-position-of-loxura-atymnus-stoll"
+    }
+  },
+  "manifest": "reel-runs/2026-11-14-ireland-extends-short-stay-visa-waiver-indians-december-2026/output-v7/render-manifest.json",
+  "video": "reel-runs/2026-11-14-ireland-extends-short-stay-visa-waiver-indians-december-2026/output-v7/ireland-extends-short-stay-visa-waiver-indians-december-2026.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:grid"
+    ]
+  }
+}

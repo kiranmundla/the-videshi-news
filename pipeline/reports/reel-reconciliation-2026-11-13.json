@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 251,
-    "db_rows": 184,
-    "db_rows_with_yt_id": 154,
+    "channel_videos": 253,
+    "db_rows": 186,
+    "db_rows_with_yt_id": 156,
     "legacy_log_entries": 205,
-    "publish_log_entries": 67,
-    "in_sync": 133,
+    "publish_log_entries": 69,
+    "in_sync": 135,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 17,
     "ghost_db_rows": 16,
@@ -944,6 +944,20 @@
       "privacy": "public",
       "video_id": "Mr0ij9sGpfk",
       "record": "prebuilt_reels:48263349-dbf1-4f1b-868b-bb7d1d6dfc3a"
+    },
+    {
+      "title": "India TB Mortality Falls 38 Percent Since 2015, WHO Report Finds #Shorts #News",
+      "published_at": "2026-11-13T11:21:30Z",
+      "privacy": "public",
+      "video_id": "_8NmLErnvRg",
+      "record": "prebuilt_reels:385bf1aa-b8b9-4ce9-b473-d95195a53644"
+    },
+    {
+      "title": "Diet and Daily Walks Put 61% of Early Diabetes Patients in Remission, Study Finds #Shorts #Health",
+      "published_at": "2026-11-13T23:21:11Z",
+      "privacy": "public",
+      "video_id": "V6CfCt1aNak",
+      "record": "prebuilt_reels:910c156b-4702-48af-9775-115ab40ed92f"
     }
   ],
   "unknown_legacy_logged": [
@@ -3953,5 +3967,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-13T05:17:44+00:00"
+  "generated_at": "2026-11-13T23:22:59+00:00"
 }

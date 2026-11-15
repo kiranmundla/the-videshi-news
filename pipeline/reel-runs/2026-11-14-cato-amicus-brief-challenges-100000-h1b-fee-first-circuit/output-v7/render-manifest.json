@@ -1,0 +1,401 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "cato-amicus-brief-challenges-100000-h1b-fee-first-circuit",
+ "article_slug": "cato-amicus-brief-challenges-100000-h1b-fee-first-circuit",
+ "article_id": "b6613696-3a7a-4c74-8250-10ca2768746b",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-14-cato-amicus-brief-challenges-100000-h1b-fee-first-circuit/output-v7/cato-amicus-brief-challenges-100000-h1b-fee-first-circuit.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://d2eehagpk5cl65.cloudfront.net/img/q60/uploads/2025/09/H-1B.jpg",
+  "local_path": "reel-runs/2026-11-14-cato-amicus-brief-challenges-100000-h1b-fee-first-circuit/output-v7/hero.jpg",
+  "width": 1168,
+  "height": 654,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.444,0.520) damped=(0.472,0.510)",
+  "has_face": false,
+  "box_source": [
+   224,
+   189,
+   654,
+   261
+  ],
+  "box_bg": [
+   246,
+   290,
+   467,
+   186
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.471,
+   0.516
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   466
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 686,
+   "zone_h": 870,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 939,
+   "block_bottom": 1302,
+   "text_bbox": [
+    70,
+    939,
+    930,
+    1302
+   ],
+   "texts": [
+    "Immigration",
+    "CATO CHALLENGES $100,000 H-1B FEE IN COURT"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.714,
+    "photo_px": [
+     1168,
+     654
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 466,
+     "scale": 0.714041095890411,
+     "window": [
+      0,
+      2,
+      1168,
+      654
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.94x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 917,
+   "zone_h": 663,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1217,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1217,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "The Cato Institute and professor Ilya Somin filed an amicus brief on November 12 in the First Circuit, supporting California and 19 other states challenging the $100,000 H-1B payment."
+   ],
+   "v7": {
+    "image_source": "extra:the-troublemaker-panel-at-cato-institute",
+    "track": "full-bleed",
+    "render_scale": 0.625,
+    "photo_px": [
+     4080,
+     3072
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.625,
+     "window": [
+      2352,
+      0,
+      4080,
+      3072
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "\"The Troublemaker: How Jimmy Lai Became a Billionaire, Hong Kong\u2019s Greatest Dissident, and China\u2019s Most Feared Critic\" panel at the Cato Institute in Washington, D.C., featuring (from left) Ian V\u00e1squez, Vice President for International Stud",
+     "route": "identity \u2014 depicts (P180=Q1051256)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:%22The_Troublemaker%22_panel_at_Cato_Institute.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/%22The_Troublemaker%22_panel_at_Cato_Institute.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Sdkb"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 430,
+   "block_top": 1150,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1150,
+    930,
+    1580
+   ],
+   "texts": [
+    "THE STAKES",
+    "$100,000",
+    "H-1B payment challenged in First Circuit appeal"
+   ],
+   "v7": {
+    "image_source": "extra:cato-institute-building-march-2013-2",
+    "track": "full-bleed",
+    "render_scale": 0.48,
+    "photo_px": [
+     3000,
+     4000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.48,
+     "window": [
+      435,
+      0,
+      2685,
+      4000
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Taken during the March 2013 Wikimedia Cato Meetup/Legislative Data Workshop.",
+     "route": "identity \u2014 Wikidata P18 (Q1051256)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Cato_Institute_building_March_2013_2.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Cato_Institute_building_March_2013_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 3.0",
+     "artist": "Tedder"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 1035,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1035,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "19",
+    "Other states joining California in the challenge",
+    "June 8, 2026",
+    "Fee vacated by Massachusetts district court"
+   ],
+   "v7": {
+    "image_source": "inline:2",
+    "track": "full-bleed",
+    "render_scale": 0.96,
+    "photo_px": [
+     3000,
+     2000
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.96,
+     "window": [
+      955,
+      0,
+      2080,
+      2000
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 686,
+   "zone_h": 870,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 936,
+   "block_bottom": 1305,
+   "text_bbox": [
+    70,
+    936,
+    930,
+    1305
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Fee is not in effect - vacatur remains during appeal",
+    "Confirm the collection position before filing a petition"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.812,
+    "photo_px": [
+     1168,
+     654
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 466,
+     "scale": 0.8120740019474196,
+     "window": [
+      36,
+      50,
+      1063,
+      623
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.94x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "The $100,000 payment stands vacated while the First Circuit appeal is heard.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 157.9,
+ "mp4_bytes": 13570071
+}

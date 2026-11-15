@@ -1,0 +1,81 @@
+[
+  {
+    "id": "5a2f2a40-d1a0-4394-ad8b-3c384ee48760",
+    "headline": "Ramayana Crosses Rs 1,000 Crore Worldwide in Eight Days, Third-Fastest Indian Fi",
+    "slug": "ramayana-crosses-1000-crore-worldwide-eight-days",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by explicitly stating the release date of Ramayana in the introduction to enhance context for readers unfamiliar with the film's release schedule.",
+        "Include a brief comparison of the film's performance against other recent blockbusters in terms of box office trends, which would provide readers with a clearer understanding of its success relative to the current market.",
+        "Ensure that all figures are consistently attributed to their sources, particularly the box office numbers, to enhance credibility and allow readers to verify the information.",
+        "Add a concluding statement that summarizes the significance of this achievement for the film industry, such as its potential impact on future productions or audience expectations."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a verified film industry analyst or box office tracker commenting on Ramayana's box office performance to provide additional context and authority."
+      ]
+    }
+  },
+  {
+    "id": "8d460426-da13-4c24-8685-39ab0c81f48c",
+    "headline": "Supreme Court to Decide Whether Trump Can Bar Asylum Claims at Southern Border",
+    "slug": "supreme-court-trump-asylum-ban-border-review",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact date when the Supreme Court is expected to hear arguments, rather than just stating 'in the coming months.' This will provide readers with a clearer understanding of the timeline.",
+        "Include a brief explanation of the implications of the Supreme Court's decision on asylum seekers and the broader immigration system, particularly how it might affect current and future asylum claims at the southern border.",
+        "Provide more context on the lower court rulings by briefly summarizing the legal reasoning behind the decisions that found the ban unlawful. This will help readers understand the basis for the Supreme Court's review.",
+        "Correct the incomplete sentence at the end of the article: 'Central Wing of the Supreme Co...' This appears to be a typographical error and should be completed or removed for clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from the Supreme Court regarding their decision to hear the case, which would provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "22eda1b2-1642-4671-9ec6-d97ca0b499d7",
+    "headline": "Canada Visa Waits From India Hold Steady: Work Permits 10 Weeks, Study Permits 8",
+    "slug": "canada-ircc-processing-times-india-november-12-2026",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the IRCC update by specifying that the processing times reflect figures as of November 12, 2023, rather than 2026, which appears to be a typo.",
+        "Include a brief explanation of what the service standard of 112 days for super visas means for applicants, as this context could help readers understand the significance of the current wait times.",
+        "Add a specific call to action regarding the next IRCC update expected around November 18, such as advising readers to check back for changes that could affect their application timelines.",
+        "Consider restructuring the content to clearly separate the updates for different visa types (work permits, study permits, visitor visas, super visas) for better readability and comprehension."
+      ],
+      "embed_opportunities": [
+        "Embed the official IRCC tweet or announcement regarding the processing times update to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "5fa4ad81-8e5d-4986-812c-501e294ac395",
+    "headline": "All 129 Passengers Accounted For After Tanker Hits New Orleans River Cruise Boat",
+    "slug": "tanker-hits-american-heritage-new-orleans-all-accounted-for",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact time the tanker lost control and struck the cruise boat, as well as the timeline for the rescue efforts and when passengers were accounted for.",
+        "Include a brief statement about the condition of the 32 hospitalized individuals, such as whether they are expected to recover fully or if any further medical attention is needed, to provide a clearer picture of the incident's impact.",
+        "Add a quote from a witness or a passenger to provide a personal perspective on the incident, which could enhance the emotional connection and depth of the story."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the New Orleans Mayor or the National Transportation Safety Board regarding the incident for real-time updates and official statements."
+      ]
+    }
+  }
+]

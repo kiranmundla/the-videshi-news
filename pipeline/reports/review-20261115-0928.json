@@ -1,0 +1,79 @@
+[
+  {
+    "id": "c3dffd57-6015-4e31-b371-3672c5605b4f",
+    "headline": "Why Yash's Own Kannada Voice Makes His Ravana Land Harder Than the Hindi Dub",
+    "slug": "yash-ravana-kannada-voice-sharad-kelkar-hindi-dub-ramayana",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the significance of the voice dubbing decision by providing more context on how it affects audience perception and the overall performance. This could include quotes from film critics or audience reactions to both versions.",
+        "Include specific examples of how Yash's performance in the Kannada version differs from the Hindi dub, particularly in key scenes, to provide a clearer picture of the impact of his voice on the character.",
+        "Add a brief overview of the film's reception in both the Kannada and Hindi markets, including box office performance or critical reviews, to give readers a sense of how the dubbing choice may influence audience engagement.",
+        "Ensure that the headline reflects the article's focus on the impact of voice dubbing on performance and audience experience, perhaps by rephrasing it to emphasize the contrast between the two versions."
+      ],
+      "embed_opportunities": [
+        "Embed a clip from the Kannada version of the film to illustrate Yash's performance and the impact of his voice on the character of Ravana."
+      ]
+    }
+  },
+  {
+    "id": "a9450d95-c00a-4e3a-a3e9-8ae758c43094",
+    "headline": "Indian Accent Named India's Top Standalone Restaurant for Fourth Straight Year",
+    "slug": "indian-accent-top-standalone-restaurant-hospitality-horizon-2026",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the awards by providing context on the Hospitality Horizon Top 50 Restaurant Awards, such as its history, criteria for selection, and how it compares to other culinary awards in India.",
+        "Include direct quotes from the award ceremony or from the winners to enhance attribution and provide a more personal touch to the reporting.",
+        "Add a brief background on Indian Accent's culinary style and its impact on the Indian dining scene to give readers a better understanding of why it has received this recognition.",
+        "Consider restructuring the article to lead with the most compelling information about the awards and the significance of Indian Accent's achievement before detailing the other restaurants in the group."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from the Hospitality Horizon or Indian Accent celebrating the award win to provide real-time engagement and authenticity."
+      ]
+    }
+  },
+  {
+    "id": "a112aca8-b245-4e3a-af14-826ebadaeec3",
+    "headline": "Foreign Investors Pump \u20b984,290 Crore Into Indian Stocks in November's First Fort",
+    "slug": "fpi-84290-crore-indian-equities-november-fortnight",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact dates of the trading sessions mentioned (November 2-13) to enhance clarity and completeness.",
+        "Provide a brief explanation of what the cumulative outflow of \u20b92.1 lakh crore means in the context of previous years or market performance to give readers better context.",
+        "Include specific figures or percentages regarding the performance of the sectors mentioned (financials, telecom, capital goods, pharma, and autos) to give readers a clearer picture of where the investments are flowing.",
+        "Rephrase the quote from Vedant Gupte for clarity, perhaps by breaking it into two sentences to improve readability."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from a financial analyst or institution discussing the implications of the FPI inflow for Indian markets."
+      ]
+    }
+  },
+  {
+    "id": "ba8dae8a-27fe-480b-85a3-88df44b329b3",
+    "headline": "India-Egypt Trade at $6.5 Billion Is 'Just a Beginning,' Goyal Says in Cairo",
+    "slug": "goyal-india-egypt-trade-6-5-billion-cairo-visit",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the projected $6.5 billion trade figure; specify if this is expected by the end of the fiscal year 2025-26 or another date. This will provide readers with a clearer understanding of the timeframe for this trade goal.",
+        "Include specific examples or figures regarding the types of Egyptian products and investments that Goyal is encouraging to balance the trade relationship. This could help readers grasp the potential impact on the market.",
+        "Provide context on how the current trade figures compare to previous years to illustrate growth or changes in the trade relationship between India and Egypt."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Piyush Goyal or the Indian Ministry of Commerce that highlights key points from his speech or the trade goals discussed."
+      ]
+    }
+  }
+]

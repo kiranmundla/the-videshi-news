@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "indian-diet-walking-early-diabetes-remission-study",
+  "name": "indian-diet-walking-early-diabetes-remission-study",
+  "script": "reel-runs/2026-11-13-indian-diet-walking-early-diabetes-remission-study/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_line"
+    ],
+    "llm_cost_usd": 0.000561
+  }
+}

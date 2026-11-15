@@ -1,0 +1,30 @@
+{
+ "hook_line": "CANADA ADDS 100,000 PR SPACES FOR 2027",
+ "hook_stat": {
+  "big": "100,000",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Extra permanent residence spaces detailed for 2027"
+ },
+ "stats": [
+  {
+   "big": "45,000",
+   "label": "Spouses and children of Canadians"
+  },
+  {
+   "big": "32,000",
+   "label": "Hongkonger pathway admissions expected"
+  }
+ ],
+ "diaspora_bullets": [
+  "All spaces are for people already in Canada",
+  "No new application needed to be considered"
+ ],
+ "key_entities": [
+  "Immigration, Refugees and Citizenship Canada",
+  "Canada"
+ ],
+ "news_summary": "Canada has detailed up to 100,000 additional permanent residence spaces for 2027, for people already in Canada who have already applied.",
+ "payoff": "IRCC says applicants do not need to take any action to be considered for faster processing.",
+ "versus": "",
+ "story_mood": "practical"
+}

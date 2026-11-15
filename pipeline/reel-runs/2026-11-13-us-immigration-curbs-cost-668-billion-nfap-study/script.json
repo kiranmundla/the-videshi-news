@@ -1,0 +1,30 @@
+{
+ "hook_line": "US IMMIGRATION CURBS COULD COST $668 BILLION",
+ "hook_stat": {
+  "big": "$668 billion",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Estimated yearly cost of a 20% fall in international STEM graduate students"
+ },
+ "stats": [
+  {
+   "big": "$334 billion",
+   "label": "Yearly cost of a 10% fall in STEM graduate students"
+  },
+  {
+   "big": "59%",
+   "label": "Billion-dollar startups founded or cofounded by immigrants"
+  }
+ ],
+ "diaspora_bullets": [
+  "H-1B restrictions push firms to expand jobs in India",
+  "No new rule in this study \u2014 current requirements unchanged"
+ ],
+ "key_entities": [
+  "National Foundation for American Policy",
+  "H-1B"
+ ],
+ "news_summary": "A National Foundation for American Policy study estimates a 20% fall in international STEM graduate students could cost the U.S. economy $668 billion a year in patent-linked value.",
+ "payoff": "The study announces no new restriction \u2014 it is evidence in a policy argument, not a rule.",
+ "versus": "",
+ "story_mood": "tense"
+}

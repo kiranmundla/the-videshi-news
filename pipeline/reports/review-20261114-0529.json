@@ -1,0 +1,198 @@
+[
+  {
+    "id": "e45f0061-3c2a-46c8-9211-bfec9cff4a77",
+    "headline": "Rs 1 Lakh Crore for Research, but PhD Scholars Wait Months for Their Stipends",
+    "slug": "india-rs-1-lakh-crore-research-fund-phd-scholars-stipend-delays",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the funding cuts by providing specific years and percentages for the reductions in fellowship schemes to enhance completeness and context.",
+        "Include direct quotes from affected PhD scholars or officials to improve attribution and lend a more personal perspective to the story.",
+        "Add a specific statement about what the Rs 1 lakh crore corpus means for the future of research funding in India, including potential impacts on PhD scholars' stipends or the timeline for when these funds might be disbursed.",
+        "Correct the date mentioned in the letter from NFSC scholars; it states November 6, 2026, which is in the future. Ensure all dates are accurate to maintain reporting quality."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement from the Indian government regarding the Rs 1 lakh crore RDI corpus to provide readers with direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "02ea2883-fdd3-4de0-9068-e12657a2ada2",
+    "headline": "Air India Warns of US Flight Delays After FAA Ground Stop Snarls Departures Nati",
+    "slug": "air-india-us-flight-delays-faa-ground-stop-advisory-check-status",
+    "category": "travel",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include specific details about the expected duration of delays and cancellations, as well as any potential compensation policies for affected passengers.",
+        "Clarify the timeline of events by specifying when the FAA announced the ground stop and when it was lifted, to provide readers with a clearer understanding of the situation.",
+        "Add a quote from an official source, such as the FAA or Air India, to enhance the article's credibility and provide authoritative context.",
+        "Mention any specific airports that are particularly affected by the delays to give readers a clearer picture of the impact."
+      ],
+      "embed_opportunities": [
+        "Embed the official FAA tweet announcing the ground stop for direct access to the source of information."
+      ]
+    }
+  },
+  {
+    "id": "2ba96290-3801-4d9a-87f1-d34692cfbdf8",
+    "headline": "India Face Pakistan in U19 Asia Cup Final, Chasing a Record Ninth Title",
+    "slug": "india-pakistan-u19-asia-cup-2026-final-preview-al-amerat-oman",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the final match in the introduction to avoid confusion, as the date is mentioned twice in the body without clear context.",
+        "Provide more context on the significance of the U19 Asia Cup and what a ninth title would mean for India, enhancing the completeness of the article.",
+        "Include a brief summary of the overall performance of both teams in the tournament leading up to the final, which would add depth and context for readers unfamiliar with the tournament.",
+        "Ensure that the names of players and teams are consistently spelled correctly throughout the article (e.g., 'Lakshya Raichandani' is spelled as 'Lakshya Rajesh Raichandani' in different parts)."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the ACC or a relevant cricket authority announcing the final match details or promoting the event."
+      ]
+    }
+  },
+  {
+    "id": "8630439e-56e4-47bb-b6e0-ccbe1ac2e2b3",
+    "headline": "U-19 Cricketer Nandini, 17, Dies by Suicide in Telangana; Family Alleges Harassm",
+    "slug": "u19-cricketer-nandini-17-dies-suicide-telangana-family-alleges-harassment",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events leading up to Nandini's death. Include specific dates and details about her recent selection for the BCCI Under-19 team and any relevant interactions with the alleged harassers.",
+        "Provide more context about the ongoing investigation. Include information on what steps the police are taking and any statements from officials that could shed light on the situation.",
+        "Ensure that the article maintains a neutral tone when discussing allegations. Clearly differentiate between established facts and claims made by the family to avoid any potential bias.",
+        "Include a brief background on the prevalence of harassment cases in the region or among young athletes to provide readers with context about the seriousness of the family's allegations."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the local police department or a relevant authority providing updates on the investigation or addressing the issue of harassment."
+      ]
+    }
+  },
+  {
+    "id": "80db627e-a194-4ef8-a7ff-7633bdfc5306",
+    "headline": "LangChain Raises $300 Million at $3 Billion Valuation Led by CapitalG",
+    "slug": "langchain-raises-300-million-3-billion-valuation-capitalg",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the release event mentioned on November 20, 2026. It seems there may be a typographical error in the year, as it is likely meant to be November 20, 2023, given the context of the funding announcement.",
+        "Include a brief explanation of what LangSmith is and its significance in the context of LangChain's offerings. This would provide readers with a clearer understanding of the product and its relevance.",
+        "Add a quote from a representative of CapitalG or another major investor to provide additional attribution and perspective on the funding round, enhancing the article's completeness.",
+        "Ensure that the funding figures are clearly attributed to the sources, especially since the article mentions that these are figures reported by the company itself. This could help clarify the reliability of the information presented."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement tweet from LangChain or a related press release to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "cce71b03-92de-46d2-b19e-8c15f0e5803a",
+    "headline": "Kochi to Set Up Seven Air Quality Monitors as Pollution Concern Mounts",
+    "slug": "kochi-seven-air-quality-monitoring-stations-pollution-concern",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the implementation of the new air quality monitoring stations. For example, specify when the council approval is expected and when the public dashboard will be launched.",
+        "Provide more context on the implications of an AQI of 188. Include information on what this level means for public health and safety, and any recommended actions for residents.",
+        "Ensure that all sources are clearly attributed. For instance, when mentioning the Kerala Chief Minister's comments or expert opinions, specify who these experts are and their qualifications to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Kerala State Pollution Control Board regarding the status of the monitoring stations or air quality updates."
+      ]
+    }
+  },
+  {
+    "id": "408c8bfd-30d2-47ef-a823-79f7ca05c8fe",
+    "headline": "Tata's JLR Targets Double-Digit Earnings Growth in Fiscal 2028 After Guidance Cu",
+    "slug": "tata-jlr-targets-double-digit-earnings-growth-fiscal-2028-guidance-cut",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the fiscal years mentioned. For example, explicitly state that fiscal 2027 refers to the period ending March 2027 and fiscal 2028 refers to the period ending March 2028 to avoid confusion for readers unfamiliar with the fiscal calendar.",
+        "Provide a more detailed breakdown of the \u00a31.7 billion cost-cutting drive. Specifics on how this will be achieved (e.g., layoffs, operational efficiencies) would enhance completeness and clarity.",
+        "Include a direct quote from JLR's management or a financial analyst regarding the implications of the guidance cut and the targets for fiscal 2028. This would improve attribution and depth."
+      ],
+      "embed_opportunities": [
+        "Embed a link to JLR's official results page or a relevant financial report for readers to access primary data directly."
+      ]
+    }
+  },
+  {
+    "id": "45b8c6cb-4efc-494e-80d5-1183b529c50d",
+    "headline": "Trump, Xi and Putin Plan Unprecedented Joint Meeting at APEC, Officials Say",
+    "slug": "trump-xi-putin-plan-joint-meeting-apec-shenzhen",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the meeting by explicitly stating the date of the planned trilateral meeting in the first paragraph, as it is currently mentioned later in the article. This will enhance clarity and immediacy for readers.",
+        "Include a direct quote from the White House spokeswoman Olivia Wales to provide attribution and enhance the credibility of the information presented, especially regarding the topics to be discussed.",
+        "Add context about the significance of this meeting in terms of international relations, particularly regarding nuclear non-proliferation, to provide readers with a deeper understanding of its implications."
+      ],
+      "embed_opportunities": [
+        "Embed the official White House announcement or tweet regarding the meeting to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "841c5101-7496-4530-a1c1-41899e893d49",
+    "headline": "Mirwaiz Returns to Jama Masjid After Two Weeks of House Detention, Backs 10 PM W",
+    "slug": "mirwaiz-jama-masjid-sermon-house-detention-waza-deadline",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date when the house detention began and ended, as well as the date of the postponed MMU meeting for better context.",
+        "Include a direct quote from Mirwaiz Umar Farooq regarding his views on the restrictions to enhance attribution and provide a clearer perspective on his stance.",
+        "Provide additional context on the significance of the 10 PM Wazwan deadline and its impact on the local community, as this could help readers understand the broader implications of the decision."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or statement from Mirwaiz Umar Farooq or the Muttahida Majlis-e-Ulama to provide direct insight and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "ddad9d9a-e027-464a-b753-0be69655a4b3",
+    "headline": "Ares Management Reportedly in Talks for Minority Stake in Kolkata Knight Riders",
+    "slug": "ares-management-reportedly-talks-minority-stake-kolkata-knight-riders",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the negotiations. Include specific dates or a timeframe for when the discussions started and when a potential agreement might be reached, if known.",
+        "Provide more context on the significance of the reported valuation of $1.8 billion. Explain how this compares to other franchises in the IPL or similar sports leagues to give readers a clearer understanding of KKR's market position.",
+        "Ensure consistency in reporting by clearly stating the source of the information throughout the article. For example, instead of saying 'according to Moneycontrol reporting cited in fresh reports this week,' specify which reports are being referenced for clarity.",
+        "Remove repetitive phrases to enhance clarity. For instance, the phrase 'Ares Management is reportedly in talks' is repeated; it could be streamlined to maintain reader engagement."
+      ],
+      "embed_opportunities": [
+        "Embed the original Moneycontrol report or a relevant tweet from Ares Management or Kolkata Knight Riders for direct access to primary sources."
+      ]
+    }
+  }
+]

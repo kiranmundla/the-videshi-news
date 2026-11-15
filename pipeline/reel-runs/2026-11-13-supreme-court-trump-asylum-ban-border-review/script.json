@@ -1,0 +1,32 @@
+{
+  "hook_line": "SUPREME COURT TO DECIDE TRUMP ASYLUM BAN",
+  "hook_stat": {
+    "big": "END OF JUNE",
+    "eyebrow": "THE STAKES",
+    "sub": "Ruling due by the end of June"
+  },
+  "stats": [
+    {
+      "big": "2",
+      "label": "Lower courts held the categorical ban unlawful"
+    },
+    {
+      "big": "6-3",
+      "label": "Conservative majority on the Supreme Court"
+    }
+  ],
+  "diaspora_bullets": [
+    "H-1B, F-1 and green cards not in this case",
+    "Asylum bar stays in effect during appeal"
+  ],
+  "key_entities": [
+    "US Supreme Court",
+    "Donald Trump",
+    "D.C. Circuit",
+    "US-Mexico border"
+  ],
+  "news_summary": "The US Supreme Court agreed on Friday to decide whether President Donald Trump's proclamation barring asylum claims at the southern border is legal.",
+  "payoff": "The asylum bar continues until the court rules.",
+  "versus": "",
+  "story_mood": "tense"
+}

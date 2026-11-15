@@ -1,0 +1,174 @@
+[
+  {
+    "id": "70d7a348-a13e-4e35-8531-69181060125d",
+    "headline": "Air India Says US Flights Ran On Schedule Despite Ground Stop",
+    "slug": "air-india-us-flights-on-schedule-ground-stop-update",
+    "category": "travel",
+    "structural_issues": [
+      "Inline caption names venue 'Battery Park' not supported by the image file name (NYC_Downtown_Manhattan_Skyline_seen_from_Paulus_Hook_2019-12\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact time the FAA ground stop was imposed and when Air India's statement was released. This will help readers understand the context and urgency of the situation.",
+        "Include specific details about the nature of the FAA's communications problems that led to the ground stop. Providing context about the severity of the issue will enhance the completeness of the report.",
+        "Add a direct quote from a passenger or a travel expert regarding the impact of the ground stop on travelers, which would provide a human element to the story and enhance clarity.",
+        "Ensure that the information about the delayed flight AI184 is presented clearly and distinctly, possibly by using bullet points or a separate section to highlight the exception to the otherwise on-time operations."
+      ],
+      "embed_opportunities": [
+        "Embed the official FAA tweet or announcement regarding the ground stop to provide readers with authoritative information on the situation."
+      ]
+    }
+  },
+  {
+    "id": "4ef19c6d-dbbc-4b11-aa7c-bdf1c938471f",
+    "headline": "Sharif Says Pakistan Can Reach Sixth-Largest Economy Before 2050, Not 2075",
+    "slug": "sharif-pakistan-sixth-largest-economy-before-2050",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by including specific dates related to the Reko Diq project and its expected economic impact, as this would provide readers with a concrete understanding of the implications of Sharif's statements.",
+        "Include a brief summary or key points from the Goldman Sachs report to give readers context on why the original 2075 projection was made and what conditions are necessary for the earlier timeline to be feasible.",
+        "Provide attribution for the quotes and claims made by Sharif, ensuring that they are clearly sourced to enhance credibility and transparency."
+      ],
+      "embed_opportunities": [
+        "Embed the official Goldman Sachs report or a relevant tweet from Goldman Sachs that discusses the original projection for better context."
+      ]
+    }
+  },
+  {
+    "id": "0cc973b7-4879-410d-bd2a-74d3bfec191e",
+    "headline": "Indian IT Stocks Jumped 18% in October. Earnings Will Decide What Next",
+    "slug": "indian-it-stocks-october-rally-earnings-test",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the 18% jump in IT stocks by providing specific implications for investors or the market, such as potential future trends or risks associated with this volatility.",
+        "Include a brief explanation of what the earnings results mean for the average investor or stakeholder in the IT sector, such as potential impacts on stock prices or company valuations.",
+        "Add a timeline for when the next earnings reports are expected to be released, as this information is crucial for readers to understand the immediacy of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official statement from a reputable financial analyst or institution regarding the performance of Indian IT stocks or the implications of the earnings results."
+      ]
+    }
+  },
+  {
+    "id": "e15f6d43-2074-4dcd-a810-fca16b4c6817",
+    "headline": "Diabetes Remission in 90 Days? Doctors Explain What the Term Really Means",
+    "slug": "diabetes-remission-90-days-definition-doctors-explain",
+    "category": "lifestyle-health",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Add specific statistics or data regarding the costs associated with diabetes management, such as average medication costs or potential savings from achieving remission, to provide concrete context for readers.",
+        "Include a brief explanation of the HbA1c test for readers who may not be familiar with it, enhancing clarity and completeness.",
+        "Clarify the timeline for achieving remission by specifying that while 90 days is the minimum time for assessment, individual results may vary significantly based on personal health factors.",
+        "Mention the potential risks of attempting to achieve remission without professional guidance, emphasizing the importance of consulting healthcare providers."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet or post from a recognized diabetes organization or health authority that discusses diabetes remission or the significance of World Diabetes Day."
+      ]
+    }
+  },
+  {
+    "id": "bd8b4745-44f5-4678-9a93-543328fb26e7",
+    "headline": "After Jensen Huang: What Founder Exits Did to Apple, Alphabet and Uber",
+    "slug": "founder-exits-apple-alphabet-uber-nvidia-huang",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of Jensen Huang's resignation in the first sentence to enhance immediacy and context.",
+        "Include a quote from Jensen Huang or a relevant Nvidia board member regarding the resignation to provide additional attribution and insight into the situation.",
+        "Expand on the implications of Huang's departure for Nvidia's future strategy and market position, as this is a key concern for readers following the tech industry.",
+        "Provide more context on Nvidia's current market performance and how Huang's leadership has influenced it, which would help readers understand the stakes involved."
+      ],
+      "embed_opportunities": [
+        "Embed the official Nvidia announcement regarding Jensen Huang's resignation to provide readers with direct access to the company's statement."
+      ]
+    }
+  },
+  {
+    "id": "b21f3eb9-3b8b-408d-b964-b8cd96193ac0",
+    "headline": "Carney Says Canada and US Making Progress Toward Trade Deal, No Agreement Yet",
+    "slug": "carney-canada-us-progress-trade-deal-no-agreement-yet",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the trade deal negotiations. Include specific dates or deadlines if available, as this would provide readers with a clearer understanding of when they might expect an agreement or further developments.",
+        "Provide more context on the implications of the current 25% U.S. tariff on Canadian-made autos. Explain how this tariff affects the Canadian economy and the auto sector specifically, which would help readers grasp the stakes involved in the negotiations."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Mark Carney or a relevant official source summarizing the key points of the trade discussions, which would enhance credibility and provide real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "75301de3-bb37-41b0-8578-3ff046c4513d",
+    "headline": "Bengaluru Pink Line Opens to Crowds, Roses and Doubts Over Partial Route",
+    "slug": "bengaluru-pink-line-first-day-commuters-partial-route",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the fare structure for the metro line, as it is currently missing from the article. Providing specific fare amounts would enhance completeness and give readers actionable information.",
+        "Include a brief statement about the expected timeline for the completion of the underground section to provide context on future travel options.",
+        "Ensure that the article specifies the total length of the Pink Line and its significance in relation to the overall metro system in Bengaluru for better clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Bengaluru Metro or an official government account announcing the opening of the Pink Line for real-time updates and engagement."
+      ]
+    }
+  },
+  {
+    "id": "b6613696-3a7a-4c74-8250-10ca2768746b",
+    "headline": "Cato Amicus Brief Challenges $100,000 H-1B Fee in First Circuit Appeal",
+    "slug": "cato-amicus-brief-challenges-100000-h1b-fee-first-circuit",
+    "category": "immigration",
+    "structural_issues": [
+      "Inline caption names venue 'Georgetown University' not supported by the image file name (Ilya_Somin_Speaking_at_GULC_%282026%29_%281%29.jpg\u2026) \u2014 verify the venue or reword",
+      "Inline caption names venue 'The Golden Gate Bridge' not supported by the image file name (GoldenGateBridge_BakerBeach_MC.jpg\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by correcting the date of the district court's vacatur from June 8, 2026, to June 8, 2023, to ensure accuracy and prevent confusion.",
+        "Provide a brief explanation of the implications of the $100,000 fee being classified as a tax rather than a fee, including potential consequences for employers and H-1B workers if the First Circuit rules in favor of the states.",
+        "Include a specific quote or statement from the Cato Institute or Ilya Somin regarding the rationale behind the amicus brief to enhance attribution and provide more depth to the article.",
+        "Reorganize the content to lead with the most critical information regarding the current status of the fee and its implications for H-1B workers and employers, followed by details about the legal arguments and background."
+      ],
+      "embed_opportunities": [
+        "Embed the official Cato Institute tweet announcing the filing of the amicus brief to provide readers with direct access to the source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "d8922e37-bf2a-407f-b978-d87172ec938e",
+    "headline": "India Beat Pakistan by One Wicket in Last-Ball U19 Asia Cup Final",
+    "slug": "india-beat-pakistan-one-wicket-last-ball-u19-asia-cup-final",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the match in the opening paragraph to enhance completeness and context.",
+        "Include a brief summary of the significance of this victory for Indian cricket, such as its historical context or implications for future tournaments, to provide readers with a deeper understanding.",
+        "Add quotes from players or coaches to provide attribution and enhance the article's depth, particularly regarding the emotional impact of the win or key moments in the match."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ACC or a prominent cricket journalist summarizing the match highlights or reactions to the victory."
+      ]
+    }
+  }
+]

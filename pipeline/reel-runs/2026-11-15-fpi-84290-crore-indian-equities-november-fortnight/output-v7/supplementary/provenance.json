@@ -1,0 +1,97 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "fpi-84290-crore-indian-equities-november-fortnight",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Foreign portfolio investors",
+    "Vedant Gupte",
+    "Trackk",
+    "Brent crude",
+    "Foreign",
+    "Markets Finance"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Foreign portfolio investors' named 'Foreign Portfolio Investors Before and During a Crisis', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Vedant Gupte' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Trackk' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Foreign' named 'foreign policy', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "category label: 'Markets Finance' is this article's category name, not a picture subject"
+    },
+    {
+      "candidate": "File:North Sea Oil IMG 0569 Ekofisk.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q1270246)",
+      "verdict": "USED (grid)",
+      "reason": "1260x3693, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Oil prices.webp",
+      "route": "identity \u2014 depicts (P180=Q1270246)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/webp)"
+    },
+    {
+      "candidate": "File:Ropa-brent-hormuz-2026.png",
+      "route": "identity \u2014 depicts (P180=Q1270246)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Ropa-brent-wti-cena.png",
+      "route": "identity \u2014 depicts (P180=Q1270246)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "grid",
+      "label": "north-sea-oil-img-0569-ekofisk",
+      "path": "north-sea-oil-img-0569-ekofisk.jpg",
+      "size": [
+        1260,
+        3693
+      ],
+      "role": "establishing",
+      "subject": "North Sea Oil from the Norwegian continental shelf. This oil is from the Ekofisk field. API value = 36.0. Viscosity at 50 degrees Celsius = 25.0 c/p.",
+      "route": "identity \u2014 Wikidata P18 (Q1270246)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:North_Sea_Oil_IMG_0569_Ekofisk.JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/North_Sea_Oil_IMG_0569_Ekofisk.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Bjoertvedt",
+      "entity": "Brent crude",
+      "entity_type": "other",
+      "entity_aliases": [
+        "Brent crude",
+        "Brent Crude"
+      ]
+    }
+  ]
+}

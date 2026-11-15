@@ -1,0 +1,39 @@
+[
+  {
+    "id": "7e2c3962-c58d-4035-b578-10d45b83903b",
+    "headline": "Jaishankar Says India-US Trade Deal Is Near the 'Finishing Line'",
+    "slug": "jaishankar-india-us-trade-deal-finishing-line",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific tariff lines that have been resolved to provide readers with concrete details about what has changed in the negotiations.",
+        "Include a timeline or specific dates for when the trade deal might be finalized or when the next significant discussions will take place, particularly in relation to the G20 Summit.",
+        "Provide context on what a 'beneficial and balanced' trade deal would mean for both economies, including potential impacts on specific sectors or industries."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Ministry of External Affairs or a relevant government source that confirms Jaishankar's statements about the trade deal."
+      ]
+    }
+  },
+  {
+    "id": "9ac087c2-2321-4bfe-991f-b3f1a865527b",
+    "headline": "Canada Holds New Student Arrivals at 150,000 a Year Through 2029",
+    "slug": "canada-student-arrivals-150000-through-2029-levels-plan",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the Immigration Levels Plan by explicitly stating the significance of the November 5 release date and how it aligns with the federal budget, as this context is crucial for understanding the urgency and implications of the new policy.",
+        "Include specific numbers regarding the decrease in student targets from previous years (e.g., from 155,000 in 2026 to 150,000 in 2027-2029) to provide readers with a clearer picture of the trend in international student admissions.",
+        "Add a brief explanation of how the cap on international student arrivals might impact the Canadian education system and the job market, as this would give readers a better understanding of the broader implications of the policy.",
+        "Correct the incomplete sentence at the end of the article regarding NASA astronaut Scott Kelly and the aurora image, as it disrupts the flow and clarity of the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official IRCC announcement or tweet regarding the Immigration Levels Plan to provide readers with direct access to the source of the information."
+      ]
+    }
+  }
+]

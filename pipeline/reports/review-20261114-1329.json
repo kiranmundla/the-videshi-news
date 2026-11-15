@@ -1,0 +1,200 @@
+[
+  {
+    "id": "fba6a995-ddbd-4f35-8b04-1630ca2b2c83",
+    "headline": "Winter, Pollution and Children's Lungs: Why Doctors Want Extra Care This Novembe",
+    "slug": "winter-pollution-children-lungs-november-respiratory-care",
+    "category": "lifestyle-health",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Include specific statistics or data on current pollution levels in major cities during November to provide context for the severity of the situation.",
+        "Clarify the timeline for the expected duration of the pollution spike in November, as well as any recommended actions for parents to take throughout the month.",
+        "Add quotes or insights from additional medical professionals or public health officials to provide a broader perspective on the issue and reinforce the urgency of the message.",
+        "Incorporate a brief section on preventive measures that parents can take to protect their children's health during this period, such as using air purifiers or limiting outdoor activities."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a relevant health organization or government body regarding air quality alerts or recommendations for children's health during this time."
+      ]
+    }
+  },
+  {
+    "id": "afbfdb5c-4e68-4e71-88f3-487418694c57",
+    "headline": "Trump Rules Out Cyberattack as FAA Ground Stop Probe Points to Overloaded Aging ",
+    "slug": "trump-rules-out-cyberattack-faa-ground-stop-aging-equipment",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the time when the FAA ground stop was ordered and when it was lifted, as well as the duration of the disruptions. This will help readers understand the sequence of events better.",
+        "Include a quote or statement from the FAA or an official source regarding the current status of the investigation into the incident. This would enhance the completeness of the reporting.",
+        "Provide more context on the implications of the Transportation Secretary's request for $50 billion to replace the FAA's infrastructure. What does this mean for future funding, and how might it affect air travel in the long term?",
+        "Ensure that all attributions are clear and properly cited. For example, clarify that the information about the number of delays and cancellations comes from FlightAware and the analysis by Cirium."
+      ],
+      "embed_opportunities": [
+        "Embed the official FAA statement or tweet regarding the incident and the ground stop for direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "c7fb3651-9904-4ed8-840b-4eadd2339a65",
+    "headline": "IAF Helicopter in PM Modi's Convoy Grounded in Mysuru After Technical Snag",
+    "slug": "iaf-helicopter-modi-convoy-technical-snag-grounded-mysuru",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by providing specific times for when the helicopter developed the snag and when the Prime Minister's convoy departed. This will enhance the completeness of the report.",
+        "Include a direct quote from an official source or a spokesperson regarding the technical issue or repair timeline to improve attribution and credibility.",
+        "Provide more context about the significance of the Prime Minister's visit and the COSMOS-Mysuru Planetarium inauguration to give readers a better understanding of the event's importance."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Indian Air Force or a relevant government official regarding the incident for real-time updates and official statements."
+      ]
+    }
+  },
+  {
+    "id": "afc76630-c13b-494f-ace4-573d446f72f4",
+    "headline": "Sitaphal, Fig and Smoky Charcoal: Indian Sweets and Regional Fruits Are Rewritin",
+    "slug": "indian-sweets-regional-fruits-new-ice-cream-flavours-nostalgia",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Provide specific examples of where consumers can find these new ice cream flavors, including names of shops or brands and their locations.",
+        "Include direct quotes from additional sources or customers to provide a broader perspective on the trend and its reception among consumers.",
+        "Clarify the timeline of this trend: Is it a recent development, or has it been growing over several years? This context would help readers understand the significance of the shift.",
+        "Explain the implications of this trend for traditional ice cream makers and how they might need to adapt to stay competitive."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from Iceberg Organic Ice Creams showcasing their new flavors or a video of the ice cream-making process to enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "86fa9402-2cca-4be5-a489-75278e4aabf8",
+    "headline": "India's Tourism Boom Is Real \u2014 and Lopsided: 4.29 Billion Domestic Visits, but G",
+    "slug": "india-tourism-uneven-growth-domestic-visits-hotel-pipeline",
+    "category": "travel",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline for the tourism statistics mentioned, especially the reference to '2025' as it may confuse readers about whether it is a projection or an actual figure. Consider stating 'projected for 2025' or 'recorded in 2025' clearly.",
+        "Provide a brief explanation of what constitutes 'tier-one' and 'tier-three' cities for readers unfamiliar with these classifications, as this context is crucial for understanding the disparities in tourism growth.",
+        "Include specific figures for the projected growth in jobs and GDP contribution from the tourism sector in 2025 to give readers a clearer picture of the economic impact.",
+        "Ensure that all data points are attributed correctly, particularly the statistics from the Ministry of Tourism and the Hotelivate-Savills report, to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Ministry of Tourism or a relevant government official announcing the tourism statistics to provide an official source for the data presented."
+      ]
+    }
+  },
+  {
+    "id": "0e7c2734-05dc-4a48-ae51-20dbb786db71",
+    "headline": "Four Earthquakes Shake Jammu and Kashmir in 12 Hours, No Damage Reported",
+    "slug": "four-earthquakes-jammu-kashmir-doda-kishtwar-leh-no-damage",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the earthquakes by consolidating the information to avoid redundancy. For instance, instead of repeating the details of the earthquakes, present them in a concise table format that lists the time, location, magnitude, and depth for each event.",
+        "Provide a brief context on the seismic activity in Jammu and Kashmir, including historical data or recent trends in earthquake occurrences in the region. This would help readers understand the significance of these events.",
+        "Include a quote from a local official or a seismologist regarding the implications of these earthquakes, even if no damage was reported. This would add depth and authority to the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the National Center for Seismology regarding the earthquakes for real-time updates and credibility."
+      ]
+    }
+  },
+  {
+    "id": "6f47e74f-6ee2-405b-98d2-c84f2bd8d12f",
+    "headline": "Ramayana Posts Record Second Friday, Second-Biggest Ever for a Hindi Film",
+    "slug": "ramayana-record-second-friday-box-office-hindi-second-biggest",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the box office figures by explicitly stating that they are estimates from Pinkvilla and Box Office India, and consider adding a brief note about the potential discrepancies between different tracking sources.",
+        "Provide a clearer comparison of the film's performance by including the total gross figures for both 'Ramayana: Part One' and 'Dhurandhar: The Revenge' to give readers a better context of its standing in the box office rankings.",
+        "Include a direct quote from a credible source, such as a film analyst or a representative from the production company, to enhance the article's authority and provide insight into the film's performance."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Pinkvilla or Box Office India that confirms the box office figures or provides additional context about the film's performance."
+      ]
+    }
+  },
+  {
+    "id": "5996bbe8-648c-4f66-864d-351bf82ec8c4",
+    "headline": "A2B Sells Majority Stake to James Murdoch-Backed Bodhi Tree in $180 Million Deal",
+    "slug": "adyar-ananda-bhavan-a2b-bodhi-tree-180-million-majority-stake",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the exact percentage of the stake sold to Bodhi Tree Systems, as this is a key detail that readers may want to know.",
+        "Include a brief statement on what the implications of this deal might be for A2B's operations or market position, providing context for why this transaction is significant.",
+        "Ensure that the financial figures mentioned are accurate and up-to-date, especially the revenue and profit figures for the financial year ended March 2025, as this could confuse readers if not aligned with the current date."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official statement from Bodhi Tree Systems or A2B regarding the deal to provide direct confirmation and additional context."
+      ]
+    }
+  },
+  {
+    "id": "123661bf-4ca1-4e5a-b07b-1981794d0b8c",
+    "headline": "Ola Electric Hands Sales to Dealers as Registrations Fall 19.5% in September Qua",
+    "slug": "ola-electric-dealership-pivot-registrations-fall-september-quarter",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline for the dealer model transition and its expected impact on sales\u2014include specific dates for when the new model will be fully operational and how it might affect consumer pricing or availability.",
+        "Provide more context on the financial implications of the reported net loss of Rs 362 crore\u2014what does this mean for Ola Electric's future funding or operational strategy?",
+        "Include a quote or statement from a financial analyst or industry expert to provide an external perspective on the significance of the sales drop and the shift to a dealer model."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Ola Electric or Bhavish Aggarwal discussing the transition to the dealer model or addressing the sales drop."
+      ]
+    }
+  },
+  {
+    "id": "2382833c-770c-49bc-8747-5a3c6e6c9b15",
+    "headline": "KPMG Opens Bengaluru Sports Tech Hub as It Eyes a $40 Billion Indian Sports Indu",
+    "slug": "kpmg-sports-tech-hub-bengaluru-40-billion-industry-2030",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the article, as it currently states the hub was launched on November 13, 2026, which appears to be a future date. This could confuse readers about the timeliness of the news.",
+        "Include a direct quote from KPMG or a relevant stakeholder regarding the significance of the hub and its expected impact on the sports industry. This would enhance attribution and provide a more personal touch to the reporting.",
+        "Provide more context on how the $40 billion projection compares to other industries or sectors in India. This would help readers understand the significance of this growth in a broader economic context."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from KPMG or the Indian Olympic Association announcing the launch of the Sports Technology Hub, which would enhance credibility and provide real-time updates."
+      ]
+    }
+  }
+]

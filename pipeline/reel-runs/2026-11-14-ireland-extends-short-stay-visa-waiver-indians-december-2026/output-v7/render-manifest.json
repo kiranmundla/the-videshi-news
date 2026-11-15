@@ -1,0 +1,408 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "ireland-extends-short-stay-visa-waiver-indians-december-2026",
+ "article_slug": "ireland-extends-short-stay-visa-waiver-indians-december-2026",
+ "article_id": "412c34e6-d7f6-436a-bc6f-6c313c9a5f63",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-14-ireland-extends-short-stay-visa-waiver-indians-december-2026/output-v7/ireland-extends-short-stay-visa-waiver-indians-december-2026.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Dublin_-_aerial_-_2025-07-07_01.jpg/3840px-Dublin_-_aerial_-_2025-07-07_01.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-11-14-ireland-extends-short-stay-visa-waiver-indians-december-2026/output-v7/hero.jpg",
+  "width": 4032,
+  "height": 2268,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.484,0.627) damped=(0.492,0.564)",
+  "has_face": false,
+  "box_source": [
+   855,
+   779,
+   2257,
+   907
+  ],
+  "box_bg": [
+   724,
+   659,
+   1911,
+   768
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.026,
+   0.757
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1217,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1217,
+    930,
+    1580
+   ],
+   "texts": [
+    "Immigration",
+    "IRELAND EXTENDS SHORT-STAY VISA WAIVER"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.847,
+    "photo_px": [
+     4032,
+     2268
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8465608465608465,
+     "window": [
+      0,
+      0,
+      1275,
+      2268
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1217,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1217,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Ireland has extended its Short-Stay Visa Waiver Programme to December 31, 2026, allowing eligible Indian passport holders with a qualifying UK short-stay visa to visit Ireland without a separate Irish visa."
+   ],
+   "v7": {
+    "image_source": "extra:2018-06-13-north-bull-lighthouse-in-dublin-b",
+    "track": "full-bleed",
+    "render_scale": 0.5,
+    "photo_px": [
+     5748,
+     3837
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5003909304143862,
+     "window": [
+      1858,
+      0,
+      4016,
+      3837
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "North Bull Lighthouse in Dublin Bay on the approach to Dublin Harbor, Ireland on May 11, 2018.",
+     "route": "identity \u2014 depicts (P180=Q27)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:2018-06-13_North_Bull_Lighthouse_in_Dublin_Bay,_Ireland.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/2018-06-13_North_Bull_Lighthouse_in_Dublin_Bay%2C_Ireland.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Gordon Leggett"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 382,
+   "block_top": 1198,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1198,
+    930,
+    1580
+   ],
+   "texts": [
+    "WHAT WE KNOW",
+    "DEC 31, 2026",
+    "New end date for Ireland's Short-Stay Visa Waiver Programme"
+   ],
+   "v7": {
+    "image_source": "extra:17-ballyloughan-castle-co-carlow",
+    "track": "full-bleed",
+    "render_scale": 0.588,
+    "photo_px": [
+     2448,
+     3264
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5882352941176471,
+     "window": [
+      302,
+      0,
+      2138,
+      3264
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Ballyloughan Castle",
+     "route": "identity \u2014 depicts (P180=Q27)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:17._Ballyloughan_Castle,_Co._Carlow.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/17._Ballyloughan_Castle%2C_Co._Carlow.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "VisionsofthePast"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 500,
+   "block_top": 1080,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1080,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "21",
+    "Covered nationalities, including India",
+    "90 DAYS",
+    "Maximum stay in Ireland under the waiver"
+   ],
+   "v7": {
+    "image_source": "extra:close-wing-position-of-loxura-atymnus-stoll",
+    "track": "full-bleed",
+    "render_scale": 0.8,
+    "photo_px": [
+     3600,
+     2400
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8,
+     "window": [
+      945,
+      0,
+      2295,
+      2400
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "This picture was taken during the project Wiki Loves Butterfly in Chintamoni Kar Bird Sanctuary,Kolkata,West Bengal,India.Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly. Subspecies: Loxura atymnus continentalis Fruhstorfer, 1912",
+     "route": "identity \u2014 depicts (P180=Q668)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Close_wing_position_of_Loxura_atymnus_Stoll,_1780_%E2%80%93_Yamfly.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Close_wing_position_of_Loxura_atymnus_Stoll%2C_1780_%E2%80%93_Yamfly.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 3.0",
+     "artist": "Atudu"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 1211,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1211,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Enter the UK first - Ireland-first trips are not covered",
+    "UK long-term residents still need an Irish visa"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.588,
+    "photo_px": [
+     2448,
+     3264
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.5882352941176471,
+     "window": [
+      302,
+      0,
+      2138,
+      3264
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "No extension beyond December 31, 2026 has been announced.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 152.9,
+ "mp4_bytes": 24043221
+}

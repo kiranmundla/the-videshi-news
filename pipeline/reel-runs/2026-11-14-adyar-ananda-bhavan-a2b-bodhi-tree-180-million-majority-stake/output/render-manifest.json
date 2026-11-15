@@ -1,0 +1,374 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "adyar-ananda-bhavan-a2b-bodhi-tree-180-million-majority-stake",
+ "article_slug": "adyar-ananda-bhavan-a2b-bodhi-tree-180-million-majority-stake",
+ "article_id": "5996bbe8-648c-4f66-864d-351bf82ec8c4",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-14-adyar-ananda-bhavan-a2b-bodhi-tree-180-million-majority-stake/output/adyar-ananda-bhavan-a2b-bodhi-tree-180-million-majority-stake.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Adyar_Ananda_Bhavan.jpg/1920px-Adyar_Ananda_Bhavan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-11-14-adyar-ananda-bhavan-a2b-bodhi-tree-180-million-majority-stake/output/hero.jpg",
+  "width": 2690,
+  "height": 1907,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.457,0.552) damped=(0.479,0.526)",
+  "has_face": false,
+  "box_source": [
+   534,
+   583,
+   1506,
+   762
+  ],
+  "box_bg": [
+   252,
+   335,
+   467,
+   236
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.479,
+   0.529
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   590
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 810,
+   "zone_h": 746,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1001,
+   "block_bottom": 1364,
+   "text_bbox": [
+    70,
+    1001,
+    930,
+    1364
+   ],
+   "texts": [
+    "Markets Finance",
+    "A2B SELLS MAJORITY STAKE TO BODHI TREE"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.31,
+    "photo_px": [
+     2690,
+     1907
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 590,
+     "scale": 0.3100371747211896,
+     "window": [
+      0,
+      5,
+      2690,
+      1907
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.01x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 810,
+   "zone_h": 746,
+   "scale": 1.0,
+   "content_h": 388,
+   "block_top": 989,
+   "block_bottom": 1377,
+   "text_bbox": [
+    70,
+    989,
+    930,
+    1377
+   ],
+   "texts": [
+    "What Happened",
+    "Adyar Ananda Bhavan, known as A2B, has sold a majority stake to Bodhi Tree Systems for $180 million, in a transaction valuing the Chennai-based chain at approximately $350 million."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.352,
+    "photo_px": [
+     2690,
+     1907
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 590,
+     "scale": 0.3523447401774398,
+     "window": [
+      105,
+      171,
+      2472,
+      1845
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.01x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 810,
+   "zone_h": 746,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 1001,
+   "block_bottom": 1364,
+   "text_bbox": [
+    70,
+    1001,
+    930,
+    1364
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$180 MILLION",
+    "Majority stake sale to Bodhi Tree Systems"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.388,
+    "photo_px": [
+     2690,
+     1907
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 590,
+     "scale": 0.387546468401487,
+     "window": [
+      0,
+      247,
+      2152,
+      1769
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.01x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 810,
+   "zone_h": 746,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 910,
+   "block_bottom": 1455,
+   "text_bbox": [
+    70,
+    910,
+    930,
+    1455
+   ],
+   "texts": [
+    "By The Numbers",
+    "$350 MILLION",
+    "Approximate valuation of A2B in the deal",
+    "160",
+    "Outlets in India, with more than 30 overseas"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.388,
+    "photo_px": [
+     2690,
+     1907
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 590,
+     "scale": 0.387546468401487,
+     "window": [
+      534,
+      247,
+      2686,
+      1769
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.01x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 810,
+   "zone_h": 746,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 998,
+   "block_bottom": 1367,
+   "text_bbox": [
+    70,
+    998,
+    930,
+    1367
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Investment funds expansion in western India and Europe",
+    "Uday Shankar will chair A2B's new board"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.419,
+    "photo_px": [
+     2690,
+     1907
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 590,
+     "scale": 0.4190954773869347,
+     "window": [
+      293,
+      500,
+      2283,
+      1907
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.01x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "The money will fund expansion into western India and Europe.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 99.1,
+ "mp4_bytes": 9063051
+}

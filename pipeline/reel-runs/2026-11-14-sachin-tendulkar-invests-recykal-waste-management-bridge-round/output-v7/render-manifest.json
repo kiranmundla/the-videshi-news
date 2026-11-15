@@ -1,0 +1,374 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "sachin-tendulkar-invests-recykal-waste-management-bridge-round",
+ "article_slug": "sachin-tendulkar-invests-recykal-waste-management-bridge-round",
+ "article_id": "9d84dfe5-a641-4e30-99aa-9cd99637594a",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-14-sachin-tendulkar-invests-recykal-waste-management-bridge-round/output-v7/sachin-tendulkar-invests-recykal-waste-management-bridge-round.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://inc42.com/cdn-cgi/image/quality=90/https://asset.inc42.com/2026/11/tendulkar-recykal-social-.png",
+  "local_path": "reel-runs/2026-11-14-sachin-tendulkar-invests-recykal-waste-management-bridge-round/output-v7/hero.png",
+  "width": 1200,
+  "height": 628,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.90)",
+  "has_face": true,
+  "box_source": [
+   138,
+   156,
+   45,
+   56
+  ],
+  "box_bg": [
+   182,
+   264,
+   31,
+   39
+  ],
+  "chin_bg": 303,
+  "anchor": [
+   0.134,
+   0.292
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   436
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 348,
+   "block_top": 932,
+   "block_bottom": 1280,
+   "text_bbox": [
+    70,
+    932,
+    930,
+    1280
+   ],
+   "texts": [
+    "Markets Finance",
+    "SACHIN TENDULKAR INVESTS IN RECYCLING PLATFORM"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     628
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      627
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 403,
+   "block_top": 904,
+   "block_bottom": 1307,
+   "text_bbox": [
+    70,
+    904,
+    930,
+    1307
+   ],
+   "texts": [
+    "What Happened",
+    "Sachin Tendulkar has joined Hyderabad-based waste-management platform Recykal as a strategic investor, extending its $23 million bridge round."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     628
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.7897727272727273,
+     "window": [
+      0,
+      0,
+      1056,
+      552
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 312,
+   "block_top": 950,
+   "block_bottom": 1262,
+   "text_bbox": [
+    70,
+    950,
+    930,
+    1262
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$23 MILLION",
+    "Bridge round closed in June 2026"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     628
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.86875,
+     "window": [
+      0,
+      0,
+      960,
+      501
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 500,
+   "block_top": 856,
+   "block_bottom": 1356,
+   "text_bbox": [
+    70,
+    856,
+    930,
+    1356
+   ],
+   "texts": [
+    "By The Numbers",
+    "53.2%",
+    "Rise in FY26 gross revenue",
+    "650",
+    "Enterprise brands working with Recykal"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     628
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.86875,
+     "window": [
+      138,
+      0,
+      1098,
+      501
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 656,
+   "zone_h": 900,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 921,
+   "block_bottom": 1290,
+   "text_bbox": [
+    70,
+    921,
+    930,
+    1290
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Recykal is private - no public share to buy",
+    "Bridge capital funds overseas expansion"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.939,
+    "photo_px": [
+     1200,
+     628
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 436,
+     "scale": 0.9391891891891891,
+     "window": [
+      0,
+      156,
+      888,
+      620
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.06x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 321,
+   "block_top": 699,
+   "block_bottom": 1020,
+   "text_bbox": [
+    70,
+    699,
+    930,
+    1020
+   ],
+   "texts": [
+    "The Takeaway",
+    "Recykal remains private, so there is no listed-market action to take.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/tech-corporate-technology.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 90.1,
+ "mp4_bytes": 5696464
+}

@@ -1,0 +1,31 @@
+{
+  "hook_line": "IRELAND EXTENDS SHORT-STAY VISA WAIVER",
+  "hook_stat": {
+    "big": "DEC 31, 2026",
+    "eyebrow": "WHAT WE KNOW",
+    "sub": "New end date for Ireland's Short-Stay Visa Waiver Programme"
+  },
+  "stats": [
+    {
+      "big": "21",
+      "label": "Covered nationalities, including India"
+    },
+    {
+      "big": "90 DAYS",
+      "label": "Maximum stay in Ireland under the waiver"
+    }
+  ],
+  "diaspora_bullets": [
+    "Enter the UK first - Ireland-first trips are not covered",
+    "UK long-term residents still need an Irish visa"
+  ],
+  "key_entities": [
+    "Ireland",
+    "India",
+    "United Kingdom"
+  ],
+  "news_summary": "Ireland has extended its Short-Stay Visa Waiver Programme to December 31, 2026, allowing eligible Indian passport holders with a qualifying UK short-stay visa to visit Ireland without a separate Irish visa.",
+  "payoff": "No extension beyond December 31, 2026 has been announced.",
+  "versus": "",
+  "story_mood": "practical"
+}

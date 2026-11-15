@@ -1,0 +1,388 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-tb-mortality-down-38-percent-who-report",
+ "article_slug": "india-tb-mortality-down-38-percent-who-report",
+ "article_id": "c64024cf-faf0-41a4-a249-f492f4dbe0a3",
+ "category": "News",
+ "video": "reel-runs/2026-11-13-india-tb-mortality-down-38-percent-who-report/output/india-tb-mortality-down-38-percent-who-report.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://www.newsage.in/wp-content/uploads/2026/11/TB.jpg",
+  "local_path": "reel-runs/2026-11-13-india-tb-mortality-down-38-percent-who-report/output/hero.jpg",
+  "width": 1200,
+  "height": 630,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.92)",
+  "has_face": true,
+  "box_source": [
+   193,
+   159,
+   145,
+   174
+  ],
+  "box_bg": [
+   220,
+   267,
+   101,
+   121
+  ],
+  "chin_bg": 388,
+  "anchor": [
+   0.221,
+   0.392
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   437
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 657,
+   "zone_h": 899,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 970,
+   "block_bottom": 1243,
+   "text_bbox": [
+    70,
+    970,
+    930,
+    1243
+   ],
+   "texts": [
+    "News",
+    "INDIA TB MORTALITY FALLS 38 PERCENT"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     630
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 437,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      628
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.05x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 657,
+   "zone_h": 899,
+   "scale": 1.0,
+   "content_h": 423,
+   "block_top": 895,
+   "block_bottom": 1318,
+   "text_bbox": [
+    70,
+    895,
+    930,
+    1318
+   ],
+   "texts": [
+    "What Happened",
+    "India recorded a 38% decline in tuberculosis mortality since 2015, compared with a global decline of 35%, according to the WHO Global Tuberculosis Report 2026."
+   ],
+   "v7": {
+    "image_source": "extra:world-health-organisation-headquarters-genev",
+    "track": "backdrop",
+    "render_scale": 0.323,
+    "photo_px": [
+     2583,
+     1772
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 437,
+     "scale": 0.3228803716608595,
+     "window": [
+      0,
+      264,
+      2583,
+      1617
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.08x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "World Health Organisation headquarters, Geneva, north and west sides.",
+     "route": "identity \u2014 Wikidata P18 (Q7817)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:World_Health_Organisation_headquarters,_Geneva,_north_and_west_sides_2007.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/6/60/World_Health_Organisation_headquarters%2C_Geneva%2C_north_and_west_sides_2007.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Yann Forget"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 657,
+   "zone_h": 899,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 887,
+   "block_bottom": 1325,
+   "text_bbox": [
+    70,
+    887,
+    930,
+    1325
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "38%",
+    "Decline in tuberculosis mortality in India since 2015"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     630
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 437,
+     "scale": 0.7897727272727273,
+     "window": [
+      0,
+      0,
+      1056,
+      553
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.05x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 657,
+   "zone_h": 899,
+   "scale": 1.0,
+   "content_h": 545,
+   "block_top": 834,
+   "block_bottom": 1379,
+   "text_bbox": [
+    70,
+    834,
+    930,
+    1379
+   ],
+   "texts": [
+    "By The Numbers",
+    "94%",
+    "Treatment success rate for drug-susceptible TB",
+    "18",
+    "TB deaths per lakh in 2025, down from 28 in 2015"
+   ],
+   "v7": {
+    "image_source": "extra:how-to-handwash-by-who-2015-written-in-sutto",
+    "track": "backdrop",
+    "render_scale": 0.339,
+    "photo_px": [
+     2459,
+     1739
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 437,
+     "scale": 0.3391622610817405,
+     "window": [
+      0,
+      259,
+      2459,
+      1547
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.10x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "The World Health Organization recommends this procedure of hand washing to avoid becoming infected and spreading germs to others. The procedure is illustrated using Sutton SignWriting symbols and signed with International Sign Language.",
+     "route": "identity \u2014 depicts (P180=Q7817)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:%22How_to_handwash%3F%22_by_WHO_(2015),_written_in_Sutton_SignWriting.png",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/%22How_to_handwash%3F%22_by_WHO_%282015%29%2C_written_in_Sutton_SignWriting.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 4.0",
+     "artist": "Sutthikhun Phaengphongsai"
+    }
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 657,
+   "zone_h": 899,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 922,
+   "block_bottom": 1291,
+   "text_bbox": [
+    70,
+    922,
+    930,
+    1291
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "India outpaced the global decline of 35%",
+    "More than 25 crore people brought within TB screening"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     630
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 437,
+     "scale": 0.86875,
+     "window": [
+      0,
+      0,
+      960,
+      503
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.05x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "India met 96% of TB programme funding requirements through domestic resources.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 91.9,
+ "mp4_bytes": 7375582
+}

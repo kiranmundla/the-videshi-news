@@ -1,0 +1,152 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "cato-amicus-brief-challenges-100000-h1b-fee-first-circuit",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Cato Amicus Brief Challenges $100,000 H-1B Fee in First Circuit Appeal",
+        "numbers": [
+          1.0,
+          100000.0
+        ],
+        "entities": [
+          "Cato Amicus Brief Challenges",
+          "H-1B Fee",
+          "First Circuit Appeal"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the Cato brief challenges the $100,000 H-1B fee in the First Circuit.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Filed for the Cato Institute and professor Ilya Somin, the brief argues the payment is a tax only Congress can impose \u2014 while the fee itself remains vacated as the government appeals.",
+        "numbers": [],
+        "entities": [
+          "Cato Institute",
+          "Ilya Somin"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the brief's arguments and the fee's vacated status during the appeal.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The Cato Institute and professor Ilya Somin filed an amicus brief on November 12 in the First Circuit",
+        "numbers": [
+          12.0
+        ],
+        "entities": [
+          "Cato Institute",
+          "Ilya Somin",
+          "First Circuit"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the brief was filed on November 12 in the First Circuit.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "A Massachusetts district court vacated the $100,000 payment on June 8, 2026",
+        "numbers": [
+          8.0,
+          2026.0,
+          100000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "The article mentions the payment was vacated on June 8, 2026.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The First Circuit refused on July 24 to pause that ruling while the government appeals",
+        "numbers": [
+          24.0
+        ],
+        "entities": [
+          "First Circuit"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the First Circuit denied the government's request on July 24.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Cato Amicus Brief Challenges $100,000 H-1B Fee in First Circuit Appeal",
+        "numbers": [
+          1.0,
+          100000.0
+        ],
+        "entities": [
+          "Cato Amicus Brief Challenges",
+          "H-1B Fee",
+          "First Circuit Appeal"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000507,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

@@ -1,0 +1,33 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "ramayana-record-second-friday-box-office-hindi-second-biggest",
+  "name": "ramayana-record-second-friday-box-office-hindi-second-biggest",
+  "script": "reel-runs/2026-11-14-ramayana-record-second-friday-box-office-hindi-second-biggest/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000641
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-14-ramayana-record-second-friday-box-office-hindi-second-biggest/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "diaspora": "ramayana-rise-of-a-legend-ranbir-kapoor-sai"
+    }
+  },
+  "manifest": "reel-runs/2026-11-14-ramayana-record-second-friday-box-office-hindi-second-biggest/output-v2/render-manifest.json",
+  "video": "reel-runs/2026-11-14-ramayana-record-second-friday-box-office-hindi-second-biggest/output-v2/ramayana-record-second-friday-box-office-hindi-second-biggest.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-14-ramayana-record-second-friday-box-office-hindi-second-biggest/output-v2/tiktok-caption.txt"
+}

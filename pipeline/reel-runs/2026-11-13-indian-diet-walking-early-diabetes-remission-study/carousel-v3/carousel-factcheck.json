@@ -1,0 +1,148 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "indian-diet-walking-early-diabetes-remission-study",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Traditional Indian Diet and Daily Walks Put 60.9% of Early Diabetes Patients in Remission, Study Finds",
+        "numbers": [
+          60.9
+        ],
+        "entities": [
+          "Traditional Indian Diet",
+          "Daily Walks Put",
+          "Early Diabetes Patients",
+          "Study Finds"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states a 60.9% remission rate from the study.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "In an 87-person Maharashtra trial, a traditional Indian diet plus a 40-minute daily walk produced an estimated 60.9% remission rate at six months.",
+        "numbers": [
+          40.0,
+          60.9,
+          87.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions an 87-person trial in Maharashtra with a 60.9% remission rate.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "An estimated 60.9% of adults with early Type 2 diabetes achieved remission at six months",
+        "numbers": [
+          2.0,
+          60.9
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms a 60.9% remission rate at six months.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Average HbA1c fell from 7.32% to 6.27%, and average weight fell by 4.67 kg",
+        "numbers": [
+          1.0,
+          4.67,
+          6.27,
+          7.32
+        ],
+        "entities": [
+          "Average HbA1c"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides these exact HbA1c and weight changes.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Walking on at least 80% of days gave 8.24 times the adjusted odds of remission",
+        "numbers": [
+          8.24,
+          80.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states this specific statistic about walking adherence.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Traditional Indian Diet and Daily Walks Put 60.9% of Early Diabetes Patients in Remission, Study Finds",
+        "numbers": [
+          60.9
+        ],
+        "entities": [
+          "Traditional Indian Diet",
+          "Daily Walks Put",
+          "Early Diabetes Patients",
+          "Study Finds"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000463,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

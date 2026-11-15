@@ -1,0 +1,42 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "supreme-court-trump-asylum-ban-border-review",
+  "name": "supreme-court-trump-asylum-ban-border-review",
+  "script": "reel-runs/2026-11-13-supreme-court-trump-asylum-ban-border-review/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000567
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-13-supreme-court-trump-asylum-ban-border-review/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "1-supreme-court",
+      "hero": "ussupremecourtwestfacade",
+      "grid": "associate-justice-ruth-bader-ginsburg-s-chai"
+    }
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Donald Trump, Trump) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 4,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "extra:1-supreme-court",
+      "extra:ussupremecourtwestfacade",
+      "extra:associate-justice-ruth-bader-ginsburg-s-chai"
+    ]
+  },
+  "detail": "only 4 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}

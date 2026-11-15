@@ -1,0 +1,149 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "us-immigration-curbs-cost-668-billion-nfap-study",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "National Foundation for American Policy",
+    "H-1B",
+    "India and Canada",
+    "United States"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'National Foundation for American Policy' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'H-1B' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'India and Canada' named 'India and Canada join IUCN as State Members', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:United States - Location Map (2013) - USA - UNOCHA.svg",
+      "route": "identity \u2014 Wikidata P18 (Q30)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:American bison in Yellowstone National Park.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:BigRiver.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "rejected",
+      "reason": "blocklist: this file is on the entity's corpus blocklist \u2014 proven wrong for 'United States' in a prior run"
+    },
+    {
+      "candidate": "File:Bodie September 2016 019.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "USED (news)",
+      "reason": "4280x2940, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Chrysler Building - 05.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "USED (hero)",
+      "reason": "2250x3000, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "bodie-september-2016-019",
+      "path": "bodie-september-2016-019.jpg",
+      "size": [
+        4280,
+        2940
+      ],
+      "role": "establishing",
+      "subject": "County Barn, Bodie , California .",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Bodie_September_2016_019.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/1a/Bodie_September_2016_019.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "King of Hearts",
+      "entity": "United States",
+      "entity_type": "other",
+      "entity_aliases": [
+        "United States",
+        "the States",
+        "the United States of America",
+        "US of America",
+        "the US",
+        "the U.S.",
+        "the US of A",
+        "U.S. of America",
+        "the US of America",
+        "the USA",
+        "the U.S.A.",
+        "the U.S. of A",
+        "US of A",
+        "the U.S. of America",
+        "the United States",
+        "Merica",
+        "Murica",
+        "U. S.",
+        "U. S. A.",
+        "United States of America",
+        "'Murica"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "chrysler-building-05",
+      "path": "chrysler-building-05.jpg",
+      "size": [
+        2250,
+        3000
+      ],
+      "role": "establishing",
+      "subject": "Chrysler Building , New York, United States.",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Chrysler_Building_-_05.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/Chrysler_Building_-_05.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Carlos Delgado",
+      "entity": "United States",
+      "entity_type": "other",
+      "entity_aliases": [
+        "United States",
+        "the States",
+        "the United States of America",
+        "US of America",
+        "the US",
+        "the U.S.",
+        "the US of A",
+        "U.S. of America",
+        "the US of America",
+        "the USA",
+        "the U.S.A.",
+        "the U.S. of A",
+        "US of A",
+        "the U.S. of America",
+        "the United States",
+        "Merica",
+        "Murica",
+        "U. S.",
+        "U. S. A.",
+        "United States of America",
+        "'Murica"
+      ]
+    }
+  ]
+}

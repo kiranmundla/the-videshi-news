@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-13T05:17:44+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-13T23:22:59+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **251**
-- prebuilt_reels rows: 184 (154 with a yt_video_id)
+- Channel uploads (actual, via API): **253**
+- prebuilt_reels rows: 186 (156 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 67
-- **In sync** (channel video backed by a DB/publish-log record): **133**
+- Phase 2 publish-log entries: 69
+- **In sync** (channel video backed by a DB/publish-log record): **135**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 17
 - Ghost DB rows (yt_video_id not on channel): 16
@@ -292,7 +292,7 @@ _None._
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 - row `3c385175-84c2-48c0-afec-378bee1ba1d6` · slug ambani-adds-6-3-billion-reliance-shares-jump-record-profit · yt_video_id `B45MLVEFtk4` · on channel: no
 
-## (d) In sync (133)
+## (d) In sync (135)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -427,4 +427,6 @@ _None._
 - `mdAqsYGKPg4` · public · 2026-11-12 · Teen Chess Master Md Imran Risks US Scholarship as Visa Deadline Closes In #Shorts #VisaNews [prebuilt_reels:04db4476-227f-4858-ae7f-e2dbc409c14a]
 - `qQ40j7FYnCk` · public · 2026-11-12 · Congressman-Elect Amish Shah Puts Tariffs and Anti-Indian Hate at Top of His Agenda #Shorts #NRI [prebuilt_reels:64328198-a4a0-48f7-8924-069b1ea5ddf4]
 - `Mr0ij9sGpfk` · public · 2026-11-12 · Six Researchers Win Infosys Prize 2026, Including Legal Scholar Gautam Bhatia #Shorts #NRI [prebuilt_reels:48263349-dbf1-4f1b-868b-bb7d1d6dfc3a]
+- `_8NmLErnvRg` · public · 2026-11-13 · India TB Mortality Falls 38 Percent Since 2015, WHO Report Finds #Shorts #News [prebuilt_reels:385bf1aa-b8b9-4ce9-b473-d95195a53644]
+- `V6CfCt1aNak` · public · 2026-11-13 · Diet and Daily Walks Put 61% of Early Diabetes Patients in Remission, Study Finds #Shorts #Health [prebuilt_reels:910c156b-4702-48af-9775-115ab40ed92f]
 

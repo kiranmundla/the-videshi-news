@@ -1,0 +1,42 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "us-immigration-curbs-cost-668-billion-nfap-study",
+  "name": "us-immigration-curbs-cost-668-billion-nfap-study",
+  "script": "reel-runs/2026-11-13-us-immigration-curbs-cost-668-billion-nfap-study/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000634
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-13-us-immigration-curbs-cost-668-billion-nfap-study/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "bodie-september-2016-019",
+      "hero": "chrysler-building-05"
+    }
+  },
+  "stock": {
+    "eligible": true,
+    "reason": "policy keyword in headline/script",
+    "scenes": 0,
+    "provenance": "reel-runs/2026-11-13-us-immigration-curbs-cost-668-billion-nfap-study/output/stock/provenance.json"
+  },
+  "distinct_images": {
+    "usable": 3,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "extra:bodie-september-2016-019",
+      "extra:chrysler-building-05"
+    ]
+  },
+  "detail": "only 3 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}
