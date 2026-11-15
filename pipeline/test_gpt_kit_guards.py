@@ -154,5 +154,30 @@ check("operating service may carry a CTA",
       gate.check_service_state_contradiction(
           {"headline": "Service Live", "body": live_service}) == [])
 
+# ── 5. Mention arm: a place named only as a location qualifier is
+# not the file's subject (Kiran flag, 2026-11-15: the New Delhi
+# depicts pool's armor-exhibit photo landed in a U19 cricket
+# article because 'Delhi' appeared in the file title).
+fns = pp._place_file_names_place_as_subject
+check("armor exhibit title rejected for New Delhi",
+      fns("File:Armor and weapons in the National Museum, "
+          "New Delhi - IMG 2245.JPG", {"delhi"}) is False)
+check("city-titled file accepted for New Delhi",
+      fns("File:New Delhi skyline from Connaught Place.jpg",
+          {"delhi"}) is True)
+check("landmark-titled file fails the mention-arm test by design",
+      fns("File:India Gate, New Delhi.jpg", {"delhi"}) is False)
+check("airport's own title accepted (Toronto Pearson precedent)",
+      fns("File:Toronto Pearson International Airport "
+          "Terminal 1.jpg",
+          {"toronto", "pearson", "international", "airport"})
+      is True)
+import json as _json
+_reg = _json.load(open(os.path.join(HERE, "entity_registry.json")))
+_nd = [e for e in _reg["entities"] if e.get("name") == "New Delhi"][0]
+check("armor file is on New Delhi's registry blocklist",
+      "armor and weapons in the national museum, new delhi - "
+      "img 2245.jpg" in _nd["blocked_files"])
+
 print(f"\n{total - fails}/{total} passed")
 sys.exit(1 if fails else 0)

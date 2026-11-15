@@ -43,8 +43,10 @@
    "p18_quality": 6000,
    "official_domain": null,
    "confusables": [],
-   "blocked_files": [],
-   "notes": "primary topic by sitelinks (221 vs 3)"
+   "blocked_files": [
+    "armor and weapons in the national museum, new delhi - img 2245.jpg"
+   ],
+   "notes": "primary topic by sitelinks (221 vs 3) | 2026-11-15: armor-exhibit file blocklisted — it is a depicts-pool file for Q987 but depicts a museum exhibit, not the city; placed as an inline in a U19 cricket article (Kiran flag)."
   },
   {
    "name": "New York City",
@@ -22475,6 +22477,177 @@
    "resolved_confidence": "high",
    "resolved_context": "Foreign Investors Pump ₹84,290 Crore Into Indian Stocks in November's First Fortnight FOREIGN INVESTORS PUMP ₹84,290 CRORE INTO INDIAN STOCKS Foreign portfolio investors put a net ₹84,290 crore into Indian equities between November 2 and 13, reversing two straight months of outflows, depository data reported by PTI shows. FPIs remain net sellers for 2026 overall, despite the inflow. Financials, te",
    "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: \"Foreign Investors Pump ₹84,290 Crore Into Indian Stocks in November's First Fortnight FOREIGN INVESTORS PUMP ₹84,290 CRORE INTO INDIAN STOCKS Foreign portfolio investors put a net ₹84,290 crore into I\"; description: classification of sweet light crude oil that serves as a major benchmark price for purchases of oil worldwide"
+  },
+  {
+   "name": "United Nations General Assembly",
+   "aliases": [
+    "General Assembly",
+    "United Nations General Assembly",
+    "UNGA",
+    "GA",
+    "UN GA",
+    "UN General Assembly",
+    "U.N. General Assembly",
+    "General Assembly of the United Nations"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q47423",
+   "p18_file": "The Assembly Hall, Palais des Nations (47570471872).jpg",
+   "p18_quality": 5526,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "India Votes Against UN Moratorium on Death Penalty, Citing Sovereign Right to Set Penalties   <div class=\"key-takeaways\"><ul>\n<li>India voted against a UN General Assembly draft resolution calling for a global moratorium on the death penalty, which the Third Committee adopted by 133 votes to 33, with 16 abstentions, on Friday, November 13, 2026.</li>\n<li>India argued there is no international cons",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'India Votes Against UN Moratorium on Death Penalty, Citing Sovereign Right to Set Penalties   <div class=\"key-takeaways\"><ul>\\n<li>India voted against a UN General Assembly draft resolution calling for'; description: principal organ of the United Nations"
+  },
+  {
+   "name": "Wycombe Wanderers F.C.",
+   "aliases": [
+    "Wanderers",
+    "Wycombe Wanderers F.C.",
+    "Wycombe Wanderers Football Club",
+    "Wycombe Wanderers FC",
+    "Wycombe Wanderers",
+    "Wycombe",
+    "The Chairboys",
+    "WWFC"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q48953",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "medium",
+   "resolved_context": "South Africa Faces Bangladesh in Crucial ODI Clash at The Wanderers   South Africa and Bangladesh clash in a key ODI match at The Wanderers.  South Africa is set to take on Bangladesh in a One Day International (ODI) match at The Wanderers Stadium on November 15, 2026, starting at 1:00 AM PT. This encounter marks a significant moment in the ongoing series, with both teams looking to secure crucial",
+   "notes": "auto-resolved via wikidata-context (confidence medium); context: 'South Africa Faces Bangladesh in Crucial ODI Clash at The Wanderers   South Africa and Bangladesh clash in a key ODI match at The Wanderers.  South Africa is set to take on Bangladesh in a One Day Int'; description: association football club in High Wycombe, England"
+  },
+  {
+   "name": "South China Morning Post",
+   "aliases": [
+    "South China Morning Post",
+    "SCMP",
+    "scmp.com"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1198574",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "China Upgrades VT-4 Tank Used by Pakistan With Anti-Drone Gun, Stronger Armour   <div class=\"key-takeaways\"><ul>\n<li>China has developed an upgraded version of the VT-4 main battle tank - a key component of Pakistan's armoured fleet - with stronger armour, improved sensors and a larger weapon station, the South China Morning Post reported.</li>\n<li>A 30mm remotely operated weapon station replaces ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'China Upgrades VT-4 Tank Used by Pakistan With Anti-Drone Gun, Stronger Armour   <div class=\"key-takeaways\"><ul>\\n<li>China has developed an upgraded version of the VT-4 main battle tank - a key compon'; description: Hong Kong newspaper"
+  },
+  {
+   "name": "Chris Wood",
+   "aliases": [
+    "Chris Wood",
+    "Christopher Grant Wood"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q74548",
+   "p18_file": "Chris Wood (cropped).jpg",
+   "p18_quality": 1604,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Chris Wood: India Wins the 'Reverse AI Trade', Energy Hedges the Iran Risk   <div class=\"key-takeaways\"><ul>\n<li>Jefferies strategist Chris Wood argues the AI capital-spending cycle has peaked, with hyperscaler returns on invested capital forecast to fall from a 27.2% median in 2024 to as low as 15.7% by 2028.</li>\n<li>Foreign investors bought a net $7.2 billion of Indian equities over three weeks",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Chris Wood: India Wins the \\'Reverse AI Trade\\', Energy Hedges the Iran Risk   <div class=\"key-takeaways\"><ul>\\n<li>Jefferies strategist Chris Wood argues the AI capital-spending cycle has peaked, with h'; description: New Zealand association football player"
+  },
+  {
+   "name": "John F. Kennedy International Airport",
+   "aliases": [
+    "JFK",
+    "John F. Kennedy International Airport",
+    "KJFK",
+    "JFK International Airport",
+    "Kennedy International",
+    "New York International Airport",
+    "Kennedy International Airport",
+    "JFK Airport",
+    "Idlewild Airport",
+    "Idlewild International Airport",
+    "Major General Alexander E. Anderson Airport"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q8685",
+   "p18_file": "JFK Aerial Nov 14 2018.jpg",
+   "p18_quality": 4032,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Air India Restores Non-Stop Flights to New York, Cutting Travel Time by Five Hours AIR INDIA RESTORES NON-STOP FLIGHTS TO NEW YORK Air India has restored non-stop flights on all four India-New York routes - Delhi and Mumbai to JFK and Newark - ending the Rome refuelling stop, the airline said on November 15. Journey times fall by up to five hours with the Rome stop discontinued. Newark services do",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Air India Restores Non-Stop Flights to New York, Cutting Travel Time by Five Hours AIR INDIA RESTORES NON-STOP FLIGHTS TO NEW YORK Air India has restored non-stop flights on all four India-New York ro'; description: international airport in New York, United States"
+  },
+  {
+   "name": "Newark",
+   "aliases": [
+    "Newark",
+    "City of Newark",
+    "Brick City",
+    "Newark, NJ"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q25395",
+   "p18_file": "2021-09-25 10 50 38 View of downtown Newark from the intersection of Essex County Route 510 (Market Street) and Mulberry Street in Newark, Essex County, New Jersey.jpg",
+   "p18_quality": 4032,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Air India Restores Non-Stop Flights to New York, Cutting Travel Time by Five Hours AIR INDIA RESTORES NON-STOP FLIGHTS TO NEW YORK Air India has restored non-stop flights on all four India-New York routes - Delhi and Mumbai to JFK and Newark - ending the Rome refuelling stop, the airline said on November 15. Journey times fall by up to five hours with the Rome stop discontinued. Newark services do",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Air India Restores Non-Stop Flights to New York, Cutting Travel Time by Five Hours AIR INDIA RESTORES NON-STOP FLIGHTS TO NEW YORK Air India has restored non-stop flights on all four India-New York ro'; description: city in Essex County, and largest city in New Jersey, United States"
+  },
+  {
+   "name": "China",
+   "aliases": [
+    "China",
+    "Cathay",
+    "Chunghwa",
+    "Zhongguo",
+    "Chung-kuo",
+    "Zhonghua",
+    "Chung-hua",
+    "Sinae",
+    "Flowery Kingdom",
+    "Celestial Kingdom",
+    "Middle Kingdom",
+    "Central Kingdom",
+    "Tianxia",
+    "All under Heaven",
+    "Katay",
+    "Khitai"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q29520",
+   "p18_file": "China map updated.png",
+   "p18_quality": 705,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "China Upgrades VT-4 Tank Used by Pakistan With Anti-Drone Gun, Stronger Armour   <div class=\"key-takeaways\"><ul>\n<li>China has developed an upgraded version of the VT-4 main battle tank - a key component of Pakistan's armoured fleet - with stronger armour, improved sensors and a larger weapon station, the South China Morning Post reported.</li>\n<li>A 30mm remotely operated weapon station replaces ",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'China Upgrades VT-4 Tank Used by Pakistan With Anti-Drone Gun, Stronger Armour   <div class=\"key-takeaways\"><ul>\\n<li>China has developed an upgraded version of the VT-4 main battle tank - a key compon'; description: cultural region, ancient civilization, and nation in East Asia; mostly refers to the People's Republic of China in political situation and rarely refers to the Republic of China"
   }
  ]
 }

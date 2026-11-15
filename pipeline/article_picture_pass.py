@@ -2593,6 +2593,30 @@ def _source_entity_images_identity(entity_rec, article, net,
     return cands, rows
 
 
+def _place_file_names_place_as_subject(title, place_toks):
+    """True when a Commons file's title presents the PLACE as its
+    depicted subject — the place's name tokens appear in the
+    title's head segment (before the first comma), not merely as a
+    trailing location qualifier. The 2026-11-15 keeper: 'Armor and
+    weapons in the National Museum, New Delhi - IMG 2245' passed
+    the old anywhere-in-title test for the entity New Delhi and
+    landed as an inline in a U19 cricket article — the photo's
+    subject is a museum exhibit; New Delhi is only where the
+    museum sits. A landmark-titled file ('India Gate, New Delhi')
+    also fails this test on the MENTION arm by design: a passing
+    mention earns only a picture of the place itself, and the
+    place's own P18 route remains open. The subject arm (the
+    article is about the place) does not use this test."""
+    if not title or not place_toks:
+        return False
+    t = title.replace("File:", " ").strip()
+    t = re.sub(r"\.[a-z0-9]+$", "", t, flags=re.I)
+    t = re.sub(r"\s*[-–—]\s*(IMG|DSC|PXL)[\s\d_]*$", "", t,
+               flags=re.I)
+    head = t.split(",")[0].lower()
+    return any(tok in head for tok in place_toks)
+
+
 def _source_inlines(article, entities, hint, net, want, seen_titles,
                     rec, log, hero_url=None, hero_pick=None,
                     exclude_urls=frozenset()):
@@ -2695,8 +2719,8 @@ def _source_inlines(article, entities, hint, net, want, seen_titles,
             for c in cands:
                 if c.get("entity_type") == "place" and (
                         "P18 of" in (c.get("route") or "")
-                        or any(t in (c.get("title") or "").lower()
-                               for t in _toks)):
+                        or _place_file_names_place_as_subject(
+                            c.get("title"), _toks)):
                     _kept.append(c)
                 else:
                     rec["ledger"].append(
