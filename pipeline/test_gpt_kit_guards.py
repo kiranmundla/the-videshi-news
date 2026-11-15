@@ -179,5 +179,60 @@ check("armor file is on New Delhi's registry blocklist",
       "armor and weapons in the national museum, new delhi - "
       "img 2245.jpg" in _nd["blocked_files"])
 
+# ── 6. Name-as-place screen (Kiran flag, 2026-11-15): a Commons
+# search for the actor Suriya made a biplane at 'Suriya Land',
+# Thailand, the hero of his film review. The shared Commons
+# evaluator must reject person candidates whose name evidence is
+# place-only, and keep genuine person references.
+RES = load("reel_entity_sourcing", "reel_entity_sourcing.py")
+
+
+def _page(title, desc="", w=1920, h=1280):
+    return {"title": title, "imageinfo": [{
+        "url": "https://upload.wikimedia.org/wikipedia/commons/x/"
+               + title.replace("File:", "").replace(" ", "_"),
+        "width": w, "height": h, "mime": "image/jpeg",
+        "descriptionurl": "https://commons.wikimedia.org/wiki/"
+                          + title.replace(" ", "_"),
+        "extmetadata": {
+            "LicenseShortName": {"value": "CC BY-SA 4.0"},
+            "UsageTerms": {"value": "CC BY-SA 4.0"},
+            "ImageDescription": {"value": desc},
+            "Categories": {"value": ""},
+            "Artist": {"value": "Fixture"}}}]}
+
+
+biplane = _page(
+    "File:DFC 6078 A bright red vintage-style biplane on display "
+    "at Suriya Land in Khao Chi Chan Chon Buri Thailand - a "
+    "playful reminder of classic aviation against a sunny "
+    "tropical backdrop.jpg",
+    desc="A bright red vintage-style biplane on display at "
+         "Suriya Land in Khao Chi Chan, Chon Buri, Thailand")
+cand, row = RES.evaluate_commons_page(
+    biplane, "Suriya", "wikimedia search", entity_type="person")
+check("biplane at Suriya Land rejected for the actor Suriya",
+      cand is None and "place/venue" in (row.get("reason") or ""))
+
+retro = _page("File:Retro audio launch - Suriya.jpg",
+              desc="Suriya at the audio launch of Retro")
+cand, row = RES.evaluate_commons_page(
+    retro, "Suriya", "wikimedia search", entity_type="person")
+check("genuine Suriya photo accepted", cand is not None)
+
+kgf = _page("File:Suriya promoting KGF 2.jpg",
+            desc="Indian actor Suriya promoting his film KGF 2 "
+                 "in Mumbai")
+cand, row = RES.evaluate_commons_page(
+    kgf, "Suriya", "wikimedia search", entity_type="person")
+check("Suriya promoting KGF accepted", cand is not None)
+
+mixed = _page("File:Suriya at Suriya Nagar event.jpg",
+              desc="Suriya attends an event in Chennai")
+cand, row = RES.evaluate_commons_page(
+    mixed, "Suriya", "wikimedia search", entity_type="person")
+check("one genuine reference defeats the screen",
+      cand is not None)
+
 print(f"\n{total - fails}/{total} passed")
 sys.exit(1 if fails else 0)

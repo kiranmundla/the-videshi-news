@@ -332,6 +332,51 @@ def identity_ok(entity, title, description, categories_text):
     return True
 
 
+# Place/venue suffix words: when a PERSON's name is immediately
+# followed by one of these in a file's evidence, the name is part
+# of a place name, not a reference to the person.
+_PLACE_SUFFIX_WORDS = {
+    "land", "park", "gardens", "garden", "museum", "zoo", "beach",
+    "tower", "towers", "palace", "fort", "temple", "stadium",
+    "airport", "university", "college", "school", "hospital",
+    "bridge", "island", "islands", "city", "town", "village",
+    "falls", "lake", "street", "road", "centre", "center", "hall",
+    "theatre", "theater", "farm", "resort", "hotel", "sanctuary",
+    "reserve", "bay", "harbour", "harbor", "castle", "market",
+    "station", "terminal", "campus", "library", "gallery",
+    "aquarium", "observatory", "ashram", "nagar", "puram",
+}
+
+
+def _person_name_place_only(entity, title, description):
+    """True when EVERY occurrence of a person's name in the file's
+    title/description is as part of a place or venue name — the
+    name refers to a location, not the person. Keeper (Kiran flag,
+    2026-11-15): a Commons search for the actor 'Suriya' returned
+    'DFC 6078 A bright red vintage-style biplane on display at
+    Suriya Land in Khao Chi Chan Chon Buri Thailand' — a biplane
+    at a Thai attraction — and identity_ok passed it on the token
+    'suriya', so the picture pass made it the hero of the Suriya
+    film review, displacing the trailer thumbnail it had just
+    removed. A name token is not identity when the name is a
+    place: '<Name> Land/Park/Museum/…' occurrences are location
+    references; a single genuine person reference (the name
+    followed by anything else — 'Suriya at the audio launch')
+    defeats the screen."""
+    name = (entity or "").strip().lower()
+    if not name:
+        return False
+    text = f"{title} {_strip_html(description)}".lower()
+    occ = list(re.finditer(r"\b" + re.escape(name) + r"\b", text))
+    if not occ:
+        return False
+    for m in occ:
+        nxt = re.match(r"\s+([a-z]+)", text[m.end():])
+        if not nxt or nxt.group(1) not in _PLACE_SUFFIX_WORDS:
+            return False
+    return True
+
+
 def dims_ok(w, h):
     return bool(w) and bool(h) and w >= MIN_EXTRA_W and h >= MIN_EXTRA_H
 
@@ -1180,6 +1225,23 @@ def evaluate_commons_page(page, entity, route, context=None,
             entity, entity_aliases, title, desc, cats)
         if collision:
             return reject(collision)
+    # NAME-AS-PLACE SCREEN (2026-11-15): for a PERSON entity, a
+    # file whose evidence mentions the name only as part of a
+    # place/venue name is not a picture of the person, on every
+    # route where the name is the identity basis (search and
+    # depicts; the item's own P18 is exempt — identity by
+    # construction proper). See _person_name_place_only for the
+    # Suriya Land biplane keeper.
+    if _entity_is_person(entity, entity_type) and not (
+            identity_verified and not _is_depicts_route(route)):
+        if _person_name_place_only(entity, title, desc):
+            return reject(
+                "identity: every occurrence of the person's "
+                f"name in the file's own evidence is as part of "
+                f"a place/venue name — the name refers to a "
+                f"location, not to {entity!r} (the 'Suriya "
+                "Land' biplane placed as the actor Suriya's "
+                "hero, 2026-11-15); fail closed")
     if identity_verified and _is_depicts_route(route) \
             and _entity_is_person(entity, entity_type):
         names = [entity] + [a for a in entity_aliases or []
