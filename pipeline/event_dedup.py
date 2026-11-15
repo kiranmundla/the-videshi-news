@@ -45,6 +45,49 @@ def content_fingerprint(title: str, date_str: str, city: str) -> str:
 
 # ── Cross-source dedup check ─────────────────────────────────────────────
 
+def fetch_all_event_rows(select: str, extra_query: str = "") -> list:
+    """
+    Fetch ALL event rows matching a query, paging past PostgREST's
+    max-rows clamp (1000 on this project).
+
+    A single-shot `limit=5000` request silently returns only the first
+    1000 rows — that broke every dedup lookup built on it once the
+    events table passed 1000 rows (AllEvents, Meetup, the temple
+    scraper, and find_cross_source_duplicates below). Any "fetch
+    existing events" read MUST go through this helper.
+    """
+    sb_url = os.environ.get("SUPABASE_URL", "")
+    sb_key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+    if not sb_url or not sb_key:
+        print("  ⚠ SUPABASE env not set, skipping event fetch")
+        return []
+
+    rows = []
+    offset = 0
+    batch = 1000
+    while True:
+        url = (f"{sb_url}/rest/v1/events?select={select}"
+               f"{extra_query}&limit={batch}&offset={offset}")
+        try:
+            r = subprocess.run(
+                ["curl", "-s", url,
+                 "-H", f"apikey: {sb_key}",
+                 "-H", f"Authorization: Bearer {sb_key}"],
+                capture_output=True, text=True, timeout=30
+            )
+            page = json.loads(r.stdout)
+        except Exception as e:
+            print(f"  ⚠ Error fetching events page at offset {offset}: {e}")
+            break
+        if not isinstance(page, list) or not page:
+            break
+        rows.extend(page)
+        if len(page) < batch:
+            break
+        offset += batch
+    return rows
+
+
 def get_all_fingerprints() -> set:
     """
     Fetch ALL content_fingerprints from the events table (no source filter).
@@ -108,22 +151,15 @@ def find_cross_source_duplicates(dry_run: bool = True) -> list:
     if not sb_url or not sb_key:
         return []
 
-    # Fetch upcoming events with enough fields to score
-    url = (f"{sb_url}/rest/v1/events"
-           f"?select=id,title,source,source_id,date,city,ticket_url,description,image_url,created_at,content_fingerprint"
-           f"&date=gte.{_today()}"
-           f"&order=date.asc"
-           f"&limit=5000")
-    try:
-        r = subprocess.run(
-            ["curl", "-s", url,
-             "-H", f"apikey: {sb_key}",
-             "-H", f"Authorization: Bearer {sb_key}"],
-            capture_output=True, text=True, timeout=30
-        )
-        events = json.loads(r.stdout)
-    except Exception as e:
-        print(f"  ⚠ Error fetching events for dedup: {e}")
+    # Fetch upcoming events with enough fields to score — paginated:
+    # a single-shot limit=5000 silently stops at PostgREST's 1000-row
+    # clamp, so dedup used to analyze only part of the upcoming set.
+    events = fetch_all_event_rows(
+        "id,title,source,source_id,date,city,ticket_url,description,"
+        "image_url,created_at,content_fingerprint",
+        f"&date=gte.{_today()}&order=date.asc",
+    )
+    if not events:
         return []
 
     # Group by our unified fingerprint

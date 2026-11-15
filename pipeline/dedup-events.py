@@ -111,6 +111,13 @@ TOKEN_FOLDS = {"dandiya": "dandia"}
 
 MODE_TOKENS = frozenset(["online", "virtual", "zoom", "webinar"])
 
+# Ticket-product markers: a title carrying one names a different
+# product (a pass) from the plain single-event listing.
+_TICKET_PRODUCT_RE = re.compile(
+    r"\b(?:two|three|four|five|multi|\d+)[-\s]?day\s+(?:ticket|pass)\b"
+    r"|\b(?:weekend|season|festival|all[-\s]access)\s+pass\b",
+    re.IGNORECASE)
+
 # Words exempt from the distinctive-difference guard: they describe
 # packaging/format, not the event's subject, so a title having one that
 # the other lacks proves nothing. Deliberately much narrower than
@@ -459,6 +466,15 @@ def fuzzy_match(e1, e2):
     n1, n2 = edition_numbers(t1), edition_numbers(t2)
     if n1 and n2 and n1 != n2:
         return False, {"block": f"edition-numbers {sorted(n1)} vs {sorted(n2)}"}
+    # Ticket-product variant (2026-11-15): a multi-day/weekend/season
+    # PASS is a different product from the single-event ticket, even
+    # though its title is a superset — 'Letters To Cleo' vs 'Letters
+    # To Cleo [TWO-DAY TICKET]' paired as fuzzy dupes on 2026-11-15
+    # because the subset shape defeats the distinctive-difference
+    # guard (the difference sits on one side only, but it IS the
+    # product).
+    if bool(_TICKET_PRODUCT_RE.search(t1)) != bool(_TICKET_PRODUCT_RE.search(t2)):
+        return False, {"block": "ticket-product-variant"}
     if bool(MODE_TOKENS & set(_raw_tokens(t1))) != bool(MODE_TOKENS & set(_raw_tokens(t2))):
         return False, {"block": "online-vs-in-person"}
     if organizers_conflict(e1, e2):

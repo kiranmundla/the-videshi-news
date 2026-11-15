@@ -435,7 +435,7 @@ def fetch_meetup_events(state: dict, keyword: str) -> list:
 # Cross-source content fingerprint — use shared module
 # ---------------------------------------------------------------------------
 
-from event_dedup import content_fingerprint, get_all_fingerprints
+from event_dedup import content_fingerprint, get_all_fingerprints, fetch_all_event_rows
 
 
 # ---------------------------------------------------------------------------
@@ -446,30 +446,23 @@ def get_existing_events() -> tuple:
     """Get set of existing source_ids, (title_lower, date) tuples, and content_fingerprints for dedup."""
     existing_ids = set()
     existing_title_dates = set()
+    existing_norm_titles = set()
 
-    try:
-        resp = requests.get(
-            f"{REST}/events?select=source_id,title,date&limit=5000",
-            headers={
-                "apikey": SB_KEY,
-                "Authorization": f"Bearer {SB_KEY}",
-            },
-            timeout=15
-        )
-        if resp.status_code == 200:
-            for e in resp.json():
-                if e.get("source_id"):
-                    existing_ids.add(e["source_id"])
-                if e.get("title") and e.get("date"):
-                    t = re.sub(r'[^a-z0-9]', '', e["title"].lower())
-                    existing_title_dates.add((t, e["date"]))
-    except Exception as e:
-        print(f"  ⚠ Could not fetch existing events: {e}")
+    # Paginated curl fetch via the shared helper (2026-11-15): the old
+    # single-shot requests.get(limit=5000) was clamped by PostgREST to
+    # 1000 rows — and requests fails through this server's proxy anyway.
+    for e in fetch_all_event_rows("source_id,title,date"):
+        if e.get("source_id"):
+            existing_ids.add(e["source_id"])
+        if e.get("title") and e.get("date"):
+            t = re.sub(r'[^a-z0-9]', '', e["title"].lower())
+            existing_title_dates.add((t, e["date"]))
+            existing_norm_titles.add((normalize_title(e["title"]), e["date"]))
 
     # Cross-source fingerprints via shared module (uses curl)
     existing_fingerprints = get_all_fingerprints()
 
-    return existing_ids, existing_title_dates, existing_fingerprints
+    return existing_ids, existing_title_dates, existing_fingerprints, existing_norm_titles
 
 
 def normalize_title(title: str) -> str:
@@ -489,7 +482,7 @@ def normalize_title_from_stripped(stripped: str) -> str:
     return stripped[:25]
 
 
-def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set, existing_fingerprints: set = set()) -> bool:
+def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set, existing_fingerprints: set = set(), existing_norm_titles: set = frozenset()) -> bool:
     """Check if event already exists (by source_id, fuzzy title+date, or content fingerprint)."""
     if event["source_id"] in existing_ids:
         return True
@@ -506,13 +499,13 @@ def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set, exis
         )
         if fp in existing_fingerprints:
             return True
-    # Fuzzy prefix match (first 25 normalized chars + same date)
+    # Fuzzy prefix match — normalized vs normalized (2026-11-15): the
+    # old leg compared a space-preserving normalized title against the
+    # space-stripped exact set, so it could essentially never match.
     tn = normalize_title(event["title"])[:25]
-    for (et, ed) in existing_title_dates:
-        if ed == event["date"]:
-            en = normalize_title_from_stripped(et)[:25]
-            if tn and en and tn == en:
-                return True
+    for (et, ed) in existing_norm_titles:
+        if ed == event["date"] and tn and tn == et[:25]:
+            return True
     return False
 
 
@@ -609,9 +602,10 @@ def main():
 
     # Get existing events for dedup
     existing_ids, existing_title_dates, existing_fingerprints = set(), set(), set()
+    existing_norm_titles = set()
     if not args.dry_run:
         print("📋 Fetching existing events for deduplication...")
-        existing_ids, existing_title_dates, existing_fingerprints = get_existing_events()
+        existing_ids, existing_title_dates, existing_fingerprints, existing_norm_titles = get_existing_events()
         print(f"   Found {len(existing_ids)} existing source_ids, {len(existing_title_dates)} title+date combos, {len(existing_fingerprints)} content fingerprints")
 
     all_events = []
@@ -639,7 +633,7 @@ def main():
                 batch_key = normalize_title(e["title"])[:25] + "|" + e["date"]
                 if batch_key in seen_batch_keys:
                     continue
-                if not args.dry_run and is_duplicate(e, existing_ids, existing_title_dates, existing_fingerprints):
+                if not args.dry_run and is_duplicate(e, existing_ids, existing_title_dates, existing_fingerprints, existing_norm_titles):
                     continue
                 seen_source_ids.add(e["source_id"])
                 seen_batch_keys.add(batch_key)

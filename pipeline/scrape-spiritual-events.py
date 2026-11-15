@@ -29,7 +29,7 @@ import time
 from datetime import datetime, date
 from html.parser import HTMLParser
 from urllib.parse import quote
-from event_dedup import content_fingerprint as compute_fingerprint, get_all_fingerprints
+from event_dedup import content_fingerprint as compute_fingerprint, get_all_fingerprints, fetch_all_event_rows
 from event_geocode import geocode_venue
 
 # ── Env ──────────────────────────────────────────────────────────────────────
@@ -407,19 +407,54 @@ def upsert_event(event, org, teacher, is_featured_source, source_url=None, og_im
 # ── Check existing events ────────────────────────────────────────────────────
 
 def get_existing_source_ids():
-    """Get all existing source_ids from spiritual-scraper."""
-    result = subprocess.run(
-        ['curl', '-sS',
-         f'https://{SB_HOST}/rest/v1/events?source=eq.spiritual-scraper&select=source_id',
-         '-H', f'apikey: {SUPABASE_KEY}',
-         '-H', f'Authorization: Bearer {SUPABASE_KEY}'],
-        capture_output=True, text=True, timeout=15
-    )
-    try:
-        rows = json.loads(result.stdout)
-        return {r['source_id'] for r in rows if r.get('source_id')}
-    except:
-        return set()
+    """Get all existing source_ids from spiritual-scraper (paginated)."""
+    rows = fetch_all_event_rows("source_id", "&source=eq.spiritual-scraper")
+    return {r['source_id'] for r in rows if r.get('source_id')}
+
+
+_GENDER_TOKENS = ({"men", "mens", "male", "gents"},
+                  {"women", "womens", "female", "ladies"})
+
+
+def _title_tokens(title):
+    return set(re.sub(r"[^a-z0-9 ]", " ", (title or "").lower()).split())
+
+
+def _is_title_variant(a, b):
+    """True when two titles are variants of the SAME event listing:
+    one's content tokens are a subset of the other's, and they do not
+    carry conflicting gender markers.
+
+    The LLM extractor returns title variants for one course across
+    runs ('10-Day' / '10-Day Course' / '10-Day Course for Men's
+    Course' for a single Dhamma Sela course), and make_source_id keys
+    on the raw title, so each variant inserted as its own row — 26
+    duplicates cleaned by hand on 2026-11-15. Concurrent men's and
+    women's courses at one center are DIFFERENT events: neither title
+    is a subset of the other and the gender markers conflict, so they
+    are never merged by this test.
+    """
+    ta, tb = _title_tokens(a), _title_tokens(b)
+    if not ta or not tb:
+        return False
+    a_m = bool(ta & _GENDER_TOKENS[0]); a_w = bool(ta & _GENDER_TOKENS[1])
+    b_m = bool(tb & _GENDER_TOKENS[0]); b_w = bool(tb & _GENDER_TOKENS[1])
+    if (a_m and b_w and not b_m) or (a_w and b_m and not b_w):
+        return False
+    return ta <= tb or tb <= ta
+
+
+def get_existing_variants():
+    """Map (venue_lower, date) -> [(title, ticket_url)] for this
+    scraper's existing rows, for the title-variant guard."""
+    rows = fetch_all_event_rows(
+        "title,date,venue_name,ticket_url", "&source=eq.spiritual-scraper")
+    out = {}
+    for r in rows:
+        key = ((r.get("venue_name") or "").strip().lower(), r.get("date"))
+        out.setdefault(key, []).append((r.get("title") or "",
+                                        r.get("ticket_url") or ""))
+    return out
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 
@@ -430,6 +465,7 @@ def main():
 
     existing_ids = get_existing_source_ids()
     existing_fps = get_all_fingerprints()
+    existing_variants = get_existing_variants()
     print(f"Existing spiritual events in DB: {len(existing_ids)}")
     print(f"Cross-source fingerprints loaded: {len(existing_fps)}")
 
@@ -477,6 +513,26 @@ def main():
                 total_skipped += 1
                 continue
 
+            # Title-variant guard (2026-11-15): same venue + date and
+            # a subset-shaped title = the same listing re-extracted
+            # under a variant name, not a new event.
+            if sid not in existing_ids:
+                vkey = ((ev.get('venue_name') or '').strip().lower(),
+                        ev.get('date', ''))
+                ev_url = ev.get('ticket_url') or url
+                variant_of = None
+                for (etitle, eurl) in existing_variants.get(vkey, []):
+                    if eurl and ev_url and eurl != ev_url:
+                        continue
+                    if _is_title_variant(ev.get('title', ''), etitle):
+                        variant_of = etitle
+                        break
+                if variant_of:
+                    print(f"  ⏭ Title-variant dup of '{variant_of[:50]}': "
+                          f"{ev.get('title', '')[:50]}")
+                    total_skipped += 1
+                    continue
+
             is_new = sid not in existing_ids
             ok = upsert_event(ev, org, teacher, is_featured, source_url=url, og_image=og_image)
 
@@ -485,6 +541,10 @@ def main():
                     total_new += 1
                     existing_ids.add(sid)
                     existing_fps.add(fp)
+                    vkey = ((ev.get('venue_name') or '').strip().lower(),
+                            ev.get('date', ''))
+                    existing_variants.setdefault(vkey, []).append(
+                        (ev.get('title', ''), ev.get('ticket_url') or url))
                 else:
                     total_updated += 1
 

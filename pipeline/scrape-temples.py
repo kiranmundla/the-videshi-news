@@ -78,19 +78,42 @@ def curl_text(url, timeout=20):
         return None
 
 
-def content_fingerprint(title, date_str, city):
-    """Unified cross-source fingerprint: normalized title + date + city."""
+def temple_key(source_row):
+    """Stable per-temple identity token from the event_sources row.
+
+    Temple identity MUST flow into source_id, slug and fingerprint:
+    festival+date+city alone collides across temples in the same city
+    (the 2026-11-09 sweep lost 240 of 241 temple events to exactly
+    this). Falls back to a hash of the source URL when unnamed.
+    """
+    name = re.sub(r"[^a-z0-9]+", "-", (source_row.get("name") or "").lower()).strip("-")[:40]
+    if name:
+        return name
+    return "src-" + hashlib.md5((source_row.get("url") or "").encode()).hexdigest()[:10]
+
+
+def content_fingerprint(title, date_str, city, venue=""):
+    """Cross-source fingerprint: title + date + city + venue.
+
+    Venue is part of the identity (2026-11-15): two temples in one
+    city run the same festival on the same date, and a venue-less
+    fingerprint made every temple after the first a 'duplicate'."""
     norm_title = re.sub(r"[^a-z0-9 ]", "", (title or "").lower().strip())[:60]
     norm_city = re.sub(r"[^a-z0-9]", "", (city or "").lower().strip())
-    raw = f"{norm_title}|{date_str}|{norm_city}"
+    norm_venue = re.sub(r"[^a-z0-9]", "", (venue or "").lower().strip())
+    raw = f"{norm_title}|{date_str}|{norm_city}|{norm_venue}"
     return hashlib.md5(raw.encode()).hexdigest()
 
 
-def make_slug(title, city, date_str):
-    """Generate a URL-safe slug."""
+def make_slug(title, city, date_str, venue=""):
+    """Generate a URL-safe slug. Venue token included (2026-11-15) so
+    two temples in one city sharing a festival + date get distinct
+    slugs instead of a 409 on the slug unique constraint."""
     parts = re.sub(r"[^a-z0-9]+", "-", (title or "").lower()).strip("-")[:50]
     city_slug = re.sub(r"[^a-z0-9]+", "-", (city or "").lower()).strip("-")[:15]
-    return f"{parts}-{city_slug}-{date_str}" if city_slug else f"{parts}-{date_str}"
+    venue_slug = re.sub(r"[^a-z0-9]+", "-", (venue or "").lower()).strip("-")[:25]
+    base = f"{parts}-{city_slug}-{date_str}" if city_slug else f"{parts}-{date_str}"
+    return f"{base}-{venue_slug}" if venue_slug else base
 
 
 def parse_date_english(text):
@@ -171,29 +194,77 @@ def fetch_event_sources(parser_filter=None):
 
 
 def fetch_existing_fingerprints():
-    """Fetch all existing content_fingerprints from the events table."""
-    url = (f"https://{SB_HOST}/rest/v1/events"
-           f"?select=content_fingerprint"
-           f"&content_fingerprint=not.is.null"
-           f"&date=gte.{date.today().isoformat()}"
-           f"&limit=10000")
-    try:
-        r = subprocess.run(
-            ["curl", "-sS", url,
-             "-H", f"apikey: {SUPABASE_KEY}",
-             "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
-            capture_output=True, text=True, timeout=30
-        )
-    except (subprocess.TimeoutExpired, Exception) as e:
-        # Never log the exception: TimeoutExpired stringifies the curl
-        # command including the Supabase service-role key.
-        print(f"  ⚠ Supabase fetch failed: {type(e).__name__}")
-        return set()
-    try:
-        rows = json.loads(r.stdout)
-        return {row["content_fingerprint"] for row in rows if row.get("content_fingerprint")}
-    except:
-        return set()
+    """Fetch all existing content_fingerprints from the events table.
+
+    Paginated (2026-11-15): the old single-shot limit=10000 was
+    clamped by PostgREST to the first 1000 rows, so most existing
+    fingerprints were invisible to the dedupe check.
+    """
+    fps = set()
+    offset = 0
+    while True:
+        url = (f"https://{SB_HOST}/rest/v1/events"
+               f"?select=content_fingerprint"
+               f"&content_fingerprint=not.is.null"
+               f"&date=gte.{date.today().isoformat()}"
+               f"&limit=1000&offset={offset}")
+        try:
+            r = subprocess.run(
+                ["curl", "-sS", url,
+                 "-H", f"apikey: {SUPABASE_KEY}",
+                 "-H", f"Authorization: Bearer {SUPABASE_KEY}"],
+                capture_output=True, text=True, timeout=30
+            )
+        except (subprocess.TimeoutExpired, Exception) as e:
+            # Never log the exception: TimeoutExpired stringifies the
+            # curl command including the Supabase service-role key.
+            print(f"  ⚠ Supabase fetch failed: {type(e).__name__}")
+            return fps
+        try:
+            rows = json.loads(r.stdout)
+        except Exception:
+            return fps
+        if not isinstance(rows, list) or not rows:
+            break
+        fps.update(row["content_fingerprint"] for row in rows
+                   if row.get("content_fingerprint"))
+        if len(rows) < 1000:
+            break
+        offset += 1000
+    return fps
+
+
+_TITLE_ABBREVS = {"st", "dr", "mt", "ft", "mr", "mrs", "ms", "inc",
+                  "sr", "jr", "no", "ave", "blvd", "rd"}
+
+
+def _title_looks_garbled(title):
+    """True when a 'title' is really a prose fragment, not an event name.
+
+    The generic date-anchored parsers capture whatever text follows a
+    date on the page; on iskconhouston.org that once produced the
+    title '29, 2026, at ISKCON of Houston. As we explore the subtle
+    architecture of honoring others, enjoy blis…' (a description
+    sentence, live on the site from 2026-11-01). Two tells:
+    1. the text STARTS with a date fragment (day, year / year / a
+       month name) — a real event name never does;
+    2. it contains a sentence boundary ('. ' after a non-abbreviation
+       word) — real titles don't contain full sentences.
+    """
+    t = (title or "").strip()
+    if not t:
+        return True
+    if re.match(r"^\d{1,2},\s*\d{4}\b", t):
+        return True
+    if re.match(r"^\d{4}\b", t):
+        return True
+    if re.match(r"^(?:January|February|March|April|May|June|July|"
+                r"August|September|October|November|December)\s+\d{1,2}\b", t):
+        return True
+    for m in re.finditer(r"([A-Za-z]+)\.\s+[A-Za-z]", t):
+        if m.group(1).lower() not in _TITLE_ABBREVS:
+            return True
+    return False
 
 
 def upsert_event(record):
@@ -204,6 +275,12 @@ def upsert_event(record):
     for f in ("title", "venue_name"):
         if record.get(f):
             record[f] = html.unescape(record[f]).strip()
+    # Garbled-title gate (2026-11-15): reject prose fragments captured
+    # as titles by the date-anchored generic parsers. Central, so every
+    # parser is covered.
+    if _title_looks_garbled(record.get("title", "")):
+        print(f"    ⚠ Rejected garbled title: '{record.get('title', '?')[:60]}'")
+        return False
     payload = json.dumps(record)
     url = f"https://{SB_HOST}/rest/v1/events?on_conflict=source,source_id"
 
@@ -378,9 +455,9 @@ def parse_baps(html, source_row):
             "ticket_url": source_row["url"],
             "organizer": "BAPS Swaminarayan Sanstha",
             "source": source_row.get("source", "baps"),
-            "source_id": f"baps_{re.sub(r'[^a-z0-9]', '', city.lower())}_{hashlib.md5((title + date_str).encode()).hexdigest()[:8]}",
-            "content_fingerprint": content_fingerprint(title, date_str, city),
-            "slug": make_slug(title, city, date_str),
+            "source_id": f"baps_{temple_key(source_row)}_{hashlib.md5((title + date_str).encode()).hexdigest()[:8]}",
+            "content_fingerprint": content_fingerprint(title, date_str, city, source_row.get("name", "")),
+            "slug": make_slug(title, city, date_str, source_row.get("name", "")),
         }
         if image_url:
             event["image_url"] = image_url
@@ -496,9 +573,9 @@ def parse_iskcon_wp(html, source_row):
             "ticket_url": ticket_url,
             "organizer": "ISKCON",
             "source": src,
-            "source_id": f"iskcon_{re.sub(r'[^a-z0-9]', '', city.lower())}_{hashlib.md5((title + date_str).encode()).hexdigest()[:8]}",
-            "content_fingerprint": content_fingerprint(title, date_str, city),
-            "slug": make_slug(title, city, date_str),
+            "source_id": f"iskcon_{temple_key(source_row)}_{hashlib.md5((title + date_str).encode()).hexdigest()[:8]}",
+            "content_fingerprint": content_fingerprint(title, date_str, city, source_row.get("name", "")),
+            "slug": make_slug(title, city, date_str, source_row.get("name", "")),
         }
         if image_url:
             event["image_url"] = image_url
@@ -564,6 +641,9 @@ def parse_iskcon_generic(html, source_row):
         # Skip garbage: titles that are mostly digits/punctuation or look like date fragments
         if re.match(r"^[\d,\s./\-]+$", title):
             continue
+        # Skip prose fragments captured as titles (2026-11-15 gate)
+        if _title_looks_garbled(title):
+            continue
         # Skip non-event lines
         if any(skip in title.lower() for skip in ["break fast", "ekadasi", "fast till"]):
             continue
@@ -584,9 +664,9 @@ def parse_iskcon_generic(html, source_row):
             "ticket_url": source_row["url"],
             "organizer": "ISKCON",
             "source": src,
-            "source_id": f"iskcon_{re.sub(r'[^a-z0-9]', '', city.lower())}_{hashlib.md5((title + date_str).encode()).hexdigest()[:8]}",
-            "content_fingerprint": content_fingerprint(title, date_str, city),
-            "slug": make_slug(title, city, date_str),
+            "source_id": f"iskcon_{temple_key(source_row)}_{hashlib.md5((title + date_str).encode()).hexdigest()[:8]}",
+            "content_fingerprint": content_fingerprint(title, date_str, city, source_row.get("name", "")),
+            "slug": make_slug(title, city, date_str, source_row.get("name", "")),
         })
 
     return events
@@ -634,9 +714,9 @@ def parse_generic(html, source_row):
                             "ticket_url": item.get("url") or source_row["url"],
                             "organizer": source_row.get("name", ""),
                             "source": source_row.get("source", "temple"),
-                            "source_id": f"temple_{re.sub(r'[^a-z0-9]', '', city.lower())}_{hashlib.md5((title + date_str).encode()).hexdigest()[:8]}",
-                            "content_fingerprint": content_fingerprint(title, date_str, city),
-                            "slug": make_slug(title, city, date_str),
+                            "source_id": f"temple_{temple_key(source_row)}_{hashlib.md5((title + date_str).encode()).hexdigest()[:8]}",
+                            "content_fingerprint": content_fingerprint(title, date_str, city, source_row.get("name", "")),
+                            "slug": make_slug(title, city, date_str, source_row.get("name", "")),
                         })
         except (json.JSONDecodeError, TypeError, KeyError):
             pass
@@ -694,9 +774,9 @@ def parse_generic(html, source_row):
             "ticket_url": source_row["url"],
             "organizer": source_row.get("name", ""),
             "source": source_row.get("source", "temple"),
-            "source_id": f"temple_{re.sub(r'[^a-z0-9]', '', city.lower())}_{hashlib.md5((title + date_str).encode()).hexdigest()[:8]}",
-            "content_fingerprint": content_fingerprint(title, date_str, city),
-            "slug": make_slug(title, city, date_str),
+            "source_id": f"temple_{temple_key(source_row)}_{hashlib.md5((title + date_str).encode()).hexdigest()[:8]}",
+            "content_fingerprint": content_fingerprint(title, date_str, city, source_row.get("name", "")),
+            "slug": make_slug(title, city, date_str, source_row.get("name", "")),
         })
 
     return events

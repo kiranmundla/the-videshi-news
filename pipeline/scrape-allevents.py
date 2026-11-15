@@ -671,36 +671,29 @@ def process_event(card: dict, city: dict) -> dict | None:
 # Deduplication — uses shared cross-source module
 # ---------------------------------------------------------------------------
 
-from event_dedup import content_fingerprint, get_all_fingerprints
+from event_dedup import content_fingerprint, get_all_fingerprints, fetch_all_event_rows
 
 
 def get_existing_events() -> tuple:
     existing_ids = set()
     existing_title_dates = set()
+    existing_norm_titles = set()
 
-    try:
-        status, body = curl_get(
-            f"{REST}/events?select=source_id,title,date&limit=5000",
-            headers={
-                "apikey": SB_KEY,
-                "Authorization": f"Bearer {SB_KEY}",
-            },
-            timeout=15
-        )
-        if status == 200:
-            for e in json.loads(body):
-                if e.get("source_id"):
-                    existing_ids.add(e["source_id"])
-                if e.get("title") and e.get("date"):
-                    t = re.sub(r'[^a-z0-9]', '', e["title"].lower())
-                    existing_title_dates.add((t, e["date"]))
-    except Exception as e:
-        print(f"  ⚠ Could not fetch existing events: {e}")
+    # Paginated fetch (2026-11-15): the old single-shot limit=5000 was
+    # clamped by PostgREST to the first 1000 rows of a 5000+ row table,
+    # so the dedup lookup silently missed most existing events.
+    for e in fetch_all_event_rows("source_id,title,date"):
+        if e.get("source_id"):
+            existing_ids.add(e["source_id"])
+        if e.get("title") and e.get("date"):
+            t = re.sub(r'[^a-z0-9]', '', e["title"].lower())
+            existing_title_dates.add((t, e["date"]))
+            existing_norm_titles.add((normalize_title(e["title"]), e["date"]))
 
     # Cross-source fingerprints via shared module (uses curl)
     existing_fingerprints = get_all_fingerprints()
 
-    return existing_ids, existing_title_dates, existing_fingerprints
+    return existing_ids, existing_title_dates, existing_fingerprints, existing_norm_titles
 
 
 def normalize_title(title: str) -> str:
@@ -715,7 +708,7 @@ def normalize_title(title: str) -> str:
     return t
 
 
-def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set, existing_fingerprints: set) -> bool:
+def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set, existing_fingerprints: set, existing_norm_titles: set = frozenset()) -> bool:
     if event["source_id"] in existing_ids:
         return True
     t = re.sub(r'[^a-z0-9]', '', event["title"].lower())
@@ -729,9 +722,12 @@ def is_duplicate(event: dict, existing_ids: set, existing_title_dates: set, exis
     )
     if fp in existing_fingerprints:
         return True
-    # Fuzzy prefix match
+    # Fuzzy prefix match — compare like with like (2026-11-15): the
+    # normalized title (spaces kept, months/numbers stripped) must be
+    # matched against normalized existing titles, not the fully
+    # space-stripped exact-match set, where it could never match.
     tn = normalize_title(event["title"])[:25]
-    for (et, ed) in existing_title_dates:
+    for (et, ed) in existing_norm_titles:
         if ed == event["date"] and tn and tn == et[:25]:
             return True
     return False
@@ -822,9 +818,10 @@ def main():
 
     # Get existing events for dedup
     existing_ids, existing_title_dates = set(), set()
+    existing_norm_titles = set()
     if not args.dry_run:
         print("📋 Fetching existing events for deduplication...")
-        existing_ids, existing_title_dates, existing_fingerprints = get_existing_events()
+        existing_ids, existing_title_dates, existing_fingerprints, existing_norm_titles = get_existing_events()
         print(f"   Found {len(existing_ids)} existing source_ids, {len(existing_title_dates)} title+date combos, {len(existing_fingerprints)} content fingerprints")
 
     all_events = []
@@ -867,7 +864,7 @@ def main():
                 batch_key = normalize_title(event["title"])[:25] + "|" + event["date"]
                 if batch_key in seen_batch_keys:
                     continue
-                if not args.dry_run and is_duplicate(event, existing_ids, existing_title_dates, existing_fingerprints):
+                if not args.dry_run and is_duplicate(event, existing_ids, existing_title_dates, existing_fingerprints, existing_norm_titles):
                     continue
 
                 seen_source_ids.add(event["source_id"])

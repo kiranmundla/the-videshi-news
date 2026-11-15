@@ -51,6 +51,7 @@ DIR_FILE = os.path.join(os.path.dirname(__file__), "temple-directory.json")
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from event_geocode import geocode_venue
+from event_dedup import fetch_all_event_rows
 
 
 def curl_get(url, timeout=25):
@@ -166,6 +167,18 @@ def slugify(text):
     return s[:80].strip("-")
 
 
+def temple_sid(temple, *parts):
+    """Source id that can never collide across temples.
+
+    The temple name MUST be part of the hash: festival+date+city alone
+    collides across temples in the same city, and a slug built the same
+    way 409s on insert — on 2026-11-09 that blocked 240 of 241 new
+    temple events. Mirrors the hindutemples_info fix of 2026-10-18.
+    """
+    raw = "_".join([temple.get("name", "")] + [str(p) for p in parts])
+    return f"temple_{hashlib.md5(raw.encode()).hexdigest()[:16]}"
+
+
 def parse_json_ld_events(html, temple):
     """Extract schema.org/Event blocks from HTML."""
     events = []
@@ -208,8 +221,8 @@ def parse_json_ld_events(html, temple):
                 "state": temple["state"],
                 "ticket_url": url,
                 "source": "temple",
-                "source_id": f"temple_{hashlib.md5(f'{name}_{date}_{city}'.encode()).hexdigest()[:16]}",
-                "slug": slugify(f"{name}-{city}-{date}"),
+                "source_id": temple_sid(temple, name, date, city),
+                "slug": slugify(f"{name}-{temple['name']}-{city}-{date}"),
                 "category": "Spiritual",
             })
     return events
@@ -248,8 +261,11 @@ def parse_static_html_events(html, temple):
                 "state": temple["state"],
                 "ticket_url": temple["events_url"],
                 "source": "temple",
-                "source_id": f"temple_{hashlib.md5(f'{title}_{dm.group(1)}'.encode()).hexdigest()[:16]}",
-                "slug": slugify(f"{title}-{temple['city']}-{dm.group(1)}"),
+                "source_id": temple_sid(temple, title, dm.group(1),
+                                        temple["city"]),
+                "slug": slugify(
+                    f"{title}-{temple['name']}-{temple['city']}-"
+                    f"{dm.group(1)}"),
                 "category": "Spiritual",
             })
     return events
@@ -377,21 +393,12 @@ def scrape_temple(temple):
 
 
 def get_existing_source_ids():
-    status, body = curl_get(
-        f"{REST}/events?select=source_id&source=eq.temple&limit=5000",
-        timeout=15,
-    )
-    # curl_get doesn't send auth headers; use direct curl for Supabase
-    cmd = ["curl", "-sS", "--max-time", "15",
-           f"{REST}/events?select=source_id&source=eq.temple&limit=5000",
-           "-H", f"apikey: {SB_KEY}",
-           "-H", f"Authorization: Bearer {SB_KEY}"]
-    try:
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=20)
-        rows = json.loads(r.stdout)
-        return {e["source_id"] for e in rows if e.get("source_id")}
-    except Exception:
-        return set()
+    # Paginated via the shared helper (2026-11-15): there are 1,700+
+    # temple rows, and the old single-shot limit=5000 was clamped to
+    # the first 1000 — rows past the clamp looked "new" and then
+    # 409'd on insert or duplicated.
+    rows = fetch_all_event_rows("source_id", "&source=eq.temple")
+    return {e["source_id"] for e in rows if e.get("source_id")}
 
 
 def insert_events(events):
@@ -465,28 +472,27 @@ def main():
     existing = get_existing_source_ids()
     new = [e for e in unique if e["source_id"] not in existing]
 
-    # Secondary dedupe on title+date+city: the hindutemples source_id
-    # hash gained the temple name (2026-10-18), so events inserted
-    # under the old colliding hash look "new" by id — never re-insert
-    # a row the table already carries under another id.
-    cmd = ["curl", "-sS", "--max-time", "20",
-           f"{REST}/events?select=title,date,city&source=eq.temple"
-           "&limit=5000",
-           "-H", f"apikey: {SB_KEY}",
-           "-H", f"Authorization: Bearer {SB_KEY}"]
-    try:
-        r = subprocess.run(cmd, capture_output=True, text=True, timeout=25)
-        existing_tdc = {
-            (e["title"].strip().lower(), e["date"],
-             (e.get("city") or "").strip().lower())
-            for e in json.loads(r.stdout)
-        }
-    except Exception:
-        existing_tdc = set()
+    # Secondary dedupe on title+date+city+venue: the hindutemples
+    # source_id hash gained the temple name (2026-10-18), so events
+    # inserted under the old colliding hash look "new" by id — never
+    # re-insert a row the table already carries under another id.
+    # Venue is part of the key (2026-11-15): two temples in one city
+    # run the same festival on the same date, and keying without the
+    # venue silently dropped every temple after the first.
+    existing_tdc = {
+        (e["title"].strip().lower(), e["date"],
+         (e.get("city") or "").strip().lower(),
+         (e.get("venue_name") or "").strip().lower())
+        for e in fetch_all_event_rows(
+            "title,date,city,venue_name", "&source=eq.temple")
+        if e.get("title") and e.get("date")
+    }
     before = len(new)
     new = [e for e in new
            if (e["title"].strip().lower(), e["date"],
-               (e.get("city") or "").strip().lower()) not in existing_tdc]
+               (e.get("city") or "").strip().lower(),
+               (e.get("venue_name") or "").strip().lower())
+           not in existing_tdc]
     if before != len(new):
         print(f"  Title+date+city dedupe skipped {before - len(new)} more")
 
