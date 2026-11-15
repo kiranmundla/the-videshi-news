@@ -44,7 +44,8 @@
    "official_domain": null,
    "confusables": [],
    "blocked_files": [
-    "armor and weapons in the national museum, new delhi - img 2245.jpg"
+    "armor and weapons in the national museum, new delhi - img 2245.jpg",
+    "calendula, lodhi gardens, delhi.jpg"
    ],
    "notes": "primary topic by sitelinks (221 vs 3) | 2026-11-15: armor-exhibit file blocklisted — it is a depicts-pool file for Q987 but depicts a museum exhibit, not the city; placed as an inline in a U19 cricket article (Kiran flag)."
   },
@@ -408,7 +409,9 @@
    "p18_quality": 8688,
    "official_domain": null,
    "confusables": [],
-   "blocked_files": [],
+   "blocked_files": [
+    "ciudad del cabo desde cabeza de león, sudáfrica, 2018-07-22, dd 34.jpg"
+   ],
    "notes": "primary topic by sitelinks (368 vs 0)"
   },
   {
