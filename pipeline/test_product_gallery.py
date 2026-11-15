@@ -106,5 +106,43 @@ check("hero NOT replaceable: wikimedia",
 check("hero replaceable: missing",
       PG._hero_is_replaceable({"image_url": None}))
 
+# ── Hybrid placement (Kiran's call, 2026-11-15): section-
+# matching shots inline, the rest in one in-body strip.
+BODY = ('<div class="key-takeaways">x</div><p>Intro about the '
+        'launch.</p><h2>What the glasses do</h2><p>Voice help '
+        'and a camera.</p><h2>Hardware, price and availability'
+        '</h2><p>Warby Parker styles start at $395. Warby '
+        'Parker offers three frames.</p><p>Gentle Monster '
+        'styles start at $449.</p><h2>Compatibility</h2>'
+        '<p>Pixel and Galaxy phones.</p>')
+pool = [
+    ("https://x/wp.jpg", "Warby Parker lifestyle.",
+     PG._match_tokens("Models wearing Warby Parker frames",
+                      "wp_carousel_lifestyle")),
+    ("https://x/gm.jpg", "Gentle Monster studio.",
+     PG._match_tokens("Black sunglasses floating",
+                      "gm_ggs001")),
+    ("https://x/range.jpg", "The full range.",
+     PG._match_tokens("Two women wearing wide black sunglasses",
+                      "gm_lifestyle")),
+]
+new_body = PG.place_in_body(BODY, pool, "Official Google product images.")
+check("hybrid: body produced", bool(new_body))
+wp_at = new_body.find("https://x/wp.jpg")
+hw_at = new_body.find("Hardware, price")
+gm_at = new_body.find("Gentle Monster styles start")
+check("hybrid: section-matched shot inline in its section",
+      hw_at != -1 and wp_at > hw_at)
+check("hybrid: strip block present for the rest",
+      "<!-- photo-strip" in new_body)
+import json as _json
+blk = new_body.split("<!-- photo-strip")[1].split("-->")[0]
+data = _json.loads(blk)
+check("hybrid: strip JSON parses with images + credit",
+      len(data["images"]) >= 1
+      and data["credit"] == "Official Google product images.")
+check("hybrid: no top-gallery semantics (no gallery_images)",
+      "gallery_images" not in new_body)
+
 print(f"\n{total - fails}/{total} passed")
 sys.exit(1 if fails else 0)

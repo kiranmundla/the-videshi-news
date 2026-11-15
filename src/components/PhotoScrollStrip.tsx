@@ -15,6 +15,29 @@ interface Props {
 
 const GAP = 12;
 
+/** Parse a <!-- photo-strip ... --> body block:
+ *  {"images":[{"src","caption"}],"credit":"..."} — the generic
+ *  in-article scroll strip (product galleries, photo features),
+ *  as opposed to social-photos which is tied to a social post's
+ *  attribution. Mirrors parseSocialPhotos in SocialPhotoStrip. */
+export function parsePhotoStrip(comment: string): {
+  images: Photo[];
+  credit?: string;
+} | null {
+  try {
+    const jsonStr = comment.replace(/^<!--\s*photo-strip\s*\n?/, "").replace(/\n?\s*-->$/, "").trim();
+    const data = JSON.parse(jsonStr);
+    if (!data.images || !Array.isArray(data.images) || data.images.length === 0) return null;
+    const images = data.images
+      .filter((im: any) => im && typeof im.src === "string")
+      .map((im: any) => ({ src: im.src, caption: typeof im.caption === "string" ? im.caption : "" }));
+    if (!images.length) return null;
+    return { images, credit: typeof data.credit === "string" ? data.credit : undefined };
+  } catch {
+    return null;
+  }
+}
+
 export default function PhotoScrollStrip({ photos, itemWidth = 280, itemHeight = 180, objectFit = "cover", onPhotoClick }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const nudgedRef = useRef(false);

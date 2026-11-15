@@ -30,7 +30,7 @@ import {
 } from "@/lib/articles";
 import HeroMedia from "@/components/HeroMedia";
 import SocialEmbeds from "@/components/SocialEmbeds";
-import PhotoScrollStrip from "@/components/PhotoScrollStrip";
+import PhotoScrollStrip, { parsePhotoStrip } from "@/components/PhotoScrollStrip";
 import StorySoFar from "@/components/StorySoFar";
 import ArticleReactions from "@/components/ArticleReactions";
 import ArticleBlocks, { tryParseBlocks } from "@/components/ArticleBlocks";
@@ -254,8 +254,31 @@ function MarkdownWithEmbeds({
   };
 
   let socialPhotosBuf: string[] | null = null;
+  let photoStripBuf: string[] | null = null;
 
   for (const line of lines) {
+    // Accumulate <!-- photo-strip ... --> blocks (generic
+    // in-article scroll strip: product galleries, photo features)
+    if (line.trim().startsWith("<!-- photo-strip")) {
+      flush();
+      if (line.trim().endsWith("-->")) {
+        const ps = parsePhotoStrip(line.trim());
+        if (ps) chunks.push({ kind: "photo-strip", ...ps });
+      } else {
+        photoStripBuf = [line];
+      }
+      continue;
+    }
+    if (photoStripBuf !== null) {
+      photoStripBuf.push(line);
+      if (line.trim().endsWith("-->")) {
+        const block = photoStripBuf.join("\n");
+        const ps = parsePhotoStrip(block);
+        if (ps) chunks.push({ kind: "photo-strip", ...ps });
+        photoStripBuf = null;
+      }
+      continue;
+    }
     // Accumulate <!-- social-photos ... --> blocks
     if (line.trim().startsWith("<!-- social-photos")) {
       flush();
@@ -362,7 +385,16 @@ function MarkdownWithEmbeds({
         </div>
       )}
       {(chunks as any[]).map((chunk, i) =>
-        chunk.kind === "social-photos" ? (
+        chunk.kind === "photo-strip" ? (
+          <div key={i} className="my-6">
+            <PhotoScrollStrip photos={chunk.images} itemWidth={500} itemHeight={320} objectFit="contain" />
+            {chunk.credit && (
+              <div style={{ padding: "6px 4px", color: "#666", fontSize: "0.75rem", fontStyle: "italic", lineHeight: 1.4 }}>
+                {chunk.credit}
+              </div>
+            )}
+          </div>
+        ) : chunk.kind === "social-photos" ? (
           <SocialPhotoStrip key={i} images={chunk.images} via={chunk.via} platform={chunk.platform} postUrl={chunk.postUrl} />
         ) : chunk.kind === "embed" ? (
           <SocialEmbed key={i} platform={chunk.platform} url={chunk.url} caption={chunk.platform === "instagram" ? igEmbedCaption(embedCaptions, chunk.url) : undefined} />

@@ -29,12 +29,19 @@ article:
   4. Download and verify each (real image, ≥800px wide); need
      at least 3 verified to proceed — fewer is not a gallery.
   5. Re-host on our Supabase storage (never hotlink a company
-     CDN into the strip), hero = the strongest landscape product
-     shot, gallery = the rest (≤5).
-  6. Hero replacement is conservative: only when the current
+     CDN), hero = the strongest landscape product shot.
+  6. Placement is HYBRID (Kiran's call, 2026-11-15): the shots
+     that match a body section go INLINE at that section as
+     regular figures (context beats collection — a picture
+     earns its place next to the text it illustrates); the
+     remaining range goes in ONE in-body scroll strip
+     (<!-- photo-strip --> chunk → PhotoScrollStrip). The top
+     gallery_images strip is NOT used for products — it
+     replaced the hero and felt wrong.
+  7. Hero replacement is conservative: only when the current
      hero is missing or a third-party hotlink (not our storage,
      not Wikimedia). A verified hero is never downgraded.
-  7. Captions come from the page's own alt text (the maker's
+  8. Captions come from the page's own alt text (the maker's
      description of its own product), cleaned, plus the credit
      line "Official <Company> product image." Never the lede.
 
@@ -89,14 +96,124 @@ def official_source(article):
 
 
 def qualifies(article):
-    """Trigger: no gallery yet, visual story or technology, and
-    an official source to harvest."""
+    """Trigger: no product treatment yet (no photo-strip block
+    in the body, no top gallery), visual story or technology,
+    and an official source to harvest."""
     if article.get("gallery_images"):
+        return False
+    if "photo-strip" in (article.get("body") or ""):
         return False
     if not (article.get("is_visual_story")
             or article.get("category") in _TRIGGER_CATEGORIES):
         return False
     return official_source(article) is not None
+
+
+def figure_html(url, caption):
+    """The pipeline's canonical inline figure (enrich-articles
+    format)."""
+    cap = caption.replace('"', "&quot;")
+    return (f'\n<figure style="margin:28px auto;text-align:center">'
+            f'<img src="{url}" alt="{cap}" '
+            f'style="max-width:100%;border-radius:8px" '
+            f'loading="lazy"><figcaption style="font-size:0.85rem;'
+            f'color:#666;margin-top:8px">{caption}</figcaption>'
+            f'</figure>\n')
+
+
+def strip_block(images, credit):
+    """The <!-- photo-strip --> body block ArticlePage renders
+    as the in-article scroll strip."""
+    payload = {"images": [{"src": u, "caption": c}
+                          for u, c in images],
+               "credit": credit}
+    return ("\n<!-- photo-strip\n"
+            + json.dumps(payload, ensure_ascii=False)
+            + "\n-->\n")
+
+
+_TOKEN_STOP = {"with", "from", "that", "this", "wearing", "looking",
+               "camera", "floating", "background", "glasses",
+               "sunglasses", "lenses", "official", "product",
+               "image", "google", "samsung"}
+
+
+def _match_tokens(alt, filename):
+    toks = set()
+    for w in re.findall(r"[a-z]{4,}", (alt or "").lower()):
+        if w not in _TOKEN_STOP:
+            toks.add(w)
+    for w in re.findall(r"[a-z]{4,}", (filename or "").lower()):
+        if w not in _TOKEN_STOP:
+            toks.add(w)
+    return toks
+
+
+def place_in_body(body, pool, credit):
+    """Hybrid placement (Kiran's call, 2026-11-15). pool:
+    [(url, caption, tokens)]. The two best section-matching
+    images (score >= 2 against an <h2 segment's text) go INLINE
+    at the end of their section; everything else goes in one
+    photo-strip block after the last inline's section (or
+    before the final section). Returns the new body, or None
+    if nothing could be placed."""
+    if not pool:
+        return None
+    parts = re.split(r"(?=<h2[\s>])", body or "")
+    if len(parts) < 2:
+        # No section structure: first two images inline after
+        # the opening paragraphs, the rest as a strip at the end.
+        out = body or ""
+        rest = []
+        for j, (url, caption, _t) in enumerate(pool):
+            if j < 2:
+                idx = out.find("</p>")
+                if idx != -1:
+                    out = (out[:idx + 4]
+                           + figure_html(url, caption)
+                           + out[idx + 4:])
+                    continue
+            rest.append((url, caption))
+        if rest:
+            out += strip_block(rest, credit)
+        return out
+    seg_texts = [re.sub(r"<[^>]+>", " ", p).lower() for p in parts]
+
+    def best_seg(toks):
+        best, best_score = -1, 0
+        for i, txt in enumerate(seg_texts):
+            if i == 0:
+                continue  # never the preamble/takeaways segment
+            score = sum(txt.count(t) for t in toks)
+            if score > best_score:
+                best, best_score = i, score
+        return best, best_score
+
+    scored = sorted(
+        ((best_seg(toks)[1], best_seg(toks)[0], url, caption)
+         for url, caption, toks in pool),
+        key=lambda x: -x[0])
+    picks, strip = [], []
+    for score, seg, url, caption in scored:
+        if score >= 2 and len(picks) < 2 and seg != -1:
+            picks.append((seg, url, caption))
+        else:
+            strip.append((url, caption))
+    placed_at = {}
+    last_inline_seg = 0
+    for seg, url, caption in picks:
+        placed_at.setdefault(seg, []).append((url, caption))
+        last_inline_seg = max(last_inline_seg, seg)
+    for i, figs in placed_at.items():
+        parts[i] = parts[i] + "".join(
+            figure_html(u, c) for u, c in figs)
+    if strip:
+        at = min(last_inline_seg + 1, len(parts) - 1) \
+            if last_inline_seg else len(parts) - 1
+        parts[at] = strip_block(strip, credit) + parts[at]
+    if not placed_at and not strip:
+        return None
+    return "".join(parts)
 
 
 def _stem(url):
@@ -322,13 +439,21 @@ def apply_product_gallery(article, patch_fn, log=print,
             uploaded[id(v)] = url
     if id(hero) not in uploaded or len(uploaded) < MIN_GALLERY_TOTAL:
         return None
-    gallery = [{"url": uploaded[id(v)],
-                "caption": caption_for(v["alt"], company)}
-               for v in verified
-               if id(v) in uploaded and v is not hero]
-    payload = {"gallery_images": gallery[:MAX_GALLERY],
+    hero_replaced = allow_hero_replace \
+        and _hero_is_replaceable(article)
+    pool = [(uploaded[id(v)], caption_for(v["alt"], company),
+             _match_tokens(v["alt"], _stem(v["url"])))
+            for v in verified
+            if id(v) in uploaded
+            and not (hero_replaced and v is hero)]
+    credit = f"Official {company} product images."
+    new_body = place_in_body(article.get("body") or "", pool,
+                             credit)
+    if not new_body or new_body == article.get("body"):
+        return None
+    payload = {"body": new_body, "gallery_images": [],
                "is_visual_story": True}
-    if allow_hero_replace and _hero_is_replaceable(article):
+    if hero_replaced:
         payload["image_url"] = uploaded[id(hero)]
         payload["image_caption"] = caption_for(hero["alt"],
                                                company)
@@ -336,7 +461,7 @@ def apply_product_gallery(article, patch_fn, log=print,
             f"{company} (official product images)")
     if patch_fn(article["id"], payload):
         return {"slug": slug, "company": company,
-                "hero_replaced": "image_url" in payload,
-                "gallery_count": len(payload["gallery_images"]),
+                "hero_replaced": hero_replaced,
+                "pool_count": len(pool),
                 "source_page": page_url}
     return None
