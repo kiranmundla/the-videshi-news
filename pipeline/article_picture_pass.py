@@ -161,7 +161,8 @@ def fetch_recent_articles(hours=12, limit=30):
     params = {
         "select": "id,headline,slug,category,image_url,image_caption,"
                   "image_attribution,body,image_entities,"
-                  "image_backfill_blocked,published_at,sources",
+                  "image_backfill_blocked,published_at,sources,"
+                  "gallery_images,is_visual_story",
         "status": "eq.published",
         "published_at": f"gte.{since}",
         "order": "published_at.desc",
@@ -1738,6 +1739,24 @@ def process_article(article, net=None, apply=False, log=print,
                         {"body": rec["_proposed_body"]}):
                 rec["applied"].append("body-inlines")
                 _ledger_inlines(article, rec["inlines"]["proposed"])
+    # ── product gallery (Kiran, 2026-11-15) ──
+    # For product stories, harvest the maker's own official
+    # images into the scroll strip (gallery_images). Runs last:
+    # it never touches a verified hero (product_gallery only
+    # replaces missing/third-party-hotlink heroes) and never
+    # overrides the hero/inline work above.
+    try:
+        import product_gallery as PG
+        if apply:
+            gal = PG.apply_product_gallery(
+                article, patch_fn, log=log,
+                allow_hero_replace="hero" not in rec["applied"])
+            if gal:
+                rec["gallery"] = gal
+                rec["applied"].append("product-gallery")
+    except Exception as exc:  # the rung must never kill the pass
+        rec["notes"].append(f"product-gallery error: {exc}")
+
     # The proposed body is a working string, never report data.
     rec.pop("_proposed_body", None)
     return rec
