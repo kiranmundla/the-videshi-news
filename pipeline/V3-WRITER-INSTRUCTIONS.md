@@ -500,10 +500,12 @@ Rules:
 - **`prep_time`, `cook_time`, `servings`, `nutrition` are optional** — include when the source provides them, omit when it doesn't.
 - **Use for real recipes only** — not for restaurant reviews or food news without a dish to make.
 
-### 3e8. Story so far (developing stories — AUTOMATIC, no data card needed)
+### 3e8. Story so far (developing stories — PAUSED 2026-11-15)
+**Developing stories are PAUSED (Kiran, 2026-11-15), pending a redesign discussion.** Do NOT link articles to storylines and do not read or write the `storylines` / `storyline_articles` tables. The lifecycle job is disabled and all storylines sit in `cooling`, so no "Story So Far" blocks render. The linking rules below this note are dormant — they apply again only when Kiran explicitly resumes the feature.
+
 The "Story So Far" block is generated automatically from the article's linked developing storylines (the `storyline_articles` table). You do NOT need to add a `story_so_far` data card — the frontend's `StorySoFar` component fetches the storyline's recent articles and renders the timeline itself.
 
-Your job: link the article to its storyline correctly (see the storyline-linking step). The block appears automatically when the article belongs to an active or emerging storyline.
+Your job (when the feature resumes): link the article to its storyline correctly (see the storyline-linking step). The block appears automatically when the article belongs to an active or emerging storyline.
 
 ### 3e9. Critic table (explicit roundup pieces only)
 **Voice rule first (Kiran, 2026-11-15):** the standard Videshi review is a SYNTHESIZED single-voice review — our judgments rendered directly, no outlet or critic named in the prose, no "critics say" scaffolding, no review counts (the generator's voice gate in movie-reviews.py enforces this; writer-path reviews follow the same rule). The `critic_table` below is reserved for pieces that are explicitly framed and headlined as roundups/comparisons, where the per-critic breakdown IS the product. When a review is not explicitly a roundup, do not add a critic_table.
