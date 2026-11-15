@@ -695,7 +695,7 @@ export default function ArticlePage() {
         ) : article.hero_image_url && article.hero_image_url.trim().length > 0 ? (
           <HeroMedia
             url={article.hero_image_url}
-            alt={article.title}
+            alt={(article.image_caption || "").split(/(?<=[.!?])\s/)[0] || article.title}
             credit={article.image_attribution ?? null}
             caption={article.image_caption ?? null}
             category={article.category}

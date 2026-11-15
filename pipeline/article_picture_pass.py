@@ -1450,6 +1450,14 @@ def _caption_subject_tokens(cand):
     return toks
 
 
+def _caption_content_words(sentence):
+    """Content words of a sentence (lowercase alpha, len>=4) — the
+    overlap basis for the lede-duplication guard in build_caption
+    and shared with the reviewer's caption check convention."""
+    return {w for w in re.findall(r"[a-z]+", (sentence or "").lower())
+            if len(w) >= 4}
+
+
 def build_caption(entity, cand, article):
     """Factual caption in the enricher's convention: what the
     image shows, then — only when one qualifies — one context
@@ -1473,16 +1481,34 @@ def build_caption(entity, cand, article):
             .rsplit(".", 1)[0].replace("_", " ").strip() or entity
         subject = f"{entity}: {subject}" \
             if entity.lower() not in subject.lower() else subject
-    body_text = RES._strip_html(article.get("body") or "")
+    # Strip the key-takeaways box BEFORE sentence extraction
+    # (2026-11-15): the box sits ahead of the lede in the body, so
+    # the old sentences[1:] skip landed on takeaway bullets and the
+    # actual lede became an eligible "context" sentence — the
+    # Microsoft 365 phishing article shipped campus and 2004 Xbox
+    # photos captioned with the phishing lede verbatim, and the JLR
+    # earnings article did the same onto a 2014 press-conference
+    # photo. GPT's enrichment review caught the class externally.
+    raw_body = re.sub(r'<div class="key-takeaways">.*?</div>', " ",
+                      article.get("body") or "", flags=re.S)
+    body_text = RES._strip_html(raw_body)
     toks = _caption_subject_tokens(cand) or \
         {t for t in RES.entity_tokens(entity) if len(t) >= 4}
     context = ""
     sentences = [s.strip() for s in
                  re.split(r"(?<=[.!?])\s+", body_text) if s.strip()]
+    lede_words = _caption_content_words(sentences[0]) if sentences \
+        else set()
     for s in sentences[1:]:  # never the lede / announcement
         if 20 < len(s) < 250 and toks and any(
                 re.search(r"\b" + re.escape(t) + r"\b", s.lower())
                 for t in toks):
+            # Belt-and-braces: a near-duplicate of the lede is the
+            # lede, wherever it sits in the body.
+            s_words = _caption_content_words(s)
+            if lede_words and s_words and \
+                    len(s_words & lede_words) / len(s_words) >= 0.75:
+                continue
             context = s
             break
     caption = subject if subject.endswith((".", "!", "?")) \

@@ -560,6 +560,76 @@ def check_source_provenance(article):
     return issues
 
 
+def _content_words(sentence):
+    return {w for w in re.findall(r"[a-z]+", (sentence or "").lower())
+            if len(w) >= 4}
+
+
+def check_caption_lede_append(article):
+    """Flag captions that append the article's lede (or a takeaway
+    sentence) to a photo description — the caption then attributes
+    the current event to whatever the photo actually shows. Caught
+    externally by GPT's enrichment review (2026-11-15): the
+    Microsoft 365 phishing article captioned a campus aerial and a
+    2004 Xbox conference photo with the phishing lede verbatim; the
+    JLR earnings article did the same onto a 2014 press-conference
+    photo. A caption's job is to describe the image; a context
+    sentence must be about the depicted subject, never a copy of
+    the lede."""
+    issues = []
+    body = article.get("body") or ""
+    takeaways_text = " ".join(re.findall(
+        r'<div class="key-takeaways">(.*?)</div>', body, re.S | re.I))
+    prose = re.sub(r'<div class="key-takeaways">.*?</div>', " ", body,
+                   flags=re.S | re.I)
+    prose = re.sub(r"<[^>]+>", " ", prose)
+    prose = re.sub(r"\s+", " ", prose).strip()
+    ref_sentences = [s.strip() for s in
+                     re.split(r"(?<=[.!?])\s+", prose) if s.strip()]
+    refs = []
+    if ref_sentences:
+        refs.append(ref_sentences[0])  # the lede
+    tk = re.sub(r"<[^>]+>", " ", takeaways_text)
+    refs.extend(s.strip() for s in
+                re.split(r"(?<=[.!?])\s+", tk) if s.strip())
+    ref_words = [_content_words(s) for s in refs]
+    ref_words = [w for w in ref_words if len(w) >= 6]
+    if not ref_words:
+        return issues
+
+    captions = []
+    if article.get("image_caption"):
+        captions.append(("Caption", article["image_caption"]))
+    for fig in re.findall(r"<figure[^>]*>(.*?)</figure>", body,
+                          re.S | re.I):
+        cap_m = re.search(r"<figcaption[^>]*>(.*?)</figcaption>",
+                          fig, re.S | re.I)
+        caption = ""
+        if cap_m:
+            caption = re.sub(r"<[^>]+>", "", cap_m.group(1)).strip()
+        if not caption:
+            alt_m = re.search(r'<img[^>]+alt="([^"]*)"', fig, re.I)
+            caption = alt_m.group(1).strip() if alt_m else ""
+        if caption:
+            captions.append(("Inline caption", caption))
+
+    for label, caption in captions:
+        sentences = [s.strip() for s in
+                     re.split(r"(?<=[.!?])\s+", caption) if s.strip()]
+        for s in sentences[1:]:
+            sw = _content_words(s)
+            if len(sw) < 6:
+                continue
+            if any(len(sw & rw) / len(sw) >= 0.75 for rw in ref_words):
+                issues.append(
+                    f"{label} appends the article's lede/takeaway "
+                    f"sentence to the photo description: "
+                    f"'{s[:80]}…' — captions describe the image; "
+                    "drop the appended claim or re-source the photo")
+                break
+    return issues
+
+
 def review_article(article, run_llm=True):
     """Run all checks on one article. Returns dict of issues and suggestions."""
     result = {
@@ -581,6 +651,7 @@ def review_article(article, run_llm=True):
     result["structural_issues"].extend(check_caption_grounding(article))
     result["structural_issues"].extend(check_hero_party_mismatch(article))
     result["structural_issues"].extend(check_source_provenance(article))
+    result["structural_issues"].extend(check_caption_lede_append(article))
 
     # LLM review
     if run_llm:

@@ -34,6 +34,8 @@ Article content is the site's retention lever; Kiran's standing posture is ~20 a
 4. **Never invent.** No invented quotes, sensory descriptions, attendance figures, schedules, amenities, participation instructions, activities, or donation asks. If the organizer, company, or official did not say it, the article does not say it.
 5. **Missing information never becomes an affirmative claim.** Silence in a source establishes nothing. If no source mentions tickets, that does **not** mean admission is free. An event's end time is **not** a sub-event's start time (fireworks "at the close" have no start time unless a source gives one). When a decision-critical detail is genuinely unavailable, say so in one brief line and point to the official contact or page (§3c, Event playbook) — never fill the gap, and never pad the article with a list of unknowns.
 6. **No unestablished superlatives or comparisons.** "Biggest," "first," "peaks," "record" require a source that establishes them. If none does, describe — don't rank.
+7. **Attribution precision (2026-11-15).** One named person's judgment stays one named person's judgment: "India Today's Sanjay Ponnappa argues…" — never upgraded to "critics say", "reviewers agree" or a consensus the sources don't establish. A plural or consensus claim requires at least two named sources making it. The same applies to officials, analysts and "experts": the count and the names in the article must match the sources actually read.
+8. **No derived arithmetic (2026-11-15).** Never manufacture a figure by doing arithmetic across periods, metrics or units — subtracting exceptional charges from a pre-exceptional profit to "derive" a loss, annualizing a quarter, or netting figures from different statements. Every number in the article, its cards and its graphics must be a figure a source STATES. (The sports rule — checkpoints from the official scorecard, never arithmetic — is this same law in the sports playbook.) If a bridge between two reported figures isn't in a source, present the two figures separately with their own labels.
 
 ## Step 1 — Get the candidate list (selector already ran)
 A dedicated selector job (videshi-v3-select) runs at :25, 20 minutes before this writer. CHECK FOR ITS OUTPUT FIRST — do not launch another selector unless none exists:
@@ -98,7 +100,7 @@ Two elements are universal, whatever the type: the HEADLINE and the KEY TAKEAWAY
 #### HEADLINE
 - Clear, informative, engaging. No clickbait. 8-14 words.
 - For `coverage: "update"`: Lead with what's NEW (e.g., "Court Reverses H-1B Ban After..." not "H-1B Update")
-- **Keep the source's qualifier on every figure (2026-11-15).** When the source states a maximum, estimate or floor — "up to five hours", "around 17 hours", "at least 200 flights" — the headline carries the same qualifier. NEVER convert a qualified figure into a flat claim: "Cutting Travel Time by Five Hours" misstates an airline's "up to five hours" as a uniform saving. The content gate (check_headline_qualifier) holds any article whose headline drops a qualifier the body consistently keeps.
+- **Keep the source's qualifier on every figure (2026-11-15).** When the source states a maximum, estimate or floor — "up to five hours", "around 17 hours", "at least 200 flights" — the headline carries the same qualifier. NEVER convert a qualified figure into a flat claim: "Cutting Travel Time by Five Hours" misstates an airline's "up to five hours" as a uniform saving. The qualifier must survive EVERY surface the reader meets — headline, dek, key takeaways, data cards, chart labels and social copy: a target stays a "target", a notional figure stays "notional", in the card exactly as in the prose. The content gate holds violations in the headline (check_headline_qualifier) and in data cards (check_card_qualifier).
 
 #### KEY TAKEAWAYS (required — appears at top of body)
 - 3-4 bullet points summarizing the essential facts
@@ -143,6 +145,7 @@ Box rules: every line is a verified fact from a source you read. For a decision-
 The reader is asking: *does this touch me, and what must I do?* Answer **in this order**:
 1. **Who is affected — exactly.** Visa class, status, nationality, filing window, geography. Name who is NOT affected when confusion is likely.
 2. **What changed, precisely.** The rule before vs after, in plain words. Unpack the mechanism in one paragraph (see Enrichment Bar §5) — never name-drop an acronym the reader can't act on.
+2b. **Scope line for every headline number (2026-11-15).** When the story turns on a number — a cap, a target, a quota, a fee — state beside it what the number COUNTS and what it does NOT count ("Counted here: new student arrivals. Not counted: permit extensions and in-Canada applications."). A levels-plan arrivals target is not a cap on all permits, and the reader must never have to guess which. Keep the number's own qualifier attached (Claim Discipline §3; the Canada 2027–29 plan's 2028/2029 figures are notional, and every surface must say so).
 3. **When.** Effective date, deadlines, transition/grace periods — as dates, not "soon."
 4. **What to do next.** The form, portal, fee, and link (external-link minimums below apply). If the correct action is "nothing yet," say what to watch and when.
 5. **What happens if they do nothing** — only where a source supports the consequence.
@@ -192,6 +195,7 @@ The reader is asking: *what is this, who's in it, and how do I watch it?*
 2. **Who's in it and who made it** — cast and key creators, from sources.
 3. **When and where the reader can watch** — release date, theatres/streaming, US availability for the diaspora reader.
 4. **The news itself** — the trailer, announcement, or development, with the official trailer embed placed per Enrichment Bar §12.
+- **Image relevance = the production or its people (2026-11-15).** A hero or inline must depict THIS film/series, its cast, or its makers. Artwork of the underlying story, character or mythology is NOT relevance — a traditional Rama/Ravana painting is not an image for a story about an actor's dubbing work, however the file is tagged. A character name matching is a keyword match, not a subject match (the image doctrine's stork test, applied to entertainment). No verified production image → run imageless or with a verified cast/production still; never reach for the source material's illustrations.
 - Reviews are a different form: narrative critic synthesis under the **Movie Review Format** section at the end of this document, which governs. Body 500-800 words. **Done bar:** the reader knows what it is, who is in it, and exactly how and when they could watch it.
 
 #### PLAYBOOK — Profile / Obituary (a person is the story)
@@ -226,6 +230,7 @@ Body 500-800 words, HTML, with clear `<h2>` subheadings:
 - Vary sentence length. Short punchy sentences mixed with longer analytical ones.
 - Use specific numbers, dates, names — concrete details, not vague summaries
 - For markets-finance: US/global-first tone, straight financial journalism. No forced NRI framing on FAANG earnings or Fed decisions.
+- **Security-warning stories (phishing, scams, breaches) — visuals (2026-11-15):** an organisation match is not an image match. A campus photo, an airport-disruption photo, or an executive's decade-old conference photo does not illustrate a phishing campaign, and its caption must never pin the current campaign onto the archival scene. Prefer NO photo, or a clearly labelled original diagram of the warning signs (sender check, urgency, sign-in request), over an unrelated photograph. Never reproduce a working malicious URL, and never present a simulated login/credential form as if it were the real thing.
 - For food: Indian-specific focus, recipes and cultural context
 - For entertainment: Cover both Bollywood and Hollywood with equal depth
 - **EXTERNAL LINKS (mandatory):** Include real, clickable `<a href="...">` links in the article body. Minimums by category:
@@ -542,6 +547,7 @@ python3 -u article-polish.py --article-id <article_uuid> 2>&1
 This replaces three separate GPT calls (enrich-data-cards, enrich-on-publish key_takeaways, proofread-article) with a single call. Run it per article right after insert. If it fails, continue — the article is published and readable, and the review-articles safety net will catch issues later.
 
 ## Step 4.2 — Enrich articles (social embeds, inline images)
+**Inventory before adding (2026-11-15).** Enrichment adds to an article that may already carry blocks from the writer and polish steps. Before adding any embed, card or inline, inventory what the article already has and deduplicate by PURPOSE, not just by URL: an article with a scorecard gets no second scorecard, an article with a highlights video gets no second video of the same moment, and a story-purpose already served is not served again. Preserve what works; add only what a reader need is still missing.
 After polishing, run social embed enrichment (no GPT — just API lookups):
 
 ```bash

@@ -649,8 +649,15 @@ def _figure_mentions(text):
         unit = ""
         if tok.endswith("%"):
             unit = "%"
-        elif i + 1 < len(tokens) and tokens[i + 1].isalpha():
-            unit = tokens[i + 1]
+        else:
+            # The unit is the first substantive word after the figure
+            # ('150,000 a year' -> 'year'; '5 hours' -> 'hours').
+            # Single letters and connectives are skipped.
+            for nxt in tokens[i + 1:i + 3]:
+                if nxt.isalpha() and len(nxt) >= 2 and nxt not in (
+                        "and", "the", "for", "from", "with", "per"):
+                    unit = nxt
+                    break
         window = tokens[max(0, i - 3):i]
         qualified = (
             any(t in _QUALIFIER_TOKENS for t in window)
@@ -675,7 +682,7 @@ def check_headline_qualifier(article):
         if qualified:
             continue
         same = [q for v, u, q in body_mentions
-                if v == value and u == unit]
+                if v == value and (u == unit or not u or not unit)]
         if same and all(same):
             figure = f"{value:g} {unit}".strip()
             failures.append(
@@ -684,6 +691,97 @@ def check_headline_qualifier(article):
                 "the body only ever states it qualified "
                 "('up to' / 'around' / 'at least' …) — keep the "
                 "qualifier in the headline or remove the figure")
+    return failures
+
+
+# --- qualifier propagation into data cards -------------------------------
+# The headline check above guards one surface; GPT's enrichment
+# review (2026-11-15, Canada levels-plan case) states the general
+# rule: a qualifier attached to a claim must survive EVERY surface —
+# headline, dek, summary, chart and card. A data card that restates
+# a target/notional figure without its qualifier converts it into a
+# hard fact for the reader who only sees the card. Same conservative
+# shape as the headline check: fires only when every body mention of
+# the figure+unit is qualified and the card's mention is not. Cards
+# whose title itself frames the numbers (target / notional / plan /
+# forecast / estimate) are exempt — the framing is the qualifier.
+
+_CARD_FRAMING_WORDS = re.compile(
+    r"\b(target|notional|plan|forecast|estimat\w+|project\w+|guidance)\b",
+    re.I)
+
+
+def check_card_qualifier(article):
+    """Fail data cards that drop a qualifier the body keeps."""
+    failures = []
+    body = _plain_text(article.get("body"))
+    if not body:
+        return failures
+    body_mentions = _figure_mentions(body)
+    cards = article.get("data_cards") or []
+    if isinstance(cards, dict):
+        cards = [cards]
+    if not isinstance(cards, list):
+        return failures
+    for card in cards:
+        if not isinstance(card, dict):
+            continue
+        title = str(card.get("title") or card.get("card_title") or "")
+        if _CARD_FRAMING_WORDS.search(title):
+            continue
+        texts = [title]
+        for strings, _v, _isv in _card_entries(card):
+            texts.extend(strings)
+        for value, unit, qualified in _figure_mentions(" ".join(texts)):
+            if qualified:
+                continue
+            same = [q for v, u, q in body_mentions
+                    if v == value and (u == unit or not u or not unit)]
+            if same and all(same):
+                figure = f"{value:g} {unit}".strip()
+                failures.append(
+                    f"data card '{title or 'untitled'}' drops the "
+                    f"source's qualifier: '{figure}' is stated flatly "
+                    "in the card but the body only ever states it "
+                    "qualified ('up to' / 'around' / 'at least' …) — "
+                    "qualify it in the card or frame the card as "
+                    "targets/notional")
+    return failures
+
+
+# --- service-state contradiction -----------------------------------------
+# A planned/announced service must never carry a booking call to
+# action (GPT acceptance example, 2026-11-15: Janakpur 'Book now'
+# while launch_date is null). If the article's own service-status
+# box says the service is not yet operating, a 'book now' / 'buy
+# tickets' CTA anywhere else in the body contradicts it.
+
+_NOT_OPERATING_RE = re.compile(
+    r"(not yet operating|approved, not yet|announced, not yet|"
+    r"yet to (?:launch|start|begin|open)|no (?:launch|start) date)",
+    re.I)
+_BOOKING_CTA_RE = re.compile(
+    r"\b(book now|book tickets|buy tickets|book your (?:ticket|seat|flight))\b",
+    re.I)
+_STATUS_BOX_RE = re.compile(
+    r'<div class="service-status">.*?</div>', re.S | re.I)
+
+
+def check_service_state_contradiction(article):
+    """Fail when a not-yet-operating service carries a booking CTA."""
+    failures = []
+    body = article.get("body") or ""
+    status = _STATUS_BOX_RE.search(body)
+    if not status or not _NOT_OPERATING_RE.search(status.group(0)):
+        return failures
+    outside = _STATUS_BOX_RE.sub(" ", body)
+    cta = _BOOKING_CTA_RE.search(re.sub(r"<[^>]+>", " ", outside))
+    if cta:
+        failures.append(
+            f"service-state contradiction: the status box says the "
+            f"service is not yet operating, but the body carries a "
+            f"booking call to action ('{cta.group(0)}') — a planned "
+            "service gets no booking CTA until it is bookable")
     return failures
 
 
@@ -741,6 +839,8 @@ _CHECKS = [
     check_estimate_as_fact,
     check_unrenderable_data_cards,
     check_headline_qualifier,
+    check_card_qualifier,
+    check_service_state_contradiction,
 ]
 
 
