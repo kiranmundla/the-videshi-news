@@ -3333,6 +3333,43 @@ def _score_and_rank_candidates(candidates, headline=""):
     return ranked
 
 
+def _apply_official_precedence(candidates):
+    """Official/brand precedence over low-trust og:image (2026-11-15).
+
+    When a brand_official / official_source candidate exists and every
+    og:image candidate comes from a non-preferred domain, drop the
+    og:image candidates. Official press imagery is rights-clean and
+    served from the subject's own CDN; a trade-blog og:image is a
+    third-party hotlink (the Hina Khan 403 class) with weaker
+    provenance. The Air India hero came from safariindia.com although
+    airindia.com is in the brand map and brand_official already
+    carries the top reputation score — resolution points let the
+    hotlink win anyway. og:image from a PREFERRED news domain keeps
+    competing: that photo is usually the story's own photo.
+    Returns the (possibly reduced) candidate list."""
+    official = [c for c in candidates
+                if c.get("source_name")
+                in ("brand_official", "official_source")]
+    if not official:
+        return candidates
+    og = [c for c in candidates if c.get("source_name") == "og:image"]
+    if not og:
+        return candidates
+
+    def _score(c):
+        return _og_image_domain_score(
+            "https://" + str(c.get("attribution") or ""))
+
+    if all(_score(c) < 3 for c in og):
+        kept = [c for c in candidates
+                if c.get("source_name") != "og:image"]
+        print(f"    🏛  official precedence: dropped {len(og)} "
+              f"low-trust og:image candidate(s) — official/brand "
+              f"candidate present")
+        return kept
+    return candidates
+
+
 def source_hero_image(article, used_images=None):
     """Multi-source image sourcing with HTTP verification at every step.
     
@@ -3397,6 +3434,9 @@ def source_hero_image(article, used_images=None):
         candidates = [c for c in candidates if c["source_name"] != "wikipedia"]
         if len(candidates) < before:
             print(f"    🎓 person-profile precedence: dropped {before - len(candidates)} Wikipedia candidate(s)")
+
+    # ── Official/brand precedence over low-trust og:image (2026-11-15) ──
+    candidates = _apply_official_precedence(candidates)
 
     # ── Phase 3: Score, rank, and try winners ─────────────────────────────
     ranked = _score_and_rank_candidates(candidates, headline)

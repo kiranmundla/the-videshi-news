@@ -911,6 +911,13 @@ def enrich_ig_from_cache(article, cache, registry, live_ig=None):
                        if re.search(r"\b" + re.escape(kw) + r"\b", caption)]
             hits = len(matched)
             if hits >= 2 or (hits >= 1 and len(keywords) <= 2):
+                foreign = _ig_caption_foreign_subjects(
+                    post.get("caption", ""), article)
+                if foreign:
+                    print(f"     IG cache: @{handle} post vetoed — "
+                          f"caption subject not in article: "
+                          f"{', '.join(foreign)}")
+                    continue
                 url = post.get("url") or ""
                 sc = post.get("shortCode") or _ig_shortcode_from_url(url)
                 url_sc = _ig_shortcode_from_url(url)
@@ -1290,6 +1297,107 @@ def _ig_caption_hits(caption, keywords):
             if re.search(r"\b" + re.escape(kw) + r"\b", low)]
 
 
+# ─── IG caption subject veto (2026-11-15) ────────────────────────────
+# The keyword-hit gate alone passes captions that share the article's
+# vocabulary but are about a DIFFERENT subject — the Air India case:
+# an @airindia reel promoting Seoul flights ("...daily non-stop
+# flights from Delhi...") was embedded in the New York non-stop
+# restoration article because "non-stop", "flights", "new" and
+# "delhi" all hit, while the caption's actual subject (Seoul) appears
+# nowhere in the article. Rule (the stork test, applied to embeds):
+# a caption that names a proper-noun subject — place, person, org —
+# absent from the article is about something else; veto it. A missing
+# embed is cheap; a wrong-subject embed is a reader-facing error.
+
+_IG_SUBJECT_COMMON_WORDS = {
+    # Everyday words that are capitalized only positionally, plus
+    # social/marketing/travel vocabulary that is never itself the
+    # story subject. A capitalized phrase made ONLY of these is not
+    # a subject candidate.
+    "about", "above", "after", "again", "against", "all", "also", "an",
+    "and", "another", "any", "are", "around", "as", "at", "back", "be",
+    "because", "been", "before", "behind", "being", "below", "best",
+    "better", "between", "big", "biggest", "book", "both", "but", "by",
+    "can", "celebrate", "celebrating", "city", "class", "come",
+    "coming", "congratulations", "could", "daily", "day", "days",
+    "dear", "did", "discover", "do", "does", "down", "during", "each",
+    "early", "economy", "enjoy", "even", "every", "excited",
+    "exclusive", "experience", "explore", "fall", "favourite",
+    "favorites", "feel", "first", "flight", "flights", "fly", "follow",
+    "for", "from", "get", "go", "going", "good", "great", "had",
+    "happy", "has", "have", "here", "home", "how", "if", "in",
+    "instagram", "into", "introducing", "is", "it", "its", "join",
+    "just", "keep", "know", "largest", "last", "later", "latest",
+    "let", "life", "like", "link", "little", "live", "long", "look",
+    "love", "made", "make", "many", "may", "meet", "more", "morning",
+    "most", "much", "namaste", "new", "next", "night", "no", "non",
+    "not", "now", "of", "off", "official", "on", "once", "one", "only",
+    "or", "our", "out", "over", "own", "part", "people", "post",
+    "premium", "presenting", "proud", "ready", "really", "reel",
+    "reels", "said", "same", "say", "see", "share", "she", "should",
+    "so", "some", "soon", "special", "still", "stop", "stories",
+    "story", "such", "summer", "swipe", "take", "than", "that", "the",
+    "their", "them", "then", "there", "these", "they", "thing",
+    "things", "think", "this", "those", "through", "time", "to",
+    "today", "together", "too", "travel", "two", "under", "up", "us",
+    "very", "visit", "want", "was", "watch", "way", "we", "week",
+    "welcome", "well", "were", "what", "when", "where", "which",
+    "while", "who", "whole", "will", "winter", "with", "world",
+    "would", "year", "years", "you", "your",
+    "monday", "tuesday", "wednesday", "thursday", "friday",
+    "saturday", "sunday", "january", "february", "march", "april",
+    "june", "july", "august", "september", "october", "november",
+    "december",
+    # pronouns and colours — capitalized positionally or as
+    # descriptors, never story subjects on their own
+    "my", "me", "he", "him", "his", "her", "hers", "green", "gold",
+    "golden", "red", "blue", "white", "black", "pink", "silver",
+    "yellow", "orange", "purple", "brown", "grey", "gray",
+}
+
+
+def _ig_caption_foreign_subjects(caption, article):
+    """Proper-noun subjects named in `caption` that appear nowhere in
+    the article (headline + body + key entities). Returns the list of
+    foreign subject phrases; non-empty means the caption is about a
+    different subject and the embed must be vetoed."""
+    if not caption:
+        return []
+    text = " ".join([
+        article.get("headline") or "",
+        re.sub(r"<[^>]+>", " ", article.get("body") or ""),
+    ])
+    entities = article.get("key_entities") or []
+    if isinstance(entities, list):
+        for e in entities:
+            if isinstance(e, str):
+                text += " " + e
+            elif isinstance(e, dict):
+                text += " " + str(e.get("name") or e.get("entity") or "")
+    vocab = set(re.findall(r"[a-z0-9]+", text.lower()))
+
+    def _split_tag(m):
+        parts = re.findall(r"[A-Z]+(?![a-z])|[A-Z][a-z]+|[a-z]+|\d+",
+                           m.group(1))
+        return " " + " ".join(parts) + " "
+
+    scan = re.sub(r"#(\w+)", _split_tag, caption)
+    foreign = []
+    for m in re.finditer(r"[A-Z][a-z]+(?:[ '-][A-Z][a-z]+)*|[A-Z]{2,}",
+                         scan):
+        phrase = m.group(0)
+        words = [w.lower() for w in re.split(r"[ '-]+", phrase) if w]
+        if not words:
+            continue
+        if all(w in _IG_SUBJECT_COMMON_WORDS for w in words):
+            continue
+        if any(w in vocab for w in words):
+            continue
+        if phrase not in foreign:
+            foreign.append(phrase)
+    return foreign
+
+
 def enrich_ig_from_derived_handles(article, cache=None):
     """Try IG enrichment by deriving the subject's handle from the
     article (see the section header). Returns the same (url, info)
@@ -1386,7 +1494,15 @@ def enrich_ig_from_derived_handles(article, cache=None):
                 matched = _ig_caption_hits(caption, keywords)
                 hits = len(matched)
                 if hits >= 2 or (hits >= 1 and len(keywords) <= 2):
-                    scored.append((hits, -rank, url, caption, matched))
+                    foreign = _ig_caption_foreign_subjects(
+                        caption, article)
+                    if foreign:
+                        print(f"     IG derived: @{handle} post vetoed "
+                              f"— caption subject not in article: "
+                              f"{', '.join(foreign)}")
+                    else:
+                        scored.append((hits, -rank, url, caption,
+                                       matched))
 
             if verified_posts and isinstance(cache, dict):
                 # Reuse the shared cache shape so later articles (and

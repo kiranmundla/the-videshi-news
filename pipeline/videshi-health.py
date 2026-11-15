@@ -507,6 +507,8 @@ def check_image_health():
     not_image = []   # content-type isn't image/*
     flag_imgs = []   # generic flag images
     expired_cdn = [] # ephemeral CDN URLs (fbcdn, cdninstagram) that will/have expired
+    reader_blocked = []  # loads for the health check, 403s for readers
+                         # (hotlink protection vs thevideshi.com referer)
 
     # Ephemeral CDN domains whose URLs expire after ~24-48h
     EPHEMERAL_DOMAINS = ("fbcdn.net", "cdninstagram.com", "scontent-", "lookaside.fbsbx.com")
@@ -611,7 +613,45 @@ def check_image_health():
                 "reason": f"timeout/error: {str(e)[:40]}", "url": url[:80],
             })
 
-    total_issues = len(broken) + len(tiny) + len(not_image) + len(flag_imgs) + len(expired_cdn)
+        # Reader-view probe (2026-11-15): some CDNs hotlink-protect —
+        # they serve the image to this bare health check (no referer)
+        # but 403 a real browser carrying thevideshi.com as referer.
+        # The Hina Khan hero (img.indiaforums.com) passed every health
+        # run while readers saw a broken image. Probe the way a
+        # reader's browser would; a 401/403 here means broken for
+        # readers even though the plain probe passed.
+        already_flagged = (
+            any(x["id"] == a["id"] for x in broken)
+            or any(x["id"] == a["id"] for x in not_image)
+            or any(x["id"] == a["id"] for x in tiny))
+        if not already_flagged and "supabase.co" not in url:
+            try:
+                r2 = requests.get(
+                    url, timeout=8, stream=True, allow_redirects=True,
+                    headers={
+                        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone "
+                                      "OS 17_0 like Mac OS X) "
+                                      "AppleWebKit/605.1.15 (KHTML, "
+                                      "like Gecko) Version/17.0 "
+                                      "Mobile/15E148 Safari/604.1",
+                        "Referer": "https://www.thevideshi.com/",
+                        "Range": "bytes=0-2048",
+                    })
+                if r2.status_code in (401, 403):
+                    reader_blocked.append({
+                        "id": a["id"], "headline": a["headline"][:60],
+                        "reason": f"HTTP {r2.status_code} with browser "
+                                  "UA + thevideshi.com referer "
+                                  "(hotlink protection)",
+                        "url": url[:80],
+                    })
+                r2.close()
+            except _CheckTimeout:
+                raise
+            except Exception:
+                pass  # network ambiguity never proves reader breakage
+
+    total_issues = len(broken) + len(tiny) + len(not_image) + len(flag_imgs) + len(expired_cdn) + len(reader_blocked)
     return {
         "check": "image_health",
         "articles_checked": len(articles),
@@ -622,11 +662,13 @@ def check_image_health():
         "not_image_content": not_image[:5],
         "flag_images": flag_imgs[:5],
         "expired_cdn_urls": expired_cdn[:10],
+        "reader_blocked_images": reader_blocked[:5],
         "total_issues": total_issues,
         "alert": total_issues > 0,
         "action_needed": (
             f"{total_issues} image issues: {len(broken)} broken, {len(expired_cdn)} expired CDN, "
-            f"{len(tiny)} tiny, {len(not_image)} wrong type, {len(flag_imgs)} generic flags"
+            f"{len(tiny)} tiny, {len(not_image)} wrong type, {len(flag_imgs)} generic flags, "
+            f"{len(reader_blocked)} reader-blocked (hotlink protection)"
             if total_issues > 0 else None
         ),
     }

@@ -294,6 +294,71 @@ def guard_timeline_cards(cards, body_text, pub_year):
     return kept, dropped
 
 
+def to_renderable_cards(cards):
+    """Convert polish-family cards (card_type + items[]) into the
+    type-keyed shapes ArticlePage actually renders (2026-11-15):
+    timeline -> key_dates, stat_grid/comparison -> price_compare,
+    highlights -> checklist. Before this conversion, polish cards
+    were stored but NEVER displayed — ArticlePage has no card_type
+    renderer (the Air India 'Flight Frequencies' stat_grid and
+    'Journey Time Reduction' comparison were invisible to readers).
+    Cards of an unknown kind are dropped: an invisible card is
+    worse than none, because run reports count it as enrichment
+    readers never receive."""
+    out = []
+    for card in cards:
+        if not isinstance(card, dict):
+            continue
+        kind = card.get("card_type")
+        title = card.get("card_title") or ""
+        items = card.get("items") or []
+        if kind == "timeline":
+            dates = [{"date": str(it.get("date", "")),
+                      "event": str(it.get("event", ""))}
+                     for it in items if isinstance(it, dict)]
+            if dates:
+                out.append({"type": "key_dates", "title": title,
+                            "dates": dates})
+        elif kind == "stat_grid":
+            rows = []
+            hero = card.get("hero_stat")
+            if isinstance(hero, dict) and hero.get("label"):
+                val = str(hero.get("value", ""))
+                if hero.get("trend"):
+                    val = f"{val} ({hero['trend']})"
+                rows.append([str(hero["label"]), val])
+            for it in items:
+                if isinstance(it, dict):
+                    rows.append([str(it.get("label", "")),
+                                 str(it.get("value", ""))])
+            if rows:
+                out.append({"type": "price_compare", "title": title,
+                            "headers": ["Item", "Value"], "rows": rows})
+        elif kind == "comparison":
+            rows = [[str(it.get("name", "")), str(it.get("value", ""))]
+                    for it in items if isinstance(it, dict)]
+            if rows:
+                out.append({"type": "price_compare", "title": title,
+                            "headers": ["Item", "Value"], "rows": rows})
+        elif kind == "highlights":
+            citems = []
+            for it in items:
+                if isinstance(it, dict):
+                    text = str(it.get("text", ""))
+                    stat = it.get("stat") or it.get("optional_stat")
+                    if stat:
+                        text = f"{text} — {stat}" if text else str(stat)
+                    if text:
+                        citems.append({"text": text})
+                elif isinstance(it, str) and it:
+                    citems.append({"text": it})
+            if citems:
+                out.append({"type": "checklist", "title": title,
+                            "items": citems})
+        # unknown polish kinds: dropped (see docstring)
+    return out
+
+
 PROMPT = """You are a senior news editor and data journalist at The Videshi, an Indian diaspora news site. Do THREE things in ONE response:
 
 ## 1. KEY TAKEAWAYS
@@ -489,9 +554,12 @@ def apply_polish(article, result, dry_run=False):
                 print(f"     ⚠ timeline guard dropped: {d}")
             if tl_dropped:
                 changes.append(f"timeline guard dropped {len(tl_dropped)}")
+            # Convert to the type-keyed shapes ArticlePage renders;
+            # card_type-keyed cards are invisible to readers.
+            valid = to_renderable_cards(valid)
         if valid or keep:
             updates["data_cards"] = keep + valid
-            changes.append(f"{len(valid)} cards ({', '.join(c['card_type'] for c in valid)})"
+            changes.append(f"{len(valid)} cards ({', '.join(c.get('type', '?') for c in valid)})"
                            + (f" + kept {len(keep)} existing" if keep else ""))
 
     # Proofread — apply to body

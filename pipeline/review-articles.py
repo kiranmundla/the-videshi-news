@@ -34,7 +34,7 @@ import subprocess
 import sys
 import time
 from datetime import datetime, timedelta, timezone
-from urllib.parse import quote, unquote
+from urllib.parse import quote, unquote, urlparse
 
 # ── Env ──
 def _load_env(path):
@@ -488,6 +488,78 @@ Respond as JSON: {{"quality_score": 1-10, "suggestions": ["specific suggestion 1
 
 # ── Main ──
 
+# ─── Source provenance (2026-11-15) ─────────────────────────────────
+# Announcement-driven stories must trace to the announcer or a wire
+# carrying the announcement — not only to secondary write-ups. The
+# Air India case: the restoration article's three sources were a
+# trade blog and ANI / Hindustan Times stories republished on
+# unrelated aggregator domains (apnamatvchannel.com,
+# prudigitalmedia.com); the airline's own announcement was never
+# cited. Domain-based on purpose: a wire's NAME on an aggregator
+# domain is not the wire.
+
+_WIRE_DOMAINS = {
+    "ptinews.com", "aninews.in", "ani.in", "reuters.com",
+    "apnews.com", "bloomberg.com", "afp.com", "ians.in",
+}
+_PRIMARY_DOMAINS = {
+    "hindustantimes.com", "timesofindia.indiatimes.com",
+    "indiatimes.com", "thehindu.com", "indianexpress.com",
+    "ndtv.com", "indiatoday.in", "livemint.com",
+    "economictimes.indiatimes.com", "business-standard.com",
+    "theprint.in", "deccanherald.com", "tribuneindia.com",
+    "espncricinfo.com", "cricbuzz.com", "bbc.com", "bbc.co.uk",
+    "nytimes.com", "washingtonpost.com", "wsj.com",
+    "theguardian.com", "cnn.com", "aljazeera.com",
+}
+_ANNOUNCEMENT_RE = re.compile(
+    r"\b(announc\w+|unveil\w+|press release|in a statement|"
+    r"statement (?:on|said)|said on (?:sunday|monday|tuesday|"
+    r"wednesday|thursday|friday|saturday))\b", re.I)
+
+
+def _source_domain(url):
+    try:
+        host = urlparse(url or "").netloc.lower()
+    except Exception:
+        return ""
+    return host[4:] if host.startswith("www.") else host
+
+
+def _domain_matches(domain, known):
+    return any(domain == d or domain.endswith("." + d) for d in known)
+
+
+def check_source_provenance(article):
+    """Flag announcement-driven articles whose sources are ALL
+    secondary/aggregator domains — no originator, wire, government,
+    or primary-outlet source."""
+    issues = []
+    text = " ".join([article.get("headline") or "",
+                     re.sub(r"<[^>]+>", " ", article.get("body") or "")])
+    if not _ANNOUNCEMENT_RE.search(text):
+        return issues
+    sources = article.get("sources") or []
+    domains = [_source_domain(s.get("url") or s.get("link") or "")
+               for s in sources if isinstance(s, dict)]
+    domains = [d for d in domains if d]
+    if not domains:
+        return issues
+    for d in domains:
+        if (_domain_matches(d, _WIRE_DOMAINS)
+                or _domain_matches(d, _PRIMARY_DOMAINS)
+                or d.endswith(".gov") or d.endswith(".gov.in")
+                or d.endswith(".nic.in")):
+            return issues
+    issues.append(
+        "Announcement story with no originator/wire/primary source — "
+        f"all {len(domains)} source(s) are secondary domains "
+        f"({', '.join(sorted(set(domains)))}); cite the announcer's "
+        "own release/statement or a wire carrying it (PTI/ANI/Reuters) "
+        "on its own domain")
+    return issues
+
+
 def review_article(article, run_llm=True):
     """Run all checks on one article. Returns dict of issues and suggestions."""
     result = {
@@ -508,6 +580,7 @@ def review_article(article, run_llm=True):
     result["structural_issues"].extend(check_youtube_relevance(article))
     result["structural_issues"].extend(check_caption_grounding(article))
     result["structural_issues"].extend(check_hero_party_mismatch(article))
+    result["structural_issues"].extend(check_source_provenance(article))
 
     # LLM review
     if run_llm:

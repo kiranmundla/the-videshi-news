@@ -604,6 +604,133 @@ def check_estimate_as_fact(article):
     return failures
 
 
+# --- headline qualifier discipline --------------------------------------
+# When the article body consistently qualifies a figure ("up to five
+# hours", "around 17 hours", "at least 200 flights"), the headline
+# must keep the qualifier. Dropping it converts a maximum / estimate /
+# floor into a flat claim — the Air India case (2026-11-15): the
+# airline said travel time falls "by up to five hours"; the headline
+# ran "Cutting Travel Time by Five Hours". Conservative by design:
+# fires only when EVERY body mention of the same figure+unit is
+# qualified and the headline's mention is not.
+
+_NUMBER_WORDS = {
+    "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
+    "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11,
+    "twelve": 12, "thirteen": 13, "fourteen": 14, "fifteen": 15,
+    "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19,
+    "twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60,
+    "seventy": 70, "eighty": 80, "ninety": 90,
+}
+_QUALIFIER_TOKENS = {
+    "around", "about", "nearly", "almost", "roughly", "approximately",
+    "approx", "over", "under", "some",
+}
+
+
+def _figure_mentions(text):
+    """Yield (value, unit, qualified) for each figure mention in text.
+    A mention is qualified when a qualifier phrase ('up to', 'at
+    least', or a _QUALIFIER_TOKENS word) appears within the 3 tokens
+    before the figure."""
+    tokens = re.findall(r"[a-z]+|\d[\d,]*(?:\.\d+)?%?", (text or "").lower())
+    mentions = []
+    for i, tok in enumerate(tokens):
+        value = None
+        if tok in _NUMBER_WORDS:
+            value = float(_NUMBER_WORDS[tok])
+        elif re.fullmatch(r"\d[\d,]*(?:\.\d+)?%?", tok):
+            try:
+                value = float(tok.rstrip("%").replace(",", ""))
+            except ValueError:
+                value = None
+        if value is None:
+            continue
+        unit = ""
+        if tok.endswith("%"):
+            unit = "%"
+        elif i + 1 < len(tokens) and tokens[i + 1].isalpha():
+            unit = tokens[i + 1]
+        window = tokens[max(0, i - 3):i]
+        qualified = (
+            any(t in _QUALIFIER_TOKENS for t in window)
+            or (len(window) >= 2 and window[-2] == "up"
+                and window[-1] == "to")
+            or (len(window) >= 2 and window[-2] == "at"
+                and window[-1] == "least"))
+        mentions.append((value, unit, qualified))
+    return mentions
+
+
+def check_headline_qualifier(article):
+    """Fail when the headline states a figure flatly that the body
+    only ever states with a qualifier."""
+    failures = []
+    headline = article.get("headline") or ""
+    body = _plain_text(article.get("body"))
+    if not headline or not body:
+        return failures
+    body_mentions = _figure_mentions(body)
+    for value, unit, qualified in _figure_mentions(headline):
+        if qualified:
+            continue
+        same = [q for v, u, q in body_mentions
+                if v == value and u == unit]
+        if same and all(same):
+            figure = f"{value:g} {unit}".strip()
+            failures.append(
+                f"headline drops the source's qualifier: the figure "
+                f"'{figure}' is stated flatly in the headline but "
+                "the body only ever states it qualified "
+                "('up to' / 'around' / 'at least' …) — keep the "
+                "qualifier in the headline or remove the figure")
+    return failures
+
+
+# --- unrenderable data cards -------------------------------------------
+# ArticlePage.tsx renders data_cards ONLY through these `type`-keyed
+# components (verified in src/pages/ArticlePage.tsx, 2026-11-15):
+# movie_review_ratings, match_scorecard, key_dates, how_to, checklist,
+# price_compare, recipe, critic_table. The polish family's
+# `card_type`-keyed cards (stat_grid / comparison / timeline /
+# highlights) have NO renderer — they are stored, counted in run
+# reports, and never seen by a reader (the U19 'Match Summary' and
+# Air India 'Flight Frequencies' cards were both invisible). A card
+# that cannot render must not ship: convert it to a renderable type
+# (article-polish.py converts its own output at persist time) or
+# drop it.
+_RENDERABLE_CARD_TYPES = {
+    "movie_review_ratings", "match_scorecard", "key_dates", "how_to",
+    "checklist", "price_compare", "recipe", "critic_table",
+}
+
+
+def check_unrenderable_data_cards(article):
+    """Fail any data_card ArticlePage cannot render."""
+    failures = []
+    cards = article.get("data_cards") or []
+    if isinstance(cards, dict):
+        cards = [cards]
+    if not isinstance(cards, list):
+        return failures
+    for card in cards:
+        if not isinstance(card, dict):
+            continue
+        ctype = card.get("type")
+        if ctype in _RENDERABLE_CARD_TYPES:
+            continue
+        label = str(card.get("card_title") or card.get("title")
+                    or card.get("card_type") or ctype or "data card")
+        failures.append(
+            f"unrenderable data card: '{label}' is keyed "
+            f"{'card_type=' + str(card.get('card_type')) if card.get('card_type') else 'type=' + str(ctype)} "
+            "which ArticlePage has no renderer for — readers never see "
+            "it; convert it to a renderable type (key_dates, "
+            "price_compare, checklist, how_to, match_scorecard, "
+            "recipe, critic_table, movie_review_ratings) or drop it")
+    return failures
+
+
 # ---------------------------------------------------------------- API
 
 _CHECKS = [
@@ -612,6 +739,8 @@ _CHECKS = [
     check_subevent_start_time,
     check_superlative_lede,
     check_estimate_as_fact,
+    check_unrenderable_data_cards,
+    check_headline_qualifier,
 ]
 
 
