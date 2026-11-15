@@ -335,37 +335,41 @@ CRITIC REVIEWS FOUND:
 
     movies_block = "\n".join(movies_section)
 
-    prompt = f"""You are writing movie review roundup articles for The Videshi, a news site for the Indian diaspora in the US, UK, Canada, and Australia.
+    prompt = f"""You are The Videshi's film desk, writing movie reviews for a news site for the Indian diaspora in the US, UK, Canada, and Australia.
 
 Today is {NOW.strftime('%B %d, %Y')}. These movies are opening in theaters this week.
 
-For EACH movie below, write a review roundup article that synthesizes what critics are saying. This is NOT your own review — it's a digest of real critic opinions. Write it like a professional film critic writing for a smart general audience: narrative flow, vivid specific details, real voice. NOT a dry spec sheet.
+For EACH movie below, write a SYNTHESIZED review in The Videshi's own voice (Kiran's steer, 2026-11-15). The critic reviews in the research material are your evidence base — read them closely, weigh where they agree and where they split, and then write OUR review: a single editorial voice that renders judgment directly, the way a staff critic does. The article must NOT read as a digest of other outlets' opinions. The reader should finish feeling they understand the movie and whether it is worth their evening — not who else reviewed it.
+
+VOICE RULES (hard):
+- Write judgments directly: "Suriya is the film's engine, loosest and funniest in years" — never scaffolded as "Critics have noted…", "Reviewers praise…", "According to The Hindu…", "X lauds…".
+- Do NOT name any outlet or critic anywhere in the body, the headline, the subheadline, or the takeaways. No direct quotes from reviews. (The outlets are still listed in the "sources" field — that is where attribution lives.)
+- No vote-counting: never state how many reviews were read, an average of other outlets' scores, or an Indian-vs-Western split. Where the evidence genuinely splits, write the split as the film's own divisiveness: "the second half is where the film loses part of its audience".
+- Grounding is unchanged and absolute: every evaluative claim must trace to the review material provided. Never invent a scene, a line of dialogue, a performance detail, or a first-person viewing experience ("in the theatre…", "we watched…"). If the material doesn't establish it, don't write it.
+- The star rating and category ratings remain The Videshi's editorial synthesis of that evidence (rendered as "THE VIDESHI RATING") — they are ours, stated plainly, never attributed to a consensus count.
 
 ARTICLE FORMAT:
 Each article should be HTML with this structure:
-1. Opening: 2-3 paragraphs that tell the STORY of this film's reception. What kind of film is this? What did the director attempt? Where does it soar and where does it stumble, according to critics? Name specific critics and outlets. Make the reader feel like they understand the film without having seen it.
+1. Opening: 2-3 paragraphs. What kind of film is this, what is the director attempting, and our verdict up front — where it soars, where it stumbles. Make the reader feel they understand the film without having seen it.
 2. Rating card data (returned as JSON fields, rendered by the frontend as "THE VIDESHI RATING"):
    - star_rating: overall rating out of 5 (half-star increments like 3.5)
-   - category_ratings: exactly these four keys — "Story", "Direction", "Climax", "Performances" — each out of 5 (half-star increments), based on what critics specifically said about each aspect
-   - rating_consensus: editorial paragraph summarizing the consensus
-   Word budget per section: Opening 120-180 words; "The consensus" 120-180; "What's praised" 200-280; "What's criticized" 120-180; "What this means for you" 80-120. Total 700-900 words. A draft under 600 words is a failed draft and will be rejected — write to the full budget in one pass.
-3. Body sections (use narrative prose with specific examples, not just bullet fragments):
-   - "<h2>The consensus</h2>" — 1-2 paragraphs: X published critic reviews average Y/5. Where do most land? Is there a split (e.g. Indian critics vs Western)? What's the through-line?
-   - "<h2>What's praised</h2>" — 2-3 paragraphs with SPECIFICS: which performance, which scene, which technical achievement. Quote critics by name.
-   - "<h2>What's criticized</h2>" — 1-2 paragraphs, honest even for good films. What's the actual complaint — pacing in the second half? A climax that doesn't land? Be concrete.
-   - "<h2>What this means for you</h2>" — 1 paragraph: should the diaspora audience go see it? Practical info (in cinemas now, runtime, subtitles).
+   - category_ratings: exactly these four keys — "Story", "Direction", "Climax", "Performances" — each out of 5 (half-star increments), based on what the evidence says about each aspect
+   - rating_consensus: The Videshi's verdict in our voice, 1-2 sentences. No mention of critics, reviews, or counts.
+   Word budget per section: Opening 150-200 words; "What works" 220-300; "What doesn't" 130-180; "Should you watch it?" 100-140. Total 700-900 words. A draft under 600 words is a failed draft and will be rejected — write to the full budget in one pass.
+3. Body sections (narrative prose with specific examples, not bullet fragments):
+   - "<h2>What works</h2>" — 2-3 paragraphs with SPECIFICS drawn from the evidence: which performance, which stretch, which technical achievement, and why they land.
+   - "<h2>What doesn't</h2>" — 1-2 paragraphs, honest even for good films. The actual weakness — pacing in the second half? A climax that doesn't land? Be concrete.
+   - "<h2>Should you watch it?</h2>" — 1 paragraph: who this film is for, who should skip it, and the practical facts (in cinemas now, runtime, language and subtitles).
 
-For Indian films, add a note on the diaspora angle — is it available dubbed/subtitled, does it require cultural context, how does it compare to the director's/star's previous work.
+For Indian films, weave in the diaspora angle — subtitled/dubbed availability where the material establishes it, cultural context a second-generation viewer may need, how it compares to the director's/star's previous work.
 
 CRITICAL RULES:
-- SOURCES: "sources" MUST list at least 2 DISTINCT outlets with the real URLs of the actual review pages from the search results (different pages — the same URL twice counts once, and an outlet's homepage is not a source). If the search results contain fewer than 2 real review sources for a movie, return it with "skip": true and a skip_reason instead of writing the review.
-- ONLY quote real reviews from the search results below. NEVER fabricate a quote.
-- Attribute EVERY quote to the specific outlet and reviewer if named.
-- If you can't find enough real quotes, use indirect summaries: "Critics at Variety praised..." rather than fake direct quotes.
+- SOURCES: "sources" MUST list at least 2 DISTINCT outlets with the real URLs of the actual review pages from the search results (different pages — the same URL twice counts once, and an outlet's homepage is not a source). List EVERY review you actually drew on. If the search results contain fewer than 2 real review sources for a movie, return it with "skip": true and a skip_reason instead of writing the review.
+- NEVER fabricate a quote, a scene, or a detail. Everything evaluative traces to the review material.
 - Include the Rotten Tomatoes or Metacritic score ONLY if found in search results. NEVER invent a score.
-- STAR RATING: Provide your own overall star_rating (out of 5, half-star increments like 3.5) based on the critic consensus you found. This is The Videshi's editorial rating synthesized from the reviews — not copied from any single source.
-- CATEGORY RATINGS: Rate exactly these four categories out of 5 (half-star increments): Story, Direction, Climax, Performances. Base each on what critics specifically said about that aspect.
-- Tone: professional film critic — narrative, specific, vivid. Write full paragraphs that tell the story of the film and its reception. Name critics and outlets. A reader should finish feeling they understand the movie. NEVER write in dry bullet-fragment style.
+- STAR RATING: Provide your own overall star_rating (out of 5, half-star increments like 3.5) synthesized from the evidence you found. This is The Videshi's editorial rating — not copied from any single source, and never described in the article as an average of others.
+- CATEGORY RATINGS: Rate exactly these four categories out of 5 (half-star increments): Story, Direction, Climax, Performances. Base each on what the evidence specifically says about that aspect.
+- Tone: professional film critic — narrative, specific, vivid, decisive. Full paragraphs. NEVER write in dry bullet-fragment style.
 - Do NOT use generic AI phrases like "In conclusion", "Overall, this film", "It remains to be seen", "Whether you're a fan of..."
 - NEVER put the rating JSON (star_rating, category_ratings) in the body_html. Return ratings ONLY as the top-level JSON fields. The body should contain only the article prose.
 - Word count: 700-900 words per article. These are full reviews, not summaries.
@@ -376,15 +380,15 @@ Return JSON:
   "articles": [
     {{
       "title": "Movie Title",
-      "headline": "Engaging headline (e.g. 'Mirzapur: The Movie — Critics Say Ali Fazal's Swan Song Packs a Punch')",
-      "subheadline": "One sentence summary of critical consensus",
+      "headline": "Engaging review headline in our voice (e.g. 'Mirzapur: The Movie Review — Ali Fazal's Swan Song Packs a Punch')",
+      "subheadline": "One sentence verdict in our voice",
       "slug": "movie-title-review-roundup-critics",
       "body_html": "Full article HTML using the bullet structure described above",
-      "key_takeaways": ["3-5 bullet points summarizing the key critical consensus points"],
+      "key_takeaways": ["3-5 bullet points stating our key judgments, in our voice"],
       "sources": [{{"name": "Outlet Name", "url": "https://actual-url-from-search-results"}}],
       "star_rating": 3.5,
       "category_ratings": {{"Story": 3.5, "Direction": 3.5, "Climax": 4.0, "Performances": 4.0}},
-      "rating_consensus": "Editorial paragraph (e.g. 'Critics broadly praise the finale's face-off, courtroom drama and climax, docking it for a slow first half — a 3.5-star consensus across 18 published reviews.')",
+      "rating_consensus": "The Videshi verdict in our voice (e.g. 'A bruising finale face-off and a gripping courtroom stretch carry the film past its slow first half. 3.5 stars.')",
       "tags": ["tag1", "tag2", "tag3"],
       "is_indian": true/false,
       "cast": ["Actor 1", "Actor 2"],
@@ -447,6 +451,46 @@ def _word_count(html):
     text = re.sub(r"<[^>]+>", " ", html or "")
     return len(text.split())
 
+_VOICE_PATTERNS = [
+    r"\bcritics\b[^.]{0,40}\b(say|said|note|noted|praise|praised|agree|"
+    r"agreed|call|called|describe|described|feel|point|pointed)\b",
+    r"\breviewers\b[^.]{0,40}\b(say|said|note|noted|praise|praised|"
+    r"agree|agreed)\b",
+    r"\baccording to\b",
+    r"\bthe consensus\b",
+    r"\bacross \d+ (published )?reviews\b",
+    r"\baverage rating of\b",
+    r"\b\d+ (published )?reviews\b[^.]{0,30}\baverage\b",
+]
+
+
+def _voice_violations(article: dict) -> list[str]:
+    """Deterministic voice gate (Kiran, 2026-11-15): the review
+    must read as The Videshi's own synthesized judgment, not a
+    digest of third-party opinions. Flags critic-scaffolding
+    phrasing anywhere reader-facing (headline, subheadline,
+    takeaways, verdict, body) and any sourced outlet's name
+    appearing in the prose. Sources stay listed in the sources
+    field — attribution lives there, not in the text."""
+    parts = [article.get("headline", ""),
+             article.get("subheadline", ""),
+             article.get("rating_consensus", ""),
+             " ".join(article.get("key_takeaways") or []),
+             re.sub(r"<[^>]+>", " ", article.get("body_html", ""))]
+    text = " ".join(parts)
+    hits = []
+    for pat in _VOICE_PATTERNS:
+        m = re.search(pat, text, re.I)
+        if m:
+            hits.append(f"phrasing: '{m.group(0)[:60]}'")
+    for src in article.get("sources") or []:
+        name = (src.get("name") or "").strip()
+        if len(name) >= 4 and re.search(
+                r"\b" + re.escape(name) + r"\b", text, re.I):
+            hits.append(f"outlet named in prose: '{name}'")
+    return hits
+
+
 def synthesize_reviews(movies_with_reviews):
     """
     Per-film synthesis with a length floor. Each movie gets its OWN
@@ -476,11 +520,11 @@ def synthesize_reviews(movies_with_reviews):
                     f"IMPORTANT: A previous draft of the {title} review came out at "
                     f"only {words} words. That is a stub, not a review, and it will "
                     f"be rejected. Write the FULL 700–900 words, hitting every "
-                    f"section budget: Opening 120-180 words; The consensus 120-180; "
-                    f"What's praised 200-280; What's criticized 120-180; What this "
-                    f"means for you 80-120. Expand with specific critic detail — "
-                    f"named reviewers, outlets, scenes, comparisons — drawn only "
-                    f"from the review data below."
+                    f"section budget: Opening 150-200 words; What works 220-300; "
+                    f"What doesn't 130-180; Should you watch it? 100-140. Expand "
+                    f"with specific detail — performances, scenes, comparisons — "
+                    f"drawn only from the review data below, in The Videshi's own "
+                    f"voice: no outlet or critic names, no 'critics say' phrasing."
                 )
                 got = _synthesize_call([(movie, review_text)],
                                        extra_instruction=note)
@@ -494,6 +538,39 @@ def synthesize_reviews(movies_with_reviews):
                     "skip_reason": (f"synthesis under length floor after "
                                     f"retries ({words} words < {MIN_REVIEW_WORDS})"),
                 }
+        if not article.get("skip"):
+            # Voice gate: one corrective retry, then hold — a
+            # review that reads as a third-party digest does not
+            # publish (Kiran, 2026-11-15).
+            violations = _voice_violations(article)
+            if violations:
+                print(f"    🗣 {title}: voice violations: "
+                      f"{'; '.join(violations[:4])}")
+                note = (
+                    "IMPORTANT: A previous draft of the " + title +
+                    " review read as a digest of other outlets' "
+                    "opinions. Rewrite it fully in The Videshi's "
+                    "own voice: render every judgment directly, "
+                    "name NO outlet or critic anywhere, use no "
+                    "'critics say / reviewers praise / according "
+                    "to / the consensus' phrasing, and state no "
+                    "review counts or averages of others' scores. "
+                    "Violations found: " + "; ".join(violations[:4]))
+                got = _synthesize_call([(movie, review_text)],
+                                       extra_instruction=note)
+                if got and not got[0].get("skip"):
+                    article = got[0]
+                    violations = _voice_violations(article)
+            if violations:
+                article = {
+                    "title": title, "skip": True,
+                    "skip_reason": ("voice gate: reads as a "
+                                    "third-party digest after "
+                                    "retry (" +
+                                    "; ".join(violations[:3]) +
+                                    ")"),
+                }
+                print(f"    🚫 {title}: held by voice gate")
         articles.append(article)
     return articles
 

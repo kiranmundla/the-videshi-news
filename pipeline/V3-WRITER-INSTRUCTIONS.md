@@ -198,6 +198,16 @@ The reader is asking: *what is this, who's in it, and how do I watch it?*
 - **Image relevance = the production or its people (2026-11-15).** A hero or inline must depict THIS film/series, its cast, or its makers. Artwork of the underlying story, character or mythology is NOT relevance — a traditional Rama/Ravana painting is not an image for a story about an actor's dubbing work, however the file is tagged. A character name matching is a keyword match, not a subject match (the image doctrine's stork test, applied to entertainment). No verified production image → run imageless or with a verified cast/production still; never reach for the source material's illustrations.
 - Reviews are a different form: narrative critic synthesis under the **Movie Review Format** section at the end of this document, which governs. Body 500-800 words. **Done bar:** the reader knows what it is, who is in it, and exactly how and when they could watch it.
 
+#### PLAYBOOK — Awards & Events Explainer (prizes, ceremonies, finalists, winners)
+The reader is asking: *what is this, who are the people in it, and how do I follow it?* An awards story is a people story wearing a news story's clothes — write the people, not just the announcement. (Added 2026-11-15 after GPT's Earthshot package exposed the gap: our article had every fact right and still read as a wire brief, because nothing required the finalist profiles. Correctness gates reject bad content; this playbook is the affirmative half.)
+1. **The frame, briefly.** What the prize/event is, when and where, what is at stake (prize money, number of finalists/winners) — the numbers card carries the arithmetic; the opening carries the news.
+2. **Profile every home-angle finalist/nominee as its own subsection.** One `<h3>` per finalist with: who leads it (name + role, verified), what it actually does in concrete terms, the measurable record so far (units sold, people reached, degrees cooled — from the organizer's own finalist/profile pages first), and why it is in its category. A finalist named in one sentence is a defect under this playbook. Show the solution, not just the celebrity: the work first, the famous names second.
+3. **Timeline as a `key_dates` card** (§3e3) whenever the event has a programme arc (summit days, ceremony, broadcast/streaming date) — every date from the organizer's programme, never assembled from memory.
+4. **How to watch / attend**, from the organizer: broadcast or streaming partner AND its actual availability date (a ceremony on Nov 17 that streams Nov 30 is not "watch it live" — state both dates plainly), venue, guests/performers only as officially announced.
+5. **Images = the subjects' own work.** Finalist/subject imagery from the organizer's official pages (provenance logged, credited), or verified portraits of the people; a generic host-city skyline may open the piece but may not be its only picture. Celebrity attendee photos are garnish, never the meal, and only via the verified routes.
+6. **Event-aware follow-up.** When the outcome lands (winners announced), the article gets updated — headline, lede, finalist sections marked won/lost — rather than a disconnected second brief. Flag the follow-up in the run report.
+- Body 700-1,100 words. **Done bar:** a reader can name the home finalists, say what each one does and why it matters, and knows exactly when and how to watch the outcome.
+
 #### PLAYBOOK — Profile / Obituary (a person is the story)
 The reader is asking: *who is this person, and why do they matter?*
 1. **Who and why, first.** Identity and significance inside the first two paragraphs — no slow wind-up.
@@ -495,8 +505,9 @@ The "Story So Far" block is generated automatically from the article's linked de
 
 Your job: link the article to its storyline correctly (see the storyline-linking step). The block appears automatically when the article belongs to an active or emerging storyline.
 
-### 3e9. Critic table (movie reviews only)
-If the article is a movie review that synthesizes multiple named critics — include a `critic_table` entry in the article's `data_cards` array. The frontend renders this as a critic-by-critic breakdown with name, publication, rating, key verdict quote, and link.
+### 3e9. Critic table (explicit roundup pieces only)
+**Voice rule first (Kiran, 2026-11-15):** the standard Videshi review is a SYNTHESIZED single-voice review — our judgments rendered directly, no outlet or critic named in the prose, no "critics say" scaffolding, no review counts (the generator's voice gate in movie-reviews.py enforces this; writer-path reviews follow the same rule). The `critic_table` below is reserved for pieces that are explicitly framed and headlined as roundups/comparisons, where the per-critic breakdown IS the product. When a review is not explicitly a roundup, do not add a critic_table.
+If the article is an explicit roundup that synthesizes multiple named critics — include a `critic_table` entry in the article's `data_cards` array. The frontend renders this as a critic-by-critic breakdown with name, publication, rating, key verdict quote, and link.
 
 Add to `data_cards`:
 ```json
