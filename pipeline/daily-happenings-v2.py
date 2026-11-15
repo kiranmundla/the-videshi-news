@@ -1606,6 +1606,59 @@ def _insert_brief(article: dict) -> bool:
         print(f"  ⚠️  brief insert failed: {r.stdout[:200]}")
         return False
 
+_INDIAN_CLUB_TEAMS = {
+    "mohun bagan", "east bengal", "kerala blasters", "mumbai city",
+    "bengaluru fc", "fc goa", "chennaiyin", "hyderabad fc",
+    "jamshedpur", "northeast united", "odisha fc", "punjab fc",
+}
+
+_CONNECTION_LEAGUES = (
+    "indian premier league", "indian super league",
+    "major league cricket",
+)
+
+
+def _sports_brief_connection(item: dict) -> bool:
+    """Quality-first connection gate for SPORTS briefs (Kiran,
+    2026-11-15). A sports happening may always appear as a
+    LISTING, but it only earns a PUBLISHED brief article when
+    the fixture itself carries an India/diaspora connection —
+    the same test editorial sports coverage uses. Tournament
+    branding alone is NOT a connection: the Asia Cup / ICC
+    relevance keywords in the fetch let Pakistan vs Sri Lanka,
+    Bangladesh vs West Indies and South Africa vs Bangladesh
+    through, and all three briefs scored 3/10 with no diaspora
+    angle before Kiran ordered them unpublished. Fail closed:
+    when in doubt, the listing stands alone."""
+    if item.get("category") != "sports":
+        return True
+    teams = [(t or "").lower().strip()
+             for t in item.get("search_terms") or []]
+    league = (item.get("league") or "").lower()
+    # India national sides — cleaned names are exactly "india"
+    # or start "india " (India A, India Women, India U19).
+    # Equality/prefix only: "west indies" must never match.
+    if any(t == "india" or t.startswith("india ") for t in teams):
+        return True
+    # The league itself is the connection (IPL, ISL, MLC).
+    if any(k in league for k in _CONNECTION_LEAGUES) \
+            or re.search(r"\bipl\b", league) \
+            or re.search(r"\bmlc\b", league):
+        return True
+    # Indian clubs (ISL sides also arrive via the league test;
+    # this covers cup fixtures listed under other competitions).
+    if any(t in _INDIAN_CLUB_TEAMS for t in teams):
+        return True
+    # Team-less items (tennis): the country named in the label
+    # or detail is the only signal available. "india" only —
+    # never "indian" (Indian Wells is a place, not a team).
+    if not teams:
+        text = f"{item.get('label', '')} {item.get('detail', '')}".lower()
+        if re.search(r"\bindia\b", text):
+            return True
+    return False
+
+
 def ensure_happening_briefs(items: list[dict], date: str, dry_run: bool = False) -> list[dict]:
     """Give every unlinked happening an internal brief article to link to."""
     api_key = os.environ.get("OPENAI_API_KEY", "")
@@ -1620,6 +1673,19 @@ def ensure_happening_briefs(items: list[dict], date: str, dry_run: bool = False)
         if _brief_exists(slug):
             item["link"] = f"/articles/{slug}"
             reused += 1
+            continue
+
+        # ── Sports connection gate (Kiran, 2026-11-15) ──
+        # A sports fixture with no India/diaspora connection
+        # stays a listing and spawns NO published brief — the
+        # quality-first bar the writer runs under applies here
+        # too. The three 3/10 briefs this closes (Bangladesh v
+        # West Indies, Pakistan v Sri Lanka, South Africa v
+        # Bangladesh) were unpublished on his order today.
+        if not _sports_brief_connection(item):
+            print(f"  🚫 sports brief suppressed for "
+                  f"'{item.get('label')}': no India/diaspora "
+                  f"connection (listing kept, no article)")
             continue
 
         if dry_run:
