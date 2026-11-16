@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15",
+  "generated_at": "2026-11-16",
   "current_month": 11,
   "current_year": 2026,
   "destination_count": 50,
@@ -11,9 +11,9 @@
     "eligible_for_picks": "False = second-tier US destination deferred from curated picks/trending (Kiran 2026-10-14 tiering); the record and its guide remain in the full index."
   },
   "trending_now": [
-    "karnataka",
     "egypt",
     "vietnam",
+    "karnataka",
     "australia",
     "thailand",
     "maldives",
@@ -62,8 +62,8 @@
   ],
   "best_by_month": {
     "1": [
-      "karnataka",
       "egypt",
+      "karnataka",
       "kerala",
       "maldives",
       "thailand",
@@ -94,9 +94,9 @@
       "singapore"
     ],
     "2": [
-      "karnataka",
       "egypt",
       "vietnam",
+      "karnataka",
       "kerala",
       "maldives",
       "thailand",
@@ -349,8 +349,8 @@
       "singapore",
       "london",
       "south-africa",
-      "karnataka",
       "egypt",
+      "karnataka",
       "kerala",
       "japan",
       "oman",
@@ -362,8 +362,8 @@
       "scandinavia"
     ],
     "10": [
-      "karnataka",
       "egypt",
+      "karnataka",
       "australia",
       "kerala",
       "hawaii",
@@ -404,9 +404,9 @@
       "south-africa"
     ],
     "11": [
-      "karnataka",
       "egypt",
       "vietnam",
+      "karnataka",
       "australia",
       "kerala",
       "maldives",
@@ -449,9 +449,9 @@
       "banff"
     ],
     "12": [
-      "karnataka",
       "egypt",
       "vietnam",
+      "karnataka",
       "kerala",
       "maldives",
       "thailand",
@@ -3277,7 +3277,7 @@
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
         "weeks": null,
-        "as_of": "2026-11-15",
+        "as_of": "2026-11-16",
         "cadence": "daily"
       },
       "fares_by_origin": {
@@ -3289,7 +3289,7 @@
           "date_range": "Jan 12 \u2192 Feb 1",
           "duration_days": 20,
           "weeks": null,
-          "as_of": "2026-11-15",
+          "as_of": "2026-11-16",
           "cadence": "daily"
         }
       },
@@ -3339,7 +3339,7 @@
       "trending": {
         "month": 11,
         "year": 2026,
-        "score": 75,
+        "score": 68,
         "max_score": 100,
         "components": [
           {
@@ -3356,9 +3356,9 @@
           },
           {
             "id": "fare_drop",
-            "points": 11,
+            "points": 4,
             "max": 20,
-            "reason": "Fares down 11.0% on SFO-BLR ($2076 \u2192 $1847) vs 2026-11-14"
+            "reason": "Fares down 3.7% on SFO-BLR ($1847 \u2192 $1779) vs 2026-11-15"
           },
           {
             "id": "offpeak_value",
@@ -6072,7 +6072,7 @@
       "dest_metro": "Hyderabad",
       "date_range": "Jan 26 \u2192 Feb 15",
       "duration_days": 20,
-      "as_of": "2026-11-14",
+      "as_of": "2026-11-15",
       "cadence": "weekly",
       "indicative": true
     },
@@ -6084,40 +6084,39 @@
         "dest_metro": "Hyderabad",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-14",
+        "as_of": "2026-11-15",
         "cadence": "weekly",
         "indicative": true
       },
       "JFK": {
-        "price_min": 849,
-        "route": "JFK-HYD",
+        "price_min": 807,
+        "route": "JFK-BOM",
         "origin_metro": "New York",
-        "dest_metro": "Hyderabad",
-        "date_range": "Jan 26 \u2192 Feb 17",
-        "duration_days": 22,
-        "as_of": "2026-11-14",
-        "cadence": "weekly",
-        "indicative": true
-      },
-      "ORD": {
-        "price_min": 927,
-        "route": "ORD-HYD",
-        "origin_metro": "Chicago",
-        "dest_metro": "Hyderabad",
+        "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-14",
+        "as_of": "2026-11-16",
+        "cadence": "daily"
+      },
+      "ORD": {
+        "price_min": 970,
+        "route": "ORD-BOM",
+        "origin_metro": "Chicago",
+        "dest_metro": "Mumbai",
+        "date_range": "Jan 12 \u2192 Feb 3",
+        "duration_days": 22,
+        "as_of": "2026-11-15",
         "cadence": "weekly",
         "indicative": true
       },
       "DFW": {
-        "price_min": 870,
+        "price_min": 940,
         "route": "DFW-BOM",
         "origin_metro": "Dallas",
         "dest_metro": "Mumbai",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-14",
+        "as_of": "2026-11-15",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6128,7 +6127,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-14",
+        "as_of": "2026-11-15",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6139,7 +6138,7 @@
         "dest_metro": "Bengaluru",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-14",
+        "as_of": "2026-11-15",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6150,7 +6149,7 @@
         "dest_metro": "Kolkata",
         "date_range": "Jan 26 \u2192 Feb 15",
         "duration_days": 20,
-        "as_of": "2026-11-14",
+        "as_of": "2026-11-15",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6161,7 +6160,7 @@
         "dest_metro": "Mumbai",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-14",
+        "as_of": "2026-11-15",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6172,7 +6171,7 @@
         "dest_metro": "Bengaluru",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-14",
+        "as_of": "2026-11-15",
         "cadence": "weekly",
         "indicative": true
       },
@@ -6183,7 +6182,7 @@
         "dest_metro": "Bengaluru",
         "date_range": "Jan 12 \u2192 Feb 1",
         "duration_days": 20,
-        "as_of": "2026-11-14",
+        "as_of": "2026-11-15",
         "cadence": "weekly",
         "indicative": true
       }
@@ -6199,7 +6198,7 @@
     "trending": {
       "month": 11,
       "year": 2026,
-      "score": 94,
+      "score": 95,
       "max_score": 100,
       "components": [
         {
@@ -6216,9 +6215,9 @@
         },
         {
           "id": "fare_drop",
-          "points": 29,
+          "points": 30,
           "max": 30,
-          "reason": "Fares down 19.1% on EWR-HYD ($1740 \u2192 $1407) vs 2026-11-07"
+          "reason": "Fares down 22.4% on JFK-DEL ($1947 \u2192 $1510) vs 2026-11-15"
         }
       ]
     },
