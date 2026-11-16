@@ -11,7 +11,16 @@ resolution per movie, not ongoing scraping.
 For each now-playing Indian movie without a fandango_url:
   1. GET https://www.fandango.com/search?q=<title>
   2. Take the first /<slug>-<id>/movie-overview link
-  3. Verify the slug resembles the title (fuzzy token match)
+  3. Verify the slug's title IS our title: strip the slug's trailing
+     Fandango id and release-year tokens, then the slug must START with
+     the query title's exact token sequence (digits inside the title
+     itself — "Jailer 2", "418" — are significant and kept). A mere
+     token overlap is not enough — it let "Pyre" resolve to "Children
+     of the Pyre" on 2026-11-16. Extra slug words AFTER the title
+     (Fandango sometimes appends a subtitle, e.g. "Prahaar: The Untold
+     Story of Ujjwal Nikam") are allowed; extra words before or inside
+     are not. Fail closed: no link beats a wrong-film link (the
+     Google-showtimes ticket_url fallback remains).
   4. Store https://www.fandango.com/<slug>/movie-overview as fandango_url
 
 Run: python3 -u pipeline/build-movie-tickets.py [--force]
@@ -33,20 +42,34 @@ SEARCH_URL = "https://www.fandango.com/search?q="
 DELAY_S = 2
 
 
-def norm(s: str) -> set[str]:
-    return set(re.findall(r"[a-z0-9]+", s.lower()))
+def _tokens(s: str) -> list[str]:
+    return re.findall(r"[a-z0-9]+", s.lower().replace("-", " "))
+
+
+def _slug_title_tokens(slug: str) -> list[str]:
+    """Slug tokens minus Fandango's trailing numeric id and year token."""
+    toks = _tokens(slug)
+    if toks and toks[-1].isdigit():
+        toks = toks[:-1]  # numeric movie id
+    if toks and toks[-1].isdigit() and len(toks[-1]) == 4 and toks[-1][:2] in ("19", "20"):
+        toks = toks[:-1]  # release year
+    return toks
 
 
 def title_match(query_title: str, slug: str) -> bool:
-    """Fuzzy check that the Fandango slug is really our movie."""
-    qtok = norm(query_title)
-    stok = norm(slug.replace("-", " "))
-    if not qtok or not stok:
+    """True only if the Fandango slug's title starts with our exact title.
+
+    Digits inside the title itself are significant ("Jailer 2" must not
+    match the original "Jailer"; "418" is a complete title). The old
+    overlap rule passed any slug merely CONTAINING a single-token title
+    — "Pyre" matched "children-of-the-pyre-125636", a different film
+    (2026-11-16).
+    """
+    q = _tokens(query_title)
+    s = _slug_title_tokens(slug)
+    if not q or not s or len(s) < len(q):
         return False
-    overlap = qtok & stok
-    # at least half of the shorter token set must overlap
-    need = max(1, min(len(qtok), len(stok)) // 2)
-    return len(overlap) >= need
+    return s[: len(q)] == q
 
 
 def resolve_fandango(title: str) -> str | None:
