@@ -1,0 +1,34 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "jefferies-buy-ratings-six-adani-stocks-51-billion-capex",
+  "name": "jefferies-buy-ratings-six-adani-stocks-51-billion-capex",
+  "script": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000676
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/output-v7/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "bronte-45332993701"
+    }
+  },
+  "manifest": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/output-v7/render-manifest.json",
+  "video": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/output-v7/jefferies-buy-ratings-six-adani-stocks-51-billion-capex.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:news"
+    ]
+  }
+}

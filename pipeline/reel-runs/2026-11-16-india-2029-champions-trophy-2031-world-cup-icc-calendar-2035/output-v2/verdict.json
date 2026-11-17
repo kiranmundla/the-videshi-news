@@ -1,0 +1,44 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-2029-champions-trophy-2031-world-cup-icc-calendar-2035",
+  "name": "india-2029-champions-trophy-2031-world-cup-icc-calendar-2035",
+  "script": "reel-runs/2026-11-16-india-2029-champions-trophy-2031-world-cup-icc-calendar-2035/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000731
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-16-india-2029-champions-trophy-2031-world-cup-icc-calendar-2035/output-v2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "bangladesh-v-ireland-5522416435",
+      "hero": "close-wing-position-of-loxura-atymnus-stoll",
+      "grid": "close-wing-position-of-papilio-nephelus-bois",
+      "diaspora": "real-madrid-vs-manchester-united-august-2nd"
+    }
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "no concept/policy signal \u2014 not a stock story"
+  },
+  "distinct_images": {
+    "usable": 5,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "extra:bangladesh-v-ireland-5522416435",
+      "extra:close-wing-position-of-loxura-atymnus-stoll",
+      "extra:close-wing-position-of-papilio-nephelus-bois",
+      "extra:real-madrid-vs-manchester-united-august-2nd"
+    ]
+  },
+  "detail": "only 5 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}

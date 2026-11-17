@@ -1,0 +1,283 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "canada-student-arrivals-150000-through-2029-levels-plan",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "CANADA HOLDS NEW STUDENT ARRIVALS AT 150,000 A YEAR THROUGH 2029",
+      "numbers": [
+        2029.0,
+        150000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2029
+        ]
+      },
+      "llm_reason": "The article states Canada will cap student arrivals at 150,000 through 2029.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Canada's 2027-2029 Immigration Levels Plan holds new international student arrivals at up to 150,000 a year, inside a 370,000 temporary-resident ceiling, with no country quotas.",
+      "numbers": [
+        2027.0,
+        2029.0,
+        150000.0,
+        370000.0
+      ],
+      "entities": [
+        "Immigration Levels Plan"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027,
+          2029
+        ]
+      },
+      "llm_reason": "The article confirms the 150,000 cap, 370,000 ceiling, and no country quotas.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "150,000",
+      "numbers": [
+        150000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions 150,000 as the cap for new student arrivals.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "New student arrivals Canada allows each year through 2029",
+      "numbers": [
+        2029.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2029
+        ]
+      },
+      "llm_reason": "The article states Canada allows 150,000 new student arrivals each year through 2029.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "370,000",
+      "numbers": [
+        370000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies a ceiling of 370,000 temporary resident arrivals.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Ceiling on new temporary resident arrivals a year, including 220,000 workers",
+      "numbers": [
+        220000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article details the 370,000 ceiling includes 220,000 workers.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "305,900",
+      "numbers": [
+        305900.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the student arrivals target for 2025 is 305,900.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Student arrivals target set for 2025, before the climb-down",
+      "numbers": [
+        2025.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article confirms the 305,900 target for 2025 before the reduction.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "380,000",
+      "numbers": [
+        380000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions permanent resident admissions are held at 380,000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Permanent resident admissions held steady each year",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states permanent resident admissions remain at 380,000 annually.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "No country quota: Indian applicants compete in one global pool of 150,000 places",
+      "numbers": [
+        150000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms no country quotas for the 150,000 places.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The cap counts new arrivals only, not study permit extensions or post-graduation work permits",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the cap includes only new arrivals.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Families weighing Canada against other destinations should plan on the capped regime lasting through 2029.",
+      "numbers": [
+        2029.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2029
+        ]
+      },
+      "llm_reason": "The article advises families to plan for the capped regime through 2029.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "IRCC",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Canada",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Immigration Levels Plan",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000767,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

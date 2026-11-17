@@ -1,0 +1,31 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "bharat-semi-24-million-seed-ai-image-sensors",
+  "name": "bharat-semi-24-million-seed-ai-image-sensors",
+  "script": "reel-runs/2026-11-15-bharat-semi-24-million-seed-ai-image-sensors/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000621
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-15-bharat-semi-24-million-seed-ai-image-sensors/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "manifest": "reel-runs/2026-11-15-bharat-semi-24-million-seed-ai-image-sensors/output/render-manifest.json",
+  "video": "reel-runs/2026-11-15-bharat-semi-24-million-seed-ai-image-sensors/output/bharat-semi-24-million-seed-ai-image-sensors.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-15-bharat-semi-24-million-seed-ai-image-sensors/output/tiktok-caption.txt"
+}

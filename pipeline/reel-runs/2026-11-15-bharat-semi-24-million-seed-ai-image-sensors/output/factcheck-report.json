@@ -1,0 +1,256 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "bharat-semi-24-million-seed-ai-image-sensors",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "BHARAT SEMI RAISES $24 MILLION TO BUILD AI IMAGE SENSORS IN INDIA",
+      "numbers": [
+        24.0,
+        24000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Bharat Semi raised $24 million for AI image sensors.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Bharat Semi, a New Delhi semiconductor startup, has raised $24 million in an all-equity seed round led by Info Edge Group, South Park Commons and Indus Bridge Ventures.",
+      "numbers": [
+        24.0,
+        24000000.0
+      ],
+      "entities": [
+        "Bharat Semi",
+        "New Delhi",
+        "Info Edge Group",
+        "South Park Commons",
+        "Indus Bridge Ventures"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the details of the funding round and its leaders.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$24 MILLION",
+      "numbers": [
+        24.0,
+        24000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$24 million is the amount raised by Bharat Semi as stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Seed round raised by Bharat Semi, a New Delhi semiconductor startup",
+      "numbers": [],
+      "entities": [
+        "Bharat Semi",
+        "New Delhi"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Bharat Semi raised a seed round.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "70%",
+      "numbers": [
+        70.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the approach could cut costs by at least 70%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "System costs its single-chip approach could cut, by at least this share",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article explains the cost reduction from the single-chip approach.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "2027",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article states the target year for initial commercial production is 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Target for first commercial production",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the target for first commercial production is 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "10 to 12 employees in Santa Clara, with U.S. headcount planned to rise to around 20 by mid-2027",
+      "numbers": [
+        10.0,
+        12.0,
+        20.0,
+        2027.0
+      ],
+      "entities": [
+        "Santa Clara"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article mentions the current and planned U.S. headcount.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Design wins with U.S. defense technology company General Atomics and India's Kaynes Semicon",
+      "numbers": [],
+      "entities": [
+        "General Atomics",
+        "India's Kaynes Semicon"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Bharat Semi has design wins with both companies.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Its sensors are still under development, with production targeted for 2027.",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article confirms the sensors are under development and production is targeted for 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Bharat Semi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Vrinda Kapoor",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "General Atomics",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Kaynes Semicon",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000621,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "0d5a204a-dd53-4f4d-a106-bd5372bf3bec",
+    "headline": "Kerala Kitchen in Taunton Named Town's Best Place to Eat on Tripadvisor",
+    "slug": "mattancherry-taunton-kerala-restaurant-tripadvisor-best",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Tripadvisor Travellers' Choice Awards 2026 by providing context on how winners are determined and what this recognition means for the restaurant's business and reputation.",
+        "Include a quote from a customer or a food critic to add a personal touch and further validate the restaurant's ranking and quality of food.",
+        "Provide more details about the restaurant's offerings, such as specific popular dishes or unique ingredients that set it apart from competitors, to give readers a better understanding of what to expect.",
+        "Correct the repetition in the article's body regarding the restaurant's ranking and rating to improve clarity and flow."
+      ],
+      "embed_opportunities": [
+        "Embed the official Tripadvisor announcement or link to the restaurant's Tripadvisor page to allow readers to view reviews and ratings directly."
+      ]
+    }
+  },
+  {
+    "id": "5e54d4a9-751e-4c5c-9672-bf72f7c837b4",
+    "headline": "Ramayana Passes Dhurandhar 2's 11-Day Worldwide Record, Tracker Estimates Show",
+    "slug": "ramayana-11-day-worldwide-record-dhurandhar-2-sacnilk",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact dates of the film's release and the 11-day mark for better context.",
+        "Provide more context on the significance of the film's box office performance, such as how it compares to previous records or what this means for the Indian film industry.",
+        "Ensure consistency in the figures reported by different sources; for example, clarify the discrepancy between Sacnilk's estimates and Mint's earlier estimates to avoid confusion.",
+        "Add a brief summary of the film's plot or themes to give readers who may not be familiar with it a better understanding of why its success is noteworthy."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Sacnilk or a relevant box office tracking account that confirms the latest figures for added credibility."
+      ]
+    }
+  },
+  {
+    "id": "fc48c300-465a-4c41-8055-f9e45197581e",
+    "headline": "Microsoft Patches 1,094 Flaws, Including an Outlook Zero-Day Already Exploited",
+    "slug": "microsoft-november-2026-patch-tuesday-1094-flaws-outlook-zero-day",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the urgency of the patch by explicitly stating the potential consequences of not updating, such as the risk of credential theft and possible unauthorized access to sensitive information.",
+        "Include a specific deadline for users outside of US federal agencies to apply the patch, as this will help readers understand the urgency and timeline for their own security measures.",
+        "Provide a brief explanation of what NTLMv2 is and why its compromise is significant, as not all readers may be familiar with technical terms.",
+        "Ensure that the article maintains a consistent structure by clearly separating the explanation of the flaw, its implications, and the recommended actions into distinct sections for easier readability."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Microsoft or CISA announcing the patch and its importance, which would provide authoritative context and encourage readers to take action."
+      ]
+    }
+  },
+  {
+    "id": "688166ed-64c1-43d6-ab86-2f3c27ab7923",
+    "headline": "Mumbai Hosts Earthshot Prize Awards Tuesday, With Two Indian Finalists Chasing \u00a3",
+    "slug": "earthshot-prize-awards-mumbai-november-17-indian-finalists",
+    "category": "nri-world",
+    "structural_issues": [
+      "Possibly irrelevant YouTube: \"Why India's Most Polluting Vehicles Are Going Electric\" vs headline",
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Mumbai hosts The Earthshot Prize Awards Night on November 17, 2026, the prize's \u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the awards ceremony by ensuring it is prominently mentioned at the beginning of the article to avoid confusion, as it is currently repeated multiple times in a way that disrupts the flow.",
+        "Provide more context about the significance of the Earthshot Prize, including its goals and the impact of previous winners, to enhance reader understanding of why this event is important.",
+        "Include specific details about the two Indian finalists, such as a brief description of their projects and how they aim to address environmental issues, to give readers a clearer picture of their contributions."
+      ],
+      "embed_opportunities": [
+        "Embed the official Earthshot Prize Twitter account's announcement about the awards ceremony to provide readers with real-time updates and additional context."
+      ]
+    }
+  }
+]

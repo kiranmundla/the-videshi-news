@@ -1,0 +1,84 @@
+[
+  {
+    "id": "40461290-a563-4973-a7ba-185f11047be3",
+    "headline": "Bharat Semi Raises $24 Million Seed Round to Build AI Image Sensors in India",
+    "slug": "bharat-semi-24-million-seed-ai-image-sensors",
+    "category": "technology",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The New Delhi startup has raised $24 million in seed funding to develop AI-enabl\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the company's initial commercial production. Instead of just stating 'targeting initial commercial production in 2027', provide more context on what milestones need to be achieved before that date.",
+        "Include specific details about the funding breakdown, such as how much each investor contributed or the percentage of ownership they received in return for their investment, to enhance transparency.",
+        "Provide more context about the significance of the partnerships with General Atomics and Kaynes Semicon. What does this mean for Bharat Semi's market position or credibility in the industry?",
+        "Ensure that the article maintains a consistent focus on the company and its developments. The repeated mention of the company's pre-revenue status could be streamlined to avoid redundancy."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from TechCrunch or the investors involved in the funding round to provide immediate context and credibility to the news."
+      ]
+    }
+  },
+  {
+    "id": "a1c2eaff-f078-4a1c-a9bb-fed09aa3aabf",
+    "headline": "India's Government Health Spending Triples to Rs 4.14 Lakh Crore, Household Shar",
+    "slug": "india-government-health-spending-triples-nha-2023-24",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the increase in government health spending by providing context on how it compares to other countries' health expenditures or previous government targets. This would help readers understand the implications of the increase.",
+        "Include a brief explanation of what the National Health Accounts Estimates are and why they are important for the public to know about, enhancing the completeness of the article.",
+        "Add a specific quote from a government official or health expert regarding the implications of this increase in spending to improve attribution and provide a human element to the data."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Union Ministry of Health and Family Welfare announcing the release of the National Health Accounts Estimates for India 2023-24 to provide a direct source for readers."
+      ]
+    }
+  },
+  {
+    "id": "ab543622-7122-4314-8724-030106234f7c",
+    "headline": "Lalit Modi Becomes a British Citizen, Leaving Extradition as India's Only Route ",
+    "slug": "lalit-modi-british-citizenship-extradition",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date when Lalit Modi left India in 2010 and the significance of the September 15 citizenship ceremony in relation to his current legal status.",
+        "Include a brief summary of the allegations against Lalit Modi to provide context for readers unfamiliar with the case, ensuring it is concise and factual without speculation.",
+        "Add a direct quote or statement from an official source, such as a legal expert or a government representative, to enhance the article's credibility and provide a clearer understanding of the implications of his citizenship on extradition.",
+        "Consider rephrasing the headline to make it more compelling and specific, such as 'Lalit Modi Announces British Citizenship, Implications for Extradition Under India-UK Treaty Unclear.'"
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Lalit Modi announcing his citizenship or a tweet from a credible news source covering the event to provide real-time updates and context."
+      ]
+    }
+  },
+  {
+    "id": "e998a488-3b65-41b8-9ea1-57c603530ed8",
+    "headline": "Indian American Priya Sundareshan Chosen to Lead Arizona Senate as Democrats Tak",
+    "slug": "priya-sundareshan-arizona-senate-president-elect",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact date in January 2027 when the new Legislature will convene, as this is crucial for understanding the immediate implications of Sundareshan's election.",
+        "Provide more context on the significance of the Democrats' two-thirds majority in the Senate and the House, including potential legislative changes or priorities that may arise from this shift in power.",
+        "Include a quote from Priya Sundareshan that outlines her immediate goals or plans as Senate president-elect, which would give readers a clearer understanding of her vision and priorities."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Priya Sundareshan announcing her election or a statement from the Arizona Democratic Party regarding the election results."
+      ]
+    }
+  }
+]

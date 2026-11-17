@@ -1,0 +1,34 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "air-india-restores-nonstop-new-york-flights",
+  "name": "air-india-restores-nonstop-new-york-flights",
+  "script": "reel-runs/2026-11-15-air-india-restores-nonstop-new-york-flights/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000656
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-15-air-india-restores-nonstop-new-york-flights/output-v7-2/supplementary/provenance.json",
+    "own_images": 3,
+    "extras": {
+      "news": "boeing-777-337er-air-india-vt-alk",
+      "hero": "213ai-air-india-boeing-747-437-vt-esn-lhr-13"
+    }
+  },
+  "manifest": "reel-runs/2026-11-15-air-india-restores-nonstop-new-york-flights/output-v7-2/render-manifest.json",
+  "video": "reel-runs/2026-11-15-air-india-restores-nonstop-new-york-flights/output-v7-2/air-india-restores-nonstop-new-york-flights.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-15-air-india-restores-nonstop-new-york-flights/output-v7-2/tiktok-caption.txt"
+}

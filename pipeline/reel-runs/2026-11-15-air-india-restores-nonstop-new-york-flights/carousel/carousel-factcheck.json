@@ -1,0 +1,136 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "air-india-restores-nonstop-new-york-flights",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Air India Restores Non-Stop Flights to New York, Cutting Travel Time by Five Hours",
+        "numbers": [],
+        "entities": [
+          "Air India Restores Non-Stop Flights",
+          "New York",
+          "Cutting Travel Time",
+          "Five Hours"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Air India restored non-stop flights, cutting travel time by five hours.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "All four routes - Delhi and Mumbai to JFK and Newark - are non-stop again after the Rome refuelling stop was dropped, with journeys down from around 22 hours to approximately 17.",
+        "numbers": [
+          17.0,
+          22.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms all four routes are non-stop and travel time reduced to approximately 17 hours.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Air India has restored non-stop flights on all four India-New York routes - Delhi and Mumbai to JFK and Newark - ending the Rome refuelling stop",
+        "numbers": [],
+        "entities": [
+          "Air India",
+          "India-New York"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Air India restored non-stop flights on these routes, ending the Rome stop.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Flights that took around 22 hours with the Rome stop now take approximately 17 hours",
+        "numbers": [
+          17.0,
+          22.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions flights previously took around 22 hours and now take approximately 17 hours.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Delhi-JFK and Mumbai-JFK services run daily; Delhi-Newark runs four times a week and Mumbai-Newark three times a week",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides the frequency of flights for each route as stated.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Air India Restores Non-Stop Flights to New York, Cutting Travel Time by Five Hours",
+        "numbers": [],
+        "entities": [
+          "Air India Restores Non-Stop Flights",
+          "New York",
+          "Cutting Travel Time",
+          "Five Hours"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Air India restored non-stop flights, cutting travel time by five hours.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000478,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

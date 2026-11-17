@@ -1,0 +1,403 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "air-india-restores-nonstop-new-york-flights",
+ "article_slug": "air-india-restores-nonstop-new-york-flights",
+ "article_id": "b51b56e8-2548-41e9-bdaa-97b25d25c14d",
+ "category": "Travel",
+ "video": "reel-runs/2026-11-15-air-india-restores-nonstop-new-york-flights/output-v7-2/air-india-restores-nonstop-new-york-flights.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://safariindia.com/wp-content/uploads/2026/11/Air-India-Restores-Non-Stop-New-York-Flights-Saving-Up-to-Five-Hours-3.webp",
+  "local_path": "reel-runs/2026-11-15-air-india-restores-nonstop-new-york-flights/output-v7-2/hero.webp",
+  "width": 1500,
+  "height": 1001,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.572,0.252) damped=(0.536,0.376)",
+  "has_face": false,
+  "box_source": [
+   384,
+   156,
+   840,
+   400
+  ],
+  "box_bg": [
+   300,
+   243,
+   467,
+   222
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.534,
+   0.377
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   556
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 984,
+   "block_bottom": 1347,
+   "text_bbox": [
+    70,
+    984,
+    930,
+    1347
+   ],
+   "texts": [
+    "Travel",
+    "AIR INDIA RESTORES NON-STOP FLIGHTS TO NEW YORK"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.556,
+    "photo_px": [
+     1500,
+     1001
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.556,
+     "window": [
+      0,
+      0,
+      1500,
+      1000
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.92x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 388,
+   "block_top": 1192,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1192,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Air India has restored non-stop flights on all four India-New York routes - Delhi and Mumbai to JFK and Newark - ending the Rome refuelling stop, the airline said on November 15."
+   ],
+   "v7": {
+    "image_source": "extra:boeing-777-337er-air-india-vt-alk",
+    "track": "full-bleed",
+    "render_scale": 0.8,
+    "photo_px": [
+     3596,
+     2400
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8,
+     "window": [
+      1096,
+      0,
+      2446,
+      2400
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Boeing 777-337ER - Air India (VT-ALK)",
+     "route": "identity \u2014 Wikidata P18 (Q69906)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Boeing_777-337ER_-_Air_India_(VT-ALK).JPG",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Boeing_777-337ER_-_Air_India_%28VT-ALK%29.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 3.0",
+     "artist": "Eluveitie"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "5 HOURS",
+    "Journey time cut, from around 22 hours to approximately 17 hours"
+   ],
+   "v7": {
+    "image_source": "extra:213ai-air-india-boeing-747-437-vt-esn-lhr-13",
+    "track": "full-bleed",
+    "render_scale": 0.61,
+    "photo_px": [
+     4643,
+     3146
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.6102987921169739,
+     "window": [
+      1413,
+      0,
+      3182,
+      3146
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "213ai - Air India Boeing 747-437; VT-ESN@LHR;13.03.2003",
+     "route": "identity \u2014 depicts (P180=Q69906)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:213ai_-_Air_India_Boeing_747-437,_VT-ESN@LHR,13.03.2003_-_Flickr_-_Aero_Icarus.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/213ai_-_Air_India_Boeing_747-437%2C_VT-ESN%40LHR%2C13.03.2003_-_Flickr_-_Aero_Icarus.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY-SA 2.0",
+     "artist": "Aero Icarus from Z\u00fcrich, Switzerland"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 837,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    837,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "4",
+    "Routes restored: Delhi and Mumbai to JFK and Newark",
+    "17 HOURS",
+    "Approximate journey time, down from around 22 hours with the Rome stop",
+    "DAILY",
+    "Delhi-JFK and Mumbai-JFK services"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.8,
+    "photo_px": [
+     3596,
+     2400
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8,
+     "window": [
+      1096,
+      0,
+      2446,
+      2400
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 981,
+   "block_bottom": 1350,
+   "text_bbox": [
+    70,
+    981,
+    930,
+    1350
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Newark services do not run daily - check your flight date",
+    "Pakistan airspace remains closed, so timings can still change"
+   ],
+   "v7": {
+    "image_source": "inline:2",
+    "track": "backdrop",
+    "render_scale": 0.359,
+    "photo_px": [
+     3869,
+     1551
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.3585554600171969,
+     "window": [
+      765,
+      1,
+      3091,
+      1551
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.24x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Journey times fall by up to five hours with the Rome stop discontinued.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 145.5,
+ "mp4_bytes": 15514947
+}

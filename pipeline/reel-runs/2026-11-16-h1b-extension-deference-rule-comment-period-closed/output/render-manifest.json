@@ -1,0 +1,410 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "h1b-extension-deference-rule-comment-period-closed",
+ "article_slug": "h1b-extension-deference-rule-comment-period-closed",
+ "article_id": "4a90b616-2b5a-452c-8842-181a63d2a392",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-16-h1b-extension-deference-rule-comment-period-closed/output/h1b-extension-deference-rule-comment-period-closed.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/USCIS_HQ_Groundbreaking_Ceremony_%2838096356021%29.jpg/1920px-USCIS_HQ_Groundbreaking_Ceremony_%2838096356021%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-11-16-h1b-extension-deference-rule-comment-period-closed/output/hero.jpg",
+  "width": 6016,
+  "height": 4016,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.86)",
+  "has_face": true,
+  "box_source": [
+   250,
+   1100,
+   188,
+   241
+  ],
+  "box_bg": [
+   120,
+   526,
+   90,
+   115
+  ],
+  "chin_bg": 641,
+  "anchor": [
+   0.033,
+   0.369
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   556
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 690,
+   "zone_h": 890,
+   "scale": 1.0,
+   "content_h": 294,
+   "block_top": 1286,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1286,
+    930,
+    1580
+   ],
+   "texts": [
+    "Immigration",
+    "COMMENT WINDOW CLOSES ON PLAN TO END DEFERENCE FOR H-1B EXTENSIONS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.478,
+    "photo_px": [
+     6016,
+     4016
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.47808764940239046,
+     "window": [
+      0,
+      0,
+      2259,
+      4016
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 977,
+   "block_bottom": 1355,
+   "text_bbox": [
+    70,
+    977,
+    930,
+    1355
+   ],
+   "texts": [
+    "What Happened",
+    "The public comment period on the proposal to end deference for work-visa extensions closed on November 13, 2026, and the deference regulation stays in force unless DHS publishes a final rule."
+   ],
+   "v7": {
+    "image_source": "extra:dhs-secretary-alejandro-mayorkas-flag-raisin",
+    "track": "backdrop",
+    "render_scale": 0.358,
+    "photo_px": [
+     2328,
+     1624
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.3582474226804124,
+     "window": [
+      0,
+      72,
+      2328,
+      1624
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.18x \u2014 demoted to backdrop (never upscale)",
+    "provenance": {
+     "subject": "Washington, D.C. (February 2, 2021) Homeland Security Secretary Alejandro Mayorkas participates in a flag raising ceremony after being sworn in as the department's seventh secretary.",
+     "route": "identity \u2014 Wikidata P18 (Q11231)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:DHS_Secretary_Alejandro_Mayorkas_Flag_Raising_Ceremony_(50914852532).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/44/DHS_Secretary_Alejandro_Mayorkas_Flag_Raising_Ceremony_%2850914852532%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "U.S. Department of Homeland Security (DHS)"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 682,
+   "zone_h": 898,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "208,429",
+    "Extension petitions a year that DHS estimates would lose deference"
+   ],
+   "v7": {
+    "image_source": "extra:alejandro-mayorkas-usdhs-secretary-presents",
+    "track": "full-bleed",
+    "render_scale": 0.823,
+    "photo_px": [
+     3500,
+     2333
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8229747106729532,
+     "window": [
+      1659,
+      0,
+      2971,
+      2333
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Thermal, California (December 8, 2023) Homeland Security Secretary, Alejandro Mayorkas, presents the Outstanding Americans by Choice Award to Congressman Raul Ruiz at Coachella Valley High School in Thermal, California. (DHS photo by Tia Du",
+     "route": "identity \u2014 depicts (P180=Q11231)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Alejandro_Mayorkas,_USDHS_Secretary_Presents_the_Outstanding_Americans_by_Choice_Award_to_Congressman_Raul_Ruiz_at_Coachella_Valley_High_School_in_Thermal,_California_on_December_8,_2023_-_18.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Alejandro_Mayorkas%2C_USDHS_Secretary_Presents_the_Outstanding_Americans_by_Choice_Award_to_Congressman_Raul_Ruiz_at_Coachella_Valley_High_School_in_Thermal%2C_California_on_December_8%2C_2023_-_18.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "DHSgov"
+    }
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 792,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    792,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "77.6%",
+    "H-1B continuing-employment approvals for workers born in India",
+    "6,044",
+    "Additional requests for evidence expected a year",
+    "57%",
+    "H-1B extension filers that were small entities"
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "full-bleed",
+    "render_scale": 0.9,
+    "photo_px": [
+     1522,
+     2133
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.90014064697609,
+     "window": [
+      82,
+      0,
+      1281,
+      2133
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 1085,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1085,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "H-1B petitions make up more than 75% of all Form I-129 filings, according to DHS",
+    "A timely filed H-1B extension lets the worker keep working for up to 240 days after the I-94 expires"
+   ],
+   "v7": {
+    "image_source": "extra:dhs-senior-official-kristie-canegallo-attend",
+    "track": "full-bleed",
+    "render_scale": 0.823,
+    "photo_px": [
+     3500,
+     2333
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.8229747106729532,
+     "window": [
+      1333,
+      0,
+      2645,
+      2333
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "CAMP SPRINGS (June 20, 2024) Department of Homeland Security (DHS), Senior Official Performing the Duties of the Deputy Secretary, Kristie Canegallo, attends a USCIS All-Employee Town Hall at USCIS Headquarters in Camp Springs, M.D. (DHS ph",
+     "route": "identity \u2014 depicts (P180=Q2097315)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:DHS_Senior_Official_Kristie_Canegallo,_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs,_Maryland_on_June_20,_2024_-_1.jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/DHS_Senior_Official_Kristie_Canegallo%2C_attends_a_USCIS_All-Employee_Town_Hall_at_USCIS_Headquarters_in_Camp_Springs%2C_Maryland_on_June_20%2C_2024_-_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "Public domain",
+     "artist": "DHSgov"
+    }
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 364,
+   "block_top": 678,
+   "block_bottom": 1042,
+   "text_bbox": [
+    70,
+    678,
+    930,
+    1042
+   ],
+   "texts": [
+    "The Takeaway",
+    "There is nothing to file now; the next step is DHS publishing a final rule, and no date for one has been set.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 141.9,
+ "mp4_bytes": 14092906
+}

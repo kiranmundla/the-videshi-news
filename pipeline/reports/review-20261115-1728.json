@@ -1,0 +1,103 @@
+[
+  {
+    "id": "790849c3-80cc-43d2-9fbe-f4edbdbf9d1a",
+    "headline": "Scene: Suriya Shines in a Quirky Cop Comedy That Divides Critics",
+    "slug": "scene-review-roundup-critics",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Provide specific examples of critics' reviews to enhance attribution and completeness, such as direct quotes or specific points made by critics from notable publications.",
+        "Include a brief summary of the film's plot to give readers context about the story and its significance, which would improve clarity and completeness.",
+        "Clarify the film's release date and box office performance to provide timely context for readers interested in its commercial success."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from a notable film critic or publication that highlights their review or opinion on the film to enhance credibility and engagement."
+      ]
+    }
+  },
+  {
+    "id": "55cfbbf5-8748-4991-b9c2-13b00278f1bf",
+    "headline": "China Upgrades VT-4 Tank Used by Pakistan With Anti-Drone Gun, Stronger Armour",
+    "slug": "china-upgrades-vt4b-tank-pakistan-anti-drone-armour",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding the display of the upgraded VT-4B tank at the China International Aviation and Aerospace Exhibition. Include specific details about when the exhibition starts and ends, and what this could mean for future military contracts.",
+        "Provide more context on the significance of the VT-4 tank within the Pakistan Army's overall strategy and capabilities. This could include comparisons to other tanks in their fleet or potential implications for regional security dynamics.",
+        "Ensure that the attribution to the South China Morning Post is clear and consistent throughout the article. The information should be presented in a way that distinguishes between direct quotes and paraphrased content.",
+        "Include a brief explanation of the implications of the upgraded features, such as the anti-drone capabilities and enhanced armor, on the battlefield effectiveness of the VT-4B compared to its predecessor."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from the South China Morning Post that discusses the upgrade to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "485a9e35-59fa-4012-bd12-bab30a609e74",
+    "headline": "'We Never Stopped Believing': Raichandani on India's Last-Ball U19 Asia Cup Fina",
+    "slug": "lakshya-raichandani-never-stopped-believing-u19-asia-cup-final",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by including the exact date of the final match and the date of the team's arrival in New Delhi to provide context for readers.",
+        "Provide more specific statistics about the match, such as the number of overs faced, the performance of key players, and any notable records set during the game to enhance completeness.",
+        "Include a quote or statement from the coach or another player to provide additional perspectives on the match and the team's strategy, which would improve attribution and depth.",
+        "Ensure that the article maintains a clear structure by organizing the content into distinct sections, such as match highlights, player quotes, and team reactions, to improve clarity."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official U19 Cricket Asia Cup account or the BCCI announcing the victory or celebrating the achievement to enhance engagement and provide official context."
+      ]
+    }
+  },
+  {
+    "id": "41e3881f-830f-4f97-a369-f1385b286ef4",
+    "headline": "Chris Wood: India Wins the 'Reverse AI Trade', Energy Hedges the Iran Risk",
+    "slug": "chris-wood-jefferies-india-reverse-ai-trade-iran-energy-hedge",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the geopolitical context by providing more details about the US-Iran tensions mentioned. This could include specific events or statements that have escalated the situation, which would help readers understand the potential implications for the Indian market.",
+        "Include specific figures or percentages related to the performance of energy stocks as a hedge against geopolitical risks. This could help readers gauge the potential impact on their investments.",
+        "Ensure that all statistics and forecasts are clearly attributed to their sources, particularly the figures related to foreign investment and AI capital expenditure. This will enhance the article's credibility and allow readers to verify the information.",
+        "Reorganize the content to improve flow. Start with the key takeaway regarding foreign investment in Indian equities, then transition into the analysis of AI capital expenditure and geopolitical risks, ensuring that each section logically follows the previous one."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Jefferies or Chris Wood summarizing the main points of the report to provide readers with direct insights from the source."
+      ]
+    }
+  },
+  {
+    "id": "6dcb7e34-c67d-49ca-a418-435a000fd380",
+    "headline": "India Lands 2029 Champions Trophy and 2031 World Cup in ICC Calendar to 2035",
+    "slug": "india-2029-champions-trophy-2031-world-cup-icc-calendar-2035",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image",
+      "Inline caption appends the article's lede/takeaway sentence to the photo description: 'Bangladesh co-host the 2031 Cricket World Cup with India.\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of India co-hosting the 2031 World Cup with Bangladesh. Provide context on how this impacts cricket in the region or the historical significance of such co-hosting arrangements.",
+        "Include a brief mention of the expected economic impact or tourism boost for India due to hosting these events, as this information would be relevant for readers interested in the broader implications of these tournaments.",
+        "Add a quote from an ICC official or a cricket analyst regarding the decision to host these tournaments in India, which would enhance the article's attribution and provide expert insight.",
+        "Ensure the timeline of events is clear by explicitly stating that the next World Cup in India is in 2031, as this is a key takeaway for readers planning ahead."
+      ],
+      "embed_opportunities": [
+        "Embed the official ICC announcement tweet regarding the hosting of the Champions Trophy and World Cup, which would provide readers with direct access to the source of the information."
+      ]
+    }
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "frame_qa",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "canada-student-arrivals-150000-through-2029-levels-plan",
+  "name": "canada-student-arrivals-150000-through-2029-levels-plan",
+  "script": "reel-runs/2026-11-15-canada-student-arrivals-150000-through-2029-levels-plan/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000757
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-15-canada-student-arrivals-150000-through-2029-levels-plan/output-v7/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "hero": "nasa-astronaut-scott-kelly-took-this-aurora",
+      "payoff": "2016-09-rue-price-chicoutimi-02"
+    }
+  },
+  "manifest": "reel-runs/2026-11-15-canada-student-arrivals-150000-through-2029-levels-plan/output-v7/render-manifest.json",
+  "video": "reel-runs/2026-11-15-canada-student-arrivals-150000-through-2029-levels-plan/output-v7/canada-student-arrivals-150000-through-2029-levels-plan.mp4",
+  "qa": {
+    "score": 7.0,
+    "passed": false,
+    "failing_checks": [
+      "edge_overflow:payoff"
+    ]
+  }
+}

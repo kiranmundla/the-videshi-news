@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-15T11:14:51+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-15T23:19:13+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **259**
-- prebuilt_reels rows: 192 (162 with a yt_video_id)
+- Channel uploads (actual, via API): **260**
+- prebuilt_reels rows: 193 (163 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 75
-- **In sync** (channel video backed by a DB/publish-log record): **141**
+- Phase 2 publish-log entries: 76
+- **In sync** (channel video backed by a DB/publish-log record): **142**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 17
 - Ghost DB rows (yt_video_id not on channel): 16
@@ -292,7 +292,7 @@ _None._
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 - row `3c385175-84c2-48c0-afec-378bee1ba1d6` · slug ambani-adds-6-3-billion-reliance-shares-jump-record-profit · yt_video_id `B45MLVEFtk4` · on channel: no
 
-## (d) In sync (141)
+## (d) In sync (142)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -435,4 +435,5 @@ _None._
 - `93iK-3-REbk` · public · 2026-11-14 · A2B Sells Majority Stake to James Murdoch-Backed Bodhi Tree in $180 Million Deal #Shorts #Markets [prebuilt_reels:12044e56-4b8b-42a0-9635-1be36c07a89d]
 - `Q1qt4H58RPA` · public · 2026-11-15 · Ramayana Posts Record Second Friday, Second-Biggest Ever for a Hindi Film #Shorts #Entertainment [prebuilt_reels:7fcfb191-5b9a-4cac-a190-24fda8a9e263]
 - `vEdzC4mEywI` · public · 2026-11-15 · Investors Pump ₹84,290 Crore Into Indian Stocks in November's First Fortnight #Shorts #Markets [prebuilt_reels:2a97b8bb-0751-4769-8654-610b23405562]
+- `VEFyZo7AB_o` · public · 2026-11-15 · Air India Restores Non-Stop Flights to New York, Cutting Travel Time by Five Hours #Shorts #Travel [prebuilt_reels:2657e4b0-dbfb-4964-aa40-50b43a13499a]
 

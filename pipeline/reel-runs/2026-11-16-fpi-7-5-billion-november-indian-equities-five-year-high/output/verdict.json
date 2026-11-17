@@ -1,0 +1,34 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "fpi-7-5-billion-november-indian-equities-five-year-high",
+  "name": "fpi-7-5-billion-november-indian-equities-five-year-high",
+  "script": "reel-runs/2026-11-16-fpi-7-5-billion-november-indian-equities-five-year-high/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000758
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-16-fpi-7-5-billion-november-indian-equities-five-year-high/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "first-norwich-13-turquoise-line-bus-wymondha",
+      "diaspora": "downtown-highrise-miami-fl-usa-1601"
+    }
+  },
+  "manifest": "reel-runs/2026-11-16-fpi-7-5-billion-november-indian-equities-five-year-high/output/render-manifest.json",
+  "video": "reel-runs/2026-11-16-fpi-7-5-billion-november-indian-equities-five-year-high/output/fpi-7-5-billion-november-indian-equities-five-year-high.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-16-fpi-7-5-billion-november-indian-equities-five-year-high/output/tiktok-caption.txt"
+}

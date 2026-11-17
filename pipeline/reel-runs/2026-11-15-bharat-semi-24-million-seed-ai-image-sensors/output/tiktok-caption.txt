@@ -1,0 +1,12 @@
+VIDEO: /home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-15-bharat-semi-24-million-seed-ai-image-sensors/output/bharat-semi-24-million-seed-ai-image-sensors.mp4
+
+CAPTION:
+BHARAT SEMI RAISES $24 MILLION TO BUILD AI IMAGE SENSORS IN INDIA
+
+Bharat Semi, a New Delhi semiconductor startup, has raised $24 million in an all-equity seed round led by Info Edge Group, South Park Commons and Indus Bridge Ventures.
+
+Its sensors are still under development, with production targeted for 2027.
+
+Full story: https://thevideshi.com/articles/bharat-semi-24-million-seed-ai-image-sensors
+
+#TheVideshi #BharatSemi #Semiconductors #Tech #IndianDiaspora

@@ -1,0 +1,149 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "h1b-extension-deference-rule-comment-period-closed",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Comment Window Closes on Plan to End Deference for H-1B Extensions",
+        "numbers": [
+          1.0
+        ],
+        "entities": [
+          "Comment Window Closes",
+          "End Deference",
+          "H-1B Extensions"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article discusses the comment window closing on this proposal.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "DHS proposes deleting the one regulation that tells USCIS to respect a prior approval when an extension changes nothing.",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states DHS proposes to delete this regulation.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The public comment period on the proposal to end deference for work-visa extensions closed on November 13, 2026",
+        "numbers": [
+          13.0,
+          2026.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "The article confirms the comment period closed on this date.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "DHS estimates about 208,429 extension petitions a year would lose deference, and about 6,044 more requests for evidence a year would follow",
+        "numbers": [
+          6044.0,
+          208429.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides these exact estimates from DHS.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Workers born in India were 77.6% of H-1B approvals for continuing employment, according to USCIS's FY 2025 report to Congress",
+        "numbers": [
+          1.0,
+          77.6,
+          2025.0
+        ],
+        "entities": [
+          "USCIS's FY"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2025
+          ]
+        },
+        "llm_reason": "The article cites this statistic from USCIS's report.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Comment Window Closes on Plan to End Deference for H-1B Extensions",
+        "numbers": [
+          1.0
+        ],
+        "entities": [
+          "Comment Window Closes",
+          "End Deference",
+          "H-1B Extensions"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article discusses the closing of the comment window.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000523,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

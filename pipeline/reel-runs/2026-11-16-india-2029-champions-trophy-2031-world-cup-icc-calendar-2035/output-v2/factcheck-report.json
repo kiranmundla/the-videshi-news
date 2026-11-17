@@ -1,0 +1,323 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "india-2029-champions-trophy-2031-world-cup-icc-calendar-2035",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA LANDS 2029 CHAMPIONS TROPHY AND 2031 WORLD CUP",
+      "numbers": [
+        2029.0,
+        2031.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2029,
+          2031
+        ]
+      },
+      "llm_reason": "India hosts the 2029 Champions Trophy and co-hosts the 2031 World Cup.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The ICC Board, meeting in Bali, approved its men's events calendar through 2035: India hosts the Champions Trophy in October 2029 and co-hosts the 2031 Cricket World Cup with Bangladesh.",
+      "numbers": [
+        2029.0,
+        2031.0,
+        2035.0
+      ],
+      "entities": [
+        "ICC Board",
+        "Champions Trophy",
+        "Cricket World Cup"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2029,
+          2031,
+          2035
+        ]
+      },
+      "llm_reason": "The article states the ICC Board approved the calendar and details the events.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "2029",
+      "numbers": [
+        2029.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2029
+        ]
+      },
+      "llm_reason": "The year 2029 is mentioned as the year India hosts the Champions Trophy.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "India hosts the Men's Champions Trophy from October 9 to 28",
+      "numbers": [
+        9.0,
+        28.0
+      ],
+      "entities": [
+        "Men's Champions Trophy"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the dates for the 2029 Champions Trophy.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "2031",
+      "numbers": [
+        2031.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2031
+        ]
+      },
+      "llm_reason": "The year 2031 is mentioned as the year of the co-hosted World Cup.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Cricket World Cup co-hosted by India and Bangladesh, October 9 to November 23",
+      "numbers": [
+        9.0,
+        23.0
+      ],
+      "entities": [
+        "Cricket World Cup"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the co-hosting and the dates for the 2031 World Cup.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "2006",
+      "numbers": [
+        2006.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2006
+        ]
+      },
+      "llm_reason": "The article states 2006 as the last time India hosted the Champions Trophy.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Last time India hosted the Champions Trophy",
+      "numbers": [],
+      "entities": [
+        "Champions Trophy"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms 2006 as the last hosting year for India.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2035",
+      "numbers": [
+        2035.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2035
+        ]
+      },
+      "llm_reason": "The article mentions the ICC events calendar is approved through 2035.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "ICC men's events calendar approved through this year at the Board meeting in Bali",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the calendar was approved at the Bali meeting.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Venues, fixtures and ticket details for 2029 and 2031 have not been announced",
+      "numbers": [
+        2029.0,
+        2031.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2029,
+          2031
+        ]
+      },
+      "llm_reason": "The article confirms that details for venues and tickets are still pending.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The next World Cup, in 2027, is hosted by South Africa, Zimbabwe and Namibia",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [
+        "World Cup",
+        "South Africa"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article states the 2027 World Cup hosts are South Africa, Zimbabwe, and Namibia.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "India are the tournament's current holders, so the 2029 edition is a home defence of the title.",
+      "numbers": [
+        2029.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2029
+        ]
+      },
+      "llm_reason": "The article confirms India as the current holders of the Champions Trophy.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "ICC",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "India",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Bangladesh",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Champions Trophy",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Cricket World Cup",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000731,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

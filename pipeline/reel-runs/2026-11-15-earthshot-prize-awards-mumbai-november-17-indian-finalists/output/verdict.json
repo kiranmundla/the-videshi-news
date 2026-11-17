@@ -1,0 +1,23 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "earthshot-prize-awards-mumbai-november-17-indian-finalists",
+  "name": "earthshot-prize-awards-mumbai-november-17-indian-finalists",
+  "script": "reel-runs/2026-11-15-earthshot-prize-awards-mumbai-november-17-indian-finalists/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "hook_line",
+      "news_summary",
+      "hook_stat.big",
+      "hook_stat.sub",
+      "payoff"
+    ],
+    "llm_cost_usd": 0.000758
+  }
+}

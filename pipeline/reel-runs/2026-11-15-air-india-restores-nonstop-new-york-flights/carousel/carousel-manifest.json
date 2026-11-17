@@ -1,0 +1,33 @@
+{
+  "photo": {
+    "url": null,
+    "width": 1500,
+    "height": 1001
+  },
+  "face": {
+    "method": "focal-heuristic (no face detected); anchor raw=(0.572,0.252) damped=(0.536,0.376)",
+    "has_face": false,
+    "box_source": [
+      384,
+      156,
+      840,
+      400
+    ]
+  },
+  "cover": {
+    "face_box_card": [
+      -26.1,
+      210.4,
+      1132.9,
+      539.5
+    ],
+    "headline_size": 78,
+    "headline_lines": 4
+  },
+  "facts": {
+    "facts_bottom": 1179
+  },
+  "end": {
+    "headline_size": 60
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "hook_line": "AIR INDIA RESTORES NON-STOP FLIGHTS TO NEW YORK",
+  "hook_stat": {
+    "big": "5 HOURS",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Journey time cut, from around 22 hours to approximately 17 hours"
+  },
+  "stats": [
+    {
+      "big": "4",
+      "label": "Routes restored: Delhi and Mumbai to JFK and Newark"
+    },
+    {
+      "big": "17 HOURS",
+      "label": "Approximate journey time, down from around 22 hours with the Rome stop"
+    },
+    {
+      "big": "DAILY",
+      "label": "Delhi-JFK and Mumbai-JFK services"
+    }
+  ],
+  "diaspora_bullets": [
+    "Newark services do not run daily - check your flight date",
+    "Pakistan airspace remains closed, so timings can still change"
+  ],
+  "key_entities": [
+    "Air India",
+    "New York",
+    "JFK",
+    "Newark",
+    "Delhi",
+    "Mumbai"
+  ],
+  "news_summary": "Air India has restored non-stop flights on all four India-New York routes - Delhi and Mumbai to JFK and Newark - ending the Rome refuelling stop, the airline said on November 15.",
+  "payoff": "Journey times fall by up to five hours with the Rome stop discontinued.",
+  "versus": "",
+  "story_mood": "practical"
+}

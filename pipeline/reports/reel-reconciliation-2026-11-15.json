@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 259,
-    "db_rows": 192,
-    "db_rows_with_yt_id": 162,
+    "channel_videos": 260,
+    "db_rows": 193,
+    "db_rows_with_yt_id": 163,
     "legacy_log_entries": 205,
-    "publish_log_entries": 75,
-    "in_sync": 141,
+    "publish_log_entries": 76,
+    "in_sync": 142,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 17,
     "ghost_db_rows": 16,
@@ -1000,6 +1000,13 @@
       "privacy": "public",
       "video_id": "vEdzC4mEywI",
       "record": "prebuilt_reels:2a97b8bb-0751-4769-8654-610b23405562"
+    },
+    {
+      "title": "Air India Restores Non-Stop Flights to New York, Cutting Travel Time by Five Hours #Shorts #Travel",
+      "published_at": "2026-11-15T17:18:06Z",
+      "privacy": "public",
+      "video_id": "VEFyZo7AB_o",
+      "record": "prebuilt_reels:2657e4b0-dbfb-4964-aa40-50b43a13499a"
     }
   ],
   "unknown_legacy_logged": [
@@ -4009,5 +4016,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-15T11:14:51+00:00"
+  "generated_at": "2026-11-15T23:19:13+00:00"
 }

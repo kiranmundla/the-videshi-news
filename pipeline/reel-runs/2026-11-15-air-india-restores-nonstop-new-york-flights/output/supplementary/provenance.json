@@ -1,0 +1,117 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "air-india-restores-nonstop-new-york-flights",
+  "trigger": {
+    "own_images": 3,
+    "target_distinct": 5,
+    "extras_needed": 2
+  },
+  "entities": [
+    "Air India",
+    "New York",
+    "JFK",
+    "Newark",
+    "Delhi",
+    "Mumbai"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Mumbai' named 'Chhatrapati Shivaji Maharaj International Airport', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Boeing 777-337ER - Air India (VT-ALK).JPG",
+      "route": "identity \u2014 Wikidata P18 (Q69906)",
+      "verdict": "USED (news)",
+      "reason": "3596x2400, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:1985-06-10 VT-EFO Air India EGLL.jpg",
+      "route": "identity \u2014 depicts (P180=Q69906)",
+      "verdict": "rejected",
+      "reason": "resolution: 1024x683 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:213ai - Air India Boeing 747-437, VT-ESN@LHR,13.03.2003 - Flickr - Aero Icarus.jpg",
+      "route": "identity \u2014 depicts (P180=Q69906)",
+      "verdict": "USED (hero)",
+      "reason": "4643x3146, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:NYC Downtown Manhattan Skyline seen from Paulus Hook 2019-12-20 IMG 7347 FRD (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q60)",
+      "verdict": "accepted",
+      "reason": "3869x1551, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Ambigram New York Rich Man (animated).gif",
+      "route": "identity \u2014 depicts (P180=Q60)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Ambigram tattoo New York Rich Man.jpg",
+      "route": "identity \u2014 depicts (P180=Q60)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Ambigram tessellation NYC - New York City.png",
+      "route": "identity \u2014 depicts (P180=Q60)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Brookfield Place New York August 2017 003.jpg",
+      "route": "identity \u2014 depicts (P180=Q60)",
+      "verdict": "accepted",
+      "reason": "6016x4016, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "boeing-777-337er-air-india-vt-alk",
+      "path": "boeing-777-337er-air-india-vt-alk.jpg",
+      "size": [
+        3596,
+        2400
+      ],
+      "role": "establishing",
+      "subject": "Boeing 777-337ER - Air India (VT-ALK)",
+      "route": "identity \u2014 Wikidata P18 (Q69906)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Boeing_777-337ER_-_Air_India_(VT-ALK).JPG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Boeing_777-337ER_-_Air_India_%28VT-ALK%29.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Eluveitie",
+      "entity": "Air India",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Air India"
+      ]
+    },
+    {
+      "beat": "hero",
+      "label": "213ai-air-india-boeing-747-437-vt-esn-lhr-13",
+      "path": "213ai-air-india-boeing-747-437-vt-esn-lhr-13.jpg",
+      "size": [
+        4643,
+        3146
+      ],
+      "role": "establishing",
+      "subject": "213ai - Air India Boeing 747-437; VT-ESN@LHR;13.03.2003",
+      "route": "identity \u2014 depicts (P180=Q69906)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:213ai_-_Air_India_Boeing_747-437,_VT-ESN@LHR,13.03.2003_-_Flickr_-_Aero_Icarus.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/213ai_-_Air_India_Boeing_747-437%2C_VT-ESN%40LHR%2C13.03.2003_-_Flickr_-_Aero_Icarus.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 2.0",
+      "artist": "Aero Icarus from Z\u00fcrich, Switzerland",
+      "entity": "Air India",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Air India"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "air-india-restores-nonstop-new-york-flights",
+  "name": "air-india-restores-nonstop-new-york-flights",
+  "script": "reel-runs/2026-11-15-air-india-restores-nonstop-new-york-flights/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000657
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-15-air-india-restores-nonstop-new-york-flights/output/supplementary/provenance.json",
+    "own_images": 3,
+    "extras": {
+      "news": "boeing-777-337er-air-india-vt-alk",
+      "hero": "213ai-air-india-boeing-747-437-vt-esn-lhr-13"
+    }
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "no concept/policy signal \u2014 not a stock story"
+  },
+  "distinct_images": {
+    "usable": 4,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "inline:1",
+      "inline:2",
+      "extra:213ai-air-india-boeing-747-437-vt-esn-lhr-13"
+    ]
+  },
+  "detail": "only 4 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}

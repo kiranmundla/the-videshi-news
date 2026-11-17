@@ -1,0 +1,19 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-2029-champions-trophy-2031-world-cup-icc-calendar-2035",
+  "name": "india-2029-champions-trophy-2031-world-cup-icc-calendar-2035",
+  "script": "reel-runs/2026-11-16-india-2029-champions-trophy-2031-world-cup-icc-calendar-2035/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "payoff"
+    ],
+    "llm_cost_usd": 0.000726
+  }
+}

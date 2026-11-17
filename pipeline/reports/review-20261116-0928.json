@@ -1,0 +1,82 @@
+[
+  {
+    "id": "35fe3d37-1f17-4261-bbcb-1ed0241e4bab",
+    "headline": "'I Couldn't Sleep': Gondhal Director on the Anxiety Behind India's Oscar Entry",
+    "slug": "gondhal-director-santosh-davakhar-india-oscar-entry-anxiety",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of key dates related to the Oscars. For instance, specify the exact dates for the Academy shortlist announcement, nominations, and the Oscars ceremony in a more structured format, such as a bullet list, to enhance clarity.",
+        "Include a direct quote from the interview with Santosh Davakhar that captures his feelings about the film's selection, which would add depth and a personal touch to the narrative.",
+        "Provide more context about the significance of the film's selection as India's entry for the Oscars, such as past successes or challenges faced by Indian films in this category, to give readers a better understanding of its importance."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement from the Film Federation of India regarding the selection of Gondhal as India's Oscar entry to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "1c194e2d-b0ef-4f58-9e6c-43848761247c",
+    "headline": "Gates Foundation Pledges Up to $1 Billion for Family Planning Through 2030",
+    "slug": "gates-foundation-1-billion-family-planning-womens-health-2030",
+    "category": "nri-world",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The foundation announced plans to commit up to US$1 billion through 2030 to fami\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the funding commitment by specifying when the funds will be disbursed or how they will be allocated over the years leading up to 2030.",
+        "Include a quote from a representative of the Gates Foundation or an expert in women's health to provide additional context and credibility to the announcement.",
+        "Add a brief explanation of the significance of the Copenhagen Summit on Gender Equality and Women's and Girls' Rights to provide readers with context about the event and its importance.",
+        "Ensure that the figures mentioned (US$694 million, US$158 million, etc.) are clearly defined in terms of their intended impact or specific programs they will support, to enhance completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or official statement from the Gates Foundation regarding this funding commitment to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "8313ed44-0d24-47e1-a8c9-bb0c50685f38",
+    "headline": "Jefferies Keeps Buy Ratings on Six Adani Stocks, Backs $51 Billion Capex Plan",
+    "slug": "jefferies-buy-ratings-six-adani-stocks-51-billion-capex",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the $51 billion capital expenditure plan, including specific dates for when these investments are expected to begin and complete, as this would provide readers with a clearer understanding of the timeline involved.",
+        "Include a brief explanation of what the projected 23% compound annual growth rate means in practical terms for investors, such as potential returns on investment or implications for stock performance.",
+        "Add a quote or statement from a Jefferies analyst to provide direct attribution and enhance credibility, as this would give readers insight into the brokerage's rationale behind their ratings and projections."
+      ],
+      "embed_opportunities": [
+        "Embed the official Jefferies report or a relevant tweet from Jefferies discussing their analysis on Adani Group stocks to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "b3562f72-4c2d-40aa-8299-f2e91f5ff23d",
+    "headline": "Indian Students in the US Fall 6.5% as Postgraduate Enrolments Drop by a Third",
+    "slug": "indian-students-us-fall-6-5-percent-open-doors-2026",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying when the Open Doors 2026 report was released and when the data was collected. This helps contextualize the findings for readers.",
+        "Include specific figures or percentages regarding the impact of the visa process on enrolment, as nearly 9 in 10 colleges reported this issue. This would provide readers with concrete data on how significant this barrier is.",
+        "Add a brief explanation of what Optional Practical Training (OPT) entails for readers who may not be familiar with the term, enhancing clarity.",
+        "Incorporate a quote from a relevant source, such as an education expert or a representative from the Institute of International Education, to provide authoritative attribution and depth to the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official Open Doors 2026 report or a relevant tweet from the Institute of International Education to provide readers with direct access to the source material."
+      ]
+    }
+  }
+]

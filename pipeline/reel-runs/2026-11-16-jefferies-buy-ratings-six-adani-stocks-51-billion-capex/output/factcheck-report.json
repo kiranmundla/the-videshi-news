@@ -1,0 +1,266 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "jefferies-buy-ratings-six-adani-stocks-51-billion-capex",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "JEFFERIES BACKS SIX ADANI STOCKS AND $51 BILLION CAPEX",
+      "numbers": [
+        51.0,
+        51000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Jefferies backs six Adani stocks and mentions $51 billion capex.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Jefferies has reaffirmed Buy ratings on all six Adani Group companies it covers, calling the group a hard-asset play built on infrastructure with predictable cash flows.",
+      "numbers": [],
+      "entities": [
+        "Adani Group"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Jefferies reaffirmed Buy ratings and describes the group as a hard-asset play.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$51 BILLION",
+      "numbers": [
+        51.0,
+        51000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$51 billion is mentioned as planned capital spending.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Planned Adani Group capital spending between FY27 and FY29",
+      "numbers": [
+        27.0,
+        29.0
+      ],
+      "entities": [
+        "Planned Adani Group"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies planned capital spending for FY27 to FY29.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "23%",
+      "numbers": [
+        23.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "23% growth rate is projected for EBITDA and EPS.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Projected compound annual growth in group EBITDA and earnings per share, FY26 to FY29",
+      "numbers": [
+        26.0,
+        29.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses projected growth in EBITDA and EPS for FY26 to FY29.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "OVER 65%",
+      "numbers": [
+        65.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states over 65% of funds from operations come from predictable cash flows.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Share of group funds from operations expected from businesses with predictable cash flows",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this share of funds from operations.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "27%",
+      "numbers": [
+        27.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "27% market share for Adani Ports is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Adani Ports market share, as India's largest private port operator",
+      "numbers": [],
+      "entities": [
+        "Adani Ports"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Adani Ports has a 27% market share.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Jefferies calls the group a hard-asset play on infrastructure with predictable cash flows",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article includes this description from Jefferies.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Jefferies itself flags elevated leverage and execution risk on the capex programme",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions Jefferies flags these risks.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The 23% growth projection depends on the $51 billion investment programme being delivered on schedule.",
+      "numbers": [
+        23.0,
+        51.0,
+        51000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the growth projection depends on the investment programme.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Jefferies",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Adani Group",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Adani Ports",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Adani Enterprises",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000676,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

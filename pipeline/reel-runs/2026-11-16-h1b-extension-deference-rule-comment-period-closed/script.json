@@ -1,0 +1,22 @@
+{
+  "hook_line": "COMMENT WINDOW CLOSES ON PLAN TO END DEFERENCE FOR H-1B EXTENSIONS",
+  "hook_stat": {
+    "big": "208,429",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Extension petitions a year that DHS estimates would lose deference"
+  },
+  "stats": [
+    {"big": "77.6%", "label": "H-1B continuing-employment approvals for workers born in India"},
+    {"big": "6,044", "label": "Additional requests for evidence expected a year"},
+    {"big": "57%", "label": "H-1B extension filers that were small entities"}
+  ],
+  "diaspora_bullets": [
+    "H-1B petitions make up more than 75% of all Form I-129 filings, according to DHS",
+    "A timely filed H-1B extension lets the worker keep working for up to 240 days after the I-94 expires"
+  ],
+  "key_entities": ["DHS", "USCIS", "H-1B"],
+  "news_summary": "The public comment period on the proposal to end deference for work-visa extensions closed on November 13, 2026, and the deference regulation stays in force unless DHS publishes a final rule.",
+  "payoff": "There is nothing to file now; the next step is DHS publishing a final rule, and no date for one has been set.",
+  "versus": "",
+  "story_mood": "tense"
+}

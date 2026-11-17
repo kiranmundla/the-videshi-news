@@ -1,0 +1,81 @@
+[
+  {
+    "id": "3b166645-1e33-4de2-952b-bbbd50a7b5de",
+    "headline": "Modi Heads to Manila for ASEAN-India and East Asia Summits",
+    "slug": "modi-manila-asean-india-east-asia-summits-agenda",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Modi travels to Manila on November 16 for the 23rd ASEAN-India Summit and the 21\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact dates for the ASEAN-India Summit and the East Asia Summit. The article mentions November 16 and 17, but it could be clearer if it explicitly states that the meetings will occur on these dates.",
+        "Provide more context about the significance of the ASEAN-India Trade in Goods Agreement (AITIGA) and what an early conclusion would mean for trade relations, including potential impacts on specific sectors or products.",
+        "Include a quote or statement from a relevant official or expert regarding the importance of maritime security in the context of the summits to enhance the article's authority and depth.",
+        "Mention any specific outcomes or agreements expected from the summits to give readers a clearer understanding of what to anticipate from Modi's visit."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Prime Minister Modi regarding his visit to Manila for real-time updates and engagement."
+      ]
+    }
+  },
+  {
+    "id": "5f7b1922-77db-4e11-b47b-401b250a89e3",
+    "headline": "Foreign Investors Pump $7.5 Billion Into Indian Equities in Ten Sessions",
+    "slug": "fpi-7-5-billion-november-indian-equities-five-year-high",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the $7.5 billion figure by specifying that it comes from Bloomberg data as reported by the Economic Times, rather than repeating the phrase multiple times.",
+        "Include a brief explanation of what the implications of this inflow might be for the Indian market, such as potential impacts on stock prices or investor sentiment, to provide readers with a clearer understanding of 'what this means for me'.",
+        "Add a comparison to previous months or years to contextualize the significance of the $7.5 billion inflow, such as how it compares to the average monthly inflow over the past five years.",
+        "Ensure that the mention of 'domestic institutions' selling Rs 49,000 crore is accompanied by a brief explanation of what this means in terms of percentage of total market activity or context about the significance of this figure. "
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Bloomberg or the Economic Times that highlights the $7.5 billion inflow figure for credibility and real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "182b4e46-fd34-4528-8526-84ece8f6b0fd",
+    "headline": "US Seeks 293-Month Term for Nikhil Gupta in Pannun Murder-for-Hire Plot",
+    "slug": "us-prosecutors-seek-293-months-nikhil-gupta-pannun-sentencing",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the date of Gupta's guilty plea in February 2026, as it seems to be a typographical error since that date is in the future. It should be corrected to a past date, likely February 2023.",
+        "Include a brief background on Gurpatwant Singh Pannun and the significance of the murder-for-hire plot to provide readers with context about the case and its implications.",
+        "Add a quote or statement from the prosecutors regarding the potential impact of the sentencing on future cases involving similar plots, which would enhance the completeness of the article."
+      ],
+      "embed_opportunities": [
+        "Embed the official court document or a relevant tweet from the US Attorney's Office regarding the case to provide readers with direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "8627d47a-f7b3-4c91-9f89-27f9772b90f7",
+    "headline": "Apple Opens Health AI Study to Up to 200,000 iPhone Users",
+    "slug": "apple-health-ai-usage-study-openevidence-200000-iphone",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the eligibility criteria by specifying the exact model requirements for the iPhone and the iOS version needed to participate, as this is crucial for potential participants.",
+        "Include a deadline for enrollment in the study to provide readers with a clear timeframe for action.",
+        "Add a brief explanation of how participants' data will be protected, especially since the study involves sharing personal health information, to address privacy concerns.",
+        "Provide a more detailed description of what participants can expect in terms of time commitment and the types of questions they will be able to ask, enhancing clarity and completeness."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Apple's official account announcing the study to provide direct access to the source and enhance credibility."
+      ]
+    }
+  }
+]

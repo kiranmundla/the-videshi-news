@@ -1,0 +1,84 @@
+[
+  {
+    "id": "90206dba-a95f-46e0-bc9b-afebba21e2c8",
+    "headline": "Patidar's 135 Off 48 and Suryakumar's 82 Off 29 Light Up SMAT",
+    "slug": "patidar-135-suryakumar-82-syed-mushtaq-ali-trophy",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Patidar's performance by including context about the Syed Mushtaq Ali Trophy's importance in Indian cricket and how this match impacts Madhya Pradesh's standing in the tournament.",
+        "Include specific statistics or records that were broken during the match, such as the previous highest individual score for Madhya Pradesh in the tournament, to provide readers with a clearer picture of the achievement's magnitude.",
+        "Provide a brief overview of the implications of these results for the teams involved, particularly how they affect their chances of advancing in the tournament."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Syed Mushtaq Ali Trophy account or a relevant cricket news outlet highlighting Patidar's performance or the match results."
+      ]
+    }
+  },
+  {
+    "id": "23202d8f-058b-4f85-9cca-17e4f67dfbff",
+    "headline": "Indian IT Firms Hold Cash Collection Steady as Clients Slow New Deals",
+    "slug": "indian-it-firms-cash-collection-dso-cautious-spending",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the DSO figures by providing context on how they compare to historical averages or industry benchmarks. This would help readers understand whether a DSO of 75 days is considered good or bad in the current market environment.",
+        "Include a brief explanation of the implications of stable DSO on cash flow and overall financial health for these companies. This could help readers grasp why this information is relevant to investors and stakeholders.",
+        "Add a timeline or specific examples of how longer deal approval cycles are affecting the IT firms' revenue projections. This would provide concrete details that readers can relate to and understand the potential future impact.",
+        "Ensure that all data points are attributed clearly to their sources. For instance, when mentioning the DSO figures, specify that they are based on UnearthInsight data and clarify the date of the report to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from UnearthInsight or The Hindu BusinessLine that summarizes the key findings or insights from the report, providing readers with a direct source of information."
+      ]
+    }
+  },
+  {
+    "id": "194d0b2a-d096-4599-bf5f-b40b499f8bc0",
+    "headline": "Kunal Bahl's 2007 H-1B Rejection at Microsoft Led Him to Build Snapdeal",
+    "slug": "kunal-bahl-h1b-rejection-microsoft-snapdeal-profile",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact month of Bahl's H-1B rejection and the subsequent actions taken, such as when he returned to India and when Snapdeal was officially launched.",
+        "Include a brief explanation of the current H-1B application process and any relevant statistics or changes that have occurred since Bahl's rejection to provide context for readers today.",
+        "Enhance the clarity of the article by breaking up longer sentences into shorter ones, making it easier for readers to follow the narrative and key points.",
+        "Provide a more compelling conclusion that summarizes the implications of Bahl's story for current H-1B applicants, perhaps by emphasizing the opportunities available in India today compared to 2007."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS page on H-1B visa application processes to give readers direct access to current rules and guidelines."
+      ]
+    }
+  },
+  {
+    "id": "b68510ee-bac9-402e-9c1c-2edb260ab2d3",
+    "headline": "INDIA Bloc Seeks Supreme Court Nod to Put 48 Questions to Election Commission",
+    "slug": "india-bloc-48-questions-election-commission-supreme-court-sir",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the 48 questions being posed to the Election Commission. Explain why these questions matter in the context of electoral integrity and what implications they may have for the upcoming elections.",
+        "Include a brief background on the Special Intensive Revision (SIR) of electoral rolls to provide readers with context on why this issue is important and how it affects voters.",
+        "Specify the date of the Supreme Court hearing more prominently to enhance timeliness and urgency in the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official Supreme Court notice or tweet regarding the hearing date and details of the case for authoritative context."
+      ]
+    }
+  }
+]

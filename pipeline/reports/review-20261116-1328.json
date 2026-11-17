@@ -1,0 +1,84 @@
+[
+  {
+    "id": "55c99d2e-3070-4d9b-8f8a-57423eebdb23",
+    "headline": "Masala Omelette, Anda Bhurji Make TasteAtlas 50 Best Egg Dishes",
+    "slug": "masala-omelette-anda-bhurji-tasteatlas-50-best-egg-dishes",
+    "category": "food",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The dish placed 20th on TasteAtlas\u2019s ranking of the world\u2019s best egg dishes.\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the date mentioned in the article; the list is stated to be current to November 15, 2026, which is confusing and likely a typographical error. It should reflect the current date or the date of publication.",
+        "Provide more context on TasteAtlas as a source; a brief description of its credibility or methodology for ranking could enhance the article's completeness and reliability.",
+        "Include a comparison of the ratings for masala omelette and anda bhurji with other dishes in the top 10 to give readers a clearer perspective on their standings.",
+        "Add a brief note on the significance of these rankings for Indian cuisine on a global scale, which would enhance the article's depth."
+      ],
+      "embed_opportunities": [
+        "Embed the official TasteAtlas tweet or post announcing the rankings to provide direct access to the source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "280cacea-2917-47ee-b518-b74fbc0c3b29",
+    "headline": "Jay Shah Reappointed Unopposed as ICC Chair for Second Term",
+    "slug": "jay-shah-reappointed-icc-chair-second-term-bali",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of Jay Shah's first term by correcting the start date to December 1, 2020, instead of December 1, 2024, to avoid confusion regarding the timeline of events.",
+        "Include a specific end date for Shah's new term if available, or clarify that it is expected to run until December 2030 based on reports, to enhance completeness.",
+        "Add a quote or statement from a relevant ICC director or another authoritative source to strengthen attribution and provide additional context on the decision-making process."
+      ],
+      "embed_opportunities": [
+        "Embed the official ICC statement regarding Jay Shah's reappointment to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "7ca10f6e-7809-49f7-b698-dbd507df0f4a",
+    "headline": "Goyal Asks India, Egypt Startups to Co-Build Payments, Health Tech",
+    "slug": "goyal-egypt-india-startup-forum-upi-instapay-cairo",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the upcoming startup event mentioned by Goyal, including the specific date in January and any relevant details about the event that entrepreneurs should know.",
+        "Provide more context on the significance of the proposed collaboration between UPI and InstaPay, including any potential benefits for consumers and businesses in both countries, as well as any challenges that might arise.",
+        "Include a quote or data point from a relevant Egyptian startup or government official to provide a balanced perspective on the collaboration and its potential impact.",
+        "Add a brief explanation of what UPI and InstaPay are for readers who may not be familiar with these payment systems, ensuring clarity for a broader audience."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Piyush Goyal or the official India-Egypt Startup Forum account summarizing the key points of his address to enhance credibility and provide real-time updates."
+      ]
+    }
+  },
+  {
+    "id": "4a90b616-2b5a-452c-8842-181a63d2a392",
+    "headline": "Comment Window Closes on Plan to End Deference for H-1B Extensions",
+    "slug": "h1b-extension-deference-rule-comment-period-closed",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline: The article states that the public comment period closed on November 13, 2026, but it should specify that this is a future date. This could confuse readers, so it should be corrected to reflect the current date and clarify that the comment period is still open until that date.",
+        "Add a concrete takeaway: Include specific implications for H-1B visa holders, such as potential delays in processing times or the likelihood of increased requests for evidence, to help readers understand what this means for them personally.",
+        "Provide context on the impact: Explain how the proposed change could affect the overall immigration landscape or the job market for H-1B workers, which would give readers a better understanding of the broader implications."
+      ],
+      "embed_opportunities": [
+        "Embed the official DHS announcement or a relevant tweet from DHS regarding the proposal to provide readers with direct access to official information."
+      ]
+    }
+  }
+]

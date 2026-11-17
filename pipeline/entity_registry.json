@@ -22653,6 +22653,712 @@
    "resolved_confidence": "high",
    "resolved_context": "China Upgrades VT-4 Tank Used by Pakistan With Anti-Drone Gun, Stronger Armour   <div class=\"key-takeaways\"><ul>\n<li>China has developed an upgraded version of the VT-4 main battle tank - a key component of Pakistan's armoured fleet - with stronger armour, improved sensors and a larger weapon station, the South China Morning Post reported.</li>\n<li>A 30mm remotely operated weapon station replaces ",
    "notes": "auto-resolved via wikidata-context (confidence high); context: 'China Upgrades VT-4 Tank Used by Pakistan With Anti-Drone Gun, Stronger Armour   <div class=\"key-takeaways\"><ul>\\n<li>China has developed an upgraded version of the VT-4 main battle tank - a key compon'; description: cultural region, ancient civilization, and nation in East Asia; mostly refers to the People's Republic of China in political situation and rarely refers to the Republic of China"
+  },
+  {
+   "name": "Station Road",
+   "aliases": [
+    "Station Road",
+    "Station Road, New Barnet"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q30689072",
+   "p18_file": "Station Road, New Barnet.jpg",
+   "p18_quality": 654,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Kerala Kitchen in Taunton Named Town's Best Place to Eat on Tripadvisor   <div class=\"key-takeaways\"><ul>\n<li>Mattancherry, a South Indian restaurant in Taunton, Somerset, has been named the town's number one restaurant in the Tripadvisor Travellers' Choice Awards 2026, the Somerset County Gazette reports.</li>\n<li>It ranks first out of 202 restaurants in Taunton on Tripadvisor, with a 4.8-star ra",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Kerala Kitchen in Taunton Named Town\\'s Best Place to Eat on Tripadvisor   <div class=\"key-takeaways\"><ul>\\n<li>Mattancherry, a South Indian restaurant in Taunton, Somerset, has been named the town\\'s nu'; description: street in New Barnet in the London Borough of Barnet"
+  },
+  {
+   "name": "Patch Tuesday",
+   "aliases": [
+    "Patch Tuesday",
+    "Update Tuesday"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q947646",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Microsoft Patches 1,094 Flaws, Including an Outlook Zero-Day Already Exploited   <div class=\"key-takeaways\"><ul>\n<li>Microsoft's November 2026 security updates, released on Patch Tuesday, November 10, address 1,094 Microsoft CVEs — the second straight month above 1,000.</li>\n<li>The urgent one: CVE-2026-124194, an Outlook spoofing flaw already exploited in the wild, can leak your NTLMv2 credential",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Microsoft Patches 1,094 Flaws, Including an Outlook Zero-Day Already Exploited   <div class=\"key-takeaways\"><ul>\\n<li>Microsoft\\'s November 2026 security updates, released on Patch Tuesday, November 10,'; description: unofficial term used to refer to when Microsoft regularly releases software patches for its software products"
+  },
+  {
+   "name": "Tuesday",
+   "aliases": [
+    "Tuesday",
+    "Tue",
+    "Tu",
+    "T",
+    "Tues"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q127",
+   "p18_file": "Tuesday Abbr GW.png",
+   "p18_quality": 553,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Mumbai Hosts Earthshot Prize Awards Tuesday, With Two Indian Finalists Chasing £1 Million   <div class=\"key-takeaways\"><ul>\n<li>The Earthshot Prize Awards Night takes place in Mumbai on Tuesday, November 17, 2026 — the prize's first edition in India and its sixth overall.</li>\n<li>Fifteen finalists, chosen from nearly 7,000 nominations across 169 countries, are competing across five categories; fi",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Mumbai Hosts Earthshot Prize Awards Tuesday, With Two Indian Finalists Chasing £1 Million   <div class=\"key-takeaways\"><ul>\\n<li>The Earthshot Prize Awards Night takes place in Mumbai on Tuesday, Novem'; description: day of the week"
+  },
+  {
+   "name": "finalist",
+   "aliases": [
+    "Finalists",
+    "finalist",
+    "finalists"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q11331867",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Mumbai Hosts Earthshot Prize Awards Tuesday, With Two Indian Finalists Chasing £1 Million   <div class=\"key-takeaways\"><ul>\n<li>The Earthshot Prize Awards Night takes place in Mumbai on Tuesday, November 17, 2026 — the prize's first edition in India and its sixth overall.</li>\n<li>Fifteen finalists, chosen from nearly 7,000 nominations across 169 countries, are competing across five categories; fi",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Mumbai Hosts Earthshot Prize Awards Tuesday, With Two Indian Finalists Chasing £1 Million   <div class=\"key-takeaways\"><ul>\\n<li>The Earthshot Prize Awards Night takes place in Mumbai on Tuesday, Novem'; description: entity which has reached the ultimate stage of a tournament or prize (e.g. a person, team, company, creative work)"
+  },
+  {
+   "name": "Lalit Modi",
+   "aliases": [
+    "Lalit Modi",
+    "Lalit Kumar Modi"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q3241458",
+   "p18_file": "Modi at IPL Players Auction.jpg",
+   "p18_quality": 296,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Lalit Modi Becomes a British Citizen, Leaving Extradition as India's Only Route Back   <div class=\"key-takeaways\"><ul>\n<li>Lalit Modi, the IPL founder who left India in 2010, announced at the Oxford Union on November 14 that he has become a British citizen. He said he celebrated the citizenship at a ceremony on September 15.</li>\n<li>The change affects Modi personally only. It creates no new rule ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Lalit Modi Becomes a British Citizen, Leaving Extradition as India\\'s Only Route Back   <div class=\"key-takeaways\"><ul>\\n<li>Lalit Modi, the IPL founder who left India in 2010, announced at the Oxford U'; description: Indian cricket administrator and businessman"
+  },
+  {
+   "name": "Oxford Union",
+   "aliases": [
+    "Oxford Union"
+   ],
+   "type": "org",
+   "wikidata_qid": "Q2157937",
+   "p18_file": "The Oxford Union Main Building.tiff",
+   "p18_quality": 1298,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Lalit Modi Becomes a British Citizen, Leaving Extradition as India's Only Route Back   <div class=\"key-takeaways\"><ul>\n<li>Lalit Modi, the IPL founder who left India in 2010, announced at the Oxford Union on November 14 that he has become a British citizen. He said he celebrated the citizenship at a ceremony on September 15.</li>\n<li>The change affects Modi personally only. It creates no new rule ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Lalit Modi Becomes a British Citizen, Leaving Extradition as India\\'s Only Route Back   <div class=\"key-takeaways\"><ul>\\n<li>Lalit Modi, the IPL founder who left India in 2010, announced at the Oxford U'; description: debating society in Oxford, England"
+  },
+  {
+   "name": "Priya Sundareshan",
+   "aliases": [
+    "Priya Sundareshan"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q115271665",
+   "p18_file": "Priya Sundareshan (54504218846) (cropped).jpg",
+   "p18_quality": 2786,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Indian American Priya Sundareshan Chosen to Lead Arizona Senate as Democrats Take Control   <div class=\"key-takeaways\"><ul>\n<li>Arizona Senate Democrats chose Indian American lawmaker Priya Sundareshan as Senate president-elect on November 6. She is set to take the gavel when the new Legislature convenes in January 2027.</li>\n<li>Democrats won 20 of the Senate's 30 seats, up from 13, giving the pa",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Indian American Priya Sundareshan Chosen to Lead Arizona Senate as Democrats Take Control   <div class=\"key-takeaways\"><ul>\\n<li>Arizona Senate Democrats chose Indian American lawmaker Priya Sundaresha'; description: American politician"
+  },
+  {
+   "name": "sensor",
+   "aliases": [
+    "Sensors",
+    "sensor",
+    "measuring element",
+    "Sensor"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q167676",
+   "p18_file": "Light sensor.png",
+   "p18_quality": 330,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Bharat Semi Raises $24 Million Seed Round to Build AI Image Sensors in India   <div class=\"key-takeaways\"><ul>\n<li>Bharat Semi, a New Delhi semiconductor startup, has raised $24 million in an all-equity seed round led by Info Edge Group, South Park Commons and Indus Bridge Ventures, TechCrunch reported on November 15.</li>\n<li>The nearly five-year-old company is pre-revenue. It says it has secured",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Bharat Semi Raises $24 Million Seed Round to Build AI Image Sensors in India   <div class=\"key-takeaways\"><ul>\\n<li>Bharat Semi, a New Delhi semiconductor startup, has raised $24 million in an all-equi'; description: device that measures a physical quantity and converts it into a signal"
+  },
+  {
+   "name": "Nazriya Nazim",
+   "aliases": [
+    "Nazriya Nazim"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q3165960",
+   "p18_file": "Nazriya Nazim at neram audio launch.jpg",
+   "p18_quality": 464,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Scene Review: Suriya's Loose, Playful Cop Act Carries an Uneven Crime Comedy   Suriya gives his loosest performance in years — a quirky cop turn that blends comedy with real vulnerability    Suriya gives his loosest performance in years — a quirky cop turn that blends comedy with real vulnerability  The chemistry between Suriya, Nazriya Nazim and Naslen powers the film's best stretches  A second h",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: \"Scene Review: Suriya's Loose, Playful Cop Act Carries an Uneven Crime Comedy   Suriya gives his loosest performance in years — a quirky cop turn that blends comedy with real vulnerability    Suriya gi\"; description: Indian actress, playback singer, anchor, model"
+  },
+  {
+   "name": "Stadler Regio-Shuttle RS1",
+   "aliases": [
+    "VT-",
+    "Stadler Regio-Shuttle RS1",
+    "DB-Baureihe 650",
+    "Adtranz Regio-Shuttle RS1",
+    "Regioshuttle",
+    "Stadler Regio-Shuttle",
+    "Baureihe 650",
+    "Regio-Shuttle RS1",
+    "Regio-Shuttle",
+    "RS1",
+    "DBAG-Baureihe 650",
+    "VT 650"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1188054",
+   "p18_file": "Rügen asv2022-08 img11 Bergen Bahnhof.jpg",
+   "p18_quality": 7462,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "China Upgrades VT-4 Tank Used by Pakistan With Anti-Drone Gun, Stronger Armour   China upgrades VT-4 tank for Pakistan with enhanced armor and anti-drone capabilities.   \n China has developed an upgraded version of the VT-4 main battle tank - a key component of Pakistan's armoured fleet - with stronger armour, improved sensors and a larger weapon station, the South China Morning Post reported. \n A",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'China Upgrades VT-4 Tank Used by Pakistan With Anti-Drone Gun, Stronger Armour   China upgrades VT-4 tank for Pakistan with enhanced armor and anti-drone capabilities.   \\n China has developed an upgra'; description: diesel multiple unit"
+  },
+  {
+   "name": "East Asia Summit",
+   "aliases": [
+    "East Asia Summit",
+    "EAS"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q542549",
+   "p18_file": "18th East Asia Summit, Jakarta, Indonesia (1).jpg",
+   "p18_quality": 4000,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Modi Heads to Manila for ASEAN-India and East Asia Summits   <div class=\"key-takeaways\"><ul>\n<li>Prime Minister Narendra Modi travels to Manila on November 16 for the 23rd ASEAN-India Summit and the 21st East Asia Summit, with both leaders' meetings held on November 17.</li>\n<li>Maritime security, regional stability and trade top the agenda; India is pushing for an early conclusion of the review o",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Modi Heads to Manila for ASEAN-India and East Asia Summits   <div class=\"key-takeaways\"><ul>\\n<li>Prime Minister Narendra Modi travels to Manila on November 16 for the 23rd ASEAN-India Summit and the 2'; description: group of 16 nations from ASEAN, North-east Asia and Australasia"
+  },
+  {
+   "name": "Nikhil Gupta",
+   "aliases": [
+    "Nikhil Gupta"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q22088128",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "US Seeks 293-Month Term for Nikhil Gupta in Pannun Murder-for-Hire Plot   <div class=\"key-takeaways\"><ul>\n<li>US prosecutors have asked a New York federal court to sentence Indian national Nikhil Gupta to 293 months in prison — just over 24 years — for his role in the plot to assassinate Sikh separatist Gurpatwant Singh Pannun in New York.</li>\n<li>Gupta's lawyers have asked for 12 years, backing ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'US Seeks 293-Month Term for Nikhil Gupta in Pannun Murder-for-Hire Plot   <div class=\"key-takeaways\"><ul>\\n<li>US prosecutors have asked a New York federal court to sentence Indian national Nikhil Gupt'; description: Indian American materials scientist"
+  },
+  {
+   "name": "Gurpatwant Singh Pannun",
+   "aliases": [
+    "Gurpatwant Singh Pannun"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q117213347",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "US Seeks 293-Month Term for Nikhil Gupta in Pannun Murder-for-Hire Plot   <div class=\"key-takeaways\"><ul>\n<li>US prosecutors have asked a New York federal court to sentence Indian national Nikhil Gupta to 293 months in prison — just over 24 years — for his role in the plot to assassinate Sikh separatist Gurpatwant Singh Pannun in New York.</li>\n<li>Gupta's lawyers have asked for 12 years, backing ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'US Seeks 293-Month Term for Nikhil Gupta in Pannun Murder-for-Hire Plot   <div class=\"key-takeaways\"><ul>\\n<li>US prosecutors have asked a New York federal court to sentence Indian national Nikhil Gupt'; description: U.S.-Canadian activist"
+  },
+  {
+   "name": "Gates Foundation",
+   "aliases": [
+    "Gates Foundation",
+    "B&MGF",
+    "Bill and Melinda Gates Foundation",
+    "gatesfoundation.org",
+    "BMGF",
+    "Bill & Melinda Gates Foundation"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q655286",
+   "p18_file": "Bill and Melinda Gates Foundation front.JPG",
+   "p18_quality": 3872,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Gates Foundation Pledges Up to $1 Billion for Family Planning Through 2030   <div class=\"key-takeaways\"><ul>\n<li>The Gates Foundation said Monday it plans to commit up to US$1 billion through 2030 to family planning and women's health, announced at the Copenhagen Summit on Gender Equality and Women's and Girls' Rights.</li>\n<li>The planned portfolio: US$694 million for family planning, US$158 mill",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Gates Foundation Pledges Up to $1 Billion for Family Planning Through 2030   <div class=\"key-takeaways\"><ul>\\n<li>The Gates Foundation said Monday it plans to commit up to US$1 billion through 2030 to '; description: private foundation founded by Bill and Melinda Gates"
+  },
+  {
+   "name": "Open Doors",
+   "aliases": [
+    "Open Doors"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q1196789",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Indian Students in the US Fall 6.5% as Postgraduate Enrolments Drop by a Third   <div class=\"key-takeaways\"><ul>\n<li>Indian students in the US fell 6.5% to 339,435 in 2025-26, the first annual decline in five years, according to the Open Doors 2026 report released Monday — though India remained the largest sender for a third straight year.</li>\n<li>The drop was driven by postgraduate study: Indian",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Indian Students in the US Fall 6.5% as Postgraduate Enrolments Drop by a Third   <div class=\"key-takeaways\"><ul>\\n<li>Indian students in the US fell 6.5% to 339,435 in 2025-26, the first annual decline'; description: Christian evangelistic organization"
+  },
+  {
+   "name": "Optional Practical Training",
+   "aliases": [
+    "Optional Practical Training",
+    "OPT"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q16931401",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Indian Students in the US Fall 6.5% as Postgraduate Enrolments Drop by a Third   <div class=\"key-takeaways\"><ul>\n<li>Indian students in the US fell 6.5% to 339,435 in 2025-26, the first annual decline in five years, according to the Open Doors 2026 report released Monday — though India remained the largest sender for a third straight year.</li>\n<li>The drop was driven by postgraduate study: Indian",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Indian Students in the US Fall 6.5% as Postgraduate Enrolments Drop by a Third   <div class=\"key-takeaways\"><ul>\\n<li>Indian students in the US fell 6.5% to 339,435 in 2025-26, the first annual decline'; description: authorized foreign student training period in United States"
+  },
+  {
+   "name": "Institute of International Education",
+   "aliases": [
+    "Institute of International Education",
+    "IIE"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q6040460",
+   "p18_file": "IIE Logo Board in Reception Room at NYC Headquarters.jpg",
+   "p18_quality": 1632,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Indian Students in the US Fall 6.5% as Postgraduate Enrolments Drop by a Third   <div class=\"key-takeaways\"><ul>\n<li>Indian students in the US fell 6.5% to 339,435 in 2025-26, the first annual decline in five years, according to the Open Doors 2026 report released Monday — though India remained the largest sender for a third straight year.</li>\n<li>The drop was driven by postgraduate study: Indian",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Indian Students in the US Fall 6.5% as Postgraduate Enrolments Drop by a Third   <div class=\"key-takeaways\"><ul>\\n<li>Indian students in the US fell 6.5% to 339,435 in 2025-26, the first annual decline'; description: non-profit organization in the USA"
+  },
+  {
+   "name": "Jefferies & Company",
+   "aliases": [
+    "Jefferies",
+    "Jefferies & Company",
+    "Jefferies Group",
+    "Jefferies LLC",
+    "Jefferies Group LLC"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q325789",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Jefferies Keeps Buy Ratings on Six Adani Stocks, Backs $51 Billion Capex Plan   <div class=\"key-takeaways\"><ul>\n<li>Jefferies has reaffirmed Buy ratings on all six Adani Group companies it covers, calling the group a \"hard-asset play\" built on infrastructure with predictable cash flows.</li>\n<li>The brokerage expects the group's combined EBITDA and earnings per share to grow at a 23% compound annu",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Jefferies Keeps Buy Ratings on Six Adani Stocks, Backs $51 Billion Capex Plan   <div class=\"key-takeaways\"><ul>\\n<li>Jefferies has reaffirmed Buy ratings on all six Adani Group companies it covers, cal'; description: company"
+  },
+  {
+   "name": "Adani Group",
+   "aliases": [
+    "Adani",
+    "Adani Group"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q4680631",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Jefferies Keeps Buy Ratings on Six Adani Stocks, Backs $51 Billion Capex Plan JEFFERIES BACKS SIX ADANI STOCKS AND $51 BILLION CAPEX",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Jefferies Keeps Buy Ratings on Six Adani Stocks, Backs $51 Billion Capex Plan JEFFERIES BACKS SIX ADANI STOCKS AND $51 BILLION CAPEX'; description: Indian conglomerate"
+  },
+  {
+   "name": "International Champions Cup",
+   "aliases": [
+    "ICC",
+    "International Champions Cup",
+    "Guinness Cup"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q16841334",
+   "p18_file": "Real Madrid vs. Manchester United August 2nd, 2014.jpg",
+   "p18_quality": 3264,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "India Lands 2029 Champions Trophy and 2031 World Cup in ICC Calendar to 2035 INDIA LANDS 2029 CHAMPIONS TROPHY AND 2031 WORLD CUP The ICC Board, meeting in Bali, approved its men's events calendar through 2035: India hosts the Champions Trophy in October 2029 and co-hosts the 2031 Cricket World Cup with Bangladesh. India are the tournament's current holders, so the 2029 edition is a home defence o",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: \"India Lands 2029 Champions Trophy and 2031 World Cup in ICC Calendar to 2035 INDIA LANDS 2029 CHAMPIONS TROPHY AND 2031 WORLD CUP The ICC Board, meeting in Bali, approved its men's events calendar thr\"; description: preseason association football tournament"
+  },
+  {
+   "name": "Bangladesh",
+   "aliases": [
+    "Bangladesh",
+    "People's Republic of Bangladesh",
+    "bd",
+    "Bangla Desh",
+    "Land of Bengal",
+    "Country of Bengal"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q902",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "India Lands 2029 Champions Trophy and 2031 World Cup in ICC Calendar to 2035 INDIA LANDS 2029 CHAMPIONS TROPHY AND 2031 WORLD CUP The ICC Board, meeting in Bali, approved its men's events calendar through 2035: India hosts the Champions Trophy in October 2029 and co-hosts the 2031 Cricket World Cup with Bangladesh. India are the tournament's current holders, so the 2029 edition is a home defence o",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: \"India Lands 2029 Champions Trophy and 2031 World Cup in ICC Calendar to 2035 INDIA LANDS 2029 CHAMPIONS TROPHY AND 2031 WORLD CUP The ICC Board, meeting in Bali, approved its men's events calendar thr\"; description: country in South Asia"
+  },
+  {
+   "name": "Jay Shah",
+   "aliases": [
+    "Jay Shah",
+    "Jay Amitbhai Shah"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q85770988",
+   "p18_file": "Jay Amitbhai Shah.jpg",
+   "p18_quality": 2933,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Jay Shah Reappointed Unopposed as ICC Chair for Second Term   <div class=\"key-takeaways\"><ul><li>Jay Shah has been reappointed unopposed as ICC Chair for a second term, confirmed by the ICC Board at its meetings in Bali following a proposal by the ICC directors.</li><li>His second term covers cricket's return to the Olympic Games at Los Angeles 2028 and the ICC Men's Cricket World Cup 2027 in Sout",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Jay Shah Reappointed Unopposed as ICC Chair for Second Term   <div class=\"key-takeaways\"><ul><li>Jay Shah has been reappointed unopposed as ICC Chair for a second term, confirmed by the ICC Board at i'; description: Indian businessman and cricket administrator"
+  },
+  {
+   "name": "Olympic Games",
+   "aliases": [
+    "Olympic Games",
+    "Olympics"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q5389",
+   "p18_file": "Olympic flag.svg",
+   "p18_quality": 900,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Jay Shah Reappointed Unopposed as ICC Chair for Second Term   <div class=\"key-takeaways\"><ul><li>Jay Shah has been reappointed unopposed as ICC Chair for a second term, confirmed by the ICC Board at its meetings in Bali following a proposal by the ICC directors.</li><li>His second term covers cricket's return to the Olympic Games at Los Angeles 2028 and the ICC Men's Cricket World Cup 2027 in Sout",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Jay Shah Reappointed Unopposed as ICC Chair for Second Term   <div class=\"key-takeaways\"><ul><li>Jay Shah has been reappointed unopposed as ICC Chair for a second term, confirmed by the ICC Board at i'; description: major international multi-sport event organised by International Olympic Committee"
+  },
+  {
+   "name": "Piyush Goyal",
+   "aliases": [
+    "Piyush Goyal",
+    "Piyush Vedprakash Goyal"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q7199798",
+   "p18_file": "Piyush Goyal (cropped).jpg",
+   "p18_quality": 622,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Goyal Asks India, Egypt Startups to Co-Build Payments, Health Tech   <div class=\"key-takeaways\"><ul><li>Commerce Minister Piyush Goyal addressed the Egypt-India Startup Forum in Cairo on November 16, urging founders in both countries to build businesses that compete globally “from the Nile to the Ganga.”</li><li>Fintech leads the pitch: Goyal proposed co-building cross-border payment systems on In",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Goyal Asks India, Egypt Startups to Co-Build Payments, Health Tech   <div class=\"key-takeaways\"><ul><li>Commerce Minister Piyush Goyal addressed the Egypt-India Startup Forum in Cairo on November 16, '; description: Indian politician"
+  },
+  {
+   "name": "Form I-20",
+   "aliases": [
+    "Form I-",
+    "Form I-20",
+    "ICE Form I-20",
+    "I-20 (form)",
+    "Certificate of Eligibility for Nonimmigrant Student Status"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q9366036",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-context",
+   "resolved_confidence": "high",
+   "resolved_context": "Comment Window Closes on Plan to End Deference for H-1B Extensions   <div class=\"key-takeaways\"><ul><li>The public comment period on the proposal to end deference for work-visa extensions closed on November 13, 2026. Nothing has changed yet: the deference regulation stays in force unless DHS publishes a final rule.</li><li>The proposal would delete 8 CFR 214.1(c)(5), the sentence that tells USCIS ",
+   "notes": "auto-resolved via wikidata-context (confidence high); context: 'Comment Window Closes on Plan to End Deference for H-1B Extensions   <div class=\"key-takeaways\"><ul><li>The public comment period on the proposal to end deference for work-visa extensions closed on No'; description: U.S. Department of Homeland Security form"
+  },
+  {
+   "name": "masala",
+   "aliases": [
+    "Masala",
+    "masala"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q654253",
+   "p18_file": "Garam Masala.JPG",
+   "p18_quality": 2816,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Masala Omelette, Anda Bhurji Make TasteAtlas 50 Best Egg Dishes   <div class=\"key-takeaways\"><ul><li>Masala omelette placed 20th and anda bhurji 35th on TasteAtlas's ranking of the world's best egg dishes, in the list current to November 15, 2026.</li><li>Japan's ajitsuke tamago — soft-boiled eggs soaked in mirin and soy sauce — took the No. 1 spot, ahead of Greece's strapatsada and Spain's tortil",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Masala Omelette, Anda Bhurji Make TasteAtlas 50 Best Egg Dishes   <div class=\"key-takeaways\"><ul><li>Masala omelette placed 20th and anda bhurji 35th on TasteAtlas\\'s ranking of the world\\'s best egg di'; description: mixture of spices"
+  },
+  {
+   "name": "TasteAtlas",
+   "aliases": [
+    "TasteAtlas",
+    "Taste Atlas",
+    "World Food Atlas"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q61184936",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Masala Omelette, Anda Bhurji Make TasteAtlas 50 Best Egg Dishes   <div class=\"key-takeaways\"><ul><li>Masala omelette placed 20th and anda bhurji 35th on TasteAtlas's ranking of the world's best egg dishes, in the list current to November 15, 2026.</li><li>Japan's ajitsuke tamago — soft-boiled eggs soaked in mirin and soy sauce — took the No. 1 spot, ahead of Greece's strapatsada and Spain's tortil",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Masala Omelette, Anda Bhurji Make TasteAtlas 50 Best Egg Dishes   <div class=\"key-takeaways\"><ul><li>Masala omelette placed 20th and anda bhurji 35th on TasteAtlas\\'s ranking of the world\\'s best egg di'; description: food and drink website"
+  },
+  {
+   "name": "Kunal Bahl",
+   "aliases": [
+    "Kunal Bahl"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q19665061",
+   "p18_file": "Kunal Bahl - Kolkata 2015-05-21 0530.JPG",
+   "p18_quality": 4000,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Kunal Bahl's 2007 H-1B Rejection at Microsoft Led Him to Build Snapdeal   <div class=\"key-takeaways\"><ul><li>Kunal Bahl, who co-founded Snapdeal and the investment firm Titan Capital, has recalled in a Business Insider essay how his H-1B petition was rejected in June or July 2007, while he was working at Microsoft in the United States.</li><li>Microsoft suggested he work from its India office and ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Kunal Bahl\\'s 2007 H-1B Rejection at Microsoft Led Him to Build Snapdeal   <div class=\"key-takeaways\"><ul><li>Kunal Bahl, who co-founded Snapdeal and the investment firm Titan Capital, has recalled in '; description: Indian entrepreneur"
+  },
+  {
+   "name": "Rohit Bansal",
+   "aliases": [
+    "Rohit Bansal"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q19664925",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Kunal Bahl's 2007 H-1B Rejection at Microsoft Led Him to Build Snapdeal   <div class=\"key-takeaways\"><ul><li>Kunal Bahl, who co-founded Snapdeal and the investment firm Titan Capital, has recalled in a Business Insider essay how his H-1B petition was rejected in June or July 2007, while he was working at Microsoft in the United States.</li><li>Microsoft suggested he work from its India office and ",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Kunal Bahl\\'s 2007 H-1B Rejection at Microsoft Led Him to Build Snapdeal   <div class=\"key-takeaways\"><ul><li>Kunal Bahl, who co-founded Snapdeal and the investment firm Titan Capital, has recalled in '; description: Indian businessman"
+  },
+  {
+   "name": "HSBC",
+   "aliases": [
+    "HSBC",
+    "HSBC Holdings plc",
+    "Hong Kong and Shanghai Banking Corporation",
+    "Hongkong and Shanghai Banking Corporation Limited",
+    "HSBC Bank USA",
+    "Bital"
+   ],
+   "type": "company",
+   "wikidata_qid": "Q190464",
+   "p18_file": "8-Canada-Square (cropped).jpg",
+   "p18_quality": 809,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Foreign Investors Pump $7.5 Billion Into Indian Equities in Ten Sessions FOREIGN INVESTORS PUMP $7.5 BILLION INTO INDIAN EQUITIES IN TEN SESSIONS Foreign portfolio investors pumped $7.5 billion into Indian equities in the first 10 trading sessions of November, the highest monthly inflow in five years, reversing a year of heavy FPI selling. With more than a week of November trading left, the inflow",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Foreign Investors Pump $7.5 Billion Into Indian Equities in Ten Sessions FOREIGN INVESTORS PUMP $7.5 BILLION INTO INDIAN EQUITIES IN TEN SESSIONS Foreign portfolio investors pumped $7.5 billion into I'; description: British multinational bank"
+  },
+  {
+   "name": "Anand Venkatraman",
+   "aliases": [
+    "Anand Venkatraman"
+   ],
+   "type": "person",
+   "wikidata_qid": "Q42830325",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "low",
+   "resolved_context": "Freshworks Alumni Raise $53 Million for Dreamteam, an AI-Native CRM Challenger   <div class=\"key-takeaways\"><ul>\n<li>Dreamteam, an AI-native CRM startup founded in 2025 by three former Freshworks executives, has raised $53 million across a seed round led by Together Fund and a Series A led by Accel, with Premji Invest participating.</li>\n<li>Its CRM replaces manual data entry with a \"Company Brain",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence low); context: 'Freshworks Alumni Raise $53 Million for Dreamteam, an AI-Native CRM Challenger   <div class=\"key-takeaways\"><ul>\\n<li>Dreamteam, an AI-native CRM startup founded in 2025 by three former Freshworks exec'; description: researcher"
+  },
+  {
+   "name": "multidrug-resistant tuberculosis",
+   "aliases": [
+    "MDR TB",
+    "multidrug-resistant tuberculosis",
+    "Vank's Disease",
+    "MDR-TB",
+    "Multidrug-Resistant TB",
+    "multiple-drug-resistant tuberculosis"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q866602",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Two Old Antibiotics Together Reverse Isoniazid Resistance in Drug-Resistant TB, IISc Study Finds   <div class=\"key-takeaways\"><ul>\n<li>Researchers at the Indian Institute of Science (IISc), Bengaluru, found that pairing isoniazid with vancomycin reversed isoniazid resistance in drug-resistant tuberculosis bacteria, in laboratory tests on patient-derived strains and in mice.</li>\n<li>The combinatio",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Two Old Antibiotics Together Reverse Isoniazid Resistance in Drug-Resistant TB, IISc Study Finds   <div class=\"key-takeaways\"><ul>\\n<li>Researchers at the Indian Institute of Science (IISc), Bengaluru,'; description: tuberculosis that is resistant to isoniazid and rifampicin, the two most powerful first-line anti-TB drugs"
+  },
+  {
+   "name": "Indian Institute of Science, Bengaluru",
+   "aliases": [
+    "Indian Institute of Science",
+    "Indian Institute of Science, Bengaluru",
+    "IISC",
+    "IISc"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q948720",
+   "p18_file": "Sheeju iisc.jpg",
+   "p18_quality": 1024,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "high",
+   "resolved_context": "Two Old Antibiotics Together Reverse Isoniazid Resistance in Drug-Resistant TB, IISc Study Finds   <div class=\"key-takeaways\"><ul>\n<li>Researchers at the Indian Institute of Science (IISc), Bengaluru, found that pairing isoniazid with vancomycin reversed isoniazid resistance in drug-resistant tuberculosis bacteria, in laboratory tests on patient-derived strains and in mice.</li>\n<li>The combinatio",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence high); context: 'Two Old Antibiotics Together Reverse Isoniazid Resistance in Drug-Resistant TB, IISc Study Finds   <div class=\"key-takeaways\"><ul>\\n<li>Researchers at the Indian Institute of Science (IISc), Bengaluru,'; description: public university for scientific research and higher education in Bengaluru"
+  },
+  {
+   "name": "United States Department of Homeland Security",
+   "aliases": [
+    "DHS",
+    "United States Department of Homeland Security",
+    "Homeland Security",
+    "USDHS",
+    "Department of Homeland Security",
+    "US Department of Homeland Security",
+    "U.S. Department of Homeland Security",
+    "Homeland Security Department"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q11231",
+   "p18_file": "DHS Secretary Alejandro Mayorkas Flag Raising Ceremony (50914852532).jpg",
+   "p18_quality": 2328,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Comment Window Closes on Plan to End Deference for H-1B Extensions COMMENT WINDOW CLOSES ON PLAN TO END DEFERENCE FOR H-1B EXTENSIONS The public comment period on the proposal to end deference for work-visa extensions closed on November 13, 2026, and the deference regulation stays in force unless DHS publishes a final rule. There is nothing to file now; the next step is DHS publishing a final rule",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Comment Window Closes on Plan to End Deference for H-1B Extensions COMMENT WINDOW CLOSES ON PLAN TO END DEFERENCE FOR H-1B EXTENSIONS The public comment period on the proposal to end deference for wor'; description: United States federal executive department"
+  },
+  {
+   "name": "deference",
+   "aliases": [
+    "Deference",
+    "deference",
+    "submission",
+    "passivity"
+   ],
+   "type": "other",
+   "wikidata_qid": "Q396568",
+   "p18_file": null,
+   "p18_quality": null,
+   "has_local_instances": false,
+   "official_domain": null,
+   "confusables": [],
+   "blocked_files": [],
+   "resolved_method": "wikidata-sitelinks",
+   "resolved_confidence": "medium",
+   "resolved_context": "Comment Window Closes on Plan to End Deference for H-1B Extensions COMMENT WINDOW CLOSES ON PLAN TO END DEFERENCE FOR H-1B EXTENSIONS The public comment period on the proposal to end deference for work-visa extensions closed on November 13, 2026, and the deference regulation stays in force unless DHS publishes a final rule. There is nothing to file now; the next step is DHS publishing a final rule",
+   "notes": "auto-resolved via wikidata-sitelinks (confidence medium); context: 'Comment Window Closes on Plan to End Deference for H-1B Extensions COMMENT WINDOW CLOSES ON PLAN TO END DEFERENCE FOR H-1B EXTENSIONS The public comment period on the proposal to end deference for wor'; description: condition of submitting to the espoused, legitimate influence of one's superior or superiors"
   }
  ]
 }

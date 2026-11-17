@@ -1,0 +1,179 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "fpi-7-5-billion-november-indian-equities-five-year-high",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Foreign Investors Pump $7.5 Billion Into Indian Equities in Ten Sessions",
+        "numbers": [
+          7.5,
+          7500000000.0
+        ],
+        "entities": [
+          "Foreign Investors Pump",
+          "Billion Into Indian Equities",
+          "Ten Sessions"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states FPIs pumped $7.5 billion in ten sessions.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The November inflow is the highest monthly figure in five years, reversing a year of heavy FPI selling.",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms November's inflow is the highest in five years.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "FPIs pumped $7.5 billion into Indian equities in the first 10 trading sessions of November, the highest monthly inflow in five years",
+        "numbers": [
+          7.5,
+          10.0,
+          7500000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This fact is directly stated in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "FPIs pulled $13.23 billion in March alone, and withdrew $2.17 billion in October and $3.46 billion in September",
+        "numbers": [
+          2.17,
+          3.46,
+          13.23,
+          2170000000.0,
+          3460000000.0,
+          13230000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "All withdrawal amounts are accurately reported in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Domestic institutions sold more than Rs 49,000 crore in the same 10 sessions as the Sensex and Nifty gained nearly 10%",
+        "numbers": [
+          10.0,
+          49000.0,
+          490000000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states domestic institutions sold over Rs 49,000 crore.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Nilesh Shah",
+        "numbers": [],
+        "entities": [
+          "Nilesh Shah"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Nilesh Shah is mentioned in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Managing Director, Kotak Mahindra AMC",
+        "numbers": [],
+        "entities": [
+          "Managing Director",
+          "Kotak Mahindra AMC"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Nilesh Shah as Managing Director of Kotak Mahindra AMC.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Foreign Investors Pump $7.5 Billion Into Indian Equities in Ten Sessions",
+        "numbers": [
+          7.5,
+          7500000000.0
+        ],
+        "entities": [
+          "Foreign Investors Pump",
+          "Billion Into Indian Equities",
+          "Ten Sessions"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000545,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

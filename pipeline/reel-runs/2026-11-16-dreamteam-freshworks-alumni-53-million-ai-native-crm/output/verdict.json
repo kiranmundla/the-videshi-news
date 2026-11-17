@@ -1,0 +1,24 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "dreamteam-freshworks-alumni-53-million-ai-native-crm",
+  "name": "dreamteam-freshworks-alumni-53-million-ai-native-crm",
+  "script": "reel-runs/2026-11-16-dreamteam-freshworks-alumni-53-million-ai-native-crm/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000691
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-16-dreamteam-freshworks-alumni-53-million-ai-native-crm/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "detail": "Inter cannot fit 'BUILT-IN AI AGENTS HANDLING RESEARCH, MEETING PREPARATION, PIPELINE MONITORING AND SYSTEM ADMINISTRATION'"
+}

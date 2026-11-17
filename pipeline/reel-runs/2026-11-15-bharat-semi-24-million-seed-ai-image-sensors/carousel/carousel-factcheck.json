@@ -1,0 +1,196 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "bharat-semi-24-million-seed-ai-image-sensors",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Bharat Semi Raises $24 Million Seed Round to Build AI Image Sensors in India",
+        "numbers": [
+          24.0,
+          24000000.0
+        ],
+        "entities": [
+          "Bharat Semi Raises",
+          "Million Seed Round",
+          "Build AI Image Sensors"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Bharat Semi raised $24 million for AI image sensors.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The New Delhi startup, still pre-revenue, says it has design wins with General Atomics and Kaynes Semicon and targets first commercial production in 2027.",
+        "numbers": [
+          2027.0
+        ],
+        "entities": [
+          "New Delhi",
+          "General Atomics",
+          "Kaynes Semicon"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027
+          ]
+        },
+        "llm_reason": "The article confirms the startup is pre-revenue and has design wins, targeting 2027 production.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "$24 million raised in an all-equity seed round led by Info Edge Group, South Park Commons and Indus Bridge Ventures",
+        "numbers": [
+          24.0,
+          24000000.0
+        ],
+        "entities": [
+          "Info Edge Group",
+          "South Park Commons",
+          "Indus Bridge Ventures"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article details the $24 million seed round led by these investors.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Design wins with General Atomics and Kaynes Semicon, with first commercial production targeted for 2027",
+        "numbers": [
+          2027.0
+        ],
+        "entities": [
+          "General Atomics",
+          "Kaynes Semicon"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027
+          ]
+        },
+        "llm_reason": "The article mentions design wins and targets commercial production in 2027.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "About 75 employees across India and the United States, including 10 to 12 in Santa Clara",
+        "numbers": [
+          10.0,
+          12.0,
+          75.0
+        ],
+        "entities": [
+          "United States",
+          "Santa Clara"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the employee count and locations accurately.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Vrinda Kapoor",
+        "numbers": [],
+        "entities": [
+          "Vrinda Kapoor"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Vrinda Kapoor is mentioned as co-founder in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Co-founder, Bharat Semi",
+        "numbers": [],
+        "entities": [
+          "Bharat Semi"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies her as co-founder of Bharat Semi.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Bharat Semi Raises $24 Million Seed Round to Build AI Image Sensors in India",
+        "numbers": [
+          24.0,
+          24000000.0
+        ],
+        "entities": [
+          "Bharat Semi Raises",
+          "Million Seed Round",
+          "Build AI Image Sensors"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000521,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

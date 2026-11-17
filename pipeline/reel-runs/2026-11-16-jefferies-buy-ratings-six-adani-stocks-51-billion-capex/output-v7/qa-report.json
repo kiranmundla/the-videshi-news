@@ -1,0 +1,218 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/output-v7/jefferies-buy-ratings-six-adani-stocks-51-billion-capex.mp4",
+  "qa_passed": false,
+  "qa_score": 7.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [
+    "edge_overflow:news"
+  ],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1600,
+        981
+      ],
+      "manifest_dims": [
+        1600,
+        981
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 936.0,
+      "url": "https://nation-press.s3.ap-south-1.amazonaws.com/adani_group_a_hard_asset_play_jefferies_bullish_on_six_firms_amid_51_billion_capex_banner_aa72aebb_71ce_4ebc_b18a_150314583a7a_3fd206c71a.webp"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/output-v7/qa/frames/frame-hook.png",
+      "text_px_detected": 32827,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.67)",
+        "box": [
+          658,
+          112,
+          279,
+          423
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/output-v7/qa/frames/frame-news.png",
+      "text_px_detected": 39319,
+      "edge": {
+        "pass": false,
+        "offending_px": 179,
+        "clusters": 1,
+        "largest_cluster": 85
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.91)",
+        "box": [
+          496,
+          768,
+          71,
+          85
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 30.4,
+        "delta": 223.4
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/output-v7/qa/frames/frame-hero.png",
+      "text_px_detected": 36572,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          661,
+          134,
+          277,
+          404
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 172.6,
+        "bg_luminance": 0.0,
+        "delta": 172.6
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/output-v7/qa/frames/frame-grid.png",
+      "text_px_detected": 59463,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          663,
+          128,
+          281,
+          409
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.4,
+        "bg_luminance": 0.0,
+        "delta": 253.4
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/output-v7/qa/frames/frame-diaspora.png",
+      "text_px_detected": 43975,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          664,
+          122,
+          284,
+          415
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/output-v7/qa/frames/frame-payoff.png",
+      "text_px_detected": 27472,
+      "edge": {
+        "pass": true,
+        "offending_px": 0,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "manifest-mapped",
+        "box": [
+          666,
+          117,
+          288,
+          420
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 0.0,
+        "delta": 253.9
+      }
+    }
+  ]
+}

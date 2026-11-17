@@ -1,0 +1,119 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "fpi-7-5-billion-november-indian-equities-five-year-high",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "HSBC",
+    "Nifty 50",
+    "Sensex",
+    "Foreign",
+    "Foreign Investors Pump",
+    "Billion Into Indian Equities"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Nifty 50' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Foreign' named 'foreign policy', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Foreign Investors Pump' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Billion Into Indian Equities' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:8-Canada-Square (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q190464)",
+      "verdict": "rejected",
+      "reason": "resolution: 809x1435 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Downtown highrise Miami FL USA 1601.jpg",
+      "route": "identity \u2014 depicts (P180=Q190464)",
+      "verdict": "USED (diaspora)",
+      "reason": "1932x2576, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:First Norwich 13 Turquoise Line Bus Wymondham.jpg",
+      "route": "identity \u2014 depicts (P180=Q190464)",
+      "verdict": "USED (news)",
+      "reason": "3993x2995, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Bombay Stock Exchange 3.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q796994)",
+      "verdict": "rejected",
+      "reason": "resolution: 428x572 \u2014 below the 1080x600 floor; would force an upscale"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "first-norwich-13-turquoise-line-bus-wymondha",
+      "path": "first-norwich-13-turquoise-line-bus-wymondha.jpg",
+      "size": [
+        3993,
+        2995
+      ],
+      "role": "establishing",
+      "subject": "A First Norwich Turquoise Line bus on Market Street in Wymondham, Norfolk.",
+      "route": "identity \u2014 depicts (P180=Q190464)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:First_Norwich_13_Turquoise_Line_Bus_Wymondham.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/4/45/First_Norwich_13_Turquoise_Line_Bus_Wymondham.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "artist": "Sebastiandoe5",
+      "entity": "HSBC",
+      "entity_type": "company",
+      "entity_aliases": [
+        "HSBC Holdings plc",
+        "Hong Kong and Shanghai Banking Corporation",
+        "Hongkong and Shanghai Banking Corporation Limited",
+        "HSBC Bank USA",
+        "Bital"
+      ]
+    },
+    {
+      "beat": "diaspora",
+      "label": "downtown-highrise-miami-fl-usa-1601",
+      "path": "downtown-highrise-miami-fl-usa-1601.jpg",
+      "size": [
+        1932,
+        2576
+      ],
+      "role": "establishing",
+      "subject": "Miami, 5/13/07.",
+      "route": "identity \u2014 depicts (P180=Q190464)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Downtown_highrise_Miami_FL_USA_1601.jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Downtown_highrise_Miami_FL_USA_1601.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public domain",
+      "artist": "Miami92 at English Wikipedia",
+      "entity": "HSBC",
+      "entity_type": "company",
+      "entity_aliases": [
+        "HSBC Holdings plc",
+        "Hong Kong and Shanghai Banking Corporation",
+        "Hongkong and Shanghai Banking Corporation Limited",
+        "HSBC Bank USA",
+        "Bital"
+      ]
+    }
+  ]
+}

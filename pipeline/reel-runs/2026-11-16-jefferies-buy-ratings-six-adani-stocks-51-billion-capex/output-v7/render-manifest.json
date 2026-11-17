@@ -1,0 +1,396 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "jefferies-buy-ratings-six-adani-stocks-51-billion-capex",
+ "article_slug": "jefferies-buy-ratings-six-adani-stocks-51-billion-capex",
+ "article_id": "8313ed44-0d24-47e1-a8c9-bb0c50685f38",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/output-v7/jefferies-buy-ratings-six-adani-stocks-51-billion-capex.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://nation-press.s3.ap-south-1.amazonaws.com/adani_group_a_hard_asset_play_jefferies_bullish_on_six_firms_amid_51_billion_capex_banner_aa72aebb_71ce_4ebc_b18a_150314583a7a_3fd206c71a.webp",
+  "local_path": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/output-v7/hero.webp",
+  "width": 1600,
+  "height": 981,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.76)",
+  "has_face": true,
+  "box_source": [
+   1098,
+   -21,
+   518,
+   755
+  ],
+  "box_bg": [
+   658,
+   145,
+   270,
+   394
+  ],
+  "chin_bg": 539,
+  "anchor": [
+   0.851,
+   0.361
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   511
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 731,
+   "zone_h": 825,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 962,
+   "block_bottom": 1325,
+   "text_bbox": [
+    70,
+    962,
+    930,
+    1325
+   ],
+   "texts": [
+    "Markets Finance",
+    "JEFFERIES BACKS SIX ADANI STOCKS AND $51 BILLION CAPEX"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.521,
+    "photo_px": [
+     1600,
+     981
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 511,
+     "scale": 0.52125,
+     "window": [
+      0,
+      0,
+      1600,
+      980
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.96x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 909,
+   "zone_h": 671,
+   "scale": 1.0,
+   "content_h": 388,
+   "block_top": 1192,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1192,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "Jefferies has reaffirmed Buy ratings on all six Adani Group companies it covers, calling the group a hard-asset play built on infrastructure with predictable cash flows."
+   ],
+   "v7": {
+    "image_source": "extra:bronte-45332993701",
+    "track": "full-bleed",
+    "render_scale": 0.784,
+    "photo_px": [
+     3264,
+     2448
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.7843137254901961,
+     "window": [
+      1809,
+      0,
+      3186,
+      2448
+     ]
+    },
+    "track_note": null,
+    "provenance": {
+     "subject": "Bronte",
+     "route": "identity \u2014 depicts (P180=Q4680631)",
+     "source_page": "https://commons.wikimedia.org/wiki/File:Bronte_(45332993701).jpg",
+     "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Bronte_%2845332993701%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+     "license": "CC BY 2.0",
+     "artist": "Stop Adani"
+    }
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 731,
+   "zone_h": 825,
+   "scale": 1.0,
+   "content_h": 384,
+   "block_top": 951,
+   "block_bottom": 1335,
+   "text_bbox": [
+    70,
+    951,
+    930,
+    1335
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$51 BILLION",
+    "Planned Adani Group capital spending between FY27 and FY29"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.592,
+    "photo_px": [
+     1600,
+     981
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 511,
+     "scale": 0.5923295454545454,
+     "window": [
+      192,
+      0,
+      1600,
+      862
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.96x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 731,
+   "zone_h": 825,
+   "scale": 1.0,
+   "content_h": 756,
+   "block_top": 765,
+   "block_bottom": 1521,
+   "text_bbox": [
+    70,
+    765,
+    930,
+    1521
+   ],
+   "texts": [
+    "By The Numbers",
+    "23%",
+    "Projected compound annual growth in group EBITDA and earnings per share, FY26 to FY29",
+    "OVER 65%",
+    "Share of group funds from operations expected from businesses with predictable cash flows",
+    "27%",
+    "Adani Ports market share, as India's largest private port operator"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1600,
+     981
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 511,
+     "scale": 0.6515625,
+     "window": [
+      320,
+      0,
+      1600,
+      784
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.96x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 731,
+   "zone_h": 825,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 896,
+   "block_bottom": 1391,
+   "text_bbox": [
+    70,
+    896,
+    930,
+    1391
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Jefferies calls the group a hard-asset play on infrastructure with predictable cash flows",
+    "Jefferies itself flags elevated leverage and execution risk on the capex programme"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1600,
+     981
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 511,
+     "scale": 0.6515625,
+     "window": [
+      320,
+      0,
+      1600,
+      784
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.96x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 358,
+   "block_top": 681,
+   "block_bottom": 1039,
+   "text_bbox": [
+    70,
+    681,
+    930,
+    1039
+   ],
+   "texts": [
+    "The Takeaway",
+    "The 23% growth projection depends on the $51 billion investment programme being delivered on schedule.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/tech-corporate-technology.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 131.2,
+ "mp4_bytes": 9174116
+}

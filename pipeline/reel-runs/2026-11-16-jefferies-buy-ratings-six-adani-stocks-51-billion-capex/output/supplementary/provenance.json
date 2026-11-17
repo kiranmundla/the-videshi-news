@@ -1,0 +1,72 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "jefferies-buy-ratings-six-adani-stocks-51-billion-capex",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Jefferies",
+    "Adani Group",
+    "Adani Ports",
+    "Adani Enterprises",
+    "Adani",
+    "Billion Capex Plan"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Adani Ports' named 'Adani Ports & SEZ', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Adani' named 'Adani Power', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Billion Capex Plan' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Bengal Global Business Summit - 2022.jpg",
+      "route": "identity \u2014 depicts (P180=Q4680631)",
+      "verdict": "rejected",
+      "reason": "resolution: 600x450 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Bronte (45332993701).jpg",
+      "route": "identity \u2014 depicts (P180=Q4680631)",
+      "verdict": "USED (news)",
+      "reason": "3264x2448, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "news",
+      "label": "bronte-45332993701",
+      "path": "bronte-45332993701.jpg",
+      "size": [
+        3264,
+        2448
+      ],
+      "role": "establishing",
+      "subject": "Bronte",
+      "route": "identity \u2014 depicts (P180=Q4680631)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:Bronte_(45332993701).jpg",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Bronte_%2845332993701%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 2.0",
+      "artist": "Stop Adani",
+      "entity": "Adani Group",
+      "entity_type": "company",
+      "entity_aliases": [
+        "Adani Group"
+      ]
+    }
+  ]
+}

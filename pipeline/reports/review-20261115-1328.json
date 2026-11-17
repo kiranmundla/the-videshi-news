@@ -1,0 +1,84 @@
+[
+  {
+    "id": "41bc4c0a-a1ac-4a55-8e48-289e2c076345",
+    "headline": "Goldman Sachs Sees India Growing 7.2% in 2027, Well Ahead of China's 4.5%",
+    "slug": "goldman-sachs-india-growth-2027-china-forecast",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the consensus estimate for India's growth rate of 6.8% to provide context and credibility. This could involve mentioning which organizations or economists contributed to this consensus.",
+        "Include specific risks associated with the forecasts, such as potential impacts of the Iran conflict or AI spending reductions, to give readers a clearer understanding of the uncertainties involved.",
+        "Add a brief explanation of how the projected growth rates for India and China compare historically, which would provide readers with context about the significance of these forecasts."
+      ],
+      "embed_opportunities": [
+        "Embed the official Goldman Sachs report or a relevant tweet from Goldman Sachs to provide readers with direct access to the source of the forecasts."
+      ]
+    }
+  },
+  {
+    "id": "a3484445-ddfb-4379-b572-a517ac03bfbc",
+    "headline": "India Votes Against UN Moratorium on Death Penalty, Citing Sovereign Right to Se",
+    "slug": "india-votes-against-un-death-penalty-moratorium",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the date of the vote in the first sentence to avoid confusion, as the article mentions November 13, 2026, which is a future date. Ensure that the date is accurate or adjust it to reflect the correct date of the event.",
+        "Provide a clearer explanation of the implications of India's vote against the moratorium. For example, explain how this decision aligns with India's legal framework or its stance on human rights, which would help readers understand the significance of the vote.",
+        "Include a brief background on the death penalty in India and its legal status to give readers context on why India voted the way it did. This could include statistics on the use of the death penalty in India or recent cases that have drawn public attention.",
+        "Reorganize the content to improve flow. Start with the vote results and then explain India's rationale and the context of the resolution. This would help readers grasp the main points more effectively."
+      ],
+      "embed_opportunities": [
+        "Embed the official UN General Assembly tweet announcing the results of the vote to provide readers with direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "b51b56e8-2548-41e9-bdaa-97b25d25c14d",
+    "headline": "Air India Restores Non-Stop Flights to New York, Cutting Travel Time by Five Hou",
+    "slug": "air-india-restores-nonstop-new-york-flights",
+    "category": "travel",
+    "structural_issues": [
+      "Inline caption names venue 'Battery Park' not supported by the image file name (NYC_Downtown_Manhattan_Skyline_seen_from_Paulus_Hook_2019-12\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the announcement; the article states November 15, 2026, which seems to be a typographical error given the context of the news. It should likely be November 15, 2023.",
+        "Include specific flight schedules or times for the newly restored routes to give readers concrete information about when they can book these flights.",
+        "Provide a brief explanation of the implications of the ongoing closure of Pakistan's airspace for travelers and how it may affect future flight operations, especially for those planning to travel to or from India."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Air India announcing the restoration of non-stop flights for real-time updates and credibility."
+      ]
+    }
+  },
+  {
+    "id": "43611319-3a87-4677-88cd-1d29cde00412",
+    "headline": "India Seal ODI Series 3-1 in New Zealand, Hold No. 1 Ranking",
+    "slug": "india-seal-odi-series-new-zealand-no1-ranking",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the match events by providing more specific details about key moments, such as the exact overs when key wickets fell and when the turning point occurred in the match.",
+        "Include quotes from players or coaches to provide a human element and insight into the team's performance and strategy, which would enhance the article's depth and context.",
+        "Add a brief summary of the implications of India's victory for their ranking and future matches, including what this means for their upcoming Test series against New Zealand.",
+        "Ensure that all statistics are clearly attributed to their sources, such as mentioning that the ICC rankings are based on the latest updates from the International Cricket Council."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the ICC or a relevant cricket authority announcing India's victory and their ranking status."
+      ]
+    }
+  }
+]

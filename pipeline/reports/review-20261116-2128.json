@@ -1,0 +1,81 @@
+[
+  {
+    "id": "25e5d17c-33d0-4988-8231-94a1cf8d71b0",
+    "headline": "Freshworks Alumni Raise $53 Million for Dreamteam, an AI-Native CRM Challenger",
+    "slug": "dreamteam-freshworks-alumni-53-million-ai-native-crm",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the funding rounds by specifying the dates of the seed and Series A rounds, as well as the date the company was founded in 2025. This will provide readers with a clearer understanding of the company's growth trajectory.",
+        "Include specific details about what the $53 million will be used for, such as product development, marketing, or hiring, to give readers a better sense of the company's future plans and priorities.",
+        "Provide context on the competitive landscape of AI-native CRM solutions. Mentioning key competitors or market trends could help readers understand the significance of Dreamteam's entry into the market."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from TechCrunch or the founders announcing the funding to provide immediate access to primary sources and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "121d89c2-6ce5-417e-abe5-b3447409f196",
+    "headline": "US Proposes Tougher PERM Green Card Test: 90-Day Recruitment, Two-Year Layoff Ba",
+    "slug": "dol-perm-green-card-proposed-rule-90-day-recruitment-layoff-bar",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the proposed rule by specifying that the public comment period will close 60 days after the publication on November 17, 2026, providing a clear deadline for readers to engage with the process.",
+        "Include specific statistics or data regarding the impact of the proposed changes on the PERM process, such as the percentage increase in application processing times or the expected number of affected applicants, to enhance completeness.",
+        "Provide a brief explanation of what the Schedule A shortcut entails and why its removal is significant, as this context will help readers understand the implications of the changes better."
+      ],
+      "embed_opportunities": [
+        "Embed the official Department of Labor announcement or a relevant tweet that summarizes the proposed changes for easier access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "26b7faf6-cc84-4a55-a7f1-dd41803145fc",
+    "headline": "West Indies Set to Host Two India T20Is in the US or Canada in 2027",
+    "slug": "west-indies-india-t20is-usa-canada-2027",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline by providing specific dates for the proposed matches, even if they are tentative, to give readers a clearer picture of when to expect these events.",
+        "Include a direct quote from a Cricket West Indies official or a relevant authority to enhance attribution and credibility of the information presented.",
+        "Provide context on the significance of this tour for both teams and the potential impact on cricket in North America, which could help readers understand why this news is important."
+      ],
+      "embed_opportunities": [
+        "Embed the official ICC tweet or announcement regarding the Future Tours Programme to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "0e2975c5-538c-468f-a3d0-62cc67a17571",
+    "headline": "Two Old Antibiotics Together Reverse Isoniazid Resistance in Drug-Resistant TB, ",
+    "slug": "iisc-antibiotic-pair-reverses-isoniazid-resistance-drug-resistant-tb",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the study by including specific information about the next steps for clinical trials, such as expected timelines or criteria for patient selection.",
+        "Provide a brief explanation of the significance of the bacterial load reduction in mice, including how this might translate to human treatment outcomes, to enhance reader understanding.",
+        "Add a quote from one of the researchers involved in the study to provide a human element and expert perspective on the findings.",
+        "Include a brief mention of the current treatment landscape for drug-resistant TB to give context to the significance of this research."
+      ],
+      "embed_opportunities": [
+        "Embed a link to the published study in the journal Microbiology Spectrum for readers who want to explore the research in detail."
+      ]
+    }
+  }
+]

@@ -1,0 +1,282 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "earthshot-prize-awards-mumbai-november-17-indian-finalists",
+  "verdict": "fail",
+  "held_claims": [
+    "hook_line",
+    "news_summary",
+    "hook_stat.big",
+    "hook_stat.sub",
+    "payoff"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "MUMBAI HOSTS EARTHSHOT PRIZE, TWO INDIAN FINALISTS CHASE \u00a31 MILLION",
+      "numbers": [
+        1.0,
+        1000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The prize amount is stated as $1 million, not \u00a31 million.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "news_summary",
+      "text": "Mumbai hosts The Earthshot Prize Awards Night on November 17, the prize's first edition in India, where 15 finalists compete across five categories and five winners receive \u00a31 million each.",
+      "numbers": [
+        1.0,
+        15.0,
+        17.0,
+        1000000.0
+      ],
+      "entities": [
+        "Earthshot Prize Awards Night"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The prize amount is $1 million, not \u00a31 million.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "\u00a31 MILLION",
+      "numbers": [
+        1.0,
+        1000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The prize amount is stated as $1 million, not \u00a31 million.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Prize for each of the five Earthshot winners in Mumbai",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The prize amount is $1 million, not \u00a31 million.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "15",
+      "numbers": [
+        15.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Fifteen finalists are mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Finalists chosen from nearly 7,000 nominations across 169 countries",
+      "numbers": [
+        169.0,
+        7000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 15 finalists from nearly 7,000 nominations across 169 countries.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "400,000+",
+      "numbers": [
+        400000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Mahindra Last Mile Mobility sold more than 400,000 electric vehicles.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Electric last-mile vehicles sold by finalist Mahindra Last Mile Mobility",
+      "numbers": [],
+      "entities": [
+        "Mahindra Last Mile Mobility"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Mahindra Last Mile Mobility's sales figures.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "36,500",
+      "numbers": [
+        36500.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 36,500 cool roofs installed by Mahila Housing Trust.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Cool roofs installed by finalist Mahila Housing Trust",
+      "numbers": [],
+      "entities": [
+        "Mahila Housing Trust"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the number of cool roofs installed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Prime Video streams the ceremony from November 30 in more than 240 countries",
+      "numbers": [
+        30.0,
+        240.0
+      ],
+      "entities": [
+        "Prime Video"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Prime Video streams the ceremony from November 30.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "India has seven Earthshot finalists, including four winners, more than any other country",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms India has seven finalists, including four winners.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The five winners are announced on the night and each receives \u00a31 million to scale their solution.",
+      "numbers": [
+        1.0,
+        1000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The prize amount is stated as $1 million, not \u00a31 million.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Earthshot Prize",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Mahindra Last Mile Mobility",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Mahila Housing Trust",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Prince William",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Mumbai",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000752,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

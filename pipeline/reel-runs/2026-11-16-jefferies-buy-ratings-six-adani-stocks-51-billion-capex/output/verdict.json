@@ -1,0 +1,38 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "jefferies-buy-ratings-six-adani-stocks-51-billion-capex",
+  "name": "jefferies-buy-ratings-six-adani-stocks-51-billion-capex",
+  "script": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000676
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-16-jefferies-buy-ratings-six-adani-stocks-51-billion-capex/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "news": "bronte-45332993701"
+    }
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Billion Capex Plan) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 2,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "extra:bronte-45332993701"
+    ]
+  },
+  "detail": "only 2 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}

@@ -1800,5 +1800,16 @@
     "top_story_slug": "microsoft-warns-phishing-campaign-exploiting-365-outage",
     "quick_hit_count": 5,
     "deadline_count": 2
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-11-16T14:58:20.313682+00:00Z",
+    "subject": "The Videshi Daily \u2014 November 16, 2026",
+    "subscribers": 10,
+    "sent": 9,
+    "errors": 1,
+    "top_story_slug": "scene-review-roundup-critics",
+    "quick_hit_count": 5,
+    "deadline_count": 3
   }
 ]

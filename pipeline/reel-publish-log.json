@@ -992,5 +992,57 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "VEFyZo7AB_o",
+    "article_slug": "air-india-restores-nonstop-new-york-flights",
+    "article_id": "b51b56e8-2548-41e9-bdaa-97b25d25c14d",
+    "title": "Air India Restores Non-Stop Flights to New York, Cutting Travel Time by Five Hours #Shorts #Travel",
+    "privacy": "public",
+    "uploaded_at": "2026-11-15T17:17:42.315696+00:00",
+    "video_path": "reel-runs/2026-11-15-air-india-restores-nonstop-new-york-flights/output-v7-2/air-india-restores-nonstop-new-york-flights.mp4",
+    "video_sha256": "b2715cc4b9727147e58deded62f9f0dc8241606a236c19e42849df37c99ccb3e",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "PaFBgTd4Kk4",
+    "article_slug": "bharat-semi-24-million-seed-ai-image-sensors",
+    "article_id": "40461290-a563-4973-a7ba-185f11047be3",
+    "title": "Bharat Semi Raises $24 Million Seed Round to Build AI Image Sensors in India #Shorts #TechNews",
+    "privacy": "public",
+    "uploaded_at": "2026-11-16T05:14:58.319940+00:00",
+    "video_path": "reel-runs/2026-11-15-bharat-semi-24-million-seed-ai-image-sensors/output/bharat-semi-24-million-seed-ai-image-sensors.mp4",
+    "video_sha256": "7e019f28b67469beb92e58cfafdd4e4c045543e419e20825adcb1b704aca3a5b",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "L44nqF10ayk",
+    "article_slug": "fpi-7-5-billion-november-indian-equities-five-year-high",
+    "article_id": "5f7b1922-77db-4e11-b47b-401b250a89e3",
+    "title": "Foreign Investors Pump $7.5 Billion Into Indian Equities in Ten Sessions #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-11-16T17:21:41.727367+00:00",
+    "video_path": "reel-runs/2026-11-16-fpi-7-5-billion-november-indian-equities-five-year-high/output/fpi-7-5-billion-november-indian-equities-five-year-high.mp4",
+    "video_sha256": "d1410017ff7eefe8da5375770d37860ca7ff2a98427867c49d85b6d49aea5a6d",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "yqfciPh-_W8",
+    "article_slug": "h1b-extension-deference-rule-comment-period-closed",
+    "article_id": "4a90b616-2b5a-452c-8842-181a63d2a392",
+    "title": "Comment Window Closes on Plan to End Deference for H-1B Extensions #Shorts #H1B",
+    "privacy": "public",
+    "uploaded_at": "2026-11-16T23:23:54.331985+00:00",
+    "video_path": "reel-runs/2026-11-16-h1b-extension-deference-rule-comment-period-closed/output/h1b-extension-deference-rule-comment-period-closed.mp4",
+    "video_sha256": "0e9cd7128f4a99dc69e15d0c88f6724d9b92510f7779c73213dbab5b9fa1b46c",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]
