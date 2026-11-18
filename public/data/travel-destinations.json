@@ -14,8 +14,8 @@
     "egypt",
     "vietnam",
     "australia",
-    "karnataka",
     "hawaii",
+    "karnataka",
     "thailand",
     "maldives",
     "kerala",
@@ -860,11 +860,11 @@
           "indicative": true
         },
         "DFW": {
-          "price_min": 2021,
+          "price_min": 1969,
           "route": "DFW-SYD",
           "origin_metro": "Dallas",
           "dest_metro": "Sydney",
-          "date_range": "Nov 25 \u2192 Dec 3",
+          "date_range": "Nov 24 \u2192 Dec 2",
           "duration_days": 8,
           "as_of": "2026-11-18",
           "cadence": "weekly",
@@ -1825,11 +1825,11 @@
           "indicative": true
         },
         "DFW": {
-          "price_min": 814,
+          "price_min": 807,
           "route": "DFW-CAI",
           "origin_metro": "Dallas",
           "dest_metro": "Cairo",
-          "date_range": "Dec 8 \u2192 Dec 14",
+          "date_range": "Nov 26 \u2192 Dec 2",
           "duration_days": 6,
           "as_of": "2026-11-18",
           "cadence": "weekly",
@@ -1947,12 +1947,12 @@
       },
       "fares_by_origin": {
         "SFO": {
-          "price_min": 9670,
+          "price_min": 9669,
           "route": "SFO-NAN",
           "origin_metro": "Bay Area",
           "dest_metro": "Nadi",
-          "date_range": "Nov 25 \u2192 Dec 3",
-          "duration_days": 8,
+          "date_range": "Nov 24 \u2192 Nov 30",
+          "duration_days": 6,
           "as_of": "2026-11-18",
           "cadence": "weekly",
           "indicative": true
@@ -2458,7 +2458,7 @@
           "indicative": true
         },
         "SFO": {
-          "price_min": 2650,
+          "price_min": 3062,
           "route": "SFO-ATH",
           "origin_metro": "Bay Area",
           "dest_metro": "Athens",
@@ -2569,8 +2569,41 @@
       ],
       "season_note": "Great most of the year; whale season Dec\u2013Apr, surf peaks in winter.",
       "cheapest_month": null,
-      "fare_from": null,
-      "fares_by_origin": {},
+      "fare_from": {
+        "price_min": 1225,
+        "route": "DFW-HNL",
+        "origin_metro": "Dallas",
+        "dest_metro": "Honolulu",
+        "date_range": "Dec 24 \u2192 Jan 1",
+        "duration_days": 8,
+        "as_of": "2026-11-18",
+        "cadence": "weekly",
+        "indicative": true
+      },
+      "fares_by_origin": {
+        "JFK": {
+          "price_min": 2864,
+          "route": "JFK-HNL",
+          "origin_metro": "New York",
+          "dest_metro": "Honolulu",
+          "date_range": "Jan 26 \u2192 Feb 1",
+          "duration_days": 6,
+          "as_of": "2026-11-18",
+          "cadence": "weekly",
+          "indicative": true
+        },
+        "DFW": {
+          "price_min": 1225,
+          "route": "DFW-HNL",
+          "origin_metro": "Dallas",
+          "dest_metro": "Honolulu",
+          "date_range": "Dec 24 \u2192 Jan 1",
+          "duration_days": 8,
+          "as_of": "2026-11-18",
+          "cadence": "weekly",
+          "indicative": true
+        }
+      },
       "highlights": [
         {
           "title": "N\u0101 Pali Coast, Kauai",
@@ -2610,7 +2643,7 @@
         "12": 2
       },
       "data_quality": {
-        "fare_data": "none",
+        "fare_data": "tracked",
         "guide_highlights": 5,
         "notes": [
           "No flight-deals route tracked yet \u2014 fare fields are null by design"
@@ -3153,11 +3186,11 @@
           "indicative": true
         },
         "DFW": {
-          "price_min": 1271,
-          "route": "DFW-HND",
+          "price_min": 1226,
+          "route": "DFW-NRT",
           "origin_metro": "Dallas",
           "dest_metro": "Tokyo",
-          "date_range": "Dec 8 \u2192 Dec 16",
+          "date_range": "Jan 26 \u2192 Feb 3",
           "duration_days": 8,
           "as_of": "2026-11-18",
           "cadence": "weekly",
