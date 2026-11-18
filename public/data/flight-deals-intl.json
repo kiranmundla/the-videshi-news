@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T16:57:10Z",
+  "generated_at": "2026-11-18T18:52:16Z",
   "as_of": "2026-11-18",
   "market": "international",
   "band": {
@@ -119,16 +119,16 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-03",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-03",
+          "date_range": "2026-11-26 \u2192 2026-12-04",
+          "dep_date": "2026-11-26",
+          "ret_date": "2026-12-04",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1471,
-          "price_max": 2314,
-          "cheapest_airline": "ANA",
+          "price_min": 1239,
+          "price_max": 2138,
+          "cheapest_airline": "JAL",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -136,13 +136,13 @@
           "origin_metro": "Bay Area",
           "dest_metro": "Tokyo",
           "change_vs_prev": {
-            "prev_price_min": 1215,
-            "prev_as_of": "2026-11-04",
-            "delta": -256,
-            "delta_pct": -21.1,
-            "trailing_avg_price_min": 1216,
-            "delta_vs_trailing_avg": -255,
-            "delta_vs_trailing_avg_pct": -21.0
+            "prev_price_min": 1471,
+            "prev_as_of": "2026-11-11",
+            "delta": 232,
+            "delta_pct": 15.8,
+            "trailing_avg_price_min": 1267,
+            "delta_vs_trailing_avg": 28,
+            "delta_vs_trailing_avg_pct": 2.2
           }
         },
         {
@@ -151,11 +151,11 @@
           "ret_date": "2026-12-16",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1214,
-          "price_max": 2765,
+          "price_min": 1149,
+          "price_max": 2875,
           "cheapest_airline": "JAL",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -164,12 +164,12 @@
           "dest_metro": "Tokyo",
           "change_vs_prev": {
             "prev_price_min": 1214,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0,
-            "trailing_avg_price_min": 1050,
-            "delta_vs_trailing_avg": -164,
-            "delta_vs_trailing_avg_pct": -15.6
+            "prev_as_of": "2026-11-11",
+            "delta": 65,
+            "delta_pct": 5.4,
+            "trailing_avg_price_min": 1083,
+            "delta_vs_trailing_avg": -66,
+            "delta_vs_trailing_avg_pct": -6.1
           }
         },
         {
@@ -178,11 +178,11 @@
           "ret_date": "2027-02-01",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 1057,
-          "price_max": 1734,
+          "price_min": 1094,
+          "price_max": 1733,
           "cheapest_airline": "Cathay Pacific",
-          "num_samples": 3,
-          "fetched_as_of": "2026-11-11",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -192,9 +192,12 @@
           "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 1057,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0
+            "prev_as_of": "2026-11-11",
+            "delta": -37,
+            "delta_pct": -3.5,
+            "trailing_avg_price_min": 1026,
+            "delta_vs_trailing_avg": -68,
+            "delta_vs_trailing_avg_pct": -6.6
           }
         }
       ],
@@ -203,7 +206,7 @@
         "month": 1,
         "band": "intl-1wk",
         "duration_days": 6,
-        "price_min": 1057,
+        "price_min": 1094,
         "date_range": "2027-01-26 \u2192 2027-02-01"
       },
       "destination_slug": "japan"
@@ -216,30 +219,31 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-01",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-01",
-          "duration_days": 6,
+          "date_range": "2026-11-24 \u2192 2026-12-02",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-02",
+          "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1087,
-          "price_max": 1507,
+          "price_min": 1077,
+          "price_max": 1660,
           "cheapest_airline": "Asiana Airlines",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "LAX-HND",
           "origin_metro": "Los Angeles",
           "dest_metro": "Tokyo",
+          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 1077,
-            "prev_as_of": "2026-11-04",
-            "delta": -10,
-            "delta_pct": -0.9,
-            "trailing_avg_price_min": 1011,
-            "delta_vs_trailing_avg": -76,
-            "delta_vs_trailing_avg_pct": -7.5
+            "prev_price_min": 1087,
+            "prev_as_of": "2026-11-11",
+            "delta": 10,
+            "delta_pct": 0.9,
+            "trailing_avg_price_min": 1030,
+            "delta_vs_trailing_avg": -47,
+            "delta_vs_trailing_avg_pct": -4.6
           }
         },
         {
@@ -248,11 +252,11 @@
           "ret_date": "2026-12-14",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 1078,
-          "price_max": 2956,
-          "cheapest_airline": "Alaska Airlines",
+          "price_min": 1085,
+          "price_max": 2816,
+          "cheapest_airline": "JAL",
           "num_samples": 3,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -260,48 +264,50 @@
           "origin_metro": "Los Angeles",
           "dest_metro": "Tokyo",
           "change_vs_prev": {
-            "prev_price_min": 1073,
-            "prev_as_of": "2026-11-04",
-            "delta": -5,
-            "delta_pct": -0.5,
-            "trailing_avg_price_min": 962,
-            "delta_vs_trailing_avg": -116,
-            "delta_vs_trailing_avg_pct": -12.1
+            "prev_price_min": 1078,
+            "prev_as_of": "2026-11-11",
+            "delta": -7,
+            "delta_pct": -0.6,
+            "trailing_avg_price_min": 991,
+            "delta_vs_trailing_avg": -94,
+            "delta_vs_trailing_avg_pct": -9.5
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-01-20",
-          "dep_date": "2027-01-12",
-          "ret_date": "2027-01-20",
-          "duration_days": 8,
+          "date_range": "2027-01-26 \u2192 2027-02-01",
+          "dep_date": "2027-01-26",
+          "ret_date": "2027-02-01",
+          "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 957,
-          "price_max": 1276,
-          "cheapest_airline": "Alaska Airlines",
-          "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "price_min": 1168,
+          "price_max": 1370,
+          "cheapest_airline": "Cathay Pacific",
+          "num_samples": 2,
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
           "route": "LAX-HND",
           "origin_metro": "Los Angeles",
           "dest_metro": "Tokyo",
-          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 1169,
-            "prev_as_of": "2026-11-04",
-            "delta": 212,
-            "delta_pct": 18.1
+            "prev_price_min": 957,
+            "prev_as_of": "2026-11-11",
+            "delta": -211,
+            "delta_pct": -22.0,
+            "trailing_avg_price_min": 987,
+            "delta_vs_trailing_avg": -181,
+            "delta_vs_trailing_avg_pct": -18.3
           }
         }
       ],
       "cheapest_overall": {
-        "year": 2027,
-        "month": 1,
+        "year": 2026,
+        "month": 11,
         "band": "intl-1wk",
         "duration_days": 8,
-        "price_min": 957,
-        "date_range": "2027-01-12 \u2192 2027-01-20"
+        "price_min": 1077,
+        "date_range": "2026-11-24 \u2192 2026-12-02"
       },
       "destination_slug": "japan"
     },
@@ -313,16 +319,16 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-18 \u2192 2026-11-24",
-          "dep_date": "2026-11-18",
-          "ret_date": "2026-11-24",
-          "duration_days": 6,
+          "date_range": "2026-11-24 \u2192 2026-12-02",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-02",
+          "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1458,
-          "price_max": 1738,
-          "cheapest_airline": "Asiana Airlines",
+          "price_min": 1109,
+          "price_max": 1995,
+          "cheapest_airline": "JAL",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -330,13 +336,13 @@
           "origin_metro": "New York",
           "dest_metro": "Tokyo",
           "change_vs_prev": {
-            "prev_price_min": 1189,
-            "prev_as_of": "2026-11-04",
-            "delta": -269,
-            "delta_pct": -22.6,
-            "trailing_avg_price_min": 1076,
-            "delta_vs_trailing_avg": -382,
-            "delta_vs_trailing_avg_pct": -35.5
+            "prev_price_min": 1458,
+            "prev_as_of": "2026-11-11",
+            "delta": 349,
+            "delta_pct": 23.9,
+            "trailing_avg_price_min": 1172,
+            "delta_vs_trailing_avg": 63,
+            "delta_vs_trailing_avg_pct": 5.4
           }
         },
         {
@@ -345,11 +351,11 @@
           "ret_date": "2026-12-16",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1122,
-          "price_max": 3101,
+          "price_min": 1049,
+          "price_max": 3274,
           "cheapest_airline": "JAL",
           "num_samples": 3,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -357,13 +363,13 @@
           "origin_metro": "New York",
           "dest_metro": "Tokyo",
           "change_vs_prev": {
-            "prev_price_min": 1114,
-            "prev_as_of": "2026-11-04",
-            "delta": -8,
-            "delta_pct": -0.7,
-            "trailing_avg_price_min": 1059,
-            "delta_vs_trailing_avg": -63,
-            "delta_vs_trailing_avg_pct": -5.9
+            "prev_price_min": 1122,
+            "prev_as_of": "2026-11-11",
+            "delta": 73,
+            "delta_pct": 6.5,
+            "trailing_avg_price_min": 1075,
+            "delta_vs_trailing_avg": 26,
+            "delta_vs_trailing_avg_pct": 2.4
           }
         },
         {
@@ -372,11 +378,11 @@
           "ret_date": "2027-01-20",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1048,
-          "price_max": 1905,
+          "price_min": 1047,
+          "price_max": 1783,
           "cheapest_airline": "JAL",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -385,10 +391,13 @@
           "dest_metro": "Tokyo",
           "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 1023,
-            "prev_as_of": "2026-11-04",
-            "delta": -25,
-            "delta_pct": -2.4
+            "prev_price_min": 1048,
+            "prev_as_of": "2026-11-11",
+            "delta": 1,
+            "delta_pct": 0.1,
+            "trailing_avg_price_min": 1004,
+            "delta_vs_trailing_avg": -43,
+            "delta_vs_trailing_avg_pct": -4.2
           }
         }
       ],
@@ -397,7 +406,7 @@
         "month": 1,
         "band": "intl-1wk",
         "duration_days": 8,
-        "price_min": 1048,
+        "price_min": 1047,
         "date_range": "2027-01-12 \u2192 2027-01-20"
       },
       "destination_slug": "japan"
@@ -410,16 +419,43 @@
       "band": "intl-1wk",
       "calendar": [
         {
+          "date_range": "2026-11-24 \u2192 2026-12-02",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-02",
+          "duration_days": 8,
+          "band": "intl-1wk",
+          "price_min": 1191,
+          "price_max": 2916,
+          "cheapest_airline": "JAL",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-18",
+          "cache_samples": 0,
+          "year": 2026,
+          "month": 11,
+          "route": "ORD-HND",
+          "origin_metro": "Chicago",
+          "dest_metro": "Tokyo",
+          "change_vs_prev": {
+            "prev_price_min": 1739,
+            "prev_as_of": "2026-11-04",
+            "delta": 548,
+            "delta_pct": 31.5,
+            "trailing_avg_price_min": 1355,
+            "delta_vs_trailing_avg": 164,
+            "delta_vs_trailing_avg_pct": 12.1
+          }
+        },
+        {
           "date_range": "2026-12-08 \u2192 2026-12-16",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-16",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1674,
-          "price_max": 2861,
+          "price_min": 1217,
+          "price_max": 2756,
           "cheapest_airline": "JAL",
           "num_samples": 3,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -428,12 +464,12 @@
           "dest_metro": "Tokyo",
           "change_vs_prev": {
             "prev_price_min": 1674,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0,
-            "trailing_avg_price_min": 1421,
-            "delta_vs_trailing_avg": -253,
-            "delta_vs_trailing_avg_pct": -17.8
+            "prev_as_of": "2026-11-11",
+            "delta": 457,
+            "delta_pct": 27.3,
+            "trailing_avg_price_min": 1484,
+            "delta_vs_trailing_avg": 267,
+            "delta_vs_trailing_avg_pct": 18.0
           }
         },
         {
@@ -442,11 +478,11 @@
           "ret_date": "2027-02-03",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1202,
+          "price_min": 1171,
           "price_max": 1711,
           "cheapest_airline": "JAL",
-          "num_samples": 3,
-          "fetched_as_of": "2026-11-11",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -456,9 +492,12 @@
           "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 1202,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0
+            "prev_as_of": "2026-11-11",
+            "delta": 31,
+            "delta_pct": 2.6,
+            "trailing_avg_price_min": 1144,
+            "delta_vs_trailing_avg": -27,
+            "delta_vs_trailing_avg_pct": -2.4
           }
         }
       ],
@@ -467,7 +506,7 @@
         "month": 1,
         "band": "intl-1wk",
         "duration_days": 8,
-        "price_min": 1202,
+        "price_min": 1171,
         "date_range": "2027-01-26 \u2192 2027-02-03"
       },
       "destination_slug": "japan"
@@ -480,57 +519,58 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-03",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-03",
+          "date_range": "2026-11-24 \u2192 2026-12-02",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-02",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1414,
-          "price_max": 2556,
+          "price_min": 1310,
+          "price_max": 2652,
           "cheapest_airline": "JAL",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
-          "cache_samples": 2,
+          "fetched_as_of": "2026-11-18",
+          "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "DFW-HND",
           "origin_metro": "Dallas",
           "dest_metro": "Tokyo",
           "change_vs_prev": {
-            "prev_price_min": 1455,
-            "prev_as_of": "2026-11-04",
-            "delta": 41,
-            "delta_pct": 2.8,
-            "trailing_avg_price_min": 1627,
-            "delta_vs_trailing_avg": 213,
-            "delta_vs_trailing_avg_pct": 13.1
+            "prev_price_min": 1414,
+            "prev_as_of": "2026-11-11",
+            "delta": 104,
+            "delta_pct": 7.4,
+            "trailing_avg_price_min": 1574,
+            "delta_vs_trailing_avg": 264,
+            "delta_vs_trailing_avg_pct": 16.7
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-14",
+          "date_range": "2026-12-08 \u2192 2026-12-16",
           "dep_date": "2026-12-08",
-          "ret_date": "2026-12-14",
-          "duration_days": 6,
+          "ret_date": "2026-12-16",
+          "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1588,
-          "price_max": 3185,
-          "cheapest_airline": "Cathay Pacific",
-          "num_samples": 3,
-          "fetched_as_of": "2026-11-11",
+          "price_min": 1271,
+          "price_max": 3361,
+          "cheapest_airline": "JAL",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
           "route": "DFW-HND",
           "origin_metro": "Dallas",
           "dest_metro": "Tokyo",
+          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 1314,
-            "prev_as_of": "2026-11-04",
-            "delta": -274,
-            "delta_pct": -20.9,
-            "trailing_avg_price_min": 1286,
-            "delta_vs_trailing_avg": -302,
-            "delta_vs_trailing_avg_pct": -23.5
+            "prev_price_min": 1588,
+            "prev_as_of": "2026-11-11",
+            "delta": 317,
+            "delta_pct": 20.0,
+            "trailing_avg_price_min": 1361,
+            "delta_vs_trailing_avg": 90,
+            "delta_vs_trailing_avg_pct": 6.6
           }
         },
         {
@@ -539,33 +579,35 @@
           "ret_date": "2027-01-20",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1314,
-          "price_max": 2796,
+          "price_min": 1271,
+          "price_max": 2499,
           "cheapest_airline": "JAL",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
           "route": "DFW-HND",
           "origin_metro": "Dallas",
           "dest_metro": "Tokyo",
-          "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 1314,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0
+            "prev_as_of": "2026-11-11",
+            "delta": 43,
+            "delta_pct": 3.3,
+            "trailing_avg_price_min": 1268,
+            "delta_vs_trailing_avg": -3,
+            "delta_vs_trailing_avg_pct": -0.2
           }
         }
       ],
       "cheapest_overall": {
-        "year": 2027,
-        "month": 1,
+        "year": 2026,
+        "month": 12,
         "band": "intl-1wk",
         "duration_days": 8,
-        "price_min": 1314,
-        "date_range": "2027-01-12 \u2192 2027-01-20"
+        "price_min": 1271,
+        "date_range": "2026-12-08 \u2192 2026-12-16"
       },
       "destination_slug": "japan"
     },
@@ -577,16 +619,16 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-03",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-03",
+          "date_range": "2026-11-26 \u2192 2026-12-04",
+          "dep_date": "2026-11-26",
+          "ret_date": "2026-12-04",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1253,
-          "price_max": 1895,
-          "cheapest_airline": "EVA Air",
+          "price_min": 1201,
+          "price_max": 1673,
+          "cheapest_airline": "JAL",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -594,13 +636,13 @@
           "origin_metro": "Bay Area",
           "dest_metro": "Tokyo",
           "change_vs_prev": {
-            "prev_price_min": 1179,
-            "prev_as_of": "2026-11-04",
-            "delta": -74,
-            "delta_pct": -6.3,
-            "trailing_avg_price_min": 1132,
-            "delta_vs_trailing_avg": -121,
-            "delta_vs_trailing_avg_pct": -10.7
+            "prev_price_min": 1253,
+            "prev_as_of": "2026-11-11",
+            "delta": 52,
+            "delta_pct": 4.2,
+            "trailing_avg_price_min": 1162,
+            "delta_vs_trailing_avg": -39,
+            "delta_vs_trailing_avg_pct": -3.3
           }
         },
         {
@@ -609,11 +651,11 @@
           "ret_date": "2026-12-16",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1217,
-          "price_max": 2860,
+          "price_min": 1141,
+          "price_max": 3008,
           "cheapest_airline": "JAL",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -621,26 +663,26 @@
           "origin_metro": "Bay Area",
           "dest_metro": "Tokyo",
           "change_vs_prev": {
-            "prev_price_min": 1205,
-            "prev_as_of": "2026-11-04",
-            "delta": -12,
-            "delta_pct": -1.0,
-            "trailing_avg_price_min": 1158,
-            "delta_vs_trailing_avg": -59,
-            "delta_vs_trailing_avg_pct": -5.1
+            "prev_price_min": 1217,
+            "prev_as_of": "2026-11-11",
+            "delta": 76,
+            "delta_pct": 6.2,
+            "trailing_avg_price_min": 1173,
+            "delta_vs_trailing_avg": 32,
+            "delta_vs_trailing_avg_pct": 2.7
           }
         },
         {
-          "date_range": "2027-01-26 \u2192 2027-02-01",
+          "date_range": "2027-01-26 \u2192 2027-02-03",
           "dep_date": "2027-01-26",
-          "ret_date": "2027-02-01",
-          "duration_days": 6,
+          "ret_date": "2027-02-03",
+          "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1057,
-          "price_max": 1585,
+          "price_min": 1094,
+          "price_max": 1613,
           "cheapest_airline": "Cathay Pacific",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -650,9 +692,12 @@
           "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 1057,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0
+            "prev_as_of": "2026-11-11",
+            "delta": -37,
+            "delta_pct": -3.5,
+            "trailing_avg_price_min": 1008,
+            "delta_vs_trailing_avg": -86,
+            "delta_vs_trailing_avg_pct": -8.5
           }
         }
       ],
@@ -660,9 +705,9 @@
         "year": 2027,
         "month": 1,
         "band": "intl-1wk",
-        "duration_days": 6,
-        "price_min": 1057,
-        "date_range": "2027-01-26 \u2192 2027-02-01"
+        "duration_days": 8,
+        "price_min": 1094,
+        "date_range": "2027-01-26 \u2192 2027-02-03"
       },
       "destination_slug": "japan"
     },
@@ -674,16 +719,16 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-01",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-01",
-          "duration_days": 6,
+          "date_range": "2026-11-24 \u2192 2026-12-02",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-02",
+          "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1077,
-          "price_max": 1413,
+          "price_min": 1062,
+          "price_max": 1420,
           "cheapest_airline": "Asiana Airlines",
-          "num_samples": 3,
-          "fetched_as_of": "2026-11-11",
+          "num_samples": 2,
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -691,26 +736,26 @@
           "origin_metro": "Los Angeles",
           "dest_metro": "Tokyo",
           "change_vs_prev": {
-            "prev_price_min": 1127,
-            "prev_as_of": "2026-11-04",
-            "delta": 50,
-            "delta_pct": 4.4,
-            "trailing_avg_price_min": 993,
-            "delta_vs_trailing_avg": -84,
-            "delta_vs_trailing_avg_pct": -8.4
+            "prev_price_min": 1077,
+            "prev_as_of": "2026-11-11",
+            "delta": 15,
+            "delta_pct": 1.4,
+            "trailing_avg_price_min": 1014,
+            "delta_vs_trailing_avg": -48,
+            "delta_vs_trailing_avg_pct": -4.7
           }
         },
         {
-          "date_range": "2026-12-08 \u2192 2026-12-14",
+          "date_range": "2026-12-08 \u2192 2026-12-16",
           "dep_date": "2026-12-08",
-          "ret_date": "2026-12-14",
-          "duration_days": 6,
+          "ret_date": "2026-12-16",
+          "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1077,
-          "price_max": 2718,
-          "cheapest_airline": "Asiana Airlines",
-          "num_samples": 3,
-          "fetched_as_of": "2026-11-11",
+          "price_min": 1036,
+          "price_max": 3379,
+          "cheapest_airline": "JAL",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -719,12 +764,12 @@
           "dest_metro": "Tokyo",
           "change_vs_prev": {
             "prev_price_min": 1077,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0,
-            "trailing_avg_price_min": 1022,
-            "delta_vs_trailing_avg": -55,
-            "delta_vs_trailing_avg_pct": -5.3
+            "prev_as_of": "2026-11-11",
+            "delta": 41,
+            "delta_pct": 3.8,
+            "trailing_avg_price_min": 1036,
+            "delta_vs_trailing_avg": 0,
+            "delta_vs_trailing_avg_pct": 0.0
           }
         },
         {
@@ -733,11 +778,11 @@
           "ret_date": "2027-01-20",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 957,
-          "price_max": 1169,
-          "cheapest_airline": "Alaska Airlines",
-          "num_samples": 3,
-          "fetched_as_of": "2026-11-11",
+          "price_min": 1019,
+          "price_max": 1213,
+          "cheapest_airline": "Singapore Airlines",
+          "num_samples": 2,
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -746,10 +791,13 @@
           "dest_metro": "Tokyo",
           "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 969,
-            "prev_as_of": "2026-11-04",
-            "delta": 12,
-            "delta_pct": 1.2
+            "prev_price_min": 957,
+            "prev_as_of": "2026-11-11",
+            "delta": -62,
+            "delta_pct": -6.5,
+            "trailing_avg_price_min": 920,
+            "delta_vs_trailing_avg": -99,
+            "delta_vs_trailing_avg_pct": -10.7
           }
         }
       ],
@@ -758,7 +806,7 @@
         "month": 1,
         "band": "intl-1wk",
         "duration_days": 8,
-        "price_min": 957,
+        "price_min": 1019,
         "date_range": "2027-01-12 \u2192 2027-01-20"
       },
       "destination_slug": "japan"
@@ -771,16 +819,16 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-03",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-03",
+          "date_range": "2026-11-24 \u2192 2026-12-02",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-02",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1176,
-          "price_max": 1551,
+          "price_min": 1051,
+          "price_max": 1668,
           "cheapest_airline": "JAL",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -788,13 +836,13 @@
           "origin_metro": "New York",
           "dest_metro": "Tokyo",
           "change_vs_prev": {
-            "prev_price_min": 1163,
-            "prev_as_of": "2026-11-04",
-            "delta": -13,
-            "delta_pct": -1.1,
-            "trailing_avg_price_min": 1161,
-            "delta_vs_trailing_avg": -15,
-            "delta_vs_trailing_avg_pct": -1.3
+            "prev_price_min": 1176,
+            "prev_as_of": "2026-11-11",
+            "delta": 125,
+            "delta_pct": 10.6,
+            "trailing_avg_price_min": 1165,
+            "delta_vs_trailing_avg": 114,
+            "delta_vs_trailing_avg_pct": 9.8
           }
         },
         {
@@ -803,11 +851,11 @@
           "ret_date": "2026-12-16",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1115,
-          "price_max": 4392,
+          "price_min": 1051,
+          "price_max": 3123,
           "cheapest_airline": "JAL",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -816,12 +864,12 @@
           "dest_metro": "Tokyo",
           "change_vs_prev": {
             "prev_price_min": 1115,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0,
-            "trailing_avg_price_min": 1111,
-            "delta_vs_trailing_avg": -4,
-            "delta_vs_trailing_avg_pct": -0.4
+            "prev_as_of": "2026-11-11",
+            "delta": 64,
+            "delta_pct": 5.7,
+            "trailing_avg_price_min": 1112,
+            "delta_vs_trailing_avg": 61,
+            "delta_vs_trailing_avg_pct": 5.5
           }
         },
         {
@@ -830,11 +878,11 @@
           "ret_date": "2027-01-20",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 969,
-          "price_max": 1653,
-          "cheapest_airline": "Alaska Airlines",
+          "price_min": 1049,
+          "price_max": 1706,
+          "cheapest_airline": "JAL",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -844,9 +892,12 @@
           "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 969,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0
+            "prev_as_of": "2026-11-11",
+            "delta": -80,
+            "delta_pct": -8.3,
+            "trailing_avg_price_min": 958,
+            "delta_vs_trailing_avg": -91,
+            "delta_vs_trailing_avg_pct": -9.5
           }
         }
       ],
@@ -855,7 +906,7 @@
         "month": 1,
         "band": "intl-1wk",
         "duration_days": 8,
-        "price_min": 969,
+        "price_min": 1049,
         "date_range": "2027-01-12 \u2192 2027-01-20"
       },
       "destination_slug": "japan"
@@ -868,16 +919,16 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-03",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-03",
+          "date_range": "2026-11-24 \u2192 2026-12-02",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-02",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1413,
-          "price_max": 2113,
-          "cheapest_airline": "EVA Air",
+          "price_min": 1258,
+          "price_max": 1780,
+          "cheapest_airline": "JAL",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -886,12 +937,12 @@
           "dest_metro": "Tokyo",
           "change_vs_prev": {
             "prev_price_min": 1413,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0,
-            "trailing_avg_price_min": 1200,
-            "delta_vs_trailing_avg": -213,
-            "delta_vs_trailing_avg_pct": -17.7
+            "prev_as_of": "2026-11-11",
+            "delta": 155,
+            "delta_pct": 11.0,
+            "trailing_avg_price_min": 1254,
+            "delta_vs_trailing_avg": -4,
+            "delta_vs_trailing_avg_pct": -0.4
           }
         },
         {
@@ -900,60 +951,63 @@
           "ret_date": "2026-12-16",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1660,
-          "price_max": 2968,
+          "price_min": 1158,
+          "price_max": 2870,
           "cheapest_airline": "JAL",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
           "route": "ORD-NRT",
           "origin_metro": "Chicago",
           "dest_metro": "Tokyo",
+          "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 1660,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0,
-            "trailing_avg_price_min": 1299,
-            "delta_vs_trailing_avg": -361,
-            "delta_vs_trailing_avg_pct": -27.8
+            "prev_as_of": "2026-11-11",
+            "delta": 502,
+            "delta_pct": 30.2,
+            "trailing_avg_price_min": 1390,
+            "delta_vs_trailing_avg": 232,
+            "delta_vs_trailing_avg_pct": 16.7
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-01-20",
+          "date_range": "2027-01-12 \u2192 2027-01-18",
           "dep_date": "2027-01-12",
-          "ret_date": "2027-01-20",
-          "duration_days": 8,
+          "ret_date": "2027-01-18",
+          "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 1188,
-          "price_max": 1650,
-          "cheapest_airline": "JAL",
-          "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "price_min": 1599,
+          "price_max": 1649,
+          "cheapest_airline": "Air Canada",
+          "num_samples": 1,
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
           "route": "ORD-NRT",
           "origin_metro": "Chicago",
           "dest_metro": "Tokyo",
-          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 1110,
-            "prev_as_of": "2026-11-04",
-            "delta": -78,
-            "delta_pct": -7.0
+            "prev_price_min": 1188,
+            "prev_as_of": "2026-11-11",
+            "delta": -411,
+            "delta_pct": -34.6,
+            "trailing_avg_price_min": 1098,
+            "delta_vs_trailing_avg": -501,
+            "delta_vs_trailing_avg_pct": -45.7
           }
         }
       ],
       "cheapest_overall": {
-        "year": 2027,
-        "month": 1,
+        "year": 2026,
+        "month": 12,
         "band": "intl-1wk",
         "duration_days": 8,
-        "price_min": 1188,
-        "date_range": "2027-01-12 \u2192 2027-01-20"
+        "price_min": 1158,
+        "date_range": "2026-12-08 \u2192 2026-12-16"
       },
       "destination_slug": "japan"
     },
@@ -1062,16 +1116,16 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-01",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-01",
-          "duration_days": 6,
+          "date_range": "2026-11-24 \u2192 2026-12-02",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-02",
+          "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1604,
-          "price_max": 2901,
-          "cheapest_airline": "United Airlines",
+          "price_min": 1554,
+          "price_max": 2215,
+          "cheapest_airline": "Lufthansa",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1079,13 +1133,13 @@
           "origin_metro": "Bay Area",
           "dest_metro": "Muscat",
           "change_vs_prev": {
-            "prev_price_min": 1390,
-            "prev_as_of": "2026-11-04",
-            "delta": -214,
-            "delta_pct": -15.4,
-            "trailing_avg_price_min": 1403,
-            "delta_vs_trailing_avg": -201,
-            "delta_vs_trailing_avg_pct": -14.4
+            "prev_price_min": 1604,
+            "prev_as_of": "2026-11-11",
+            "delta": 50,
+            "delta_pct": 3.1,
+            "trailing_avg_price_min": 1453,
+            "delta_vs_trailing_avg": -101,
+            "delta_vs_trailing_avg_pct": -7.0
           }
         },
         {
@@ -1095,10 +1149,10 @@
           "duration_days": 6,
           "band": "intl-1wk",
           "price_min": 1503,
-          "price_max": 5456,
+          "price_max": 5541,
           "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1107,7 +1161,7 @@
           "dest_metro": "Muscat",
           "change_vs_prev": {
             "prev_price_min": 1503,
-            "prev_as_of": "2026-11-04",
+            "prev_as_of": "2026-11-11",
             "delta": 0,
             "delta_pct": 0.0,
             "trailing_avg_price_min": 1503,
@@ -1122,10 +1176,10 @@
           "duration_days": 6,
           "band": "intl-1wk",
           "price_min": 1340,
-          "price_max": 1607,
+          "price_max": 1634,
           "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1134,10 +1188,13 @@
           "dest_metro": "Muscat",
           "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 1299,
-            "prev_as_of": "2026-11-04",
-            "delta": -41,
-            "delta_pct": -3.2
+            "prev_price_min": 1340,
+            "prev_as_of": "2026-11-11",
+            "delta": 0,
+            "delta_pct": 0.0,
+            "trailing_avg_price_min": 1326,
+            "delta_vs_trailing_avg": -14,
+            "delta_vs_trailing_avg_pct": -1.0
           }
         }
       ],
@@ -1159,16 +1216,16 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-01",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-01",
-          "duration_days": 6,
+          "date_range": "2026-11-24 \u2192 2026-12-02",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-02",
+          "duration_days": 8,
           "band": "intl-1wk",
           "price_min": 1383,
-          "price_max": 1586,
+          "price_max": 1891,
           "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1176,13 +1233,13 @@
           "origin_metro": "Los Angeles",
           "dest_metro": "Muscat",
           "change_vs_prev": {
-            "prev_price_min": 1335,
-            "prev_as_of": "2026-11-04",
-            "delta": -48,
-            "delta_pct": -3.6,
-            "trailing_avg_price_min": 1335,
-            "delta_vs_trailing_avg": -48,
-            "delta_vs_trailing_avg_pct": -3.6
+            "prev_price_min": 1383,
+            "prev_as_of": "2026-11-11",
+            "delta": 0,
+            "delta_pct": 0.0,
+            "trailing_avg_price_min": 1347,
+            "delta_vs_trailing_avg": -36,
+            "delta_vs_trailing_avg_pct": -2.7
           }
         },
         {
@@ -1191,11 +1248,11 @@
           "ret_date": "2026-12-14",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 1443,
-          "price_max": 3580,
-          "cheapest_airline": "Qatar Airways",
+          "price_min": 1426,
+          "price_max": 4370,
+          "cheapest_airline": "Emirates",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1204,12 +1261,12 @@
           "dest_metro": "Muscat",
           "change_vs_prev": {
             "prev_price_min": 1443,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0,
+            "prev_as_of": "2026-11-11",
+            "delta": 17,
+            "delta_pct": 1.2,
             "trailing_avg_price_min": 1443,
-            "delta_vs_trailing_avg": 0,
-            "delta_vs_trailing_avg_pct": 0.0
+            "delta_vs_trailing_avg": 17,
+            "delta_vs_trailing_avg_pct": 1.2
           }
         },
         {
@@ -1222,7 +1279,7 @@
           "price_max": 1452,
           "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1232,9 +1289,12 @@
           "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 1335,
-            "prev_as_of": "2026-11-04",
+            "prev_as_of": "2026-11-11",
             "delta": 0,
-            "delta_pct": 0.0
+            "delta_pct": 0.0,
+            "trailing_avg_price_min": 1335,
+            "delta_vs_trailing_avg": 0,
+            "delta_vs_trailing_avg_pct": 0.0
           }
         }
       ],
@@ -1256,30 +1316,30 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-01",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-01",
-          "duration_days": 6,
+          "date_range": "2026-11-24 \u2192 2026-12-02",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-02",
+          "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 926,
-          "price_max": 1236,
-          "cheapest_airline": "Gulf Air Bahrain",
+          "price_min": 1011,
+          "price_max": 1275,
+          "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
-          "cache_samples": 4,
+          "fetched_as_of": "2026-11-18",
+          "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "JFK-MCT",
           "origin_metro": "New York",
           "dest_metro": "Muscat",
           "change_vs_prev": {
-            "prev_price_min": 938,
-            "prev_as_of": "2026-11-04",
-            "delta": 12,
-            "delta_pct": 1.3,
-            "trailing_avg_price_min": 878,
-            "delta_vs_trailing_avg": -48,
-            "delta_vs_trailing_avg_pct": -5.5
+            "prev_price_min": 926,
+            "prev_as_of": "2026-11-11",
+            "delta": -85,
+            "delta_pct": -9.2,
+            "trailing_avg_price_min": 890,
+            "delta_vs_trailing_avg": -121,
+            "delta_vs_trailing_avg_pct": -13.6
           }
         },
         {
@@ -1288,12 +1348,12 @@
           "ret_date": "2026-12-14",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 1064,
-          "price_max": 3166,
-          "cheapest_airline": "Saudi Arabian Airlines",
+          "price_min": 1205,
+          "price_max": 3344,
+          "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
-          "cache_samples": 2,
+          "fetched_as_of": "2026-11-18",
+          "cache_samples": 0,
           "year": 2026,
           "month": 12,
           "route": "JFK-MCT",
@@ -1301,12 +1361,12 @@
           "dest_metro": "Muscat",
           "change_vs_prev": {
             "prev_price_min": 1064,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0,
+            "prev_as_of": "2026-11-11",
+            "delta": -141,
+            "delta_pct": -13.3,
             "trailing_avg_price_min": 1064,
-            "delta_vs_trailing_avg": 0,
-            "delta_vs_trailing_avg_pct": 0.0
+            "delta_vs_trailing_avg": -141,
+            "delta_vs_trailing_avg_pct": -13.3
           }
         },
         {
@@ -1316,10 +1376,10 @@
           "duration_days": 8,
           "band": "intl-1wk",
           "price_min": 861,
-          "price_max": 1223,
+          "price_max": 1102,
           "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1329,9 +1389,12 @@
           "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 861,
-            "prev_as_of": "2026-11-04",
+            "prev_as_of": "2026-11-11",
             "delta": 0,
-            "delta_pct": 0.0
+            "delta_pct": 0.0,
+            "trailing_avg_price_min": 861,
+            "delta_vs_trailing_avg": 0,
+            "delta_vs_trailing_avg_pct": 0.0
           }
         }
       ],
@@ -1353,16 +1416,16 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-03",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-03",
+          "date_range": "2026-11-24 \u2192 2026-12-02",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-02",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1269,
-          "price_max": 1646,
-          "cheapest_airline": "EgyptAir",
+          "price_min": 1324,
+          "price_max": 2188,
+          "cheapest_airline": "Lufthansa",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1371,13 +1434,13 @@
           "dest_metro": "Muscat",
           "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 1325,
-            "prev_as_of": "2026-11-04",
-            "delta": 56,
-            "delta_pct": 4.2,
-            "trailing_avg_price_min": 1315,
-            "delta_vs_trailing_avg": 46,
-            "delta_vs_trailing_avg_pct": 3.5
+            "prev_price_min": 1269,
+            "prev_as_of": "2026-11-11",
+            "delta": -55,
+            "delta_pct": -4.3,
+            "trailing_avg_price_min": 1303,
+            "delta_vs_trailing_avg": -21,
+            "delta_vs_trailing_avg_pct": -1.6
           }
         },
         {
@@ -1387,10 +1450,10 @@
           "duration_days": 6,
           "band": "intl-1wk",
           "price_min": 1522,
-          "price_max": 4488,
+          "price_max": 4026,
           "cheapest_airline": "Etihad Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1399,25 +1462,25 @@
           "dest_metro": "Muscat",
           "change_vs_prev": {
             "prev_price_min": 1522,
-            "prev_as_of": "2026-11-04",
+            "prev_as_of": "2026-11-11",
             "delta": 0,
             "delta_pct": 0.0,
-            "trailing_avg_price_min": 1550,
-            "delta_vs_trailing_avg": 28,
-            "delta_vs_trailing_avg_pct": 1.8
+            "trailing_avg_price_min": 1543,
+            "delta_vs_trailing_avg": 21,
+            "delta_vs_trailing_avg_pct": 1.4
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-01-18",
-          "dep_date": "2027-01-12",
-          "ret_date": "2027-01-18",
+          "date_range": "2027-01-26 \u2192 2027-02-01",
+          "dep_date": "2027-01-26",
+          "ret_date": "2027-02-01",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 1330,
-          "price_max": 1606,
+          "price_min": 1329,
+          "price_max": 1702,
           "cheapest_airline": "Lufthansa",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1426,9 +1489,12 @@
           "dest_metro": "Muscat",
           "change_vs_prev": {
             "prev_price_min": 1330,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0
+            "prev_as_of": "2026-11-11",
+            "delta": 1,
+            "delta_pct": 0.1,
+            "trailing_avg_price_min": 1330,
+            "delta_vs_trailing_avg": 1,
+            "delta_vs_trailing_avg_pct": 0.1
           }
         }
       ],
@@ -1437,8 +1503,8 @@
         "month": 11,
         "band": "intl-1wk",
         "duration_days": 8,
-        "price_min": 1269,
-        "date_range": "2026-11-25 \u2192 2026-12-03"
+        "price_min": 1324,
+        "date_range": "2026-11-24 \u2192 2026-12-02"
       },
       "destination_slug": "oman"
     },
@@ -1450,30 +1516,30 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-18 \u2192 2026-11-24",
-          "dep_date": "2026-11-18",
-          "ret_date": "2026-11-24",
+          "date_range": "2026-11-24 \u2192 2026-11-30",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-11-30",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 1440,
-          "price_max": 1816,
-          "cheapest_airline": "Emirates",
+          "price_min": 1748,
+          "price_max": 1949,
+          "cheapest_airline": "JetBlue Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
-          "cache_samples": 3,
+          "fetched_as_of": "2026-11-18",
+          "cache_samples": 0,
           "year": 2026,
           "month": 11,
           "route": "DFW-MCT",
           "origin_metro": "Dallas",
           "dest_metro": "Muscat",
           "change_vs_prev": {
-            "prev_price_min": 1455,
-            "prev_as_of": "2026-11-04",
-            "delta": 15,
-            "delta_pct": 1.0,
-            "trailing_avg_price_min": 1416,
-            "delta_vs_trailing_avg": -24,
-            "delta_vs_trailing_avg_pct": -1.7
+            "prev_price_min": 1440,
+            "prev_as_of": "2026-11-11",
+            "delta": -308,
+            "delta_pct": -21.4,
+            "trailing_avg_price_min": 1422,
+            "delta_vs_trailing_avg": -326,
+            "delta_vs_trailing_avg_pct": -22.9
           }
         },
         {
@@ -1482,11 +1548,11 @@
           "ret_date": "2026-12-16",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1836,
-          "price_max": 3179,
+          "price_min": 1900,
+          "price_max": 3379,
           "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1494,13 +1560,13 @@
           "origin_metro": "Dallas",
           "dest_metro": "Muscat",
           "change_vs_prev": {
-            "prev_price_min": 1653,
-            "prev_as_of": "2026-11-04",
-            "delta": -183,
-            "delta_pct": -11.1,
-            "trailing_avg_price_min": 1658,
-            "delta_vs_trailing_avg": -178,
-            "delta_vs_trailing_avg_pct": -10.7
+            "prev_price_min": 1836,
+            "prev_as_of": "2026-11-11",
+            "delta": -64,
+            "delta_pct": -3.5,
+            "trailing_avg_price_min": 1703,
+            "delta_vs_trailing_avg": -197,
+            "delta_vs_trailing_avg_pct": -11.6
           }
         },
         {
@@ -1510,10 +1576,10 @@
           "duration_days": 8,
           "band": "intl-1wk",
           "price_min": 1200,
-          "price_max": 1605,
+          "price_max": 1657,
           "cheapest_airline": "Qatar Airways",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1523,9 +1589,12 @@
           "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 1200,
-            "prev_as_of": "2026-11-04",
+            "prev_as_of": "2026-11-11",
             "delta": 0,
-            "delta_pct": 0.0
+            "delta_pct": 0.0,
+            "trailing_avg_price_min": 1200,
+            "delta_vs_trailing_avg": 0,
+            "delta_vs_trailing_avg_pct": 0.0
           }
         }
       ],
@@ -1808,16 +1877,16 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-25 \u2192 2026-12-03",
-          "dep_date": "2026-11-25",
-          "ret_date": "2026-12-03",
+          "date_range": "2026-11-24 \u2192 2026-12-02",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-12-02",
           "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 1134,
-          "price_max": 9670,
+          "price_min": 1043,
+          "price_max": 9669,
           "cheapest_airline": "Fiji Airways ",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1826,13 +1895,13 @@
           "dest_metro": "Nadi",
           "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 1145,
-            "prev_as_of": "2026-11-04",
-            "delta": 11,
-            "delta_pct": 1.0,
-            "trailing_avg_price_min": 1376,
-            "delta_vs_trailing_avg": 242,
-            "delta_vs_trailing_avg_pct": 17.6
+            "prev_price_min": 1134,
+            "prev_as_of": "2026-11-11",
+            "delta": 91,
+            "delta_pct": 8.0,
+            "trailing_avg_price_min": 1316,
+            "delta_vs_trailing_avg": 273,
+            "delta_vs_trailing_avg_pct": 20.7
           }
         },
         {
@@ -1841,11 +1910,11 @@
           "ret_date": "2026-12-14",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 1134,
-          "price_max": 9670,
+          "price_min": 1093,
+          "price_max": 9669,
           "cheapest_airline": "Fiji Airways ",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1853,13 +1922,13 @@
           "origin_metro": "Los Angeles",
           "dest_metro": "Nadi",
           "change_vs_prev": {
-            "prev_price_min": 1145,
-            "prev_as_of": "2026-11-04",
-            "delta": 11,
-            "delta_pct": 1.0,
-            "trailing_avg_price_min": 1153,
-            "delta_vs_trailing_avg": 19,
-            "delta_vs_trailing_avg_pct": 1.6
+            "prev_price_min": 1134,
+            "prev_as_of": "2026-11-11",
+            "delta": 41,
+            "delta_pct": 3.6,
+            "trailing_avg_price_min": 1148,
+            "delta_vs_trailing_avg": 55,
+            "delta_vs_trailing_avg_pct": 4.8
           }
         },
         {
@@ -1868,11 +1937,11 @@
           "ret_date": "2027-02-01",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 1134,
-          "price_max": 9670,
+          "price_min": 1043,
+          "price_max": 9669,
           "cheapest_airline": "Fiji Airways ",
           "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1880,10 +1949,13 @@
           "origin_metro": "Los Angeles",
           "dest_metro": "Nadi",
           "change_vs_prev": {
-            "prev_price_min": 1145,
-            "prev_as_of": "2026-11-04",
-            "delta": 11,
-            "delta_pct": 1.0
+            "prev_price_min": 1134,
+            "prev_as_of": "2026-11-11",
+            "delta": 91,
+            "delta_pct": 8.0,
+            "trailing_avg_price_min": 1141,
+            "delta_vs_trailing_avg": 98,
+            "delta_vs_trailing_avg_pct": 8.6
           }
         }
       ],
@@ -1892,8 +1964,8 @@
         "month": 11,
         "band": "intl-1wk",
         "duration_days": 8,
-        "price_min": 1134,
-        "date_range": "2026-11-25 \u2192 2026-12-03"
+        "price_min": 1043,
+        "date_range": "2026-11-24 \u2192 2026-12-02"
       },
       "destination_slug": "fiji"
     },
@@ -1905,16 +1977,16 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-18 \u2192 2026-11-26",
-          "dep_date": "2026-11-18",
-          "ret_date": "2026-11-26",
-          "duration_days": 8,
+          "date_range": "2026-11-24 \u2192 2026-11-30",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-11-30",
+          "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 11039,
-          "price_max": 11039,
+          "price_min": 11038,
+          "price_max": 11038,
           "cheapest_airline": "Cathay Pacific",
-          "num_samples": 2,
-          "fetched_as_of": "2026-11-11",
+          "num_samples": 3,
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 11,
@@ -1924,11 +1996,11 @@
           "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 11039,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
+            "prev_as_of": "2026-11-11",
+            "delta": 1,
             "delta_pct": 0.0,
             "trailing_avg_price_min": 11039,
-            "delta_vs_trailing_avg": 0,
+            "delta_vs_trailing_avg": 1,
             "delta_vs_trailing_avg_pct": 0.0
           }
         },
@@ -1938,11 +2010,11 @@
           "ret_date": "2026-12-14",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 11039,
-          "price_max": 11039,
+          "price_min": 11038,
+          "price_max": 11038,
           "cheapest_airline": "Cathay Pacific",
           "num_samples": 2,
-          "fetched_as_of": "2026-11-11",
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
@@ -1951,25 +2023,25 @@
           "dest_metro": "Nadi",
           "change_vs_prev": {
             "prev_price_min": 11039,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
+            "prev_as_of": "2026-11-11",
+            "delta": 1,
             "delta_pct": 0.0,
             "trailing_avg_price_min": 11039,
-            "delta_vs_trailing_avg": 0,
+            "delta_vs_trailing_avg": 1,
             "delta_vs_trailing_avg_pct": 0.0
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-01-18",
+          "date_range": "2027-01-12 \u2192 2027-01-20",
           "dep_date": "2027-01-12",
-          "ret_date": "2027-01-18",
-          "duration_days": 6,
+          "ret_date": "2027-01-20",
+          "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 11039,
-          "price_max": 11039,
+          "price_min": 11038,
+          "price_max": 11038,
           "cheapest_airline": "Cathay Pacific",
-          "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "num_samples": 3,
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -1978,9 +2050,12 @@
           "dest_metro": "Nadi",
           "change_vs_prev": {
             "prev_price_min": 11039,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0
+            "prev_as_of": "2026-11-11",
+            "delta": 1,
+            "delta_pct": 0.0,
+            "trailing_avg_price_min": 11039,
+            "delta_vs_trailing_avg": 1,
+            "delta_vs_trailing_avg_pct": 0.0
           }
         }
       ],
@@ -1988,9 +2063,9 @@
         "year": 2026,
         "month": 11,
         "band": "intl-1wk",
-        "duration_days": 8,
-        "price_min": 11039,
-        "date_range": "2026-11-18 \u2192 2026-11-26"
+        "duration_days": 6,
+        "price_min": 11038,
+        "date_range": "2026-11-24 \u2192 2026-11-30"
       },
       "destination_slug": "fiji"
     },
@@ -2002,41 +2077,68 @@
       "band": "intl-1wk",
       "calendar": [
         {
+          "date_range": "2026-11-24 \u2192 2026-11-30",
+          "dep_date": "2026-11-24",
+          "ret_date": "2026-11-30",
+          "duration_days": 6,
+          "band": "intl-1wk",
+          "price_min": 11038,
+          "price_max": 11038,
+          "cheapest_airline": "Cathay Pacific",
+          "num_samples": 2,
+          "fetched_as_of": "2026-11-18",
+          "cache_samples": 0,
+          "year": 2026,
+          "month": 11,
+          "route": "ORD-NAN",
+          "origin_metro": "Chicago",
+          "dest_metro": "Nadi",
+          "cheapest_month": true,
+          "change_vs_prev": {
+            "prev_price_min": 11039,
+            "prev_as_of": "2026-11-04",
+            "delta": 1,
+            "delta_pct": 0.0,
+            "trailing_avg_price_min": 11039,
+            "delta_vs_trailing_avg": 1,
+            "delta_vs_trailing_avg_pct": 0.0
+          }
+        },
+        {
           "date_range": "2026-12-08 \u2192 2026-12-14",
           "dep_date": "2026-12-08",
           "ret_date": "2026-12-14",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 11039,
-          "price_max": 11039,
+          "price_min": 11038,
+          "price_max": 11038,
           "cheapest_airline": "Cathay Pacific",
-          "num_samples": 1,
-          "fetched_as_of": "2026-11-11",
+          "num_samples": 2,
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
           "month": 12,
           "route": "ORD-NAN",
           "origin_metro": "Chicago",
           "dest_metro": "Nadi",
-          "cheapest_month": true,
           "change_vs_prev": {
-            "prev_price_min": 11040,
-            "prev_as_of": "2026-10-28",
+            "prev_price_min": 11039,
+            "prev_as_of": "2026-11-11",
             "delta": 1,
             "delta_pct": 0.0
           }
         },
         {
-          "date_range": "2027-01-12 \u2192 2027-01-18",
+          "date_range": "2027-01-12 \u2192 2027-01-20",
           "dep_date": "2027-01-12",
-          "ret_date": "2027-01-18",
-          "duration_days": 6,
+          "ret_date": "2027-01-20",
+          "duration_days": 8,
           "band": "intl-1wk",
-          "price_min": 11039,
-          "price_max": 11039,
+          "price_min": 11038,
+          "price_max": 11038,
           "cheapest_airline": "Cathay Pacific",
-          "num_samples": 4,
-          "fetched_as_of": "2026-11-11",
+          "num_samples": 3,
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
@@ -2045,19 +2147,22 @@
           "dest_metro": "Nadi",
           "change_vs_prev": {
             "prev_price_min": 11039,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0
+            "prev_as_of": "2026-11-11",
+            "delta": 1,
+            "delta_pct": 0.0,
+            "trailing_avg_price_min": 11039,
+            "delta_vs_trailing_avg": 1,
+            "delta_vs_trailing_avg_pct": 0.0
           }
         }
       ],
       "cheapest_overall": {
         "year": 2026,
-        "month": 12,
+        "month": 11,
         "band": "intl-1wk",
         "duration_days": 6,
-        "price_min": 11039,
-        "date_range": "2026-12-08 \u2192 2026-12-14"
+        "price_min": 11038,
+        "date_range": "2026-11-24 \u2192 2026-11-30"
       },
       "destination_slug": "fiji"
     },
@@ -2069,50 +2174,29 @@
       "band": "intl-1wk",
       "calendar": [
         {
-          "date_range": "2026-11-18 \u2192 2026-11-26",
-          "dep_date": "2026-11-18",
-          "ret_date": "2026-11-26",
-          "duration_days": 8,
+          "date_range": "2026-12-08 \u2192 2026-12-14",
+          "dep_date": "2026-12-08",
+          "ret_date": "2026-12-14",
+          "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 11039,
-          "price_max": 11039,
+          "price_min": 11038,
+          "price_max": 11038,
           "cheapest_airline": "Cathay Pacific",
-          "num_samples": 2,
-          "fetched_as_of": "2026-11-11",
+          "num_samples": 1,
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2026,
-          "month": 11,
+          "month": 12,
           "route": "DFW-NAN",
           "origin_metro": "Dallas",
           "dest_metro": "Nadi",
           "cheapest_month": true,
           "change_vs_prev": {
             "prev_price_min": 11039,
-            "prev_as_of": "2026-11-04",
-            "delta": 0,
-            "delta_pct": 0.0,
-            "trailing_avg_price_min": 11039,
-            "delta_vs_trailing_avg": 0,
-            "delta_vs_trailing_avg_pct": 0.0
+            "prev_as_of": "2026-11-11",
+            "delta": 1,
+            "delta_pct": 0.0
           }
-        },
-        {
-          "date_range": "2026-12-08 \u2192 2026-12-14",
-          "dep_date": "2026-12-08",
-          "ret_date": "2026-12-14",
-          "duration_days": 6,
-          "band": "intl-1wk",
-          "price_min": 11039,
-          "price_max": 11039,
-          "cheapest_airline": "Cathay Pacific",
-          "num_samples": 1,
-          "fetched_as_of": "2026-11-11",
-          "cache_samples": 0,
-          "year": 2026,
-          "month": 12,
-          "route": "DFW-NAN",
-          "origin_metro": "Dallas",
-          "dest_metro": "Nadi"
         },
         {
           "date_range": "2027-01-12 \u2192 2027-01-18",
@@ -2120,26 +2204,32 @@
           "ret_date": "2027-01-18",
           "duration_days": 6,
           "band": "intl-1wk",
-          "price_min": 11039,
-          "price_max": 11039,
+          "price_min": 11038,
+          "price_max": 11038,
           "cheapest_airline": "Cathay Pacific",
-          "num_samples": 3,
-          "fetched_as_of": "2026-11-11",
+          "num_samples": 4,
+          "fetched_as_of": "2026-11-18",
           "cache_samples": 0,
           "year": 2027,
           "month": 1,
           "route": "DFW-NAN",
           "origin_metro": "Dallas",
-          "dest_metro": "Nadi"
+          "dest_metro": "Nadi",
+          "change_vs_prev": {
+            "prev_price_min": 11039,
+            "prev_as_of": "2026-11-11",
+            "delta": 1,
+            "delta_pct": 0.0
+          }
         }
       ],
       "cheapest_overall": {
         "year": 2026,
-        "month": 11,
+        "month": 12,
         "band": "intl-1wk",
-        "duration_days": 8,
-        "price_min": 11039,
-        "date_range": "2026-11-18 \u2192 2026-11-26"
+        "duration_days": 6,
+        "price_min": 11038,
+        "date_range": "2026-12-08 \u2192 2026-12-14"
       },
       "destination_slug": "fiji"
     },
@@ -3664,20 +3754,36 @@
   },
   "biggest_drops": [
     {
-      "route": "ORD-SYD",
+      "route": "ORD-NRT",
       "origin_metro": "Chicago",
-      "dest_metro": "Sydney",
+      "dest_metro": "Tokyo",
       "year": 2026,
       "month": 12,
       "band": "intl-1wk",
       "duration_days": 8,
       "date_range": "2026-12-08 \u2192 2026-12-16",
-      "was": 2782,
-      "now": 2551,
-      "drop_abs": 231,
-      "drop_pct": 8.3,
+      "was": 1660,
+      "now": 1158,
+      "drop_abs": 502,
+      "drop_pct": 30.2,
       "baseline_as_of": "2026-11-11",
-      "cheapest_airline": "ANA"
+      "cheapest_airline": "JAL"
+    },
+    {
+      "route": "ORD-NRT",
+      "origin_metro": "Chicago",
+      "dest_metro": "Tokyo",
+      "year": 2026,
+      "month": 11,
+      "band": "intl-1wk",
+      "duration_days": 8,
+      "date_range": "2026-11-24 \u2192 2026-12-02",
+      "was": 1413,
+      "now": 1258,
+      "drop_abs": 155,
+      "drop_pct": 11.0,
+      "baseline_as_of": "2026-11-11",
+      "cheapest_airline": "JAL"
     }
   ],
   "festival_seasons": [],
