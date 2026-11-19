@@ -136,6 +136,28 @@ CASES = [
     # — build 1 filed 3 Brookfield-the-company stories here.
     ("milwaukee-wi", "Brookfield Plans to Deploy $100 Billion in India", False),
     ("milwaukee-wi", "Vance Launches H-1B Fraud Probe at Milwaukee Event", True),
+    # ── 2026-11-18 audit: Frisco, TX vs Richardson the surname ────────
+    ("frisco-plano-tx", "Desi Lydic Hosts THE DAILY SHOW With Heather Cox Richardson as Guest", False),
+    ("frisco-plano-tx", "Alexander the Great Biography Wins £50,000 Baillie Gifford Non-Fiction Prize Durham historian Edmund Richardson's 'Alexander: God, King, Man' is the first ancient-history book to win the prize since 1999", False),
+    ("frisco-plano-tx", "New Indian Grocery Opens in Richardson, TX", True),
+    ("frisco-plano-tx", "Richardson, Texas Temple Celebrates Diwali", True),
+    ("frisco-plano-tx", "Diwali Mela Draws Thousands to Richardson in Collin County", True),
+    ("frisco-plano-tx", "Frisco Diwali Celebration Draws Thousands", True),
+    ("frisco-plano-tx", "Plano's Jashan Becomes First D-FW Indian Restaurant With a Michelin Nod", True),
+    # ── 2026-11-18 audit: San Francisco, CA vs Berkeley Heights, NJ ───
+    ("san-francisco-ca", "Berkeley Heights YMCA Celebrates Diwali With Dance, Crafts and Community", False),
+    ("san-francisco-ca", "Berkeley Celebrates Diwali With Dance and Community", True),
+    ("san-francisco-ca", "In Photos: Diwali Festival lights up San Francisco", True),
+    # ── 2026-11-18 audit: Phoenix, AZ vs Phoenix the namesakes ────────
+    # Phoenix, Durban (South Africa); Phoenix Palassio mall, Lucknow;
+    # Chennai's Phoenix Mall (Velachery); Marvel's Phoenix (character).
+    ("phoenix-az", "Diwali crash: Phoenix matric pupil dies, three friends critically injured", False),
+    ("phoenix-az", "Phoenix Palassio Brings Culture and Festive Experiences Together This Diwali", False),
+    ("phoenix-az", "A Mini North-East in Chennai: The Grocery Stores Keeping Migrant Kitchens Stocked Around 20 northeastern stores line the lanes behind Velachery's Phoenix Mall alone", False),
+    ("phoenix-az", "MARVEL Tōkon: Fighting Souls | Phoenix Cyclops Gameplay Trailer Out", False),
+    ("phoenix-az", "Phoenix Diwali Celebration Draws Thousands in Arizona", True),
+    ("phoenix-az", "Tempe Indian Community Hosts Garba Night", True),
+    ("phoenix-az", "Scottsdale Temple Announces Navratri Schedule", True),
 ]
 
 

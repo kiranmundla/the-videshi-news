@@ -393,7 +393,6 @@
    "aliases": [
     "Frisco",
     "Plano",
-    "Richardson",
     "Coppell",
     "Collin County"
    ],
@@ -616,7 +615,7 @@
     }
    ],
    "block": [],
-   "context_guard": null,
+   "context_guard": "frisco_tx",
    "source_ranks": [
     3
    ]
@@ -5908,7 +5907,9 @@
      "lon": -123.0322
     }
    ],
-   "block": [],
+   "block": [
+    "berkeley heights"
+   ],
    "context_guard": null,
    "source_ranks": [
     26,
@@ -5991,7 +5992,16 @@
      "lon": -112.2831
     }
    ],
-   "block": [],
+   "block": [
+    "palassio",
+    "cyclops",
+    "durban",
+    "kwazulu",
+    "south africa",
+    "matric pupil",
+    "phoenix marketcity",
+    "velachery"
+   ],
    "context_guard": null,
    "source_ranks": [
     27

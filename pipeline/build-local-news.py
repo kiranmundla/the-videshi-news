@@ -158,6 +158,20 @@ _CHARLOTTE_NC_RX = (
     r"|\b" + _CHARLOTTE_CONTEXT + r"\b.{0,60}\bConcord\b"
 )
 
+# Richardson, TX (Frisco cluster member) vs Richardson the surname:
+# the 2026-11-18 audit found Frisco's bucket carrying "Desi Lydic Hosts
+# THE DAILY SHOW With Heather Cox Richardson as Guest" (the historian)
+# and a Baillie Gifford article whose excerpt names its author, Edmund
+# Richardson. Like Warren for Detroit and Concord for Charlotte,
+# "Richardson" leaves the plain aliases in clusters.json and matches
+# only with Texas context nearby.
+_TX_CONTEXT = r"(?:Texas|Frisco|Plano|Collin County|Dallas|McKinney|\bTX\b)"
+_FRISCO_TX_RX = (
+    r"\bRichardson,?\s+(?:TX|Tex\.)\b"
+    r"|\bRichardson\b(?=.{0,60}\b" + _TX_CONTEXT + r"\b)"
+    r"|\b" + _TX_CONTEXT + r"\b.{0,60}\bRichardson\b"
+)
+
 _PROFILE_RX = {
     "washington_dc": _WASHINGTON_RX,
     "portland_or": _PORTLAND_RX,
@@ -166,6 +180,7 @@ _PROFILE_RX = {
     "raleigh_nc": _RALEIGH_NC_RX,
     "detroit_mi": _DETROIT_MI_RX,
     "charlotte_nc": _CHARLOTTE_NC_RX,
+    "frisco_tx": _FRISCO_TX_RX,
     "fishers_in": _FISHERS_RX,
     # orange_county: the profile pattern adds guarded "Corona" (above);
     # the cluster's other names match plainly, and cluster_blocked()
