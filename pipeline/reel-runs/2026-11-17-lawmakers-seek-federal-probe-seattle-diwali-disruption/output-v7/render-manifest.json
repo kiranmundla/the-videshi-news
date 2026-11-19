@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "lawmakers-seek-federal-probe-seattle-diwali-disruption",
+ "article_slug": "lawmakers-seek-federal-probe-seattle-diwali-disruption",
+ "article_id": "2a12d3f7-a4a2-4a28-a07a-43cdd4f8560e",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-17-lawmakers-seek-federal-probe-seattle-diwali-disruption/output-v7/lawmakers-seek-federal-probe-seattle-diwali-disruption.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Seattle_Center_as_night_falls.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
+  "local_path": "reel-runs/2026-11-17-lawmakers-seek-federal-probe-seattle-diwali-disruption/output-v7/hero.jpg",
+  "width": 2560,
+  "height": 1600,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.473,0.687) damped=(0.486,0.594)",
+  "has_face": false,
+  "box_source": [
+   528,
+   597,
+   1433,
+   640
+  ],
+  "box_bg": [
+   258,
+   350,
+   467,
+   208
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.491,
+   0.594
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   521
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 741,
+   "zone_h": 815,
+   "scale": 1.0,
+   "content_h": 285,
+   "block_top": 1006,
+   "block_bottom": 1291,
+   "text_bbox": [
+    70,
+    1006,
+    930,
+    1291
+   ],
+   "texts": [
+    "Nri World",
+    "13 LAWMAKERS SEEK FEDERAL PROBE INTO SEATTLE DIWALI EVENT DISRUPTION"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.326,
+    "photo_px": [
+     2560,
+     1600
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 521,
+     "scale": 0.32578125,
+     "window": [
+      0,
+      1,
+      2560,
+      1600
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.20x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 741,
+   "zone_h": 815,
+   "scale": 1.0,
+   "content_h": 338,
+   "block_top": 979,
+   "block_bottom": 1317,
+   "text_bbox": [
+    70,
+    979,
+    930,
+    1317
+   ],
+   "texts": [
+    "What Happened",
+    "Thirteen US lawmakers, including all six Indian American House members, have asked the Justice Department to investigate whether the November 7 disruption of a Diwali festival in Seattle violated federal civil rights laws."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.37,
+    "photo_px": [
+     2560,
+     1600
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 521,
+     "scale": 0.3703374777975133,
+     "window": [
+      130,
+      194,
+      2382,
+      1600
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.20x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 741,
+   "zone_h": 815,
+   "scale": 1.0,
+   "content_h": 410,
+   "block_top": 943,
+   "block_bottom": 1353,
+   "text_bbox": [
+    70,
+    943,
+    930,
+    1353
+   ],
+   "texts": [
+    "THE BACKLASH",
+    "13",
+    "US lawmakers asking the Justice Department to investigate the Seattle Diwali disruption"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.407,
+    "photo_px": [
+     2560,
+     1600
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 521,
+     "scale": 0.4072265625,
+     "window": [
+      0,
+      310,
+      2048,
+      1589
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.20x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 741,
+   "zone_h": 815,
+   "scale": 1.0,
+   "content_h": 774,
+   "block_top": 761,
+   "block_bottom": 1535,
+   "text_bbox": [
+    70,
+    761,
+    930,
+    1535
+   ],
+   "texts": [
+    "By The Numbers",
+    "6",
+    "Indian American House members among the signatories",
+    "542,000",
+    "Anti-South Asian hateful posts on X identified between January 2025 and June 2026",
+    "1 in 4",
+    "Indian Americans report being called a slur since 2025"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.407,
+    "photo_px": [
+     2560,
+     1600
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 521,
+     "scale": 0.4072265625,
+     "window": [
+      512,
+      310,
+      2560,
+      1589
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.20x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 741,
+   "zone_h": 815,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 901,
+   "block_bottom": 1396,
+   "text_bbox": [
+    70,
+    901,
+    930,
+    1396
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "The Diwali festival at the Seattle Center Armory was disrupted on November 7",
+    "The lawmakers asked for a Justice Department briefing by December 4"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.44,
+    "photo_px": [
+     2560,
+     1600
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 521,
+     "scale": 0.440337909186906,
+     "window": [
+      309,
+      417,
+      2203,
+      1600
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.20x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 352,
+   "block_top": 684,
+   "block_bottom": 1036,
+   "text_bbox": [
+    70,
+    684,
+    930,
+    1036
+   ],
+   "texts": [
+    "The Takeaway",
+    "The Justice Department has not publicly responded, and the lawmakers have asked for a briefing by December 4.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/sb-simulacra.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 110.3,
+ "mp4_bytes": 7576570
+}

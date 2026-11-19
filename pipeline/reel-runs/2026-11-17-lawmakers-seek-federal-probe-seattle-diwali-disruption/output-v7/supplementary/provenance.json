@@ -1,0 +1,122 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "lawmakers-seek-federal-probe-seattle-diwali-disruption",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Pramila Jayapal",
+    "Raja Krishnamoorthi",
+    "Grace Meng",
+    "Justice Department",
+    "Seattle Center Armory",
+    "Diwali"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "File:Nation 150th in Seattle - Pramila Jayapal 04 (22224280385).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q18978140)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:-Handsoff Budget Rally (34028902814).jpg",
+      "route": "identity \u2014 depicts (P180=Q18978140)",
+      "verdict": "accepted",
+      "reason": "6000x4000, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:-Handsoff Budget Rally (34485842010).jpg",
+      "route": "identity \u2014 depicts (P180=Q18978140)",
+      "verdict": "accepted",
+      "reason": "6000x4000, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Raja Krishnamoorthi official photo.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q7285471)",
+      "verdict": "rejected",
+      "reason": "resolution: 400x601 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:08.03 \u7e3d\u7d71\u63a5\u898b\u7f8e\u570b\u806f\u90a6\u773e\u8b70\u9662\u8b70\u9577\u88f4\u6d1b\u897f\u8a2a\u5718\u4e00\u884c (52260041269).jpg",
+      "route": "identity \u2014 depicts (P180=Q7285471)",
+      "verdict": "rejected",
+      "reason": "identity: depicts (P180) file for a person whose own title/description/categories never name 'Raja Krishnamoorthi' (or a known alias) \u2014 a depicts statement alone is not identity (polluted Commons structured data: the Mount Charleston trail file 'depicts' Mukesh Ambani); fail closed"
+    },
+    {
+      "candidate": "File:Congressman Raja Krishnamoorthi Promotes Perkins Grant Funding, Career and Technical Educational Opportunities at College of DuPage 18.jpg",
+      "route": "identity \u2014 depicts (P180=Q7285471)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Deb Conroy with Representative Raja Krishnamoorthi.jpg",
+      "route": "identity \u2014 depicts (P180=Q7285471)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:IL Dem Senate Candidates.jpg",
+      "route": "identity \u2014 depicts (P180=Q7285471)",
+      "verdict": "rejected",
+      "reason": "given-name: the file's evidence names multiple people (il dem, il democratic, juliana raja, juliana stratton \u2026) including a different person sharing the surname 'raja', and never names 'Raja Krishnamoorthi' in full \u2014 surname-only agreement is not identity (the Kevin Cramer NASA photo placed for Jim Cramer); fail closed"
+    },
+    {
+      "candidate": "File:IL Dem Senate Candidates (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q7285471)",
+      "verdict": "rejected",
+      "reason": "given-name: the file's evidence names multiple people (il dem, il democratic, juliana raja, juliana stratton \u2026) including a different person sharing the surname 'raja', and never names 'Raja Krishnamoorthi' in full \u2014 surname-only agreement is not identity (the Kevin Cramer NASA photo placed for Jim Cramer); fail closed"
+    },
+    {
+      "candidate": "File:Nancy Pelosi at Taipei Songshan Airport.jpg",
+      "route": "identity \u2014 depicts (P180=Q7285471)",
+      "verdict": "rejected",
+      "reason": "given-name: the file's evidence names multiple people (andy kim, andy mark, delbene douglas, gregory meeks \u2026) including a different person sharing the surname 'raja', and never names 'Raja Krishnamoorthi' in full \u2014 surname-only agreement is not identity (the Kevin Cramer NASA photo placed for Jim Cramer); fail closed"
+    },
+    {
+      "candidate": "File:Ocasio-Cortez and fellow congressmembers addressing the Restore Trust in Congress Act.png",
+      "route": "identity \u2014 depicts (P180=Q7285471)",
+      "verdict": "accepted",
+      "reason": "1200x675, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Raja Krishnamoorthi and Chris Welch 2021.jpg",
+      "route": "identity \u2014 depicts (P180=Q7285471)",
+      "verdict": "rejected",
+      "reason": "resolution: 640x353 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Grace Meng Official Congressional Photo.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q5591303)",
+      "verdict": "accepted",
+      "reason": "2832x4256, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:APAICS 2025 Ceremonial Swearing-In.jpg",
+      "route": "identity \u2014 depicts (P180=Q5591303)",
+      "verdict": "rejected",
+      "reason": "identity: depicts (P180) file for a person whose own title/description/categories never name 'Grace Meng' (or a known alias) \u2014 a depicts statement alone is not identity (polluted Commons structured data: the Mount Charleston trail file 'depicts' Mukesh Ambani); fail closed"
+    },
+    {
+      "candidate": "File:Congressional Delegation visit (9668492245).jpg",
+      "route": "identity \u2014 depicts (P180=Q5591303)",
+      "verdict": "accepted",
+      "reason": "1840x1224, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Robert F. Kennedy Department of Justice Building.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1553390)",
+      "verdict": "accepted",
+      "reason": "3769x1735, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Robert F. Kennedy Department of Justice Building.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1553390)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/0/02/Robert_F._Kennedy_Department_of_Justice_Building.jpg?utm_source=commons.wikimedia.org&utm_campaign=image"
+    }
+  ],
+  "extras": []
+}

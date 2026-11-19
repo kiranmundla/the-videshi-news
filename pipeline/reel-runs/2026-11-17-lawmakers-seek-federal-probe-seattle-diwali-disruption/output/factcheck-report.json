@@ -1,0 +1,298 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "lawmakers-seek-federal-probe-seattle-diwali-disruption",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "13 LAWMAKERS SEEK FEDERAL PROBE INTO SEATTLE DIWALI EVENT DISRUPTION",
+      "numbers": [
+        13.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Thirteen lawmakers requested a federal probe into the Seattle Diwali disruption.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Thirteen US lawmakers, including all six Indian American House members, have asked the Justice Department to investigate whether the November 7 disruption of a Diwali festival in Seattle violated federal civil rights laws.",
+      "numbers": [
+        7.0
+      ],
+      "entities": [
+        "Thirteen US",
+        "Indian American House",
+        "Justice Department"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states all six Indian American members requested an investigation into the November 7 disruption.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "13",
+      "numbers": [
+        13.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Thirteen lawmakers are mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "US lawmakers asking the Justice Department to investigate the Seattle Diwali disruption",
+      "numbers": [],
+      "entities": [
+        "Justice Department",
+        "Seattle Diwali"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms lawmakers are asking for an investigation into the disruption.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "THE BACKLASH",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "6",
+      "numbers": [
+        6.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions all six Indian American House members signed the letter.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Indian American House members among the signatories",
+      "numbers": [],
+      "entities": [
+        "Indian American House"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All six Indian American members are confirmed as signatories in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "542,000",
+      "numbers": [
+        542000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article cites a study identifying 542,000 anti-South Asian hateful posts.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Anti-South Asian hateful posts on X identified between January 2025 and June 2026",
+      "numbers": [
+        2025.0,
+        2026.0
+      ],
+      "entities": [
+        "Anti-South Asian"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025,
+          2026
+        ]
+      },
+      "llm_reason": "The article specifies the timeframe for the identified hateful posts.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "1 in 4",
+      "numbers": [
+        1.0,
+        4.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states one in four Indian Americans report being called a slur.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Indian Americans report being called a slur since 2025",
+      "numbers": [
+        2025.0
+      ],
+      "entities": [
+        "Indian Americans"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article confirms this statistic regarding Indian Americans.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "The Diwali festival at the Seattle Center Armory was disrupted on November 7",
+      "numbers": [
+        7.0
+      ],
+      "entities": [
+        "Seattle Center Armory"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the disruption occurred on November 7.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The lawmakers asked for a Justice Department briefing by December 4",
+      "numbers": [
+        4.0
+      ],
+      "entities": [
+        "Justice Department"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the request for a briefing by December 4.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The Justice Department has not publicly responded, and the lawmakers have asked for a briefing by December 4.",
+      "numbers": [
+        4.0
+      ],
+      "entities": [
+        "Justice Department"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms no public response from the Justice Department.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "THE BACKLASH",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Pramila Jayapal",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Raja Krishnamoorthi",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Grace Meng",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Justice Department",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Seattle Center Armory",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Diwali",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000714,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

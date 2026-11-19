@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "dreamteam-freshworks-alumni-53-million-ai-native-crm",
+ "article_slug": "dreamteam-freshworks-alumni-53-million-ai-native-crm",
+ "article_id": "25e5d17c-33d0-4988-8231-94a1cf8d71b0",
+ "category": "Technology",
+ "video": "reel-runs/2026-11-17-dreamteam-freshworks-alumni-53-million-ai-native-crm/output/dreamteam-freshworks-alumni-53-million-ai-native-crm.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://techcrunch.com/wp-content/uploads/2026/11/dreamteam-co-founders.jpg?resize=1200,800",
+  "local_path": "reel-runs/2026-11-17-dreamteam-freshworks-alumni-53-million-ai-native-crm/output/hero.jpg",
+  "width": 1200,
+  "height": 800,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.93)",
+  "has_face": true,
+  "box_source": [
+   778,
+   153,
+   104,
+   128
+  ],
+  "box_bg": [
+   627,
+   262,
+   72,
+   89
+  ],
+  "chin_bg": 351,
+  "anchor": [
+   0.692,
+   0.272
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   556
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 294,
+   "block_top": 1019,
+   "block_bottom": 1313,
+   "text_bbox": [
+    70,
+    1019,
+    930,
+    1313
+   ],
+   "texts": [
+    "Technology",
+    "FRESHWORKS ALUMNI RAISE $53 MILLION TO BUILD AI-NATIVE CRM DREAMTEAM"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      800
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 403,
+   "block_top": 964,
+   "block_bottom": 1367,
+   "text_bbox": [
+    70,
+    964,
+    930,
+    1367
+   ],
+   "texts": [
+    "What Happened",
+    "Three former Freshworks executives have raised $53 million for Dreamteam, an AI-native CRM whose Company Brain builds a living record from emails and meetings."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.7897727272727273,
+     "window": [
+      144,
+      0,
+      1200,
+      704
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 372,
+   "block_top": 980,
+   "block_bottom": 1352,
+   "text_bbox": [
+    70,
+    980,
+    930,
+    1352
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$53 MILLION",
+    "Raised across a seed led by Together Fund and a Series A led by Accel"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.86875,
+     "window": [
+      0,
+      0,
+      960,
+      640
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 794,
+   "block_bottom": 1537,
+   "text_bbox": [
+    70,
+    794,
+    930,
+    1537
+   ],
+   "texts": [
+    "By The Numbers",
+    "100+",
+    "Customers signed in three months, across 13 countries",
+    "4",
+    "Built-in AI agents in the CRM",
+    "MORE THAN 35",
+    "People employed, engineering team in Chennai"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.86875,
+     "window": [
+      240,
+      0,
+      1200,
+      640
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 918,
+   "block_bottom": 1413,
+   "text_bbox": [
+    70,
+    918,
+    930,
+    1413
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "The three founders helped scale Freshworks from its early startup days through its IPO",
+    "The California-based company runs its engineering team in Chennai"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.939,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.9391891891891891,
+     "window": [
+      312,
+      153,
+      1200,
+      745
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Dreamteam aims to reach eight figures in annual revenue by the end of 2027.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 98.0,
+ "mp4_bytes": 5416091
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "a427ab1b-a2da-483b-97e2-c04ec837d9bf",
+    "headline": "Goldman Sachs Upgrades India to Overweight, Sets End-2027 Nifty Target of 28,500",
+    "slug": "goldman-sachs-upgrades-india-overweight-nifty-target-28500",
+    "category": "markets-finance",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Goldman Sachs upgraded India to overweight on November 18 and set a Nifty target\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the expected earnings growth and inflation rates mentioned. Instead of just stating 'in 2027', specify if these are annualized rates or cumulative projections.",
+        "Provide context on how the Nifty target of 28,500 compares to historical performance. Including a brief overview of past Nifty targets and actual performance could enhance completeness.",
+        "Ensure that all data points, such as the $64 billion foreign investor selloff, are clearly attributed to their sources. While some information is attributed, others lack clear sourcing, which can affect accuracy.",
+        "Reorganize the article to improve clarity. Start with the key takeaway (the upgrade and target) followed by the rationale, and then delve into the details of sector performance and historical context."
+      ],
+      "embed_opportunities": [
+        "Embed the official Goldman Sachs report or a relevant tweet from their official account to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "f01c4696-cf6a-48d0-85a8-0fb2b05a18e1",
+    "headline": "Anthropic Prices IPO at $83 a Share, Valuing Claude Maker at About $1.5 Trillion",
+    "slug": "anthropic-ipo-priced-83-valuation-1-5-trillion-nasdaq-debut",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for when shares will start trading by explicitly stating the date in the first paragraph instead of the last, enhancing clarity for readers who may miss it otherwise.",
+        "Include a brief explanation of what a 'fully diluted basis' means for readers who may not be familiar with financial terminology, ensuring completeness and understanding.",
+        "Add a quote from a financial analyst or an executive from Anthropic to provide attribution and context around the significance of this IPO, which would enhance the article's depth."
+      ],
+      "embed_opportunities": [
+        "Embed the official Nasdaq announcement regarding the IPO to provide readers with direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "fa7814dd-a02e-4e6c-b7d8-7b3be668c564",
+    "headline": "'Heartbeat of Chepauk': Dhoni's Own Farewell Post Leads a Day of Tributes",
+    "slug": "dhoni-farewell-post-tributes-heartbeat-of-chepauk",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date of Dhoni's retirement announcement and the date of his Instagram post to avoid confusion for readers unfamiliar with the timeline.",
+        "Provide more context about Dhoni's significance to the Chennai Super Kings and IPL as a whole, perhaps by including statistics or achievements that highlight his impact on the sport.",
+        "Include direct quotes from Dhoni's Instagram post to enhance authenticity and provide readers with a more personal connection to the farewell.",
+        "Ensure that all sources are clearly attributed, particularly when mentioning tributes from public figures and organizations, to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed Dhoni's Instagram post or a video montage of his career highlights to provide a visual element that complements the article."
+      ]
+    }
+  },
+  {
+    "id": "e2dc70d5-c656-4b59-8c82-48fd252066ff",
+    "headline": "Trump, Xi and Putin Speak at APEC Plenary in Shenzhen Before First Trilateral",
+    "slug": "trump-xi-putin-apec-plenary-shenzhen-first-trilateral",
+    "category": "nri-world",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The two leaders were due to be joined by Russia's Vladimir Putin for a first-eve\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the $20 million pledge from Xi Jinping by providing context on how it will be allocated or its expected impact on the Asia-Pacific region.",
+        "Include direct quotes from the leaders' speeches to enhance attribution and provide readers with a clearer understanding of their positions and rhetoric.",
+        "Add a brief background on the current state of US-China relations and the implications of the expiring trade truce to provide readers with necessary context for understanding the significance of the trilateral meeting."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official APEC account summarizing the key points from the plenary session or the trilateral meeting."
+      ]
+    }
+  }
+]

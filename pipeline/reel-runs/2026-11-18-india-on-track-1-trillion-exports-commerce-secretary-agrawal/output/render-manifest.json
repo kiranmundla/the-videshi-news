@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "india-on-track-1-trillion-exports-commerce-secretary-agrawal",
+ "article_slug": "india-on-track-1-trillion-exports-commerce-secretary-agrawal",
+ "article_id": "f67d5369-d96a-4073-8a8b-c0be689eef3e",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-18-india-on-track-1-trillion-exports-commerce-secretary-agrawal/output/india-on-track-1-trillion-exports-commerce-secretary-agrawal.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://dailyflash.in/assets/img/uploads/india-s-exports-hit-record-89-99-billion-in-october-up-nearly-30-1794626080.jpg",
+  "local_path": "reel-runs/2026-11-18-india-on-track-1-trillion-exports-commerce-secretary-agrawal/output/hero.jpg",
+  "width": 1500,
+  "height": 900,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.621,0.481) damped=(0.560,0.490)",
+  "has_face": false,
+  "box_source": [
+   420,
+   243,
+   840,
+   360
+  ],
+  "box_bg": [
+   320,
+   291,
+   467,
+   200
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.538,
+   0.491
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   500
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 720,
+   "zone_h": 836,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 956,
+   "block_bottom": 1319,
+   "text_bbox": [
+    70,
+    956,
+    930,
+    1319
+   ],
+   "texts": [
+    "Markets Finance",
+    "INDIA ON TRACK TO HIT $1 TRILLION IN EXPORTS THIS YEAR"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.556,
+    "photo_px": [
+     1500,
+     900
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 500,
+     "scale": 0.556,
+     "window": [
+      0,
+      0,
+      1500,
+      899
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 720,
+   "zone_h": 836,
+   "scale": 1.0,
+   "content_h": 413,
+   "block_top": 931,
+   "block_bottom": 1344,
+   "text_bbox": [
+    70,
+    931,
+    930,
+    1344
+   ],
+   "texts": [
+    "What Happened",
+    "Commerce Secretary Rajesh Agrawal said India is on track to hit $1 trillion in exports of goods and services this year, after October exports hit a record $89.99 billion."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.632,
+    "photo_px": [
+     1500,
+     900
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 500,
+     "scale": 0.6318181818181818,
+     "window": [
+      147,
+      46,
+      1467,
+      837
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 720,
+   "zone_h": 836,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 922,
+   "block_bottom": 1354,
+   "text_bbox": [
+    70,
+    922,
+    930,
+    1354
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$1 trillion",
+    "Goods and services exports India is on track to reach this year"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1500,
+     900
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 500,
+     "scale": 0.695,
+     "window": [
+      60,
+      82,
+      1260,
+      801
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 720,
+   "zone_h": 836,
+   "scale": 1.0,
+   "content_h": 770,
+   "block_top": 753,
+   "block_bottom": 1523,
+   "text_bbox": [
+    70,
+    753,
+    930,
+    1523
+   ],
+   "texts": [
+    "By The Numbers",
+    "$89.99 billion",
+    "Total exports in October, up 29.9%, the highest monthly value India has ever recorded",
+    "$49.47 billion",
+    "Goods exports in October, a record, up 45.06% from a year earlier",
+    "$863 billion",
+    "Exports last fiscal year, an all-time high"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1500,
+     900
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 500,
+     "scale": 0.695,
+     "window": [
+      300,
+      82,
+      1500,
+      801
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 720,
+   "zone_h": 836,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 922,
+   "block_bottom": 1354,
+   "text_bbox": [
+    70,
+    922,
+    930,
+    1354
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Exports to the United States grew 39% in October",
+    "Goods trade deficit widened to $39.88 billion in October, its highest in a year"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.751,
+    "photo_px": [
+     1500,
+     900
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 500,
+     "scale": 0.7513513513513513,
+     "window": [
+      252,
+      235,
+      1362,
+      900
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 373,
+   "block_top": 673,
+   "block_bottom": 1046,
+   "text_bbox": [
+    70,
+    673,
+    930,
+    1046
+   ],
+   "texts": [
+    "The Takeaway",
+    "The $1 trillion figure is a target for the financial year ending March 31, 2027, not yet a reported outcome.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 123.9,
+ "mp4_bytes": 12959700
+}

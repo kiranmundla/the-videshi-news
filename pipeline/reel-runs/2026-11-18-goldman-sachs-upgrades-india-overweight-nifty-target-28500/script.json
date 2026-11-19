@@ -1,0 +1,35 @@
+{
+ "hook_line": "GOLDMAN SACHS UPGRADES INDIA TO OVERWEIGHT, SETS NIFTY TARGET OF 28,500",
+ "hook_stat": {
+  "big": "28,500",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Nifty target by end-2027 set by Goldman Sachs"
+ },
+ "stats": [
+  {
+   "big": "12%",
+   "label": "Upside implied by the 28,500 target from current levels"
+  },
+  {
+   "big": "15%",
+   "label": "Nifty earnings-per-share growth forecast for both 2027 and 2028"
+  },
+  {
+   "big": "$64 billion",
+   "label": "Cumulative foreign investor selloff from India between 2024 and 2026"
+  }
+ ],
+ "diaspora_bullets": [
+  "Goldman favours domestic-facing cyclicals over the export-heavy IT names in many NRI portfolios",
+  "Goldman is overweight banks, defence, utilities, telecom and internet stocks"
+ ],
+ "key_entities": [
+  "Goldman Sachs",
+  "Nifty",
+  "India"
+ ],
+ "news_summary": "Goldman Sachs upgraded Indian equities to overweight in its Asia-Pacific portfolio strategy and set a Nifty target of 28,500 by end-2027, implying roughly 12 percent upside from current levels.",
+ "payoff": "The 28,500 target is a forecast, not a result, and rests on 15% earnings growth in 2027 and 2028.",
+ "versus": "",
+ "story_mood": "practical"
+}

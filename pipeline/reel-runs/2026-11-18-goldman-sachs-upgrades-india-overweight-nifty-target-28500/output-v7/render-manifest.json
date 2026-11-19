@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "goldman-sachs-upgrades-india-overweight-nifty-target-28500",
+ "article_slug": "goldman-sachs-upgrades-india-overweight-nifty-target-28500",
+ "article_id": "a427ab1b-a2da-483b-97e2-c04ec837d9bf",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-18-goldman-sachs-upgrades-india-overweight-nifty-target-28500/output-v7/goldman-sachs-upgrades-india-overweight-nifty-target-28500.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://bl-i.thgim.com/public/news/s4gou4/article71716020.ece/alternates/LANDSCAPE_1200/Goldman1.jpg",
+  "local_path": "reel-runs/2026-11-18-goldman-sachs-upgrades-india-overweight-nifty-target-28500/output-v7/hero.jpg",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.564,0.299) damped=(0.532,0.399)",
+  "has_face": false,
+  "box_source": [
+   302,
+   121,
+   672,
+   270
+  ],
+  "box_bg": [
+   296,
+   240,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.535,
+   0.409
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 294,
+   "block_top": 975,
+   "block_bottom": 1269,
+   "text_bbox": [
+    70,
+    975,
+    930,
+    1269
+   ],
+   "texts": [
+    "Markets Finance",
+    "GOLDMAN SACHS UPGRADES INDIA TO OVERWEIGHT, SETS NIFTY TARGET OF 28,500"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      673
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 933,
+   "block_bottom": 1311,
+   "text_bbox": [
+    70,
+    933,
+    930,
+    1311
+   ],
+   "texts": [
+    "What Happened",
+    "Goldman Sachs upgraded Indian equities to overweight in its Asia-Pacific portfolio strategy and set a Nifty target of 28,500 by end-2027, implying roughly 12 percent upside from current levels."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7897727272727273,
+     "window": [
+      113,
+      0,
+      1169,
+      592
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 903,
+   "block_bottom": 1341,
+   "text_bbox": [
+    70,
+    903,
+    930,
+    1341
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "28,500",
+    "Nifty target by end-2027 set by Goldman Sachs"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.86875,
+     "window": [
+      14,
+      7,
+      974,
+      545
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 728,
+   "block_bottom": 1516,
+   "text_bbox": [
+    70,
+    728,
+    930,
+    1516
+   ],
+   "texts": [
+    "By The Numbers",
+    "12%",
+    "Upside implied by the 28,500 target from current levels",
+    "15%",
+    "Nifty earnings-per-share growth forecast for both 2027 and 2028",
+    "$64 billion",
+    "Cumulative foreign investor selloff from India between 2024 and 2026"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.86875,
+     "window": [
+      240,
+      7,
+      1200,
+      545
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 874,
+   "block_bottom": 1369,
+   "text_bbox": [
+    70,
+    874,
+    930,
+    1369
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Goldman favours domestic-facing cyclicals over the export-heavy IT names in many NRI portfolios",
+    "Goldman is overweight banks, defence, utilities, telecom and internet stocks"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.939,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.9391891891891891,
+     "window": [
+      197,
+      121,
+      1085,
+      619
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 379,
+   "block_top": 670,
+   "block_bottom": 1049,
+   "text_bbox": [
+    70,
+    670,
+    930,
+    1049
+   ],
+   "texts": [
+    "The Takeaway",
+    "The 28,500 target is a forecast, not a result, and rests on 15% earnings growth in 2027 and 2028.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-newer-wave.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 110.3,
+ "mp4_bytes": 4665244
+}

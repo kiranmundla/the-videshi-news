@@ -1,0 +1,23 @@
+[
+  {
+    "id": "4a730b0f-21ee-486f-9276-61857e6799a8",
+    "headline": "Walt Disney Beats Estimates as Q4 Revenue Rises 16% to $25.9 Billion and Adjuste",
+    "slug": "walt-disney-beats-estimates-q4-revenue-rises-adjusted-eps-1-77",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the impact of the extra week in fiscal 2026 on the reported earnings and revenue figures. This is crucial for readers to understand the context of the growth numbers.",
+        "Include specific details about the dividend increase, such as the date when the new dividend will be paid and any eligibility requirements for shareholders.",
+        "Provide more context on what the targeted $3 billion in annual cost savings means for the company and its operations moving forward, including potential impacts on employees or services.",
+        "Add a brief summary of analyst expectations and how Disney's performance compares to industry trends or competitors to provide a clearer picture of its market position."
+      ],
+      "embed_opportunities": [
+        "Embed the official Disney earnings release or a relevant tweet from Disney's official account to provide direct access to primary information."
+      ]
+    }
+  }
+]

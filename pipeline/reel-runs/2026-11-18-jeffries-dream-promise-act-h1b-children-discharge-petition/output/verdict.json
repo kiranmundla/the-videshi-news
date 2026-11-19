@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "jeffries-dream-promise-act-h1b-children-discharge-petition",
+  "name": "jeffries-dream-promise-act-h1b-children-discharge-petition",
+  "script": "reel-runs/2026-11-18-jeffries-dream-promise-act-h1b-children-discharge-petition/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000759
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-18-jeffries-dream-promise-act-h1b-children-discharge-petition/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Hakeem Jeffries, Sylvia Garcia) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 1,
+    "scenes": 6,
+    "labels": [
+      "hero"
+    ]
+  },
+  "detail": "only 1 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}

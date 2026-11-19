@@ -1,0 +1,83 @@
+[
+  {
+    "id": "96843ae6-6092-4fb0-8e71-94ba4005a0f4",
+    "headline": "Nvidia Beat Eases AI Fears, but TCS and Infosys Face a Cautious Open",
+    "slug": "nvidia-earnings-beat-tcs-infosys-cautious-open",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of Nvidia's reported earnings by specifying the exact date of the earnings report and the date range for the quarter mentioned (e.g., 'for the quarter ending October 25, 2023'). This will help readers understand the context better.",
+        "Provide a more detailed explanation of the implications of Nvidia's earnings on TCS and Infosys, including specific percentages or dollar amounts that indicate how these companies might be affected in the short term. This could help readers grasp the potential impact on their investments or interests.",
+        "Include a quote from a financial analyst or expert regarding Nvidia's performance and its implications for the tech sector, which would enhance the article's credibility and depth."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Nvidia's official account announcing their earnings report or a relevant statement from their CEO regarding the future outlook."
+      ]
+    }
+  },
+  {
+    "id": "530dc74a-2bef-433e-81c0-9e64d40133ac",
+    "headline": "FAIR Defends $100,000 H-1B Fee in Ninth Circuit as Appeals Multiply",
+    "slug": "fair-defends-100000-h1b-fee-ninth-circuit-appeal",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the legal proceedings by explicitly stating the current status of the appeals in the First, Ninth, and D.C. Circuits, including any relevant dates for upcoming hearings or decisions.",
+        "Provide more context on the implications of the fee for employers and employees, such as potential financial impacts or changes in hiring practices, to help readers understand the significance of the fee.",
+        "Include a brief explanation of the Administrative Procedure Act (APA) for readers who may not be familiar with it, as this is a key aspect of the legal argument being made.",
+        "Ensure that the information about who is affected by the fee is clearly delineated, possibly using bullet points for clarity, to help readers quickly grasp who will be impacted and who will not."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS statement or guidance regarding the H-1B fee to provide readers with direct access to authoritative information."
+      ]
+    }
+  },
+  {
+    "id": "2a12d3f7-a4a2-4a28-a07a-43cdd4f8560e",
+    "headline": "13 Lawmakers Seek Federal Probe Into Seattle Diwali Event Disruption",
+    "slug": "lawmakers-seek-federal-probe-seattle-diwali-disruption",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by explicitly stating the date of the disruption (November 7) and the date the lawmakers requested a briefing (December 4) in a more prominent way, perhaps in the opening paragraph.",
+        "Provide more context on the significance of the federal statutes cited (18 U.S.C. sections 245, 241, and 247) to help readers understand the potential implications of the investigation.",
+        "Include a direct quote from the letter or a statement from one of the lawmakers to enhance attribution and provide a more personal perspective on the issue.",
+        "Ensure that the article clearly states the current status of the investigation or any responses from the Justice Department, if available, to give readers a complete picture."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the lawmakers regarding the request for investigation to provide readers with direct access to their comments."
+      ]
+    }
+  },
+  {
+    "id": "021202a1-d358-4ded-9a80-ebf13deb90a7",
+    "headline": "Cyclone Akvan to Hit Andhra Coast Friday With Winds up to 145 Kmph",
+    "slug": "cyclone-akvan-landfall-andhra-pradesh-november-20",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the date for when the cyclone is expected to intensify and make landfall. For example, specify that the cyclone is projected to become a severe cyclonic storm on November 18 and cross the coast on November 20.",
+        "Include specific details about the areas under red alert and the expected impact, such as the number of people affected or specific evacuation measures being taken in those districts.",
+        "Provide more context about the potential impact of the storm surge, such as which specific low-lying areas are most at risk and what residents should do to prepare.",
+        "Ensure the article maintains a clear structure by breaking up long paragraphs for better readability, especially when discussing different regions and their respective alerts."
+      ],
+      "embed_opportunities": [
+        "Embed the official IMD tweet or bulletin regarding Cyclone Akvan for real-time updates and authoritative information."
+      ]
+    }
+  }
+]

@@ -1,0 +1,179 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "us-loses-measles-elimination-status-paho-2026",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "US Loses Measles Elimination Status After 26 Years as Cases Pass 5,400",
+        "numbers": [
+          26.0,
+          5400.0
+        ],
+        "entities": [
+          "US Loses Measles Elimination Status After",
+          "Cases Pass"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the US lost status after 26 years and cases exceeded 5,400.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "PAHO ruled on November 17 that measles has circulated uninterrupted in the United States for more than a year.",
+        "numbers": [
+          17.0
+        ],
+        "entities": [
+          "United States"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms PAHO's ruling on November 17 regarding uninterrupted circulation.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The CDC counted 5,412 confirmed US cases in 2026 as of November 12",
+        "numbers": [
+          12.0,
+          2026.0,
+          5412.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "The article reports 5,412 confirmed cases as of November 12, 2026.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "96% of infections were in people unvaccinated or of unknown vaccination status",
+        "numbers": [
+          96.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states 96% of infections were in unvaccinated or unknown status individuals.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The CDC schedule is a first MMR dose at 12 months and a second at 4 to 6 years",
+        "numbers": [
+          4.0,
+          6.0,
+          12.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article details the CDC's vaccination schedule for MMR doses.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Jarbas Barbosa",
+        "numbers": [],
+        "entities": [
+          "Jarbas Barbosa"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Jarbas Barbosa is mentioned in the article as PAHO director.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Director, Pan American Health Organization",
+        "numbers": [],
+        "entities": [
+          "Pan American Health Organization"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Jarbas Barbosa as the director of PAHO.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "US Loses Measles Elimination Status After 26 Years as Cases Pass 5,400",
+        "numbers": [
+          26.0,
+          5400.0
+        ],
+        "entities": [
+          "US Loses Measles Elimination Status After",
+          "Cases Pass"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000569,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

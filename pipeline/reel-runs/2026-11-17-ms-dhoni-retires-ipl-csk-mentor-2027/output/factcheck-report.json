@@ -1,0 +1,298 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "ms-dhoni-retires-ipl-csk-mentor-2027",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "DHONI ENDS 19-YEAR IPL CAREER, STAYS AS CSK MENTOR",
+      "numbers": [
+        19.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Dhoni retires after 19 years and will be CSK mentor.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Chennai Super Kings announced on Tuesday, November 17, that MS Dhoni has retired from the IPL as a player and will begin a new chapter with the franchise as Team Mentor from IPL 2027.",
+      "numbers": [
+        17.0,
+        2027.0
+      ],
+      "entities": [
+        "Chennai Super Kings",
+        "MS Dhoni",
+        "Team Mentor"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "Announcement made on November 17 about Dhoni's retirement and mentoring role.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "19 YEARS",
+      "numbers": [
+        19.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Dhoni's IPL career lasted 19 years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "IPL career that began in the inaugural season in 2008",
+      "numbers": [
+        2008.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2008
+        ]
+      },
+      "llm_reason": "Dhoni's IPL career started in 2008, the inaugural season.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "5",
+      "numbers": [
+        5.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Dhoni led CSK to 5 IPL titles.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "IPL titles as CSK captain \u2014 2010, 2011, 2018, 2021 and 2023",
+      "numbers": [
+        2010.0,
+        2011.0,
+        2018.0,
+        2021.0,
+        2023.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2010,
+          2011,
+          2018,
+          2021,
+          2023
+        ]
+      },
+      "llm_reason": "Dhoni won IPL titles in those years.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "272",
+      "numbers": [
+        272.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Dhoni has 272 appearances for CSK.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Appearances for CSK, the franchise's most-capped player",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Dhoni is the most-capped player for CSK.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "5,314",
+      "numbers": [
+        5314.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Dhoni scored 5,314 runs for CSK.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Runs for Chennai Super Kings",
+      "numbers": [],
+      "entities": [
+        "Chennai Super Kings"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Dhoni's runs for CSK are accurately stated.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Dhoni, 45, will stay with CSK as Team Mentor from IPL 2027",
+      "numbers": [
+        45.0,
+        2027.0
+      ],
+      "entities": [
+        "Team Mentor"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "Dhoni's age and mentoring role from IPL 2027 are confirmed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "CSK named no successor ahead of the December 16 auction in Goa",
+      "numbers": [
+        16.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "CSK did not name a successor for Dhoni.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Dhoni will still be in the CSK dugout when IPL 2027 begins \u2014 in the mentor's seat, not at the toss.",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "Dhoni will be in the dugout as mentor for IPL 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "MS Dhoni",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Chennai Super Kings",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "IPL",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "N Srinivasan",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000705,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "goldman-sachs-upgrades-india-overweight-nifty-target-28500",
+  "name": "goldman-sachs-upgrades-india-overweight-nifty-target-28500",
+  "script": "reel-runs/2026-11-18-goldman-sachs-upgrades-india-overweight-nifty-target-28500/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000735
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-18-goldman-sachs-upgrades-india-overweight-nifty-target-28500/output-v7/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "manifest": "reel-runs/2026-11-18-goldman-sachs-upgrades-india-overweight-nifty-target-28500/output-v7/render-manifest.json",
+  "video": "reel-runs/2026-11-18-goldman-sachs-upgrades-india-overweight-nifty-target-28500/output-v7/goldman-sachs-upgrades-india-overweight-nifty-target-28500.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-18-goldman-sachs-upgrades-india-overweight-nifty-target-28500/output-v7/tiktok-caption.txt"
+}

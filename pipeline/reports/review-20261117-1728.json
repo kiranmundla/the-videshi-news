@@ -1,0 +1,43 @@
+[
+  {
+    "id": "44635391-b6da-4367-892f-6452f9c7aafb",
+    "headline": "Prince William Opens India Visit in a Handloom Jacket Woven in West Bengal",
+    "slug": "prince-william-kardo-handloom-jacket-mumbai-earthshot-visit",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the visit in the first paragraph to avoid confusion, as the current structure may lead readers to think the visit is ongoing rather than starting on November 16.",
+        "Include a quote from Prince William or a representative to provide a personal touch and enhance attribution, which would also add depth to the article.",
+        "Add context about the significance of the Earthshot Prize and its relevance to India, as this would provide readers with a clearer understanding of the visit's purpose."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Kensington Palace account announcing the visit or highlighting key moments from the day."
+      ]
+    }
+  },
+  {
+    "id": "18d2809b-1d78-4747-94c8-f23857471fb9",
+    "headline": "Rohit Sharma's 30 Runs in New Zealand Put World Cup Place in Doubt",
+    "slug": "rohit-sharma-30-runs-new-zealand-2027-world-cup-place",
+    "category": "sports",
+    "structural_issues": [
+      "Inline caption names venue 'WACA Ground' not supported by the image file name (2015_CWC_I_v_UAE_02-28_Sharma_%2801%29_%28cropped%29.JPG\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the timeline by explicitly stating the dates of the ODI series and the significance of the upcoming matches against Sri Lanka, including their dates and locations.",
+        "Provide more context around Rohit Sharma's performance by comparing it to his previous series or historical averages to give readers a better understanding of how this series fits into his overall career.",
+        "Include direct quotes from Kapil Dev and Gautam Gambhir to enhance attribution and provide readers with a clearer view of the opinions surrounding Rohit's performance.",
+        "Correct the date mentioned for the series conclusion; it states November 15, but the series was completed on November 14, which could mislead readers."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official BCCI or a cricket analyst discussing Rohit Sharma's performance to provide real-time reactions and expert opinions."
+      ]
+    }
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "9179b933-cf33-49c0-a515-5666e54253e6",
+    "headline": "Dow Falls 739 Points as Nvidia-Led AI Sell-Off Deepens Before Earnings",
+    "slug": "dow-falls-739-nvidia-ai-selloff-before-earnings",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding Jensen Huang's resignation and its impact on Nvidia's stock performance. For example, include the date of his resignation and how it has correlated with the stock's decline since then.",
+        "Provide specific details about the new Commerce Department rule restricting remote access to advanced US chips. Explain how this rule affects Nvidia and the broader market, including potential implications for investors.",
+        "Include a brief summary of what Nvidia's upcoming earnings report could mean for investors, especially in light of the recent stock performance and leadership changes."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Nvidia or a financial news outlet regarding Jensen Huang's resignation or the upcoming earnings report to provide real-time context."
+      ]
+    }
+  },
+  {
+    "id": "b950528b-0b23-4ca6-8b60-d9e1f22b32b4",
+    "headline": "India and Nine Partners Sign San Francisco Declaration to Protect AI Supply Chai",
+    "slug": "india-san-francisco-declaration-ai-supply-chains-pax-silica",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the declaration for India, such as specific steps the government plans to take in building domestic semiconductor and computing capacity, including any timelines or funding amounts.",
+        "Provide more context on the significance of the term 'super intelligence' (SI) supply chains versus traditional AI supply chains, as this could confuse readers unfamiliar with the terminology.",
+        "Include a brief overview of the potential impact of this declaration on global AI supply chains and how it might affect international relations, especially in the context of competition with China.",
+        "Add a quote from a key participant or expert to provide insight into the importance of this declaration and its expected outcomes."
+      ],
+      "embed_opportunities": [
+        "Embed the official US State Department tweet announcing the signing of the San Francisco Declaration to enhance credibility and provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "975f9e22-3262-4071-9acf-088408f45ff8",
+    "headline": "Born in Mozambique, Raised in Rajkot: Dolly Vadalia Gets Indian Passport After 2",
+    "slug": "dolly-vadalia-indian-passport-26-years-mozambique-rajkot",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the dates of the passport applications and the court dismissal to enhance completeness and clarity. For example, specify the exact dates of the three passport applications that were rejected in 2023 and 2025.",
+        "Provide more context about the implications of the Home Ministry memorandum for others in similar situations. This could include details on how others can apply for citizenship by descent or what steps they should take if they face similar issues.",
+        "Include a direct quote from Dolly Vadalia or a relevant official to add a personal touch and enhance the article's attribution and depth."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet or announcement from the Union Home Ministry regarding the recognition of Dolly Vadalia's citizenship to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "a8e21272-9531-4d13-80ad-7d353dac55d2",
+    "headline": "Judge Vacates Four-Year Visa Cap, Restoring Duration of Status for Students",
+    "slug": "judge-vacates-four-year-student-visa-cap-duration-of-status",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the ruling for current and prospective students by including specific examples of how this affects their visa status and study plans, such as the average duration of studies for different degree levels.",
+        "Provide a direct quote from Judge F. Dennis Saylor IV or a representative from the Department of Homeland Security to enhance attribution and authority in the reporting.",
+        "Include a timeline for the Department of Homeland Security's decision on whether to appeal the ruling, as this is crucial for students and institutions planning their academic futures.",
+        "Add a brief explanation of the Administrative Procedure Act and why it was relevant to the ruling, to provide readers with necessary context."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the Department of Homeland Security regarding the ruling, if available, to provide readers with direct access to official information."
+      ]
+    }
+  }
+]

@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "humyn-labs-raises-47-million-series-a-robotics-training-data",
+ "article_slug": "humyn-labs-raises-47-million-series-a-robotics-training-data",
+ "article_id": "1ab273e2-b8a1-4b27-873f-aaf963220dde",
+ "category": "Technology",
+ "video": "reel-runs/2026-11-18-humyn-labs-raises-47-million-series-a-robotics-training-data/output/humyn-labs-raises-47-million-series-a-robotics-training-data.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://techcrunch.com/wp-content/uploads/2026/11/humyn-labs-co-founders_164602.jpg?resize=1200,800",
+  "local_path": "reel-runs/2026-11-18-humyn-labs-raises-47-million-series-a-robotics-training-data/output/hero.jpg",
+  "width": 1200,
+  "height": 800,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.91)",
+  "has_face": true,
+  "box_source": [
+   356,
+   156,
+   124,
+   160
+  ],
+  "box_bg": [
+   333,
+   264,
+   86,
+   111
+  ],
+  "chin_bg": 375,
+  "anchor": [
+   0.349,
+   0.293
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   556
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 264,
+   "block_top": 1034,
+   "block_bottom": 1298,
+   "text_bbox": [
+    70,
+    1034,
+    930,
+    1298
+   ],
+   "texts": [
+    "Technology",
+    "BENGALURU'S HUMYN LABS RAISES $47 MILLION TO FEED US ROBOTICS FIRMS TRAINING DATA"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      800
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 388,
+   "block_top": 972,
+   "block_bottom": 1360,
+   "text_bbox": [
+    70,
+    972,
+    930,
+    1360
+   ],
+   "texts": [
+    "What Happened",
+    "Bengaluru-based Humyn Labs has raised $47 million in Series A financing to supply U.S. AI and robotics companies with the real-world data they need to train models."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.7897727272727273,
+     "window": [
+      0,
+      0,
+      1056,
+      704
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 405,
+   "block_top": 963,
+   "block_bottom": 1368,
+   "text_bbox": [
+    70,
+    963,
+    930,
+    1368
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "$47 million",
+    "Series A financing raised by Bengaluru-based Humyn Labs"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.86875,
+     "window": [
+      0,
+      0,
+      960,
+      640
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 698,
+   "block_top": 817,
+   "block_bottom": 1515,
+   "text_bbox": [
+    70,
+    817,
+    930,
+    1515
+   ],
+   "texts": [
+    "By The Numbers",
+    "$26 million",
+    "Equity led by Accel",
+    "$21 million",
+    "Venture debt portion of the round",
+    "90%",
+    "Of revenue comes from the United States"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.86875,
+     "window": [
+      240,
+      0,
+      1200,
+      640
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 776,
+   "zone_h": 780,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 950,
+   "block_bottom": 1382,
+   "text_bbox": [
+    70,
+    950,
+    930,
+    1382
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "12 paying customers, including frontier AI labs and robotics companies",
+    "$10 million in revenue generated between April and October"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.939,
+    "photo_px": [
+     1200,
+     800
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 556,
+     "scale": 0.9391891891891891,
+     "window": [
+      0,
+      156,
+      888,
+      748
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.40x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 364,
+   "block_top": 678,
+   "block_bottom": 1042,
+   "text_bbox": [
+    70,
+    678,
+    930,
+    1042
+   ],
+   "texts": [
+    "The Takeaway",
+    "India is becoming a collection hub for physical AI data, a model that also raises privacy and consent questions.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/tech-corporate-technology.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 98.0,
+ "mp4_bytes": 4881542
+}

@@ -1,0 +1,389 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "dow-falls-739-nvidia-ai-selloff-before-earnings",
+ "article_slug": "dow-falls-739-nvidia-ai-selloff-before-earnings",
+ "article_id": "9179b933-cf33-49c0-a515-5666e54253e6",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-16-dow-falls-739-nvidia-ai-selloff-before-earnings/output-v7/dow-falls-739-nvidia-ai-selloff-before-earnings.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/2788-2888_San_Tomas_Expwy.jpg/3840px-2788-2888_San_Tomas_Expwy.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-11-16-dow-falls-739-nvidia-ai-selloff-before-earnings/output-v7/hero.jpg",
+  "width": 3840,
+  "height": 2583,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.507,0.606) damped=(0.504,0.553)",
+  "has_face": false,
+  "box_source": [
+   858,
+   860,
+   2150,
+   1033
+  ],
+  "box_bg": [
+   -258,
+   639,
+   1598,
+   768
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.503,
+   0.564
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   560
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": {
+  "color": [
+   5,
+   9,
+   18
+  ],
+  "t0": 0.25,
+  "exp": 1.35,
+  "amax": 165,
+  "top_scrim": {
+   "h": 320,
+   "amax": 128
+  }
+ },
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 348,
+   "block_top": 1232,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1232,
+    930,
+    1580
+   ],
+   "texts": [
+    "Markets Finance",
+    "DOW FALLS 739 POINTS IN NVIDIA-LED AI SELL-OFF"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "full-bleed",
+    "render_scale": 0.743,
+    "photo_px": [
+     3840,
+     2583
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.743321718931475,
+     "window": [
+      1205,
+      0,
+      2657,
+      2583
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 313,
+   "block_top": 1267,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1267,
+    930,
+    1580
+   ],
+   "texts": [
+    "What Happened",
+    "US stocks closed sharply lower on Monday as Nvidia fell for a third straight day after Jensen Huang's resignation, the Dow dropped 739 points, and a new US rule restricting China's remote access to advanced chips added pressure on AI stocks."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "full-bleed",
+    "render_scale": 0.743,
+    "photo_px": [
+     3840,
+     2583
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.743321718931475,
+     "window": [
+      1205,
+      0,
+      2657,
+      2583
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 1142,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1142,
+    930,
+    1580
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "739",
+    "Points the Dow fell on Monday, a 1.4% drop to 51,608.17"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "full-bleed",
+    "render_scale": 0.743,
+    "photo_px": [
+     3840,
+     2583
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.743321718931475,
+     "window": [
+      1205,
+      0,
+      2657,
+      2583
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 792,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    792,
+    930,
+    1580
+   ],
+   "texts": [
+    "By The Numbers",
+    "-4.1%",
+    "Nvidia's drop to $156.14, its lowest close since July 1, 2025",
+    "$735 BILLION",
+    "Nvidia market value lost since the scandal around Huang erupted",
+    "+19%",
+    "Surge in the VIX, Wall Street's fear gauge"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "full-bleed",
+    "render_scale": 0.743,
+    "photo_px": [
+     3840,
+     2583
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.743321718931475,
+     "window": [
+      1205,
+      0,
+      2657,
+      2583
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 1085,
+   "block_bottom": 1580,
+   "text_bbox": [
+    70,
+    1085,
+    930,
+    1580
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "The sell-off spread beyond Nvidia: Broadcom fell 3.9%, AMD 5.6% and Intel 7.1%",
+    "S&P 500 earnings are tracking nearly 32% higher than a year earlier, FactSet figures show"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "full-bleed",
+    "render_scale": 0.743,
+    "photo_px": [
+     3840,
+     2583
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "cover",
+     "x": 0,
+     "y": 0,
+     "w": 1080,
+     "h": 1920,
+     "scale": 0.743321718931475,
+     "window": [
+      1205,
+      0,
+      2657,
+      2583
+     ]
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 379,
+   "block_top": 670,
+   "block_bottom": 1049,
+   "text_bbox": [
+    70,
+    670,
+    930,
+    1049
+   ],
+   "texts": [
+    "The Takeaway",
+    "Nvidia's Tuesday earnings, its first since Huang's exit, will be read as a verdict on the AI trade itself.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/tech-corporate-technology.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 154.4,
+ "mp4_bytes": 22614620
+}

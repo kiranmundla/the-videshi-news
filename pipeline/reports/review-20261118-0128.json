@@ -1,0 +1,81 @@
+[
+  {
+    "id": "87a83492-6310-413d-96d6-1a230310bc1b",
+    "headline": "Quad Leaders Announce First Joint Patrol-Aircraft Exercise and Critical Minerals",
+    "slug": "quad-manila-joint-statement-patrol-aircraft-exercise-critical-minerals",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the attribution regarding President Trump's comments on critical minerals deals; it should specify if he was speaking on behalf of the Quad or if this was his personal statement.",
+        "Include specific details about the critical minerals deals, such as potential dollar values or countries involved, to provide readers with a clearer understanding of the implications.",
+        "Add context regarding the significance of the maritime exercise in 2027; explain why this is a milestone for the Quad and its implications for regional security.",
+        "Ensure the timeline of events is clear; specify the date of the summit and when the announced initiatives are expected to take effect."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Quad account summarizing the key announcements from the summit."
+      ]
+    }
+  },
+  {
+    "id": "a40d88a3-cb76-4744-b7a3-cf95d9f134a4",
+    "headline": "Canada\u2019s Immigration Backlog Falls to 1.51 Million as IRCC Finalizes 3 Million F",
+    "slug": "canada-ircc-backlog-falls-1-51-million-applications",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by explicitly stating that the data is from the first nine months of 2026 and that the report was published on November 17, 2026. This will help readers understand the recency of the information and its relevance.",
+        "Include specific numbers related to the Immigration Levels Plan, such as the annual admissions targets for 2026-2028, to provide context on how the backlog might continue to change and what it means for applicants.",
+        "Add a brief explanation of what the 'family-class files' entail, as not all readers may be familiar with immigration terminology. This will enhance clarity and completeness."
+      ],
+      "embed_opportunities": [
+        "Embed the official IRCC update or tweet regarding the immigration backlog for readers to access the primary source directly."
+      ]
+    }
+  },
+  {
+    "id": "f4df0c8e-540f-413a-aeb1-7372dfa386cc",
+    "headline": "Mumbai\u2019s Eleftheria Konark Named Best Indian Cheese at World Cheese Awards 2026",
+    "slug": "eleftheria-konark-best-indian-cheese-world-cheese-awards-2026",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 8,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the dates of the awards and the judging process more clearly. For example, mention that the judging took place on November 12 and results were announced on November 16, to enhance clarity on the timeline.",
+        "Provide more context on the significance of the awards. For instance, explain what the Gold, Silver, and Bronze awards mean in terms of competition level and how they compare to other international cheese competitions.",
+        "Include a brief background on Vivanda Gourmet to give readers insight into the brand's history and reputation in the cheese industry, which would enhance the completeness of the article.",
+        "Ensure that the headline reflects the significance of the achievement more compellingly, such as 'Mumbai's Eleftheria Konark Crowned Best Indian Cheese at World Cheese Awards 2026, Bringing Home Four National Honors'."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the World Cheese Awards or the Guild of Fine Food announcing the winners, which would provide authoritative confirmation and enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "4a1e90f1-fa52-406b-b2dc-1e631b38c0a3",
+    "headline": "\u2018Varuvaaiy\u2019 Becomes First Tamil Song Ever Nominated for a Grammy Award",
+    "slug": "varuvaaiy-first-tamil-song-grammy-nomination",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the Grammy Awards; the article states February 7, 2027, but the 69th Grammy Awards actually took place on February 7, 2023. This could confuse readers about the timeline of events.",
+        "Provide more context about the significance of this nomination for Tamil music and culture. While it mentions that 'Varuvaaiy' is the first Tamil song nominated, elaborating on why this is a milestone could enhance the article's completeness.",
+        "Include a quote from a music expert or cultural commentator about the impact of this nomination on the global perception of Tamil music. This would add depth and authority to the reporting.",
+        "Correct the attribution of the quote from Devan Ekambaram; ensure that it is clearly identified as coming from an Instagram post, and consider adding a direct link to the post for readers to verify and engage with the source."
+      ],
+      "embed_opportunities": [
+        "Embed the official Grammy Awards announcement or tweet regarding the nominations to provide readers with direct access to the source of the news."
+      ]
+    }
+  }
+]

@@ -1,0 +1,110 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "goldman-sachs-upgrades-india-overweight-nifty-target-28500",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Goldman Sachs",
+    "Nifty",
+    "India",
+    "Nifty Target",
+    "MSCI Asia Pacific",
+    "Markets Finance"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Nifty' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Nifty Target' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'MSCI Asia Pacific' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "category label: 'Markets Finance' is this article's category name, not a picture subject"
+    },
+    {
+      "candidate": "File:GoldmanSachsHeadquarters.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q193326)",
+      "verdict": "accepted",
+      "reason": "1536x2048, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Apple credit card14 07 57 638000.jpeg",
+      "route": "identity \u2014 depicts (P180=Q193326)",
+      "verdict": "accepted",
+      "reason": "4032x3024, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:India-locator-map-blank.svg",
+      "route": "identity \u2014 Wikidata P18 (Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:A villain performing in Dashavatara folk theatre.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Aerial photograph of the Himalayas, Ladakh 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Ambigram India Nepal (gray and beige) - animated.gif",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/gif)"
+    },
+    {
+      "candidate": "File:Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "accepted",
+      "reason": "3600x2400, CC BY 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Close wing position of Papilio nephelus Boisduval, 1836 \u2013 Yellow Helen.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "accepted",
+      "reason": "2000x1500, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:GoldmanSachsHeadquarters.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q193326)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/c/c1/GoldmanSachsHeadquarters.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=origina"
+    },
+    {
+      "candidate": "File:Apple credit card14 07 57 638000.jpeg",
+      "route": "identity \u2014 depicts (P180=Q193326)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/b/bd/Apple_credit_card14_07_57_638000.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_conten"
+    },
+    {
+      "candidate": "File:Close wing position of Loxura atymnus Stoll, 1780 \u2013 Yamfly.jpg",
+      "route": "identity \u2014 depicts (P180=Q668)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/f/f9/Close_wing_position_of_Loxura_atymnus_Stoll%2C_1780_%E2%80%93_Yamfly.jpg?utm_source=commons.wikimedia.or"
+    }
+  ],
+  "extras": []
+}

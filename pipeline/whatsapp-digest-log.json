@@ -398,5 +398,25 @@
     "quick_hit_count": 5,
     "deadline_count": 3,
     "chars": 2455
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-17T15:13:06.616552+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 17 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "happening-2026-11-17-walt-disney-the-earnings",
+    "quick_hit_count": 5,
+    "deadline_count": 3,
+    "chars": 2571
+  },
+  {
+    "type": "whatsapp-digest",
+    "sent_at": "2026-11-18T15:12:59.214163+00:00Z",
+    "subject": "WhatsApp digest \u2014 Nov 18 (ready to paste)",
+    "sent_to": "editor@thevideshi.com",
+    "top_story_slug": "cyclone-akvan-veers-north-landfall-narsapur-puri-november-20",
+    "quick_hit_count": 5,
+    "deadline_count": 3,
+    "chars": 2575
   }
 ]

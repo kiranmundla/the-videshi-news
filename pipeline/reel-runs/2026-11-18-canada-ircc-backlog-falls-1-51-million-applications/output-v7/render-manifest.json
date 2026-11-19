@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "canada-ircc-backlog-falls-1-51-million-applications",
+ "article_slug": "canada-ircc-backlog-falls-1-51-million-applications",
+ "article_id": "a40d88a3-cb76-4744-b7a3-cf95d9f134a4",
+ "category": "Immigration",
+ "video": "reel-runs/2026-11-18-canada-ircc-backlog-falls-1-51-million-applications/output-v7/canada-ircc-backlog-falls-1-51-million-applications.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/1280px-Flag_of_Canada_%28Pantone%29.svg.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+  "local_path": "reel-runs/2026-11-18-canada-ircc-backlog-falls-1-51-million-applications/output-v7/hero.png",
+  "width": 1280,
+  "height": 640,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.500,0.484) damped=(0.500,0.492)",
+  "has_face": false,
+  "box_source": [
+   282,
+   174,
+   716,
+   256
+  ],
+  "box_bg": [
+   270,
+   269,
+   467,
+   167
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.499,
+   0.312
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   417
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 637,
+   "zone_h": 919,
+   "scale": 1.0,
+   "content_h": 336,
+   "block_top": 928,
+   "block_bottom": 1264,
+   "text_bbox": [
+    70,
+    928,
+    930,
+    1264
+   ],
+   "texts": [
+    "Immigration",
+    "CANADA'S IMMIGRATION BACKLOG FALLS TO 1.51 MILLION"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1280,
+     640
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 417,
+     "scale": 0.6515625,
+     "window": [
+      0,
+      0,
+      1280,
+      640
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.00x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 637,
+   "zone_h": 919,
+   "scale": 1.0,
+   "content_h": 388,
+   "block_top": 902,
+   "block_bottom": 1290,
+   "text_bbox": [
+    70,
+    902,
+    930,
+    1290
+   ],
+   "texts": [
+    "What Happened",
+    "Canada's immigration department, IRCC, finalized 3,001,860 applications in the first nine months of 2026 and cut the number of files awaiting a final decision to 1,508,675 by September 30."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.741,
+    "photo_px": [
+     1280,
+     640
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 417,
+     "scale": 0.7406749555950266,
+     "window": [
+      75,
+      0,
+      1201,
+      563
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.00x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 637,
+   "zone_h": 919,
+   "scale": 1.0,
+   "content_h": 430,
+   "block_top": 881,
+   "block_bottom": 1311,
+   "text_bbox": [
+    70,
+    881,
+    930,
+    1311
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "3,001,860",
+    "Applications finalized by IRCC in the first nine months of 2026"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.814,
+    "photo_px": [
+     1280,
+     640
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 417,
+     "scale": 0.814453125,
+     "window": [
+      0,
+      0,
+      1024,
+      512
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.00x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 637,
+   "zone_h": 919,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 702,
+   "block_bottom": 1490,
+   "text_bbox": [
+    70,
+    702,
+    930,
+    1490
+   ],
+   "texts": [
+    "By The Numbers",
+    "1,508,675",
+    "Applications still awaiting a final decision on September 30",
+    "707,405",
+    "Permanent residence files in the backlog",
+    "35,180",
+    "Cut from the inventory in September alone"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.814,
+    "photo_px": [
+     1280,
+     640
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 417,
+     "scale": 0.814453125,
+     "window": [
+      256,
+      0,
+      1280,
+      512
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.00x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 637,
+   "zone_h": 919,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 880,
+   "block_bottom": 1312,
+   "text_bbox": [
+    70,
+    880,
+    930,
+    1312
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Work permit queue down to 24,970 files and study permits to 24,910",
+    "22% of economic files are waiting for space under the Immigration Levels Plan"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.881,
+    "photo_px": [
+     1280,
+     640
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 417,
+     "scale": 0.880675818373812,
+     "window": [
+      165,
+      167,
+      1112,
+      640
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.00x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "Family sponsorship was the only major stream that grew, rising by 1,685 to 168,855 files.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 91.7,
+ "mp4_bytes": 2808857
+}

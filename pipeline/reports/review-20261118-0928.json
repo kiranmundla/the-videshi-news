@@ -1,0 +1,80 @@
+[
+  {
+    "id": "ba43d5c4-3fa6-4f1f-a391-4d8f1c536352",
+    "headline": "Prince William Gets a Bollywood Welcome at Karan Johar's Dharma Productions",
+    "slug": "prince-william-bollywood-welcome-dharma-productions",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the Earthshot Prize and its relevance to the visit, as this context is currently missing from the article.",
+        "Include direct quotes from Prince William or Karan Johar to enhance attribution and provide a more vivid account of the event.",
+        "Add a brief background on the Earthshot Prize and its goals to give readers a clearer understanding of why the royal couple is in India, which would enhance completeness."
+      ],
+      "embed_opportunities": [
+        "Embed the official Twitter account of the Earthshot Prize to provide readers with real-time updates and context about the initiative."
+      ]
+    }
+  },
+  {
+    "id": "a54bee01-6d0b-47a7-8f59-97a891a8f768",
+    "headline": "Former Boxing Champion Jorge Linares in ICE Custody, Facing Deportation From US",
+    "slug": "jorge-linares-ice-detention-deportation",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the duration of Linares's authorized stay and how long he has overstayed. This would provide readers with a clearer understanding of the situation.",
+        "Include a direct quote from Linares's lawyers to provide more context on their stance and the steps they are taking to resolve the matter, enhancing the article's completeness.",
+        "Add a brief explanation of the deportation process for non-citizens, including potential timelines or outcomes, to inform readers about what Linares might expect moving forward.",
+        "Ensure that the attribution is consistent throughout the article. For example, clarify which statements are from ICE, Linares, or his lawyers to avoid confusion."
+      ],
+      "embed_opportunities": [
+        "Embed the official ICE statement or tweet regarding Linares's situation to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "92e9902d-3787-49f6-8f5b-dd01e60dd6bc",
+    "headline": "Mamdani Condemns Racism Against Indian Americans at New York Diwali Event",
+    "slug": "mamdani-condemns-racism-indian-americans-diwali-event",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the Seattle Diwali celebration disruption and providing context on the significance of the November 7 date mentioned.",
+        "Provide more specific statistics or data regarding the rise in hate incidents against Indian Americans, such as the sources of the cited study on anti-South Asian posts, to enhance credibility and depth.",
+        "Include a quote or statement from one of the 13 US lawmakers who requested the federal examination of the Seattle incident to add attribution and perspective to the lawmakers' actions.",
+        "Ensure consistency in the reporting of Mayor Mamdani's name; it is referred to as both 'Mamdani' and 'Mamdani' in the article, which could confuse readers."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from Mayor Mamdani regarding the Diwali event and his condemnation of racism to provide direct access to his remarks."
+      ]
+    }
+  },
+  {
+    "id": "a7547700-596d-4477-af7b-dc6f89b9a3c8",
+    "headline": "Naidu Seeks Immediate Central Aid as Two Cyclones Leave Losses Above \u20b97,000 Cror",
+    "slug": "naidu-seeks-central-aid-two-cyclones-7000-crore-losses",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the dates when Cyclones Arnav and Murasu occurred, as well as the expected landfall date for Cyclone Akvan, to provide readers with a clearer context of the situation.",
+        "Include specific details about the types of assistance being requested from the central government, such as the amount of financial aid or specific programs that may be implemented to help affected farmers and communities.",
+        "Add a brief statement on how the state government plans to utilize the \u20b937 crore spent on emergency response and relief measures, as this would provide readers with insight into the immediate actions being taken."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Andhra Pradesh government or Union Finance Minister Nirmala Sitharaman regarding the assistance request or response to the cyclones, to provide official context and updates."
+      ]
+    }
+  }
+]

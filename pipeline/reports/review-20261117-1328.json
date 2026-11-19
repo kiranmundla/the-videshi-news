@@ -1,0 +1,82 @@
+[
+  {
+    "id": "fa41a62c-7b93-4bc5-bd19-ef3d99d53451",
+    "headline": "MS Dhoni Retires From the IPL After 19 Years, Will Mentor CSK in 2027",
+    "slug": "ms-dhoni-retires-ipl-csk-mentor-2027",
+    "category": "sports",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding Dhoni's transition to the mentor role by specifying what his responsibilities might entail and how they will be structured leading up to IPL 2027.",
+        "Include a direct quote from MS Dhoni or a statement from him regarding his retirement to provide a personal touch and enhance the emotional impact of the article.",
+        "Ensure that the statistics regarding Dhoni's IPL career are accurate and consistent throughout the article; for instance, verify the total runs scored and ensure that the numbers are presented clearly without discrepancies.",
+        "Provide context about the implications of Dhoni's retirement for CSK and the IPL, such as how this might affect team dynamics or fan reactions, to give readers a deeper understanding of the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official CSK announcement tweet to provide readers with direct access to the source of the news."
+      ]
+    }
+  },
+  {
+    "id": "e66a19b9-2f7a-482c-b560-87a662d1993d",
+    "headline": "Sensex Rallies 427 Points to 82,532 as Bank Stocks Power Second Straight Gain",
+    "slug": "sensex-rallies-427-points-82532-nifty-bank-record",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the gains reported. For example, specify that the Sensex and Nifty gains are for the trading day on November 17, 2023, to avoid any confusion about the date.",
+        "Include a brief explanation of the significance of the foreign institutional investors' net buying and domestic institutional investors' selling. This would provide context on how these actions impact market sentiment and future trends.",
+        "Provide more detailed statistics regarding the performance of key stocks mentioned, such as the percentage increase for each stock in the Sensex that contributed to the rally, which would add depth and completeness to the reporting.",
+        "Ensure consistency in the reporting of figures, such as using either 'points' or 'percentage' uniformly when discussing gains to enhance clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official BSE or NSE tweet announcing the market close and key statistics for added credibility and real-time information."
+      ]
+    }
+  },
+  {
+    "id": "08fe8bfb-c79c-49d6-95b5-ab346f4c2be2",
+    "headline": "Trump Calls Modi 'a Very Tough Man' as Quad Leaders Meet in Manila",
+    "slug": "trump-modi-tough-man-quad-leaders-summit-manila",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the Quad leaders' meeting and the significance of the timing in relation to current geopolitical issues.",
+        "Provide more context on the Quad Business Leaders' Forum and what specific projects or goals are expected to be discussed, including any potential economic implications for the countries involved.",
+        "Include direct quotes from the leaders or additional sources to enhance attribution and provide a more comprehensive view of the discussions that took place during the summit."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the official Quad account or a news outlet covering the summit to provide real-time updates and reactions."
+      ]
+    }
+  },
+  {
+    "id": "107e2cc2-0eec-49d6-9b1f-cbbe0894bf91",
+    "headline": "AI Infrastructure to Drive India's IT Spending to Rs 16.9 Trillion in 2027",
+    "slug": "india-it-spending-16-9-trillion-2027-gartner-ai-infrastructure",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the forecast by specifying the current year and the context of the forecast release date to enhance clarity and timeliness.",
+        "Provide specific figures for the total IT spending in 2026 to give readers a clearer comparative perspective on the growth rate.",
+        "Include a brief explanation or definition of terms like 'hyperscalers' and 'global capability centres (GCCs)' for readers who may not be familiar with industry jargon."
+      ],
+      "embed_opportunities": [
+        "Embed the official Gartner report or a relevant tweet from Gartner that highlights the key points of the forecast."
+      ]
+    }
+  }
+]

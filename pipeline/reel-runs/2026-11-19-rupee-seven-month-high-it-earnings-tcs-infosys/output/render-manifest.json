@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "rupee-seven-month-high-it-earnings-tcs-infosys",
+ "article_slug": "rupee-seven-month-high-it-earnings-tcs-infosys",
+ "article_id": "59ee50bf-abe7-4dba-84c2-ba27cf05aba3",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-19-rupee-seven-month-high-it-earnings-tcs-infosys/output/rupee-seven-month-high-it-earnings-tcs-infosys.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://assets.upstox.com/content/assets/images/news/rupee-at-7-month-high.webp",
+  "local_path": "reel-runs/2026-11-19-rupee-seven-month-high-it-earnings-tcs-infosys/output/hero.webp",
+  "width": 1600,
+  "height": 900,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.626,0.441) damped=(0.563,0.471)",
+  "has_face": false,
+  "box_source": [
+   452,
+   225,
+   896,
+   360
+  ],
+  "box_bg": [
+   322,
+   273,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.558,
+   0.468
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 285,
+   "block_top": 979,
+   "block_bottom": 1264,
+   "text_bbox": [
+    70,
+    979,
+    930,
+    1264
+   ],
+   "texts": [
+    "Markets Finance",
+    "RUPEE HITS SEVEN-MONTH HIGH NEAR \u20b993.40, SQUEEZING IT EXPORTERS' EARNINGS"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.521,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.52125,
+     "window": [
+      0,
+      0,
+      1600,
+      897
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 378,
+   "block_top": 933,
+   "block_bottom": 1311,
+   "text_bbox": [
+    70,
+    933,
+    930,
+    1311
+   ],
+   "texts": [
+    "What Happened",
+    "The Indian rupee climbed to around \u20b993.39\u2013\u20b993.41 per US dollar on November 18, its strongest level in seven months, squeezing the rupee earnings of TCS, Infosys and other IT exporters."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.592,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.5923295454545454,
+     "window": [
+      189,
+      25,
+      1597,
+      815
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 434,
+   "block_top": 905,
+   "block_bottom": 1339,
+   "text_bbox": [
+    70,
+    905,
+    930,
+    1339
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "\u20b993.40",
+    "Rupee per US dollar on November 18, its strongest level in seven months"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6515625,
+     "window": [
+      68,
+      61,
+      1348,
+      779
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 784,
+   "block_top": 730,
+   "block_bottom": 1514,
+   "text_bbox": [
+    70,
+    730,
+    930,
+    1514
+   ],
+   "texts": [
+    "By The Numbers",
+    "1.7%",
+    "Rupee gain so far in November, on course for its best month in 20 months",
+    "\u20b994,963 crore",
+    "Net foreign institutional investment in Indian stocks through November 17",
+    "Over 5.5%",
+    "Fall in the Nifty IT index so far this month"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.652,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.6515625,
+     "window": [
+      320,
+      61,
+      1600,
+      779
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 471,
+   "block_top": 886,
+   "block_bottom": 1357,
+   "text_bbox": [
+    70,
+    886,
+    930,
+    1357
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Each dollar sent to India now converts into fewer rupees than at the year's weakest point of \u20b996.81 per dollar",
+    "TCS and Infosys earn most revenue in dollars but pay a large share of costs in rupees"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.704,
+    "photo_px": [
+     1600,
+     900
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7043918918918919,
+     "window": [
+      301,
+      225,
+      1485,
+      889
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.13x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 385,
+   "block_top": 667,
+   "block_bottom": 1052,
+   "text_bbox": [
+    70,
+    667,
+    930,
+    1052
+   ],
+   "texts": [
+    "The Takeaway",
+    "The rupee remains about 4% weaker than on January 1, when a dollar cost \u20b989.98.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/breaking-news-background.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 97.3,
+ "mp4_bytes": 4112286
+}

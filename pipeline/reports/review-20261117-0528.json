@@ -1,0 +1,82 @@
+[
+  {
+    "id": "cac18963-7f6a-4d42-9563-f1dadf9951c5",
+    "headline": "Yes Bank and RBI Ask Supreme Court to Review Verdict Restoring Rs 8,415 Crore of",
+    "slug": "yes-bank-rbi-review-petition-supreme-court-at1-bonds",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by explicitly stating the dates of the original write-down, the court's October 15 ruling, and the subsequent filings by Yes Bank and the RBI. This will help readers understand the sequence of events more clearly.",
+        "Include specific details about the implications for bondholders, such as potential timelines for resolution or what steps they may need to take in response to the court's decision. This could help answer the question of 'what does this mean for me?' for affected parties.",
+        "Provide more context about the significance of the Rs 8,415 crore amount in relation to Yes Bank's overall financial situation or the broader banking sector. This will help readers understand the stakes involved.",
+        "Rephrase the headline to make it more compelling and specific, such as 'Supreme Court to Reconsider Rs 8,415 Crore AT1 Bond Write-Down Following Yes Bank and RBI's Review Petitions'. This emphasizes the ongoing legal battle and the financial figures involved."
+      ],
+      "embed_opportunities": [
+        "Embed the official Supreme Court ruling or a relevant tweet from the Supreme Court or RBI regarding the case to provide readers with direct access to primary sources."
+      ]
+    }
+  },
+  {
+    "id": "8d7eb694-6d6c-4ffe-9dfa-6d33d55723e0",
+    "headline": "AI Pays in Productivity but Trust Lags, TCS Study of 1,333 Executives Finds",
+    "slug": "tcs-enterprise-ai-study-productivity-trust-gap",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific implications of the study's findings for businesses, such as potential dollar amounts related to productivity improvements or specific actions companies should take to bridge the trust gap in AI deployment.",
+        "Include a quote from a TCS representative or an industry expert to provide authoritative attribution and enhance the credibility of the findings.",
+        "Add context about the significance of the 1,333 executives surveyed, such as their geographical distribution or industry representation, to give readers a better understanding of the study's breadth."
+      ],
+      "embed_opportunities": [
+        "Embed the official TCS report or a relevant tweet from TCS summarizing the key findings of the study."
+      ]
+    }
+  },
+  {
+    "id": "e68d6523-3309-40d1-b033-60d75e9ad549",
+    "headline": "Chase Software Bug Ripples Across US Banks, Stalling Zelle Payments for Hours",
+    "slug": "chase-software-bug-us-bank-outage-zelle-delays",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by providing specific timestamps for when the bug was first reported and when it was officially resolved, as well as any notable peaks in outage reports throughout the day.",
+        "Ensure that the attribution is clear and consistent; for example, when mentioning that Chase confirmed the issue to USA Today, specify what information was provided by USA Today to avoid ambiguity.",
+        "Include a brief explanation of what Zelle is for readers who may not be familiar with it, as this context can enhance understanding of the impact of the outage."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Chase or a relevant financial news outlet confirming the resolution of the issue or providing updates on the situation."
+      ]
+    }
+  },
+  {
+    "id": "b12be91c-d01e-4e2a-a3ce-a0a8d3d1f3bd",
+    "headline": "At Least 8 Killed as Bus Plunges Into 100-Metre Gorge in Tehri Garhwal",
+    "slug": "bus-plunges-gorge-tehri-garhwal-uttarakhand-eight-killed",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the rescue operations began and how long they lasted, as well as any updates on the condition of the injured.",
+        "Provide more context about the bus company or the route, including any previous incidents or safety records, to give readers a better understanding of the situation.",
+        "Include quotes from officials or eyewitnesses to add depth and human interest to the story, which would enhance the reporting quality.",
+        "Ensure that the article maintains a consistent structure by organizing information in a logical progression, perhaps separating the details of the accident, the rescue efforts, and official responses into distinct sections."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Uttarakhand government or local authorities providing updates on the rescue operation or expressing condolences for the victims."
+      ]
+    }
+  }
+]

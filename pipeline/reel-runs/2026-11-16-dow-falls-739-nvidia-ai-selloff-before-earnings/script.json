@@ -1,0 +1,36 @@
+{
+ "hook_line": "DOW FALLS 739 POINTS IN NVIDIA-LED AI SELL-OFF",
+ "hook_stat": {
+  "big": "739",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Points the Dow fell on Monday, a 1.4% drop to 51,608.17"
+ },
+ "stats": [
+  {
+   "big": "-4.1%",
+   "label": "Nvidia's drop to $156.14, its lowest close since July 1, 2025"
+  },
+  {
+   "big": "$735 BILLION",
+   "label": "Nvidia market value lost since the scandal around Huang erupted"
+  },
+  {
+   "big": "+19%",
+   "label": "Surge in the VIX, Wall Street's fear gauge"
+  }
+ ],
+ "diaspora_bullets": [
+  "The sell-off spread beyond Nvidia: Broadcom fell 3.9%, AMD 5.6% and Intel 7.1%",
+  "S&P 500 earnings are tracking nearly 32% higher than a year earlier, FactSet figures show"
+ ],
+ "key_entities": [
+  "Nvidia",
+  "Dow Jones",
+  "Nasdaq",
+  "Jensen Huang"
+ ],
+ "news_summary": "US stocks closed sharply lower on Monday as Nvidia fell for a third straight day after Jensen Huang's resignation, the Dow dropped 739 points, and a new US rule restricting China's remote access to advanced chips added pressure on AI stocks.",
+ "payoff": "Nvidia's Tuesday earnings, its first since Huang's exit, will be read as a verdict on the AI trade itself.",
+ "versus": "",
+ "story_mood": "tense"
+}

@@ -1,0 +1,31 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "dreamteam-freshworks-alumni-53-million-ai-native-crm",
+  "name": "dreamteam-freshworks-alumni-53-million-ai-native-crm",
+  "script": "reel-runs/2026-11-17-dreamteam-freshworks-alumni-53-million-ai-native-crm/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000683
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-17-dreamteam-freshworks-alumni-53-million-ai-native-crm/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "manifest": "reel-runs/2026-11-17-dreamteam-freshworks-alumni-53-million-ai-native-crm/output/render-manifest.json",
+  "video": "reel-runs/2026-11-17-dreamteam-freshworks-alumni-53-million-ai-native-crm/output/dreamteam-freshworks-alumni-53-million-ai-native-crm.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-17-dreamteam-freshworks-alumni-53-million-ai-native-crm/output/tiktok-caption.txt"
+}

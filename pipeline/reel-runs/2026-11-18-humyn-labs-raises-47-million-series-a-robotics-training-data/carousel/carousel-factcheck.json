@@ -1,0 +1,181 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "humyn-labs-raises-47-million-series-a-robotics-training-data",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Bengaluru's Humyn Labs Raises $47 Million to Feed US Robotics Firms Training Data",
+        "numbers": [
+          47.0,
+          47000000.0
+        ],
+        "entities": [
+          "Bengaluru's Humyn Labs Raises",
+          "Feed US Robotics Firms Training Data"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Humyn Labs raised $47 million for US robotics firms.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The Bengaluru startup records everyday human tasks in more than 20 countries to train robots.",
+        "numbers": [
+          20.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions recording tasks in over 20 countries for training robots.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The Series A comprises $26 million in equity led by Accel and $21 million in venture debt led by Lighthouse Canton Growth Debt Fund II",
+        "numbers": [
+          21.0,
+          26.0,
+          21000000.0,
+          26000000.0
+        ],
+        "entities": [
+          "Series A",
+          "Lighthouse Canton Growth Debt Fund II"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article details the Series A financing structure accurately.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Humyn says it has 12 paying customers, including frontier AI labs and robotics companies, and about 90% of its revenue comes from the United States",
+        "numbers": [
+          12.0,
+          90.0
+        ],
+        "entities": [
+          "United States"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms 12 customers and 90% revenue from the US.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "It generated $10 million in revenue between April and October and has a further $20 million in signed contracts",
+        "numbers": [
+          10.0,
+          20.0,
+          10000000.0,
+          20000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the revenue figures and signed contracts.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Manish Agarwal",
+        "numbers": [],
+        "entities": [
+          "Manish Agarwal"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Manish Agarwal is mentioned as a co-founder in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Co-founder, Humyn Labs",
+        "numbers": [],
+        "entities": [
+          "Humyn Labs"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Agarwal as co-founder of Humyn Labs.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Bengaluru's Humyn Labs Raises $47 Million to Feed US Robotics Firms Training Data",
+        "numbers": [
+          47.0,
+          47000000.0
+        ],
+        "entities": [
+          "Bengaluru's Humyn Labs Raises",
+          "Feed US Robotics Firms Training Data"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim is identical to the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000547,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

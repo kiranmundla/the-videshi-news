@@ -1,0 +1,37 @@
+{
+  "hook_line": "US LOSES MEASLES ELIMINATION STATUS AFTER 26 YEARS AS CASES PASS 5,400",
+  "hook_stat": {
+    "big": "5,412",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Confirmed US cases in 2026, the most in any year since 1991"
+  },
+  "stats": [
+    {
+      "big": "96%",
+      "label": "Infections in people unvaccinated or of unknown vaccination status"
+    },
+    {
+      "big": "43",
+      "label": "New outbreaks reported this year"
+    },
+    {
+      "big": "47",
+      "label": "Jurisdictions that reported cases"
+    }
+  ],
+  "diaspora_bullets": [
+    "For Indian families in the United States, the practical step is a records check, not alarm",
+    "The CDC schedule is a first MMR dose at 12 months and a second at 4 to 6 years"
+  ],
+  "key_entities": [
+    "Pan American Health Organization",
+    "CDC",
+    "United States",
+    "Mexico",
+    "Bolivia"
+  ],
+  "news_summary": "The Pan American Health Organization announced on November 17 that the United States has lost the measles elimination status it held since 2000, after the virus circulated uninterrupted for more than a year.",
+  "payoff": "A country must stop ongoing outbreaks and then show that no one caught measles within its borders for a full year.",
+  "versus": "",
+  "story_mood": "tense"
+}

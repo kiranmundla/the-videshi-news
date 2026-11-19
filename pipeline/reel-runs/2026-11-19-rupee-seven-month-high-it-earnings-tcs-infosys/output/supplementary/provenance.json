@@ -1,0 +1,98 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "rupee-seven-month-high-it-earnings-tcs-infosys",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Rupee",
+    "TCS",
+    "Infosys",
+    "Nifty IT",
+    "Indian",
+    "Markets Finance"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Rupee' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Nifty IT' has no Wikidata identity anchor (QID null) \u2014 identity routes unavailable; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "category label: 'Markets Finance' is this article's category name, not a picture subject"
+    },
+    {
+      "candidate": "File:TCS SIPCOT Building.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q13227919)",
+      "verdict": "accepted",
+      "reason": "4032x2399, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Candor Tech Space, Kolkata.jpg",
+      "route": "identity \u2014 depicts (P180=Q13227919)",
+      "verdict": "accepted",
+      "reason": "4000x2250, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Infosys (4911287704).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q26989)",
+      "verdict": "accepted",
+      "reason": "3264x1840, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Equatex, Vulkanstrasse 106 Zurich (Ank Kumar).jpg",
+      "route": "identity \u2014 depicts (P180=Q26989)",
+      "verdict": "accepted",
+      "reason": "4032x3024, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:08-11-17-PTA Kailash Satyarthi -GC.007 (24392707528).jpg",
+      "route": "identity \u2014 depicts (P180=Q862086)",
+      "verdict": "accepted",
+      "reason": "3000x1913, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:10 jarig jubileum ICPP.jpg",
+      "route": "identity \u2014 depicts (P180=Q862086)",
+      "verdict": "accepted",
+      "reason": "4308x2914, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Infosys (4911287704).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q26989)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/e/e5/Infosys_%284911287704%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=origina"
+    },
+    {
+      "candidate": "File:Candor Tech Space, Kolkata.jpg",
+      "route": "identity \u2014 depicts (P180=Q13227919)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/4/4d/Candor_Tech_Space%2C_Kolkata.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=ori"
+    },
+    {
+      "candidate": "File:08-11-17-PTA Kailash Satyarthi -GC.007 (24392707528).jpg",
+      "route": "identity \u2014 depicts (P180=Q862086)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/6/67/08-11-17-PTA_Kailash_Satyarthi_-GC.007_%2824392707528%29.jpg?utm_source=commons.wikimedia.org&utm_campai"
+    },
+    {
+      "candidate": "File:TCS SIPCOT Building.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q13227919)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/8/85/TCS_SIPCOT_Building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  ],
+  "extras": []
+}

@@ -1,0 +1,12 @@
+VIDEO: /home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-18-humyn-labs-raises-47-million-series-a-robotics-training-data/output/humyn-labs-raises-47-million-series-a-robotics-training-data.mp4
+
+CAPTION:
+BENGALURU'S HUMYN LABS RAISES $47 MILLION TO FEED US ROBOTICS FIRMS TRAINING DATA
+
+Bengaluru-based Humyn Labs has raised $47 million in Series A financing to supply U.S. AI and robotics companies with the real-world data they need to train models.
+
+India is becoming a collection hub for physical AI data, a model that also raises privacy and consent questions.
+
+Full story: https://thevideshi.com/articles/humyn-labs-raises-47-million-series-a-robotics-training-data
+
+#TheVideshi #HumynLabs #Accel #Tech #IndianDiaspora

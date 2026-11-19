@@ -1,0 +1,140 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "ms-dhoni-retires-ipl-csk-mentor-2027",
+  "trigger": {
+    "own_images": 2,
+    "target_distinct": 5,
+    "extras_needed": 3
+  },
+  "entities": [
+    "MS Dhoni",
+    "Chennai Super Kings",
+    "IPL",
+    "N Srinivasan",
+    "Team Mentor",
+    "Times of India"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'N Srinivasan' named 'Nagarajan Srinivasan', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Team Mentor' named 'Team Mentoring for Interdisciplinary Team Science: Lessons From K12 Scholars and Directors', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "outlet: 'Times of India' is a news outlet \u2014 outlets are sources, never picture subjects; never queried"
+    },
+    {
+      "candidate": "File:Mahendra Singh Dhoni receiving Padma Bhushan.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q470774)",
+      "verdict": "rejected",
+      "reason": "resolution: 557x725 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Anant Ambani and MS Dhoni.jpg",
+      "route": "identity \u2014 depicts (P180=Q470774)",
+      "verdict": "rejected",
+      "reason": "resolution: 366x455 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Dhoni at Reebok event.jpg",
+      "route": "identity \u2014 depicts (P180=Q470774)",
+      "verdict": "rejected",
+      "reason": "resolution: 585x439 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Dhoni behind Stumps.jpg",
+      "route": "identity \u2014 depicts (P180=Q470774)",
+      "verdict": "rejected",
+      "reason": "resolution: 761x606 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Dhoni with his wife.jpg",
+      "route": "identity \u2014 depicts (P180=Q470774)",
+      "verdict": "rejected",
+      "reason": "resolution: 433x298 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Jaydeep Sarkar with MS Dhoni.jpg",
+      "route": "identity \u2014 depicts (P180=Q470774)",
+      "verdict": "accepted",
+      "reason": "7360x4912, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:MS Dhoni.jpg",
+      "route": "identity \u2014 depicts (P180=Q470774)",
+      "verdict": "rejected",
+      "reason": "resolution: 1023x853 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:MS Dhoni 2.jpg",
+      "route": "identity \u2014 depicts (P180=Q470774)",
+      "verdict": "accepted",
+      "reason": "1085x1306, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Ambati Rayudu.jpg",
+      "route": "identity \u2014 depicts (P180=Q1292535)",
+      "verdict": "rejected",
+      "reason": "resolution: 484x468 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Bravo at IIFA 2017 Green Carpet.jpg",
+      "route": "identity \u2014 depicts (P180=Q1292535)",
+      "verdict": "accepted",
+      "reason": "1744x2854, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Shivam Dube.jpg",
+      "route": "identity \u2014 depicts (P180=Q1292535)",
+      "verdict": "rejected",
+      "reason": "resolution: 631x895 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Indian Premier League.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q396412)",
+      "verdict": "accepted",
+      "reason": "1600x957, CC BY-SA 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Andre Russell.jpg",
+      "route": "identity \u2014 depicts (P180=Q396412)",
+      "verdict": "rejected",
+      "reason": "resolution: 223x454 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Barabati Stadium IPL Match Pune Warriors India vs. Deccan Chargers.jpg",
+      "route": "identity \u2014 depicts (P180=Q396412)",
+      "verdict": "accepted",
+      "reason": "4000x3000, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Jaydeep Sarkar with MS Dhoni.jpg",
+      "route": "identity \u2014 depicts (P180=Q470774)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/9/93/Jaydeep_Sarkar_with_MS_Dhoni.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=ori"
+    },
+    {
+      "candidate": "File:Barabati Stadium IPL Match Pune Warriors India vs. Deccan Chargers.jpg",
+      "route": "identity \u2014 depicts (P180=Q396412)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/7/76/Barabati_Stadium_IPL_Match_Pune_Warriors_India_vs._Deccan_Chargers.jpg?utm_source=commons.wikimedia.org&"
+    },
+    {
+      "candidate": "File:Bravo at IIFA 2017 Green Carpet.jpg",
+      "route": "identity \u2014 depicts (P180=Q1292535)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/6/6b/Bravo_at_IIFA_2017_Green_Carpet.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content="
+    }
+  ],
+  "extras": []
+}

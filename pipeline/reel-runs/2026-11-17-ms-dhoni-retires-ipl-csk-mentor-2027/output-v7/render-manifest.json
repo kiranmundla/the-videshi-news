@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "ms-dhoni-retires-ipl-csk-mentor-2027",
+ "article_slug": "ms-dhoni-retires-ipl-csk-mentor-2027",
+ "article_id": "fa41a62c-7b93-4bc5-bd19-ef3d99d53451",
+ "category": "Sports",
+ "video": "reel-runs/2026-11-17-ms-dhoni-retires-ipl-csk-mentor-2027/output-v7/ms-dhoni-retires-ipl-csk-mentor-2027.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://im.rediff.com/1200-630/cricket/2026/nov/17dhoni.jpg",
+  "local_path": "reel-runs/2026-11-17-ms-dhoni-retires-ipl-csk-mentor-2027/output-v7/hero.jpg",
+  "width": 1200,
+  "height": 630,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.508,0.587) damped=(0.504,0.543)",
+  "has_face": false,
+  "box_source": [
+   268,
+   203,
+   672,
+   252
+  ],
+  "box_bg": [
+   272,
+   296,
+   467,
+   175
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.51,
+   0.548
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   437
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 657,
+   "zone_h": 899,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 925,
+   "block_bottom": 1288,
+   "text_bbox": [
+    70,
+    925,
+    930,
+    1288
+   ],
+   "texts": [
+    "Sports",
+    "DHONI ENDS 19-YEAR IPL CAREER, STAYS AS CSK MENTOR"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     630
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 437,
+     "scale": 0.695,
+     "window": [
+      0,
+      2,
+      1200,
+      630
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.05x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 657,
+   "zone_h": 899,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 925,
+   "block_bottom": 1288,
+   "text_bbox": [
+    70,
+    925,
+    930,
+    1288
+   ],
+   "texts": [
+    "What Happened",
+    "Chennai Super Kings announced on Tuesday, November 17, that MS Dhoni has retired from the IPL as a player and will begin a new chapter with the franchise as Team Mentor from IPL 2027."
+   ],
+   "v7": {
+    "image_source": "inline:1",
+    "track": "backdrop",
+    "render_scale": 0.769,
+    "photo_px": [
+     1085,
+     1306
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 437,
+     "scale": 0.7686635944700461,
+     "window": [
+      0,
+      22,
+      1085,
+      590
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.47x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 657,
+   "zone_h": 899,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 887,
+   "block_bottom": 1325,
+   "text_bbox": [
+    70,
+    887,
+    930,
+    1325
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "19 YEARS",
+    "IPL career that began in the inaugural season in 2008"
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     630
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 437,
+     "scale": 0.7897727272727273,
+     "window": [
+      84,
+      69,
+      1140,
+      622
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.05x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 657,
+   "zone_h": 899,
+   "scale": 1.0,
+   "content_h": 743,
+   "block_top": 735,
+   "block_bottom": 1478,
+   "text_bbox": [
+    70,
+    735,
+    930,
+    1478
+   ],
+   "texts": [
+    "By The Numbers",
+    "5",
+    "IPL titles as CSK captain \u2014 2010, 2011, 2018, 2021 and 2023",
+    "272",
+    "Appearances for CSK, the franchise's most-capped player",
+    "5,314",
+    "Runs for Chennai Super Kings"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     630
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 437,
+     "scale": 0.86875,
+     "window": [
+      0,
+      94,
+      960,
+      597
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.05x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 657,
+   "zone_h": 899,
+   "scale": 1.0,
+   "content_h": 369,
+   "block_top": 922,
+   "block_bottom": 1291,
+   "text_bbox": [
+    70,
+    922,
+    930,
+    1291
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Dhoni, 45, will stay with CSK as Team Mentor from IPL 2027",
+    "CSK named no successor ahead of the December 16 auction in Goa"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     630
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 437,
+     "scale": 0.86875,
+     "window": [
+      240,
+      94,
+      1200,
+      597
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 3.05x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 379,
+   "block_top": 670,
+   "block_bottom": 1049,
+   "text_bbox": [
+    70,
+    670,
+    930,
+    1049
+   ],
+   "texts": [
+    "The Takeaway",
+    "Dhoni will still be in the CSK dugout when IPL 2027 begins \u2014 in the mentor's seat, not at the toss.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/upbeat-celebration-fun-viacheslav.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 104.3,
+ "mp4_bytes": 6356817
+}

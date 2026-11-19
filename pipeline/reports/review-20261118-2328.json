@@ -1,0 +1,22 @@
+[
+  {
+    "id": "6c56dcde-d751-47fb-aec1-5f790f09c94d",
+    "headline": "Target Earnings Beat Estimates as Sales Rise 7.1% and Guidance Rises",
+    "slug": "target-q3-earnings-beat-estimates-sales-guidance-raised",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the impact of tariff refunds on earnings by providing a brief explanation of what they are and how they affect overall financial performance, as this may not be clear to all readers.",
+        "Include a comparison of the current quarter's performance with the same quarter from the previous year in a more structured format, such as a table or bullet points, to enhance clarity and completeness.",
+        "Add a brief statement on what the raised full-year guidance means for investors, including any potential implications for stock performance or market reactions."
+      ],
+      "embed_opportunities": [
+        "Embed the official Target earnings release or a relevant financial news tweet that summarizes the key points of the earnings report."
+      ]
+    }
+  }
+]

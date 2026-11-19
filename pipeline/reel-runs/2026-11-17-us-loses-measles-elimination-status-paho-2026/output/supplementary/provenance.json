@@ -1,0 +1,110 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "us-loses-measles-elimination-status-paho-2026",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Pan American Health Organization",
+    "CDC",
+    "United States",
+    "Mexico",
+    "Bolivia",
+    "Measles"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Measles' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "File:Pan American Health Organization building.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1856835)",
+      "verdict": "accepted",
+      "reason": "4493x2128, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Entrance of the PAHO building, currently closed.jpg",
+      "route": "identity \u2014 depicts (P180=Q1856835)",
+      "verdict": "accepted",
+      "reason": "8160x6120, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:CDC HDR I.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q583725)",
+      "verdict": "accepted",
+      "reason": "2557x1914, CC BY-SA 2.5, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:1.covid-19-vaccine-sticker.png",
+      "route": "identity \u2014 depicts (P180=Q583725)",
+      "verdict": "rejected",
+      "reason": "resolution: 527x341 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:2017 CDC update for pre-exposure prophylaxis for HIV prevention.png",
+      "route": "identity \u2014 depicts (P180=Q583725)",
+      "verdict": "accepted",
+      "reason": "1422x1308, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:United States - Location Map (2013) - USA - UNOCHA.svg",
+      "route": "identity \u2014 Wikidata P18 (Q30)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:American bison in Yellowstone National Park.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:BigRiver.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "rejected",
+      "reason": "blocklist: this file is on the entity's corpus blocklist \u2014 proven wrong for 'United States' in a prior run"
+    },
+    {
+      "candidate": "File:Bodie September 2016 019.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "accepted",
+      "reason": "4280x2940, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Chrysler Building - 05.jpg",
+      "route": "identity \u2014 depicts (P180=Q30)",
+      "verdict": "accepted",
+      "reason": "2250x3000, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Pan American Health Organization building.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1856835)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/6/63/Pan_American_Health_Organization_building.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&ut"
+    },
+    {
+      "candidate": "File:CDC HDR I.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q583725)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/9/92/CDC_HDR_I.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "candidate": "File:Entrance of the PAHO building, currently closed.jpg",
+      "route": "identity \u2014 depicts (P180=Q1856835)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/9/9c/Entrance_of_the_PAHO_building%2C_currently_closed.jpg?utm_source=commons.wikimedia.org&utm_campaign=imag"
+    },
+    {
+      "candidate": "File:2017 CDC update for pre-exposure prophylaxis for HIV prevention.png",
+      "route": "identity \u2014 depicts (P180=Q583725)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/6/6b/2017_CDC_update_for_pre-exposure_prophylaxis_for_HIV_prevention.png?utm_source=commons.wikimedia.org&utm"
+    }
+  ],
+  "extras": []
+}

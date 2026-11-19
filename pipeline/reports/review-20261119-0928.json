@@ -1,0 +1,79 @@
+[
+  {
+    "id": "59ee50bf-abe7-4dba-84c2-ba27cf05aba3",
+    "headline": "Rupee Hits Seven-Month High Near \u20b993.40, Squeezing IT Exporters' Earnings",
+    "slug": "rupee-seven-month-high-it-earnings-tcs-infosys",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date mentioned in the article; it states November 18, but the context suggests it may refer to a different day. Ensure that the date aligns with the reported events to avoid confusion.",
+        "Provide specific figures regarding the impact on IT exporters' earnings. For example, include estimates of how much revenue TCS and Infosys might lose due to the stronger rupee, which would give readers a clearer understanding of the financial implications.",
+        "Include a brief explanation of how the rupee's performance compares to historical trends or other currencies, which would provide additional context for readers unfamiliar with currency fluctuations.",
+        "Ensure consistent attribution throughout the article. While Upstox is mentioned, it would be beneficial to clarify if other sources corroborate this information, especially regarding the impact of foreign institutional investment."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Upstox or a financial news outlet that highlights the rupee's performance and its implications for IT exporters."
+      ]
+    }
+  },
+  {
+    "id": "55736202-feb2-4620-8f7c-de32200608a1",
+    "headline": "Ramayana Crosses \u20b91,500 Crore Worldwide in 14 Days, Fifth Indian Film to Reach t",
+    "slug": "ramayana-box-office-1500-crore-worldwide-14-days",
+    "category": "entertainment",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The film crossed \u20b91,519.05 crore worldwide on Day 14, according to trade tracker\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the box office milestone by specifying the exact date (e.g., 'November 18, 2023') to avoid confusion about the timeline.",
+        "Include a brief explanation of what the \u20b91,500 crore milestone means in the context of Indian cinema, such as its significance for future film productions or box office expectations.",
+        "Add a quote from a relevant industry expert or a statement from the director or producers to provide additional context and authority to the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Sacnilk or The Hollywood Reporter India announcing the box office figures to provide a direct source for readers."
+      ]
+    }
+  },
+  {
+    "id": "be0486e8-cafc-4d18-9b60-76366e02768a",
+    "headline": "Malaysia Ends Visa-Free Entry for Indians From January 1, 2027; Applications Ope",
+    "slug": "malaysia-ends-visa-free-entry-indians-january-2027",
+    "category": "immigration",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Malaysia will end visa-free entry for Indian passport holders from January 1, 20\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for visa applications by specifying the exact date and time when the MyVISA portal opens on December 1, 2026, to avoid confusion for readers planning their travel.",
+        "Include a brief summary of the visa application process, such as the types of visas available, processing times, and any associated fees, to provide readers with actionable steps they need to take before the deadline.",
+        "Add a quote or statement from a relevant official or expert regarding the impact of this change on Indian travelers, which would enhance the article's credibility and provide additional context."
+      ],
+      "embed_opportunities": [
+        "Embed the official announcement or tweet from the Malaysian Immigration Department regarding the visa changes to provide readers with direct access to the source of information."
+      ]
+    }
+  },
+  {
+    "id": "d8ce3217-3c00-4cb8-8029-e3b4430058c8",
+    "headline": "Cyclone Akvan: Over 80,000 Evacuated in Odisha as Landfall Nears Friday Noon",
+    "slug": "cyclone-akvan-odisha-evacuates-80000-landfall-november-20",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact time of landfall on Friday, November 20, rather than just 'noon.' This will provide readers with a clearer understanding of when to expect the storm's impact.",
+        "Include more specific details about the evacuation process, such as how residents are being informed and what resources are available at the shelters, to give readers a better sense of the situation on the ground.",
+        "Add a brief background on previous cyclones in the region to provide context for the severity of Cyclone Akvan and its potential impact on the affected areas."
+      ],
+      "embed_opportunities": [
+        "Embed the official IMD tweet regarding Cyclone Akvan's latest updates to provide readers with real-time information and official guidance."
+      ]
+    }
+  }
+]

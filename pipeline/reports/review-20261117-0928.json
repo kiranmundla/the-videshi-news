@@ -1,0 +1,87 @@
+[
+  {
+    "id": "20cd4752-c44b-4235-aff2-5714d45cd0c7",
+    "headline": "India's Music Economy Generated Rs 17,401 Crore in Gross Value in 2025, EY Finds",
+    "slug": "india-music-economy-17401-crore-ey-iprs-independent-43-percent",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the source of the data by explicitly stating that the figures are from the EY report and include a direct quote or key finding from the report to enhance credibility.",
+        "Provide a brief explanation of what the gross value generated means for the music industry stakeholders, such as artists, producers, and investors, to give readers a clearer understanding of the implications.",
+        "Include specific numbers or projections regarding the growth of subscription services, as this is a critical aspect of the music economy's future and would answer 'what does this mean for me?' for industry professionals.",
+        "Ensure that the article maintains a consistent structure by organizing the information into clear sections, such as 'Overview', 'Key Findings', and 'Future Projections', to improve readability."
+      ],
+      "embed_opportunities": [
+        "Embed the official EY report or a relevant tweet summarizing the findings to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "05255384-ccd3-4987-80b9-68ac7c307dc1",
+    "headline": "Two Killed, Including a Three-Year-Old, as Delhi House Collapses in Jwala Nagar",
+    "slug": "delhi-jwala-nagar-building-collapse-two-killed-three-year-old",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact time of the building collapse in relation to the police call and rescue efforts, as this will help readers understand the sequence of events better.",
+        "Include a quote from a local resident or an eyewitness to provide a personal perspective on the incident, which can enhance the article's emotional impact and depth.",
+        "Add information about the building's history or any previous complaints regarding its condition, as this context could help readers understand the circumstances leading to the collapse."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Delhi Police or local government regarding the incident or rescue efforts to provide official updates and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "ba352218-f898-4b10-a055-8e424694d5c8",
+    "headline": "British Airways Must Pay Rs 1.05 Lakh After Turning Away Green Card Holder",
+    "slug": "british-airways-pay-1-05-lakh-denied-boarding-green-card-holder-hyderabad",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the incident at the airport, as it currently only mentions the flight date and the order date. This would help readers understand the sequence of events better.",
+        "Provide more context on the implications of the ruling for other travelers, such as whether this sets a precedent for similar cases or if there are specific actions travelers should take to avoid similar situations in the future.",
+        "Include a direct quote from the consumer commission's ruling or a representative from British Airways to enhance attribution and provide a more rounded perspective on the issue.",
+        "Correct the date of the commission's order from 'November 3, 2026' to 'November 3, 2023' to ensure accuracy, as the article references an incident that occurred in 2023."
+      ],
+      "embed_opportunities": [
+        "Embed a link to the official ruling or a relevant statement from the District Consumer Disputes Redressal Commission for readers who want to explore the details further."
+      ]
+    }
+  },
+  {
+    "id": "11622e3f-d16d-4041-96f5-d32aacac9f9a",
+    "headline": "NRI Seafarers Can Use Contract or Discharge Certificate to Open NPS Accounts",
+    "slug": "nri-seafarers-nps-kyc-contract-discharge-certificate-pfrda",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Ensure that the date of the circular is clearly stated and formatted consistently throughout the article for clarity. For example, mention the effective date in a more prominent way to emphasize its importance.",
+        "Include a brief explanation of what the National Pension System (NPS) is for readers who may not be familiar with it, enhancing completeness.",
+        "Add a quote from a PFRDA official or an expert in the field to provide attribution and enhance the credibility of the information presented.",
+        "Clarify the implications of the changes for NRI seafarers, such as how this might affect their ability to save for retirement, to improve completeness."
+      ],
+      "embed_opportunities": [
+        "Consider embedding a link to the official PFRDA circular for readers who want to verify the information or read more about the changes.",
+        "Include a relevant infographic that summarizes the key changes in the proof-of-address requirements for visual clarity."
+      ],
+      "rubric_violation": true
+    }
+  }
+]

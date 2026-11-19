@@ -1,0 +1,31 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "humyn-labs-raises-47-million-series-a-robotics-training-data",
+  "name": "humyn-labs-raises-47-million-series-a-robotics-training-data",
+  "script": "reel-runs/2026-11-18-humyn-labs-raises-47-million-series-a-robotics-training-data/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000676
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-18-humyn-labs-raises-47-million-series-a-robotics-training-data/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "manifest": "reel-runs/2026-11-18-humyn-labs-raises-47-million-series-a-robotics-training-data/output/render-manifest.json",
+  "video": "reel-runs/2026-11-18-humyn-labs-raises-47-million-series-a-robotics-training-data/output/humyn-labs-raises-47-million-series-a-robotics-training-data.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-18-humyn-labs-raises-47-million-series-a-robotics-training-data/output/tiktok-caption.txt"
+}

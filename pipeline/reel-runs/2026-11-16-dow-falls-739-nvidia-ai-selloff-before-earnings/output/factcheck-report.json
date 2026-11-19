@@ -1,0 +1,271 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "dow-falls-739-nvidia-ai-selloff-before-earnings",
+  "verdict": "fail",
+  "held_claims": [
+    "diaspora_bullets[0]",
+    "diaspora_bullets[1]"
+  ],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "DOW FALLS 739 POINTS IN NVIDIA-LED AI SELL-OFF",
+      "numbers": [
+        739.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the Dow fell 739 points due to Nvidia's decline.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "US stocks closed sharply lower on Monday as Nvidia fell for a third straight day after Jensen Huang's resignation, the Dow dropped 739 points, and a new US rule restricting China's remote access to advanced chips added pressure on AI stocks.",
+      "numbers": [
+        739.0
+      ],
+      "entities": [
+        "Jensen Huang's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All elements of the claim are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "739",
+      "numbers": [
+        739.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the Dow fell 739 points.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Points the Dow fell on Monday, a 1.4% drop to 51,608.17",
+      "numbers": [
+        1.4,
+        51608.17
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article provides the Dow's drop and closing value.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "-4.1%",
+      "numbers": [
+        4.1
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Nvidia dropped 4.1%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Nvidia's drop to $156.14, its lowest close since July 1, 2025",
+      "numbers": [
+        1.0,
+        156.14,
+        2025.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article confirms Nvidia's closing price and date.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "$735 BILLION",
+      "numbers": [
+        735.0,
+        735000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Nvidia's market value loss was $735 billion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Nvidia market value lost since the scandal around Huang erupted",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article links the $735 billion loss to Huang's scandal.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "+19%",
+      "numbers": [
+        19.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the VIX surged 19%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Surge in the VIX, Wall Street's fear gauge",
+      "numbers": [],
+      "entities": [
+        "Wall Street's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article identifies the VIX as Wall Street's fear gauge.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "AI and chip stocks are core holdings in many Indian-American retirement and brokerage portfolios",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article does not mention Indian-American portfolios.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Nvidia's earnings on Tuesday will set the tone for the sector those portfolios track",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article does not mention portfolios or their tracking.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "unsupported"
+      },
+      "verdict": "fail"
+    },
+    {
+      "field": "payoff",
+      "text": "Nvidia's Tuesday earnings, its first since Huang's exit, will be read as a verdict on the AI trade itself.",
+      "numbers": [],
+      "entities": [
+        "Nvidia's Tuesday"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Nvidia's earnings will impact the AI trade.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Nvidia",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Dow Jones",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nasdaq",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Jensen Huang",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000725,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

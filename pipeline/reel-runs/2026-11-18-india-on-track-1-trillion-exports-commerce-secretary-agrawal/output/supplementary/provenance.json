@@ -1,0 +1,92 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-on-track-1-trillion-exports-commerce-secretary-agrawal",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Rajesh Agrawal",
+    "FICCI",
+    "India",
+    "Commerce",
+    "Secretary",
+    "Commerce Secretary Rajesh Agrawal"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Secretary' named 'minister', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Commerce Secretary Rajesh Agrawal' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Building of FICCI in New Delhi 04.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q842441)",
+      "verdict": "accepted",
+      "reason": "4128x2322, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:India-locator-map-blank.svg",
+      "route": "identity \u2014 Wikidata P18 (Q668)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Commerce Building view from Mall 2.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q503577)",
+      "verdict": "rejected",
+      "reason": "resolution: 720x397 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:1940 Census Enumeration District Descriptions - New York - Westchester County - ED 60-39, ED 60-40, ED 60-41, ED 60-42 - NARA - 5856140.jpg",
+      "route": "identity \u2014 depicts (P180=Q503577)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:1940 Census Enumeration District Descriptions - Wisconsin - Jackson County - ED 27-8, ED 27-9, ED 27-10, ED 27-11, ED 27-12, ED 27-13, ED 27-14, ED 27-15, ED 27-16 - NARA - 5887333.jpg",
+      "route": "identity \u2014 depicts (P180=Q503577)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Colorado -Adams County - Las Animas County (part)- - NARA - 17443770 (page 354).jpg",
+      "route": "identity \u2014 depicts (P180=Q503577)",
+      "verdict": "accepted",
+      "reason": "1496x1944, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Department of Commerce flag flying Washington DC 2025-03-26 12-19-48.jpg",
+      "route": "identity \u2014 depicts (P180=Q503577)",
+      "verdict": "accepted",
+      "reason": "6690x4460, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Department of Commerce flag flying Washington DC 2025-03-26 12-19-48.jpg",
+      "route": "identity \u2014 depicts (P180=Q503577)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/a/a1/Department_of_Commerce_flag_flying_Washington_DC_2025-03-26_12-19-48.jpg?utm_source=commons.wikimedia.or"
+    },
+    {
+      "candidate": "File:Building of FICCI in New Delhi 04.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q842441)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/4/4d/Building_of_FICCI_in_New_Delhi_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_conten"
+    },
+    {
+      "candidate": "File:Colorado -Adams County - Las Animas County (part)- - NARA - 17443770 (page 354).jpg",
+      "route": "identity \u2014 depicts (P180=Q503577)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/a/ac/Colorado_-Adams_County_-_Las_Animas_County_%28part%29-_-_NARA_-_17443770_%28page_354%29.jpg?utm_source=c"
+    }
+  ],
+  "extras": []
+}

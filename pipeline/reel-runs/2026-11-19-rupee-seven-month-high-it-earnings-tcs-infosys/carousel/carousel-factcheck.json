@@ -1,0 +1,139 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "rupee-seven-month-high-it-earnings-tcs-infosys",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Rupee Hits Seven-Month High Near \u20b993.40, Squeezing IT Exporters' Earnings",
+        "numbers": [
+          93.4
+        ],
+        "entities": [
+          "Rupee Hits Seven-Month High Near",
+          "Squeezing IT Exporters' Earnings"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the rupee hit 93.39-93.41, affecting IT exporters.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The rupee's rise, powered by foreign inflows and cheaper oil, cuts the rupee value of TCS and Infosys's dollar earnings.",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article explains how the rupee's rise impacts TCS and Infosys earnings.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "The Indian rupee climbed to around \u20b993.39\u2013\u20b993.41 per US dollar on November 18, its strongest level in seven months",
+        "numbers": [
+          18.0,
+          93.39,
+          93.41
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the rupee's value on November 18 as its strongest in seven months.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Foreign institutional investors have returned as net buyers, putting a net \u20b994,963 crore into Indian stocks through November 17",
+        "numbers": [
+          17.0,
+          94963.0,
+          949630000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article cites the net investment by foreign institutional investors.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The benchmark Nifty IT index is down over 5.5% so far this month",
+        "numbers": [
+          5.5
+        ],
+        "entities": [
+          "Nifty IT"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the Nifty IT index is down over 5.5% this month.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Rupee Hits Seven-Month High Near \u20b993.40, Squeezing IT Exporters' Earnings",
+        "numbers": [
+          93.4
+        ],
+        "entities": [
+          "Rupee Hits Seven-Month High Near",
+          "Squeezing IT Exporters' Earnings"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the rupee's high and its impact on IT exporters.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000506,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

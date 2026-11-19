@@ -1,0 +1,174 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "dreamteam-freshworks-alumni-53-million-ai-native-crm",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Freshworks Alumni Raise $53 Million for Dreamteam, an AI-Native CRM Challenger",
+        "numbers": [
+          53.0,
+          53000000.0
+        ],
+        "entities": [
+          "Freshworks Alumni Raise",
+          "AI-Native CRM Challenger"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Freshworks alumni raised $53 million for Dreamteam.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Three former Freshworks executives are building an AI-native CRM whose Company Brain builds a living record from emails and meetings.",
+        "numbers": [],
+        "entities": [
+          "AI-native CRM",
+          "Company Brain"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions three former Freshworks executives building an AI-native CRM.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Dreamteam has raised $53 million across a seed round led by Together Fund and a Series A led by Accel, with Premji Invest participating",
+        "numbers": [
+          53.0,
+          53000000.0
+        ],
+        "entities": [
+          "Together Fund",
+          "Series A",
+          "Premji Invest"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the funding details and participants.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Dreamteam signed more than 100 customers across 13 countries in the three months since it began actively selling",
+        "numbers": [
+          13.0,
+          100.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states Dreamteam signed over 100 customers in 13 countries.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The California-based company employs more than 35 people, with its engineering team in Chennai",
+        "numbers": [
+          35.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions the company employs over 35 people and has an engineering team in Chennai.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Anand Venkatraman",
+        "numbers": [],
+        "entities": [
+          "Anand Venkatraman"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Anand Venkatraman is mentioned as a co-founder in the article.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "co-founder and CEO, Dreamteam",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article identifies Anand Venkatraman as co-founder and CEO of Dreamteam.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Freshworks Alumni Raise $53 Million for Dreamteam, an AI-Native CRM Challenger",
+        "numbers": [
+          53.0,
+          53000000.0
+        ],
+        "entities": [
+          "Freshworks Alumni Raise",
+          "AI-Native CRM Challenger"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim repeats the hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000539,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

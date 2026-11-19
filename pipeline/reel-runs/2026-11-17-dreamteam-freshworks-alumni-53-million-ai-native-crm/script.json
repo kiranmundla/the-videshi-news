@@ -1,0 +1,22 @@
+{
+  "hook_line": "FRESHWORKS ALUMNI RAISE $53 MILLION TO BUILD AI-NATIVE CRM DREAMTEAM",
+  "hook_stat": {
+    "big": "$53 MILLION",
+    "eyebrow": "BY THE NUMBERS",
+    "sub": "Raised across a seed led by Together Fund and a Series A led by Accel"
+  },
+  "stats": [
+    {"big": "100+", "label": "Customers signed in three months, across 13 countries"},
+    {"big": "4", "label": "Built-in AI agents in the CRM"},
+    {"big": "MORE THAN 35", "label": "People employed, engineering team in Chennai"}
+  ],
+  "diaspora_bullets": [
+    "The three founders helped scale Freshworks from its early startup days through its IPO",
+    "The California-based company runs its engineering team in Chennai"
+  ],
+  "key_entities": ["Dreamteam", "Freshworks", "Anand Venkatraman", "Accel", "Together Fund"],
+  "news_summary": "Three former Freshworks executives have raised $53 million for Dreamteam, an AI-native CRM whose Company Brain builds a living record from emails and meetings.",
+  "payoff": "Dreamteam aims to reach eight figures in annual revenue by the end of 2027.",
+  "versus": "",
+  "story_mood": "celebratory"
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "e517bb8b-8d6e-4a64-810b-6e608001c709",
+    "headline": "AI Is Making Cyberattacks Faster, Palo Alto CEO Warns After Week of Outages",
+    "slug": "ai-cyberattacks-faster-nikesh-arora-indian-enterprises",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the attribution regarding the claim that the outages are linked to AI-assisted attacks. Currently, it states that Arora made this claim, but it should also clarify that the companies involved attribute their outages to internal causes, which could create confusion for readers.",
+        "Provide specific details about the nature of the outages, including the exact dates and times when each incident occurred, to enhance the completeness of the timeline presented.",
+        "Include a brief explanation of what AI-assisted attacks entail, as well as specific examples of how they can impact organizations, to improve clarity for readers unfamiliar with the topic."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from Nikesh Arora to provide direct access to his statement and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "c35194ad-edaf-4ab2-867e-814f8f4d005e",
+    "headline": "US Court Lets Pannun Serve Summons on Doval, Ex-RAW Chief Through Delhi Courts",
+    "slug": "us-court-pannun-serve-summons-doval-goel-delhi-courts",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the court's ruling by including specific details about what the next steps are for Pannun and the Indian officials involved, such as potential timelines for responses or consequences if they do not respond to the summons.",
+        "Provide more context about the allegations made by Pannun, including a brief summary of the conspiracy he claims took place and any relevant background information on the individuals involved, to help readers understand the significance of the case.",
+        "Include a quote or statement from a legal expert or a representative from the Indian government to provide additional perspectives on the ruling and its implications, enhancing the article's depth and authority."
+      ],
+      "embed_opportunities": [
+        "Embed the official court ruling or a relevant tweet from a legal expert discussing the implications of this decision."
+      ]
+    }
+  },
+  {
+    "id": "080397fc-c55f-48b3-b9d2-f62d747fd076",
+    "headline": "Canada Now Counts Stipend-Paid Work for Professors Seeking Express Entry",
+    "slug": "canada-express-entry-professors-stipend-work-experience-ircc",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the effective date of the policy change. The article states it took effect on November 17, 2026, which is likely a typographical error since that date is in the future. It should be corrected to reflect the actual date of implementation.",
+        "Provide a clearer breakdown of the points system mentioned. While the article states that 70 points can be earned for a year of qualifying experience and 100 points for a qualifying job offer, it would be beneficial to explain how these points contribute to the overall Comprehensive Ranking System score and what the minimum score typically is for receiving an invitation to apply.",
+        "Include a quote or statement from an official source, such as IRCC or a relevant immigration expert, to enhance the credibility and authority of the information presented.",
+        "Add a brief summary or bullet points at the end of the article that encapsulates the key takeaways for readers, such as who qualifies, what actions they need to take, and any deadlines they should be aware of."
+      ],
+      "embed_opportunities": [
+        "Embed the official IRCC announcement or tweet regarding this policy change to provide readers with direct access to the source of information."
+      ]
+    }
+  },
+  {
+    "id": "ee1767e0-8442-4218-8126-54adfe4bdf45",
+    "headline": "India Signs \u20b91,976 Crore Deal With Israel's IAI to Upgrade Navy's Barak Missiles",
+    "slug": "india-1976-crore-iai-barak-missile-upgrade-navy",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the date of the contract signing; the article mentions both November 18 and Wednesday, which could confuse readers. Ensure consistency in the date mentioned.",
+        "Provide more context on the significance of the upgrade. Explain how the Barak-1 system has performed in the past and what specific enhancements the upgrade will bring to the Indian Navy's capabilities.",
+        "Include a quote from a defense official or expert to provide authoritative insight into the implications of this deal for India's naval defense strategy.",
+        "Mention any expected timelines for the completion of the upgrade or when the enhanced capabilities will be operational."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Indian Ministry of Defence announcing the contract to provide direct access to primary information."
+      ]
+    }
+  }
+]

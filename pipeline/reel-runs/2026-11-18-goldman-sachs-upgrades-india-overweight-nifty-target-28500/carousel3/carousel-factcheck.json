@@ -1,0 +1,174 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "goldman-sachs-upgrades-india-overweight-nifty-target-28500",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Goldman Sachs Upgrades India to Overweight, Sets End-2027 Nifty Target of 28,500",
+        "numbers": [
+          2027.0,
+          28500.0
+        ],
+        "entities": [
+          "Goldman Sachs Upgrades India",
+          "Sets End-2027 Nifty Target"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027
+          ]
+        },
+        "llm_reason": "The article states Goldman Sachs upgraded India and set a Nifty target.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Goldman set a Nifty target of 28,500 by end-2027, implying roughly 12 percent upside from current levels.",
+        "numbers": [
+          12.0,
+          2027.0,
+          28500.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027
+          ]
+        },
+        "llm_reason": "The article confirms the Nifty target and the implied upside.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Goldman Sachs upgraded Indian equities to overweight and set a Nifty target of 28,500 by end-2027, implying roughly 12 percent upside from current levels",
+        "numbers": [
+          12.0,
+          2027.0,
+          28500.0
+        ],
+        "entities": [
+          "Goldman Sachs"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027
+          ]
+        },
+        "llm_reason": "The article details the upgrade and target with the implied upside.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Goldman forecasts Nifty earnings-per-share growth of 15 percent in both 2027 and 2028",
+        "numbers": [
+          15.0,
+          2027.0,
+          2028.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027,
+            2028
+          ]
+        },
+        "llm_reason": "The article mentions Goldman forecasts 15% earnings growth for both years.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Foreign ownership of Indian equities has fallen to a decade-plus low after a cumulative foreign investor selloff of $64 billion between 2024 and 2026",
+        "numbers": [
+          64.0,
+          2024.0,
+          2026.0,
+          64000000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2024,
+            2026
+          ]
+        },
+        "llm_reason": "The article states foreign ownership fell to a low after a $64 billion selloff.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Goldman Sachs Upgrades India to Overweight, Sets End-2027 Nifty Target of 28,500",
+        "numbers": [
+          2027.0,
+          28500.0
+        ],
+        "entities": [
+          "Goldman Sachs Upgrades India",
+          "Sets End-2027 Nifty Target"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027
+          ]
+        },
+        "llm_reason": "The article confirms the upgrade and target set by Goldman Sachs.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.00049,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

@@ -1,0 +1,15 @@
+{
+  "kind": "carousel",
+  "article_slug": "goldman-sachs-upgrades-india-overweight-nifty-target-28500",
+  "status": "held",
+  "stage": "factcheck",
+  "factcheck": {
+    "verdict": "fail",
+    "quote_present": true,
+    "verbatim_quote": true,
+    "speaker_grounded": true,
+    "role_grounded": true,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000562
+  }
+}

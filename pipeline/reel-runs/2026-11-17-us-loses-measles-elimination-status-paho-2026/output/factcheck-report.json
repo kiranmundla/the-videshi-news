@@ -1,0 +1,280 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "us-loses-measles-elimination-status-paho-2026",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "US LOSES MEASLES ELIMINATION STATUS AFTER 26 YEARS AS CASES PASS 5,400",
+      "numbers": [
+        26.0,
+        5400.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states US lost status after 26 years and cases exceeded 5,400.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The Pan American Health Organization announced on November 17 that the United States has lost the measles elimination status it held since 2000, after the virus circulated uninterrupted for more than a year.",
+      "numbers": [
+        17.0,
+        2000.0
+      ],
+      "entities": [
+        "Pan American Health Organization",
+        "United States"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2000
+        ]
+      },
+      "llm_reason": "Announcement by PAHO on November 17 confirms loss of status since 2000.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "5,412",
+      "numbers": [
+        5412.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Confirmed cases in the US are reported as 5,412.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Confirmed US cases in 2026, the most in any year since 1991",
+      "numbers": [
+        1991.0,
+        2026.0
+      ],
+      "entities": [
+        "Confirmed US"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          1991,
+          2026
+        ]
+      },
+      "llm_reason": "2026 cases are the highest since 1991 according to the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "96%",
+      "numbers": [
+        96.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "96% of infections are in unvaccinated or unknown vaccination status.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Infections in people unvaccinated or of unknown vaccination status",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states 96% of infections are in unvaccinated or unknown status.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "43",
+      "numbers": [
+        43.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "43 new outbreaks reported this year as per the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "New outbreaks reported this year",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article confirms 43 new outbreaks reported this year.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "47",
+      "numbers": [
+        47.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "47 jurisdictions reported confirmed cases according to the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Jurisdictions that reported cases",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states 47 jurisdictions reported cases.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "For Indian families in the United States, the practical step is a records check, not alarm",
+      "numbers": [],
+      "entities": [
+        "For Indian",
+        "United States"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article advises records check for Indian families, not alarm.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The CDC schedule is a first MMR dose at 12 months and a second at 4 to 6 years",
+      "numbers": [
+        4.0,
+        6.0,
+        12.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "CDC schedule for MMR doses is accurately stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "A country must stop ongoing outbreaks and then show that no one caught measles within its borders for a full year.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article explains requirements to regain measles elimination status.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Pan American Health Organization",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "CDC",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "United States",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Mexico",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Bolivia",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000734,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

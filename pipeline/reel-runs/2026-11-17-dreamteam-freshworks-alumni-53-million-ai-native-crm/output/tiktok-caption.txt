@@ -1,0 +1,12 @@
+VIDEO: /home/hatch/workspace/the-videshi-news/pipeline/reel-runs/2026-11-17-dreamteam-freshworks-alumni-53-million-ai-native-crm/output/dreamteam-freshworks-alumni-53-million-ai-native-crm.mp4
+
+CAPTION:
+FRESHWORKS ALUMNI RAISE $53 MILLION TO BUILD AI-NATIVE CRM DREAMTEAM
+
+Three former Freshworks executives have raised $53 million for Dreamteam, an AI-native CRM whose Company Brain builds a living record from emails and meetings.
+
+Dreamteam aims to reach eight figures in annual revenue by the end of 2027.
+
+Full story: https://thevideshi.com/articles/dreamteam-freshworks-alumni-53-million-ai-native-crm
+
+#TheVideshi #Dreamteam #Freshworks #Tech #IndianDiaspora

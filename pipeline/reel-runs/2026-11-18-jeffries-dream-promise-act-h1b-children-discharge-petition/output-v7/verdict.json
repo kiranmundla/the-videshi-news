@@ -1,0 +1,24 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "render",
+  "render": {
+    "renderer": "reel_renderer_v7.py",
+    "stage_color": "black"
+  },
+  "article_slug": "jeffries-dream-promise-act-h1b-children-discharge-petition",
+  "name": "jeffries-dream-promise-act-h1b-children-discharge-petition",
+  "script": "reel-runs/2026-11-18-jeffries-dream-promise-act-h1b-children-discharge-petition/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000757
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-18-jeffries-dream-promise-act-h1b-children-discharge-petition/output-v7/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "detail": "beat 'grid': content needs 502px > zone 317px (track backdrop) even at scale 0.5"
+}

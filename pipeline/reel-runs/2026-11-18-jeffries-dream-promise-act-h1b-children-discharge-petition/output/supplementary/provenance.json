@@ -1,0 +1,80 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "jeffries-dream-promise-act-h1b-children-discharge-petition",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Hakeem Jeffries",
+    "H-1B",
+    "American Dream and Promise Act",
+    "Sylvia Garcia",
+    "Children",
+    "Dream and Promise Act"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'H-1B' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Children' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Dream and Promise Act' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "File:Rep-Hakeem-Jeffries-Official-Portrait (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q5640425)",
+      "verdict": "accepted",
+      "reason": "1170x1624, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2025-03-26 Hakeem Jeffries Washington DC 10-29-35 1.jpg",
+      "route": "identity \u2014 depicts (P180=Q5640425)",
+      "verdict": "accepted",
+      "reason": "8256x5504, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Sylvia Garcia, official portrait, 116th Congress.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q13562489)",
+      "verdict": "accepted",
+      "reason": "2729x3411, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Press conference demanding justice for Vanessa Guill\u00e9n, Washington, D.C. (July 21, 2020).jpg",
+      "route": "identity \u2014 depicts (P180=Q13562489)",
+      "verdict": "rejected",
+      "reason": "identity: depicts (P180) file for a person whose own title/description/categories never name 'Sylvia Garcia' (or a known alias) \u2014 a depicts statement alone is not identity (polluted Commons structured data: the Mount Charleston trail file 'depicts' Mukesh Ambani); fail closed"
+    },
+    {
+      "candidate": "File:Senator Sylvia Garcia.JPG",
+      "route": "identity \u2014 depicts (P180=Q13562489)",
+      "verdict": "accepted",
+      "reason": "2448x3264, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2025-03-26 Hakeem Jeffries Washington DC 10-29-35 1.jpg",
+      "route": "identity \u2014 depicts (P180=Q5640425)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/6/66/2025-03-26_Hakeem_Jeffries_Washington_DC_10-29-35_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=im"
+    },
+    {
+      "candidate": "File:Senator Sylvia Garcia.JPG",
+      "route": "identity \u2014 depicts (P180=Q13562489)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/6/64/Senator_Sylvia_Garcia.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  ],
+  "extras": []
+}

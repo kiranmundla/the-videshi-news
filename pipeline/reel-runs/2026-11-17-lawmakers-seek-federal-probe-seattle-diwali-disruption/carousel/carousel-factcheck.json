@@ -1,0 +1,135 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "lawmakers-seek-federal-probe-seattle-diwali-disruption",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "13 Lawmakers Seek Federal Probe Into Seattle Diwali Event Disruption",
+        "numbers": [
+          13.0
+        ],
+        "entities": [
+          "Lawmakers Seek Federal Probe Into Seattle Diwali Event Disruption"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states 13 lawmakers requested a federal probe into the disruption.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Thirteen US lawmakers have asked the Department of Justice to investigate whether the disruption of a Diwali celebration in Seattle was a federal civil rights violation.",
+        "numbers": [],
+        "entities": [
+          "Thirteen US"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms lawmakers requested an investigation into the Diwali disruption.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "All six Indian American members of the House signed the letter asking the Justice Department to investigate the Seattle Diwali disruption",
+        "numbers": [],
+        "entities": [
+          "Indian American",
+          "Justice Department",
+          "Seattle Diwali"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions all six Indian American members signed the letter.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The letter cites three federal statutes covering intimidation, conspiracies against federal rights, and obstruction of religious exercise",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article lists three federal statutes related to the lawmakers' request.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "The lawmakers have asked the Justice Department for a briefing by December 4",
+        "numbers": [
+          4.0
+        ],
+        "entities": [
+          "Justice Department"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states a briefing is requested by December 4.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "13 Lawmakers Seek Federal Probe Into Seattle Diwali Event Disruption",
+        "numbers": [
+          13.0
+        ],
+        "entities": [
+          "Lawmakers Seek Federal Probe Into Seattle Diwali Event Disruption"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "This claim repeats the initial hook line, which is supported.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.00046,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

@@ -1,0 +1,36 @@
+{
+ "hook_line": "RUPEE HITS SEVEN-MONTH HIGH NEAR ₹93.40, SQUEEZING IT EXPORTERS' EARNINGS",
+ "hook_stat": {
+  "big": "₹93.40",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Rupee per US dollar on November 18, its strongest level in seven months"
+ },
+ "stats": [
+  {
+   "big": "1.7%",
+   "label": "Rupee gain so far in November, on course for its best month in 20 months"
+  },
+  {
+   "big": "₹94,963 crore",
+   "label": "Net foreign institutional investment in Indian stocks through November 17"
+  },
+  {
+   "big": "Over 5.5%",
+   "label": "Fall in the Nifty IT index so far this month"
+  }
+ ],
+ "diaspora_bullets": [
+  "Each dollar sent to India now converts into fewer rupees than at the year's weakest point of ₹96.81 per dollar",
+  "TCS and Infosys earn most revenue in dollars but pay a large share of costs in rupees"
+ ],
+ "key_entities": [
+  "Rupee",
+  "TCS",
+  "Infosys",
+  "Nifty IT"
+ ],
+ "news_summary": "The Indian rupee climbed to around ₹93.39–₹93.41 per US dollar on November 18, its strongest level in seven months, squeezing the rupee earnings of TCS, Infosys and other IT exporters.",
+ "payoff": "The rupee remains about 4% weaker than on January 1, when a dollar cost ₹89.98.",
+ "versus": "",
+ "story_mood": "practical"
+}

@@ -1,0 +1,83 @@
+[
+  {
+    "id": "abb4cb97-cece-443a-aef2-39f24e6b061f",
+    "headline": "Pallavi Paul's 'How Love Moves' Wins $25,000 Al Jazeera Award at IDFA Forum",
+    "slug": "pallavi-paul-how-love-moves-al-jazeera-award-idfa-forum-2026",
+    "category": "entertainment",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The project won the Al Jazeera Documentary Co-Production Award at the IDFA Forum\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the award by providing context on the IDFA Forum and its importance in the documentary film industry, which would help readers understand why this win is noteworthy.",
+        "Include a direct quote from Pallavi Paul or a jury member to add a personal touch and provide insight into the filmmaker's vision or the jury's perspective on the project.",
+        "Provide more details about the documentary's themes or the community it focuses on, as this would give readers a deeper understanding of the project's relevance and urgency."
+      ],
+      "embed_opportunities": [
+        "Embed the official IDFA tweet announcing the award to provide readers with a primary source and enhance the article's credibility."
+      ]
+    }
+  },
+  {
+    "id": "e9a3b648-bf63-4f96-9761-28a8792bb9bf",
+    "headline": "Tanker With Three Indians Hit Near Hormuz; Accounts Differ on Crew Casualties",
+    "slug": "navig8-messi-tanker-attack-hormuz-indian-seafarers-reports-differ",
+    "category": "news",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact date and time of the attack on the MT Navig8 Messi, as well as when the conflicting reports were made public. This will help readers understand the sequence of events better.",
+        "Include a brief background on the significance of the Strait of Hormuz in maritime security and its relevance to international shipping, which would provide context for the incident.",
+        "Add a quote or statement from a representative of ADNOC Logistics & Services to provide direct attribution and enhance credibility regarding their account of the incident."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from India's shipping minister Sarbananda Sonowal regarding the incident to provide direct access to official statements."
+      ]
+    }
+  },
+  {
+    "id": "970bb85d-c14f-4eea-9178-371a1f24902c",
+    "headline": "Surrey Village Chef Kaiyum Dewan Khan Named UK's Best at BCA Awards",
+    "slug": "spice-lounge-mytchett-kaiyum-dewan-khan-bca-chef-of-the-year-2026",
+    "category": "food",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the awards by providing more context on the Bangladesh Caterers Association and its impact on the culinary scene in the UK. This could help readers understand why this recognition is important.",
+        "Include direct quotes from Kaiyum Dewan Khan about his experience in the competition or what this award means to him personally. This would add a human element to the story and provide insight into his perspective.",
+        "Add a brief background on the Spice Lounge, such as its history, menu highlights, or previous accolades, to give readers a fuller picture of the restaurant's reputation and significance in the community."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Bangladesh Caterers Association announcing the winners or showcasing highlights from the awards ceremony. This would provide real-time engagement and authenticity to the coverage."
+      ]
+    }
+  },
+  {
+    "id": "d2f7bd5e-9bb3-4a04-a39c-d462a4d880ea",
+    "headline": "Nawazuddin Siddiqui's 'Dr. Hassan' Brings 'House' to India, Premieres December 1",
+    "slug": "nawazuddin-siddiqui-dr-hassan-house-adaptation-jiohotstar-december-11",
+    "category": "entertainment",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The Hindi adaptation of House premieres on JioHotstar on December 11.\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the premiere date by specifying the time zone or time of day when the series will be available on December 11, as this is important for viewers planning to watch it.",
+        "Include a brief overview of the original American series 'House' to provide context for readers unfamiliar with it, particularly highlighting its critical acclaim and popularity.",
+        "Add quotes or comments from the director Rohan Sippy or producers to provide additional insights into the adaptation process and what viewers can expect from this version.",
+        "Mention the episode count or format (e.g., weekly releases) if known, as this information is relevant for audience anticipation and viewing plans."
+      ],
+      "embed_opportunities": [
+        "Embed the official JioHotstar tweet announcing the premiere or the teaser for 'Dr. Hassan' to provide readers with direct access to promotional content."
+      ]
+    }
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "kind": "carousel",
+  "article_slug": "rupee-seven-month-high-it-earnings-tcs-infosys",
+  "status": "ready",
+  "stage": "complete",
+  "factcheck": {
+    "verdict": "pass",
+    "quote_present": false,
+    "verbatim_quote": null,
+    "speaker_grounded": null,
+    "role_grounded": null,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000506
+  },
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "cards": [
+    "reel-runs/2026-11-19-rupee-seven-month-high-it-earnings-tcs-infosys/carousel/carousel-1.png",
+    "reel-runs/2026-11-19-rupee-seven-month-high-it-earnings-tcs-infosys/carousel/carousel-2.png",
+    "reel-runs/2026-11-19-rupee-seven-month-high-it-earnings-tcs-infosys/carousel/carousel-3.png"
+  ]
+}

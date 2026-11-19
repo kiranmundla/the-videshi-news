@@ -1,0 +1,80 @@
+[
+  {
+    "id": "fa9113bb-c3b2-44e0-8116-177099d26898",
+    "headline": "One Indian Seafarer Missing, Two Injured After Hormuz Tanker Attack",
+    "slug": "indian-seafarer-missing-tanker-attack-strait-of-hormuz-tara-gas",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact time of the attack on November 16 and the timeline of the initial report versus the updated information. This will help readers understand how the situation evolved.",
+        "Provide more details about the nature of the injuries sustained by the two hospitalized crew members, as well as any updates on their condition, to give readers a clearer picture of the situation.",
+        "Include a statement from the Indian Embassy in Oman regarding their ongoing efforts in the search and rescue operation, which would add depth and context to the government's response.",
+        "Correct the date mentioned in the MEA's statement from '16 November 2026' to '16 November 2023' to ensure accuracy."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement or tweet from the Ministry of External Affairs regarding the incident for direct access to official information."
+      ]
+    }
+  },
+  {
+    "id": "e2e93a7a-2f0c-4add-8b97-6710bf568385",
+    "headline": "Tacoma Attorney Sues USCIS Over H-1B Delay Blocking Work for Detained Immigrants",
+    "slug": "tacoma-attorney-sues-uscis-h1b-premium-processing-delay",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the H-1B petition was initially filed and when the premium processing was requested, as this will provide readers with a clearer understanding of the delays involved.",
+        "Include a direct quote from the lawsuit or a statement from Esquivel or Legal Immigration Services of Olympia to enhance attribution and provide a personal perspective on the impact of the delay.",
+        "Explain the implications of the lawsuit for other similar cases or for the broader immigration process, as this context will help readers understand the significance of this legal action."
+      ],
+      "embed_opportunities": [
+        "Embed the official USCIS statement or tweet regarding premium processing timelines or delays, if available, to provide authoritative context."
+      ]
+    }
+  },
+  {
+    "id": "1cc3001b-1679-4819-a953-e845c4e5ca23",
+    "headline": "Ramayana Becomes First Bollywood Film to Cross Rs 50 Crore in Kerala",
+    "slug": "ramayana-first-bollywood-film-rs-50-crore-kerala-yash",
+    "category": "entertainment",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the discrepancy in the box office figures reported by Pinkvilla and Koimoi, as this could confuse readers. A brief explanation of why different trackers might report varying numbers would enhance accuracy and completeness.",
+        "Include a brief context about the significance of this milestone for Bollywood films in Kerala. This could help readers understand why crossing Rs 50 crore is noteworthy, particularly in a market that has historically been challenging for Hindi films.",
+        "Add a quote from a relevant industry expert or a representative from the film's production team to provide attribution and depth to the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from Pinkvilla or Koimoi confirming the box office milestone for Ramayana: Part 1 to enhance credibility and provide readers with a direct source for the information."
+      ]
+    }
+  },
+  {
+    "id": "1e481a8e-3941-4ee4-9c40-9d8e311f48ee",
+    "headline": "US Loses Measles Elimination Status After 26 Years as Cases Pass 5,400",
+    "slug": "us-loses-measles-elimination-status-paho-2026",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the first outbreak in West Texas occurred in 2025, as this detail is crucial for understanding the context of the loss of elimination status.",
+        "Include specific numbers regarding vaccination rates or the percentage of the population that is unvaccinated, as this would provide readers with a clearer understanding of the public health implications.",
+        "Correct the date mentioned in the headline; it states November 17, which is a future date relative to the current date. Ensure the date aligns with the announcement date of the PAHO.",
+        "Provide a brief explanation of what 'measles elimination status' means in practical terms for the average reader, including potential impacts on public health policy or community health initiatives."
+      ],
+      "embed_opportunities": [
+        "Embed the official PAHO announcement or a relevant CDC tweet to provide readers with direct access to authoritative sources on the topic."
+      ]
+    }
+  }
+]

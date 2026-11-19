@@ -1,0 +1,80 @@
+[
+  {
+    "id": "1ab273e2-b8a1-4b27-873f-aaf963220dde",
+    "headline": "Bengaluru's Humyn Labs Raises $47 Million to Feed US Robotics Firms Training Dat",
+    "slug": "humyn-labs-raises-47-million-series-a-robotics-training-data",
+    "category": "technology",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the funding round by specifying when the Series A financing was completed, as well as the date of the TechCrunch report to enhance timeliness.",
+        "Provide more context on the implications of the $10 million revenue generated and the $20 million in signed contracts, such as what this means for Humyn Labs' growth trajectory or future funding needs.",
+        "Include a brief explanation of the privacy and consent concerns mentioned, as this is a critical aspect of the technology being developed and may be of interest to readers.",
+        "Reorganize the content to avoid redundancy. The first two paragraphs repeat information about the funding amount and lead investors; consolidating this information would improve clarity and flow."
+      ],
+      "embed_opportunities": [
+        "Embed the TechCrunch article or a relevant tweet from TechCrunch that covers the funding announcement for direct attribution."
+      ]
+    }
+  },
+  {
+    "id": "f67d5369-d96a-4073-8a8b-c0be689eef3e",
+    "headline": "India On Track to Hit $1 Trillion in Exports This Year, Commerce Secretary Says",
+    "slug": "india-on-track-1-trillion-exports-commerce-secretary-agrawal",
+    "category": "markets-finance",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline: The headline states 'this year,' but the article mentions a target for 2026-27. This could confuse readers about the actual timeframe for achieving the $1 trillion target. Specify whether the target is for the current fiscal year or a future one.",
+        "Provide more context on the implications of the widening goods trade deficit mentioned. Explain how this might affect the overall export strategy or economic outlook, as it could be a concern for readers.",
+        "Include a direct quote or statement from the Commerce Secretary regarding the challenges or strategies involved in reaching the $1 trillion target. This would add depth and authority to the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Ministry of Commerce or a related government body regarding the export figures or the target to provide readers with direct access to primary information."
+      ]
+    }
+  },
+  {
+    "id": "4e6412b1-8359-4333-a525-685a3e71daf3",
+    "headline": "Cyclone Akvan Veers North and Weakens; Landfall Window Now Narsapur to Puri",
+    "slug": "cyclone-akvan-veers-north-landfall-narsapur-puri-november-20",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The IMD expects the severe cyclonic storm to cross the coast between Narsapur an\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the exact date and time for the expected landfall of Cyclone Akvan, as well as the duration of the expected heavy rainfall to provide readers with clearer actionable information.",
+        "Include a direct quote or attribution from an IMD official or meteorologist to enhance credibility and provide expert insight on the storm's trajectory and expected impact.",
+        "Add a brief section summarizing safety precautions or emergency measures that residents in the affected areas should take, which would provide practical guidance to readers.",
+        "Ensure that the article maintains a consistent structure by avoiding repetition of information, particularly regarding the storm's wind speeds and landfall zones, to improve clarity."
+      ],
+      "embed_opportunities": [
+        "Embed the official IMD tweet regarding Cyclone Akvan's latest updates to provide readers with real-time information from a credible source."
+      ]
+    }
+  },
+  {
+    "id": "5aed8df9-f735-4c03-a351-671dd2bb976b",
+    "headline": "Bombay High Court Quashes ICICI Bank's Sanction to Prosecute Chanda Kochhar",
+    "slug": "bombay-high-court-quashes-icici-sanction-prosecute-chanda-kochhar-videocon",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The court on November 18 set aside ICICI Bank's sanction to prosecute its former\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by including the date when the allegations against Kochhar were first made and any significant developments leading up to the court's ruling. This will provide readers with a clearer context of the case's progression.",
+        "Include a brief explanation of the implications of the court's ruling for ICICI Bank and the CBI's ongoing investigation. This could help readers understand the potential impact on future prosecutions in similar cases.",
+        "Add a quote from Justice Milind N Jadhav or a legal expert to provide authoritative context and insight into the ruling's significance, enhancing the article's depth."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Bombay High Court or a relevant legal expert commenting on the ruling to provide immediate context and authority to the article."
+      ]
+    }
+  }
+]
