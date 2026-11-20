@@ -1,0 +1,83 @@
+[
+  {
+    "id": "95f19d90-55b8-417e-9a9b-cc1b6f8938e8",
+    "headline": "World Champion Gukesh Named to TIME100 Next India Weeks Before First Title Defen",
+    "slug": "gukesh-time100-next-india-phenoms-title-defence-sindarov",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding Gukesh's upcoming title defense by specifying the exact date later this month, as well as the date of the TIME100 Next India gala on December 12.",
+        "Provide more context about the significance of the TIME100 Next India list and what it means for Gukesh and other honorees, including any potential impacts on their careers or visibility.",
+        "Include a brief mention of Gukesh's achievements leading up to this recognition, such as key tournaments he has won or milestones he has reached, to give readers a clearer picture of his journey.",
+        "Ensure that the attribution for the information about the TIME100 list is consistent and clear throughout the article, especially when referencing other sources like Jagran Josh and MyKhel. This will enhance the credibility of the reporting."
+      ],
+      "embed_opportunities": [
+        "Embed the official TIME tweet announcing the TIME100 Next India list to provide readers with direct access to the source and additional context."
+      ]
+    }
+  },
+  {
+    "id": "d980bb6f-01fd-42c8-bfc1-e6d916c4957f",
+    "headline": "South Korea Passes $1 Trillion in Exports, Fourth Country Ever, on AI Chip Boom",
+    "slug": "south-korea-exports-pass-1-trillion-ai-chip-boom",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the exports milestone by specifying the exact date and time when the $1 trillion mark was reached, as well as the significance of the date in relation to previous records.",
+        "Include a brief explanation of the implications of the AI chip boom on the global market and how it might affect investors or related industries, providing specific figures or forecasts where possible.",
+        "Add a quote from a relevant economic expert or government official to enhance the credibility of the reporting and provide additional context regarding the significance of this milestone.",
+        "Ensure all statistics are clearly attributed to their sources, particularly the customs figures and the Korea Development Institute's forecasts, to enhance transparency and trust in the data presented."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the South Korean Ministry of Trade, Industry and Resources announcing the milestone to provide official confirmation and context."
+      ]
+    }
+  },
+  {
+    "id": "c272a2bd-bff0-471a-9228-b4c4ee84146a",
+    "headline": "Nicholls and Phillips Rescue New Zealand After Bumrah's Early Burst in Wellingto",
+    "slug": "nicholls-phillips-rescue-new-zealand-day-one-wellington-india",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the match by explicitly stating the date of the match's conclusion (November 23) at the beginning of the article to provide immediate context for readers.",
+        "Include a brief summary of the significance of the match or the series for both teams, which would enhance completeness and provide readers with a better understanding of the stakes involved.",
+        "Add quotes from players or coaches to enhance attribution and provide personal insights into the match situation, especially from Nicholls or Phillips after their partnership.",
+        "Ensure that the statistics for Bumrah's performance are clearly presented in a separate line or bullet point for better clarity and readability."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ICC or a cricket news outlet summarizing the day's play or highlighting key performances, which would provide real-time context and engagement."
+      ]
+    }
+  },
+  {
+    "id": "defca30e-349d-44d6-b101-3874ef678a1c",
+    "headline": "Anthropic Opens 34% Higher in Nasdaq Debut, Briefly Worth $2 Trillion",
+    "slug": "anthropic-nasdaq-debut-opens-111-valuation-2-trillion",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of the IPO process by explicitly stating the date when the shares were priced and when trading began, to enhance completeness and clarity.",
+        "Include a brief explanation of what factors contributed to the high valuation of Anthropic, as this context would help readers understand the significance of the $2 trillion market cap.",
+        "Ensure that the article consistently attributes information to reliable sources, such as Reuters, to enhance accuracy and credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official Nasdaq tweet announcing Anthropic's debut to provide readers with real-time updates and official information."
+      ]
+    }
+  }
+]

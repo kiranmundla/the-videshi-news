@@ -1,0 +1,84 @@
+[
+  {
+    "id": "3c9ce7f8-45ad-47d0-ab76-180310ea44ad",
+    "headline": "SatSure Raises 600 Million Rupees From Government-Backed Space Fund at 8.7 Billi",
+    "slug": "satsure-raises-600-million-antariksh-fund-series-b",
+    "category": "technology",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The Bengaluru startup said the Antariksh Venture Capital Fund investment of 600 \u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the Series B round by specifying the expected closing date in the article, as it currently states 'by December 2026' without context on when the round started or how long it has been ongoing.",
+        "Include a brief explanation of the significance of the 8.7 billion rupee valuation in the context of the Indian space sector, as this would provide readers with a clearer understanding of its impact.",
+        "Add a quote from a company representative or an industry expert to provide insight into the implications of this funding for SatSure's future operations or the broader space technology landscape."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from SatSure or the Antariksh Venture Capital Fund announcing the funding round to provide official confirmation and context."
+      ]
+    }
+  },
+  {
+    "id": "40212ce9-72e3-4c1d-9e8a-244ef1d1f4e8",
+    "headline": "Jaiswal and Rahul's 130-Run Stand Blunts New Zealand's Advantage in Wellington",
+    "slug": "jaiswal-rahul-opening-stand-wellington-day-two",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of India's position at the end of Day 2 by including a brief analysis of what a successful chase would entail, such as specific runs needed on Day 3 and potential strategies.",
+        "Provide more context on the historical significance of Jaiswal and Rahul's opening stand, perhaps by mentioning previous records or notable performances in similar situations.",
+        "Include quotes from players or coaches to enhance the article's depth and provide firsthand insights into the match's progress."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official ICC or the Indian cricket team's Twitter account highlighting the match's key moments or player performances."
+      ]
+    }
+  },
+  {
+    "id": "4f6619dd-9ca7-4aff-9f96-5559f85ac219",
+    "headline": "Marriage to an Indian Citizen Gives No Right to Stay, Delhi High Court Rules",
+    "slug": "delhi-high-court-marriage-no-right-to-stay-spouse-visa",
+    "category": "immigration",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The court held that marriage to an Indian citizen does not by itself confer a ri\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date when the court ruling was made. This will enhance the article's timeliness and context.",
+        "Include specific details about the implications of the ruling for foreign nationals married to Indian citizens, such as what documentation or evidence may be required for a successful visa application.",
+        "Provide a brief explanation of the Entry (X-1) spouse visa process, including any relevant timelines or requirements that readers should be aware of.",
+        "Mention any potential next steps for the petitioner, Lisa Hall Srivastava, following the court's decision, such as options for appeal or further legal recourse."
+      ],
+      "embed_opportunities": [
+        "Embed the official Delhi High Court ruling or a relevant government source that outlines the criteria for visa applications for foreign spouses."
+      ]
+    }
+  },
+  {
+    "id": "dc04569d-fff5-4e73-8f69-12fcf8f42472",
+    "headline": "After Sikh Grandmother's Deportation, Bill Would Let Old Removal Orders Expire",
+    "slug": "harjit-kaur-deportation-bill-removal-orders-expire",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline regarding Harjit Kaur's deportation. The article mentions she was deported in September 2025, which appears to be a future date. This should be corrected to reflect the actual date of deportation.",
+        "Provide more context on the potential impact of the Protect Our Neighbors Act. For example, include specific details about how many individuals might benefit from this legislation and any estimated timelines for when it could potentially become law.",
+        "Include quotes or statements from the bill's sponsors or advocates for the legislation to enhance attribution and provide a more personal perspective on the bill's significance.",
+        "Reorganize the content to first introduce the bill and its implications, followed by the case of Harjit Kaur. This structure would help readers understand the legislative context before delving into the individual story."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from one of the bill's sponsors announcing the introduction of the Protect Our Neighbors Act to provide readers with direct access to the source."
+      ]
+    }
+  }
+]

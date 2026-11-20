@@ -1,0 +1,149 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "gukesh-time100-next-india-phenoms-title-defence-sindarov",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "World Champion Gukesh Named to TIME100 Next India Weeks Before First Title Defence",
+        "numbers": [
+          100.0
+        ],
+        "entities": [
+          "World Champion Gukesh Named",
+          "TIME100 Next India Weeks Before First Title Defence"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Gukesh is named to TIME100 Next India before his title defense.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The 20-year-old appears in the Phenoms category of TIME's first country-specific Next list, with his profile written by Sharda Ugra.",
+        "numbers": [
+          20.0
+        ],
+        "entities": [
+          "Sharda Ugra"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Gukesh is 20 and appears in the Phenoms category with a profile by Sharda Ugra.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Gukesh Dommaraju appears in the Phenoms category of TIME100 Next India, the first international edition of TIME's TIME100 Next franchise",
+        "numbers": [
+          100.0
+        ],
+        "entities": [
+          "Gukesh Dommaraju",
+          "TIME100 Next India",
+          "TIME's TIME100 Next"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Gukesh appears in the Phenoms category of TIME100 Next India, the first international edition.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "In December 2024 he defeated Ding Liren to become the youngest undisputed world chess champion in history, at 18",
+        "numbers": [
+          18.0,
+          2024.0
+        ],
+        "entities": [
+          "In December",
+          "Ding Liren"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2024
+          ]
+        },
+        "llm_reason": "He became the youngest undisputed world champion in December 2024 at age 18.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Later this month he defends the world title for the first time, against Uzbekistan's Javokhir Sindarov",
+        "numbers": [],
+        "entities": [
+          "Uzbekistan's Javokhir Sindarov"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "He is set to defend his title against Sindarov later this month.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "World Champion Gukesh Named to TIME100 Next India Weeks Before First Title Defence",
+        "numbers": [
+          100.0
+        ],
+        "entities": [
+          "World Champion Gukesh Named",
+          "TIME100 Next India Weeks Before First Title Defence"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Gukesh is named to TIME100 Next India before his title defense.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000469,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

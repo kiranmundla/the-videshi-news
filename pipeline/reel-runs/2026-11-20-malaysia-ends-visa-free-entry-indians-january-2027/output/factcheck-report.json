@@ -1,0 +1,303 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "malaysia-ends-visa-free-entry-indians-january-2027",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "MALAYSIA ENDS VISA-FREE ENTRY FOR INDIANS FROM JANUARY 1, 2027",
+      "numbers": [
+        1.0,
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article states Malaysia ends visa-free entry for Indians from January 1, 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Malaysia will end visa-free entry for Indian passport holders from January 1, 2027; travellers arriving on or after that date must obtain a visa in advance through the MyVISA portal, with applications opening December 1, 2026.",
+      "numbers": [
+        1.0,
+        2026.0,
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026,
+          2027
+        ]
+      },
+      "llm_reason": "The article confirms the end of visa-free entry and application details.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "January 1, 2027",
+      "numbers": [
+        1.0,
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article specifies January 1, 2027, as the date for ending visa-free entry.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Malaysia ends the 30-day visa exemption for Indian passport holders",
+      "numbers": [
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the 30-day visa exemption will be discontinued.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "December 1, 2026",
+      "numbers": [
+        1.0,
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article mentions applications open on December 1, 2026.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Visa applications open on the MyVISA portal",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states applications will be through the MyVISA portal.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "30 days",
+      "numbers": [
+        30.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the visa exemption allowed stays of up to 30 days.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Visa-free stays remain available until December 31, 2026",
+      "numbers": [
+        31.0,
+        2026.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026
+        ]
+      },
+      "llm_reason": "The article states visa-free entry is available until December 31, 2026.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "1.56 million",
+      "numbers": [
+        1.56,
+        1560000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article reports 1.56 million Indian tourist arrivals in 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Indian tourist arrivals in Malaysia in 2025",
+      "numbers": [
+        2025.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article confirms the number of Indian tourist arrivals in 2025.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Your arrival date decides whether you need a visa \u2014 not your booking or departure date",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article explains that arrival date determines visa requirements.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The Malaysia Digital Arrival Card is still required within three days before arrival",
+      "numbers": [],
+      "entities": [
+        "Malaysia Digital Arrival Card"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the MDAC requirement remains in place.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Until December 31, 2026, Indians can still enter visa-free for up to 30 days \u2014 from January 1, 2027, a visa obtained before travel is required.",
+      "numbers": [
+        1.0,
+        30.0,
+        31.0,
+        2026.0,
+        2027.0
+      ],
+      "entities": [
+        "Until December"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026,
+          2027
+        ]
+      },
+      "llm_reason": "The article confirms visa-free entry until December 31, 2026, and visa requirement after.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Malaysia",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "MyVISA",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Malaysia Digital Arrival Card",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Kuala Lumpur",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000756,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

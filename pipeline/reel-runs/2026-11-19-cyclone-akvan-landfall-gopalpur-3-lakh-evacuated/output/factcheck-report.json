@@ -1,0 +1,262 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "cyclone-akvan-landfall-gopalpur-3-lakh-evacuated",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "CYCLONE AKVAN MAKES LANDFALL NEAR GOPALPUR IN ODISHA",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Cyclone Akvan began landfall near Gopalpur in Odisha.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Cyclone Akvan began landfall near Gopalpur on the Odisha coast on Friday morning, crossing at 70-80 kmph and gusting to 90 kmph after weakening from a severe cyclonic storm, according to the India Meteorological Department.",
+      "numbers": [
+        70.0,
+        80.0,
+        90.0
+      ],
+      "entities": [
+        "Cyclone Akvan",
+        "India Meteorological Department"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about landfall, speed, and IMD attribution are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "90",
+      "numbers": [
+        90.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions gusting winds of 90 kmph.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "kmph gusts as Cyclone Akvan crossed the Odisha coast near Gopalpur",
+      "numbers": [],
+      "entities": [
+        "Cyclone Akvan"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms gusts of 90 kmph as Cyclone Akvan crossed the coast.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "423",
+      "numbers": [
+        423.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 423 rescue teams were deployed.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Rescue teams deployed across Odisha for Cyclone Akvan",
+      "numbers": [],
+      "entities": [
+        "Cyclone Akvan"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms deployment of 423 rescue teams across Odisha.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "2,523",
+      "numbers": [
+        2523.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states there are 2,523 relief camps.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Relief camps in Odisha for people evacuated ahead of landfall",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms 2,523 relief camps for evacuees.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "41",
+      "numbers": [
+        41.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions 41 trains were cancelled.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Trains cancelled by East Coast Railway as a precaution",
+      "numbers": [],
+      "entities": [
+        "East Coast Railway"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the East Coast Railway cancelled 41 trains.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Over 3 lakh people were evacuated into relief camps before landfall",
+      "numbers": [
+        3.0,
+        300000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states over 3 lakh people were evacuated.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "No casualties had been reported as the landfall process began",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms no casualties reported at landfall's start.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Odisha's government is running a zero-casualty mission, and no casualties had been reported as landfall began.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the zero-casualty mission and no reported casualties.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Cyclone Akvan",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Gopalpur",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Odisha",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "India Meteorological Department",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000738,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

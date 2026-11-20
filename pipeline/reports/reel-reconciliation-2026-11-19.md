@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-19T11:13:50+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-19T23:16:06+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **273**
-- prebuilt_reels rows: 206 (176 with a yt_video_id)
+- Channel uploads (actual, via API): **275**
+- prebuilt_reels rows: 208 (178 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 89
-- **In sync** (channel video backed by a DB/publish-log record): **155**
+- Phase 2 publish-log entries: 91
+- **In sync** (channel video backed by a DB/publish-log record): **157**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 17
 - Ghost DB rows (yt_video_id not on channel): 16
@@ -292,7 +292,7 @@ _None._
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 - row `3c385175-84c2-48c0-afec-378bee1ba1d6` · slug ambani-adds-6-3-billion-reliance-shares-jump-record-profit · yt_video_id `B45MLVEFtk4` · on channel: no
 
-## (d) In sync (155)
+## (d) In sync (157)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -449,4 +449,6 @@ _None._
 - `fVeJdyb0SDU` · public · 2026-11-18 · Bengaluru's Humyn Labs Raises $47 Million to Feed US Robotics Firms Training Data #Shorts #TechNews [prebuilt_reels:bcef949f-5fdd-468f-80f0-b9f60d19594f]
 - `iKBtbQiEoRU` · public · 2026-11-19 · Goldman Sachs Upgrades India to Overweight, Sets End-2027 Nifty Target of 28,500 #Shorts #Markets [prebuilt_reels:c25c2cd2-a274-4dd5-8522-deb5bf564127]
 - `9LKDmDjqXnQ` · public · 2026-11-19 · Rupee Hits Seven-Month High Near ₹93.40, Squeezing IT Exporters' Earnings #Shorts #Markets [prebuilt_reels:5020506e-a594-421f-a331-f3f6a7b4b650]
+- `GkbIiz-bROI` · public · 2026-11-19 · 24 VC Firms Commit ₹1,050 Crore to Deeptech Startups at Bengaluru Tech Summit #Shorts #Markets [prebuilt_reels:1d51529c-74c0-4f99-8e69-9a46ffea6dee]
+- `5GrzywH4lks` · public · 2026-11-19 · World Champion Gukesh Named to TIME100 Next India Weeks Before First Title Defence #Shorts #NRI [prebuilt_reels:a9718c62-1fd1-4a8e-a610-45fe1d659b25]
 

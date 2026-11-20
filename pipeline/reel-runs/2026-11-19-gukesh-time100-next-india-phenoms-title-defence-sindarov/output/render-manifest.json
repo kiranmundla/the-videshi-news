@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "gukesh-time100-next-india-phenoms-title-defence-sindarov",
+ "article_slug": "gukesh-time100-next-india-phenoms-title-defence-sindarov",
+ "article_id": "95f19d90-55b8-417e-9a9b-cc1b6f8938e8",
+ "category": "Nri World",
+ "video": "reel-runs/2026-11-19-gukesh-time100-next-india-phenoms-title-defence-sindarov/output/gukesh-time100-next-india-phenoms-title-defence-sindarov.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://static.time.com/v3/assets/bltea6093859af6183b/bltf61f9cdd73cd0497/6af23891d52f49e8ad038e07/time100next-india-phenoms-Gukesh-Dommaraju.jpg?branch=production&width=2400&quality=75&auto=webp&crop=16:9%2Coffset-x0.00%2Coffset-y0.00",
+  "local_path": "reel-runs/2026-11-19-gukesh-time100-next-india-phenoms-title-defence-sindarov/output/hero.jpg",
+  "width": 2400,
+  "height": 1350,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "yunet (score 0.88)",
+  "has_face": true,
+  "box_source": [
+   899,
+   286,
+   607,
+   788
+  ],
+  "box_bg": [
+   398,
+   254,
+   211,
+   274
+  ],
+  "chin_bg": 528,
+  "anchor": [
+   0.496,
+   0.508
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "Nri World",
+    "WORLD CHAMPION GUKESH NAMED TO TIME100 NEXT INDIA"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.347,
+    "photo_px": [
+     2400,
+     1350
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.3475,
+     "window": [
+      0,
+      4,
+      2400,
+      1350
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.42x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "What Happened",
+    "World chess champion Gukesh Dommaraju, 20, is named in the Phenoms category of TIME100 Next India, TIME's first international edition of its rising-leaders list, released on Thursday."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.395,
+    "photo_px": [
+     2400,
+     1350
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.39488636363636365,
+     "window": [
+      135,
+      93,
+      2247,
+      1278
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.42x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 438,
+   "block_top": 903,
+   "block_bottom": 1341,
+   "text_bbox": [
+    70,
+    903,
+    930,
+    1341
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "20",
+    "World chess champion Gukesh Dommaraju is 20 years old"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.434,
+    "photo_px": [
+     2400,
+     1350
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.434375,
+     "window": [
+      0,
+      147,
+      1920,
+      1224
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.42x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 728,
+   "block_bottom": 1516,
+   "text_bbox": [
+    70,
+    728,
+    930,
+    1516
+   ],
+   "texts": [
+    "By The Numbers",
+    "2024",
+    "Defeated Ding Liren to win the world title at 18",
+    "100",
+    "Entries in TIME100 Next India across five unranked categories",
+    "18",
+    "Phenoms named in the list, including Gukesh Dommaraju"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.434,
+    "photo_px": [
+     2400,
+     1350
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.434375,
+     "window": [
+      480,
+      147,
+      2400,
+      1224
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.42x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 432,
+   "block_top": 906,
+   "block_bottom": 1338,
+   "text_bbox": [
+    70,
+    906,
+    930,
+    1338
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "A New York magazine's first India list puts the Chennai world champion in its Phenoms class",
+    "His first title defence is against Javokhir Sindarov later this month"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.47,
+    "photo_px": [
+     2400,
+     1350
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.46959459459459457,
+     "window": [
+      303,
+      286,
+      2079,
+      1282
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 1.42x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 373,
+   "block_top": 673,
+   "block_bottom": 1046,
+   "text_bbox": [
+    70,
+    673,
+    930,
+    1046
+   ],
+   "texts": [
+    "The Takeaway",
+    "Later this month he defends the world title for the first time, against Uzbekistan's Javokhir Sindarov.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/emotional-inspiring-inspiring-uplifting.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 101.8,
+ "mp4_bytes": 5818227
+}

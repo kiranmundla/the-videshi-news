@@ -1,0 +1,37 @@
+{
+ "hook_line": "SATSURE RAISES 600 MILLION RUPEES FROM GOVERNMENT-BACKED SPACE FUND",
+ "hook_stat": {
+  "big": "8.7 billion rupees",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "SatSure's post-money valuation in its ongoing Series B round"
+ },
+ "stats": [
+  {
+   "big": "600 million rupees",
+   "label": "Raised from the Antariksh Venture Capital Fund"
+  },
+  {
+   "big": "2 billion rupees",
+   "label": "Size of SatSure's ongoing Series B round"
+  },
+  {
+   "big": "2027",
+   "label": "Planned launch year for SatSure's satellite imaging payloads"
+  }
+ ],
+ "diaspora_bullets": [
+  "The 16 billion rupee Antariksh fund is anchored by IN-SPACe, India's private space sector regulator",
+  "SatSure's named customers include HDFC Bank, ICICI Bank, Axis Bank, ITC and Bayer"
+ ],
+ "key_entities": [
+  "SatSure",
+  "Antariksh Venture Capital Fund",
+  "IN-SPACe",
+  "SIDBI Venture Capital",
+  "KaleidEO"
+ ],
+ "news_summary": "Bengaluru-based SatSure has raised 600 million rupees ($7 million) from the Antariksh Venture Capital Fund as part of an ongoing 2 billion rupee Series B round that values the satellite-data company at 8.7 billion rupees post-money.",
+ "payoff": "The Series B is expected to close by December 2026, and the satellite imaging payloads the money is preparing are slated for launch in 2027.",
+ "versus": "",
+ "story_mood": "celebratory"
+}

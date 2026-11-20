@@ -1,0 +1,60 @@
+[
+  {
+    "id": "b824b9e2-29f1-4170-8bed-5be2c055e7bf",
+    "headline": "Heat-Linked Gene Variant Helps Male Malaria Mosquitoes Mate, May Aid Transmissio",
+    "slug": "timeless-gene-variant-anopheles-stephensi-malaria-heat",
+    "category": "news",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the implications of the study for public health and malaria transmission, including specific statistics on how this could affect malaria cases or deaths in the future.",
+        "Provide a brief explanation of the significance of the 5-kilobase deletion in layman's terms for readers who may not be familiar with genetic research.",
+        "Include a quote from one of the researchers or an expert in the field to provide authoritative attribution and enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the journal Cell announcing the study or a relevant infographic summarizing the findings."
+      ]
+    }
+  },
+  {
+    "id": "76de9a64-38b7-4602-a724-4b442d8dcbfb",
+    "headline": "Ponugoti Twins Build Robotics Nonprofit That Has Reached More Than 1,200 Student",
+    "slug": "ponugoti-twins-blast-robotics-keystone-stem-alliance",
+    "category": "nri-world",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The Conestoga High School students founded the FIRST Robotics team in June 2025 \u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events, particularly the dates mentioned for the founding of the nonprofit and the robotics competition, as they currently appear confusing and may mislead readers about the sequence of events.",
+        "Provide specific details about the impact of the nonprofit, such as how the $215,000 in support has been allocated or what specific programs have been funded, to give readers a clearer understanding of the initiative's achievements.",
+        "Include a quote from the Ponugoti twins or a representative from the Keystone STEM Alliance to add a personal touch and enhance the credibility of the reporting.",
+        "Verify and correct any potential inaccuracies in the timeline or details, such as the year of the workshop in India, which should be consistent with the overall timeline presented."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from the Keystone STEM Alliance or the Ponugoti twins to provide direct insight into their mission and activities."
+      ]
+    }
+  },
+  {
+    "id": "b0cd07e1-45ba-476f-bc13-f863afd78be7",
+    "headline": "Indian National Tushar Sharma, 25, Found Dead in Burning Car in Langley",
+    "slug": "tushar-sharma-indian-national-found-dead-burning-car-langley",
+    "category": "nri-world",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the incident (October 29, 2026) earlier in the article. This will help readers understand the sequence of events more clearly.",
+        "Include a brief background on Tushar Sharma, such as his nationality and any relevant information about his life in Canada, to provide context for readers unfamiliar with him.",
+        "Add a quote from a police spokesperson or a representative from IHIT to provide authoritative attribution and enhance the credibility of the information presented.",
+        "Specify the investigation's current status, including any ongoing efforts or next steps being taken by the authorities, to give readers a clearer picture of what to expect moving forward."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Integrated Homicide Investigation Team (IHIT) regarding the case or a related public appeal for information to enhance engagement and provide official updates."
+      ]
+    }
+  }
+]

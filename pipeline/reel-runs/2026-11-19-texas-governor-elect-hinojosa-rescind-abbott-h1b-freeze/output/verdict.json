@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "texas-governor-elect-hinojosa-rescind-abbott-h1b-freeze",
+  "name": "texas-governor-elect-hinojosa-rescind-abbott-h1b-freeze",
+  "script": "reel-runs/2026-11-19-texas-governor-elect-hinojosa-rescind-abbott-h1b-freeze/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000723
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-19-texas-governor-elect-hinojosa-rescind-abbott-h1b-freeze/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Gina Hinojosa, Greg Abbott) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 1,
+    "scenes": 6,
+    "labels": [
+      "hero"
+    ]
+  },
+  "detail": "only 1 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}

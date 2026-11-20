@@ -1,0 +1,37 @@
+{
+ "hook_line": "TEXAS GOVERNOR-ELECT WILL RESCIND ABBOTT'S H-1B HIRING FREEZE",
+ "hook_stat": {
+  "big": "2027",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Abbott's H-1B hiring freeze runs until May 31, 2027"
+ },
+ "stats": [
+  {
+   "big": "January 19",
+   "label": "Hinojosa takes office; the freeze stays in force until then"
+  },
+  {
+   "big": "1990",
+   "label": "Ann Richards, the last Democrat elected governor of Texas before Hinojosa"
+  },
+  {
+   "big": "March 27",
+   "label": "Deadline for covered institutions to report existing H-1B sponsorships to the Texas Workforce Commission"
+  }
+ ],
+ "diaspora_bullets": [
+  "Affected jobs are at Texas public universities, medical schools and state agencies",
+  "Private employers were never covered, and renewals are not treated as new petitions"
+ ],
+ "key_entities": [
+  "Gina Hinojosa",
+  "Greg Abbott",
+  "H-1B",
+  "Texas Workforce Commission",
+  "The Texas Tribune"
+ ],
+ "news_summary": "Texas Governor-elect Gina Hinojosa told The Texas Tribune she will rescind Governor Greg Abbott's freeze on new H-1B petitions at state agencies and public universities.",
+ "payoff": "The freeze stays in force until Hinojosa takes office on January 19; until then, new petitions from Texas public employers still need written commission permission.",
+ "versus": "",
+ "story_mood": "tense"
+}

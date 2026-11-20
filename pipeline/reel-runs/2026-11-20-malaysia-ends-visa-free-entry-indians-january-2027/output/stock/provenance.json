@@ -1,0 +1,139 @@
+{
+  "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+  "story": "malaysia-ends-visa-free-entry-indians-january-2027",
+  "scenes": [
+    {
+      "path": "stock-8372622.jpg",
+      "size": [
+        6016,
+        4016
+      ],
+      "pexels_id": 8372622,
+      "page": "https://www.pexels.com/photo/white-and-green-box-on-white-textile-8372622/",
+      "photographer": "Leeloo The First",
+      "query": "passport travel documents flat lay",
+      "beat": "news",
+      "alt": "Flat lay of travel essentials including a passport, map, smartphone, and pop camera.",
+      "sha256": "247ea29cd1b03ffc96a073caa83a17cced51c64d7ec7d4f50bb27ba894119e4c",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-6544058.jpg",
+      "size": [
+        6000,
+        4000
+      ],
+      "pexels_id": 6544058,
+      "page": "https://www.pexels.com/photo/screen-in-airport-terminal-6544058/",
+      "photographer": "Angelyn Sanjorjo",
+      "query": "airport departure terminal travelers",
+      "beat": "hero",
+      "alt": "Blurred motion of travelers in a modern airport terminal with departure screens and a prominent clock.",
+      "sha256": "a682d3d488d692eb98c4c1602e04309c5a28a686cea22fd636cd2d88627851af",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-6354991.jpg",
+      "size": [
+        5184,
+        3456
+      ],
+      "pexels_id": 6354991,
+      "page": "https://www.pexels.com/photo/black-and-white-photo-of-people-on-airport-6354991/",
+      "photographer": "Philippe Bonnaire",
+      "query": "airport departure terminal travelers",
+      "beat": "grid",
+      "alt": "Black and white photo of travelers walking with luggage in a bustling airport terminal.",
+      "sha256": "4420805cbf78ea34085b269854ff0f2796965a64b678e9c18030b0455af5c3af",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-346798.jpg",
+      "size": [
+        4896,
+        3264
+      ],
+      "pexels_id": 346798,
+      "page": "https://www.pexels.com/photo/brown-passport-346798/",
+      "photographer": "Porapak Apichodilok",
+      "query": "passport travel documents flat lay",
+      "beat": "diaspora",
+      "alt": "Flat lay of a passport, straw hat, and toy airplane on a wooden surface.",
+      "sha256": "efb50178ada1705e3aeec5da73d469495fc2e0939a1d27b8d9cebb3937ba39d8",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-2069.jpg",
+      "size": [
+        4288,
+        2848
+      ],
+      "pexels_id": 2069,
+      "page": "https://www.pexels.com/photo/people-sign-traveling-blur-2069/",
+      "photographer": "ClickerHappy",
+      "query": "airport departure terminal travelers",
+      "beat": "payoff",
+      "alt": "Crowded airport with motion blur and clear signage indicating baggage and arrival halls.",
+      "sha256": "8570f5102692a0679cd7990a5c72fbff7be2c3c8101266191f02fb0d1a3de9d7",
+      "license": "Pexels License (free use); credited in the reel footer"
+    }
+  ],
+  "rejected": [
+    {
+      "candidate": "pexels 8830672",
+      "reason": "signage screen: alt text carries off-topic content (vaccination) the story is not about"
+    },
+    {
+      "candidate": "pexels 8830672",
+      "reason": "signage screen: alt text carries off-topic content (vaccination) the story is not about"
+    },
+    {
+      "candidate": "pexels 8372664",
+      "reason": "signage screen: alt text carries off-topic content (covid) the story is not about"
+    },
+    {
+      "candidate": "pexels 8830672",
+      "reason": "signage screen: alt text carries off-topic content (vaccination) the story is not about"
+    },
+    {
+      "candidate": "pexels 8372664",
+      "reason": "signage screen: alt text carries off-topic content (covid) the story is not about"
+    },
+    {
+      "candidate": "pexels 37772239",
+      "reason": "signage screen: alt text names unrelated locale(s): amsterdam, schiphol"
+    },
+    {
+      "candidate": "pexels 8830672",
+      "reason": "signage screen: alt text carries off-topic content (vaccination) the story is not about"
+    },
+    {
+      "candidate": "pexels 8372664",
+      "reason": "signage screen: alt text carries off-topic content (covid) the story is not about"
+    },
+    {
+      "candidate": "pexels 37772239",
+      "reason": "signage screen: alt text names unrelated locale(s): amsterdam, schiphol"
+    },
+    {
+      "candidate": "pexels 8061942",
+      "reason": "signage screen: alt text names unrelated locale(s): ukrainian"
+    },
+    {
+      "candidate": "pexels 8830672",
+      "reason": "signage screen: alt text carries off-topic content (vaccination) the story is not about"
+    },
+    {
+      "candidate": "pexels 8372664",
+      "reason": "signage screen: alt text carries off-topic content (covid) the story is not about"
+    },
+    {
+      "candidate": "pexels 37772239",
+      "reason": "signage screen: alt text names unrelated locale(s): amsterdam, schiphol"
+    },
+    {
+      "candidate": "pexels 8061942",
+      "reason": "signage screen: alt text names unrelated locale(s): ukrainian"
+    }
+  ]
+}

@@ -1,0 +1,296 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "satsure-raises-600-million-antariksh-fund-series-b",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "SATSURE RAISES 600 MILLION RUPEES FROM GOVERNMENT-BACKED SPACE FUND",
+      "numbers": [
+        600.0,
+        600000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states SatSure raised 600 million rupees from a government-backed fund.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Bengaluru-based SatSure has raised 600 million rupees ($7 million) from the Antariksh Venture Capital Fund as part of an ongoing 2 billion rupee Series B round that values the satellite-data company at 8.7 billion rupees post-money.",
+      "numbers": [
+        2.0,
+        7.0,
+        8.7,
+        600.0,
+        7000000.0,
+        600000000.0,
+        2000000000.0,
+        8700000000.0
+      ],
+      "entities": [
+        "Bengaluru-based SatSure",
+        "Antariksh Venture Capital Fund",
+        "Series B"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about the funding and valuation are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "8.7 billion rupees",
+      "numbers": [
+        8.7,
+        8700000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions SatSure's valuation as 8.7 billion rupees.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "SatSure's post-money valuation in its ongoing Series B round",
+      "numbers": [],
+      "entities": [
+        "Series B"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms this valuation is post-money from the Series B round.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "600 million rupees",
+      "numbers": [
+        600.0,
+        600000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states SatSure raised 600 million rupees.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Raised from the Antariksh Venture Capital Fund",
+      "numbers": [],
+      "entities": [
+        "Antariksh Venture Capital Fund"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the funds were raised from the Antariksh Venture Capital Fund.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "2 billion rupees",
+      "numbers": [
+        2.0,
+        2000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the size of the Series B round as 2 billion rupees.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Size of SatSure's ongoing Series B round",
+      "numbers": [],
+      "entities": [
+        "Series B"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the Series B round is 2 billion rupees.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "2027",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article states the planned launch year for SatSure's payloads is 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Planned launch year for SatSure's satellite imaging payloads",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the launch year for the payloads is 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "The 16 billion rupee Antariksh fund is anchored by IN-SPACe, India's private space sector regulator",
+      "numbers": [
+        16.0,
+        16000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the Antariksh fund is anchored by IN-SPACe.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "SatSure's named customers include HDFC Bank, ICICI Bank, Axis Bank, ITC and Bayer",
+      "numbers": [],
+      "entities": [
+        "HDFC Bank",
+        "ICICI Bank",
+        "Axis Bank"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article lists these customers as associated with SatSure.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The Series B is expected to close by December 2026, and the satellite imaging payloads the money is preparing are slated for launch in 2027.",
+      "numbers": [
+        2026.0,
+        2027.0
+      ],
+      "entities": [
+        "Series B"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2026,
+          2027
+        ]
+      },
+      "llm_reason": "The article confirms both the closing date and launch year.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "SatSure",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Antariksh Venture Capital Fund",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "IN-SPACe",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "SIDBI Venture Capital",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "KaleidEO",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000721,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

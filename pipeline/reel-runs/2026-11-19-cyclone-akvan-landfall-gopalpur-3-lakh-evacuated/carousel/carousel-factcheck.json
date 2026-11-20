@@ -1,0 +1,145 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "cyclone-akvan-landfall-gopalpur-3-lakh-evacuated",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Cyclone Akvan Begins Landfall Near Gopalpur; Over 3 Lakh Evacuated in Odisha",
+        "numbers": [
+          3.0,
+          300000.0
+        ],
+        "entities": [
+          "Cyclone Akvan Begins Landfall Near Gopalpur",
+          "Lakh Evacuated"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states cyclone Akvan began landfall near Gopalpur and over 3 lakh were evacuated.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "The storm crossed the coast near Gopalpur at 70-80 kmph gusting to 90 kmph on Friday morning after weakening from a severe cyclonic storm.",
+        "numbers": [
+          70.0,
+          80.0,
+          90.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the storm's speed and weakening status during landfall.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Odisha has evacuated over 3 lakh people into 2,523 relief camps, and deployed 423 rescue teams",
+        "numbers": [
+          3.0,
+          423.0,
+          2523.0,
+          300000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides exact figures for evacuations, relief camps, and rescue teams.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The East Coast Railway cancelled 41 trains and rescheduled 29, and the South Eastern Railway cancelled at least 28 express trains",
+        "numbers": [
+          28.0,
+          29.0,
+          41.0
+        ],
+        "entities": [
+          "East Coast Railway",
+          "South Eastern Railway"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article lists the exact number of cancelled and rescheduled trains.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "No casualties had been reported as landfall began, and the state government is running a zero-casualty mission",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states no casualties were reported and mentions the zero-casualty mission.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Cyclone Akvan Begins Landfall Near Gopalpur; Over 3 Lakh Evacuated in Odisha",
+        "numbers": [
+          3.0,
+          300000.0
+        ],
+        "entities": [
+          "Cyclone Akvan Begins Landfall Near Gopalpur",
+          "Lakh Evacuated"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms cyclone Akvan's landfall and evacuation numbers.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000516,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

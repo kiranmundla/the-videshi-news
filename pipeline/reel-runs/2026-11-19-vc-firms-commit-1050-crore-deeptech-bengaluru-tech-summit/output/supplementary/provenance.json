@@ -1,0 +1,50 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Bengaluru Tech Summit",
+    "Future Makers Conclave",
+    "Agnikul Labs",
+    "Blume Ventures",
+    "Qualcomm Ventures",
+    "Deeptech Startups"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Bengaluru Tech Summit' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Future Makers Conclave' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Agnikul Labs' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Blume Ventures' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'Deeptech Startups' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    }
+  ],
+  "extras": []
+}

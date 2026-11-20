@@ -1,0 +1,116 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "texas-governor-elect-hinojosa-rescind-abbott-h1b-freeze",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Gina Hinojosa",
+    "Greg Abbott",
+    "H-1B",
+    "Texas Workforce Commission",
+    "Texas Tribune",
+    "Texas"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'H-1B' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "File:Gina Hinojosa at the AFL-CIO COPE convention in 2024.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q28314533)",
+      "verdict": "rejected",
+      "reason": "resolution: 828x989 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Gina Hinojosa at the AFL-CIO COPE convention in 2024 (cropped).jpg",
+      "route": "identity \u2014 depicts (P180=Q28314533)",
+      "verdict": "rejected",
+      "reason": "resolution: 473x608 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Greg Abbott at NASA 2024 (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q5605224)",
+      "verdict": "accepted",
+      "reason": "1801x2559, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:07.07 \u7e3d\u7d71\u63a5\u898b\u300c\u5fb7\u5dde\u5dde\u9577\u827e\u4f2f\u7279\u7d93\u8cbf\u8a2a\u554f\u5718\u300d.jpg",
+      "route": "identity \u2014 depicts (P180=Q5605224)",
+      "verdict": "accepted",
+      "reason": "2048x1365, CC BY 2.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Austin August 2019 06 (Texas Workforce Commission).jpg",
+      "route": "identity \u2014 depicts (P180=Q7708214)",
+      "verdict": "accepted",
+      "reason": "6000x4000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Capitol Center Austin Texas 2022 a.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q7768599)",
+      "verdict": "accepted",
+      "reason": "1779x1186, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Mount Bonnell 2008.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1439)",
+      "verdict": "accepted",
+      "reason": "2816x2112, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:1884 United States presidential election in Texas results map by county.svg",
+      "route": "identity \u2014 depicts (P180=Q1439)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Ambigram tattoo Texas Sexy.jpg",
+      "route": "identity \u2014 depicts (P180=Q1439)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Arizona Territory in Confederate States.png",
+      "route": "identity \u2014 depicts (P180=Q1439)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Arlington Journal (Arlington, Tex.), Vol. (25), No. (11), Ed. 1 Tuesday, February 10, 1920 - DPLA - c2e529246d268dd7f67759c2157c6495 (page 6).jpg",
+      "route": "identity \u2014 depicts (P180=Q1439)",
+      "verdict": "accepted",
+      "reason": "1500x2033, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Capitol Center Austin Texas 2022 a.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q7768599)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/5/56/Capitol_Center_Austin_Texas_2022_a.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_conte"
+    },
+    {
+      "candidate": "File:Austin August 2019 06 (Texas Workforce Commission).jpg",
+      "route": "identity \u2014 depicts (P180=Q7708214)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/8/85/Austin_August_2019_06_%28Texas_Workforce_Commission%29.jpg?utm_source=commons.wikimedia.org&utm_campaign"
+    },
+    {
+      "candidate": "File:Arlington Journal (Arlington, Tex.), Vol. (25), No. (11), Ed. 1 Tuesday, February 10, 1920 - DPLA - c2e529246d268dd7f67759c2157c6495 (page 6).jpg",
+      "route": "identity \u2014 depicts (P180=Q1439)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/8/83/Arlington_Journal_%28Arlington%2C_Tex.%29%2C_Vol._%2825%29%2C_No._%2811%29%2C_Ed._1_Tuesday%2C_February_"
+    },
+    {
+      "candidate": "File:Mount Bonnell 2008.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1439)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/6/68/Mount_Bonnell_2008.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  ],
+  "extras": []
+}

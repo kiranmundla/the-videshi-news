@@ -1,0 +1,25 @@
+{
+  "kind": "carousel",
+  "article_slug": "vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit",
+  "status": "ready",
+  "stage": "complete",
+  "factcheck": {
+    "verdict": "pass",
+    "quote_present": false,
+    "verbatim_quote": null,
+    "speaker_grounded": null,
+    "role_grounded": null,
+    "eyebrow_is_category": true,
+    "llm_cost_usd": 0.000454
+  },
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "cards": [
+    "reel-runs/2026-11-19-vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit/carousel/carousel-1.png",
+    "reel-runs/2026-11-19-vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit/carousel/carousel-2.png",
+    "reel-runs/2026-11-19-vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit/carousel/carousel-3.png"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "route": "stock \u2014 Pexels topical scenes, per-beat matched (reels only, 2026-11-11)",
+  "story": "cyclone-akvan-landfall-gopalpur-3-lakh-evacuated",
+  "scenes": [
+    {
+      "path": "stock-37899504.jpg",
+      "size": [
+        7533,
+        5022
+      ],
+      "pexels_id": 37899504,
+      "page": "https://www.pexels.com/photo/majestic-view-of-the-taj-mahal-in-agra-37899504/",
+      "photographer": "Mahmut Y\u0131lmaz",
+      "query": "taj mahal india travel",
+      "beat": "news",
+      "alt": "A serene and captivating perspective of the iconic Taj Mahal in Agra with reflection in pool.",
+      "sha256": "b12de9ebfba5ca5d8b1460307c131b091de2c72ee8046fee4628702760025ded",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-6024004.jpg",
+      "size": [
+        6016,
+        3760
+      ],
+      "pexels_id": 6024004,
+      "page": "https://www.pexels.com/photo/majestic-cumulonimbus-cloud-over-city-6024004/",
+      "photographer": "Ankittt Bhattacharjee",
+      "query": "India Meteorological Department landmark",
+      "beat": "hero",
+      "alt": "Stunning cumulus clouds towering over the urban skyline of Kolkata, creating a dramatic scene.",
+      "sha256": "db383103c430e24f7039c296601ac58335339b628c263864b1c7b9d25d05e973",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-17423832.jpg",
+      "size": [
+        6000,
+        4000
+      ],
+      "pexels_id": 17423832,
+      "page": "https://www.pexels.com/photo/taj-mahal-in-india-17423832/",
+      "photographer": "Sanket Sawale",
+      "query": "taj mahal india travel",
+      "beat": "grid",
+      "alt": "The iconic Taj Mahal stands majestically with its reflection in a serene pond, surrounded by lush gardens.",
+      "sha256": "07a768a1cfa6b1fdefca87b21c51f938894e19abe5f7b9dfcca0a151ddc2ac8c",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-11948442.jpg",
+      "size": [
+        6000,
+        4000
+      ],
+      "pexels_id": 11948442,
+      "page": "https://www.pexels.com/photo/the-taj-mahal-in-india-11948442/",
+      "photographer": "Abhinav Sharma",
+      "query": "taj mahal india travel",
+      "beat": "diaspora",
+      "alt": "Beautiful view of the Taj Mahal with clear skies, a UNESCO World Heritage Site in Agra, India.",
+      "sha256": "886d5d66bd8e66cbfd90ab9f154f645daf4c401704cb2b9d64bc320d6075e788",
+      "license": "Pexels License (free use); credited in the reel footer"
+    },
+    {
+      "path": "stock-5959064.jpg",
+      "size": [
+        4800,
+        3200
+      ],
+      "pexels_id": 5959064,
+      "page": "https://www.pexels.com/photo/blue-concrete-building-near-green-trees-5959064/",
+      "photographer": "Kvect bd",
+      "query": "India Meteorological Department landmark",
+      "beat": "payoff",
+      "alt": "A radar tower set amidst green trees and bushes on a clear day.",
+      "sha256": "53a888baefe7c1ef2d9e061edf355a79fb25015f9a7c72a512039b36049f6901",
+      "license": "Pexels License (free use); credited in the reel footer"
+    }
+  ],
+  "rejected": []
+}

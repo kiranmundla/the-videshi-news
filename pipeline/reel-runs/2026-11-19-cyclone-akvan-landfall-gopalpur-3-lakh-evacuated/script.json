@@ -1,0 +1,36 @@
+{
+ "hook_line": "CYCLONE AKVAN MAKES LANDFALL NEAR GOPALPUR IN ODISHA",
+ "hook_stat": {
+  "big": "90",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "kmph gusts as Cyclone Akvan crossed the Odisha coast near Gopalpur"
+ },
+ "stats": [
+  {
+   "big": "423",
+   "label": "Rescue teams deployed across Odisha for Cyclone Akvan"
+  },
+  {
+   "big": "2,523",
+   "label": "Relief camps in Odisha for people evacuated ahead of landfall"
+  },
+  {
+   "big": "41",
+   "label": "Trains cancelled by East Coast Railway as a precaution"
+  }
+ ],
+ "diaspora_bullets": [
+  "Over 3 lakh people were evacuated into relief camps before landfall",
+  "No casualties had been reported as the landfall process began"
+ ],
+ "key_entities": [
+  "Cyclone Akvan",
+  "Gopalpur",
+  "Odisha",
+  "India Meteorological Department"
+ ],
+ "news_summary": "Cyclone Akvan began landfall near Gopalpur on the Odisha coast on Friday morning, crossing at 70-80 kmph and gusting to 90 kmph after weakening from a severe cyclonic storm, according to the India Meteorological Department.",
+ "payoff": "Odisha's government is running a zero-casualty mission, and no casualties had been reported as landfall began.",
+ "versus": "",
+ "story_mood": "tense"
+}

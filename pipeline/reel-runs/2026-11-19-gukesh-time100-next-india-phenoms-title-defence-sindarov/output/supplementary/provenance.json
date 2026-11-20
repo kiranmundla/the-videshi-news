@@ -1,0 +1,92 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "gukesh-time100-next-india-phenoms-title-defence-sindarov",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Gukesh Dommaraju",
+    "TIME100 Next India",
+    "Javokhir Sindarov",
+    "Sharda Ugra",
+    "Gukesh",
+    "Next India"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "identity: 'TIME100 Next India' has no verified identity (no registry entry, no Wikidata resolution) \u2014 fail closed, no open-search fallback"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Gukesh' named 'Gukesh D', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Next India' named 'next Indian general election', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Gukesh in 2025 (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q56026072)",
+      "verdict": "rejected",
+      "reason": "resolution: 980x1400 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Alireza Firouzja - Gukesh D, Candidates Tournament 2024 04.jpg",
+      "route": "identity \u2014 depicts (P180=Q56026072)",
+      "verdict": "accepted",
+      "reason": "5184x3456, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Alireza Firouzja - Gukesh D, Candidates Tournament 2024 05.jpg",
+      "route": "identity \u2014 depicts (P180=Q56026072)",
+      "verdict": "accepted",
+      "reason": "5184x3456, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Javokhir Sindarov (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q27532037)",
+      "verdict": "accepted",
+      "reason": "1973x2724, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Daniel Naroditsky's Mother and Javokhir Sindarov - Naroditsky Memorial Rapid and Blitz 2026.jpg",
+      "route": "identity \u2014 depicts (P180=Q27532037)",
+      "verdict": "accepted",
+      "reason": "5204x3469, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Alireza Firouzja - Gukesh D, Candidates Tournament 2024 04.jpg",
+      "route": "identity \u2014 depicts (P180=Q56026072)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/3/37/Alireza_Firouzja_-_Gukesh_D%2C_Candidates_Tournament_2024_04.jpg?utm_source=commons.wikimedia.org&utm_ca"
+    },
+    {
+      "candidate": "File:Alireza Firouzja - Gukesh D, Candidates Tournament 2024 05.jpg",
+      "route": "identity \u2014 depicts (P180=Q56026072)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/7/7a/Alireza_Firouzja_-_Gukesh_D%2C_Candidates_Tournament_2024_05.jpg?utm_source=commons.wikimedia.org&utm_ca"
+    },
+    {
+      "candidate": "File:Javokhir Sindarov (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q27532037)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/6/61/Javokhir_Sindarov_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content="
+    },
+    {
+      "candidate": "File:Daniel Naroditsky's Mother and Javokhir Sindarov - Naroditsky Memorial Rapid and Blitz 2026.jpg",
+      "route": "identity \u2014 depicts (P180=Q27532037)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/2/2c/Daniel_Naroditsky%27s_Mother_and_Javokhir_Sindarov_-_Naroditsky_Memorial_Rapid_and_Blitz_2026.jpg?utm_so"
+    }
+  ],
+  "extras": []
+}

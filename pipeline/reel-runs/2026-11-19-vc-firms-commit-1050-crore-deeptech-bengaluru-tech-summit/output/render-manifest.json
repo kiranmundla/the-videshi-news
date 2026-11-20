@@ -1,0 +1,376 @@
+{
+ "renderer": "reel_renderer_v7.py (Reels v7 rev.2 \u2014 Cards v1 design system on the v6 pipeline; constant composed size, xfade transitions, stage variants; PRODUCTION)",
+ "design_system": "Cards v1 \u2014 Firstpost revised style (serif-led, photo-forward, navy/gold/red)",
+ "stage": {
+  "name": "black",
+  "rgb": [
+   0,
+   0,
+   0
+  ]
+ },
+ "name": "vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit",
+ "article_slug": "vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit",
+ "article_id": "44e74fb0-2737-4735-918a-9c1794664ba7",
+ "category": "Markets Finance",
+ "video": "reel-runs/2026-11-19-vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit/output/vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit.mp4",
+ "duration_s": 35.0,
+ "canvas": [
+  1080,
+  1920
+ ],
+ "photo": {
+  "url": "https://th-i.thgim.com/public/incoming/knq9pf/article71720959.ece/alternates/LANDSCAPE_1200/DSC_1859.JPG",
+  "local_path": "reel-runs/2026-11-19-vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit/output/hero.JPG",
+  "width": 1200,
+  "height": 675,
+  "floor": [
+   1080,
+   600
+  ]
+ },
+ "face": {
+  "method": "focal-heuristic (no face detected); anchor raw=(0.509,0.486) damped=(0.504,0.493)",
+  "has_face": false,
+  "box_source": [
+   269,
+   184,
+   672,
+   270
+  ],
+  "box_bg": [
+   273,
+   284,
+   467,
+   188
+  ],
+  "chin_bg": null,
+  "anchor": [
+   0.446,
+   0.4
+  ]
+ },
+ "composition": {
+  "model": "per-scene Cards v1: full-bleed only when the 9:16 cover-crop needs no upscale, else backdrop at the CONSTANT stage box (the hook's backdrop fit) with per-scene crop regions, else the plain stage; scene joins are xfade crossfades over the global Ken Burns phase",
+  "never_upscale": true,
+  "stage_box": [
+   834,
+   468
+  ],
+  "text_column": [
+   70,
+   930
+  ]
+ },
+ "grade": {
+  "mode": "native-resolution (no 2x supersample)",
+  "gamma": 1.08,
+  "brightness": 1.08,
+  "contrast": 1.1,
+  "saturation": 1.18,
+  "unsharp": [
+   2.0,
+   55,
+   3
+  ],
+  "warmth": [
+   1.03,
+   1.0,
+   0.96
+  ]
+ },
+ "gradient": null,
+ "safe_zone": {
+  "x": [
+   70,
+   930
+  ],
+  "y": [
+   140,
+   1580
+  ]
+ },
+ "scenes": {
+  "hook": {
+   "start": 0.0,
+   "duration": 4.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 273,
+   "block_top": 985,
+   "block_bottom": 1258,
+   "text_bbox": [
+    70,
+    985,
+    930,
+    1258
+   ],
+   "texts": [
+    "Markets Finance",
+    "24 VC FIRMS COMMIT \u20b91,050 CRORE TO DEEPTECH STARTUPS AT BENGALURU TECH SUMMIT"
+   ],
+   "v7": {
+    "image_source": "hero",
+    "track": "backdrop",
+    "render_scale": 0.695,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "wide",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.695,
+     "window": [
+      0,
+      0,
+      1200,
+      673
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "news": {
+   "start": 4.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 363,
+   "block_top": 940,
+   "block_bottom": 1303,
+   "text_bbox": [
+    70,
+    940,
+    930,
+    1303
+   ],
+   "texts": [
+    "What Happened",
+    "Twenty-four venture capital firms announced investment commitments totalling \u20b91,050.42 crore in deeptech startups at the Future Makers Conclave of the Bengaluru Tech Summit on Thursday."
+   ],
+   "v7": {
+    "image_source": "hero-win:subject",
+    "track": "backdrop",
+    "render_scale": 0.79,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "subject",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.7897727272727273,
+     "window": [
+      7,
+      0,
+      1063,
+      592
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "hero": {
+   "start": 10.0,
+   "duration": 6.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 353,
+   "block_top": 945,
+   "block_bottom": 1298,
+   "text_bbox": [
+    70,
+    945,
+    930,
+    1298
+   ],
+   "texts": [
+    "BY THE NUMBERS",
+    "\u20b91,050 crore",
+    "Investment commitments announced at the Future Makers Conclave of the Bengaluru Tech Summit"
+   ],
+   "v7": {
+    "image_source": "hero-win:left",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "left",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.86875,
+     "window": [
+      0,
+      1,
+      960,
+      539
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "grid": {
+   "start": 16.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 788,
+   "block_top": 728,
+   "block_bottom": 1516,
+   "text_bbox": [
+    70,
+    728,
+    930,
+    1516
+   ],
+   "texts": [
+    "By The Numbers",
+    "24",
+    "VC firms announcing deeptech investment commitments",
+    "2.6 times",
+    "Last year's \u20b9400 crore announced at the conclave",
+    "1,084",
+    "Startups backed so far by Karnataka's ELEVATE programme"
+   ],
+   "v7": {
+    "image_source": "hero-win:right",
+    "track": "backdrop",
+    "render_scale": 0.869,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "right",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.86875,
+     "window": [
+      240,
+      1,
+      1200,
+      539
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "diaspora": {
+   "start": 23.0,
+   "duration": 7.0,
+   "zone_top": 688,
+   "zone_h": 868,
+   "scale": 1.0,
+   "content_h": 495,
+   "block_top": 874,
+   "block_bottom": 1369,
+   "text_bbox": [
+    70,
+    874,
+    930,
+    1369
+   ],
+   "texts": [
+    "Why It Matters To You",
+    "Money is aimed at aerospace, defence, AI, robotics and semiconductor startups",
+    "Named recipients include Dream Aerospace, Agnikul Labs and Asteria Aerospace"
+   ],
+   "v7": {
+    "image_source": "hero-win:bottom",
+    "track": "backdrop",
+    "render_scale": 0.939,
+    "photo_px": [
+     1200,
+     675
+    ],
+    "region": "bottom",
+    "placement": {
+     "mode": "backdrop",
+     "x": 86,
+     "y": 156,
+     "w": 834,
+     "h": 468,
+     "scale": 0.9391891891891891,
+     "window": [
+      91,
+      177,
+      979,
+      675
+     ]
+    },
+    "track_note": "9:16 cover-crop would upscale 2.84x \u2014 demoted to backdrop (never upscale)",
+    "provenance": null
+   }
+  },
+  "payoff": {
+   "start": 30.0,
+   "duration": 5.0,
+   "zone_top": 140,
+   "zone_h": 1440,
+   "scale": 1.0,
+   "content_h": 352,
+   "block_top": 684,
+   "block_bottom": 1036,
+   "text_bbox": [
+    70,
+    684,
+    930,
+    1036
+   ],
+   "texts": [
+    "The Takeaway",
+    "The commitments are announcements, not disbursements: no allocation or payout schedule was shared at the event.",
+    "THE VIDESHI \u00b7 thevideshi.com"
+   ],
+   "v7": {
+    "image_source": "stage",
+    "track": "stage",
+    "render_scale": 1.0,
+    "photo_px": null,
+    "region": null,
+    "placement": {
+     "mode": "stage",
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0,
+     "scale": 1.0
+    },
+    "track_note": null,
+    "provenance": null
+   }
+  }
+ },
+ "music": {
+  "path": "music/pixabay-breaking-full.mp3",
+  "treatment": "bed: atrim 35s + fades in 0.5s / out 2s (v6 produce recipe)"
+ },
+ "render_seconds": 111.5,
+ "mp4_bytes": 12252049
+}

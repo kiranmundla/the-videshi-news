@@ -1,0 +1,284 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "texas-governor-elect-hinojosa-rescind-abbott-h1b-freeze",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "TEXAS GOVERNOR-ELECT WILL RESCIND ABBOTT'S H-1B HIRING FREEZE",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Hinojosa stated she will rescind Abbott's freeze.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Texas Governor-elect Gina Hinojosa told The Texas Tribune she will rescind Governor Greg Abbott's freeze on new H-1B petitions at state agencies and public universities.",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "Texas Governor-elect Gina Hinojosa",
+        "Texas Tribune",
+        "Governor Greg Abbott's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This statement is directly supported by Hinojosa's comments to The Texas Tribune.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "2027",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The freeze is stated to run until May 31, 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Abbott's H-1B hiring freeze runs until May 31, 2027",
+      "numbers": [
+        1.0,
+        31.0,
+        2027.0
+      ],
+      "entities": [
+        "Abbott's H-1B"
+      ],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article confirms the freeze's duration until May 31, 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "January 19",
+      "numbers": [
+        19.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Hinojosa takes office on January 19.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Hinojosa takes office; the freeze stays in force until then",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The freeze remains until Hinojosa takes office on January 19.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "1990",
+      "numbers": [
+        1990.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          1990
+        ]
+      },
+      "llm_reason": "Hinojosa is the first Democrat elected since Ann Richards in 1990.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Ann Richards, the last Democrat elected governor of Texas before Hinojosa",
+      "numbers": [],
+      "entities": [
+        "Ann Richards"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states Ann Richards was the last Democrat before Hinojosa.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "March 27",
+      "numbers": [
+        27.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "March 27 is the deadline for reporting existing H-1B sponsorships.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Deadline for covered institutions to report existing H-1B sponsorships to the Texas Workforce Commission",
+      "numbers": [
+        1.0
+      ],
+      "entities": [
+        "Texas Workforce Commission"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies this reporting deadline.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Affected jobs are at Texas public universities, medical schools and state agencies",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article lists these institutions as affected by the freeze.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Private employers were never covered, and renewals are not treated as new petitions",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms private employers are not covered and renewals are exempt.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The freeze stays in force until Hinojosa takes office on January 19; until then, new petitions from Texas public employers still need written commission permission.",
+      "numbers": [
+        19.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "This is directly stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Gina Hinojosa",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Greg Abbott",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "H-1B",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Texas Workforce Commission",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "The Texas Tribune",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000723,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

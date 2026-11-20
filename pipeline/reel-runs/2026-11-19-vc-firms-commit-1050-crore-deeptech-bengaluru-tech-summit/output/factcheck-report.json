@@ -1,0 +1,273 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "24 VC FIRMS COMMIT \u20b91,050 CRORE TO DEEPTECH STARTUPS AT BENGALURU TECH SUMMIT",
+      "numbers": [
+        24.0,
+        1050.0,
+        10500000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 24 VC firms committed \u20b91,050 crore at the summit.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Twenty-four venture capital firms announced investment commitments totalling \u20b91,050.42 crore in deeptech startups at the Future Makers Conclave of the Bengaluru Tech Summit on Thursday.",
+      "numbers": [
+        1050.42,
+        10504200000.0
+      ],
+      "entities": [
+        "Future Makers Conclave",
+        "Bengaluru Tech Summit"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the number of firms and the total commitment amount.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "\u20b91,050 crore",
+      "numbers": [
+        1050.0,
+        10500000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions the commitment amount as \u20b91,050.42 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Investment commitments announced at the Future Makers Conclave of the Bengaluru Tech Summit",
+      "numbers": [],
+      "entities": [
+        "Future Makers Conclave",
+        "Bengaluru Tech Summit"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states commitments were announced at the Future Makers Conclave.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "24",
+      "numbers": [
+        24.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 24 VC firms made the commitments.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "VC firms announcing deeptech investment commitments",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms VC firms announced deeptech investment commitments.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "2.6 times",
+      "numbers": [
+        2.6
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the commitments are 2.6 times last year's amount.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Last year's \u20b9400 crore announced at the conclave",
+      "numbers": [
+        400.0,
+        4000000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions last year's commitment was \u20b9400 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "1,084",
+      "numbers": [
+        1084.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 1,084 startups have been backed by the ELEVATE programme.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Startups backed so far by Karnataka's ELEVATE programme",
+      "numbers": [],
+      "entities": [
+        "Karnataka's ELEVATE"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the number of startups backed by ELEVATE.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Money is aimed at aerospace, defence, AI, robotics and semiconductor startups",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article lists these sectors as targets for the investments.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Named recipients include Dream Aerospace, Agnikul Labs and Asteria Aerospace",
+      "numbers": [],
+      "entities": [
+        "Dream Aerospace",
+        "Agnikul Labs",
+        "Asteria Aerospace"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article names these companies as recipients of the investments.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The commitments are announcements, not disbursements: no allocation or payout schedule was shared at the event.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article clearly states these are announcements without disbursement schedules.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Bengaluru Tech Summit",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Future Makers Conclave",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Agnikul Labs",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Blume Ventures",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Qualcomm Ventures",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000666,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

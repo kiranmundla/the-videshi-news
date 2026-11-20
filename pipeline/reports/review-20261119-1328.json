@@ -1,0 +1,45 @@
+[
+  {
+    "id": "a5bbcbd9-a359-49d5-8017-85722c26363b",
+    "headline": "Indiaspora Names Kiran Ghia an Inspiring Icon for STEM Work in Rural Mississippi",
+    "slug": "indiaspora-kiran-ghia-inspiring-icon-stem-education-rural-mississippi",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Ensure all statistics and claims are backed by credible sources or direct quotes from Kiran Ghia or Indiaspora for better attribution and accuracy.",
+        "Clarify the specific impact of Ghia's work on students and schools, potentially including testimonials or data on student outcomes to enhance completeness.",
+        "Provide a brief background on Indiaspora to give context to readers unfamiliar with the organization, improving clarity.",
+        "Include a timeline or specific dates related to Ghia's initiatives and the recognition by Indiaspora to enhance timeliness."
+      ],
+      "embed_opportunities": [
+        "Embed a video or link to the documentary short about Indian teachers in Mississippi once available to provide a visual component to the story.",
+        "Include tweets or social media posts from Indiaspora or Kiran Ghia to enhance engagement and provide real-time reactions to the announcement."
+      ],
+      "rubric_violation": true
+    }
+  },
+  {
+    "id": "fa52b86d-ffec-4d93-bc6d-653221f8f8da",
+    "headline": "Hopkins Man Charged With Attempted Murder in Attack on Uber Driver Mohamed Yusuf",
+    "slug": "samit-patel-charged-attempted-murder-hopkins-uber-driver-mohamed-yusuf",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the date of the attack (November 14) earlier in the article to provide context for the charges filed on November 17.",
+        "Include direct quotes from the criminal complaint or statements from law enforcement to enhance attribution and provide more depth to the reporting.",
+        "Add a brief background on the implications of the charges, particularly what attempted second-degree murder and first-degree carjacking entail legally, to inform readers about the potential consequences for Patel."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or statement from the Minnesota chapter of the Council on American-Islamic Relations regarding their call for a federal hate-crime review."
+      ]
+    }
+  }
+]

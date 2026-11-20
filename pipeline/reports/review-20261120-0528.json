@@ -1,0 +1,84 @@
+[
+  {
+    "id": "92ad627d-5b58-4d6f-95ec-1b8fd2a4544d",
+    "headline": "Malayalam Hits Now Earn a Second Box Office From Diaspora Audiences",
+    "slug": "malayalam-cinema-diaspora-overseas-box-office",
+    "category": "entertainment",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The Malayalam film finished as the highest-grossing Malayalam film in the United\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Ensure all figures are accurately sourced and attributed to credible sources, such as specific box office tracking services or industry analysts, to enhance credibility.",
+        "Clarify the significance of the diaspora box office by providing context about its growth and impact on the Malayalam film industry, rather than simply stating the figures.",
+        "Include quotes or insights from industry experts or filmmakers to provide depth and perspective on the trends mentioned in the article.",
+        "Consider adding a brief overview of the film's plot or themes to give readers a better understanding of why these films are resonating with audiences, both domestically and abroad."
+      ],
+      "embed_opportunities": [
+        "Embed relevant box office tracking charts or graphics to visually represent the earnings of the films mentioned.",
+        "Include video clips or trailers from the films discussed to engage readers and provide a visual context for the article."
+      ],
+      "rubric_violation": true
+    }
+  },
+  {
+    "id": "132b4b86-cfea-4bfa-8ffc-c66b924e7690",
+    "headline": "Bangladesh PM Rahman Blames India in Veiled Dig as Hasina Supporters' Unrest Spr",
+    "slug": "bangladesh-pm-rahman-blames-india-hasina-unrest",
+    "category": "nri-world",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Rahman blamed Hasina's supporters and, in a veiled reference, India for Thursday\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events, particularly the significance of Sheikh Hasina's request for a new passport and how it relates to the current unrest. This will help readers understand the context better.",
+        "Provide more specific details about the violence, such as the locations of the incidents and the identities of the victims, to enhance the completeness of the report.",
+        "Include a direct quote from India's foreign ministry or a statement regarding the situation to improve attribution and provide a more balanced perspective."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official Bangladesh government or Prime Minister Tarique Rahman to provide direct insight into the government's stance on the unrest."
+      ]
+    }
+  },
+  {
+    "id": "c188ffe4-4e69-4f89-8f2e-8c8dac795f60",
+    "headline": "Texas Governor-Elect Hinojosa Says She Will Rescind Abbott's H-1B Hiring Freeze",
+    "slug": "texas-governor-elect-hinojosa-rescind-abbott-h1b-freeze",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for when the freeze will be lifted after Hinojosa takes office. Specify if there will be an immediate effect or if there are additional steps required before the rescindment takes place.",
+        "Provide more context on the implications of the freeze for affected institutions and professionals. For example, include specific numbers on how many H-1B petitions were filed in the past year or the potential impact on job openings in Texas public universities and state agencies.",
+        "Include a direct quote from the Texas Workforce Commission or another relevant authority to enhance the article's credibility and provide an official perspective on the freeze and its reversal.",
+        "Ensure that the article clearly distinguishes between the freeze on new petitions and the process for renewals, as this is crucial for understanding the immediate impact on current H-1B holders."
+      ],
+      "embed_opportunities": [
+        "Embed the official Texas Governor's office statement or a relevant tweet regarding the H-1B freeze and its reversal to provide readers with direct access to official communications."
+      ]
+    }
+  },
+  {
+    "id": "47af96c2-1c90-44e5-8a54-111b421a7879",
+    "headline": "Cyclone Akvan Begins Landfall Near Gopalpur; Over 3 Lakh Evacuated in Odisha",
+    "slug": "cyclone-akvan-landfall-gopalpur-3-lakh-evacuated",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The storm began landfall near Gopalpur on the Odisha coast on November 20.\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact time when the cyclone began landfall and when the evacuation figures were last updated, as this will help readers understand the urgency and progression of the situation.",
+        "Include a brief overview of the potential impacts of the cyclone on infrastructure, agriculture, and local communities in Odisha and Andhra Pradesh, as this context can help readers grasp the broader implications of the storm.",
+        "Ensure that all statistics, such as the number of evacuees and the number of relief camps, are consistently attributed to reliable sources, such as the Odisha government or the India Meteorological Department, to enhance credibility."
+      ],
+      "embed_opportunities": [
+        "Embed the official IMD tweet regarding Cyclone Akvan's landfall and updates, which would provide readers with real-time information and official guidance."
+      ]
+    }
+  }
+]

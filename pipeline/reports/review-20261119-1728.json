@@ -1,0 +1,82 @@
+[
+  {
+    "id": "3bbe4bce-7046-47f0-8707-ac87e58398b7",
+    "headline": "Three Chefs and a Label-Reader Carry Food Into the First TIME100 Next India List",
+    "slug": "time100-next-india-food-names-sadhu-shahzad-pandya-foodpharmer",
+    "category": "food",
+    "structural_issues": [
+      "Inline caption names venue 'Battery Park' not supported by the image file name (NYC_Downtown_Manhattan_Skyline_seen_from_Paulus_Hook_2019-12\u2026) \u2014 verify the venue or reword"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of the TIME100 Next India list for the culinary world and its impact on the chefs mentioned. This could include insights into how such recognition might influence their careers or the Indian food scene as a whole.",
+        "Include direct quotes from the chefs or TIME representatives to enhance attribution and provide depth to the narrative. This would also help in conveying their reactions to the recognition, making the article more engaging.",
+        "Provide context on the selection process for the TIME100 Next India list, such as criteria for selection or the number of nominees, to give readers a better understanding of the achievement's weight."
+      ],
+      "embed_opportunities": [
+        "Embed the official TIME announcement or tweet about the TIME100 Next India list to provide readers with direct access to the source and additional context."
+      ]
+    }
+  },
+  {
+    "id": "44e74fb0-2737-4735-918a-9c1794664ba7",
+    "headline": "24 VC Firms Commit \u20b91,050 Crore to Deeptech Startups at Bengaluru Tech Summit",
+    "slug": "vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit",
+    "category": "markets-finance",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Twenty-four venture capital firms announced \u20b91,050.42 crore in deeptech investme\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the investment commitments by specifying if there are any expected dates for disbursement or further announcements regarding the allocation of the \u20b91,050 crore.",
+        "Include a brief explanation of what 'deeptech' encompasses for readers who may not be familiar with the term, enhancing clarity and completeness.",
+        "Provide a comparison or context regarding the significance of the \u20b91,050 crore investment in relation to the overall venture capital landscape in India, which would help readers understand its impact better."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Bengaluru Tech Summit or an official account that announces the investment commitments to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "b4f2a656-2af2-467e-9b42-4d28ba301808",
+    "headline": "Fed Minutes Show Officials Flagging AI Boom and High Valuations as Stability Ris",
+    "slug": "fed-minutes-ai-boom-valuations-financial-stability-risks",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the potential implications of the Fed's warnings on AI investments for individual investors, including specific examples of how this might affect stock prices or investment strategies in the short term.",
+        "Include a direct quote from a Federal Reserve official or a financial expert to enhance attribution and provide authoritative context to the concerns raised about AI investments.",
+        "Add a brief explanation of what the current interest rate of 3.75%-4.00% means for borrowers and investors, as this is a key detail that could impact readers' financial decisions."
+      ],
+      "embed_opportunities": [
+        "Embed the official Federal Reserve tweet announcing the release of the minutes or summarizing the key points discussed."
+      ]
+    }
+  },
+  {
+    "id": "cab7bf19-5fb5-4539-9d32-8004ad958e20",
+    "headline": "World No. 47 Rakshitha Ramraj Stuns Her Idol Chen Yufei at Hong Kong Open",
+    "slug": "rakshitha-ramraj-stuns-chen-yufei-hong-kong-open-quarter-final",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Rakshitha's wins by providing context on Chen Yufei's recent performance and ranking history, as well as Mia Blichfeldt's ranking to highlight the magnitude of these upsets.",
+        "Include direct quotes from the Badminton World Federation (BWF) or other authoritative sources to enhance attribution and credibility regarding Rakshitha's achievements and rankings.",
+        "Add a brief overview of the tournament structure, including what a Super 500 quarter-final means for players and how it impacts their rankings or future opportunities."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Badminton World Federation announcing Rakshitha's victory or highlighting her performance in the tournament."
+      ]
+    }
+  }
+]

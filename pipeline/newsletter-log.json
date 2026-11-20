@@ -1833,5 +1833,16 @@
     "top_story_slug": "humyn-labs-raises-47-million-series-a-robotics-training-data",
     "quick_hit_count": 5,
     "deadline_count": 3
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-11-19T14:58:13.466190+00:00Z",
+    "subject": "The Videshi Daily \u2014 November 19, 2026",
+    "subscribers": 11,
+    "sent": 10,
+    "errors": 1,
+    "top_story_slug": "rupee-seven-month-high-it-earnings-tcs-infosys",
+    "quick_hit_count": 5,
+    "deadline_count": 3
   }
 ]

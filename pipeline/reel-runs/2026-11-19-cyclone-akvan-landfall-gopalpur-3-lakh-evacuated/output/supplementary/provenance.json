@@ -1,0 +1,80 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "cyclone-akvan-landfall-gopalpur-3-lakh-evacuated",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Cyclone Akvan",
+    "Gopalpur",
+    "Odisha",
+    "India Meteorological Department",
+    "East Coast Railway",
+    "South Eastern Railway"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Gopalpur' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'East Coast Railway' named 'East Coast Main Line', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Akvan 2026-11-18 0750Z.jpg",
+      "route": "identity \u2014 depicts (P180=Q142200113)",
+      "verdict": "accepted",
+      "reason": "6597x8165, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Odisha blank districts map.svg",
+      "route": "identity \u2014 Wikidata P18 (Q22048)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:'The Haat' of Doraguda - 4 (The weekly village market of Doraguda, Odisha).jpg",
+      "route": "identity \u2014 depicts (P180=Q22048)",
+      "verdict": "accepted",
+      "reason": "2327x3000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:'The Haat' of Doraguda - 5 (The weekly village market of Doraguda, Odisha).jpg",
+      "route": "identity \u2014 depicts (P180=Q22048)",
+      "verdict": "accepted",
+      "reason": "2409x3000, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:\u042e\u0412\u0416\u0414 8.06.2008.JPG",
+      "route": "identity \u2014 Wikidata P18 (Q1529921)",
+      "verdict": "accepted",
+      "reason": "2560x1920, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Akvan 2026-11-18 0750Z.jpg",
+      "route": "identity \u2014 depicts (P180=Q142200113)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/6/63/Akvan_2026-11-18_0750Z.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "candidate": "File:'The Haat' of Doraguda - 4 (The weekly village market of Doraguda, Odisha).jpg",
+      "route": "identity \u2014 depicts (P180=Q22048)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/8/88/%27The_Haat%27_of_Doraguda_-_4_%28The_weekly_village_market_of_Doraguda%2C_Odisha%29.jpg?utm_source=comm"
+    },
+    {
+      "candidate": "File:'The Haat' of Doraguda - 5 (The weekly village market of Doraguda, Odisha).jpg",
+      "route": "identity \u2014 depicts (P180=Q22048)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/7/7a/%27The_Haat%27_of_Doraguda_-_5_%28The_weekly_village_market_of_Doraguda%2C_Odisha%29.jpg?utm_source=comm"
+    }
+  ],
+  "extras": []
+}

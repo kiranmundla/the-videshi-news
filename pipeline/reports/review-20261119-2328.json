@@ -1,0 +1,23 @@
+[
+  {
+    "id": "942b551d-9a5d-4b1c-a4ce-1ceaf8f04935",
+    "headline": "Walmart Earnings Beat Estimates as Revenue Rises 5.2% to $188.8 Billion, Guidanc",
+    "slug": "walmart-earnings-beat-revenue-188-billion-guidance-raised-q3",
+    "category": "markets-finance",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline by specifying the date when Walmart reported its fiscal third-quarter earnings. This will help readers understand the timeliness of the information.",
+        "Provide more context regarding the significance of the $341 million loss on equity and other investments. Explain how this impacts Walmart's overall financial health and future outlook.",
+        "Include a brief explanation of what 'adjusted EPS' means for readers who may not be familiar with financial terminology, enhancing clarity.",
+        "Ensure that the headline reflects the key takeaway of the article by mentioning the raised guidance explicitly, e.g., 'Walmart Earnings Beat Estimates; Raises Fiscal 2027 Guidance Following 5.2% Revenue Increase.'"
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from Walmart's official account announcing the earnings report or guidance raise to provide immediate context and credibility."
+      ]
+    }
+  }
+]

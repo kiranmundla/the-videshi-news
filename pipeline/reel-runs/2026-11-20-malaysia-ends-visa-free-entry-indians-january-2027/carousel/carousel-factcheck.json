@@ -1,0 +1,162 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "malaysia-ends-visa-free-entry-indians-january-2027",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Malaysia Ends Visa-Free Entry for Indians From January 1, 2027; Applications Open December 1",
+        "numbers": [
+          1.0,
+          2027.0
+        ],
+        "entities": [
+          "Malaysia Ends Visa-Free Entry",
+          "Indians From January",
+          "Applications Open December"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027
+          ]
+        },
+        "llm_reason": "Article states visa-free entry ends January 1, 2027, applications open December 1.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "It is your arrival date, not your booking date, that decides whether you need a visa.",
+        "numbers": [],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "Article confirms arrival date determines visa requirement.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Malaysia will discontinue the 30-day visa exemption for Indian citizens from January 1, 2027",
+        "numbers": [
+          1.0,
+          30.0,
+          2027.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027
+          ]
+        },
+        "llm_reason": "Article states the visa exemption ends January 1, 2027.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Visa applications open on December 1, 2026 through the MyVISA portal",
+        "numbers": [
+          1.0,
+          2026.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "Article mentions applications open December 1, 2026 on MyVISA portal.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "Indians can still enter visa-free until December 31, 2026, for stays of up to 30 days",
+        "numbers": [
+          30.0,
+          31.0,
+          2026.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2026
+          ]
+        },
+        "llm_reason": "Article confirms visa-free entry for Indians until December 31, 2026.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Malaysia Ends Visa-Free Entry for Indians From January 1, 2027; Applications Open December 1",
+        "numbers": [
+          1.0,
+          2027.0
+        ],
+        "entities": [
+          "Malaysia Ends Visa-Free Entry",
+          "Indians From January",
+          "Applications Open December"
+        ],
+        "deterministic": "pass",
+        "detail": {
+          "years_checked": [
+            2027
+          ]
+        },
+        "llm_reason": "Article states visa-free entry ends January 1, 2027, applications open December 1.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000479,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}

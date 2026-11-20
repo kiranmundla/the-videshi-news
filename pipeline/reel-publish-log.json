@@ -1174,5 +1174,57 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "GkbIiz-bROI",
+    "article_slug": "vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit",
+    "article_id": "44e74fb0-2737-4735-918a-9c1794664ba7",
+    "title": "24 VC Firms Commit \u20b91,050 Crore to Deeptech Startups at Bengaluru Tech Summit #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-11-19T17:15:17.271943+00:00",
+    "video_path": "reel-runs/2026-11-19-vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit/output/vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit.mp4",
+    "video_sha256": "3f9dae8c501cac87952191042f481eeb476e5aa41aa353da653dc67d770f011d",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "5GrzywH4lks",
+    "article_slug": "gukesh-time100-next-india-phenoms-title-defence-sindarov",
+    "article_id": "95f19d90-55b8-417e-9a9b-cc1b6f8938e8",
+    "title": "World Champion Gukesh Named to TIME100 Next India Weeks Before First Title Defence #Shorts #NRI",
+    "privacy": "public",
+    "uploaded_at": "2026-11-19T23:15:10.977413+00:00",
+    "video_path": "reel-runs/2026-11-19-gukesh-time100-next-india-phenoms-title-defence-sindarov/output/gukesh-time100-next-india-phenoms-title-defence-sindarov.mp4",
+    "video_sha256": "1fea65d07dddebbf6b638601ed41ad49b138ddf34c2ad3bd1c1057a7cf59c585",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "oZeaJOuLY9s",
+    "article_slug": "cyclone-akvan-landfall-gopalpur-3-lakh-evacuated",
+    "article_id": "47af96c2-1c90-44e5-8a54-111b421a7879",
+    "title": "Cyclone Akvan Begins Landfall Near Gopalpur; Over 3 Lakh Evacuated in Odisha #Shorts #News",
+    "privacy": "public",
+    "uploaded_at": "2026-11-20T05:22:46.066325+00:00",
+    "video_path": "reel-runs/2026-11-19-cyclone-akvan-landfall-gopalpur-3-lakh-evacuated/output/cyclone-akvan-landfall-gopalpur-3-lakh-evacuated.mp4",
+    "video_sha256": "4103014650802a020a3cad8887d506d40079830cb1487bd50dfac38c809425c6",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "bxnPvendbBM",
+    "article_slug": "malaysia-ends-visa-free-entry-indians-january-2027",
+    "article_id": "be0486e8-cafc-4d18-9b60-76366e02768a",
+    "title": "Visa-Free Entry for Indians From January 1, 2027; Applications Open December 1 #Shorts #VisaNews",
+    "privacy": "public",
+    "uploaded_at": "2026-11-20T11:17:02.340140+00:00",
+    "video_path": "reel-runs/2026-11-20-malaysia-ends-visa-free-entry-indians-january-2027/output/malaysia-ends-visa-free-entry-indians-january-2027.mp4",
+    "video_sha256": "8eb0f171846d4eeb3473e1fff471ed22d82611bdd4c9da94f29343e89e3ab06d",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

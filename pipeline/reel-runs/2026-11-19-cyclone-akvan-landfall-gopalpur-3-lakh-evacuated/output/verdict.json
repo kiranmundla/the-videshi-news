@@ -1,0 +1,49 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "cyclone-akvan-landfall-gopalpur-3-lakh-evacuated",
+  "name": "cyclone-akvan-landfall-gopalpur-3-lakh-evacuated",
+  "script": "reel-runs/2026-11-19-cyclone-akvan-landfall-gopalpur-3-lakh-evacuated/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000738
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-19-cyclone-akvan-landfall-gopalpur-3-lakh-evacuated/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "stock": {
+    "eligible": true,
+    "reason": "concept entity 'Gopalpur' has no identity to photograph",
+    "scenes": 5,
+    "provenance": "reel-runs/2026-11-19-cyclone-akvan-landfall-gopalpur-3-lakh-evacuated/output/stock/provenance.json"
+  },
+  "distinct_images": {
+    "usable": 6,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "stock:37899504",
+      "stock:6024004",
+      "stock:17423832",
+      "stock:11948442",
+      "stock:5959064"
+    ]
+  },
+  "manifest": "reel-runs/2026-11-19-cyclone-akvan-landfall-gopalpur-3-lakh-evacuated/output/render-manifest.json",
+  "video": "reel-runs/2026-11-19-cyclone-akvan-landfall-gopalpur-3-lakh-evacuated/output/cyclone-akvan-landfall-gopalpur-3-lakh-evacuated.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-19-cyclone-akvan-landfall-gopalpur-3-lakh-evacuated/output/tiktok-caption.txt"
+}

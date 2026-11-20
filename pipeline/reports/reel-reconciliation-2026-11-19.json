@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 273,
-    "db_rows": 206,
-    "db_rows_with_yt_id": 176,
+    "channel_videos": 275,
+    "db_rows": 208,
+    "db_rows_with_yt_id": 178,
     "legacy_log_entries": 205,
-    "publish_log_entries": 89,
-    "in_sync": 155,
+    "publish_log_entries": 91,
+    "in_sync": 157,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 17,
     "ghost_db_rows": 16,
@@ -1098,6 +1098,20 @@
       "privacy": "public",
       "video_id": "9LKDmDjqXnQ",
       "record": "prebuilt_reels:5020506e-a594-421f-a331-f3f6a7b4b650"
+    },
+    {
+      "title": "24 VC Firms Commit \u20b91,050 Crore to Deeptech Startups at Bengaluru Tech Summit #Shorts #Markets",
+      "published_at": "2026-11-19T17:15:48Z",
+      "privacy": "public",
+      "video_id": "GkbIiz-bROI",
+      "record": "prebuilt_reels:1d51529c-74c0-4f99-8e69-9a46ffea6dee"
+    },
+    {
+      "title": "World Champion Gukesh Named to TIME100 Next India Weeks Before First Title Defence #Shorts #NRI",
+      "published_at": "2026-11-19T23:15:47Z",
+      "privacy": "public",
+      "video_id": "5GrzywH4lks",
+      "record": "prebuilt_reels:a9718c62-1fd1-4a8e-a610-45fe1d659b25"
     }
   ],
   "unknown_legacy_logged": [
@@ -4107,5 +4121,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-19T11:13:50+00:00"
+  "generated_at": "2026-11-19T23:16:06+00:00"
 }

@@ -1,0 +1,36 @@
+{
+ "diaspora_bullets": [
+  "A New York magazine's first India list puts the Chennai world champion in its Phenoms class",
+  "His first title defence is against Javokhir Sindarov later this month"
+ ],
+ "hook_line": "WORLD CHAMPION GUKESH NAMED TO TIME100 NEXT INDIA",
+ "hook_stat": {
+  "big": "20",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "World chess champion Gukesh Dommaraju is 20 years old"
+ },
+ "key_entities": [
+  "Gukesh Dommaraju",
+  "TIME100 Next India",
+  "Javokhir Sindarov",
+  "Sharda Ugra"
+ ],
+ "news_summary": "World chess champion Gukesh Dommaraju, 20, is named in the Phenoms category of TIME100 Next India, TIME's first international edition of its rising-leaders list, released on Thursday.",
+ "payoff": "Later this month he defends the world title for the first time, against Uzbekistan's Javokhir Sindarov.",
+ "stats": [
+  {
+   "big": "2024",
+   "label": "Defeated Ding Liren to win the world title at 18"
+  },
+  {
+   "big": "100",
+   "label": "Entries in TIME100 Next India across five unranked categories"
+  },
+  {
+   "big": "18",
+   "label": "Phenoms named in the list, including Gukesh Dommaraju"
+  }
+ ],
+ "story_mood": "celebratory",
+ "versus": ""
+}

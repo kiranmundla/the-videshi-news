@@ -1,0 +1,49 @@
+{
+  "driver": "reel_produce.py",
+  "status": "ready",
+  "stage": "complete",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "malaysia-ends-visa-free-entry-indians-january-2027",
+  "name": "malaysia-ends-visa-free-entry-indians-january-2027",
+  "script": "reel-runs/2026-11-20-malaysia-ends-visa-free-entry-indians-january-2027/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000756
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-20-malaysia-ends-visa-free-entry-indians-january-2027/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "stock": {
+    "eligible": true,
+    "reason": "policy keyword in headline/script",
+    "scenes": 5,
+    "provenance": "reel-runs/2026-11-20-malaysia-ends-visa-free-entry-indians-january-2027/output/stock/provenance.json"
+  },
+  "distinct_images": {
+    "usable": 6,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "stock:8372622",
+      "stock:6544058",
+      "stock:6354991",
+      "stock:346798",
+      "stock:2069"
+    ]
+  },
+  "manifest": "reel-runs/2026-11-20-malaysia-ends-visa-free-entry-indians-january-2027/output/render-manifest.json",
+  "video": "reel-runs/2026-11-20-malaysia-ends-visa-free-entry-indians-january-2027/output/malaysia-ends-visa-free-entry-indians-january-2027.mp4",
+  "qa": {
+    "score": 10.0,
+    "passed": true,
+    "failing_checks": []
+  },
+  "tiktok_pack": "reel-runs/2026-11-20-malaysia-ends-visa-free-entry-indians-january-2027/output/tiktok-caption.txt"
+}

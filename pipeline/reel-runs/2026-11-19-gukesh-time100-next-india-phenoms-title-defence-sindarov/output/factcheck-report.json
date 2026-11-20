@@ -1,0 +1,278 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "gukesh-time100-next-india-phenoms-title-defence-sindarov",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "WORLD CHAMPION GUKESH NAMED TO TIME100 NEXT INDIA",
+      "numbers": [
+        100.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Gukesh is named in TIME100 Next India as world champion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "World chess champion Gukesh Dommaraju, 20, is named in the Phenoms category of TIME100 Next India, TIME's first international edition of its rising-leaders list, released on Thursday.",
+      "numbers": [
+        20.0,
+        100.0
+      ],
+      "entities": [
+        "Gukesh Dommaraju",
+        "TIME100 Next India"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about Gukesh's age, category, and release date are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "20",
+      "numbers": [
+        20.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Gukesh Dommaraju is confirmed to be 20 years old.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "World chess champion Gukesh Dommaraju is 20 years old",
+      "numbers": [
+        20.0
+      ],
+      "entities": [
+        "Gukesh Dommaraju"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Gukesh's age is explicitly stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "2024",
+      "numbers": [
+        2024.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2024
+        ]
+      },
+      "llm_reason": "The article states Gukesh became champion in 2024.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Defeated Ding Liren to win the world title at 18",
+      "numbers": [
+        18.0
+      ],
+      "entities": [
+        "Defeated Ding Liren"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Gukesh won the title at 18 by defeating Ding Liren.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "100",
+      "numbers": [
+        100.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The TIME100 Next India list contains 100 entries.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Entries in TIME100 Next India across five unranked categories",
+      "numbers": [
+        100.0
+      ],
+      "entities": [
+        "TIME100 Next India"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions 100 entries across five categories.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "18",
+      "numbers": [
+        18.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "There are 18 phenoms named in the list.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Phenoms named in the list, including Gukesh Dommaraju",
+      "numbers": [],
+      "entities": [
+        "Gukesh Dommaraju"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Gukesh is confirmed as one of the 18 phenoms.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "A New York magazine's first India list puts the Chennai world champion in its Phenoms class",
+      "numbers": [],
+      "entities": [
+        "New York"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states TIME's first India list includes Gukesh in Phenoms.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "His first title defence is against Javokhir Sindarov later this month",
+      "numbers": [],
+      "entities": [
+        "Javokhir Sindarov"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms his first title defense is against Sindarov.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Later this month he defends the world title for the first time, against Uzbekistan's Javokhir Sindarov.",
+      "numbers": [],
+      "entities": [
+        "Uzbekistan's Javokhir Sindarov"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states he defends his title against Sindarov later this month.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Gukesh Dommaraju",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "TIME100 Next India",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Javokhir Sindarov",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sharda Ugra",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000693,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

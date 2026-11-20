@@ -1,0 +1,36 @@
+{
+ "hook_line": "MALAYSIA ENDS VISA-FREE ENTRY FOR INDIANS FROM JANUARY 1, 2027",
+ "hook_stat": {
+  "big": "January 1, 2027",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Malaysia ends the 30-day visa exemption for Indian passport holders"
+ },
+ "stats": [
+  {
+   "big": "December 1, 2026",
+   "label": "Visa applications open on the MyVISA portal"
+  },
+  {
+   "big": "30 days",
+   "label": "Visa-free stays remain available until December 31, 2026"
+  },
+  {
+   "big": "1.56 million",
+   "label": "Indian tourist arrivals in Malaysia in 2025"
+  }
+ ],
+ "diaspora_bullets": [
+  "Your arrival date decides whether you need a visa — not your booking or departure date",
+  "The Malaysia Digital Arrival Card is still required within three days before arrival"
+ ],
+ "key_entities": [
+  "Malaysia",
+  "MyVISA",
+  "Malaysia Digital Arrival Card",
+  "Kuala Lumpur"
+ ],
+ "news_summary": "Malaysia will end visa-free entry for Indian passport holders from January 1, 2027; travellers arriving on or after that date must obtain a visa in advance through the MyVISA portal, with applications opening December 1, 2026.",
+ "payoff": "Until December 31, 2026, Indians can still enter visa-free for up to 30 days — from January 1, 2027, a visa obtained before travel is required.",
+ "versus": "",
+ "story_mood": "practical"
+}

@@ -1,0 +1,152 @@
+{
+  "quote_present": false,
+  "verbatim_quote": null,
+  "speaker_grounded": null,
+  "role_grounded": null,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "vc-firms-commit-1050-crore-deeptech-bengaluru-tech-summit",
+    "verdict": "pass",
+    "held_claims": [],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "24 VC Firms Commit \u20b91,050 Crore to Deeptech Startups at Bengaluru Tech Summit",
+        "numbers": [
+          24.0,
+          1050.0,
+          10500000000.0
+        ],
+        "entities": [
+          "VC Firms Commit",
+          "Deeptech Startups",
+          "Bengaluru Tech Summit"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states 24 VC firms committed \u20b91,050 crore.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "news_summary",
+        "text": "Commitments announced at the Future Makers Conclave are 2.6 times last year's \u20b9400 crore, aimed at aerospace, defence, AI, robotics and semiconductor startups.",
+        "numbers": [
+          2.6,
+          400.0,
+          4000000000.0
+        ],
+        "entities": [
+          "Future Makers Conclave"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the commitments are 2.6 times last year's \u20b9400 crore for specified sectors.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "Twenty-four venture capital firms announced investment commitments totalling \u20b91,050.42 crore in deeptech startups at the Future Makers Conclave of the Bengaluru Tech Summit",
+        "numbers": [
+          1050.42,
+          10504200000.0
+        ],
+        "entities": [
+          "Future Makers Conclave",
+          "Bengaluru Tech Summit"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article mentions 24 VC firms committed \u20b91,050.42 crore at the conclave.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "The commitments are 2.6 times the \u20b9400 crore announced at last year's conclave",
+        "numbers": [
+          2.6,
+          400.0,
+          4000000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states the current commitments are 2.6 times last year's \u20b9400 crore.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "No disbursement schedule, and no breakdown of how the \u20b91,050 crore will be allocated, was provided at the event",
+        "numbers": [
+          1050.0,
+          10500000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article clearly states no disbursement schedule or allocation breakdown was provided.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "24 VC Firms Commit \u20b91,050 Crore to Deeptech Startups at Bengaluru Tech Summit",
+        "numbers": [
+          24.0,
+          1050.0,
+          10500000000.0
+        ],
+        "entities": [
+          "VC Firms Commit",
+          "Deeptech Startups",
+          "Bengaluru Tech Summit"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states 24 VC firms committed \u20b91,050 crore.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000454,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "pass"
+}
