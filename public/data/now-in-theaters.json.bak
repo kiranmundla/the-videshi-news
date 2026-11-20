@@ -647,7 +647,10 @@
           "photo_url": ""
         }
       ],
-      "fandango_url": "https://www.fandango.com/tu-hai-meri-kiran-248127/movie-overview"
+      "fandango_url": "https://www.fandango.com/tu-hai-meri-kiran-248127/movie-overview",
+      "poster_url": "https://thumb.wikimedia.org/wikipedia/en/thumb/2/2e/Tu_Hai_Meri_Kiran.jpg/500px-Tu_Hai_Meri_Kiran.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+      "poster_width": 464,
+      "poster_height": 570
     },
     {
       "title": "Cult",
@@ -828,7 +831,7 @@
       "title": "Aakasamlo Oka Tara",
       "slug": "aakasamlo-oka-tara-2026",
       "release_date": "2026-11-20",
-      "status": "coming_soon",
+      "status": "opening",
       "language": "Telugu",
       "director": "Pavan Sadineni",
       "cast": [
