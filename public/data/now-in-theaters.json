@@ -4,61 +4,6 @@
   "movies": [
     {
       "cast": [
-        "Sandra Bullock",
-        "Nicole Kidman",
-        "Joey King",
-        "Lee Pace",
-        "Maisie Williams",
-        "Xolo Maridueña",
-        "Dianne Wiest",
-        "Stockard Channing"
-      ],
-      "director": "Susanne Bier",
-      "genre": "Fantasy, Romance, Comedy",
-      "is_indian": false,
-      "language": "English",
-      "poster_url": "https://upload.wikimedia.org/wikipedia/en/4/47/Practical_Magic_2_%28film_poster%29.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail_unscaled",
-      "rating": "35% RT",
-      "rating_source": "Rotten Tomatoes",
-      "release_date": "2026-09-11",
-      "slug": "practical-magic-2",
-      "status": "now_playing",
-      "ticket_url": "https://www.google.com/search?q=Practical+Magic+2+showtimes+near+me",
-      "title": "Practical Magic 2",
-      "trailer_url": "https://www.youtube.com/watch?v=Ho10_4IX1jE",
-      "why_watch": "The witches are in trouble: down 59% in weekend two with just $12.2M, for a $76.8M global total on a $75M budget. Bullock and Kidman remain the draw and 1998 nostalgia runs deep — but the movie now needs genuine legs against Resident Evil to justify its budget. One for the faithful, in theaters while the coven lasts.",
-      "year": 2026,
-      "cast_details": [
-        {
-          "name": "Sandra Bullock",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Sandra_Bullock_at_The_Egyptian_Theatre_2024.jpg/300px-Sandra_Bullock_at_The_Egyptian_Theatre_2024.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Nicole Kidman",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/MKr384262_Nicole_Kidman_%28Women_In_Motion%2C_Cannes_2025%29.jpg/300px-MKr384262_Nicole_Kidman_%28Women_In_Motion%2C_Cannes_2025%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Joey King",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Guests_at_the_2026_Met_Gala_072_%28Joey_King%29.jpg/300px-Guests_at_the_2026_Met_Gala_072_%28Joey_King%29.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Lee Pace",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0b/Lee_Pace_at_Foundations_Season_3_press_day.jpg/300px-Lee_Pace_at_Foundations_Season_3_press_day.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Maisie Williams",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Maisie_Williams_at_DIFF_2026.jpg/300px-Maisie_Williams_at_DIFF_2026.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        },
-        {
-          "name": "Xolo Maridueña",
-          "photo_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Xolo_Maridue%C3%B1a.jpg/300px-Xolo_Maridue%C3%B1a.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
-        }
-      ],
-      "poster_width": 260,
-      "poster_height": 385
-    },
-    {
-      "cast": [
         "Austin Abrams",
         "Zach Cherry",
         "Kali Reis",
