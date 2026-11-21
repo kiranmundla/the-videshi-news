@@ -68,6 +68,31 @@ DEPLOY_GUARD_UTC = "2026-10-24T20:00:00+00:00"
 FB_TEXT_LIMIT = 1024
 THREADS_TEXT_LIMIT = 500
 
+# Slugs dropped in the 2026-11-20 full Facebook reset (Kiran's call).
+# Those entries were cleared on purpose and must never be re-staged.
+# Read fresh at import so a future reset-file update takes effect
+# without a code change; a missing/corrupt file means no reset in
+# force. (Before 2026-11-21 this drop lived only in a manual cleanup
+# script, so every run re-staged the dropped drafts — Kiran approved
+# wiring it in here.)
+FB_RESET_FILE = os.path.join(
+    PIPELINE, ".state/social-fb-reset-2026-11-20.json")
+
+
+def _load_fb_reset_slugs():
+    try:
+        with open(FB_RESET_FILE) as f:
+            data = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return set()
+    slugs = set()
+    for key in ("post_slugs", "draft_slugs"):
+        slugs.update(data.get(key) or [])
+    return slugs
+
+
+FB_RESET_SLUGS = _load_fb_reset_slugs()
+
 
 def sb_get(path):
     url = f"{SUPABASE_URL}/rest/v1/{path}"
@@ -179,7 +204,9 @@ def _stage_reel_decks(row):
         "alt_text": None,
         "source": "reel-distribute-social",
     }
-    if slug in social_queue.queued_slugs("facebook", "article_post"):
+    if slug in FB_RESET_SLUGS:
+        print(f"  FB deck skipped (2026-11-20 reset): {slug}")
+    elif slug in social_queue.queued_slugs("facebook", "article_post"):
         print(f"  FB deck skipped (already queued): {slug}")
     elif social_queue.add_entry(fb_entry):
         staged += 1
@@ -332,6 +359,9 @@ def main():
         return
 
     state = load_state()
+    if FB_RESET_SLUGS:
+        print(f"FB reset guard: {len(FB_RESET_SLUGS)} dropped slugs "
+              f"will not be re-staged")
     privacy = yt_privacy([r["yt_video_id"] for r in rows])
     queued_fb = social_queue.queued_refs("facebook", "reel_draft")
     queued_ig = social_queue.queued_refs("instagram", "reel_post")
@@ -350,7 +380,10 @@ def main():
 
         # 1. Facebook draft — unpublished (staged in delayed mode).
         if not entry.get("fb_draft_id"):
-            if STAGE:
+            if STAGE and row.get("article_slug") in FB_RESET_SLUGS:
+                print(f"FB draft skipped (2026-11-20 reset): "
+                      f"{row['article_slug']} ({vid})")
+            elif STAGE:
                 if vid in queued_fb:
                     print(f"FB draft already staged: "
                           f"{row['article_slug']} ({vid})")
