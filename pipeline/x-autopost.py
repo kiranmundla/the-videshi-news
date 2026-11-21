@@ -117,7 +117,7 @@ resp = requests.get(
         'status': 'eq.published',
         'tweeted_at': 'is.null',
         'order': 'published_at.desc',
-        'limit': '20',
+        'limit': '50',
         'select': 'id,slug,headline,subheadline,category,tags,image_url,body,key_takeaways'
     },
     headers=SUPA_HEADERS
@@ -126,9 +126,12 @@ resp.raise_for_status()
 all_articles = resp.json()
 print(f"Fetched {len(all_articles)} untweeted articles")
 
-# Pick up to 6 with images (volume raised 2026-10-24 — plain posts are
-# only $0.015, so 12/day costs less than the old 8/day did with leaks)
-articles = [a for a in all_articles if a.get('image_url')][:6]
+# Post ALL articles (Kiran 2026-11-21): plain posts cost $0.015, so
+# full coverage of the day's ~20-24 articles costs ~$10/mo. Only the
+# run's top pick carries a link ($0.20) — a few important ones a day;
+# the rest go out link-free to keep the cost low. No image required:
+# card-set/media attachment already falls back to a text-only post.
+articles = all_articles
 print(f"Selected {len(articles)} articles to post")
 
 if not articles:
