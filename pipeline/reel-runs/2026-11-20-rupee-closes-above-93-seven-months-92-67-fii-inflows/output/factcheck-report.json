@@ -1,0 +1,276 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "rupee-closes-above-93-seven-months-92-67-fii-inflows",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "RUPEE SETTLES 65 PAISE HIGHER AT 92.67 TO THE DOLLAR",
+      "numbers": [
+        65.0,
+        92.67
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the rupee settled at 92.67, 65 paise higher.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "The rupee settled 65 paise higher at 92.67 (provisional) against the US dollar on Friday, November 20, up from a close of 94.19 on November 13, powered by foreign inflows and a rally in domestic stocks.",
+      "numbers": [
+        13.0,
+        20.0,
+        65.0,
+        92.67,
+        94.19
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about the rupee's settlement and context are present in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "92.67",
+      "numbers": [
+        92.67
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the rupee's closing value as 92.67.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "The rupee's provisional close against the US dollar on Friday, November 20 \u2014 up from a close of 94.19 on November 13",
+      "numbers": [
+        13.0,
+        20.0,
+        94.19
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions both the provisional close and the previous close.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "\u20b984,290 crore",
+      "numbers": [
+        84290.0,
+        842900000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states foreign investor inflows as \u20b984,290 crore.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Foreign investor inflows into Indian equities over nine trading sessions from November 2 to 13",
+      "numbers": [
+        2.0,
+        13.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article specifies the inflows occurred over these dates.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "65 paise",
+      "numbers": [
+        65.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the rupee's gain as 65 paise.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "The rupee's gain on Friday, its fifth consecutive session of gains",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states it was the fifth consecutive gain.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "83,919.71",
+      "numbers": [
+        83919.71
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the Sensex close as 83,919.71.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Sensex close after surging 897.96 points, or 1.08 per cent",
+      "numbers": [
+        1.08,
+        897.96
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article provides the Sensex surge details.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "$1,000 now converts to about \u20b992,670 \u2014 against about \u20b994,190 at the November 13 close",
+      "numbers": [
+        13.0,
+        1000.0,
+        92670.0,
+        94190.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the conversion rates accurately.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The inflows reversed net withdrawals of \u20b934,843 crore in October and \u20b935,861 crore in September",
+      "numbers": [
+        34843.0,
+        35861.0,
+        348430000000.0,
+        358610000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions these withdrawal figures.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Whether the rupee holds will depend on the foreign inflows continuing \u2014 those flows reversed to net withdrawals in September and October.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses the dependency on foreign inflows.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Indian rupee",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sensex",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nifty",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "foreign institutional investors",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000757,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

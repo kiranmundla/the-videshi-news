@@ -1,0 +1,74 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "rupee-closes-above-93-seven-months-92-67-fii-inflows",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Indian rupee",
+    "Sensex",
+    "Nifty",
+    "foreign institutional investors",
+    "First Time",
+    "Seven Months"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Indian rupee' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Nifty' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'foreign institutional investors' named 'Foreign institutional investors\u2019 trading and information dissemination in emerging markets: Further evidence', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Seven Months' named \"Seven Months' War\", which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Bombay Stock Exchange 3.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q796994)",
+      "verdict": "rejected",
+      "reason": "resolution: 428x572 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Putin watched The Age of Pioneers 01.jpg",
+      "route": "identity \u2014 depicts (P180=Q21637453)",
+      "verdict": "accepted",
+      "reason": "1880x1160, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Putin watched The Age of Pioneers 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q21637453)",
+      "verdict": "accepted",
+      "reason": "1880x1160, CC BY 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Putin watched The Age of Pioneers 01.jpg",
+      "route": "identity \u2014 depicts (P180=Q21637453)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/5/5c/Putin_watched_The_Age_of_Pioneers_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_con"
+    },
+    {
+      "candidate": "File:Putin watched The Age of Pioneers 02.jpg",
+      "route": "identity \u2014 depicts (P180=Q21637453)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/0/02/Putin_watched_The_Age_of_Pioneers_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_con"
+    }
+  ],
+  "extras": []
+}

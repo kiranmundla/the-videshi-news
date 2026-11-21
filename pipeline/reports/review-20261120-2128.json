@@ -1,0 +1,81 @@
+[
+  {
+    "id": "c29b3195-24e7-4490-a146-bf2606192c5d",
+    "headline": "India A Bowl Nepal Out for 26 in 306-Run Rising Stars Win in Doha",
+    "slug": "india-a-nepal-26-all-out-rising-stars-asia-cup-doha",
+    "category": "sports",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'Nepal were bowled out for 26 in 11.3 overs as India A won by 306 runs.\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the significance of Nepal's score being the fifth-lowest in List A history by providing context, such as what this means for the team's standing or future matches.",
+        "Include quotes from players or coaches to provide personal insights and enhance the narrative around the match's outcome.",
+        "Provide a brief overview of the implications for both teams moving forward in the ACC Men's Asia Cup Rising Stars tournament, such as upcoming matches or what this performance means for their chances in the tournament."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the ACC or a cricket authority commenting on the match or highlighting the performance of India A."
+      ]
+    }
+  },
+  {
+    "id": "d6683f7c-7754-4843-8fe9-9559b8e160df",
+    "headline": "Ramayana's Five-Language Run Puts Yash on the Verge of a Box-Office First",
+    "slug": "yash-ramayana-kgf-2-five-language-50-crore-milestone",
+    "category": "entertainment",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for when the film is expected to complete its box-office sweep in all five languages, as this is currently vague and could benefit from a specific date or weekend reference.",
+        "Include a brief summary of the significance of this box-office achievement in the context of Indian cinema, particularly how it compares to previous milestones by other films or actors.",
+        "Ensure that all financial figures are clearly stated in a consistent format (e.g., using the same currency symbol throughout) to enhance clarity and prevent confusion."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet or post from a verified film industry analyst or trade tracker confirming the box-office figures and achievements mentioned in the article."
+      ]
+    }
+  },
+  {
+    "id": "0d08b616-1c32-4533-adfc-0aad23a3c0cb",
+    "headline": "GlobalFoundries to Invest $10 Million in Cyient Semiconductors at $490 Million V",
+    "slug": "globalfoundries-invest-10-million-cyient-semiconductors-490-million-valuation",
+    "category": "technology",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the completion of the investment. The article mentions that the deal has been approved but not yet closed; providing an estimated timeline for when this is expected to occur would enhance completeness.",
+        "Include specific details about how the investment will impact Cyient Semiconductors' operations or market position. For example, what specific advancements in custom ASIC business or silicon development are anticipated as a result of this investment?",
+        "Provide context about GlobalFoundries' role in the semiconductor industry and why this investment is significant. This would help readers understand the strategic importance of the deal.",
+        "Ensure consistent terminology when referring to the valuation. The article mentions both 'pre-money equity valuation' and 'post-money equity valuation'\u2014consider clarifying these terms for readers who may not be familiar with them."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from GlobalFoundries or Cyient Semiconductors announcing the investment to provide a primary source and enhance credibility."
+      ]
+    }
+  },
+  {
+    "id": "8770c189-57d1-4d6f-bb59-9c695d6e9d53",
+    "headline": "Nikhil Gupta Sentenced to 235 Months in US Prison for Pannun Murder-for-Hire Plo",
+    "slug": "nikhil-gupta-sentenced-235-months-pannun-murder-for-hire-plot",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the dates of key actions, such as when Gupta first contacted the supposed hitman and when the advance payment was made. This will provide readers with a clearer understanding of the sequence of events.",
+        "Provide more context on the implications of the sentencing, such as potential legal repercussions for co-defendant Vikash Yadav and the significance of the Indian government's dissociation from the plot. This will help readers understand the broader ramifications of the case.",
+        "Include a quote from the sentencing judge or prosecutors to add depth and human interest to the story, as well as to provide insight into the judicial perspective on the severity of the crime."
+      ],
+      "embed_opportunities": [
+        "Embed the official statement from the US Drug Enforcement Administration regarding the case or the sentencing to provide authoritative context."
+      ]
+    }
+  }
+]

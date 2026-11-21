@@ -1,0 +1,82 @@
+[
+  {
+    "id": "a98c7ae1-9ade-4582-ae05-12933c2c99eb",
+    "headline": "India A Face Pakistan Shaheens in Doha on Sunday in Rising Stars Asia Cup",
+    "slug": "india-a-pakistan-shaheens-rising-stars-asia-cup-doha-how-to-watch",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 6,
+      "suggestions": [
+        "Clarify the date of the match against Pakistan Shaheens, as the article mentions November 22, but it should be noted that November 22 is a Wednesday, not a Sunday. This could confuse readers.",
+        "Provide more context about the significance of the Rising Stars Asia Cup and the historical performance of both teams in this tournament to enhance completeness.",
+        "Include specific details about how viewers can access the match, such as subscription requirements or links to streaming services, to improve clarity and provide actionable information.",
+        "Correct the phrasing regarding the match against Nepal, as it states they open against Nepal on Friday, November 20, which is factually incorrect since the match is on November 19."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the official tournament account or cricket governing body announcing the match schedule or highlighting key players to enhance engagement."
+      ]
+    }
+  },
+  {
+    "id": "4b586e57-a4fe-4d28-a61c-603e04be83ba",
+    "headline": "Congress Builds Big Lead Over BJP in Rajasthan Panchayat Polls as Counting Conti",
+    "slug": "rajasthan-panchayat-polls-congress-lead-bjp-counting",
+    "category": "nri-world",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the status of the counting process by specifying that results are still being updated and that the numbers reported are not final totals. This will help avoid any potential confusion about the accuracy of the results.",
+        "Include a brief explanation of the significance of these elections in the broader political context of Rajasthan, such as how they might impact the upcoming state assembly elections or the political landscape in the region.",
+        "Add specific numbers regarding voter turnout or the percentage of votes counted so far to provide readers with a clearer picture of the election's scale and engagement.",
+        "Mention the implications of the deferred results for the four districts and how this might affect the overall outcome or strategy for the parties involved."
+      ],
+      "embed_opportunities": [
+        "Embed a live feed or official updates from the Rajasthan State Election Commission to provide real-time results and updates as counting progresses."
+      ]
+    }
+  },
+  {
+    "id": "f054150e-bde1-4d8b-9bf5-0f80d5460b2e",
+    "headline": "H-1B Workers Are Giving Up on US Tech Jobs as Fees and Delays Pile Up",
+    "slug": "h1b-workers-leaving-us-tech-jobs-bloomberg-fees-delays",
+    "category": "immigration",
+    "structural_issues": [],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the proposed PERM programme overhaul by specifying when the public comment period ends and what the next steps are after January 19, 2027.",
+        "Provide more context on the $100,000 and $103,000 charges, including what they specifically entail and how they impact H-1B workers and employers.",
+        "Include a direct quote from Yash Sharma or another affected worker to provide a personal perspective on the emotional and professional implications of these changes."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet from the Labor Department regarding the proposed PERM programme changes to provide readers with direct access to the source."
+      ]
+    }
+  },
+  {
+    "id": "dfb986b5-a542-424e-92c9-9b95cfbc5197",
+    "headline": "Rupee Closes Above 93 for First Time in Seven Months, at 92.67 to the Dollar",
+    "slug": "rupee-closes-above-93-seven-months-92-67-fii-inflows",
+    "category": "markets-finance",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'The rupee settled at 92.67 against the dollar on Friday, its first close above t\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the headline to reflect the key takeaway more accurately, such as 'Rupee Closes at 92.67 Against Dollar, First Time Below 93 in Seven Months' to avoid confusion about the closing value.",
+        "Provide a clearer context regarding the significance of the rupee closing above 93, such as potential implications for import/export businesses or consumer prices, to enhance completeness.",
+        "Include a direct quote from a financial analyst or expert regarding the reasons behind the rupee's appreciation to improve attribution and depth."
+      ],
+      "embed_opportunities": [
+        "Embed a relevant tweet from the Reserve Bank of India or a financial news outlet discussing the rupee's performance for real-time updates."
+      ]
+    }
+  }
+]

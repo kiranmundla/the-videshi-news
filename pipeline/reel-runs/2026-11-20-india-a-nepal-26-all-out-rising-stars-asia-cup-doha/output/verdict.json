@@ -1,0 +1,21 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "factcheck",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-a-nepal-26-all-out-rising-stars-asia-cup-doha",
+  "name": "india-a-nepal-26-all-out-rising-stars-asia-cup-doha",
+  "script": "reel-runs/2026-11-20-india-a-nepal-26-all-out-rising-stars-asia-cup-doha/script.json",
+  "factcheck": {
+    "verdict": "fail",
+    "held_claims": [
+      "stats[1].label",
+      "stats[2].label",
+      "diaspora_bullets[0]"
+    ],
+    "llm_cost_usd": 0.000677
+  }
+}

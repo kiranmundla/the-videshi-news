@@ -1,0 +1,83 @@
+[
+  {
+    "id": "cc3f7cfa-be4d-4db7-9f90-eef30c04da63",
+    "headline": "Saudi Qualification Verification Disruptions Slow Work Visa Processing, Fragomen",
+    "slug": "saudi-qvp-disruptions-work-visa-processing-delays",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the specific jurisdictions affected by the disruptions to provide readers with a better understanding of the scope of the issue. This could help applicants in those areas to take appropriate action.",
+        "Include a more precise timeline for when applicants can expect to see improvements in processing times, if available, to give readers a clearer picture of what to anticipate.",
+        "Add a direct quote from a representative of Fragomen or the Saudi Ministry of Human Resources and Social Development to enhance attribution and provide authoritative insight into the situation."
+      ],
+      "embed_opportunities": [
+        "Embed the official tweet or announcement from Fragomen regarding the disruptions to provide readers with direct access to the source of the information."
+      ]
+    }
+  },
+  {
+    "id": "d96ffafb-03d4-4d62-b8f9-8363f16c4a5f",
+    "headline": "US Proposes PERM Overhaul: 90-Day Job Ads and Layoff Bars for EB-2, EB-3 Sponsor",
+    "slug": "us-perm-overhaul-proposal-90-day-recruitment-eb2-eb3",
+    "category": "immigration",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline for the public comment period by specifying the date range clearly and emphasizing the importance of participation for stakeholders. For example, 'The public comment period is open from November 17, 2026, to January 19, 2027, allowing stakeholders to voice their opinions on the proposed changes.'",
+        "Provide a clearer explanation of the implications of the proposed changes, particularly the impact on employers and foreign workers. For instance, detail how the new 90-day recruitment requirement may affect the hiring process and timelines for EB-2 and EB-3 applicants.",
+        "Include a brief summary of the current PERM rules for context, especially for readers unfamiliar with the existing regulations. This could help in understanding the significance of the proposed changes."
+      ],
+      "embed_opportunities": [
+        "Embed the official DOL announcement or a relevant tweet about the proposed changes to provide readers with direct access to the source material."
+      ]
+    }
+  },
+  {
+    "id": "7e94084e-0ae7-4691-81a5-d2025d619eaf",
+    "headline": "India's Blind Cricket Team Boycotts Ceremony After Pakistan Awarded Washed-Out A",
+    "slug": "india-blind-cricket-boycott-asia-cup-final-pakistan-dhaka",
+    "category": "sports",
+    "structural_issues": [
+      "No hero image"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying when the initial joint-winners decision was made and when it was overturned. This will help readers understand the sequence of actions leading to the boycott.",
+        "Include direct quotes from representatives of both the Cricket Association for the Blind in India (CABI) and the Pakistan Blind Cricket Council to enhance attribution and provide a more balanced perspective on the situation.",
+        "Provide context on the significance of the Asia Cup for blind cricket, including any historical precedents or implications of this dispute for future tournaments."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the World Blind Cricket Council or a relevant cricket authority that outlines the tournament rules regarding the final and the decision process."
+      ]
+    }
+  },
+  {
+    "id": "f4abc417-5330-48da-bb3a-722f1f9ee6b0",
+    "headline": "11 Dead, 181 Hospitalised After Suspected Spurious Liquor in Manipur's Chandel D",
+    "slug": "manipur-chandel-spurious-liquor-11-dead-181-hospitalised",
+    "category": "news",
+    "structural_issues": [
+      "Caption appends the article's lede/takeaway sentence to the photo description: 'At least 11 people have died and 181 have been hospitalised in Manipur's Chandel\u2026' \u2014 captions describe the image; drop the appended claim or re-source the photo"
+    ],
+    "llm_review": {
+      "quality_score": 7,
+      "suggestions": [
+        "Clarify the timeline of events by specifying the exact dates when the victims were hospitalized and when the first death occurred. This will help readers understand the progression of the situation more clearly.",
+        "Include a quote from a local health official or the Chief Minister regarding the ongoing investigation or the response from the government. This would enhance the attribution and provide a more authoritative perspective on the issue.",
+        "Provide more context about the potential dangers of methanol poisoning, including symptoms and treatment options. This information could help readers understand the severity of the situation and the importance of seeking medical attention.",
+        "Mention any preventive measures or public health campaigns that may be initiated in response to this incident. This could inform readers about what actions are being taken to prevent similar occurrences in the future."
+      ],
+      "embed_opportunities": [
+        "Embed a tweet from the Chief Minister or local health department regarding the incident or the warning issued to the public about consuming spurious liquor."
+      ]
+    }
+  }
+]

@@ -1,0 +1,56 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "india-a-nepal-26-all-out-rising-stars-asia-cup-doha",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "India A",
+    "Nepal",
+    "Kumar Kushagra",
+    "Tilak Varma",
+    "Prince Yadav",
+    "Harshit Rana"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'India A' named 'India at the Olympics', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Satellite image of Nepal in October 2002.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q837)",
+      "verdict": "accepted",
+      "reason": "3244x1866, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:120408 Pheriche Pano 4k.jpg",
+      "route": "identity \u2014 depicts (P180=Q837)",
+      "verdict": "accepted",
+      "reason": "3840x2400, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Tilak Varma in March 2026.png",
+      "route": "identity \u2014 Wikidata P18 (Q60286914)",
+      "verdict": "rejected",
+      "reason": "resolution: 858x1074 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Satellite image of Nepal in October 2002.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q837)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/8/84/Satellite_image_of_Nepal_in_October_2002.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm"
+    },
+    {
+      "candidate": "File:120408 Pheriche Pano 4k.jpg",
+      "route": "identity \u2014 depicts (P180=Q837)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/2/2b/120408_Pheriche_Pano_4k.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    }
+  ],
+  "extras": []
+}

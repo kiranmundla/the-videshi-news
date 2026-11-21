@@ -1,11 +1,11 @@
 {
   "counts": {
-    "channel_videos": 277,
-    "db_rows": 210,
-    "db_rows_with_yt_id": 180,
+    "channel_videos": 278,
+    "db_rows": 211,
+    "db_rows_with_yt_id": 181,
     "legacy_log_entries": 205,
-    "publish_log_entries": 93,
-    "in_sync": 159,
+    "publish_log_entries": 94,
+    "in_sync": 160,
     "unknown_legacy_logged": 101,
     "unknown_no_record": 17,
     "ghost_db_rows": 16,
@@ -1126,6 +1126,13 @@
       "privacy": "public",
       "video_id": "bxnPvendbBM",
       "record": "prebuilt_reels:5dbafbab-2a4c-4660-b1bf-a7dca79992c8"
+    },
+    {
+      "title": "Rupee Closes Above 93 for First Time in Seven Months, at 92.67 to the Dollar #Shorts #Markets",
+      "published_at": "2026-11-20T17:26:19Z",
+      "privacy": "public",
+      "video_id": "C5tzgwrGBG4",
+      "record": "prebuilt_reels:bf721aef-e84c-452f-865d-66b5d9a22bc6"
     }
   ],
   "unknown_legacy_logged": [
@@ -4135,5 +4142,5 @@
     }
   ],
   "phase2_uploads_now_public": [],
-  "generated_at": "2026-11-20T11:17:36+00:00"
+  "generated_at": "2026-11-20T23:15:10+00:00"
 }

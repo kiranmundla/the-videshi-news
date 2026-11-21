@@ -1,14 +1,14 @@
 # Reel reconciliation — The Videshi (YouTube @the.videshi)
 
-Generated: 2026-11-20T11:17:36+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
+Generated: 2026-11-20T23:15:10+00:00 · Tool: `pipeline/reel_reconcile.py` (read-only; nothing was changed on YouTube or in the database)
 
 ## Counts
 
-- Channel uploads (actual, via API): **277**
-- prebuilt_reels rows: 210 (180 with a yt_video_id)
+- Channel uploads (actual, via API): **278**
+- prebuilt_reels rows: 211 (181 with a yt_video_id)
 - Legacy youtube-log.json entries: 205
-- Phase 2 publish-log entries: 93
-- **In sync** (channel video backed by a DB/publish-log record): **159**
+- Phase 2 publish-log entries: 94
+- **In sync** (channel video backed by a DB/publish-log record): **160**
 - Unknown — legacy-logged only: 101
 - Unknown — no record anywhere: 17
 - Ghost DB rows (yt_video_id not on channel): 16
@@ -292,7 +292,7 @@ _None._
 - row `9cc51a36-a469-4ddf-96b3-3570fdcc497a` · slug infosys-doj-investigation-h1b-classifications-disclosure · yt_video_id `sVryrh31poY` · on channel: no
 - row `3c385175-84c2-48c0-afec-378bee1ba1d6` · slug ambani-adds-6-3-billion-reliance-shares-jump-record-profit · yt_video_id `B45MLVEFtk4` · on channel: no
 
-## (d) In sync (159)
+## (d) In sync (160)
 
 - `JK4WlKchwm8` · public · 2026-06-11 · India's Retail Investors Just Blinked. Equity Fund Inflows Crashed 40% in May. #Shorts [prebuilt_reels:4baf43f8-9ffb-4f73-bcb9-1897ed9da505]
 - `5rPRXIxjDVc` · public · 2026-06-17 · Three Indian Seafarers Are Dead Off Oman. India's Invisible Diaspora Just Became a Diploma #Shorts [prebuilt_reels:a6848d3d-0ebf-4353-81ac-7a0d7139d0ee]
@@ -453,4 +453,5 @@ _None._
 - `5GrzywH4lks` · public · 2026-11-19 · World Champion Gukesh Named to TIME100 Next India Weeks Before First Title Defence #Shorts #NRI [prebuilt_reels:a9718c62-1fd1-4a8e-a610-45fe1d659b25]
 - `oZeaJOuLY9s` · public · 2026-11-20 · Cyclone Akvan Begins Landfall Near Gopalpur; Over 3 Lakh Evacuated in Odisha #Shorts #News [prebuilt_reels:4f7068dd-1657-4f54-ba79-976a1630bd1e]
 - `bxnPvendbBM` · public · 2026-11-20 · Visa-Free Entry for Indians From January 1, 2027; Applications Open December 1 #Shorts #VisaNews [prebuilt_reels:5dbafbab-2a4c-4660-b1bf-a7dca79992c8]
+- `C5tzgwrGBG4` · public · 2026-11-20 · Rupee Closes Above 93 for First Time in Seven Months, at 92.67 to the Dollar #Shorts #Markets [prebuilt_reels:bf721aef-e84c-452f-865d-66b5d9a22bc6]
 

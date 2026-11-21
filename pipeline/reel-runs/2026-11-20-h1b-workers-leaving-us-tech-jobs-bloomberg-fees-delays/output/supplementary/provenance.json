@@ -1,0 +1,189 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "h1b-workers-leaving-us-tech-jobs-bloomberg-fees-delays",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Yash Sharma",
+    "Google",
+    "H-1B",
+    "IBM",
+    "PERM",
+    "Workers"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'H-1B' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "namesake: live resolution of 'Workers' named 'Workers & Resources: Soviet Republic', which does not bear the queried name \u2014 not an identity; fail closed"
+    },
+    {
+      "candidate": "File:Googleplex HQ (cropped).jpg",
+      "route": "identity \u2014 Wikidata P18 (Q95)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:BenjaDoo.png",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "rejected",
+      "reason": "resolution: 1068x364 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Boerenwagen, van achteren gezien, RP-T-1952-254.jpg",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "accepted",
+      "reason": "4576x4526, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Data-driven vs data-brokering.png",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Dublin pride 2016 parade - Dublin, Ireland - Documentary photography (27798001792).jpg",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:GAFAM English posters.png",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Gcp-org-policy-skip-default-network-a5.jpg",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "rejected",
+      "reason": "resolution: 1366x589 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Google-Maps-Backpack-NYC.png",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:GoogleStreetViewCar Subaru Impreza at Google Campus.JPG",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "accepted",
+      "reason": "1900x1231, Public domain, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:IBM Watson.PNG",
+      "route": "identity \u2014 Wikidata P18 (Q37156)",
+      "verdict": "USED (diaspora)",
+      "reason": "1549x1037, CC BY-SA 3.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2024 IBM Quantum Roadmap Update.webm",
+      "route": "identity \u2014 depicts (P180=Q37156)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (video/webm)"
+    },
+    {
+      "candidate": "File:En-ca-IBM.ogg",
+      "route": "identity \u2014 depicts (P180=Q37156)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (application/ogg)"
+    },
+    {
+      "candidate": "File:Equal Opportunity Patten for Progress poster for IBM, 1972.jpg",
+      "route": "identity \u2014 depicts (P180=Q37156)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Gay Courter on System6.jpg",
+      "route": "identity \u2014 depicts (P180=Q37156)",
+      "verdict": "accepted",
+      "reason": "1360x1060, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Perm asv2019-05 img50 Gorky Park.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q915)",
+      "verdict": "rejected",
+      "reason": "license: FAL \u2014 not CC / public domain"
+    },
+    {
+      "candidate": "File:Administrative divisions of Perm (ru).svg",
+      "route": "identity \u2014 depicts (P180=Q915)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Gss 2022 demkin.jpg",
+      "route": "identity \u2014 depicts (P180=Q915)",
+      "verdict": "rejected",
+      "reason": "identity: the file's subject is wildlife photographed AT the entity, not the entity itself (species-marked categories)"
+    },
+    {
+      "candidate": "File:Perm Banner A73.jpg",
+      "route": "identity \u2014 depicts (P180=Q915)",
+      "verdict": "accepted",
+      "reason": "4931x704, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Water overgrown with mud in Yegoshikha ravine in Perm city, Russia.jpg",
+      "route": "identity \u2014 depicts (P180=Q915)",
+      "verdict": "accepted",
+      "reason": "4000x3000, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Perm Banner A73.jpg",
+      "route": "identity \u2014 depicts (P180=Q915)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/9/92/Perm_Banner_A73.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "candidate": "File:GoogleStreetViewCar Subaru Impreza at Google Campus.JPG",
+      "route": "identity \u2014 depicts (P180=Q95)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/a/aa/GoogleStreetViewCar_Subaru_Impreza_at_Google_Campus.JPG?utm_source=commons.wikimedia.org&utm_campaign=im"
+    },
+    {
+      "candidate": "File:Water overgrown with mud in Yegoshikha ravine in Perm city, Russia.jpg",
+      "route": "identity \u2014 depicts (P180=Q915)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/3/33/Water_overgrown_with_mud_in_Yegoshikha_ravine_in_Perm_city%2C_Russia.jpg?utm_source=commons.wikimedia.or"
+    }
+  ],
+  "extras": [
+    {
+      "beat": "diaspora",
+      "label": "ibm-watson",
+      "path": "ibm-watson.png",
+      "size": [
+        1549,
+        1037
+      ],
+      "role": "establishing",
+      "subject": "An early prototype of Watson in Yorktown Heights, NY. The cognitive computing system was originally the size of a master bedroom in 2011.",
+      "route": "identity \u2014 Wikidata P18 (Q37156)",
+      "source_page": "https://commons.wikimedia.org/wiki/File:IBM_Watson.PNG",
+      "file_url": "https://upload.wikimedia.org/wikipedia/commons/2/22/IBM_Watson.PNG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "artist": "Clockready",
+      "entity": "IBM",
+      "entity_type": "company",
+      "entity_aliases": [
+        "International Business Machines Corporation (Armonk, NY)",
+        "IBM Corp.",
+        "18M",
+        "ibm.com"
+      ]
+    }
+  ]
+}

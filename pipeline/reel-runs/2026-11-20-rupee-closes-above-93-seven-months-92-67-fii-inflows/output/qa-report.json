@@ -1,0 +1,216 @@
+{
+  "qa": "reel_frame_qa.py",
+  "video": "reel-runs/2026-11-20-rupee-closes-above-93-seven-months-92-67-fii-inflows/output/rupee-closes-above-93-seven-months-92-67-fii-inflows.mp4",
+  "qa_passed": true,
+  "qa_score": 10.0,
+  "pass_threshold": 7.0,
+  "failing_checks": [],
+  "checks": {
+    "technical": {
+      "pass": true,
+      "width": 1080,
+      "height": 1920,
+      "duration_s": 35.0,
+      "audio_streams": 1
+    },
+    "photo": {
+      "pass": true,
+      "measured_dims": [
+        1200,
+        641
+      ],
+      "manifest_dims": [
+        1200,
+        641
+      ],
+      "floor": [
+        1080,
+        600
+      ],
+      "center_sharpness_laplacian_var": 392.8,
+      "url": "https://bl-i.thgim.com/public/incoming/ycoivy/article71137874.ece/alternates/FREE_1200/PO07_Dollar_rupee.jpg"
+    }
+  },
+  "beats": [
+    {
+      "beat": "hook",
+      "t": 2.0,
+      "frame": "reel-runs/2026-11-20-rupee-closes-above-93-seven-months-92-67-fii-inflows/output/qa/frames/frame-hook.png",
+      "text_px_detected": 25519,
+      "edge": {
+        "pass": true,
+        "offending_px": 102,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 14.6,
+        "delta": 239.3
+      }
+    },
+    {
+      "beat": "news",
+      "t": 7.0,
+      "frame": "reel-runs/2026-11-20-rupee-closes-above-93-seven-months-92-67-fii-inflows/output/qa/frames/frame-news.png",
+      "text_px_detected": 31587,
+      "edge": {
+        "pass": true,
+        "offending_px": 76,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 36.4,
+        "delta": 217.5
+      }
+    },
+    {
+      "beat": "hero",
+      "t": 13.0,
+      "frame": "reel-runs/2026-11-20-rupee-closes-above-93-seven-months-92-67-fii-inflows/output/qa/frames/frame-hero.png",
+      "text_px_detected": 43956,
+      "edge": {
+        "pass": true,
+        "offending_px": 115,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 60.2,
+        "delta": 193.6
+      }
+    },
+    {
+      "beat": "grid",
+      "t": 19.5,
+      "frame": "reel-runs/2026-11-20-rupee-closes-above-93-seven-months-92-67-fii-inflows/output/qa/frames/frame-grid.png",
+      "text_px_detected": 24487,
+      "edge": {
+        "pass": true,
+        "offending_px": 56,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "frame-yunet (score 0.91)",
+        "box": [
+          476,
+          243,
+          123,
+          162
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 169.4,
+        "bg_luminance": 68.4,
+        "delta": 101.0
+      }
+    },
+    {
+      "beat": "diaspora",
+      "t": 26.5,
+      "frame": "reel-runs/2026-11-20-rupee-closes-above-93-seven-months-92-67-fii-inflows/output/qa/frames/frame-diaspora.png",
+      "text_px_detected": 4481,
+      "edge": {
+        "pass": true,
+        "offending_px": 118,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 169.5,
+        "bg_luminance": 48.0,
+        "delta": 121.5
+      }
+    },
+    {
+      "beat": "payoff",
+      "t": 32.5,
+      "frame": "reel-runs/2026-11-20-rupee-closes-above-93-seven-months-92-67-fii-inflows/output/qa/frames/frame-payoff.png",
+      "text_px_detected": 49781,
+      "edge": {
+        "pass": true,
+        "offending_px": 154,
+        "clusters": 0,
+        "largest_cluster": 0
+      },
+      "face": {
+        "pass": true,
+        "method": "no-face",
+        "box": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "overlap_px": 0
+      },
+      "contrast": {
+        "pass": true,
+        "full_marks": true,
+        "text_luminance": 253.9,
+        "bg_luminance": 59.3,
+        "delta": 194.6
+      }
+    }
+  ]
+}

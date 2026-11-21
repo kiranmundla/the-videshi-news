@@ -1,0 +1,35 @@
+{
+ "hook_line": "WALMART EARNINGS BEAT ESTIMATES AS REVENUE RISES 5.2% TO $188.8 BILLION, GUIDANCE RAISED",
+ "hook_stat": {
+  "big": "$188.8 billion",
+  "eyebrow": "BY THE NUMBERS",
+  "sub": "Walmart total revenue in the fiscal third quarter, up 5.2%"
+ },
+ "stats": [
+  {
+   "big": "$0.65",
+   "label": "Adjusted earnings per share, up 4.8% and ahead of the $0.64 consensus"
+  },
+  {
+   "big": "23%",
+   "label": "Growth in U.S. eCommerce sales in the quarter"
+  },
+  {
+   "big": "$2.84 to $2.89",
+   "label": "Raised fiscal 2027 adjusted EPS guidance"
+  }
+ ],
+ "diaspora_bullets": [
+  "In India, the Flipkart Big Billion Days sale shifted into the fourth quarter",
+  "China net sales rose 28% in constant currency, with eCommerce up 31%"
+ ],
+ "key_entities": [
+  "Walmart",
+  "Flipkart",
+  "Sam's Club"
+ ],
+ "news_summary": "Walmart beat estimates on both lines in its fiscal third quarter: total revenue rose 5.2% to $188.8 billion and adjusted earnings rose 4.8% to $0.65 per share.",
+ "payoff": "Walmart raised its fiscal 2027 outlook for the second time this year.",
+ "versus": "",
+ "story_mood": "practical"
+}

@@ -1,0 +1,38 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "h1b-workers-leaving-us-tech-jobs-bloomberg-fees-delays",
+  "name": "h1b-workers-leaving-us-tech-jobs-bloomberg-fees-delays",
+  "script": "reel-runs/2026-11-20-h1b-workers-leaving-us-tech-jobs-bloomberg-fees-delays/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000749
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-20-h1b-workers-leaving-us-tech-jobs-bloomberg-fees-delays/output/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {
+      "diaspora": "ibm-watson"
+    }
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Yash Sharma) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 2,
+    "scenes": 6,
+    "labels": [
+      "hero",
+      "extra:ibm-watson"
+    ]
+  },
+  "detail": "only 2 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}

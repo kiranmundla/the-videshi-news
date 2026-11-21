@@ -1,0 +1,277 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "h1b-workers-leaving-us-tech-jobs-bloomberg-fees-delays",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "H-1B WORKERS ARE GIVING UP ON US TECH JOBS AS FEES AND DELAYS PILE UP",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article discusses H-1B workers leaving due to fees and delays.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Bloomberg profiles Yash Sharma, a 36-year-old Google software engineer from India who is leaving the US for the United Kingdom next month after six years on an H-1B visa, as new charges, PERM suspensions and employer pullbacks stack up.",
+      "numbers": [
+        1.0,
+        36.0
+      ],
+      "entities": [
+        "Yash Sharma",
+        "United Kingdom"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Yash Sharma's profile and circumstances are detailed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "260,000",
+      "numbers": [
+        260000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states 260,000 fewer visas were issued in the 2025 budget year.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Fewer short-term non-immigrant visas issued by the US in the 2025 budget year than the year before",
+      "numbers": [
+        2025.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2025
+        ]
+      },
+      "llm_reason": "The article confirms fewer visas were issued in the specified budget year.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$103,000",
+      "numbers": [
+        103000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions a $103,000 charge on new H-1B applications.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Charge on new H-1B applications announced in August",
+      "numbers": [
+        1.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states this charge was announced in August.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "15%",
+      "numbers": [
+        15.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article reports a 15% drop in new foreign student enrollment.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Estimated drop in new foreign student enrolment at US universities this fall",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the estimated drop in enrollment.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "January 19, 2027",
+      "numbers": [
+        19.0,
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article states comments on the PERM proposal close on this date.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Public comments close on the Labor Department's proposed PERM overhaul",
+      "numbers": [],
+      "entities": [
+        "Labor Department's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article mentions public comments on the PERM proposal.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "IBM is ending visa and green card sponsorship for most roles in IBM Consulting",
+      "numbers": [],
+      "entities": [
+        "IBM Consulting"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states IBM is ending sponsorship for most roles.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "The UK Global Talent visa Sharma used requires no job offer",
+      "numbers": [],
+      "entities": [
+        "UK Global Talent"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms the UK Global Talent visa requires no job offer.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Nothing in the reported changes cancels the status of people already holding valid visas \u2014 what has changed is the cost and predictability of staying.",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states current visa holders are not affected by changes.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Yash Sharma",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Google",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "H-1B",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "IBM",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "PERM",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000749,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

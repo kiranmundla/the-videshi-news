@@ -1,0 +1,277 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "walmart-earnings-beat-revenue-188-billion-guidance-raised-q3",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "WALMART EARNINGS BEAT ESTIMATES AS REVENUE RISES 5.2% TO $188.8 BILLION, GUIDANCE RAISED",
+      "numbers": [
+        5.2,
+        188.8,
+        188800000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Earnings beat estimates; revenue rose 5.2% to $188.8 billion.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "Walmart beat estimates on both lines in its fiscal third quarter: total revenue rose 5.2% to $188.8 billion and adjusted earnings rose 4.8% to $0.65 per share.",
+      "numbers": [
+        0.65,
+        4.8,
+        5.2,
+        188.8,
+        188800000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Both revenue and adjusted earnings figures are confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "$188.8 billion",
+      "numbers": [
+        188.8,
+        188800000000.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "$188.8 billion is the reported total revenue.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Walmart total revenue in the fiscal third quarter, up 5.2%",
+      "numbers": [
+        5.2
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Total revenue rose 5.2% in the fiscal third quarter.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "$0.65",
+      "numbers": [
+        0.65
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Adjusted earnings per share reported as $0.65.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "Adjusted earnings per share, up 4.8% and ahead of the $0.64 consensus",
+      "numbers": [
+        0.64,
+        4.8
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Adjusted earnings increased by 4.8% and exceeded the $0.64 consensus.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "23%",
+      "numbers": [
+        23.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "U.S. eCommerce sales growth reported as 23%.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Growth in U.S. eCommerce sales in the quarter",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Confirmed growth in U.S. eCommerce sales.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "$2.84 to $2.89",
+      "numbers": [
+        2.84,
+        2.89
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Fiscal 2027 adjusted EPS guidance raised to $2.84 to $2.89.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Raised fiscal 2027 adjusted EPS guidance",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "Fiscal 2027 adjusted EPS guidance was indeed raised.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "In India, the Flipkart Big Billion Days sale shifted into the fourth quarter",
+      "numbers": [],
+      "entities": [
+        "In India",
+        "Flipkart Big Billion Days"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Article states Flipkart sale timing affected results.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "China net sales rose 28% in constant currency, with eCommerce up 31%",
+      "numbers": [
+        28.0,
+        31.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Confirmed growth figures for China net sales and eCommerce.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "Walmart raised its fiscal 2027 outlook for the second time this year.",
+      "numbers": [
+        2027.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {
+        "years_checked": [
+          2027
+        ]
+      },
+      "llm_reason": "The article confirms the second outlook raise for fiscal 2027.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "Walmart",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Flipkart",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Sam's Club",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000748,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

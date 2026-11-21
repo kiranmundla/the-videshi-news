@@ -1,0 +1,287 @@
+{
+  "gate": "reel_factcheck.py",
+  "article_slug": "india-a-nepal-26-all-out-rising-stars-asia-cup-doha",
+  "verdict": "pass",
+  "held_claims": [],
+  "claims": [
+    {
+      "field": "hook_line",
+      "text": "INDIA A BOWL NEPAL OUT FOR 26 IN 306-RUN RISING STARS WIN",
+      "numbers": [
+        26.0,
+        306.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All facts about the match outcome and score are present.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "news_summary",
+      "text": "India A beat Nepal by 306 runs in Doha: 332 for 9 against 26 all out in 11.3 overs, in the ACC Men's Asia Cup Rising Stars.",
+      "numbers": [
+        9.0,
+        11.3,
+        26.0,
+        306.0,
+        332.0
+      ],
+      "entities": [
+        "India A",
+        "ACC Men's Asia Cup Rising Stars"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "All details about the match score and context are accurate.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.big",
+      "text": "26",
+      "numbers": [
+        26.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The total of 26 is explicitly mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.sub",
+      "text": "Nepal all out for 26 in 11.3 overs \u2014 the fifth-lowest total in List A history",
+      "numbers": [
+        11.3,
+        26.0
+      ],
+      "entities": [
+        "List A"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Both the total and its historical context are confirmed in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "hook_stat.eyebrow",
+      "text": "BY THE NUMBERS",
+      "numbers": [],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": null
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].big",
+      "text": "306",
+      "numbers": [
+        306.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The margin of victory of 306 runs is stated in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[0].label",
+      "text": "India A's margin of victory in runs in Doha",
+      "numbers": [],
+      "entities": [
+        "India A's"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately describes the victory margin.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].big",
+      "text": "117",
+      "numbers": [
+        117.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Kumar Kushagra's score of 117 is mentioned in the article.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[1].label",
+      "text": "Runs by Kumar Kushagra, off 102 balls",
+      "numbers": [
+        102.0
+      ],
+      "entities": [
+        "Kumar Kushagra"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The runs and balls faced by Kushagra are accurately reported.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].big",
+      "text": "5 for 6",
+      "numbers": [
+        5.0,
+        6.0
+      ],
+      "entities": [],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "Prince Yadav's bowling figures are explicitly stated.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "stats[2].label",
+      "text": "Bowling figures for Prince Yadav, from five overs",
+      "numbers": [],
+      "entities": [
+        "Prince Yadav"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The claim accurately reflects the bowling performance.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[0]",
+      "text": "Kumar Kushagra was named player of the match",
+      "numbers": [],
+      "entities": [
+        "Kumar Kushagra"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article confirms Kushagra as player of the match.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "diaspora_bullets[1]",
+      "text": "Next up in Doha on Sunday: Pakistan Shaheens",
+      "numbers": [],
+      "entities": [
+        "Pakistan Shaheens"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The upcoming match against Pakistan Shaheens is mentioned.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    },
+    {
+      "field": "payoff",
+      "text": "The win gives India A two points and a commanding net-run-rate start in Group B.",
+      "numbers": [],
+      "entities": [
+        "India A",
+        "Group B"
+      ],
+      "deterministic": "pass",
+      "detail": {},
+      "llm_reason": "The article states the points and net-run-rate context.",
+      "verdicts": {
+        "deterministic": "pass",
+        "llm": "supported"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "eyebrow": {
+    "value": "BY THE NUMBERS",
+    "ok": true,
+    "detail": "closed vocabulary"
+  },
+  "key_entities": [
+    {
+      "entity": "India A",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Nepal",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Kumar Kushagra",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Tilak Varma",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Prince Yadav",
+      "deterministic": "pass"
+    },
+    {
+      "entity": "Harshit Rana",
+      "deterministic": "pass"
+    }
+  ],
+  "judge_errors": [],
+  "llm": {
+    "model": "gpt-4o-mini",
+    "ran": true,
+    "error": null,
+    "cost_usd": 0.000665,
+    "rounds": 1,
+    "reasked_claims": [],
+    "unmatched_verdicts": 0,
+    "judge_error_claims": []
+  }
+}

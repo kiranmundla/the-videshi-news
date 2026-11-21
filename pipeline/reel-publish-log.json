@@ -1226,5 +1226,18 @@
     "factcheck_verdict": "pass",
     "qa_score": 10.0,
     "publisher": "reel_publish.py"
+  },
+  {
+    "video_id": "C5tzgwrGBG4",
+    "article_slug": "rupee-closes-above-93-seven-months-92-67-fii-inflows",
+    "article_id": "dfb986b5-a542-424e-92c9-9b95cfbc5197",
+    "title": "Rupee Closes Above 93 for First Time in Seven Months, at 92.67 to the Dollar #Shorts #Markets",
+    "privacy": "public",
+    "uploaded_at": "2026-11-20T17:25:53.061468+00:00",
+    "video_path": "reel-runs/2026-11-20-rupee-closes-above-93-seven-months-92-67-fii-inflows/output/rupee-closes-above-93-seven-months-92-67-fii-inflows.mp4",
+    "video_sha256": "88d70f27b487eb079c00a13fd3b78ae3510de89bb736aadf77d0a3885bd9c263",
+    "factcheck_verdict": "pass",
+    "qa_score": 10.0,
+    "publisher": "reel_publish.py"
   }
 ]

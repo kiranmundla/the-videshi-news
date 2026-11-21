@@ -1,0 +1,197 @@
+{
+  "quote_present": true,
+  "verbatim_quote": true,
+  "speaker_grounded": true,
+  "role_grounded": true,
+  "eyebrow_is_category": true,
+  "claim_gate": {
+    "gate": "reel_factcheck.py",
+    "article_slug": "rupee-closes-above-93-seven-months-92-67-fii-inflows",
+    "verdict": "fail",
+    "held_claims": [
+      "hook_line",
+      "stats[0].label",
+      "diaspora_bullets[0]",
+      "payoff"
+    ],
+    "claims": [
+      {
+        "field": "hook_line",
+        "text": "Rupee Settles 65 Paise Higher at 92.67 to the Dollar in Fifth Straight Session of Gains",
+        "numbers": [
+          65.0,
+          92.67
+        ],
+        "entities": [
+          "Rupee Settles",
+          "Paise Higher",
+          "Fifth Straight Session"
+        ],
+        "deterministic": "fail",
+        "detail": {
+          "ungrounded_entities": [
+            "Rupee Settles"
+          ]
+        },
+        "llm_reason": "The article states the rupee settled at 92.67 after five sessions of gains.",
+        "verdicts": {
+          "deterministic": "fail",
+          "llm": "supported"
+        },
+        "verdict": "fail"
+      },
+      {
+        "field": "news_summary",
+        "text": "A fifth straight session of gains, powered by \u20b984,290 crore of foreign equity inflows in nine November sessions and weaker crude, took the rupee past a level it last closed above on April 10.",
+        "numbers": [
+          10.0,
+          84290.0,
+          842900000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article confirms the gains were due to foreign inflows and weaker crude.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[0].label",
+        "text": "On Friday, November 20, the rupee settled 65 paise higher at 92.67 (provisional) against the US dollar",
+        "numbers": [
+          20.0,
+          65.0,
+          92.67
+        ],
+        "entities": [
+          "On Friday"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article does not specify the date as November 20.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "unsupported"
+        },
+        "verdict": "fail"
+      },
+      {
+        "field": "stats[1].label",
+        "text": "Foreign investors pumped in \u20b984,290 crore into Indian equities over nine trading sessions from November 2 to 13",
+        "numbers": [
+          2.0,
+          13.0,
+          84290.0,
+          842900000000.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article states this exact amount and timeframe.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "stats[2].label",
+        "text": "$1,000 now converts to about \u20b992,670, compared with about \u20b994,190 at the November 13 close",
+        "numbers": [
+          13.0,
+          1000.0,
+          92670.0,
+          94190.0
+        ],
+        "entities": [],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article provides these exact conversion figures.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "diaspora_bullets[0]",
+        "text": "Anuj Choudhary",
+        "numbers": [],
+        "entities": [
+          "Anuj Choudhary"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article does not mention Anuj Choudhary directly.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "unsupported"
+        },
+        "verdict": "fail"
+      },
+      {
+        "field": "diaspora_bullets[1]",
+        "text": "Research Analyst, Mirae Asset Sharekhan, quoted by PTI",
+        "numbers": [],
+        "entities": [
+          "Research Analyst",
+          "Mirae Asset Sharekhan"
+        ],
+        "deterministic": "pass",
+        "detail": {},
+        "llm_reason": "The article attributes the quote to Anuj Choudhary from Mirae Asset Sharekhan.",
+        "verdicts": {
+          "deterministic": "pass",
+          "llm": "supported"
+        },
+        "verdict": "pass"
+      },
+      {
+        "field": "payoff",
+        "text": "Rupee Settles 65 Paise Higher at 92.67 to the Dollar in Fifth Straight Session of Gains",
+        "numbers": [
+          65.0,
+          92.67
+        ],
+        "entities": [
+          "Rupee Settles",
+          "Paise Higher",
+          "Fifth Straight Session"
+        ],
+        "deterministic": "fail",
+        "detail": {
+          "ungrounded_entities": [
+            "Rupee Settles"
+          ]
+        },
+        "llm_reason": "This claim is identical to the first claim, which is supported.",
+        "verdicts": {
+          "deterministic": "fail",
+          "llm": "supported"
+        },
+        "verdict": "fail"
+      }
+    ],
+    "eyebrow": {
+      "value": "",
+      "ok": true,
+      "detail": "closed vocabulary"
+    },
+    "key_entities": [],
+    "judge_errors": [],
+    "llm": {
+      "model": "gpt-4o-mini",
+      "ran": true,
+      "error": null,
+      "cost_usd": 0.000574,
+      "rounds": 1,
+      "reasked_claims": [],
+      "unmatched_verdicts": 0,
+      "judge_error_claims": []
+    }
+  },
+  "verdict": "fail"
+}

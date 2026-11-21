@@ -1,0 +1,109 @@
+{
+  "built": "reel_entity_sourcing.py (production v7)",
+  "story": "walmart-earnings-beat-revenue-188-billion-guidance-raised-q3",
+  "trigger": {
+    "own_images": 1,
+    "target_distinct": 5,
+    "extras_needed": 4
+  },
+  "entities": [
+    "Walmart",
+    "Flipkart",
+    "Sam's Club",
+    "Billion",
+    "Markets Finance"
+  ],
+  "candidate_ledger": [
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "concept: 'Billion' is a generic concept \u2014 concepts have no identity to photograph; identity sourcing for them only climbs to unrelated depictions; fail closed (2026-11-11)"
+    },
+    {
+      "candidate": "(entity)",
+      "route": "identity \u2014 entity triage",
+      "verdict": "rejected",
+      "reason": "category label: 'Markets Finance' is this article's category name, not a picture subject"
+    },
+    {
+      "candidate": "File:Walmart 7.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q483551)",
+      "verdict": "accepted",
+      "reason": "4381x2929, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:CCFD Engine 27 + Air Resource Unit at Walmart Arson.jpg",
+      "route": "identity \u2014 depicts (P180=Q483551)",
+      "verdict": "accepted",
+      "reason": "4656x3492, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Flipkart Fake Or Not Fack April 2021.png",
+      "route": "identity \u2014 depicts (P180=Q1381966)",
+      "verdict": "rejected",
+      "reason": "resolution: 600x315 \u2014 below the 1080x600 floor; would force an upscale"
+    },
+    {
+      "candidate": "File:Flipkart Minutes logo.png",
+      "route": "identity \u2014 depicts (P180=Q1381966)",
+      "verdict": "rejected",
+      "reason": "title/description marks it as a logo/diagram/map-type file, not a scene photograph"
+    },
+    {
+      "candidate": "File:Flipkart logo (2026).svg",
+      "route": "identity \u2014 depicts (P180=Q1381966)",
+      "verdict": "rejected",
+      "reason": "not a photograph file (image/svg+xml)"
+    },
+    {
+      "candidate": "File:Flipkart minutes, Banashakari 3rd stage, Bengaluru (2026).jpg",
+      "route": "identity \u2014 depicts (P180=Q1381966)",
+      "verdict": "accepted",
+      "reason": "3264x1740, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Flipkart minutes, Channasandra, RR Nagar, Bangalore (2026).jpg",
+      "route": "identity \u2014 depicts (P180=Q1381966)",
+      "verdict": "accepted",
+      "reason": "4016x2496, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Sam's Club in Onalaska.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q1972120)",
+      "verdict": "accepted",
+      "reason": "4000x2960, CC0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:2F entrance of Sam's Club Beijing Houshayu (20240727171407).jpg",
+      "route": "identity \u2014 depicts (P180=Q1972120)",
+      "verdict": "accepted",
+      "reason": "3954x2636, CC BY-SA 4.0, identity by construction (P18/depicts of the resolved Wikidata item)"
+    },
+    {
+      "candidate": "File:Walmart 7.jpg",
+      "route": "identity \u2014 Wikidata P18 (Q483551)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/4/47/Walmart_7.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original"
+    },
+    {
+      "candidate": "File:CCFD Engine 27 + Air Resource Unit at Walmart Arson.jpg",
+      "route": "identity \u2014 depicts (P180=Q483551)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/f/ff/CCFD_Engine_27_%2B_Air_Resource_Unit_at_Walmart_Arson.jpg?utm_source=commons.wikimedia.org&utm_campaign="
+    },
+    {
+      "candidate": "File:2F entrance of Sam's Club Beijing Houshayu (20240727171407).jpg",
+      "route": "identity \u2014 depicts (P180=Q1972120)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/0/01/2F_entrance_of_Sam%27s_Club_Beijing_Houshayu_%2820240727171407%29.jpg?utm_source=commons.wikimedia.org&u"
+    },
+    {
+      "candidate": "File:Flipkart minutes, Banashakari 3rd stage, Bengaluru (2026).jpg",
+      "route": "identity \u2014 depicts (P180=Q1381966)",
+      "verdict": "rejected",
+      "reason": "download/verify failed: download too small: https://upload.wikimedia.org/wikipedia/commons/a/a7/Flipkart_minutes%2C_Banashakari_3rd_stage%2C_Bengaluru_%282026%29.jpg?utm_source=commons.wikimedia.org&u"
+    }
+  ],
+  "extras": []
+}

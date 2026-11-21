@@ -1844,5 +1844,16 @@
     "top_story_slug": "rupee-seven-month-high-it-earnings-tcs-infosys",
     "quick_hit_count": 5,
     "deadline_count": 3
+  },
+  {
+    "type": "daily",
+    "sent_at": "2026-11-20T14:58:12.794422+00:00Z",
+    "subject": "The Videshi Daily \u2014 November 20, 2026",
+    "subscribers": 11,
+    "sent": 10,
+    "errors": 1,
+    "top_story_slug": "h1b-workers-leaving-us-tech-jobs-bloomberg-fees-delays",
+    "quick_hit_count": 5,
+    "deadline_count": 3
   }
 ]

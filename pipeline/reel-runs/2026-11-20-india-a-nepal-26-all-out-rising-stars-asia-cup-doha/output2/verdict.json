@@ -1,0 +1,35 @@
+{
+  "driver": "reel_produce.py",
+  "status": "held",
+  "stage": "distinct_images",
+  "render": {
+    "renderer": "reel_renderer_v8.py",
+    "stage_color": "black"
+  },
+  "article_slug": "india-a-nepal-26-all-out-rising-stars-asia-cup-doha",
+  "name": "india-a-nepal-26-all-out-rising-stars-asia-cup-doha",
+  "script": "reel-runs/2026-11-20-india-a-nepal-26-all-out-rising-stars-asia-cup-doha/script.json",
+  "factcheck": {
+    "verdict": "pass",
+    "held_claims": [],
+    "llm_cost_usd": 0.000665
+  },
+  "sourcing": {
+    "mode": "ladder",
+    "provenance": "reel-runs/2026-11-20-india-a-nepal-26-all-out-rising-stars-asia-cup-doha/output2/supplementary/provenance.json",
+    "own_images": 1,
+    "extras": {}
+  },
+  "stock": {
+    "eligible": false,
+    "reason": "named-person story (Kumar Kushagra, Tilak Varma, Prince Yadav, Harshit Rana) \u2014 stock fallback forbidden"
+  },
+  "distinct_images": {
+    "usable": 1,
+    "scenes": 6,
+    "labels": [
+      "hero"
+    ]
+  },
+  "detail": "only 1 distinct usable images for 6 photo scenes \u2014 holding rather than re-cropping one image across beats (2026-11-11 visa Short failure)"
+}
